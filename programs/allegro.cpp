@@ -12,6 +12,7 @@
 
 
 #include <Blast/StringSplitter.hpp>
+#include <Blast/KeyboardCommandMapper.hpp>
 
 
 using namespace Blast;
@@ -96,8 +97,43 @@ public:
 
       place.restore_transform();
    }
+
+   // events
+
+   static const std::string MOVE_CURSOR_UP;
+   static const std::string MOVE_CURSOR_DOWN;
+   static const std::string MOVE_CURSOR_LEFT;
+   static const std::string MOVE_CURSOR_RIGHT;
+
+   void process_local_event(std::string event_name)
+   {
+      if (event_name == MOVE_CURSOR_UP) move_cursor_up();
+      else if (event_name == MOVE_CURSOR_DOWN) move_cursor_down();
+      else if (event_name == MOVE_CURSOR_LEFT) move_cursor_left();
+      else if (event_name == MOVE_CURSOR_RIGHT) move_cursor_right();
+   }
+
+   void process_event(KeyboardCommandMapper &keyboard_command_mapper, ALLEGRO_EVENT &event)
+   {
+      switch(event.type)
+      {
+      case ALLEGRO_EVENT_KEY_DOWN:
+         break;
+      case ALLEGRO_EVENT_KEY_UP:
+         break;
+      case ALLEGRO_EVENT_KEY_CHAR:
+         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, false, false, false);
+         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+         break;
+      }
+   }
 };
 
+
+std::string const Stage::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
+std::string const Stage::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
+std::string const Stage::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
+std::string const Stage::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
@@ -125,6 +161,8 @@ void run_program()
    if (!al_init_font_addon()) std::cerr << "al_init_font_addon() failed" << std::endl;
    if (!al_init_ttf_addon()) std::cerr << "al_init_ttf_addon() failed" << std::endl;
 
+   if (!al_install_keyboard()) std::cerr << "al_install_keyboard() failed" << std::endl;
+
    ALLEGRO_PATH *resource_path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
    al_change_directory(al_path_cstr(resource_path, ALLEGRO_NATIVE_PATH_SEP));
    al_destroy_path(resource_path);
@@ -135,21 +173,52 @@ void run_program()
    int display_width = al_get_display_width(display);
    int display_height = al_get_display_height(display);
 
-   al_draw_text(consolas_font, al_color_name("white"), display_width/2, display_height/2, ALLEGRO_ALIGN_CENTER, "Hello world.");
+   ALLEGRO_EVENT_QUEUE *event_queue = al_create_event_queue();
+   al_register_event_source(event_queue, al_get_keyboard_event_source());
+   al_register_event_source(event_queue, al_get_display_event_source(display));
 
 
    Stage stage;
    stage.set_content(sonnet);
 
-   placement2d place(100, 100, 400, 400);
-   place.align = vec2d(0, 0);
+   //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
+   KeyboardCommandMapper keyboard_command_mapper;
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { Stage::MOVE_CURSOR_DOWN });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { Stage::MOVE_CURSOR_UP });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, false, false, false, { Stage::MOVE_CURSOR_LEFT });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
 
-   stage.render(place, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+   bool shutdown_program = false;
+
+
+   al_draw_text(consolas_font, al_color_name("white"), display_width/2, display_height/2, ALLEGRO_ALIGN_CENTER, "Hello world.");
 
    al_flip_display();
 
 
-   sleep(3);
+   while(!shutdown_program)
+   {
+      ALLEGRO_EVENT this_event;
+      al_wait_for_event(event_queue, &this_event);
+
+      stage.process_event(keyboard_command_mapper, this_event);
+
+      switch(this_event.type)
+      {
+      case ALLEGRO_EVENT_DISPLAY_CLOSE:
+         shutdown_program = true;
+         break;
+      }
+
+      placement2d place(100, 100, 400, 400);
+      place.align = vec2d(0, 0);
+      al_clear_to_color(al_color_name("black"));
+      stage.render(place, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+      al_flip_display();
+   }
+
+
+   al_destroy_display(display);
 }
 
 
