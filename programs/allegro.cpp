@@ -53,6 +53,23 @@ bool read_file(std::vector<std::string> &lines, std::string filename)
    return true;
 }
 
+bool save_file(std::vector<std::string> &lines, std::string filename)
+{
+   std::ofstream file(filename);
+
+   if (file.is_open())
+   {
+      for (auto &line : lines) file << line << '\n';
+      file.close();
+   }
+   else
+   {
+      throw std::runtime_error("couldn't save file -- file failed at is_open()");
+   }
+
+   return true;
+}
+
 
 using namespace Blast;
 
@@ -77,12 +94,15 @@ private:
 
    mode_t mode;
 
+   std::string filename;
+
 public:
-   Stage()
+   Stage(std::string filename)
       : lines()
       , cursor_x(0)
       , cursor_y(0)
       , mode(EDIT)
+      , filename(filename)
    {}
 
    // accessors
@@ -190,6 +210,11 @@ public:
       current_line_ref().insert(cursor_x, string);
       return true;
    }
+   bool save_file()
+   {
+      ::save_file(lines, filename);
+      return true;
+   }
 
    // editor mode
    bool set_insert_mode()
@@ -250,6 +275,7 @@ public:
    static const std::string JOIN_LINES;
    static const std::string SPLIT_LINES;
    static const std::string MOVE_CURSOR_TO_START_OF_LINE;
+   static const std::string SAVE_FILE;
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
@@ -266,6 +292,7 @@ public:
          else if (event_name == JOIN_LINES) join_lines();
          else if (event_name == SPLIT_LINES) split_lines();
          else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) move_cursor_to_start_of_line();
+         else if (event_name == SAVE_FILE) save_file();
       }
       catch (const std::exception &e)
       {
@@ -288,6 +315,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
 
 
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
@@ -295,6 +323,7 @@ public:
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { Stage::SET_EDIT_MODE });
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, { Stage::MOVE_CURSOR_LEFT, Stage::DELETE_CHARACTER });
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
 
 
       switch(mode)
@@ -356,6 +385,7 @@ std::string const Stage::SET_EDIT_MODE = "SET_EDIT_MODE";
 std::string const Stage::JOIN_LINES = "JOIN_LINES";
 std::string const Stage::SPLIT_LINES = "SPLIT_LINES";
 std::string const Stage::MOVE_CURSOR_TO_START_OF_LINE = "MOVE_CURSOR_TO_START_OF_LINE";
+std::string const Stage::SAVE_FILE = "SAVE_FILE";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
@@ -408,7 +438,7 @@ void run_program(std::string filename)
    al_flip_display();
 
 
-   Stage stage;
+   Stage stage(filename.empty() ? "~TMP.txt" : filename);
    std::vector<std::string> lines;
    if (!filename.empty()) read_file(lines, filename);
    filename.empty() ? stage.set_content(sonnet) : stage.set_content(lines);
