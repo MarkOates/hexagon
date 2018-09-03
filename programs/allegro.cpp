@@ -337,7 +337,7 @@ public:
             break;
          case ALLEGRO_EVENT_KEY_CHAR:
             bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
-            bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+            bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
             bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
             std::vector<std::string> mapped_events = edit_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
             for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
@@ -353,7 +353,7 @@ public:
             break;
          case ALLEGRO_EVENT_KEY_CHAR:
             bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
-            bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+            bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
             bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
             std::vector<std::string> mapped_events = insert_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
             for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
