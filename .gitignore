@@ -11,8 +11,7 @@ build/tmp*
 
 # compiled object files and any executable files
 
-obj/*.o
-obj/*.obj
+obj/**
 bin/**
 !bin/data
 
