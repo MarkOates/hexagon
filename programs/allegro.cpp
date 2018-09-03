@@ -5,7 +5,88 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
 
+
+#include <allegro_flare/placement2d.h>
+
+
+#include <Blast/StringSplitter.hpp>
+
+
+using namespace Blast;
+
+
+#include <string>
+#include <vector>
+
+
+class Stage
+{
+private:
+   std::vector<std::string> lines;
+   int cursor_x;
+   int cursor_y;
+
+public:
+   Stage()
+      : lines()
+      , cursor_x(0)
+      , cursor_y(0)
+   {}
+
+   // accessors
+
+   bool set_content(std::string contnent)
+   {
+      lines = StringSplitter(contnent, '\n').split();
+      return true;
+   }
+
+   // inference
+
+   int num_lines() {
+      return lines.size();
+   }
+
+   int num_columns() {
+      if (cursor_y >= lines.size()) return -1;
+      return lines[cursor_y].length();
+   }
+
+   // actions
+
+   bool move_cursor_up()
+   {
+      if (num_lines() <= 0) return false;
+      cursor_y -= 1;
+      return true;
+   }
+   bool move_cursor_down()
+   {
+      if (cursor_y >= num_lines()) return false;
+      cursor_y += 1;
+      return true;
+   }
+   bool move_cursor_left()
+   {
+      cursor_x -= 1;
+      return true;
+   }
+   bool move_cursor_right()
+   {
+      cursor_x += 1;
+      return true;
+   }
+
+   // presentation
+
+   void render(placement2d place, ALLEGRO_FONT *font, int cell_width, int cell_height)
+   {
+      // render cursor
+      al_draw_filled_rectangle(cursor_x*cell_width, cursor_y*cell_height, cursor_x*cell_width + cell_width, cursor_y*cell_height + cell_height, al_color_name("gray"));
+   }
+};
 
 
 
