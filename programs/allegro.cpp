@@ -83,10 +83,39 @@ public:
 
    void render(placement2d place, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
+      place.start_transform();
       // render cursor
       al_draw_filled_rectangle(cursor_x*cell_width, cursor_y*cell_height, cursor_x*cell_width + cell_width, cursor_y*cell_height + cell_height, al_color_name("gray"));
+
+      int line_number = 0;
+      for (auto &line : lines)
+      {
+         al_draw_text(font, al_color_name("white"), 0, line_number*cell_height, ALLEGRO_ALIGN_LEFT, line.c_str());
+         line_number++;
+      }
+
+      place.restore_transform();
    }
 };
+
+
+
+const std::string sonnet = R"END(Is it thy will thy image should keep open
+My heavy eyelids to the weary night?
+Dost thou desire my slumbers should be broken,
+While shadows like to thee do mock my sight?
+Is it thy spirit that thou send'st from thee
+So far from home into my deeds to pry,
+To find out shames and idle hours in me,
+The scope and tenor of thy jealousy?
+O, no! thy love, though much, is not so great:
+It is my love that keeps mine eye awake;
+Mine own true love that doth my rest defeat,
+To play the watchman ever for thy sake:
+For thee watch I whilst thou dost wake elsewhere,
+From me far off, with others all too near.
+
+- William Shakespere)END";
 
 
 
@@ -107,7 +136,18 @@ void run_program()
    int display_height = al_get_display_height(display);
 
    al_draw_text(consolas_font, al_color_name("white"), display_width/2, display_height/2, ALLEGRO_ALIGN_CENTER, "Hello world.");
+
+
+   Stage stage;
+   stage.set_content(sonnet);
+
+   placement2d place(100, 100, 400, 400);
+   place.align = vec2d(0, 0);
+
+   stage.render(place, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+
    al_flip_display();
+
 
    sleep(3);
 }
