@@ -1,0 +1,27 @@
+# vim swap files
+
+*.swp
+*.swo
+
+
+# temp files in the build dir
+
+build/tmp*
+
+
+# compiled object files and any executable files
+
+obj/*.o
+obj/*.obj
+bin/**
+!bin/data
+
+
+# OSX image caches
+
+.DS_store
+
+
+# Allegro log files
+
+allegro.log
