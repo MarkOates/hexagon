@@ -115,6 +115,11 @@ public:
 
       return false;
    }
+   bool delete_character()
+   {
+      current_line_ref().erase(cursor_x, 1);
+      return true;
+   }
 
    // presentation
 
@@ -141,6 +146,7 @@ public:
    static const std::string MOVE_CURSOR_LEFT;
    static const std::string MOVE_CURSOR_RIGHT;
    static const std::string MOVE_CURSOR_JUMP_TO_NEXT_WORD;
+   static const std::string DELETE_CHARACTER;
 
    void process_local_event(std::string event_name)
    {
@@ -149,6 +155,7 @@ public:
       else if (event_name == MOVE_CURSOR_LEFT) move_cursor_left();
       else if (event_name == MOVE_CURSOR_RIGHT) move_cursor_right();
       else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) move_cursor_jump_to_next_word();
+      else if (event_name == DELETE_CHARACTER) delete_character();
 
       std::cout << event_name << std::endl;
    }
@@ -175,6 +182,7 @@ std::string const Stage::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
 std::string const Stage::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
 std::string const Stage::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
 std::string const Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_WORD";
+std::string const Stage::DELETE_CHARACTER = "DELETE_CHARACTER";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
@@ -229,6 +237,7 @@ void run_program()
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, false, false, false, { Stage::MOVE_CURSOR_LEFT });
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
 
    bool shutdown_program = false;
 
