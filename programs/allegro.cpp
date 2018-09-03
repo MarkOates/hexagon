@@ -13,6 +13,7 @@
 
 #include <Blast/StringSplitter.hpp>
 #include <Blast/KeyboardCommandMapper.hpp>
+#include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 
 
 #include <iostream>       // std::cout
@@ -31,6 +32,25 @@ int find_non_whitespace(std::string &string, int current_cursor_position)
   std::size_t position = string.find_first_not_of(" \n\r\t", current_cursor_position);
   if (position != std::string::npos) return position;
   return 0;
+}
+
+
+#include <fstream>
+
+bool read_file(std::vector<std::string> &lines, std::string filename)
+{
+   std::ifstream file(filename);
+
+   lines.clear();
+
+   if (file.is_open())
+   {
+      std::string line;
+      while (getline(file, line)) { lines.push_back(line); }
+      file.close();
+   }
+
+   return true;
 }
 
 
@@ -67,9 +87,15 @@ public:
 
    // accessors
 
-   bool set_content(std::string contnent)
+   bool set_content(std::string content)
    {
-      lines = StringSplitter(contnent, '\n').split();
+      lines = StringSplitter(content, '\n').split();
+      return true;
+   }
+
+   bool set_content(std::vector<std::string> content)
+   {
+      lines = content;
       return true;
    }
 
@@ -351,7 +377,7 @@ From me far off, with others all too near.
 
 
 
-void run_program()
+void run_program(std::string filename)
 {
    if (!al_init()) std::cerr << "al_init() failed" << std::endl;
    if (!al_init_font_addon()) std::cerr << "al_init_font_addon() failed" << std::endl;
@@ -375,15 +401,19 @@ void run_program()
    al_register_event_source(event_queue, al_get_display_event_source(display));
 
 
-   Stage stage;
-   stage.set_content(sonnet);
-
-   bool shutdown_program = false;
-
 
    al_draw_text(consolas_font, al_color_name("white"), display_width/2, display_height/2, ALLEGRO_ALIGN_CENTER, "Hello world.");
+   al_draw_text(consolas_font, al_color_name("gray"), display_width/2, display_height/2+al_get_font_line_height(consolas_font), ALLEGRO_ALIGN_CENTER, filename.c_str());
 
    al_flip_display();
+
+
+   Stage stage;
+   std::vector<std::string> lines;
+   if (!filename.empty()) read_file(lines, filename);
+   filename.empty() ? stage.set_content(sonnet) : stage.set_content(lines);
+
+   bool shutdown_program = false;
 
 
    while(!shutdown_program)
@@ -412,10 +442,18 @@ void run_program()
    al_destroy_display(display);
 }
 
+int main(int argc, char **argv)
+{
+   std::vector<std::string> args;
+   for (int i=0; i<argc; i++) args.push_back(argv[i]);
+   CommandLineFlaggedArgumentsParser command_line_flagged_arguments_parser(args);
 
+   std::vector<std::vector<std::string>> filenames = command_line_flagged_arguments_parser.get_flagged_args("-f");
+   std::vector<std::string> first_filenames_set = filenames.empty() ? std::vector<std::string>{} : filenames[0];
+   std::string first_filename = first_filenames_set.empty() ? "" : first_filenames_set[0];
 
-int main(int, char**) {
-  run_program();
-  return 0;
+   run_program(first_filename);
+   return 0;
 }
+
 
