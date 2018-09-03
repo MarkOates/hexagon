@@ -15,6 +15,25 @@
 #include <Blast/KeyboardCommandMapper.hpp>
 
 
+#include <iostream>       // std::cout
+#include <string>         // std::string
+#include <cstddef>        // std::size_t
+
+int find_whitespace(std::string &string, int current_cursor_position)
+{
+  std::size_t position = string.find_first_of(" \n\r\t", current_cursor_position);
+  if (position != std::string::npos) return position;
+  return 0;
+}
+
+int find_non_whitespace(std::string &string, int current_cursor_position)
+{
+  std::size_t position = string.find_first_not_of(" \n\r\t", current_cursor_position);
+  if (position != std::string::npos) return position;
+  return 0;
+}
+
+
 using namespace Blast;
 
 
@@ -55,6 +74,11 @@ public:
       return lines[cursor_y].length();
    }
 
+   std::string &current_line_ref()
+   {
+      return lines[cursor_y];
+   }
+
    // actions
 
    bool move_cursor_up()
@@ -78,6 +102,18 @@ public:
    {
       cursor_x += 1;
       return true;
+   }
+   bool move_cursor_jump_to_next_word()
+   {
+      int position = 0;
+
+      position = find_whitespace(current_line_ref(), cursor_x);
+      if (position != -1) { cursor_x = position; }
+
+      position = find_non_whitespace(current_line_ref(), cursor_x);
+      if (position != -1) { cursor_x = position; return true; }
+
+      return false;
    }
 
    // presentation
@@ -104,6 +140,7 @@ public:
    static const std::string MOVE_CURSOR_DOWN;
    static const std::string MOVE_CURSOR_LEFT;
    static const std::string MOVE_CURSOR_RIGHT;
+   static const std::string MOVE_CURSOR_JUMP_TO_NEXT_WORD;
 
    void process_local_event(std::string event_name)
    {
@@ -111,6 +148,9 @@ public:
       else if (event_name == MOVE_CURSOR_DOWN) move_cursor_down();
       else if (event_name == MOVE_CURSOR_LEFT) move_cursor_left();
       else if (event_name == MOVE_CURSOR_RIGHT) move_cursor_right();
+      else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) move_cursor_jump_to_next_word();
+
+      std::cout << event_name << std::endl;
    }
 
    void process_event(KeyboardCommandMapper &keyboard_command_mapper, ALLEGRO_EVENT &event)
@@ -134,6 +174,7 @@ std::string const Stage::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
 std::string const Stage::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
 std::string const Stage::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
 std::string const Stage::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
+std::string const Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_WORD";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
@@ -187,6 +228,7 @@ void run_program()
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { Stage::MOVE_CURSOR_UP });
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, false, false, false, { Stage::MOVE_CURSOR_LEFT });
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
 
    bool shutdown_program = false;
 
