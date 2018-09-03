@@ -89,6 +89,11 @@ public:
       return lines[cursor_y];
    }
 
+   std::string &next_line_ref()
+   {
+      return lines[cursor_y+1];
+   }
+
    std::string get_current_mode_string()
    {
       if (mode == EDIT) return "EDIT";
@@ -132,10 +137,27 @@ public:
 
       return false;
    }
+   bool move_cursor_to_start_of_line()
+   {
+      cursor_x = 0;
+      return true;
+   }
    bool delete_character()
    {
       current_line_ref().erase(cursor_x, 1);
       return true;
+   }
+   bool join_lines()
+   {
+      lines[cursor_y] += lines[cursor_y+1];
+      lines.erase(lines.begin() + cursor_y+1);
+      return true;
+   }
+   bool split_lines()
+   {
+     lines.insert(lines.begin() + cursor_y + 1, lines[cursor_y].substr(cursor_x));
+     current_line_ref().erase(cursor_x);
+     return true;
    }
    bool insert_string(std::string string)
    {
@@ -199,18 +221,30 @@ public:
    static const std::string INSERT_STRING;
    static const std::string SET_INSERT_MODE;
    static const std::string SET_EDIT_MODE;
+   static const std::string JOIN_LINES;
+   static const std::string SPLIT_LINES;
+   static const std::string MOVE_CURSOR_TO_START_OF_LINE;
 
-   void process_local_event(std::string event_name, intptr_t data1=0)
+   void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
-      if (event_name == MOVE_CURSOR_UP) move_cursor_up();
-      else if (event_name == MOVE_CURSOR_DOWN) move_cursor_down();
-      else if (event_name == MOVE_CURSOR_LEFT) move_cursor_left();
-      else if (event_name == MOVE_CURSOR_RIGHT) move_cursor_right();
-      else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) move_cursor_jump_to_next_word();
-      else if (event_name == DELETE_CHARACTER) delete_character();
-      else if (event_name == INSERT_STRING) insert_string(*(std::string *)data1);
-      else if (event_name == SET_INSERT_MODE) set_insert_mode();
-      else if (event_name == SET_EDIT_MODE) set_edit_mode();
+      try {
+         if (event_name == MOVE_CURSOR_UP) move_cursor_up();
+         else if (event_name == MOVE_CURSOR_DOWN) move_cursor_down();
+         else if (event_name == MOVE_CURSOR_LEFT) move_cursor_left();
+         else if (event_name == MOVE_CURSOR_RIGHT) move_cursor_right();
+         else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) move_cursor_jump_to_next_word();
+         else if (event_name == DELETE_CHARACTER) delete_character();
+         else if (event_name == INSERT_STRING) insert_string(*(std::string *)data1);
+         else if (event_name == SET_INSERT_MODE) set_insert_mode();
+         else if (event_name == SET_EDIT_MODE) set_edit_mode();
+         else if (event_name == JOIN_LINES) join_lines();
+         else if (event_name == SPLIT_LINES) split_lines();
+         else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) move_cursor_to_start_of_line();
+      }
+      catch (const std::exception &e)
+      {
+         std::cout << "💥 cannot execute \"" << event_name << "\"" << std::endl;
+      }
 
       std::cout << event_name << std::endl;
    }
@@ -220,18 +254,21 @@ public:
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
       KeyboardCommandMapper edit_mode__keyboard_command_mapper;
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { Stage::MOVE_CURSOR_DOWN });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, true,  false, false, { Stage::JOIN_LINES });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { Stage::MOVE_CURSOR_UP });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, false, false, false, { Stage::MOVE_CURSOR_LEFT });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
 
 
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
       KeyboardCommandMapper insert_mode__keyboard_command_mapper;
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { Stage::SET_EDIT_MODE });
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, { Stage::MOVE_CURSOR_LEFT, Stage::DELETE_CHARACTER });
+      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE });
 
 
       switch(mode)
@@ -244,7 +281,10 @@ public:
          case ALLEGRO_EVENT_KEY_UP:
             break;
          case ALLEGRO_EVENT_KEY_CHAR:
-            std::vector<std::string> mapped_events = edit_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, false, false, false);
+            bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+            bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+            bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+            std::vector<std::string> mapped_events = edit_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
             for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
             break;
          }
@@ -257,7 +297,10 @@ public:
          case ALLEGRO_EVENT_KEY_UP:
             break;
          case ALLEGRO_EVENT_KEY_CHAR:
-            std::vector<std::string> mapped_events = insert_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, false, false, false);
+            bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+            bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+            bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+            std::vector<std::string> mapped_events = insert_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
             for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
             if (mapped_events.empty())
             {
@@ -284,6 +327,9 @@ std::string const Stage::DELETE_CHARACTER = "DELETE_CHARACTER";
 std::string const Stage::INSERT_STRING = "INSERT_STRING";
 std::string const Stage::SET_INSERT_MODE = "SET_INSERT_MODE";
 std::string const Stage::SET_EDIT_MODE = "SET_EDIT_MODE";
+std::string const Stage::JOIN_LINES = "JOIN_LINES";
+std::string const Stage::SPLIT_LINES = "SPLIT_LINES";
+std::string const Stage::MOVE_CURSOR_TO_START_OF_LINE = "MOVE_CURSOR_TO_START_OF_LINE";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
