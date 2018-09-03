@@ -519,10 +519,26 @@ void test_all()
 
 
 
+#include <allegro5/allegro.h>
 
 
-int main() {
-  test_all();
+
+
+void run_program()
+{
+   al_init();
+
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
+
+   al_flip_display();
+
+   sleep(3);
 }
 
+
+
+int main(int, char**) {
+  run_program();
+  return 0;
+}
 
