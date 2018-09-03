@@ -43,16 +43,26 @@ using namespace Blast;
 
 class Stage
 {
+public:
+   enum mode_t
+   {
+      EDIT,
+      INSERT,
+   };
+
 private:
    std::vector<std::string> lines;
    int cursor_x;
    int cursor_y;
+
+   mode_t mode;
 
 public:
    Stage()
       : lines()
       , cursor_x(0)
       , cursor_y(0)
+      , mode(EDIT)
    {}
 
    // accessors
@@ -77,6 +87,13 @@ public:
    std::string &current_line_ref()
    {
       return lines[cursor_y];
+   }
+
+   std::string get_current_mode_string()
+   {
+      if (mode == EDIT) return "EDIT";
+      if (mode == INSERT) return "INSERT";
+      return "---";
    }
 
    // actions
@@ -120,15 +137,44 @@ public:
       current_line_ref().erase(cursor_x, 1);
       return true;
    }
+   bool insert_string(std::string string)
+   {
+      current_line_ref().insert(cursor_x, string);
+      return true;
+   }
+
+   // editor mode
+   bool set_insert_mode()
+   {
+      mode = INSERT;
+      return true;
+   }
+   bool set_edit_mode()
+   {
+      mode = EDIT;
+      return true;
+   }
+
 
    // presentation
 
-   void render(placement2d place, ALLEGRO_FONT *font, int cell_width, int cell_height)
+   void render(ALLEGRO_DISPLAY *display, placement2d place, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
       place.start_transform();
-      // render cursor
-      al_draw_filled_rectangle(cursor_x*cell_width, cursor_y*cell_height, cursor_x*cell_width + cell_width, cursor_y*cell_height + cell_height, al_color_name("gray"));
 
+      // render cursor
+      switch(mode)
+      {
+      case EDIT:
+         al_draw_filled_rectangle(cursor_x*cell_width, cursor_y*cell_height, cursor_x*cell_width + cell_width, cursor_y*cell_height + cell_height, al_color_name("gray"));
+         break;
+      case INSERT:
+         al_draw_line(cursor_x*cell_width, cursor_y*cell_height, cursor_x*cell_width, cursor_y*cell_height + cell_height, al_color_name("gray"), 3);
+         break;
+      }
+
+
+      // render lines
       int line_number = 0;
       for (auto &line : lines)
       {
@@ -137,6 +183,9 @@ public:
       }
 
       place.restore_transform();
+
+      // render edit mode
+      al_draw_text(font, mode == EDIT ? al_color_name("red") : al_color_name("lime"), al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*2, ALLEGRO_ALIGN_CENTER, get_current_mode_string().c_str());
    }
 
    // events
@@ -147,8 +196,11 @@ public:
    static const std::string MOVE_CURSOR_RIGHT;
    static const std::string MOVE_CURSOR_JUMP_TO_NEXT_WORD;
    static const std::string DELETE_CHARACTER;
+   static const std::string INSERT_STRING;
+   static const std::string SET_INSERT_MODE;
+   static const std::string SET_EDIT_MODE;
 
-   void process_local_event(std::string event_name)
+   void process_local_event(std::string event_name, intptr_t data1=0)
    {
       if (event_name == MOVE_CURSOR_UP) move_cursor_up();
       else if (event_name == MOVE_CURSOR_DOWN) move_cursor_down();
@@ -156,22 +208,67 @@ public:
       else if (event_name == MOVE_CURSOR_RIGHT) move_cursor_right();
       else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) move_cursor_jump_to_next_word();
       else if (event_name == DELETE_CHARACTER) delete_character();
+      else if (event_name == INSERT_STRING) insert_string(*(std::string *)data1);
+      else if (event_name == SET_INSERT_MODE) set_insert_mode();
+      else if (event_name == SET_EDIT_MODE) set_edit_mode();
 
       std::cout << event_name << std::endl;
    }
 
-   void process_event(KeyboardCommandMapper &keyboard_command_mapper, ALLEGRO_EVENT &event)
+   void process_event(ALLEGRO_EVENT &event)
    {
-      switch(event.type)
+      //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
+      KeyboardCommandMapper edit_mode__keyboard_command_mapper;
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { Stage::MOVE_CURSOR_DOWN });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { Stage::MOVE_CURSOR_UP });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, false, false, false, { Stage::MOVE_CURSOR_LEFT });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
+
+
+      //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
+      KeyboardCommandMapper insert_mode__keyboard_command_mapper;
+      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { Stage::SET_EDIT_MODE });
+
+
+      switch(mode)
       {
-      case ALLEGRO_EVENT_KEY_DOWN:
+      case EDIT:
+         switch(event.type)
+         {
+         case ALLEGRO_EVENT_KEY_DOWN:
+            break;
+         case ALLEGRO_EVENT_KEY_UP:
+            break;
+         case ALLEGRO_EVENT_KEY_CHAR:
+            std::vector<std::string> mapped_events = edit_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, false, false, false);
+            for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+            break;
+         }
          break;
-      case ALLEGRO_EVENT_KEY_UP:
-         break;
-      case ALLEGRO_EVENT_KEY_CHAR:
-         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, false, false, false);
-         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
-         break;
+      case INSERT:
+         switch(event.type)
+         {
+         case ALLEGRO_EVENT_KEY_DOWN:
+            break;
+         case ALLEGRO_EVENT_KEY_UP:
+            break;
+         case ALLEGRO_EVENT_KEY_CHAR:
+            std::vector<std::string> mapped_events = insert_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, false, false, false);
+            for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+            if (mapped_events.empty())
+            {
+               char character = (char)(event.keyboard.unichar);
+               std::string *string = new std::string(" ");
+               string->operator[](0) = character;
+               process_local_event(INSERT_STRING, (intptr_t)string);
+               process_local_event(MOVE_CURSOR_RIGHT);
+               delete string;
+            }
+            break;
+         }
       }
    }
 };
@@ -183,6 +280,9 @@ std::string const Stage::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
 std::string const Stage::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
 std::string const Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_WORD";
 std::string const Stage::DELETE_CHARACTER = "DELETE_CHARACTER";
+std::string const Stage::INSERT_STRING = "INSERT_STRING";
+std::string const Stage::SET_INSERT_MODE = "SET_INSERT_MODE";
+std::string const Stage::SET_EDIT_MODE = "SET_EDIT_MODE";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
@@ -230,15 +330,6 @@ void run_program()
    Stage stage;
    stage.set_content(sonnet);
 
-   //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
-   KeyboardCommandMapper keyboard_command_mapper;
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { Stage::MOVE_CURSOR_DOWN });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { Stage::MOVE_CURSOR_UP });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, false, false, false, { Stage::MOVE_CURSOR_LEFT });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
-
    bool shutdown_program = false;
 
 
@@ -252,7 +343,7 @@ void run_program()
       ALLEGRO_EVENT this_event;
       al_wait_for_event(event_queue, &this_event);
 
-      stage.process_event(keyboard_command_mapper, this_event);
+      stage.process_event(this_event);
 
       switch(this_event.type)
       {
@@ -264,7 +355,7 @@ void run_program()
       placement2d place(100, 100, 400, 400);
       place.align = vec2d(0, 0);
       al_clear_to_color(al_color_name("black"));
-      stage.render(place, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+      stage.render(display, place, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
       al_flip_display();
    }
 
