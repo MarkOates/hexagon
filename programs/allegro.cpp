@@ -316,6 +316,7 @@ void run_program()
    al_change_directory(al_path_cstr(resource_path, ALLEGRO_NATIVE_PATH_SEP));
    al_destroy_path(resource_path);
 
+   al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
    ALLEGRO_FONT *consolas_font = al_load_font("data/fonts/consolas.ttf", 28, 0);
 
@@ -354,6 +355,7 @@ void run_program()
 
       placement2d place(100, 100, 400, 400);
       place.align = vec2d(0, 0);
+      place.scale = vec2d(0.75, 0.75);
       al_clear_to_color(al_color_name("black"));
       stage.render(display, place, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
       al_flip_display();
