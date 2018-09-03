@@ -231,6 +231,7 @@ public:
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
       KeyboardCommandMapper insert_mode__keyboard_command_mapper;
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { Stage::SET_EDIT_MODE });
+      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, { Stage::MOVE_CURSOR_LEFT, Stage::DELETE_CHARACTER });
 
 
       switch(mode)
