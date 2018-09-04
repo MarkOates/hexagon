@@ -429,7 +429,7 @@ void run_program(std::string filename)
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
-   ALLEGRO_FONT *consolas_font = al_load_font("data/fonts/consolas.ttf", 28, 0);
+   ALLEGRO_FONT *consolas_font = al_load_font("data/fonts/consolas.ttf", 30, 0);
 
    int display_width = al_get_display_width(display);
    int display_height = al_get_display_height(display);
@@ -474,7 +474,7 @@ void run_program(std::string filename)
 
       placement2d place(100, 100, 400, 400);
       place.align = vec2d(0, 0);
-      place.scale = vec2d(0.75, 0.75);
+      place.scale = vec2d(0.65, 0.65);
       al_clear_to_color(al_color_name("black"));
       stage.render(display, place, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
       al_flip_display();
