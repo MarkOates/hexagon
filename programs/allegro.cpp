@@ -15,6 +15,13 @@
 #include <Blast/KeyboardCommandMapper.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 
+using namespace Blast;
+
+
+#include <Hexagon/Logo.hpp>
+
+using namespace Hexagon;
+
 
 #include <iostream>       // std::cout
 #include <string>         // std::string
@@ -70,8 +77,6 @@ bool save_file(std::vector<std::string> &lines, std::string filename)
    return true;
 }
 
-
-using namespace Blast;
 
 
 #include <string>
@@ -419,6 +424,9 @@ void run_program(std::string filename)
    al_change_directory(al_path_cstr(resource_path, ALLEGRO_NATIVE_PATH_SEP));
    al_destroy_path(resource_path);
 
+   al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
+   al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
+
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
    ALLEGRO_FONT *consolas_font = al_load_font("data/fonts/consolas.ttf", 28, 0);
@@ -432,8 +440,12 @@ void run_program(std::string filename)
 
 
 
-   al_draw_text(consolas_font, al_color_name("white"), display_width/2, display_height/2, ALLEGRO_ALIGN_CENTER, "Hello world.");
+   float logo_radius = 60;
+   Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, al_color_name("darkviolet"), 3);
+   logo.render();
+   al_draw_text(consolas_font, al_color_name("darkviolet"), display_width/2, display_height/2, ALLEGRO_ALIGN_CENTER, "hexagon");
    al_draw_text(consolas_font, al_color_name("gray"), display_width/2, display_height/2+al_get_font_line_height(consolas_font), ALLEGRO_ALIGN_CENTER, filename.c_str());
+
 
    al_flip_display();
 
