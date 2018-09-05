@@ -24,6 +24,22 @@ using namespace Blast;
 using namespace Hexagon;
 
 
+std::string resource(std::vector<std::string> components, std::string filename="")
+{
+   std::string result;
+
+   ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+   for (auto &component : components) al_append_path_component(path, component.c_str());
+
+   al_set_path_filename(path, filename.c_str());
+   result = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
+
+   std::cout << result << std::endl;
+
+   return result;
+}
+
+
 
 std::string::size_type rfind_first_not_of(const std::string& s,
         const std::string& delims, std::string::size_type pos)
@@ -533,7 +549,6 @@ From me far off, with others all too near.
 - William Shakespere)END";
 
 
-
 void run_program(std::string filename)
 {
    if (!al_init()) std::cerr << "al_init() failed" << std::endl;
@@ -542,16 +557,17 @@ void run_program(std::string filename)
 
    if (!al_install_keyboard()) std::cerr << "al_install_keyboard() failed" << std::endl;
 
-   ALLEGRO_PATH *resource_path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
-   al_change_directory(al_path_cstr(resource_path, ALLEGRO_NATIVE_PATH_SEP));
-   al_destroy_path(resource_path);
+   //ALLEGRO_PATH *resource_path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+   //al_change_directory(al_path_cstr(resource_path, ALLEGRO_NATIVE_PATH_SEP));
+   //std::cout << al_path_cstr(resource_path, ALLEGRO_NATIVE_PATH_SEP) << std::endl;
+   //al_destroy_path(resource_path);
 
    al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
    al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
-   ALLEGRO_FONT *consolas_font = al_load_font("data/fonts/consolas.ttf", 30, 0);
+   ALLEGRO_FONT *consolas_font = al_load_font(resource({"data", "fonts"}, "consolas.ttf").c_str(), 30, 0);
 
    int display_width = al_get_display_width(display);
    int display_height = al_get_display_height(display);
