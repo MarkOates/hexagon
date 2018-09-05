@@ -456,12 +456,14 @@ void run_program(std::string filename)
    filename.empty() ? stage.set_content(sonnet) : stage.set_content(lines);
 
    bool shutdown_program = false;
+   bool first_load = true;
 
 
    while(!shutdown_program)
    {
       ALLEGRO_EVENT this_event;
-      al_wait_for_event(event_queue, &this_event);
+      if (!first_load) al_wait_for_event(event_queue, &this_event);
+      first_load = false;
 
       stage.process_event(this_event);
 
