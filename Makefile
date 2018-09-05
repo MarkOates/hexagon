@@ -1,7 +1,9 @@
 
 LIBS_ROOT=/Users/markoates/Repos
-ALLEGRO_INCLUDE_DIR=$(LIBS_ROOT)/allegro5/build/include
-ALLEGRO_LIB_DIR=$(LIBS_ROOT)/allegro5/build/lib
+#ALLEGRO_INCLUDE_DIR=$(LIBS_ROOT)/allegro5/build/include
+#ALLEGRO_LIB_DIR=$(LIBS_ROOT)/allegro5/build/lib
+ALLEGRO_INCLUDE_DIR=.
+ALLEGRO_LIB_DIR=.
 GOOGLE_TEST_DIR=$(LIBS_ROOT)/googletest
 GOOGLE_TEST_LIB_DIR=$(GOOGLE_TEST_DIR)/build/googlemock/gtest
 GOOGLE_TEST_INCLUDE_DIR=$(GOOGLE_TEST_DIR)/googletest/include
