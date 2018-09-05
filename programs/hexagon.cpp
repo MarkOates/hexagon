@@ -23,6 +23,31 @@ using namespace Blast;
 using namespace Hexagon;
 
 
+
+std::string::size_type rfind_first_not_of(const std::string& s,
+        const std::string& delims, std::string::size_type pos)
+{
+    std::string::size_type p = pos;
+    while (delims.find(s[p]) != std::string::npos) {
+        if (p == 0) // not found
+            return std::string::npos;
+        --p;
+    }
+    return p;
+}
+
+std::string::size_type rfind_first_of(const std::string& s,
+        const std::string& delims, std::string::size_type pos)
+{
+    std::string::size_type p = pos;
+    while (delims.find(s[p]) == std::string::npos) {
+        if (p == 0) // not found
+            return std::string::npos;
+        --p;
+    }
+    return p;
+}
+
 #include <iostream>       // std::cout
 #include <string>         // std::string
 #include <cstddef>        // std::size_t
@@ -37,6 +62,20 @@ int find_whitespace(std::string &string, int current_cursor_position)
 int find_non_whitespace(std::string &string, int current_cursor_position)
 {
   std::size_t position = string.find_first_not_of(" \n\r\t", current_cursor_position);
+  if (position != std::string::npos) return position;
+  return 0;
+}
+
+int rfind_whitespace(std::string &string, int current_cursor_position)
+{
+  std::size_t position = rfind_first_of(string, " \n\r\t", current_cursor_position);
+  if (position != std::string::npos) return position;
+  return 0;
+}
+
+int rfind_non_whitespace(std::string &string, int current_cursor_position)
+{
+  std::size_t position = rfind_first_not_of(string, " \n\r\t", current_cursor_position);
   if (position != std::string::npos) return position;
   return 0;
 }
@@ -188,6 +227,18 @@ public:
 
       return false;
    }
+   bool move_cursor_jump_to_previous_word()
+   {
+      int position = 0;
+
+      position = rfind_whitespace(current_line_ref(), cursor_x);
+      if (position != -1) { cursor_x = position; }
+
+      position = rfind_non_whitespace(current_line_ref(), cursor_x);
+      if (position != -1) { cursor_x = position; return true; }
+
+      return false;
+   }
    bool move_cursor_to_start_of_line()
    {
       cursor_x = 0;
@@ -273,6 +324,7 @@ public:
    static const std::string MOVE_CURSOR_LEFT;
    static const std::string MOVE_CURSOR_RIGHT;
    static const std::string MOVE_CURSOR_JUMP_TO_NEXT_WORD;
+   static const std::string MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD;
    static const std::string DELETE_CHARACTER;
    static const std::string INSERT_STRING;
    static const std::string SET_INSERT_MODE;
@@ -290,6 +342,7 @@ public:
          else if (event_name == MOVE_CURSOR_LEFT) move_cursor_left();
          else if (event_name == MOVE_CURSOR_RIGHT) move_cursor_right();
          else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) move_cursor_jump_to_next_word();
+         else if (event_name == MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD) move_cursor_jump_to_previous_word();
          else if (event_name == DELETE_CHARACTER) delete_character();
          else if (event_name == INSERT_STRING) insert_string(*(std::string *)data1);
          else if (event_name == SET_INSERT_MODE) set_insert_mode();
@@ -317,6 +370,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, false, false, false, { Stage::MOVE_CURSOR_LEFT });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
@@ -383,6 +437,7 @@ std::string const Stage::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
 std::string const Stage::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
 std::string const Stage::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
 std::string const Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_WORD";
+std::string const Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD = "MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD";
 std::string const Stage::DELETE_CHARACTER = "DELETE_CHARACTER";
 std::string const Stage::INSERT_STRING = "INSERT_STRING";
 std::string const Stage::SET_INSERT_MODE = "SET_INSERT_MODE";
