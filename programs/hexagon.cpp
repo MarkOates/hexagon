@@ -140,13 +140,16 @@ private:
 
    std::string filename;
 
+   placement2d place;
+
 public:
-   Stage(std::string filename)
+   Stage(std::string filename, placement2d place)
       : lines()
       , cursor_x(0)
       , cursor_y(0)
       , mode(EDIT)
       , filename(filename)
+      , place(place)
    {}
 
    // accessors
@@ -161,6 +164,11 @@ public:
    {
       lines = content;
       return true;
+   }
+
+   placement2d &get_place_ref()
+   {
+      return place;
    }
 
    // inference
@@ -287,7 +295,7 @@ public:
 
    // presentation
 
-   void render(ALLEGRO_DISPLAY *display, placement2d place, ALLEGRO_FONT *font, int cell_width, int cell_height)
+   void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
       place.start_transform();
 
@@ -505,7 +513,11 @@ void run_program(std::string filename)
    al_flip_display();
 
 
-   Stage stage(filename.empty() ? "~TMP.txt" : filename);
+   placement2d place(100, 100, 400, 400);
+   place.align = vec2d(0, 0);
+   place.scale = vec2d(0.65, 0.65);
+   Stage stage(filename.empty() ? "~TMP.txt" : filename, place);
+
    std::vector<std::string> lines;
    if (!filename.empty()) read_file(lines, filename);
    filename.empty() ? stage.set_content(sonnet) : stage.set_content(lines);
@@ -529,11 +541,8 @@ void run_program(std::string filename)
          break;
       }
 
-      placement2d place(100, 100, 400, 400);
-      place.align = vec2d(0, 0);
-      place.scale = vec2d(0.65, 0.65);
       al_clear_to_color(al_color_name("black"));
-      stage.render(display, place, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+      stage.render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
       al_flip_display();
    }
 
