@@ -481,6 +481,8 @@ void run_program(std::string filename)
    }
 
 
+   al_destroy_event_queue(event_queue);
+   al_destroy_font(consolas_font);
    al_destroy_display(display);
 }
 
