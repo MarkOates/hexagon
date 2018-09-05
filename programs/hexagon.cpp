@@ -327,6 +327,14 @@ public:
       return true;
    }
 
+   bool offset_cursor_position_y(int delta)
+   {
+      cursor_y += delta;
+      if (cursor_y < 0) cursor_y = 0;
+      if (cursor_y >= lines.size()) cursor_y = lines.size()-1;
+      return true;
+   }
+
    bool move_stage_up(float distance=100)
    {
       place.position.y += distance;
@@ -350,13 +358,14 @@ public:
       place.start_transform();
 
       // render cursor
+      float _cursor_y = cursor_y - first_line_num;
       switch(mode)
       {
       case EDIT:
-         al_draw_filled_rectangle(cursor_x*cell_width, cursor_y*cell_height, cursor_x*cell_width + cell_width, cursor_y*cell_height + cell_height, al_color_name("gray"));
+         al_draw_filled_rectangle(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width + cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"));
          break;
       case INSERT:
-         al_draw_line(cursor_x*cell_width, cursor_y*cell_height, cursor_x*cell_width, cursor_y*cell_height + cell_height, al_color_name("gray"), 3);
+         al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"), 3);
          break;
       }
 
@@ -398,6 +407,8 @@ public:
    static const std::string SCALE_STAGE_DOWN;
    static const std::string OFFSET_FIRST_LINE_NUM_DOWN;
    static const std::string OFFSET_FIRST_LINE_NUM_UP;
+   static const std::string OFFSET_CURSOR_POSITION_Y_DOWN;
+   static const std::string OFFSET_CURSOR_POSITION_Y_UP;
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
@@ -422,6 +433,8 @@ public:
          else if (event_name == SCALE_STAGE_DOWN) scale_stage_delta(-0.1);
          else if (event_name == OFFSET_FIRST_LINE_NUM_DOWN) offset_first_line_num(10);
          else if (event_name == OFFSET_FIRST_LINE_NUM_UP) offset_first_line_num(-10);
+         else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN) offset_cursor_position_y(10);
+         else if (event_name == OFFSET_CURSOR_POSITION_Y_UP) offset_cursor_position_y(-10);
       }
       catch (const std::exception &e)
       {
@@ -447,8 +460,8 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_U, false, true, false, { Stage::OFFSET_FIRST_LINE_NUM_UP });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, true, false, { Stage::OFFSET_FIRST_LINE_NUM_DOWN });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_U, false, true, false, { Stage::OFFSET_FIRST_LINE_NUM_UP, Stage::OFFSET_CURSOR_POSITION_Y_UP });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, true, false, { Stage::OFFSET_FIRST_LINE_NUM_DOWN, Stage::OFFSET_CURSOR_POSITION_Y_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, { Stage::SCALE_STAGE_UP });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, { Stage::SCALE_STAGE_DOWN });
 
@@ -527,6 +540,8 @@ std::string const Stage::MOVE_STAGE_UP = "MOVE_STAGE_UP";
 std::string const Stage::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
 std::string const Stage::OFFSET_FIRST_LINE_NUM_UP = "OFFSET_FIRST_LINE_NUM_UP";
 std::string const Stage::OFFSET_FIRST_LINE_NUM_DOWN = "OFFSET_FIRST_LINE_NUM_DOWN";
+std::string const Stage::OFFSET_CURSOR_POSITION_Y_UP = "OFFSET_CURSOR_POSITION_Y_UP";
+std::string const Stage::OFFSET_CURSOR_POSITION_Y_DOWN = "OFFSET_CURSOR_POSITION_Y_DOWN";
 std::string const Stage::SCALE_STAGE_UP = "SCALE_STAGE_UP";
 std::string const Stage::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
 
