@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 
 
 #include <allegro5/allegro.h>
@@ -140,7 +141,11 @@ private:
 
    std::string filename;
 
+
+   // presentation
+
    placement2d place;
+   int first_line_num;
 
 public:
    Stage(std::string filename, placement2d place)
@@ -150,6 +155,7 @@ public:
       , mode(EDIT)
       , filename(filename)
       , place(place)
+      , first_line_num(0)
    {}
 
    // accessors
@@ -295,6 +301,28 @@ public:
 
    // presentation
 
+   // actions
+
+   bool offset_first_line_num(int delta)
+   {
+      first_line_num += delta;
+      if (first_line_num < 0) first_line_num = 0;
+      if (first_line_num >= lines.size()) first_line_num = lines.size()-1;
+      return true;
+   }
+
+   bool move_stage_up(float distance=100)
+   {
+      place.position.y += distance;
+      return true;
+   }
+
+   bool move_stage_down(float distance=100)
+   {
+      place.position.y -= distance;
+      return true;
+   }
+
    void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
       place.start_transform();
@@ -312,11 +340,12 @@ public:
 
 
       // render lines
-      int line_number = 0;
-      for (auto &line : lines)
+      for (int line_number = first_line_num; line_number < lines.size(); line_number++)
       {
-         al_draw_text(font, al_color_name("white"), 0, line_number*cell_height, ALLEGRO_ALIGN_LEFT, line.c_str());
-         line_number++;
+         al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_LEFT, lines[line_number].c_str());
+         std::stringstream ss;
+         ss << (line_number+1);
+         al_draw_text(font, al_color_name("gray"), -20, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
       }
 
       place.restore_transform();
@@ -341,6 +370,10 @@ public:
    static const std::string SPLIT_LINES;
    static const std::string MOVE_CURSOR_TO_START_OF_LINE;
    static const std::string SAVE_FILE;
+   static const std::string MOVE_STAGE_UP;
+   static const std::string MOVE_STAGE_DOWN;
+   static const std::string OFFSET_FIRST_LINE_NUM_DOWN;
+   static const std::string OFFSET_FIRST_LINE_NUM_UP;
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
@@ -359,6 +392,10 @@ public:
          else if (event_name == SPLIT_LINES) split_lines();
          else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) move_cursor_to_start_of_line();
          else if (event_name == SAVE_FILE) save_file();
+         else if (event_name == MOVE_STAGE_UP) move_stage_up();
+         else if (event_name == MOVE_STAGE_DOWN) move_stage_down();
+         else if (event_name == OFFSET_FIRST_LINE_NUM_DOWN) offset_first_line_num(10);
+         else if (event_name == OFFSET_FIRST_LINE_NUM_UP) offset_first_line_num(-10);
       }
       catch (const std::exception &e)
       {
@@ -371,6 +408,7 @@ public:
    void process_event(ALLEGRO_EVENT &event)
    {
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
+      //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
       KeyboardCommandMapper edit_mode__keyboard_command_mapper;
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { Stage::MOVE_CURSOR_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, true,  false, false, { Stage::JOIN_LINES });
@@ -383,9 +421,12 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_U, false, true, false, { Stage::OFFSET_FIRST_LINE_NUM_UP });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, true, false, { Stage::OFFSET_FIRST_LINE_NUM_DOWN });
 
 
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
+      //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
       KeyboardCommandMapper insert_mode__keyboard_command_mapper;
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { Stage::SET_EDIT_MODE });
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, { Stage::MOVE_CURSOR_LEFT, Stage::DELETE_CHARACTER });
@@ -454,6 +495,10 @@ std::string const Stage::JOIN_LINES = "JOIN_LINES";
 std::string const Stage::SPLIT_LINES = "SPLIT_LINES";
 std::string const Stage::MOVE_CURSOR_TO_START_OF_LINE = "MOVE_CURSOR_TO_START_OF_LINE";
 std::string const Stage::SAVE_FILE = "SAVE_FILE";
+std::string const Stage::MOVE_STAGE_UP = "MOVE_STAGE_UP";
+std::string const Stage::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
+std::string const Stage::OFFSET_FIRST_LINE_NUM_UP = "OFFSET_FIRST_LINE_NUM_UP";
+std::string const Stage::OFFSET_FIRST_LINE_NUM_DOWN = "OFFSET_FIRST_LINE_NUM_DOWN";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
@@ -500,8 +545,6 @@ void run_program(std::string filename)
    ALLEGRO_EVENT_QUEUE *event_queue = al_create_event_queue();
    al_register_event_source(event_queue, al_get_keyboard_event_source());
    al_register_event_source(event_queue, al_get_display_event_source(display));
-
-
 
    float logo_radius = 60;
    Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, al_color_name("darkviolet"), 3);
