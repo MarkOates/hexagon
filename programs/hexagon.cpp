@@ -323,6 +323,12 @@ public:
       return true;
    }
 
+   bool scale_stage_delta(float delta)
+   {
+      place.scale += vec2d(delta, delta);
+      return true;
+   }
+
    void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
       place.start_transform();
@@ -345,7 +351,7 @@ public:
          al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_LEFT, lines[line_number].c_str());
          std::stringstream ss;
          ss << (line_number+1);
-         al_draw_text(font, al_color_name("gray"), -20, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
+         al_draw_text(font, al_color_name("darkolivegreen"), -20, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
       }
 
       place.restore_transform();
@@ -372,6 +378,8 @@ public:
    static const std::string SAVE_FILE;
    static const std::string MOVE_STAGE_UP;
    static const std::string MOVE_STAGE_DOWN;
+   static const std::string SCALE_STAGE_UP;
+   static const std::string SCALE_STAGE_DOWN;
    static const std::string OFFSET_FIRST_LINE_NUM_DOWN;
    static const std::string OFFSET_FIRST_LINE_NUM_UP;
 
@@ -394,6 +402,8 @@ public:
          else if (event_name == SAVE_FILE) save_file();
          else if (event_name == MOVE_STAGE_UP) move_stage_up();
          else if (event_name == MOVE_STAGE_DOWN) move_stage_down();
+         else if (event_name == SCALE_STAGE_UP) scale_stage_delta(0.1);
+         else if (event_name == SCALE_STAGE_DOWN) scale_stage_delta(-0.1);
          else if (event_name == OFFSET_FIRST_LINE_NUM_DOWN) offset_first_line_num(10);
          else if (event_name == OFFSET_FIRST_LINE_NUM_UP) offset_first_line_num(-10);
       }
@@ -423,6 +433,8 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_U, false, true, false, { Stage::OFFSET_FIRST_LINE_NUM_UP });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, true, false, { Stage::OFFSET_FIRST_LINE_NUM_DOWN });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, { Stage::SCALE_STAGE_UP });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, { Stage::SCALE_STAGE_DOWN });
 
 
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
@@ -499,6 +511,8 @@ std::string const Stage::MOVE_STAGE_UP = "MOVE_STAGE_UP";
 std::string const Stage::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
 std::string const Stage::OFFSET_FIRST_LINE_NUM_UP = "OFFSET_FIRST_LINE_NUM_UP";
 std::string const Stage::OFFSET_FIRST_LINE_NUM_DOWN = "OFFSET_FIRST_LINE_NUM_DOWN";
+std::string const Stage::SCALE_STAGE_UP = "SCALE_STAGE_UP";
+std::string const Stage::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
@@ -556,7 +570,7 @@ void run_program(std::string filename)
    al_flip_display();
 
 
-   placement2d place(100, 100, 400, 400);
+   placement2d place(100, 20, 400, 400);
    place.align = vec2d(0, 0);
    place.scale = vec2d(0.65, 0.65);
    Stage stage(filename.empty() ? "~TMP.txt" : filename, place);
