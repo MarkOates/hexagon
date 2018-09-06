@@ -274,6 +274,11 @@ public:
       cursor_x = 0;
       return true;
    }
+   bool move_cursor_to_end_of_line()
+   {
+      cursor_x = current_line_ref().length();
+      return true;
+   }
    bool delete_character()
    {
       current_line_ref().erase(cursor_x, 1);
@@ -400,6 +405,7 @@ public:
    static const std::string JOIN_LINES;
    static const std::string SPLIT_LINES;
    static const std::string MOVE_CURSOR_TO_START_OF_LINE;
+   static const std::string MOVE_CURSOR_TO_END_OF_LINE;
    static const std::string SAVE_FILE;
    static const std::string MOVE_STAGE_UP;
    static const std::string MOVE_STAGE_DOWN;
@@ -426,6 +432,7 @@ public:
          else if (event_name == JOIN_LINES) join_lines();
          else if (event_name == SPLIT_LINES) split_lines();
          else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) move_cursor_to_start_of_line();
+         else if (event_name == MOVE_CURSOR_TO_END_OF_LINE) move_cursor_to_end_of_line();
          else if (event_name == SAVE_FILE) save_file();
          else if (event_name == MOVE_STAGE_UP) move_stage_up();
          else if (event_name == MOVE_STAGE_DOWN) move_stage_down();
@@ -449,7 +456,9 @@ public:
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
       //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
       KeyboardCommandMapper edit_mode__keyboard_command_mapper;
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, true,  false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD, Stage::SET_INSERT_MODE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, true,  false, false, { Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { Stage::MOVE_CURSOR_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, true,  false, false, { Stage::JOIN_LINES });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { Stage::MOVE_CURSOR_UP });
@@ -536,6 +545,7 @@ std::string const Stage::SET_EDIT_MODE = "SET_EDIT_MODE";
 std::string const Stage::JOIN_LINES = "JOIN_LINES";
 std::string const Stage::SPLIT_LINES = "SPLIT_LINES";
 std::string const Stage::MOVE_CURSOR_TO_START_OF_LINE = "MOVE_CURSOR_TO_START_OF_LINE";
+std::string const Stage::MOVE_CURSOR_TO_END_OF_LINE = "MOVE_CURSOR_TO_END_OF_LINE";
 std::string const Stage::SAVE_FILE = "SAVE_FILE";
 std::string const Stage::MOVE_STAGE_UP = "MOVE_STAGE_UP";
 std::string const Stage::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
