@@ -146,6 +146,7 @@ public:
    {
       EDIT,
       INSERT,
+      OPERATOR,
    };
 
 private:
@@ -218,6 +219,7 @@ public:
    {
       if (mode == EDIT) return "EDIT";
       if (mode == INSERT) return "INSERT";
+      if (mode == OPERATOR) return "OPERATOR";
       return "---";
    }
 
@@ -318,6 +320,11 @@ public:
       mode = EDIT;
       return true;
    }
+   bool set_operator_mode()
+   {
+      mode = OPERATOR;
+      return true;
+   }
 
 
    // presentation
@@ -372,6 +379,9 @@ public:
       case INSERT:
          al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"), 3);
          break;
+      case OPERATOR:
+         al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("dodgerblue"), 5);
+         break;
       }
 
 
@@ -387,7 +397,17 @@ public:
       place.restore_transform();
 
       // render edit mode
-      al_draw_text(font, mode == EDIT ? al_color_name("red") : al_color_name("lime"), al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*2, ALLEGRO_ALIGN_CENTER, get_current_mode_string().c_str());
+      ALLEGRO_COLOR color;
+
+      switch(mode)
+      {
+      case EDIT: color = al_color_name("red"); break;
+      case INSERT: color = al_color_name("lime"); break;
+      case OPERATOR: color = al_color_name("dodgerblue"); break;
+      default: break;
+      }
+
+      al_draw_text(font, color, al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*2, ALLEGRO_ALIGN_CENTER, get_current_mode_string().c_str());
    }
 
    // events
@@ -402,6 +422,7 @@ public:
    static const std::string INSERT_STRING;
    static const std::string SET_INSERT_MODE;
    static const std::string SET_EDIT_MODE;
+   static const std::string SET_OPERATOR_MODE;
    static const std::string JOIN_LINES;
    static const std::string SPLIT_LINES;
    static const std::string MOVE_CURSOR_TO_START_OF_LINE;
@@ -429,6 +450,7 @@ public:
          else if (event_name == INSERT_STRING) insert_string(*(std::string *)data1);
          else if (event_name == SET_INSERT_MODE) set_insert_mode();
          else if (event_name == SET_EDIT_MODE) set_edit_mode();
+         else if (event_name == SET_OPERATOR_MODE) set_operator_mode();
          else if (event_name == JOIN_LINES) join_lines();
          else if (event_name == SPLIT_LINES) split_lines();
          else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) move_cursor_to_start_of_line();
@@ -475,12 +497,14 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, { Stage::SCALE_STAGE_UP });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, { Stage::SCALE_STAGE_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, { Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, { Stage::SET_OPERATOR_MODE });
 
 
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
       //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
       KeyboardCommandMapper insert_mode__keyboard_command_mapper;
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { Stage::SET_EDIT_MODE });
+      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, true, false, { Stage::SET_EDIT_MODE });
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, { Stage::MOVE_CURSOR_LEFT, Stage::DELETE_CHARACTER });
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE });
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
@@ -528,6 +552,15 @@ public:
             }
             break;
          }
+         break;
+      case OPERATOR:
+         switch(event.type)
+         {
+         case ALLEGRO_EVENT_KEY_CHAR:
+            process_local_event(SET_EDIT_MODE);
+            break;
+         }
+         break;
       }
    }
 };
@@ -543,6 +576,7 @@ std::string const Stage::DELETE_CHARACTER = "DELETE_CHARACTER";
 std::string const Stage::INSERT_STRING = "INSERT_STRING";
 std::string const Stage::SET_INSERT_MODE = "SET_INSERT_MODE";
 std::string const Stage::SET_EDIT_MODE = "SET_EDIT_MODE";
+std::string const Stage::SET_OPERATOR_MODE = "SET_OPERATOR_MODE";
 std::string const Stage::JOIN_LINES = "JOIN_LINES";
 std::string const Stage::SPLIT_LINES = "SPLIT_LINES";
 std::string const Stage::MOVE_CURSOR_TO_START_OF_LINE = "MOVE_CURSOR_TO_START_OF_LINE";
