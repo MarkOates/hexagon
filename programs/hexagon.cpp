@@ -137,11 +137,6 @@ bool save_file(std::vector<std::string> &lines, std::string filename)
 
 
 
-#define EVENT_ROTATE_STAGES_RIGHT ALLEGRO_GET_EVENT_TYPE('r', 't', 'a', 'R')
-#define EVENT_ROTATE_STAGES_LEFT ALLEGRO_GET_EVENT_TYPE('r', 't', 'a', 'L')
-
-
-
 
 #include <string>
 #include <vector>
@@ -416,6 +411,7 @@ public:
       }
 
       al_draw_text(font, color, al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*2, ALLEGRO_ALIGN_CENTER, get_current_mode_string().c_str());
+      al_draw_text(font, al_color_name("gray"), al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*1, ALLEGRO_ALIGN_CENTER, filename.c_str());
    }
 
    // events
@@ -478,7 +474,7 @@ public:
          std::cout << "💥 cannot execute \"" << event_name << "\"" << std::endl;
       }
 
-      std::cout << event_name << std::endl;
+      std::cout << "Stage::" << event_name << std::endl;
    }
 
    void process_event(ALLEGRO_EVENT &event)
@@ -624,6 +620,78 @@ From me far off, with others all too near.
 - William Shakespere)END";
 
 
+
+class System
+{
+public:
+   std::vector<Stage *> stages;
+
+   System()
+      : stages({})
+   {}
+
+   bool rotate_stage_right()
+   {
+      std::rotate(stages.begin(), stages.begin() + 1, stages.end());
+      return true;
+   }
+
+   bool rotate_stage_left()
+   {
+      std::rotate(stages.rbegin(), stages.rbegin() + 1, stages.rend());
+      return true;
+   }
+
+   // events
+
+   static const std::string ROTATE_STAGE_RIGHT;
+   static const std::string ROTATE_STAGE_LEFT;
+
+   void process_local_event(std::string event_name)
+   {
+      try
+      {
+         if (event_name == ROTATE_STAGE_RIGHT) rotate_stage_right();
+         else if (event_name == ROTATE_STAGE_LEFT) rotate_stage_left();
+      }
+      catch (const std::exception &exception)
+      {
+         std::cout << ">BOOM< cannot execute \"" << event_name << "\"" << std::endl;
+      }
+
+      std::cout << "System::" << event_name << std::endl;
+   }
+
+   void process_event(ALLEGRO_EVENT &event)
+   {
+      KeyboardCommandMapper keyboard_command_mapper;
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, { ROTATE_STAGE_RIGHT });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, { ROTATE_STAGE_LEFT });
+
+      switch(event.type)
+      {
+      case ALLEGRO_EVENT_KEY_UP:
+         break;
+      case ALLEGRO_EVENT_KEY_DOWN:
+         break;
+      case ALLEGRO_EVENT_KEY_CHAR:
+         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, false, false, false);
+         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+         break;
+      }
+
+      stages[0]->process_event(event);
+   }
+
+private:
+};
+
+
+const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
+const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
+
+
+
 void run_program(std::vector<std::string> filenames)
 {
    if (!al_init()) std::cerr << "al_init() failed" << std::endl;
@@ -631,11 +699,6 @@ void run_program(std::vector<std::string> filenames)
    if (!al_init_ttf_addon()) std::cerr << "al_init_ttf_addon() failed" << std::endl;
 
    if (!al_install_keyboard()) std::cerr << "al_install_keyboard() failed" << std::endl;
-
-   //ALLEGRO_PATH *resource_path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
-   //al_change_directory(al_path_cstr(resource_path, ALLEGRO_NATIVE_PATH_SEP));
-   //std::cout << al_path_cstr(resource_path, ALLEGRO_NATIVE_PATH_SEP) << std::endl;
-   //al_destroy_path(resource_path);
 
    al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
    al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
@@ -655,7 +718,6 @@ void run_program(std::vector<std::string> filenames)
    Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, al_color_name("darkviolet"), 3);
    logo.render();
    al_draw_text(consolas_font, al_color_name("darkviolet"), display_width/2, display_height/2, ALLEGRO_ALIGN_CENTER, "hexagon");
-   //al_draw_text(consolas_font, al_color_name("gray"), display_width/2, display_height/2+al_get_font_line_height(consolas_font), ALLEGRO_ALIGN_CENTER, filename.c_str());
 
 
    al_flip_display();
@@ -667,17 +729,24 @@ void run_program(std::vector<std::string> filenames)
    placement2d place(100, 20, 400, 400);
    place.align = vec2d(0, 0);
    place.scale = vec2d(0.65, 0.65);
-   Stage *stage = new Stage(first_filename.empty() ? "~TMP.txt" : first_filename, place);
-   std::vector<Stage *> stages;
 
-   stages.push_back(stage);
-
-   std::vector<std::string> lines;
-   if (!first_filename.empty()) read_file(lines, first_filename);
-   first_filename.empty() ? stage->set_content(sonnet) : stage->set_content(lines);
 
    bool shutdown_program = false;
    bool first_load = true;
+
+
+   System system;
+
+   for (auto &filename : filenames)
+   {
+      Stage *stage = new Stage(filename, place);
+
+      std::vector<std::string> lines;
+      read_file(lines, filename);
+
+      stage->set_content(lines);
+      system.stages.push_back(stage);
+   }
 
 
    while(!shutdown_program)
@@ -686,23 +755,17 @@ void run_program(std::vector<std::string> filenames)
       if (!first_load) al_wait_for_event(event_queue, &this_event);
       first_load = false;
 
-      stages[0]->process_event(this_event);
+      system.process_event(this_event);
 
       switch(this_event.type)
       {
       case ALLEGRO_EVENT_DISPLAY_CLOSE:
          shutdown_program = true;
          break;
-      case EVENT_ROTATE_STAGES_RIGHT:
-         std::rotate(stages.begin(), stages.begin() + 1, stages.end());
-         break;
-      case EVENT_ROTATE_STAGES_LEFT:
-         std::rotate(stages.rbegin(), stages.rbegin() + 1, stages.rend());
-         break;
       }
 
       al_clear_to_color(al_color_name("black"));
-      stages[0]->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+      system.stages[0]->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
       al_flip_display();
    }
 
