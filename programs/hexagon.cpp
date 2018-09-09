@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 
 #include <allegro5/allegro.h>
@@ -132,6 +133,13 @@ bool save_file(std::vector<std::string> &lines, std::string filename)
 
    return true;
 }
+
+
+
+
+#define EVENT_ROTATE_STAGES_RIGHT ALLEGRO_GET_EVENT_TYPE('r', 't', 'a', 'R')
+#define EVENT_ROTATE_STAGES_LEFT ALLEGRO_GET_EVENT_TYPE('r', 't', 'a', 'L')
+
 
 
 
@@ -684,6 +692,12 @@ void run_program(std::vector<std::string> filenames)
       {
       case ALLEGRO_EVENT_DISPLAY_CLOSE:
          shutdown_program = true;
+         break;
+      case EVENT_ROTATE_STAGES_RIGHT:
+         std::rotate(stages.begin(), stages.begin() + 1, stages.end());
+         break;
+      case EVENT_ROTATE_STAGES_LEFT:
+         std::rotate(stages.rbegin(), stages.rbegin() + 1, stages.rend());
          break;
       }
 
