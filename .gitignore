@@ -24,3 +24,9 @@ bin/**
 # Allegro log files
 
 allegro.log
+
+
+
+# Hexagon files
+
+~TMP.txt
