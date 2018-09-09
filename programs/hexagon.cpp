@@ -665,8 +665,10 @@ public:
    void process_event(ALLEGRO_EVENT &event)
    {
       KeyboardCommandMapper keyboard_command_mapper;
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, { ROTATE_STAGE_RIGHT });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, { ROTATE_STAGE_LEFT });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, { ROTATE_STAGE_RIGHT });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, { ROTATE_STAGE_LEFT });
+
+      bool event_caught = false;
 
       switch(event.type)
       {
@@ -675,12 +677,14 @@ public:
       case ALLEGRO_EVENT_KEY_DOWN:
          break;
       case ALLEGRO_EVENT_KEY_CHAR:
-         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, false, false, false);
+         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, false, false, alt);
+         if (!mapped_events.empty()) event_caught = true;
          for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
          break;
       }
 
-      stages[0]->process_event(event);
+      if (!event_caught) stages[0]->process_event(event);
    }
 
 private:
