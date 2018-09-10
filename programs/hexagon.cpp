@@ -15,6 +15,7 @@
 
 #include <Blast/StringSplitter.hpp>
 #include <Blast/KeyboardCommandMapper.hpp>
+#include <Blast/ShellCommandExecutor.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 
 using namespace Blast;
@@ -330,6 +331,23 @@ public:
    }
 
 
+   // plugins
+
+   std::vector<int> git_modified_line_numbers;
+
+   bool refresh_git_modified_line_numbers()
+   {
+      std::stringstream git_changed_lines_shell_command;
+      git_changed_lines_shell_command << "git blame " << filename << " | grep -n '^0\\{8\\} ' | cut -f1 -d:";
+      ShellCommandExecutor shell_command_executor(git_changed_lines_shell_command.str());
+      std::string output = shell_command_executor.execute();
+      std::vector<std::string> line_numbers_str = StringSplitter(output, '\n').split();
+      git_modified_line_numbers.clear();
+      for (auto &line_number_str : line_numbers_str)
+         git_modified_line_numbers.push_back(atoi(line_number_str.c_str()));
+      return true;
+   }
+
    // presentation
 
    // actions
@@ -389,12 +407,26 @@ public:
 
 
       // render lines
+      int line_height = al_get_font_line_height(font);
       for (int line_number = first_line_num; line_number < lines.size(); line_number++)
       {
+         bool line_exists_in_git_modified_line_numbers = std::find(git_modified_line_numbers.begin(), git_modified_line_numbers.end(), (line_number+1)) != git_modified_line_numbers.end();
+         if (line_exists_in_git_modified_line_numbers)
+         {
+            ALLEGRO_COLOR color = al_color_name("orange");
+            color.r *= 0.13;
+            color.g *= 0.13;
+            color.b *= 0.13;
+            color.a *= 0.13;
+            al_draw_filled_rectangle(0, line_height * (line_number - first_line_num), al_get_display_width(display)*2, line_height * (line_number - first_line_num + 1), color);
+         }
+
          al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_LEFT, lines[line_number].c_str());
          std::stringstream ss;
          ss << (line_number+1);
-         al_draw_text(font, al_color_name("darkolivegreen"), -20, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
+         ALLEGRO_COLOR text_color = al_color_name("darkolivegreen");
+         if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
+         al_draw_text(font, text_color, -20, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
       }
 
       place.restore_transform();
@@ -440,6 +472,7 @@ public:
    static const std::string OFFSET_FIRST_LINE_NUM_UP;
    static const std::string OFFSET_CURSOR_POSITION_Y_DOWN;
    static const std::string OFFSET_CURSOR_POSITION_Y_UP;
+   static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS;
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
@@ -468,6 +501,7 @@ public:
          else if (event_name == OFFSET_FIRST_LINE_NUM_UP) offset_first_line_num(-10);
          else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN) offset_cursor_position_y(10);
          else if (event_name == OFFSET_CURSOR_POSITION_Y_UP) offset_cursor_position_y(-10);
+         else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS) refresh_git_modified_line_numbers();
       }
       catch (const std::exception &e)
       {
@@ -501,6 +535,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, { Stage::SCALE_STAGE_UP });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, { Stage::SCALE_STAGE_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, { Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, { Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
       //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, { Stage::SET_COMMAND_MODE, Stage::SET_OPERATOR_DELETE });
 
 
@@ -600,6 +635,7 @@ std::string const Stage::OFFSET_CURSOR_POSITION_Y_UP = "OFFSET_CURSOR_POSITION_Y
 std::string const Stage::OFFSET_CURSOR_POSITION_Y_DOWN = "OFFSET_CURSOR_POSITION_Y_DOWN";
 std::string const Stage::SCALE_STAGE_UP = "SCALE_STAGE_UP";
 std::string const Stage::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
+std::string const Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS = "REFRESH_GIT_MODIFIED_LINE_NUMBERS";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
@@ -642,10 +678,20 @@ public:
       return true;
    }
 
+   bool run_project_tests()
+   {
+      ShellCommandExecutor shell_command_executor("m");
+      std::string output = shell_command_executor.execute();
+      std::cout << output << std::endl;
+      return true;
+   }
+
+
    // events
 
    static const std::string ROTATE_STAGE_RIGHT;
    static const std::string ROTATE_STAGE_LEFT;
+   static const std::string RUN_PROJECT_TESTS;
 
    void process_local_event(std::string event_name)
    {
@@ -653,6 +699,7 @@ public:
       {
          if (event_name == ROTATE_STAGE_RIGHT) rotate_stage_right();
          else if (event_name == ROTATE_STAGE_LEFT) rotate_stage_left();
+         else if (event_name == RUN_PROJECT_TESTS) run_project_tests();
       }
       catch (const std::exception &exception)
       {
@@ -667,6 +714,7 @@ public:
       KeyboardCommandMapper keyboard_command_mapper;
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, { ROTATE_STAGE_RIGHT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, { ROTATE_STAGE_LEFT });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, { RUN_PROJECT_TESTS });
 
       bool event_caught = false;
 
@@ -693,6 +741,7 @@ private:
 
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
+const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 
 
 
