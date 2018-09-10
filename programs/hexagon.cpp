@@ -181,6 +181,11 @@ public:
 
    // accessors
 
+   std::string get_filename()
+   {
+      return filename;
+   }
+
    bool set_content(std::string content)
    {
       lines = StringSplitter(content, '\n').split();
@@ -680,7 +685,19 @@ public:
 
    bool run_project_tests()
    {
-      ShellCommandExecutor shell_command_executor("m");
+      std::stringstream test_command_string;
+      test_command_string << "bin/rails test " << stages[0]->get_filename();
+      ShellCommandExecutor shell_command_executor(test_command_string.str());
+      std::string output = shell_command_executor.execute();
+      std::cout << output << std::endl;
+      return true;
+   }
+
+   bool run_make()
+   {
+      std::stringstream make_command_string;
+      make_command_string << "make";
+      ShellCommandExecutor shell_command_executor(make_command_string.str());
       std::string output = shell_command_executor.execute();
       std::cout << output << std::endl;
       return true;
@@ -692,6 +709,7 @@ public:
    static const std::string ROTATE_STAGE_RIGHT;
    static const std::string ROTATE_STAGE_LEFT;
    static const std::string RUN_PROJECT_TESTS;
+   static const std::string RUN_MAKE;
 
    void process_local_event(std::string event_name)
    {
@@ -700,6 +718,7 @@ public:
          if (event_name == ROTATE_STAGE_RIGHT) rotate_stage_right();
          else if (event_name == ROTATE_STAGE_LEFT) rotate_stage_left();
          else if (event_name == RUN_PROJECT_TESTS) run_project_tests();
+         else if (event_name == RUN_MAKE) run_make();
       }
       catch (const std::exception &exception)
       {
@@ -715,6 +734,7 @@ public:
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, { ROTATE_STAGE_RIGHT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, { ROTATE_STAGE_LEFT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, { RUN_PROJECT_TESTS });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, { RUN_MAKE });
 
       bool event_caught = false;
 
@@ -742,6 +762,7 @@ private:
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
+const std::string System::RUN_MAKE = "RUN_MAKE";
 
 
 
