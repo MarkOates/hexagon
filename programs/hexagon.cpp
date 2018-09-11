@@ -137,6 +137,46 @@ bool save_file(std::vector<std::string> &lines, std::string filename)
 
 
 
+class GitLinesModifiedExtractor
+{
+private:
+   std::string filename;
+   std::vector<int> lines_modified;
+   bool executed;
+
+public:
+   GitLinesModifiedExtractor(std::string filename)
+      : filename(filename)
+      , lines_modified()
+      , executed(false)
+   {}
+   ~GitLinesModifiedExtractor()
+   {
+   }
+
+   void execute()
+   {
+      if (executed) return;
+
+      std::stringstream git_changed_lines_shell_command;
+      git_changed_lines_shell_command << "git blame " << filename << " | grep -n '^0\\{8\\} ' | cut -f1 -d:";
+      ShellCommandExecutor shell_command_executor(git_changed_lines_shell_command.str());
+      std::string output = shell_command_executor.execute();
+      std::vector<std::string> line_numbers_str = StringSplitter(output, '\n').split();
+      lines_modified.clear();
+      lines_modified.resize(line_numbers_str.size());
+      for (auto &line_number_str : line_numbers_str)
+         lines_modified.push_back(atoi(line_number_str.c_str()));
+      executed = true;
+   }
+
+   std::vector<int> get_lines_modified()
+   {
+      return lines_modified;
+   }
+};
+
+
 
 
 #include <string>
@@ -344,15 +384,9 @@ public:
 
    bool refresh_git_modified_line_numbers()
    {
-      std::stringstream git_changed_lines_shell_command;
-      git_changed_lines_shell_command << "git blame " << filename << " | grep -n '^0\\{8\\} ' | cut -f1 -d:";
-      ShellCommandExecutor shell_command_executor(git_changed_lines_shell_command.str());
-      std::string output = shell_command_executor.execute();
-      std::vector<std::string> line_numbers_str = StringSplitter(output, '\n').split();
-      git_modified_line_numbers.clear();
-      for (auto &line_number_str : line_numbers_str)
-         git_modified_line_numbers.push_back(atoi(line_number_str.c_str()));
-      return true;
+      GitLinesModifiedExtractor git_lines_modified_extractor(filename);
+      git_lines_modified_extractor.execute();
+      git_modified_line_numbers = git_lines_modified_extractor.get_lines_modified();
    }
 
    // presentation
