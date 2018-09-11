@@ -205,11 +205,13 @@ public:
 
    // inference
 
-   int num_lines() {
+   int num_lines()
+   {
       return lines.size();
    }
 
-   int num_columns() {
+   int num_columns()
+   {
       if (cursor_y >= lines.size()) return -1;
       return lines[cursor_y].length();
    }
