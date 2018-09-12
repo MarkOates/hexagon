@@ -197,7 +197,9 @@ public:
 
 std::ostream &operator<<(std::ostream &out, RailsMinitestTestResult const &t)
 {
+   if (t.test_result == " F") out << "FAILED!!: ";
    out << t.test_name << "||||" << t.test_time_in_seconds << "||||" << t.test_result;
+
    return out;
 }
 
