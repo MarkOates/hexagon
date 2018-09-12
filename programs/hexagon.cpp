@@ -178,6 +178,132 @@ public:
 
 
 
+class RailsMinitestTestResult
+{
+public:
+   std::string test_name;
+   std::string test_time_in_seconds;
+   std::string test_result;
+
+   RailsMinitestTestResult(std::string test_name, std::string test_time_in_seconds, std::string test_result)
+      : test_name(test_name)
+      , test_time_in_seconds(test_time_in_seconds)
+      , test_result(test_result)
+   {}
+   ~RailsMinitestTestResult() {}
+};
+
+
+
+std::ostream &operator<<(std::ostream &out, RailsMinitestTestResult const &t)
+{
+   out << t.test_name << "||||" << t.test_time_in_seconds << "||||" << t.test_result;
+   return out;
+}
+
+
+
+class RailsTestOutputParser
+{
+private:
+   bool processed;
+   std::string source_test_output;
+   std::vector<RailsMinitestTestResult> test_result_lines;
+
+public:
+   RailsTestOutputParser(std::string source_test_output)
+      : processed(false)
+      , source_test_output(source_test_output)
+      , test_result_lines()
+   {}
+
+   void process()
+   {
+      if (processed) return;
+
+      test_result_lines.clear();
+      std::vector<std::string> source_test_output_lines = StringSplitter(source_test_output, '\n').split();
+
+      for (auto &source_test_output_line : source_test_output_lines)
+      {
+         std::vector<std::string> possible_test_line_output_tokens = StringSplitter(source_test_output_line, '=').split();
+         if (possible_test_line_output_tokens.size() == 3)
+         {
+            // assume it is a valid test output line
+            test_result_lines.push_back(RailsMinitestTestResult{
+               possible_test_line_output_tokens[0],
+               possible_test_line_output_tokens[1],
+               possible_test_line_output_tokens[2],
+            });
+         }
+      }
+
+      processed = true;
+   }
+
+   std::vector<RailsMinitestTestResult> const &get_test_result_lines()
+   {
+      if (!processed) process();
+
+      return test_result_lines;
+   }
+};
+
+
+
+class RailsMinitestTestRunner
+{
+private:
+   std::string test_filename;
+
+public:
+   RailsMinitestTestRunner(std::string test_filename)
+      : test_filename(test_filename)
+   {}
+   ~RailsMinitestTestRunner() {}
+
+   std::string run()
+   {
+      std::stringstream test_command_string;
+      test_command_string << "bin/rails test " << test_filename << " -v";
+      ShellCommandExecutor shell_command_executor(test_command_string.str());
+      std::string output = shell_command_executor.execute();
+      return output;
+   }
+};
+
+
+
+class CodeMessagePoint
+{
+public:
+   enum type_t
+   {
+      NONE,
+      ERROR,
+   };
+
+private:
+   int x, y;
+   std::string message;
+   type_t type;
+
+public:
+   CodeMessagePoint(int x, int y, std::string message, type_t type)
+      : x(x)
+      , y(y)
+      , message(message)
+      , type(type)
+   {}
+   ~CodeMessagePoint();
+
+   int get_x() { return x; }
+   int get_y() { return y; }
+   std::string get_message() { return message; }
+};
+
+
+
 
 #include <string>
 #include <vector>
@@ -387,6 +513,15 @@ public:
       GitLinesModifiedExtractor git_lines_modified_extractor(filename);
       git_lines_modified_extractor.execute();
       git_modified_line_numbers = git_lines_modified_extractor.get_lines_modified();
+      return true;
+   }
+
+   std::vector<CodeMessagePoint> code_message_points;
+
+   bool refresh_compile_error_points()
+   {
+      code_message_points.clear();
+      return true;
    }
 
    // presentation
@@ -721,12 +856,13 @@ public:
 
    bool run_project_tests()
    {
-      std::stringstream test_command_string;
-      test_command_string << "bin/rails test " << stages[0]->get_filename();
-      ShellCommandExecutor shell_command_executor(test_command_string.str());
-      std::string output = shell_command_executor.execute();
-      std::cout << output << std::endl;
-      return true;
+      std::string test_output = RailsMinitestTestRunner(stages[0]->get_filename()).run();
+      RailsTestOutputParser rails_test_output_parser(test_output);
+      for (auto &test_result_line : rails_test_output_parser.get_test_result_lines())
+      {
+         std::cout << test_result_line << std::endl;
+         std::cout << "=============================" << std::endl;
+      }
    }
 
    bool run_make()
