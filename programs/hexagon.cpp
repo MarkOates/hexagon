@@ -517,6 +517,8 @@ public:
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
+      std::cout << "Stage::" << event_name << std::endl;
+
       try {
          if (event_name == MOVE_CURSOR_UP) move_cursor_up();
          else if (event_name == MOVE_CURSOR_DOWN) move_cursor_down();
@@ -548,8 +550,6 @@ public:
       {
          std::cout << "💥 cannot execute \"" << event_name << "\"" << std::endl;
       }
-
-      std::cout << "Stage::" << event_name << std::endl;
    }
 
    void process_event(ALLEGRO_EVENT &event)
@@ -749,6 +749,8 @@ public:
 
    void process_local_event(std::string event_name)
    {
+      std::cout << "System::" << event_name << std::endl;
+
       try
       {
          if (event_name == ROTATE_STAGE_RIGHT) rotate_stage_right();
@@ -760,8 +762,6 @@ public:
       {
          std::cout << ">BOOM< cannot execute \"" << event_name << "\"" << std::endl;
       }
-
-      std::cout << "System::" << event_name << std::endl;
    }
 
    void process_event(ALLEGRO_EVENT &event)
