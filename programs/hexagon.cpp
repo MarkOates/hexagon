@@ -397,14 +397,16 @@ class CodeMessagePointRenderer
 {
 private:
    CodeMessagePoint code_message_point;
+   bool showing_code_message_points;
    int current_line_number_offset;
    int line_height;
    ALLEGRO_FONT *font;
    placement2d place;
 
 public:
-   CodeMessagePointRenderer(CodeMessagePoint code_message_point, ALLEGRO_FONT *font, int current_line_number_offset, int line_height)
+   CodeMessagePointRenderer(CodeMessagePoint code_message_point, ALLEGRO_FONT *font, bool showing_code_message_points, int current_line_number_offset, int line_height)
       : code_message_point(code_message_point)
+      , showing_code_message_points(showing_code_message_points)
       , current_line_number_offset(current_line_number_offset)
       , line_height(line_height)
       , font(font)
@@ -418,13 +420,18 @@ public:
       float horizontal_padding = 20;
       place.position = vec2d(code_message_point.get_x(), (code_message_point.get_y()-1)*line_height - (current_line_number_offset)*line_height + line_height*0.5);
       place.align = vec2d(0, 0);
-      place.scale = vec2d(0.7, 0.7);
+      place.scale = vec2d(0.8, 0.8);
       place.start_transform();
 
       ALLEGRO_COLOR color = al_color_name("red");
+      ALLEGRO_COLOR text_color = al_color_name("white");
+
       al_draw_filled_circle(0, 0, 16, color);
-      al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color);
-      al_draw_multiline_text(font, al_color_name("white"), 10, 10, place.size.x - horizontal_padding*2, line_height, ALLEGRO_ALIGN_LEFT, code_message_point.get_message().c_str());
+      if (showing_code_message_points)
+      {
+         al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color);
+         al_draw_multiline_text(font, text_color, 10, 10, place.size.x - horizontal_padding*2, line_height, ALLEGRO_ALIGN_LEFT, code_message_point.get_message().c_str());
+      }
 
       place.restore_transform();
    }
@@ -475,7 +482,6 @@ private:
 
    std::string filename;
 
-
    // presentation
 
    placement2d place;
@@ -490,6 +496,7 @@ public:
       , filename(filename)
       , place(place)
       , first_line_num(0)
+      , showing_code_message_points(false)
    {}
 
    // accessors
@@ -664,6 +671,7 @@ public:
    }
 
    std::vector<CodeMessagePoint> code_message_points;
+   bool showing_code_message_points;
 
    bool clear_code_message_points()
    {
@@ -715,6 +723,12 @@ public:
       return true;
    }
 
+   bool toggle_showing_code_message_points()
+   {
+      showing_code_message_points = !showing_code_message_points;
+      return true;
+   }
+
    void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
       place.start_transform();
@@ -760,7 +774,7 @@ public:
 
       for (auto &code_message_point : code_message_points)
       {
-         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, first_line_num, al_get_font_line_height(font));
+         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font));
          code_message_point_renderer.render();
       }
 
@@ -808,6 +822,7 @@ public:
    static const std::string OFFSET_CURSOR_POSITION_Y_DOWN;
    static const std::string OFFSET_CURSOR_POSITION_Y_UP;
    static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS;
+   static const std::string TOGGLE_SHOWING_CODE_MESSAGE_POINTS;
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
@@ -839,7 +854,9 @@ public:
          else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN) offset_cursor_position_y(10);
          else if (event_name == OFFSET_CURSOR_POSITION_Y_UP) offset_cursor_position_y(-10);
          else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS) refresh_git_modified_line_numbers();
+         else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS) toggle_showing_code_message_points();
       }
+
       catch (const std::exception &e)
       {
          std::cout << "💥 cannot execute \"" << event_name << "\"" << std::endl;
@@ -871,6 +888,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, { Stage::SCALE_STAGE_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, { Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, { Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
       //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, { Stage::SET_COMMAND_MODE, Stage::SET_OPERATOR_DELETE });
 
 
@@ -971,6 +989,7 @@ std::string const Stage::OFFSET_CURSOR_POSITION_Y_DOWN = "OFFSET_CURSOR_POSITION
 std::string const Stage::SCALE_STAGE_UP = "SCALE_STAGE_UP";
 std::string const Stage::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
 std::string const Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS = "REFRESH_GIT_MODIFIED_LINE_NUMBERS";
+std::string const Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS = "TOGGLE_SHOWING_CODE_MESSAGE_POINTS";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
