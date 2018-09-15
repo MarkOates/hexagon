@@ -181,24 +181,63 @@ public:
 class RailsMinitestTestResult
 {
 public:
+   enum test_state_t
+   {
+      UNKNOWN,
+      RUNNING,
+      PASS,
+      FAILURE,
+      ERROR,
+   };
+
    std::string test_name;
    std::string test_time_in_seconds;
    std::string test_result;
+   test_state_t test_state;
+   std::string test_result_output;
 
-   RailsMinitestTestResult(std::string test_name, std::string test_time_in_seconds, std::string test_result)
+   RailsMinitestTestResult(std::string test_name, std::string test_time_in_seconds, std::string test_result, test_state_t test_state, std::string test_result_output)
       : test_name(test_name)
       , test_time_in_seconds(test_time_in_seconds)
       , test_result(test_result)
+      , test_state(test_state)
+      , test_result_output(test_result_output)
    {}
    ~RailsMinitestTestResult() {}
 };
 
 
 
+std::ostream &operator<<(std::ostream &out, RailsMinitestTestResult::test_state_t const &t)
+{
+   switch(t)
+   {
+   case RailsMinitestTestResult::UNKNOWN:
+      out << "unprocessed";
+   break;
+   case RailsMinitestTestResult::RUNNING:
+      out << "running";
+   break;
+   case RailsMinitestTestResult::PASS:
+      out << "pass";
+   break;
+   case RailsMinitestTestResult::FAILURE:
+      out << "failure";
+   break;
+   case RailsMinitestTestResult::ERROR:
+      out << "error";
+   break;
+   }
+
+   return out;
+}
+
+
+
 std::ostream &operator<<(std::ostream &out, RailsMinitestTestResult const &t)
 {
    if (t.test_result == " F") out << "FAILED!!: ";
-   out << t.test_name << "||||" << t.test_time_in_seconds << "||||" << t.test_result;
+   out << t.test_name << "||||" << t.test_time_in_seconds << "||||" << t.test_result << "||||" << t.test_state << "||||" << std::endl << "######" << t.test_result_output << std::endl << "######";
 
    return out;
 }
@@ -226,19 +265,43 @@ public:
       test_result_lines.clear();
       std::vector<std::string> source_test_output_lines = StringSplitter(source_test_output, '\n').split();
 
+      RailsMinitestTestResult *current_rails_minitest_test_result = nullptr;
+
       for (auto &source_test_output_line : source_test_output_lines)
       {
          std::vector<std::string> possible_test_line_output_tokens = StringSplitter(source_test_output_line, '=').split();
          if (possible_test_line_output_tokens.size() == 3)
          {
             // assume it is a valid test output line
-            test_result_lines.push_back(RailsMinitestTestResult{
+
+            // 1) "close" the current rails minitest test result (if there is one)
+            if (current_rails_minitest_test_result) test_result_lines.push_back(*current_rails_minitest_test_result);
+
+            RailsMinitestTestResult::test_state_t test_state = RailsMinitestTestResult::UNKNOWN;
+            if (possible_test_line_output_tokens[2] == " E") test_state = RailsMinitestTestResult::ERROR;
+            else if (possible_test_line_output_tokens[2] == " F") test_state = RailsMinitestTestResult::FAILURE;
+            else if (possible_test_line_output_tokens[2] == " .") test_state = RailsMinitestTestResult::PASS;
+
+            // 2) create a new one
+            current_rails_minitest_test_result = new RailsMinitestTestResult({
                possible_test_line_output_tokens[0],
                possible_test_line_output_tokens[1],
                possible_test_line_output_tokens[2],
+               test_state,
+               "",
             });
          }
+         else
+         {
+            // append the line to the current test (if there is one)
+            if (current_rails_minitest_test_result)
+            {
+               current_rails_minitest_test_result->test_result_output += source_test_output_line + "\n";
+            }
+         }
       }
+
+      if (current_rails_minitest_test_result) test_result_lines.push_back(*current_rails_minitest_test_result);
 
       processed = true;
    }
@@ -865,6 +928,7 @@ public:
          std::cout << test_result_line << std::endl;
          std::cout << "=============================" << std::endl;
       }
+      return true;
    }
 
    bool run_make()
