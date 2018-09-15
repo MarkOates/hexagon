@@ -206,6 +206,8 @@ public:
       , error_line_number(-1)
    {}
    ~RailsMinitestTestResult() {}
+
+   test_state_t get_test_state() const { return test_state; }
 };
 
 
@@ -381,13 +383,72 @@ public:
       , message(message)
       , type(type)
    {}
-   ~CodeMessagePoint();
+   ~CodeMessagePoint()
+   {}
 
    int get_x() { return x; }
    int get_y() { return y; }
    std::string get_message() { return message; }
 };
 
+
+
+class CodeMessagePointRenderer
+{
+private:
+   CodeMessagePoint code_message_point;
+   int current_line_number_offset;
+   int line_height;
+   ALLEGRO_FONT *font;
+   placement2d place;
+
+public:
+   CodeMessagePointRenderer(CodeMessagePoint code_message_point, ALLEGRO_FONT *font, int current_line_number_offset, int line_height)
+      : code_message_point(code_message_point)
+      , current_line_number_offset(current_line_number_offset)
+      , line_height(line_height)
+      , font(font)
+      , place(0, 0, 2200, 500)
+   {
+      if (!font) throw std::runtime_error("font not valid in CodeMessagePointRenderer");
+   }
+
+   void render()
+   {
+      float horizontal_padding = 20;
+      place.position = vec2d(code_message_point.get_x(), (code_message_point.get_y()-1)*line_height - (current_line_number_offset)*line_height + line_height*0.5);
+      place.align = vec2d(0, 0);
+      place.scale = vec2d(0.7, 0.7);
+      place.start_transform();
+
+      ALLEGRO_COLOR color = al_color_name("red");
+      al_draw_filled_circle(0, 0, 16, color);
+      al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color);
+      al_draw_multiline_text(font, al_color_name("white"), 10, 10, place.size.x - horizontal_padding*2, line_height, ALLEGRO_ALIGN_LEFT, code_message_point.get_message().c_str());
+
+      place.restore_transform();
+   }
+};
+
+
+
+class RailsMinitestTestResultToCodeMessagePointConverter
+{
+private:
+   RailsMinitestTestResult rails_minitest_test_result;
+
+public:
+   RailsMinitestTestResultToCodeMessagePointConverter(RailsMinitestTestResult rails_minitest_test_result)
+      : rails_minitest_test_result(rails_minitest_test_result)
+   {}
+
+   CodeMessagePoint convert()
+   {
+      CodeMessagePoint::type_t code_message_point_type = CodeMessagePoint::NONE;
+      if (rails_minitest_test_result.test_state == RailsMinitestTestResult::ERROR) code_message_point_type = CodeMessagePoint::ERROR;
+      return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, rails_minitest_test_result.test_result_output, CodeMessagePoint::ERROR);
+   }
+};
 
 
 
@@ -604,9 +665,15 @@ public:
 
    std::vector<CodeMessagePoint> code_message_points;
 
-   bool refresh_compile_error_points()
+   bool clear_code_message_points()
    {
       code_message_points.clear();
+      return true;
+   }
+
+   bool set_code_message_points(std::vector<CodeMessagePoint> code_message_points)
+   {
+      this->code_message_points = code_message_points;
       return true;
    }
 
@@ -689,6 +756,12 @@ public:
          ALLEGRO_COLOR text_color = al_color_name("darkolivegreen");
          if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
          al_draw_text(font, text_color, -20, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
+      }
+
+      for (auto &code_message_point : code_message_points)
+      {
+         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, first_line_num, al_get_font_line_height(font));
+         code_message_point_renderer.render();
       }
 
       place.restore_transform();
@@ -942,13 +1015,35 @@ public:
 
    bool run_project_tests()
    {
-      std::string test_output = RailsMinitestTestRunner(stages[0]->get_filename()).run();
+      Stage *stage = stages[0];
+
+      std::string test_output = RailsMinitestTestRunner(stage->get_filename()).run();
       RailsTestOutputParser rails_test_output_parser(test_output);
-      for (auto &test_result_line : rails_test_output_parser.get_test_result_lines())
+      //for (auto &test_result_line : rails_test_output_parser.get_test_result_lines())
+      //{
+         //std::cout << test_result_line << std::endl;
+         //std::cout << "=============================" << std::endl;
+      //}
+
+      std::vector<CodeMessagePoint> code_message_points;
+      for (auto &minitest_test_result : rails_test_output_parser.get_test_result_lines())
       {
-         std::cout << test_result_line << std::endl;
-         std::cout << "=============================" << std::endl;
+         switch(minitest_test_result.get_test_state())
+         {
+            case RailsMinitestTestResult::ERROR:
+            case RailsMinitestTestResult::FAILURE:
+            {
+               RailsMinitestTestResultToCodeMessagePointConverter converter(minitest_test_result);
+               code_message_points.push_back(converter.convert());
+               break;
+            }
+            default: break;
+         }
+
       }
+      stage->clear_code_message_points();
+      stage->set_code_message_points({ code_message_points });
+
       return true;
    }
 
