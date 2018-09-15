@@ -195,13 +195,15 @@ public:
    std::string test_result;
    test_state_t test_state;
    std::string test_result_output;
+   int error_line_number;
 
-   RailsMinitestTestResult(std::string test_name, std::string test_time_in_seconds, std::string test_result, test_state_t test_state, std::string test_result_output)
+   RailsMinitestTestResult(std::string test_name, std::string test_time_in_seconds, std::string test_result, test_state_t test_state)
       : test_name(test_name)
       , test_time_in_seconds(test_time_in_seconds)
       , test_result(test_result)
       , test_state(test_state)
-      , test_result_output(test_result_output)
+      , test_result_output("")
+      , error_line_number(-1)
    {}
    ~RailsMinitestTestResult() {}
 };
@@ -288,7 +290,6 @@ public:
                possible_test_line_output_tokens[1],
                possible_test_line_output_tokens[2],
                test_state,
-               "",
             });
          }
          else
@@ -297,6 +298,26 @@ public:
             if (current_rails_minitest_test_result)
             {
                current_rails_minitest_test_result->test_result_output += source_test_output_line + "\n";
+
+               // attempt to extract the error line number from the file
+               std::vector<std::string> dot_split_tokens = StringSplitter(source_test_output_line, '.').split();
+
+               if (dot_split_tokens.size() <= 1) { /* there should be at least 2 tokens */ }
+               else if (dot_split_tokens.back().size() <= 5) { /* not a valid foramt for this token */ }
+               else
+               {
+                  std::string last_token = dot_split_tokens.back();
+                  std::string prefix = last_token.substr(0, 3);
+                  std::string postfix = last_token.substr(last_token.size()-2);
+                  std::string number = last_token.substr(3, last_token.size() - 3 - 2);
+                  bool number_contains_only_number_characters = (number.find_first_not_of("0123456789") == std::string::npos);
+
+                  if (prefix == "rb:" && postfix == "]:" && number_contains_only_number_characters)
+                  {
+                     // format matches "rb:[0-9]\]:" expression
+                     current_rails_minitest_test_result->error_line_number = atoi(number.c_str());
+                  }
+               }
             }
          }
       }
