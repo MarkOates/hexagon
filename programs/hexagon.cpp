@@ -729,7 +729,6 @@ public:
       ::save_file(lines, filename);
       return true;
    }
-
    // editor mode
    bool set_insert_mode()
    {
@@ -875,6 +874,12 @@ public:
       return true;
    }
 
+   bool offset_first_line_to_vertically_center_cursor(int distance_from_top=20)
+   {
+      first_line_num = cursor_y - distance_from_top;
+      return true;
+   }
+
    bool scale_stage_delta(float delta)
    {
       place.scale += vec2d(delta, delta);
@@ -988,6 +993,7 @@ public:
    static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS;
    static const std::string TOGGLE_SHOWING_CODE_MESSAGE_POINTS;
    static const std::string REFRESH_REGEX_MESSAGE_POINTS;
+   static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR;
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
@@ -1023,6 +1029,7 @@ public:
          else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS) refresh_git_modified_line_numbers();
          else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS) toggle_showing_code_message_points();
          else if (event_name == REFRESH_REGEX_MESSAGE_POINTS) refresh_regex_message_points();
+         else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR) offset_first_line_to_vertically_center_cursor();
       }
 
       catch (const std::exception &e)
@@ -1046,8 +1053,8 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, false, false, false, { Stage::JUMP_TO_NEXT_CODE_POINT });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, false, false, false, { Stage::JUMP_TO_PREVIOUS_CODE_POINT });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, false, false, false, { Stage::JUMP_TO_NEXT_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, false, false, false, { Stage::JUMP_TO_PREVIOUS_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
@@ -1060,6 +1067,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, { Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { Stage::REFRESH_REGEX_MESSAGE_POINTS });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Z, false, false, false, { Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
       //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, { Stage::SET_COMMAND_MODE, Stage::SET_OPERATOR_DELETE });
 
 
@@ -1164,6 +1172,7 @@ std::string const Stage::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
 std::string const Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS = "REFRESH_GIT_MODIFIED_LINE_NUMBERS";
 std::string const Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS = "TOGGLE_SHOWING_CODE_MESSAGE_POINTS";
 std::string const Stage::REFRESH_REGEX_MESSAGE_POINTS = "REFRESH_REGEX_MESSAGE_POINTS";
+std::string const Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
