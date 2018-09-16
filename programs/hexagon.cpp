@@ -403,14 +403,15 @@ public:
    };
 
 private:
-   int x, y;
+   int x, y, length;
    std::string message;
    type_t type;
 
 public:
-   CodeMessagePoint(int x, int y, std::string message, type_t type)
+   CodeMessagePoint(int x, int y, int length, std::string message, type_t type)
       : x(x)
       , y(y)
+      , length(length)
       , message(message)
       , type(type)
    {}
@@ -419,6 +420,7 @@ public:
 
    int get_x() { return x; }
    int get_y() { return y; }
+   int get_length() { return length; }
    std::string get_message() { return message; }
    type_t get_type() { return type; }
 };
@@ -454,7 +456,6 @@ public:
       float horizontal_padding = 20;
       place.position = vec2d(code_message_point.get_x() * character_width, (code_message_point.get_y()-1)*line_height - (current_line_number_offset)*line_height + line_height*0.5);
       place.align = vec2d(0, 0);
-      place.scale = vec2d(0.8, 0.8);
       place.start_transform();
 
       switch(code_message_point.get_type())
@@ -462,7 +463,11 @@ public:
       case CodeMessagePoint::POSITION:
          {
             ALLEGRO_COLOR color = al_color_name("dodgerblue");
-            al_draw_filled_rectangle(0, -line_height/2.0, 10, line_height/2.0, color);
+            ALLEGRO_STATE blender_state;
+            al_store_state(&blender_state, ALLEGRO_STATE_BLENDER);
+            al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ONE);
+            al_draw_filled_rectangle(0, -line_height/2.0, std::max(10, code_message_point.get_length()*character_width), line_height/2.0, color);
+            al_restore_state(&blender_state);
          }
          break;
       default:
@@ -503,7 +508,7 @@ public:
    {
       CodeMessagePoint::type_t code_message_point_type = CodeMessagePoint::NONE;
       if (rails_minitest_test_result.test_state == RailsMinitestTestResult::ERROR) code_message_point_type = CodeMessagePoint::ERROR;
-      return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, rails_minitest_test_result.test_result_output, CodeMessagePoint::ERROR);
+      return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, 0, rails_minitest_test_result.test_result_output, CodeMessagePoint::ERROR);
    }
 };
 
@@ -853,10 +858,10 @@ public:
       for (unsigned i=0; i<lines.size(); i++)
       {
          RegexMatcher regex_matcher(lines[i], regex_expression);
-         std::vector<int> match_positions = regex_matcher.get_match_positions();
+         std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
          for (auto &match_position : match_positions)
          {
-            results.push_back(CodeMessagePoint(match_position, i+1, "[match]", CodeMessagePoint::POSITION));
+            results.push_back(CodeMessagePoint(match_position.first, i+1, match_position.second, "[match]", CodeMessagePoint::POSITION));
          }
       }
       set_code_message_points(results);
