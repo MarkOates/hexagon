@@ -11,6 +11,7 @@
 
 
 #include <allegro_flare/placement2d.h>
+#include <allegro_flare/useful_php.h>
 
 
 #include <Blast/StringSplitter.hpp>
@@ -841,7 +842,13 @@ public:
    bool refresh_regex_message_points()
    {
       clear_code_message_points();
-      std::string regex_expression = "mm";
+
+      // get regex expression input from file named "regex.txt"
+      std::vector<std::string> regex_input_file_lines;
+      if (!read_file(regex_input_file_lines, "regex.txt") || regex_input_file_lines.size() == 0) throw std::runtime_error("cannot open expected regex.txt file for input, or is empty");
+
+      std::string regex_expression = php::trim(regex_input_file_lines[0]);
+
       std::vector<CodeMessagePoint> results;
       for (unsigned i=0; i<lines.size(); i++)
       {
