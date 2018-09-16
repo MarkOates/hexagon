@@ -464,9 +464,12 @@ public:
          {
             ALLEGRO_COLOR color = al_color_name("dodgerblue");
             ALLEGRO_STATE blender_state;
+            float padding_x = 2;
+            float padding_y = 2;
+            float radius = 3;
             al_store_state(&blender_state, ALLEGRO_STATE_BLENDER);
             al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ONE);
-            al_draw_filled_rectangle(0, -line_height/2.0, std::max(10, code_message_point.get_length()*character_width), line_height/2.0, color);
+            al_draw_filled_rounded_rectangle(0-padding_x, -line_height/2.0-padding_y, std::max(10, code_message_point.get_length()*character_width)+padding_x, line_height/2.0+padding_y, radius, radius, color);
             al_restore_state(&blender_state);
          }
          break;
