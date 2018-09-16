@@ -490,15 +490,20 @@ class CodeMessagePointsOverlay
 {
 public:
    std::string name;
-   ALLEGRO_COLOR background_color;
+   ALLEGRO_COLOR color;
    std::vector<CodeMessagePoint> code_message_points;
 
-   CodeMessagePointsOverlay(std::vector<CodeMessagePoint> code_message_points)
-      : code_message_points(code_message_points)
-   {}
+   CodeMessagePointsOverlay(ALLEGRO_COLOR color, std::vector<CodeMessagePoint> code_message_points)
+      : color(color)
+      , code_message_points(code_message_points)
+   {
+      float alpha = 0.2;
+      color.r *= alpha; color.g *= alpha; color.b *= alpha; color.a *= alpha;
+   }
 
    void render(ALLEGRO_FONT *font, bool showing_code_message_points, int first_line_num, float line_height)
    {
+      al_draw_filled_rectangle(0, 0, 2400, 2000, color);
       for (auto &code_message_point : code_message_points)
       {
          CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font));
@@ -547,7 +552,10 @@ public:
       , place(place)
       , first_line_num(0)
       , showing_code_message_points(false)
-   {}
+      , code_message_points_overlays()
+   {
+      code_message_points_overlays.push_back(CodeMessagePointsOverlay(al_color_name("dogerblue"), {}));
+   }
 
    // accessors
 
@@ -744,18 +752,19 @@ public:
       return true;
    }
 
-   std::vector<CodeMessagePoint> code_message_points;
+   //std::vector<CodeMessagePoint> code_message_points;
    bool showing_code_message_points;
+   std::vector<CodeMessagePointsOverlay> code_message_points_overlays;
 
    bool clear_code_message_points()
    {
-      code_message_points.clear();
+      code_message_points_overlays.back().code_message_points.clear();
       return true;
    }
 
    bool set_code_message_points(std::vector<CodeMessagePoint> code_message_points)
    {
-      this->code_message_points = code_message_points;
+      code_message_points_overlays.back().code_message_points = code_message_points;
       return true;
    }
 
@@ -846,11 +855,15 @@ public:
          al_draw_text(font, text_color, -20, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
       }
 
-      for (auto &code_message_point : code_message_points)
+      for (auto &code_message_points_overlay : code_message_points_overlays)
       {
-         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font));
-         code_message_point_renderer.render();
+         code_message_points_overlay.render(font, showing_code_message_points, first_line_num, al_get_font_line_height(font));
       }
+      //for (auto &code_message_point : code_message_points)
+      //{
+         //CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font));
+         //code_message_point_renderer.render();
+      //}
 
       place.restore_transform();
 
