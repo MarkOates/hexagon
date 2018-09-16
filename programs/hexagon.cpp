@@ -362,6 +362,33 @@ public:
 
 
 
+namespace CppCompiler
+{
+   class CompileRunner
+   {
+   private:
+      std::string filename;
+
+   public:
+      CompileRunner(std::string filename)
+         : filename(filename)
+      {}
+      ~CompileRunner() {}
+
+      std::string run()
+      {
+         std::stringstream make_command_string;
+         make_command_string << "make";
+         ShellCommandExecutor shell_command_executor(make_command_string.str());
+         std::string output = shell_command_executor.execute();
+         std::cout << output << std::endl;
+         return output;
+      }
+   };
+};
+
+
+
 class CodeMessagePoint
 {
 public:
@@ -454,6 +481,29 @@ public:
       CodeMessagePoint::type_t code_message_point_type = CodeMessagePoint::NONE;
       if (rails_minitest_test_result.test_state == RailsMinitestTestResult::ERROR) code_message_point_type = CodeMessagePoint::ERROR;
       return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, rails_minitest_test_result.test_result_output, CodeMessagePoint::ERROR);
+   }
+};
+
+
+
+class CodeMessagePointsOverlay
+{
+public:
+   std::string name;
+   ALLEGRO_COLOR background_color;
+   std::vector<CodeMessagePoint> code_message_points;
+
+   CodeMessagePointsOverlay(std::vector<CodeMessagePoint> code_message_points)
+      : code_message_points(code_message_points)
+   {}
+
+   void render(ALLEGRO_FONT *font, bool showing_code_message_points, int first_line_num, float line_height)
+   {
+      for (auto &code_message_point : code_message_points)
+      {
+         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font));
+         code_message_point_renderer.render();
+      }
    }
 };
 
@@ -1092,11 +1142,9 @@ public:
 
    bool run_make()
    {
-      std::stringstream make_command_string;
-      make_command_string << "make";
-      ShellCommandExecutor shell_command_executor(make_command_string.str());
-      std::string output = shell_command_executor.execute();
-      std::cout << output << std::endl;
+      CppCompiler::CompileRunner compile_runner("foobar");
+      std::string compile_output = compile_runner.run();
+      //CppCompiler::CompileOutputToCodeMessagePointSetter(compile_output, this);
       return true;
    }
 
