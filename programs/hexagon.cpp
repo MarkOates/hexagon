@@ -590,7 +590,31 @@ public:
 
       return false;
    }
+   bool move_cursor_jump_to_next_big_word()
+   {
+      int position = 0;
+
+      position = find_whitespace(current_line_ref(), cursor_x);
+      if (position != -1) { cursor_x = position; }
+
+      position = find_non_whitespace(current_line_ref(), cursor_x);
+      if (position != -1) { cursor_x = position; return true; }
+
+      return false;
+   }
    bool move_cursor_jump_to_previous_word()
+   {
+      int position = 0;
+
+      position = rfind_whitespace(current_line_ref(), cursor_x);
+      if (position != -1) { cursor_x = position; }
+
+      position = rfind_non_whitespace(current_line_ref(), cursor_x);
+      if (position != -1) { cursor_x = position; return true; }
+
+      return false;
+   }
+   bool move_cursor_jump_to_previous_big_word()
    {
       int position = 0;
 
