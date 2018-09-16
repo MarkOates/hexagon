@@ -3,6 +3,10 @@
 
 
 #include <allegro_flare/generate_textures.h>
+#include <allegro_flare/useful.h>
+#include <allegro_flare/image_processing.h>
+
+#include <allegro5/allegro_primitives.h>
 
 
 

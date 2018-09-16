@@ -4,7 +4,10 @@
 
 
 
-#include <allegro_flare/allegro_flare.h>
+//#include <allegro_flare/allegro_flare.h>
+#include <allegro5/allegro_color.h>
+
+#include <allegro_flare/color.h>
 
 
 
