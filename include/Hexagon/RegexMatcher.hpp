@@ -15,7 +15,7 @@ public:
    RegexMatcher(std::string source_string, std::string regex_expression);
    ~RegexMatcher();
 
-   std::vector<int> get_match_positions();
+   std::vector<std::pair<int, int>> get_match_info();
 };
 
 

@@ -14,9 +14,9 @@ RegexMatcher::RegexMatcher(std::string source_string, std::string regex_expressi
 RegexMatcher::~RegexMatcher() {}
 
 
-std::vector<int> RegexMatcher::get_match_positions()
+std::vector<std::pair<int, int>> RegexMatcher::get_match_info()
 {
-   std::vector<int> results;
+   std::vector<std::pair<int, int>> results;
 
    std::string subject(source_string);
    try
@@ -31,7 +31,7 @@ std::vector<int> RegexMatcher::get_match_positions()
          std::cout << " - string: " << match.str() << std::endl;
          std::cout << "   position: " << match.position() << std::endl;
          std::cout << "   length: " << match.str().size() << std::endl;
-         results.push_back(match.position());
+         results.push_back(std::pair<int, int>(match.position(), match.str().size()));
          next++;
       }
    }
