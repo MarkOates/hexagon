@@ -398,6 +398,7 @@ public:
    {
       NONE,
       ERROR,
+      POSITION,
    };
 
 private:
@@ -418,6 +419,7 @@ public:
    int get_x() { return x; }
    int get_y() { return y; }
    std::string get_message() { return message; }
+   type_t get_type() { return type; }
 };
 
 
@@ -454,17 +456,30 @@ public:
       place.scale = vec2d(0.8, 0.8);
       place.start_transform();
 
-      ALLEGRO_COLOR color = al_color_name("red");
-      ALLEGRO_COLOR text_color = al_color_name("white");
-
-      // draw the marker
-      al_draw_filled_circle(0, 0, 16, color);
-
-      /// draw the message (if open)
-      if (showing_code_message_points)
+      switch(code_message_point.get_type())
       {
-         al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color);
-         al_draw_multiline_text(font, text_color, 10, 10, place.size.x - horizontal_padding*2, line_height, ALLEGRO_ALIGN_LEFT, code_message_point.get_message().c_str());
+      case CodeMessagePoint::POSITION:
+         {
+            ALLEGRO_COLOR color = al_color_name("dodgerblue");
+            al_draw_filled_rectangle(0, -line_height/2.0, 10, line_height/2.0, color);
+         }
+         break;
+      default:
+         {
+            ALLEGRO_COLOR color = al_color_name("red");
+            ALLEGRO_COLOR text_color = al_color_name("white");
+
+            // draw the marker
+            al_draw_filled_circle(0, 0, 16, color);
+
+            /// draw the message (if open)
+            if (showing_code_message_points)
+            {
+               al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color);
+               al_draw_multiline_text(font, text_color, 10, 10, place.size.x - horizontal_padding*2, line_height, ALLEGRO_ALIGN_LEFT, code_message_point.get_message().c_str());
+            }
+         }
+         break;
       }
 
       place.restore_transform();
@@ -834,7 +849,7 @@ public:
          std::vector<int> match_positions = regex_matcher.get_match_positions();
          for (auto &match_position : match_positions)
          {
-            results.push_back(CodeMessagePoint(match_position, i+1, "[match]", CodeMessagePoint::ERROR));
+            results.push_back(CodeMessagePoint(match_position, i+1, "[match]", CodeMessagePoint::POSITION));
          }
       }
       set_code_message_points(results);
