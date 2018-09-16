@@ -427,15 +427,17 @@ private:
    bool showing_code_message_points;
    int current_line_number_offset;
    int line_height;
+   int character_width;
    ALLEGRO_FONT *font;
    placement2d place;
 
 public:
-   CodeMessagePointRenderer(CodeMessagePoint code_message_point, ALLEGRO_FONT *font, bool showing_code_message_points, int current_line_number_offset, int line_height)
+   CodeMessagePointRenderer(CodeMessagePoint code_message_point, ALLEGRO_FONT *font, bool showing_code_message_points, int current_line_number_offset, int line_height, int character_width)
       : code_message_point(code_message_point)
       , showing_code_message_points(showing_code_message_points)
       , current_line_number_offset(current_line_number_offset)
       , line_height(line_height)
+      , character_width(character_width)
       , font(font)
       , place(0, 0, 2200, 500)
    {
@@ -445,7 +447,7 @@ public:
    void render()
    {
       float horizontal_padding = 20;
-      place.position = vec2d(code_message_point.get_x(), (code_message_point.get_y()-1)*line_height - (current_line_number_offset)*line_height + line_height*0.5);
+      place.position = vec2d(code_message_point.get_x() * character_width, (code_message_point.get_y()-1)*line_height - (current_line_number_offset)*line_height + line_height*0.5);
       place.align = vec2d(0, 0);
       place.scale = vec2d(0.8, 0.8);
       place.start_transform();
@@ -453,7 +455,10 @@ public:
       ALLEGRO_COLOR color = al_color_name("red");
       ALLEGRO_COLOR text_color = al_color_name("white");
 
+      // draw the marker
       al_draw_filled_circle(0, 0, 16, color);
+
+      /// draw the message (if open)
       if (showing_code_message_points)
       {
          al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color);
@@ -504,9 +509,10 @@ public:
    void render(ALLEGRO_FONT *font, bool showing_code_message_points, int first_line_num, float line_height)
    {
       //al_draw_filled_rectangle(0, 0, 2400, 2000, color);
+      int character_width = al_get_text_width(font, "x");
       for (auto &code_message_point : code_message_points)
       {
-         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font));
+         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font), character_width);
          code_message_point_renderer.render();
       }
    }
