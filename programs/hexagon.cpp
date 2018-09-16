@@ -419,6 +419,7 @@ public:
    {}
 
    int get_x() { return x; }
+   int get_x2() { return x + length; }
    int get_y() { return y; }
    int get_length() { return length; }
    std::string get_message() { return message; }
@@ -437,9 +438,11 @@ private:
    int character_width;
    ALLEGRO_FONT *font;
    placement2d place;
+   int cursor_x;
+   int cursor_y;
 
 public:
-   CodeMessagePointRenderer(CodeMessagePoint code_message_point, ALLEGRO_FONT *font, bool showing_code_message_points, int current_line_number_offset, int line_height, int character_width)
+   CodeMessagePointRenderer(CodeMessagePoint code_message_point, ALLEGRO_FONT *font, bool showing_code_message_points, int current_line_number_offset, int line_height, int character_width, int cursor_x, int cursor_y)
       : code_message_point(code_message_point)
       , showing_code_message_points(showing_code_message_points)
       , current_line_number_offset(current_line_number_offset)
@@ -447,6 +450,8 @@ public:
       , character_width(character_width)
       , font(font)
       , place(0, 0, 2200, 500)
+      , cursor_x(cursor_x)
+      , cursor_y(cursor_y)
    {
       if (!font) throw std::runtime_error("font not valid in CodeMessagePointRenderer");
    }
@@ -463,13 +468,22 @@ public:
       case CodeMessagePoint::POSITION:
          {
             ALLEGRO_COLOR color = al_color_name("dodgerblue");
+            ALLEGRO_COLOR outline_color = al_color_name("yellow");
             ALLEGRO_STATE blender_state;
             float padding_x = 2;
             float padding_y = 2;
             float radius = 3;
+            float outline_thickness = 2.0;
+            bool cursor_at_code_point = ((cursor_x >= code_message_point.get_x()) && (cursor_x < code_message_point.get_x2()) && (code_message_point.get_y()-1) == cursor_y);
+            if (!cursor_at_code_point)
+            {
+               float opacity = 0.6;
+               color.r *= opacity; color.g *= opacity, color.b *= opacity; color.a *= opacity;
+            }
             al_store_state(&blender_state, ALLEGRO_STATE_BLENDER);
             al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ONE);
             al_draw_filled_rounded_rectangle(0-padding_x, -line_height/2.0-padding_y, std::max(10, code_message_point.get_length()*character_width)+padding_x, line_height/2.0+padding_y, radius, radius, color);
+            if (cursor_at_code_point) al_draw_rounded_rectangle(0-padding_x, -line_height/2.0-padding_y, std::max(10, code_message_point.get_length()*character_width)+padding_x, line_height/2.0+padding_y, radius, radius, outline_color, outline_thickness);
             al_restore_state(&blender_state);
          }
          break;
@@ -532,13 +546,13 @@ public:
       color.r *= alpha; color.g *= alpha; color.b *= alpha; color.a *= alpha;
    }
 
-   void render(ALLEGRO_FONT *font, bool showing_code_message_points, int first_line_num, float line_height)
+   void render(ALLEGRO_FONT *font, bool showing_code_message_points, int first_line_num, float line_height, int cursor_x, int cursor_y)
    {
       //al_draw_filled_rectangle(0, 0, 2400, 2000, color);
       int character_width = al_get_text_width(font, "x");
       for (auto &code_message_point : code_message_points)
       {
-         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font), character_width);
+         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font), character_width, cursor_x, cursor_y);
          code_message_point_renderer.render();
       }
    }
@@ -967,7 +981,7 @@ public:
 
       for (auto &code_message_points_overlay : code_message_points_overlays)
       {
-         code_message_points_overlay.render(font, showing_code_message_points, first_line_num, al_get_font_line_height(font));
+         code_message_points_overlay.render(font, showing_code_message_points, first_line_num, al_get_font_line_height(font), cursor_x, cursor_y);
       }
       //for (auto &code_message_point : code_message_points)
       //{
