@@ -1175,7 +1175,7 @@ void run_program(std::vector<std::string> filenames)
    al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
-   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
+   ALLEGRO_DISPLAY *display = al_create_display(2880-200, 1800-200);
    ALLEGRO_FONT *consolas_font = al_load_font(resource({"data", "fonts"}, "consolas.ttf").c_str(), 30, 0);
 
    int display_width = al_get_display_width(display);
