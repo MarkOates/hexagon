@@ -503,7 +503,7 @@ public:
 
    void render(ALLEGRO_FONT *font, bool showing_code_message_points, int first_line_num, float line_height)
    {
-      al_draw_filled_rectangle(0, 0, 2400, 2000, color);
+      //al_draw_filled_rectangle(0, 0, 2400, 2000, color);
       for (auto &code_message_point : code_message_points)
       {
          CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font));
@@ -768,6 +768,52 @@ public:
       return true;
    }
 
+   bool jump_to_next_code_point()
+   {
+      if (code_message_points_overlays.size() == 0) return true;
+      CodeMessagePointsOverlay *current_overlay = &code_message_points_overlays[0];
+      if (current_overlay->code_message_points.size() == 0) return true;
+
+      std::cout << "XXXXX" << std::endl;
+
+      CodeMessagePoint *most_viable_code_point = nullptr;
+      for (auto &message_point : code_message_points_overlays[0].code_message_points)
+      {
+         std::cout << "CODE POINT" << std::endl;
+         int message_point_y = message_point.get_y() - 1;
+         //if (message_point_y < cursor_y) continue;
+         if ((message_point_y == cursor_y && message_point.get_x() > cursor_x)
+            || (message_point_y > cursor_y)
+         )
+         {
+            // viable because is after current cursor
+
+            std::cout << "   -- viable" << std::endl;
+            // set it as the current viable cursor if one isn't set; else if it's closer then set it
+            if (most_viable_code_point == nullptr) most_viable_code_point = &message_point;
+            else if (message_point_y < most_viable_code_point->get_y()
+               || (message_point_y == most_viable_code_point->get_y() && message_point.get_x() < most_viable_code_point->get_x())
+            )
+            {
+               // more viable than the current option, because it is closer to the cursor
+               most_viable_code_point = &message_point;
+            }
+         }
+      }
+
+      if (most_viable_code_point)
+      {
+         cursor_x = most_viable_code_point->get_x();
+         cursor_y = most_viable_code_point->get_y()-1;
+      }
+      return true;
+   }
+
+   bool jump_to_previous_code_point()
+   {
+      if (code_message_points_overlays.size() == 0) return true;
+   }
+
    // presentation
 
    // actions
@@ -890,6 +936,8 @@ public:
    static const std::string MOVE_CURSOR_RIGHT;
    static const std::string MOVE_CURSOR_JUMP_TO_NEXT_WORD;
    static const std::string MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD;
+   static const std::string JUMP_TO_NEXT_CODE_POINT;
+   static const std::string JUMP_TO_PREVIOUS_CODE_POINT;
    static const std::string DELETE_CHARACTER;
    static const std::string INSERT_STRING;
    static const std::string SET_INSERT_MODE;
@@ -922,6 +970,8 @@ public:
          else if (event_name == MOVE_CURSOR_RIGHT) move_cursor_right();
          else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) move_cursor_jump_to_next_word();
          else if (event_name == MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD) move_cursor_jump_to_previous_word();
+         else if (event_name == JUMP_TO_NEXT_CODE_POINT) jump_to_next_code_point();
+         else if (event_name == JUMP_TO_PREVIOUS_CODE_POINT) jump_to_previous_code_point();
          else if (event_name == DELETE_CHARACTER) delete_character();
          else if (event_name == INSERT_STRING) insert_string(*(std::string *)data1);
          else if (event_name == SET_INSERT_MODE) set_insert_mode();
@@ -965,6 +1015,8 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, false, false, false, { Stage::JUMP_TO_NEXT_CODE_POINT });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, false, false, false, { Stage::JUMP_TO_PREVIOUS_CODE_POINT });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
@@ -1057,6 +1109,8 @@ std::string const Stage::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
 std::string const Stage::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
 std::string const Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_WORD";
 std::string const Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD = "MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD";
+std::string const Stage::JUMP_TO_NEXT_CODE_POINT = "JUMP_TO_NEXT_CODE_POINT";
+std::string const Stage::JUMP_TO_PREVIOUS_CODE_POINT = "JUMP_TO_PREVIOUS_CODE_POINT";
 std::string const Stage::DELETE_CHARACTER = "DELETE_CHARACTER";
 std::string const Stage::INSERT_STRING = "INSERT_STRING";
 std::string const Stage::SET_INSERT_MODE = "SET_INSERT_MODE";
