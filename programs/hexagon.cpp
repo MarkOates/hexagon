@@ -22,6 +22,8 @@ using namespace Blast;
 
 
 #include <Hexagon/Logo.hpp>
+#include <Hexagon/RegexMatcher.hpp>
+
 
 using namespace Hexagon;
 
@@ -817,7 +819,28 @@ public:
 
    bool jump_to_previous_code_point()
    {
-      if (code_message_points_overlays.size() == 0) return true;
+      return true;
+   }
+
+   // regex matcher plugin
+
+   bool refresh_regex_message_points()
+   {
+      clear_code_message_points();
+      std::string regex_expression = "mm";
+      std::vector<CodeMessagePoint> results;
+      for (unsigned i=0; i<lines.size(); i++)
+      {
+         RegexMatcher regex_matcher(lines[i], regex_expression);
+         std::vector<int> match_positions = regex_matcher.get_match_positions();
+         for (auto &match_position : match_positions)
+         {
+            results.push_back(CodeMessagePoint(match_position, i+1, "[match]", CodeMessagePoint::ERROR));
+         }
+      }
+      set_code_message_points(results);
+
+      return true;
    }
 
    // presentation
@@ -964,6 +987,7 @@ public:
    static const std::string OFFSET_CURSOR_POSITION_Y_UP;
    static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS;
    static const std::string TOGGLE_SHOWING_CODE_MESSAGE_POINTS;
+   static const std::string REFRESH_REGEX_MESSAGE_POINTS;
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
@@ -998,6 +1022,7 @@ public:
          else if (event_name == OFFSET_CURSOR_POSITION_Y_UP) offset_cursor_position_y(-10);
          else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS) refresh_git_modified_line_numbers();
          else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS) toggle_showing_code_message_points();
+         else if (event_name == REFRESH_REGEX_MESSAGE_POINTS) refresh_regex_message_points();
       }
 
       catch (const std::exception &e)
@@ -1034,6 +1059,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, { Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, { Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { Stage::REFRESH_REGEX_MESSAGE_POINTS });
       //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, { Stage::SET_COMMAND_MODE, Stage::SET_OPERATOR_DELETE });
 
 
@@ -1137,6 +1163,7 @@ std::string const Stage::SCALE_STAGE_UP = "SCALE_STAGE_UP";
 std::string const Stage::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
 std::string const Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS = "REFRESH_GIT_MODIFIED_LINE_NUMBERS";
 std::string const Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS = "TOGGLE_SHOWING_CODE_MESSAGE_POINTS";
+std::string const Stage::REFRESH_REGEX_MESSAGE_POINTS = "REFRESH_REGEX_MESSAGE_POINTS";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
