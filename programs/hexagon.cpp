@@ -856,6 +856,34 @@ public:
 
    bool jump_to_previous_code_point()
    {
+      if (code_message_points_overlays.size() == 0) return true;
+      CodeMessagePointsOverlay *current_overlay = &code_message_points_overlays[0];
+      if (current_overlay->code_message_points.size() == 0) return true;
+
+      CodeMessagePoint *most_viable_code_point = nullptr;
+      for (auto &message_point : code_message_points_overlays[0].code_message_points)
+      {
+         int message_point_y = message_point.get_y() - 1;
+         if ((message_point_y == cursor_y && message_point.get_x() < cursor_x)
+             || (message_point_y < cursor_y)
+         )
+         {
+            std::cout << "  -- viable" << std::endl;
+            if (most_viable_code_point == nullptr) most_viable_code_point = &message_point;
+            else if (message_point_y > (most_viable_code_point->get_y() - 1)
+              || (message_point_y == (most_viable_code_point->get_y() - 1) && message_point.get_x() > most_viable_code_point->get_x())
+            )
+            {
+               most_viable_code_point = &message_point;
+            }
+         }
+      }
+
+      if (most_viable_code_point)
+      {
+         cursor_x = most_viable_code_point->get_x();
+         cursor_y = most_viable_code_point->get_y()-1;
+      }
       return true;
    }
 
@@ -1098,7 +1126,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, false, false, false, { Stage::JUMP_TO_NEXT_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, false, false, false, { Stage::JUMP_TO_PREVIOUS_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, true, false, false, { Stage::JUMP_TO_PREVIOUS_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
