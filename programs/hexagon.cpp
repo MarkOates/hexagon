@@ -560,6 +560,14 @@ public:
 
 
 
+class SystemWideMotion : public Motion {};
+
+
+SystemWideMotion motion;
+
+
+
+
 #include <string>
 #include <vector>
 
@@ -574,12 +582,20 @@ public:
       COMMAND,
    };
 
+   enum type_t
+   {
+      NONE,
+      CODE_EDITOR,
+      INPUT_BOX,
+   };
+
 private:
    std::vector<std::string> lines;
    int cursor_x;
    int cursor_y;
 
    mode_t mode;
+   type_t type;
 
    std::string filename;
 
@@ -589,11 +605,12 @@ private:
    int first_line_num;
 
 public:
-   Stage(std::string filename, placement2d place)
+   Stage(std::string filename, placement2d place, mode_t mode=EDIT, type_t type=CODE_EDITOR)
       : lines()
       , cursor_x(0)
       , cursor_y(0)
-      , mode(EDIT)
+      , mode(mode)
+      , type(type)
       , filename(filename)
       , place(place)
       , first_line_num(0)
@@ -625,6 +642,11 @@ public:
    placement2d &get_place_ref()
    {
       return place;
+   }
+
+   type_t get_type()
+   {
+      return type;
    }
 
    // inference
@@ -964,8 +986,42 @@ public:
       return true;
    }
 
+   void render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+   {
+      place.start_transform();
+
+      float roundness = 6;
+      float padding = 6;
+      al_draw_filled_rounded_rectangle(0-padding*2, 0-padding*2, place.size.x+padding*2, place.size.y+padding*2, roundness, roundness, al_color_name("black"));
+      al_draw_rounded_rectangle(0-padding, 0-padding, place.size.x+padding, place.size.y+padding, roundness, roundness, al_color_name("dodgerblue"), 3.0);
+
+      float _cursor_y = cursor_y - first_line_num;
+      switch(mode)
+      {
+      case EDIT:
+         al_draw_filled_rectangle(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width + cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"));
+         break;
+      case INSERT:
+         al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"), 3);
+         break;
+      case COMMAND:
+         al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("dodgerblue"), 5);
+         break;
+      }
+
+      int line_height = al_get_font_line_height(font);
+      for (int i=0; i<lines.size(); i++)
+      {
+         al_draw_text(font, al_color_name("dodgerblue"), 0, i*line_height, ALLEGRO_ALIGN_LEFT, lines[i].c_str());
+      }
+
+      place.restore_transform();
+   }
+
    void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
+      if (type == INPUT_BOX) { render_as_input_box(display, font, cell_width, cell_height); return; }
+
       place.start_transform();
 
       // render cursor
@@ -1270,9 +1326,11 @@ class System
 {
 public:
    std::vector<Stage *> stages;
+   ALLEGRO_DISPLAY *display;
 
-   System()
+   System(ALLEGRO_DISPLAY *display)
       : stages({})
+      , display(display)
    {}
 
    bool rotate_stage_right()
@@ -1321,6 +1379,41 @@ public:
       return true;
    }
 
+   bool save_current_stage()
+   {
+      if (stages.size() <= 0) throw std::runtime_error("Cannot save current stage. There are no stages");
+      stages[0]->save_file();
+   }
+
+   bool refresh_regex_hilights_on_stage()
+   {
+      if (stages.size() <= 0) throw std::runtime_error("Cannot refresh regex hilights.  There are no stages");
+      stages[0]->refresh_regex_message_points();
+   }
+
+   bool set_regex_input_box_modal_to_insert_mode()
+   {
+      if (stages.size() <= 0) throw std::runtime_error("Cannot set regex input box modal to insert mode. There are no stages");
+      stages[0]->process_local_event(Stage::SET_INSERT_MODE);
+   }
+
+   bool spawn_regex_input_box_modal()
+   {
+      placement2d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 200, 35);
+      place.scale = vec2d(1.2, 1.2);
+
+      stages.insert(stages.begin(), new Stage("regex.txt", place, Stage::EDIT, Stage::INPUT_BOX));
+      std::vector<std::string> file_contents;
+      //read_file(file_contents, stages[0]->get_filename());
+      stages[0]->set_content(std::vector<std::string>{"", ""});
+   }
+
+   bool destroy_current_modal()
+   {
+      if (stages.size() == 1) throw std::runtime_error("Cannot destroy current modal. There is only 1 stage in the system");
+      stages.erase(stages.begin());
+   }
+
    bool run_make()
    {
       CppCompiler::CompileRunner compile_runner("foobar");
@@ -1336,6 +1429,11 @@ public:
    static const std::string ROTATE_STAGE_LEFT;
    static const std::string RUN_PROJECT_TESTS;
    static const std::string RUN_MAKE;
+   static const std::string SPAWN_REGEX_INPUT_BOX_MODAL;
+   static const std::string DESTROY_CURRENT_MODAL;
+   static const std::string SAVE_CURRENT_STAGE;
+   static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
+   static const std::string SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE;
 
    void process_local_event(std::string event_name)
    {
@@ -1346,6 +1444,11 @@ public:
          if (event_name == ROTATE_STAGE_RIGHT) rotate_stage_right();
          else if (event_name == ROTATE_STAGE_LEFT) rotate_stage_left();
          else if (event_name == RUN_PROJECT_TESTS) run_project_tests();
+         else if (event_name == SPAWN_REGEX_INPUT_BOX_MODAL) spawn_regex_input_box_modal();
+         else if (event_name == DESTROY_CURRENT_MODAL) destroy_current_modal();
+         else if (event_name == SAVE_CURRENT_STAGE) save_current_stage();
+         else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) refresh_regex_hilights_on_stage();
+         else if (event_name == SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE) set_regex_input_box_modal_to_insert_mode();
          else if (event_name == RUN_MAKE) run_make();
       }
       catch (const std::exception &exception)
@@ -1359,8 +1462,10 @@ public:
       KeyboardCommandMapper keyboard_command_mapper;
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, { ROTATE_STAGE_RIGHT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, { ROTATE_STAGE_LEFT });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, { RUN_PROJECT_TESTS });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, { RUN_MAKE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, { SAVE_CURRENT_STAGE, RUN_MAKE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, true, false, false, { SPAWN_REGEX_INPUT_BOX_MODAL, SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, { SAVE_CURRENT_STAGE, DESTROY_CURRENT_MODAL, REFRESH_REGEX_HILIGHTS_ON_STAGE });
 
       bool event_caught = false;
 
@@ -1371,8 +1476,10 @@ public:
       case ALLEGRO_EVENT_KEY_DOWN:
          break;
       case ALLEGRO_EVENT_KEY_CHAR:
+         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
          bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
-         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, false, false, alt);
+         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
          if (!mapped_events.empty()) event_caught = true;
          for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
          break;
@@ -1389,6 +1496,11 @@ const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 const std::string System::RUN_MAKE = "RUN_MAKE";
+const std::string System::SPAWN_REGEX_INPUT_BOX_MODAL = "SPAWN_REGEX_INPUT_BOX_MODAL";
+const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
+const std::string System::DESTROY_CURRENT_MODAL = "DESTROY_CURRENT_MODAL";
+const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
+const std::string System::SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE";
 
 
 
@@ -1404,7 +1516,7 @@ void run_program(std::vector<std::string> filenames)
    al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
-   ALLEGRO_DISPLAY *display = al_create_display(2880-200, 1800-200);
+   ALLEGRO_DISPLAY *display = al_create_display(2880-200-250, 1800-200-250);
    ALLEGRO_FONT *consolas_font = al_load_font(resource({"data", "fonts"}, "consolas.ttf").c_str(), 30, 0);
 
    int display_width = al_get_display_width(display);
@@ -1435,7 +1547,7 @@ void run_program(std::vector<std::string> filenames)
    bool first_load = true;
 
 
-   System system;
+   System system(display);
 
    for (auto &filename : filenames)
    {
@@ -1465,7 +1577,11 @@ void run_program(std::vector<std::string> filenames)
       }
 
       al_clear_to_color(al_color_name("black"));
-      system.stages[0]->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+      for (auto &stage : system.stages)
+      {
+         stage->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+         if (stage->get_type() == Stage::CODE_EDITOR) break;
+      }
       al_flip_display();
    }
 
