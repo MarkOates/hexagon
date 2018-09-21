@@ -591,7 +591,7 @@ public:
    {
       NONE,
       CODE_EDITOR,
-      INPUT_BOX,
+      ONE_LINE_INPUT_BOX,
    };
 
 private:
@@ -1030,7 +1030,7 @@ public:
 
    void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
-      if (type == INPUT_BOX) { render_as_input_box(display, font, cell_width, cell_height); return; }
+      if (type == ONE_LINE_INPUT_BOX) { render_as_input_box(display, font, cell_width, cell_height); return; }
 
       place.start_transform();
 
@@ -1419,7 +1419,7 @@ public:
       placement2d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 200, 35);
       place.scale = vec2d(1.2, 1.2);
 
-      stages.insert(stages.begin(), new Stage(REGEX_TEMP_FILENAME, place, Stage::EDIT, Stage::INPUT_BOX));
+      stages.insert(stages.begin(), new Stage(REGEX_TEMP_FILENAME, place, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX));
       std::vector<std::string> file_contents;
       //read_file(file_contents, stages[0]->get_filename());
       stages[0]->set_content(std::vector<std::string>{"", ""});
@@ -1451,11 +1451,11 @@ public:
    static const std::string ROTATE_STAGE_LEFT;
    static const std::string RUN_PROJECT_TESTS;
    static const std::string RUN_MAKE;
-   static const std::string SPAWN_REGEX_INPUT_BOX_MODAL;
+   static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
    static const std::string DESTROY_CURRENT_MODAL;
    static const std::string SAVE_CURRENT_STAGE;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
-   static const std::string SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE;
+   static const std::string SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE;
 
    void process_local_event(std::string event_name)
    {
@@ -1466,11 +1466,11 @@ public:
          if (event_name == ROTATE_STAGE_RIGHT) rotate_stage_right();
          else if (event_name == ROTATE_STAGE_LEFT) rotate_stage_left();
          else if (event_name == RUN_PROJECT_TESTS) run_project_tests();
-         else if (event_name == SPAWN_REGEX_INPUT_BOX_MODAL) spawn_regex_input_box_modal();
+         else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) spawn_regex_input_box_modal();
          else if (event_name == DESTROY_CURRENT_MODAL) destroy_current_modal();
          else if (event_name == SAVE_CURRENT_STAGE) save_current_stage();
          else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) refresh_regex_hilights_on_stage();
-         else if (event_name == SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE) set_regex_input_box_modal_to_insert_mode();
+         else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) set_regex_input_box_modal_to_insert_mode();
          else if (event_name == RUN_MAKE) run_make();
       }
       catch (const std::exception &exception)
@@ -1488,7 +1488,7 @@ public:
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, { SAVE_CURRENT_STAGE, RUN_MAKE });
       if (is_current_stage_in_edit_mode())
       {
-        keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { SPAWN_REGEX_INPUT_BOX_MODAL, SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE });
+        keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE });
       }
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, { SAVE_CURRENT_STAGE, DESTROY_CURRENT_MODAL, REFRESH_REGEX_HILIGHTS_ON_STAGE });
 
@@ -1521,11 +1521,11 @@ const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 const std::string System::RUN_MAKE = "RUN_MAKE";
-const std::string System::SPAWN_REGEX_INPUT_BOX_MODAL = "SPAWN_REGEX_INPUT_BOX_MODAL";
+const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
 const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
 const std::string System::DESTROY_CURRENT_MODAL = "DESTROY_CURRENT_MODAL";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
-const std::string System::SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE";
+const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
 
 
 
