@@ -878,11 +878,17 @@ public:
          }
       }
 
+      if (!most_viable_code_point)
+      {
+         return false;
+      }
+
       if (most_viable_code_point)
       {
          cursor_x = most_viable_code_point->get_x();
          cursor_y = most_viable_code_point->get_y()-1;
       }
+
       return true;
    }
 
