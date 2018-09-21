@@ -29,6 +29,11 @@ using namespace Blast;
 using namespace Hexagon;
 
 
+
+std::string REGEX_TEMP_FILENAME = "regex.txt";
+
+
+
 std::string resource(std::vector<std::string> components, std::string filename="")
 {
    std::string result;
@@ -915,9 +920,9 @@ public:
    {
       clear_code_message_points();
 
-      // get regex expression input from file named "regex.txt"
+      // get regex expression input from file named REGEX_TEMP_FILENAME
       std::vector<std::string> regex_input_file_lines;
-      if (!read_file(regex_input_file_lines, "regex.txt") || regex_input_file_lines.size() == 0) throw std::runtime_error("cannot open expected regex.txt file for input, or is empty");
+      if (!read_file(regex_input_file_lines, REGEX_TEMP_FILENAME) || regex_input_file_lines.size() == 0) throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
 
       std::string regex_expression = php::trim(regex_input_file_lines[0]);
 
@@ -1402,7 +1407,7 @@ public:
       placement2d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 200, 35);
       place.scale = vec2d(1.2, 1.2);
 
-      stages.insert(stages.begin(), new Stage("regex.txt", place, Stage::EDIT, Stage::INPUT_BOX));
+      stages.insert(stages.begin(), new Stage(REGEX_TEMP_FILENAME, place, Stage::EDIT, Stage::INPUT_BOX));
       std::vector<std::string> file_contents;
       //read_file(file_contents, stages[0]->get_filename());
       stages[0]->set_content(std::vector<std::string>{"", ""});
