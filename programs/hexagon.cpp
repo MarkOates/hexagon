@@ -1060,6 +1060,9 @@ public:
 
       // render lines
       int line_height = al_get_font_line_height(font);
+      const int line_count_render_limit = 120;
+      int lines_rendered_count = 0;
+
       for (int line_number = first_line_num; line_number < lines.size(); line_number++)
       {
          bool line_exists_in_git_modified_line_numbers = std::find(git_modified_line_numbers.begin(), git_modified_line_numbers.end(), (line_number+1)) != git_modified_line_numbers.end();
@@ -1079,6 +1082,9 @@ public:
          ALLEGRO_COLOR text_color = al_color_name("darkolivegreen");
          if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
          al_draw_text(font, text_color, -20, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
+
+         lines_rendered_count++;
+         if (lines_rendered_count >= line_count_render_limit) break;
       }
 
       for (auto &code_message_points_overlay : code_message_points_overlays)
