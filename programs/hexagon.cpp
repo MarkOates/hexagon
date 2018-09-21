@@ -654,6 +654,11 @@ public:
       return type;
    }
 
+   mode_t get_mode()
+   {
+      return mode;
+   }
+
    // inference
 
    int num_lines()
@@ -1338,6 +1343,16 @@ public:
       , display(display)
    {}
 
+   Stage *get_frontmost_stage()
+   {
+      if (stages.size() == 0)
+      {
+         std::cout << "Attempted to get front-most stage, but none was present." << std::endl;
+         return nullptr;
+      }
+      return stages[0];
+   }
+
    bool rotate_stage_right()
    {
       std::rotate(stages.begin(), stages.begin() + 1, stages.end());
@@ -1352,7 +1367,7 @@ public:
 
    bool run_project_tests()
    {
-      Stage *stage = stages[0];
+      Stage *stage = get_frontmost_stage();
 
       std::string test_output = RailsMinitestTestRunner(stage->get_filename()).run();
       RailsTestOutputParser rails_test_output_parser(test_output);
@@ -1386,20 +1401,17 @@ public:
 
    bool save_current_stage()
    {
-      if (stages.size() <= 0) throw std::runtime_error("Cannot save current stage. There are no stages");
-      stages[0]->save_file();
+      get_frontmost_stage()->save_file();
    }
 
    bool refresh_regex_hilights_on_stage()
    {
-      if (stages.size() <= 0) throw std::runtime_error("Cannot refresh regex hilights.  There are no stages");
-      stages[0]->refresh_regex_message_points();
+      get_frontmost_stage()->refresh_regex_message_points();
    }
 
    bool set_regex_input_box_modal_to_insert_mode()
    {
-      if (stages.size() <= 0) throw std::runtime_error("Cannot set regex input box modal to insert mode. There are no stages");
-      stages[0]->process_local_event(Stage::SET_INSERT_MODE);
+      get_frontmost_stage()->process_local_event(Stage::SET_INSERT_MODE);
    }
 
    bool spawn_regex_input_box_modal()
@@ -1417,6 +1429,11 @@ public:
    {
       if (stages.size() == 1) throw std::runtime_error("Cannot destroy current modal. There is only 1 stage in the system");
       stages.erase(stages.begin());
+   }
+
+   bool is_current_stage_in_edit_mode()
+   {
+      return get_frontmost_stage()->get_mode() == Stage::EDIT;
    }
 
    bool run_make()
@@ -1469,7 +1486,10 @@ public:
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, { ROTATE_STAGE_LEFT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, { SAVE_CURRENT_STAGE, RUN_MAKE });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, true, false, false, { SPAWN_REGEX_INPUT_BOX_MODAL, SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE });
+      if (is_current_stage_in_edit_mode())
+      {
+        keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { SPAWN_REGEX_INPUT_BOX_MODAL, SET_REGEX_INPUT_BOX_MODAL_TO_INSERT_MODE });
+      }
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, { SAVE_CURRENT_STAGE, DESTROY_CURRENT_MODAL, REFRESH_REGEX_HILIGHTS_ON_STAGE });
 
       bool event_caught = false;
