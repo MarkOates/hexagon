@@ -551,13 +551,13 @@ public:
       color.r *= alpha; color.g *= alpha; color.b *= alpha; color.a *= alpha;
    }
 
-   void render(ALLEGRO_FONT *font, bool showing_code_message_points, int first_line_num, float line_height, int cursor_x, int cursor_y)
+   void render(ALLEGRO_FONT *font, bool showing_code_message_points, int first_line_number, float line_height, int cursor_x, int cursor_y)
    {
       //al_draw_filled_rectangle(0, 0, 2400, 2000, color);
       int character_width = al_get_text_width(font, "x");
       for (auto &code_message_point : code_message_points)
       {
-         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font), character_width, cursor_x, cursor_y);
+         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_number, al_get_font_line_height(font), character_width, cursor_x, cursor_y);
          code_message_point_renderer.render();
       }
    }
@@ -607,7 +607,7 @@ private:
    // presentation
 
    placement2d place;
-   int first_line_num;
+   int first_line_number;
 
 public:
    Stage(std::string filename, placement2d place, mode_t mode=EDIT, type_t type=CODE_EDITOR)
@@ -618,7 +618,7 @@ public:
       , type(type)
       , filename(filename)
       , place(place)
-      , first_line_num(0)
+      , first_line_number(0)
       , showing_code_message_points(false)
       , code_message_points_overlays()
    {
@@ -958,11 +958,11 @@ public:
 
    // actions
 
-   bool offset_first_line_num(int delta)
+   bool offset_first_line_number(int delta)
    {
-      first_line_num += delta;
-      if (first_line_num < 0) first_line_num = 0;
-      if (first_line_num >= lines.size()) first_line_num = lines.size()-1;
+      first_line_number += delta;
+      if (first_line_number < 0) first_line_number = 0;
+      if (first_line_number >= lines.size()) first_line_number = lines.size()-1;
       return true;
    }
 
@@ -988,7 +988,7 @@ public:
 
    bool offset_first_line_to_vertically_center_cursor(int distance_from_top=20)
    {
-      first_line_num = cursor_y - distance_from_top;
+      first_line_number = cursor_y - distance_from_top;
       return true;
    }
 
@@ -1013,7 +1013,7 @@ public:
       al_draw_filled_rounded_rectangle(0-padding*2, 0-padding*2, place.size.x+padding*2, place.size.y+padding*2, roundness, roundness, al_color_name("black"));
       al_draw_rounded_rectangle(0-padding, 0-padding, place.size.x+padding, place.size.y+padding, roundness, roundness, al_color_name("dodgerblue"), 3.0);
 
-      float _cursor_y = cursor_y - first_line_num;
+      float _cursor_y = cursor_y - first_line_number;
       switch(mode)
       {
       case EDIT:
@@ -1043,7 +1043,7 @@ public:
       place.start_transform();
 
       // render cursor
-      float _cursor_y = cursor_y - first_line_num;
+      float _cursor_y = cursor_y - first_line_number;
       switch(mode)
       {
       case EDIT:
@@ -1063,7 +1063,7 @@ public:
       const int line_count_render_limit = 120;
       int lines_rendered_count = 0;
 
-      for (int line_number = first_line_num; line_number < (int)lines.size(); line_number++)
+      for (int line_number = first_line_number; line_number < (int)lines.size(); line_number++)
       {
          bool line_exists_in_git_modified_line_numbers = std::find(git_modified_line_numbers.begin(), git_modified_line_numbers.end(), (line_number+1)) != git_modified_line_numbers.end();
          if (line_exists_in_git_modified_line_numbers)
@@ -1073,15 +1073,15 @@ public:
             color.g *= 0.13;
             color.b *= 0.13;
             color.a *= 0.13;
-            al_draw_filled_rectangle(0, line_height * (line_number - first_line_num), al_get_display_width(display)*2, line_height * (line_number - first_line_num + 1), color);
+            al_draw_filled_rectangle(0, line_height * (line_number - first_line_number), al_get_display_width(display)*2, line_height * (line_number - first_line_number + 1), color);
          }
 
-         al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_LEFT, lines[line_number].c_str());
+         if (line_number >= 0) al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, lines[line_number].c_str());
          std::stringstream ss;
          ss << (line_number+1);
          ALLEGRO_COLOR text_color = al_color_name("darkolivegreen");
          if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
-         al_draw_text(font, text_color, -20, (line_number-first_line_num)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
+         al_draw_text(font, text_color, -20, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
 
          lines_rendered_count++;
          if (lines_rendered_count >= line_count_render_limit) break;
@@ -1089,11 +1089,11 @@ public:
 
       for (auto &code_message_points_overlay : code_message_points_overlays)
       {
-         code_message_points_overlay.render(font, showing_code_message_points, first_line_num, al_get_font_line_height(font), cursor_x, cursor_y);
+         code_message_points_overlay.render(font, showing_code_message_points, first_line_number, al_get_font_line_height(font), cursor_x, cursor_y);
       }
       //for (auto &code_message_point : code_message_points)
       //{
-         //CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_num, al_get_font_line_height(font));
+         //CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_number, al_get_font_line_height(font));
          //code_message_point_renderer.render();
       //}
 
@@ -1174,8 +1174,8 @@ public:
          else if (event_name == MOVE_STAGE_DOWN) move_stage_down();
          else if (event_name == SCALE_STAGE_UP) scale_stage_delta(0.1);
          else if (event_name == SCALE_STAGE_DOWN) scale_stage_delta(-0.1);
-         else if (event_name == OFFSET_FIRST_LINE_NUM_DOWN) offset_first_line_num(10);
-         else if (event_name == OFFSET_FIRST_LINE_NUM_UP) offset_first_line_num(-10);
+         else if (event_name == OFFSET_FIRST_LINE_NUM_DOWN) offset_first_line_number(10);
+         else if (event_name == OFFSET_FIRST_LINE_NUM_UP) offset_first_line_number(-10);
          else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN) offset_cursor_position_y(10);
          else if (event_name == OFFSET_CURSOR_POSITION_Y_UP) offset_cursor_position_y(-10);
          else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS) refresh_git_modified_line_numbers();
