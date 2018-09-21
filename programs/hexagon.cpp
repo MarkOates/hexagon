@@ -397,6 +397,50 @@ namespace CppCompiler
 
 
 
+class CodeRange
+{
+private:
+   int cursor_start_x;
+   int cursor_start_y;
+   int cursor_end_x;
+   int cursor_end_y;
+
+public:
+   CodeRange(int cursor_start_x, int cursor_start_y, int cursor_end_x, int cursor_end_y)
+      : cursor_start_x(cursor_start_x)
+      , cursor_start_y(cursor_start_y)
+      , cursor_end_x(cursor_end_x)
+      , cursor_end_y(cursor_end_y)
+   {}
+   ~CodeRange() {}
+
+   // attriburtes
+
+   int get_cursor_start_x() { return cursor_start_x; }
+   int get_cursor_start_y() { return cursor_start_y; }
+   int get_cursor_end_x() { return cursor_end_x; }
+   int get_cursor_end_y() { return cursor_end_y; }
+
+   // inference
+
+   bool in_range(int x, int y)
+   {
+     // if at start, in range
+     if (y < cursor_start_y) return false;
+     else if (y > cursor_end_y) return false;
+     else if (y == cursor_start_y == cursor_end_y)
+     {
+        if (x < cursor_start_x) return false;
+        if (x >= cursor_end_x) return false;
+        return true;
+     }
+
+     throw std::runtime_error("Hmm, the code never should have gotten here.  There's an error in the logic");
+   }
+};
+
+
+
 class CodeMessagePoint
 {
 public:
