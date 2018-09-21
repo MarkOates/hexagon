@@ -1469,6 +1469,26 @@ public:
       return true;
    }
 
+   bool offset_first_line_to_vertically_center_cursor_on_stage()
+   {
+      get_frontmost_stage()->process_local_event(Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
+   }
+
+   bool submit_current_modal()
+   {
+      process_local_event(SAVE_CURRENT_STAGE);
+      process_local_event(DESTROY_CURRENT_MODAL);
+      process_local_event(REFRESH_REGEX_HILIGHTS_ON_STAGE);
+      process_local_event(JUMP_TO_NEXT_CODE_POINT_ON_STAGE);
+      process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
+
+      return true;
+   }
+
+   bool escape_current_modal()
+   {
+      process_local_event(DESTROY_CURRENT_MODAL);
+   }
 
    // events
 
@@ -1478,10 +1498,13 @@ public:
    static const std::string RUN_MAKE;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
    static const std::string DESTROY_CURRENT_MODAL;
+   static const std::string ESCAPE_CURRENT_MODAL;
    static const std::string SAVE_CURRENT_STAGE;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
    static const std::string SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE;
    static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
+   static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE;
+   static const std::string SUBMIT_CURRENT_MODAL;
 
    void process_local_event(std::string event_name)
    {
@@ -1489,15 +1512,24 @@ public:
 
       try
       {
-         if (event_name == ROTATE_STAGE_RIGHT) rotate_stage_right();
-         else if (event_name == ROTATE_STAGE_LEFT) rotate_stage_left();
-         else if (event_name == RUN_PROJECT_TESTS) run_project_tests();
-         else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) spawn_regex_input_box_modal();
-         else if (event_name == DESTROY_CURRENT_MODAL) destroy_current_modal();
-         else if (event_name == SAVE_CURRENT_STAGE) save_current_stage();
-         else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) refresh_regex_hilights_on_stage();
-         else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) set_regex_input_box_modal_to_insert_mode();
-         else if (event_name == RUN_MAKE) run_make();
+         bool executed = false;
+
+         if (event_name == ROTATE_STAGE_RIGHT) { executed = true; rotate_stage_right(); }
+         else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
+         else if (event_name == RUN_PROJECT_TESTS) { executed = true; run_project_tests(); }
+         else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { executed = true; spawn_regex_input_box_modal(); }
+         else if (event_name == DESTROY_CURRENT_MODAL) { executed = true; destroy_current_modal(); }
+         else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
+         else if (event_name == SAVE_CURRENT_STAGE) { executed = true; save_current_stage(); }
+         else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { executed = true; refresh_regex_hilights_on_stage(); }
+         else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { executed = true; set_regex_input_box_modal_to_insert_mode(); }
+         else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { executed = true; jump_to_next_code_point_on_stage(); }
+         else if (event_name == SUBMIT_CURRENT_MODAL) { executed = true; submit_current_modal(); }
+         else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
+         else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { executed = true; offset_first_line_to_vertically_center_cursor_on_stage(); }
+         else if (event_name == RUN_MAKE) { executed = true; run_make(); }
+
+         if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
       }
       catch (const std::exception &exception)
       {
@@ -1518,7 +1550,8 @@ public:
       }
       if (is_current_stage_a_one_line_input_box())
       {
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { SAVE_CURRENT_STAGE, DESTROY_CURRENT_MODAL, REFRESH_REGEX_HILIGHTS_ON_STAGE, JUMP_TO_NEXT_CODE_POINT_ON_STAGE });
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { ESCAPE_CURRENT_MODAL });
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { SUBMIT_CURRENT_MODAL });
       }
 
       bool event_caught = false;
@@ -1553,9 +1586,12 @@ const std::string System::RUN_MAKE = "RUN_MAKE";
 const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
 const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
 const std::string System::DESTROY_CURRENT_MODAL = "DESTROY_CURRENT_MODAL";
+const std::string System::ESCAPE_CURRENT_MODAL = "ESCAPE_CURRENT_MODAL";
+const std::string System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
 const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
 const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
+const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 
 
 
