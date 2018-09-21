@@ -1409,7 +1409,7 @@ public:
          std::cout << "Attempted to get front-most stage, but none was present." << std::endl;
          return nullptr;
       }
-      return stages[0];
+      return stages.back();
    }
 
    // inference
@@ -1492,16 +1492,19 @@ public:
       placement2d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 200, 35);
       place.scale = vec2d(1.2, 1.2);
 
-      stages.insert(stages.begin(), new Stage(REGEX_TEMP_FILENAME, place, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX));
+      Stage *stage = new Stage(REGEX_TEMP_FILENAME, place, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX);
+      stages.push_back(stage);
+
       std::vector<std::string> file_contents;
-      //read_file(file_contents, stages[0]->get_filename());
-      stages[0]->set_content(std::vector<std::string>{"", ""});
+
+      stage->set_content(std::vector<std::string>{"", ""});
    }
 
    bool destroy_current_modal()
    {
       if (stages.size() == 1) throw std::runtime_error("Cannot destroy current modal. There is only 1 stage in the system");
-      stages.erase(stages.begin());
+      delete stages.back();
+      stages.pop_back();
    }
 
    bool jump_to_next_code_point_on_stage()
@@ -1621,7 +1624,7 @@ public:
          break;
       }
 
-      if (!event_caught) stages[0]->process_event(event);
+      if (!event_caught) get_frontmost_stage()->process_event(event);
    }
 
 private:
@@ -1717,10 +1720,10 @@ void run_program(std::vector<std::string> filenames)
       }
 
       al_clear_to_color(al_color_name("black"));
-      for (auto &stage : system.stages)
+      for (unsigned i=0; i<system.stages.size(); i++)
       {
+         Stage *stage = system.stages[i];
          stage->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
-         if (stage->get_type() == Stage::CODE_EDITOR) break;
       }
       al_flip_display();
    }
