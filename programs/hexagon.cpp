@@ -931,6 +931,8 @@ public:
 
       std::string regex_expression = php::trim(regex_input_file_lines[0]);
 
+      if (regex_expression.empty()) return true;
+
       std::vector<CodeMessagePoint> results;
       for (unsigned i=0; i<lines.size(); i++)
       {
