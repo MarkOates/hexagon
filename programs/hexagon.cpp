@@ -1345,6 +1345,8 @@ public:
       , display(display)
    {}
 
+   // retrieval
+
    Stage *get_frontmost_stage()
    {
       if (stages.size() == 0)
@@ -1354,6 +1356,20 @@ public:
       }
       return stages[0];
    }
+
+   // inference
+
+   bool is_current_stage_in_edit_mode()
+   {
+      return get_frontmost_stage()->get_mode() == Stage::EDIT;
+   }
+
+   bool is_current_stage_a_one_line_input_box()
+   {
+      return get_frontmost_stage()->get_type() == Stage::ONE_LINE_INPUT_BOX;
+   }
+
+   // actions
 
    bool rotate_stage_right()
    {
@@ -1433,9 +1449,10 @@ public:
       stages.erase(stages.begin());
    }
 
-   bool is_current_stage_in_edit_mode()
+   bool jump_to_next_code_point_on_stage()
    {
-      return get_frontmost_stage()->get_mode() == Stage::EDIT;
+      get_frontmost_stage()->process_local_event(Stage::JUMP_TO_NEXT_CODE_POINT);
+      return true;
    }
 
    bool run_make()
@@ -1458,6 +1475,7 @@ public:
    static const std::string SAVE_CURRENT_STAGE;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
    static const std::string SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE;
+   static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
 
    void process_local_event(std::string event_name)
    {
@@ -1492,7 +1510,10 @@ public:
       {
         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE });
       }
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, { SAVE_CURRENT_STAGE, DESTROY_CURRENT_MODAL, REFRESH_REGEX_HILIGHTS_ON_STAGE });
+      if (is_current_stage_a_one_line_input_box())
+      {
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { SAVE_CURRENT_STAGE, DESTROY_CURRENT_MODAL, REFRESH_REGEX_HILIGHTS_ON_STAGE, JUMP_TO_NEXT_CODE_POINT_ON_STAGE });
+      }
 
       bool event_caught = false;
 
@@ -1528,6 +1549,7 @@ const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
 const std::string System::DESTROY_CURRENT_MODAL = "DESTROY_CURRENT_MODAL";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
 const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
+const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
 
 
 
