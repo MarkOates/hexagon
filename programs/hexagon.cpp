@@ -1063,7 +1063,7 @@ public:
       const int line_count_render_limit = 120;
       int lines_rendered_count = 0;
 
-      for (int line_number = first_line_num; line_number < lines.size(); line_number++)
+      for (int line_number = first_line_num; line_number < (int)lines.size(); line_number++)
       {
          bool line_exists_in_git_modified_line_numbers = std::find(git_modified_line_numbers.begin(), git_modified_line_numbers.end(), (line_number+1)) != git_modified_line_numbers.end();
          if (line_exists_in_git_modified_line_numbers)
