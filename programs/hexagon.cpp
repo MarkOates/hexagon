@@ -776,7 +776,6 @@ public:
 
       position = find_whitespace(current_line_ref(), cursor_x);
       if (position != -1) { cursor_x = position; }
-
       position = find_non_whitespace(current_line_ref(), cursor_x);
       if (position != -1) { cursor_x = position; return true; }
 
@@ -1260,7 +1259,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, { Stage::SCALE_STAGE_UP });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, { Stage::SCALE_STAGE_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, { Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, { Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, { Stage::SAVE_FILE, Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { Stage::REFRESH_REGEX_MESSAGE_POINTS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Z, false, false, false, { Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
