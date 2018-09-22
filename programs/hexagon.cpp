@@ -894,12 +894,9 @@ public:
       CodeMessagePointsOverlay *current_overlay = &code_message_points_overlays[0];
       if (current_overlay->code_message_points.size() == 0) return true;
 
-      std::cout << "XXXXX" << std::endl;
-
       CodeMessagePoint *most_viable_code_point = nullptr;
       for (auto &message_point : code_message_points_overlays[0].code_message_points)
       {
-         std::cout << "CODE POINT" << std::endl;
          int message_point_y = message_point.get_y() - 1;
          //if (message_point_y < cursor_y) continue;
          if ((message_point_y == cursor_y && message_point.get_x() > cursor_x)
@@ -908,7 +905,6 @@ public:
          {
             // viable because is after current cursor
 
-            std::cout << "   -- viable" << std::endl;
             // set it as the current viable cursor if one isn't set; else if it's closer then set it
             if (most_viable_code_point == nullptr) most_viable_code_point = &message_point;
             else if (message_point_y < (most_viable_code_point->get_y() - 1)
@@ -949,7 +945,6 @@ public:
              || (message_point_y < cursor_y)
          )
          {
-            std::cout << "  -- viable" << std::endl;
             if (most_viable_code_point == nullptr) most_viable_code_point = &message_point;
             else if (message_point_y > (most_viable_code_point->get_y() - 1)
               || (message_point_y == (most_viable_code_point->get_y() - 1) && message_point.get_x() > most_viable_code_point->get_x())
