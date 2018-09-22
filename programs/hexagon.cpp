@@ -1720,9 +1720,8 @@ void run_program(std::vector<std::string> filenames)
       }
 
       al_clear_to_color(al_color_name("black"));
-      for (unsigned i=0; i<system.stages.size(); i++)
+      for (auto &stage : system.stages)
       {
-         Stage *stage = system.stages[i];
          stage->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
       }
       al_flip_display();

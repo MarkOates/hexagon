@@ -28,9 +28,9 @@ std::vector<std::pair<int, int>> RegexMatcher::get_match_info()
       while (next != end)
       {
          std::smatch match = *next;
-         std::cout << " - string: " << match.str() << std::endl;
-         std::cout << "   position: " << match.position() << std::endl;
-         std::cout << "   length: " << match.str().size() << std::endl;
+         //std::cout << " - string: " << match.str() << std::endl;
+         //std::cout << "   position: " << match.position() << std::endl;
+         //std::cout << "   length: " << match.str().size() << std::endl;
          results.push_back(std::pair<int, int>(match.position(), match.str().size()));
          next++;
       }
