@@ -421,7 +421,26 @@ public:
    int get_cursor_end_x() { return cursor_end_x; }
    int get_cursor_end_y() { return cursor_end_y; }
 
+   void set_cursor_start(int x, int y)
+   {
+      cursor_start_x = x;
+      cursor_start_y = y;
+   }
+   void set_cursor_end_x(int x) { cursor_end_x = x; }
+   void set_cursor_end_y(int y) { cursor_end_y = y; }
+
    // inference
+
+   bool is_empty()
+   {
+      return cursor_end_y == cursor_start_y && cursor_end_x == cursor_start_x;
+   }
+
+   int infer_num_lines()
+   {
+      if (is_empty()) return 0;
+      return cursor_end_y - cursor_start_y + 1;
+   }
 
    bool in_range(int x, int y)
    {
@@ -436,6 +455,106 @@ public:
      }
 
      throw std::runtime_error("Hmm, the code never should have gotten here.  There's an error in the logic");
+   }
+};
+
+
+
+std::ostream &operator<<(std::ostream &out, CodeRange &code_range)
+{
+   out << "(" << code_range.get_cursor_start_x() << ", " << code_range.get_cursor_start_y() << ")-(" << code_range.get_cursor_end_x() << ", " << code_range.get_cursor_end_y() << ")" << std::endl;
+   return out;
+}
+
+
+
+class CodeRangeRenderer
+{
+private:
+   const std::vector<std::string> &lines;
+   CodeRange &code_range;
+   ALLEGRO_FONT *font;
+   int first_line;
+   int cell_width;
+   int cell_height;
+
+public:
+   CodeRangeRenderer(const std::vector<std::string> &lines, CodeRange &code_range, ALLEGRO_FONT *font, int first_line, int cell_width, int cell_height)
+      : lines(lines)
+      , code_range(code_range)
+      , font(font)
+      , first_line(first_line)
+      , cell_width(cell_width)
+      , cell_height(cell_height)
+   {}
+
+   bool verify_line_in_range(int line_num)
+   {
+      if (line_num >= lines.size()) return false;
+      if (line_num < 0) return false;
+      return true;
+   }
+
+   int get_line_length(int line_num)
+   {
+      if (!verify_line_in_range(line_num)) return 0;
+      return lines[line_num].length();
+   }
+
+   void render()
+   {
+      int num_lines = code_range.infer_num_lines();
+      ALLEGRO_COLOR selection_color = al_color_name("orange");
+      selection_color.r *= 0.4;
+      selection_color.g *= 0.4;
+      selection_color.b *= 0.4;
+      selection_color.a *= 0.4;
+
+      if (num_lines == 0) return;
+      if (num_lines == 1)
+      {
+         // draw beginning-to-end on single line
+         int this_actual_line_y = code_range.get_cursor_start_y();
+         int this_line_y = (this_actual_line_y - first_line);
+
+         al_draw_filled_rectangle(
+            code_range.get_cursor_start_x() * cell_width,
+            this_line_y * cell_height,
+            code_range.get_cursor_end_x() * cell_width,
+            (this_line_y + 1) * cell_height,
+            selection_color
+         );
+      }
+      if (num_lines >= 2)
+      {
+         // draw first line
+         int this_actual_line_y = code_range.get_cursor_start_y();
+         int this_line_y = this_actual_line_y - first_line;
+
+         al_draw_filled_rectangle(
+            code_range.get_cursor_start_x() * cell_width,
+            this_line_y * cell_height,
+            get_line_length(this_actual_line_y) * cell_width,
+            (this_line_y + 1) * cell_height,
+            selection_color
+         );
+
+         if (num_lines > 2)
+         {
+            // draw intermediate lines
+            for (int i = (code_range.get_cursor_start_y()+1); i < code_range.get_cursor_end_y(); i++)
+            {
+               this_line_y = (i - first_line);
+               al_draw_filled_rectangle(0, this_line_y * cell_height, get_line_length(i) * cell_width, (this_line_y + 1) * cell_height, selection_color);
+            }
+         }
+
+         // draw last line
+
+         this_actual_line_y = code_range.get_cursor_end_y();
+         this_line_y = (this_actual_line_y - first_line);
+         al_draw_filled_rectangle(0, (this_line_y * cell_height), code_range.get_cursor_end_x() * cell_width, (this_line_y+1) * cell_height, selection_color);
+      }
    }
 };
 
@@ -665,11 +784,25 @@ public:
       , first_line_number(0)
       , showing_code_message_points(false)
       , code_message_points_overlays()
+      , currently_grabbing_visual_selection(false)
+      , selections()
    {
       code_message_points_overlays.push_back(CodeMessagePointsOverlay(al_color_name("dogerblue"), {}));
    }
 
    // accessors
+
+   void set_cursor_x(int cursor_x)
+   {
+      this->cursor_x = cursor_x;
+      set_current_selection_end_x(cursor_x + 1);
+   }
+
+   void set_cursor_y(int cursor_y)
+   {
+      this->cursor_y = cursor_y;
+      set_current_selection_end_y(cursor_y);
+   }
 
    std::string get_filename()
    {
@@ -716,6 +849,11 @@ public:
       return lines[cursor_y].length();
    }
 
+   std::vector<std::string> const &get_lines_ref()
+   {
+      return lines;
+   }
+
    std::string &current_line_ref()
    {
       return lines[cursor_y];
@@ -728,7 +866,7 @@ public:
 
    std::string get_current_mode_string()
    {
-      if (mode == EDIT) return "EDIT";
+      if (mode == EDIT) return (currently_grabbing_visual_selection ? "EDIT - VISUAL" : "EDIT");
       if (mode == INSERT) return "INSERT";
       if (mode == COMMAND) return "COMMAND";
       return "---";
@@ -739,23 +877,23 @@ public:
    bool move_cursor_up()
    {
       if (num_lines() <= 0) return false;
-      cursor_y -= 1;
+      set_cursor_y(cursor_y - 1);
       return true;
    }
    bool move_cursor_down()
    {
       if (cursor_y >= num_lines()) return false;
-      cursor_y += 1;
+      set_cursor_y(cursor_y + 1);
       return true;
    }
    bool move_cursor_left()
    {
-      cursor_x -= 1;
+      set_cursor_x(cursor_x - 1);
       return true;
    }
    bool move_cursor_right()
    {
-      cursor_x += 1;
+      set_cursor_x(cursor_x + 1);
       return true;
    }
    bool move_cursor_jump_to_next_word()
@@ -763,10 +901,10 @@ public:
       int position = 0;
 
       position = find_whitespace(current_line_ref(), cursor_x);
-      if (position != -1) { cursor_x = position; }
+      if (position != -1) { set_cursor_x(position); }
 
       position = find_non_whitespace(current_line_ref(), cursor_x);
-      if (position != -1) { cursor_x = position; return true; }
+      if (position != -1) { set_cursor_x(position); return true; }
 
       return false;
    }
@@ -775,9 +913,9 @@ public:
       int position = 0;
 
       position = find_whitespace(current_line_ref(), cursor_x);
-      if (position != -1) { cursor_x = position; }
+      if (position != -1) { set_cursor_x(position); }
       position = find_non_whitespace(current_line_ref(), cursor_x);
-      if (position != -1) { cursor_x = position; return true; }
+      if (position != -1) { set_cursor_x(position); return true; }
 
       return false;
    }
@@ -786,10 +924,10 @@ public:
       int position = 0;
 
       position = rfind_whitespace(current_line_ref(), cursor_x);
-      if (position != -1) { cursor_x = position; }
+      if (position != -1) { set_cursor_x(position); }
 
       position = rfind_non_whitespace(current_line_ref(), cursor_x);
-      if (position != -1) { cursor_x = position; return true; }
+      if (position != -1) { set_cursor_x(position); return true; }
 
       return false;
    }
@@ -798,21 +936,21 @@ public:
       int position = 0;
 
       position = rfind_whitespace(current_line_ref(), cursor_x);
-      if (position != -1) { cursor_x = position; }
+      if (position != -1) { set_cursor_x(position); }
 
       position = rfind_non_whitespace(current_line_ref(), cursor_x);
-      if (position != -1) { cursor_x = position; return true; }
+      if (position != -1) { set_cursor_x(position); return true; }
 
       return false;
    }
    bool move_cursor_to_start_of_line()
    {
-      cursor_x = 0;
+      set_cursor_x(0);
       return true;
    }
    bool move_cursor_to_end_of_line()
    {
-      cursor_x = current_line_ref().length();
+      set_cursor_x(current_line_ref().length());
       return true;
    }
    bool delete_character()
@@ -924,8 +1062,8 @@ public:
 
       if (most_viable_code_point)
       {
-         cursor_x = most_viable_code_point->get_x();
-         cursor_y = most_viable_code_point->get_y()-1;
+         set_cursor_x(most_viable_code_point->get_x());
+         set_cursor_y(most_viable_code_point->get_y()-1);
       }
 
       return true;
@@ -957,8 +1095,8 @@ public:
 
       if (most_viable_code_point)
       {
-         cursor_x = most_viable_code_point->get_x();
-         cursor_y = most_viable_code_point->get_y()-1;
+         set_cursor_x(most_viable_code_point->get_x());
+         set_cursor_y(most_viable_code_point->get_y()-1);
       }
       return true;
    }
@@ -1006,9 +1144,9 @@ public:
 
    bool offset_cursor_position_y(int delta)
    {
-      cursor_y += delta;
-      if (cursor_y < 0) cursor_y = 0;
-      if (cursor_y >= lines.size()) cursor_y = lines.size()-1;
+      set_cursor_y(cursor_y + delta);
+      if (cursor_y < 0) set_cursor_y(0);
+      if (cursor_y >= lines.size()) set_cursor_y(lines.size()-1);
       return true;
    }
 
@@ -1042,6 +1180,59 @@ public:
       return true;
    }
 
+   bool create_visual_selection_at_current_cursor_location()
+   {
+      selections.push_back(CodeRange(cursor_x, cursor_y, cursor_x+1, cursor_y));
+      return true;
+   }
+
+   bool destroy_current_visual_selection()
+   {
+      selections.clear();
+      return true;
+   }
+
+   bool toggle_currently_grabbing_visual_selection()
+   {
+      currently_grabbing_visual_selection = !currently_grabbing_visual_selection;
+      //std::cout << " - visual mode: " << currently_grabbing_visual_selection << std::endl;
+      if (currently_grabbing_visual_selection) create_visual_selection_at_current_cursor_location();
+      else destroy_current_visual_selection();
+      return true;
+   }
+
+   // rendering
+
+   // partials
+
+   bool currently_grabbing_visual_selection;
+   std::vector<CodeRange> selections;
+
+   void draw_selections(ALLEGRO_FONT *font, int cell_width, int cell_height)
+   {
+      for (auto &selection : selections)
+      {
+         //std::cout << " drawing selection " << selection << std::endl;
+         CodeRangeRenderer(get_lines_ref(), selection, font, first_line_number, cell_width, cell_height).render();
+      }
+   }
+
+   bool set_current_selection_end_x(int x)
+   {
+      if (selections.empty()) return true;
+      selections.back().set_cursor_end_x(x);
+      return true;
+   }
+
+   bool set_current_selection_end_y(int y)
+   {
+      if (selections.empty()) return true;
+      selections.back().set_cursor_end_y(y);
+      return true;
+   }
+
+   // complete
+
    void render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
       place.start_transform();
@@ -1064,6 +1255,8 @@ public:
          al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("dodgerblue"), 5);
          break;
       }
+
+      draw_selections(font, cell_width, cell_height);
 
       int line_height = al_get_font_line_height(font);
       for (int i=0; i<lines.size(); i++)
@@ -1095,6 +1288,7 @@ public:
          break;
       }
 
+      draw_selections(font, cell_width, cell_height);
 
       // render lines
       int line_height = al_get_font_line_height(font);
@@ -1142,7 +1336,7 @@ public:
 
       switch(mode)
       {
-      case EDIT: color = al_color_name("red"); break;
+      case EDIT: color = (currently_grabbing_visual_selection ? al_color_name("orange") : al_color_name("red")); break;
       case INSERT: color = al_color_name("lime"); break;
       case COMMAND: color = al_color_name("dodgerblue"); break;
       default: break;
@@ -1184,6 +1378,9 @@ public:
    static const std::string TOGGLE_SHOWING_CODE_MESSAGE_POINTS;
    static const std::string REFRESH_REGEX_MESSAGE_POINTS;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR;
+   static const std::string CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION;
+   static const std::string DESTROY_CURRENT_VISUAL_SELECTION;
+   static const std::string TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION;
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
@@ -1220,6 +1417,9 @@ public:
          else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS) toggle_showing_code_message_points();
          else if (event_name == REFRESH_REGEX_MESSAGE_POINTS) refresh_regex_message_points();
          else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR) offset_first_line_to_vertically_center_cursor();
+         else if (event_name == CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION) create_visual_selection_at_current_cursor_location();
+         else if (event_name == DESTROY_CURRENT_VISUAL_SELECTION) destroy_current_visual_selection();
+         else if (event_name == TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION) toggle_currently_grabbing_visual_selection();
       }
 
       catch (const std::exception &e)
@@ -1258,6 +1458,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { Stage::REFRESH_REGEX_MESSAGE_POINTS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Z, false, false, false, { Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_V, false, false, false, { Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION });
       //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, { Stage::SET_COMMAND_MODE, Stage::SET_OPERATOR_DELETE });
 
 
@@ -1363,6 +1564,9 @@ std::string const Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS = "REFRESH_GIT_MODIFI
 std::string const Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS = "TOGGLE_SHOWING_CODE_MESSAGE_POINTS";
 std::string const Stage::REFRESH_REGEX_MESSAGE_POINTS = "REFRESH_REGEX_MESSAGE_POINTS";
 std::string const Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR";
+std::string const Stage::CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION = "CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION";
+std::string const Stage::DESTROY_CURRENT_VISUAL_SELECTION = "DESTROY_CURRENT_VISUAL_SELECTION";
+std::string const Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION = "TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
