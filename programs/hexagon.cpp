@@ -1656,6 +1656,7 @@ void run_program(std::vector<std::string> filenames)
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    ALLEGRO_DISPLAY *display = al_create_display(2880-200-250, 1800-200-250);
    ALLEGRO_FONT *consolas_font = al_load_font(resource({"data", "fonts"}, "consolas.ttf").c_str(), 30, 0);
+   REGEX_TEMP_FILENAME = resource({"data", "tmp"}, "regex.txt");
 
    int display_width = al_get_display_width(display);
    int display_height = al_get_display_height(display);
