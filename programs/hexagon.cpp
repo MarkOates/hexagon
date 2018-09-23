@@ -147,6 +147,24 @@ bool save_file(std::vector<std::string> &lines, std::string filename)
 
 
 
+class ClipboardData
+{
+public:
+   static bool store(std::vector<std::string> &lines)
+   {
+      ::save_file(lines, CLIPBOARD_TEMP_FILENAME);
+      return true;
+   }
+   static std::vector<std::string> retrieve()
+   {
+      std::vector<std::string> results;
+      ::read_file(results, CLIPBOARD_TEMP_FILENAME);
+      return results;
+   }
+};
+
+
+
 class GitLinesModifiedExtractor
 {
 private:
@@ -1067,6 +1085,12 @@ public:
      current_line_ref().erase(cursor_x);
      return true;
    }
+   bool insert_lines(std::vector<std::string> &lines_to_insert)
+   {
+      int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());
+      lines.insert(lines.begin() + range_safe_y, lines_to_insert.begin(), lines_to_insert.end());
+      return true;
+   }
    bool insert_string(std::string string)
    {
       current_line_ref().insert(cursor_x, string);
@@ -1328,11 +1352,19 @@ public:
       return true;
    }
 
-   bool yank_selected_text()
+   bool yank_selected_text_to_clipboard()
    {
       if (selections.empty()) throw std::runtime_error(">BOOM< cannot yank selected text; No text selection is currently active");
       std::vector<std::string> extracted_selection = CodeRangeExtractor(get_lines_ref(), selections.back()).extract();
-      ::save_file(extracted_selection, CLIPBOARD_TEMP_FILENAME);
+      ClipboardData::store(extracted_selection);
+      return true;
+   }
+
+   bool paste_selected_text_from_clipboard()
+   {
+      std::vector<std::string> retrieved_clipboard_data = ClipboardData::retrieve();
+      insert_lines(retrieved_clipboard_data);
+
       return true;
    }
 
@@ -1486,7 +1518,8 @@ public:
    static const std::string CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION;
    static const std::string DESTROY_CURRENT_VISUAL_SELECTION;
    static const std::string TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION;
-   static const std::string YANK_SELECTED_TEXT;
+   static const std::string YANK_SELECTED_TEXT_TO_CLIPBOARD;
+   static const std::string PASTE_SELECTED_TEXT_FROM_CLIPBOARD;
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
@@ -1526,7 +1559,8 @@ public:
          else if (event_name == CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION) create_visual_selection_at_current_cursor_location();
          else if (event_name == DESTROY_CURRENT_VISUAL_SELECTION) destroy_current_visual_selection();
          else if (event_name == TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION) toggle_currently_grabbing_visual_selection();
-         else if (event_name == YANK_SELECTED_TEXT) yank_selected_text();
+         else if (event_name == YANK_SELECTED_TEXT_TO_CLIPBOARD) yank_selected_text_to_clipboard();
+         else if (event_name == PASTE_SELECTED_TEXT_FROM_CLIPBOARD) paste_selected_text_from_clipboard();
       }
 
       catch (const std::exception &e)
@@ -1566,7 +1600,8 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { Stage::REFRESH_REGEX_MESSAGE_POINTS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Z, false, false, false, { Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_V, false, false, false, { Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, { Stage::YANK_SELECTED_TEXT });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, { Stage::YANK_SELECTED_TEXT_TO_CLIPBOARD });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, true, false, false, { Stage::PASTE_SELECTED_TEXT_FROM_CLIPBOARD });
       //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, { Stage::SET_COMMAND_MODE, Stage::SET_OPERATOR_DELETE });
 
 
@@ -1675,7 +1710,8 @@ std::string const Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR = "OFFSET
 std::string const Stage::CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION = "CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION";
 std::string const Stage::DESTROY_CURRENT_VISUAL_SELECTION = "DESTROY_CURRENT_VISUAL_SELECTION";
 std::string const Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION = "TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION";
-std::string const Stage::YANK_SELECTED_TEXT = "YANK_SELECTED_TEXT";
+std::string const Stage::YANK_SELECTED_TEXT_TO_CLIPBOARD = "YANK_SELECTED_TEXT_TO_CLIPBOARD";
+std::string const Stage::PASTE_SELECTED_TEXT_FROM_CLIPBOARD = "PASTE_SELECTED_TEXT_FROM_CLIPBOARD";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
