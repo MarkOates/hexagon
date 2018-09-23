@@ -657,14 +657,16 @@ public:
 
 private:
    int x, y, length;
+   int cursor_placement_offset;
    std::string message;
    type_t type;
 
 public:
-   CodeMessagePoint(int x, int y, int length, std::string message, type_t type)
+   CodeMessagePoint(int x, int y, int length, int cursor_placement_offset, std::string message, type_t type)
       : x(x)
       , y(y)
       , length(length)
+      , cursor_placement_offset(cursor_placement_offset)
       , message(message)
       , type(type)
    {}
@@ -675,6 +677,7 @@ public:
    int get_x2() { return x + length; }
    int get_y() { return y; }
    int get_length() { return length; }
+   int get_cursor_placement_offset() { return cursor_placement_offset; }
    std::string get_message() { return message; }
    type_t get_type() { return type; }
 };
@@ -808,7 +811,7 @@ public:
    {
       CodeMessagePoint::type_t code_message_point_type = CodeMessagePoint::NONE;
       if (rails_minitest_test_result.test_state == RailsMinitestTestResult::ERROR) code_message_point_type = CodeMessagePoint::ERROR;
-      return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, 0, rails_minitest_test_result.test_result_output, CodeMessagePoint::ERROR);
+      return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, 0, 0, rails_minitest_test_result.test_result_output, CodeMessagePoint::ERROR);
    }
 };
 
@@ -1183,7 +1186,7 @@ public:
 
       if (most_viable_code_point)
       {
-         set_cursor_x(most_viable_code_point->get_x());
+         set_cursor_x(most_viable_code_point->get_x() + most_viable_code_point->get_cursor_placement_offset());
          set_cursor_y(most_viable_code_point->get_y()-1);
       }
 
@@ -1216,7 +1219,7 @@ public:
 
       if (most_viable_code_point)
       {
-         set_cursor_x(most_viable_code_point->get_x());
+         set_cursor_x(most_viable_code_point->get_x() + most_viable_code_point->get_cursor_placement_offset());
          set_cursor_y(most_viable_code_point->get_y()-1);
       }
       return true;
@@ -1233,6 +1236,9 @@ public:
       if (!read_file(regex_input_file_lines, REGEX_TEMP_FILENAME) || regex_input_file_lines.size() == 0) throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
 
       std::string regex_expression = php::trim(regex_input_file_lines[0]);
+      std::size_t carat_position = regex_expression.find_last_of('^');
+      int cursor_placement_offset = (carat_position == std::string::npos) ? 0 : carat_position;
+      regex_expression.erase(std::remove(regex_expression.begin() + 1, regex_expression.end(), '^'), regex_expression.end());
 
       if (regex_expression.empty()) return true;
 
@@ -1243,7 +1249,7 @@ public:
          std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
          for (auto &match_position : match_positions)
          {
-            results.push_back(CodeMessagePoint(match_position.first, i+1, match_position.second, "[match]", CodeMessagePoint::POSITION));
+            results.push_back(CodeMessagePoint(match_position.first, i+1, match_position.second, cursor_placement_offset, "[match]", CodeMessagePoint::POSITION));
          }
       }
       set_code_message_points(results);
