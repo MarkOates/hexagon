@@ -683,6 +683,7 @@ public:
    {
       NONE,
       ERROR,
+      TEST_FAILURE,
       POSITION,
    };
 
@@ -711,6 +712,11 @@ public:
    int get_cursor_placement_offset() { return cursor_placement_offset; }
    std::string get_message() { return message; }
    type_t get_type() { return type; }
+
+   bool infer_at_point(int x, int y)
+   {
+      return (x == this->x && y == this->y);
+   }
 };
 
 
@@ -749,13 +755,14 @@ public:
       place.position = vec2d(code_message_point.get_x() * character_width, (code_message_point.get_y()-1)*line_height - (current_line_number_offset)*line_height + line_height*0.5);
       place.align = vec2d(0, 0);
       place.start_transform();
+      ALLEGRO_COLOR spot_color, background_color, text_color, outline_color;
 
       switch(code_message_point.get_type())
       {
       case CodeMessagePoint::POSITION:
          {
-            ALLEGRO_COLOR color = al_color_name("dodgerblue");
-            ALLEGRO_COLOR outline_color = al_color_name("yellow");
+            spot_color = al_color_name("dodgerblue");
+            outline_color = al_color_name("yellow");
             ALLEGRO_STATE blender_state;
             float padding_x = 2;
             float padding_y = 2;
@@ -765,27 +772,54 @@ public:
             if (!cursor_at_code_point)
             {
                float opacity = 0.6;
-               color.r *= opacity; color.g *= opacity, color.b *= opacity; color.a *= opacity;
+               spot_color.r *= opacity; spot_color.g *= opacity, spot_color.b *= opacity; spot_color.a *= opacity;
             }
             al_store_state(&blender_state, ALLEGRO_STATE_BLENDER);
             al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ONE);
-            al_draw_filled_rounded_rectangle(0-padding_x, -line_height/2.0-padding_y, std::max(10, code_message_point.get_length()*character_width)+padding_x, line_height/2.0+padding_y, radius, radius, color);
+            al_draw_filled_rounded_rectangle(0-padding_x, -line_height/2.0-padding_y, std::max(10, code_message_point.get_length()*character_width)+padding_x, line_height/2.0+padding_y, radius, radius, spot_color);
             if (cursor_at_code_point) al_draw_rounded_rectangle(0-padding_x, -line_height/2.0-padding_y, std::max(10, code_message_point.get_length()*character_width)+padding_x, line_height/2.0+padding_y, radius, radius, outline_color, outline_thickness);
             al_restore_state(&blender_state);
          }
          break;
-      default:
+      case CodeMessagePoint::ERROR:
          {
-            ALLEGRO_COLOR color = al_color_name("red");
-            ALLEGRO_COLOR text_color = al_color_name("white");
+            spot_color = al_color_name("red");
+            background_color = al_color_name("webmaroon");
+            text_color = al_color_name("red");
+            float radius = 6.0;
+            float padding = 6.0;
 
             // draw the marker
-            al_draw_filled_circle(0, 0, 16, color);
+            al_draw_filled_circle(0, 0, 16, spot_color);
 
             /// draw the message (if open)
-            if (showing_code_message_points)
+            if (code_message_point.infer_at_point(cursor_x, cursor_y+1))
             {
-               al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color);
+               al_draw_filled_rounded_rectangle(-padding*2, -padding*2, place.size.x+padding*2, place.size.y+padding*2, radius, radius, al_color_name("black"));
+               al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_color);
+               al_draw_rounded_rectangle(-padding, -padding, place.size.x+padding, place.size.y+padding, radius, radius, text_color, 3.0);
+               al_draw_multiline_text(font, text_color, 10, 10, place.size.x - horizontal_padding*2, line_height, ALLEGRO_ALIGN_LEFT, code_message_point.get_message().c_str());
+            }
+         }
+         break;
+      case CodeMessagePoint::TEST_FAILURE:
+      default:
+         {
+            spot_color = al_color_name("deeppink");
+            background_color = al_color_name("webmaroon");
+            text_color = al_color_name("deeppink");
+            float radius = 6.0;
+            float padding = 6.0;
+
+            // draw the marker
+            al_draw_filled_circle(0, 0, 16, spot_color);
+
+            /// draw the message (if open)
+            if (code_message_point.infer_at_point(cursor_x, cursor_y+1))
+            {
+               al_draw_filled_rounded_rectangle(-padding*2, -padding*2, place.size.x+padding*2, place.size.y+padding*2, radius, radius, al_color_name("black"));
+               al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_color);
+               al_draw_rounded_rectangle(-padding, -padding, place.size.x+padding, place.size.y+padding, radius, radius, text_color, 3.0);
                al_draw_multiline_text(font, text_color, 10, 10, place.size.x - horizontal_padding*2, line_height, ALLEGRO_ALIGN_LEFT, code_message_point.get_message().c_str());
             }
          }
@@ -842,7 +876,8 @@ public:
    {
       CodeMessagePoint::type_t code_message_point_type = CodeMessagePoint::NONE;
       if (rails_minitest_test_result.test_state == RailsMinitestTestResult::ERROR) code_message_point_type = CodeMessagePoint::ERROR;
-      return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, 0, 0, rails_minitest_test_result.test_result_output, CodeMessagePoint::ERROR);
+      else if (rails_minitest_test_result.test_state == RailsMinitestTestResult::FAILURE) code_message_point_type = CodeMessagePoint::TEST_FAILURE;
+      return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, 0, 0, rails_minitest_test_result.test_result_output, code_message_point_type);
    }
 };
 
