@@ -19,6 +19,7 @@
 #include <Blast/ShellCommandExecutor.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 
+
 using namespace Blast;
 
 
@@ -31,6 +32,7 @@ using namespace Hexagon;
 
 
 std::string REGEX_TEMP_FILENAME = "regex.txt";
+std::string CLIPBOARD_TEMP_FILENAME = "clipboard.txt";
 
 
 
@@ -183,6 +185,44 @@ public:
       return lines_modified;
    }
 };
+
+
+
+class CodePoint
+{
+private:
+   int x;
+   int y;
+
+public:
+   CodePoint(int x, int y)
+      : x(x)
+      , y(y)
+   {}
+
+   int get_x() const { return x; }
+   int get_y() const { return y; }
+   void set_x(int x) { this->x = x; }
+   void set_y(int y) { this->y = y; }
+};
+
+
+
+bool operator<(const CodePoint &a, const CodePoint &other)
+{
+   if (a.get_y() < other.get_y()) return true;
+   if (a.get_y() > other.get_y()) return false;
+   if (a.get_y() == other.get_y()) return (a.get_x() < other.get_x());
+   throw std::runtime_error("Codepoint operator<: unexpected codepath");
+}
+
+
+
+std::ostream &operator<<(std::ostream &out, CodePoint &code_point)
+{
+   out << "(" << code_point.get_x() << ", " << code_point.get_y() << ")" << std::endl;
+   return out;
+}
 
 
 
@@ -397,35 +437,44 @@ namespace CppCompiler
 
 
 
+
+
+
+
 class CodeRange
 {
 private:
-   int cursor_start_x;
-   int cursor_start_y;
+   int cursor_anchor_x;
+   int cursor_anchor_y;
    int cursor_end_x;
    int cursor_end_y;
 
 public:
-   CodeRange(int cursor_start_x, int cursor_start_y, int cursor_end_x, int cursor_end_y)
-      : cursor_start_x(cursor_start_x)
-      , cursor_start_y(cursor_start_y)
+   CodeRange(int cursor_anchor_x, int cursor_anchor_y, int cursor_end_x, int cursor_end_y)
+      : cursor_anchor_x(cursor_anchor_x)
+      , cursor_anchor_y(cursor_anchor_y)
       , cursor_end_x(cursor_end_x)
       , cursor_end_y(cursor_end_y)
    {}
    ~CodeRange() {}
 
-   // attriburtes
+   // attributes
 
-   int get_cursor_start_x() { return cursor_start_x; }
-   int get_cursor_start_y() { return cursor_start_y; }
-   int get_cursor_end_x() { return cursor_end_x; }
-   int get_cursor_end_y() { return cursor_end_y; }
+   //int get_cursor_anchor_x() { return cursor_anchor_x; }
+   //int get_cursor_anchor_y() { return cursor_anchor_y; }
+   //int get_cursor_end_x() { return cursor_end_x; }
+   //int get_cursor_end_y() { return cursor_end_y; }
 
-   void set_cursor_start(int x, int y)
+   CodePoint infer_cursor_start()
    {
-      cursor_start_x = x;
-      cursor_start_y = y;
+      return std::min(CodePoint(cursor_anchor_x, cursor_anchor_y), CodePoint(cursor_end_x, cursor_end_y));
    }
+
+   CodePoint infer_cursor_end()
+   {
+      return std::max(CodePoint(cursor_anchor_y, cursor_anchor_y), CodePoint(cursor_end_x, cursor_end_y));
+   }
+
    void set_cursor_end_x(int x) { cursor_end_x = x; }
    void set_cursor_end_y(int y) { cursor_end_y = y; }
 
@@ -433,23 +482,26 @@ public:
 
    bool is_empty()
    {
-      return cursor_end_y == cursor_start_y && cursor_end_x == cursor_start_x;
+      return cursor_end_y == cursor_anchor_y && cursor_end_x == cursor_anchor_x;
    }
 
    int infer_num_lines()
    {
       if (is_empty()) return 0;
-      return cursor_end_y - cursor_start_y + 1;
+      CodePoint start = infer_cursor_start();
+      CodePoint end = infer_cursor_end();
+
+      return end.get_y() - start.get_y() + 1;
    }
 
    bool in_range(int x, int y)
    {
      // if at start, in range
-     if (y < cursor_start_y) return false;
+     if (y < cursor_anchor_y) return false;
      else if (y > cursor_end_y) return false;
-     else if (y == cursor_start_y == cursor_end_y)
+     else if (y == cursor_anchor_y == cursor_end_y)
      {
-        if (x < cursor_start_x) return false;
+        if (x < cursor_anchor_x) return false;
         if (x >= cursor_end_x) return false;
         return true;
      }
@@ -462,7 +514,9 @@ public:
 
 std::ostream &operator<<(std::ostream &out, CodeRange &code_range)
 {
-   out << "(" << code_range.get_cursor_start_x() << ", " << code_range.get_cursor_start_y() << ")-(" << code_range.get_cursor_end_x() << ", " << code_range.get_cursor_end_y() << ")" << std::endl;
+   CodePoint start = code_range.infer_cursor_start();
+   CodePoint end = code_range.infer_cursor_end();
+   out << "(" << start.get_x() << ", " << start.get_y() << ")-(" << end.get_x() << ", " << end.get_y() << ")" << std::endl;
    return out;
 }
 
@@ -473,16 +527,14 @@ class CodeRangeRenderer
 private:
    const std::vector<std::string> &lines;
    CodeRange &code_range;
-   ALLEGRO_FONT *font;
    int first_line;
    int cell_width;
    int cell_height;
 
 public:
-   CodeRangeRenderer(const std::vector<std::string> &lines, CodeRange &code_range, ALLEGRO_FONT *font, int first_line, int cell_width, int cell_height)
+   CodeRangeRenderer(const std::vector<std::string> &lines, CodeRange &code_range, int first_line, int cell_width, int cell_height)
       : lines(lines)
       , code_range(code_range)
-      , font(font)
       , first_line(first_line)
       , cell_width(cell_width)
       , cell_height(cell_height)
@@ -504,6 +556,9 @@ public:
    void render()
    {
       int num_lines = code_range.infer_num_lines();
+      CodePoint start = code_range.infer_cursor_start();
+      CodePoint end = code_range.infer_cursor_end();
+
       ALLEGRO_COLOR selection_color = al_color_name("orange");
       selection_color.r *= 0.4;
       selection_color.g *= 0.4;
@@ -514,13 +569,16 @@ public:
       if (num_lines == 1)
       {
          // draw beginning-to-end on single line
-         int this_actual_line_y = code_range.get_cursor_start_y();
+         //CodePoint start = code_range.infer_cursor_start();
+         //CodePoint end = code_range.infer_cursor_end();
+
+         int this_actual_line_y = start.get_y();
          int this_line_y = (this_actual_line_y - first_line);
 
          al_draw_filled_rectangle(
-            code_range.get_cursor_start_x() * cell_width,
+            start.get_x() * cell_width,
             this_line_y * cell_height,
-            code_range.get_cursor_end_x() * cell_width,
+            start.get_x() * cell_width,
             (this_line_y + 1) * cell_height,
             selection_color
          );
@@ -528,11 +586,14 @@ public:
       if (num_lines >= 2)
       {
          // draw first line
-         int this_actual_line_y = code_range.get_cursor_start_y();
+         //CodePoint start = code_range.infer_cursor_start();
+         //CodePoint end = code_range.infer_cursor_end();
+
+         int this_actual_line_y = start.get_y();
          int this_line_y = this_actual_line_y - first_line;
 
          al_draw_filled_rectangle(
-            code_range.get_cursor_start_x() * cell_width,
+            start.get_x() * cell_width,
             this_line_y * cell_height,
             get_line_length(this_actual_line_y) * cell_width,
             (this_line_y + 1) * cell_height,
@@ -542,7 +603,10 @@ public:
          if (num_lines > 2)
          {
             // draw intermediate lines
-            for (int i = (code_range.get_cursor_start_y()+1); i < code_range.get_cursor_end_y(); i++)
+            //CodePoint start = code_range.infer_cursor_start();
+            //CodePoint end = code_range.infer_cursor_end();
+
+            for (int i = (start.get_y()+1); i < end.get_y(); i++)
             {
                this_line_y = (i - first_line);
                al_draw_filled_rectangle(0, this_line_y * cell_height, get_line_length(i) * cell_width, (this_line_y + 1) * cell_height, selection_color);
@@ -551,9 +615,12 @@ public:
 
          // draw last line
 
-         this_actual_line_y = code_range.get_cursor_end_y();
+         //CodePoint start = code_range.infer_cursor_start();
+         //CodePoint end = code_range.infer_cursor_end();
+
+         this_actual_line_y = end.get_y();
          this_line_y = (this_actual_line_y - first_line);
-         al_draw_filled_rectangle(0, (this_line_y * cell_height), code_range.get_cursor_end_x() * cell_width, (this_line_y+1) * cell_height, selection_color);
+         al_draw_filled_rectangle(0, (this_line_y * cell_height), end.get_x() * cell_width, (this_line_y+1) * cell_height, selection_color);
       }
    }
 };
@@ -674,6 +741,36 @@ public:
       }
 
       place.restore_transform();
+   }
+};
+
+
+
+class CodeRangeExtractor
+{
+private:
+   const std::vector<std::string> &lines;
+   CodeRange &code_range;
+
+public:
+   CodeRangeExtractor(const std::vector<std::string> &lines, CodeRange &code_range)
+      : lines(lines)
+      , code_range(code_range)
+   {}
+
+   std::vector<std::string> extract()
+   {
+      CodePoint start = code_range.infer_cursor_start();
+      CodePoint end = code_range.infer_cursor_end();
+
+      int start_y = std::min(std::max(0, start.get_y()), (int)lines.size());
+      int end_y = std::min(std::max(0, (end.get_y()+1)), (int)lines.size());
+
+      std::cout << "CodeRangeExtractor: attempting extraction at (" << start_y << ", " << end_y << ")" << std::endl;
+
+      std::vector<std::string> result(lines.begin() + start_y, lines.begin() + end_y);
+
+      return result;
    }
 };
 
@@ -1208,12 +1305,12 @@ public:
    bool currently_grabbing_visual_selection;
    std::vector<CodeRange> selections;
 
-   void draw_selections(ALLEGRO_FONT *font, int cell_width, int cell_height)
+   void draw_selections(int cell_width, int cell_height)
    {
       for (auto &selection : selections)
       {
          //std::cout << " drawing selection " << selection << std::endl;
-         CodeRangeRenderer(get_lines_ref(), selection, font, first_line_number, cell_width, cell_height).render();
+         CodeRangeRenderer(get_lines_ref(), selection, first_line_number, cell_width, cell_height).render();
       }
    }
 
@@ -1228,6 +1325,14 @@ public:
    {
       if (selections.empty()) return true;
       selections.back().set_cursor_end_y(y);
+      return true;
+   }
+
+   bool yank_selected_text()
+   {
+      if (selections.empty()) throw std::runtime_error(">BOOM< cannot yank selected text; No text selection is currently active");
+      std::vector<std::string> extracted_selection = CodeRangeExtractor(get_lines_ref(), selections.back()).extract();
+      ::save_file(extracted_selection, CLIPBOARD_TEMP_FILENAME);
       return true;
    }
 
@@ -1256,7 +1361,7 @@ public:
          break;
       }
 
-      draw_selections(font, cell_width, cell_height);
+      draw_selections(cell_width, cell_height);
 
       int line_height = al_get_font_line_height(font);
       for (int i=0; i<lines.size(); i++)
@@ -1288,7 +1393,7 @@ public:
          break;
       }
 
-      draw_selections(font, cell_width, cell_height);
+      draw_selections(cell_width, cell_height);
 
       // render lines
       int line_height = al_get_font_line_height(font);
@@ -1381,6 +1486,7 @@ public:
    static const std::string CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION;
    static const std::string DESTROY_CURRENT_VISUAL_SELECTION;
    static const std::string TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION;
+   static const std::string YANK_SELECTED_TEXT;
 
    void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
    {
@@ -1420,6 +1526,7 @@ public:
          else if (event_name == CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION) create_visual_selection_at_current_cursor_location();
          else if (event_name == DESTROY_CURRENT_VISUAL_SELECTION) destroy_current_visual_selection();
          else if (event_name == TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION) toggle_currently_grabbing_visual_selection();
+         else if (event_name == YANK_SELECTED_TEXT) yank_selected_text();
       }
 
       catch (const std::exception &e)
@@ -1459,6 +1566,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { Stage::REFRESH_REGEX_MESSAGE_POINTS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Z, false, false, false, { Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_V, false, false, false, { Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, { Stage::YANK_SELECTED_TEXT });
       //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, { Stage::SET_COMMAND_MODE, Stage::SET_OPERATOR_DELETE });
 
 
@@ -1567,6 +1675,7 @@ std::string const Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR = "OFFSET
 std::string const Stage::CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION = "CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION";
 std::string const Stage::DESTROY_CURRENT_VISUAL_SELECTION = "DESTROY_CURRENT_VISUAL_SELECTION";
 std::string const Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION = "TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION";
+std::string const Stage::YANK_SELECTED_TEXT = "YANK_SELECTED_TEXT";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
@@ -1674,21 +1783,24 @@ public:
    bool save_current_stage()
    {
       get_frontmost_stage()->save_file();
+      return true;
    }
 
    bool refresh_regex_hilights_on_stage()
    {
       get_frontmost_stage()->refresh_regex_message_points();
+      return true;
    }
 
    bool set_regex_input_box_modal_to_insert_mode()
    {
       get_frontmost_stage()->process_local_event(Stage::SET_INSERT_MODE);
+      return true;
    }
 
    bool spawn_regex_input_box_modal()
    {
-      placement2d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 200, 35);
+      placement2d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 300, 35);
       place.scale = vec2d(1.2, 1.2);
 
       Stage *stage = new Stage(REGEX_TEMP_FILENAME, place, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX);
@@ -1697,6 +1809,8 @@ public:
       std::vector<std::string> file_contents;
 
       stage->set_content(std::vector<std::string>{"", ""});
+
+      return true;
    }
 
    bool destroy_current_modal()
@@ -1704,6 +1818,7 @@ public:
       if (stages.size() == 1) throw std::runtime_error("Cannot destroy current modal. There is only 1 stage in the system");
       delete stages.back();
       stages.pop_back();
+      return true;
    }
 
    bool jump_to_next_code_point_on_stage()
@@ -1723,6 +1838,7 @@ public:
    bool offset_first_line_to_vertically_center_cursor_on_stage()
    {
       get_frontmost_stage()->process_local_event(Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
+      return true;
    }
 
    bool submit_current_modal()
@@ -1739,6 +1855,7 @@ public:
    bool escape_current_modal()
    {
       process_local_event(DESTROY_CURRENT_MODAL);
+      return true;
    }
 
    // events
@@ -1861,6 +1978,7 @@ void run_program(std::vector<std::string> filenames)
    ALLEGRO_DISPLAY *display = al_create_display(2880-200-250, 1800-200-250);
    ALLEGRO_FONT *consolas_font = al_load_font(resource({"data", "fonts"}, "consolas.ttf").c_str(), 30, 0);
    REGEX_TEMP_FILENAME = resource({"data", "tmp"}, "regex.txt");
+   CLIPBOARD_TEMP_FILENAME = resource({"data", "tmp"}, "clipboard.txt");
 
    int display_width = al_get_display_width(display);
    int display_height = al_get_display_height(display);
