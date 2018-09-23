@@ -253,6 +253,7 @@ public:
       RUNNING,
       PASS,
       FAILURE,
+      SKIPPED,
       ERROR,
    };
 
@@ -290,6 +291,9 @@ std::ostream &operator<<(std::ostream &out, RailsMinitestTestResult::test_state_
    break;
    case RailsMinitestTestResult::PASS:
       out << "pass";
+   break;
+   case RailsMinitestTestResult::SKIPPED:
+      out << "skip";
    break;
    case RailsMinitestTestResult::FAILURE:
       out << "failure";
@@ -351,6 +355,7 @@ public:
             if (possible_test_line_output_tokens[2] == " E") test_state = RailsMinitestTestResult::ERROR;
             else if (possible_test_line_output_tokens[2] == " F") test_state = RailsMinitestTestResult::FAILURE;
             else if (possible_test_line_output_tokens[2] == " .") test_state = RailsMinitestTestResult::PASS;
+            else if (possible_test_line_output_tokens[2] == " S") test_state = RailsMinitestTestResult::SKIPPED;
 
             // 2) create a new one
             current_rails_minitest_test_result = new RailsMinitestTestResult({
@@ -367,23 +372,44 @@ public:
             {
                current_rails_minitest_test_result->test_result_output += source_test_output_line + "\n";
 
-               // attempt to extract the error line number from the file
-               std::vector<std::string> dot_split_tokens = StringSplitter(source_test_output_line, '.').split();
-
-               if (dot_split_tokens.size() <= 1) { /* there should be at least 2 tokens */ }
-               else if (dot_split_tokens.back().size() <= 5) { /* not a valid foramt for this token */ }
+               if (current_rails_minitest_test_result->test_state == RailsMinitestTestResult::ERROR)
+               {
+                  // attempt to extract the error line by matching the final line
+                  std::string final_line_regex_expression = "bin/rails test .+_test\\.rb:";
+                  std::vector<std::pair<int, int>> matches = RegexMatcher(source_test_output_line, final_line_regex_expression).get_match_info();
+                  if (matches.size() == 1 && matches[0].first == 0)
+                  {
+                     std::cout << "Found Matched Error Line!" << std::endl;
+                     std::vector<std::string> splits = StringSplitter(source_test_output_line, ':').split();
+                     if (splits.size() != 2) throw std::runtime_error("RailsTestOutputParser: unexpected number of splits, expecting 2");
+                     std::string number = splits.back();
+                     bool number_contains_only_number_characters = (number.find_first_not_of("0123456789") == std::string::npos);
+                     if (!number_contains_only_number_characters) throw std::runtime_error("RailsTestOutputParser: unexpected characters in expected number string");
+                     current_rails_minitest_test_result->error_line_number = atoi(number.c_str());
+                  }
+               }
                else
                {
-                  std::string last_token = dot_split_tokens.back();
-                  std::string prefix = last_token.substr(0, 3);
-                  std::string postfix = last_token.substr(last_token.size()-2);
-                  std::string number = last_token.substr(3, last_token.size() - 3 - 2);
-                  bool number_contains_only_number_characters = (number.find_first_not_of("0123456789") == std::string::npos);
+                  // attempt to extract the error line by matching the code in the [] brackets
 
-                  if (prefix == "rb:" && postfix == "]:" && number_contains_only_number_characters)
+                  // attempt to extract the error line number from the file
+                  std::vector<std::string> dot_split_tokens = StringSplitter(source_test_output_line, '.').split();
+
+                  if (dot_split_tokens.size() <= 1) { /* there should be at least 2 tokens */ }
+                  else if (dot_split_tokens.back().size() <= 5) { /* not a valid foramt for this token */ }
+                  else
                   {
-                     // format matches "rb:[0-9]\]:" expression
-                     current_rails_minitest_test_result->error_line_number = atoi(number.c_str());
+                     std::string last_token = dot_split_tokens.back();
+                     std::string prefix = last_token.substr(0, 3);
+                     std::string postfix = last_token.substr(last_token.size()-2);
+                     std::string number = last_token.substr(3, last_token.size() - 3 - 2);
+                     bool number_contains_only_number_characters = (number.find_first_not_of("0123456789") == std::string::npos);
+
+                     if (prefix == "rb:" && postfix == "]:" && number_contains_only_number_characters)
+                     {
+                        // format matches "rb:[0-9]\]:" expression
+                        current_rails_minitest_test_result->error_line_number = atoi(number.c_str());
+                     }
                   }
                }
             }
@@ -416,11 +442,16 @@ public:
    {}
    ~RailsMinitestTestRunner() {}
 
-   std::string run()
+   std::string get_execution_command()
    {
       std::stringstream test_command_string;
       test_command_string << "bin/rails test " << test_filename << " -v";
-      ShellCommandExecutor shell_command_executor(test_command_string.str());
+      return test_command_string.str();
+   }
+
+   std::string run()
+   {
+      ShellCommandExecutor shell_command_executor(get_execution_command());
       std::string output = shell_command_executor.execute();
       return output;
    }
@@ -1413,6 +1444,15 @@ public:
    void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
       if (type == ONE_LINE_INPUT_BOX) { render_as_input_box(display, font, cell_width, cell_height); return; }
+
+      ALLEGRO_COLOR background_overlay_color = al_color_name("black");
+      float opacity = 0.8;
+      background_overlay_color.r *= opacity;
+      background_overlay_color.g *= opacity;
+      background_overlay_color.b *= opacity;
+      background_overlay_color.a *= opacity;
+
+      al_draw_filled_rectangle(0, 0, al_get_display_width(display), al_get_display_height(display), background_overlay_color);
 
       place.start_transform();
 
