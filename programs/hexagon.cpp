@@ -1799,6 +1799,154 @@ std::string const Stage::YANK_SELECTED_TEXT_TO_CLIPBOARD = "YANK_SELECTED_TEXT_T
 std::string const Stage::PASTE_SELECTED_TEXT_FROM_CLIPBOARD = "PASTE_SELECTED_TEXT_FROM_CLIPBOARD";
 
 
+
+class FileNavigator
+{
+private:
+   std::vector<std::string> file_system_entries;
+   bool visible_and_active;
+   int cursor_y;
+
+public:
+   FileNavigator()
+      : file_system_entries()
+      , visible_and_active(false)
+      , cursor_y(0)
+   {}
+
+   ~FileNavigator() {}
+
+   // property accessors
+
+   void set_cursor_y(int cursor_y) { this->cursor_y = cursor_y; }
+   void set_file_system_entries(std::vector<std::string> file_system_entries)
+   {
+      this->file_system_entries = file_system_entries;
+   }
+   bool get_visible_and_active() { return visible_and_active; }
+
+   // actions
+
+   bool move_cursor_y_delta(int delta)
+   {
+      set_cursor_y(cursor_y + delta);
+      if (cursor_y < 0) set_cursor_y(0);
+      if (cursor_y >= file_system_entries.size()) set_cursor_y(file_system_entries.size()-1);
+      return true;
+   }
+
+   bool move_cursor_up()
+   {
+      return move_cursor_y_delta(-1);
+   }
+
+   bool move_cursor_down()
+   {
+      return move_cursor_y_delta(1);
+   }
+
+   bool show()
+   {
+      visible_and_active = true;
+      return true;
+   }
+
+   bool hide()
+   {
+      visible_and_active = false;
+      return true;
+   }
+
+   // events things
+
+   static const std::string MOVE_CURSOR_UP;
+   static const std::string MOVE_CURSOR_DOWN;
+   static const std::string SHOW;
+   static const std::string HIDE;
+
+   void process_local_event(std::string event_name)
+   {
+      std::cout << "FileNavigator::" << event_name << std::endl;
+
+      try
+      {
+         bool executed = false;
+
+         if (event_name == MOVE_CURSOR_UP) { move_cursor_up(); executed = true; }
+         if (event_name == MOVE_CURSOR_DOWN) { move_cursor_down(); executed = true; }
+         if (event_name == SHOW) { show(); executed = true; }
+         if (event_name == HIDE) { hide(); executed = true; }
+
+         if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
+      }
+      catch (const std::exception &exception)
+      {
+         std::cout << "💥 cannot execute \"" << event_name << "\"" << std::endl;
+      }
+   }
+
+   void process_event(ALLEGRO_EVENT &event)
+   {
+      KeyboardCommandMapper keyboard_command_mapper;
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { MOVE_CURSOR_DOWN });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { MOVE_CURSOR_UP });
+
+      bool event_caught = false;
+
+      switch(event.type)
+      {
+      case ALLEGRO_EVENT_KEY_UP:
+         break;
+      case ALLEGRO_EVENT_KEY_DOWN:
+         break;
+      case ALLEGRO_EVENT_KEY_CHAR:
+         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
+         if (!mapped_events.empty()) event_caught = true;
+         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+         break;
+      }
+   }
+
+   // void renderers
+
+   void render(placement2d place, ALLEGRO_FONT *font)
+   {
+      if (!visible_and_active) return;
+
+      place.start_transform();
+
+      float roundness = 6.0;
+      al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("black"));
+      al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("green"), 3.0);
+
+      int line_height = al_get_font_line_height(font);
+      int line_count = 0;
+      ALLEGRO_COLOR text_color;
+
+      for (auto &file_system_entry : file_system_entries)
+      {
+         if (line_count == cursor_y) text_color = al_color_name("lime");
+         else text_color = al_color_name("green");
+         al_draw_text(font, text_color, 0, line_height * line_count, ALLEGRO_ALIGN_LEFT, file_system_entry.c_str());
+         line_count++;
+      }
+
+      place.restore_transform();
+   }
+};
+
+
+
+const std::string FileNavigator::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
+const std::string FileNavigator::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
+const std::string FileNavigator::SHOW = "SHOW";
+const std::string FileNavigator::HIDE = "HIDE";
+
+
+
 const std::string sonnet = R"END(Is it thy will thy image should keep open
 My heavy eyelids to the weary night?
 Dost thou desire my slumbers should be broken,
@@ -1818,16 +1966,49 @@ From me far off, with others all too near.
 
 
 
+std::vector<std::string> get_directory_listing_recursive(std::string directory)
+{
+   if (!al_is_system_installed()) al_init();
+
+   std::vector<std::string> results;
+   ALLEGRO_FS_ENTRY* dir = al_create_fs_entry(directory.c_str());
+
+   if(al_open_directory(dir))
+   {
+      ALLEGRO_FS_ENTRY* file;
+      while((file=al_read_directory(dir)))
+      {
+         results.push_back(al_get_fs_entry_name(file));
+         al_destroy_fs_entry(file);
+      }
+   }
+   else
+   {
+      std::cout << "could not open directory \"" << directory << "\"" << std::endl;
+   }
+
+   al_destroy_fs_entry(dir);
+
+   return results;
+}
+
+
+
+
 class System
 {
 public:
    std::vector<Stage *> stages;
+   FileNavigator file_navigator;
    ALLEGRO_DISPLAY *display;
 
    System(ALLEGRO_DISPLAY *display)
       : stages({})
+      , file_navigator()
       , display(display)
-   {}
+   {
+      file_navigator.set_file_system_entries(get_directory_listing_recursive(al_get_current_directory()));
+   }
 
    // retrieval
 
@@ -1934,6 +2115,25 @@ public:
       return true;
    }
 
+   bool show_file_navigator()
+   {
+      file_navigator.show();
+      return true;
+   }
+
+   bool hide_file_navigator()
+   {
+      file_navigator.hide();
+      return true;
+   }
+
+   bool toggle_file_navigator()
+   {
+      if (file_navigator.get_visible_and_active()) file_navigator.process_local_event(FileNavigator::HIDE);
+      else file_navigator.process_local_event(FileNavigator::SHOW);
+      return true;
+   }
+
    bool destroy_current_modal()
    {
       if (stages.size() == 1) throw std::runtime_error("Cannot destroy current modal. There is only 1 stage in the system");
@@ -1994,6 +2194,9 @@ public:
    static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE;
    static const std::string SUBMIT_CURRENT_MODAL;
+   static const std::string SHOW_FILE_NAVIGATOR;
+   static const std::string HIDE_FILE_NAVIGATOR;
+   static const std::string TOGGLE_FILE_NAVIGATOR;
 
    void process_local_event(std::string event_name)
    {
@@ -2017,6 +2220,7 @@ public:
          else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
          else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { executed = true; offset_first_line_to_vertically_center_cursor_on_stage(); }
          else if (event_name == RUN_MAKE) { executed = true; run_make(); }
+         else if (event_name == TOGGLE_FILE_NAVIGATOR) { toggle_file_navigator(); executed = true; }
 
          if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
       }
@@ -2042,6 +2246,10 @@ public:
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { ESCAPE_CURRENT_MODAL });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { SUBMIT_CURRENT_MODAL });
       }
+      else
+      {
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { TOGGLE_FILE_NAVIGATOR });
+      }
 
       bool event_caught = false;
 
@@ -2061,7 +2269,11 @@ public:
          break;
       }
 
-      if (!event_caught) get_frontmost_stage()->process_event(event);
+      if (!event_caught)
+      {
+         if (file_navigator.get_visible_and_active()) file_navigator.process_event(event);
+         else get_frontmost_stage()->process_event(event);
+      }
    }
 
 private:
@@ -2081,6 +2293,8 @@ const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIG
 const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
 const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
+const std::string System::TOGGLE_FILE_NAVIGATOR = "TOGGLE_FILE_NAVIGATOR";
+
 
 
 
@@ -2126,6 +2340,10 @@ void run_program(std::vector<std::string> filenames)
    place.scale = vec2d(0.65, 0.65);
 
 
+   placement2d file_navigator_placement(al_get_display_width(display)/2, al_get_display_height(display)/2, al_get_display_width(display), al_get_display_height(display));
+   file_navigator_placement.align = vec2d(0.5, 0.5);
+   file_navigator_placement.scale = vec2d(1, 1);
+
    bool shutdown_program = false;
    bool first_load = true;
 
@@ -2169,10 +2387,15 @@ void run_program(std::vector<std::string> filenames)
       if (refresh)
       {
          al_clear_to_color(al_color_name("black"));
+
+         file_navigator_placement.size = vec2d(al_get_display_width(display)/3, al_get_display_height(display)/3);
+         file_navigator_placement.position = vec2d(al_get_display_width(display)/2, al_get_display_height(display)/2);
+
          for (auto &stage : system.stages)
          {
             stage->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
          }
+         system.file_navigator.render(file_navigator_placement, consolas_font);
          al_flip_display();
       }
    }
