@@ -24,7 +24,7 @@ ShellCommandExecutor::~ShellCommandExecutor()
 }
 
 
-std::string ShellCommandExecutor::execute()
+std::string ShellCommandExecutor::execute(void (*callback_func)(std::string))
 {
    static const int BUFFER_SIZE = 128;
 
@@ -36,7 +36,10 @@ std::string ShellCommandExecutor::execute()
 
    while (!feof(pipe.get()))
       if (fgets(buffer.data(), BUFFER_SIZE, pipe.get()) != nullptr)
+      {
          result += buffer.data();
+         if (callback_func) callback_func(buffer.data());
+      }
 
    return result;
 }

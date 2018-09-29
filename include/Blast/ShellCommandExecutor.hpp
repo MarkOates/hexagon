@@ -15,7 +15,7 @@ namespace Blast
       ShellCommandExecutor(std::string command);
       ~ShellCommandExecutor();
 
-      std::string execute();
+      std::string execute(void (*callback_func)(std::string)=nullptr);
    };
 }
 
