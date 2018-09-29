@@ -2094,6 +2094,7 @@ void run_program(std::vector<std::string> filenames)
 
    al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
    al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
+   al_set_new_display_flags(ALLEGRO_RESIZABLE);
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    ALLEGRO_DISPLAY *display = al_create_display(2880-200-250, 1800-200-250);
@@ -2151,19 +2152,29 @@ void run_program(std::vector<std::string> filenames)
 
       system.process_event(this_event);
 
+      bool refresh = true;
+
       switch(this_event.type)
       {
       case ALLEGRO_EVENT_DISPLAY_CLOSE:
          shutdown_program = true;
          break;
+      case ALLEGRO_EVENT_DISPLAY_RESIZE:
+         al_acknowledge_resize(display);
+         //note that each rezie will cause the display to reload, and will be a bit laggy
+         //refresh = false;
+         break;
       }
 
-      al_clear_to_color(al_color_name("black"));
-      for (auto &stage : system.stages)
+      if (refresh)
       {
-         stage->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+         al_clear_to_color(al_color_name("black"));
+         for (auto &stage : system.stages)
+         {
+            stage->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+         }
+         al_flip_display();
       }
-      al_flip_display();
    }
 
 
