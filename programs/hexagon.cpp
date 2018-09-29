@@ -431,6 +431,13 @@ public:
 
 
 
+void command_line_exec_callback(std::string new_content)
+{
+   std::cout << "####>" << new_content << "<####" << std::endl;
+}
+
+
+
 class RailsMinitestTestRunner
 {
 private:
@@ -452,7 +459,7 @@ public:
    std::string run()
    {
       ShellCommandExecutor shell_command_executor(get_execution_command());
-      std::string output = shell_command_executor.execute();
+      std::string output = shell_command_executor.execute(command_line_exec_callback);
       return output;
    }
 };
@@ -725,7 +732,6 @@ class CodeMessagePointRenderer
 {
 private:
    CodeMessagePoint code_message_point;
-   bool showing_code_message_points;
    int current_line_number_offset;
    int line_height;
    int character_width;
@@ -735,9 +741,8 @@ private:
    int cursor_y;
 
 public:
-   CodeMessagePointRenderer(CodeMessagePoint code_message_point, ALLEGRO_FONT *font, bool showing_code_message_points, int current_line_number_offset, int line_height, int character_width, int cursor_x, int cursor_y)
+   CodeMessagePointRenderer(CodeMessagePoint code_message_point, ALLEGRO_FONT *font, int current_line_number_offset, int line_height, int character_width, int cursor_x, int cursor_y)
       : code_message_point(code_message_point)
-      , showing_code_message_points(showing_code_message_points)
       , current_line_number_offset(current_line_number_offset)
       , line_height(line_height)
       , character_width(character_width)
@@ -898,13 +903,13 @@ public:
       color.r *= alpha; color.g *= alpha; color.b *= alpha; color.a *= alpha;
    }
 
-   void render(ALLEGRO_FONT *font, bool showing_code_message_points, int first_line_number, float line_height, int cursor_x, int cursor_y)
+   void render(ALLEGRO_FONT *font, int first_line_number, float line_height, int cursor_x, int cursor_y)
    {
       //al_draw_filled_rectangle(0, 0, 2400, 2000, color);
       int character_width = al_get_text_width(font, "x");
       for (auto &code_message_point : code_message_points)
       {
-         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_number, al_get_font_line_height(font), character_width, cursor_x, cursor_y);
+         CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, first_line_number, al_get_font_line_height(font), character_width, cursor_x, cursor_y);
          code_message_point_renderer.render();
       }
    }
@@ -966,7 +971,6 @@ public:
       , filename(filename)
       , place(place)
       , first_line_number(0)
-      , showing_code_message_points(false)
       , code_message_points_overlays()
       , currently_grabbing_visual_selection(false)
       , selections()
@@ -1201,7 +1205,7 @@ public:
    }
 
    //std::vector<CodeMessagePoint> code_message_points;
-   bool showing_code_message_points;
+   //bool showing_code_message_points;
    std::vector<CodeMessagePointsOverlay> code_message_points_overlays;
 
    bool clear_code_message_points()
@@ -1367,11 +1371,11 @@ public:
       return true;
    }
 
-   bool toggle_showing_code_message_points()
-   {
-      showing_code_message_points = !showing_code_message_points;
-      return true;
-   }
+   //bool toggle_showing_code_message_points()
+   //{
+      //showing_code_message_points = !showing_code_message_points;
+      //return true;
+   //}
 
    bool create_visual_selection_at_current_cursor_location()
    {
@@ -1539,11 +1543,11 @@ public:
 
       for (auto &code_message_points_overlay : code_message_points_overlays)
       {
-         code_message_points_overlay.render(font, showing_code_message_points, first_line_number, al_get_font_line_height(font), cursor_x, cursor_y);
+         code_message_points_overlay.render(font, first_line_number, al_get_font_line_height(font), cursor_x, cursor_y);
       }
       //for (auto &code_message_point : code_message_points)
       //{
-         //CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, showing_code_message_points, first_line_number, al_get_font_line_height(font));
+         //CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, first_line_number, al_get_font_line_height(font));
          //code_message_point_renderer.render();
       //}
 
@@ -1593,7 +1597,7 @@ public:
    static const std::string OFFSET_CURSOR_POSITION_Y_DOWN;
    static const std::string OFFSET_CURSOR_POSITION_Y_UP;
    static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS;
-   static const std::string TOGGLE_SHOWING_CODE_MESSAGE_POINTS;
+   //static const std::string TOGGLE_SHOWING_CODE_MESSAGE_POINTS;
    static const std::string REFRESH_REGEX_MESSAGE_POINTS;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR;
    static const std::string CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION;
@@ -1634,7 +1638,7 @@ public:
          else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN) offset_cursor_position_y(10);
          else if (event_name == OFFSET_CURSOR_POSITION_Y_UP) offset_cursor_position_y(-10);
          else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS) refresh_git_modified_line_numbers();
-         else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS) toggle_showing_code_message_points();
+         //else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS) toggle_showing_code_message_points();
          else if (event_name == REFRESH_REGEX_MESSAGE_POINTS) refresh_regex_message_points();
          else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR) offset_first_line_to_vertically_center_cursor();
          else if (event_name == CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION) create_visual_selection_at_current_cursor_location();
@@ -1677,7 +1681,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, { Stage::SCALE_STAGE_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, { Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, { Stage::SAVE_FILE, Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
+      //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { Stage::REFRESH_REGEX_MESSAGE_POINTS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Z, false, false, false, { Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_V, false, false, false, { Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION });
@@ -1785,7 +1789,7 @@ std::string const Stage::OFFSET_CURSOR_POSITION_Y_DOWN = "OFFSET_CURSOR_POSITION
 std::string const Stage::SCALE_STAGE_UP = "SCALE_STAGE_UP";
 std::string const Stage::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
 std::string const Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS = "REFRESH_GIT_MODIFIED_LINE_NUMBERS";
-std::string const Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS = "TOGGLE_SHOWING_CODE_MESSAGE_POINTS";
+//std::string const Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS = "TOGGLE_SHOWING_CODE_MESSAGE_POINTS";
 std::string const Stage::REFRESH_REGEX_MESSAGE_POINTS = "REFRESH_REGEX_MESSAGE_POINTS";
 std::string const Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR";
 std::string const Stage::CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION = "CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION";
