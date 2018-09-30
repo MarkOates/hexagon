@@ -941,6 +941,8 @@ public:
       FILE_NAVIGATOR,
    };
 
+   placement3d place3d;
+
 private:
    type_t type;
 

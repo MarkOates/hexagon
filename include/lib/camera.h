@@ -32,8 +32,8 @@ public:
 
    void setup_camera_perspective(ALLEGRO_BITMAP *bmp)
    {
-      stepback = vec3d(0, 800, 800);
-      rotation = vec3d(-TAU/8.0, TAU/16.0, 0);
+      stepback = vec3d(0, 0, 1000);
+      rotation = vec3d(-TAU/8.0, TAU/16.0, 0) * 0.5;
 
       ALLEGRO_TRANSFORM p;
       float aspect_ratio = (float)al_get_bitmap_height(bmp) / al_get_bitmap_width(bmp);
@@ -63,7 +63,7 @@ public:
       //al_perspective_transform(&p,      -1, aspect_ratio, znear,      1, -aspect_ratio, 1000);
       //al_perspective_transform(&p, -1 * viewport_scale, -aspect_ratio * viewport_scale, znear, 1 * viewport_scale, aspect_ratio * viewport_scale, 1000);
       al_perspective_transform(&p, -1 * viewport_scale, -aspect_ratio * viewport_scale, znear * viewport_scale, 1 * viewport_scale, aspect_ratio * viewport_scale, 1000 * viewport_scale);
-      //al_orthographic_transform(&p, -1 * viewport_scale, -aspect_ratio * viewport_scale, znear, 1 * viewport_scale, aspect_ratio * viewport_scale, 1000);
+      //al_orthographic_transform(&p, -1 * viewport_scale, -aspect_ratio * viewport_scale, znear * viewport_scale, 1 * viewport_scale, aspect_ratio * viewport_scale, 1000 * viewport_scale);
 
       //float viewport_scale = 1;
       //al_orthographic_transform(&p, -1 * viewport_scale, aspect_ratio * viewport_scale, znear, 1 * viewport_scale, -aspect_ratio * viewport_scale, 1000);
