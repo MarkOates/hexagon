@@ -1178,6 +1178,42 @@ public:
 
       return false;
    }
+   bool jump_cursor_to_end_of_next_word()
+   {
+      std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
+      RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
+      std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
+
+      for (auto &match_position : match_positions)
+      {
+         int position = match_position.first + match_position.second - 1;
+         if (position > cursor_x)
+         {
+            set_cursor_x(position);
+            return true;
+         }
+      }
+
+      return false;
+   }
+   bool jump_cursor_to_end_of_next_big_word()
+   {
+      std::string vim_equivelent_word_jump_regex = "[^\\s]+";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
+      RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
+      std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
+
+      for (auto &match_position : match_positions)
+      {
+         int position = match_position.first + match_position.second - 1;
+         if (position > cursor_x)
+         {
+            set_cursor_x(position);
+            return true;
+         }
+      }
+
+      return false;
+   }
    bool move_cursor_jump_to_previous_word()
    {
       int position = 0;
@@ -1666,6 +1702,8 @@ public:
    static const std::string MOVE_CURSOR_JUMP_TO_NEXT_WORD;
    static const std::string MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD;
    static const std::string MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD;
+   static const std::string JUMP_CURSOR_TO_END_OF_NEXT_WORD;
+   static const std::string JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD;
    static const std::string JUMP_TO_NEXT_CODE_POINT;
    static const std::string JUMP_TO_PREVIOUS_CODE_POINT;
    static const std::string DELETE_CHARACTER;
@@ -1711,6 +1749,8 @@ public:
          else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) move_cursor_jump_to_next_word();
          else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD) move_cursor_jump_to_next_big_word();
          else if (event_name == MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD) move_cursor_jump_to_previous_word();
+         else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_WORD) jump_cursor_to_end_of_next_word();
+         else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD) jump_cursor_to_end_of_next_big_word();
          else if (event_name == JUMP_TO_NEXT_CODE_POINT) jump_to_next_code_point();
          else if (event_name == JUMP_TO_PREVIOUS_CODE_POINT) jump_to_previous_code_point();
          else if (event_name == DELETE_CHARACTER) delete_character();
@@ -1756,6 +1796,7 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, true,  false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD, Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, true,  false, false, { Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SET_INSERT_MODE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, false,  false, false, { Stage::MOVE_CURSOR_RIGHT, Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { Stage::MOVE_CURSOR_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, true,  false, false, { Stage::JOIN_LINES });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { Stage::MOVE_CURSOR_UP });
@@ -1766,12 +1807,15 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, true, false, false, { Stage::MOVE_CURSOR_TO_BOTTOM_OF_SCREEN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, true, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, false, false, { Stage::JUMP_CURSOR_TO_END_OF_NEXT_WORD });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, true, false, false, { Stage::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, false, false, false, { Stage::JUMP_TO_NEXT_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, true, false, false, { Stage::JUMP_TO_PREVIOUS_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, false, false, { Stage::DELETE_CHARACTER, Stage::SET_INSERT_MODE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_U, false, true, false, { Stage::OFFSET_FIRST_LINE_NUM_UP, Stage::OFFSET_CURSOR_POSITION_Y_UP });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, true, false, { Stage::OFFSET_FIRST_LINE_NUM_DOWN, Stage::OFFSET_CURSOR_POSITION_Y_DOWN });
@@ -1870,6 +1914,8 @@ std::string const Stage::MOVE_CURSOR_TO_BOTTOM_OF_SCREEN = "MOVE_CURSOR_TO_BOTTO
 std::string const Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_WORD";
 std::string const Stage::MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD";
 std::string const Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD = "MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD";
+std::string const Stage::JUMP_CURSOR_TO_END_OF_NEXT_WORD = "JUMP_CURSOR_TO_END_OF_NEXT_WORD";
+std::string const Stage::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD = "JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD";
 std::string const Stage::JUMP_TO_NEXT_CODE_POINT = "JUMP_TO_NEXT_CODE_POINT";
 std::string const Stage::JUMP_TO_PREVIOUS_CODE_POINT = "JUMP_TO_PREVIOUS_CODE_POINT";
 std::string const Stage::DELETE_CHARACTER = "DELETE_CHARACTER";
