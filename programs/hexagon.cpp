@@ -1346,9 +1346,10 @@ public:
       std::string regex_expression = regex_input_file_lines[0];
       std::size_t carat_position = regex_expression.find_last_of('^');
       int cursor_placement_offset = (carat_position == std::string::npos) ? 0 : carat_position;
-      regex_expression.erase(std::remove(regex_expression.begin() + 1, regex_expression.end(), '^'), regex_expression.end());
 
       if (regex_expression.empty()) return true;
+
+      regex_expression.erase(std::remove(regex_expression.begin() + 1, regex_expression.end(), '^'), regex_expression.end());
 
       std::vector<CodeMessagePoint> results;
       for (unsigned i=0; i<lines.size(); i++)
