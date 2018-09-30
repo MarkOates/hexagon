@@ -2091,6 +2091,8 @@ public:
       place.start_transform();
 
       float roundness = 6.0;
+      float padding_x = cell_width*2;
+      float padding_y = cell_width;
       al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("black"));
       al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("green"), 3.0);
 
@@ -2109,9 +2111,20 @@ public:
 
          std::string current_node_label = is_directory ? file_system_entry->infer_basename() : file_system_entry->infer_basename();
 
-         if (line_count == cursor_y) text_color = al_color_name("lime");
-         else text_color = is_directory ? al_color_name("aquamarine") : al_color_name("green");
-         al_draw_text(font, text_color, 0, line_height * line_count, ALLEGRO_ALIGN_LEFT, current_node_label.c_str());
+         float y = line_height * line_count;
+
+         if (line_count == cursor_y)
+         {
+            //text_color = al_color_name("black");
+            al_draw_filled_rectangle(0, padding_y+y, place.size.x, padding_y+y+line_height, al_color_name("green"));
+            al_draw_filled_rectangle(0, padding_y+y, cell_width, padding_y+y+line_height, al_color_name("lime"));
+            //al_draw_filled_rectangle(0, padding_y+y, cell_width, padding_y+y+line_height, al_color_name("lime"));
+         }
+         //else
+         //{
+            text_color = is_directory ? al_color_name("aquamarine") : al_color_name("lime");
+         //}
+         al_draw_text(font, text_color, padding_x+0, padding_y+line_height * line_count, ALLEGRO_ALIGN_LEFT, current_node_label.c_str());
          line_count++;
       }
 
