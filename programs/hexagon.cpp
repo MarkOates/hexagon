@@ -2697,7 +2697,7 @@ void run_program(std::vector<std::string> filenames)
    al_register_event_source(event_queue, al_get_keyboard_event_source());
    al_register_event_source(event_queue, al_get_display_event_source(display));
 
-   ALLEGRO_TIMER *primary_timer = al_create_timer(1.0/30.0);
+   ALLEGRO_TIMER *primary_timer = al_create_timer(1.0/60.0);
    al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
    al_start_timer(primary_timer);
 
