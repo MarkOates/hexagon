@@ -33,6 +33,8 @@ using namespace Hexagon;
 
 std::string REGEX_TEMP_FILENAME = "regex.txt";
 std::string CLIPBOARD_TEMP_FILENAME = "clipboard.txt";
+std::string FILE_NAVIGATOR_SELECTION_FILENAME = "file_navigator_selection.txt";
+std::string FILE_NAVIGATOR_SELECTION_last_content = "";
 
 
 
@@ -139,7 +141,9 @@ bool save_file(std::vector<std::string> &lines, std::string filename)
    }
    else
    {
-      throw std::runtime_error("couldn't save file -- file failed at is_open()");
+      std::stringstream error_message;
+      error_message << "save_file(): Couldn't save file: file failed at is_open() on the filename \"" << filename << "\"" << std::endl;
+      throw std::runtime_error(error_message.str());
    }
 
    return true;
@@ -925,11 +929,44 @@ SystemWideMotion motion;
 
 
 
+class StageInterface
+{
+public:
+   enum type_t
+   {
+      NONE,
+      CODE_EDITOR,
+      ONE_LINE_INPUT_BOX,
+      FILE_NAVIGATOR,
+   };
+
+private:
+   type_t type;
+
+public:
+   StageInterface(type_t type)
+      : type(type)
+   {}
+   virtual ~StageInterface() {}
+
+   type_t get_type() { return type; }
+
+   virtual void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) = 0;
+   virtual void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0) = 0;
+   virtual void process_event(ALLEGRO_EVENT &event) = 0;
+
+   // actions
+
+   virtual bool save_file() = 0;
+};
+
+
+
 #include <string>
 #include <vector>
 
 
-class Stage
+class Stage : public StageInterface
 {
 public:
    enum mode_t
@@ -939,12 +976,12 @@ public:
       COMMAND,
    };
 
-   enum type_t
-   {
-      NONE,
-      CODE_EDITOR,
-      ONE_LINE_INPUT_BOX,
-   };
+   //enum type_t
+   //{
+      //NONE,
+      //CODE_EDITOR,
+      //ONE_LINE_INPUT_BOX,
+   //};
 
 private:
    std::vector<std::string> lines;
@@ -952,7 +989,7 @@ private:
    int cursor_y;
 
    mode_t mode;
-   type_t type;
+   //type_t type;
 
    std::string filename;
 
@@ -963,11 +1000,11 @@ private:
 
 public:
    Stage(std::string filename, placement2d place, mode_t mode=EDIT, type_t type=CODE_EDITOR)
-      : lines()
+      : StageInterface(type)
       , cursor_x(0)
       , cursor_y(0)
       , mode(mode)
-      , type(type)
+      //, type(type)
       , filename(filename)
       , place(place)
       , first_line_number(0)
@@ -1012,11 +1049,6 @@ public:
    placement2d &get_place_ref()
    {
       return place;
-   }
-
-   type_t get_type()
-   {
-      return type;
    }
 
    mode_t get_mode()
@@ -1169,7 +1201,7 @@ public:
       current_line_ref().insert(cursor_x, string);
       return true;
    }
-   bool save_file()
+   bool save_file() override
    {
       ::save_file(lines, filename);
       return true;
@@ -1480,9 +1512,11 @@ public:
       place.restore_transform();
    }
 
-   void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+   void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) override
    {
-      if (type == ONE_LINE_INPUT_BOX) { render_as_input_box(display, font, cell_width, cell_height); return; }
+      //place = this->place;
+
+      if (get_type() == ONE_LINE_INPUT_BOX) { render_as_input_box(display, font, cell_width, cell_height); return; }
 
       ALLEGRO_COLOR background_overlay_color = al_color_name("black");
       float opacity = 0.8;
@@ -1606,7 +1640,7 @@ public:
    static const std::string YANK_SELECTED_TEXT_TO_CLIPBOARD;
    static const std::string PASTE_SELECTED_TEXT_FROM_CLIPBOARD;
 
-   void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0)
+   void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0) override
    {
       std::cout << "Stage::" << event_name << std::endl;
 
@@ -1654,7 +1688,7 @@ public:
       }
    }
 
-   void process_event(ALLEGRO_EVENT &event)
+   void process_event(ALLEGRO_EVENT &event) override
    {
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
       //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
@@ -1800,30 +1834,133 @@ std::string const Stage::PASTE_SELECTED_TEXT_FROM_CLIPBOARD = "PASTE_SELECTED_TE
 
 
 
-class FileNavigator
+class FileSystemNode
 {
 private:
-   std::vector<std::string> file_system_entries;
-   bool visible_and_active;
+   ALLEGRO_FS_ENTRY *entry;
+   std::vector<FileSystemNode *> children;
+
+public:
+   FileSystemNode(ALLEGRO_FS_ENTRY *entry)
+      : entry(entry)
+      , children({})
+   {
+      //children = FileSystemNode::create_fs_entry_children(this);
+   }
+   ~FileSystemNode()
+   {
+      al_destroy_fs_entry(entry);
+      for (auto &child : children) delete child;
+   }
+
+   ALLEGRO_FS_ENTRY *get_entry() { return entry; }
+
+   void create_children()
+   {
+      for (auto &child : children) delete child;
+      children.clear();
+
+      this->children = FileSystemNode::create_fs_entry_children(this);
+   }
+
+   std::vector<FileSystemNode *> &get_children_ref()
+   {
+      return children;
+   }
+
+   int infer_num_children()
+   {
+      return children.size();
+   }
+
+   bool infer_is_directory()
+   {
+      return (al_get_fs_entry_mode(entry) & ALLEGRO_FILEMODE_ISDIR) == ALLEGRO_FILEMODE_ISDIR;
+   }
+
+   std::string infer_name()
+   {
+      return al_get_fs_entry_name(entry);
+   }
+
+   //
+
+   static std::vector<FileSystemNode *> create_fs_entry_children(FileSystemNode *node)
+   {
+      std::vector<FileSystemNode *> results;
+
+      //ALLEGRO_FS_ENTRY* dir = al_create_fs_entry(directory.c_str());
+
+      if(al_open_directory(node->get_entry()))
+      {
+         ALLEGRO_FS_ENTRY* fs_entry;
+         while((fs_entry = al_read_directory(node->get_entry())))
+         {
+            results.push_back(new FileSystemNode(fs_entry)); //al_get_fs_entry_name(file));
+            //al_destroy_fs_entry(file);
+         }
+      }
+      else
+      {
+         //std::cout << "could not open directory \"" << directory << "\"" << std::endl;
+      }
+
+      //al_destroy_fs_entry(dir);
+
+      return results;
+   }
+};
+
+
+
+class FileNavigator : public StageInterface
+{
+private:
+   //std::vector<FileSystemNode *> file_system_entries;
+   FileSystemNode *current_node;
+   //bool visible_and_active;
    int cursor_y;
 
 public:
-   FileNavigator()
-      : file_system_entries()
-      , visible_and_active(false)
+   FileNavigator(std::string directory)
+      //: file_system_entries()
+      : StageInterface(StageInterface::FILE_NAVIGATOR)
+      , current_node(new FileSystemNode(al_create_fs_entry(directory.c_str())))
+      //, visible_and_active(false)
       , cursor_y(0)
-   {}
+      , place()
+   {
+      //current_node = current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
+      current_node->create_children();
+   }
 
    ~FileNavigator() {}
 
    // property accessors
 
    void set_cursor_y(int cursor_y) { this->cursor_y = cursor_y; }
-   void set_file_system_entries(std::vector<std::string> file_system_entries)
+   //void set_file_system_entries(std::vector<FileSystemNode *> file_system_entries)   {      this->file_system_entries = file_system_entries;   }
+   //bool get_visible_and_active() { return visible_and_active; }
+
+   // initializers
+
+   //bool set_
+
+   // inferences
+
+   FileSystemNode *infer_current_selection()
    {
-      this->file_system_entries = file_system_entries;
+      if (!current_node) return nullptr;
+      if (cursor_y < 0 || cursor_y >= current_node->infer_num_children()) return nullptr;
+      return current_node->get_children_ref()[cursor_y];
    }
-   bool get_visible_and_active() { return visible_and_active; }
+
+   std::string infer_current_selection_name()
+   {
+      FileSystemNode *node = infer_current_selection();
+      if (!node) return "";
+      return node->infer_name();
+   }
 
    // actions
 
@@ -1831,7 +1968,7 @@ public:
    {
       set_cursor_y(cursor_y + delta);
       if (cursor_y < 0) set_cursor_y(0);
-      if (cursor_y >= file_system_entries.size()) set_cursor_y(file_system_entries.size()-1);
+      if (cursor_y >= current_node->infer_num_children()) set_cursor_y(current_node->infer_num_children()-1);
       return true;
    }
 
@@ -1845,26 +1982,26 @@ public:
       return move_cursor_y_delta(1);
    }
 
-   bool show()
-   {
-      visible_and_active = true;
-      return true;
-   }
+   //bool show()
+   //{
+      //visible_and_active = true;
+      //return true;
+   //}
 
-   bool hide()
-   {
-      visible_and_active = false;
-      return true;
-   }
+   //bool hide()
+   //{
+      //visible_and_active = false;
+      //return true;
+   //}
 
    // events things
 
    static const std::string MOVE_CURSOR_UP;
    static const std::string MOVE_CURSOR_DOWN;
-   static const std::string SHOW;
-   static const std::string HIDE;
+   //static const std::string SHOW;
+   //static const std::string HIDE;
 
-   void process_local_event(std::string event_name)
+   void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0) override
    {
       std::cout << "FileNavigator::" << event_name << std::endl;
 
@@ -1874,8 +2011,8 @@ public:
 
          if (event_name == MOVE_CURSOR_UP) { move_cursor_up(); executed = true; }
          if (event_name == MOVE_CURSOR_DOWN) { move_cursor_down(); executed = true; }
-         if (event_name == SHOW) { show(); executed = true; }
-         if (event_name == HIDE) { hide(); executed = true; }
+         //if (event_name == SHOW) { show(); executed = true; }
+         //if (event_name == HIDE) { hide(); executed = true; }
 
          if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
       }
@@ -1885,7 +2022,7 @@ public:
       }
    }
 
-   void process_event(ALLEGRO_EVENT &event)
+   void process_event(ALLEGRO_EVENT &event) override
    {
       KeyboardCommandMapper keyboard_command_mapper;
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { MOVE_CURSOR_DOWN });
@@ -1910,11 +2047,27 @@ public:
       }
    }
 
+   bool save_file() override
+   {
+      FILE_NAVIGATOR_SELECTION_last_content = infer_current_selection_name();
+      //std::cout << "  -- current inferred selection: " << infer_current_selection_name() << std::endl;
+      //std::cout << "  -- filename for saving: " << FILE_NAVIGATOR_SELECTION_FILENAME << std::endl;
+      //std::vector<std::string> lines = { infer_current_selection_name() };
+      //if (!::save_file(lines, FILE_NAVIGATOR_SELECTION_FILENAME)) throw std::runtime_error("FileNavigator::save_file(): an error occurred");
+      //else std::cout << "  -- Save file appears to have saved as expected" << std::endl;
+      return true;
+   }
+
    // void renderers
 
-   void render(placement2d place, ALLEGRO_FONT *font)
+   placement2d place;
+
+   void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) override
+   //void render(placement2d place, ALLEGRO_FONT *font) override
    {
-      if (!visible_and_active) return;
+      placement2d place(al_get_display_width(display)/2, al_get_display_height(display)/2, al_get_display_width(display)/3, al_get_display_height(display)/3*2);
+
+      //if (!visible_and_active) return;
 
       place.start_transform();
 
@@ -1926,11 +2079,15 @@ public:
       int line_count = 0;
       ALLEGRO_COLOR text_color;
 
-      for (auto &file_system_entry : file_system_entries)
+      // draw the current node name
+      al_draw_text(font, al_color_name("aliceblue"), 0, line_height * -1, ALLEGRO_ALIGN_LEFT, current_node->infer_name().c_str());
+
+      // draw the children of the current node
+      for (auto &file_system_entry : current_node->get_children_ref())
       {
          if (line_count == cursor_y) text_color = al_color_name("lime");
-         else text_color = al_color_name("green");
-         al_draw_text(font, text_color, 0, line_height * line_count, ALLEGRO_ALIGN_LEFT, file_system_entry.c_str());
+         else text_color = file_system_entry->infer_is_directory() ? al_color_name("aquamarine") : al_color_name("green");
+         al_draw_text(font, text_color, 0, line_height * line_count, ALLEGRO_ALIGN_LEFT, file_system_entry->infer_name().c_str());
          line_count++;
       }
 
@@ -1942,8 +2099,8 @@ public:
 
 const std::string FileNavigator::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
 const std::string FileNavigator::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
-const std::string FileNavigator::SHOW = "SHOW";
-const std::string FileNavigator::HIDE = "HIDE";
+//const std::string FileNavigator::SHOW = "SHOW";
+//const std::string FileNavigator::HIDE = "HIDE";
 
 
 
@@ -1998,21 +2155,22 @@ std::vector<std::string> get_directory_listing_recursive(std::string directory)
 class System
 {
 public:
-   std::vector<Stage *> stages;
-   FileNavigator file_navigator;
+   std::vector<StageInterface *> stages;
+   //FileNavigator file_navigator;
    ALLEGRO_DISPLAY *display;
 
    System(ALLEGRO_DISPLAY *display)
       : stages({})
-      , file_navigator()
+      //, file_navigator(al_get_current_directory())
       , display(display)
    {
-      file_navigator.set_file_system_entries(get_directory_listing_recursive(al_get_current_directory()));
+      //ALLEGRO_FS_ENTRY *current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
+      //file_navigator.set_file_system_entries(get_directory_listing_recursive(al_get_current_directory()));
    }
 
    // retrieval
 
-   Stage *get_frontmost_stage()
+   StageInterface *get_frontmost_stage()
    {
       if (stages.size() == 0)
       {
@@ -2022,16 +2180,31 @@ public:
       return stages.back();
    }
 
+   Stage *get_frontmost_stage_stage()
+   {
+      StageInterface::type_t type = get_frontmost_stage()->get_type();
+      if (type == Stage::ONE_LINE_INPUT_BOX || type == Stage::CODE_EDITOR)
+      {
+         return static_cast<Stage *>(get_frontmost_stage());
+      }
+      return nullptr;
+   }
+
    // inference
 
    bool is_current_stage_in_edit_mode()
    {
-      return get_frontmost_stage()->get_mode() == Stage::EDIT;
+      Stage *stage = get_frontmost_stage_stage();
+      if (!stage) return false;
+      return stage->get_mode() == Stage::EDIT;
    }
 
-   bool is_current_stage_a_one_line_input_box()
+   bool is_current_stage_a_modal()
    {
-      return get_frontmost_stage()->get_type() == Stage::ONE_LINE_INPUT_BOX;
+      StageInterface::type_t type = get_frontmost_stage()->get_type();
+      if (type == StageInterface::ONE_LINE_INPUT_BOX) return true;
+      if (type == StageInterface::FILE_NAVIGATOR) return true;
+      return false;
    }
 
    // actions
@@ -2050,7 +2223,8 @@ public:
 
    bool run_project_tests()
    {
-      Stage *stage = get_frontmost_stage();
+      Stage *stage = get_frontmost_stage_stage();
+      if (!stage) throw std::runtime_error("cannot run tests on current stage -- not a stage stage");
 
       std::string test_output = RailsMinitestTestRunner(stage->get_filename()).run();
       RailsTestOutputParser rails_test_output_parser(test_output);
@@ -2084,13 +2258,17 @@ public:
 
    bool save_current_stage()
    {
+      //Stage *stage = get_frontmost_stage_stage();
+      //if (!stage) throw std::runtime_error("Cannot save_current_stage; current stage is not a stage stage");
       get_frontmost_stage()->save_file();
       return true;
    }
 
    bool refresh_regex_hilights_on_stage()
    {
-      get_frontmost_stage()->refresh_regex_message_points();
+      Stage *stage = get_frontmost_stage_stage();
+      if (!stage) throw std::runtime_error("Cannot refresh_regex_hilights_on_stage; current stage is not a stage stage");
+      stage->refresh_regex_message_points();
       return true;
    }
 
@@ -2115,28 +2293,19 @@ public:
       return true;
    }
 
-   bool show_file_navigator()
+   bool spawn_file_navigator()
    {
-      file_navigator.show();
+      FileNavigator *file_navigator = new FileNavigator(al_get_current_directory());
+      //file_navigator.set_child_nodes();
+      stages.push_back(file_navigator);
+      //file_navigator.show();
       return true;
    }
 
-   bool hide_file_navigator()
+   bool destroy_topmost_stage()
    {
-      file_navigator.hide();
-      return true;
-   }
-
-   bool toggle_file_navigator()
-   {
-      if (file_navigator.get_visible_and_active()) file_navigator.process_local_event(FileNavigator::HIDE);
-      else file_navigator.process_local_event(FileNavigator::SHOW);
-      return true;
-   }
-
-   bool destroy_current_modal()
-   {
-      if (stages.size() == 1) throw std::runtime_error("Cannot destroy current modal. There is only 1 stage in the system");
+      if (stages.size() == 1) std::cout << "WARNING: destroying topmost stage. There is only 1 stage in the system and there will be none after this action." << std::endl;
+      //if (stages.size() == 1) throw std::runtime_error("Cannot destroy current modal. There is only 1 stage in the system");
       delete stages.back();
       stages.pop_back();
       return true;
@@ -2162,20 +2331,80 @@ public:
       return true;
    }
 
+   bool attempt_to_open_file_navigation_selected_path()
+   {
+      std::vector<std::string> results = { FILE_NAVIGATOR_SELECTION_last_content };
+      //if (!::read_file(results, FILE_NAVIGATOR_SELECTION_FILENAME)) { throw std::runtime_error("Could not attempt_to_open_file_navigation_selected_path: read_file failed"); return false; }
+
+      if (results.empty()) throw std::runtime_error("Could not attempt_to_open_file_navigation_selected_path: expected filename was empty.");
+      std::string filename = results[0];
+
+      placement2d place(100, 20, 400, 400);
+      place.align = vec2d(0, 0);
+      place.scale = vec2d(0.65, 0.65);
+
+      ALLEGRO_FS_ENTRY *fs_entry = al_create_fs_entry(filename.c_str());
+
+      if (!fs_entry)
+      {
+         std::stringstream error_message;
+         error_message << "Could not attempt_to_open_file_navigation_selected_path: fs_entry could not be created. al_get_errno() returned with " << al_get_errno() << std::endl;
+         throw std::runtime_error(error_message.str().c_str());
+      }
+      std::cout << "XXXX" << filename << "XXXXX" << std::endl;
+
+      FileSystemNode file_system_node(fs_entry);
+
+      if (file_system_node.infer_is_directory())
+      {
+         FileNavigator *file_navigator = new FileNavigator(file_system_node.infer_name());
+         //file_navigator.set_child_nodes();
+         stages.push_back(file_navigator);
+      }
+      else // if it's a file
+      {
+         std::vector<std::string> file_contents = {};
+         if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
+
+         Stage *stage = new Stage(filename, place);
+         stage->set_content(file_contents);
+         stages.push_back(stage);
+      }
+
+      //al_destroy_fs_entry(fs_entry);
+      return true;
+   }
+
    bool submit_current_modal()
    {
-      process_local_event(SAVE_CURRENT_STAGE);
-      process_local_event(DESTROY_CURRENT_MODAL);
-      process_local_event(REFRESH_REGEX_HILIGHTS_ON_STAGE);
-      process_local_event(JUMP_TO_NEXT_CODE_POINT_ON_STAGE);
-      process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
-
+      switch (get_frontmost_stage()->get_type())
+      {
+      case StageInterface::ONE_LINE_INPUT_BOX:
+         process_local_event(SAVE_CURRENT_STAGE);
+         process_local_event(DESTROY_TOPMOST_STAGE);
+         process_local_event(REFRESH_REGEX_HILIGHTS_ON_STAGE);
+         process_local_event(JUMP_TO_NEXT_CODE_POINT_ON_STAGE);
+         process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
+         break;
+      case StageInterface::FILE_NAVIGATOR:
+         process_local_event(SAVE_CURRENT_STAGE);  // saves the modal (commits its contents to database)
+         process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
+         //process_local_event(SAVE_CURRENT_STAGE);  // saves the stage (hopefully its a code editor) (commits its contents to database)
+         process_local_event(ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH);
+         //process_local_event(REFRESH_REGEX_HILIGHTS_ON_STAGE);
+         //process_local_event(JUMP_TO_NEXT_CODE_POINT_ON_STAGE);
+         //process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
+         break;
+      default:
+         throw std::runtime_error("submit_current_modal(): invalid modal type");
+         break;
+      }
       return true;
    }
 
    bool escape_current_modal()
    {
-      process_local_event(DESTROY_CURRENT_MODAL);
+      process_local_event(DESTROY_TOPMOST_STAGE);
       return true;
    }
 
@@ -2186,7 +2415,7 @@ public:
    static const std::string RUN_PROJECT_TESTS;
    static const std::string RUN_MAKE;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
-   static const std::string DESTROY_CURRENT_MODAL;
+   static const std::string DESTROY_TOPMOST_STAGE;
    static const std::string ESCAPE_CURRENT_MODAL;
    static const std::string SAVE_CURRENT_STAGE;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
@@ -2196,7 +2425,9 @@ public:
    static const std::string SUBMIT_CURRENT_MODAL;
    static const std::string SHOW_FILE_NAVIGATOR;
    static const std::string HIDE_FILE_NAVIGATOR;
-   static const std::string TOGGLE_FILE_NAVIGATOR;
+   static const std::string SPAWN_FILE_NAVIGATOR;
+   static const std::string DESTROY_FILE_NAVIGATOR;
+   static const std::string ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH;
 
    void process_local_event(std::string event_name)
    {
@@ -2210,7 +2441,7 @@ public:
          else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
          else if (event_name == RUN_PROJECT_TESTS) { executed = true; run_project_tests(); }
          else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { executed = true; spawn_regex_input_box_modal(); }
-         else if (event_name == DESTROY_CURRENT_MODAL) { executed = true; destroy_current_modal(); }
+         else if (event_name == DESTROY_TOPMOST_STAGE) { destroy_topmost_stage(); executed = true; }
          else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
          else if (event_name == SAVE_CURRENT_STAGE) { executed = true; save_current_stage(); }
          else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { executed = true; refresh_regex_hilights_on_stage(); }
@@ -2220,36 +2451,46 @@ public:
          else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
          else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { executed = true; offset_first_line_to_vertically_center_cursor_on_stage(); }
          else if (event_name == RUN_MAKE) { executed = true; run_make(); }
-         else if (event_name == TOGGLE_FILE_NAVIGATOR) { toggle_file_navigator(); executed = true; }
+         else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
+         else if (event_name == ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_file_navigation_selected_path(); executed = true; }
 
          if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
       }
       catch (const std::exception &exception)
       {
-         std::cout << ">BOOM< cannot execute \"" << event_name << "\"" << std::endl;
+         std::cout << ">BOOM< cannot execute \"" << event_name << "\".  The following exception occurred: " << exception.what() << std::endl;
       }
    }
 
    void process_event(ALLEGRO_EVENT &event)
    {
       KeyboardCommandMapper keyboard_command_mapper;
+      //if (file_navigator.get_visible_and_active())
+      //{
+         //file_navigator.process_event(event);
+         //return;
+      //}
+
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, { ROTATE_STAGE_RIGHT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, { ROTATE_STAGE_LEFT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, { SAVE_CURRENT_STAGE, RUN_MAKE });
-      if (is_current_stage_in_edit_mode())
-      {
-        keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE });
-      }
-      if (is_current_stage_a_one_line_input_box())
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, { DESTROY_TOPMOST_STAGE });
+      if (is_current_stage_a_modal())
       {
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { ESCAPE_CURRENT_MODAL });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { SUBMIT_CURRENT_MODAL });
       }
       else
       {
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { TOGGLE_FILE_NAVIGATOR });
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { SPAWN_FILE_NAVIGATOR });
+
+         if (is_current_stage_in_edit_mode())
+         {
+            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE });
+         }
       }
+
 
       bool event_caught = false;
 
@@ -2271,8 +2512,8 @@ public:
 
       if (!event_caught)
       {
-         if (file_navigator.get_visible_and_active()) file_navigator.process_event(event);
-         else get_frontmost_stage()->process_event(event);
+         //if (file_navigator.get_visible_and_active()) file_navigator.process_event(event);
+         get_frontmost_stage()->process_event(event);
       }
    }
 
@@ -2286,14 +2527,16 @@ const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 const std::string System::RUN_MAKE = "RUN_MAKE";
 const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
 const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
-const std::string System::DESTROY_CURRENT_MODAL = "DESTROY_CURRENT_MODAL";
+const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";
 const std::string System::ESCAPE_CURRENT_MODAL = "ESCAPE_CURRENT_MODAL";
 const std::string System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
 const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
 const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
-const std::string System::TOGGLE_FILE_NAVIGATOR = "TOGGLE_FILE_NAVIGATOR";
+const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
+const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
+const std::string System::ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH";
 
 
 
@@ -2315,6 +2558,7 @@ void run_program(std::vector<std::string> filenames)
    ALLEGRO_FONT *consolas_font = al_load_font(resource({"data", "fonts"}, "consolas.ttf").c_str(), 30, 0);
    REGEX_TEMP_FILENAME = resource({"data", "tmp"}, "regex.txt");
    CLIPBOARD_TEMP_FILENAME = resource({"data", "tmp"}, "clipboard.txt");
+   FILE_NAVIGATOR_SELECTION_FILENAME = resource({"data", "tmp"}, "file_navigator_selection.txt");
 
    int display_width = al_get_display_width(display);
    int display_height = al_get_display_height(display);
@@ -2340,9 +2584,9 @@ void run_program(std::vector<std::string> filenames)
    place.scale = vec2d(0.65, 0.65);
 
 
-   placement2d file_navigator_placement(al_get_display_width(display)/2, al_get_display_height(display)/2, al_get_display_width(display), al_get_display_height(display));
-   file_navigator_placement.align = vec2d(0.5, 0.5);
-   file_navigator_placement.scale = vec2d(1, 1);
+   //placement2d file_navigator_placement(al_get_display_width(display)/2, al_get_display_height(display)/3*2, al_get_display_width(display), al_get_display_height(display));
+   //file_navigator_placement.align = vec2d(0.5, 0.5);
+   //file_navigator_placement.scale = vec2d(1, 1);
 
    bool shutdown_program = false;
    bool first_load = true;
@@ -2388,14 +2632,14 @@ void run_program(std::vector<std::string> filenames)
       {
          al_clear_to_color(al_color_name("black"));
 
-         file_navigator_placement.size = vec2d(al_get_display_width(display)/3, al_get_display_height(display)/3);
-         file_navigator_placement.position = vec2d(al_get_display_width(display)/2, al_get_display_height(display)/2);
+         //file_navigator_placement.size = vec2d(al_get_display_width(display)/3, al_get_display_height(display)/3*2);
+         //file_navigator_placement.position = vec2d(al_get_display_width(display)/2, al_get_display_height(display)/2);
 
          for (auto &stage : system.stages)
          {
             stage->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
          }
-         system.file_navigator.render(file_navigator_placement, consolas_font);
+         //system.file_navigator.render(file_navigator_placement, consolas_font);
          al_flip_display();
       }
    }
