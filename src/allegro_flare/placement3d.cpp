@@ -61,6 +61,22 @@ void placement3d::start_transform()
 
 
 
+void placement3d::start_reverse_transform()
+{
+   ALLEGRO_TRANSFORM transform;
+
+   if (!al_get_current_transform()) return;
+   al_copy_transform(&previous_transform, al_get_current_transform());
+
+   this->build_reverse_transform(&transform);
+
+   al_compose_transform(&transform, &previous_transform);
+   al_use_transform(&transform);
+}
+
+
+
+
 void placement3d::restore_transform()
 {
    if (!al_get_current_transform()) return;
