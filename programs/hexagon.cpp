@@ -11,6 +11,7 @@
 
 
 #include <allegro_flare/placement2d.h>
+#include <allegro_flare/placement3d.h>
 #include <allegro_flare/useful_php.h>
 
 
@@ -941,18 +942,20 @@ public:
       FILE_NAVIGATOR,
    };
 
-   placement3d place3d;
-
 private:
    type_t type;
+   placement3d place;
 
 public:
    StageInterface(type_t type)
       : type(type)
+      , place(0, 0, 0)
    {}
    virtual ~StageInterface() {}
 
    type_t get_type() { return type; }
+   placement3d &get_place() { return place; }
+   void set_place(placement3d place) { this->place = place; }
 
    virtual void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) = 0;
    virtual void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0) = 0;
@@ -998,18 +1001,18 @@ private:
 
    // presentation
 
-   placement2d place;
+   //placement2d place;
    int first_line_number;
 
 public:
-   Stage(std::string filename, placement2d place, mode_t mode=EDIT, type_t type=CODE_EDITOR)
+   Stage(std::string filename, mode_t mode=EDIT, type_t type=CODE_EDITOR)
       : StageInterface(type)
       , cursor_x(0)
       , cursor_y(0)
       , mode(mode)
       //, type(type)
       , filename(filename)
-      , place(place)
+      //, place(place)
       , first_line_number(0)
       , code_message_points_overlays()
       , currently_grabbing_visual_selection(false)
@@ -1049,9 +1052,9 @@ public:
       return true;
    }
 
-   placement2d &get_place_ref()
+   placement3d &get_place_ref()
    {
-      return place;
+      return get_place();
    }
 
    mode_t get_mode()
@@ -1384,13 +1387,13 @@ public:
 
    bool move_stage_up(float distance=100)
    {
-      place.position.y += distance;
+      get_place().position.y += distance;
       return true;
    }
 
    bool move_stage_down(float distance=100)
    {
-      place.position.y -= distance;
+      get_place().position.y -= distance;
       return true;
    }
 
@@ -1402,7 +1405,7 @@ public:
 
    bool scale_stage_delta(float delta)
    {
-      place.scale += vec2d(delta, delta);
+      get_place().scale += vec3d(delta, delta, 1.0);
       return true;
    }
 
@@ -1483,12 +1486,12 @@ public:
 
    void render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
    {
-      place.start_transform();
+      get_place().start_transform();
 
       float roundness = 6;
       float padding = 6;
-      al_draw_filled_rounded_rectangle(0-padding*2, 0-padding*2, place.size.x+padding*2, place.size.y+padding*2, roundness, roundness, al_color_name("black"));
-      al_draw_rounded_rectangle(0-padding, 0-padding, place.size.x+padding, place.size.y+padding, roundness, roundness, al_color_name("dodgerblue"), 3.0);
+      al_draw_filled_rounded_rectangle(0-padding*2, 0-padding*2, get_place().size.x+padding*2, get_place().size.y+padding*2, roundness, roundness, al_color_name("black"));
+      al_draw_rounded_rectangle(0-padding, 0-padding, get_place().size.x+padding, get_place().size.y+padding, roundness, roundness, al_color_name("dodgerblue"), 3.0);
 
       float _cursor_y = cursor_y - first_line_number;
       switch(mode)
@@ -1512,7 +1515,7 @@ public:
          al_draw_text(font, al_color_name("dodgerblue"), 0, i*line_height, ALLEGRO_ALIGN_LEFT, lines[i].c_str());
       }
 
-      place.restore_transform();
+      get_place().restore_transform();
    }
 
    void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) override
@@ -1530,7 +1533,7 @@ public:
 
       //al_draw_filled_rectangle(0, 0, al_get_display_width(display), al_get_display_height(display), background_overlay_color);
 
-      place.start_transform();
+      get_place().start_transform();
 
       // draw a frame around the stage
       float padding = 30;
@@ -1594,7 +1597,7 @@ public:
          //code_message_point_renderer.render();
       //}
 
-      place.restore_transform();
+      get_place().restore_transform();
 
       // render edit mode
       ALLEGRO_COLOR color;
@@ -2087,13 +2090,14 @@ public:
 
    // void renderers
 
-   placement2d place;
+   placement3d place;
 
    void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) override
    //void render(placement2d place, ALLEGRO_FONT *font) override
    {
-      placement2d place(al_get_display_width(display)/2, al_get_display_height(display)/2, al_get_display_width(display)/3, al_get_display_height(display)/3*2);
-      place.scale = vec2d(0.6, 0.6);
+      placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0);
+      place.size = vec3d(al_get_display_width(display)/3, al_get_display_height(display)/3*2, 0.0);
+      place.scale = vec3d(0.6, 0.6, 1.0);
 
       //if (!visible_and_active) return;
 
@@ -2332,10 +2336,12 @@ public:
 
    bool spawn_regex_input_box_modal()
    {
-      placement2d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 300, 35);
-      place.scale = vec2d(1.2, 1.2);
+      placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 0.0);
+      place.size = vec3d(300, 35, 0.0);
+      place.scale = vec3d(1.2, 1.2, 1.0);
 
-      Stage *stage = new Stage(REGEX_TEMP_FILENAME, place, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX);
+      Stage *stage = new Stage(REGEX_TEMP_FILENAME, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX);
+      stage->set_place(place);
       stages.push_back(stage);
 
       std::vector<std::string> file_contents;
@@ -2391,9 +2397,10 @@ public:
       if (results.empty()) throw std::runtime_error("Could not attempt_to_open_file_navigation_selected_path: expected filename was empty.");
       std::string filename = results[0];
 
-      placement2d place(100, 20, 400, 400);
-      place.align = vec2d(0, 0);
-      place.scale = vec2d(0.65, 0.65);
+      placement3d place(100, 20, 0.0);
+      place.size = vec3d(400, 400, 0.0);
+      place.align = vec3d(0, 0, 0);
+      place.scale = vec3d(0.65, 0.65, 1.0);
 
       ALLEGRO_FS_ENTRY *fs_entry = al_create_fs_entry(filename.c_str());
 
@@ -2418,7 +2425,8 @@ public:
          std::vector<std::string> file_contents = {};
          if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
 
-         Stage *stage = new Stage(filename, place);
+         Stage *stage = new Stage(filename);// place);
+         stage->set_place(place);
          stage->set_content(file_contents);
          stages.push_back(stage);
       }
@@ -2637,9 +2645,10 @@ void run_program(std::vector<std::string> filenames)
 
 
    //placement2d place(100, 20, 400, 400);
-   placement2d place(0, 0, al_get_display_width(display), al_get_display_height(display));
-   place.align = vec2d(0.5, 0.5);
-   place.scale = vec2d(0.65, 0.65);
+   placement3d place(0, 0, 0);
+   place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
+   place.align = vec3d(0.5, 0.5, 0.0);
+   place.scale = vec3d(0.65, 0.65, 0.0);
 
 
    //placement2d file_navigator_placement(al_get_display_width(display)/2, al_get_display_height(display)/3*2, al_get_display_width(display), al_get_display_height(display));
@@ -2654,7 +2663,8 @@ void run_program(std::vector<std::string> filenames)
 
    for (auto &filename : filenames)
    {
-      Stage *stage = new Stage(filename, place);
+      Stage *stage = new Stage(filename);
+      stage->set_place(place);
 
       std::vector<std::string> lines;
       read_file(lines, filename);
