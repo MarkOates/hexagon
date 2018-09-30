@@ -1098,6 +1098,13 @@ public:
       return "---";
    }
 
+   // inference
+
+   int infer_num_lines_to_draw()
+   {
+      return 50;
+   }
+
    // actions
 
    bool move_cursor_up()
@@ -1120,6 +1127,21 @@ public:
    bool move_cursor_right()
    {
       set_cursor_x(cursor_x + 1);
+      return true;
+   }
+   bool move_cursor_to_top_of_screen()
+   {
+      set_cursor_y(first_line_number);
+      return true;
+   }
+   bool move_cursor_to_middle_of_screen()
+   {
+      set_cursor_y(first_line_number + infer_num_lines_to_draw()/2);
+      return true;
+   }
+   bool move_cursor_to_bottom_of_screen()
+   {
+      set_cursor_y(first_line_number + infer_num_lines_to_draw()-1);
       return true;
    }
    bool move_cursor_jump_to_next_word()
@@ -1627,6 +1649,9 @@ public:
    static const std::string MOVE_CURSOR_DOWN;
    static const std::string MOVE_CURSOR_LEFT;
    static const std::string MOVE_CURSOR_RIGHT;
+   static const std::string MOVE_CURSOR_TO_TOP_OF_SCREEN;
+   static const std::string MOVE_CURSOR_TO_MIDDLE_OF_SCREEN;
+   static const std::string MOVE_CURSOR_TO_BOTTOM_OF_SCREEN;
    static const std::string MOVE_CURSOR_JUMP_TO_NEXT_WORD;
    static const std::string MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD;
    static const std::string JUMP_TO_NEXT_CODE_POINT;
@@ -1668,6 +1693,9 @@ public:
          else if (event_name == MOVE_CURSOR_DOWN) move_cursor_down();
          else if (event_name == MOVE_CURSOR_LEFT) move_cursor_left();
          else if (event_name == MOVE_CURSOR_RIGHT) move_cursor_right();
+         else if (event_name == MOVE_CURSOR_TO_TOP_OF_SCREEN) move_cursor_to_top_of_screen();
+         else if (event_name == MOVE_CURSOR_TO_MIDDLE_OF_SCREEN) move_cursor_to_middle_of_screen();
+         else if (event_name == MOVE_CURSOR_TO_BOTTOM_OF_SCREEN) move_cursor_to_bottom_of_screen();
          else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) move_cursor_jump_to_next_word();
          else if (event_name == MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD) move_cursor_jump_to_previous_word();
          else if (event_name == JUMP_TO_NEXT_CODE_POINT) jump_to_next_code_point();
@@ -1720,6 +1748,9 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { Stage::MOVE_CURSOR_UP });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, false, false, false, { Stage::MOVE_CURSOR_LEFT });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, true, false, false, { Stage::MOVE_CURSOR_TO_TOP_OF_SCREEN });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, true, false, false, { Stage::MOVE_CURSOR_TO_MIDDLE_OF_SCREEN });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, true, false, false, { Stage::MOVE_CURSOR_TO_BOTTOM_OF_SCREEN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, false, false, false, { Stage::JUMP_TO_NEXT_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
@@ -1819,6 +1850,9 @@ std::string const Stage::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
 std::string const Stage::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
 std::string const Stage::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
 std::string const Stage::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
+std::string const Stage::MOVE_CURSOR_TO_TOP_OF_SCREEN = "MOVE_CURSOR_TO_TOP_OF_SCREEN";
+std::string const Stage::MOVE_CURSOR_TO_MIDDLE_OF_SCREEN = "MOVE_CURSOR_TO_MIDDLE_OF_SCREEN";
+std::string const Stage::MOVE_CURSOR_TO_BOTTOM_OF_SCREEN = "MOVE_CURSOR_TO_BOTTOM_OF_SCREEN";
 std::string const Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_WORD";
 std::string const Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD = "MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD";
 std::string const Stage::JUMP_TO_NEXT_CODE_POINT = "JUMP_TO_NEXT_CODE_POINT";
