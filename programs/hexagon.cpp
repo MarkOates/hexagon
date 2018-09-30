@@ -1524,6 +1524,11 @@ public:
 
       if (get_type() == ONE_LINE_INPUT_BOX) { render_as_input_box(display, font, cell_width, cell_height); return; }
 
+      //get_place().start_transform();
+      placement3d &place = get_place();
+
+      place.start_transform();
+
       ALLEGRO_COLOR background_overlay_color = al_color_name("black");
       float opacity = 0.8;
       background_overlay_color.r *= opacity;
@@ -1533,13 +1538,14 @@ public:
 
       //al_draw_filled_rectangle(0, 0, al_get_display_width(display), al_get_display_height(display), background_overlay_color);
 
-      get_place().start_transform();
+      //get_place().start_transform();
+      al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_overlay_color);
 
       // draw a frame around the stage
-      float padding = 30;
-      float roundness = 20;
-      float thickness = 20.0;
-      al_draw_rounded_rectangle(-padding, -padding, al_get_display_width(display)+padding, al_get_display_height(display)+padding, roundness, roundness, al_color_name("deepskyblue"), thickness);
+      //float padding = 30;
+      //float roundness = 20;
+      //float thickness = 20.0;
+      //al_draw_rounded_rectangle(-padding, -padding, al_get_display_width(display)+padding, al_get_display_height(display)+padding, roundness, roundness, al_color_name("deepskyblue"), thickness);
 
       // render cursor
       float _cursor_y = cursor_y - first_line_number;
@@ -1958,7 +1964,7 @@ public:
       , current_node(new FileSystemNode(al_create_fs_entry(directory.c_str())))
       //, visible_and_active(false)
       , cursor_y(0)
-      , place()
+      //, place()
    {
       //current_node = current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
       current_node->create_children();
@@ -2090,22 +2096,25 @@ public:
 
    // void renderers
 
-   placement3d place;
+   //placement3d place;
 
    void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) override
    //void render(placement2d place, ALLEGRO_FONT *font) override
    {
-      placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0);
-      place.size = vec3d(al_get_display_width(display)/3, al_get_display_height(display)/3*2, 0.0);
-      place.scale = vec3d(0.6, 0.6, 1.0);
+      //placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0);
+      //place.size = vec3d(al_get_display_width(display)/3, al_get_display_height(display)/3*2, 0.0);
+      //place.scale = vec3d(0.6, 0.6, 1.0);
 
       //if (!visible_and_active) return;
 
-      place.start_transform();
+
+      placement3d &place = get_place();
+      get_place().start_transform();
 
       float roundness = 6.0;
       float padding_x = cell_width*2;
       float padding_y = cell_width;
+      std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
       al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("black"));
       al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("green"), 3.0);
 
@@ -2336,9 +2345,11 @@ public:
 
    bool spawn_regex_input_box_modal()
    {
-      placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 0.0);
-      place.size = vec3d(300, 35, 0.0);
+      //placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 0.0);
+      placement3d place(0.0, 0.0, 0.0);
+      place.size = vec3d(300, 25, 0.0);
       place.scale = vec3d(1.2, 1.2, 1.0);
+      place.rotation = vec3d(0.0, 0.0, 0.0);
 
       Stage *stage = new Stage(REGEX_TEMP_FILENAME, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX);
       stage->set_place(place);
@@ -2353,7 +2364,22 @@ public:
 
    bool spawn_file_navigator()
    {
+      //placement3d place(0.0, 0.0, 0.0);
+      //place.size = vec3d(al_get_display_width(display)/3, al_get_display_height(display)/3*2, 0.0);
+      //place.scale = vec3d(0.6, 0.6, 1.0);
+
+      placement3d place(0, 0, 0);
+      place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
+      place.align = vec3d(0.5, 0.5, 0.0);
+      place.scale = vec3d(0.9, 0.9, 0.0);
+
+      //placement3d place(0.0, 0.0, 0.0);
+      //place.size = vec3d(300, 35, 0.0);
+      //place.scale = vec3d(1.2, 1.2, 1.0);
+      //place.rotation = vec3d(0.0, 0.0, 0.0);
+
       FileNavigator *file_navigator = new FileNavigator(al_get_current_directory());
+       file_navigator->set_place(place);
       //file_navigator.set_child_nodes();
       stages.push_back(file_navigator);
       //file_navigator.show();
@@ -2397,10 +2423,15 @@ public:
       if (results.empty()) throw std::runtime_error("Could not attempt_to_open_file_navigation_selected_path: expected filename was empty.");
       std::string filename = results[0];
 
-      placement3d place(100, 20, 0.0);
-      place.size = vec3d(400, 400, 0.0);
-      place.align = vec3d(0, 0, 0);
-      place.scale = vec3d(0.65, 0.65, 1.0);
+      //placement3d place(100, 20, 0.0);
+      //place.size = vec3d(400, 400, 0.0);
+      //place.align = vec3d(0, 0, 0);
+      //place.scale = vec3d(0.65, 0.65, 1.0);
+      placement3d place(0, 0, 0);
+      place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
+      place.align = vec3d(0.5, 0.5, 0.0);
+      place.scale = vec3d(0.9, 0.9, 0.0);
+
 
       ALLEGRO_FS_ENTRY *fs_entry = al_create_fs_entry(filename.c_str());
 
@@ -2417,6 +2448,7 @@ public:
       if (file_system_node.infer_is_directory())
       {
          FileNavigator *file_navigator = new FileNavigator(file_system_node.infer_full_name());
+         file_navigator->set_place(place);
          //file_navigator.set_child_nodes();
          stages.push_back(file_navigator);
       }
@@ -2426,6 +2458,7 @@ public:
          if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
 
          Stage *stage = new Stage(filename);// place);
+
          stage->set_place(place);
          stage->set_content(file_contents);
          stages.push_back(stage);
@@ -2616,7 +2649,7 @@ void run_program(std::vector<std::string> filenames)
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    ALLEGRO_DISPLAY *display = al_create_display(2880-200-250, 1800-200-250);
-   ALLEGRO_FONT *consolas_font = al_load_font(resource({"data", "fonts"}, "consolas.ttf").c_str(), 30, 0);
+   ALLEGRO_FONT *consolas_font = al_load_font(resource({"data", "fonts"}, "consolas.ttf").c_str(), 22, 0);
    REGEX_TEMP_FILENAME = resource({"data", "tmp"}, "regex.txt");
    CLIPBOARD_TEMP_FILENAME = resource({"data", "tmp"}, "clipboard.txt");
    FILE_NAVIGATOR_SELECTION_FILENAME = resource({"data", "tmp"}, "file_navigator_selection.txt");
@@ -2648,7 +2681,7 @@ void run_program(std::vector<std::string> filenames)
    placement3d place(0, 0, 0);
    place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
    place.align = vec3d(0.5, 0.5, 0.0);
-   place.scale = vec3d(0.65, 0.65, 0.0);
+   place.scale = vec3d(0.9, 0.9, 0.0);
 
 
    //placement2d file_navigator_placement(al_get_display_width(display)/2, al_get_display_height(display)/3*2, al_get_display_width(display), al_get_display_height(display));
@@ -2658,6 +2691,8 @@ void run_program(std::vector<std::string> filenames)
    bool shutdown_program = false;
    bool first_load = true;
 
+   placement3d rudimentary_camera_place(0, 0, 0);
+   rudimentary_camera_place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
 
    System system(display);
 
@@ -2703,11 +2738,13 @@ void run_program(std::vector<std::string> filenames)
       {
          al_clear_to_color(al_color_name("black"));
 
-         system.camera.setup_camera_perspective(al_get_backbuffer(display));
+         rudimentary_camera_place.start_reverse_transform();
+
+         //system.camera.setup_camera_perspective(al_get_backbuffer(display));
          //system.camera.zoom_pos -= 0.2;
          al_clear_depth_buffer(1000);
          //al_draw_filled_rectangle(0, 0, 2000, 2000, al_color_name("orange"));
-         al_draw_filled_circle(0, 0, 20, al_color_name("deeppink"));
+         //al_draw_filled_circle(0, 0, 20, al_color_name("deeppink"));
 
          //file_navigator_placement.size = vec2d(al_get_display_width(display)/3, al_get_display_height(display)/3*2);
          //file_navigator_placement.position = vec2d(al_get_display_width(display)/2, al_get_display_height(display)/2);
@@ -2717,7 +2754,9 @@ void run_program(std::vector<std::string> filenames)
             stage->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
          }
          //system.file_navigator.render(file_navigator_placement, consolas_font);
+         rudimentary_camera_place.restore_transform();
          al_flip_display();
+         //rudimentary_camera_place.restore_transform();
       }
    }
 
