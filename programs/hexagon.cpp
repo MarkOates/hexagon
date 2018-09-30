@@ -1878,9 +1878,27 @@ public:
       return (al_get_fs_entry_mode(entry) & ALLEGRO_FILEMODE_ISDIR) == ALLEGRO_FILEMODE_ISDIR;
    }
 
-   std::string infer_name()
+   std::string infer_full_name()
    {
       return al_get_fs_entry_name(entry);
+   }
+
+   std::string infer_folder_name()
+   {
+      ALLEGRO_PATH *path = al_create_path(infer_full_name().c_str());
+      if (!path) throw std::runtime_error("infer_folder_name(): cannot create path");
+      std::string folder_name = al_get_path_tail(path);
+      al_destroy_path(path);
+      return folder_name;
+   }
+
+   std::string infer_basename()
+   {
+      ALLEGRO_PATH *path = al_create_path(infer_full_name().c_str());
+      if (!path) throw std::runtime_error("infer_basename(): cannot create path");
+      std::string filename = al_get_path_filename(path);
+      al_destroy_path(path);
+      return filename;
    }
 
    //
@@ -1959,7 +1977,7 @@ public:
    {
       FileSystemNode *node = infer_current_selection();
       if (!node) return "";
-      return node->infer_name();
+      return node->infer_full_name();
    }
 
    // actions
@@ -2066,6 +2084,7 @@ public:
    //void render(placement2d place, ALLEGRO_FONT *font) override
    {
       placement2d place(al_get_display_width(display)/2, al_get_display_height(display)/2, al_get_display_width(display)/3, al_get_display_height(display)/3*2);
+      place.scale = vec2d(0.6, 0.6);
 
       //if (!visible_and_active) return;
 
@@ -2080,14 +2099,19 @@ public:
       ALLEGRO_COLOR text_color;
 
       // draw the current node name
-      al_draw_text(font, al_color_name("aliceblue"), 0, line_height * -1, ALLEGRO_ALIGN_LEFT, current_node->infer_name().c_str());
+      //std::string current_node_label = current_node->infer_is_directory()
+      al_draw_text(font, al_color_name("aliceblue"), 0, line_height * -1, ALLEGRO_ALIGN_LEFT, current_node->infer_full_name().c_str());
 
       // draw the children of the current node
       for (auto &file_system_entry : current_node->get_children_ref())
       {
+         bool is_directory = file_system_entry->infer_is_directory();
+
+         std::string current_node_label = is_directory ? file_system_entry->infer_basename() : file_system_entry->infer_basename();
+
          if (line_count == cursor_y) text_color = al_color_name("lime");
-         else text_color = file_system_entry->infer_is_directory() ? al_color_name("aquamarine") : al_color_name("green");
-         al_draw_text(font, text_color, 0, line_height * line_count, ALLEGRO_ALIGN_LEFT, file_system_entry->infer_name().c_str());
+         else text_color = is_directory ? al_color_name("aquamarine") : al_color_name("green");
+         al_draw_text(font, text_color, 0, line_height * line_count, ALLEGRO_ALIGN_LEFT, current_node_label.c_str());
          line_count++;
       }
 
@@ -2357,7 +2381,7 @@ public:
 
       if (file_system_node.infer_is_directory())
       {
-         FileNavigator *file_navigator = new FileNavigator(file_system_node.infer_name());
+         FileNavigator *file_navigator = new FileNavigator(file_system_node.infer_full_name());
          //file_navigator.set_child_nodes();
          stages.push_back(file_navigator);
       }
