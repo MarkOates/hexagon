@@ -2225,9 +2225,9 @@ public:
       , display(display)
       , camera(0, 0, 0)
    {
-      camera.zoom_pos -= 3.1;
-      camera.position.x += 20;
-      camera.position.y -= 10;
+      //camera.zoom_pos -= 3.1;
+      //camera.position.x += 20;
+      //camera.position.y -= 10;
       //camera.set45_isometric();
       //ALLEGRO_FS_ENTRY *current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
       //file_navigator.set_file_system_entries(get_directory_listing_recursive(al_get_current_directory()));
@@ -2348,7 +2348,7 @@ public:
       //placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 0.0);
       placement3d place(0.0, 0.0, 0.0);
       place.size = vec3d(300, 25, 0.0);
-      place.scale = vec3d(1.2, 1.2, 1.0);
+      place.scale = vec3d(1.3, 1.3, 1.0);
       place.rotation = vec3d(0.0, 0.0, 0.0);
 
       Stage *stage = new Stage(REGEX_TEMP_FILENAME, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX);
@@ -2431,6 +2431,7 @@ public:
       place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
       place.align = vec3d(0.5, 0.5, 0.0);
       place.scale = vec3d(0.9, 0.9, 0.0);
+      //place.scale = vec3d(0.0, 0.0, 0.0);
 
 
       ALLEGRO_FS_ENTRY *fs_entry = al_create_fs_entry(filename.c_str());
@@ -2441,7 +2442,7 @@ public:
          error_message << "Could not attempt_to_open_file_navigation_selected_path: fs_entry could not be created. al_get_errno() returned with " << al_get_errno() << std::endl;
          throw std::runtime_error(error_message.str().c_str());
       }
-      std::cout << "XXXX" << filename << "XXXXX" << std::endl;
+      //std::cout << "XXXX" << filename << "XXXXX" << std::endl;
 
       FileSystemNode file_system_node(fs_entry);
 
@@ -2738,9 +2739,9 @@ void run_program(std::vector<std::string> filenames)
       {
          al_clear_to_color(al_color_name("black"));
 
-         rudimentary_camera_place.start_reverse_transform();
+         //rudimentary_camera_place.start_reverse_transform();
 
-         //system.camera.setup_camera_perspective(al_get_backbuffer(display));
+         system.camera.setup_camera_perspective(al_get_backbuffer(display));
          //system.camera.zoom_pos -= 0.2;
          al_clear_depth_buffer(1000);
          //al_draw_filled_rectangle(0, 0, 2000, 2000, al_color_name("orange"));
@@ -2754,7 +2755,7 @@ void run_program(std::vector<std::string> filenames)
             stage->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
          }
          //system.file_navigator.render(file_navigator_placement, consolas_font);
-         rudimentary_camera_place.restore_transform();
+         //rudimentary_camera_place.restore_transform();
          al_flip_display();
          //rudimentary_camera_place.restore_transform();
       }
