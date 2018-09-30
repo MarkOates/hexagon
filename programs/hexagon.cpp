@@ -18,6 +18,7 @@
 #include <Blast/KeyboardCommandMapper.hpp>
 #include <Blast/ShellCommandExecutor.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
+#include <lib/camera.h>
 
 
 using namespace Blast;
@@ -1525,9 +1526,15 @@ public:
       background_overlay_color.b *= opacity;
       background_overlay_color.a *= opacity;
 
-      al_draw_filled_rectangle(0, 0, al_get_display_width(display), al_get_display_height(display), background_overlay_color);
+      //al_draw_filled_rectangle(0, 0, al_get_display_width(display), al_get_display_height(display), background_overlay_color);
 
       place.start_transform();
+
+      // draw a frame around the stage
+      float padding = 30;
+      float roundness = 20;
+      float thickness = 20.0;
+      al_draw_rounded_rectangle(-padding, -padding, al_get_display_width(display)+padding, al_get_display_height(display)+padding, roundness, roundness, al_color_name("deepskyblue"), thickness);
 
       // render cursor
       float _cursor_y = cursor_y - first_line_number;
@@ -2195,12 +2202,18 @@ public:
    std::vector<StageInterface *> stages;
    //FileNavigator file_navigator;
    ALLEGRO_DISPLAY *display;
+   Camera camera;
 
    System(ALLEGRO_DISPLAY *display)
       : stages({})
       //, file_navigator(al_get_current_directory())
       , display(display)
+      , camera(0, 0, 0)
    {
+      camera.zoom_pos -= 3.1;
+      camera.position.x += 20;
+      camera.position.y -= 10;
+      //camera.set45_isometric();
       //ALLEGRO_FS_ENTRY *current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
       //file_navigator.set_file_system_entries(get_directory_listing_recursive(al_get_current_directory()));
    }
@@ -2588,6 +2601,7 @@ void run_program(std::vector<std::string> filenames)
 
    al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
    al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
+   al_set_new_display_option(ALLEGRO_DEPTH_SIZE, 32, ALLEGRO_SUGGEST);
    al_set_new_display_flags(ALLEGRO_RESIZABLE);
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
@@ -2604,6 +2618,10 @@ void run_program(std::vector<std::string> filenames)
    al_register_event_source(event_queue, al_get_keyboard_event_source());
    al_register_event_source(event_queue, al_get_display_event_source(display));
 
+   ALLEGRO_TIMER *primary_timer = al_create_timer(1.0/30.0);
+   al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
+   al_start_timer(primary_timer);
+
    float logo_radius = 60;
    Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, al_color_name("darkviolet"), 3);
    logo.render();
@@ -2616,8 +2634,9 @@ void run_program(std::vector<std::string> filenames)
    std::string first_filename = filenames.empty() ? "" : filenames[0];
 
 
-   placement2d place(100, 20, 400, 400);
-   place.align = vec2d(0, 0);
+   //placement2d place(100, 20, 400, 400);
+   placement2d place(0, 0, al_get_display_width(display), al_get_display_height(display));
+   place.align = vec2d(0.5, 0.5);
    place.scale = vec2d(0.65, 0.65);
 
 
@@ -2663,11 +2682,20 @@ void run_program(std::vector<std::string> filenames)
          //note that each rezie will cause the display to reload, and will be a bit laggy
          //refresh = false;
          break;
+      case ALLEGRO_EVENT_TIMER:
+         continue;
+         break;
       }
 
       if (refresh)
       {
          al_clear_to_color(al_color_name("black"));
+
+         system.camera.setup_camera_perspective(al_get_backbuffer(display));
+         //system.camera.zoom_pos -= 0.2;
+         al_clear_depth_buffer(1000);
+         //al_draw_filled_rectangle(0, 0, 2000, 2000, al_color_name("orange"));
+         al_draw_filled_circle(0, 0, 20, al_color_name("deeppink"));
 
          //file_navigator_placement.size = vec2d(al_get_display_width(display)/3, al_get_display_height(display)/3*2);
          //file_navigator_placement.position = vec2d(al_get_display_width(display)/2, al_get_display_height(display)/2);
