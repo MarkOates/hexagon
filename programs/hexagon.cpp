@@ -930,6 +930,52 @@ SystemWideMotion motion;
 
 
 
+class Action
+{
+private:
+   std::string name;
+
+public:
+   Action(std::string name) : name(name) {}
+
+   std::string get_name() { return name; }
+};
+
+
+
+class ActionQueueRecording
+{
+private:
+   std::string name;
+   std::vector<Action> actions;
+
+public:
+   ActionQueueRecording(std::string name)
+      : name(name)
+   {}
+
+   void clear_actions() { actions.clear(); } 
+   std::string get_name() { return name; }
+   void append_action(Action action) { actions.push_back(action); }
+   int infer_num_actions() { return actions.size(); }
+   Action get_action_at(int index)
+   {
+      std::cout << typeid(this).name() << std::endl;
+
+      if (index < 0 || index >= actions.size())
+      {
+         std::stringstream error_message;
+         error_message << "\033[0;31m" << "[ActionQueueRecording]: Error attempting to access index ("
+            << index << ") which is outside of range (0-" << actions.size() << ")" << "\033[0m" << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+
+      return actions[index];
+   }
+};
+
+
+
 
 class StageInterface
 {
