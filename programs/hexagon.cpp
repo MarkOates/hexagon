@@ -171,6 +171,124 @@ public:
 
 
 
+class ActionData
+{
+private:
+   enum datatype {
+      UNBOUND,
+      STRING,
+      CHAR,
+      BOOL,
+      FLOAT,
+      DOUBLE,
+      INT,
+   };
+
+   datatype type;
+   const std::string ATTRIBUTE_KEY = "value";
+
+   static std::string _get_datatype_string(datatype type)
+   {
+      switch(type)
+      {
+         case UNBOUND:
+            return "unbound";
+            break;
+         case STRING:
+            return "string";
+            break;
+         case CHAR:
+            return "char";
+            break;
+         case BOOL:
+            return "bool";
+            break;
+         case FLOAT:
+            return "float";
+            break;
+         case DOUBLE:
+            return "double";
+            break;
+         case INT:
+            return "int";
+            break;
+         default:
+            throw std::runtime_error("[ActionData]: Unidentified attribute type - boom!");
+            break;
+      };
+   }
+
+   std::string string_value;
+
+public:
+   ActionData() : type(UNBOUND) {}
+   ActionData(std::string string_value) : type(STRING), string_value(string_value) {}
+
+   ~ActionData() {}
+
+   std::string get_string()
+   {
+      if (type != STRING)
+      {
+         std::stringstream error_message;
+         error_message << "Attempting to get a string attribute when it is defined as another type \"" << _get_datatype_string(type) << "\"." << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+      return string_value;
+   }
+};
+
+
+
+class Action
+{
+private:
+   std::string name;
+   ActionData data1;
+
+public:
+   Action(std::string name, ActionData data1)
+      : name(name)
+      , data1(data1)
+   {}
+
+   ~Action() {}
+
+   std::string get_name() { return name; }
+   ActionData get_data1() { return data1; }
+};
+
+
+
+class ActionQueueRecording
+{
+private:
+   std::string name;
+   std::vector<Action> actions;
+
+public:
+   ActionQueueRecording(std::string name)
+      : name(name)
+   {}
+
+   void clear_actions() { actions.clear(); }
+   std::string get_name() { return name; }
+   void append_action(Action action) { actions.push_back(action); }
+   int infer_num_actions() { return actions.size(); }
+   Action get_action_at(int index)
+   {
+      if (index < 0 || index >= actions.size())
+      {
+         std::stringstream error_message;
+         error_message << "\033[0;31m" << "[ActionQueueRecording]: Error attempting to access index ("
+            << index << ") which is outside of range (0-" << actions.size() << ")" << "\033[0m" << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+
+      return actions[index];
+   }
+};
+
 class GitLinesModifiedExtractor
 {
 private:
@@ -931,6 +1049,9 @@ SystemWideMotion motion;
 
 
 
+
+
+
 class StageInterface
 {
 public:
@@ -958,7 +1079,7 @@ public:
    void set_place(placement3d place) { this->place = place; }
 
    virtual void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) = 0;
-   virtual void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0) = 0;
+   virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) = 0;
    virtual void process_event(ALLEGRO_EVENT &event) = 0;
 
    // actions
@@ -979,7 +1100,6 @@ public:
    {
       EDIT,
       INSERT,
-      COMMAND,
    };
 
    //enum type_t
@@ -1004,6 +1124,9 @@ private:
    //placement2d place;
    int first_line_number;
 
+   ActionQueueRecording last_performed_action_queue_recording;
+   bool last_performed_action_queue_is_recording;
+
 public:
    Stage(std::string filename, mode_t mode=EDIT, type_t type=CODE_EDITOR)
       : StageInterface(type)
@@ -1014,6 +1137,8 @@ public:
       , filename(filename)
       //, place(place)
       , first_line_number(0)
+      , last_performed_action_queue_recording("last-performed-action-queue-recording")
+      , last_performed_action_queue_is_recording(false)
       , code_message_points_overlays()
       , currently_grabbing_visual_selection(false)
       , selections()
@@ -1094,7 +1219,6 @@ public:
    {
       if (mode == EDIT) return (currently_grabbing_visual_selection ? "EDIT - VISUAL" : "EDIT");
       if (mode == INSERT) return "INSERT";
-      if (mode == COMMAND) return "COMMAND";
       return "---";
    }
 
@@ -1290,11 +1414,6 @@ public:
    bool set_edit_mode()
    {
       mode = EDIT;
-      return true;
-   }
-   bool set_operator_mode()
-   {
-      mode = COMMAND;
       return true;
    }
 
@@ -1552,6 +1671,42 @@ public:
       return true;
    }
 
+   bool clear_last_performed_action_queue_recording()
+   {
+      last_performed_action_queue_recording.clear_actions();
+      return true;
+   }
+
+   bool start_recording_last_performed_action_queue_recording()
+   {
+      last_performed_action_queue_is_recording = true;
+      return true;
+   }
+
+   bool stop_recording_last_performed_action_queue_recording()
+   {
+      last_performed_action_queue_is_recording = false;
+      return true;
+   }
+
+   bool play_last_performed_action_queue_recording()
+   {
+      bool previous_last_performed_action_queue_is_recording = last_performed_action_queue_is_recording;
+      last_performed_action_queue_is_recording = false;
+
+      ActionQueueRecording recording = last_performed_action_queue_recording;
+
+      for (int i=0; i<recording.infer_num_actions(); i++)
+      {
+         Action action = recording.get_action_at(i);
+         process_local_event(action.get_name(), action.get_data1());
+      }
+
+      last_performed_action_queue_is_recording = previous_last_performed_action_queue_is_recording;
+
+      return true;
+   }
+
    // complete
 
    void render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
@@ -1571,9 +1726,6 @@ public:
          break;
       case INSERT:
          al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"), 3);
-         break;
-      case COMMAND:
-         al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("dodgerblue"), 5);
          break;
       }
 
@@ -1627,9 +1779,6 @@ public:
       case INSERT:
          al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"), 3);
          break;
-      case COMMAND:
-         al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("dodgerblue"), 5);
-         break;
       }
 
       draw_selections(cell_width, cell_height);
@@ -1682,7 +1831,6 @@ public:
       {
       case EDIT: color = (currently_grabbing_visual_selection ? al_color_name("orange") : al_color_name("red")); break;
       case INSERT: color = al_color_name("lime"); break;
-      case COMMAND: color = al_color_name("dodgerblue"); break;
       default: break;
       }
 
@@ -1710,7 +1858,6 @@ public:
    static const std::string INSERT_STRING;
    static const std::string SET_INSERT_MODE;
    static const std::string SET_EDIT_MODE;
-   static const std::string SET_COMMAND_MODE;
    static const std::string JOIN_LINES;
    static const std::string SPLIT_LINES;
    static const std::string MOVE_CURSOR_TO_START_OF_LINE;
@@ -1739,8 +1886,12 @@ public:
    static const std::string TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION;
    static const std::string YANK_SELECTED_TEXT_TO_CLIPBOARD;
    static const std::string PASTE_SELECTED_TEXT_FROM_CLIPBOARD;
+   static const std::string CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
+   static const std::string START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
+   static const std::string STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
+   static const std::string PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
 
-   void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0) override
+   void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override
    {
       std::cout << "Stage::" << event_name << std::endl;
 
@@ -1760,10 +1911,9 @@ public:
          else if (event_name == JUMP_TO_NEXT_CODE_POINT) jump_to_next_code_point();
          else if (event_name == JUMP_TO_PREVIOUS_CODE_POINT) jump_to_previous_code_point();
          else if (event_name == DELETE_CHARACTER) delete_character();
-         else if (event_name == INSERT_STRING) insert_string(*(std::string *)data1);
+         else if (event_name == INSERT_STRING) insert_string(action_data1.get_string());
          else if (event_name == SET_INSERT_MODE) set_insert_mode();
          else if (event_name == SET_EDIT_MODE) set_edit_mode();
-         else if (event_name == SET_COMMAND_MODE) set_operator_mode();
          else if (event_name == JOIN_LINES) join_lines();
          else if (event_name == SPLIT_LINES) split_lines();
          else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) move_cursor_to_start_of_line();
@@ -1792,11 +1942,21 @@ public:
          else if (event_name == TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION) toggle_currently_grabbing_visual_selection();
          else if (event_name == YANK_SELECTED_TEXT_TO_CLIPBOARD) yank_selected_text_to_clipboard();
          else if (event_name == PASTE_SELECTED_TEXT_FROM_CLIPBOARD) paste_selected_text_from_clipboard();
+         else if (event_name == CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING) clear_last_performed_action_queue_recording();
+         else if (event_name == START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING) start_recording_last_performed_action_queue_recording();
+         else if (event_name == STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING) stop_recording_last_performed_action_queue_recording();
+         else if (event_name == PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING) play_last_performed_action_queue_recording();
       }
 
       catch (const std::exception &e)
       {
-         std::cout << "💥 cannot execute \"" << event_name << "\"" << std::endl;
+         std::cout << "\033[0;33m💥 cannot execute \"" << event_name << "\": \033[0;31m" << e.what() << "\033[0;33m\033[0m" << std::endl;
+      }
+
+      if (last_performed_action_queue_is_recording && event_name != START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING)
+      {
+         std::cout << "   \033[0;30mStage:: recording " << event_name << " event to last_performed_action_queue_recording queue\033[0m" << std::endl;
+         last_performed_action_queue_recording.append_action(Action(event_name, action_data1));
       }
    }
 
@@ -1806,9 +1966,9 @@ public:
       //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
       KeyboardCommandMapper edit_mode__keyboard_command_mapper;
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, true,  false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD, Stage::SET_INSERT_MODE });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, true,  false, false, { Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SET_INSERT_MODE });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, false,  false, false, { Stage::MOVE_CURSOR_RIGHT, Stage::SET_INSERT_MODE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, true,  false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD, Stage::SET_INSERT_MODE, });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, true,  false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SET_INSERT_MODE, });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, false,  false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::MOVE_CURSOR_RIGHT, Stage::SET_INSERT_MODE, });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { Stage::MOVE_CURSOR_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, true,  false, false, { Stage::JOIN_LINES });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { Stage::MOVE_CURSOR_UP });
@@ -1825,9 +1985,9 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, false, false, false, { Stage::JUMP_TO_NEXT_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, true, false, false, { Stage::JUMP_TO_PREVIOUS_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::SET_INSERT_MODE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::SET_INSERT_MODE, });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, false, false, { Stage::DELETE_CHARACTER, Stage::SET_INSERT_MODE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::DELETE_CHARACTER, Stage::SET_INSERT_MODE, });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, true, false, { Stage::JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN, Stage::OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_F, false, true, false, { Stage::JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN, Stage::OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN });
@@ -1837,8 +1997,8 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, true, false, { Stage::STEP_FIRST_LINE_NUM_DOWN });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, { Stage::SCALE_STAGE_UP });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, { Stage::SCALE_STAGE_DOWN });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, { Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, true, false, false, { Stage::MOVE_CURSOR_UP, Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE, });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, true, false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::MOVE_CURSOR_UP, Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE, });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, { Stage::SAVE_FILE, Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
       //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { Stage::REFRESH_REGEX_MESSAGE_POINTS });
@@ -1846,21 +2006,17 @@ public:
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_V, false, false, false, { Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, { Stage::YANK_SELECTED_TEXT_TO_CLIPBOARD });
       edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, true, false, false, { Stage::PASTE_SELECTED_TEXT_FROM_CLIPBOARD });
-      //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, { Stage::SET_COMMAND_MODE, Stage::SET_OPERATOR_DELETE });
+      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP, false, false, false, { Stage::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
 
 
       //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
       //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
       KeyboardCommandMapper insert_mode__keyboard_command_mapper;
-      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { Stage::SET_EDIT_MODE });
-      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, true, false, { Stage::SET_EDIT_MODE });
+      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { Stage::SET_EDIT_MODE, Stage::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
+      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, true, false, { Stage::SET_EDIT_MODE, Stage::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, { Stage::MOVE_CURSOR_LEFT, Stage::DELETE_CHARACTER });
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE });
       insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
-
-
-      KeyboardCommandMapper operator_mode__keyboard_command_mapper;
-      //operator_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, { Stage::SET_OPERATOR_MOTION_LINE; });
 
 
       switch(mode)
@@ -1897,23 +2053,12 @@ public:
             if (mapped_events.empty())
             {
                char character = (char)(event.keyboard.unichar);
-               std::string *string = new std::string(" ");
-               string->operator[](0) = character;
-               process_local_event(INSERT_STRING, (intptr_t)string);
+               std::string string = " ";
+               string[0] = character;
+               process_local_event(INSERT_STRING, ActionData(string));
                process_local_event(MOVE_CURSOR_RIGHT);
-               delete string;
             }
             break;
-         }
-         break;
-      case COMMAND:
-         switch(event.type)
-         {
-         case ALLEGRO_EVENT_KEY_CHAR:
-           // obtain key mapping, perform it, see if it evaluates to a final complete command
-           // evaluate
-           process_local_event(SET_EDIT_MODE);
-           break;
          }
          break;
       }
@@ -1939,7 +2084,6 @@ std::string const Stage::DELETE_CHARACTER = "DELETE_CHARACTER";
 std::string const Stage::INSERT_STRING = "INSERT_STRING";
 std::string const Stage::SET_INSERT_MODE = "SET_INSERT_MODE";
 std::string const Stage::SET_EDIT_MODE = "SET_EDIT_MODE";
-std::string const Stage::SET_COMMAND_MODE = "SET_COMMAND_MODE";
 std::string const Stage::JOIN_LINES = "JOIN_LINES";
 std::string const Stage::SPLIT_LINES = "SPLIT_LINES";
 std::string const Stage::MOVE_CURSOR_TO_START_OF_LINE = "MOVE_CURSOR_TO_START_OF_LINE";
@@ -1968,6 +2112,10 @@ std::string const Stage::DESTROY_CURRENT_VISUAL_SELECTION = "DESTROY_CURRENT_VIS
 std::string const Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION = "TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION";
 std::string const Stage::YANK_SELECTED_TEXT_TO_CLIPBOARD = "YANK_SELECTED_TEXT_TO_CLIPBOARD";
 std::string const Stage::PASTE_SELECTED_TEXT_FROM_CLIPBOARD = "PASTE_SELECTED_TEXT_FROM_CLIPBOARD";
+std::string const Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
+std::string const Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
+std::string const Stage::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
+std::string const Stage::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
 
 
 
@@ -2156,7 +2304,7 @@ public:
    //static const std::string SHOW;
    //static const std::string HIDE;
 
-   void process_local_event(std::string event_name, intptr_t data1=0, intptr_t data2=0) override
+   void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override
    {
       std::cout << "FileNavigator::" << event_name << std::endl;
 
