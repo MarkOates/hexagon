@@ -1061,6 +1061,7 @@ public:
       CODE_EDITOR,
       ONE_LINE_INPUT_BOX,
       FILE_NAVIGATOR,
+      KEYBOARD_INPUTS_MODAL,
    };
 
 private:
@@ -1083,7 +1084,7 @@ public:
       {
       case ONE_LINE_INPUT_BOX:
       case FILE_NAVIGATOR:
-      case KEYBOARD_INPUT_MODAL:
+      case KEYBOARD_INPUTS_MODAL:
          return true;
       default:
         return false;
@@ -1097,6 +1098,42 @@ public:
    // actions
 
    virtual bool save_file() = 0;
+};
+
+
+
+class KeyboardInputsModal : public StageInterface
+{
+private:
+   KeyboardCommandMapper *keyboard_command_mapper;
+
+public:
+   KeyboardInputsModal(KeyboardCommandMapper *keyboard_command_mapper)
+      : StageInterface(KEYBOARD_INPUTS_MODAL)
+      , keyboard_command_mapper(keyboard_command_mapper)
+   {}
+
+   virtual void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+   {
+      if (!display) throw std::runtime_error("[KeyboardInputsModal] error: display cannot be a nullptr.");
+      if (!font) throw std::runtime_error("[KeyboardInputsModal] error: font cannot be a nullptr.");
+
+      placement3d &place = get_place();
+
+      float border_thickness = 5.0;
+      place.size = vec3d(500.0, 400.0, 0.0);
+      place.align = vec3d(0.5, 0.5, 0.0);
+      place.rotation = vec3d(place.rotation.x, place.rotation.y, place.rotation.z);
+
+      place.start_transform();
+      al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color::black);
+      al_draw_rounded_rectangle(0 - border_thickness, 0 - border_thickness, place.size.x + border_thickness, place.size.y + border_thickness, 8.0, 8.0, color::dimgray, border_thickness);
+      place.restore_transform();
+   }
+
+   virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) {}
+   virtual void process_event(ALLEGRO_EVENT &event) {}
+   virtual bool save_file() { return true; }
 };
 
 
@@ -2779,6 +2816,12 @@ public:
       return true;
    }
 
+   bool spawn_keyboard_inputs_modal()
+   {
+      KeyboardInputsModal *keyboard_input_modal = new KeyboardInputsModal(nullptr);
+      stages.push_back(keyboard_input_modal);
+   }
+
    // events
 
    static const std::string ROTATE_STAGE_RIGHT;
@@ -2799,6 +2842,7 @@ public:
    static const std::string SPAWN_FILE_NAVIGATOR;
    static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH;
+   static const std::string SPAWN_KEYBOARD_INPUTS_MODAL;
 
    void process_local_event(std::string event_name)
    {
@@ -2819,11 +2863,12 @@ public:
          else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { executed = true; set_regex_input_box_modal_to_insert_mode(); }
          else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { executed = true; jump_to_next_code_point_on_stage(); }
          else if (event_name == SUBMIT_CURRENT_MODAL) { executed = true; submit_current_modal(); }
-         else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
+         //else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
          else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { executed = true; offset_first_line_to_vertically_center_cursor_on_stage(); }
          else if (event_name == RUN_MAKE) { executed = true; run_make(); }
          else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
          else if (event_name == ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_file_navigation_selected_path(); executed = true; }
+         else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
 
          if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
       }
@@ -2859,6 +2904,7 @@ public:
          if (is_current_stage_in_edit_mode())
          {
             keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE });
+            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, true,  false, false, { SPAWN_KEYBOARD_INPUTS_MODAL });
          }
       }
 
@@ -2908,6 +2954,7 @@ const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH";
+const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
 
 
 
