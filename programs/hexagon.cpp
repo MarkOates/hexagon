@@ -13,6 +13,7 @@
 #include <allegro_flare/placement2d.h>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/useful_php.h>
+#include <allegro_flare/render_cache.h>
 
 
 #include <Blast/StringSplitter.hpp>
@@ -2165,6 +2166,39 @@ std::string const Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "CLEAR_LA
 std::string const Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
 std::string const Stage::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
 std::string const Stage::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
+
+
+
+class StageRenderer
+{
+private:
+   ALLEGRO_DISPLAY *display;
+   RenderCache render_cache;
+   Stage *stage;
+
+   void render_raw()
+   {
+      // not yet implemented
+   }
+
+public:
+   StageRenderer(Stage *stage, ALLEGRO_DISPLAY *display)
+      : stage(stage)
+      , display(display)
+      , render_cache()
+   {}
+
+   void render()
+   {
+      render_cache.setup_surface(800, 700);
+      render_raw();
+      render_cache.finish_surface();
+
+      stage->get_place().start_transform();
+      render_cache.draw(0, 0);
+      stage->get_place().restore_transform();
+   }
+};
 
 
 
