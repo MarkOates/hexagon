@@ -23,6 +23,8 @@ private:
 
 public:
    RenderCache();
+   ~RenderCache();
+
    void setup_surface(int w, int h, int multisamples=0, int depth=0);
    void finish_surface();
    void draw(float origin_x, float origin_y);
