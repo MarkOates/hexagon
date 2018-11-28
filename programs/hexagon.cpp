@@ -1077,6 +1077,18 @@ public:
    type_t get_type() { return type; }
    placement3d &get_place() { return place; }
    void set_place(placement3d place) { this->place = place; }
+   bool infer_is_modal()
+   {
+      switch (type)
+      {
+      case ONE_LINE_INPUT_BOX:
+      case FILE_NAVIGATOR:
+      case KEYBOARD_INPUT_MODAL:
+         return true;
+      default:
+        return false;
+      }
+   }
 
    virtual void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) = 0;
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) = 0;
@@ -2533,10 +2545,8 @@ public:
 
    bool is_current_stage_a_modal()
    {
-      StageInterface::type_t type = get_frontmost_stage()->get_type();
-      if (type == StageInterface::ONE_LINE_INPUT_BOX) return true;
-      if (type == StageInterface::FILE_NAVIGATOR) return true;
-      return false;
+      StageInterface *frontmost_stage = get_frontmost_stage();
+      return frontmost_stage && frontmost_stage->infer_is_modal();
    }
 
    // actions
