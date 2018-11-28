@@ -11,7 +11,7 @@
 
 RenderCache::RenderCache()
    : render(NULL)
-   , padding(3)
+   , padding(100)
    , previous_state()
    , previous_samples(0)
    , previous_depth(0)
