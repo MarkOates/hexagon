@@ -1144,6 +1144,23 @@ public:
 
 
 
+class EventControllerInterface
+{
+public:
+   EventControllerInterface();
+   virtual ~EventControllerInterface();
+
+   virtual void process_local_event(std::string event_name, ActionData action_data1=ActionData()) = 0;
+   virtual void process_event(ALLEGRO_EVENT &event) = 0;
+};
+
+
+
+EventControllerInterface::EventControllerInterface() {}
+EventControllerInterface::~EventControllerInterface() {}
+
+
+
 class Stage;
 
 class StageRenderer
@@ -1164,6 +1181,81 @@ public:
    ~StageRenderer();
 
    void render();
+};
+
+
+
+class StageEventController : public EventControllerInterface
+{
+private:
+   Stage *stage;
+
+   ActionQueueRecording last_performed_action_queue_recording;
+   bool last_performed_action_queue_is_recording;
+
+public:
+   StageEventController(Stage *stage);
+   virtual ~StageEventController();
+
+   bool clear_last_performed_action_queue_recording();
+   bool start_recording_last_performed_action_queue_recording();
+   bool stop_recording_last_performed_action_queue_recording();
+   bool is_last_performed_action_queue_recording();
+   bool play_last_performed_action_queue_recording();
+
+   static const std::string MOVE_CURSOR_UP;
+   static const std::string MOVE_CURSOR_DOWN;
+   static const std::string MOVE_CURSOR_LEFT;
+   static const std::string MOVE_CURSOR_RIGHT;
+   static const std::string MOVE_CURSOR_TO_TOP_OF_SCREEN;
+   static const std::string MOVE_CURSOR_TO_MIDDLE_OF_SCREEN;
+   static const std::string MOVE_CURSOR_TO_BOTTOM_OF_SCREEN;
+   static const std::string MOVE_CURSOR_JUMP_TO_NEXT_WORD;
+   static const std::string MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD;
+   static const std::string MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD;
+   static const std::string JUMP_CURSOR_TO_END_OF_NEXT_WORD;
+   static const std::string JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD;
+   static const std::string JUMP_TO_NEXT_CODE_POINT;
+   static const std::string JUMP_TO_PREVIOUS_CODE_POINT;
+   static const std::string DELETE_CHARACTER;
+   static const std::string INSERT_STRING;
+   static const std::string SET_INSERT_MODE;
+   static const std::string SET_EDIT_MODE;
+   static const std::string JOIN_LINES;
+   static const std::string SPLIT_LINES;
+   static const std::string MOVE_CURSOR_TO_START_OF_LINE;
+   static const std::string MOVE_CURSOR_TO_END_OF_LINE;
+   static const std::string SAVE_FILE;
+   static const std::string MOVE_STAGE_UP;
+   static const std::string MOVE_STAGE_DOWN;
+   static const std::string SCALE_STAGE_UP;
+   static const std::string SCALE_STAGE_DOWN;
+   static const std::string JUMP_FIRST_LINE_NUM_DOWN;
+   static const std::string JUMP_FIRST_LINE_NUM_UP;
+   static const std::string JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN;
+   static const std::string JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN;
+   static const std::string STEP_FIRST_LINE_NUM_DOWN;
+   static const std::string STEP_FIRST_LINE_NUM_UP;
+   static const std::string OFFSET_CURSOR_POSITION_Y_DOWN;
+   static const std::string OFFSET_CURSOR_POSITION_Y_UP;
+   static const std::string OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN;
+   static const std::string OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN;
+   static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS;
+   //static const std::string TOGGLE_SHOWING_CODE_MESSAGE_POINTS;
+   static const std::string REFRESH_REGEX_MESSAGE_POINTS;
+   static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR;
+   static const std::string CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION;
+   static const std::string DESTROY_CURRENT_VISUAL_SELECTION;
+   static const std::string TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION;
+   static const std::string YANK_SELECTED_TEXT_TO_CLIPBOARD;
+   static const std::string PASTE_SELECTED_TEXT_FROM_CLIPBOARD;
+   static const std::string CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
+   static const std::string START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
+   static const std::string STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
+   static const std::string PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
+
+   void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override;
+   void process_event(ALLEGRO_EVENT &event) override;
 };
 
 
@@ -1203,9 +1295,6 @@ private:
    //placement2d place;
    int first_line_number;
 
-   ActionQueueRecording last_performed_action_queue_recording;
-   bool last_performed_action_queue_is_recording;
-
 public:
    Stage(std::string filename, mode_t mode=EDIT, type_t type=CODE_EDITOR)
       : StageInterface(type)
@@ -1216,8 +1305,6 @@ public:
       , filename(filename)
       //, place(place)
       , first_line_number(0)
-      , last_performed_action_queue_recording("last-performed-action-queue-recording")
-      , last_performed_action_queue_is_recording(false)
       , code_message_points_overlays()
       , currently_grabbing_visual_selection(false)
       , selections()
@@ -1750,42 +1837,6 @@ public:
       return true;
    }
 
-   bool clear_last_performed_action_queue_recording()
-   {
-      last_performed_action_queue_recording.clear_actions();
-      return true;
-   }
-
-   bool start_recording_last_performed_action_queue_recording()
-   {
-      last_performed_action_queue_is_recording = true;
-      return true;
-   }
-
-   bool stop_recording_last_performed_action_queue_recording()
-   {
-      last_performed_action_queue_is_recording = false;
-      return true;
-   }
-
-   bool play_last_performed_action_queue_recording()
-   {
-      bool previous_last_performed_action_queue_is_recording = last_performed_action_queue_is_recording;
-      last_performed_action_queue_is_recording = false;
-
-      ActionQueueRecording recording = last_performed_action_queue_recording;
-
-      for (int i=0; i<recording.infer_num_actions(); i++)
-      {
-         Action action = recording.get_action_at(i);
-         process_local_event(action.get_name(), action.get_data1());
-      }
-
-      last_performed_action_queue_is_recording = previous_last_performed_action_queue_is_recording;
-
-      return true;
-   }
-
    // complete
 
    void render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
@@ -1829,377 +1880,316 @@ public:
       stage_renderer.render();
 
       return;
-
-      //get_place().start_transform();
-      placement3d &place = get_place();
-
-      place.start_transform();
-
-      ALLEGRO_COLOR background_overlay_color = al_color_name("black");
-      float opacity = 0.8;
-      background_overlay_color.r *= opacity;
-      background_overlay_color.g *= opacity;
-      background_overlay_color.b *= opacity;
-      background_overlay_color.a *= opacity;
-
-      //al_draw_filled_rectangle(0, 0, al_get_display_width(display), al_get_display_height(display), background_overlay_color);
-
-      //get_place().start_transform();
-      al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_overlay_color);
-
-      // draw a frame around the stage
-      //float padding = 30;
-      //float roundness = 20;
-      //float thickness = 20.0;
-      //al_draw_rounded_rectangle(-padding, -padding, al_get_display_width(display)+padding, al_get_display_height(display)+padding, roundness, roundness, al_color_name("deepskyblue"), thickness);
-
-      // render cursor
-      float _cursor_y = cursor_y - first_line_number;
-      switch(mode)
-      {
-      case EDIT:
-         al_draw_filled_rectangle(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width + cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"));
-         break;
-      case INSERT:
-         al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"), 3);
-         break;
-      }
-
-      draw_selections(cell_width, cell_height);
-
-      // render lines
-      int line_height = al_get_font_line_height(font);
-      const int line_count_render_limit = 120;
-      int lines_rendered_count = 0;
-
-      for (int line_number = first_line_number; line_number < (int)lines.size(); line_number++)
-      {
-         bool line_exists_in_git_modified_line_numbers = std::find(git_modified_line_numbers.begin(), git_modified_line_numbers.end(), (line_number+1)) != git_modified_line_numbers.end();
-         if (line_exists_in_git_modified_line_numbers)
-         {
-            ALLEGRO_COLOR color = al_color_name("orange");
-            color.r *= 0.13;
-            color.g *= 0.13;
-            color.b *= 0.13;
-            color.a *= 0.13;
-            al_draw_filled_rectangle(0, line_height * (line_number - first_line_number), al_get_display_width(display)*2, line_height * (line_number - first_line_number + 1), color);
-         }
-
-         if (line_number >= 0) al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, lines[line_number].c_str());
-         std::stringstream ss;
-         ss << (line_number+1);
-         ALLEGRO_COLOR text_color = al_color_name("darkolivegreen");
-         if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
-         al_draw_text(font, text_color, -20, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
-
-         lines_rendered_count++;
-         if (lines_rendered_count >= line_count_render_limit) break;
-      }
-
-      for (auto &code_message_points_overlay : code_message_points_overlays)
-      {
-         code_message_points_overlay.render(font, first_line_number, al_get_font_line_height(font), cursor_x, cursor_y);
-      }
-      //for (auto &code_message_point : code_message_points)
-      //{
-         //CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, first_line_number, al_get_font_line_height(font));
-         //code_message_point_renderer.render();
-      //}
-
-      get_place().restore_transform();
-
-      // render edit mode
-      ALLEGRO_COLOR color;
-
-      switch(mode)
-      {
-      case EDIT: color = (currently_grabbing_visual_selection ? al_color_name("orange") : al_color_name("red")); break;
-      case INSERT: color = al_color_name("lime"); break;
-      default: break;
-      }
-
-      al_draw_text(font, color, al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*2, ALLEGRO_ALIGN_CENTER, get_current_mode_string().c_str());
-      al_draw_text(font, al_color_name("gray"), al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*1, ALLEGRO_ALIGN_CENTER, filename.c_str());
    }
-
-   // events
-
-   static const std::string MOVE_CURSOR_UP;
-   static const std::string MOVE_CURSOR_DOWN;
-   static const std::string MOVE_CURSOR_LEFT;
-   static const std::string MOVE_CURSOR_RIGHT;
-   static const std::string MOVE_CURSOR_TO_TOP_OF_SCREEN;
-   static const std::string MOVE_CURSOR_TO_MIDDLE_OF_SCREEN;
-   static const std::string MOVE_CURSOR_TO_BOTTOM_OF_SCREEN;
-   static const std::string MOVE_CURSOR_JUMP_TO_NEXT_WORD;
-   static const std::string MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD;
-   static const std::string MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD;
-   static const std::string JUMP_CURSOR_TO_END_OF_NEXT_WORD;
-   static const std::string JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD;
-   static const std::string JUMP_TO_NEXT_CODE_POINT;
-   static const std::string JUMP_TO_PREVIOUS_CODE_POINT;
-   static const std::string DELETE_CHARACTER;
-   static const std::string INSERT_STRING;
-   static const std::string SET_INSERT_MODE;
-   static const std::string SET_EDIT_MODE;
-   static const std::string JOIN_LINES;
-   static const std::string SPLIT_LINES;
-   static const std::string MOVE_CURSOR_TO_START_OF_LINE;
-   static const std::string MOVE_CURSOR_TO_END_OF_LINE;
-   static const std::string SAVE_FILE;
-   static const std::string MOVE_STAGE_UP;
-   static const std::string MOVE_STAGE_DOWN;
-   static const std::string SCALE_STAGE_UP;
-   static const std::string SCALE_STAGE_DOWN;
-   static const std::string JUMP_FIRST_LINE_NUM_DOWN;
-   static const std::string JUMP_FIRST_LINE_NUM_UP;
-   static const std::string JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN;
-   static const std::string JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN;
-   static const std::string STEP_FIRST_LINE_NUM_DOWN;
-   static const std::string STEP_FIRST_LINE_NUM_UP;
-   static const std::string OFFSET_CURSOR_POSITION_Y_DOWN;
-   static const std::string OFFSET_CURSOR_POSITION_Y_UP;
-   static const std::string OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN;
-   static const std::string OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN;
-   static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS;
-   //static const std::string TOGGLE_SHOWING_CODE_MESSAGE_POINTS;
-   static const std::string REFRESH_REGEX_MESSAGE_POINTS;
-   static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR;
-   static const std::string CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION;
-   static const std::string DESTROY_CURRENT_VISUAL_SELECTION;
-   static const std::string TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION;
-   static const std::string YANK_SELECTED_TEXT_TO_CLIPBOARD;
-   static const std::string PASTE_SELECTED_TEXT_FROM_CLIPBOARD;
-   static const std::string CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
-   static const std::string START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
-   static const std::string STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
-   static const std::string PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
 
    void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override
    {
-      std::cout << "Stage::" << event_name << std::endl;
-
-      try {
-         if (event_name == MOVE_CURSOR_UP) move_cursor_up();
-         else if (event_name == MOVE_CURSOR_DOWN) move_cursor_down();
-         else if (event_name == MOVE_CURSOR_LEFT) move_cursor_left();
-         else if (event_name == MOVE_CURSOR_RIGHT) move_cursor_right();
-         else if (event_name == MOVE_CURSOR_TO_TOP_OF_SCREEN) move_cursor_to_top_of_screen();
-         else if (event_name == MOVE_CURSOR_TO_MIDDLE_OF_SCREEN) move_cursor_to_middle_of_screen();
-         else if (event_name == MOVE_CURSOR_TO_BOTTOM_OF_SCREEN) move_cursor_to_bottom_of_screen();
-         else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) move_cursor_jump_to_next_word();
-         else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD) move_cursor_jump_to_next_big_word();
-         else if (event_name == MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD) move_cursor_jump_to_previous_word();
-         else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_WORD) jump_cursor_to_end_of_next_word();
-         else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD) jump_cursor_to_end_of_next_big_word();
-         else if (event_name == JUMP_TO_NEXT_CODE_POINT) jump_to_next_code_point();
-         else if (event_name == JUMP_TO_PREVIOUS_CODE_POINT) jump_to_previous_code_point();
-         else if (event_name == DELETE_CHARACTER) delete_character();
-         else if (event_name == INSERT_STRING) insert_string(action_data1.get_string());
-         else if (event_name == SET_INSERT_MODE) set_insert_mode();
-         else if (event_name == SET_EDIT_MODE) set_edit_mode();
-         else if (event_name == JOIN_LINES) join_lines();
-         else if (event_name == SPLIT_LINES) split_lines();
-         else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) move_cursor_to_start_of_line();
-         else if (event_name == MOVE_CURSOR_TO_END_OF_LINE) move_cursor_to_end_of_line();
-         else if (event_name == SAVE_FILE) save_file();
-         else if (event_name == MOVE_STAGE_UP) move_stage_up();
-         else if (event_name == MOVE_STAGE_DOWN) move_stage_down();
-         else if (event_name == SCALE_STAGE_UP) scale_stage_delta(0.1);
-         else if (event_name == SCALE_STAGE_DOWN) scale_stage_delta(-0.1);
-         else if (event_name == JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN) offset_first_line_number(infer_num_lines_to_draw());
-         else if (event_name == JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN) offset_first_line_number(-infer_num_lines_to_draw());
-         else if (event_name == JUMP_FIRST_LINE_NUM_DOWN) offset_first_line_number(infer_num_lines_to_draw()/2);
-         else if (event_name == JUMP_FIRST_LINE_NUM_UP) offset_first_line_number(-infer_num_lines_to_draw()/2);
-         else if (event_name == STEP_FIRST_LINE_NUM_DOWN) offset_first_line_number(1);
-         else if (event_name == STEP_FIRST_LINE_NUM_UP) offset_first_line_number(-1);
-         else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN) offset_cursor_position_y(infer_num_lines_to_draw()/2);
-         else if (event_name == OFFSET_CURSOR_POSITION_Y_UP) offset_cursor_position_y(-infer_num_lines_to_draw()/2);
-         else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN) offset_cursor_position_y(infer_num_lines_to_draw());
-         else if (event_name == OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN) offset_cursor_position_y(-infer_num_lines_to_draw());
-         else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS) refresh_git_modified_line_numbers();
-         //else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS) toggle_showing_code_message_points();
-         else if (event_name == REFRESH_REGEX_MESSAGE_POINTS) refresh_regex_message_points();
-         else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR) offset_first_line_to_vertically_center_cursor();
-         else if (event_name == CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION) create_visual_selection_at_current_cursor_location();
-         else if (event_name == DESTROY_CURRENT_VISUAL_SELECTION) destroy_current_visual_selection();
-         else if (event_name == TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION) toggle_currently_grabbing_visual_selection();
-         else if (event_name == YANK_SELECTED_TEXT_TO_CLIPBOARD) yank_selected_text_to_clipboard();
-         else if (event_name == PASTE_SELECTED_TEXT_FROM_CLIPBOARD) paste_selected_text_from_clipboard();
-         else if (event_name == CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING) clear_last_performed_action_queue_recording();
-         else if (event_name == START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING) start_recording_last_performed_action_queue_recording();
-         else if (event_name == STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING) stop_recording_last_performed_action_queue_recording();
-         else if (event_name == PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING) play_last_performed_action_queue_recording();
-      }
-
-      catch (const std::exception &e)
-      {
-         std::cout << "\033[0;33m💥 cannot execute \"" << event_name << "\": \033[0;31m" << e.what() << "\033[0;33m\033[0m" << std::endl;
-      }
-
-      if (last_performed_action_queue_is_recording && event_name != START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING)
-      {
-         std::cout << "   \033[0;30mStage:: recording " << event_name << " event to last_performed_action_queue_recording queue\033[0m" << std::endl;
-         last_performed_action_queue_recording.append_action(Action(event_name, action_data1));
-      }
+      StageEventController stage_event_controller(this);
+      stage_event_controller.process_local_event(event_name, action_data1);
    }
 
    void process_event(ALLEGRO_EVENT &event) override
    {
-      //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
-      //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
-      KeyboardCommandMapper edit_mode__keyboard_command_mapper;
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, true,  false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD, Stage::SET_INSERT_MODE, });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, true,  false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SET_INSERT_MODE, });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, false,  false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::MOVE_CURSOR_RIGHT, Stage::SET_INSERT_MODE, });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { Stage::MOVE_CURSOR_DOWN });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, true,  false, false, { Stage::JOIN_LINES });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { Stage::MOVE_CURSOR_UP });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, false, false, false, { Stage::MOVE_CURSOR_LEFT });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { Stage::MOVE_CURSOR_RIGHT });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, true, false, false, { Stage::MOVE_CURSOR_TO_TOP_OF_SCREEN });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, true, false, false, { Stage::MOVE_CURSOR_TO_MIDDLE_OF_SCREEN });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, true, false, false, { Stage::MOVE_CURSOR_TO_BOTTOM_OF_SCREEN });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, true, false, false, { Stage::MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, false, false, { Stage::JUMP_CURSOR_TO_END_OF_NEXT_WORD });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, true, false, false, { Stage::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, false, false, { Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, false, false, false, { Stage::JUMP_TO_NEXT_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, true, false, false, { Stage::JUMP_TO_PREVIOUS_CODE_POINT, Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { Stage::DELETE_CHARACTER });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::SET_INSERT_MODE, });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { Stage::MOVE_CURSOR_TO_START_OF_LINE });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::DELETE_CHARACTER, Stage::SET_INSERT_MODE, });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, true, false, { Stage::JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN, Stage::OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_F, false, true, false, { Stage::JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN, Stage::OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_U, false, true, false, { Stage::JUMP_FIRST_LINE_NUM_UP, Stage::OFFSET_CURSOR_POSITION_Y_UP });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, true, false, { Stage::JUMP_FIRST_LINE_NUM_DOWN, Stage::OFFSET_CURSOR_POSITION_Y_DOWN });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, true, false, { Stage::STEP_FIRST_LINE_NUM_UP });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, true, false, { Stage::STEP_FIRST_LINE_NUM_DOWN });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, { Stage::SCALE_STAGE_UP });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, { Stage::SCALE_STAGE_DOWN });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE, });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, true, false, false, { Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, Stage::MOVE_CURSOR_UP, Stage::MOVE_CURSOR_TO_END_OF_LINE, Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE, Stage::SET_INSERT_MODE, });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, { Stage::SAVE_FILE, Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
-      //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { Stage::REFRESH_REGEX_MESSAGE_POINTS });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Z, false, false, false, { Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_V, false, false, false, { Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, { Stage::YANK_SELECTED_TEXT_TO_CLIPBOARD });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, true, false, false, { Stage::PASTE_SELECTED_TEXT_FROM_CLIPBOARD });
-      edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP, false, false, false, { Stage::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
-
-
-      //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
-      //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
-      KeyboardCommandMapper insert_mode__keyboard_command_mapper;
-      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { Stage::SET_EDIT_MODE, Stage::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
-      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, true, false, { Stage::SET_EDIT_MODE, Stage::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
-      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, { Stage::MOVE_CURSOR_LEFT, Stage::DELETE_CHARACTER });
-      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { Stage::SPLIT_LINES, Stage::MOVE_CURSOR_DOWN, Stage::MOVE_CURSOR_TO_START_OF_LINE });
-      insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { Stage::SAVE_FILE });
-
-
-      switch(mode)
-      {
-      case EDIT:
-         switch(event.type)
-         {
-         case ALLEGRO_EVENT_KEY_DOWN:
-            break;
-         case ALLEGRO_EVENT_KEY_UP:
-            break;
-         case ALLEGRO_EVENT_KEY_CHAR:
-            bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
-            bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
-            bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
-            std::vector<std::string> mapped_events = edit_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
-            for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
-            break;
-         }
-         break;
-      case INSERT:
-         switch(event.type)
-         {
-         case ALLEGRO_EVENT_KEY_DOWN:
-            break;
-         case ALLEGRO_EVENT_KEY_UP:
-            break;
-         case ALLEGRO_EVENT_KEY_CHAR:
-            bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
-            bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
-            bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
-            std::vector<std::string> mapped_events = insert_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
-            for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
-            if (mapped_events.empty())
-            {
-               char character = (char)(event.keyboard.unichar);
-               std::string string = " ";
-               string[0] = character;
-               process_local_event(INSERT_STRING, ActionData(string));
-               process_local_event(MOVE_CURSOR_RIGHT);
-            }
-            break;
-         }
-         break;
-      }
+      StageEventController stage_event_controller(this);
+      stage_event_controller.process_event(event);
    }
 };
 
 
-std::string const Stage::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
-std::string const Stage::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
-std::string const Stage::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
-std::string const Stage::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
-std::string const Stage::MOVE_CURSOR_TO_TOP_OF_SCREEN = "MOVE_CURSOR_TO_TOP_OF_SCREEN";
-std::string const Stage::MOVE_CURSOR_TO_MIDDLE_OF_SCREEN = "MOVE_CURSOR_TO_MIDDLE_OF_SCREEN";
-std::string const Stage::MOVE_CURSOR_TO_BOTTOM_OF_SCREEN = "MOVE_CURSOR_TO_BOTTOM_OF_SCREEN";
-std::string const Stage::MOVE_CURSOR_JUMP_TO_NEXT_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_WORD";
-std::string const Stage::MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD";
-std::string const Stage::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD = "MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD";
-std::string const Stage::JUMP_CURSOR_TO_END_OF_NEXT_WORD = "JUMP_CURSOR_TO_END_OF_NEXT_WORD";
-std::string const Stage::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD = "JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD";
-std::string const Stage::JUMP_TO_NEXT_CODE_POINT = "JUMP_TO_NEXT_CODE_POINT";
-std::string const Stage::JUMP_TO_PREVIOUS_CODE_POINT = "JUMP_TO_PREVIOUS_CODE_POINT";
-std::string const Stage::DELETE_CHARACTER = "DELETE_CHARACTER";
-std::string const Stage::INSERT_STRING = "INSERT_STRING";
-std::string const Stage::SET_INSERT_MODE = "SET_INSERT_MODE";
-std::string const Stage::SET_EDIT_MODE = "SET_EDIT_MODE";
-std::string const Stage::JOIN_LINES = "JOIN_LINES";
-std::string const Stage::SPLIT_LINES = "SPLIT_LINES";
-std::string const Stage::MOVE_CURSOR_TO_START_OF_LINE = "MOVE_CURSOR_TO_START_OF_LINE";
-std::string const Stage::MOVE_CURSOR_TO_END_OF_LINE = "MOVE_CURSOR_TO_END_OF_LINE";
-std::string const Stage::SAVE_FILE = "SAVE_FILE";
-std::string const Stage::MOVE_STAGE_UP = "MOVE_STAGE_UP";
-std::string const Stage::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
-std::string const Stage::JUMP_FIRST_LINE_NUM_UP = "JUMP_FIRST_LINE_NUM_UP";
-std::string const Stage::JUMP_FIRST_LINE_NUM_DOWN = "JUMP_FIRST_LINE_NUM_DOWN";
-std::string const Stage::JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN = "JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN";
-std::string const Stage::JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN = "JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN";
-std::string const Stage::STEP_FIRST_LINE_NUM_UP = "STEP_FIRST_LINE_NUM_UP";
-std::string const Stage::STEP_FIRST_LINE_NUM_DOWN = "STEP_FIRST_LINE_NUM_DOWN";
-std::string const Stage::OFFSET_CURSOR_POSITION_Y_UP = "OFFSET_CURSOR_POSITION_Y_UP";
-std::string const Stage::OFFSET_CURSOR_POSITION_Y_DOWN = "OFFSET_CURSOR_POSITION_Y_DOWN";
-std::string const Stage::OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN = "OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN";
-std::string const Stage::OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN = "OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN";
-std::string const Stage::SCALE_STAGE_UP = "SCALE_STAGE_UP";
-std::string const Stage::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
-std::string const Stage::REFRESH_GIT_MODIFIED_LINE_NUMBERS = "REFRESH_GIT_MODIFIED_LINE_NUMBERS";
-//std::string const Stage::TOGGLE_SHOWING_CODE_MESSAGE_POINTS = "TOGGLE_SHOWING_CODE_MESSAGE_POINTS";
-std::string const Stage::REFRESH_REGEX_MESSAGE_POINTS = "REFRESH_REGEX_MESSAGE_POINTS";
-std::string const Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR";
-std::string const Stage::CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION = "CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION";
-std::string const Stage::DESTROY_CURRENT_VISUAL_SELECTION = "DESTROY_CURRENT_VISUAL_SELECTION";
-std::string const Stage::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION = "TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION";
-std::string const Stage::YANK_SELECTED_TEXT_TO_CLIPBOARD = "YANK_SELECTED_TEXT_TO_CLIPBOARD";
-std::string const Stage::PASTE_SELECTED_TEXT_FROM_CLIPBOARD = "PASTE_SELECTED_TEXT_FROM_CLIPBOARD";
-std::string const Stage::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
-std::string const Stage::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
-std::string const Stage::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
-std::string const Stage::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
+
+
+StageEventController::StageEventController(Stage *stage)
+   : EventControllerInterface()
+   , stage(stage)
+   , last_performed_action_queue_recording("last-performed-action-queue-recording")
+   , last_performed_action_queue_is_recording(false)
+{}
+
+
+
+StageEventController::~StageEventController()
+{}
+
+
+
+bool StageEventController::clear_last_performed_action_queue_recording()
+{
+   last_performed_action_queue_recording.clear_actions();
+   return true;
+}
+
+
+
+bool StageEventController::start_recording_last_performed_action_queue_recording()
+{
+   last_performed_action_queue_is_recording = true;
+   return true;
+}
+
+
+
+bool StageEventController::stop_recording_last_performed_action_queue_recording()
+{
+   last_performed_action_queue_is_recording = false;
+   return true;
+}
+
+
+
+bool StageEventController::is_last_performed_action_queue_recording()
+{
+   return last_performed_action_queue_is_recording;
+}
+
+
+
+bool StageEventController::play_last_performed_action_queue_recording()
+{
+   bool previous_last_performed_action_queue_is_recording = last_performed_action_queue_is_recording;
+   last_performed_action_queue_is_recording = false;
+
+   ActionQueueRecording recording = last_performed_action_queue_recording;
+
+   for (int i=0; i<recording.infer_num_actions(); i++)
+   {
+      Action action = recording.get_action_at(i);
+      process_local_event(action.get_name(), action.get_data1());
+   }
+
+   last_performed_action_queue_is_recording = previous_last_performed_action_queue_is_recording;
+
+   return true;
+}
+
+
+
+void StageEventController::process_local_event(std::string event_name, ActionData action_data1)
+{
+   if (!stage) throw std::runtime_error("[StageEventController::process_local_event()] error: stage cannot be a nullptr");
+
+   std::cout << "StageEventController::" << event_name << std::endl;
+
+   try {
+      if (event_name == MOVE_CURSOR_UP) stage->move_cursor_up();
+      else if (event_name == MOVE_CURSOR_DOWN) stage->move_cursor_down();
+      else if (event_name == MOVE_CURSOR_LEFT) stage->move_cursor_left();
+      else if (event_name == MOVE_CURSOR_RIGHT) stage->move_cursor_right();
+      else if (event_name == MOVE_CURSOR_TO_TOP_OF_SCREEN) stage->move_cursor_to_top_of_screen();
+      else if (event_name == MOVE_CURSOR_TO_MIDDLE_OF_SCREEN) stage->move_cursor_to_middle_of_screen();
+      else if (event_name == MOVE_CURSOR_TO_BOTTOM_OF_SCREEN) stage->move_cursor_to_bottom_of_screen();
+      else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) stage->move_cursor_jump_to_next_word();
+      else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD) stage->move_cursor_jump_to_next_big_word();
+      else if (event_name == MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD) stage->move_cursor_jump_to_previous_word();
+      else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_WORD) stage->jump_cursor_to_end_of_next_word();
+      else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD) stage->jump_cursor_to_end_of_next_big_word();
+      else if (event_name == JUMP_TO_NEXT_CODE_POINT) stage->jump_to_next_code_point();
+      else if (event_name == JUMP_TO_PREVIOUS_CODE_POINT) stage->jump_to_previous_code_point();
+      else if (event_name == DELETE_CHARACTER) stage->delete_character();
+      else if (event_name == INSERT_STRING) stage->insert_string(action_data1.get_string());
+      else if (event_name == SET_INSERT_MODE) stage->set_insert_mode();
+      else if (event_name == SET_EDIT_MODE) stage->set_edit_mode();
+      else if (event_name == JOIN_LINES) stage->join_lines();
+      else if (event_name == SPLIT_LINES) stage->split_lines();
+      else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) stage->move_cursor_to_start_of_line();
+      else if (event_name == MOVE_CURSOR_TO_END_OF_LINE) stage->move_cursor_to_end_of_line();
+      else if (event_name == SAVE_FILE) stage->save_file();
+      else if (event_name == MOVE_STAGE_UP) stage->move_stage_up();
+      else if (event_name == MOVE_STAGE_DOWN) stage->move_stage_down();
+      else if (event_name == SCALE_STAGE_UP) stage->scale_stage_delta(0.1);
+      else if (event_name == SCALE_STAGE_DOWN) stage->scale_stage_delta(-0.1);
+      else if (event_name == JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN) stage->offset_first_line_number(stage->infer_num_lines_to_draw());
+      else if (event_name == JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN) stage->offset_first_line_number(-stage->infer_num_lines_to_draw());
+      else if (event_name == JUMP_FIRST_LINE_NUM_DOWN) stage->offset_first_line_number(stage->infer_num_lines_to_draw()/2);
+      else if (event_name == JUMP_FIRST_LINE_NUM_UP) stage->offset_first_line_number(-stage->infer_num_lines_to_draw()/2);
+      else if (event_name == STEP_FIRST_LINE_NUM_DOWN) stage->offset_first_line_number(1);
+      else if (event_name == STEP_FIRST_LINE_NUM_UP) stage->offset_first_line_number(-1);
+      else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN) stage->offset_cursor_position_y(stage->infer_num_lines_to_draw()/2);
+      else if (event_name == OFFSET_CURSOR_POSITION_Y_UP) stage->offset_cursor_position_y(-stage->infer_num_lines_to_draw()/2);
+      else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN) stage->offset_cursor_position_y(stage->infer_num_lines_to_draw());
+      else if (event_name == OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN) stage->offset_cursor_position_y(-stage->infer_num_lines_to_draw());
+      else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS) stage->refresh_git_modified_line_numbers();
+      //else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS) toggle_showing_code_message_points();
+      else if (event_name == REFRESH_REGEX_MESSAGE_POINTS) stage->refresh_regex_message_points();
+      else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR) stage->offset_first_line_to_vertically_center_cursor();
+      else if (event_name == CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION) stage->create_visual_selection_at_current_cursor_location();
+      else if (event_name == DESTROY_CURRENT_VISUAL_SELECTION) stage->destroy_current_visual_selection();
+      else if (event_name == TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION) stage->toggle_currently_grabbing_visual_selection();
+      else if (event_name == YANK_SELECTED_TEXT_TO_CLIPBOARD) stage->yank_selected_text_to_clipboard();
+      else if (event_name == PASTE_SELECTED_TEXT_FROM_CLIPBOARD) stage->paste_selected_text_from_clipboard();
+      else if (event_name == CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING) clear_last_performed_action_queue_recording();
+      else if (event_name == START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING) start_recording_last_performed_action_queue_recording();
+      else if (event_name == STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING) stop_recording_last_performed_action_queue_recording();
+      else if (event_name == PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING) play_last_performed_action_queue_recording();
+   }
+
+   catch (const std::exception &e)
+   {
+      std::cout << "\033[0;33m💥 cannot execute \"" << event_name << "\": \033[0;31m" << e.what() << "\033[0;33m\033[0m" << std::endl;
+   }
+
+   if (last_performed_action_queue_is_recording && event_name != START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING)
+   {
+      std::cout << "   \033[0;30mStage:: recording " << event_name << " event to last_performed_action_queue_recording queue\033[0m" << std::endl;
+      last_performed_action_queue_recording.append_action(Action(event_name, action_data1));
+   }
+}
+
+void StageEventController::process_event(ALLEGRO_EVENT &event)
+{
+   //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
+   //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
+   KeyboardCommandMapper edit_mode__keyboard_command_mapper;
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { StageEventController::MOVE_CURSOR_TO_START_OF_LINE });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, true,  false, false, { StageEventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::MOVE_CURSOR_TO_START_OF_LINE, StageEventController::MOVE_CURSOR_JUMP_TO_NEXT_WORD, StageEventController::SET_INSERT_MODE, });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, true,  false, false, { StageEventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::MOVE_CURSOR_TO_END_OF_LINE, StageEventController::SET_INSERT_MODE, });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, false,  false, false, { StageEventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::MOVE_CURSOR_RIGHT, StageEventController::SET_INSERT_MODE, });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { StageEventController::MOVE_CURSOR_DOWN });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, true,  false, false, { StageEventController::JOIN_LINES });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { StageEventController::MOVE_CURSOR_UP });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, false, false, false, { StageEventController::MOVE_CURSOR_LEFT });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, false, false, false, { StageEventController::MOVE_CURSOR_RIGHT });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_H, true, false, false, { StageEventController::MOVE_CURSOR_TO_TOP_OF_SCREEN });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, true, false, false, { StageEventController::MOVE_CURSOR_TO_MIDDLE_OF_SCREEN });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, true, false, false, { StageEventController::MOVE_CURSOR_TO_BOTTOM_OF_SCREEN });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, { StageEventController::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, true, false, false, { StageEventController::MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, false, false, { StageEventController::JUMP_CURSOR_TO_END_OF_NEXT_WORD });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, true, false, false, { StageEventController::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, false, false, { StageEventController::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, false, false, false, { StageEventController::JUMP_TO_NEXT_CODE_POINT, StageEventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, true, false, false, { StageEventController::JUMP_TO_PREVIOUS_CODE_POINT, StageEventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_X, false, false, false, { StageEventController::DELETE_CHARACTER });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, false, false, false, { StageEventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::SET_INSERT_MODE, });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, { StageEventController::MOVE_CURSOR_TO_START_OF_LINE });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, false, false, { StageEventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::DELETE_CHARACTER, StageEventController::SET_INSERT_MODE, });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { StageEventController::SAVE_FILE });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, true, false, { StageEventController::JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN, StageEventController::OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_F, false, true, false, { StageEventController::JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN, StageEventController::OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_U, false, true, false, { StageEventController::JUMP_FIRST_LINE_NUM_UP, StageEventController::OFFSET_CURSOR_POSITION_Y_UP });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, true, false, { StageEventController::JUMP_FIRST_LINE_NUM_DOWN, StageEventController::OFFSET_CURSOR_POSITION_Y_DOWN });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, true, false, { StageEventController::STEP_FIRST_LINE_NUM_UP });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, true, false, { StageEventController::STEP_FIRST_LINE_NUM_DOWN });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, { StageEventController::SCALE_STAGE_UP });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, { StageEventController::SCALE_STAGE_DOWN });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, { StageEventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::MOVE_CURSOR_TO_END_OF_LINE, StageEventController::SPLIT_LINES, StageEventController::MOVE_CURSOR_DOWN, StageEventController::MOVE_CURSOR_TO_START_OF_LINE, StageEventController::SET_INSERT_MODE, });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, true, false, false, { StageEventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, StageEventController::MOVE_CURSOR_UP, StageEventController::MOVE_CURSOR_TO_END_OF_LINE, StageEventController::SPLIT_LINES, StageEventController::MOVE_CURSOR_DOWN, StageEventController::MOVE_CURSOR_TO_START_OF_LINE, StageEventController::SET_INSERT_MODE, });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, { StageEventController::SAVE_FILE, StageEventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
+   //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { StageEventController::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { StageEventController::REFRESH_REGEX_MESSAGE_POINTS });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Z, false, false, false, { StageEventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_V, false, false, false, { StageEventController::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, { StageEventController::YANK_SELECTED_TEXT_TO_CLIPBOARD });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, true, false, false, { StageEventController::PASTE_SELECTED_TEXT_FROM_CLIPBOARD });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP, false, false, false, { StageEventController::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
+
+
+   //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
+   //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
+   KeyboardCommandMapper insert_mode__keyboard_command_mapper;
+   insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { StageEventController::SET_EDIT_MODE, StageEventController::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
+   insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, true, false, { StageEventController::SET_EDIT_MODE, StageEventController::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
+   insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, { StageEventController::MOVE_CURSOR_LEFT, StageEventController::DELETE_CHARACTER });
+   insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { StageEventController::SPLIT_LINES, StageEventController::MOVE_CURSOR_DOWN, StageEventController::MOVE_CURSOR_TO_START_OF_LINE });
+   insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, { StageEventController::SAVE_FILE });
+
+
+   switch(stage->get_mode())
+   {
+   case Stage::EDIT:
+      switch(event.type)
+      {
+      case ALLEGRO_EVENT_KEY_DOWN:
+         break;
+      case ALLEGRO_EVENT_KEY_UP:
+         break;
+      case ALLEGRO_EVENT_KEY_CHAR:
+         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+         std::vector<std::string> mapped_events = edit_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
+         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+         break;
+      }
+      break;
+   case Stage::INSERT:
+      switch(event.type)
+      {
+      case ALLEGRO_EVENT_KEY_DOWN:
+         break;
+      case ALLEGRO_EVENT_KEY_UP:
+         break;
+      case ALLEGRO_EVENT_KEY_CHAR:
+         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+         std::vector<std::string> mapped_events = insert_mode__keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
+         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+         if (mapped_events.empty())
+         {
+            char character = (char)(event.keyboard.unichar);
+            std::string string = " ";
+            string[0] = character;
+            process_local_event(INSERT_STRING, ActionData(string));
+            process_local_event(MOVE_CURSOR_RIGHT);
+         }
+         break;
+      }
+      break;
+   }
+}
+
+
+
+std::string const StageEventController::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
+std::string const StageEventController::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
+std::string const StageEventController::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
+std::string const StageEventController::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
+std::string const StageEventController::MOVE_CURSOR_TO_TOP_OF_SCREEN = "MOVE_CURSOR_TO_TOP_OF_SCREEN";
+std::string const StageEventController::MOVE_CURSOR_TO_MIDDLE_OF_SCREEN = "MOVE_CURSOR_TO_MIDDLE_OF_SCREEN";
+std::string const StageEventController::MOVE_CURSOR_TO_BOTTOM_OF_SCREEN = "MOVE_CURSOR_TO_BOTTOM_OF_SCREEN";
+std::string const StageEventController::MOVE_CURSOR_JUMP_TO_NEXT_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_WORD";
+std::string const StageEventController::MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD";
+std::string const StageEventController::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD = "MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD";
+std::string const StageEventController::JUMP_CURSOR_TO_END_OF_NEXT_WORD = "JUMP_CURSOR_TO_END_OF_NEXT_WORD";
+std::string const StageEventController::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD = "JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD";
+std::string const StageEventController::JUMP_TO_NEXT_CODE_POINT = "JUMP_TO_NEXT_CODE_POINT";
+std::string const StageEventController::JUMP_TO_PREVIOUS_CODE_POINT = "JUMP_TO_PREVIOUS_CODE_POINT";
+std::string const StageEventController::DELETE_CHARACTER = "DELETE_CHARACTER";
+std::string const StageEventController::INSERT_STRING = "INSERT_STRING";
+std::string const StageEventController::SET_INSERT_MODE = "SET_INSERT_MODE";
+std::string const StageEventController::SET_EDIT_MODE = "SET_EDIT_MODE";
+std::string const StageEventController::JOIN_LINES = "JOIN_LINES";
+std::string const StageEventController::SPLIT_LINES = "SPLIT_LINES";
+std::string const StageEventController::MOVE_CURSOR_TO_START_OF_LINE = "MOVE_CURSOR_TO_START_OF_LINE";
+std::string const StageEventController::MOVE_CURSOR_TO_END_OF_LINE = "MOVE_CURSOR_TO_END_OF_LINE";
+std::string const StageEventController::SAVE_FILE = "SAVE_FILE";
+std::string const StageEventController::MOVE_STAGE_UP = "MOVE_STAGE_UP";
+std::string const StageEventController::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
+std::string const StageEventController::JUMP_FIRST_LINE_NUM_UP = "JUMP_FIRST_LINE_NUM_UP";
+std::string const StageEventController::JUMP_FIRST_LINE_NUM_DOWN = "JUMP_FIRST_LINE_NUM_DOWN";
+std::string const StageEventController::JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN = "JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN";
+std::string const StageEventController::JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN = "JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN";
+std::string const StageEventController::STEP_FIRST_LINE_NUM_UP = "STEP_FIRST_LINE_NUM_UP";
+std::string const StageEventController::STEP_FIRST_LINE_NUM_DOWN = "STEP_FIRST_LINE_NUM_DOWN";
+std::string const StageEventController::OFFSET_CURSOR_POSITION_Y_UP = "OFFSET_CURSOR_POSITION_Y_UP";
+std::string const StageEventController::OFFSET_CURSOR_POSITION_Y_DOWN = "OFFSET_CURSOR_POSITION_Y_DOWN";
+std::string const StageEventController::OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN = "OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN";
+std::string const StageEventController::OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN = "OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN";
+std::string const StageEventController::SCALE_STAGE_UP = "SCALE_STAGE_UP";
+std::string const StageEventController::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
+std::string const StageEventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS = "REFRESH_GIT_MODIFIED_LINE_NUMBERS";
+//std::string const StageEventController::TOGGLE_SHOWING_CODE_MESSAGE_POINTS = "TOGGLE_SHOWING_CODE_MESSAGE_POINTS";
+std::string const StageEventController::REFRESH_REGEX_MESSAGE_POINTS = "REFRESH_REGEX_MESSAGE_POINTS";
+std::string const StageEventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR";
+std::string const StageEventController::CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION = "CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION";
+std::string const StageEventController::DESTROY_CURRENT_VISUAL_SELECTION = "DESTROY_CURRENT_VISUAL_SELECTION";
+std::string const StageEventController::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION = "TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION";
+std::string const StageEventController::YANK_SELECTED_TEXT_TO_CLIPBOARD = "YANK_SELECTED_TEXT_TO_CLIPBOARD";
+std::string const StageEventController::PASTE_SELECTED_TEXT_FROM_CLIPBOARD = "PASTE_SELECTED_TEXT_FROM_CLIPBOARD";
+std::string const StageEventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
+std::string const StageEventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
+std::string const StageEventController::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
+std::string const StageEventController::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
 
 
 
@@ -2443,6 +2433,28 @@ public:
 
 
 
+
+class FileNavigator;
+
+class FileNavigatorEventController : public EventControllerInterface
+{
+private:
+   FileNavigator *file_navigator;
+
+public:
+   FileNavigatorEventController(FileNavigator *file_navigator);
+   ~FileNavigatorEventController();
+
+   static const std::string MOVE_CURSOR_UP;
+   static const std::string MOVE_CURSOR_DOWN;
+
+   virtual void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override;
+   virtual void process_event(ALLEGRO_EVENT &event) override;
+};
+
+
+
+
 class FileNavigator : public StageInterface
 {
 private:
@@ -2524,57 +2536,19 @@ public:
       //return true;
    //}
 
-   // events things
-
-   static const std::string MOVE_CURSOR_UP;
-   static const std::string MOVE_CURSOR_DOWN;
    //static const std::string SHOW;
    //static const std::string HIDE;
 
    void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override
    {
-      std::cout << "FileNavigator::" << event_name << std::endl;
-
-      try
-      {
-         bool executed = false;
-
-         if (event_name == MOVE_CURSOR_UP) { move_cursor_up(); executed = true; }
-         if (event_name == MOVE_CURSOR_DOWN) { move_cursor_down(); executed = true; }
-         //if (event_name == SHOW) { show(); executed = true; }
-         //if (event_name == HIDE) { hide(); executed = true; }
-
-         if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
-      }
-      catch (const std::exception &exception)
-      {
-         std::cout << "💥 cannot execute \"" << event_name << "\"" << std::endl;
-      }
+      FileNavigatorEventController file_navigator_event_controller(this);
+      file_navigator_event_controller.process_local_event(event_name, action_data1);
    }
 
    void process_event(ALLEGRO_EVENT &event) override
    {
-      KeyboardCommandMapper keyboard_command_mapper;
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { MOVE_CURSOR_DOWN });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { MOVE_CURSOR_UP });
-
-      bool event_caught = false;
-
-      switch(event.type)
-      {
-      case ALLEGRO_EVENT_KEY_UP:
-         break;
-      case ALLEGRO_EVENT_KEY_DOWN:
-         break;
-      case ALLEGRO_EVENT_KEY_CHAR:
-         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
-         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
-         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
-         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
-         if (!mapped_events.empty()) event_caught = true;
-         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
-         break;
-      }
+      FileNavigatorEventController file_navigator_event_controller(this);
+      file_navigator_event_controller.process_event(event);
    }
 
    bool save_file() override
@@ -2650,10 +2624,66 @@ public:
 
 
 
-const std::string FileNavigator::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
-const std::string FileNavigator::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
-//const std::string FileNavigator::SHOW = "SHOW";
-//const std::string FileNavigator::HIDE = "HIDE";
+FileNavigatorEventController::FileNavigatorEventController(FileNavigator *file_navigator)
+   : file_navigator(file_navigator)
+{}
+
+
+
+FileNavigatorEventController::~FileNavigatorEventController() {}
+
+
+
+void FileNavigatorEventController::process_local_event(std::string event_name, ActionData action_data1)
+{
+   std::cout << "FileNavigator::" << event_name << std::endl;
+
+   try
+   {
+      bool executed = false;
+
+      if (event_name == MOVE_CURSOR_UP) { file_navigator->move_cursor_up(); executed = true; }
+      if (event_name == MOVE_CURSOR_DOWN) { file_navigator->move_cursor_down(); executed = true; }
+
+      if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
+   }
+   catch (const std::exception &exception)
+   {
+      std::cout << "💥 cannot execute \"" << event_name << "\"" << std::endl;
+   }
+}
+
+
+
+void FileNavigatorEventController::process_event(ALLEGRO_EVENT &event)
+{
+   KeyboardCommandMapper keyboard_command_mapper;
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { MOVE_CURSOR_DOWN });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { MOVE_CURSOR_UP });
+
+   bool event_caught = false;
+
+   switch(event.type)
+   {
+   case ALLEGRO_EVENT_KEY_UP:
+      break;
+   case ALLEGRO_EVENT_KEY_DOWN:
+      break;
+   case ALLEGRO_EVENT_KEY_CHAR:
+      bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+      bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+      bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+      std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
+      if (!mapped_events.empty()) event_caught = true;
+      for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+      break;
+   }
+}
+
+
+
+const std::string FileNavigatorEventController::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
+const std::string FileNavigatorEventController::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
 
 
 
@@ -2831,7 +2861,7 @@ public:
 
    bool set_regex_input_box_modal_to_insert_mode()
    {
-      get_frontmost_stage()->process_local_event(Stage::SET_INSERT_MODE);
+      get_frontmost_stage()->process_local_event(StageEventController::SET_INSERT_MODE);
       return true;
    }
 
@@ -2889,7 +2919,7 @@ public:
 
    bool jump_to_next_code_point_on_stage()
    {
-      get_frontmost_stage()->process_local_event(Stage::JUMP_TO_NEXT_CODE_POINT);
+      get_frontmost_stage()->process_local_event(StageEventController::JUMP_TO_NEXT_CODE_POINT);
       return true;
    }
 
@@ -2903,7 +2933,7 @@ public:
 
    bool offset_first_line_to_vertically_center_cursor_on_stage()
    {
-      get_frontmost_stage()->process_local_event(Stage::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
+      get_frontmost_stage()->process_local_event(StageEventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
       return true;
    }
 
