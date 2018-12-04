@@ -505,7 +505,6 @@ public:
 
 bool file_system_order_compare(FileSystemNode const *a, FileSystemNode const *b)
 {
-   std::cout << a->infer_full_name() << std::endl;
    if (a->infer_is_directory() != b->infer_is_directory())
    {
       if (a->infer_is_directory()) return true;
