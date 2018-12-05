@@ -829,9 +829,10 @@ public:
    ALLEGRO_DISPLAY *display;
    Camera camera;
 
-   System(ALLEGRO_DISPLAY *display)
+   System(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *consolas_font)
       : stages({})
       //, file_navigator(al_get_current_directory())
+      , consolas_font(consolas_font)
       , display(display)
       , camera(0, 0, 0)
    {
@@ -1313,7 +1314,7 @@ void run_program(std::vector<std::string> filenames)
    placement3d rudimentary_camera_place(0, 0, 0);
    rudimentary_camera_place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
 
-   System system(display);
+   System system(display, consolas_font);
 
    for (auto &filename : filenames)
    {
