@@ -743,8 +743,7 @@ void Stage::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width,
 
    if (get_type() == ONE_LINE_INPUT_BOX) { render_as_input_box(display, font, cell_width, cell_height); return; }
 
-   StageRenderer stage_renderer(this, font, display, cell_width, cell_height);
-   stage_renderer.render();
+   if (get_stage_renderer()) get_stage_renderer()->render();
 
    return;
 }
