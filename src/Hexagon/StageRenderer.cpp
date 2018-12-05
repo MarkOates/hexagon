@@ -132,7 +132,8 @@ void StageRenderer::render_raw()
 
 
 StageRenderer::StageRenderer(Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
-   : stage(stage)
+   : StageRendererInterface()
+   , stage(stage)
    , font(font)
    , display(display)
    , render_cache()

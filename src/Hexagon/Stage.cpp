@@ -19,8 +19,8 @@
 
 
 
-Stage::Stage(std::string filename, mode_t mode, type_t type)
-   : StageInterface(type)
+Stage::Stage(std::string filename, mode_t mode, type_t type, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
+   : StageInterface(type, new StageRenderer(this, font, display, cell_width, cell_height))
    , cursor_x(0)
    , cursor_y(0)
    , mode(mode)

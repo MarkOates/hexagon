@@ -5,12 +5,13 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro_flare/render_cache.h>
+#include <Hexagon/StageRendererInterface.hpp>
 
 
 
 class Stage;
 
-class StageRenderer
+class StageRenderer : public StageRendererInterface
 {
 private:
    ALLEGRO_DISPLAY *display;
@@ -27,7 +28,7 @@ public:
    StageRenderer(Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height);
    ~StageRenderer();
 
-   void render();
+   void render() override;
 };
 
 

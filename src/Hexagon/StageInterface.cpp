@@ -5,8 +5,9 @@
 
 
 
-StageInterface::StageInterface(StageInterface::type_t type)
+StageInterface::StageInterface(StageInterface::type_t type, StageRendererInterface *stage_renderer)
    : type(type)
+   , stage_renderer(stage_renderer)
    , place(0, 0, 0)
 {}
 
@@ -49,6 +50,13 @@ bool StageInterface::infer_is_modal()
    default:
       return false;
    }
+}
+
+
+
+StageRendererInterface *StageInterface::get_stage_renderer()
+{
+   return stage_renderer;
 }
 
 

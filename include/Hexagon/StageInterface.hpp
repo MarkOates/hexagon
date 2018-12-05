@@ -6,6 +6,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro_flare/placement3d.h>
 #include <Hexagon/ActionData.hpp>
+#include <Hexagon/StageRendererInterface.hpp>
 #include <string>
 
 
@@ -24,16 +25,18 @@ public:
 
 private:
    StageInterface::type_t type;
+   StageRendererInterface *stage_renderer;
    placement3d place;
 
 public:
-   StageInterface(StageInterface::type_t type);
+   StageInterface(StageInterface::type_t type, StageRendererInterface *stage_renderer);
    virtual ~StageInterface();
 
    StageInterface::type_t get_type();
    placement3d &get_place();
    void set_place(placement3d place);
    bool infer_is_modal();
+   StageRendererInterface *get_stage_renderer();
 
    virtual void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) = 0;
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) = 0;

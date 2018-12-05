@@ -362,7 +362,7 @@ private:
 
 public:
    KeyboardInputsModal(KeyboardCommandMapper *keyboard_command_mapper)
-      : StageInterface(KEYBOARD_INPUTS_MODAL)
+      : StageInterface(KEYBOARD_INPUTS_MODAL, nullptr)
       , keyboard_command_mapper(keyboard_command_mapper)
    {}
 
@@ -551,7 +551,7 @@ private:
 public:
    FileNavigator(std::string directory)
       //: file_system_entries()
-      : StageInterface(StageInterface::FILE_NAVIGATOR)
+      : StageInterface(StageInterface::FILE_NAVIGATOR, nullptr)
       , current_node(new FileSystemNode(al_create_fs_entry(directory.c_str())))
       //, visible_and_active(false)
       , cursor_y(0)
@@ -824,6 +824,7 @@ class System
 {
 public:
    std::vector<StageInterface *> stages;
+   ALLEGRO_FONT *consolas_font;
    //FileNavigator file_navigator;
    ALLEGRO_DISPLAY *display;
    Camera camera;
@@ -958,7 +959,7 @@ public:
       place.scale = vec3d(1.3, 1.3, 1.0);
       place.rotation = vec3d(0.0, 0.0, 0.0);
 
-      Stage *stage = new Stage(REGEX_TEMP_FILENAME, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX);
+      Stage *stage = new Stage(REGEX_TEMP_FILENAME, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX, consolas_font, display, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
       stage->set_place(place);
       stages.push_back(stage);
 
@@ -1065,7 +1066,7 @@ public:
          std::vector<std::string> file_contents = {};
          if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
 
-         Stage *stage = new Stage(filename);// place);
+         Stage *stage = new Stage(filename, Stage::EDIT, Stage::CODE_EDITOR, consolas_font, display, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
 
          stage->set_place(place);
          stage->set_content(file_contents);
@@ -1316,7 +1317,7 @@ void run_program(std::vector<std::string> filenames)
 
    for (auto &filename : filenames)
    {
-      Stage *stage = new Stage(filename);
+      Stage *stage = new Stage(filename, Stage::EDIT, Stage::CODE_EDITOR, consolas_font, display, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
       stage->set_place(place);
 
       std::vector<std::string> lines;

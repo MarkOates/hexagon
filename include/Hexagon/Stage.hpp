@@ -33,7 +33,7 @@ private:
    int first_line_number;
 
 public:
-   Stage(std::string filename, mode_t mode=EDIT, type_t type=CODE_EDITOR);
+   Stage(std::string filename, mode_t mode, type_t type, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height);
    ~Stage();
    // accessors
 
