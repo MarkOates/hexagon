@@ -955,7 +955,7 @@ public:
       //placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 0.0);
       placement3d place(0.0, 0.0, 0.0);
       place.size = vec3d(300, 25, 0.0);
-      place.scale = vec3d(1.3, 1.3, 1.0);
+      place.scale = vec3d(1.4, 1.4, 1.0);
       place.rotation = vec3d(0.0, 0.0, 0.0);
 
       Stage *stage = new Stage(REGEX_TEMP_FILENAME, Stage::EDIT, Stage::ONE_LINE_INPUT_BOX);
@@ -971,22 +971,13 @@ public:
 
    bool spawn_file_navigator()
    {
-      //placement3d place(0.0, 0.0, 0.0);
-      //place.size = vec3d(al_get_display_width(display)/3, al_get_display_height(display)/3*2, 0.0);
-      //place.scale = vec3d(0.6, 0.6, 1.0);
-
       placement3d place(0, 0, 0);
-      place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
+      place.size = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/3*2, 0.0);
       place.align = vec3d(0.5, 0.5, 0.0);
       place.scale = vec3d(0.9, 0.9, 0.0);
 
-      //placement3d place(0.0, 0.0, 0.0);
-      //place.size = vec3d(300, 35, 0.0);
-      //place.scale = vec3d(1.2, 1.2, 1.0);
-      //place.rotation = vec3d(0.0, 0.0, 0.0);
-
       FileNavigator *file_navigator = new FileNavigator(al_get_current_directory());
-       file_navigator->set_place(place);
+      file_navigator->set_place(place);
       //file_navigator.set_child_nodes();
       stages.push_back(file_navigator);
       //file_navigator.show();
@@ -1030,17 +1021,6 @@ public:
       if (results.empty()) throw std::runtime_error("Could not attempt_to_open_file_navigation_selected_path: expected filename was empty.");
       std::string filename = results[0];
 
-      //placement3d place(100, 20, 0.0);
-      //place.size = vec3d(400, 400, 0.0);
-      //place.align = vec3d(0, 0, 0);
-      //place.scale = vec3d(0.65, 0.65, 1.0);
-      placement3d place(0, 0, 0);
-      place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
-      place.align = vec3d(0.5, 0.5, 0.0);
-      place.scale = vec3d(0.9, 0.9, 0.0);
-      //place.scale = vec3d(0.0, 0.0, 0.0);
-
-
       ALLEGRO_FS_ENTRY *fs_entry = al_create_fs_entry(filename.c_str());
 
       if (!fs_entry)
@@ -1055,6 +1035,11 @@ public:
 
       if (file_system_node.infer_is_directory())
       {
+         placement3d place(0, 0, 0);
+         place.size = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/3*2, 0.0);
+         place.align = vec3d(0.5, 0.5, 0.0);
+         place.scale = vec3d(0.9, 0.9, 0.0);
+
          FileNavigator *file_navigator = new FileNavigator(file_system_node.infer_full_name());
          file_navigator->set_place(place);
          //file_navigator.set_child_nodes();
@@ -1064,6 +1049,11 @@ public:
       {
          std::vector<std::string> file_contents = {};
          if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
+
+         placement3d place(0, 0, 0);
+         place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
+         place.align = vec3d(0.5, 0.5, 0.0);
+         place.scale = vec3d(0.9, 0.9, 0.0);
 
          Stage *stage = new Stage(filename);// place);
 
