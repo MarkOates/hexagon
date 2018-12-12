@@ -132,6 +132,8 @@ void StageEventController::process_local_event(std::string event_name, ActionDat
       else if (event_name == START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING) start_recording_last_performed_action_queue_recording();
       else if (event_name == STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING) stop_recording_last_performed_action_queue_recording();
       else if (event_name == PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING) play_last_performed_action_queue_recording();
+      else if (event_name == INCREASE_FONT_SIZE) stage->set_font_size(stage->get_font_size()+1);
+      else if (event_name == DECREASE_FONT_SIZE) stage->set_font_size(stage->get_font_size()-1);
    }
 
    catch (const std::exception &e)

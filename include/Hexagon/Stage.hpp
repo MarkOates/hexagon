@@ -95,6 +95,9 @@ public:
 
    bool refresh_regex_message_points();
 
+   int get_font_size();
+   void set_font_size(int font_size);
+
    // presentation
 
    // actions

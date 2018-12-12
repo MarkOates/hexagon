@@ -557,6 +557,19 @@ bool Stage::refresh_regex_message_points()
 
 
 
+int Stage::get_font_size()
+{
+   return font_size;
+}
+
+
+
+void Stage::set_font_size(int font_size)
+{
+}
+
+
+
 // presentation
 
 // actions

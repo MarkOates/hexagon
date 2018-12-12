@@ -13,6 +13,19 @@ class Stage;
 
 
 
+class StageComposite
+{
+public:
+   StageContent content;
+   StageRenderer renderer;
+   StageEventController event_controller;
+
+   StageComposite();
+   ~StageComposite();
+};
+
+
+
 class StageEventController : public EventControllerInterface
 {
 private:
@@ -81,6 +94,11 @@ public:
    static const std::string START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
    static const std::string STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
    static const std::string PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
+
+   // display relevant
+
+   static const std::string INCREASE_FONT_SIZE;
+   static const std::string DECREASE_FONT_SIZE;
 
    void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override;
    void process_event(ALLEGRO_EVENT &event) override;
