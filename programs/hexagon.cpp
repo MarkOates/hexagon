@@ -1026,6 +1026,12 @@ int main(int argc, char **argv)
    std::vector<std::vector<std::string>> filenames = command_line_flagged_arguments_parser.get_flagged_args("-f");
    std::vector<std::string> first_filenames_set = filenames.empty() ? std::vector<std::string>{} : filenames[0];
 
+   if (first_filenames_set.empty())
+   {
+      std::string error_message = "🛑 Error: You attempted to run hexagon without a file to edit.  For now, you must open hexagon by specifying a filename after a \"-f\" flag.";
+      throw std::runtime_error(error_message);
+   }
+
    run_program(first_filenames_set);
    return 0;
 }
