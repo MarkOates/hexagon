@@ -762,7 +762,7 @@ public:
    static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE;
    static const std::string SUBMIT_CURRENT_MODAL;
-   static const std::string SHOW_FILE_NAVIGATOR;
+   //static const std::string SHOW_FILE_NAVIGATOR;
    static const std::string HIDE_FILE_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
    static const std::string DESTROY_FILE_NAVIGATOR;
@@ -812,24 +812,24 @@ public:
          //return;
       //}
 
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, { ROTATE_STAGE_RIGHT });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, { ROTATE_STAGE_LEFT });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, { SAVE_CURRENT_STAGE, RUN_MAKE });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, { DESTROY_TOPMOST_STAGE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_MAKE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, false, { DESTROY_TOPMOST_STAGE });
       if (is_current_stage_a_modal())
       {
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, { ESCAPE_CURRENT_MODAL });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, { SUBMIT_CURRENT_MODAL });
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { ESCAPE_CURRENT_MODAL });
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, { SUBMIT_CURRENT_MODAL });
       }
       else
       {
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { SPAWN_FILE_NAVIGATOR });
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, { SPAWN_FILE_NAVIGATOR });
 
          if (is_current_stage_in_edit_mode())
          {
-            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, { SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE });
-            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, true,  false, false, { SPAWN_KEYBOARD_INPUTS_MODAL });
+            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, { SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE });
+            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, true,  false, false, false, { SPAWN_KEYBOARD_INPUTS_MODAL });
          }
       }
 
@@ -863,6 +863,38 @@ private:
 };
 
 
+
+std::string get_action_description()
+{
+   // std::map<identifier, description>
+   std::map<std::string, std::string> dictionary = { 
+      { System::ROTATE_STAGE_RIGHT, "" },
+      { System::ROTATE_STAGE_LEFT, "" },
+      { System::RUN_PROJECT_TESTS, "" },
+      { System::RUN_MAKE, "" },
+      { System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, "" },
+      { System::DESTROY_TOPMOST_STAGE, "" },
+      { System::ESCAPE_CURRENT_MODAL, "" },
+      { System::SAVE_CURRENT_STAGE, "" },
+      { System::REFRESH_REGEX_HILIGHTS_ON_STAGE, "" },
+      { System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE, "" },
+      { System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE, "" },
+      { System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE, "" },
+      { System::SUBMIT_CURRENT_MODAL, "" },
+      //{ System::SHOW_FILE_NAVIGATOR, "" },
+      { System::HIDE_FILE_NAVIGATOR, "" },
+      { System::SPAWN_FILE_NAVIGATOR, "" },
+      { System::DESTROY_FILE_NAVIGATOR, "" },
+      { System::ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH, "" },
+      { System::SPAWN_KEYBOARD_INPUTS_MODAL, "" }
+   };
+
+   return "";
+}
+
+
+
+
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
@@ -876,6 +908,8 @@ const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIG
 const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
 const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
+//const std::string System::SHOW_FILE_NAVIGATOR = "SHOW_FILE_NAVIGATOR";
+const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH";

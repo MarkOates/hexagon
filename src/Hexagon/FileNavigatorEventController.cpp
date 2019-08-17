@@ -39,8 +39,8 @@ void FileNavigatorEventController::process_local_event(std::string event_name, A
 void FileNavigatorEventController::process_event(ALLEGRO_EVENT &event)
 {
    KeyboardCommandMapper keyboard_command_mapper;
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, { MOVE_CURSOR_DOWN });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, { MOVE_CURSOR_UP });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, false, { MOVE_CURSOR_DOWN });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, false, false, false, false, { MOVE_CURSOR_UP });
 
    bool event_caught = false;
 
