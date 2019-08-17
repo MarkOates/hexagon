@@ -50,7 +50,7 @@ examples: $(EXAMPLES)
 bin/programs/%: programs/%.cpp $(OBJECTS)
 	@mkdir -p $(@D)
 	@printf "compiling program \e[1m\e[36m$<\033[0m..."
-	@g++ -std=gnu++11 -Wall -Wuninitialized -Weffc++ $(OBJECTS) $< -o $@ -I./include -L$(ALLEGRO_LIB_DIR) $(ALLEGRO_LIBS_LINK_MAIN_ARGS) | tee program_output_$@.txt
+	@g++ -std=gnu++11 -Wall -Wuninitialized -Weffc++ $(OBJECTS) $< -o $@ -I./include -L$(ALLEGRO_LIB_DIR) $(ALLEGRO_LIBS_LINK_MAIN_ARGS)
 	@echo "done. Executable at \033[1m\033[32m$@\033[0m"
 
 
@@ -59,14 +59,6 @@ bin/examples/%: examples/%.cpp $(OBJECTS)
 	@mkdir -p $(@D)
 	@printf "compiling example program \e[1m\e[36m$<\033[0m..."
 	g++ -std=gnu++11 -Wall -Wuninitialized -Weffc++ $(OBJECTS) $< -o $@ -I./include -I$(ALLEGRO_INCLUDE_DIR) -L$(ALLEGRO_LIB_DIR) $(ALLEGRO_LIBS_LINK_ARGS)
-	@echo "done. Executable at \033[1m\033[32m$@\033[0m"
-
-
-
-bin/$(PROJECT_BINARY_NAME): programs/$(PROJECT_BINARY_NAME).cpp $(OBJECTS)
-	@mkdir -p $(@D)
-	@printf "compiling program \e[1m\e[36m$<\033[0m..."
-	@g++ -std=gnu++11 -Wall -Wuninitialized -Weffc++ $(OBJECTS) $< -o $@ -I./include -L$(ALLEGRO_LIB_DIR) $(ALLEGRO_LIBS_LINK_ARGS)
 	@echo "done. Executable at \033[1m\033[32m$@\033[0m"
 
 
@@ -83,7 +75,7 @@ run_tests: tests
 obj/%.o: src/%.cpp
 	@mkdir -p $(@D)
 	@printf "compiling object for \e[1m\e[34m$<\033[0m...\n"
-	@g++ -c -std=gnu++11 -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -I$(ALLEGRO_INCLUDE_DIR) | tee object_output_$@.txt
+	@g++ -c -std=gnu++11 -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -I$(ALLEGRO_INCLUDE_DIR)
 	@echo "done. object at \033[1m\033[32m$@\033[0m"
 
 
