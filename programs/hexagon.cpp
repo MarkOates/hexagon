@@ -760,7 +760,7 @@ private:
 std::string get_action_description()
 {
    // std::map<identifier, description>
-   std::map<std::string, std::string> dictionary = { 
+   static std::map<std::string, std::string> dictionary = {
       { System::ROTATE_STAGE_RIGHT, "" },
       { System::ROTATE_STAGE_LEFT, "" },
       { System::RUN_PROJECT_TESTS, "" },
@@ -781,6 +781,11 @@ std::string get_action_description()
       { System::ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH, "" },
       { System::SPAWN_KEYBOARD_INPUTS_MODAL, "" }
    };
+
+   for (std::map<std::string, std::string>::iterator it=dictionary.begin(); it!=dictionary.end(); ++it)
+   {
+      it->second = it->first;
+   }
 
    return "";
 }
