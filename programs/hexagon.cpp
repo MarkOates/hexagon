@@ -906,7 +906,6 @@ void run_program(std::vector<std::string> filenames)
       error_message << "🛑 Error: there is no \"" << REGEX_TEMP_FILENAME << "\" located in the directory tree.  It has to be present for hexagon to work.";
       throw std::runtime_error(error_message.str());
    }
-   // HERE - validate presence of "regex.txt";
 
    CLIPBOARD_TEMP_FILENAME = resource_path({"data", "tmp"}, "clipboard.txt");
    if (!php::file_exists(CLIPBOARD_TEMP_FILENAME))
@@ -915,10 +914,14 @@ void run_program(std::vector<std::string> filenames)
       error_message << "🛑 Error: there is no \"" << CLIPBOARD_TEMP_FILENAME << "\" located in the directory tree.  It has to be present for hexagon to work.";
       throw std::runtime_error(error_message.str());
    }
-   // HERE - validate presence of "clipboard.txt";
 
    FILE_NAVIGATOR_SELECTION_FILENAME = resource_path({"data", "tmp"}, "file_navigator_selection.txt");
-   // HERE - validate presence of "file_navigator_selection.txt";
+   if (!php::file_exists(FILE_NAVIGATOR_SELECTION_FILENAME))
+   {
+      std::stringstream error_message;
+      error_message << "🛑 Error: there is no \"" << FILE_NAVIGATOR_SELECTION_FILENAME << "\" located in the directory tree.  It has to be present for hexagon to work.";
+      throw std::runtime_error(error_message.str());
+   }
 
    int display_width = al_get_display_width(display);
    int display_height = al_get_display_height(display);
