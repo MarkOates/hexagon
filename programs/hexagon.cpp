@@ -898,9 +898,27 @@ void run_program(std::vector<std::string> filenames)
    ALLEGRO_DISPLAY *display = al_create_display(2880-200-250, 1800-200-250);
    ALLEGRO_FONT *consolas_font = al_load_font(resource_path({"data", "fonts"}, "consolas.ttf").c_str(), 22, 0);
    if (!consolas_font) throw std::runtime_error("could not load consolas.ttf");
+
    REGEX_TEMP_FILENAME = resource_path({"data", "tmp"}, "regex.txt");
+   if (!php::file_exists(REGEX_TEMP_FILENAME))
+   {
+      std::stringstream error_message;
+      error_message << "🛑 Error: there is no \"" << REGEX_TEMP_FILENAME << "\" located in the directory tree.  It has to be present for hexagon to work.";
+      throw std::runtime_error(error_message.str());
+   }
+   // HERE - validate presence of "regex.txt";
+
    CLIPBOARD_TEMP_FILENAME = resource_path({"data", "tmp"}, "clipboard.txt");
+   if (!php::file_exists(CLIPBOARD_TEMP_FILENAME))
+   {
+      std::stringstream error_message;
+      error_message << "🛑 Error: there is no \"" << CLIPBOARD_TEMP_FILENAME << "\" located in the directory tree.  It has to be present for hexagon to work.";
+      throw std::runtime_error(error_message.str());
+   }
+   // HERE - validate presence of "clipboard.txt";
+
    FILE_NAVIGATOR_SELECTION_FILENAME = resource_path({"data", "tmp"}, "file_navigator_selection.txt");
+   // HERE - validate presence of "file_navigator_selection.txt";
 
    int display_width = al_get_display_width(display);
    int display_height = al_get_display_height(display);
