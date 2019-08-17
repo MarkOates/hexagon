@@ -757,7 +757,7 @@ private:
 
 
 
-std::string get_action_description()
+std::string get_action_description(std::string action_identifier)
 {
    // std::map<identifier, description>
    static std::map<std::string, std::string> dictionary = {
@@ -787,7 +787,15 @@ std::string get_action_description()
       it->second = it->first;
    }
 
-   return "";
+   std::map<std::string, std::string>::iterator it = dictionary.find(action_identifier);
+   if (it == dictionary.end())
+   {
+      std::stringstream error_message;
+      error_message << "🛑 Error: stuff stuff stuff stuff" << std::endl;
+      throw std::runtime_error(error_message.str());
+   }
+
+   return dictionary[action_identifier];
 }
 
 
