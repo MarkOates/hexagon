@@ -839,6 +839,8 @@ void run_program(std::vector<std::string> filenames)
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    ALLEGRO_DISPLAY *display = al_create_display(2880-200-250, 1800-200-250);
+   if (!display) std::cerr << "al_create_display() failed" << std::endl;
+   al_set_window_title(display, "[ProjectName] - Hexagon");
    ALLEGRO_FONT *consolas_font = al_load_font(resource_path({"data", "fonts"}, "consolas.ttf").c_str(), 22, 0);
    if (!consolas_font) throw std::runtime_error("could not load consolas.ttf");
 
