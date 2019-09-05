@@ -705,8 +705,11 @@ public:
          //return;
       //}
 
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
+
+                                                 // al_keycodee, shift, ctrl, alt, command, { command_identifier }
+                                                                   
+      //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
+      //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_MAKE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, false, { DESTROY_TOPMOST_STAGE });
@@ -738,8 +741,10 @@ public:
       case ALLEGRO_EVENT_KEY_CHAR:
          bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
          bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
-         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
-         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
+         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+         bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+         bool ctrl_or_command = ctrl || command;
+         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
          if (!mapped_events.empty()) event_caught = true;
          for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
          break;
