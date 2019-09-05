@@ -15,10 +15,15 @@ FileNavigator::FileNavigator(std::string directory)
    , current_node(new FileSystemNode(al_create_fs_entry(directory.c_str())))
    //, visible_and_active(false)
    , cursor_y(0)
-   //, place()
+   //, place(0, 0, 0)
 {
+   placement3d &p = get_place();
+
    //current_node = current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
    current_node->create_children();
+   p.scale = vec3d(0.8, 0.8, 0.8);
+   p.size = vec3d(500, 600, 0);
+   p.align = vec3d(0.5, 0.5, 0.0);
 }
 
 FileNavigator::~FileNavigator() {}

@@ -518,7 +518,7 @@ public:
       //place.scale = vec3d(0.8, 0.8, 0.0);
 
       FileNavigator *file_navigator = new FileNavigator(al_get_current_directory());
-      file_navigator->set_place(file_navigator_initial_place);
+      //file_navigator->set_place(file_navigator_initial_place);
       //file_navigator.set_child_nodes();
       stages.push_back(file_navigator);
       //file_navigator.show();
@@ -582,7 +582,7 @@ public:
          //place.scale = vec3d(0.9, 0.9, 0.0);
 
          FileNavigator *file_navigator = new FileNavigator(file_system_node.infer_full_name());
-         file_navigator->set_place(file_navigator_initial_place);
+         //file_navigator->set_place(file_navigator_initial_place);
          //file_navigator.set_child_nodes();
          stages.push_back(file_navigator);
       }
