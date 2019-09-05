@@ -38,6 +38,28 @@ using namespace Hexagon;
 
 
 
+
+int get_display_default_width()
+{
+   return 2430;
+}
+
+int get_display_default_height()
+{
+   return 1350;
+}
+
+placement3d get_stage_default_place()
+{
+   placement3d place(0, 0, 0);
+   place.size = vec3d(get_display_default_width(), get_display_default_height(), 0.0);
+   place.align = vec3d(0.5, 0.5, 0.0);
+   place.scale = vec3d(0.9, 0.9, 0.0);
+   return place;
+}
+
+
+
 std::string resource_path(std::vector<std::string> components, std::string filename="")
 {
    std::string result;
@@ -850,7 +872,7 @@ void run_program(std::vector<std::string> filenames)
    al_set_new_display_flags(ALLEGRO_RESIZABLE);
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
-   ALLEGRO_DISPLAY *display = al_create_display(2880-200-250, 1800-200-250);
+   ALLEGRO_DISPLAY *display = al_create_display(get_display_default_width(), get_display_default_height());
    if (!display) std::cerr << "al_create_display() failed" << std::endl;
    al_set_window_title(display, "[ProjectName] - Hexagon");
    ALLEGRO_FONT *consolas_font = al_load_font(resource_path({"data", "fonts"}, "consolas.ttf").c_str(), 22, 0);
