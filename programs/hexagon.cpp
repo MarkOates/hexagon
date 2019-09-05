@@ -362,13 +362,19 @@ public:
    //FileNavigator file_navigator;
    ALLEGRO_DISPLAY *display;
    Camera camera;
+   placement3d file_navigator_initial_place;
 
    System(ALLEGRO_DISPLAY *display)
       : stages({})
       //, file_navigator(al_get_current_directory())
       , display(display)
       , camera(0, 0, 0)
+      , file_navigator_initial_place(0, 0, 0)
    {
+      file_navigator_initial_place.size = vec3d(500, 600, 0);
+      file_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
+      file_navigator_initial_place.scale = vec3d(0.8, 0.8, 1.0);
+
       //camera.zoom_pos -= 3.1;
       //camera.position.x += 20;
       //camera.position.y -= 10;
@@ -506,13 +512,13 @@ public:
 
    bool spawn_file_navigator()
    {
-      placement3d place(0, 0, 0);
-      place.size = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/3*2, 0.0);
-      place.align = vec3d(0.5, 0.5, 0.0);
-      place.scale = vec3d(0.9, 0.9, 0.0);
+      //placement3d place(0, 0, 0);
+      //place.size = vec3d(100.0, 200.0, 0.0);
+      //place.align = vec3d(0.5, 0.5, 0.0);
+      //place.scale = vec3d(0.8, 0.8, 0.0);
 
       FileNavigator *file_navigator = new FileNavigator(al_get_current_directory());
-      file_navigator->set_place(place);
+      file_navigator->set_place(file_navigator_initial_place);
       //file_navigator.set_child_nodes();
       stages.push_back(file_navigator);
       //file_navigator.show();
@@ -570,13 +576,13 @@ public:
 
       if (file_system_node.infer_is_directory())
       {
-         placement3d place(0, 0, 0);
-         place.size = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/3*2, 0.0);
-         place.align = vec3d(0.5, 0.5, 0.0);
-         place.scale = vec3d(0.9, 0.9, 0.0);
+         //placement3d place(0, 0, 0);
+         //place.size = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/3*2, 0.0);
+         //place.align = vec3d(0.5, 0.5, 0.0);
+         //place.scale = vec3d(0.9, 0.9, 0.0);
 
          FileNavigator *file_navigator = new FileNavigator(file_system_node.infer_full_name());
-         file_navigator->set_place(place);
+         file_navigator->set_place(file_navigator_initial_place);
          //file_navigator.set_child_nodes();
          stages.push_back(file_navigator);
       }
