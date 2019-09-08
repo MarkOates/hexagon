@@ -56,6 +56,12 @@ std::string RerunOutputWatcher::get_output()
 }
 
 
+void RerunOutputWatcher::clear()
+{
+output = "";
+
+}
+
 ALLEGRO_EVENT& RerunOutputWatcher::dummy_ALLEGRO_EVENT()
 {
 static ALLEGRO_EVENT ev;
@@ -80,10 +86,13 @@ executor.execute();
 
 void RerunOutputWatcher::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
+ALLEGRO_COLOR pass_color = al_color_name("aquamarine");
+ALLEGRO_COLOR running_color = al_color_name("sandybrown");
+
 get_place().start_transform();
 
 if (!font) throw std::runtime_error("could not load font font");
-al_draw_text(font, al_color_name("yellow"), 0, 0, 0, "+ RerunOutputWatcher");
+//al_draw_text(font, al_color_name("yellow"), 0, 0, 0, "+ RerunOutputWatcher");
 
 int y_spacing = 20;
 int x_col = 170;
@@ -94,8 +103,12 @@ al_draw_text(font, al_color_name("yellow"), 0, y_spacing * 1, 0, "command: ");
 al_draw_text(font, al_color_name("aliceblue"), x_col, y_spacing * 1, 0, get_command().c_str());
 
 // draw the command
-al_draw_text(font, al_color_name("yellow"), 0, y_spacing * 2, 0, "watch_pattern: ");
-al_draw_text(font, al_color_name("aliceblue"), x_col, y_spacing * 2, 0, get_watch_pattern().c_str());
+//al_draw_text(font, al_color_name("yellow"), 0, y_spacing * 2, 0, "watch_pattern: ");
+//al_draw_text(font, al_color_name("aliceblue"), x_col, y_spacing * 2, 0, get_watch_pattern().c_str());
+
+// status
+std::string expected_passing_message = "FINISHED!";
+bool passed = (get_output().find(expected_passing_message) != std::string::npos);
 
 // split the lines
 int line_count = 0;
@@ -103,7 +116,7 @@ std::vector<std::string> output_lines = Blast::StringSplitter(get_output(), '\n'
 // draw the output       
 for (auto &line : output_lines)
 {
-   al_draw_text(font, al_color_name("aquamarine"), 0, y_spacing * 3 + line_count * line_height, 0, line.c_str());
+   al_draw_text(font, passed ? pass_color : running_color, 0, y_spacing * 2 + line_count * line_height, 0, line.c_str());
    line_count++;
    //std::cout << line << "-------" << std::endl;
 }

@@ -27,6 +27,7 @@ namespace Hexagon
       std::string get_command();
       std::string get_watch_pattern();
       std::string get_output();
+   void clear();
    static ALLEGRO_EVENT& dummy_ALLEGRO_EVENT();
    void append_to_output(std::string content_to_append="");
    void refresh();
