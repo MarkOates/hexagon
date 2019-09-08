@@ -18,9 +18,11 @@ namespace Hexagon
       std::string output;
 
    public:
-      RerunOutputWatcher();
+      RerunOutputWatcher(std::string command="make", std::string watch_pattern="**.*.q.yml");
       virtual ~RerunOutputWatcher();
 
+      void set_command(std::string command);
+      void set_watch_pattern(std::string watch_pattern);
 
       std::string get_command();
       std::string get_watch_pattern();

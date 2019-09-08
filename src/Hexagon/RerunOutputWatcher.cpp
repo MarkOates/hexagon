@@ -12,10 +12,10 @@ namespace Hexagon
 {
 
 
-RerunOutputWatcher::RerunOutputWatcher()
+RerunOutputWatcher::RerunOutputWatcher(std::string command, std::string watch_pattern)
    : StageInterface(StageInterface::RERUN_OUTPUT_WATCHER)
-   , command("make")
-   , watch_pattern("**.*.q.yml")
+   , command(command)
+   , watch_pattern(watch_pattern)
    , output("[no content]")
 {
 }
@@ -23,6 +23,18 @@ RerunOutputWatcher::RerunOutputWatcher()
 
 RerunOutputWatcher::~RerunOutputWatcher()
 {
+}
+
+
+void RerunOutputWatcher::set_command(std::string command)
+{
+   this->command = command;
+}
+
+
+void RerunOutputWatcher::set_watch_pattern(std::string watch_pattern)
+{
+   this->watch_pattern = watch_pattern;
 }
 
 
@@ -68,21 +80,22 @@ executor.execute();
 
 void RerunOutputWatcher::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
-static ALLEGRO_FONT *font_font = al_create_builtin_font();
-if (!font_font) throw std::runtime_error("could not load font font");
-al_draw_text(font_font, al_color_name("yellow"), 0, 0, 0, "+ RerunOutputWatcher");
+get_place().start_transform();
+
+if (!font) throw std::runtime_error("could not load font font");
+al_draw_text(font, al_color_name("yellow"), 0, 0, 0, "+ RerunOutputWatcher");
 
 int y_spacing = 20;
-int x_col = 130;
-int line_height = al_get_font_line_height(font_font);
+int x_col = 170;
+int line_height = al_get_font_line_height(font);
 
 // draw the command
-al_draw_text(font_font, al_color_name("yellow"), 0, y_spacing * 1, 0, "command: ");
-al_draw_text(font_font, al_color_name("aliceblue"), x_col, y_spacing * 1, 0, get_command().c_str());
+al_draw_text(font, al_color_name("yellow"), 0, y_spacing * 1, 0, "command: ");
+al_draw_text(font, al_color_name("aliceblue"), x_col, y_spacing * 1, 0, get_command().c_str());
 
 // draw the command
-al_draw_text(font_font, al_color_name("yellow"), 0, y_spacing * 2, 0, "watch_pattern: ");
-al_draw_text(font_font, al_color_name("aliceblue"), x_col, y_spacing * 2, 0, get_watch_pattern().c_str());
+al_draw_text(font, al_color_name("yellow"), 0, y_spacing * 2, 0, "watch_pattern: ");
+al_draw_text(font, al_color_name("aliceblue"), x_col, y_spacing * 2, 0, get_watch_pattern().c_str());
 
 // split the lines
 int line_count = 0;
@@ -90,10 +103,11 @@ std::vector<std::string> output_lines = Blast::StringSplitter(get_output(), '\n'
 // draw the output       
 for (auto &line : output_lines)
 {
-   al_draw_text(font_font, al_color_name("white"), 0, y_spacing * 3 + line_count * line_height, 0, line.c_str());
+   al_draw_text(font, al_color_name("dodgerblue"), 0, y_spacing * 3 + line_count * line_height, 0, line.c_str());
    line_count++;
    //std::cout << line << "-------" << std::endl;
 }
+get_place().restore_transform();
 
 return;
 

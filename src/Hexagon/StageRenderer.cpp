@@ -34,7 +34,7 @@ void StageRenderer::render_raw()
    //place.start_transform();
 
    ALLEGRO_COLOR background_overlay_color = al_color_name("black");
-   float opacity = 0.8;
+   float opacity = 0.7;
    background_overlay_color.r *= opacity;
    background_overlay_color.g *= opacity;
    background_overlay_color.b *= opacity;
@@ -43,7 +43,7 @@ void StageRenderer::render_raw()
    //al_draw_filled_rectangle(0, 0, al_get_display_width(display), al_get_display_height(display), background_overlay_color);
 
    //get_place().start_transform();
-   al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_overlay_color);
+   al_draw_filled_rectangle(0, 0, place.size.x/2, place.size.y, background_overlay_color);
 
    // draw a frame around the stage
    //float padding = 30;
