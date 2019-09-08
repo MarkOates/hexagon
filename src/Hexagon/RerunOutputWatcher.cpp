@@ -3,6 +3,9 @@
 #include <Hexagon/RerunOutputWatcher.hpp>
 #include <allegro5/allegro_color.h>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <iostream>
+#include <vector>
+#include <Blast/StringSplitter.hpp>
 
 
 namespace Hexagon
@@ -71,6 +74,7 @@ al_draw_text(font_font, al_color_name("yellow"), 0, 0, 0, "+ RerunOutputWatcher"
 
 int y_spacing = 20;
 int x_col = 130;
+int line_height = al_get_font_line_height(font_font);
 
 // draw the command
 al_draw_text(font_font, al_color_name("yellow"), 0, y_spacing * 1, 0, "command: ");
@@ -80,8 +84,16 @@ al_draw_text(font_font, al_color_name("aliceblue"), x_col, y_spacing * 1, 0, get
 al_draw_text(font_font, al_color_name("yellow"), 0, y_spacing * 2, 0, "watch_pattern: ");
 al_draw_text(font_font, al_color_name("aliceblue"), x_col, y_spacing * 2, 0, get_watch_pattern().c_str());
 
-// draw the output
-al_draw_text(font_font, al_color_name("white"), 0, y_spacing * 2, 0, get_output().c_str());
+// split the lines
+int line_count = 0;
+std::vector<std::string> output_lines = Blast::StringSplitter(get_output(), '\n').split();
+// draw the output       
+for (auto &line : output_lines)
+{
+   al_draw_text(font_font, al_color_name("white"), 0, y_spacing * 3 + line_count * line_height, 0, line.c_str());
+   line_count++;
+   //std::cout << line << "-------" << std::endl;
+}
 
 return;
 
