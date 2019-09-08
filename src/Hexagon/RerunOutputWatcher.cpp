@@ -47,10 +47,9 @@ return ev;
 
 }
 
-bool RerunOutputWatcher::append_to_output(std::string content_to_append)
+void RerunOutputWatcher::append_to_output(std::string content_to_append)
 {
 output += content_to_append;
-return true;
 
 }
 
@@ -72,7 +71,7 @@ al_draw_text(font_font, al_color_name("yellow"), 0, y_spacing * 2, 0, "watch_pat
 al_draw_text(font_font, al_color_name("aliceblue"), x_col, y_spacing * 2, 0, get_watch_pattern().c_str());
 
 // draw the output
-al_draw_text(font_font, al_color_name("white"), x_col, y_spacing * 2, 0, get_output().c_str());
+al_draw_text(font_font, al_color_name("white"), 0, y_spacing * 2, 0, get_output().c_str());
 
 return;
 

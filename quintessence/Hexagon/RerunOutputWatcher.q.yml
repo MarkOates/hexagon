@@ -23,14 +23,13 @@ functions:
       static ALLEGRO_EVENT ev;
       return ev;
   - name: append_to_output
-    type: bool
+    type: void
     parameters:
       - name: content_to_append
         type: std::string
         default_argument: "\"\""
     body: |
       output += content_to_append;
-      return true;
   - name: render
     type: void
     virtual: true
@@ -65,7 +64,7 @@ functions:
        al_draw_text(font_font, al_color_name("aliceblue"), x_col, y_spacing * 2, 0, get_watch_pattern().c_str());
 
        // draw the output
-       al_draw_text(font_font, al_color_name("white"), x_col, y_spacing * 2, 0, get_output().c_str());
+       al_draw_text(font_font, al_color_name("white"), 0, y_spacing * 2, 0, get_output().c_str());
 
        return;
   - name: process_local_event
@@ -101,6 +100,8 @@ functions:
 function_body_symbol_dependencies:
   - al_color_name
 dependencies:
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ 'Blast/ShellCommandExecutorWithCallback.hpp' ]
   - symbol: ALLEGRO_EVENT&
     headers: [ 'allegro5/allegro.h' ]
   - symbol: ActionData
