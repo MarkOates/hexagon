@@ -14,6 +14,7 @@ build/tmp*
 obj/**
 bin/**
 !bin/data
+*.a
 
 
 # OSX image caches
