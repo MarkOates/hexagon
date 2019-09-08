@@ -68,8 +68,8 @@ main:
 	#$(call output_terminal_message,"Run the tests for all the components")
 	#@make run_tests
 	$(call output_terminal_message,"Build the library")
-	@make library
-	$(call output_terminal_message,"Make all the programs")
+	#@make library
+	#$(call output_terminal_message,"Make all the programs")
 	@make programs
 	$(call output_terminal_message,"Make all the example programs")
 	@make examples
@@ -110,7 +110,7 @@ run_tests: tests
 bin/programs/%: programs/%.cpp $(OBJECTS)
 	@mkdir -p $(@D)
 	@printf "compiling program \e[1m\e[36m$<\033[0m..."
-	@g++ -std=gnu++11 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $(OBJECTS) $< -o $@ -I./include -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -I$(YAML_CPP_INCLUDE_DIR) -L$(YAML_CPP_LIB_DIR) -l$(YAML_CPP_LIBS) -D_XOPEN_SOURCE_EXTENDED
+	@g++ -std=gnu++11 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $(OBJECTS) $< -o $@ -I./include -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -I$(YAML_CPP_INCLUDE_DIR) -L$(YAML_CPP_LIB_DIR) -l$(YAML_CPP_LIBS) $(ALLEGRO_LIBS_LINK_MAIN_ARGS) -D_XOPEN_SOURCE_EXTENDED
 	@echo "done. Executable at \033[1m\033[32m$@\033[0m"
 
 
@@ -133,7 +133,7 @@ obj/%.o: src/%.cpp
 
 $(LIBRARY_NAME): $(OBJECTS)
 	@printf "compiling library \e[1m\e[36m$@\033[0m..."
-	@ar rs $(LIBRARY_NAME) $^
+	@ar rs $(LIBRARY_NAME) $^ $(ALLEGRO_LIBS_LINK_MAIN_ARGS)
 	@echo "done. Library file at \033[1m\033[32m$@\033[0m"
 
 
