@@ -553,7 +553,15 @@ public:
 
    bool spawn_rerun_output_watcher()
    {
+      float golden_ratio = 0.61803f;
+      float x_pos = golden_ratio * get_display_default_width() - get_display_default_width()/2;
+      placement3d place(x_pos, -get_display_default_height()/2 + 30, 0);
+      place.size = vec3d(0, 0, 0.0);
+      place.align = vec3d(0, 0, 0);
+      place.scale = vec3d(0.7, 0.7, 0.0);
+
       RerunOutputWatcher *rerun_output_watcher = new RerunOutputWatcher();
+      rerun_output_watcher->set_place(place);
       stages.push_back(rerun_output_watcher);
       return true;
    }
