@@ -103,7 +103,7 @@ std::vector<std::string> output_lines = Blast::StringSplitter(get_output(), '\n'
 // draw the output       
 for (auto &line : output_lines)
 {
-   al_draw_text(font, al_color_name("dodgerblue"), 0, y_spacing * 3 + line_count * line_height, 0, line.c_str());
+   al_draw_text(font, al_color_name("aquamarine"), 0, y_spacing * 3 + line_count * line_height, 0, line.c_str());
    line_count++;
    //std::cout << line << "-------" << std::endl;
 }

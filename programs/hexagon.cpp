@@ -572,7 +572,13 @@ public:
       {
          if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
          {
-            static_cast<RerunOutputWatcher *>(stage)->refresh();
+            RerunOutputWatcher *watcher = static_cast<RerunOutputWatcher *>(stage);
+
+            std::vector<std::string> file_contents = {};
+            if (!::read_file(file_contents, MAKE_COMMAND_FILENAME)) throw std::runtime_error("Could not open the make command file");
+
+            watcher->set_command(file_contents[0]);
+            watcher->refresh();
          }
       }
    }

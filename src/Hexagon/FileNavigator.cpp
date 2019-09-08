@@ -24,6 +24,7 @@ FileNavigator::FileNavigator(std::string directory)
    p.scale = vec3d(0.8, 0.8, 0.8);
    p.size = vec3d(500, 600, 0);
    p.align = vec3d(0.5, 0.5, 0.0);
+   p.rotation = vec3d(0, 0.02, 0);
 }
 
 FileNavigator::~FileNavigator() {}
