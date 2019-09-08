@@ -255,7 +255,7 @@ namespace CppCompiler
       std::string run()
       {
          std::stringstream make_command_string;
-         make_command_string << "make";
+         make_command_string << "make"; // should be "make" by default
          ShellCommandExecutor shell_command_executor(make_command_string.str());
          std::string output = shell_command_executor.execute();
          std::cout << output << std::endl;
@@ -324,6 +324,7 @@ public:
 
 
 #include <Hexagon/FileNavigator.hpp>
+#include <Hexagon/RerunOutputWatcher.hpp>
 //#include <Hexagon/FileNavigatorEventController.hpp>
 
 
@@ -385,6 +386,7 @@ public:
    ALLEGRO_DISPLAY *display;
    Camera camera;
    placement3d file_navigator_initial_place;
+   //RerunOutputWatcher *rerun_output_watcher;
 
    System(ALLEGRO_DISPLAY *display)
       : stages({})
@@ -403,6 +405,7 @@ public:
       //camera.set45_isometric();
       //ALLEGRO_FS_ENTRY *current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
       //file_navigator.set_file_system_entries(get_directory_listing_recursive(al_get_current_directory()));
+      process_local_event(SPAWN_RERUN_OUTPUT_WATCHER);
    }
 
    // retrieval
@@ -547,6 +550,13 @@ public:
       return true;
    }
 
+   bool spawn_rerun_output_watcher()
+   {
+      RerunOutputWatcher *rerun_output_watcher = new RerunOutputWatcher();
+      stages.push_back(rerun_output_watcher);
+      return true;
+   }
+
    bool destroy_topmost_stage()
    {
       if (stages.size() == 1) std::cout << "WARNING: destroying topmost stage. There is only 1 stage in the system and there will be none after this action." << std::endl;
@@ -687,6 +697,7 @@ public:
    //static const std::string SHOW_FILE_NAVIGATOR;
    static const std::string HIDE_FILE_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
+   static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
    static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH;
    static const std::string SPAWN_KEYBOARD_INPUTS_MODAL;
@@ -714,6 +725,7 @@ public:
          else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { executed = true; offset_first_line_to_vertically_center_cursor_on_stage(); }
          else if (event_name == RUN_MAKE) { executed = true; run_make(); }
          else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
+         else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
          else if (event_name == ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_file_navigation_selected_path(); executed = true; }
          else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
 
@@ -811,6 +823,7 @@ std::string get_action_description(std::string action_identifier)
       //{ System::SHOW_FILE_NAVIGATOR, "" },
       { System::HIDE_FILE_NAVIGATOR, "" },
       { System::SPAWN_FILE_NAVIGATOR, "" },
+      { System::SPAWN_RERUN_OUTPUT_WATCHER, "" },
       { System::DESTROY_FILE_NAVIGATOR, "" },
       { System::ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH, "" },
       { System::SPAWN_KEYBOARD_INPUTS_MODAL, "" }
@@ -851,6 +864,7 @@ const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 //const std::string System::SHOW_FILE_NAVIGATOR = "SHOW_FILE_NAVIGATOR";
 const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
+const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH";
 const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
@@ -902,6 +916,14 @@ void run_program(std::vector<std::string> filenames)
       throw std::runtime_error(error_message.str());
    }
 
+   MAKE_COMMAND_FILENAME = resource_path({"data", "tmp"}, "make_command.txt");
+   if (!php::file_exists(MAKE_COMMAND_FILENAME))
+   {
+      std::stringstream error_message;
+      error_message << "|----| Error: there is no \"" << MAKE_COMMAND_FILENAME << "\" located in the directory tree.  It has to be present for hexagon to work.";
+      throw std::runtime_error(error_message.str());
+   }
+
    int display_width = al_get_display_width(display);
    int display_height = al_get_display_height(display);
 
@@ -943,6 +965,9 @@ void run_program(std::vector<std::string> filenames)
    rudimentary_camera_place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
 
    System system(display);
+
+
+   // create the first stage
 
    for (auto &filename : filenames)
    {
