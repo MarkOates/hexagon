@@ -1,3 +1,4 @@
+parent_classes: [ 'Stage' ]
 functions:
   - name: run
     type: std::string
