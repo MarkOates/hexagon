@@ -324,7 +324,7 @@ public:
 
 
 #include <Hexagon/FileNavigator.hpp>
-#include <Hexagon/FileNavigatorEventController.hpp>
+//#include <Hexagon/FileNavigatorEventController.hpp>
 
 
 
