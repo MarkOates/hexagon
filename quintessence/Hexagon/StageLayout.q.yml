@@ -2,6 +2,8 @@ properties:
   - name: placements
     type: std::map<std::string, placement3d>
     getter: true
+    getter_ref: true
+    setter: true
     constructor_arg: true
     init_with: "{}"
 functions:

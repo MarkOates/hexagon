@@ -20,7 +20,19 @@ StageLayout::~StageLayout()
 }
 
 
+void StageLayout::set_placements(std::map<std::string, placement3d> placements)
+{
+   this->placements = placements;
+}
+
+
 std::map<std::string, placement3d> StageLayout::get_placements()
+{
+   return placements;
+}
+
+
+std::map<std::string, placement3d> &StageLayout::get_placements_ref()
 {
    return placements;
 }
