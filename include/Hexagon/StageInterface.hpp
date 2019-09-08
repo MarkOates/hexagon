@@ -20,6 +20,7 @@ public:
       ONE_LINE_INPUT_BOX,
       FILE_NAVIGATOR,
       KEYBOARD_INPUTS_MODAL,
+      RERUN_OUTPUT_WATCHER,
    };
 
 private:

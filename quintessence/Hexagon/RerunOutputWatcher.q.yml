@@ -1,0 +1,11 @@
+parent_classes:
+  - class: StageInterface
+    scope: public
+    init_with: "StageInterface::RERUN_OUTPUT_WATCHER"
+functions:
+  - name: run
+    type: std::string
+    body: return "Hello Buddy!";
+dependencies:
+  - symbol: StageInterface
+    headers: [ 'Hexagon/StageInterface.hpp' ]
