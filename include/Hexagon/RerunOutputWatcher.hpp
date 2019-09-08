@@ -13,12 +13,17 @@ namespace Hexagon
    class RerunOutputWatcher : public StageInterface
    {
    private:
+      std::string command;
+      std::string watch_pattern;
+      std::string output;
 
    public:
       RerunOutputWatcher();
       virtual ~RerunOutputWatcher();
 
 
+      std::string get_command();
+      std::string get_watch_pattern();
    static ALLEGRO_EVENT& dummy_ALLEGRO_EVENT();
    virtual void render(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=60, int cell_height=20) override;
    virtual void process_local_event(std::string event_name="", ActionData action_data={}) override;
