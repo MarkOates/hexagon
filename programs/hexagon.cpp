@@ -406,6 +406,7 @@ public:
       //ALLEGRO_FS_ENTRY *current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
       //file_navigator.set_file_system_entries(get_directory_listing_recursive(al_get_current_directory()));
       process_local_event(SPAWN_RERUN_OUTPUT_WATCHER);
+      process_local_event(REFRESH_RERUN_OUTPUT_WATCHERS);
    }
 
    // retrieval
@@ -557,6 +558,17 @@ public:
       return true;
    }
 
+   bool refresh_rerun_output_watchers()
+   {
+      for (auto &stage : stages)
+      {
+         if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
+         {
+            static_cast<RerunOutputWatcher *>(stage)->refresh();
+         }
+      }
+   }
+
    bool destroy_topmost_stage()
    {
       if (stages.size() == 1) std::cout << "WARNING: destroying topmost stage. There is only 1 stage in the system and there will be none after this action." << std::endl;
@@ -694,6 +706,7 @@ public:
    static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE;
    static const std::string SUBMIT_CURRENT_MODAL;
+   static const std::string REFRESH_RERUN_OUTPUT_WATCHERS;
    //static const std::string SHOW_FILE_NAVIGATOR;
    static const std::string HIDE_FILE_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
@@ -726,6 +739,7 @@ public:
          else if (event_name == RUN_MAKE) { executed = true; run_make(); }
          else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
          else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
+         else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
          else if (event_name == ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_file_navigation_selected_path(); executed = true; }
          else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
 
@@ -865,6 +879,7 @@ const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
 const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
+const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH";
 const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";

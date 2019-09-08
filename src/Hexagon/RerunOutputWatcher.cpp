@@ -2,6 +2,7 @@
 
 #include <Hexagon/RerunOutputWatcher.hpp>
 #include <allegro5/allegro_color.h>
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
 namespace Hexagon
@@ -50,6 +51,15 @@ return ev;
 void RerunOutputWatcher::append_to_output(std::string content_to_append)
 {
 output += content_to_append;
+
+}
+
+void RerunOutputWatcher::refresh()
+{
+output = "";
+using std::placeholders::_1;
+Blast::ShellCommandExecutorWithCallback executor(get_command(), std::bind(&RerunOutputWatcher::append_to_output, this, _1));
+executor.execute();
 
 }
 

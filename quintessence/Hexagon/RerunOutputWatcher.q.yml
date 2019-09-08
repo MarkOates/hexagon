@@ -30,6 +30,13 @@ functions:
         default_argument: "\"\""
     body: |
       output += content_to_append;
+  - name: refresh
+    type: void
+    body: |
+      output = "";
+      using std::placeholders::_1;
+      Blast::ShellCommandExecutorWithCallback executor(get_command(), std::bind(&RerunOutputWatcher::append_to_output, this, _1));
+      executor.execute();
   - name: render
     type: void
     virtual: true
@@ -99,6 +106,7 @@ functions:
       return true;
 function_body_symbol_dependencies:
   - al_color_name
+  - Blast::ShellCommandExecutorWithCallback
 dependencies:
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ 'Blast/ShellCommandExecutorWithCallback.hpp' ]

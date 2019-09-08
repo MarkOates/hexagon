@@ -18,9 +18,9 @@ namespace Blast
 {
 
 
-ShellCommandExecutorWithCallback::ShellCommandExecutorWithCallback()
-   : command("echo hello!")
-   , callback(ShellCommandExecutorWithCallback::simple_cout_callback)
+ShellCommandExecutorWithCallback::ShellCommandExecutorWithCallback(std::string command, std::function<void(std::string)> callback)
+   : command(command)
+   , callback(callback)
 {
 }
 

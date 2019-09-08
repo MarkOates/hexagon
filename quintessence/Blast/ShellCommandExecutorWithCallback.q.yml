@@ -2,9 +2,11 @@ properties:
   - name: command
     type: std::string
     init_with: "\"echo hello!\""
+    constructor_arg: true
   - name: callback
     type: std::function<void(std::string)>
     init_with: "ShellCommandExecutorWithCallback::simple_cout_callback"
+    constructor_arg: true
 functions:
   - name: simple_cout_callback
     type: void
