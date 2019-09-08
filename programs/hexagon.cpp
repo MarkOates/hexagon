@@ -615,7 +615,7 @@ public:
 
          placement3d place(0, 0, 0);
          //place.position = vec3d(-al_get_display_width(display) * 0.5, -al_get_display_height(display)/2, 0.0);
-         place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
+         place.size = vec3d(get_display_default_width(), get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
          place.align = vec3d(0.5, 0.5, 0.0);
          place.scale = vec3d(0.9, 0.9, 0.0);
 
