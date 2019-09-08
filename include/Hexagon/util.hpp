@@ -21,3 +21,5 @@ bool read_file(std::vector<std::string> &lines, std::string filename);
 
 bool save_file(std::vector<std::string> &lines, std::string filename);
 
+std::string resource_path(std::vector<std::string> components, std::string filename="");
+

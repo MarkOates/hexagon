@@ -3,6 +3,7 @@
 
 #include <Hexagon/util.hpp>
 
+#include <allegro5/allegro.h>
 
 #include <iostream>       // std::cout
 #include <string>         // std::string
@@ -98,3 +99,23 @@ bool save_file(std::vector<std::string> &lines, std::string filename)
 
    return true;
 }
+
+std::string resource_path(std::vector<std::string> components, std::string filename)
+{
+   std::string result;
+
+   ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+   for (auto &component : components) al_append_path_component(path, component.c_str());
+
+   al_set_path_filename(path, filename.c_str());
+   result = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
+
+   std::cout << result << std::endl;
+
+   return result;
+}
+
+
+
+
+
