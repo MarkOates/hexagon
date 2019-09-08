@@ -19,7 +19,6 @@ namespace Hexagon
 
 
       std::map<std::string, placement3d> get_placements();
-   std::string run();
    placement3d placement_for(std::string label="");
    };
 }

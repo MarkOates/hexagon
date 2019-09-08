@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/StageLayout.hpp>
-
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -25,14 +26,17 @@ std::map<std::string, placement3d> StageLayout::get_placements()
 }
 
 
-std::string StageLayout::run()
-{
-return "Hello Buddy!";
-}
-
 placement3d StageLayout::placement_for(std::string label)
 {
-placement3d result;
+std::map<std::string, placement3d>::iterator it;
+it = placements.find(label);
+if (it == placements.end())
+{
+   std::stringstream error_message;
+   error_message << "Could not find placement named \"" << label << "\"." << std::endl;
+   throw std::runtime_error(error_message.str());
+}
+placement3d result = it->second;
 return result;
 
 }

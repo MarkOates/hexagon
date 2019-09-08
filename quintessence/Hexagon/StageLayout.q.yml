@@ -5,9 +5,6 @@ properties:
     constructor_arg: true
     init_with: "{}"
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello Buddy!";
   - name: placement_for
     type: placement3d
     parameters:
@@ -15,9 +12,24 @@ functions:
          type: std::string
          default_argument: "\"\""
     body: |
-      placement3d result;
+      std::map<std::string, placement3d>::iterator it;
+      it = placements.find(label);
+      if (it == placements.end())
+      {
+         std::stringstream error_message;
+         error_message << "Could not find placement named \"" << label << "\"." << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+      placement3d result = it->second;
       return result;
+function_body_symbol_dependencies:
+  - std::stringstream
+  - std::runtime_error
 dependencies:
+  - symbol: std::stringstream
+    headers: [ 'sstream' ]
+  - symbol: std::runtime_error
+    headers: [ 'stdexcept' ]
   - symbol: std::map<std::string, placement3d>
     headers: [ 'map', 'string', 'allegro_flare/placement3d.h' ]
   - symbol: placement3d
