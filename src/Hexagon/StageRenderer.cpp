@@ -62,10 +62,10 @@ void StageRenderer::render_raw()
    switch(mode)
    {
    case Stage::EDIT:
-      al_draw_filled_rectangle(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width + _cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"));
+      al_draw_filled_rectangle(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width + _cell_width, _cursor_y*cell_height + cell_height, al_color_name("yellow"));
       break;
    case Stage::INSERT:
-      al_draw_line(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"), 3);
+      al_draw_line(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width, _cursor_y*cell_height + cell_height, al_color_name("yellow"), 3);
       break;
    }
 
