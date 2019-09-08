@@ -1,6 +1,6 @@
 #include <Hexagon/FileNavigator.hpp>
 
-#include <include/Hexagon/shared_globals.hpp>
+#include <Hexagon/shared_globals.hpp>
 
 #include <Hexagon/FileSystemNode.hpp>
 #include <Hexagon/FileNavigatorEventController.hpp>
