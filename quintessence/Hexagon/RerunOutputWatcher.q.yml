@@ -3,9 +3,76 @@ parent_classes:
     scope: public
     init_with: "StageInterface::RERUN_OUTPUT_WATCHER"
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello Buddy!";
+  - name: dummy_ALLEGRO_EVENT
+    type: ALLEGRO_EVENT&
+    static: true
+    body: |
+      static ALLEGRO_EVENT ev;
+      return ev;
+  - name: render
+    type: void
+    virtual: true
+    override: true
+    parameters:
+      - name: display
+        type: ALLEGRO_DISPLAY*
+        default_argument: nullptr
+      - name: font
+        type: ALLEGRO_FONT*
+        default_argument: nullptr
+      - name: cell_width
+        type: int
+        default_argument: 60
+      - name: cell_height
+        type: int
+        default_argument: 20
+    body: |
+       static ALLEGRO_FONT *font_font = al_create_builtin_font();
+       if (!font_font) throw std::runtime_error("could not load font font");
+       al_draw_text(font_font, al_color_name("yellow"), 0, 0, 0, "+ RerunOutputWatcher");
+       return;
+  - name: process_local_event
+    type: void
+    virtual: true
+    override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: "\"\""
+      - name: action_data
+        type: ActionData
+        override_default_argument_requirement: true
+        default_argument: "{}"
+    body: |
+      return;
+  - name: process_event
+    type: void
+    virtual: true
+    override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: RerunOutputWatcher::dummy_ALLEGRO_EVENT()
+    body: |
+      return;
+  - name: save_file
+    type: bool
+    virtual: true
+    override: true
+    body: |
+      return true;
+function_body_symbol_dependencies:
+  - al_color_name
 dependencies:
+  - symbol: ALLEGRO_EVENT&
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ActionData
+    headers: [ 'Hexagon/ActionData.hpp' ]
+  - symbol: al_color_name
+    headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ 'allegro5/allegro_font.h' ]
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ 'allegro5/allegro.h' ]
   - symbol: StageInterface
     headers: [ 'Hexagon/StageInterface.hpp' ]

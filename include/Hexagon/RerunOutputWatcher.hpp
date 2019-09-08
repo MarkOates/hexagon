@@ -1,7 +1,10 @@
 #pragma once
 
 
+#include <Hexagon/ActionData.hpp>
 #include <Hexagon/StageInterface.hpp>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
 #include <string>
 
 
@@ -13,10 +16,14 @@ namespace Hexagon
 
    public:
       RerunOutputWatcher();
-      ~RerunOutputWatcher();
+      virtual ~RerunOutputWatcher();
 
 
-   std::string run();
+   static ALLEGRO_EVENT& dummy_ALLEGRO_EVENT();
+   virtual void render(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=60, int cell_height=20) override;
+   virtual void process_local_event(std::string event_name="", ActionData action_data={}) override;
+   virtual void process_event(ALLEGRO_EVENT& event=RerunOutputWatcher::dummy_ALLEGRO_EVENT()) override;
+   virtual bool save_file() override;
    };
 }
 
