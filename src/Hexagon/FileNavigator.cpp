@@ -163,7 +163,7 @@ void FileNavigator::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cel
       }
       //else
       //{
-         text_color = is_directory ? al_color_name("aquamarine") : al_color_name("lime");
+         text_color = is_directory ? al_color_name("lime") : al_color_name("aquamarine");
       //}
       al_draw_text(font, text_color, padding_x+0, padding_y+line_height * line_count, ALLEGRO_ALIGN_LEFT, current_node_label.c_str());
       line_count++;

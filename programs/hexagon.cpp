@@ -265,6 +265,10 @@ public:
 
 
 
+#include <Hexagon/StageLayout.hpp>
+
+
+
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
 My heavy eyelids to the weary night?
@@ -322,6 +326,7 @@ public:
    ALLEGRO_DISPLAY *display;
    Camera camera;
    placement3d file_navigator_initial_place;
+
    //RerunOutputWatcher *rerun_output_watcher;
 
    System(ALLEGRO_DISPLAY *display)

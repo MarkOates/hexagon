@@ -1,4 +1,24 @@
+properties:
+  - name: placements
+    type: std::map<std::string, placement3d>
+    getter: true
+    constructor_arg: true
+    init_with: "{}"
 functions:
   - name: run
     type: std::string
     body: return "Hello Buddy!";
+  - name: placement_for
+    type: placement3d
+    parameters:
+       - name: label
+         type: std::string
+         default_argument: "\"\""
+    body: |
+      placement3d result;
+      return result;
+dependencies:
+  - symbol: std::map<std::string, placement3d>
+    headers: [ 'map', 'string', 'allegro_flare/placement3d.h' ]
+  - symbol: placement3d
+    headers: [ 'allegro_flare/placement3d.h' ]
