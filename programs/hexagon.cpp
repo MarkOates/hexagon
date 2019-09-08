@@ -985,6 +985,7 @@ void run_program(std::vector<std::string> filenames)
    al_draw_text(consolas_font, al_color_name("darkviolet"), display_width/2, display_height/2, ALLEGRO_ALIGN_CENTER, "hexagon");
 
 
+   al_hide_mouse_cursor(display);
    al_flip_display();
 
 
