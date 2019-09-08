@@ -60,22 +60,6 @@ placement3d get_stage_default_place()
 
 
 
-std::string resource_path(std::vector<std::string> components, std::string filename="")
-{
-   std::string result;
-
-   ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
-   for (auto &component : components) al_append_path_component(path, component.c_str());
-
-   al_set_path_filename(path, filename.c_str());
-   result = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
-
-   std::cout << result << std::endl;
-
-   return result;
-}
-
-
 
 #include <Hexagon/util.hpp>
 #include <Hexagon/ClipboardData.hpp>
@@ -239,31 +223,8 @@ public:
 
 
 
-namespace CppCompiler
-{
-   class CompileRunner
-   {
-   private:
-      std::string filename;
 
-   public:
-      CompileRunner(std::string filename)
-         : filename(filename)
-      {}
-      ~CompileRunner() {}
-
-      std::string run()
-      {
-         std::stringstream make_command_string;
-         make_command_string << "make"; // should be "make" by default
-         ShellCommandExecutor shell_command_executor(make_command_string.str());
-         std::string output = shell_command_executor.execute();
-         std::cout << output << std::endl;
-         return output;
-      }
-   };
-};
-
+#include <Hexagon/CppCompiler.hpp>
 
 
 
