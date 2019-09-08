@@ -14,6 +14,7 @@ properties:
   - name: output
     type: std::string
     init_with: "\"[no content]\""
+    getter: true
 functions:
   - name: dummy_ALLEGRO_EVENT
     type: ALLEGRO_EVENT&
@@ -21,6 +22,15 @@ functions:
     body: |
       static ALLEGRO_EVENT ev;
       return ev;
+  - name: append_to_output
+    type: bool
+    parameters:
+      - name: content_to_append
+        type: std::string
+        default_argument: "\"\""
+    body: |
+      output += content_to_append;
+      return true;
   - name: render
     type: void
     virtual: true
@@ -53,6 +63,9 @@ functions:
        // draw the command
        al_draw_text(font_font, al_color_name("yellow"), 0, y_spacing * 2, 0, "watch_pattern: ");
        al_draw_text(font_font, al_color_name("aliceblue"), x_col, y_spacing * 2, 0, get_watch_pattern().c_str());
+
+       // draw the output
+       al_draw_text(font_font, al_color_name("white"), x_col, y_spacing * 2, 0, get_output().c_str());
 
        return;
   - name: process_local_event

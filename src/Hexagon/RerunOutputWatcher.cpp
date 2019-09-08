@@ -34,10 +34,23 @@ std::string RerunOutputWatcher::get_watch_pattern()
 }
 
 
+std::string RerunOutputWatcher::get_output()
+{
+   return output;
+}
+
+
 ALLEGRO_EVENT& RerunOutputWatcher::dummy_ALLEGRO_EVENT()
 {
 static ALLEGRO_EVENT ev;
 return ev;
+
+}
+
+bool RerunOutputWatcher::append_to_output(std::string content_to_append)
+{
+output += content_to_append;
+return true;
 
 }
 
@@ -57,6 +70,9 @@ al_draw_text(font_font, al_color_name("aliceblue"), x_col, y_spacing * 1, 0, get
 // draw the command
 al_draw_text(font_font, al_color_name("yellow"), 0, y_spacing * 2, 0, "watch_pattern: ");
 al_draw_text(font_font, al_color_name("aliceblue"), x_col, y_spacing * 2, 0, get_watch_pattern().c_str());
+
+// draw the output
+al_draw_text(font_font, al_color_name("white"), x_col, y_spacing * 2, 0, get_output().c_str());
 
 return;
 
