@@ -21,7 +21,7 @@ public:
 
    std::string run()
    {
-      ShellCommandExecutor shell_command_executor(get_execution_command());
+      Blast::ShellCommandExecutor shell_command_executor(get_execution_command());
       std::string output = shell_command_executor.execute(command_line_exec_callback);
       return output;
    }

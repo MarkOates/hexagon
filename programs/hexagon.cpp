@@ -23,7 +23,7 @@
 #include <lib/camera.h>
 
 
-using namespace Blast;
+//using namespace Blast;
 
 
 #include <Hexagon/Logo.hpp>
@@ -996,7 +996,7 @@ int main(int argc, char **argv)
 {
    std::vector<std::string> args;
    for (int i=0; i<argc; i++) args.push_back(argv[i]);
-   CommandLineFlaggedArgumentsParser command_line_flagged_arguments_parser(args);
+   Blast::CommandLineFlaggedArgumentsParser command_line_flagged_arguments_parser(args);
 
    std::vector<std::vector<std::string>> filenames = command_line_flagged_arguments_parser.get_flagged_args("-f");
    std::vector<std::string> first_filenames_set = filenames.empty() ? std::vector<std::string>{} : filenames[0];
