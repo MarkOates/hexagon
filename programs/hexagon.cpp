@@ -79,14 +79,6 @@ placement3d get_stage_default_place()
 
 
 
-
-void command_line_exec_callback(std::string new_content)
-{
-   std::cout << "####>" << new_content << "<####" << std::endl;
-}
-
-
-
 #include <Hexagon/RailsMinitestTestRunner.hpp>
 
 
@@ -248,34 +240,6 @@ From me far off, with others all too near.
 
 
 
-std::vector<std::string> get_directory_listing_recursive(std::string directory)
-{
-   if (!al_is_system_installed()) al_init();
-
-   std::vector<std::string> results;
-   ALLEGRO_FS_ENTRY* dir = al_create_fs_entry(directory.c_str());
-
-   if(al_open_directory(dir))
-   {
-      ALLEGRO_FS_ENTRY* file;
-      while((file=al_read_directory(dir)))
-      {
-         results.push_back(al_get_fs_entry_name(file));
-         al_destroy_fs_entry(file);
-      }
-   }
-   else
-   {
-      std::cout << "could not open directory \"" << directory << "\"" << std::endl;
-   }
-
-   al_destroy_fs_entry(dir);
-
-   return results;
-}
-
-
-
 
 class System
 {
@@ -285,15 +249,17 @@ public:
    ALLEGRO_DISPLAY *display;
    Camera camera;
    placement3d file_navigator_initial_place;
+   Motion &motion;
 
    //RerunOutputWatcher *rerun_output_watcher;
 
-   System(ALLEGRO_DISPLAY *display)
+   System(ALLEGRO_DISPLAY *display, Motion &motion)
       : stages({})
       //, file_navigator(al_get_current_directory())
       , display(display)
       , camera(0, 0, 0)
       , file_navigator_initial_place(0, 0, 0)
+      , motion(motion)
    {
       file_navigator_initial_place.size = vec3d(500, 600, 0);
       file_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
@@ -308,6 +274,34 @@ public:
       process_local_event(SPAWN_RERUN_OUTPUT_WATCHER);
       //process_local_event(REFRESH_RERUN_OUTPUT_WATCHERS);
    }
+
+   // util
+   static std::vector<std::string> get_directory_listing_recursive(std::string directory)
+   {
+      if (!al_is_system_installed()) al_init();
+
+      std::vector<std::string> results;
+      ALLEGRO_FS_ENTRY* dir = al_create_fs_entry(directory.c_str());
+
+      if(al_open_directory(dir))
+      {
+         ALLEGRO_FS_ENTRY* file;
+         while((file=al_read_directory(dir)))
+         {
+            results.push_back(al_get_fs_entry_name(file));
+            al_destroy_fs_entry(file);
+         }
+      }
+      else
+      {
+         std::cout << "could not open directory \"" << directory << "\"" << std::endl;
+      }
+
+      al_destroy_fs_entry(dir);
+
+      return results;
+   }
+
 
    // retrieval
 
@@ -329,6 +323,16 @@ public:
          return static_cast<Stage *>(get_frontmost_stage());
       }
       return nullptr;
+   }
+
+   int get_number_of_code_editor_stages()
+   {
+      int result = 0;
+      for (auto &stage : stages)
+      {
+         if (stage->get_type() == Stage::CODE_EDITOR) result++;
+      }
+      return result;
    }
 
    // inference
@@ -429,6 +433,12 @@ public:
       stage->set_place(place);
       stages.push_back(stage);
 
+      placement3d& stage_place = stage->get_place();
+      stage_place.scale.x = 1.7;
+      stage_place.scale.y = 1.7;
+      motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+      motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+
       std::vector<std::string> file_contents;
 
       stage->set_content(std::vector<std::string>{"", ""});
@@ -447,6 +457,12 @@ public:
       //file_navigator->set_place(file_navigator_initial_place);
       //file_navigator.set_child_nodes();
       stages.push_back(file_navigator);
+
+      placement3d& stage_place = file_navigator->get_place();
+      //stage_place.scale.x = 1.2;
+      //stage_place.scale.y = 1.2;
+      //motion.cmove_to(&stage_place.rotation.y, 0.0, 0.6, interpolator::fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+      //motion.cmove_to(&stage_place.scale.y, 1.1, 0.3); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
       //file_navigator.show();
       return true;
    }
@@ -561,7 +577,11 @@ public:
          std::vector<std::string> file_contents = {};
          if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
 
-         placement3d place(0, 0, 0);
+         int number_of_files = get_number_of_code_editor_stages();
+         //number_of_files++;
+         float one_third_screen_width = get_display_default_width() / 3;
+
+         placement3d place(one_third_screen_width*number_of_files, 0, 0);
          //place.position = vec3d(-al_get_display_width(display) * 0.5, -al_get_display_height(display)/2, 0.0);
          place.size = vec3d(get_display_default_width(), get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
          place.align = vec3d(0.5, 0.5, 0.0);
@@ -887,6 +907,8 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    al_hide_mouse_cursor(display);
    al_flip_display();
 
+   Motion motion;
+
 
    std::string first_filename = filenames.empty() ? "" : filenames[0];
 
@@ -908,7 +930,7 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    placement3d rudimentary_camera_place(0, 0, 0);
    rudimentary_camera_place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
 
-   System system(display);
+   System system(display, motion);
 
 
    // create the first stage
@@ -955,7 +977,8 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
          //refresh = false;
          break;
       case ALLEGRO_EVENT_TIMER:
-         continue;
+         motion.update(al_get_time());
+         if (motion.get_num_active_animations() == 0) continue;
          break;
       }
 
