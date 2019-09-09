@@ -30,7 +30,7 @@
 #include <Hexagon/RegexMatcher.hpp>
 
 
-using namespace Hexagon;
+//using namespace Hexagon;
 
 
 
@@ -172,7 +172,7 @@ private:
    Stage *center_stage;
    Stage *right_stage;
 
-   StageLayout layout;
+   Hexagon::StageLayout layout;
 
 public:
 
@@ -188,7 +188,7 @@ public:
    {
       float stage_position_grid_len = get_display_default_width() / 6.0f;
       float stage_width = get_display_default_width() / 3.0f;
-      float stage_height = get_display_default_height();
+      //float stage_height = get_display_default_height();
       float leftmost_anchor = -stage_position_grid_len * 2;
       float topmost_anchor = get_display_default_width() / 2;
 
@@ -366,7 +366,7 @@ public:
       if (!stage) throw std::runtime_error("cannot run tests on current stage -- not a stage stage");
 
       std::string test_output = RailsMinitestTestRunner(stage->get_filename()).run();
-      RailsTestOutputParser rails_test_output_parser(test_output);
+      Hexagon::RailsTestOutputParser rails_test_output_parser(test_output);
       //for (auto &test_result_line : rails_test_output_parser.get_test_result_lines())
       //{
          //std::cout << test_result_line << std::endl;
@@ -460,7 +460,7 @@ public:
       place.align = vec3d(0, 0, 0);
       place.scale = vec3d(0.7, 0.7, 0.0);
 
-      RerunOutputWatcher *rerun_output_watcher = new RerunOutputWatcher();
+      Hexagon::RerunOutputWatcher *rerun_output_watcher = new Hexagon::RerunOutputWatcher();
       rerun_output_watcher->set_place(place);
       stages.push_back(rerun_output_watcher);
       return true;
@@ -472,7 +472,7 @@ public:
       {
          if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
          {
-            RerunOutputWatcher *watcher = static_cast<RerunOutputWatcher *>(stage);
+            Hexagon::RerunOutputWatcher *watcher = static_cast<Hexagon::RerunOutputWatcher *>(stage);
             watcher->clear();
          }
       }
@@ -484,7 +484,7 @@ public:
       {
          if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
          {
-            RerunOutputWatcher *watcher = static_cast<RerunOutputWatcher *>(stage);
+            Hexagon::RerunOutputWatcher *watcher = static_cast<Hexagon::RerunOutputWatcher *>(stage);
 
             std::vector<std::string> file_contents = {};
             if (!::read_file(file_contents, MAKE_COMMAND_FILENAME)) throw std::runtime_error("Could not open the make command file");
@@ -880,7 +880,7 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    al_start_timer(primary_timer);
 
    float logo_radius = 60;
-   Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, al_color_name("darkviolet"), 3);
+   Hexagon::Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, al_color_name("darkviolet"), 3);
    logo.render();
    al_draw_text(consolas_font, al_color_name("darkviolet"), display_width/2, display_height/2, ALLEGRO_ALIGN_CENTER, "hexagon");
 
