@@ -97,7 +97,7 @@ functions:
       if (current_rails_minitest_test_result) test_result_lines.push_back(*current_rails_minitest_test_result);
 
       processed = true;
-  - name: get_result_lines
+  - name: get_test_result_lines
     type: std::vector<RailsMinitestTestResult>&
     body: |
       if (!processed) process();

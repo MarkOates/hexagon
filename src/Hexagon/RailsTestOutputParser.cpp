@@ -114,7 +114,7 @@ processed = true;
 
 }
 
-std::vector<RailsMinitestTestResult>& RailsTestOutputParser::get_result_lines()
+std::vector<RailsMinitestTestResult>& RailsTestOutputParser::get_test_result_lines()
 {
 if (!processed) process();
 return test_result_lines;

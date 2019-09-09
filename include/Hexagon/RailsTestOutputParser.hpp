@@ -21,7 +21,7 @@ namespace Hexagon
 
 
    void process();
-   std::vector<RailsMinitestTestResult>& get_result_lines();
+   std::vector<RailsMinitestTestResult>& get_test_result_lines();
    };
 }
 
