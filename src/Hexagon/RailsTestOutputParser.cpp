@@ -1,0 +1,125 @@
+
+
+#include <Hexagon/RailsTestOutputParser.hpp>
+#include <Blast/StringSplitter.hpp>
+#include <Hexagon/RegexMatcher.hpp>
+#include <iostream>
+#include <iostream>
+
+
+namespace Hexagon
+{
+
+
+RailsTestOutputParser::RailsTestOutputParser(std::string source_test_output)
+   : processed(false)
+   , source_test_output(source_test_output)
+   , test_result_lines({})
+{
+}
+
+
+RailsTestOutputParser::~RailsTestOutputParser()
+{
+}
+
+
+void RailsTestOutputParser::process()
+{
+if (processed) return;
+
+test_result_lines.clear();
+std::vector<std::string> source_test_output_lines = Blast::StringSplitter(source_test_output, '\n').split();
+
+RailsMinitestTestResult *current_rails_minitest_test_result = nullptr;
+
+for (auto &source_test_output_line : source_test_output_lines)
+{
+   std::vector<std::string> possible_test_line_output_tokens = Blast::StringSplitter(source_test_output_line, '=').split();
+   if (possible_test_line_output_tokens.size() == 3)
+   {
+      // assume it is a valid test output line
+
+      // 1) "close" the current rails minitest test result (if there is one)
+      if (current_rails_minitest_test_result) test_result_lines.push_back(*current_rails_minitest_test_result);
+
+      RailsMinitestTestResult::test_state_t test_state = RailsMinitestTestResult::UNKNOWN;
+      if (possible_test_line_output_tokens[2] == " E") test_state = RailsMinitestTestResult::ERROR;
+      else if (possible_test_line_output_tokens[2] == " F") test_state = RailsMinitestTestResult::FAILURE;
+      else if (possible_test_line_output_tokens[2] == " .") test_state = RailsMinitestTestResult::PASS;
+      else if (possible_test_line_output_tokens[2] == " S") test_state = RailsMinitestTestResult::SKIPPED;
+
+      // 2) create a new one
+      current_rails_minitest_test_result = new RailsMinitestTestResult({
+         possible_test_line_output_tokens[0],
+         possible_test_line_output_tokens[1],
+         possible_test_line_output_tokens[2],
+         test_state,
+      });
+   }
+   else
+   {
+      // append the line to the current test (if there is one)
+      if (current_rails_minitest_test_result)
+      {
+         current_rails_minitest_test_result->test_result_output += source_test_output_line + "\n";
+
+         if (current_rails_minitest_test_result->test_state == RailsMinitestTestResult::ERROR)
+         {
+            // attempt to extract the error line by matching the final line
+            std::string final_line_regex_expression = "bin/rails test .+_test\\.rb:";
+            std::vector<std::pair<int, int>> matches = RegexMatcher(source_test_output_line, final_line_regex_expression).get_match_info();
+            if (matches.size() == 1 && matches[0].first == 0)
+            {
+               std::cout << "Found Matched Error Line!" << std::endl;
+               std::vector<std::string> splits = Blast::StringSplitter(source_test_output_line, ':').split();
+               if (splits.size() != 2) throw std::runtime_error("RailsTestOutputParser: unexpected number of splits, expecting 2");
+               std::string number = splits.back();
+               bool number_contains_only_number_characters = (number.find_first_not_of("0123456789") == std::string::npos);
+               if (!number_contains_only_number_characters) throw std::runtime_error("RailsTestOutputParser: unexpected characters in expected number string");
+               current_rails_minitest_test_result->error_line_number = atoi(number.c_str());
+            }
+         }
+         else
+         {
+            // attempt to extract the error line by matching the code in the [] brackets
+
+            // attempt to extract the error line number from the file
+            std::vector<std::string> dot_split_tokens = Blast::StringSplitter(source_test_output_line, '.').split();
+
+            if (dot_split_tokens.size() <= 1) { /* there should be at least 2 tokens */ }
+            else if (dot_split_tokens.back().size() <= 5) { /* not a valid foramt for this token */ }
+            else
+            {
+               std::string last_token = dot_split_tokens.back();
+               std::string prefix = last_token.substr(0, 3);
+               std::string postfix = last_token.substr(last_token.size()-2);
+               std::string number = last_token.substr(3, last_token.size() - 3 - 2);
+               bool number_contains_only_number_characters = (number.find_first_not_of("0123456789") == std::string::npos);
+
+               if (prefix == "rb:" && postfix == "]:" && number_contains_only_number_characters)
+               {
+                  // format matches "rb:[0-9]\]:" expression
+                  current_rails_minitest_test_result->error_line_number = atoi(number.c_str());
+               }
+            }
+         }
+      }
+   }
+}
+
+if (current_rails_minitest_test_result) test_result_lines.push_back(*current_rails_minitest_test_result);
+
+processed = true;
+
+}
+
+std::vector<RailsMinitestTestResult>& RailsTestOutputParser::get_result_lines()
+{
+if (!processed) process();
+return test_result_lines;
+
+}
+} // namespace Hexagon
+
+
