@@ -18,7 +18,7 @@
 
 #include <Blast/StringSplitter.hpp>
 #include <Blast/KeyboardCommandMapper.hpp>
-#include <Blast/ShellCommandExecutor.hpp>
+//#include <Blast/ShellCommandExecutor.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 #include <lib/camera.h>
 
@@ -883,7 +883,6 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    Hexagon::Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, al_color_name("darkviolet"), 3);
    logo.render();
    al_draw_text(consolas_font, al_color_name("darkviolet"), display_width/2, display_height/2, ALLEGRO_ALIGN_CENTER, "hexagon");
-
 
    al_hide_mouse_cursor(display);
    al_flip_display();

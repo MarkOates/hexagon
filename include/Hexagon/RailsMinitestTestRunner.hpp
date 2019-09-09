@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include <Blast/ShellCommandExecutor.hpp>
+
 class RailsMinitestTestRunner
 {
 private:
