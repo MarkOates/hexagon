@@ -711,8 +711,8 @@ public:
 
                                                  // al_keycodee, shift, ctrl, alt, command, { command_identifier }
                                                                    
-      //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
-      //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_RERUN_OUTPUT_WATCHERS, REFRESH_RERUN_OUTPUT_WATCHERS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, false, { DESTROY_TOPMOST_STAGE });
