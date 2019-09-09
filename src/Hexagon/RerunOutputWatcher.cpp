@@ -107,7 +107,8 @@ al_draw_text(font, al_color_name("aliceblue"), x_col, y_spacing * 1, 0, get_comm
 //al_draw_text(font, al_color_name("aliceblue"), x_col, y_spacing * 2, 0, get_watch_pattern().c_str());
 
 // status
-std::string expected_passing_message = "FINISHED!";
+//std::string expected_passing_message = "FINISHED!";
+std::string expected_passing_message = ", 0 failures";
 bool passed = (get_output().find(expected_passing_message) != std::string::npos);
 
 // split the lines

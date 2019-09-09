@@ -1,1 +1,1 @@
-(make 2>&1 >/dev/null)
+bundle exec rspec spec/services/quick_onboarding/app_creator_spec.rb 
