@@ -836,6 +836,7 @@ const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_M
 
 
 
+
 void run_program(std::vector<std::string> filenames, std::vector<std::string> components)
 {
    if (!al_init()) std::cerr << "al_init() failed" << std::endl;
@@ -936,7 +937,16 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    // create the first stage
 
 
-   // initialize firs
+   // initialize first stage
+
+
+   if (filenames.empty())
+   {
+      DEFAULT_CONTENT_FILENAME = resource_path({"data", "files"}, "sonnet_lxi.txt");
+      std::cout << "Notice: No filenames were passed when opening the program.  Using the DEFAULT_CONTENT_FILENAME (\"" << DEFAULT_CONTENT_FILENAME << "\") as the initial content for a stage." << std::endl;
+      filenames.push_back(DEFAULT_CONTENT_FILENAME);
+   }
+
 
    for (auto &filename : filenames)
    {
@@ -1026,11 +1036,11 @@ int main(int argc, char **argv)
    std::vector<std::vector<std::string>> components = command_line_flagged_arguments_parser.get_flagged_args("-c");
    std::vector<std::string> first_component_set = components.empty() ? std::vector<std::string>{} : components[0];
 
-   if (first_filenames_set.empty())
-   {
-      std::string error_message = "🛑 Error: You attempted to run hexagon without a file to edit.  For now, you must open hexagon by specifying a filename after a \"-f\" flag.";
-      throw std::runtime_error(error_message);
-   }
+   //if (first_filenames_set.empty())
+   //{
+      //std::string error_message = "🛑 Error: You attempted to run hexagon without a file to edit.  For now, you must open hexagon by specifying a filename after a \"-f\" flag.";
+      //throw std::runtime_error(error_message);
+   //}
 
    run_program(first_filenames_set, first_component_set);
    return 0;
