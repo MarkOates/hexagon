@@ -11,6 +11,10 @@ properties:
     type: float
     constructor_arg: true
     init_with: 0
+  - name: font
+    type: ALLEGRO_FONT*  
+    constructor_arg: true
+    init_with: nullptr
   - name: color
     type: ALLEGRO_COLOR
     constructor_arg: true
@@ -49,13 +53,15 @@ functions:
 
       path.draw_outline(x, y, color, thickness);
 
-      //al_draw_text(consolas_font, color, x, y, ALLEGRO_ALIGN_CENTER, "hexagon");
+      al_draw_text(font, color, x, y + radius*1.3, ALLEGRO_ALIGN_CENTER, "H E X A G O N");
     body_dependency_symbols:
       - sqrt
       - path2d
 dependencies:
   - symbol: ALLEGRO_COLOR
     headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ 'allegro5/allegro_font.h' ]
   - symbol: path2d
     headers: [ 'allegro_flare/path2d.h' ]
   - symbol: sqrt

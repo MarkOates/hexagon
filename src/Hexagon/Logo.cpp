@@ -9,10 +9,11 @@ namespace Hexagon
 {
 
 
-Logo::Logo(float x, float y, float radius, ALLEGRO_COLOR color, float thickness)
+Logo::Logo(float x, float y, float radius, ALLEGRO_FONT* font, ALLEGRO_COLOR color, float thickness)
    : x(x)
    , y(y)
    , radius(radius)
+   , font(font)
    , color(color)
    , thickness(thickness)
 {
@@ -52,7 +53,7 @@ path.add_point(radius, 0);
 
 path.draw_outline(x, y, color, thickness);
 
-//al_draw_text(consolas_font, color, x, y, ALLEGRO_ALIGN_CENTER, "hexagon");
+al_draw_text(font, color, x, y + radius*1.3, ALLEGRO_ALIGN_CENTER, "H E X A G O N");
 
 }
 } // namespace Hexagon
