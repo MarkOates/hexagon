@@ -922,7 +922,7 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    float logo_radius = 60;
 
    std::string logo_font_filename = "Expansiva bold.otf";
-   ALLEGRO_FONT *expansiva_font = al_load_font(resource_path({"data", "fonts"}, logo_font_filename).c_str(), 22, 0);
+   ALLEGRO_FONT *expansiva_font = al_load_font(resource_path({"data", "fonts"}, logo_font_filename).c_str(), 23, 0);
    if (!expansiva_font) throw std::runtime_error("could not load 'Expansiva bold.ttf'");
    Hexagon::Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, expansiva_font, al_color_html("#bc2d48"), 3);
    logo.render();
