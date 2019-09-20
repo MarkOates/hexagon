@@ -736,6 +736,7 @@ public:
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, false, { DESTROY_TOPMOST_STAGE });
       if (is_current_stage_a_modal())
       {
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Q, false, false, false, false, { ESCAPE_CURRENT_MODAL });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { ESCAPE_CURRENT_MODAL });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, { SUBMIT_CURRENT_MODAL });
       }
