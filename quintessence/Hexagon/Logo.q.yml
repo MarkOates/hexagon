@@ -1,0 +1,63 @@
+properties:
+  - name: x
+    type: float
+    constructor_arg: true
+    init_with: 0
+  - name: y
+    type: float
+    constructor_arg: true
+    init_with: 0
+  - name: radius
+    type: float
+    constructor_arg: true
+    init_with: 0
+  - name: color
+    type: ALLEGRO_COLOR
+    constructor_arg: true
+    init_with: "default_color()"
+  - name: thickness
+    type: float
+    constructor_arg: true
+    init_with: 0
+functions:
+  - name: default_color
+    type: ALLEGRO_COLOR
+    static: true
+    body_symbol_dependencies: [ 'ALLEGRO_COLOR' ]
+    body: |
+      ALLEGRO_COLOR c;
+      c.r = 188/255.0f;
+      c.g = 45/255.0f;
+      c.b = 72/255.0f;
+      c.a = 1.0;
+      return c;
+  - name: render
+    type: void
+    body: |
+      float h_radius = radius/2;
+      float sqrt_h_radius = sqrt(3)/2 * radius;
+
+      path2d path;
+
+      path.add_point(radius, 0);
+      path.add_point(h_radius, sqrt_h_radius);
+      path.add_point(-h_radius, sqrt_h_radius);
+      path.add_point(-radius, 0);
+      path.add_point(-h_radius, -sqrt_h_radius);
+      path.add_point(h_radius, -sqrt_h_radius);
+      path.add_point(radius, 0);
+
+      path.draw_outline(x, y, color, thickness);
+
+      //al_draw_text(consolas_font, color, x, y, ALLEGRO_ALIGN_CENTER, "hexagon");
+    body_dependency_symbols:
+      - sqrt
+      - path2d
+dependencies:
+  - symbol: ALLEGRO_COLOR
+    headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: path2d
+    headers: [ 'allegro_flare/path2d.h' ]
+  - symbol: sqrt
+    headers: [ 'cmath' ]
+

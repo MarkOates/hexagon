@@ -16,10 +16,14 @@ namespace Hexagon
       float thickness;
 
    public:
-      Logo(float x, float y, float radius, ALLEGRO_COLOR color, float thickness);
+      Logo(float x=0, float y=0, float radius=0, ALLEGRO_COLOR color=default_color(), float thickness=0);
+      ~Logo();
 
-      void render();
+
+   static ALLEGRO_COLOR default_color();
+   void render();
    };
-};
+}
+
 
 
