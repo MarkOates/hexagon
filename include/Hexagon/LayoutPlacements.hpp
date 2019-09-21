@@ -8,14 +8,14 @@
 
 namespace Hexagon
 {
-   class StageLayout
+   class LayoutPlacements
    {
    private:
       std::map<std::string, placement3d> placements;
 
    public:
-      StageLayout(std::map<std::string, placement3d> placements={});
-      ~StageLayout();
+      LayoutPlacements(std::map<std::string, placement3d> placements={});
+      ~LayoutPlacements();
 
       void set_placements(std::map<std::string, placement3d> placements);
 

@@ -1,6 +1,6 @@
 
 
-#include <Hexagon/StageLayout.hpp>
+#include <Hexagon/LayoutPlacements.hpp>
 #include <sstream>
 #include <stdexcept>
 
@@ -9,36 +9,36 @@ namespace Hexagon
 {
 
 
-StageLayout::StageLayout(std::map<std::string, placement3d> placements)
+LayoutPlacements::LayoutPlacements(std::map<std::string, placement3d> placements)
    : placements(placements)
 {
 }
 
 
-StageLayout::~StageLayout()
+LayoutPlacements::~LayoutPlacements()
 {
 }
 
 
-void StageLayout::set_placements(std::map<std::string, placement3d> placements)
+void LayoutPlacements::set_placements(std::map<std::string, placement3d> placements)
 {
    this->placements = placements;
 }
 
 
-std::map<std::string, placement3d> StageLayout::get_placements()
+std::map<std::string, placement3d> LayoutPlacements::get_placements()
 {
    return placements;
 }
 
 
-std::map<std::string, placement3d> &StageLayout::get_placements_ref()
+std::map<std::string, placement3d> &LayoutPlacements::get_placements_ref()
 {
    return placements;
 }
 
 
-placement3d StageLayout::placement_for(std::string label)
+placement3d LayoutPlacements::placement_for(std::string label)
 {
 std::map<std::string, placement3d>::iterator it;
 it = placements.find(label);
