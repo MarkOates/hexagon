@@ -167,11 +167,7 @@ public:
 
 
 
-#include <Hexagon/StageLayout.hpp>
-
-
-
-#include <Hexagon/StageLayout.hpp>
+#include <Hexagon/LayoutPlacements.hpp>
 
 
 
@@ -182,7 +178,7 @@ private:
    Stage *center_stage;
    Stage *right_stage;
 
-   Hexagon::StageLayout layout;
+   Hexagon::LayoutPlacements layout;
 
 public:
 
