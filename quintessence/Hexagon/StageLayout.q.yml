@@ -24,9 +24,9 @@ functions:
       }
       placement3d result = it->second;
       return result;
-function_body_symbol_dependencies:
-  - std::stringstream
-  - std::runtime_error
+    body_dependency_symbols:
+      - std::stringstream
+      - std::runtime_error
 dependencies:
   - symbol: std::stringstream
     headers: [ 'sstream' ]
