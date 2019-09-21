@@ -19,7 +19,7 @@ functions:
       if (it == placements.end())
       {
          std::stringstream error_message;
-         error_message << "Could not find placement named \"" << label << "\"." << std::endl;
+         error_message << "Could not find a layout position labeled \"" << label << "\"." << std::endl;
          throw std::runtime_error(error_message.str());
       }
       placement3d result = it->second;
