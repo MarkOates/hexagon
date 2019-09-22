@@ -37,6 +37,18 @@
 #include <Hexagon/shared_globals.hpp>
 
 
+void simple_debugger(std::string message="")
+{
+   al_init();
+   al_create_display(800, 800);
+   al_clear_to_color(al_color_name("violet"));
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   al_draw_text(font, al_color_name("white"), 10, 10, 0, message.c_str());
+   al_flip_display();
+   usleep(0.2 * 1000000);
+}
+
+
 
 
 int get_display_default_width()
@@ -917,9 +929,11 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
 
    float logo_radius = 60;
 
-   std::string logo_font_filename = "Expansiva bold.otf";
+   std::string logo_font_filename = "Expansiva_bold.otf";
    ALLEGRO_FONT *expansiva_font = al_load_font(resource_path({"data", "fonts"}, logo_font_filename).c_str(), 23, 0);
    if (!expansiva_font) throw std::runtime_error("could not load 'Expansiva bold.ttf'");
+
+
    Hexagon::Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, expansiva_font, al_color_html("#bc2d48"), 3);
    logo.render();
 
@@ -927,7 +941,9 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    wait_for_keypress();
 
 
-   al_hide_mouse_cursor(display);
+   //al_hide_mouse_cursor(display); // this is disabled because there are a small handfull of sideeffects
+                                    // 1) prior app focus (before h launches) is not returned after h is closed
+                                    // 2) it messes with the normal expected mouse visibility outside of the window
    al_flip_display();
 
    Motion motion;
