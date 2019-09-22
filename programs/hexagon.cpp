@@ -943,7 +943,9 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    wait_for_keypress();
 
 
-   al_hide_mouse_cursor(display);
+   //al_hide_mouse_cursor(display); // this is disabled because there are a small handfull of sideeffects
+                                    // 1) prior app focus (before h launches) is not returned after h is closed
+                                    // 2) it messes with the normal expected mouse visibility outside of the window
    al_flip_display();
 
    Motion motion;
