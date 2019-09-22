@@ -65,8 +65,8 @@ main:
 	@make objects
 	$(call output_terminal_message,"Make all the test files")
 	@make tests
-	#$(call output_terminal_message,"Run the tests for all the components")
-	#@make run_tests
+	$(call output_terminal_message,"Run the tests for all the components")
+	@make run_tests
 	$(call output_terminal_message,"Build the library")
 	#@make library
 	#$(call output_terminal_message,"Make all the programs")
