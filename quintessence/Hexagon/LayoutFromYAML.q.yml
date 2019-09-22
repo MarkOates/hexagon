@@ -1,0 +1,8 @@
+functions:
+  - name: load
+    type: std::vector<StageInterface *>
+    body:
+      return {};
+dependencies:
+  - symbol: std::vector<StageInterface *>
+    headers: [ vector, Hexagon/StageInterface.hpp ]
