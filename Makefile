@@ -98,7 +98,7 @@ library: $(LIBRARY_NAME)
 
 
 
-tests: $(INDIVIDUAL_TEST_EXECUTABLES) bin/test_runner
+tests: $(INDIVIDUAL_TEST_EXECUTABLES) #bin/test_runner
 
 
 
