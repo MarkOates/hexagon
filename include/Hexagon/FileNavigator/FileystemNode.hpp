@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <allegro5/allegro.h>
 #include <string>
 
 
@@ -11,9 +12,10 @@ namespace Hexagon
       class FileystemNode
       {
       private:
+         ALLEGRO_FS_ENTRY* entry;
 
       public:
-         FileystemNode();
+         FileystemNode(ALLEGRO_FS_ENTRY* entry=nullptr);
          ~FileystemNode();
 
 

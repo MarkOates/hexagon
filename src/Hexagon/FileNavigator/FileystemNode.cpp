@@ -10,7 +10,8 @@ namespace FileNavigator
 {
 
 
-FileystemNode::FileystemNode()
+FileystemNode::FileystemNode(ALLEGRO_FS_ENTRY* entry)
+   : entry(entry)
 {
 }
 
