@@ -98,7 +98,7 @@ library: $(LIBRARY_NAME)
 
 
 
-tests: $(INDIVIDUAL_TEST_EXECUTABLES) bin/test_runner
+tests: $(INDIVIDUAL_TEST_EXECUTABLES) bin/run_all_tests
 
 
 
@@ -162,7 +162,7 @@ bin/tests/%: obj/tests/%.o obj/tests/test_runner.o
 
 
 
-bin/test_runner: tests/test_runner.cpp $(TEST_OBJECTS)
+bin/run_all_tests: tests/test_runner.cpp $(TEST_OBJECTS)
 	echo $(TEST_OBJECTS)
 	@mkdir -p $(@D)
 	@printf "compiling test_runer \e[1m\e[36m$<\033[0m..."
@@ -181,4 +181,4 @@ clean:
 fresh:
 	make clean
 	make -j8
-	make bin/test_runner
+	make bin/run_all_tests
