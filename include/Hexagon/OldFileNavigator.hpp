@@ -2,21 +2,21 @@
 #include <allegro5/allegro.h>
 
 
-class FileSystemNode;
+class OldFileSystemNode;
 
 
-class FileNavigator : public StageInterface
+class OldFileNavigator : public StageInterface
 {
 private:
-   FileSystemNode *current_node;
+   OldFileSystemNode *current_node;
    int cursor_y;
 
 public:
-   FileNavigator(std::string directory);
-   ~FileNavigator();
+   OldFileNavigator(std::string directory);
+   ~OldFileNavigator();
 
    void set_cursor_y(int cursor_y);
-   FileSystemNode *infer_current_selection();
+   OldFileSystemNode *infer_current_selection();
    std::string infer_current_selection_name();
 
    // actions

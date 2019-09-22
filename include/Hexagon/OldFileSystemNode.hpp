@@ -3,21 +3,21 @@
 #include <string>
 
 
-class FileSystemNode
+class OldFileSystemNode
 {
 private:
    ALLEGRO_FS_ENTRY *entry;
-   std::vector<FileSystemNode *> children;
+   std::vector<OldFileSystemNode *> children;
 
 public:
-   FileSystemNode(ALLEGRO_FS_ENTRY *entry);
-   ~FileSystemNode();
+   OldFileSystemNode(ALLEGRO_FS_ENTRY *entry);
+   ~OldFileSystemNode();
 
    ALLEGRO_FS_ENTRY *get_entry();
 
    void create_children();
 
-   std::vector<FileSystemNode *> &get_children_ref();
+   std::vector<OldFileSystemNode *> &get_children_ref();
    int infer_num_children();
    bool infer_is_directory() const;
    std::string infer_full_name() const;
@@ -25,7 +25,7 @@ public:
    std::string infer_basename();
    std::string infer_parent();
 
-   static std::vector<FileSystemNode *> create_fs_entry_children(FileSystemNode *node);
+   static std::vector<OldFileSystemNode *> create_fs_entry_children(OldFileSystemNode *node);
 };
 
-bool file_system_order_compare(FileSystemNode const *a, FileSystemNode const *b);
+bool file_system_order_compare(OldFileSystemNode const *a, OldFileSystemNode const *b);

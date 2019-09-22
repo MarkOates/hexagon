@@ -4,17 +4,17 @@
 #include <string>
 
 
-class FileNavigator;
+class OldFileNavigator;
 
 
-class FileNavigatorEventController : public EventControllerInterface
+class OldFileNavigatorEventController : public EventControllerInterface
 {
 private:
-   FileNavigator *file_navigator;
+   OldFileNavigator *file_navigator;
 
 public:
-   FileNavigatorEventController(FileNavigator *file_navigator);
-   ~FileNavigatorEventController();
+   OldFileNavigatorEventController(OldFileNavigator *file_navigator);
+   ~OldFileNavigatorEventController();
 
    static const std::string MOVE_CURSOR_UP;
    static const std::string MOVE_CURSOR_DOWN;
