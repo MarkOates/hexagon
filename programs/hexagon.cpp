@@ -37,6 +37,17 @@
 #include <Hexagon/shared_globals.hpp>
 
 
+void simple_debugger()
+{
+   al_init();
+   al_create_display(800, 800);
+   al_clear_to_color(al_color_name("violet"));
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   al_flip_display();
+   usleep(0.2 * 1000000);
+}
+
+
 
 
 int get_display_default_width()
