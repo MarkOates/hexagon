@@ -98,7 +98,7 @@ library: $(LIBRARY_NAME)
 
 
 
-tests: $(INDIVIDUAL_TEST_EXECUTABLES) #bin/test_runner
+tests: $(INDIVIDUAL_TEST_EXECUTABLES) bin/test_runner
 
 
 
@@ -162,12 +162,11 @@ bin/tests/%: obj/tests/%.o obj/tests/test_runner.o
 
 
 
-#bin/test_runner: tests/test_runner.cpp $(TEST_OBJECTS)
-	#echo $(TEST_OBJECTS)
-	#@mkdir -p $(@D)
-	#@printf "compiling test_runer \e[1m\e[36m$<\033[0m..."
-	#@g++ -std=gnu++11 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $(OBJECTS) $(TEST_OBJECTS) $< -o $@ -l$(GOOGLE_TEST_LIBS) -I./include -I$(GOOGLE_TEST_INCLUDE_DIR) -L$(GOOGLE_TEST_LIB_DIR) -l$(NCURSES_LIB) -I$(YAML_CPP_INCLUDE_DIR) -L$(YAML_CPP_LIB_DIR) -l$(YAML_CPP_LIBS)
-	#@echo "done. Executable at \033[1m\033[32m$@\033[0m"
+bin/test_runner: tests/test_runner.cpp $(TEST_OBJECTS)
+	echo $(TEST_OBJECTS)
+	@mkdir -p $(@D)
+	@printf "compiling test_runer \e[1m\e[36m$<\033[0m..."
+	@g++ -std=gnu++11 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $(OBJECTS) $(TEST_OBJECTS) $< -o $@ -I./include -l$(GOOGLE_TEST_LIBS) -I$(GOOGLE_TEST_INCLUDE_DIR) -L$(GOOGLE_TEST_LIB_DIR) -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -I$(YAML_CPP_INCLUDE_DIR) -L$(YAML_CPP_LIB_DIR) -l$(YAML_CPP_LIBS) $(ALLEGRO_LIBS_LINK_ARGS) -D_XOPEN_SOURCE_EXTENDED
 
 
 

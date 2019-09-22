@@ -487,8 +487,9 @@ public:
       placement3d& stage_place = file_navigator->get_place();
       //stage_place.scale.x = 1.2;
       //stage_place.scale.y = 1.2;
-      //motion.cmove_to(&stage_place.rotation.y, 0.0, 0.6, interpolator::fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
-      //motion.cmove_to(&stage_place.scale.y, 1.1, 0.3); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+      motion.cmove_to(&stage_place.rotation.y, 0.01, 0.6, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+      //motion.cmove_to(&stage_place.scale.y, 1.1, 0.1); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+      motion.cmove_to(&stage_place.position.z, 80.0, 0.6); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
       //file_navigator.show();
       return true;
    }

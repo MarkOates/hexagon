@@ -133,7 +133,7 @@ void FileNavigator::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cel
    float roundness = 6.0;
    float padding_x = cell_width*2;
    float padding_y = cell_width;
-   std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
+   //std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
    al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("black"));
    al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("green"), 3.0);
 
