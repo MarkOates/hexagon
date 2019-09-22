@@ -23,6 +23,7 @@ public:
    std::string infer_full_name() const;
    std::string infer_folder_name();
    std::string infer_basename();
+   std::string infer_parent();
 
    static std::vector<FileSystemNode *> create_fs_entry_children(FileSystemNode *node);
 };

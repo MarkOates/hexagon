@@ -62,6 +62,17 @@ std::string FileSystemNode::infer_basename()
    return filename;
 }
 
+std::string FileSystemNode::infer_parent()
+{
+   ALLEGRO_PATH *path = al_create_path(infer_full_name().c_str());
+   if (!path) throw std::runtime_error("infer_parent(): cannot create path");
+   al_drop_path_tail(path);
+   std::string parent_directory = al_get_path_filename(path);
+   al_destroy_path(path);
+   return parent_directory;
+}
+
+//
 //
 
 std::vector<FileSystemNode *> FileSystemNode::create_fs_entry_children(FileSystemNode *node)
