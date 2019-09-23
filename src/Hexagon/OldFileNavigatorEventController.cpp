@@ -1,23 +1,23 @@
-#include <Hexagon/FileNavigatorEventController.hpp>
-#include <Hexagon/FileNavigator.hpp>
+#include <Hexagon/OldFileNavigatorEventController.hpp>
+#include <Hexagon/OldFileNavigator.hpp>
 #include <Blast/KeyboardCommandMapper.hpp>
 #include <iostream>
 
 
 
-FileNavigatorEventController::FileNavigatorEventController(FileNavigator *file_navigator)
+OldFileNavigatorEventController::OldFileNavigatorEventController(OldFileNavigator *file_navigator)
    : file_navigator(file_navigator)
 {}
 
 
 
-FileNavigatorEventController::~FileNavigatorEventController() {}
+OldFileNavigatorEventController::~OldFileNavigatorEventController() {}
 
 
 
-void FileNavigatorEventController::process_local_event(std::string event_name, ActionData action_data1)
+void OldFileNavigatorEventController::process_local_event(std::string event_name, ActionData action_data1)
 {
-   std::cout << "FileNavigator::" << event_name << std::endl;
+   std::cout << "OldFileNavigator::" << event_name << std::endl;
 
    try
    {
@@ -36,7 +36,7 @@ void FileNavigatorEventController::process_local_event(std::string event_name, A
 
 
 
-void FileNavigatorEventController::process_event(ALLEGRO_EVENT &event)
+void OldFileNavigatorEventController::process_event(ALLEGRO_EVENT &event)
 {
    KeyboardCommandMapper keyboard_command_mapper;
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, false, { MOVE_CURSOR_DOWN });
@@ -63,6 +63,6 @@ void FileNavigatorEventController::process_event(ALLEGRO_EVENT &event)
 
 
 
-const std::string FileNavigatorEventController::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
-const std::string FileNavigatorEventController::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
+const std::string OldFileNavigatorEventController::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
+const std::string OldFileNavigatorEventController::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
 

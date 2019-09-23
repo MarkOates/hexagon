@@ -1,18 +1,18 @@
-#include <Hexagon/FileNavigator.hpp>
+#include <Hexagon/OldFileNavigator.hpp>
 
 #include <Hexagon/shared_globals.hpp>
 
-#include <Hexagon/FileSystemNode.hpp>
-#include <Hexagon/FileNavigatorEventController.hpp>
+#include <Hexagon/OldFileSystemNode.hpp>
+#include <Hexagon/OldFileNavigatorEventController.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <iostream>
 
 
-FileNavigator::FileNavigator(std::string directory)
+OldFileNavigator::OldFileNavigator(std::string directory)
    //: file_system_entries()
    : StageInterface(StageInterface::FILE_NAVIGATOR)
-   , current_node(new FileSystemNode(al_create_fs_entry(directory.c_str())))
+   , current_node(new OldFileSystemNode(al_create_fs_entry(directory.c_str())))
    //, visible_and_active(false)
    , cursor_y(0)
    //, place(0, 0, 0)
@@ -27,12 +27,12 @@ FileNavigator::FileNavigator(std::string directory)
    p.rotation = vec3d(0, 0.02, 0);
 }
 
-FileNavigator::~FileNavigator() {}
+OldFileNavigator::~OldFileNavigator() {}
 
 // property accessors
 
-void FileNavigator::set_cursor_y(int cursor_y) { this->cursor_y = cursor_y; }
-//void set_file_system_entries(std::vector<FileSystemNode *> file_system_entries)   {      this->file_system_entries = file_system_entries;   }
+void OldFileNavigator::set_cursor_y(int cursor_y) { this->cursor_y = cursor_y; }
+//void set_file_system_entries(std::vector<OldFileSystemNode *> file_system_entries)   {      this->file_system_entries = file_system_entries;   }
 //bool get_visible_and_active() { return visible_and_active; }
 
 // initializers
@@ -41,23 +41,23 @@ void FileNavigator::set_cursor_y(int cursor_y) { this->cursor_y = cursor_y; }
 
 // inferences
 
-FileSystemNode *FileNavigator::infer_current_selection()
+OldFileSystemNode *OldFileNavigator::infer_current_selection()
 {
    if (!current_node) return nullptr;
    if (cursor_y < 0 || cursor_y >= current_node->infer_num_children()) return nullptr;
    return current_node->get_children_ref()[cursor_y];
 }
 
-std::string FileNavigator::infer_current_selection_name()
+std::string OldFileNavigator::infer_current_selection_name()
 {
-   FileSystemNode *node = infer_current_selection();
+   OldFileSystemNode *node = infer_current_selection();
    if (!node) return "";
    return node->infer_full_name();
 }
 
 // actions
 
-bool FileNavigator::move_cursor_y_delta(int delta)
+bool OldFileNavigator::move_cursor_y_delta(int delta)
 {
    set_cursor_y(cursor_y + delta);
    if (cursor_y < 0) set_cursor_y(0);
@@ -65,12 +65,12 @@ bool FileNavigator::move_cursor_y_delta(int delta)
    return true;
 }
 
-bool FileNavigator::move_cursor_up()
+bool OldFileNavigator::move_cursor_up()
 {
    return move_cursor_y_delta(-1);
 }
 
-bool FileNavigator::move_cursor_down()
+bool OldFileNavigator::move_cursor_down()
 {
    return move_cursor_y_delta(1);
 }
@@ -90,25 +90,25 @@ bool FileNavigator::move_cursor_down()
 //static const std::string SHOW;
 //static const std::string HIDE;
 
-void FileNavigator::process_local_event(std::string event_name, ActionData action_data1)
+void OldFileNavigator::process_local_event(std::string event_name, ActionData action_data1)
 {
-   FileNavigatorEventController file_navigator_event_controller(this);
+   OldFileNavigatorEventController file_navigator_event_controller(this);
    file_navigator_event_controller.process_local_event(event_name, action_data1);
 }
 
-void FileNavigator::process_event(ALLEGRO_EVENT &event)
+void OldFileNavigator::process_event(ALLEGRO_EVENT &event)
 {
-   FileNavigatorEventController file_navigator_event_controller(this);
+   OldFileNavigatorEventController file_navigator_event_controller(this);
    file_navigator_event_controller.process_event(event);
 }
 
-bool FileNavigator::save_file()
+bool OldFileNavigator::save_file()
 {
    FILE_NAVIGATOR_SELECTION_last_content = infer_current_selection_name();
    //std::cout << "  -- current inferred selection: " << infer_current_selection_name() << std::endl;
    //std::cout << "  -- filename for saving: " << FILE_NAVIGATOR_SELECTION_FILENAME << std::endl;
    //std::vector<std::string> lines = { infer_current_selection_name() };
-   //if (!::save_file(lines, FILE_NAVIGATOR_SELECTION_FILENAME)) throw std::runtime_error("FileNavigator::save_file(): an error occurred");
+   //if (!::save_file(lines, FILE_NAVIGATOR_SELECTION_FILENAME)) throw std::runtime_error("OldFileNavigator::save_file(): an error occurred");
    //else std::cout << "  -- Save file appears to have saved as expected" << std::endl;
    return true;
 }
@@ -117,7 +117,7 @@ bool FileNavigator::save_file()
 
 //placement3d place;
 
-void FileNavigator::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+void OldFileNavigator::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
 //void render(placement2d place, ALLEGRO_FONT *font) override
 {
    //placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0);

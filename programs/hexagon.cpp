@@ -169,13 +169,13 @@ public:
 
 
 
-#include <Hexagon/FileSystemNode.hpp>
+#include <Hexagon/OldFileSystemNode.hpp>
 
 
 
-#include <Hexagon/FileNavigator.hpp>
+#include <Hexagon/OldFileNavigator.hpp>
 #include <Hexagon/RerunOutputWatcher.hpp>
-//#include <Hexagon/FileNavigatorEventController.hpp>
+//#include <Hexagon/OldFileNavigatorEventController.hpp>
 
 
 
@@ -271,7 +271,7 @@ class System
 {
 public:
    std::vector<StageInterface *> stages;
-   //FileNavigator file_navigator;
+   //OldFileNavigator file_navigator;
    ALLEGRO_DISPLAY *display;
    Camera camera;
    placement3d file_navigator_initial_place;
@@ -479,7 +479,7 @@ public:
       //place.align = vec3d(0.5, 0.5, 0.0);
       //place.scale = vec3d(0.8, 0.8, 0.0);
 
-      FileNavigator *file_navigator = new FileNavigator(al_get_current_directory());
+      OldFileNavigator *file_navigator = new OldFileNavigator(al_get_current_directory());
       //file_navigator->set_place(file_navigator_initial_place);
       //file_navigator.set_child_nodes();
       stages.push_back(file_navigator);
@@ -585,7 +585,7 @@ public:
       }
       //std::cout << "XXXX" << filename << "XXXXX" << std::endl;
 
-      FileSystemNode file_system_node(fs_entry);
+      OldFileSystemNode file_system_node(fs_entry);
 
       if (file_system_node.infer_is_directory())
       {
@@ -594,7 +594,7 @@ public:
          //place.align = vec3d(0.5, 0.5, 0.0);
          //place.scale = vec3d(0.9, 0.9, 0.0);
 
-         FileNavigator *file_navigator = new FileNavigator(file_system_node.infer_full_name());
+         OldFileNavigator *file_navigator = new OldFileNavigator(file_system_node.infer_full_name());
          //file_navigator->set_place(file_navigator_initial_place);
          //file_navigator.set_child_nodes();
          stages.push_back(file_navigator);

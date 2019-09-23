@@ -1,0 +1,240 @@
+
+
+#include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/OldFileSystemNode.hpp>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
+#include <iostream>
+#include <iostream>
+#include <iostream>
+
+
+namespace Hexagon
+{
+namespace FileNavigator
+{
+
+
+ALLEGRO_EVENT Stage::a_default_empty_event = {};
+
+
+Stage::Stage()
+   : StageInterface({})
+   , circle_color(al_color_name("green"))
+   , nodes({})
+   , cursor_position(0)
+   , node_root("/Users/markoates/Repos")
+{
+}
+
+
+Stage::~Stage()
+{
+}
+
+
+void Stage::set_circle_color(ALLEGRO_COLOR circle_color)
+{
+   this->circle_color = circle_color;
+}
+
+
+void Stage::set_nodes(std::vector<std::string> nodes)
+{
+   this->nodes = nodes;
+}
+
+
+void Stage::set_node_root(std::string node_root)
+{
+   this->node_root = node_root;
+}
+
+
+ALLEGRO_COLOR Stage::get_circle_color()
+{
+   return circle_color;
+}
+
+
+std::vector<std::string> Stage::get_nodes()
+{
+   return nodes;
+}
+
+
+int Stage::get_cursor_position()
+{
+   return cursor_position;
+}
+
+
+std::string Stage::get_node_root()
+{
+   return node_root;
+}
+
+
+ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
+{
+   return a_default_empty_event;
+}
+
+
+void Stage::move_cursor_down()
+{
+cursor_position += 1;
+
+}
+
+void Stage::get_current_node()
+{
+return;
+}
+
+void Stage::move_cursor_up()
+{
+cursor_position -= 1;
+
+}
+
+std::string Stage::run()
+{
+return "Hello World!";
+}
+
+void Stage::set_node_root_to_system_root_directory()
+{
+set_node_root("/");
+}
+
+void Stage::set_node_root_to_repos_directory()
+{
+set_node_root("/Users/markoates/Repos");
+}
+
+void Stage::set_node_root_to_user_directory()
+{
+set_node_root("/Users/markoates");
+}
+
+void Stage::set_node_root_to_current_selection_if_folder()
+{
+
+}
+
+void Stage::refresh_list()
+{
+nodes.clear();
+nodes.push_back(get_node_root());
+OldFileSystemNode current_node(get_node_root());
+current_node.create_children();
+for (auto &node : current_node.get_children_ref())
+{
+  nodes.push_back(node->infer_basename());
+}
+
+return;
+
+}
+
+void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
+{
+if (!font) throw std::runtime_error("font missing");
+
+int line = 0;
+int line_height = 36;
+int pos_x = 0;
+int pos_y = 0;
+int cursor_y = 0;
+ALLEGRO_COLOR font_color = al_color_name("white");
+
+float selector_y = line_height * cursor_position;
+al_draw_filled_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color());
+
+for (auto &node : nodes)
+{
+  std::string line_content = node;
+  al_draw_text(font, font_color, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+  cursor_y += line_height;
+}
+
+return;
+
+}
+
+void Stage::change_to_yellow()
+{
+set_circle_color(al_color_name("yellow"));
+
+}
+
+void Stage::process_local_event(std::string event_name, ActionData action_data)
+{
+std::cout << "LocalEvent::" << event_name << std::endl;
+
+try
+{
+   bool executed = false;
+
+   if (event_name == "change_to_yellow")
+   {
+     executed = true;
+     change_to_yellow();
+   }
+   else if (event_name == "refresh_list")
+   {
+     executed = true;
+     refresh_list();
+   }
+   else if (event_name == "set_node_root_to_system_root_directory")
+   {
+     executed = true;
+     set_node_root_to_system_root_directory();
+   }
+   else if (event_name == "set_node_root_to_repos_directory")
+   {
+     executed = true;
+     set_node_root_to_repos_directory();
+   }
+   else if (event_name == "set_node_root_to_user_directory")
+   {
+     executed = true;
+     set_node_root_to_user_directory();
+   }
+   else if (event_name == "move_cursor_up")
+   {
+     executed = true;
+     move_cursor_up();
+   }
+   else if (event_name == "move_cursor_down")
+   {
+     executed = true;
+     move_cursor_down();
+   }
+   //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
+
+   if (!executed) std::cerr << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
+}
+catch (const std::exception &exception)
+{
+   std::cerr << ">BOOM< cannot execute \"" << event_name << "\".  The following exception occurred: " << exception.what() << std::endl;
+}
+
+}
+
+bool Stage::save_file()
+{
+return true;
+
+}
+
+void Stage::process_event(ALLEGRO_EVENT& action_data)
+{
+return;
+
+}
+} // namespace FileNavigator
+} // namespace Hexagon
+
+

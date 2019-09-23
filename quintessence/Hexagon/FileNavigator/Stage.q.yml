@@ -1,0 +1,213 @@
+parent_classes:
+  - class: 'StageInterface'
+    scope: public
+    init_with: "{}"
+properties:
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
+  - name: circle_color
+    type: ALLEGRO_COLOR
+    init_with: "al_color_name(\"green\")"
+    getter: true
+    setter: true
+  - name: nodes
+    type: std::vector<std::string>
+    init_with: "{}"
+    getter: true
+    setter: true
+  - name: cursor_position
+    type: int
+    getter: true
+    init_with: 0
+  - name: node_root
+    type: std::string
+    init_with: "\"/Users/markoates/Repos\""
+    getter: true
+    setter: true
+functions:
+  - name: move_cursor_down
+    type: void
+    body: |
+      cursor_position += 1;
+  - name: get_current_node
+    body: return;
+  - name: move_cursor_up
+    type: void
+    body: |
+      cursor_position -= 1;
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+  - name: set_node_root_to_system_root_directory
+    body: set_node_root("/");
+  - name: set_node_root_to_repos_directory
+    body: set_node_root("/Users/markoates/Repos");
+  - name: set_node_root_to_user_directory
+    body: set_node_root("/Users/markoates");
+  - name: set_node_root_to_current_selection_if_folder
+    body: |
+    body: set_node_root("/Users/markoates");
+  - name: refresh_list
+    body: |
+      nodes.clear();
+      nodes.push_back(get_node_root());
+      OldFileSystemNode current_node(get_node_root());
+      current_node.create_children();
+      for (auto &node : current_node.get_children_ref())
+      {
+        nodes.push_back(node->infer_basename());
+      }
+
+      return;
+    body_dependency_symbols:
+      - OldFileSystemNode
+  - name: render
+    is_override: true
+    parameters:
+      - name: display
+        type: ALLEGRO_DISPLAY*
+        default_argument: nullptr
+      - name: font
+        type: ALLEGRO_FONT*
+        default_argument: nullptr
+      - name: cell_width
+        type: int
+        default_argument: 10
+      - name: cell_height
+        type: int
+        default_argument: 20
+    body: |
+      if (!font) throw std::runtime_error("font missing");
+
+      int line = 0;
+      int line_height = 36;
+      int pos_x = 0;
+      int pos_y = 0;
+      int cursor_y = 0;
+      ALLEGRO_COLOR font_color = al_color_name("white");
+
+      float selector_y = line_height * cursor_position;
+      al_draw_filled_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color());
+
+      for (auto &node : nodes)
+      {
+        std::string line_content = node;
+        al_draw_text(font, font_color, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+        cursor_y += line_height;
+      }
+
+      return;
+    body_dependency_symbols:
+      - al_color_name
+      - al_draw_circle
+  - name: change_to_yellow
+    body: |
+      set_circle_color(al_color_name("yellow"));
+  - name: process_local_event
+    is_override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: "\"\""
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: |
+      std::cout << "LocalEvent::" << event_name << std::endl;
+
+      try
+      {
+         bool executed = false;
+
+         if (event_name == "change_to_yellow")
+         {
+           executed = true;
+           change_to_yellow();
+         }
+         else if (event_name == "refresh_list")
+         {
+           executed = true;
+           refresh_list();
+         }
+         else if (event_name == "set_node_root_to_system_root_directory")
+         {
+           executed = true;
+           set_node_root_to_system_root_directory();
+         }
+         else if (event_name == "set_node_root_to_repos_directory")
+         {
+           executed = true;
+           set_node_root_to_repos_directory();
+         }
+         else if (event_name == "set_node_root_to_user_directory")
+         {
+           executed = true;
+           set_node_root_to_user_directory();
+         }
+         else if (event_name == "move_cursor_up")
+         {
+           executed = true;
+           move_cursor_up();
+         }
+         else if (event_name == "move_cursor_down")
+         {
+           executed = true;
+           move_cursor_down();
+         }
+         //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
+
+         if (!executed) std::cerr << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
+      }
+      catch (const std::exception &exception)
+      {
+         std::cerr << ">BOOM< cannot execute \"" << event_name << "\".  The following exception occurred: " << exception.what() << std::endl;
+      }
+    body_dependency_symbols:
+      - std::endl
+      - std::cout
+      - std::cerr
+  - name: save_file
+    is_override: true
+    type: bool
+    body: |
+      return true;
+  - name: process_event
+    is_override: true
+    parameters:
+      - name: action_data
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: |
+      return;
+dependencies:
+  - symbol: StageInterface
+    headers: [ 'Hexagon/StageInterface.hpp' ]
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ 'allegro5/allegro_font.h' ]
+  - symbol: ActionData
+    headers: [ 'Hexagon/ActionData.hpp' ]
+  - symbol: al_color_name
+    headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: std::endl
+    headers: [ 'iostream' ]
+  - symbol: std::cerr
+    headers: [ 'iostream' ]
+  - symbol: std::cout
+    headers: [ 'iostream' ]
+  - symbol: al_draw_circle
+    headers: [ 'allegro5/allegro_primitives.h' ]
+  - symbol: std::vector<std::string>
+    headers: [ 'vector', 'string' ]
+  - symbol: OldFileSystemNode
+    headers: [ 'Hexagon/OldFileSystemNode.hpp' ]
