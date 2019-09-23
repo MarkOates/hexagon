@@ -8,6 +8,15 @@ OldFileSystemNode::OldFileSystemNode(ALLEGRO_FS_ENTRY *entry)
    , children({})
 {
 }
+
+OldFileSystemNode::OldFileSystemNode(std::string entry_filename)
+   : entry(nullptr)
+   , children({})
+{
+   entry = al_create_fs_entry(entry_filename.c_str());
+   if (!entry) throw std::runtime_error("OldFileSystemNode::ctor: could not create fs_entry");
+}
+
 OldFileSystemNode::~OldFileSystemNode()
 {
    al_destroy_fs_entry(entry);

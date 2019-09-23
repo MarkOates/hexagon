@@ -11,6 +11,7 @@ private:
 
 public:
    OldFileSystemNode(ALLEGRO_FS_ENTRY *entry);
+   OldFileSystemNode(std::string entry_filename);
    ~OldFileSystemNode();
 
    ALLEGRO_FS_ENTRY *get_entry();
