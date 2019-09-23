@@ -51,6 +51,7 @@ void run_program()
    ALLEGRO_FONT *font = al_load_font(helvetica_font_filename.c_str(), 32, 0);
 
    std::vector<std::string> commands = {
+      "set_node_root_to_system_root",
       "refresh_list",
       "change_to_yellow",
    };
