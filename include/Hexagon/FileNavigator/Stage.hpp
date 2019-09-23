@@ -38,7 +38,7 @@ namespace Hexagon
       void move_cursor_down();
       std::string run();
       void set_node_root_to_system_root();
-      void refresh_nodes();
+      void refresh_list();
       void render(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
       void change_to_yellow();
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());

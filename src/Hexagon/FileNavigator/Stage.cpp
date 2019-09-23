@@ -98,7 +98,7 @@ set_node_root("/");
 
 }
 
-void Stage::refresh_nodes()
+void Stage::refresh_list()
 {
 nodes.clear();
 nodes.push_back("/Users/markoates/Repos");
@@ -154,10 +154,10 @@ try
      executed = true;
      change_to_yellow();
    }
-   else if (event_name == "refresh_nodes")
+   else if (event_name == "refresh_list")
    {
      executed = true;
-     refresh_nodes();
+     refresh_list();
    }
    //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 

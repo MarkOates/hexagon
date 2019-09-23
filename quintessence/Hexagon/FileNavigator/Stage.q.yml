@@ -38,7 +38,7 @@ functions:
   - name: set_node_root_to_system_root
     body: |
       set_node_root("/");
-  - name: refresh_nodes
+  - name: refresh_list
     body: |
       nodes.clear();
       nodes.push_back("/Users/markoates/Repos");
@@ -112,10 +112,10 @@ functions:
            executed = true;
            change_to_yellow();
          }
-         else if (event_name == "refresh_nodes")
+         else if (event_name == "refresh_list")
          {
            executed = true;
-           refresh_nodes();
+           refresh_list();
          }
          //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
