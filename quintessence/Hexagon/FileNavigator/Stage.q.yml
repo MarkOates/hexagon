@@ -35,8 +35,10 @@ functions:
   - name: run
     type: std::string
     body: return "Hello World!";
-  - name: set_node_root_to_system_root
+  - name: set_node_root_to_system_root_directory
     body: set_node_root("/");
+  - name: set_node_root_to_repos_directory
+    body: set_node_root("/Users/markoates/Repos");
   - name: refresh_list
     body: |
       nodes.clear();
@@ -116,10 +118,10 @@ functions:
            executed = true;
            refresh_list();
          }
-         else if (event_name == "set_node_root_to_system_root")
+         else if (event_name == "set_node_root_to_system_root_directory")
          {
            executed = true;
-           set_node_root_to_system_root();
+           set_node_root_to_system_root_directory();
          }
          //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 

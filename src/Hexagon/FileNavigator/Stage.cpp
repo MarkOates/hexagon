@@ -92,7 +92,7 @@ std::string Stage::run()
 return "Hello World!";
 }
 
-void Stage::set_node_root_to_system_root()
+void Stage::set_node_root_to_system_root_directory()
 {
 set_node_root("/");
 }
@@ -158,10 +158,10 @@ try
      executed = true;
      refresh_list();
    }
-   else if (event_name == "set_node_root_to_system_root")
+   else if (event_name == "set_node_root_to_system_root_directory")
    {
      executed = true;
-     set_node_root_to_system_root();
+     set_node_root_to_system_root_directory();
    }
    //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
