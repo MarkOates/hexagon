@@ -123,6 +123,11 @@ functions:
            executed = true;
            set_node_root_to_system_root_directory();
          }
+         else if (event_name == "set_node_root_to_repos_directory")
+         {
+           executed = true;
+           set_node_root_to_repos_directory();
+         }
          //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
          if (!executed) std::cerr << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;

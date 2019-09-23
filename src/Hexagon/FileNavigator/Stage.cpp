@@ -97,6 +97,11 @@ void Stage::set_node_root_to_system_root_directory()
 set_node_root("/");
 }
 
+void Stage::set_node_root_to_repos_directory()
+{
+set_node_root("/Users/markoates/Repos");
+}
+
 void Stage::refresh_list()
 {
 nodes.clear();
@@ -162,6 +167,11 @@ try
    {
      executed = true;
      set_node_root_to_system_root_directory();
+   }
+   else if (event_name == "set_node_root_to_repos_directory")
+   {
+     executed = true;
+     set_node_root_to_repos_directory();
    }
    //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
