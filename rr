@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 yellow='\033[1;33m'
@@ -10,14 +9,6 @@ then
   echo "Example: \"./rr ProgramRunner\""
 else
   chruby 2.5.1
-  declare -a commands=(
-    "make quintessences"
-    "make objects"
-    "make tests"
-    "tests/$1Test"
-  )
-
-  rerun_command="${commands[0]} && ${commands[1]} && ${commands[2]} && ${commands[3]}"
-
+  rerun "./build && make obj/$1.o && make bin/tests/$1Test && bin/tests/$1Test && make bin/examples/$1Example && bin/examples/$1Example"
   rerun -c $rerun_command -p "**/$@{Test.cpp,_test.cpp,.q.*}"
 fi
