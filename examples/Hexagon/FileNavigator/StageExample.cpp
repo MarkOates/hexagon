@@ -53,6 +53,10 @@ void run_program()
    std::vector<std::string> commands = {
       "set_node_root_to_repos_directory",
       "refresh_list",
+      "set_node_root_to_system_root_directory",
+      "refresh_list",
+      "set_node_root_to_user_directory",
+      "refresh_list",
       "change_to_yellow",
    };
 

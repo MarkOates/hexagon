@@ -87,6 +87,12 @@ cursor_position += 1;
 
 }
 
+void Stage::move_cursor_up()
+{
+cursor_position -= 1;
+
+}
+
 std::string Stage::run()
 {
 return "Hello World!";
@@ -102,10 +108,15 @@ void Stage::set_node_root_to_repos_directory()
 set_node_root("/Users/markoates/Repos");
 }
 
+void Stage::set_node_root_to_user_directory()
+{
+set_node_root("/Users/markoates");
+}
+
 void Stage::refresh_list()
 {
 nodes.clear();
-nodes.push_back("/Users/markoates/Repos");
+nodes.push_back(get_node_root());
 OldFileSystemNode current_node(get_node_root());
 current_node.create_children();
 for (auto &node : current_node.get_children_ref())
@@ -172,6 +183,11 @@ try
    {
      executed = true;
      set_node_root_to_repos_directory();
+   }
+   else if (event_name == "set_node_root_to_user_directory")
+   {
+     executed = true;
+     set_node_root_to_user_directory();
    }
    //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 

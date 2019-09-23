@@ -32,6 +32,10 @@ functions:
     type: void
     body: |
       cursor_position += 1;
+  - name: move_cursor_up
+    type: void
+    body: |
+      cursor_position -= 1;
   - name: run
     type: std::string
     body: return "Hello World!";
@@ -39,10 +43,12 @@ functions:
     body: set_node_root("/");
   - name: set_node_root_to_repos_directory
     body: set_node_root("/Users/markoates/Repos");
+  - name: set_node_root_to_user_directory
+    body: set_node_root("/Users/markoates");
   - name: refresh_list
     body: |
       nodes.clear();
-      nodes.push_back("/Users/markoates/Repos");
+      nodes.push_back(get_node_root());
       OldFileSystemNode current_node(get_node_root());
       current_node.create_children();
       for (auto &node : current_node.get_children_ref())
@@ -127,6 +133,11 @@ functions:
          {
            executed = true;
            set_node_root_to_repos_directory();
+         }
+         else if (event_name == "set_node_root_to_user_directory")
+         {
+           executed = true;
+           set_node_root_to_user_directory();
          }
          //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
