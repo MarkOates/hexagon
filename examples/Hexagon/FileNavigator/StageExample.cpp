@@ -50,29 +50,32 @@ void run_program()
    std::string helvetica_font_filename = resource_path({ "data", "fonts" }, "Helvetica.ttf");
    ALLEGRO_FONT *font = al_load_font(helvetica_font_filename.c_str(), 32, 0);
 
-   std::vector<std::string> commands = {
-      "set_node_root_to_system_root_directory",
-      "refresh_list",
-      "move_cursor_to_top",
-      "set_node_root_to_user_directory",
-      "refresh_list",
-      "move_cursor_to_top",
-      "set_node_root_to_repos_directory",
-      "refresh_list",
-      "move_cursor_to_top",
-      "move_cursor_down",
-      "move_cursor_down",
-      "move_cursor_down",
-      "set_node_root_to_current_selection_if_folder",
-      "refresh_list",
-      "move_cursor_to_top",
-      "change_to_yellow",
+   std::vector<std::vector<std::string>> command_sets = {
+      { "set_node_root_to_system_root_directory" },
+      { "refresh_list" },
+      { "move_cursor_to_top" },
+      { "set_node_root_to_user_directory" },
+      { "refresh_list" },
+      { "move_cursor_to_top" },
+      { "set_node_root_to_repos_directory" },
+      { "refresh_list" },
+      { "move_cursor_to_top" },
+      { "move_cursor_down" },
+      { "move_cursor_down" },
+      { "move_cursor_down" },
+      { "set_node_root_to_current_selection_if_folder" },
+      { "refresh_list" },
+      { "move_cursor_to_top" },
+      { "change_to_yellow" },
    };
 
 
-   for (auto &command : commands)
+   for (auto &command_set : command_sets)
    {
-      stage->process_local_event(command);
+      for (auto &command : command_set)
+      {
+         stage->process_local_event(command);
+      }
 
       al_clear_to_color(al_color_name("darkgray"));
       stage->render(nullptr, font);
