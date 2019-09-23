@@ -23,6 +23,7 @@ Stage::Stage()
    , circle_color(al_color_name("green"))
    , nodes({})
    , cursor_position(0)
+   , node_root("/Users/markoates/Repos")
 {
 }
 
@@ -44,6 +45,12 @@ void Stage::set_nodes(std::vector<std::string> nodes)
 }
 
 
+void Stage::set_node_root(std::string node_root)
+{
+   this->node_root = node_root;
+}
+
+
 ALLEGRO_COLOR Stage::get_circle_color()
 {
    return circle_color;
@@ -59,6 +66,12 @@ std::vector<std::string> Stage::get_nodes()
 int Stage::get_cursor_position()
 {
    return cursor_position;
+}
+
+
+std::string Stage::get_node_root()
+{
+   return node_root;
 }
 
 
@@ -82,11 +95,8 @@ return "Hello World!";
 void Stage::refresh_nodes()
 {
 nodes.clear();
-std::string node_root = "/Users/markoates/Repos";
-//OldFileSystemNode current_node(node_root);
-//current_
 nodes.push_back("/Users/markoates/Repos");
-OldFileSystemNode current_node(node_root);
+OldFileSystemNode current_node(get_node_root());
 current_node.create_children();
 for (auto &node : current_node.get_children_ref())
 {

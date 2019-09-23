@@ -22,6 +22,11 @@ properties:
     type: int
     getter: true
     init_with: 0
+  - name: node_root
+    type: std::string
+    init_with: "\"/Users/markoates/Repos\""
+    getter: true
+    setter: true
 functions:
   - name: move_cursor_down
     type: void
@@ -33,11 +38,8 @@ functions:
   - name: refresh_nodes
     body: |
       nodes.clear();
-      std::string node_root = "/Users/markoates/Repos";
-      //OldFileSystemNode current_node(node_root);
-      //current_
       nodes.push_back("/Users/markoates/Repos");
-      OldFileSystemNode current_node(node_root);
+      OldFileSystemNode current_node(get_node_root());
       current_node.create_children();
       for (auto &node : current_node.get_children_ref())
       {

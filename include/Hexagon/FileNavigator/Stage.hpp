@@ -20,6 +20,7 @@ namespace Hexagon
          ALLEGRO_COLOR circle_color;
          std::vector<std::string> nodes;
          int cursor_position;
+         std::string node_root;
 
       public:
          Stage();
@@ -27,10 +28,12 @@ namespace Hexagon
 
          void set_circle_color(ALLEGRO_COLOR circle_color);
          void set_nodes(std::vector<std::string> nodes);
+         void set_node_root(std::string node_root);
 
          ALLEGRO_COLOR get_circle_color();
          std::vector<std::string> get_nodes();
          int get_cursor_position();
+         std::string get_node_root();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void move_cursor_down();
       std::string run();
