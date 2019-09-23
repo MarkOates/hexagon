@@ -10,5 +10,5 @@ then
 else
   chruby 2.5.1
   rerun "./build && make obj/$1.o && make bin/tests/$1Test && bin/tests/$1Test && make bin/examples/$1Example && bin/examples/$1Example"
-  rerun -c $rerun_command -p "**/$@{Test.cpp,_test.cpp,.q.*}"
+  rerun -c $rerun_command --pattern "{quintessence/Hexagon/FileNavigator/Stage.q.yml,examples/Hexagon/FileNavigator/StageExample.cpp}"
 fi
