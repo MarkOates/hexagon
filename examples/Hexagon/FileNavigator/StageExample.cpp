@@ -51,33 +51,26 @@ void run_program()
    ALLEGRO_FONT *font = al_load_font(helvetica_font_filename.c_str(), 32, 0);
 
    std::vector<std::vector<std::string>> command_sets = {
-      { "set_node_root_to_system_root_directory" },
-      { "refresh_list" },
-      { "move_cursor_to_top" },
-      { "set_node_root_to_user_directory" },
-      { "refresh_list" },
-      { "move_cursor_to_top" },
-      { "set_node_root_to_repos_directory" },
-      { "refresh_list" },
-      { "move_cursor_to_top" },
+      { "set_node_root_to_system_root_directory", "refresh_list", "move_cursor_to_top" },
+      { "set_node_root_to_user_directory", "refresh_list", "move_cursor_to_top" },
+      { "set_node_root_to_repos_directory", "refresh_list", "move_cursor_to_top" },
       { "move_cursor_down" },
       { "move_cursor_down" },
       { "move_cursor_down" },
-      { "set_node_root_to_current_selection_if_folder" },
-      { "refresh_list" },
-      { "move_cursor_to_top" },
+      { "set_node_root_to_current_selection_if_folder", "refresh_list", "move_cursor_to_top" },
       { "change_to_yellow" },
    };
 
 
    for (auto &command_set : command_sets)
    {
+      al_clear_to_color(al_color_name("darkgray"));
+
       for (auto &command : command_set)
       {
          stage->process_local_event(command);
       }
 
-      al_clear_to_color(al_color_name("darkgray"));
       stage->render(nullptr, font);
       al_flip_display();
 
