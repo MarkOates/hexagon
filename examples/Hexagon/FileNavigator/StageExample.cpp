@@ -2,6 +2,10 @@
 #include <string>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
+#include <Blast/KeyboardCommandMapper.hpp>
+
+
+#include <Hexagon/FileNavigator/Stage.hpp>
 
 
 void simple_debugger(std::string message="")
@@ -16,9 +20,31 @@ void simple_debugger(std::string message="")
 }
 
 
+void run_program()
+{
+   Hexagon::FileNavigator::Stage *stage = new Hexagon::FileNavigator::Stage;
+
+
+   std::vector<std::string> commands = {
+      "change_to_yellow",
+   };
+
+
+   for (auto &command : commands)
+   {
+      stage->process_local_event(command);
+      stage->render();
+      al_flip_display();
+      usleep(0.2 * 1000000);
+   }
+}
+
+
 int main(int argv, char **argc)
 {
    simple_debugger();
+
+   run_program();
 
    return 0;
 }

@@ -19,12 +19,25 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 Stage::Stage()
    : StageInterface({})
+   , circle_color(al_color_name("green"))
 {
 }
 
 
 Stage::~Stage()
 {
+}
+
+
+void Stage::set_circle_color(ALLEGRO_COLOR circle_color)
+{
+   this->circle_color = circle_color;
+}
+
+
+ALLEGRO_COLOR Stage::get_circle_color()
+{
+   return circle_color;
 }
 
 
@@ -41,7 +54,7 @@ return "Hello World!";
 
 void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
-al_draw_filled_circle(100, 100, 60, al_color_name("green"));
+al_draw_filled_circle(100, 100, 60, get_circle_color());
 return;
 
 }
@@ -54,7 +67,11 @@ try
 {
    bool executed = false;
 
-   //if (event_name == ROTATE_STAGE_RIGHT) { executed = true; rotate_stage_right(); }
+   if (event_name == "change_to_yellow")
+   {
+     executed = true;
+     set_circle_color(al_color_name("yellow"));
+   }
    //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
    if (!executed) std::cerr << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;

@@ -8,6 +8,11 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+  - name: circle_color
+    type: ALLEGRO_COLOR
+    init_with: "al_color_name(\"green\")"
+    getter: true
+    setter: true
 functions:
   - name: run
     type: std::string
@@ -28,7 +33,7 @@ functions:
         type: int
         default_argument: 20
     body: |
-      al_draw_filled_circle(100, 100, 60, al_color_name("green"));
+      al_draw_filled_circle(100, 100, 60, get_circle_color());
       return;
     body_dependency_symbols:
       - al_color_name
@@ -49,7 +54,11 @@ functions:
       {
          bool executed = false;
 
-         //if (event_name == ROTATE_STAGE_RIGHT) { executed = true; rotate_stage_right(); }
+         if (event_name == "change_to_yellow")
+         {
+           executed = true;
+           set_circle_color(al_color_name("yellow"));
+         }
          //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
          if (!executed) std::cerr << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
@@ -81,6 +90,8 @@ dependencies:
   - symbol: ALLEGRO_DISPLAY*
     headers: [ 'allegro5/allegro.h' ]
   - symbol: ALLEGRO_EVENT&
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_COLOR
     headers: [ 'allegro5/allegro.h' ]
   - symbol: ALLEGRO_EVENT
     headers: [ 'allegro5/allegro.h' ]

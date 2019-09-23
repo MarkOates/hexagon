@@ -16,12 +16,15 @@ namespace Hexagon
       {
       private:
          static ALLEGRO_EVENT a_default_empty_event;
+         ALLEGRO_COLOR circle_color;
 
       public:
          Stage();
          ~Stage();
 
+         void set_circle_color(ALLEGRO_COLOR circle_color);
 
+         ALLEGRO_COLOR get_circle_color();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       std::string run();
       void render(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
