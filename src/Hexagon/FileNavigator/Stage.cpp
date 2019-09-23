@@ -87,9 +87,11 @@ cursor_position += 1;
 
 }
 
-void Stage::get_current_node()
+bool Stage::current_selection_is_valid()
 {
-return;
+if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
+return true;
+
 }
 
 void Stage::move_cursor_up()

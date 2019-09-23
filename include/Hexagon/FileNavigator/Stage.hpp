@@ -36,7 +36,7 @@ namespace Hexagon
          std::string get_node_root();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void move_cursor_down();
-      void get_current_node();
+      bool current_selection_is_valid();
       void move_cursor_up();
       std::string run();
       void set_node_root_to_system_root_directory();

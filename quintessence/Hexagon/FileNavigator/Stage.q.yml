@@ -32,8 +32,11 @@ functions:
     type: void
     body: |
       cursor_position += 1;
-  - name: get_current_node
-    body: return;
+  - name: current_selection_is_valid
+    type: bool
+    body: |
+      if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
+      return true;
   - name: move_cursor_up
     type: void
     body: |
