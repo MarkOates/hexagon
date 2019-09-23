@@ -1,0 +1,11 @@
+parent_classes:
+  - class: 'StageInterface'
+    scope: public
+    init_with: "{}"
+functions:
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+dependencies:
+  - symbol: StageInterface
+    headers: [ 'Hexagon/StageInterface.hpp' ]
