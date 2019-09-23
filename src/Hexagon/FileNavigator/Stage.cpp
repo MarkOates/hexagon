@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/OldFileSystemNode.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <iostream>
@@ -20,6 +21,8 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 Stage::Stage()
    : StageInterface({})
    , circle_color(al_color_name("green"))
+   , nodes({})
+   , cursor_position(0)
 {
 }
 
@@ -35,9 +38,27 @@ void Stage::set_circle_color(ALLEGRO_COLOR circle_color)
 }
 
 
+void Stage::set_nodes(std::vector<std::string> nodes)
+{
+   this->nodes = nodes;
+}
+
+
 ALLEGRO_COLOR Stage::get_circle_color()
 {
    return circle_color;
+}
+
+
+std::vector<std::string> Stage::get_nodes()
+{
+   return nodes;
+}
+
+
+int Stage::get_cursor_position()
+{
+   return cursor_position;
 }
 
 
@@ -47,14 +68,53 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
+void Stage::move_cursor_down()
+{
+cursor_position += 1;
+
+}
+
 std::string Stage::run()
 {
 return "Hello World!";
 }
 
+void Stage::refresh_nodes()
+{
+nodes.clear();
+std::string node_root = "/Users/markoates/Repos";
+//OldFileSystemNode current_node(node_root);
+//current_
+nodes.push_back("/Users/markoates/Repos");
+OldFileSystemNode current_node(node_root);
+current_node.create_children();
+for (auto &node : current_node.get_children_ref())
+{
+  nodes.push_back(node->infer_basename());
+}
+
+return;
+
+}
+
 void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
-al_draw_filled_circle(100, 100, 60, get_circle_color());
+if (!font) throw std::runtime_error("font missing");
+
+int line = 0;
+int line_height = 36;
+int pos_x = 0;
+int pos_y = 0;
+int cursor_y = 0;
+ALLEGRO_COLOR font_color = al_color_name("white");
+for (auto &node : nodes)
+{
+  std::string line_content = node;
+  al_draw_text(font, font_color, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+  cursor_y += line_height;
+}
+
+al_draw_filled_circle(0, 0, 20, get_circle_color());
 return;
 
 }
@@ -77,6 +137,11 @@ try
    {
      executed = true;
      change_to_yellow();
+   }
+   else if (event_name == "refresh_nodes")
+   {
+     executed = true;
+     refresh_nodes();
    }
    //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 

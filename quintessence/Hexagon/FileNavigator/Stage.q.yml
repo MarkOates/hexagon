@@ -13,10 +13,40 @@ properties:
     init_with: "al_color_name(\"green\")"
     getter: true
     setter: true
+  - name: nodes
+    type: std::vector<std::string>
+    init_with: "{}"
+    getter: true
+    setter: true
+  - name: cursor_position
+    type: int
+    getter: true
+    init_with: 0
 functions:
+  - name: move_cursor_down
+    type: void
+    body: |
+      cursor_position += 1;
   - name: run
     type: std::string
     body: return "Hello World!";
+  - name: refresh_nodes
+    body: |
+      nodes.clear();
+      std::string node_root = "/Users/markoates/Repos";
+      //OldFileSystemNode current_node(node_root);
+      //current_
+      nodes.push_back("/Users/markoates/Repos");
+      OldFileSystemNode current_node(node_root);
+      current_node.create_children();
+      for (auto &node : current_node.get_children_ref())
+      {
+        nodes.push_back(node->infer_basename());
+      }
+
+      return;
+    body_dependency_symbols:
+      - OldFileSystemNode
   - name: render
     is_override: true
     parameters:
@@ -33,7 +63,22 @@ functions:
         type: int
         default_argument: 20
     body: |
-      al_draw_filled_circle(100, 100, 60, get_circle_color());
+      if (!font) throw std::runtime_error("font missing");
+
+      int line = 0;
+      int line_height = 36;
+      int pos_x = 0;
+      int pos_y = 0;
+      int cursor_y = 0;
+      ALLEGRO_COLOR font_color = al_color_name("white");
+      for (auto &node : nodes)
+      {
+        std::string line_content = node;
+        al_draw_text(font, font_color, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+        cursor_y += line_height;
+      }
+
+      al_draw_filled_circle(0, 0, 20, get_circle_color());
       return;
     body_dependency_symbols:
       - al_color_name
@@ -61,6 +106,11 @@ functions:
          {
            executed = true;
            change_to_yellow();
+         }
+         else if (event_name == "refresh_nodes")
+         {
+           executed = true;
+           refresh_nodes();
          }
          //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
@@ -112,3 +162,7 @@ dependencies:
     headers: [ 'iostream' ]
   - symbol: al_draw_circle
     headers: [ 'allegro5/allegro_primitives.h' ]
+  - symbol: std::vector<std::string>
+    headers: [ 'vector', 'string' ]
+  - symbol: OldFileSystemNode
+    headers: [ 'Hexagon/OldFileSystemNode.hpp' ]
