@@ -38,6 +38,9 @@ functions:
     body_dependency_symbols:
       - al_color_name
       - al_draw_circle
+  - name: change_to_yellow
+    body: |
+      set_circle_color(al_color_name("yellow"));
   - name: process_local_event
     is_override: true
     parameters:
@@ -57,7 +60,7 @@ functions:
          if (event_name == "change_to_yellow")
          {
            executed = true;
-           set_circle_color(al_color_name("yellow"));
+           change_to_yellow();
          }
          //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 

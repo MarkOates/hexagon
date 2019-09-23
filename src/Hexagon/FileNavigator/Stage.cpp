@@ -59,6 +59,12 @@ return;
 
 }
 
+void Stage::change_to_yellow()
+{
+set_circle_color(al_color_name("yellow"));
+
+}
+
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
 std::cout << "LocalEvent::" << event_name << std::endl;
@@ -70,7 +76,7 @@ try
    if (event_name == "change_to_yellow")
    {
      executed = true;
-     set_circle_color(al_color_name("yellow"));
+     change_to_yellow();
    }
    //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
