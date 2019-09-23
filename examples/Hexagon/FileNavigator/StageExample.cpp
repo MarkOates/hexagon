@@ -57,6 +57,11 @@ void run_program()
       "refresh_list",
       "set_node_root_to_user_directory",
       "refresh_list",
+      "set_node_root_to_current_selection_if_folder",
+      "move_cursor_down",
+      "move_cursor_down",
+      "move_cursor_down",
+      "move_cursor_up",
       "change_to_yellow",
    };
 

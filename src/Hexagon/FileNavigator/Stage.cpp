@@ -87,6 +87,11 @@ cursor_position += 1;
 
 }
 
+void Stage::get_current_node()
+{
+return;
+}
+
 void Stage::move_cursor_up()
 {
 cursor_position -= 1;
@@ -111,6 +116,11 @@ set_node_root("/Users/markoates/Repos");
 void Stage::set_node_root_to_user_directory()
 {
 set_node_root("/Users/markoates");
+}
+
+void Stage::set_node_root_to_current_selection_if_folder()
+{
+
 }
 
 void Stage::refresh_list()
@@ -138,6 +148,10 @@ int pos_x = 0;
 int pos_y = 0;
 int cursor_y = 0;
 ALLEGRO_COLOR font_color = al_color_name("white");
+
+float selector_y = line_height * cursor_position;
+al_draw_filled_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color());
+
 for (auto &node : nodes)
 {
   std::string line_content = node;
@@ -145,7 +159,6 @@ for (auto &node : nodes)
   cursor_y += line_height;
 }
 
-al_draw_filled_circle(0, 0, 20, get_circle_color());
 return;
 
 }
@@ -188,6 +201,16 @@ try
    {
      executed = true;
      set_node_root_to_user_directory();
+   }
+   else if (event_name == "move_cursor_up")
+   {
+     executed = true;
+     move_cursor_up();
+   }
+   else if (event_name == "move_cursor_down")
+   {
+     executed = true;
+     move_cursor_down();
    }
    //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
