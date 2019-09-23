@@ -159,6 +159,11 @@ try
      executed = true;
      refresh_list();
    }
+   else if (event_name == "set_node_root_to_system_root")
+   {
+     executed = true;
+     set_node_root_to_system_root();
+   }
    //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 
    if (!executed) std::cerr << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
