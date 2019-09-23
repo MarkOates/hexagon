@@ -92,6 +92,12 @@ std::string Stage::run()
 return "Hello World!";
 }
 
+void Stage::set_node_root_to_system_root()
+{
+set_node_root("/");
+
+}
+
 void Stage::refresh_nodes()
 {
 nodes.clear();

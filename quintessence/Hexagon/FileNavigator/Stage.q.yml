@@ -35,6 +35,9 @@ functions:
   - name: run
     type: std::string
     body: return "Hello World!";
+  - name: set_node_root_to_system_root
+    body: |
+      set_node_root("/");
   - name: refresh_nodes
     body: |
       nodes.clear();
