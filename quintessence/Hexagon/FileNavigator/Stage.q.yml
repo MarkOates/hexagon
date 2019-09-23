@@ -6,6 +6,27 @@ functions:
   - name: run
     type: std::string
     body: return "Hello World!";
+  - name: render
+    is_override: true
+    parameters:
+      - name: display
+        type: ALLEGRO_DISPLAY*
+        default_argument: nullptr
+      - name: font
+        type: ALLEGRO_FONT*
+        default_argument: nullptr
+      - name: cell_width
+        type: int
+        default_argument: 10
+      - name: cell_height
+        type: int
+        default_argument: 20
+    body: |
+      return;
 dependencies:
   - symbol: StageInterface
     headers: [ 'Hexagon/StageInterface.hpp' ]
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ 'allegro5/allegro_font.h' ]
