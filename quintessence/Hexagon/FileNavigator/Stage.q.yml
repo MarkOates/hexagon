@@ -2,6 +2,12 @@ parent_classes:
   - class: 'StageInterface'
     scope: public
     init_with: "{}"
+properties:
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
 functions:
   - name: run
     type: std::string
@@ -23,10 +29,40 @@ functions:
         default_argument: 20
     body: |
       return;
+  - name: process_local_event
+    is_override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: "\"\""
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: |
+      return;
+  - name: save_file
+    is_override: true
+    type: bool
+    body: |
+      return true;
+  - name: process_event
+    is_override: true
+    parameters:
+      - name: action_data
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: |
+      return;
 dependencies:
   - symbol: StageInterface
     headers: [ 'Hexagon/StageInterface.hpp' ]
   - symbol: ALLEGRO_DISPLAY*
     headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ 'allegro5/allegro.h' ]
   - symbol: ALLEGRO_FONT*
     headers: [ 'allegro5/allegro_font.h' ]
+  - symbol: ActionData
+    headers: [ 'Hexagon/ActionData.hpp' ]
