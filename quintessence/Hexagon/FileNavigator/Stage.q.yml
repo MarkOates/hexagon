@@ -28,7 +28,11 @@ functions:
         type: int
         default_argument: 20
     body: |
+      al_draw_filled_circle(100, 100, 60, al_color_name("green"));
       return;
+    body_dependency_symbols:
+      - al_color_name
+      - al_draw_circle
   - name: process_local_event
     is_override: true
     parameters:
@@ -39,7 +43,25 @@ functions:
         type: ActionData
         default_argument: "ActionData()"
     body: |
-      return;
+      std::cout << "LocalEvent::" << event_name << std::endl;
+
+      try
+      {
+         bool executed = false;
+
+         //if (event_name == ROTATE_STAGE_RIGHT) { executed = true; rotate_stage_right(); }
+         //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
+
+         if (!executed) std::cerr << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
+      }
+      catch (const std::exception &exception)
+      {
+         std::cerr << ">BOOM< cannot execute \"" << event_name << "\".  The following exception occurred: " << exception.what() << std::endl;
+      }
+    body_dependency_symbols:
+      - std::endl
+      - std::cout
+      - std::cerr
   - name: save_file
     is_override: true
     type: bool
@@ -66,3 +88,13 @@ dependencies:
     headers: [ 'allegro5/allegro_font.h' ]
   - symbol: ActionData
     headers: [ 'Hexagon/ActionData.hpp' ]
+  - symbol: al_color_name
+    headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: std::endl
+    headers: [ 'iostream' ]
+  - symbol: std::cerr
+    headers: [ 'iostream' ]
+  - symbol: std::cout
+    headers: [ 'iostream' ]
+  - symbol: al_draw_circle
+    headers: [ 'allegro5/allegro_primitives.h' ]
