@@ -94,6 +94,13 @@ return true;
 
 }
 
+std::string Stage::get_current_selection()
+{
+if (!current_selection_is_valid()) throw std::runtime_error("cannot current_selection_is_folder because is invalid");
+return nodes[get_cursor_position()];
+
+}
+
 void Stage::move_cursor_up()
 {
 cursor_position -= 1;

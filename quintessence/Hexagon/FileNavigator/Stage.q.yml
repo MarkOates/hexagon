@@ -37,6 +37,11 @@ functions:
     body: |
       if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
       return true;
+  - name: get_current_selection
+    type: std::string
+    body: |
+      if (!current_selection_is_valid()) throw std::runtime_error("cannot current_selection_is_folder because is invalid");
+      return nodes[get_cursor_position()];
   - name: move_cursor_up
     type: void
     body: |
