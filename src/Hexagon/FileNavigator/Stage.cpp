@@ -101,9 +101,23 @@ return nodes[get_cursor_position()];
 
 }
 
+bool Stage::current_selection_is_folder()
+{
+std::string current_selection = get_current_selection();
+OldFileSystemNode current_selection_node(current_selection);
+return current_selection_node.infer_is_directory();
+
+}
+
 void Stage::move_cursor_up()
 {
 cursor_position -= 1;
+
+}
+
+void Stage::move_cursor_to_top()
+{
+cursor_position = 0;
 
 }
 
@@ -129,6 +143,10 @@ set_node_root("/Users/markoates");
 
 void Stage::set_node_root_to_current_selection_if_folder()
 {
+if (current_selection_is_valid() && current_selection_is_folder())
+{
+  set_node_root(get_current_selection());
+}
 
 }
 
@@ -140,7 +158,7 @@ OldFileSystemNode current_node(get_node_root());
 current_node.create_children();
 for (auto &node : current_node.get_children_ref())
 {
-  nodes.push_back(node->infer_basename());
+  nodes.push_back(node->infer_full_name());
 }
 
 return;
@@ -211,6 +229,11 @@ try
      executed = true;
      set_node_root_to_user_directory();
    }
+   else if (event_name == "move_cursor_to_top")
+   {
+     executed = true;
+     move_cursor_to_top();
+   }
    else if (event_name == "move_cursor_up")
    {
      executed = true;
@@ -220,6 +243,11 @@ try
    {
      executed = true;
      move_cursor_down();
+   }
+   else if (event_name == "set_node_root_to_current_selection_if_folder")
+   {
+     executed = true;
+     set_node_root_to_current_selection_if_folder();
    }
    //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 

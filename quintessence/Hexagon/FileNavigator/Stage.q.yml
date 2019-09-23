@@ -42,10 +42,20 @@ functions:
     body: |
       if (!current_selection_is_valid()) throw std::runtime_error("cannot current_selection_is_folder because is invalid");
       return nodes[get_cursor_position()];
+  - name: current_selection_is_folder
+    type: bool
+    body: |
+      std::string current_selection = get_current_selection();
+      OldFileSystemNode current_selection_node(current_selection);
+      return current_selection_node.infer_is_directory();
   - name: move_cursor_up
     type: void
     body: |
       cursor_position -= 1;
+  - name: move_cursor_to_top
+    type: void
+    body: |
+      cursor_position = 0;
   - name: run
     type: std::string
     body: return "Hello World!";
@@ -57,7 +67,10 @@ functions:
     body: set_node_root("/Users/markoates");
   - name: set_node_root_to_current_selection_if_folder
     body: |
-    body: set_node_root("/Users/markoates");
+      if (current_selection_is_valid() && current_selection_is_folder())
+      {
+        set_node_root(get_current_selection());
+      }
   - name: refresh_list
     body: |
       nodes.clear();
@@ -66,7 +79,7 @@ functions:
       current_node.create_children();
       for (auto &node : current_node.get_children_ref())
       {
-        nodes.push_back(node->infer_basename());
+        nodes.push_back(node->infer_full_name());
       }
 
       return;
@@ -155,6 +168,11 @@ functions:
            executed = true;
            set_node_root_to_user_directory();
          }
+         else if (event_name == "move_cursor_to_top")
+         {
+           executed = true;
+           move_cursor_to_top();
+         }
          else if (event_name == "move_cursor_up")
          {
            executed = true;
@@ -164,6 +182,11 @@ functions:
          {
            executed = true;
            move_cursor_down();
+         }
+         else if (event_name == "set_node_root_to_current_selection_if_folder")
+         {
+           executed = true;
+           set_node_root_to_current_selection_if_folder();
          }
          //else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
 

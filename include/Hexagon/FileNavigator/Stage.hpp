@@ -38,7 +38,9 @@ namespace Hexagon
       void move_cursor_down();
       bool current_selection_is_valid();
       std::string get_current_selection();
+      bool current_selection_is_folder();
       void move_cursor_up();
+      void move_cursor_to_top();
       std::string run();
       void set_node_root_to_system_root_directory();
       void set_node_root_to_repos_directory();

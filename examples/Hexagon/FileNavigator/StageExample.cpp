@@ -51,17 +51,21 @@ void run_program()
    ALLEGRO_FONT *font = al_load_font(helvetica_font_filename.c_str(), 32, 0);
 
    std::vector<std::string> commands = {
-      "set_node_root_to_repos_directory",
-      "refresh_list",
       "set_node_root_to_system_root_directory",
       "refresh_list",
+      "move_cursor_to_top",
       "set_node_root_to_user_directory",
       "refresh_list",
+      "move_cursor_to_top",
+      "set_node_root_to_repos_directory",
+      "refresh_list",
+      "move_cursor_to_top",
+      "move_cursor_down",
+      "move_cursor_down",
+      "move_cursor_down",
       "set_node_root_to_current_selection_if_folder",
-      "move_cursor_down",
-      "move_cursor_down",
-      "move_cursor_down",
-      "move_cursor_up",
+      "refresh_list",
+      "move_cursor_to_top",
       "change_to_yellow",
    };
 
@@ -74,7 +78,7 @@ void run_program()
       stage->render(nullptr, font);
       al_flip_display();
 
-      usleep(0.2 * 1000000);
+      usleep(0.1 * 1000000);
    }
 
    al_destroy_font(font);
