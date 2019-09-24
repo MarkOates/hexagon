@@ -254,6 +254,14 @@ return true;
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
 KeyboardCommandMapper keyboard_command_mapper;
+                                           // al_keycodee, shift, ctrl, alt, command, { command_identifier }
+static const std::string SET_NODE_ROOT_TO_SYSTEM_ROOT_DIRECTORY = "set_node_root_to_system_root_directory";
+static const std::string SET_NODE_ROOT_TO_REPOS_DIRECTORY = "set_node_root_to_repos_directory";
+static const std::string SET_NODE_ROOT_TO_USER_DIRECTORY = "set_node_root_to_user_directory";
+static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
+static const std::string MOVE_CURSOR_UP = "move_cursor_up";
+static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
+static const std::string SET_NODE_ROOT_TO_CURRENT_SELECTION_IF_FOLDER = "set_node_root_to_current_selection_if_folder";
 
 bool event_caught = false;
 
