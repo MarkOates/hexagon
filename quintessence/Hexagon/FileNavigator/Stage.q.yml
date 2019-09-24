@@ -197,7 +197,7 @@ functions:
   - name: process_event
     is_override: true
     parameters:
-      - name: action_data
+      - name: event
         type: ALLEGRO_EVENT&
         default_argument: "get_a_default_empty_event_ref()"
     body: |

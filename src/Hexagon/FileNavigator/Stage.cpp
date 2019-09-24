@@ -250,7 +250,7 @@ return true;
 
 }
 
-void Stage::process_event(ALLEGRO_EVENT& action_data)
+void Stage::process_event(ALLEGRO_EVENT& event)
 {
 return;
 
