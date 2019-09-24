@@ -23,7 +23,7 @@ namespace Hexagon
          std::string node_root;
 
       public:
-         Stage();
+         Stage(std::string node_root="/Users/markoates/Repos");
          ~Stage();
 
          void set_circle_color(ALLEGRO_COLOR circle_color);

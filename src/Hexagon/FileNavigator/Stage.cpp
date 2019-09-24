@@ -18,12 +18,12 @@ namespace FileNavigator
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage()
+Stage::Stage(std::string node_root)
    : StageInterface({})
    , circle_color(al_color_name("green"))
    , nodes({})
    , cursor_position(0)
-   , node_root("/Users/markoates/Repos")
+   , node_root(node_root)
 {
 }
 

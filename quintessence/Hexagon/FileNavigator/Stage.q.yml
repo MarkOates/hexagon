@@ -25,6 +25,7 @@ properties:
   - name: node_root
     type: std::string
     init_with: "\"/Users/markoates/Repos\""
+    constructor_arg: true
     getter: true
     setter: true
 functions:
