@@ -579,7 +579,7 @@ public:
       return true;
    }
 
-   bool attempt_to_open_file_navigator_file()
+   bool attempt_to_create_stage_from_last_file_navigator_selection()
    {
       //throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented");
 
@@ -590,19 +590,38 @@ public:
       if (!fs_entry)
       {
          std::stringstream error_message;
-         error_message << "Could not attempt_to_open_file_navigation_selected_path: fs_entry could not be created. al_get_errno() returned with " << al_get_errno() << std::endl;
+         error_message << "Could not attempt_to_create_stage_from_last_file_navigator_selection: fs_entry could not be created. al_get_errno() returned with " << al_get_errno() << std::endl;
          throw std::runtime_error(error_message.str().c_str());
       }
       OldFileSystemNode file_system_node(fs_entry);
-      if (!file_system_node.infer_is_directory())
+      if (file_system_node.infer_is_directory())
       {
          std::stringstream error_message;
-         error_message << "Could not attempt_to_open_file_navigation_selected_path: is a directory." << std::endl;
+         error_message << "Could not attempt_to_create_stage_from_last_file_navigator_selection: is a directory." << std::endl;
          throw std::runtime_error(error_message.str().c_str());
       }
-      else
+      else // is a valid file
       {
-         throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented to open a file");
+         std::vector<std::string> file_contents = {};
+         if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
+
+         int number_of_files = get_number_of_code_editor_stages();
+         //number_of_files++;
+         float one_third_screen_width = get_display_default_width() / 3;
+
+         placement3d place(one_third_screen_width*number_of_files, 0, 0);
+         //place.position = vec3d(-al_get_display_width(display) * 0.5, -al_get_display_height(display)/2, 0.0);
+         place.size = vec3d(get_display_default_width(), get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+         place.align = vec3d(0.5, 0.5, 0.0);
+         place.scale = vec3d(0.9, 0.9, 0.0);
+
+         Stage *stage = new Stage(filename);// place);
+
+         stage->set_place(place);
+         stage->set_content(file_contents);
+         stages.push_back(stage);
+
+         //throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented to open a file");
       }
 
       // create a new stage
@@ -682,7 +701,7 @@ public:
          //process_local_event(SAVE_CURRENT_STAGE);  // saves the modal (commits its contents to database)
          process_local_event(PUSH_FILE_NAVIGATOR_SELECTION);
          process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
-         //process_local_event(ATTEMPT_TO_OPEN_FILE_NAVIGATOR_SELECTED_FILE);
+         process_local_event(ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION);
          //throw std::runtime_error("there is no valid \"submit_current_modal()\" behavior for StageInterface::FILE_NAVIGATOR");
          //process_local_event(ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH);
          break;
@@ -716,6 +735,7 @@ public:
 
    // events
 
+   static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
    static const std::string ROTATE_STAGE_RIGHT;
    static const std::string ROTATE_STAGE_LEFT;
@@ -767,6 +787,7 @@ public:
          else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
          else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
          else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
+         else if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_file_navigator_selection(); executed = true; }
          else if (event_name == ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_OLD_file_navigation_selected_path(); executed = true; }
          else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
 
@@ -890,6 +911,7 @@ std::string get_action_description(std::string action_identifier)
 
 
 
+const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
