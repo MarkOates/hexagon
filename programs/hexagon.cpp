@@ -575,7 +575,19 @@ public:
 
    bool push_file_navigator_selection()
    {
-      last_file_navigator_selection = "/Users/markoates";
+      StageInterface *frontmost_stage_interface = get_frontmost_stage();
+      if (!frontmost_stage_interface || !(frontmost_stage_interface->get_type() == StageInterface::FILE_NAVIGATOR))
+      {
+         std::stringstream error_message;
+         std::string function_name = "push_file_navigator_selection";
+         error_message << "Could not " << function_name << ": Either the frontmost_stage_interface is a nullptr OR is not of type StageInterface::FILE_NAVIGATOR." << std::endl;
+         throw std::runtime_error(error_message.str().c_str());
+      }
+
+      Hexagon::FileNavigator::Stage *file_navigator = static_cast<Hexagon::FileNavigator::Stage *>(frontmost_stage_interface);
+      std::string current_file_navigator_selection = file_navigator->get_current_selection();
+
+      last_file_navigator_selection = current_file_navigator_selection;
       return true;
    }
 
