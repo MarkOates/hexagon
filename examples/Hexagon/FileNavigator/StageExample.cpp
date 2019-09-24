@@ -58,13 +58,12 @@ void run_program()
       { "move_cursor_down" },
       { "move_cursor_down" },
       { "set_node_root_to_current_selection_if_folder", "refresh_list", "move_cursor_to_top" },
-      { "change_to_yellow" },
    };
 
 
    for (auto &command_set : command_sets)
    {
-      al_clear_to_color(al_color_name("darkgray"));
+      al_clear_to_color(al_color_name("black"));
 
       for (auto &command : command_set)
       {

@@ -56,9 +56,6 @@ functions:
     type: void
     body: |
       cursor_position = 0;
-  - name: run
-    type: std::string
-    body: return "Hello World!";
   - name: set_node_root_to_system_root_directory
     body: set_node_root("/");
   - name: set_node_root_to_repos_directory
@@ -104,7 +101,7 @@ functions:
       if (!font) throw std::runtime_error("font missing");
 
       int line = 0;
-      int line_height = 36;
+      int line_height = 44;
       int pos_x = 0;
       int pos_y = 0;
       int cursor_y = 0;
@@ -124,9 +121,6 @@ functions:
     body_dependency_symbols:
       - al_color_name
       - al_draw_circle
-  - name: change_to_yellow
-    body: |
-      set_circle_color(al_color_name("yellow"));
   - name: process_local_event
     is_override: true
     parameters:
@@ -143,12 +137,7 @@ functions:
       {
          bool executed = false;
 
-         if (event_name == "change_to_yellow")
-         {
-           executed = true;
-           change_to_yellow();
-         }
-         else if (event_name == "refresh_list")
+         if (event_name == "refresh_list")
          {
            executed = true;
            refresh_list();

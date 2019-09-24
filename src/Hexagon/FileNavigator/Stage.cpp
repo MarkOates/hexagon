@@ -121,11 +121,6 @@ cursor_position = 0;
 
 }
 
-std::string Stage::run()
-{
-return "Hello World!";
-}
-
 void Stage::set_node_root_to_system_root_directory()
 {
 set_node_root("/");
@@ -170,7 +165,7 @@ void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width,
 if (!font) throw std::runtime_error("font missing");
 
 int line = 0;
-int line_height = 36;
+int line_height = 44;
 int pos_x = 0;
 int pos_y = 0;
 int cursor_y = 0;
@@ -190,12 +185,6 @@ return;
 
 }
 
-void Stage::change_to_yellow()
-{
-set_circle_color(al_color_name("yellow"));
-
-}
-
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
 std::cout << "LocalEvent::" << event_name << std::endl;
@@ -204,12 +193,7 @@ try
 {
    bool executed = false;
 
-   if (event_name == "change_to_yellow")
-   {
-     executed = true;
-     change_to_yellow();
-   }
-   else if (event_name == "refresh_list")
+   if (event_name == "refresh_list")
    {
      executed = true;
      refresh_list();

@@ -41,14 +41,12 @@ namespace Hexagon
       bool current_selection_is_folder();
       void move_cursor_up();
       void move_cursor_to_top();
-      std::string run();
       void set_node_root_to_system_root_directory();
       void set_node_root_to_repos_directory();
       void set_node_root_to_user_directory();
       void set_node_root_to_current_selection_if_folder();
       void refresh_list();
       void render(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
-      void change_to_yellow();
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       bool save_file();
       void process_event(ALLEGRO_EVENT& action_data=get_a_default_empty_event_ref());
