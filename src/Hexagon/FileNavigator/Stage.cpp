@@ -166,13 +166,13 @@ void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width,
 if (!font) throw std::runtime_error("font missing");
 
 int line = 0;
-int line_height = 44;
+int line_height = cell_height * 1.1;
 int pos_x = 0;
 int pos_y = 0;
-int cursor_y = 0;
+int cursor_y = - line_height * cursor_position;
 ALLEGRO_COLOR font_color = al_color_name("white");
 
-float selector_y = line_height * cursor_position;
+float selector_y = line_height * cursor_position + cursor_y;
 al_draw_filled_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color());
 
 for (auto &node : nodes)
