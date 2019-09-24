@@ -170,6 +170,7 @@ public:
 
 
 #include <Hexagon/OldFileSystemNode.hpp>
+#include <Hexagon/FileNavigator/Stage.hpp>
 
 
 
@@ -479,7 +480,9 @@ public:
       //place.align = vec3d(0.5, 0.5, 0.0);
       //place.scale = vec3d(0.8, 0.8, 0.0);
 
-      OldFileNavigator *file_navigator = new OldFileNavigator(al_get_current_directory());
+      //OldFileNavigator *file_navigator = new OldFileNavigator(al_get_current_directory());
+      Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage();
+      file_navigator->process_local_event("refresh_list");
       //file_navigator->set_place(file_navigator_initial_place);
       //file_navigator.set_child_nodes();
       stages.push_back(file_navigator);
