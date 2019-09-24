@@ -278,6 +278,8 @@ public:
    placement3d file_navigator_initial_place;
    Motion &motion;
 
+   std::string last_file_navigator_selection;
+
    //RerunOutputWatcher *rerun_output_watcher;
 
    System(ALLEGRO_DISPLAY *display, Motion &motion)
@@ -287,6 +289,7 @@ public:
       , camera(0, 0, 0)
       , file_navigator_initial_place(0, 0, 0)
       , motion(motion)
+      , last_file_navigator_selection("")
    {
       file_navigator_initial_place.size = vec3d(500, 600, 0);
       file_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
@@ -570,6 +573,42 @@ public:
       return true;
    }
 
+   bool push_file_navigator_selection()
+   {
+      last_file_navigator_selection = "/Users/markoates";
+      return true;
+   }
+
+   bool attempt_to_open_file_navigator_file()
+   {
+      //throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented");
+
+      std::string filename = last_file_navigator_selection;
+
+      // validate the selected path is a valid file
+      ALLEGRO_FS_ENTRY *fs_entry = al_create_fs_entry(filename.c_str());
+      if (!fs_entry)
+      {
+         std::stringstream error_message;
+         error_message << "Could not attempt_to_open_file_navigation_selected_path: fs_entry could not be created. al_get_errno() returned with " << al_get_errno() << std::endl;
+         throw std::runtime_error(error_message.str().c_str());
+      }
+      OldFileSystemNode file_system_node(fs_entry);
+      if (!file_system_node.infer_is_directory())
+      {
+         std::stringstream error_message;
+         error_message << "Could not attempt_to_open_file_navigation_selected_path: is a directory." << std::endl;
+         throw std::runtime_error(error_message.str().c_str());
+      }
+      else
+      {
+         throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented to open a file");
+      }
+
+      // create a new stage
+      //std::string
+   }
+
    bool attempt_to_open_OLD_file_navigation_selected_path()
    {
       std::vector<std::string> results = { FILE_NAVIGATOR_SELECTION_last_content };
@@ -641,7 +680,11 @@ public:
          break;
       case StageInterface::FILE_NAVIGATOR:
          //process_local_event(SAVE_CURRENT_STAGE);  // saves the modal (commits its contents to database)
-         throw std::runtime_error("there is no valid \"submit_current_modal()\" behavior for StageInterface::FILE_NAVIGATOR");
+         process_local_event(PUSH_FILE_NAVIGATOR_SELECTION);
+         process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
+         //process_local_event(ATTEMPT_TO_OPEN_FILE_NAVIGATOR_SELECTED_FILE);
+         //throw std::runtime_error("there is no valid \"submit_current_modal()\" behavior for StageInterface::FILE_NAVIGATOR");
+         //process_local_event(ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH);
          break;
       case StageInterface::OLD_FILE_NAVIGATOR:
          process_local_event(SAVE_CURRENT_STAGE);  // saves the modal (commits its contents to database)
@@ -673,6 +716,7 @@ public:
 
    // events
 
+   static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
    static const std::string ROTATE_STAGE_RIGHT;
    static const std::string ROTATE_STAGE_LEFT;
    static const std::string RUN_PROJECT_TESTS;
@@ -714,6 +758,7 @@ public:
          else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { executed = true; refresh_regex_hilights_on_stage(); }
          else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { executed = true; set_regex_input_box_modal_to_insert_mode(); }
          else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { executed = true; jump_to_next_code_point_on_stage(); }
+         else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { executed = true; push_file_navigator_selection(); }
          else if (event_name == SUBMIT_CURRENT_MODAL) { executed = true; submit_current_modal(); }
          //else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
          else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { executed = true; offset_first_line_to_vertically_center_cursor_on_stage(); }
@@ -845,6 +890,7 @@ std::string get_action_description(std::string action_identifier)
 
 
 
+const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
