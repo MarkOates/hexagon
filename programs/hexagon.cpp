@@ -570,12 +570,12 @@ public:
       return true;
    }
 
-   bool attempt_to_open_file_navigation_selected_path()
+   bool attempt_to_open_OLD_file_navigation_selected_path()
    {
       std::vector<std::string> results = { FILE_NAVIGATOR_SELECTION_last_content };
-      //if (!::read_file(results, FILE_NAVIGATOR_SELECTION_FILENAME)) { throw std::runtime_error("Could not attempt_to_open_file_navigation_selected_path: read_file failed"); return false; }
+      //if (!::read_file(results, FILE_NAVIGATOR_SELECTION_FILENAME)) { throw std::runtime_error("Could not attempt_to_open_OLD_file_navigation_selected_path: read_file failed"); return false; }
 
-      if (results.empty()) throw std::runtime_error("Could not attempt_to_open_file_navigation_selected_path: expected filename was empty.");
+      if (results.empty()) throw std::runtime_error("Could not attempt_to_open_OLD_file_navigation_selected_path: expected filename was empty.");
       std::string filename = results[0];
 
       ALLEGRO_FS_ENTRY *fs_entry = al_create_fs_entry(filename.c_str());
@@ -583,7 +583,7 @@ public:
       if (!fs_entry)
       {
          std::stringstream error_message;
-         error_message << "Could not attempt_to_open_file_navigation_selected_path: fs_entry could not be created. al_get_errno() returned with " << al_get_errno() << std::endl;
+         error_message << "Could not attempt_to_open_OLD_file_navigation_selected_path: fs_entry could not be created. al_get_errno() returned with " << al_get_errno() << std::endl;
          throw std::runtime_error(error_message.str().c_str());
       }
       //std::cout << "XXXX" << filename << "XXXXX" << std::endl;
@@ -647,7 +647,7 @@ public:
          process_local_event(SAVE_CURRENT_STAGE);  // saves the modal (commits its contents to database)
          process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
          //process_local_event(SAVE_CURRENT_STAGE);  // saves the stage (hopefully its a code editor) (commits its contents to database)
-         process_local_event(ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH);
+         process_local_event(ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH);
          //process_local_event(REFRESH_REGEX_HILIGHTS_ON_STAGE);
          //process_local_event(JUMP_TO_NEXT_CODE_POINT_ON_STAGE);
          //process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
@@ -693,7 +693,7 @@ public:
    static const std::string SPAWN_FILE_NAVIGATOR;
    static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
    static const std::string DESTROY_FILE_NAVIGATOR;
-   static const std::string ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH;
+   static const std::string ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH;
    static const std::string SPAWN_KEYBOARD_INPUTS_MODAL;
 
    void process_local_event(std::string event_name)
@@ -722,7 +722,7 @@ public:
          else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
          else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
          else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
-         else if (event_name == ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_file_navigation_selected_path(); executed = true; }
+         else if (event_name == ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_OLD_file_navigation_selected_path(); executed = true; }
          else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
 
          if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
@@ -822,7 +822,7 @@ std::string get_action_description(std::string action_identifier)
       { System::SPAWN_FILE_NAVIGATOR, "" },
       { System::SPAWN_RERUN_OUTPUT_WATCHER, "" },
       { System::DESTROY_FILE_NAVIGATOR, "" },
-      { System::ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH, "" },
+      { System::ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH, "" },
       { System::SPAWN_KEYBOARD_INPUTS_MODAL, "" }
    };
 
@@ -865,7 +865,7 @@ const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCH
 const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
-const std::string System::ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_FILE_NAVIGATION_SELECTED_PATH";
+const std::string System::ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH";
 const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
 
 
