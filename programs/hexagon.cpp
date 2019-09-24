@@ -640,6 +640,10 @@ public:
          process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
          break;
       case StageInterface::FILE_NAVIGATOR:
+         //process_local_event(SAVE_CURRENT_STAGE);  // saves the modal (commits its contents to database)
+         throw std::runtime_error("there is no valid \"submit_current_modal()\" behavior for StageInterface::FILE_NAVIGATOR");
+         break;
+      case StageInterface::OLD_FILE_NAVIGATOR:
          process_local_event(SAVE_CURRENT_STAGE);  // saves the modal (commits its contents to database)
          process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
          //process_local_event(SAVE_CURRENT_STAGE);  // saves the stage (hopefully its a code editor) (commits its contents to database)
@@ -750,7 +754,7 @@ public:
       {
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Q, false, false, false, false, { ESCAPE_CURRENT_MODAL });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { ESCAPE_CURRENT_MODAL });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, { SUBMIT_CURRENT_MODAL });
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, true, false, false, false, { SUBMIT_CURRENT_MODAL });
       }
       else
       {

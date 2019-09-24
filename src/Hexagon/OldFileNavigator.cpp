@@ -11,7 +11,7 @@
 
 OldFileNavigator::OldFileNavigator(std::string directory)
    //: file_system_entries()
-   : StageInterface(StageInterface::FILE_NAVIGATOR)
+   : StageInterface(StageInterface::OLD_FILE_NAVIGATOR)
    , current_node(new OldFileSystemNode(al_create_fs_entry(directory.c_str())))
    //, visible_and_active(false)
    , cursor_y(0)

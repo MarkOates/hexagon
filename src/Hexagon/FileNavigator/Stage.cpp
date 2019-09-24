@@ -20,7 +20,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
 Stage::Stage(std::string node_root)
-   : StageInterface({})
+   : StageInterface(StageInterface::FILE_NAVIGATOR)
    , circle_color(al_color_name("green"))
    , nodes({})
    , cursor_position(0)
@@ -258,10 +258,17 @@ KeyboardCommandMapper keyboard_command_mapper;
 static const std::string SET_NODE_ROOT_TO_SYSTEM_ROOT_DIRECTORY = "set_node_root_to_system_root_directory";
 static const std::string SET_NODE_ROOT_TO_REPOS_DIRECTORY = "set_node_root_to_repos_directory";
 static const std::string SET_NODE_ROOT_TO_USER_DIRECTORY = "set_node_root_to_user_directory";
+static const std::string REFRESH_LIST = "refresh_list";
 static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
 static const std::string MOVE_CURSOR_UP = "move_cursor_up";
 static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
 static const std::string SET_NODE_ROOT_TO_CURRENT_SELECTION_IF_FOLDER = "set_node_root_to_current_selection_if_folder";
+
+                                   // al_keycodee,         shift, ctrl, alt, command, { command_identifier }
+keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP,  false, false, false, false, { SET_NODE_ROOT_TO_REPOS_DIRECTORY, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
+keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J,         false, false, false, false, { MOVE_CURSOR_DOWN });
+keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K,         false, false, false, false, { MOVE_CURSOR_UP });
+keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER,     false, false, false, false, { SET_NODE_ROOT_TO_CURRENT_SELECTION_IF_FOLDER, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
 
 bool event_caught = false;
 
