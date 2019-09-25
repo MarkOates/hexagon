@@ -1069,9 +1069,11 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
 
    if (filenames.empty())
    {
-      DEFAULT_CONTENT_FILENAME = resource_path({"data", "files"}, "sonnet_lxi.txt");
-      std::cout << "Notice: No filenames were passed when opening the program.  Using the DEFAULT_CONTENT_FILENAME (\"" << DEFAULT_CONTENT_FILENAME << "\") as the initial content for a stage." << std::endl;
-      filenames.push_back(DEFAULT_CONTENT_FILENAME);
+      //DEFAULT_CONTENT_FILENAME = resource_path({"data", "files"}, "sonnet_lxi.txt");
+      //std::cout << "Notice: No filenames were passed when opening the program.  Using the DEFAULT_CONTENT_FILENAME (\"" << DEFAULT_CONTENT_FILENAME << "\") as the initial content for a stage." << std::endl;
+      //filenames.push_back(DEFAULT_CONTENT_FILENAME);
+      //std::stringstream
+      std::cerr << "Warning: No filenames were passed when opening the program.  This may cause the program to crash" << std::endl;
    }
 
 
