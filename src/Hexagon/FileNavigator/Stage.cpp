@@ -149,7 +149,7 @@ if (current_selection_is_valid() && current_selection_is_folder())
 void Stage::refresh_list()
 {
 nodes.clear();
-nodes.push_back(get_node_root());
+//nodes.push_back(get_node_root());
 OldFileSystemNode current_node(get_node_root());
 current_node.create_children();
 for (auto &node : current_node.get_children_ref())
@@ -170,10 +170,15 @@ int line_height = cell_height * 1.1;
 int pos_x = 0;
 int pos_y = 0;
 int cursor_y = - line_height * cursor_position;
+float current_node_root_y_pos = cursor_y - line_height * 1.5;
 ALLEGRO_COLOR font_color = al_color_name("white");
+ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
 
 float selector_y = line_height * cursor_position + cursor_y;
 al_draw_filled_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color());
+
+std::string node_root_val = get_node_root();
+al_draw_text(font, font_color, pos_x, current_node_root_y_pos, 0, get_node_root().c_str());
 
 for (auto &node : nodes)
 {

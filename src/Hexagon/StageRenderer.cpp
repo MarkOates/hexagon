@@ -59,13 +59,15 @@ void StageRenderer::render_raw()
    float _cell_height = cell_height;
    Stage::mode_t mode = stage->mode;
 
+   ALLEGRO_COLOR cursor_color = al_color_name("yellow");
+
    switch(mode)
    {
    case Stage::EDIT:
-      al_draw_filled_rectangle(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width + _cell_width, _cursor_y*cell_height + cell_height, al_color_name("yellow"));
+      al_draw_filled_rectangle(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width + _cell_width, _cursor_y*cell_height + cell_height, cursor_color);
       break;
    case Stage::INSERT:
-      al_draw_line(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width, _cursor_y*cell_height + cell_height, al_color_name("yellow"), 3);
+      al_draw_line(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width, _cursor_y*cell_height + cell_height, cursor_color, 3);
       break;
    }
 
@@ -125,8 +127,8 @@ void StageRenderer::render_raw()
    default: break;
    }
 
-   al_draw_text(font, color, al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*2, ALLEGRO_ALIGN_CENTER, stage->get_current_mode_string().c_str());
-   al_draw_text(font, al_color_name("gray"), al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*1, ALLEGRO_ALIGN_CENTER, stage->filename.c_str());
+   //al_draw_text(font, color, al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*2, ALLEGRO_ALIGN_CENTER, stage->get_current_mode_string().c_str());
+   //al_draw_text(font, al_color_name("gray"), al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*1, ALLEGRO_ALIGN_CENTER, stage->filename.c_str());
 }
 
 
