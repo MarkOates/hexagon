@@ -277,8 +277,8 @@ public:
    Camera camera;
    placement3d file_navigator_initial_place;
    Motion &motion;
-
    std::string last_file_navigator_selection;
+   std::string default_navigator_directory;
 
    //RerunOutputWatcher *rerun_output_watcher;
 
@@ -290,6 +290,7 @@ public:
       , file_navigator_initial_place(0, 0, 0)
       , motion(motion)
       , last_file_navigator_selection("")
+      , default_navigator_directory("/Users/markoates/Repos/hexagon")
    {
       file_navigator_initial_place.size = vec3d(500, 600, 0);
       file_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
@@ -484,7 +485,7 @@ public:
       //place.scale = vec3d(0.8, 0.8, 0.0);
 
       //OldFileNavigator *file_navigator = new OldFileNavigator(al_get_current_directory());
-      Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage();
+      Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(default_navigator_directory);
       file_navigator->process_local_event("refresh_list");
       //file_navigator->set_place(file_navigator_initial_place);
       //file_navigator.set_child_nodes();
