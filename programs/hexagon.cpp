@@ -295,6 +295,7 @@ public:
       file_navigator_initial_place.size = vec3d(500, 600, 0);
       file_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
       file_navigator_initial_place.scale = vec3d(0.8, 0.8, 1.0);
+      file_navigator_initial_place.rotation = vec3d(0.0, 0.02, 0.0);
 
       //camera.zoom_pos -= 3.1;
       //camera.position.x += 20;
@@ -483,20 +484,21 @@ public:
       //place.size = vec3d(100.0, 200.0, 0.0);
       //place.align = vec3d(0.5, 0.5, 0.0);
       //place.scale = vec3d(0.8, 0.8, 0.0);
+      //place.rotation = vec3d(0.0, 0.03, 0.0);
 
       //OldFileNavigator *file_navigator = new OldFileNavigator(al_get_current_directory());
       Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(default_navigator_directory);
       file_navigator->process_local_event("refresh_list");
-      //file_navigator->set_place(file_navigator_initial_place);
+      file_navigator->set_place(file_navigator_initial_place);
       //file_navigator.set_child_nodes();
       stages.push_back(file_navigator);
 
       placement3d& stage_place = file_navigator->get_place();
       //stage_place.scale.x = 1.2;
       //stage_place.scale.y = 1.2;
-      motion.cmove_to(&stage_place.rotation.y, 0.01, 0.6, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+      motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
       //motion.cmove_to(&stage_place.scale.y, 1.1, 0.1); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
-      motion.cmove_to(&stage_place.position.z, 80.0, 0.6); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+      motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
       //file_navigator.show();
       return true;
    }

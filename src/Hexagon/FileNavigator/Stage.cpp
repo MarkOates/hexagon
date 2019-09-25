@@ -21,7 +21,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 Stage::Stage(std::string node_root)
    : StageInterface(StageInterface::FILE_NAVIGATOR)
-   , selector_color(al_color_name("dodgerblue"))
+   , selector_color(al_color_name("green"))
    , nodes({})
    , cursor_position(0)
    , node_root(node_root)
@@ -179,8 +179,8 @@ float roundness = 6.0;
 float padding_x = cell_width*2;
 float padding_y = cell_width;
 //std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
-al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("black"));
-al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("green"), 3.0);
+al_draw_filled_rounded_rectangle(0 - padding_x*2, 0 - padding_y*2, place.size.x + padding_x*2, place.size.y + padding_y*2, roundness, roundness, al_color_name("black"));
+al_draw_rounded_rectangle(- padding_x, - padding_y, place.size.x+padding_x, place.size.y+padding_y, roundness, roundness, al_color_name("green"), 3.0);
 
 //new_render(display, font, cell_width, cell_height);
 //return;
@@ -189,8 +189,8 @@ int line = 0;
 int line_height = cell_height * 1.1;
 int pos_x = 0;
 int pos_y = 0;
-//int cursor_y = 0;
-int cursor_y = - line_height * cursor_position;
+int cursor_y = 0;
+//int cursor_y = - line_height * cursor_position;
 float current_node_root_y_pos = cursor_y - line_height * 1.5;
 ALLEGRO_COLOR font_color = al_color_name("white");
 ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
@@ -215,7 +215,10 @@ for (auto &node : nodes)
 {
   std::string line_content = node;
   OldFileSystemNode current_line_node(line_content);
-  ALLEGRO_COLOR col = current_line_node.infer_is_directory() ? node_folder_color : font_color;
+  bool is_directory = current_line_node.infer_is_directory();
+  ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
+  col = is_directory ? al_color_name("lime") : al_color_name("palegreen");
+  
   al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
   cursor_y += line_height;
 }

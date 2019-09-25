@@ -59,12 +59,17 @@ void StageRenderer::render_raw()
    float _cell_height = cell_height;
    Stage::mode_t mode = stage->mode;
 
-   ALLEGRO_COLOR cursor_color = al_color_name("yellow");
+   ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
+   float cursor_outset = 2.0;
 
    switch(mode)
    {
    case Stage::EDIT:
-      al_draw_filled_rectangle(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width + _cell_width, _cursor_y*cell_height + cell_height, cursor_color);
+      al_draw_rounded_rectangle(cursor_x*_cell_width - cursor_outset, _cursor_y*cell_height - cursor_outset,
+                                cursor_x*_cell_width + _cell_width + cursor_outset, _cursor_y*cell_height + cell_height,
+                                2.0, 2.0,
+                                cursor_color,
+                                3.0);
       break;
    case Stage::INSERT:
       al_draw_line(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width, _cursor_y*cell_height + cell_height, cursor_color, 3);
