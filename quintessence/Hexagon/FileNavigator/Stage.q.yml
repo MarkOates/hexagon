@@ -8,9 +8,9 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
-  - name: circle_color
+  - name: selector_color
     type: ALLEGRO_COLOR
-    init_with: "al_color_name(\"green\")"
+    init_with: "al_color_name(\"dodgerblue\")"
     getter: true
     setter: true
   - name: nodes
@@ -38,6 +38,11 @@ functions:
     body: |
       if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
       return true;
+  - name: get_current_selection_or_spaced_empty_string
+    type: std::string
+    body: |
+      if (!current_selection_is_valid()) return " ";
+      return nodes[get_cursor_position()];
   - name: get_current_selection
     type: std::string
     body: |
@@ -112,13 +117,15 @@ functions:
       ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
 
       float selector_y = line_height * cursor_position + cursor_y;
+      std::string current_selection_text_or_empty_string = get_current_selection_or_spaced_empty_string();
+      float selector_rectangle_width = al_get_text_width(font, current_selection_text_or_empty_string.c_str());
       if (current_selection_is_valid())
       {
-        al_draw_filled_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color());
+        al_draw_filled_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color());
       }
       else
       {
-        al_draw_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color(), 3.0);
+        al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
       }
 
       std::string node_root_val = get_node_root();

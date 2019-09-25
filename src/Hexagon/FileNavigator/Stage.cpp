@@ -21,7 +21,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 Stage::Stage(std::string node_root)
    : StageInterface(StageInterface::FILE_NAVIGATOR)
-   , circle_color(al_color_name("green"))
+   , selector_color(al_color_name("dodgerblue"))
    , nodes({})
    , cursor_position(0)
    , node_root(node_root)
@@ -34,9 +34,9 @@ Stage::~Stage()
 }
 
 
-void Stage::set_circle_color(ALLEGRO_COLOR circle_color)
+void Stage::set_selector_color(ALLEGRO_COLOR selector_color)
 {
-   this->circle_color = circle_color;
+   this->selector_color = selector_color;
 }
 
 
@@ -52,9 +52,9 @@ void Stage::set_node_root(std::string node_root)
 }
 
 
-ALLEGRO_COLOR Stage::get_circle_color()
+ALLEGRO_COLOR Stage::get_selector_color()
 {
-   return circle_color;
+   return selector_color;
 }
 
 
@@ -92,6 +92,13 @@ bool Stage::current_selection_is_valid()
 {
 if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
 return true;
+
+}
+
+std::string Stage::get_current_selection_or_spaced_empty_string()
+{
+if (!current_selection_is_valid()) return " ";
+return nodes[get_cursor_position()];
 
 }
 
@@ -176,13 +183,15 @@ ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
 ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
 
 float selector_y = line_height * cursor_position + cursor_y;
+std::string current_selection_text_or_empty_string = get_current_selection_or_spaced_empty_string();
+float selector_rectangle_width = al_get_text_width(font, current_selection_text_or_empty_string.c_str());
 if (current_selection_is_valid())
 {
-  al_draw_filled_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color());
+  al_draw_filled_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color());
 }
 else
 {
-  al_draw_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color(), 3.0);
+  al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
 }
 
 std::string node_root_val = get_node_root();
