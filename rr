@@ -9,6 +9,6 @@ then
   echo "Example: \"./rr ProgramRunner\""
 else
   chruby 2.5.1
-  # rerun "./build && make obj/$1.o && make bin/tests/$1Test && bin/tests/$1Test && make bin/examples/$1Example && bin/examples/$1Example" -c --pattern "{quintessence/**/*.q.yml,tests/**/*Test.cpp,examples/**/*Example.cpp}"
-  rerun "./build && make obj/$1.o && make bin/tests/$1Test && bin/tests/$1Test && make bin/examples/$1Example && make programs" -c --pattern "{quintessence/**/*.q.yml,tests/**/*Test.cpp,examples/**/*Example.cpp}"
+  rerun "./build && make obj/$1.o && make bin/tests/$1Test && bin/tests/$1Test && make bin/examples/$1Example && bin/examples/$1Example" -c --pattern "{quintessence/**/*.q.yml,tests/**/*Test.cpp,examples/**/*Example.cpp}"
+  # rerun "./build && make obj/$1.o && make bin/tests/$1Test && bin/tests/$1Test && make bin/examples/$1Example && make programs" -c --pattern "{quintessence/**/*.q.yml,tests/**/*Test.cpp,examples/**/*Example.cpp}"
 fi

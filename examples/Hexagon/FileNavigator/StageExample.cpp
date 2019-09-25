@@ -45,7 +45,17 @@ void simple_debugger(std::string message="")
 
 void run_program()
 {
+   ALLEGRO_DISPLAY *display = al_get_current_display();
+   int display_width = al_get_display_width(display);
+   int display_height = al_get_display_height(display);
+   placement3d place(display_width/2, display_height/2, 0);
+   place.size = vec3d(400, 650, 0);
+   place.align = vec3d(0.5, 0.5, 0.0);
+   place.rotation = vec3d(0.0, 0.0, 0.0);
+ 
+
    Hexagon::FileNavigator::Stage *stage = new Hexagon::FileNavigator::Stage;
+   stage->set_place(place);
    //ALLEGRO_FONT *font = al_create_builtin_font();
    std::string helvetica_font_filename = resource_path({ "data", "fonts" }, "Helvetica.ttf");
    ALLEGRO_FONT *font = al_load_font(helvetica_font_filename.c_str(), 32, 0);

@@ -172,10 +172,24 @@ void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width,
 {
 if (!font) throw std::runtime_error("font missing");
 
+placement3d &place = get_place();
+place.start_transform();
+
+float roundness = 6.0;
+float padding_x = cell_width*2;
+float padding_y = cell_width;
+//std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
+al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("black"));
+al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, al_color_name("green"), 3.0);
+
+//new_render(display, font, cell_width, cell_height);
+//return;
+
 int line = 0;
 int line_height = cell_height * 1.1;
 int pos_x = 0;
 int pos_y = 0;
+//int cursor_y = 0;
 int cursor_y = - line_height * cursor_position;
 float current_node_root_y_pos = cursor_y - line_height * 1.5;
 ALLEGRO_COLOR font_color = al_color_name("white");
@@ -205,6 +219,8 @@ for (auto &node : nodes)
   al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
   cursor_y += line_height;
 }
+
+place.restore_transform();
 
 return;
 
