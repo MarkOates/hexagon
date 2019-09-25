@@ -109,17 +109,27 @@ functions:
       float current_node_root_y_pos = cursor_y - line_height * 1.5;
       ALLEGRO_COLOR font_color = al_color_name("white");
       ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
+      ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
 
       float selector_y = line_height * cursor_position + cursor_y;
-      al_draw_filled_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color());
+      if (current_selection_is_valid())
+      {
+        al_draw_filled_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color());
+      }
+      else
+      {
+        al_draw_rounded_rectangle(0, selector_y, 400, selector_y+line_height, 4, 4, get_circle_color(), 3.0);
+      }
 
       std::string node_root_val = get_node_root();
-      al_draw_text(font, font_color, pos_x, current_node_root_y_pos, 0, get_node_root().c_str());
+      al_draw_text(font, node_root_font_color, pos_x, current_node_root_y_pos, 0, get_node_root().c_str());
 
       for (auto &node : nodes)
       {
         std::string line_content = node;
-        al_draw_text(font, font_color, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+        OldFileSystemNode current_line_node(line_content);
+        ALLEGRO_COLOR col = current_line_node.infer_is_directory() ? node_folder_color : font_color;
+        al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
         cursor_y += line_height;
       }
 
