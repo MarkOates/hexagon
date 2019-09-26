@@ -176,7 +176,7 @@ placement3d &place = get_place();
 place.start_transform();
 
 float roundness = 6.0;
-float padding_x = cell_width*2;
+float padding_x = cell_width;
 float padding_y = cell_width;
 //std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
 al_draw_filled_rounded_rectangle(0 - padding_x*2, 0 - padding_y*2, place.size.x + padding_x*2, place.size.y + padding_y*2, roundness, roundness, al_color_name("black"));
