@@ -545,6 +545,7 @@ public:
             watcher->refresh();
          }
       }
+      return true;
    }
 
    bool destroy_topmost_stage()
@@ -641,6 +642,7 @@ public:
 
       // create a new stage
       //std::string
+      return true;
    }
 
    bool attempt_to_open_OLD_file_navigation_selected_path()
@@ -746,6 +748,7 @@ public:
    {
       KeyboardInputsModal *keyboard_input_modal = new KeyboardInputsModal(nullptr);
       stages.push_back(keyboard_input_modal);
+      return true;
    }
 
    // events
