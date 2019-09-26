@@ -16,6 +16,7 @@ namespace Hexagon
       class Stage : public StageInterface
       {
       private:
+         bool cursor_position_static;
          static ALLEGRO_EVENT a_default_empty_event;
          ALLEGRO_COLOR selector_color;
          std::vector<std::string> nodes;
@@ -26,6 +27,7 @@ namespace Hexagon
          Stage(std::string node_root="/Users/markoates/Repos");
          ~Stage();
 
+         void set_cursor_position_static(bool cursor_position_static);
          void set_selector_color(ALLEGRO_COLOR selector_color);
          void set_nodes(std::vector<std::string> nodes);
          void set_node_root(std::string node_root);

@@ -21,6 +21,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 Stage::Stage(std::string node_root)
    : StageInterface(StageInterface::FILE_NAVIGATOR)
+   , cursor_position_static(true)
    , selector_color(al_color_name("green"))
    , nodes({})
    , cursor_position(0)
@@ -31,6 +32,12 @@ Stage::Stage(std::string node_root)
 
 Stage::~Stage()
 {
+}
+
+
+void Stage::set_cursor_position_static(bool cursor_position_static)
+{
+   this->cursor_position_static = cursor_position_static;
 }
 
 
@@ -190,7 +197,10 @@ int line_height = cell_height * 1.1;
 int pos_x = 0;
 int pos_y = 0;
 int cursor_y = 0;
-//int cursor_y = - line_height * cursor_position;
+if (cursor_position_static)
+{
+  cursor_y = - line_height * cursor_position;
+}
 float current_node_root_y_pos = cursor_y - line_height * 1.5;
 ALLEGRO_COLOR font_color = al_color_name("white");
 ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
@@ -246,6 +256,11 @@ try
    {
      executed = true;
      set_node_root_to_system_root_directory();
+   }
+   else if (event_name == "toggle_cursor_position_to_remain_static")
+   {
+     executed = true;
+     set_node_root_to_repos_directory();
    }
    else if (event_name == "set_node_root_to_repos_directory")
    {

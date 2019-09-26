@@ -3,6 +3,10 @@ parent_classes:
     scope: public
     init_with: "StageInterface::FILE_NAVIGATOR"
 properties:
+  - name: cursor_position_static
+    type: bool
+    setter: true
+    init_with: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -124,7 +128,10 @@ functions:
       int pos_x = 0;
       int pos_y = 0;
       int cursor_y = 0;
-      //int cursor_y = - line_height * cursor_position;
+      if (cursor_position_static)
+      {
+        cursor_y = - line_height * cursor_position;
+      }
       float current_node_root_y_pos = cursor_y - line_height * 1.5;
       ALLEGRO_COLOR font_color = al_color_name("white");
       ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
@@ -188,6 +195,11 @@ functions:
          {
            executed = true;
            set_node_root_to_system_root_directory();
+         }
+         else if (event_name == "toggle_cursor_position_to_remain_static")
+         {
+           executed = true;
+           set_node_root_to_repos_directory();
          }
          else if (event_name == "set_node_root_to_repos_directory")
          {
