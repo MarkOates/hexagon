@@ -151,6 +151,11 @@ void Stage::set_node_root_to_user_directory()
 set_node_root("/Users/markoates");
 }
 
+void Stage::set_node_root_to_shopify_repos_directory()
+{
+set_node_root("/Users/markoates/dev_repos");
+}
+
 void Stage::set_node_root_to_parent_directory()
 {
 OldFileSystemNode current_node(get_node_root());
@@ -284,6 +289,11 @@ try
    {
      executed = true;
      set_node_root_to_user_directory();
+   }
+   else if (event_name == "set_node_root_to_shopify_repos_directory")
+   {
+     executed = true;
+     set_node_root_to_shopify_repos_directory();
    }
    else if (event_name == "move_cursor_to_top")
    {
