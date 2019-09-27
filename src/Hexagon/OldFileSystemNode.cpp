@@ -71,12 +71,18 @@ std::string OldFileSystemNode::infer_basename()
    return filename;
 }
 
+
 std::string OldFileSystemNode::infer_parent()
 {
    ALLEGRO_PATH *path = al_create_path(infer_full_name().c_str());
    if (!path) throw std::runtime_error("infer_parent(): cannot create path");
-   al_drop_path_tail(path);
-   std::string parent_directory = al_get_path_filename(path);
+   if ((al_get_fs_entry_mode(entry) & ALLEGRO_FILEMODE_ISDIR) == ALLEGRO_FILEMODE_ISDIR)
+   {
+     al_destroy_path(path);
+     path = al_create_path_for_directory(infer_full_name().c_str());
+   }
+   al_remove_path_component(path, -1);
+   std::string parent_directory = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
    al_destroy_path(path);
    return parent_directory;
 }
