@@ -584,6 +584,12 @@ public:
       return true;
    }
 
+   bool spawn_file_navigator_if_no_stages_exist()
+   {
+      if (stages.empty()) process_local_event(SPAWN_FILE_NAVIGATOR);
+      return true;
+   }
+
    bool push_file_navigator_selection()
    {
       StageInterface *frontmost_stage_interface = get_frontmost_stage();
@@ -780,6 +786,7 @@ public:
    //static const std::string SHOW_FILE_NAVIGATOR;
    static const std::string HIDE_FILE_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
+   static const std::string SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST;
    static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
    static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH;
@@ -809,6 +816,7 @@ public:
          else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { executed = true; offset_first_line_to_vertically_center_cursor_on_stage(); }
          else if (event_name == RUN_MAKE) { executed = true; run_make(); }
          else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
+         else if (event_name == SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST) { spawn_file_navigator_if_no_stages_exist(); executed = true; }
          else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
          else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
          else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
@@ -834,13 +842,14 @@ public:
       //}
 
 
+
                                                  // al_keycodee, shift, ctrl, alt, command, { command_identifier }
                                                                    
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_RERUN_OUTPUT_WATCHERS, REFRESH_RERUN_OUTPUT_WATCHERS });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, false, { DESTROY_TOPMOST_STAGE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, true, false, false, false, { DESTROY_TOPMOST_STAGE, SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST });
       if (is_current_stage_a_modal())
       {
          //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Q, false, false, false, false, { ESCAPE_CURRENT_MODAL });
@@ -961,6 +970,7 @@ const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 //const std::string System::SHOW_FILE_NAVIGATOR = "SHOW_FILE_NAVIGATOR";
 const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
+const std::string System::SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST = "SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST";
 const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
 const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
