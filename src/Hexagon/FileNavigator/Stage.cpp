@@ -151,6 +151,14 @@ void Stage::set_node_root_to_user_directory()
 set_node_root("/Users/markoates");
 }
 
+void Stage::set_node_root_to_parent_directory()
+{
+OldFileSystemNode current_node(get_node_root());
+std::string parent_directory = current_node.infer_parent();
+set_node_root(parent_directory);
+
+}
+
 void Stage::set_node_root_to_current_selection_if_folder()
 {
 if (current_selection_is_valid() && current_selection_is_folder())

@@ -47,6 +47,7 @@ namespace Hexagon
       void set_node_root_to_system_root_directory();
       void set_node_root_to_repos_directory();
       void set_node_root_to_user_directory();
+      void set_node_root_to_parent_directory();
       void set_node_root_to_current_selection_if_folder();
       void refresh_list();
       void render(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);

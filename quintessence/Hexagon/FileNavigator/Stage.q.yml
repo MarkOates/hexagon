@@ -72,6 +72,11 @@ functions:
     body: set_node_root("/Users/markoates/Repos");
   - name: set_node_root_to_user_directory
     body: set_node_root("/Users/markoates");
+  - name: set_node_root_to_parent_directory
+    body: |
+      OldFileSystemNode current_node(get_node_root());
+      std::string parent_directory = current_node.infer_parent();
+      set_node_root(parent_directory);
   - name: set_node_root_to_current_selection_if_folder
     body: |
       if (current_selection_is_valid() && current_selection_is_folder())
