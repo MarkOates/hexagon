@@ -382,6 +382,12 @@ public:
       return frontmost_stage && frontmost_stage->infer_is_modal();
    }
 
+   bool is_current_stage_a_regex_input_box()
+   {
+      StageInterface *frontmost_stage = get_frontmost_stage();
+      return frontmost_stage && (frontmost_stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX);
+   }
+
    // actions
 
    bool rotate_stage_right()
@@ -838,7 +844,14 @@ public:
       {
          //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Q, false, false, false, false, { ESCAPE_CURRENT_MODAL });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { ESCAPE_CURRENT_MODAL });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, true, false, false, false, { SUBMIT_CURRENT_MODAL });
+         if (is_current_stage_a_regex_input_box())
+         {
+           keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, { SUBMIT_CURRENT_MODAL });
+         }
+         else
+         {
+            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, true, false, false, false, { SUBMIT_CURRENT_MODAL });
+         }
       }
       else
       {
