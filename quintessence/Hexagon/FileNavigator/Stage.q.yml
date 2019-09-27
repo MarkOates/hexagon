@@ -283,6 +283,7 @@ functions:
       static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
       static const std::string SET_NODE_ROOT_TO_CURRENT_SELECTION_IF_FOLDER = "set_node_root_to_current_selection_if_folder";
       static const std::string SET_NODE_ROOT_TO_PARENT_DIRECTORY = "set_node_root_to_parent_directory";
+      static const std::string SET_NODE_ROOT_TO_SHOPIFY_REPOS_DIRECTORY = "set_node_root_to_shopify_repos_directory";
 
                                          // al_keycodee,         shift, ctrl, alt, command, { command_identifier }
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP,  false, false, false, false, { SET_NODE_ROOT_TO_REPOS_DIRECTORY, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
@@ -290,6 +291,7 @@ functions:
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K,         false, false, false, false, { MOVE_CURSOR_UP });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER,     false, false, false, false, { SET_NODE_ROOT_TO_CURRENT_SELECTION_IF_FOLDER, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, false, { SET_NODE_ROOT_TO_PARENT_DIRECTORY, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S,         false, false, false, false, { SET_NODE_ROOT_TO_SHOPIFY_REPOS_DIRECTORY, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
 
       bool event_caught = false;
 
