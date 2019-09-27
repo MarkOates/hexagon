@@ -353,7 +353,9 @@ keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J,         false, false, false, 
 keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K,         false, false, false, false, { MOVE_CURSOR_UP });
 keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER,     false, false, false, false, { SET_NODE_ROOT_TO_CURRENT_SELECTION_IF_FOLDER, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
 keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, false, { SET_NODE_ROOT_TO_PARENT_DIRECTORY, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
-keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S,         false, false, false, false, { SET_NODE_ROOT_TO_SHOPIFY_REPOS_DIRECTORY, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
+keyboard_command_mapper.set_mapping(ALLEGRO_KEY_COMMA,     false, false, false, false, { SET_NODE_ROOT_TO_SHOPIFY_REPOS_DIRECTORY, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
+keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH,     false, false, false, false, { SET_NODE_ROOT_TO_SYSTEM_ROOT_DIRECTORY, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
+keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, true,  false, false, false, { SET_NODE_ROOT_TO_USER_DIRECTORY, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
 
 bool event_caught = false;
 
