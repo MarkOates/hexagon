@@ -23,7 +23,7 @@ Stage::Stage(std::string node_root)
    : StageInterface(StageInterface::FILE_NAVIGATOR)
    , cursor_position(0)
    , cursor_position_static(false)
-   , selector_color(al_color_name("green"))
+   , selector_color(al_color_name("slategray"))
    , node_root(node_root)
    , nodes({})
 {

@@ -13,7 +13,7 @@ properties:
     init_with: false
   - name: selector_color
     type: ALLEGRO_COLOR
-    init_with: "al_color_name(\"green\")"
+    init_with: "al_color_name(\"slategray\")"
     getter: true
     setter: true
   - name: node_root
