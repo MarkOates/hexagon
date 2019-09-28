@@ -42,6 +42,7 @@ namespace Hexagon
       void move_cursor_to_top();
       bool current_selection_is_valid();
       std::string get_current_selection_or_spaced_empty_string();
+      std::string refresh_list();
       void render(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       bool save_file();

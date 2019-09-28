@@ -121,6 +121,12 @@ return nodes[get_cursor_position()];
 
 }
 
+std::string Stage::refresh_list()
+{
+return "";
+
+}
+
 void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
 if (!font) throw std::runtime_error("font missing");
