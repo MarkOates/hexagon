@@ -89,6 +89,24 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
+void Stage::move_cursor_up()
+{
+cursor_position -= 1;
+
+}
+
+void Stage::move_cursor_down()
+{
+cursor_position += 1;
+
+}
+
+void Stage::move_cursor_to_top()
+{
+cursor_position = 0;
+
+}
+
 bool Stage::current_selection_is_valid()
 {
 if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
@@ -181,10 +199,24 @@ try
 {
    bool executed = false;
 
-   //if (event_name == "refresh_list")
+   if (event_name == "xxxxx")
    {
      executed = true;
-     //refresh_list();
+   }
+   else if (event_name == "move_cursor_to_top")
+   {
+     executed = true;
+     move_cursor_to_top();
+   }
+   else if (event_name == "move_cursor_up")
+   {
+     executed = true;
+     move_cursor_up();
+   }
+   else if (event_name == "move_cursor_down")
+   {
+     executed = true;
+     move_cursor_down();
    }
 }
 catch (const std::exception &exception)
@@ -204,10 +236,13 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 {
 KeyboardCommandMapper keyboard_command_mapper;
                                            // al_keycodee, shift, ctrl, alt, command, { command_identifier }
-//static const std::string SET_NODE_ROOT_TO_SYSTEM_ROOT_DIRECTORY = "set_node_root_to_system_root_directory";
+static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
+static const std::string MOVE_CURSOR_UP = "move_cursor_up";
+static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
 
                                    // al_keycodee,         shift, ctrl, alt, command, { command_identifier }
-//keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP,  false, false, false, false, { SET_NODE_ROOT_TO_REPOS_DIRECTORY, REFRESH_LIST, MOVE_CURSOR_TO_TOP });
+keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J,         false, false, false, false, { MOVE_CURSOR_DOWN });
+keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K,         false, false, false, false, { MOVE_CURSOR_UP });
 
 bool event_caught = false;
 

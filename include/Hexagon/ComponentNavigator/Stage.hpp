@@ -37,6 +37,9 @@ namespace Hexagon
          std::string get_node_root();
          std::vector<std::string> get_nodes();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
+      void move_cursor_up();
+      void move_cursor_down();
+      void move_cursor_to_top();
       bool current_selection_is_valid();
       std::string get_current_selection_or_spaced_empty_string();
       void render(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
