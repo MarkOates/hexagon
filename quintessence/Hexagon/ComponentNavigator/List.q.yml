@@ -8,3 +8,8 @@ functions:
     body: |
       std::vector<std::string> result = {};
       return result;
+    body_dependency_symbols:
+      - std::vector<std::string>
+dependencies:
+  - symbol: std::vector<std::string>
+    headers: [ 'vector', 'string' ]

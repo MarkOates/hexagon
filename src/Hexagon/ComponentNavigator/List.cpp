@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/ComponentNavigator/List.hpp>
-
+#include <vector>
+#include <string>
 
 
 namespace Hexagon
