@@ -6,7 +6,7 @@ properties:
   - name: cursor_position_static
     type: bool
     setter: true
-    init_with: true
+    init_with: false
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
