@@ -1,6 +1,9 @@
 
 
 #include <Hexagon/ComponentNavigator/Stage.hpp>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
+#include <Hexagon/OldFileSystemNode.hpp>
 #include <iostream>
 #include <iostream>
 #include <iostream>
@@ -16,8 +19,13 @@ namespace ComponentNavigator
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage()
+Stage::Stage(std::string node_root)
    : StageInterface(StageInterface::FILE_NAVIGATOR)
+   , cursor_position(0)
+   , cursor_position_static(false)
+   , selector_color(al_color_name("green"))
+   , node_root(node_root)
+   , nodes({})
 {
 }
 
@@ -27,14 +35,140 @@ Stage::~Stage()
 }
 
 
+void Stage::set_cursor_position_static(bool cursor_position_static)
+{
+   this->cursor_position_static = cursor_position_static;
+}
+
+
+void Stage::set_selector_color(ALLEGRO_COLOR selector_color)
+{
+   this->selector_color = selector_color;
+}
+
+
+void Stage::set_node_root(std::string node_root)
+{
+   this->node_root = node_root;
+}
+
+
+void Stage::set_nodes(std::vector<std::string> nodes)
+{
+   this->nodes = nodes;
+}
+
+
+int Stage::get_cursor_position()
+{
+   return cursor_position;
+}
+
+
+ALLEGRO_COLOR Stage::get_selector_color()
+{
+   return selector_color;
+}
+
+
+std::string Stage::get_node_root()
+{
+   return node_root;
+}
+
+
+std::vector<std::string> Stage::get_nodes()
+{
+   return nodes;
+}
+
+
 ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 {
    return a_default_empty_event;
 }
 
 
+bool Stage::current_selection_is_valid()
+{
+if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
+return true;
+
+}
+
+std::string Stage::get_current_selection_or_spaced_empty_string()
+{
+if (!current_selection_is_valid()) return " ";
+return nodes[get_cursor_position()];
+
+}
+
 void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
+if (!font) throw std::runtime_error("font missing");
+
+placement3d &place = get_place();
+place.start_transform();
+
+float roundness = 6.0;
+float padding_x = cell_width;
+float padding_y = cell_width;
+//std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
+float not_quite_black_value = 0.0;
+ALLEGRO_COLOR not_quite_black;
+not_quite_black.r = not_quite_black_value;
+not_quite_black.g = not_quite_black_value;
+not_quite_black.b = not_quite_black_value;
+not_quite_black.a = 0.75;
+al_draw_filled_rounded_rectangle(0 - padding_x*2, 0 - padding_y*2, place.size.x + padding_x*2, place.size.y + padding_y*2, roundness, roundness, not_quite_black);
+al_draw_rounded_rectangle(- padding_x, - padding_y, place.size.x+padding_x, place.size.y+padding_y, roundness, roundness, al_color_name("green"), 3.0);
+
+//new_render(display, font, cell_width, cell_height);
+//return;
+
+int line = 0;
+int line_height = cell_height * 1.1;
+int pos_x = 0;
+int pos_y = 0;
+int cursor_y = 0;
+if (cursor_position_static)
+{
+  cursor_y = - line_height * cursor_position;
+}
+float current_node_root_y_pos = cursor_y - line_height * 1.5;
+ALLEGRO_COLOR font_color = al_color_name("white");
+ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
+ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
+
+float selector_y = line_height * cursor_position + cursor_y;
+std::string current_selection_text_or_empty_string = get_current_selection_or_spaced_empty_string();
+float selector_rectangle_width = al_get_text_width(font, current_selection_text_or_empty_string.c_str());
+if (current_selection_is_valid())
+{
+  al_draw_filled_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color());
+}
+else
+{
+  al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
+}
+
+std::string node_root_val = get_node_root();
+al_draw_text(font, node_root_font_color, pos_x, current_node_root_y_pos, 0, get_node_root().c_str());
+
+for (auto &node : nodes)
+{
+  std::string line_content = node;
+  OldFileSystemNode current_line_node(line_content);
+  bool is_directory = current_line_node.infer_is_directory();
+  ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
+  col = is_directory ? al_color_name("lime") : al_color_name("palegreen");
+  
+  al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+  cursor_y += line_height;
+}
+
+place.restore_transform();
+
 return;
 
 }

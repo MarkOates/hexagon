@@ -3,12 +3,46 @@ parent_classes:
     scope: public
     init_with: "StageInterface::FILE_NAVIGATOR"
 properties:
+  - name: cursor_position
+    type: int
+    getter: true
+    init_with: 0
+  - name: cursor_position_static
+    type: bool
+    setter: true
+    init_with: false
+  - name: selector_color
+    type: ALLEGRO_COLOR
+    init_with: "al_color_name(\"green\")"
+    getter: true
+    setter: true
+  - name: node_root
+    type: std::string
+    init_with: "\"/Users/markoates/Repos\""
+    constructor_arg: true
+    getter: true
+    setter: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+  - name: nodes
+    type: std::vector<std::string>
+    init_with: "{}"
+    getter: true
+    setter: true
 functions:
+  - name: current_selection_is_valid
+    type: bool
+    body: |
+      if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
+      return true;
+  - name: get_current_selection_or_spaced_empty_string
+    type: std::string
+    body: |
+      if (!current_selection_is_valid()) return " ";
+      return nodes[get_cursor_position()];
   - name: render
     is_override: true
     parameters:
@@ -25,7 +59,75 @@ functions:
         type: int
         default_argument: 20
     body: |
+      if (!font) throw std::runtime_error("font missing");
+
+      placement3d &place = get_place();
+      place.start_transform();
+
+      float roundness = 6.0;
+      float padding_x = cell_width;
+      float padding_y = cell_width;
+      //std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
+      float not_quite_black_value = 0.0;
+      ALLEGRO_COLOR not_quite_black;
+      not_quite_black.r = not_quite_black_value;
+      not_quite_black.g = not_quite_black_value;
+      not_quite_black.b = not_quite_black_value;
+      not_quite_black.a = 0.75;
+      al_draw_filled_rounded_rectangle(0 - padding_x*2, 0 - padding_y*2, place.size.x + padding_x*2, place.size.y + padding_y*2, roundness, roundness, not_quite_black);
+      al_draw_rounded_rectangle(- padding_x, - padding_y, place.size.x+padding_x, place.size.y+padding_y, roundness, roundness, al_color_name("green"), 3.0);
+
+      //new_render(display, font, cell_width, cell_height);
+      //return;
+
+      int line = 0;
+      int line_height = cell_height * 1.1;
+      int pos_x = 0;
+      int pos_y = 0;
+      int cursor_y = 0;
+      if (cursor_position_static)
+      {
+        cursor_y = - line_height * cursor_position;
+      }
+      float current_node_root_y_pos = cursor_y - line_height * 1.5;
+      ALLEGRO_COLOR font_color = al_color_name("white");
+      ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
+      ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
+
+      float selector_y = line_height * cursor_position + cursor_y;
+      std::string current_selection_text_or_empty_string = get_current_selection_or_spaced_empty_string();
+      float selector_rectangle_width = al_get_text_width(font, current_selection_text_or_empty_string.c_str());
+      if (current_selection_is_valid())
+      {
+        al_draw_filled_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color());
+      }
+      else
+      {
+        al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
+      }
+
+      std::string node_root_val = get_node_root();
+      al_draw_text(font, node_root_font_color, pos_x, current_node_root_y_pos, 0, get_node_root().c_str());
+
+      for (auto &node : nodes)
+      {
+        std::string line_content = node;
+        OldFileSystemNode current_line_node(line_content);
+        bool is_directory = current_line_node.infer_is_directory();
+        ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
+        col = is_directory ? al_color_name("lime") : al_color_name("palegreen");
+        
+        al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+        cursor_y += line_height;
+      }
+
+      place.restore_transform();
+
       return;
+    body_dependency_symbols:
+      - al_color_name
+      - al_draw_circle
+      - OldFileSystemNode
   - name: process_local_event
     is_override: true
     parameters:
