@@ -2,4 +2,4 @@ functions:
   - name: identifiers
     static: true
     type: std::string
-    body: return "[a-zA-Z_][0-9A-Za-z_]{0,63}";
+    body: return "\\b[A-Za-z_][0-9A-Za-z_]+\\b";

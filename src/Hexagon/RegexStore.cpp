@@ -20,7 +20,7 @@ RegexStore::~RegexStore()
 
 std::string RegexStore::identifiers()
 {
-return "[a-zA-Z_][0-9A-Za-z_]{0,63}";
+return "\\b[A-Za-z_][0-9A-Za-z_]+\\b";
 }
 } // namespace Hexagon
 
