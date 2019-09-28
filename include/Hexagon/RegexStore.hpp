@@ -16,7 +16,6 @@ namespace Hexagon
 
 
    static std::string identifiers();
-   static std::string class_names();
    };
 }
 

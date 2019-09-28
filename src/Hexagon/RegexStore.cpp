@@ -20,12 +20,7 @@ RegexStore::~RegexStore()
 
 std::string RegexStore::identifiers()
 {
-return "[a-z_][0-9A-Za-z_]{0,63}";
-}
-
-std::string RegexStore::class_names()
-{
-return "[A-Z][0-9A-Za-z_]{0,63}";
+return "[a-zA-Z_][0-9A-Za-z_]{0,63}";
 }
 } // namespace Hexagon
 
