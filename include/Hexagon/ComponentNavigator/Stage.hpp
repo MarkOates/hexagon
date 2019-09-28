@@ -19,22 +19,22 @@ namespace Hexagon
          int cursor_position;
          bool cursor_position_static;
          ALLEGRO_COLOR selector_color;
-         std::string node_root;
+         std::string project_root;
          static ALLEGRO_EVENT a_default_empty_event;
          std::vector<std::string> nodes;
 
       public:
-         Stage(std::string node_root="/Users/markoates/Repos");
+         Stage(std::string project_root="/Users/markoates/Repos/hexagon");
          ~Stage();
 
          void set_cursor_position_static(bool cursor_position_static);
          void set_selector_color(ALLEGRO_COLOR selector_color);
-         void set_node_root(std::string node_root);
+         void set_project_root(std::string project_root);
          void set_nodes(std::vector<std::string> nodes);
 
          int get_cursor_position();
          ALLEGRO_COLOR get_selector_color();
-         std::string get_node_root();
+         std::string get_project_root();
          std::vector<std::string> get_nodes();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void move_cursor_up();

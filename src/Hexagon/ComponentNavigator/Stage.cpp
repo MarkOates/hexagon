@@ -20,12 +20,12 @@ namespace ComponentNavigator
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(std::string node_root)
+Stage::Stage(std::string project_root)
    : StageInterface(StageInterface::FILE_NAVIGATOR)
    , cursor_position(0)
    , cursor_position_static(false)
    , selector_color(al_color_name("slategray"))
-   , node_root(node_root)
+   , project_root(project_root)
    , nodes({})
 {
 }
@@ -48,9 +48,9 @@ void Stage::set_selector_color(ALLEGRO_COLOR selector_color)
 }
 
 
-void Stage::set_node_root(std::string node_root)
+void Stage::set_project_root(std::string project_root)
 {
-   this->node_root = node_root;
+   this->project_root = project_root;
 }
 
 
@@ -72,9 +72,9 @@ ALLEGRO_COLOR Stage::get_selector_color()
 }
 
 
-std::string Stage::get_node_root()
+std::string Stage::get_project_root()
 {
-   return node_root;
+   return project_root;
 }
 
 
@@ -124,7 +124,8 @@ return nodes[get_cursor_position()];
 
 void Stage::refresh_list()
 {
-Hexagon::ComponentNavigator::List list;
+Hexagon::ComponentNavigator::List list(get_project_root());
+std::vector<std::string> elements = list.components();
 nodes = list.components();
 
 }
@@ -141,13 +142,14 @@ float padding_x = cell_width;
 float padding_y = cell_width;
 //std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
 float not_quite_black_value = 0.0;
+ALLEGRO_COLOR frame_color = al_color_name("steelblue");
 ALLEGRO_COLOR not_quite_black;
 not_quite_black.r = not_quite_black_value;
 not_quite_black.g = not_quite_black_value;
 not_quite_black.b = not_quite_black_value;
 not_quite_black.a = 0.75;
 al_draw_filled_rounded_rectangle(0 - padding_x*2, 0 - padding_y*2, place.size.x + padding_x*2, place.size.y + padding_y*2, roundness, roundness, not_quite_black);
-al_draw_rounded_rectangle(- padding_x, - padding_y, place.size.x+padding_x, place.size.y+padding_y, roundness, roundness, al_color_name("green"), 3.0);
+al_draw_rounded_rectangle(- padding_x, - padding_y, place.size.x+padding_x, place.size.y+padding_y, roundness, roundness, frame_color, 3.0);
 
 //new_render(display, font, cell_width, cell_height);
 //return;
@@ -178,8 +180,8 @@ else
   al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
 }
 
-std::string node_root_val = get_node_root();
-al_draw_text(font, node_root_font_color, pos_x, current_node_root_y_pos, 0, get_node_root().c_str());
+std::string node_root_val = get_project_root();
+al_draw_text(font, node_root_font_color, pos_x, current_node_root_y_pos, 0, get_project_root().c_str());
 
 for (auto &node : nodes)
 {
@@ -187,7 +189,7 @@ for (auto &node : nodes)
   OldFileSystemNode current_line_node(line_content);
   bool is_directory = current_line_node.infer_is_directory();
   ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
-  col = is_directory ? al_color_name("lime") : al_color_name("palegreen");
+  col = al_color_name("skyblue");
   
   al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
   cursor_y += line_height;
@@ -207,9 +209,10 @@ try
 {
    bool executed = false;
 
-   if (event_name == "xxxxx")
+   if (event_name == "refresh_list")
    {
      executed = true;
+     refresh_list();
    }
    else if (event_name == "move_cursor_to_top")
    {
