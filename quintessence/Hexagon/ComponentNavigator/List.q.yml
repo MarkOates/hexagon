@@ -9,10 +9,18 @@ functions:
     body: |
       std::vector<std::string> result = {};
 
-      std::string find_command = "find quintessence -type f -name \"*.q.yml\"";
-      Blast::ShellCommandExecutorWithCallback executor(find_command);
+      std::cerr << "WARNING: This function does NOT vaildate the passed project_root_directory "
+                << "and injects it directly into a shell command.  This needs to be fixed."
+                << std::endl;
+
+      std::stringstream find_command;
+      find_command << "cd " << project_root_directory << " && find quintessence -type f -name \"*.q.yml\"";
+      std::cout << "FIND_COMMAND: " << find_command.str() << std::endl;
+      Blast::ShellCommandExecutorWithCallback executor(find_command.str());
       std::string executor_response = executor.execute();
 
+      std::cout << "EXECUTOR_RESPONSE: " << executor_response << std::endl;
+     
       Blast::StringSplitter splitter(executor_response, '\n');
       std::vector<std::string> quintessence_filenames = splitter.split();
 
@@ -24,11 +32,20 @@ functions:
 
       return result;
     body_dependency_symbols:
+      - std::stringstream
       - std::vector<std::string>
+      - std::cerr
+      - std::endl
       - Blast::ShellCommandExecutorWithCallback
       - NcursesArt::ProjectComponentBasenameExtractor
       - Blast::StringSplitter
 dependencies:
+  - symbol: std::cerr
+    headers: [ 'iostream' ]
+  - symbol: std::endl
+    headers: [ 'iostream' ]
+  - symbol: std::stringstream
+    headers: [ 'sstream' ]
   - symbol: std::vector<std::string>
     headers: [ 'vector', 'string' ]
   - symbol: Blast::ShellCommandExecutorWithCallback

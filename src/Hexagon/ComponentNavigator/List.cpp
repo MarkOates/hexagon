@@ -1,8 +1,11 @@
 
 
 #include <Hexagon/ComponentNavigator/List.hpp>
+#include <sstream>
 #include <vector>
 #include <string>
+#include <iostream>
+#include <iostream>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
 #include <Blast/StringSplitter.hpp>
@@ -29,9 +32,17 @@ std::vector<std::string> List::components()
 {
 std::vector<std::string> result = {};
 
-std::string find_command = "find quintessence -type f -name \"*.q.yml\"";
-Blast::ShellCommandExecutorWithCallback executor(find_command);
+std::cerr << "WARNING: This function does NOT vaildate the passed project_root_directory "
+          << "and injects it directly into a shell command.  This needs to be fixed."
+          << std::endl;
+
+std::stringstream find_command;
+find_command << "cd " << project_root_directory << " && find quintessence -type f -name \"*.q.yml\"";
+std::cout << "FIND_COMMAND: " << find_command.str() << std::endl;
+Blast::ShellCommandExecutorWithCallback executor(find_command.str());
 std::string executor_response = executor.execute();
+
+std::cout << "EXECUTOR_RESPONSE: " << executor_response << std::endl;
 
 Blast::StringSplitter splitter(executor_response, '\n');
 std::vector<std::string> quintessence_filenames = splitter.split();
