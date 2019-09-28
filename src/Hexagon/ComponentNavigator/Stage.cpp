@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/ComponentNavigator/Stage.hpp>
+#include <Hexagon/ComponentNavigator/List.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <Hexagon/OldFileSystemNode.hpp>
@@ -121,9 +122,10 @@ return nodes[get_cursor_position()];
 
 }
 
-std::string Stage::refresh_list()
+void Stage::refresh_list()
 {
-return "";
+Hexagon::ComponentNavigator::List list;
+nodes = list.components();
 
 }
 

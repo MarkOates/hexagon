@@ -56,9 +56,11 @@ functions:
       if (!current_selection_is_valid()) return " ";
       return nodes[get_cursor_position()];
   - name: refresh_list
-    type: std::string
     body: |
-      return "";
+      Hexagon::ComponentNavigator::List list;
+      nodes = list.components();
+    body_dependency_symbols:
+      - Hexagon::ComponentNavigator::List
   - name: render
     is_override: true
     parameters:
@@ -263,3 +265,5 @@ dependencies:
     headers: [ 'Hexagon/OldFileSystemNode.hpp' ]
   - symbol: KeyboardCommandMapper
     headers: [ 'Blast/KeyboardCommandMapper.hpp' ]
+  - symbol: Hexagon::ComponentNavigator::List
+    headers: [ 'Hexagon/ComponentNavigator/List.hpp' ]
