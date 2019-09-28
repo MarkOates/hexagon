@@ -2,4 +2,8 @@ functions:
   - name: identifiers
     static: true
     type: std::string
-    body: return "[a-z_][0-9a-z_]{0,31}";
+    body: return "[a-z_][0-9A-Za-z_]{0,63}";
+  - name: class_names
+    static: true
+    type: std::string
+    body: return "[A-Z][0-9A-Za-z_]{0,63}";
