@@ -7,9 +7,15 @@ functions:
     type: std::vector<std::string>
     body: |
       std::vector<std::string> result = {};
+      std::string find_command = "find quintessence -type f -name \"*.q.yml\"";
+      Blast::ShellCommandExecutorWithCallback executor(find_command);
+      result = { executor.execute() };
       return result;
     body_dependency_symbols:
       - std::vector<std::string>
+      - Blast::ShellCommandExecutorWithCallback
 dependencies:
   - symbol: std::vector<std::string>
     headers: [ 'vector', 'string' ]
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ 'Blast/ShellCommandExecutorWithCallback.hpp' ]
