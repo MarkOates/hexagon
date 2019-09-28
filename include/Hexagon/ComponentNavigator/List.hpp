@@ -2,6 +2,7 @@
 
 
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -11,13 +12,14 @@ namespace Hexagon
       class List
       {
       private:
+         std::string project_root_directory;
 
       public:
          List();
          ~List();
 
 
-      std::string run();
+      std::vector<std::string> components();
       };
    }
 }

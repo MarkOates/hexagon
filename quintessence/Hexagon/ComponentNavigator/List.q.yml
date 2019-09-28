@@ -1,4 +1,10 @@
-functions:
-  - name: run
+properties:
+  - name: project_root_directory
     type: std::string
-    body: return "Hello World!";
+    default: "/Users/markoates/Repos/hexagon"
+functions:
+  - name: components
+    type: std::vector<std::string>
+    body: |
+      std::vector<std::string> result = {};
+      return result;

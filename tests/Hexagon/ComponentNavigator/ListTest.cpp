@@ -5,7 +5,9 @@
 
 TEST(Hexagon_ComponentNavigator_ListTest, run__returns_the_expected_response)
 {
-   Hexagon::ComponentNavigator::List program_runner;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, program_runner.run());
+   Hexagon::ComponentNavigator::List list;
+   std::vector<std::string> expected_list = {
+     { "Hello World!" },
+   };
+   EXPECT_EQ(expected_list, list.components());
 }

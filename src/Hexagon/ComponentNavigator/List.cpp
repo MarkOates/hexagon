@@ -11,6 +11,7 @@ namespace ComponentNavigator
 
 
 List::List()
+   : project_root_directory("")
 {
 }
 
@@ -20,9 +21,11 @@ List::~List()
 }
 
 
-std::string List::run()
+std::vector<std::string> List::components()
 {
-return "Hello World!";
+std::vector<std::string> result = {};
+return result;
+
 }
 } // namespace ComponentNavigator
 } // namespace Hexagon
