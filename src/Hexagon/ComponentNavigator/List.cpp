@@ -14,8 +14,8 @@ namespace ComponentNavigator
 {
 
 
-List::List()
-   : project_root_directory("")
+List::List(std::string project_root_directory)
+   : project_root_directory(project_root_directory)
 {
 }
 

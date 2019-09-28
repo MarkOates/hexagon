@@ -2,6 +2,7 @@ properties:
   - name: project_root_directory
     type: std::string
     default: "/Users/markoates/Repos/hexagon"
+    constructor_arg: true
 functions:
   - name: components
     type: std::vector<std::string>

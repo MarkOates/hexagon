@@ -15,7 +15,7 @@ namespace Hexagon
          std::string project_root_directory;
 
       public:
-         List();
+         List(std::string project_root_directory="");
          ~List();
 
 
