@@ -171,6 +171,7 @@ public:
 
 #include <Hexagon/OldFileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/ComponentNavigator/Stage.hpp>
 
 
 
@@ -485,6 +486,21 @@ public:
       return true;
    }
 
+   bool spawn_component_navigator()
+   {
+      placement3d component_navigator_initial_place = file_navigator_initial_place;
+     
+      Hexagon::ComponentNavigator::Stage *component_navigator = new Hexagon::ComponentNavigator::Stage(); //(default_navigator_directory);
+      component_navigator->process_local_event("refresh_list");
+      component_navigator->set_place(component_navigator_initial_place);
+      stages.push_back(component_navigator);
+
+      placement3d& stage_place = component_navigator->get_place();
+      motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+      motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+      return true;
+   }
+
    bool spawn_file_navigator()
    {
       //placement3d place(0, 0, 0);
@@ -787,6 +803,7 @@ public:
    static const std::string HIDE_FILE_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST;
+   static const std::string SPAWN_COMPONENT_NAVIGATOR;
    static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
    static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH;
@@ -817,6 +834,7 @@ public:
          else if (event_name == RUN_MAKE) { executed = true; run_make(); }
          else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
          else if (event_name == SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST) { spawn_file_navigator_if_no_stages_exist(); executed = true; }
+         else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
          else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
          else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
          else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
@@ -866,6 +884,7 @@ public:
       else
       {
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, { SPAWN_FILE_NAVIGATOR });
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, { SPAWN_COMPONENT_NAVIGATOR });
 
          if (is_current_stage_in_edit_mode())
          {
@@ -927,6 +946,7 @@ std::string get_action_description(std::string action_identifier)
       //{ System::SHOW_FILE_NAVIGATOR, "" },
       { System::HIDE_FILE_NAVIGATOR, "" },
       { System::SPAWN_FILE_NAVIGATOR, "" },
+      { System::SPAWN_COMPONENT_NAVIGATOR, "" },
       { System::SPAWN_RERUN_OUTPUT_WATCHER, "" },
       { System::DESTROY_FILE_NAVIGATOR, "" },
       { System::ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH, "" },
@@ -971,6 +991,7 @@ const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
 const std::string System::SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST = "SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST";
+const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
 const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
 const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
