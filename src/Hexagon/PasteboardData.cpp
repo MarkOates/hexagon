@@ -23,8 +23,9 @@ PasteboardData::~PasteboardData()
 bool PasteboardData::store(std::string content)
 {
 std::stringstream command;
-command << "echo \"hello\"" << std::endl;
+command << "printf \"" << content << "\" | pbcopy" << std::endl;
 Blast::ShellCommandExecutorWithCallback executor(command.str());
+executor.execute();
 return true;
 
 }
