@@ -56,6 +56,14 @@ void StageRenderer::render_raw()
 
 
 
+   // render the code lines, cursor, and acutal code markings and information
+
+   placement3d code_lines_placement;
+   code_lines_placement.size = place.size - vec3d(padding*2, padding*2, 0);  
+   code_lines_placement.position = vec3d(padding, padding, 0);
+
+
+
    // render cursor
    int &first_line_number = stage->first_line_number;
    float _cursor_y = stage->cursor_y - stage->first_line_number;
