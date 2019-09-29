@@ -29,9 +29,18 @@ bool ClipboardData::store(std::vector<std::string> &lines)
 
 std::vector<std::string> ClipboardData::retrieve()
 {
-   std::vector<std::string> results;
-   ::read_file(results, CLIPBOARD_TEMP_FILENAME);
-   return results;
+   std::vector<std::string> result;
+   bool using_pasteboard = true;
+
+   if (using_pasteboard)
+   {
+      result = { Hexagon::PasteboardData::retrieve() };
+   }
+   else
+   {
+      ::read_file(result, CLIPBOARD_TEMP_FILENAME);
+   }
+   return result;
 }
 
 
