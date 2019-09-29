@@ -43,7 +43,12 @@ void StageRenderer::render_raw()
    //al_draw_filled_rectangle(0, 0, al_get_display_width(display), al_get_display_height(display), background_overlay_color);
 
    //get_place().start_transform();
-   al_draw_filled_rectangle(0, 0, place.size.x/2, place.size.y, background_overlay_color);
+   ALLEGRO_COLOR frame_color = al_color_name("steelblue");
+   float roundness = 6.0;
+   float line_thickness = 3.0;
+
+   al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_overlay_color);
+   al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, frame_color, line_thickness);
 
    // draw a frame around the stage
    //float padding = 30;
