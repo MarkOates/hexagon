@@ -20,7 +20,15 @@ functions:
     static: true
     type: std::string
     body: |
-      return {};
+      std::stringstream command;
+      command << "pbpaste" << std::endl;
+      Blast::ShellCommandExecutorWithCallback executor(command.str());
+      std::string result = executor.execute();
+      return result;
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
+      - std::endl
+      - std::stringstream
 dependencies:
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ 'Blast/ShellCommandExecutorWithCallback.hpp' ]

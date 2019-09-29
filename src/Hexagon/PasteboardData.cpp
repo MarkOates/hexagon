@@ -4,6 +4,9 @@
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <iostream>
 #include <sstream>
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <iostream>
+#include <sstream>
 
 
 namespace Hexagon
@@ -32,7 +35,11 @@ return true;
 
 std::string PasteboardData::retrieve()
 {
-return {};
+std::stringstream command;
+command << "pbpaste" << std::endl;
+Blast::ShellCommandExecutorWithCallback executor(command.str());
+std::string result = executor.execute();
+return result;
 
 }
 } // namespace Hexagon
