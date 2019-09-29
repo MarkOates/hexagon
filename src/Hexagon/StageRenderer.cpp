@@ -29,12 +29,14 @@ void StageRenderer::render_raw()
    if (!stage) throw std::runtime_error("[StageRenderer] stage cannot be a nullptr");
 
    placement3d &place = stage->get_place();
+   float padding = cell_width * 0.5f;
+   float half_padding = padding * 0.5;
 
 
 
    // draw the background and frame (basically the chrome)
-   ALLEGRO_COLOR background_overlay_color = al_color_name("black");
-   float opacity = 0.7;
+   ALLEGRO_COLOR background_overlay_color = al_color_name("steelblue");
+   float opacity = 0.2; //0.7;
    background_overlay_color.r *= opacity;
    background_overlay_color.g *= opacity;
    background_overlay_color.b *= opacity;
@@ -43,8 +45,14 @@ void StageRenderer::render_raw()
    float roundness = 6.0;
    float line_thickness = 3.0;
 
-   al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_overlay_color);
-   al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, frame_color, line_thickness);
+   al_draw_filled_rounded_rectangle(0, 0,
+                            place.size.x, place.size.y,
+                            roundness, roundness,
+                            background_overlay_color);
+   al_draw_rounded_rectangle(half_padding, half_padding,
+                             place.size.x - half_padding, place.size.y - half_padding,
+                             roundness, roundness,
+                             frame_color, line_thickness);
 
 
 
