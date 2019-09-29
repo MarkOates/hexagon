@@ -5,6 +5,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro_flare/render_cache.h>
+#include <allegro_flare/placement3d.h>
 
 
 
@@ -20,7 +21,7 @@ private:
    int cell_height;
    ALLEGRO_FONT *font;
 
-   void render_code_lines();
+   void render_code_lines(placement3d &place);
    void render_raw();
    void draw_selections(int cell_width, int cell_height);
 
