@@ -20,6 +20,7 @@ private:
    int cell_height;
    ALLEGRO_FONT *font;
 
+   void render_code_lines();
    void render_raw();
    void draw_selections(int cell_width, int cell_height);
 

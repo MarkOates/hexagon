@@ -24,6 +24,12 @@ void StageRenderer::draw_selections(int cell_width, int cell_height)
 
 
 
+void StageRenderer::render_code_lines()
+{
+}
+
+
+
 void StageRenderer::render_raw()
 {
    if (!stage) throw std::runtime_error("[StageRenderer] stage cannot be a nullptr");
@@ -61,6 +67,9 @@ void StageRenderer::render_raw()
    placement3d code_lines_placement;
    code_lines_placement.size = place.size - vec3d(padding*2, padding*2, 0);  
    code_lines_placement.position = vec3d(padding, padding, 0);
+
+
+   render_code_lines();
 
 
 
