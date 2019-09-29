@@ -89,6 +89,7 @@ void StageRenderer::render_raw()
    int line_height = al_get_font_line_height(font);
    const int line_count_render_limit = 120;
    int lines_rendered_count = 0;
+   int line_length_character_limit = place.size.x / cell_width;
    std::vector<int> &git_modified_line_numbers = stage->git_modified_line_numbers;
    std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = stage->code_message_points_overlays;
 
@@ -107,7 +108,7 @@ void StageRenderer::render_raw()
       }
 
       // draw the actual line of code right here:
-      int max_line_char_length = 120;
+      int max_line_char_length = line_length_character_limit;
       if (line_number >= 0)
       {
          std::string line = stage->lines[line_number];
