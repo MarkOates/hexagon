@@ -100,7 +100,11 @@ void StageRenderer::render_raw()
       }
 
       // draw the actual line of code right here:
-      if (line_number >= 0) al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, stage->lines[line_number].c_str());
+      if (line_number >= 0)
+      {
+         std::string line = stage->lines[line_number];
+         al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, line.c_str());
+      }
 
       // draw the line numbers (currently_disabled)
       bool draw_line_numbers = false;
