@@ -29,7 +29,7 @@ void StageRenderer::render_raw()
    if (!stage) throw std::runtime_error("[StageRenderer] stage cannot be a nullptr");
 
    placement3d &place = stage->get_place();
-   float padding = cell_width * 0.5f;
+   float padding = cell_width;
    float half_padding = padding * 0.5;
 
 
