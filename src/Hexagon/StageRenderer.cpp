@@ -59,7 +59,7 @@ void StageRenderer::render_code_lines(placement3d &place)
 
    // render code lines
    int line_height = al_get_font_line_height(font);
-   const int line_count_render_limit = 120;
+   int line_count_render_limit = place.size.y / line_height;
    int lines_rendered_count = 0;
    int line_length_character_limit = place.size.x / cell_width;
    std::vector<int> &git_modified_line_numbers = stage->git_modified_line_numbers;
@@ -75,7 +75,9 @@ void StageRenderer::render_code_lines(placement3d &place)
          color.g *= 0.13;
          color.b *= 0.13;
          color.a *= 0.13;
-         al_draw_filled_rectangle(0, line_height * (line_number - first_line_number), al_get_display_width(display)*2, line_height * (line_number - first_line_number + 1), color);
+         al_draw_filled_rectangle(0, line_height * (line_number - first_line_number),
+            place.size.x, line_height * (line_number - first_line_number + 1),
+            color);
       }
 
       // draw the actual line of code right here:
