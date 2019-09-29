@@ -28,21 +28,17 @@ void StageRenderer::render_raw()
 {
    if (!stage) throw std::runtime_error("[StageRenderer] stage cannot be a nullptr");
 
-   //get_place().start_transform();
    placement3d &place = stage->get_place();
 
-   //place.start_transform();
 
+
+   // draw the background and frame (basically the chrome)
    ALLEGRO_COLOR background_overlay_color = al_color_name("black");
    float opacity = 0.7;
    background_overlay_color.r *= opacity;
    background_overlay_color.g *= opacity;
    background_overlay_color.b *= opacity;
    background_overlay_color.a *= opacity;
-
-   //al_draw_filled_rectangle(0, 0, al_get_display_width(display), al_get_display_height(display), background_overlay_color);
-
-   //get_place().start_transform();
    ALLEGRO_COLOR frame_color = al_color_name("steelblue");
    float roundness = 6.0;
    float line_thickness = 3.0;
@@ -50,11 +46,7 @@ void StageRenderer::render_raw()
    al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_overlay_color);
    al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, roundness, roundness, frame_color, line_thickness);
 
-   // draw a frame around the stage
-   //float padding = 30;
-   //float roundness = 20;
-   //float thickness = 20.0;
-   //al_draw_rounded_rectangle(-padding, -padding, al_get_display_width(display)+padding, al_get_display_height(display)+padding, roundness, roundness, al_color_name("deepskyblue"), thickness);
+
 
    // render cursor
    int &first_line_number = stage->first_line_number;
@@ -63,11 +55,9 @@ void StageRenderer::render_raw()
    float _cell_width = cell_width;
    float _cell_height = cell_height;
    Stage::mode_t mode = stage->mode;
-
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
    float cursor_outset = 2.0;
 
-   // draw the cursor
    switch(mode)
    {
    case Stage::EDIT:
@@ -82,17 +72,20 @@ void StageRenderer::render_raw()
       break;
    }
 
+
+
    // draw code range selection hilight box(es);
    draw_selections(_cell_width, cell_height);
 
-   // render lines
+
+
+   // render code lines
    int line_height = al_get_font_line_height(font);
    const int line_count_render_limit = 120;
    int lines_rendered_count = 0;
    int line_length_character_limit = place.size.x / cell_width;
    std::vector<int> &git_modified_line_numbers = stage->git_modified_line_numbers;
    std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = stage->code_message_points_overlays;
-
 
    for (int line_number = first_line_number; line_number < (int)stage->lines.size(); line_number++)
    {
@@ -125,7 +118,7 @@ void StageRenderer::render_raw()
             float last_char_position_x = max_line_char_length * cell_width;
             al_draw_text(font, al_color_name("red"), last_char_position_x,
                          (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT,
-                         "-=xX#");
+                         "- --=xxXX#");
          }
       }
 
