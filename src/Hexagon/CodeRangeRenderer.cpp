@@ -8,10 +8,10 @@
 
 
 
-CodeRangeRenderer::CodeRangeRenderer(const std::vector<std::string> &lines, CodeRange &code_range, int first_line, int cell_width, int cell_height)
+CodeRangeRenderer::CodeRangeRenderer(const std::vector<std::string> &lines, CodeRange &code_range, int first_line_number, int cell_width, int cell_height)
    : lines(lines)
    , code_range(code_range)
-   , first_line(first_line)
+   , first_line_number(first_line_number)
    , cell_width(cell_width)
    , cell_height(cell_height)
 {}
@@ -55,7 +55,7 @@ void CodeRangeRenderer::render()
       //CodePoint end = code_range.infer_cursor_end();
 
       int this_actual_line_y = start.get_y();
-      int this_line_y = (this_actual_line_y - first_line);
+      int this_line_y = (this_actual_line_y - first_line_number);
 
       al_draw_filled_rectangle(
          start.get_x() * cell_width,
@@ -72,7 +72,7 @@ void CodeRangeRenderer::render()
       //CodePoint end = code_range.infer_cursor_end();
 
       int this_actual_line_y = start.get_y();
-      int this_line_y = this_actual_line_y - first_line;
+      int this_line_y = this_actual_line_y - first_line_number;
 
       al_draw_filled_rectangle(
          start.get_x() * cell_width,
@@ -90,7 +90,7 @@ void CodeRangeRenderer::render()
 
          for (int i = (start.get_y()+1); i < end.get_y(); i++)
          {
-            this_line_y = (i - first_line);
+            this_line_y = (i - first_line_number);
             al_draw_filled_rectangle(0, this_line_y * cell_height, get_line_length(i) * cell_width, (this_line_y + 1) * cell_height, selection_color);
          }
       }
@@ -101,7 +101,7 @@ void CodeRangeRenderer::render()
       //CodePoint end = code_range.infer_cursor_end();
 
       this_actual_line_y = end.get_y();
-      this_line_y = (this_actual_line_y - first_line);
+      this_line_y = (this_actual_line_y - first_line_number);
       al_draw_filled_rectangle(0, (this_line_y * cell_height), end.get_x() * cell_width, (this_line_y+1) * cell_height, selection_color);
    }
 }
