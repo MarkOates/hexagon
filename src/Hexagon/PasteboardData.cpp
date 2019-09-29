@@ -38,7 +38,21 @@ return str;
 bool PasteboardData::store(std::string content)
 {
 std::stringstream command;
+content = __replace(content, "\\\\", "\\\\\\\\");
 content = __replace(content, "\\", "\\\\");
+
+content = __replace(content, "\\a", "\\\\a");
+content = __replace(content, "\\b", "\\\\b");
+content = __replace(content, "\\c", "\\\\c");
+content = __replace(content, "\\f", "\\\\f");
+content = __replace(content, "\\n", "\\\\n");
+content = __replace(content, "\\r", "\\\\r");
+content = __replace(content, "\\t", "\\\\t");
+content = __replace(content, "\\v", "\\\\v");
+content = __replace(content, "\\'", "\\\\'");
+//content = __replace(content, "\\\\", "\\\\c");
+
+//content = __replace(content, "\\", "\\\\");
 content = __replace(content, "\"", "\\\"");
 content = __replace(content, "$", "\\$");
 command << "printf \"" << content << "\" | pbcopy" << std::endl;

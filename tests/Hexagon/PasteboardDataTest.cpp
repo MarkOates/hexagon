@@ -54,3 +54,31 @@ TEST(Hexagon_PasteboardDataTest, store__and_retrieve__will_work_as_expected_when
 
    EXPECT_EQ(initial_content.str(), pulled_value);
 }
+
+TEST(Hexagon_PasteboardDataTest, store__and_retrieve__will_properly_escape__printf_escapes)
+{
+   // clear the clipboard initially
+   Blast::ShellCommandExecutorWithCallback clear_clipboard_setup_executor("printf \"\" | pbcopy");
+
+   std::vector<std::string> printf_special_escape_characters = {
+      "\\a",
+      "\\b",
+      "\\c",
+      "\\f",
+      "\\n",
+      "\\r",
+      "\\t",
+      "\\v",
+      "\\'",
+      "\\\\",
+      "\\\\\\\\\\\\\\",
+   };
+
+ 
+   for (auto &printf_special_escape_character : printf_special_escape_characters)
+   {
+      Hexagon::PasteboardData::store(printf_special_escape_character);
+      std::string pulled_value = Hexagon::PasteboardData::retrieve();
+      EXPECT_EQ(printf_special_escape_character, pulled_value);
+   }
+}
