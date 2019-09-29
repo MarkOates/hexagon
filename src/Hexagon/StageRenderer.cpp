@@ -99,12 +99,19 @@ void StageRenderer::render_raw()
          al_draw_filled_rectangle(0, line_height * (line_number - first_line_number), al_get_display_width(display)*2, line_height * (line_number - first_line_number + 1), color);
       }
 
+      // draw the actual line of code right here:
       if (line_number >= 0) al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, stage->lines[line_number].c_str());
-      std::stringstream ss;
-      ss << (line_number+1);
-      ALLEGRO_COLOR text_color = al_color_name("darkolivegreen");
-      if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
-      //al_draw_text(font, text_color, -20, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
+
+      // draw the line numbers (currently_disabled)
+      bool draw_line_numbers = false;
+      if (draw_line_numbers)
+      {
+         std::stringstream ss;
+         ss << (line_number+1);
+         ALLEGRO_COLOR text_color = al_color_name("darkolivegreen");
+         if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
+         al_draw_text(font, text_color, -20, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
+      }
 
       lines_rendered_count++;
       if (lines_rendered_count >= line_count_render_limit) break;
