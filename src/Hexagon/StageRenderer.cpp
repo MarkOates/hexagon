@@ -141,13 +141,18 @@ void StageRenderer::render_raw()
 
 
    // draw the background and frame (basically the chrome)
-   ALLEGRO_COLOR background_overlay_color = al_color_name("steelblue");
-   float opacity = 0.2; //0.7;
+   ALLEGRO_COLOR background_overlay_color = al_color_name("black");
+   float opacity = 0.7;
    background_overlay_color.r *= opacity;
    background_overlay_color.g *= opacity;
    background_overlay_color.b *= opacity;
    background_overlay_color.a *= opacity;
-   ALLEGRO_COLOR frame_color = al_color_name("steelblue");
+   ALLEGRO_COLOR frame_color = al_color_name("gray");
+   float frame_opacity = 0.6;
+   frame_color.r *= frame_opacity;
+   frame_color.g *= frame_opacity;
+   frame_color.b *= frame_opacity;
+   frame_color.a *= frame_opacity;
    float roundness = 6.0;
    float line_thickness = 3.0;
 
