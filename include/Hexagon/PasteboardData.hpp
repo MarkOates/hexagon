@@ -15,7 +15,8 @@ namespace Hexagon
       ~PasteboardData();
 
 
-   std::string run();
+   static bool store(std::string content="");
+   static std::string retrieve();
    };
 }
 

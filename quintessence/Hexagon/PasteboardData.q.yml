@@ -1,4 +1,15 @@
 functions:
-  - name: run
+  - name: store
+    static: true
+    type: bool
+    parameters:
+      - name: content
+        type: std::string
+        default_argument: "\"\""
+    body: |
+      return false;
+  - name: retrieve
+    static: true
     type: std::string
-    body: return "Hello World!";
+    body: |
+      return {};

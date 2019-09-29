@@ -18,9 +18,16 @@ PasteboardData::~PasteboardData()
 }
 
 
-std::string PasteboardData::run()
+bool PasteboardData::store(std::string content)
 {
-return "Hello World!";
+return false;
+
+}
+
+std::string PasteboardData::retrieve()
+{
+return {};
+
 }
 } // namespace Hexagon
 
