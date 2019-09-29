@@ -7,6 +7,7 @@
 #include <Hexagon/shared_globals.hpp>
 #include <Hexagon/PasteboardData.hpp>
 #include <Blast/StringJoiner.hpp>
+#include <Blast/StringSplitter.hpp>
 
 
 
@@ -34,7 +35,9 @@ std::vector<std::string> ClipboardData::retrieve()
 
    if (using_pasteboard)
    {
-      result = { Hexagon::PasteboardData::retrieve() };
+      std::string clipboard_content = Hexagon::PasteboardData::retrieve();
+      std::vector<std::string> multi_line_content = Blast::StringSplitter(clipboard_content, '\n').split();
+      result = multi_line_content;
    }
    else
    {
