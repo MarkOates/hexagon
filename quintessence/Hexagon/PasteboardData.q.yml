@@ -1,4 +1,26 @@
 functions:
+  - name: __replace
+    static: true
+    private: true
+    type: std::string
+    parameters:
+      - name: str
+        type: std::string
+        default_argument: "\"\""
+      - name: from
+        type: std::string
+        default_argument: "\"\""
+      - name: to
+        type: std::string
+        default_argument: "\"\""
+    body: |
+      size_t start_pos = 0;
+      while((start_pos = str.find(from, start_pos)) != std::string::npos)
+      {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length();
+      }
+      return str;
   - name: store
     static: true
     type: bool
@@ -8,6 +30,7 @@ functions:
         default_argument: "\"\""
     body: |
       std::stringstream command;
+      content = __replace(content, "\"", "\\\"");
       command << "printf \"" << content << "\" | pbcopy" << std::endl;
       Blast::ShellCommandExecutorWithCallback executor(command.str());
       executor.execute();
