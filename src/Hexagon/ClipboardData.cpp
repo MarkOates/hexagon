@@ -5,12 +5,23 @@
 
 #include <Hexagon/util.hpp>
 #include <Hexagon/shared_globals.hpp>
+#include <Hexagon/PasteboardData.hpp>
+#include <Blast/StringJoiner.hpp>
 
 
 
 bool ClipboardData::store(std::vector<std::string> &lines)
 {
-   ::save_file(lines, CLIPBOARD_TEMP_FILENAME);
+   bool using_pasteboard = true;
+   if (using_pasteboard)
+   {
+      std::string single_line_content = Blast::StringJoiner(lines, "\n").join();
+      Hexagon::PasteboardData::store(single_line_content);
+   }
+   else
+   {
+     ::save_file(lines, CLIPBOARD_TEMP_FILENAME);
+   }
    return true;
 }
 
