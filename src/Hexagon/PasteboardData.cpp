@@ -1,7 +1,9 @@
 
 
 #include <Hexagon/PasteboardData.hpp>
-
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <iostream>
+#include <sstream>
 
 
 namespace Hexagon
@@ -20,7 +22,10 @@ PasteboardData::~PasteboardData()
 
 bool PasteboardData::store(std::string content)
 {
-return false;
+std::stringstream command;
+command << "echo \"hello\"" << std::endl;
+Blast::ShellCommandExecutorWithCallback executor(command.str());
+return true;
 
 }
 

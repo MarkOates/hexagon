@@ -7,9 +7,23 @@ functions:
         type: std::string
         default_argument: "\"\""
     body: |
-      return false;
+      std::stringstream command;
+      command << "echo \"hello\"" << std::endl;
+      Blast::ShellCommandExecutorWithCallback executor(command.str());
+      return true;
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
+      - std::endl
+      - std::stringstream
   - name: retrieve
     static: true
     type: std::string
     body: |
       return {};
+dependencies:
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ 'Blast/ShellCommandExecutorWithCallback.hpp' ]
+  - symbol: std::stringstream
+    headers: [ 'sstream' ]
+  - symbol: std::endl
+    headers: [ 'iostream' ]
