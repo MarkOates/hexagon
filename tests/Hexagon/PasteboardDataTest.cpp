@@ -74,6 +74,8 @@ TEST(Hexagon_PasteboardDataTest, store__and_retrieve__will_properly_escape__prin
       "\\\\\\\\\\\\\\",
    };
 
+   // TODO: this currently does not support escaping the "\num" notation, which is used for octal numbers.
+   //       see "man printf" for more information.
  
    for (auto &printf_special_escape_character : printf_special_escape_characters)
    {
