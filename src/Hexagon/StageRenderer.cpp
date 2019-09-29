@@ -100,9 +100,11 @@ void StageRenderer::render_raw()
       }
 
       // draw the actual line of code right here:
+      int max_line_char_length = 120;
       if (line_number >= 0)
       {
          std::string line = stage->lines[line_number];
+         std::string truncated_line = line.substr(0, max_line_char_length);
          al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, line.c_str());
       }
 
