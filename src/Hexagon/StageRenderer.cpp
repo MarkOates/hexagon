@@ -104,7 +104,7 @@ void StageRenderer::render_raw()
       ss << (line_number+1);
       ALLEGRO_COLOR text_color = al_color_name("darkolivegreen");
       if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
-      al_draw_text(font, text_color, -20, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
+      //al_draw_text(font, text_color, -20, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
 
       lines_rendered_count++;
       if (lines_rendered_count >= line_count_render_limit) break;
