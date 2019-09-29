@@ -67,20 +67,22 @@ void StageRenderer::render_raw()
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
    float cursor_outset = 2.0;
 
+   // draw the cursor
    switch(mode)
    {
    case Stage::EDIT:
       al_draw_rounded_rectangle(cursor_x*_cell_width - cursor_outset, _cursor_y*cell_height - cursor_outset,
                                 cursor_x*_cell_width + _cell_width + cursor_outset, _cursor_y*cell_height + cell_height,
-                                2.0, 2.0,
-                                cursor_color,
-                                3.0);
+                                2.0, 2.0, cursor_color, 3.0);
       break;
    case Stage::INSERT:
-      al_draw_line(cursor_x*_cell_width, _cursor_y*cell_height, cursor_x*_cell_width, _cursor_y*cell_height + cell_height, cursor_color, 3);
+      al_draw_line(cursor_x*_cell_width, _cursor_y*cell_height,
+                   cursor_x*_cell_width, _cursor_y*cell_height + cell_height,
+                   cursor_color, 3);
       break;
    }
 
+   // draw code range selection hilight box(es);
    draw_selections(_cell_width, cell_height);
 
    // render lines
@@ -120,7 +122,9 @@ void StageRenderer::render_raw()
          if (has_line_been_truncated)
          {
             float last_char_position_x = max_line_char_length * cell_width;
-            al_draw_text(font, al_color_name("red"), last_char_position_x, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT, "-=xX#");
+            al_draw_text(font, al_color_name("red"), last_char_position_x,
+                         (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT,
+                         "-=xX#");
          }
       }
 
