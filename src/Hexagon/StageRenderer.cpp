@@ -154,21 +154,6 @@ void StageRenderer::render_raw()
       //CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, first_line_number, al_get_font_line_height(font));
       //code_message_point_renderer.render();
    //}
-
-   //stage->get_place().restore_transform();
-
-   // render edit mode
-   ALLEGRO_COLOR color;
-
-   switch(mode)
-   {
-   case Stage::EDIT: color = (stage->currently_grabbing_visual_selection ? al_color_name("orange") : al_color_name("red")); break;
-   case Stage::INSERT: color = al_color_name("lime"); break;
-   default: break;
-   }
-
-   //al_draw_text(font, color, al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*2, ALLEGRO_ALIGN_CENTER, stage->get_current_mode_string().c_str());
-   //al_draw_text(font, al_color_name("gray"), al_get_display_width(display)/2, al_get_display_height(display)-al_get_font_line_height(font)*1, ALLEGRO_ALIGN_CENTER, stage->filename.c_str());
 }
 
 
