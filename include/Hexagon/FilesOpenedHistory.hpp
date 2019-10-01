@@ -2,6 +2,7 @@
 
 
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -9,12 +10,14 @@ namespace Hexagon
    class FilesOpenedHistory
    {
    private:
+      std::vector<std::string> files;
 
    public:
-      FilesOpenedHistory();
+      FilesOpenedHistory(std::vector<std::string> files={});
       ~FilesOpenedHistory();
 
 
+      std::vector<std::string> get_files();
    std::string run();
    };
 }

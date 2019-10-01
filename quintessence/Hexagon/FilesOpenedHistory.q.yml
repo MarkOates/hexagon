@@ -1,3 +1,9 @@
+properties:
+  - name: files
+    type: std::vector<std::string>
+    getter: true
+    constructor_arg: true
+    init_with: "{}"    
 functions:
   - name: run
     type: std::string

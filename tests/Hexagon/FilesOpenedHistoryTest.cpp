@@ -3,9 +3,10 @@
 
 #include <Hexagon/FilesOpenedHistory.hpp>
 
-TEST(Hexagon_FilesOpenedHistoryTest, run__returns_the_expected_response)
+TEST(Hexagon_FilesOpenedHistoryTest, files_contains_the_list_of_recently_opened_files)
 {
-   Hexagon::FilesOpenedHistory program_runner;
+   Hexagon::FilesOpenedHistory files_opened_history;
+
    std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, program_runner.run());
+   EXPECT_EQ(expected_string, files_opened_history.run());
 }

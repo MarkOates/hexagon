@@ -8,13 +8,20 @@ namespace Hexagon
 {
 
 
-FilesOpenedHistory::FilesOpenedHistory()
+FilesOpenedHistory::FilesOpenedHistory(std::vector<std::string> files)
+   : files(files)
 {
 }
 
 
 FilesOpenedHistory::~FilesOpenedHistory()
 {
+}
+
+
+std::vector<std::string> FilesOpenedHistory::get_files()
+{
+   return files;
 }
 
 
