@@ -1038,8 +1038,11 @@ public:
 
                                                  // al_keycodee, shift, ctrl, alt, command, { command_identifier }
 
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false,
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, true, false, false, false,
          { ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE }
+      );
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false,
+         { ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE }
       );
                                                                    
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
