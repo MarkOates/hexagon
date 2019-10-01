@@ -439,6 +439,23 @@ public:
       return true;
    }
 
+   bool attempt_to_flip_to_correlated_component_test_file()
+   {
+      // get current stage's filename
+      // use the ProjectComponentBasenameExtractor to extract a possible component name
+      // check if it's a valid component
+      // obtain the basename
+      // use the basename with the ProjectFilenameGenerator to generated the desired test filename
+      // save the current stage
+      // destroy the current stage
+      // create a new stage
+   }
+
+   bool attempt_to_flip_to_correlated_component_quintessence_file()
+   {
+
+   }
+
    bool save_current_stage()
    {
       //Stage *stage = get_frontmost_stage_stage();
