@@ -547,7 +547,59 @@ public:
 
    bool attempt_to_flip_to_correlated_component_quintessence_file()
    {
+      Stage *stage = get_frontmost_stage_stage();
+      // get current stage's filename
+      std::string stage_filename = stage->get_filename();
+      std::cout << "SAAAHHTAGE FILENAMEEE:::::: " << stage_filename << std::endl;
 
+      stage_filename = remove_absolute_path_components_from_project_filename(stage_filename);
+      
+      std::cout << "SANITIZED FILEHHHNAMEEE:::::: " << stage_filename << std::endl;
+      // use the ProjectComponentBasenameExtractor to extract a possible component name
+      NcursesArt::ProjectComponentBasenameExtractor extractor(stage_filename);
+      // check if it's a valid component
+      if (!extractor.is_identifiable_component())
+      {
+         std::stringstream error_message;
+         error_message << "[attempt_to_flip_to_correlated_component_quintessence_file() error]: "
+                       << "could not identify the frontmost stage as an identifiable component"
+                       << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+      // obtain the basename
+      std::string basename = extractor.identify_component_basename();
+      std::cout << "BASEAMEJEEE:::::: " << basename << std::endl;
+
+      // use the basename with the ProjectFilenameGenerator to generate the desired quintessence filename
+      NcursesArt::ProjectFilenameGenerator generator(basename);
+      std::string quintessence_filename = generator.generate_quintessence_filename();
+      // WARNING: this project prefix is a workaround.  This complex state is the result
+      // of an inproperly managed file naming system.  It's unclear at this point whether the
+      // program is being run as an Application (absolute filenames) or as a binary (relative
+      // filenames.  As a result, the project prefix cannot be easily inferred.  For this case,
+      // we're going to prefix the file with this hardcoded string and assume the file is in
+      // the hexagon repo
+      std::string project_prefix = "/Users/markoates/Repos/hexagon/";
+      quintessence_filename = project_prefix + quintessence_filename;
+      // make sure the file exists before destroying the first one and opening the new file
+      if (!php::file_exists(quintessence_filename))
+      {
+         std::stringstream error_message;
+         error_message << "[attempt_to_flip_to_correlated_component_quintessence_file() error]: "
+                       << "could not proceed to opening the quintessence filename "
+                       << """ << quintessence_filename << "" "
+                       << "because it does not exist."
+                       << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+      // save the current stage
+      save_current_stage();
+      // destroy the current stage
+      destroy_topmost_stage();
+      // create a new stage
+      // WARNING: this selection is a bit of a hack
+      last_file_navigator_selection = quintessence_filename;
+      attempt_to_create_stage_from_last_file_navigator_selection();
    }
 
    bool save_current_stage()
@@ -894,6 +946,7 @@ public:
    // events
 
    static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE;
+   static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE;
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
    static const std::string ROTATE_STAGE_RIGHT;
@@ -956,6 +1009,11 @@ public:
          else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE)
          {
             attempt_to_flip_to_correlated_component_test_file();
+            executed = true;
+         }
+         else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE)
+         {
+            attempt_to_flip_to_correlated_component_quintessence_file();
             executed = true;
          }
 
@@ -1094,6 +1152,7 @@ std::string get_action_description(std::string action_identifier)
 
 
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE";
+const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE";
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
