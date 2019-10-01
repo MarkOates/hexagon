@@ -267,6 +267,8 @@ From me far off, with others all too near.
 - William Shakespere)END";
 
 
+#include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
+#include <NcursesArt/ProjectFilenameGenerator.hpp>
 
 
 class System
@@ -441,14 +443,45 @@ public:
 
    bool attempt_to_flip_to_correlated_component_test_file()
    {
+      Stage *stage = get_frontmost_stage_stage();
       // get current stage's filename
+      std::string stage_filename = stage->get_filename();
       // use the ProjectComponentBasenameExtractor to extract a possible component name
+      NcursesArt::ProjectComponentBasenameExtractor extractor(stage_filename);
       // check if it's a valid component
+      if (!extractor.is_identifiable_component())
+      {
+         std::stringstream error_message;
+         error_message << "[attempt_to_flip_to_correlated_component_test_file() error]: "
+                       << "could not identify the frontmost stage as an identifiable component"
+                       << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
       // obtain the basename
-      // use the basename with the ProjectFilenameGenerator to generated the desired test filename
+      std::string basename = extractor.identify_component_basename();
+
+      // use the basename with the ProjectFilenameGenerator to generate the desired test filename
+      NcursesArt::ProjectFilenameGenerator generator(basename);
+      std::string test_filename = generator.generate_test_src_filename();
+      // make sure the file exists before destroying the first one and opening the new file
+      if (!php::file_exists(test_filename))
+      {
+         std::stringstream error_message;
+         error_message << "[attempt_to_flip_to_correlated_component_test_file() error]: "
+                       << "could not proceed to opening the test filename "
+                       << "\"" << test_filename << "\" "
+                       << "because it does not exist."
+                       << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
       // save the current stage
+      save_current_stage();
       // destroy the current stage
+      destroy_topmost_stage();
       // create a new stage
+      // WARNING: this selection is a bit of a hack
+      last_file_navigator_selection = test_filename;
+      attempt_to_create_stage_from_last_file_navigator_selection();
    }
 
    bool attempt_to_flip_to_correlated_component_quintessence_file()
@@ -799,6 +832,7 @@ public:
 
    // events
 
+   static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE;
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
    static const std::string ROTATE_STAGE_RIGHT;
@@ -858,6 +892,11 @@ public:
          else if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_file_navigator_selection(); executed = true; }
          else if (event_name == ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_OLD_file_navigation_selected_path(); executed = true; }
          else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
+         else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE)
+         {
+            attempt_to_flip_to_correlated_component_test_file();
+            executed = true;
+         }
 
          if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
       }
@@ -989,6 +1028,7 @@ std::string get_action_description(std::string action_identifier)
 
 
 
+const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE";
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
