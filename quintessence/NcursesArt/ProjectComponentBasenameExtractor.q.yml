@@ -7,6 +7,10 @@ functions:
   - name: identify_file_type
     type: std::string
     body: return extract_component().first;
+  - name: is_identifiable_component
+    type: bool
+    body: |
+      return extract_component().first == "not identifiable";
   - name: identify_component_basename
     type: std::string
     body: return extract_component().second;

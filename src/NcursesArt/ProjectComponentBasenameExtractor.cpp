@@ -24,6 +24,12 @@ std::string ProjectComponentBasenameExtractor::identify_file_type()
 return extract_component().first;
 }
 
+bool ProjectComponentBasenameExtractor::is_identifiable_component()
+{
+return extract_component().first == "not identifiable";
+
+}
+
 std::string ProjectComponentBasenameExtractor::identify_component_basename()
 {
 return extract_component().second;
