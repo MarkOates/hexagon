@@ -4,7 +4,7 @@ properties:
     constructor_arg: true
   - name: underscores
     type: bool
-    default_argument: false
+    init_with: false
     constructor_arg: true
 functions:
   - name: generate_quintessence_filename

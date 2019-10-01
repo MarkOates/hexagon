@@ -13,7 +13,7 @@ namespace NcursesArt
       bool underscores;
 
    public:
-      ProjectFilenameGenerator(std::string basename="", bool underscores="");
+      ProjectFilenameGenerator(std::string basename="", bool underscores=false);
       ~ProjectFilenameGenerator();
 
 
