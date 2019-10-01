@@ -26,7 +26,7 @@ return extract_component().first;
 
 bool ProjectComponentBasenameExtractor::is_identifiable_component()
 {
-return extract_component().first == "not identifiable";
+return (identify_file_type() != "not identifiable");
 
 }
 
