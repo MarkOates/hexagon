@@ -267,8 +267,55 @@ From me far off, with others all too near.
 - William Shakespere)END";
 
 
+
 #include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
+
+
+
+std::string remove_absolute_path_components_from_project_filename(
+   std::string project_file_absolute_filename)
+{
+   std::string mainStr = project_file_absolute_filename;
+   std::string toErase;
+   size_t pos = 0;
+
+
+   // Search for the substring in string
+   toErase = "/Users/markoates/Repos/";
+   pos = mainStr.find(toErase);
+
+   if (pos != std::string::npos)
+   {
+      // If found then erase it from string
+      mainStr.erase(pos, toErase.length());
+   }
+
+
+   // this is also hacky, and will presume that the given path that was passed is
+   // _already_ relative to the project directory if true
+   if (mainStr == project_file_absolute_filename)
+   {
+      return project_file_absolute_filename;
+   }
+
+
+   // now erase the project's path component
+   toErase = "/";
+   pos = mainStr.find(toErase);
+
+   if (pos != std::string::npos)
+   {
+      // If found then erase it from string
+      mainStr.erase(mainStr.begin(), mainStr.begin()+pos+toErase.length());
+   }
+
+   std::cout << "MODIFIFIEIED STRINGGGGG: \"" << mainStr << "\"" << std::endl;
+
+   
+   return mainStr;
+}
+
 
 
 class System
@@ -446,6 +493,11 @@ public:
       Stage *stage = get_frontmost_stage_stage();
       // get current stage's filename
       std::string stage_filename = stage->get_filename();
+      std::cout << "SAAAHHTAGE FILENAMEEE:::::: " << stage_filename << std::endl;
+
+      stage_filename = remove_absolute_path_components_from_project_filename(stage_filename);
+      
+      std::cout << "SANITIZED FILEHHHNAMEEE:::::: " << stage_filename << std::endl;
       // use the ProjectComponentBasenameExtractor to extract a possible component name
       NcursesArt::ProjectComponentBasenameExtractor extractor(stage_filename);
       // check if it's a valid component
@@ -459,10 +511,19 @@ public:
       }
       // obtain the basename
       std::string basename = extractor.identify_component_basename();
+      std::cout << "BASEAMEJEEE:::::: " << basename << std::endl;
 
       // use the basename with the ProjectFilenameGenerator to generate the desired test filename
       NcursesArt::ProjectFilenameGenerator generator(basename);
       std::string test_filename = generator.generate_test_src_filename();
+      // WARNING: this project prefix is a workaround.  This complex state is the result
+      // of an inproperly managed file naming system.  It's unclear at this point whether the
+      // program is being run as an Application (absolute filenames) or as a binary (relative
+      // filenames.  As a result, the project prefix cannot be easily inferred.  For this case,
+      // we're going to prefix the file with this hardcoded string and assume the file is in
+      // the hexagon repo
+      std::string project_prefix = "/Users/markoates/Repos/hexagon/";
+      test_filename = project_prefix + test_filename;
       // make sure the file exists before destroying the first one and opening the new file
       if (!php::file_exists(test_filename))
       {
@@ -918,6 +979,10 @@ public:
 
 
                                                  // al_keycodee, shift, ctrl, alt, command, { command_identifier }
+
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false,
+         { ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE }
+      );
                                                                    
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
