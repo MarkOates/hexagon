@@ -11,17 +11,29 @@ std::string result_string = "";
 static void *primary_thread(ALLEGRO_THREAD *thread, void *arg)
 {
    ALLEGRO_MUTEX *mutex = (ALLEGRO_MUTEX *)arg;
+   std::string result = "";
+
    std::cout << "primary" << std::endl;
    Blast::ShellCommandExecutorWithCallback executor("echo 'Hello Primary World!'");
-   executor.execute();
+   result = executor.execute();
+
+   al_lock_mutex(mutex);
+   result_string = result;
+   al_unlock_mutex(mutex);
 }
 
 static void *secondary_thread(ALLEGRO_THREAD *thread, void *arg)
 {
    ALLEGRO_MUTEX *mutex = (ALLEGRO_MUTEX *)arg;
+   std::string result = "";
+
    std::cout << "secondary" << std::endl;
    Blast::ShellCommandExecutorWithCallback executor("echo 'Hello Secondary World!'");
-   executor.execute();
+   result = executor.execute();
+
+   al_lock_mutex(mutex);
+   result_string = result;
+   al_unlock_mutex(mutex);
 }
 
 class Thread
@@ -56,5 +68,8 @@ int main(int argc, char **argv)
       al_destroy_thread(thread.thread);
       thread.thread = nullptr;
    }
+
+   std::cout << "Final string content:" << std::endl;
+   std::cout << result_string << std::endl;
 }
 
