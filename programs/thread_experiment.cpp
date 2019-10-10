@@ -3,7 +3,14 @@
 #include <vector>
 #include <iostream>
 
-static void *entry(ALLEGRO_THREAD *thread, void *arg)
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
+
+static void *primary_thread(ALLEGRO_THREAD *thread, void *arg)
+{
+   std::cout << "ABCdefghi" << std::endl;
+}
+
+static void *secondary_thread(ALLEGRO_THREAD *thread, void *arg)
 {
    std::cout << "ABCdefghi" << std::endl;
 }
@@ -18,8 +25,8 @@ public:
 int main(int argc, char **argv)
 {
    std::vector<Thread> threads = {
-     { nullptr, entry },
-     { nullptr, entry },
+     { nullptr, primary_thread },
+     { nullptr, secondary_thread },
    };
 
    al_init();
