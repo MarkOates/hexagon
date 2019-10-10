@@ -24,9 +24,6 @@ int main(int argc, char **argv)
 
    al_init();
 
-   int num_threads = 2;
-   int i;
-
    for (auto &thread : threads)
    {
       thread.thread = al_create_thread(thread.function, NULL);
