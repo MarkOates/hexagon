@@ -8,14 +8,14 @@ static void *main_thread_func(ALLEGRO_THREAD *thread, void *arg)
    std::cout << "ABCdefghi" << std::endl;
 }
 
-struct thread_type {
+struct Thread {
    ALLEGRO_THREAD *thread;
    void *(*function)(ALLEGRO_THREAD*, void*);
 };
 
 int main(int argc, char **argv)
 {
-   std::vector<thread_type> threads = {};
+   std::vector<Thread> threads = {};
 
    al_init();
 
