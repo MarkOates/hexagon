@@ -7,12 +7,16 @@
 
 static void *primary_thread(ALLEGRO_THREAD *thread, void *arg)
 {
-   std::cout << "ABCdefghi" << std::endl;
+   std::cout << "primary" << std::endl;
+   Blast::ShellCommandExecutorWithCallback executor("echo 'Hello Primary World!'");
+   executor.execute();
 }
 
 static void *secondary_thread(ALLEGRO_THREAD *thread, void *arg)
 {
-   std::cout << "ABCdefghi" << std::endl;
+   std::cout << "secondary" << std::endl;
+   Blast::ShellCommandExecutorWithCallback executor("echo 'Hello Secondary World!'");
+   executor.execute();
 }
 
 class Thread
