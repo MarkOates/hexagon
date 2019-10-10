@@ -1,5 +1,6 @@
 #include <allegro5/allegro.h>
 
+#include <vector>
 #include <iostream>
 
 static void *main_thread_func(ALLEGRO_THREAD *thread, void *arg)
@@ -9,7 +10,7 @@ static void *main_thread_func(ALLEGRO_THREAD *thread, void *arg)
 
 int main(int argc, char **argv)
 {
-   ALLEGRO_THREAD *thread[128];
+   std::vector<ALLEGRO_THREAD *> threads;
 
    al_init();
    ALLEGRO_THREAD *main_thread = al_create_thread(main_thread_func, nullptr);
@@ -17,16 +18,12 @@ int main(int argc, char **argv)
    int num_threads = 2;
    int i;
 
-   for (i = 0; i < num_threads; i++) {
-      thread[i] = al_create_thread(main_thread_func, NULL);
+   for (auto &thread : threads) thread = al_create_thread(main_thread_func, NULL);
+   for (auto &thread : threads) al_start_thread(thread);
+   for (auto &thread : threads)
+   {
+      al_join_thread(thread, NULL);
+      al_destroy_thread(thread);
    }
-   for (i = 0; i < num_threads; i++) {
-      al_start_thread(thread[i]);
-   }
-   for (i = 0; i < num_threads; i++) {
-      al_join_thread(thread[i], NULL);
-      al_destroy_thread(thread[i]);
-   }
-
 }
 
