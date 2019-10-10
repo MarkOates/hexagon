@@ -5,8 +5,12 @@
 
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 
+ALLEGRO_MUTEX *special_result_string_mutex = nullptr;
+std::string result_string = "";
+
 static void *primary_thread(ALLEGRO_THREAD *thread, void *arg)
 {
+   ALLEGRO_MUTEX *mutex = (ALLEGRO_MUTEX *)arg;
    std::cout << "primary" << std::endl;
    Blast::ShellCommandExecutorWithCallback executor("echo 'Hello Primary World!'");
    executor.execute();
@@ -14,6 +18,7 @@ static void *primary_thread(ALLEGRO_THREAD *thread, void *arg)
 
 static void *secondary_thread(ALLEGRO_THREAD *thread, void *arg)
 {
+   ALLEGRO_MUTEX *mutex = (ALLEGRO_MUTEX *)arg;
    std::cout << "secondary" << std::endl;
    Blast::ShellCommandExecutorWithCallback executor("echo 'Hello Secondary World!'");
    executor.execute();
@@ -35,9 +40,11 @@ int main(int argc, char **argv)
 
    al_init();
 
+   special_result_string_mutex = al_create_mutex();
+
    for (auto &thread : threads)
    {
-      thread.thread = al_create_thread(thread.function, NULL);
+      thread.thread = al_create_thread(thread.function, special_result_string_mutex);
    }
    for (auto &thread : threads)
    {
