@@ -22,7 +22,7 @@ public:
       FILE_NAVIGATOR,
       KEYBOARD_INPUTS_MODAL,
       RERUN_OUTPUT_WATCHER,
-   };
+   }; // these types should not be included within the base class
 
 private:
    StageInterface::type_t type;
@@ -35,13 +35,13 @@ public:
    StageInterface::type_t get_type();
    placement3d &get_place();
    void set_place(placement3d place);
-   bool infer_is_modal();
+   bool infer_is_modal(); // this should be removed from the base class
 
    virtual void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) = 0;
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) = 0;
    virtual void process_event(ALLEGRO_EVENT &event) = 0;
 
-   virtual bool save_file() = 0;
+   virtual bool save_file() = 0; // this should be removed from the base class
 };
 
 
