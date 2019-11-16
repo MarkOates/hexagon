@@ -1,40 +1,50 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
-
-
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
-
-
 #include <allegro_flare/placement2d.h>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/useful_php.h>
 #include <allegro_flare/render_cache.h>
-
-
 #include <Blast/StringSplitter.hpp>
 #include <Blast/KeyboardCommandMapper.hpp>
-//#include <Blast/ShellCommandExecutor.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 #include <lib/camera.h>
-
-
-//using namespace Blast;
-
-
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>
-
-
-//using namespace Hexagon;
-
-
-
 #include <Hexagon/shared_globals.hpp>
+#include <Hexagon/util.hpp>
+#include <Hexagon/ClipboardData.hpp>
+#include <Hexagon/ActionData.hpp>
+#include <Hexagon/Action.hpp>
+#include <Hexagon/ActionQueueRecording.hpp>
+#include <Hexagon/CodePoint.hpp>
+#include <Hexagon/CodeRange.hpp>
+#include <Hexagon/RailsMinitestTestResult.hpp>
+#include <Hexagon/RailsTestOutputParser.hpp>
+#include <Hexagon/RailsMinitestTestRunner.hpp>
+#include <Hexagon/CppCompiler.hpp>
+#include <Hexagon/CodeRangeExtractor.hpp>
+#include <Hexagon/CodeMessagePoint.hpp>
+#include <Hexagon/CodeMessagePointsOverlay.hpp>
+#include <Hexagon/StageInterface.hpp>
+#include <Hexagon/KeyboardInputsModal.hpp>
+#include <Hexagon/EventControllerInterface.hpp>
+#include <Hexagon/StageRenderer.hpp>
+#include <Hexagon/StageEventController.hpp>
+#include <Hexagon/Stage.hpp>
+#include <Hexagon/OldFileSystemNode.hpp>
+#include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/ComponentNavigator/Stage.hpp>
+#include <Hexagon/OldFileNavigator.hpp>
+#include <Hexagon/RerunOutputWatcher.hpp>
+#include <Hexagon/LayoutPlacements.hpp>
+#include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
+#include <NcursesArt/ProjectFilenameGenerator.hpp>
 
 
 void simple_debugger(std::string message="")
@@ -49,17 +59,17 @@ void simple_debugger(std::string message="")
 }
 
 
-
-
 int get_display_default_width()
 {
    return 2430;
 }
 
+
 int get_display_default_height()
 {
    return 1350;
 }
+
 
 placement3d get_stage_default_place()
 {
@@ -88,44 +98,6 @@ void wait_for_keypress()
 }
 
 
-
-
-
-#include <Hexagon/util.hpp>
-#include <Hexagon/ClipboardData.hpp>
-#include <Hexagon/ActionData.hpp>
-#include <Hexagon/Action.hpp>
-#include <Hexagon/ActionQueueRecording.hpp>
-#include <Hexagon/CodePoint.hpp>
-#include <Hexagon/CodeRange.hpp>
-
-
-
-#include <Hexagon/RailsMinitestTestResult.hpp>
-
-
-
-#include <Hexagon/RailsTestOutputParser.hpp>
-
-
-
-#include <Hexagon/RailsMinitestTestRunner.hpp>
-
-
-
-#include <Hexagon/CppCompiler.hpp>
-
-
-
-
-#include <Hexagon/CodeRangeExtractor.hpp>
-
-
-#include <Hexagon/CodeMessagePoint.hpp>
-
-
-
-
 class RailsMinitestTestResultToCodeMessagePointConverter
 {
 private:
@@ -144,45 +116,6 @@ public:
       return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, 0, 0, rails_minitest_test_result.test_result_output, code_message_point_type);
    }
 };
-
-
-
-
-#include <Hexagon/CodeMessagePointsOverlay.hpp>
-
-
-
-
-
-#include <Hexagon/StageInterface.hpp>
-
-
-#include <Hexagon/KeyboardInputsModal.hpp>
-
-
-
-#include <Hexagon/EventControllerInterface.hpp>
-#include <Hexagon/StageRenderer.hpp>
-#include <Hexagon/StageEventController.hpp>
-#include <Hexagon/Stage.hpp>
-
-
-
-
-#include <Hexagon/OldFileSystemNode.hpp>
-#include <Hexagon/FileNavigator/Stage.hpp>
-#include <Hexagon/ComponentNavigator/Stage.hpp>
-
-
-
-#include <Hexagon/OldFileNavigator.hpp>
-#include <Hexagon/RerunOutputWatcher.hpp>
-//#include <Hexagon/OldFileNavigatorEventController.hpp>
-
-
-
-#include <Hexagon/LayoutPlacements.hpp>
-
 
 
 class ThreeSplitLayout
@@ -248,7 +181,6 @@ const std::string ThreeSplitLayout::CENTER_STAGE_KEY = "CENTER_STAGE_KEY";
 const std::string ThreeSplitLayout::RIGHT_STAGE_KEY = "RIGHT_STAGE_KEY";
 
 
-
 const std::string sonnet = R"END(Is it thy will thy image should keep open
 My heavy eyelids to the weary night?
 Dost thou desire my slumbers should be broken,
@@ -265,12 +197,6 @@ For thee watch I whilst thou dost wake elsewhere,
 From me far off, with others all too near.
 
 - William Shakespere)END";
-
-
-
-#include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
-#include <NcursesArt/ProjectFilenameGenerator.hpp>
-
 
 
 std::string remove_absolute_path_components_from_project_filename(
@@ -315,7 +241,6 @@ std::string remove_absolute_path_components_from_project_filename(
    
    return mainStr;
 }
-
 
 
 class System
@@ -814,11 +739,9 @@ public:
          if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
 
          int number_of_files = get_number_of_code_editor_stages();
-         //number_of_files++;
          float one_third_screen_width = get_display_default_width() / 3;
 
          placement3d place(one_third_screen_width*number_of_files, 0, 0);
-         //place.position = vec3d(-al_get_display_width(display) * 0.5, -al_get_display_height(display)/2, 0.0);
          place.size = vec3d(get_display_default_width()/2, get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
          place.align = vec3d(0.5, 0.5, 0.0);
          place.scale = vec3d(0.9, 0.9, 0.0);
@@ -1038,13 +961,8 @@ public:
 
                                                  // al_keycodee, shift, ctrl, alt, command, { command_identifier }
 
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, true, false, false, false,
-         { ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE }
-      );
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false,
-         { ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE }
-      );
-                                                                   
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, true, false, false, false, { ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false, { ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
@@ -1107,7 +1025,6 @@ private:
 };
 
 
-
 std::string get_action_description(std::string action_identifier)
 {
    // std::map<identifier, description>
@@ -1152,8 +1069,6 @@ std::string get_action_description(std::string action_identifier)
 }
 
 
-
-
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE";
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE";
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
@@ -1182,9 +1097,6 @@ const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATC
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH";
 const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
-
-
-
 
 
 void run_program(std::vector<std::string> filenames, std::vector<std::string> components)
@@ -1324,8 +1236,8 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
 
       //
 
-      //ThreeSplitLayout layout(stage, stage, stage);
-      //layout.place_stages();
+      ThreeSplitLayout layout(stage, stage, stage);
+      layout.place_stages();
    }
 
 
@@ -1408,3 +1320,5 @@ int main(int argc, char **argv)
    run_program(first_filenames_set, first_component_set);
    return 0;
 }
+
+
