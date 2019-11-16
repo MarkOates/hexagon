@@ -868,36 +868,36 @@ public:
 
    // events
 
-   static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE;
-   static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE;
+   //static const std::string SHOW_FILE_NAVIGATOR;
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
-   static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
-   static const std::string ROTATE_STAGE_RIGHT;
-   static const std::string ROTATE_STAGE_LEFT;
-   static const std::string RUN_PROJECT_TESTS;
-   static const std::string RUN_MAKE;
-   static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
+   static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE;
+   static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE;
+   static const std::string ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH;
+   static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
+   static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string DESTROY_TOPMOST_STAGE;
    static const std::string ESCAPE_CURRENT_MODAL;
-   static const std::string SAVE_CURRENT_STAGE;
-   static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
-   static const std::string SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE;
+   static const std::string HIDE_FILE_NAVIGATOR;
    static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE;
-   static const std::string SUBMIT_CURRENT_MODAL;
+   static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
+   static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
    static const std::string REFRESH_RERUN_OUTPUT_WATCHERS;
-   static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
-   //static const std::string SHOW_FILE_NAVIGATOR;
-   static const std::string HIDE_FILE_NAVIGATOR;
+   static const std::string ROTATE_STAGE_LEFT;
+   static const std::string ROTATE_STAGE_RIGHT;
+   static const std::string RUN_MAKE;
+   static const std::string RUN_PROJECT_TESTS;
+   static const std::string SAVE_CURRENT_STAGE;
+   static const std::string SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE;
+   static const std::string SPAWN_COMPONENT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST;
-   static const std::string SPAWN_COMPONENT_NAVIGATOR;
-   static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
-   static const std::string DESTROY_FILE_NAVIGATOR;
-   static const std::string ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH;
    static const std::string SPAWN_KEYBOARD_INPUTS_MODAL;
+   static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
+   static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
+   static const std::string SUBMIT_CURRENT_MODAL;
 
-   void process_local_event(std::string event_name)
+   void process_local_event(std::string event_name) // this function is 1:1 execute the action.  It does no calling of other actions before or after
    {
       std::cout << "System::" << event_name << std::endl;
 
@@ -905,40 +905,32 @@ public:
       {
          bool executed = false;
 
-         if (event_name == ROTATE_STAGE_RIGHT) { executed = true; rotate_stage_right(); }
-         else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
-         else if (event_name == RUN_PROJECT_TESTS) { executed = true; run_project_tests(); }
-         else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { executed = true; spawn_regex_input_box_modal(); }
+         if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_file_navigator_selection(); executed = true; }
+         //else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
+         else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE) { attempt_to_flip_to_correlated_component_quintessence_file(); executed = true; }
+         else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE) { attempt_to_flip_to_correlated_component_test_file(); executed = true; }
+         else if (event_name == ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_OLD_file_navigation_selected_path(); executed = true; }
+         else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
          else if (event_name == DESTROY_TOPMOST_STAGE) { destroy_topmost_stage(); executed = true; }
          else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
-         else if (event_name == SAVE_CURRENT_STAGE) { executed = true; save_current_stage(); }
-         else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { executed = true; refresh_regex_hilights_on_stage(); }
-         else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { executed = true; set_regex_input_box_modal_to_insert_mode(); }
          else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { executed = true; jump_to_next_code_point_on_stage(); }
-         else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { executed = true; push_file_navigator_selection(); }
-         else if (event_name == SUBMIT_CURRENT_MODAL) { executed = true; submit_current_modal(); }
-         //else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
          else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { executed = true; offset_first_line_to_vertically_center_cursor_on_stage(); }
+         else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { executed = true; push_file_navigator_selection(); }
+         else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { executed = true; refresh_regex_hilights_on_stage(); }
+         else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
+         else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
+         else if (event_name == ROTATE_STAGE_RIGHT) { executed = true; rotate_stage_right(); }
          else if (event_name == RUN_MAKE) { executed = true; run_make(); }
+         else if (event_name == RUN_PROJECT_TESTS) { executed = true; run_project_tests(); }
+         else if (event_name == SAVE_CURRENT_STAGE) { executed = true; save_current_stage(); }
+         else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { executed = true; set_regex_input_box_modal_to_insert_mode(); }
+         else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
          else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
          else if (event_name == SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST) { spawn_file_navigator_if_no_stages_exist(); executed = true; }
-         else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
-         else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
-         else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
-         else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
-         else if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_file_navigator_selection(); executed = true; }
-         else if (event_name == ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_OLD_file_navigation_selected_path(); executed = true; }
          else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
-         else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE)
-         {
-            attempt_to_flip_to_correlated_component_test_file();
-            executed = true;
-         }
-         else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE)
-         {
-            attempt_to_flip_to_correlated_component_quintessence_file();
-            executed = true;
-         }
+         else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { executed = true; spawn_regex_input_box_modal(); }
+         else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
+         else if (event_name == SUBMIT_CURRENT_MODAL) { executed = true; submit_current_modal(); }
 
          if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
       }
@@ -1021,82 +1013,81 @@ public:
       }
    }
 
+   std::string get_action_description(std::string action_identifier)
+   {
+      // std::map<identifier, description>
+      static std::map<std::string, std::string> dictionary = {
+         { System::ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH, "" },
+         { System::DESTROY_FILE_NAVIGATOR, "" },
+         { System::DESTROY_TOPMOST_STAGE, "" },
+         { System::ESCAPE_CURRENT_MODAL, "" },
+         { System::HIDE_FILE_NAVIGATOR, "" },
+         { System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE, "" },
+         { System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE, "" },
+         { System::REFRESH_REGEX_HILIGHTS_ON_STAGE, "" },
+         { System::ROTATE_STAGE_LEFT, "" },
+         { System::ROTATE_STAGE_RIGHT, "" },
+         { System::RUN_MAKE, "" },
+         { System::RUN_PROJECT_TESTS, "" },
+         { System::SAVE_CURRENT_STAGE, "" },
+         { System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE, "" },
+         //{ System::SHOW_FILE_NAVIGATOR, "" },
+         { System::SPAWN_COMPONENT_NAVIGATOR, "" },
+         { System::SPAWN_FILE_NAVIGATOR, "" },
+         { System::SPAWN_KEYBOARD_INPUTS_MODAL, "" },
+         { System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, "" },
+         { System::SPAWN_RERUN_OUTPUT_WATCHER, "" },
+         { System::SUBMIT_CURRENT_MODAL, "" },
+      };
+
+      for (std::map<std::string, std::string>::iterator it=dictionary.begin(); it!=dictionary.end(); ++it)
+      {
+         it->second = it->first;
+      }
+
+      std::map<std::string, std::string>::iterator it = dictionary.find(action_identifier);
+      if (it == dictionary.end())
+      {
+         std::stringstream error_message;
+         error_message << "🛑 Error: stuff stuff stuff stuff" << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+
+      return dictionary[action_identifier];
+   }
+
 private:
 };
 
 
-std::string get_action_description(std::string action_identifier)
-{
-   // std::map<identifier, description>
-   static std::map<std::string, std::string> dictionary = {
-      { System::ROTATE_STAGE_RIGHT, "" },
-      { System::ROTATE_STAGE_LEFT, "" },
-      { System::RUN_PROJECT_TESTS, "" },
-      { System::RUN_MAKE, "" },
-      { System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, "" },
-      { System::DESTROY_TOPMOST_STAGE, "" },
-      { System::ESCAPE_CURRENT_MODAL, "" },
-      { System::SAVE_CURRENT_STAGE, "" },
-      { System::REFRESH_REGEX_HILIGHTS_ON_STAGE, "" },
-      { System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE, "" },
-      { System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE, "" },
-      { System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE, "" },
-      { System::SUBMIT_CURRENT_MODAL, "" },
-      //{ System::SHOW_FILE_NAVIGATOR, "" },
-      { System::HIDE_FILE_NAVIGATOR, "" },
-      { System::SPAWN_FILE_NAVIGATOR, "" },
-      { System::SPAWN_COMPONENT_NAVIGATOR, "" },
-      { System::SPAWN_RERUN_OUTPUT_WATCHER, "" },
-      { System::DESTROY_FILE_NAVIGATOR, "" },
-      { System::ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH, "" },
-      { System::SPAWN_KEYBOARD_INPUTS_MODAL, "" }
-   };
-
-   for (std::map<std::string, std::string>::iterator it=dictionary.begin(); it!=dictionary.end(); ++it)
-   {
-      it->second = it->first;
-   }
-
-   std::map<std::string, std::string>::iterator it = dictionary.find(action_identifier);
-   if (it == dictionary.end())
-   {
-      std::stringstream error_message;
-      error_message << "🛑 Error: stuff stuff stuff stuff" << std::endl;
-      throw std::runtime_error(error_message.str());
-   }
-
-   return dictionary[action_identifier];
-}
-
-
-const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE";
-const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE";
-const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
-const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
-const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
-const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
-const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
-const std::string System::RUN_MAKE = "RUN_MAKE";
-const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
-const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
-const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";
-const std::string System::ESCAPE_CURRENT_MODAL = "ESCAPE_CURRENT_MODAL";
-const std::string System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE";
-const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
-const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
-const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
-const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 //const std::string System::SHOW_FILE_NAVIGATOR = "SHOW_FILE_NAVIGATOR";
-const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
-const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
-const std::string System::SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST = "SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST";
-const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
-const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
-const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
+const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
+const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE";
+const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE";
+const std::string System::ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
-const std::string System::ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH";
+const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";
+const std::string System::ESCAPE_CURRENT_MODAL = "ESCAPE_CURRENT_MODAL";
+const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
+const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
+const std::string System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE";
+const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
+const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
+const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
+const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
+const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
+const std::string System::RUN_MAKE = "RUN_MAKE";
+const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
+const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
+const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
+const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
+const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
+const std::string System::SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST = "SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST";
 const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
+const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
+const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
+const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 
 
 void run_program(std::vector<std::string> filenames, std::vector<std::string> components)
