@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include <string>
+
+
 namespace CppCompiler
 {
    class CompileRunner
@@ -9,19 +12,11 @@ namespace CppCompiler
       std::string filename;
 
    public:
-      CompileRunner(std::string filename)
-         : filename(filename)
-      {}
-      ~CompileRunner() {}
+      CompileRunner(std::string filename);
+      ~CompileRunner();
 
-      std::string run()
-      {
-         std::stringstream make_command_string;
-         make_command_string << "make"; // should be "make" by default
-         Blast::ShellCommandExecutor shell_command_executor(make_command_string.str());
-         std::string output = shell_command_executor.execute();
-         std::cout << output << std::endl;
-         return output;
-      }
+      std::string run();
    };
 };
+
+
