@@ -148,7 +148,15 @@ not_quite_black.r = not_quite_black_value;
 not_quite_black.g = not_quite_black_value;
 not_quite_black.b = not_quite_black_value;
 not_quite_black.a = 0.75;
-al_draw_filled_rounded_rectangle(0 - padding_x*2, 0 - padding_y*2, place.size.x + padding_x*2, place.size.y + padding_y*2, roundness, roundness, not_quite_black);
+al_draw_filled_rounded_rectangle(
+  0 - padding_x*2,
+  0 - padding_y*2,
+  place.size.x + padding_x*2,
+  place.size.y + padding_y*2,
+  roundness,
+  roundness,
+  not_quite_black
+);
 al_draw_rounded_rectangle(- padding_x, - padding_y, place.size.x+padding_x, place.size.y+padding_y, roundness, roundness, frame_color, 3.0);
 
 //new_render(display, font, cell_width, cell_height);
@@ -173,7 +181,15 @@ std::string current_selection_text_or_empty_string = get_current_selection_or_sp
 float selector_rectangle_width = al_get_text_width(font, current_selection_text_or_empty_string.c_str());
 if (current_selection_is_valid())
 {
-  al_draw_filled_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color());
+  al_draw_filled_rounded_rectangle(
+    0,
+    selector_y,
+    selector_rectangle_width,
+    selector_y+line_height,
+    4,
+    4,
+    get_selector_color()
+  );
 }
 else
 {
