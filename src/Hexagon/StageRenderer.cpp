@@ -24,15 +24,8 @@ void StageRenderer::draw_selections(int cell_width, int cell_height)
 
 
 
-void StageRenderer::render_code_lines(placement3d &place)
+void StageRenderer::draw_cursor(int cursor_x, float _cursor_y, float _cell_width, Stage::mode_t mode)
 {
-   // render cursor
-   int &first_line_number = stage->first_line_number;
-   float _cursor_y = stage->cursor_y - stage->first_line_number;
-   int cursor_x = stage->cursor_x;
-   float _cell_width = cell_width;
-   float _cell_height = cell_height;
-   Stage::mode_t mode = stage->mode;
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
    float cursor_outset = 2.0;
 
@@ -49,6 +42,21 @@ void StageRenderer::render_code_lines(placement3d &place)
                    cursor_color, 3);
       break;
    }
+}
+
+
+
+void StageRenderer::render_code_lines(placement3d &place)
+{
+   // render cursor
+   int &first_line_number = stage->first_line_number;
+   float _cursor_y = stage->cursor_y - stage->first_line_number;
+   int cursor_x = stage->cursor_x;
+   float _cell_width = cell_width;
+   float _cell_height = cell_height;
+   Stage::mode_t mode = stage->mode;
+
+   draw_cursor(cursor_x, _cursor_y, _cell_width, mode);
 
 
 
@@ -155,15 +163,19 @@ void StageRenderer::render_raw()
    frame_color.a *= frame_opacity;
    float roundness = 0; // was previously 6.0;
    float line_thickness = 3.0;
+   bool draw_outline = false;
 
    al_draw_filled_rounded_rectangle(0, 0,
                             place.size.x, place.size.y,
                             roundness, roundness,
                             background_overlay_color);
-   al_draw_rounded_rectangle(half_padding, half_padding,
-                             place.size.x - half_padding, place.size.y - half_padding,
-                             roundness, roundness,
-                             frame_color, line_thickness);
+   if (draw_outline)
+   {
+      al_draw_rounded_rectangle(half_padding, half_padding,
+                                place.size.x - half_padding, place.size.y - half_padding,
+                                roundness, roundness,
+                                frame_color, line_thickness);
+   }
 
 
 
