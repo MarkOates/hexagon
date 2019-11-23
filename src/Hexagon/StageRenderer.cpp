@@ -153,7 +153,7 @@ void StageRenderer::render_raw()
    frame_color.g *= frame_opacity;
    frame_color.b *= frame_opacity;
    frame_color.a *= frame_opacity;
-   float roundness = 6.0;
+   float roundness = 0; // was previously 6.0;
    float line_thickness = 3.0;
 
    al_draw_filled_rounded_rectangle(0, 0,
