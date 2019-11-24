@@ -4,8 +4,22 @@
 #include <Hexagon/RendererInterface.hpp>
 
 
-TEST(Hexagon_RendererInterfaceTest, can_be_created_without_blowing_up)
+class DerivedTestClass : public Hexagon::RendererInterface
 {
-   Hexagon::RendererInterface renderer;
+public:
+   DerivedTestClass()
+      : Hexagon::RendererInterface()
+   {}
+
+   virtual void render() override
+   {
+      // empty
+   }
+};
+
+
+TEST(Hexagon_RendererInterfaceTest, derived_class_can_be_created_without_blowing_up)
+{
+   DerivedTestClass test_class;
 }
 

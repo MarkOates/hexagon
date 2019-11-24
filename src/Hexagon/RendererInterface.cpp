@@ -18,11 +18,6 @@ RendererInterface::~RendererInterface()
 }
 
 
-void RendererInterface::render()
-{
-return;
-
-}
 } // namespace Hexagon
 
 

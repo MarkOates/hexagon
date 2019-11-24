@@ -1,6 +1,5 @@
 functions:
   - name: render
     type: void
-    is_virtual: true
-    body: |
-      return;
+    pure_virtual: true
+    body: return;

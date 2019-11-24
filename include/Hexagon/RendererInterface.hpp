@@ -11,10 +11,10 @@ namespace Hexagon
 
    public:
       RendererInterface();
-      ~RendererInterface();
+      virtual ~RendererInterface();
 
 
-   void render();
+   virtual void render() = 0;
    };
 }
 
