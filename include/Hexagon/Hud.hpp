@@ -12,13 +12,14 @@ namespace Hexagon
    class Hud
    {
    private:
+      bool initialized;
       ALLEGRO_DISPLAY* display;
       ALLEGRO_FONT* text_font;
       ALLEGRO_BITMAP* screen_sub_bitmap;
       std::vector<std::string> notifications;
 
    public:
-      Hud(ALLEGRO_DISPLAY* display=nullptr);
+      Hud(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* text_font=nullptr);
       ~Hud();
 
       void set_text_font(ALLEGRO_FONT* text_font);

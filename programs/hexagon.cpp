@@ -1251,7 +1251,7 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    }
 
 
-   Hexagon::Hud hud(display);
+   Hexagon::Hud hud(display, consolas_font);
    hud.initialize();
 
 
@@ -1304,7 +1304,6 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
          //rudimentary_camera_place.restore_transform();
 
          hud.set_notifications(notifications);
-         hud.set_text_font(consolas_font);
          hud.draw();
 
          al_flip_display();
