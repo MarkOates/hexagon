@@ -947,27 +947,27 @@ public:
          else if (event_name == ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_OLD_file_navigation_selected_path(); executed = true; }
          else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
          else if (event_name == DESTROY_TOPMOST_STAGE) { destroy_topmost_stage(); executed = true; }
-         else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
-         else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { executed = true; jump_to_next_code_point_on_stage(); }
-         else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { executed = true; offset_first_line_to_vertically_center_cursor_on_stage(); }
-         else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { executed = true; push_file_navigator_selection(); }
-         else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { executed = true; refresh_regex_hilights_on_stage(); }
+         else if (event_name == ESCAPE_CURRENT_MODAL) { escape_current_modal(); executed = true; }
+         else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { jump_to_next_code_point_on_stage(); executed = true; }
+         else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { offset_first_line_to_vertically_center_cursor_on_stage(); executed = true; }
+         else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { push_file_navigator_selection(); executed = true; }
+         else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { refresh_regex_hilights_on_stage(); executed = true; }
          else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
          else if (event_name == ADD_FILE_IS_UNSAVED_NOTIFICATION) { add_file_is_unsaved_notification(); executed = true; }
          else if (event_name == REMOVE_FILE_IS_UNSAVED_NOTIFICATION) { remove_file_is_unsaved_notification(); executed = true; }
-         else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
-         else if (event_name == ROTATE_STAGE_RIGHT) { executed = true; rotate_stage_right(); }
-         else if (event_name == RUN_MAKE) { executed = true; run_make(); }
-         else if (event_name == RUN_PROJECT_TESTS) { executed = true; run_project_tests(); }
-         else if (event_name == SAVE_CURRENT_STAGE) { executed = true; save_current_stage(); }
-         else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { executed = true; set_regex_input_box_modal_to_insert_mode(); }
+         else if (event_name == ROTATE_STAGE_LEFT) { rotate_stage_left(); executed = true; }
+         else if (event_name == ROTATE_STAGE_RIGHT) { rotate_stage_right(); executed = true; }
+         else if (event_name == RUN_MAKE) { run_make(); executed = true; }
+         else if (event_name == RUN_PROJECT_TESTS) { run_project_tests(); executed = true; }
+         else if (event_name == SAVE_CURRENT_STAGE) { save_current_stage(); executed = true; }
+         else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { set_regex_input_box_modal_to_insert_mode(); executed = true; }
          else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
          else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
          else if (event_name == SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST) { spawn_file_navigator_if_no_stages_exist(); executed = true; }
          else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
-         else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { executed = true; spawn_regex_input_box_modal(); }
+         else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { spawn_regex_input_box_modal(); executed = true; }
          else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
-         else if (event_name == SUBMIT_CURRENT_MODAL) { executed = true; submit_current_modal(); }
+         else if (event_name == SUBMIT_CURRENT_MODAL) { submit_current_modal(); executed = true; }
 
          if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
       }
