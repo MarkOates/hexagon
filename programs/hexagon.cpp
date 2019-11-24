@@ -36,7 +36,7 @@
 #include <Hexagon/EventControllerInterface.hpp>
 #include <Hexagon/StageRenderer.hpp>
 #include <Hexagon/StageEventController.hpp>
-#include <Hexagon/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/Hud.hpp>
 #include <Hexagon/OldFileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>

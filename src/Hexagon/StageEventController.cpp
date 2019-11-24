@@ -4,7 +4,7 @@
 #include <Hexagon/StageEventController.hpp>
 
 #include <Blast/KeyboardCommandMapper.hpp>
-#include <Hexagon/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <iostream>
 
 
