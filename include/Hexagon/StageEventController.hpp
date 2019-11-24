@@ -13,7 +13,7 @@ class CodeEditor;
 
 
 
-class StageEventController : public EventControllerInterface
+class CodeEditorEventController : public EventControllerInterface
 {
 private:
    CodeEditor *stage;
@@ -22,8 +22,8 @@ private:
    bool last_performed_action_queue_is_recording;
 
 public:
-   StageEventController(CodeEditor *stage);
-   virtual ~StageEventController();
+   CodeEditorEventController(CodeEditor *stage);
+   virtual ~CodeEditorEventController();
 
    bool clear_last_performed_action_queue_recording();
    bool start_recording_last_performed_action_queue_recording();

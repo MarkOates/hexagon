@@ -787,7 +787,7 @@ void CodeEditor::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_w
 
 void CodeEditor::process_local_event(std::string event_name, ActionData action_data1)
 {
-   StageEventController stage_event_controller(this);
+   CodeEditorEventController stage_event_controller(this);
    stage_event_controller.process_local_event(event_name, action_data1);
 }
 
@@ -795,7 +795,7 @@ void CodeEditor::process_local_event(std::string event_name, ActionData action_d
 
 void CodeEditor::process_event(ALLEGRO_EVENT &event)
 {
-  StageEventController stage_event_controller(this);
+  CodeEditorEventController stage_event_controller(this);
   stage_event_controller.process_event(event);
 }
 

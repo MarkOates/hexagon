@@ -569,7 +569,7 @@ public:
 
    bool set_regex_input_box_modal_to_insert_mode()
    {
-      get_frontmost_stage()->process_local_event(StageEventController::SET_INSERT_MODE);
+      get_frontmost_stage()->process_local_event(CodeEditorEventController::SET_INSERT_MODE);
       return true;
    }
 
@@ -704,7 +704,7 @@ public:
 
    bool jump_to_next_code_point_on_stage()
    {
-      get_frontmost_stage()->process_local_event(StageEventController::JUMP_TO_NEXT_CODE_POINT);
+      get_frontmost_stage()->process_local_event(CodeEditorEventController::JUMP_TO_NEXT_CODE_POINT);
       return true;
    }
 
@@ -718,7 +718,7 @@ public:
 
    bool offset_first_line_to_vertically_center_cursor_on_stage()
    {
-      get_frontmost_stage()->process_local_event(StageEventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
+      get_frontmost_stage()->process_local_event(CodeEditorEventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
       return true;
    }
 
