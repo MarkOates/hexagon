@@ -1,24 +1,28 @@
-#include <Hexagon/KeyboardInputsModal.hpp>
+#include <Hexagon/KeyboardInputsModal/Stage.hpp>
 
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/color.h>
 
 
-KeyboardInputsModal::KeyboardInputsModal(KeyboardCommandMapper *keyboard_command_mapper)
+namespace KeyboardInputsModal
+{
+
+
+Stage::Stage(KeyboardCommandMapper *keyboard_command_mapper)
    : StageInterface(KEYBOARD_INPUTS_MODAL)
    , keyboard_command_mapper(keyboard_command_mapper)
 {}
 
 
-KeyboardInputsModal::~KeyboardInputsModal()
+Stage::~Stage()
 {
 }
 
 
-void KeyboardInputsModal::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+void Stage::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
 {
-   if (!display) throw std::runtime_error("[KeyboardInputsModal] error: display cannot be a nullptr.");
-   if (!font) throw std::runtime_error("[KeyboardInputsModal] error: font cannot be a nullptr.");
+   if (!display) throw std::runtime_error("[Stage] error: display cannot be a nullptr.");
+   if (!font) throw std::runtime_error("[Stage] error: font cannot be a nullptr.");
 
    placement3d &place = get_place();
 
@@ -34,17 +38,23 @@ void KeyboardInputsModal::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, i
 }
 
 
-void KeyboardInputsModal::process_local_event(std::string event_name, ActionData action_data)
+void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
 }
 
 
-void KeyboardInputsModal::process_event(ALLEGRO_EVENT &event)
+void Stage::process_event(ALLEGRO_EVENT &event)
 {
 }
 
 
-bool KeyboardInputsModal::save_file()
+bool Stage::save_file()
 {
    return true;
 }
+
+
+} // namespace KeyboardInputsModal
+
+
+

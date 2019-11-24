@@ -32,7 +32,7 @@
 #include <Hexagon/CodeMessagePoint.hpp>
 #include <Hexagon/CodeMessagePointsOverlay.hpp>
 #include <Hexagon/StageInterface.hpp>
-#include <Hexagon/KeyboardInputsModal.hpp>
+#include <Hexagon/KeyboardInputsModal/Stage.hpp>
 #include <Hexagon/EventControllerInterface.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
@@ -894,7 +894,7 @@ public:
 
    bool spawn_keyboard_inputs_modal()
    {
-      KeyboardInputsModal *keyboard_input_modal = new KeyboardInputsModal(nullptr);
+      KeyboardInputsModal::Stage *keyboard_input_modal = new KeyboardInputsModal::Stage(nullptr);
       stages.push_back(keyboard_input_modal);
       return true;
    }
