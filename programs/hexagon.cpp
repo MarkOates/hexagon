@@ -34,7 +34,7 @@
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/KeyboardInputsModal.hpp>
 #include <Hexagon/EventControllerInterface.hpp>
-#include <Hexagon/StageEventController.hpp>
+#include <Hexagon/CodeEditor/EventController.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/Hud.hpp>
 #include <Hexagon/OldFileSystemNode.hpp>

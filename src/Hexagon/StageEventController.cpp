@@ -1,10 +1,10 @@
 
 
 
-#include <Hexagon/StageEventController.hpp>
+#include <Hexagon/CodeEditor/EventController.hpp>
 
 #include <Blast/KeyboardCommandMapper.hpp>
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <iostream>
 
 
