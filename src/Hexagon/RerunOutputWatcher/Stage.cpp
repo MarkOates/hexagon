@@ -1,6 +1,6 @@
 
 
-#include <Hexagon/RerunOutputWatcher.hpp>
+#include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <allegro5/allegro_color.h>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <iostream>
@@ -10,9 +10,11 @@
 
 namespace Hexagon
 {
+namespace RerunOutputWatcher
+{
 
 
-RerunOutputWatcher::RerunOutputWatcher(std::string command, std::string watch_pattern)
+Stage::Stage(std::string command, std::string watch_pattern)
    : StageInterface(StageInterface::RERUN_OUTPUT_WATCHER)
    , command(command)
    , watch_pattern(watch_pattern)
@@ -21,70 +23,70 @@ RerunOutputWatcher::RerunOutputWatcher(std::string command, std::string watch_pa
 }
 
 
-RerunOutputWatcher::~RerunOutputWatcher()
+Stage::~Stage()
 {
 }
 
 
-void RerunOutputWatcher::set_command(std::string command)
+void Stage::set_command(std::string command)
 {
    this->command = command;
 }
 
 
-void RerunOutputWatcher::set_watch_pattern(std::string watch_pattern)
+void Stage::set_watch_pattern(std::string watch_pattern)
 {
    this->watch_pattern = watch_pattern;
 }
 
 
-std::string RerunOutputWatcher::get_command()
+std::string Stage::get_command()
 {
    return command;
 }
 
 
-std::string RerunOutputWatcher::get_watch_pattern()
+std::string Stage::get_watch_pattern()
 {
    return watch_pattern;
 }
 
 
-std::string RerunOutputWatcher::get_output()
+std::string Stage::get_output()
 {
    return output;
 }
 
 
-void RerunOutputWatcher::clear()
+void Stage::clear()
 {
 output = "";
 
 }
 
-ALLEGRO_EVENT& RerunOutputWatcher::dummy_ALLEGRO_EVENT()
+ALLEGRO_EVENT& Stage::dummy_ALLEGRO_EVENT()
 {
 static ALLEGRO_EVENT ev;
 return ev;
 
 }
 
-void RerunOutputWatcher::append_to_output(std::string content_to_append)
+void Stage::append_to_output(std::string content_to_append)
 {
 output += content_to_append;
 
 }
 
-void RerunOutputWatcher::refresh()
+void Stage::refresh()
 {
 output = "";
 using std::placeholders::_1;
-Blast::ShellCommandExecutorWithCallback executor(get_command(), std::bind(&RerunOutputWatcher::append_to_output, this, _1));
+Blast::ShellCommandExecutorWithCallback executor(get_command(), std::bind(&RerunOutputWatcher::Stage::append_to_output, this, _1));
 executor.execute();
 
 }
 
-void RerunOutputWatcher::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
+void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
 ALLEGRO_COLOR pass_color = al_color_name("aquamarine");
 ALLEGRO_COLOR running_color = al_color_name("sandybrown");
@@ -127,23 +129,24 @@ return;
 
 }
 
-void RerunOutputWatcher::process_local_event(std::string event_name, ActionData action_data)
+void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
 return;
 
 }
 
-void RerunOutputWatcher::process_event(ALLEGRO_EVENT& event)
+void Stage::process_event(ALLEGRO_EVENT& event)
 {
 return;
 
 }
 
-bool RerunOutputWatcher::save_file()
+bool Stage::save_file()
 {
 return true;
 
 }
+} // namespace RerunOutputWatcher
 } // namespace Hexagon
 
 

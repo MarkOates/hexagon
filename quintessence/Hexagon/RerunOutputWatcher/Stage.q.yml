@@ -43,7 +43,7 @@ functions:
     body: |
       output = "";
       using std::placeholders::_1;
-      Blast::ShellCommandExecutorWithCallback executor(get_command(), std::bind(&RerunOutputWatcher::append_to_output, this, _1));
+      Blast::ShellCommandExecutorWithCallback executor(get_command(), std::bind(&RerunOutputWatcher::Stage::append_to_output, this, _1));
       executor.execute();
   - name: render
     type: void
@@ -122,7 +122,7 @@ functions:
     parameters:
       - name: event
         type: ALLEGRO_EVENT&
-        default_argument: RerunOutputWatcher::dummy_ALLEGRO_EVENT()
+        default_argument: Stage::dummy_ALLEGRO_EVENT()
     body: |
       return;
   - name: save_file

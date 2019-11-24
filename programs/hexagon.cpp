@@ -41,7 +41,7 @@
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/ComponentNavigator/Stage.hpp>
 #include <Hexagon/OldFileNavigator.hpp>
-#include <Hexagon/RerunOutputWatcher.hpp>
+#include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/LayoutPlacements.hpp>
 #include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
@@ -646,7 +646,7 @@ public:
       place.align = vec3d(0, 0, 0);
       place.scale = vec3d(0.7, 0.7, 0.0);
 
-      Hexagon::RerunOutputWatcher *rerun_output_watcher = new Hexagon::RerunOutputWatcher();
+      Hexagon::RerunOutputWatcher::Stage *rerun_output_watcher = new Hexagon::RerunOutputWatcher::Stage();
       rerun_output_watcher->set_place(place);
       stages.push_back(rerun_output_watcher);
       return true;
@@ -668,7 +668,7 @@ public:
       {
          if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
          {
-            Hexagon::RerunOutputWatcher *watcher = static_cast<Hexagon::RerunOutputWatcher *>(stage);
+            Hexagon::RerunOutputWatcher::Stage *watcher = static_cast<Hexagon::RerunOutputWatcher::Stage *>(stage);
             watcher->clear();
          }
       }
@@ -680,7 +680,7 @@ public:
       {
          if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
          {
-            Hexagon::RerunOutputWatcher *watcher = static_cast<Hexagon::RerunOutputWatcher *>(stage);
+            Hexagon::RerunOutputWatcher::Stage *watcher = static_cast<Hexagon::RerunOutputWatcher::Stage *>(stage);
 
             std::vector<std::string> file_contents = {};
             if (!::read_file(file_contents, MAKE_COMMAND_FILENAME)) throw std::runtime_error("Could not open the make command file");
