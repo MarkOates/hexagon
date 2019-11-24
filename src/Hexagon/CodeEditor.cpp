@@ -770,10 +770,15 @@ void CodeEditor::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_w
 {
    //place = this->place;
 
-   if (get_type() == ONE_LINE_INPUT_BOX) { render_as_input_box(display, font, cell_width, cell_height); return; }
-
-   StageRenderer stage_renderer(this, font, display, cell_width, cell_height);
-   stage_renderer.render();
+   if (get_type() == ONE_LINE_INPUT_BOX)
+   {
+      render_as_input_box(display, font, cell_width, cell_height);
+   }
+   else
+   {
+      StageRenderer stage_renderer(this, font, display, cell_width, cell_height);
+      stage_renderer.render();
+   }
 
    return;
 }

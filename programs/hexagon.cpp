@@ -581,7 +581,7 @@ public:
       place.scale = vec3d(1.4, 1.4, 1.0);
       place.rotation = vec3d(0.0, 0.0, 0.0);
 
-      CodeEditor *stage = new CodeEditor(REGEX_TEMP_FILENAME, CodeEditor::EDIT, CodeEditor::ONE_LINE_INPUT_BOX);
+      CodeEditor *stage = new CodeEditor(REGEX_TEMP_FILENAME, CodeEditor::EDIT, CodeEditor::ONE_LINE_INPUT_BOX); // TODO: extract this one line input box from CodeEditor
       stage->set_place(place);
       stages.push_back(stage);
 
