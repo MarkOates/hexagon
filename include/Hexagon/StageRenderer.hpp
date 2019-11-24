@@ -2,7 +2,7 @@
 
 
 
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro_flare/render_cache.h>
