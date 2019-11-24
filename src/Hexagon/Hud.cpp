@@ -11,8 +11,9 @@ namespace Hexagon
 {
 
 
-Hud::Hud()
-   : text_font(nullptr)
+Hud::Hud(ALLEGRO_DISPLAY* display)
+   : display(display)
+   , text_font(nullptr)
    , screen_sub_bitmap(nullptr)
    , notifications({})
 {
@@ -50,6 +51,9 @@ std::vector<std::string> Hud::get_notifications()
 
 void Hud::initialize()
 {
+ALLEGRO_BITMAP *backbuffer = al_get_backbuffer(display);
+ALLEGRO_BITMAP *hud_screen_sub_bitmap = al_create_sub_bitmap(backbuffer, 0, 0, al_get_bitmap_width(backbuffer), al_get_bitmap_height(backbuffer));
+set_screen_sub_bitmap(hud_screen_sub_bitmap);
 return;
 
 }

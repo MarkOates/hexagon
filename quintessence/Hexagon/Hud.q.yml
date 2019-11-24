@@ -1,4 +1,8 @@
 properties:
+  - name: display
+    type: ALLEGRO_DISPLAY*
+    init_with: "nullptr"
+    constructor_arg: true
   - name: text_font
     type: ALLEGRO_FONT*
     init_with: "nullptr"
@@ -16,6 +20,9 @@ functions:
   - name: initialize
     type: void
     body: |
+      ALLEGRO_BITMAP *backbuffer = al_get_backbuffer(display);
+      ALLEGRO_BITMAP *hud_screen_sub_bitmap = al_create_sub_bitmap(backbuffer, 0, 0, al_get_bitmap_width(backbuffer), al_get_bitmap_height(backbuffer));
+      set_screen_sub_bitmap(hud_screen_sub_bitmap);
       return;
   - name: draw
     type: void
@@ -40,6 +47,8 @@ functions:
       - al_color_name
       - al_draw_text
 dependencies:
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT*
