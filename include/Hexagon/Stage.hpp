@@ -32,6 +32,10 @@ private:
 
    int first_line_number;
 
+   bool content_is_modified;
+   void mark_content_is_modified();
+   void unmark_content_is_modified();
+
 public:
    Stage(std::string filename, mode_t mode=EDIT, type_t type=CODE_EDITOR);
    ~Stage();
@@ -52,6 +56,8 @@ public:
    std::string &next_line_ref();
    std::string get_current_mode_string();
    int infer_num_lines_to_draw();
+
+   bool get_content_is_modified();
 
    bool move_cursor_up();
    bool move_cursor_down();

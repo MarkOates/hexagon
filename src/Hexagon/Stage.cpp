@@ -21,6 +21,7 @@
 
 Stage::Stage(std::string filename, mode_t mode, type_t type)
    : StageInterface(type)
+   , content_is_modified(false)
    , cursor_x(0)
    , cursor_y(0)
    , mode(mode)
@@ -40,6 +41,25 @@ Stage::Stage(std::string filename, mode_t mode, type_t type)
 Stage::~Stage()
 {}
 
+
+
+void Stage::mark_content_is_modified()
+{
+   content_is_modified = true;
+}
+
+
+
+void Stage::unmark_content_is_modified()
+{
+   content_is_modified = false;
+}
+
+
+bool Stage::get_content_is_modified()
+{
+   return content_is_modified;
+}
 
 
 // accessors
@@ -70,6 +90,7 @@ std::string Stage::get_filename()
 bool Stage::set_content(std::string content)
 {
    lines = Blast::StringSplitter(content, '\n').split();
+   mark_content_is_modified();
    return true;
 }
 
@@ -78,6 +99,7 @@ bool Stage::set_content(std::string content)
 bool Stage::set_content(std::vector<std::string> content)
 {
    lines = content;
+   mark_content_is_modified();
    return true;
 }
 
@@ -347,6 +369,7 @@ bool Stage::move_cursor_to_end_of_line()
 bool Stage::delete_character()
 {
    current_line_ref().erase(cursor_x, 1);
+   mark_content_is_modified();
    return true;
 }
 
@@ -354,8 +377,10 @@ bool Stage::delete_character()
 
 bool Stage::join_lines()
 {
+   // TODO: there is a frequent crash here
    lines[cursor_y] += lines[cursor_y+1];
    lines.erase(lines.begin() + cursor_y+1);
+   mark_content_is_modified();
    return true;
 }
 
@@ -365,6 +390,7 @@ bool Stage::split_lines()
 {
   lines.insert(lines.begin() + cursor_y + 1, lines[cursor_y].substr(cursor_x));
   current_line_ref().erase(cursor_x);
+   mark_content_is_modified();
   return true;
 }
 
@@ -374,6 +400,7 @@ bool Stage::insert_lines(std::vector<std::string> &lines_to_insert)
 {
    int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());
    lines.insert(lines.begin() + range_safe_y, lines_to_insert.begin(), lines_to_insert.end());
+   mark_content_is_modified();
    return true;
 }
 
@@ -382,6 +409,7 @@ bool Stage::insert_lines(std::vector<std::string> &lines_to_insert)
 bool Stage::insert_string(std::string string)
 {
    current_line_ref().insert(cursor_x, string);
+   mark_content_is_modified();
    return true;
 }
 
@@ -390,6 +418,7 @@ bool Stage::insert_string(std::string string)
 bool Stage::save_file()
 {
    ::save_file(lines, filename);
+   unmark_content_is_modified();
    return true;
 }
 

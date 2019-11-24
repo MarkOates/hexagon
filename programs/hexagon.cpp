@@ -63,11 +63,7 @@ void simple_debugger(std::string message="")
 
 #define NOTIFICATION_FILE_IS_UNSAVED "file is unsaved"
 
-std::vector<std::string> notifications = {
-   "foo",
-   "bar",
-   "baz",
-};
+std::vector<std::string> notifications = {};
 
 void add_notification(std::string notification)
 {
@@ -559,6 +555,7 @@ public:
       //Stage *stage = get_frontmost_stage_stage();
       //if (!stage) throw std::runtime_error("Cannot save_current_stage; current stage is not a stage stage");
       get_frontmost_stage()->save_file();
+      process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
       return true;
    }
 
@@ -654,6 +651,16 @@ public:
       rerun_output_watcher->set_place(place);
       stages.push_back(rerun_output_watcher);
       return true;
+   }
+
+   void add_file_is_unsaved_notification()
+   {
+      add_notification(NOTIFICATION_FILE_IS_UNSAVED);
+   }
+
+   void remove_file_is_unsaved_notification()
+   {
+      remove_notification(NOTIFICATION_FILE_IS_UNSAVED);
    }
 
    void clear_rerun_output_watchers()
@@ -895,6 +902,7 @@ public:
 
    // events
 
+   static const std::string ADD_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
    static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE;
    static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE;
@@ -909,6 +917,7 @@ public:
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
    static const std::string REFRESH_RERUN_OUTPUT_WATCHERS;
+   static const std::string REMOVE_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string ROTATE_STAGE_LEFT;
    static const std::string ROTATE_STAGE_RIGHT;
    static const std::string RUN_MAKE;
@@ -944,6 +953,8 @@ public:
          else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { executed = true; push_file_navigator_selection(); }
          else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { executed = true; refresh_regex_hilights_on_stage(); }
          else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
+         else if (event_name == ADD_FILE_IS_UNSAVED_NOTIFICATION) { add_file_is_unsaved_notification(); executed = true; }
+         else if (event_name == REMOVE_FILE_IS_UNSAVED_NOTIFICATION) { remove_file_is_unsaved_notification(); executed = true; }
          else if (event_name == ROTATE_STAGE_LEFT) { executed = true; rotate_stage_left(); }
          else if (event_name == ROTATE_STAGE_RIGHT) { executed = true; rotate_stage_right(); }
          else if (event_name == RUN_MAKE) { executed = true; run_make(); }
@@ -1051,6 +1062,8 @@ public:
          { System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE, "" },
          { System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE, "" },
          { System::REFRESH_REGEX_HILIGHTS_ON_STAGE, "" },
+         { System::ADD_FILE_IS_UNSAVED_NOTIFICATION, "" },
+         { System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION, "" },
          { System::ROTATE_STAGE_LEFT, "" },
          { System::ROTATE_STAGE_RIGHT, "" },
          { System::RUN_MAKE, "" },
@@ -1085,6 +1098,8 @@ private:
 };
 
 
+const std::string System::ADD_FILE_IS_UNSAVED_NOTIFICATION = "ADD_FILE_IS_UNSAVED_NOTIFICATION";
+const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE";
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE";
@@ -1307,6 +1322,19 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
          }
          //system.file_navigator.render(file_navigator_placement, consolas_font);
          //rudimentary_camera_place.restore_transform();
+
+
+         // refresh the notifications, and grab "content_is_unmodified" states from each stage
+         clear_notifications();
+         for (auto &stage : system.stages)
+         {
+            StageInterface::type_t type = stage->get_type();
+            if (type == Stage::ONE_LINE_INPUT_BOX || type == Stage::CODE_EDITOR)
+            {
+               bool this_stage_content_is_modified = static_cast<Stage *>(stage)->get_content_is_modified();
+               if (this_stage_content_is_modified) add_notification(NOTIFICATION_FILE_IS_UNSAVED);
+            }
+         }
 
          hud.set_notifications(notifications);
          hud.draw();
