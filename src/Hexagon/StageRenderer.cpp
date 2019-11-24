@@ -18,25 +18,25 @@ void StageRenderer::draw_selections(int cell_width, int cell_height)
    for (auto &selection : stage->selections)
    {
       //std::cout << " drawing selection " << selection << std::endl;
-      CodeRangeRenderer(stage->get_lines_ref(), selection, stage->first_line_number, cell_width, cell_height).render();
+      CodeRangeRenderer(stage->get_lines_ref(), selection, stage->get_first_line_number(), cell_width, cell_height).render();
    }
 }
 
 
 
-void StageRenderer::draw_cursor(int cursor_x, float _cursor_y, float _cell_width, CodeEditor::mode_t mode)
+void StageRenderer::draw_cursor(int cursor_x, float _cursor_y, float _cell_width, CodeEditor::Stage::mode_t mode)
 {
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
    float cursor_outset = 2.0;
 
    switch(mode)
    {
-   case CodeEditor::EDIT:
+   case CodeEditor::Stage::EDIT:
       al_draw_rounded_rectangle(cursor_x*_cell_width - cursor_outset, _cursor_y*cell_height - cursor_outset,
                                 cursor_x*_cell_width + _cell_width + cursor_outset, _cursor_y*cell_height + cell_height,
                                 2.0, 2.0, cursor_color, 3.0);
       break;
-   case CodeEditor::INSERT:
+   case CodeEditor::Stage::INSERT:
       al_draw_line(cursor_x*_cell_width, _cursor_y*cell_height,
                    cursor_x*_cell_width, _cursor_y*cell_height + cell_height,
                    cursor_color, 3);
@@ -49,12 +49,12 @@ void StageRenderer::draw_cursor(int cursor_x, float _cursor_y, float _cell_width
 void StageRenderer::render_code_lines(placement3d &place)
 {
    // render cursor
-   int &first_line_number = stage->first_line_number;
-   float _cursor_y = stage->cursor_y - stage->first_line_number;
-   int cursor_x = stage->cursor_x;
+   int first_line_number = stage->get_first_line_number();
+   float _cursor_y = stage->get_cursor_y() - stage->get_first_line_number();
+   int cursor_x = stage->get_cursor_x();
    float _cell_width = cell_width;
    float _cell_height = cell_height;
-   CodeEditor::mode_t mode = stage->mode;
+   CodeEditor::Stage::mode_t mode = stage->get_mode();
 
    draw_cursor(cursor_x, _cursor_y, _cell_width, mode);
 
@@ -66,6 +66,7 @@ void StageRenderer::render_code_lines(placement3d &place)
 
 
    // render code lines
+   std::vector<std::string> const &lines = stage->get_lines_ref();
    int line_height = al_get_font_line_height(font);
    int line_count_render_limit = place.size.y / line_height;
    int lines_rendered_count = 0;
@@ -73,7 +74,7 @@ void StageRenderer::render_code_lines(placement3d &place)
    std::vector<int> &git_modified_line_numbers = stage->git_modified_line_numbers;
    std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = stage->code_message_points_overlays;
 
-   for (int line_number = first_line_number; line_number < (int)stage->lines.size(); line_number++)
+   for (int line_number = first_line_number; line_number < (int)lines.size(); line_number++)
    {
       bool line_exists_in_git_modified_line_numbers = std::find(git_modified_line_numbers.begin(), git_modified_line_numbers.end(), (line_number+1)) != git_modified_line_numbers.end();
       if (line_exists_in_git_modified_line_numbers)
@@ -92,7 +93,7 @@ void StageRenderer::render_code_lines(placement3d &place)
       int max_line_char_length = line_length_character_limit;
       if (line_number >= 0)
       {
-         std::string line = stage->lines[line_number];
+         std::string line = lines[line_number];
          std::string truncated_line = line.substr(0, max_line_char_length);
          bool has_line_been_truncated = false;
          if (truncated_line.size() != line.size()) has_line_been_truncated = true;
@@ -194,7 +195,7 @@ void StageRenderer::render_raw()
 
 
 
-StageRenderer::StageRenderer(CodeEditor *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
+StageRenderer::StageRenderer(CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
    : stage(stage)
    , font(font)
    , display(display)

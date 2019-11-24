@@ -9,20 +9,23 @@
 
 
 
-class CodeEditor;
+namespace CodeEditor
+{
+   class Stage;
+}
 
 
 
 class CodeEditorEventController : public EventControllerInterface
 {
 private:
-   CodeEditor *stage;
+   CodeEditor::Stage *stage;
 
    ActionQueueRecording last_performed_action_queue_recording;
    bool last_performed_action_queue_is_recording;
 
 public:
-   CodeEditorEventController(CodeEditor *stage);
+   CodeEditorEventController(CodeEditor::Stage *stage);
    virtual ~CodeEditorEventController();
 
    bool clear_last_performed_action_queue_recording();

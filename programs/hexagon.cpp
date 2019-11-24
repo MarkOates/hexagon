@@ -144,9 +144,9 @@ public:
 class ThreeSplitLayout
 {
 private:
-   CodeEditor *left_stage;
-   CodeEditor *center_stage;
-   CodeEditor *right_stage;
+   CodeEditor::Stage *left_stage;
+   CodeEditor::Stage *center_stage;
+   CodeEditor::Stage *right_stage;
 
    Hexagon::LayoutPlacements layout;
 
@@ -156,7 +156,7 @@ public:
    static const std::string CENTER_STAGE_KEY;
    static const std::string RIGHT_STAGE_KEY;
 
-   ThreeSplitLayout(CodeEditor *left_stage, CodeEditor *center_stage, CodeEditor *right_stage)
+   ThreeSplitLayout(CodeEditor::Stage *left_stage, CodeEditor::Stage *center_stage, CodeEditor::Stage *right_stage)
       : left_stage(left_stage)
       , center_stage(center_stage)
       , right_stage(right_stage)
@@ -346,12 +346,12 @@ public:
       return stages.back();
    }
 
-   CodeEditor *get_frontmost_stage_stage() // TODO: rename this function to get_frontmost_code_editor_stage()
+   CodeEditor::Stage *get_frontmost_stage_stage() // TODO: rename this function to get_frontmost_code_editor_stage()
    {
       StageInterface::type_t type = get_frontmost_stage()->get_type();
-      if (type == CodeEditor::ONE_LINE_INPUT_BOX || type == CodeEditor::CODE_EDITOR)
+      if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
       {
-         return static_cast<CodeEditor *>(get_frontmost_stage());
+         return static_cast<CodeEditor::Stage *>(get_frontmost_stage());
       }
       return nullptr;
    }
@@ -361,7 +361,7 @@ public:
       int result = 0;
       for (auto &stage : stages)
       {
-         if (stage->get_type() == CodeEditor::CODE_EDITOR) result++;
+         if (stage->get_type() == CodeEditor::Stage::CODE_EDITOR) result++;
       }
       return result;
    }
@@ -370,9 +370,9 @@ public:
 
    bool is_current_stage_in_edit_mode()
    {
-      CodeEditor *stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *stage = get_frontmost_stage_stage();
       if (!stage) return false;
-      return stage->get_mode() == CodeEditor::EDIT;
+      return stage->get_mode() == CodeEditor::Stage::EDIT;
    }
 
    bool is_current_stage_a_modal()
@@ -403,7 +403,7 @@ public:
 
    bool run_project_tests()
    {
-      CodeEditor *stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *stage = get_frontmost_stage_stage();
       if (!stage) throw std::runtime_error("cannot run tests on current stage -- not a stage stage");
 
       std::string test_output = RailsMinitestTestRunner(stage->get_filename()).run();
@@ -438,7 +438,7 @@ public:
 
    bool attempt_to_flip_to_correlated_component_test_file()
    {
-      CodeEditor *stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *stage = get_frontmost_stage_stage();
       // get current stage's filename
       std::string stage_filename = stage->get_filename();
       std::cout << "SAAAHHTAGE FILENAMEEE:::::: " << stage_filename << std::endl;
@@ -495,7 +495,7 @@ public:
 
    bool attempt_to_flip_to_correlated_component_quintessence_file()
    {
-      CodeEditor *stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *stage = get_frontmost_stage_stage();
       // get current stage's filename
       std::string stage_filename = stage->get_filename();
       std::cout << "SAAAHHTAGE FILENAMEEE:::::: " << stage_filename << std::endl;
@@ -552,7 +552,7 @@ public:
 
    bool save_current_stage()
    {
-      //CodeEditor *stage = get_frontmost_stage_stage();
+      //CodeEditor::Stage *stage = get_frontmost_stage_stage();
       //if (!stage) throw std::runtime_error("Cannot save_current_stage; current stage is not a stage stage");
       get_frontmost_stage()->save_file();
       process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
@@ -561,7 +561,7 @@ public:
 
    bool refresh_regex_hilights_on_stage()
    {
-      CodeEditor *stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *stage = get_frontmost_stage_stage();
       if (!stage) throw std::runtime_error("Cannot refresh_regex_hilights_on_stage; current stage is not a stage stage");
       stage->refresh_regex_message_points();
       return true;
@@ -581,7 +581,7 @@ public:
       place.scale = vec3d(1.4, 1.4, 1.0);
       place.rotation = vec3d(0.0, 0.0, 0.0);
 
-      CodeEditor *stage = new CodeEditor(REGEX_TEMP_FILENAME, CodeEditor::EDIT, CodeEditor::ONE_LINE_INPUT_BOX); // TODO: extract this one line input box from CodeEditor
+      CodeEditor::Stage *stage = new CodeEditor::Stage(REGEX_TEMP_FILENAME, CodeEditor::Stage::EDIT, CodeEditor::Stage::ONE_LINE_INPUT_BOX); // TODO: extract this one line input box from CodeEditor
       stage->set_place(place);
       stages.push_back(stage);
 
@@ -780,7 +780,7 @@ public:
          place.align = vec3d(0.5, 0.5, 0.0);
          place.scale = vec3d(0.9, 0.9, 0.0);
 
-         CodeEditor *stage = new CodeEditor(filename);// place);
+         CodeEditor::Stage *stage = new CodeEditor::Stage(filename);// place);
 
          stage->set_place(place);
          stage->set_content(file_contents);
@@ -841,7 +841,7 @@ public:
          place.align = vec3d(0.5, 0.5, 0.0);
          place.scale = vec3d(0.9, 0.9, 0.0);
 
-         CodeEditor *stage = new CodeEditor(filename);// place);
+         CodeEditor::Stage *stage = new CodeEditor::Stage(filename);// place);
 
          stage->set_place(place);
          stage->set_content(file_contents);
@@ -1255,7 +1255,7 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
 
    for (auto &filename : filenames)
    {
-      CodeEditor *stage = new CodeEditor(filename);
+      CodeEditor::Stage *stage = new CodeEditor::Stage(filename);
       stage->set_place(place);
 
       std::vector<std::string> lines;
@@ -1329,9 +1329,9 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
          for (auto &stage : system.stages)
          {
             StageInterface::type_t type = stage->get_type();
-            if (type == CodeEditor::ONE_LINE_INPUT_BOX || type == CodeEditor::CODE_EDITOR)
+            if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
             {
-               bool this_stage_content_is_modified = static_cast<CodeEditor *>(stage)->get_content_is_modified();
+               bool this_stage_content_is_modified = static_cast<CodeEditor::Stage *>(stage)->get_content_is_modified();
                if (this_stage_content_is_modified) add_notification(NOTIFICATION_FILE_IS_UNSAVED);
             }
          }

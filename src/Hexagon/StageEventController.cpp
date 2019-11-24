@@ -9,7 +9,7 @@
 
 
 
-CodeEditorEventController::CodeEditorEventController(CodeEditor *stage)
+CodeEditorEventController::CodeEditorEventController(CodeEditor::Stage *stage)
    : EventControllerInterface()
    , stage(stage)
    , last_performed_action_queue_recording("last-performed-action-queue-recording")
@@ -207,7 +207,7 @@ void CodeEditorEventController::process_event(ALLEGRO_EVENT &event)
 
    switch(stage->get_mode())
    {
-   case CodeEditor::EDIT:
+   case CodeEditor::Stage::EDIT:
       switch(event.type)
       {
       case ALLEGRO_EVENT_KEY_DOWN:
@@ -223,7 +223,7 @@ void CodeEditorEventController::process_event(ALLEGRO_EVENT &event)
          break;
       }
       break;
-   case CodeEditor::INSERT:
+   case CodeEditor::Stage::INSERT:
       switch(event.type)
       {
       case ALLEGRO_EVENT_KEY_DOWN:
