@@ -79,6 +79,11 @@ void remove_notification(std::string notification)
    notifications.push_back(notification);
 }
 
+void clear_notifications()
+{
+   notifications.clear();
+}
+
 
 
 int get_display_default_width()
