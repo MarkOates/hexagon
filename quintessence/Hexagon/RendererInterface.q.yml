@@ -1,0 +1,6 @@
+functions:
+  - name: render
+    type: void
+    is_virtual: true
+    body: |
+      return;
