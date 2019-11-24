@@ -2,6 +2,7 @@
 
 
 
+#include <Hexagon/RendererInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
@@ -12,7 +13,7 @@
 
 namespace CodeEditor
 {
-   class Renderer
+   class Renderer : public Hexagon::RendererInterface
    {
    private:
       ALLEGRO_DISPLAY *display;
@@ -31,7 +32,7 @@ namespace CodeEditor
       Renderer(CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height);
       ~Renderer();
 
-      void render();
+      virtual void render() override;
    };
 } // namespace CodeEditor
 

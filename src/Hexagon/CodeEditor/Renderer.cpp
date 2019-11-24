@@ -201,7 +201,8 @@ void Renderer::render_raw()
 
 
 Renderer::Renderer(CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
-   : stage(stage)
+   : Hexagon::RendererInterface()
+   , stage(stage)
    , font(font)
    , display(display)
    , render_cache()
