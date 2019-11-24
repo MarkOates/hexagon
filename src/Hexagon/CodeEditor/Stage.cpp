@@ -11,8 +11,8 @@
 #include <Hexagon/CodeRangeRenderer.hpp>
 #include <Hexagon/CodeRangeExtractor.hpp>
 #include <Hexagon/ClipboardData.hpp>
-#include <Hexagon/StageRenderer.hpp>
-#include <Hexagon/StageEventController.hpp>
+#include <Hexagon/CodeEditor/Renderer.hpp>
+#include <Hexagon/CodeEditor/EventController.hpp>
 #include <Hexagon/util.hpp>
 #include <Hexagon/shared_globals.hpp>
 #include <Hexagon/shared_globals.hpp>
@@ -813,7 +813,7 @@ void Stage::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width,
 
 void Stage::process_local_event(std::string event_name, ActionData action_data1)
 {
-   CodeEditorEventController stage_event_controller(this);
+   CodeEditor::EventController stage_event_controller(this);
    stage_event_controller.process_local_event(event_name, action_data1);
 }
 
@@ -821,8 +821,8 @@ void Stage::process_local_event(std::string event_name, ActionData action_data1)
 
 void Stage::process_event(ALLEGRO_EVENT &event)
 {
-  CodeEditorEventController stage_event_controller(this);
-  stage_event_controller.process_event(event);
+   CodeEditor::EventController stage_event_controller(this);
+   stage_event_controller.process_event(event);
 }
 
 
