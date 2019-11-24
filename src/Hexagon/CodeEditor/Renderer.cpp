@@ -1,7 +1,7 @@
 
 
 
-#include <Hexagon/StageRenderer.hpp>
+#include <Hexagon/CodeEditor/Renderer.hpp>
 
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
