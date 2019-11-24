@@ -1,7 +1,7 @@
 
 
 
-#include <Hexagon/Stage.hpp>
+#include <Hexagon/CodeEditor.hpp>
 
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
@@ -19,7 +19,7 @@
 
 
 
-Stage::Stage(std::string filename, mode_t mode, type_t type)
+CodeEditor::CodeEditor(std::string filename, mode_t mode, type_t type)
    : StageInterface(type)
    , content_is_modified(false)
    , cursor_x(0)
@@ -38,25 +38,25 @@ Stage::Stage(std::string filename, mode_t mode, type_t type)
 
 
 
-Stage::~Stage()
+CodeEditor::~CodeEditor()
 {}
 
 
 
-void Stage::mark_content_is_modified()
+void CodeEditor::mark_content_is_modified()
 {
    content_is_modified = true;
 }
 
 
 
-void Stage::unmark_content_is_modified()
+void CodeEditor::unmark_content_is_modified()
 {
    content_is_modified = false;
 }
 
 
-bool Stage::get_content_is_modified()
+bool CodeEditor::get_content_is_modified()
 {
    return content_is_modified;
 }
@@ -64,7 +64,7 @@ bool Stage::get_content_is_modified()
 
 // accessors
 
-void Stage::set_cursor_x(int cursor_x)
+void CodeEditor::set_cursor_x(int cursor_x)
 {
    this->cursor_x = cursor_x;
    set_current_selection_end_x(cursor_x + 1);
@@ -72,7 +72,7 @@ void Stage::set_cursor_x(int cursor_x)
 
 
 
-void Stage::set_cursor_y(int cursor_y)
+void CodeEditor::set_cursor_y(int cursor_y)
 {
    this->cursor_y = cursor_y;
    set_current_selection_end_y(cursor_y);
@@ -80,14 +80,14 @@ void Stage::set_cursor_y(int cursor_y)
 
 
 
-std::string Stage::get_filename()
+std::string CodeEditor::get_filename()
 {
    return filename;
 }
 
 
 
-bool Stage::set_content(std::string content)
+bool CodeEditor::set_content(std::string content)
 {
    lines = Blast::StringSplitter(content, '\n').split();
    mark_content_is_modified();
@@ -96,7 +96,7 @@ bool Stage::set_content(std::string content)
 
 
 
-bool Stage::set_content(std::vector<std::string> content)
+bool CodeEditor::set_content(std::vector<std::string> content)
 {
    lines = content;
    mark_content_is_modified();
@@ -105,14 +105,14 @@ bool Stage::set_content(std::vector<std::string> content)
 
 
 
-placement3d &Stage::get_place_ref()
+placement3d &CodeEditor::get_place_ref()
 {
    return get_place();
 }
 
 
 
-Stage::mode_t Stage::get_mode()
+CodeEditor::mode_t CodeEditor::get_mode()
 {
    return mode;
 }
@@ -121,14 +121,14 @@ Stage::mode_t Stage::get_mode()
 
 // inference
 
-int Stage::num_lines()
+int CodeEditor::num_lines()
 {
    return lines.size();
 }
 
 
 
-int Stage::num_columns()
+int CodeEditor::num_columns()
 {
    if (cursor_y >= lines.size()) return -1;
    return lines[cursor_y].length();
@@ -136,28 +136,28 @@ int Stage::num_columns()
 
 
 
-std::vector<std::string> const &Stage::get_lines_ref()
+std::vector<std::string> const &CodeEditor::get_lines_ref()
 {
    return lines;
 }
 
 
 
-std::string &Stage::current_line_ref()
+std::string &CodeEditor::current_line_ref()
 {
    return lines[cursor_y];
 }
 
 
 
-std::string &Stage::next_line_ref()
+std::string &CodeEditor::next_line_ref()
 {
    return lines[cursor_y+1];
 }
 
 
 
-std::string Stage::get_current_mode_string()
+std::string CodeEditor::get_current_mode_string()
 {
    if (mode == EDIT) return (currently_grabbing_visual_selection ? "EDIT - VISUAL" : "EDIT");
    if (mode == INSERT) return "INSERT";
@@ -168,7 +168,7 @@ std::string Stage::get_current_mode_string()
 
 // inference
 
-int Stage::infer_num_lines_to_draw()
+int CodeEditor::infer_num_lines_to_draw()
 {
    return 50;
 }
@@ -178,7 +178,7 @@ int Stage::infer_num_lines_to_draw()
 // actions
 
 
-bool Stage::move_cursor_up()
+bool CodeEditor::move_cursor_up()
 {
    if (num_lines() <= 0) return false;
    set_cursor_y(cursor_y - 1);
@@ -187,7 +187,7 @@ bool Stage::move_cursor_up()
 
 
 
-bool Stage::move_cursor_down()
+bool CodeEditor::move_cursor_down()
 {
    if (cursor_y >= num_lines()) return false;
    set_cursor_y(cursor_y + 1);
@@ -196,7 +196,7 @@ bool Stage::move_cursor_down()
 
 
 
-bool Stage::move_cursor_left()
+bool CodeEditor::move_cursor_left()
 {
    set_cursor_x(cursor_x - 1);
    return true;
@@ -204,7 +204,7 @@ bool Stage::move_cursor_left()
 
 
 
-bool Stage::move_cursor_right()
+bool CodeEditor::move_cursor_right()
 {
    set_cursor_x(cursor_x + 1);
    return true;
@@ -212,7 +212,7 @@ bool Stage::move_cursor_right()
 
 
 
-bool Stage::move_cursor_to_top_of_screen()
+bool CodeEditor::move_cursor_to_top_of_screen()
 {
    set_cursor_y(first_line_number);
    return true;
@@ -220,7 +220,7 @@ bool Stage::move_cursor_to_top_of_screen()
 
 
 
-bool Stage::move_cursor_to_middle_of_screen()
+bool CodeEditor::move_cursor_to_middle_of_screen()
 {
    set_cursor_y(first_line_number + infer_num_lines_to_draw()/2);
    return true;
@@ -228,7 +228,7 @@ bool Stage::move_cursor_to_middle_of_screen()
 
 
 
-bool Stage::move_cursor_to_bottom_of_screen()
+bool CodeEditor::move_cursor_to_bottom_of_screen()
 {
    set_cursor_y(first_line_number + infer_num_lines_to_draw()-1);
    return true;
@@ -236,7 +236,7 @@ bool Stage::move_cursor_to_bottom_of_screen()
 
 
 
-bool Stage::move_cursor_jump_to_next_word()
+bool CodeEditor::move_cursor_jump_to_next_word()
 {
    std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
@@ -258,7 +258,7 @@ bool Stage::move_cursor_jump_to_next_word()
 
 
 
-bool Stage::move_cursor_jump_to_next_big_word()
+bool CodeEditor::move_cursor_jump_to_next_big_word()
 {
    std::string vim_equivelent_word_jump_regex = "[^\\s]+";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
@@ -278,7 +278,7 @@ bool Stage::move_cursor_jump_to_next_big_word()
 
 
 
-bool Stage::jump_cursor_to_end_of_next_word()
+bool CodeEditor::jump_cursor_to_end_of_next_word()
 {
    std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
@@ -299,7 +299,7 @@ bool Stage::jump_cursor_to_end_of_next_word()
 
 
 
-bool Stage::jump_cursor_to_end_of_next_big_word()
+bool CodeEditor::jump_cursor_to_end_of_next_big_word()
 {
    std::string vim_equivelent_word_jump_regex = "[^\\s]+";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
@@ -320,7 +320,7 @@ bool Stage::jump_cursor_to_end_of_next_big_word()
 
 
 
-bool Stage::move_cursor_jump_to_previous_word()
+bool CodeEditor::move_cursor_jump_to_previous_word()
 {
    int position = 0;
 
@@ -335,7 +335,7 @@ bool Stage::move_cursor_jump_to_previous_word()
 
 
 
-bool Stage::move_cursor_jump_to_previous_big_word()
+bool CodeEditor::move_cursor_jump_to_previous_big_word()
 {
    int position = 0;
 
@@ -350,7 +350,7 @@ bool Stage::move_cursor_jump_to_previous_big_word()
 
 
 
-bool Stage::move_cursor_to_start_of_line()
+bool CodeEditor::move_cursor_to_start_of_line()
 {
    set_cursor_x(0);
    return true;
@@ -358,7 +358,7 @@ bool Stage::move_cursor_to_start_of_line()
 
 
 
-bool Stage::move_cursor_to_end_of_line()
+bool CodeEditor::move_cursor_to_end_of_line()
 {
    set_cursor_x(current_line_ref().length());
    return true;
@@ -366,7 +366,7 @@ bool Stage::move_cursor_to_end_of_line()
 
 
 
-bool Stage::delete_character()
+bool CodeEditor::delete_character()
 {
    current_line_ref().erase(cursor_x, 1);
    mark_content_is_modified();
@@ -375,7 +375,7 @@ bool Stage::delete_character()
 
 
 
-bool Stage::join_lines()
+bool CodeEditor::join_lines()
 {
    // TODO: there is a frequent crash here
    lines[cursor_y] += lines[cursor_y+1];
@@ -386,7 +386,7 @@ bool Stage::join_lines()
 
 
 
-bool Stage::split_lines()
+bool CodeEditor::split_lines()
 {
   lines.insert(lines.begin() + cursor_y + 1, lines[cursor_y].substr(cursor_x));
   current_line_ref().erase(cursor_x);
@@ -396,7 +396,7 @@ bool Stage::split_lines()
 
 
 
-bool Stage::insert_lines(std::vector<std::string> &lines_to_insert)
+bool CodeEditor::insert_lines(std::vector<std::string> &lines_to_insert)
 {
    int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());
    lines.insert(lines.begin() + range_safe_y, lines_to_insert.begin(), lines_to_insert.end());
@@ -406,7 +406,7 @@ bool Stage::insert_lines(std::vector<std::string> &lines_to_insert)
 
 
 
-bool Stage::insert_string(std::string string)
+bool CodeEditor::insert_string(std::string string)
 {
    current_line_ref().insert(cursor_x, string);
    mark_content_is_modified();
@@ -415,7 +415,7 @@ bool Stage::insert_string(std::string string)
 
 
 
-bool Stage::save_file()
+bool CodeEditor::save_file()
 {
    ::save_file(lines, filename);
    unmark_content_is_modified();
@@ -424,7 +424,7 @@ bool Stage::save_file()
 
 
 
-bool Stage::set_insert_mode()
+bool CodeEditor::set_insert_mode()
 {
    mode = INSERT;
    return true;
@@ -432,7 +432,7 @@ bool Stage::set_insert_mode()
 
 
 
-bool Stage::set_edit_mode()
+bool CodeEditor::set_edit_mode()
 {
    mode = EDIT;
    return true;
@@ -446,7 +446,7 @@ bool Stage::set_edit_mode()
 
 
 
-bool Stage::refresh_git_modified_line_numbers()
+bool CodeEditor::refresh_git_modified_line_numbers()
 {
    GitLinesModifiedExtractor git_lines_modified_extractor(filename);
    git_lines_modified_extractor.execute();
@@ -456,7 +456,7 @@ bool Stage::refresh_git_modified_line_numbers()
 
 
 
-bool Stage::clear_code_message_points()
+bool CodeEditor::clear_code_message_points()
 {
    code_message_points_overlays.back().code_message_points.clear();
    return true;
@@ -464,7 +464,7 @@ bool Stage::clear_code_message_points()
 
 
 
-bool Stage::set_code_message_points(std::vector<CodeMessagePoint> code_message_points)
+bool CodeEditor::set_code_message_points(std::vector<CodeMessagePoint> code_message_points)
 {
    code_message_points_overlays.back().code_message_points = code_message_points;
    return true;
@@ -472,7 +472,7 @@ bool Stage::set_code_message_points(std::vector<CodeMessagePoint> code_message_p
 
 
 
-bool Stage::jump_to_next_code_point()
+bool CodeEditor::jump_to_next_code_point()
 {
    if (code_message_points_overlays.size() == 0) return true;
    CodeMessagePointsOverlay *current_overlay = &code_message_points_overlays[0];
@@ -517,7 +517,7 @@ bool Stage::jump_to_next_code_point()
 
 
 
-bool Stage::jump_to_previous_code_point()
+bool CodeEditor::jump_to_previous_code_point()
 {
    if (code_message_points_overlays.size() == 0) return true;
    CodeMessagePointsOverlay *current_overlay = &code_message_points_overlays[0];
@@ -553,7 +553,7 @@ bool Stage::jump_to_previous_code_point()
 
 // regex matcher plugin
 
-bool Stage::refresh_regex_message_points()
+bool CodeEditor::refresh_regex_message_points()
 {
    clear_code_message_points();
 
@@ -590,7 +590,7 @@ bool Stage::refresh_regex_message_points()
 
 // actions
 
-bool Stage::offset_first_line_number(int delta)
+bool CodeEditor::offset_first_line_number(int delta)
 {
    first_line_number += delta;
    if (first_line_number < 0) first_line_number = 0;
@@ -600,7 +600,7 @@ bool Stage::offset_first_line_number(int delta)
 
 
 
-bool Stage::offset_cursor_position_y(int delta)
+bool CodeEditor::offset_cursor_position_y(int delta)
 {
    set_cursor_y(cursor_y + delta);
    if (cursor_y < 0) set_cursor_y(0);
@@ -610,7 +610,7 @@ bool Stage::offset_cursor_position_y(int delta)
 
 
 
-bool Stage::move_stage_up(float distance)
+bool CodeEditor::move_stage_up(float distance)
 {
    get_place().position.y += distance;
    return true;
@@ -618,7 +618,7 @@ bool Stage::move_stage_up(float distance)
 
 
 
-bool Stage::move_stage_down(float distance)
+bool CodeEditor::move_stage_down(float distance)
 {
    get_place().position.y -= distance;
    return true;
@@ -626,7 +626,7 @@ bool Stage::move_stage_down(float distance)
 
 
 
-bool Stage::offset_first_line_to_vertically_center_cursor(int distance_from_top)
+bool CodeEditor::offset_first_line_to_vertically_center_cursor(int distance_from_top)
 {
    first_line_number = cursor_y - distance_from_top;
    return true;
@@ -634,7 +634,7 @@ bool Stage::offset_first_line_to_vertically_center_cursor(int distance_from_top)
 
 
 
-bool Stage::scale_stage_delta(float delta)
+bool CodeEditor::scale_stage_delta(float delta)
 {
    get_place().scale += vec3d(delta, delta, 1.0);
    return true;
@@ -650,7 +650,7 @@ bool Stage::scale_stage_delta(float delta)
 
 
 
-bool Stage::create_visual_selection_at_current_cursor_location()
+bool CodeEditor::create_visual_selection_at_current_cursor_location()
 {
    selections.push_back(CodeRange(cursor_x, cursor_y, cursor_x+1, cursor_y));
    return true;
@@ -658,7 +658,7 @@ bool Stage::create_visual_selection_at_current_cursor_location()
 
 
 
-bool Stage::destroy_current_visual_selection()
+bool CodeEditor::destroy_current_visual_selection()
 {
    selections.clear();
    return true;
@@ -666,7 +666,7 @@ bool Stage::destroy_current_visual_selection()
 
 
 
-bool Stage::toggle_currently_grabbing_visual_selection()
+bool CodeEditor::toggle_currently_grabbing_visual_selection()
 {
    currently_grabbing_visual_selection = !currently_grabbing_visual_selection;
    //std::cout << " - visual mode: " << currently_grabbing_visual_selection << std::endl;
@@ -682,7 +682,7 @@ bool Stage::toggle_currently_grabbing_visual_selection()
 // partials
 
 
-void Stage::draw_selections(int cell_width, int cell_height)
+void CodeEditor::draw_selections(int cell_width, int cell_height)
 {
    for (auto &selection : selections)
    {
@@ -693,7 +693,7 @@ void Stage::draw_selections(int cell_width, int cell_height)
 
 
 
-bool Stage::set_current_selection_end_x(int x)
+bool CodeEditor::set_current_selection_end_x(int x)
 {
    if (selections.empty()) return true;
    selections.back().set_cursor_end_x(x);
@@ -702,7 +702,7 @@ bool Stage::set_current_selection_end_x(int x)
 
 
 
-bool Stage::set_current_selection_end_y(int y)
+bool CodeEditor::set_current_selection_end_y(int y)
 {
    if (selections.empty()) return true;
    selections.back().set_cursor_end_y(y);
@@ -711,7 +711,7 @@ bool Stage::set_current_selection_end_y(int y)
 
 
 
-bool Stage::yank_selected_text_to_clipboard()
+bool CodeEditor::yank_selected_text_to_clipboard()
 {
    if (selections.empty()) throw std::runtime_error(">BOOM< cannot yank selected text; No text selection is currently active");
    std::vector<std::string> extracted_selection = CodeRangeExtractor(get_lines_ref(), selections.back()).extract();
@@ -721,7 +721,7 @@ bool Stage::yank_selected_text_to_clipboard()
 
 
 
-bool Stage::paste_selected_text_from_clipboard()
+bool CodeEditor::paste_selected_text_from_clipboard()
 {
    std::vector<std::string> retrieved_clipboard_data = ClipboardData::retrieve();
    insert_lines(retrieved_clipboard_data);
@@ -733,7 +733,7 @@ bool Stage::paste_selected_text_from_clipboard()
 
 // complete
 
-void Stage::render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+void CodeEditor::render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
 {
    get_place().start_transform();
 
@@ -766,7 +766,7 @@ void Stage::render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, in
 
 
 
-void Stage::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+void CodeEditor::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
 {
    //place = this->place;
 
@@ -780,7 +780,7 @@ void Stage::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width,
 
 
 
-void Stage::process_local_event(std::string event_name, ActionData action_data1)
+void CodeEditor::process_local_event(std::string event_name, ActionData action_data1)
 {
    StageEventController stage_event_controller(this);
    stage_event_controller.process_local_event(event_name, action_data1);
@@ -788,7 +788,7 @@ void Stage::process_local_event(std::string event_name, ActionData action_data1)
 
 
 
-void Stage::process_event(ALLEGRO_EVENT &event)
+void CodeEditor::process_event(ALLEGRO_EVENT &event)
 {
   StageEventController stage_event_controller(this);
   stage_event_controller.process_event(event);

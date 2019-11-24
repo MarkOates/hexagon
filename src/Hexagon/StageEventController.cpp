@@ -4,12 +4,12 @@
 #include <Hexagon/StageEventController.hpp>
 
 #include <Blast/KeyboardCommandMapper.hpp>
-#include <Hexagon/Stage.hpp>
+#include <Hexagon/CodeEditor.hpp>
 #include <iostream>
 
 
 
-StageEventController::StageEventController(Stage *stage)
+StageEventController::StageEventController(CodeEditor *stage)
    : EventControllerInterface()
    , stage(stage)
    , last_performed_action_queue_recording("last-performed-action-queue-recording")
@@ -141,7 +141,7 @@ void StageEventController::process_local_event(std::string event_name, ActionDat
 
    if (last_performed_action_queue_is_recording && event_name != START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING)
    {
-      std::cout << "   \033[0;30mStage:: recording " << event_name << " event to last_performed_action_queue_recording queue\033[0m" << std::endl;
+      std::cout << "   \033[0;30mCodeEditor:: recording " << event_name << " event to last_performed_action_queue_recording queue\033[0m" << std::endl;
       last_performed_action_queue_recording.append_action(Action(event_name, action_data1));
    }
 }
@@ -207,7 +207,7 @@ void StageEventController::process_event(ALLEGRO_EVENT &event)
 
    switch(stage->get_mode())
    {
-   case Stage::EDIT:
+   case CodeEditor::EDIT:
       switch(event.type)
       {
       case ALLEGRO_EVENT_KEY_DOWN:
@@ -223,7 +223,7 @@ void StageEventController::process_event(ALLEGRO_EVENT &event)
          break;
       }
       break;
-   case Stage::INSERT:
+   case CodeEditor::INSERT:
       switch(event.type)
       {
       case ALLEGRO_EVENT_KEY_DOWN:

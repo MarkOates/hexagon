@@ -5,7 +5,7 @@
 
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
-#include <Hexagon/Stage.hpp>
+#include <Hexagon/CodeEditor.hpp>
 #include <Hexagon/CodeRangeRenderer.hpp>
 #include <sstream>
 #include <string>
@@ -24,19 +24,19 @@ void StageRenderer::draw_selections(int cell_width, int cell_height)
 
 
 
-void StageRenderer::draw_cursor(int cursor_x, float _cursor_y, float _cell_width, Stage::mode_t mode)
+void StageRenderer::draw_cursor(int cursor_x, float _cursor_y, float _cell_width, CodeEditor::mode_t mode)
 {
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
    float cursor_outset = 2.0;
 
    switch(mode)
    {
-   case Stage::EDIT:
+   case CodeEditor::EDIT:
       al_draw_rounded_rectangle(cursor_x*_cell_width - cursor_outset, _cursor_y*cell_height - cursor_outset,
                                 cursor_x*_cell_width + _cell_width + cursor_outset, _cursor_y*cell_height + cell_height,
                                 2.0, 2.0, cursor_color, 3.0);
       break;
-   case Stage::INSERT:
+   case CodeEditor::INSERT:
       al_draw_line(cursor_x*_cell_width, _cursor_y*cell_height,
                    cursor_x*_cell_width, _cursor_y*cell_height + cell_height,
                    cursor_color, 3);
@@ -54,7 +54,7 @@ void StageRenderer::render_code_lines(placement3d &place)
    int cursor_x = stage->cursor_x;
    float _cell_width = cell_width;
    float _cell_height = cell_height;
-   Stage::mode_t mode = stage->mode;
+   CodeEditor::mode_t mode = stage->mode;
 
    draw_cursor(cursor_x, _cursor_y, _cell_width, mode);
 
@@ -194,7 +194,7 @@ void StageRenderer::render_raw()
 
 
 
-StageRenderer::StageRenderer(Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
+StageRenderer::StageRenderer(CodeEditor *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
    : stage(stage)
    , font(font)
    , display(display)

@@ -10,7 +10,7 @@
 
 
 
-class Stage : public StageInterface
+class CodeEditor : public StageInterface
 {
 public:
    enum mode_t
@@ -37,8 +37,8 @@ private:
    void unmark_content_is_modified();
 
 public:
-   Stage(std::string filename, mode_t mode=EDIT, type_t type=CODE_EDITOR);
-   ~Stage();
+   CodeEditor(std::string filename, mode_t mode=EDIT, type_t type=CODE_EDITOR);
+   ~CodeEditor();
    // accessors
 
    void set_cursor_x(int cursor_x);
