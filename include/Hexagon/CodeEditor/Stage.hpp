@@ -9,7 +9,13 @@
 #include <vector>
 
 
-class StageRenderer;
+
+namespace CodeEditor
+{
+   class Renderer;
+}
+
+
 
 namespace CodeEditor
 {
@@ -23,7 +29,7 @@ namespace CodeEditor
       };
 
    private:
-      friend class StageRenderer;
+      friend class CodeEditor::Renderer;
 
       std::vector<std::string> lines;
       int cursor_x;

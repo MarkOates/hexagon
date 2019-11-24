@@ -802,8 +802,8 @@ void Stage::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width,
    }
    else
    {
-      StageRenderer stage_renderer(this, font, display, cell_width, cell_height);
-      stage_renderer.render();
+      CodeEditor::Renderer renderer(this, font, display, cell_width, cell_height);
+      renderer.render();
    }
 
    return;

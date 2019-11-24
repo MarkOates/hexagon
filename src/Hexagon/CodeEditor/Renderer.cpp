@@ -13,7 +13,12 @@
 
 
 
-void StageRenderer::draw_selections(int cell_width, int cell_height)
+namespace CodeEditor
+{
+
+
+
+void Renderer::draw_selections(int cell_width, int cell_height)
 {
    for (auto &selection : stage->selections)
    {
@@ -24,7 +29,7 @@ void StageRenderer::draw_selections(int cell_width, int cell_height)
 
 
 
-void StageRenderer::draw_cursor(int cursor_x, float _cursor_y, float _cell_width, CodeEditor::Stage::mode_t mode)
+void Renderer::draw_cursor(int cursor_x, float _cursor_y, float _cell_width, CodeEditor::Stage::mode_t mode)
 {
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
    float cursor_outset = 2.0;
@@ -46,7 +51,7 @@ void StageRenderer::draw_cursor(int cursor_x, float _cursor_y, float _cell_width
 
 
 
-void StageRenderer::render_code_lines(placement3d &place)
+void Renderer::render_code_lines(placement3d &place)
 {
    // render cursor
    int first_line_number = stage->get_first_line_number();
@@ -139,9 +144,9 @@ void StageRenderer::render_code_lines(placement3d &place)
 
 
 
-void StageRenderer::render_raw()
+void Renderer::render_raw()
 {
-   if (!stage) throw std::runtime_error("[StageRenderer] stage cannot be a nullptr");
+   if (!stage) throw std::runtime_error("[Renderer] stage cannot be a nullptr");
 
    placement3d &place = stage->get_place();
    float padding = cell_width;
@@ -195,7 +200,7 @@ void StageRenderer::render_raw()
 
 
 
-StageRenderer::StageRenderer(CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
+Renderer::Renderer(CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
    : stage(stage)
    , font(font)
    , display(display)
@@ -206,11 +211,11 @@ StageRenderer::StageRenderer(CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEG
 
 
 
-StageRenderer::~StageRenderer() {}
+Renderer::~Renderer() {}
 
 
 
-void StageRenderer::render()
+void Renderer::render()
 {
    placement3d &place = stage->get_place();
 
@@ -222,6 +227,10 @@ void StageRenderer::render()
    render_cache.draw(0, 0);
    place.restore_transform();
 }
+
+
+
+} // namespace CodeEditor
 
 
 
