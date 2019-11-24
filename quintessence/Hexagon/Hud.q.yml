@@ -1,5 +1,54 @@
+properties:
+  - name: text_font
+    type: ALLEGRO_FONT*
+    init_with: "nullptr"
+    setter: true
+  - name: screen_sub_bitmap
+    type: ALLEGRO_BITMAP*
+    init_with: "nullptr"
+    setter: true
+  - name: notifications
+    type: std::vector<std::string>
+    init_with: "{}"
+    getter: true
+    setter: true
 functions:
-  - name: draw
+  - name: initialize
     type: void
     body: |
       return;
+  - name: draw
+    type: void
+    body: |
+      ALLEGRO_STATE previous_target_bitmap_state;
+      al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
+      al_set_target_bitmap(screen_sub_bitmap);
+      ALLEGRO_COLOR color = al_color_name("red");
+      float notification_bottom_padding = al_get_font_ascent(text_font);
+      int y_cursor=0;
+      for (auto &notification : notifications)
+      {
+        float y_position = y_cursor * notification_bottom_padding;
+        al_draw_text(text_font, color, 0, y_position, 0, notification.c_str());
+        y_cursor++;
+      }
+      al_restore_state(&previous_target_bitmap_state);
+      return;
+    body_dependency_symbols:
+      - al_get_font_ascent
+      - ALLEGRO_COLOR
+      - al_color_name
+      - al_draw_text
+dependencies:
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: al_get_font_ascent
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_color_name
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_draw_text
+    headers: [ allegro5/allegro_font.h ]

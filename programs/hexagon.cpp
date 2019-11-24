@@ -37,6 +37,7 @@
 #include <Hexagon/StageRenderer.hpp>
 #include <Hexagon/StageEventController.hpp>
 #include <Hexagon/Stage.hpp>
+#include <Hexagon/Hud.hpp>
 #include <Hexagon/OldFileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/ComponentNavigator/Stage.hpp>
@@ -57,6 +58,27 @@ void simple_debugger(std::string message="")
    al_flip_display();
    usleep(0.2 * 1000000);
 }
+
+
+
+#define NOTIFICATION_FILE_IS_UNSAVED "file is unsaved"
+
+std::vector<std::string> notifications = {
+   "foo",
+   "bar",
+   "baz",
+};
+
+void add_notification(std::string notification)
+{
+   notifications.push_back(notification);
+}
+
+void remove_notification(std::string notification)
+{
+   notifications.push_back(notification);
+}
+
 
 
 int get_display_default_width()
@@ -1229,6 +1251,12 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    }
 
 
+   Hexagon::Hud hud;
+   ALLEGRO_BITMAP *backbuffer = al_get_backbuffer(display);
+   ALLEGRO_BITMAP *hud_screen_sub_bitmap = al_create_sub_bitmap(backbuffer, 0, 0, al_get_bitmap_width(backbuffer), al_get_bitmap_height(backbuffer));
+   hud.set_screen_sub_bitmap(hud_screen_sub_bitmap);
+
+
    while(!shutdown_program)
    {
       ALLEGRO_EVENT this_event;
@@ -1276,6 +1304,11 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
          }
          //system.file_navigator.render(file_navigator_placement, consolas_font);
          //rudimentary_camera_place.restore_transform();
+
+         hud.set_notifications(notifications);
+         hud.set_text_font(consolas_font);
+         hud.draw();
+
          al_flip_display();
          //rudimentary_camera_place.restore_transform();
       }
