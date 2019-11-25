@@ -549,10 +549,12 @@ public:
 
    bool save_current_stage()
    {
-      //CodeEditor::Stage *stage = get_frontmost_stage_stage();
-      //if (!stage) throw std::runtime_error("Cannot save_current_stage; current stage is not a stage stage");
-      get_frontmost_stage()->save_file();
+      CodeEditor::Stage *stage = get_frontmost_stage_stage();
+      if (!stage) throw std::runtime_error("Cannot save_current_stage; current stage is not a stage stage");
+
+      get_frontmost_stage_stage()->save_file();
       process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
+
       return true;
    }
 

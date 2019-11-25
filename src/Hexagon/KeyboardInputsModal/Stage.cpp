@@ -48,12 +48,6 @@ void Stage::process_event(ALLEGRO_EVENT &event)
 }
 
 
-bool Stage::save_file()
-{
-   return true;
-}
-
-
 } // namespace KeyboardInputsModal
 
 

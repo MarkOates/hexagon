@@ -125,12 +125,6 @@ functions:
         default_argument: Stage::dummy_ALLEGRO_EVENT()
     body: |
       return;
-  - name: save_file
-    type: bool
-    virtual: true
-    override: true
-    body: |
-      return true;
 function_body_symbol_dependencies:
   - al_color_name
   - Blast::ShellCommandExecutorWithCallback

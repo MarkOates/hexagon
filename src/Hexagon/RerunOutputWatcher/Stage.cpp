@@ -140,12 +140,6 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 return;
 
 }
-
-bool Stage::save_file()
-{
-return true;
-
-}
 } // namespace RerunOutputWatcher
 } // namespace Hexagon
 

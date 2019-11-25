@@ -17,7 +17,6 @@ namespace KeyboardInputsModal
 
       virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override;
       virtual void process_event(ALLEGRO_EVENT &event) override;
-      virtual bool save_file() override;
    };
 } // namespace KeyboardInputsModal
 

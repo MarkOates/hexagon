@@ -40,8 +40,6 @@ public:
    virtual void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) = 0;
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) = 0;
    virtual void process_event(ALLEGRO_EVENT &event) = 0;
-
-   virtual bool save_file() = 0; // this should be removed from the base class
 };
 
 

@@ -91,7 +91,7 @@ namespace CodeEditor
       bool split_lines();
       bool insert_lines(std::vector<std::string> &lines_to_insert);
       bool insert_string(std::string string);
-      bool save_file() override;
+      bool save_file();
       bool set_insert_mode();
       bool set_edit_mode();
 
