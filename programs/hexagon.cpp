@@ -40,7 +40,6 @@
 #include <Hexagon/OldFileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/ComponentNavigator/Stage.hpp>
-#include <Hexagon/OldFileNavigator.hpp>
 #include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/LayoutPlacements.hpp>
 #include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
@@ -269,7 +268,6 @@ class System
 {
 public:
    std::vector<StageInterface *> stages;
-   //OldFileNavigator file_navigator;
    ALLEGRO_DISPLAY *display;
    Camera camera;
    placement3d file_navigator_initial_place;
@@ -620,7 +618,6 @@ public:
       //place.scale = vec3d(0.8, 0.8, 0.0);
       //place.rotation = vec3d(0.0, 0.03, 0.0);
 
-      //OldFileNavigator *file_navigator = new OldFileNavigator(al_get_current_directory());
       Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(default_navigator_directory);
       file_navigator->process_local_event("refresh_list");
       file_navigator->set_place(file_navigator_initial_place);
@@ -793,64 +790,6 @@ public:
       return true;
    }
 
-   bool attempt_to_open_OLD_file_navigation_selected_path()
-   {
-      std::vector<std::string> results = { FILE_NAVIGATOR_SELECTION_last_content };
-      //if (!::read_file(results, FILE_NAVIGATOR_SELECTION_FILENAME)) { throw std::runtime_error("Could not attempt_to_open_OLD_file_navigation_selected_path: read_file failed"); return false; }
-
-      if (results.empty()) throw std::runtime_error("Could not attempt_to_open_OLD_file_navigation_selected_path: expected filename was empty.");
-      std::string filename = results[0];
-
-      ALLEGRO_FS_ENTRY *fs_entry = al_create_fs_entry(filename.c_str());
-
-      if (!fs_entry)
-      {
-         std::stringstream error_message;
-         error_message << "Could not attempt_to_open_OLD_file_navigation_selected_path: fs_entry could not be created. al_get_errno() returned with " << al_get_errno() << std::endl;
-         throw std::runtime_error(error_message.str().c_str());
-      }
-      //std::cout << "XXXX" << filename << "XXXXX" << std::endl;
-
-      OldFileSystemNode file_system_node(fs_entry);
-
-      if (file_system_node.infer_is_directory())
-      {
-         //placement3d place(0, 0, 0);
-         //place.size = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/3*2, 0.0);
-         //place.align = vec3d(0.5, 0.5, 0.0);
-         //place.scale = vec3d(0.9, 0.9, 0.0);
-
-         OldFileNavigator *file_navigator = new OldFileNavigator(file_system_node.infer_full_name());
-         //file_navigator->set_place(file_navigator_initial_place);
-         //file_navigator.set_child_nodes();
-         stages.push_back(file_navigator);
-      }
-      else // if it's a file
-      {
-         std::vector<std::string> file_contents = {};
-         if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
-
-         int number_of_files = get_number_of_code_editor_stages();
-         //number_of_files++;
-         float one_third_screen_width = get_display_default_width() / 3;
-
-         placement3d place(one_third_screen_width*number_of_files, 0, 0);
-         //place.position = vec3d(-al_get_display_width(display) * 0.5, -al_get_display_height(display)/2, 0.0);
-         place.size = vec3d(get_display_default_width(), get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
-         place.align = vec3d(0.5, 0.5, 0.0);
-         place.scale = vec3d(0.9, 0.9, 0.0);
-
-         CodeEditor::Stage *stage = new CodeEditor::Stage(filename);// place);
-
-         stage->set_place(place);
-         stage->set_content(file_contents);
-         stages.push_back(stage);
-      }
-
-      //al_destroy_fs_entry(fs_entry);
-      return true;
-   }
-
    bool submit_current_modal()
    {
       switch (get_frontmost_stage()->get_type())
@@ -869,15 +808,6 @@ public:
          process_local_event(ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION);
          //throw std::runtime_error("there is no valid \"submit_current_modal()\" behavior for StageInterface::FILE_NAVIGATOR");
          //process_local_event(ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH);
-         break;
-      case StageInterface::OLD_FILE_NAVIGATOR:
-         process_local_event(SAVE_CURRENT_STAGE);  // saves the modal (commits its contents to database)
-         process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
-         //process_local_event(SAVE_CURRENT_STAGE);  // saves the stage (hopefully its a code editor) (commits its contents to database)
-         process_local_event(ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH);
-         //process_local_event(REFRESH_REGEX_HILIGHTS_ON_STAGE);
-         //process_local_event(JUMP_TO_NEXT_CODE_POINT_ON_STAGE);
-         //process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
          break;
       default:
          throw std::runtime_error("submit_current_modal(): invalid modal type");
@@ -905,7 +835,6 @@ public:
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
    static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE;
    static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE;
-   static const std::string ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH;
    static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
    static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string DESTROY_TOPMOST_STAGE;
@@ -943,7 +872,6 @@ public:
          //else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
          else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE) { attempt_to_flip_to_correlated_component_quintessence_file(); executed = true; }
          else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE) { attempt_to_flip_to_correlated_component_test_file(); executed = true; }
-         else if (event_name == ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH) { attempt_to_open_OLD_file_navigation_selected_path(); executed = true; }
          else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
          else if (event_name == DESTROY_TOPMOST_STAGE) { destroy_topmost_stage(); executed = true; }
          else if (event_name == ESCAPE_CURRENT_MODAL) { escape_current_modal(); executed = true; }
@@ -1053,7 +981,6 @@ public:
    {
       // std::map<identifier, description>
       static std::map<std::string, std::string> dictionary = {
-         { System::ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH, "" },
          { System::DESTROY_FILE_NAVIGATOR, "" },
          { System::DESTROY_TOPMOST_STAGE, "" },
          { System::ESCAPE_CURRENT_MODAL, "" },
@@ -1102,7 +1029,6 @@ const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE";
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE";
-const std::string System::ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH = "ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";
