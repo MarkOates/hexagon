@@ -148,7 +148,7 @@ functions:
       for (auto &node : nodes)
       {
         std::string line_content = node;
-        OldFileSystemNode current_line_node(line_content);
+        FileSystemNode current_line_node(line_content);
         bool is_directory = current_line_node.infer_is_directory();
         ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
         col = al_color_name("skyblue");
@@ -163,7 +163,7 @@ functions:
     body_dependency_symbols:
       - al_color_name
       - al_draw_circle
-      - OldFileSystemNode
+      - FileSystemNode
   - name: process_local_event
     is_override: true
     parameters:
@@ -280,8 +280,8 @@ dependencies:
     headers: [ 'allegro5/allegro_primitives.h' ]
   - symbol: std::vector<std::string>
     headers: [ 'vector', 'string' ]
-  - symbol: OldFileSystemNode
-    headers: [ 'Hexagon/OldFileSystemNode.hpp' ]
+  - symbol: FileSystemNode
+    headers: [ 'Hexagon/FileSystemNode.hpp' ]
   - symbol: KeyboardCommandMapper
     headers: [ 'Blast/KeyboardCommandMapper.hpp' ]
   - symbol: Hexagon::ComponentNavigator::List

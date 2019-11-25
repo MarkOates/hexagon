@@ -37,7 +37,7 @@
 #include <Hexagon/CodeEditor/EventController.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/Hud.hpp>
-#include <Hexagon/OldFileSystemNode.hpp>
+#include <Hexagon/FileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/ComponentNavigator/Stage.hpp>
 #include <Hexagon/RerunOutputWatcher/Stage.hpp>
@@ -756,7 +756,7 @@ public:
          error_message << "Could not attempt_to_create_stage_from_last_file_navigator_selection: fs_entry could not be created. al_get_errno() returned with " << al_get_errno() << std::endl;
          throw std::runtime_error(error_message.str().c_str());
       }
-      OldFileSystemNode file_system_node(fs_entry);
+      FileSystemNode file_system_node(fs_entry);
       if (file_system_node.infer_is_directory())
       {
          std::stringstream error_message;

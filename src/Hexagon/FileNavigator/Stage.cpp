@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/FileNavigator/Stage.hpp>
-#include <Hexagon/OldFileSystemNode.hpp>
+#include <Hexagon/FileSystemNode.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <iostream>
@@ -119,7 +119,7 @@ return nodes[get_cursor_position()];
 bool Stage::current_selection_is_folder()
 {
 std::string current_selection = get_current_selection();
-OldFileSystemNode current_selection_node(current_selection);
+FileSystemNode current_selection_node(current_selection);
 return current_selection_node.infer_is_directory();
 
 }
@@ -158,7 +158,7 @@ set_node_root("/Users/markoates/dev_repos");
 
 void Stage::set_node_root_to_parent_directory()
 {
-OldFileSystemNode current_node(get_node_root());
+FileSystemNode current_node(get_node_root());
 std::string parent_directory = current_node.infer_parent();
 set_node_root(parent_directory);
 
@@ -177,7 +177,7 @@ void Stage::refresh_list()
 {
 nodes.clear();
 //nodes.push_back(get_node_root());
-OldFileSystemNode current_node(get_node_root());
+FileSystemNode current_node(get_node_root());
 current_node.create_children();
 for (auto &node : current_node.get_children_ref())
 {
@@ -243,7 +243,7 @@ al_draw_text(font, node_root_font_color, pos_x, current_node_root_y_pos, 0, get_
 for (auto &node : nodes)
 {
   std::string line_content = node;
-  OldFileSystemNode current_line_node(line_content);
+  FileSystemNode current_line_node(line_content);
   bool is_directory = current_line_node.infer_is_directory();
   ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
   col = is_directory ? al_color_name("lime") : al_color_name("palegreen");

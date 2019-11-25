@@ -4,7 +4,7 @@
 #include <Hexagon/ComponentNavigator/List.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
-#include <Hexagon/OldFileSystemNode.hpp>
+#include <Hexagon/FileSystemNode.hpp>
 #include <iostream>
 #include <iostream>
 #include <iostream>
@@ -202,7 +202,7 @@ al_draw_text(font, node_root_font_color, pos_x, current_node_root_y_pos, 0, get_
 for (auto &node : nodes)
 {
   std::string line_content = node;
-  OldFileSystemNode current_line_node(line_content);
+  FileSystemNode current_line_node(line_content);
   bool is_directory = current_line_node.infer_is_directory();
   ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
   col = al_color_name("skyblue");
