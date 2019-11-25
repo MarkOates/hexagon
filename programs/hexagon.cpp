@@ -28,6 +28,7 @@
 #include <Hexagon/RailsTestOutputParser.hpp>
 #include <Hexagon/RailsMinitestTestRunner.hpp>
 #include <Hexagon/CppCompiler.hpp>
+#include <Hexagon/FullScreenOverlay/Stage.hpp>
 #include <Hexagon/CodeRangeExtractor.hpp>
 #include <Hexagon/CodeMessagePoint.hpp>
 #include <Hexagon/CodeMessagePointsOverlay.hpp>
@@ -610,6 +611,12 @@ public:
       motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
       motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
       return true;
+   }
+
+   bool spawn_red_overlay()
+   {
+      Hexagon::FullScreenOverlay::Stage *red_overlay = new Hexagon::FullScreenOverlay::Stage;
+      stages.push_back(red_overlay);
    }
 
    bool spawn_file_navigator()
