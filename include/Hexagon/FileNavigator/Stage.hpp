@@ -19,7 +19,7 @@ namespace Hexagon
          bool cursor_position_static;
          static ALLEGRO_EVENT a_default_empty_event;
          ALLEGRO_COLOR selector_color;
-         std::vector<std::string> nodes;
+         std::vector<std::pair<std::string, std::string>> nodes;
          int cursor_position;
          std::string node_root;
 
@@ -29,11 +29,11 @@ namespace Hexagon
 
          void set_cursor_position_static(bool cursor_position_static);
          void set_selector_color(ALLEGRO_COLOR selector_color);
-         void set_nodes(std::vector<std::string> nodes);
+         void set_nodes(std::vector<std::pair<std::string, std::string>> nodes);
          void set_node_root(std::string node_root);
 
          ALLEGRO_COLOR get_selector_color();
-         std::vector<std::string> get_nodes();
+         std::vector<std::pair<std::string, std::string>> get_nodes();
          int get_cursor_position();
          std::string get_node_root();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();

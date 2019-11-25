@@ -18,7 +18,7 @@ properties:
     getter: true
     setter: true
   - name: nodes
-    type: std::vector<std::string>
+    type: std::vector<std::pair<std::string, std::string>>
     init_with: "{}"
     getter: true
     setter: true
@@ -46,12 +46,12 @@ functions:
     type: std::string
     body: |
       if (!current_selection_is_valid()) return " ";
-      return nodes[get_cursor_position()];
+      return nodes[get_cursor_position()].second;
   - name: get_current_selection
     type: std::string
     body: |
       if (!current_selection_is_valid()) throw std::runtime_error("cannot current_selection_is_folder because is invalid");
-      return nodes[get_cursor_position()];
+      return nodes[get_cursor_position()].second;
   - name: current_selection_is_folder
     type: bool
     body: |
@@ -93,7 +93,7 @@ functions:
       current_node.create_children();
       for (auto &node : current_node.get_children_ref())
       {
-        nodes.push_back(node->infer_full_name());
+        nodes.push_back({ "pres", node->infer_full_name() });
       }
 
       return;
@@ -120,7 +120,7 @@ functions:
       placement3d &place = get_place();
       place.start_transform();
 
-      float roundness = 6.0;
+      float roundness = 0.0; //6.0;
       float padding_x = cell_width;
       float padding_y = cell_width;
       //std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
@@ -153,13 +153,14 @@ functions:
       float selector_y = line_height * cursor_position + cursor_y;
       std::string current_selection_text_or_empty_string = get_current_selection_or_spaced_empty_string();
       float selector_rectangle_width = al_get_text_width(font, current_selection_text_or_empty_string.c_str());
+      float selection_bar_roundness = 0.0; //4;
       if (current_selection_is_valid())
       {
-        al_draw_filled_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color());
+        al_draw_filled_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, selection_bar_roundness, selection_bar_roundness, get_selector_color());
       }
       else
       {
-        al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
+        al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, selection_bar_roundness, selection_bar_roundness, get_selector_color(), 3.0);
       }
 
       std::string node_root_val = get_node_root();
@@ -167,7 +168,7 @@ functions:
 
       for (auto &node : nodes)
       {
-        std::string line_content = node;
+        std::string line_content = node.second;
         FileSystemNode current_line_node(line_content);
         bool is_directory = current_line_node.infer_is_directory();
         ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
@@ -348,6 +349,8 @@ dependencies:
     headers: [ 'iostream' ]
   - symbol: al_draw_circle
     headers: [ 'allegro5/allegro_primitives.h' ]
+  - symbol: std::vector<std::pair<std::string, std::string>>
+    headers: [ 'vector', 'string' ]
   - symbol: std::vector<std::string>
     headers: [ 'vector', 'string' ]
   - symbol: FileSystemNode
