@@ -274,6 +274,7 @@ public:
    placement3d file_navigator_initial_place;
    Motion &motion;
    std::string last_file_navigator_selection;
+   std::string last_component_navigator_selection;
    std::string default_navigator_directory;
 
    //RerunOutputWatcher *rerun_output_watcher;
@@ -286,6 +287,7 @@ public:
       , file_navigator_initial_place(0, 0, 0)
       , motion(motion)
       , last_file_navigator_selection("")
+      , last_component_navigator_selection("")
       , default_navigator_directory("/Users/markoates/Repos/hexagon")
    {
       file_navigator_initial_place.size = vec3d(500, 600, 0);
@@ -338,8 +340,10 @@ public:
    {
       if (stages.size() == 0)
       {
-         std::cout << "Attempted to get front-most stage, but none was present." << std::endl;
-         return nullptr;
+         std::stringstream error_message;
+         error_message << "Attempted to get front-most stage, but none was present." << std::endl;
+         std::cout << error_message.str();
+         throw std::runtime_error(error_message.str());
       }
       return stages.back();
    }
@@ -733,6 +737,24 @@ public:
       return true;
    }
 
+   bool push_component_navigator_selection()
+   {
+      StageInterface *frontmost_stage_interface = get_frontmost_stage();
+      if (!frontmost_stage_interface || !(frontmost_stage_interface->get_type() == StageInterface::COMPONENT_NAVIGATOR))
+      {
+         std::stringstream error_message;
+         std::string function_name = "push_component_navigator_selection";
+         error_message << "Could not " << function_name << ": Either the frontmost_stage_interface is a nullptr OR is not of type StageInterface::COMPONENT_NAVIGATOR." << std::endl;
+         throw std::runtime_error(error_message.str().c_str());
+      }
+      Hexagon::ComponentNavigator::Stage *component_navigator = static_cast<Hexagon::ComponentNavigator::Stage *>(frontmost_stage_interface);
+
+      std::string current_component_navigator_selection = component_navigator->get_current_selection_or_spaced_empty_string();
+
+      last_component_navigator_selection = current_component_navigator_selection;
+      return true;
+   }
+
    bool push_file_navigator_selection()
    {
       StageInterface *frontmost_stage_interface = get_frontmost_stage();
@@ -799,6 +821,63 @@ public:
       return true;
    }
 
+   bool destroy_all_code_editor_stages()
+   {
+      for (unsigned i=0; i<stages.size(); i++)
+      {
+         auto &stage = stages[i];
+
+         if (stage->get_type() == StageInterface::CODE_EDITOR)
+         {
+            CodeEditor::Stage *code_editor = static_cast<CodeEditor::Stage *>(stage);
+            delete code_editor;
+            stages.erase(stages.begin()+i);
+            i--;
+         }
+      }
+   }
+
+   bool attempt_to_create_stage_from_last_component_navigator_selection()
+   {
+      std::string component_name = last_component_navigator_selection;
+
+      NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name);
+      std::string quintessence_filename = std::string("/Users/markoates/Repos/hexagon/") + project_component_filename_generator.generate_quintessence_filename();
+
+      std::cout << "AAA" << std::endl;
+      std::cout << quintessence_filename << std::endl;
+      std::string filename = quintessence_filename;
+      std::cout << "BBB" << std::endl;
+
+      std::vector<std::string> file_contents = {};
+      if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
+      std::cout << "CCC" << std::endl;
+
+      //int number_of_files = get_number_of_code_editor_stages();
+      //float one_third_screen_width = get_display_default_width() / 3;
+      std::cout << "DDD" << std::endl;
+
+      float one_third_screen_width = get_display_default_width() / 3;
+      int number_of_files = 0;
+      std::cout << "EEE" << std::endl;
+
+      placement3d place(one_third_screen_width*number_of_files, 0, 0);
+      place.size = vec3d(get_display_default_width()/2, get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+      place.align = vec3d(0.5, 0.5, 0.0);
+      place.scale = vec3d(0.9, 0.9, 0.0);
+      std::cout << "FFF" << std::endl;
+
+      CodeEditor::Stage *stage = new CodeEditor::Stage(filename);
+
+      std::cout << "GGG" << std::endl;
+      stage->set_place(place);
+      stage->set_content(file_contents);
+      stages.push_back(stage);
+      std::cout << "HHH" << std::endl;
+
+      return true;
+   }
+
    bool submit_current_modal()
    {
       switch (get_frontmost_stage()->get_type())
@@ -817,6 +896,12 @@ public:
          process_local_event(ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION);
          //throw std::runtime_error("there is no valid \"submit_current_modal()\" behavior for StageInterface::FILE_NAVIGATOR");
          //process_local_event(ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH);
+         break;
+      case StageInterface::COMPONENT_NAVIGATOR:
+         process_local_event(PUSH_COMPONENT_NAVIGATOR_SELECTION);
+         process_local_event(DESTROY_TOPMOST_STAGE);
+         process_local_event(DESTROY_ALL_CODE_EDITOR_STAGES);
+         process_local_event(ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
          break;
       default:
          throw std::runtime_error("submit_current_modal(): invalid modal type");
@@ -842,16 +927,19 @@ public:
 
    static const std::string ADD_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
+   static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE;
    static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE;
    static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
    static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string DESTROY_TOPMOST_STAGE;
+   static const std::string DESTROY_ALL_CODE_EDITOR_STAGES;
    static const std::string ESCAPE_CURRENT_MODAL;
    static const std::string HIDE_FILE_NAVIGATOR;
    static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE;
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
+   static const std::string PUSH_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
    static const std::string REFRESH_RERUN_OUTPUT_WATCHERS;
    static const std::string REMOVE_FILE_IS_UNSAVED_NOTIFICATION;
@@ -878,15 +966,18 @@ public:
          bool executed = false;
 
          if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_file_navigator_selection(); executed = true; }
+         else if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_component_navigator_selection(); executed = true; }
          //else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
          else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE) { attempt_to_flip_to_correlated_component_quintessence_file(); executed = true; }
          else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE) { attempt_to_flip_to_correlated_component_test_file(); executed = true; }
          else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
          else if (event_name == DESTROY_TOPMOST_STAGE) { destroy_topmost_stage(); executed = true; }
+         else if (event_name == DESTROY_ALL_CODE_EDITOR_STAGES) { destroy_all_code_editor_stages(); executed = true; }
          else if (event_name == ESCAPE_CURRENT_MODAL) { escape_current_modal(); executed = true; }
          else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { jump_to_next_code_point_on_stage(); executed = true; }
          else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { offset_first_line_to_vertically_center_cursor_on_stage(); executed = true; }
          else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { push_file_navigator_selection(); executed = true; }
+         else if (event_name == PUSH_COMPONENT_NAVIGATOR_SELECTION) { push_component_navigator_selection(); executed = true; }
          else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { refresh_regex_hilights_on_stage(); executed = true; }
          else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
          else if (event_name == ADD_FILE_IS_UNSAVED_NOTIFICATION) { add_file_is_unsaved_notification(); executed = true; }
@@ -910,6 +1001,10 @@ public:
       catch (const std::exception &exception)
       {
          std::cout << ">BOOM< cannot execute \"" << event_name << "\".  The following exception occurred: " << exception.what() << std::endl;
+         // add the thing right here
+         std::stringstream error_message;
+         error_message << "An exception was thrown: \"" << exception.what() << "\"";
+         add_notification(error_message.str());
       }
    }
 
@@ -992,6 +1087,7 @@ public:
       static std::map<std::string, std::string> dictionary = {
          { System::DESTROY_FILE_NAVIGATOR, "" },
          { System::DESTROY_TOPMOST_STAGE, "" },
+         { System::DESTROY_ALL_CODE_EDITOR_STAGES, "" },
          { System::ESCAPE_CURRENT_MODAL, "" },
          { System::HIDE_FILE_NAVIGATOR, "" },
          { System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE, "" },
@@ -1036,16 +1132,19 @@ private:
 const std::string System::ADD_FILE_IS_UNSAVED_NOTIFICATION = "ADD_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
+const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE";
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";
+const std::string System::DESTROY_ALL_CODE_EDITOR_STAGES = "DESTROY_ALL_CODE_EDITOR_STAGES";
 const std::string System::ESCAPE_CURRENT_MODAL = "ESCAPE_CURRENT_MODAL";
 const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
 const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
 const std::string System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE";
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
+const std::string System::PUSH_COMPONENT_NAVIGATOR_SELECTION = "PUSH_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
 const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
