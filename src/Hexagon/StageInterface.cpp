@@ -45,6 +45,7 @@ bool StageInterface::infer_is_modal()
    case ONE_LINE_INPUT_BOX:
    case OLD_FILE_NAVIGATOR:
    case FILE_NAVIGATOR:
+   case COMPONENT_NAVIGATOR:
    case KEYBOARD_INPUTS_MODAL:
       return true;
    default:

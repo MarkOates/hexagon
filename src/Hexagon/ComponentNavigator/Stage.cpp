@@ -21,7 +21,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
 Stage::Stage(std::string project_root)
-   : StageInterface(StageInterface::FILE_NAVIGATOR)
+   : StageInterface(StageInterface::COMPONENT_NAVIGATOR)
    , cursor_position(0)
    , cursor_position_static(false)
    , selector_color(al_color_name("slategray"))

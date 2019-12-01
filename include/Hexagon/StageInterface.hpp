@@ -20,6 +20,7 @@ public:
       ONE_LINE_INPUT_BOX,
       OLD_FILE_NAVIGATOR,
       FILE_NAVIGATOR,
+      COMPONENT_NAVIGATOR,
       KEYBOARD_INPUTS_MODAL,
       RERUN_OUTPUT_WATCHER,
    }; // these types should not be included within the base class

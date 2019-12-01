@@ -1,7 +1,7 @@
 parent_classes:
   - class: 'StageInterface'
     scope: public
-    init_with: "StageInterface::FILE_NAVIGATOR"
+    init_with: "StageInterface::COMPONENT_NAVIGATOR"
 properties:
   - name: cursor_position
     type: int
