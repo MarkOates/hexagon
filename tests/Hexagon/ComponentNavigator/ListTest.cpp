@@ -10,8 +10,10 @@ TEST(Hexagon_ComponentNavigator_ListTest, run__returns_the_expected_response)
 
    std::vector<std::string> expected_list = {
       "Blast/DirectoryCreator",
-      "Blast/SequenceReporter",
       "Blast/ShellCommandExecutorWithCallback",
+      "Blast/CamelCaseToUnderscoreConverter",
+      "Blast/Project/ComponentBasenameExtractor",
+      "Blast/TemplatedFile",
       "Blast/Cpp/FunctionBody",
       "Blast/Cpp/Function",
       "Blast/DirectoryExistenceChecker",
