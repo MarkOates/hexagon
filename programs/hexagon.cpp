@@ -14,6 +14,7 @@
 #include <Blast/KeyboardCommandMapper.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 #include <lib/camera.h>
+#include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/shared_globals.hpp>
@@ -45,6 +46,7 @@
 #include <Hexagon/LayoutPlacements.hpp>
 #include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
+
 
 
 void simple_debugger(std::string message="")
@@ -823,18 +825,8 @@ public:
 
    bool destroy_all_code_editor_stages()
    {
-      for (unsigned i=0; i<stages.size(); i++)
-      {
-         auto &stage = stages[i];
-
-         if (stage->get_type() == StageInterface::CODE_EDITOR)
-         {
-            CodeEditor::Stage *code_editor = static_cast<CodeEditor::Stage *>(stage);
-            delete code_editor;
-            stages.erase(stages.begin()+i);
-            i--;
-         }
-      }
+      Hexagon::System::Action::DestroyAllCodeEditorStages action(stages);
+      return action.managed_execute();
    }
 
    bool attempt_to_create_stage_from_last_component_navigator_selection()
