@@ -1,0 +1,46 @@
+parent_classes:
+  - class: ::Action
+    scope: public
+    init_with: "\"System::Action::DestroyAllCodeEditorStages\", ActionData()"
+properties:
+  - name: stages
+    type: std::vector<StageInterface *>&
+    constructor_arg: true
+    init_with: "get_dummy_stages_ref()"
+    getter: true
+    setter: true
+  - name: dummy_stages
+    type: std::vector<StageInterface *>
+    init_with: "{}"
+    static: true
+    getter_ref: true
+functions:
+  - name: execute
+    virtual: true
+    override: true
+    type: bool
+    body: |
+      for (unsigned i=0; i<stages.size(); i++)
+      {
+         auto &stage = stages[i];
+
+         if (stage->get_type() == StageInterface::CODE_EDITOR)
+         {
+            CodeEditor::Stage *code_editor = static_cast<CodeEditor::Stage *>(stage);
+            delete code_editor;
+            stages.erase(stages.begin()+i);
+            i--;
+         }
+      }
+      return true;
+    body_dependency_symbols:
+      - CodeEditor::Stage
+dependencies:
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]
+  - symbol: std::vector<StageInterface *>&
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: std::vector<StageInterface *>
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
