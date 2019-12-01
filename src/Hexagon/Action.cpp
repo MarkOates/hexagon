@@ -30,4 +30,15 @@ ActionData Action::get_data1()
 }
 
 
+bool Action::managed_execute()
+{
+   execute();
+}
+
+
+bool Action::execute()
+{
+   return true;
+}
+
 

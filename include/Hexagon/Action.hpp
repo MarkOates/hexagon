@@ -15,10 +15,12 @@ private:
 
 public:
    Action(std::string name, ActionData data1);
-   ~Action();
+   virtual ~Action();
 
    std::string get_name();
    ActionData get_data1();
+   bool managed_execute();
+   bool virtual execute();
 };
 
 
