@@ -39,8 +39,10 @@ functions:
 
       NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name);
       std::string quintessence_filename = std::string("/Users/markoates/Repos/hexagon/") + project_component_filename_generator.generate_quintessence_filename();
+      std::string test_src_filename = std::string("/Users/markoates/Repos/hexagon/") + project_component_filename_generator.generate_test_src_filename();
 
       std::string filename = quintessence_filename;
+      std::string test_filename = test_src_filename;
 
       std::vector<std::string> file_contents = {};
       if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
