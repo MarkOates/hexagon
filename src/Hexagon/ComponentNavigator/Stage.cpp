@@ -137,7 +137,7 @@ if (!font) throw std::runtime_error("font missing");
 placement3d &place = get_place();
 place.start_transform();
 
-float roundness = 6.0;
+float roundness = 0.0; //6.0;
 float padding_x = cell_width;
 float padding_y = cell_width;
 //std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
@@ -179,6 +179,7 @@ ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
 float selector_y = line_height * cursor_position + cursor_y;
 std::string current_selection_text_or_empty_string = get_current_selection_or_spaced_empty_string();
 float selector_rectangle_width = al_get_text_width(font, current_selection_text_or_empty_string.c_str());
+float selector_rectangle_roundness = 0; //4;
 if (current_selection_is_valid())
 {
   al_draw_filled_rounded_rectangle(
@@ -186,8 +187,8 @@ if (current_selection_is_valid())
     selector_y,
     selector_rectangle_width,
     selector_y+line_height,
-    4,
-    4,
+    selector_rectangle_roundness,
+    selector_rectangle_roundness,
     get_selector_color()
   );
 }

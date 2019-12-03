@@ -279,6 +279,7 @@ public:
    ALLEGRO_DISPLAY *display;
    Camera camera;
    placement3d file_navigator_initial_place;
+   placement3d component_navigator_initial_place;
    Motion &motion;
    std::string last_file_navigator_selection;
    std::string last_component_navigator_selection;
@@ -292,6 +293,7 @@ public:
       , display(display)
       , camera(0, 0, 0)
       , file_navigator_initial_place(0, 0, 0)
+      , component_navigator_initial_place(0, 0, 0)
       , motion(motion)
       , last_file_navigator_selection("")
       , last_component_navigator_selection("")
@@ -301,6 +303,11 @@ public:
       file_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
       file_navigator_initial_place.scale = vec3d(0.8, 0.8, 1.0);
       file_navigator_initial_place.rotation = vec3d(0.0, 0.02, 0.0);
+
+      component_navigator_initial_place.size = vec3d(800, 700, 0);
+      component_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
+      component_navigator_initial_place.scale = vec3d(0.8, 0.8, 1.0);
+      component_navigator_initial_place.rotation = vec3d(0.0, 0.02, 0.0);
 
       //camera.zoom_pos -= 3.1;
       //camera.position.x += 20;
@@ -624,7 +631,7 @@ public:
 
    bool spawn_component_navigator()
    {
-      placement3d component_navigator_initial_place = file_navigator_initial_place;
+      //placement3d component_navigator_initial_place = component_navigator_initial_place;
      
       Hexagon::ComponentNavigator::Stage *component_navigator = new Hexagon::ComponentNavigator::Stage(); //(default_navigator_directory);
       component_navigator->process_local_event("refresh_list");
