@@ -352,26 +352,12 @@ public:
    CodeEditor::Stage *get_frontmost_code_editor_stage() // TODO: rename this function to get_frontmost_code_editor_stage()
    {
       StageInterface *frontmost_stage = get_frontmost_stage();
-      if (!frontmost_stage)
-      {
-         std::stringstream error_message;
-         error_message << "Attempted to get_frontmost_code_editor_stage, but no frontmost_stage was present." << std::endl;
-         std::cout << error_message.str();
-         return nullptr;
-         //throw std::runtime_error(error_message.str());
-      }
+      if (!frontmost_stage) return nullptr;
+
       StageInterface::type_t type = frontmost_stage->get_type();
       if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
       {
          return static_cast<CodeEditor::Stage *>(get_frontmost_stage());
-      }
-      else
-      {
-         std::stringstream error_message;
-         error_message << "Attempted to get_frontmost_code_editor_stage, but there is no stage of the expected type." << std::endl;
-         std::cout << error_message.str();
-         return nullptr;
-         //throw std::runtime_error(error_message.str());
       }
       return nullptr;
    }
