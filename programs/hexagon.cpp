@@ -48,6 +48,10 @@
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
 
 
+#define OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE (std::cout << "calling get_fontmost_stage() on function " << __FUNCTION__ << std::endl);
+
+
+
 
 void simple_debugger(std::string message="")
 {
@@ -344,7 +348,6 @@ public:
       {
          std::stringstream error_message;
          error_message << "Attempted to get front-most stage, but none was present." << std::endl;
-         std::cout << error_message.str();
          throw std::runtime_error(error_message.str());
       }
       return stages.back();
@@ -352,10 +355,17 @@ public:
 
    CodeEditor::Stage *get_frontmost_stage_stage() // TODO: rename this function to get_frontmost_code_editor_stage()
    {
+      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       StageInterface::type_t type = get_frontmost_stage()->get_type();
       if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
       {
          return static_cast<CodeEditor::Stage *>(get_frontmost_stage());
+      }
+      else
+      {
+         std::stringstream error_message;
+         error_message << "Attempted to get_frontmost_stage_stage, but none was present." << std::endl;
+         throw std::runtime_error(error_message.str());
       }
       return nullptr;
    }
@@ -374,20 +384,36 @@ public:
 
    bool is_current_stage_in_edit_mode()
    {
-      CodeEditor::Stage *stage = get_frontmost_stage_stage();
-      if (!stage) return false;
-      return stage->get_mode() == CodeEditor::Stage::EDIT;
+      CodeEditor::Stage *frontmost_stage = get_frontmost_stage_stage();
+      if (!frontmost_stage)
+      {
+         std::cout << "Warning: attempting to infer if is_current_stage_in_edit_mode() but no frontmost stage exists" << std::endl;
+         return false;
+      }
+      return frontmost_stage->get_mode() == CodeEditor::Stage::EDIT;
    }
 
    bool is_current_stage_a_modal()
    {
+      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       StageInterface *frontmost_stage = get_frontmost_stage();
+      if (!frontmost_stage)
+      {
+         std::cout << "Warning: attempting to infer if is_current_stage_a_modal() but no frontmost stage exists" << std::endl;
+         return false;
+      }
       return frontmost_stage && frontmost_stage->infer_is_modal();
    }
 
    bool is_current_stage_a_regex_input_box()
    {
+      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       StageInterface *frontmost_stage = get_frontmost_stage();
+      if (!frontmost_stage)
+      {
+         std::cout << "Warning: attempting to infer if is_current_stage_a_regex_input_box() but no frontmost stage exists" << std::endl;
+         return false;
+      }
       return frontmost_stage && (frontmost_stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX);
    }
 
@@ -575,6 +601,7 @@ public:
 
    bool set_regex_input_box_modal_to_insert_mode()
    {
+      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       get_frontmost_stage()->process_local_event(CodeEditor::EventController::SET_INSERT_MODE);
       return true;
    }
@@ -715,6 +742,7 @@ public:
 
    bool jump_to_next_code_point_on_stage()
    {
+      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       get_frontmost_stage()->process_local_event(CodeEditor::EventController::JUMP_TO_NEXT_CODE_POINT);
       return true;
    }
@@ -729,6 +757,7 @@ public:
 
    bool offset_first_line_to_vertically_center_cursor_on_stage()
    {
+      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       get_frontmost_stage()->process_local_event(CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
       return true;
    }
@@ -741,6 +770,7 @@ public:
 
    bool push_component_navigator_selection()
    {
+      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       StageInterface *frontmost_stage_interface = get_frontmost_stage();
       if (!frontmost_stage_interface || !(frontmost_stage_interface->get_type() == StageInterface::COMPONENT_NAVIGATOR))
       {
@@ -759,6 +789,7 @@ public:
 
    bool push_file_navigator_selection()
    {
+      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       StageInterface *frontmost_stage_interface = get_frontmost_stage();
       if (!frontmost_stage_interface || !(frontmost_stage_interface->get_type() == StageInterface::FILE_NAVIGATOR))
       {
@@ -863,6 +894,7 @@ public:
 
    bool submit_current_modal()
    {
+      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       switch (get_frontmost_stage()->get_type())
       {
       case StageInterface::ONE_LINE_INPUT_BOX:
@@ -1061,6 +1093,7 @@ public:
       if (!event_caught)
       {
          //if (file_navigator.get_visible_and_active()) file_navigator.process_event(event);
+         OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
          get_frontmost_stage()->process_event(event);
       }
    }
