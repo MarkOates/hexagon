@@ -15,6 +15,7 @@
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 #include <lib/camera.h>
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
+#include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/shared_globals.hpp>
@@ -865,34 +866,12 @@ public:
 
    bool attempt_to_create_stage_from_last_component_navigator_selection()
    {
-      std::string component_name = last_component_navigator_selection;
-
-      NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name);
-      std::string quintessence_filename = std::string("/Users/markoates/Repos/hexagon/") + project_component_filename_generator.generate_quintessence_filename();
-
-      std::string filename = quintessence_filename;
-
-      std::vector<std::string> file_contents = {};
-      if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
-
-      //int number_of_files = get_number_of_code_editor_stages();
-      //float one_third_screen_width = get_display_default_width() / 3;
-
-      float one_third_screen_width = get_display_default_width() / 3;
-      int number_of_files = 0;
-
-      placement3d place(one_third_screen_width*number_of_files, 0, 0);
-      place.size = vec3d(get_display_default_width()/2, get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
-      place.align = vec3d(0.5, 0.5, 0.0);
-      place.scale = vec3d(0.9, 0.9, 0.0);
-
-      CodeEditor::Stage *quintessence_file_stage = new CodeEditor::Stage(filename);
-
-      quintessence_file_stage->set_place(place);
-      quintessence_file_stage->set_content(file_contents);
-      stages.push_back(quintessence_file_stage);
-
-      return true;
+      Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection action(
+            last_component_navigator_selection,
+            get_display_default_width(),
+            get_display_default_height(),
+            stages);
+      return action.managed_execute();
    }
 
    bool submit_current_modal()

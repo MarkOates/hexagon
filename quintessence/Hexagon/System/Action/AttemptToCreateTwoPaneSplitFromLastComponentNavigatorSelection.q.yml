@@ -1,0 +1,82 @@
+parent_classes:
+  - class: ::Action
+    scope: public
+    init_with: "\"System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection\", ActionData()"
+properties:
+  - name: last_component_navigator_selection
+    type: std::string
+    init_with: "\"\""
+    constructor_arg: true
+  - name: display_default_width
+    type: int
+    init_with: 2430
+    constructor_arg: true
+  - name: display_default_height
+    type: int
+    init_with: 1350
+    constructor_arg: true
+  - name: stages
+    type: std::vector<StageInterface *>&
+    constructor_arg: true
+    init_with: "get_dummy_stages_ref()"
+    getter: true
+    setter: true
+  - name: dummy_stages
+    type: std::vector<StageInterface *>
+    init_with: "{}"
+    static: true
+    getter_ref: true
+functions:
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+  - name: execute
+    virtual: true
+    override: true
+    type: bool
+    body: |
+      std::string component_name = last_component_navigator_selection;
+
+      NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name);
+      std::string quintessence_filename = std::string("/Users/markoates/Repos/hexagon/") + project_component_filename_generator.generate_quintessence_filename();
+
+      std::string filename = quintessence_filename;
+
+      std::vector<std::string> file_contents = {};
+      if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
+
+      float one_third_screen_width = display_default_width / 3;
+      int number_of_files = 0;
+
+      placement3d place(one_third_screen_width*number_of_files, 0, 0);
+      place.size = vec3d(display_default_width/2, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+      place.align = vec3d(0.5, 0.5, 0.0);
+      place.scale = vec3d(0.9, 0.9, 0.0);
+
+      CodeEditor::Stage *quintessence_file_stage = new CodeEditor::Stage(filename);
+
+      quintessence_file_stage->set_place(place);
+      quintessence_file_stage->set_content(file_contents);
+      stages.push_back(quintessence_file_stage);
+
+      return true;
+    body_dependency_symbols:
+      - NcursesArt::ProjectFilenameGenerator
+      - read_file
+      - placement3d
+      - CodeEditor::Stage
+dependencies:
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]
+  - symbol: NcursesArt::ProjectFilenameGenerator
+    headers: [ NcursesArt/ProjectFilenameGenerator.hpp ]
+  - symbol: read_file
+    headers: [ Hexagon/util.hpp ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
+  - symbol: CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: std::vector<StageInterface *>&
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: std::vector<StageInterface *>
+    headers: [ vector, Hexagon/StageInterface.hpp ]
