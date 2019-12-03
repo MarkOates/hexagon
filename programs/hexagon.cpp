@@ -886,11 +886,11 @@ public:
       place.align = vec3d(0.5, 0.5, 0.0);
       place.scale = vec3d(0.9, 0.9, 0.0);
 
-      CodeEditor::Stage *stage = new CodeEditor::Stage(filename);
+      CodeEditor::Stage *quintessence_file_stage = new CodeEditor::Stage(filename);
 
-      stage->set_place(place);
-      stage->set_content(file_contents);
-      stages.push_back(stage);
+      quintessence_file_stage->set_place(place);
+      quintessence_file_stage->set_content(file_contents);
+      stages.push_back(quintessence_file_stage);
 
       return true;
    }
