@@ -387,7 +387,6 @@ public:
 
    bool is_current_stage_a_modal()
    {
-      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       StageInterface *frontmost_stage = get_frontmost_stage();
       if (!frontmost_stage)
       {
@@ -399,7 +398,6 @@ public:
 
    bool is_current_stage_a_regex_input_box()
    {
-      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       StageInterface *frontmost_stage = get_frontmost_stage();
       if (!frontmost_stage)
       {
@@ -593,8 +591,9 @@ public:
 
    bool set_regex_input_box_modal_to_insert_mode()
    {
-      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
-      get_frontmost_stage()->process_local_event(CodeEditor::EventController::SET_INSERT_MODE);
+      StageInterface *frontmost_stage = get_frontmost_stage();
+      if (!frontmost_stage) return false;
+      frontmost_stage->process_local_event(CodeEditor::EventController::SET_INSERT_MODE);
       return true;
    }
 
@@ -739,8 +738,9 @@ public:
 
    bool jump_to_next_code_point_on_stage()
    {
-      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
-      get_frontmost_stage()->process_local_event(CodeEditor::EventController::JUMP_TO_NEXT_CODE_POINT);
+      StageInterface *frontmost_stage = get_frontmost_stage();
+      if (!frontmost_stage) return false;
+      frontmost_stage->process_local_event(CodeEditor::EventController::JUMP_TO_NEXT_CODE_POINT);
       return true;
    }
 
@@ -754,8 +754,9 @@ public:
 
    bool offset_first_line_to_vertically_center_cursor_on_stage()
    {
-      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
-      get_frontmost_stage()->process_local_event(CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
+      StageInterface *frontmost_stage = get_frontmost_stage();
+      if (!frontmost_stage) return false;
+      frontmost_stage->process_local_event(CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
       return true;
    }
 
@@ -767,7 +768,6 @@ public:
 
    bool push_component_navigator_selection()
    {
-      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       StageInterface *frontmost_stage_interface = get_frontmost_stage();
       if (!frontmost_stage_interface || !(frontmost_stage_interface->get_type() == StageInterface::COMPONENT_NAVIGATOR))
       {
@@ -786,7 +786,6 @@ public:
 
    bool push_file_navigator_selection()
    {
-      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
       StageInterface *frontmost_stage_interface = get_frontmost_stage();
       if (!frontmost_stage_interface || !(frontmost_stage_interface->get_type() == StageInterface::FILE_NAVIGATOR))
       {
@@ -891,8 +890,10 @@ public:
 
    bool submit_current_modal()
    {
-      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
-      switch (get_frontmost_stage()->get_type())
+      StageInterface *frontmost_stage = get_frontmost_stage();
+      if (!frontmost_stage) return false;
+
+      switch (frontmost_stage->get_type())
       {
       case StageInterface::ONE_LINE_INPUT_BOX:
          process_local_event(SAVE_CURRENT_STAGE);
@@ -1090,7 +1091,6 @@ public:
       if (!event_caught)
       {
          //if (file_navigator.get_visible_and_active()) file_navigator.process_event(event);
-         OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
          StageInterface *frontmost_stage = get_frontmost_stage();
          if (frontmost_stage) frontmost_stage->process_event(event);
       }
