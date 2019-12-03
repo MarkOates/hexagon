@@ -48,7 +48,8 @@
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
 
 
-#define OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE (std::cout << "calling get_fontmost_stage() on function " << __FUNCTION__ << std::endl);
+//#define OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE (std::cout << "calling get_fontmost_stage() on function " << __FUNCTION__ << std::endl)
+#define OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE (true)
 
 
 
@@ -344,19 +345,22 @@ public:
 
    StageInterface *get_frontmost_stage()
    {
-      if (stages.size() == 0)
-      {
-         std::stringstream error_message;
-         error_message << "Attempted to get front-most stage, but none was present." << std::endl;
-         throw std::runtime_error(error_message.str());
-      }
+      if (stages.size() == 0) return nullptr;
       return stages.back();
    }
 
-   CodeEditor::Stage *get_frontmost_stage_stage() // TODO: rename this function to get_frontmost_code_editor_stage()
+   CodeEditor::Stage *get_frontmost_code_editor_stage() // TODO: rename this function to get_frontmost_code_editor_stage()
    {
-      OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
-      StageInterface::type_t type = get_frontmost_stage()->get_type();
+      StageInterface *frontmost_stage = get_frontmost_stage();
+      if (!frontmost_stage)
+      {
+         std::stringstream error_message;
+         error_message << "Attempted to get_frontmost_code_editor_stage, but no frontmost_stage was present." << std::endl;
+         std::cout << error_message.str();
+         return nullptr;
+         //throw std::runtime_error(error_message.str());
+      }
+      StageInterface::type_t type = frontmost_stage->get_type();
       if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
       {
          return static_cast<CodeEditor::Stage *>(get_frontmost_stage());
@@ -364,8 +368,10 @@ public:
       else
       {
          std::stringstream error_message;
-         error_message << "Attempted to get_frontmost_stage_stage, but none was present." << std::endl;
-         throw std::runtime_error(error_message.str());
+         error_message << "Attempted to get_frontmost_code_editor_stage, but there is no stage of the expected type." << std::endl;
+         std::cout << error_message.str();
+         return nullptr;
+         //throw std::runtime_error(error_message.str());
       }
       return nullptr;
    }
@@ -384,7 +390,7 @@ public:
 
    bool is_current_stage_in_edit_mode()
    {
-      CodeEditor::Stage *frontmost_stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *frontmost_stage = get_frontmost_code_editor_stage();
       if (!frontmost_stage)
       {
          std::cout << "Warning: attempting to infer if is_current_stage_in_edit_mode() but no frontmost stage exists" << std::endl;
@@ -433,7 +439,7 @@ public:
 
    bool run_project_tests()
    {
-      CodeEditor::Stage *stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
       if (!stage) throw std::runtime_error("cannot run tests on current stage -- not a stage stage");
 
       std::string test_output = RailsMinitestTestRunner(stage->get_filename()).run();
@@ -468,7 +474,7 @@ public:
 
    bool attempt_to_flip_to_correlated_component_test_file()
    {
-      CodeEditor::Stage *stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
       // get current stage's filename
       std::string stage_filename = stage->get_filename();
       std::cout << "SAAAHHTAGE FILENAMEEE:::::: " << stage_filename << std::endl;
@@ -525,7 +531,7 @@ public:
 
    bool attempt_to_flip_to_correlated_component_quintessence_file()
    {
-      CodeEditor::Stage *stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
       // get current stage's filename
       std::string stage_filename = stage->get_filename();
       std::cout << "SAAAHHTAGE FILENAMEEE:::::: " << stage_filename << std::endl;
@@ -582,10 +588,10 @@ public:
 
    bool save_current_stage()
    {
-      CodeEditor::Stage *stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
       if (!stage) throw std::runtime_error("Cannot save_current_stage; current stage is not a stage stage");
 
-      get_frontmost_stage_stage()->save_file();
+      get_frontmost_code_editor_stage()->save_file();
       process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
 
       return true;
@@ -593,7 +599,7 @@ public:
 
    bool refresh_regex_hilights_on_stage()
    {
-      CodeEditor::Stage *stage = get_frontmost_stage_stage();
+      CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
       if (!stage) throw std::runtime_error("Cannot refresh_regex_hilights_on_stage; current stage is not a stage stage");
       stage->refresh_regex_message_points();
       return true;
@@ -733,11 +739,16 @@ public:
 
    bool destroy_topmost_stage()
    {
-      if (stages.size() == 1) std::cout << "WARNING: destroying topmost stage. There is only 1 stage in the system and there will be none after this action." << std::endl;
-      //if (stages.size() == 1) throw std::runtime_error("Cannot destroy current modal. There is only 1 stage in the system");
-      delete stages.back();
-      stages.pop_back();
-      return true;
+      if (stages.size() >= 1)
+      {
+         delete stages.back();
+         stages.pop_back();
+         return true;
+      }
+      else
+      {
+         throw std::runtime_error("attempted to destroy_topmost_stage(), but no stages are present");
+      }
    }
 
    bool jump_to_next_code_point_on_stage()
@@ -1094,7 +1105,8 @@ public:
       {
          //if (file_navigator.get_visible_and_active()) file_navigator.process_event(event);
          OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE;
-         get_frontmost_stage()->process_event(event);
+         StageInterface *frontmost_stage = get_frontmost_stage();
+         if (frontmost_stage) frontmost_stage->process_event(event);
       }
    }
 
