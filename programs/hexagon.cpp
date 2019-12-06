@@ -295,7 +295,7 @@ public:
 
    std::string get_default_navigator_directory()
    {
-      config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
+      return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
    }
 };
 const std::string SystemConfig::DEFAULT_NAVIGATOR_DIRECTORY_KEY = "default_navigator_directory";
@@ -312,7 +312,6 @@ public:
    Motion &motion;
    std::string last_file_navigator_selection;
    std::string last_component_navigator_selection;
-   std::string default_navigator_directory;
    SystemConfig config;
 
    //RerunOutputWatcher *rerun_output_watcher;
@@ -327,7 +326,6 @@ public:
       , motion(motion)
       , last_file_navigator_selection("")
       , last_component_navigator_selection("")
-      , default_navigator_directory("/Users/markoates/Repos/hexagon")
       , config()
    {
       config.initialize();
@@ -351,6 +349,11 @@ public:
       //process_local_event(SPAWN_RERUN_OUTPUT_WATCHER);
       process_local_event(SPAWN_FILE_NAVIGATOR);
       //process_local_event(REFRESH_RERUN_OUTPUT_WATCHERS);
+   }
+
+   std::string get_default_navigator_directory()
+   {
+      return config.get_default_navigator_directory();
    }
 
    // util
@@ -666,7 +669,7 @@ public:
    {
       //placement3d component_navigator_initial_place = component_navigator_initial_place;
      
-      Hexagon::ComponentNavigator::Stage *component_navigator = new Hexagon::ComponentNavigator::Stage(); //(default_navigator_directory);
+      Hexagon::ComponentNavigator::Stage *component_navigator = new Hexagon::ComponentNavigator::Stage(get_default_navigator_directory());
       component_navigator->process_local_event("refresh_list");
       component_navigator->set_place(component_navigator_initial_place);
       stages.push_back(component_navigator);
@@ -691,7 +694,7 @@ public:
       //place.scale = vec3d(0.8, 0.8, 0.0);
       //place.rotation = vec3d(0.0, 0.03, 0.0);
 
-      Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(default_navigator_directory);
+      Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(get_default_navigator_directory());
       file_navigator->process_local_event("refresh_list");
       file_navigator->set_place(file_navigator_initial_place);
       //file_navigator.set_child_nodes();
@@ -899,6 +902,7 @@ public:
    bool attempt_to_create_stage_from_last_component_navigator_selection()
    {
       Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection action(
+            get_default_navigator_directory(),
             last_component_navigator_selection,
             get_display_default_width(),
             get_display_default_height(),
