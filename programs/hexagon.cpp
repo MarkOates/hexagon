@@ -14,6 +14,7 @@
 #include <Blast/KeyboardCommandMapper.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 #include <lib/camera.h>
+#include <AllegroFlare/Config.hpp>
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Hexagon/Logo.hpp>
@@ -273,6 +274,33 @@ std::string remove_absolute_path_components_from_project_filename(
 }
 
 
+class SystemConfig
+{
+private:
+   static const std::string DEFAULT_NAVIGATOR_DIRECTORY_KEY;
+
+   std::string config_filename;
+   AllegroFlare::Config config;
+
+public:
+   SystemConfig()
+      : config_filename("/Users/markoates/Repos/me/config/hexagon.boot.cfg")
+      , config(config_filename)
+   {}
+
+   void initialize()
+   {
+      config.load();
+   }
+
+   std::string get_default_navigator_directory()
+   {
+      config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
+   }
+};
+const std::string SystemConfig::DEFAULT_NAVIGATOR_DIRECTORY_KEY = "default_navigator_directory";
+
+
 class System
 {
 public:
@@ -285,6 +313,7 @@ public:
    std::string last_file_navigator_selection;
    std::string last_component_navigator_selection;
    std::string default_navigator_directory;
+   SystemConfig config;
 
    //RerunOutputWatcher *rerun_output_watcher;
 
@@ -299,7 +328,10 @@ public:
       , last_file_navigator_selection("")
       , last_component_navigator_selection("")
       , default_navigator_directory("/Users/markoates/Repos/hexagon")
+      , config()
    {
+      config.initialize();
+
       file_navigator_initial_place.size = vec3d(500, 600, 0);
       file_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
       file_navigator_initial_place.scale = vec3d(0.8, 0.8, 1.0);
