@@ -3,6 +3,11 @@ parent_classes:
     scope: public
     init_with: "\"System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection\", ActionData()"
 properties:
+  - name: project_path
+    type: std::string
+    init_with: "\"/Users/markoates/Repos/hexagon/\""
+    constructor_arg: true
+    getter: true
   - name: last_component_navigator_selection
     type: std::string
     init_with: "\"\""
@@ -38,19 +43,35 @@ functions:
       std::string component_name = last_component_navigator_selection;
 
       NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name, false);
-      std::string quintessence_filename = std::string("/Users/markoates/Repos/hexagon/") + project_component_filename_generator.generate_quintessence_filename();
-      std::string test_src_filename = std::string("/Users/markoates/Repos/hexagon/") + project_component_filename_generator.generate_test_src_filename();
-
-
-      std::cout << "TEST_SRC" << test_src_filename << std::endl;
-      std::cout << "TEST_SRC" << test_src_filename << std::endl;
-      std::cout << "TEST_SRC" << test_src_filename << std::endl;
-      std::cout << "TEST_SRC" << test_src_filename << std::endl;
-      std::cout << "TEST_SRC" << test_src_filename << std::endl;
-      std::cout << "TEST_SRC" << test_src_filename << std::endl;
+      std::string quintessence_filename = project_path + project_component_filename_generator.generate_quintessence_filename();
+      std::string test_src_filename = project_path + project_component_filename_generator.generate_test_src_filename();
 
       std::string filename = quintessence_filename;
       std::string test_filename = test_src_filename;
+
+      std::vector<std::string> missing_files = {};
+
+      if (!Blast::FileExistenceChecker(filename).exists()) missing_files.push_back(filename);
+      if (!Blast::FileExistenceChecker(test_filename).exists()) missing_files.push_back(test_filename);
+
+      if (!missing_files.empty())
+      {
+         std::stringstream error_message;
+         error_message << "The following files are missing and cannot be opened: [";
+         for (auto &missing_file : missing_files)
+         {
+            error_message << "\"" << missing_file << "\"";
+         }
+         error_message << "]";
+         throw std::runtime_error(error_message.str());
+      }
+
+      std::cout << "TEST_SRC" << test_src_filename << std::endl;
+      std::cout << "TEST_SRC" << test_src_filename << std::endl;
+      std::cout << "TEST_SRC" << test_src_filename << std::endl;
+      std::cout << "TEST_SRC" << test_src_filename << std::endl;
+      std::cout << "TEST_SRC" << test_src_filename << std::endl;
+      std::cout << "TEST_SRC" << test_src_filename << std::endl;
 
       std::vector<std::string> file_contents = {};
       if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected component quintessence file");
@@ -90,15 +111,27 @@ functions:
 
       return true;
     body_dependency_symbols:
+      - Blast::FileExistenceChecker
       - NcursesArt::ProjectFilenameGenerator
+      - std::stringstream
+      - std::vector
+      - std::string
       - read_file
       - placement3d
       - CodeEditor::Stage
 dependencies:
+  - symbol: std::vector
+    headers: [ vector ]
+  - symbol: std::string
+    headers: [ string ]
+  - symbol: std::stringstream
+    headers: [ sstream ]
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
   - symbol: NcursesArt::ProjectFilenameGenerator
     headers: [ NcursesArt/ProjectFilenameGenerator.hpp ]
+  - symbol: Blast::FileExistenceChecker
+    headers: [ Blast/FileExistenceChecker.hpp ]
   - symbol: read_file
     headers: [ Hexagon/util.hpp ]
   - symbol: placement3d

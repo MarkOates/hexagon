@@ -1,7 +1,11 @@
 
 
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
+#include <Blast/FileExistenceChecker.hpp>
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
+#include <sstream>
+#include <vector>
+#include <string>
 #include <Hexagon/util.hpp>
 #include <allegro_flare/placement3d.h>
 #include <Hexagon/CodeEditor/Stage.hpp>
@@ -18,8 +22,9 @@ namespace Action
 std::vector<StageInterface *> AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::dummy_stages = {};
 
 
-AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection(std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages)
+AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection(std::string project_path, std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages)
    : ::Action("System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection", ActionData())
+   , project_path(project_path)
    , last_component_navigator_selection(last_component_navigator_selection)
    , display_default_width(display_default_width)
    , display_default_height(display_default_height)
@@ -36,6 +41,12 @@ AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::~AttemptToCreate
 void AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::set_stages(std::vector<StageInterface *>& stages)
 {
    this->stages = stages;
+}
+
+
+std::string AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::get_project_path()
+{
+   return project_path;
 }
 
 
@@ -61,19 +72,35 @@ bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::execute()
 std::string component_name = last_component_navigator_selection;
 
 NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name, false);
-std::string quintessence_filename = std::string("/Users/markoates/Repos/hexagon/") + project_component_filename_generator.generate_quintessence_filename();
-std::string test_src_filename = std::string("/Users/markoates/Repos/hexagon/") + project_component_filename_generator.generate_test_src_filename();
-
-
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
+std::string quintessence_filename = project_path + project_component_filename_generator.generate_quintessence_filename();
+std::string test_src_filename = project_path + project_component_filename_generator.generate_test_src_filename();
 
 std::string filename = quintessence_filename;
 std::string test_filename = test_src_filename;
+
+std::vector<std::string> missing_files = {};
+
+if (!Blast::FileExistenceChecker(filename).exists()) missing_files.push_back(filename);
+if (!Blast::FileExistenceChecker(test_filename).exists()) missing_files.push_back(test_filename);
+
+if (!missing_files.empty())
+{
+   std::stringstream error_message;
+   error_message << "The following files are missing and cannot be opened: [";
+   for (auto &missing_file : missing_files)
+   {
+      error_message << "\"" << missing_file << "\"";
+   }
+   error_message << "]";
+   throw std::runtime_error(error_message.str());
+}
+
+std::cout << "TEST_SRC" << test_src_filename << std::endl;
+std::cout << "TEST_SRC" << test_src_filename << std::endl;
+std::cout << "TEST_SRC" << test_src_filename << std::endl;
+std::cout << "TEST_SRC" << test_src_filename << std::endl;
+std::cout << "TEST_SRC" << test_src_filename << std::endl;
+std::cout << "TEST_SRC" << test_src_filename << std::endl;
 
 std::vector<std::string> file_contents = {};
 if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected component quintessence file");
