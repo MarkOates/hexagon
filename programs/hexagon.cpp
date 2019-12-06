@@ -347,7 +347,7 @@ public:
       //ALLEGRO_FS_ENTRY *current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
       //file_navigator.set_file_system_entries(get_directory_listing_recursive(al_get_current_directory()));
       //process_local_event(SPAWN_RERUN_OUTPUT_WATCHER);
-      process_local_event(SPAWN_FILE_NAVIGATOR);
+      process_local_event(SPAWN_COMPONENT_NAVIGATOR);
       //process_local_event(REFRESH_RERUN_OUTPUT_WATCHERS);
    }
 
