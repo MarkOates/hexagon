@@ -166,8 +166,9 @@ bool php::file_put_contents(std::string filename, std::string contents)
 
 // trim from start
 std::string php::ltrim(std::string &s) {
-   s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
-   return s;
+   throw std::runtime_error("php::ltrim has been depreciated since c++17, ptr_fun needs to be upgraded");
+   //s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
+   //return s;
 }
 
 
@@ -175,8 +176,9 @@ std::string php::ltrim(std::string &s) {
 
 // trim from end
 std::string php::rtrim(std::string &s) {
-   s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
-   return s;
+   throw std::runtime_error("php::ltrim has been depreciated since c++17, ptr_fun needs to be upgraded");
+   //s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+   //return s;
 }
 
 
