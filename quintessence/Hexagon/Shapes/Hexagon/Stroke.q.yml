@@ -1,0 +1,43 @@
+properties:
+  - name: start
+    type: float
+    constructor_arg: true
+    init_with: 0
+    getter: true
+  - name: end
+    type: float
+    constructor_arg: true
+    init_with: 0
+    getter: true
+  - name: color
+    type: ALLEGRO_COLOR
+    constructor_arg: true
+    init_with: "default_color()"
+    getter: true
+  - name: thickness
+    type: float
+    constructor_arg: true
+    init_with: 1
+    getter: true
+functions:
+  - name: default_color
+    type: ALLEGRO_COLOR
+    static: true
+    body_symbol_dependencies: [ 'ALLEGRO_COLOR' ]
+    body: |
+      ALLEGRO_COLOR c;
+      c.r = 188/255.0f;
+      c.g = 45/255.0f;
+      c.b = 72/255.0f;
+      c.a = 1.0;
+      return c;
+dependencies:
+  - symbol: vec2d
+    headers: [ 'allegro_flare/vec2d.h' ]
+  - symbol: allegro_flare::path2d
+    headers: [ 'allegro_flare/path2d.h' ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: sqrt
+    headers: [ 'cmath' ]
+
