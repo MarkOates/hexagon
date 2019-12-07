@@ -3,6 +3,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_color.h>
+#include <allegro5/allegro_image.h>
 #include <Blast/KeyboardCommandMapper.hpp>
 
 
@@ -51,7 +52,7 @@ void render_hexagons()
       { 11, 1, al_color_name("dodgerblue"), 6 },
    }).render();
 
-   Hexagon::Shapes::Hexagon::Renderer(radius*2, radius, radius, {
+   Hexagon::Shapes::Hexagon::Renderer(radius*1.75, radius, radius, {
       { 8, 10, al_color_name("red"), 6 },
       { 11, 7, al_color_name("brown"), 3 },
    }).render();
@@ -69,6 +70,7 @@ void run_program()
 {
    al_init();
    al_init_font_addon();
+   al_init_image_addon();
    al_init_ttf_addon();
    al_create_display(display_w, display_h);
 
@@ -86,6 +88,8 @@ void run_program()
    al_clear_to_color(al_color_name("black"));
 
    render_hexagons();
+
+   al_save_bitmap("/Users/markoates/Repos/hexagon/tmp/render.png", al_get_backbuffer(display));
 
    al_flip_display();
 
