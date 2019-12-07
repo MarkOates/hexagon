@@ -30,14 +30,6 @@ void Renderer::draw_selections(int cell_width, int cell_height)
 
 
 
-void Renderer::draw_cursor(bool is_focused, int cursor_x, float _cursor_y, float _cell_width, CodeEditor::Stage::mode_t mode)
-{
-   Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_x, _cursor_y, _cell_width, cell_height, mode);
-   cursor_renderer.render();
-}
-
-
-
 void Renderer::render_code_lines(placement3d &place)
 {
    // render cursor
@@ -49,7 +41,8 @@ void Renderer::render_code_lines(placement3d &place)
    CodeEditor::Stage::mode_t mode = stage->get_mode();
    bool is_focused = true;
 
-   draw_cursor(is_focused, cursor_x, _cursor_y, _cell_width, mode);
+   Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_x, _cursor_y, _cell_width, cell_height, mode, is_focused);
+   cursor_renderer.render();
 
 
 

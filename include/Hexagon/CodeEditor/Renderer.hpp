@@ -23,7 +23,7 @@ namespace CodeEditor
       int cell_height;
       ALLEGRO_FONT *font;
 
-      void draw_cursor(bool is_focused, int cursor_x, float _cursor_y, float _cell_width, CodeEditor::Stage::mode_t mode);
+      //void draw_cursor(bool is_focused, int cursor_x, float _cursor_y, float _cell_width, CodeEditor::Stage::mode_t mode);
       void render_code_lines(placement3d &place);
       void render_raw();
       void draw_selections(int cell_width, int cell_height);
