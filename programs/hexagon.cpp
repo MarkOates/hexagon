@@ -15,6 +15,7 @@
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 #include <lib/camera.h>
 #include <AllegroFlare/Config.hpp>
+#include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Hexagon/Logo.hpp>
@@ -313,6 +314,8 @@ public:
    std::string last_file_navigator_selection;
    std::string last_component_navigator_selection;
    SystemConfig config;
+   std::string global_font_resource_filename;
+   int global_font_size;
 
    //RerunOutputWatcher *rerun_output_watcher;
 
@@ -327,6 +330,9 @@ public:
       , last_file_navigator_selection("")
       , last_component_navigator_selection("")
       , config()
+      , global_font_resource_filename("consolas.ttf")
+      , global_font_size(-22)
+
    {
       config.initialize();
 
@@ -354,6 +360,13 @@ public:
    std::string get_default_navigator_directory()
    {
       return config.get_default_navigator_directory();
+   }
+
+   std::string get_global_font_str()
+   {
+      std::stringstream result;
+      result << global_font_resource_filename << " " << global_font_size;
+      return result.str();
    }
 
    // util
@@ -1282,6 +1295,8 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    al_flip_display();
 
    Motion motion;
+   AllegroFlare::FontBin fonts;
+   fonts.set_path("data/fonts");
 
 
    std::string first_filename = filenames.empty() ? "" : filenames[0];
@@ -1389,7 +1404,8 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
          for (auto &stage : system.stages)
          {
             bool is_focused = (system.get_frontmost_stage() == stage);
-            stage->render(is_focused, display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+            ALLEGRO_FONT *font = fonts[system.get_global_font_str()];
+            stage->render(is_focused, display, font, al_get_text_width(font, " "), al_get_font_line_height(font));
          }
          //system.file_navigator.render(file_navigator_placement, consolas_font);
          //rudimentary_camera_place.restore_transform();
