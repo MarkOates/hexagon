@@ -1,0 +1,35 @@
+properties:
+  - name: x
+    type: float
+    init_with: 0
+    constructor_arg: true
+  - name: y
+    type: float
+    init_with: 0
+    constructor_arg: true
+  - name: width
+    type: float
+    init_with: 1
+    constructor_arg: true
+  - name: height
+    type: float
+    init_with: 1
+    constructor_arg: true
+functions:
+  - name: render
+    type: void
+    body: |
+      ALLEGRO_COLOR cursor_color = al_color_name("yellow");
+      float cursor_thickness = 1.0;
+      al_draw_rectangle(x, y, width, height, cursor_color, cursor_thickness);
+    body_dependency_symbols:
+      - ALLEGRO_COLOR
+      - al_color_name
+      - al_draw_rectangle
+dependencies:
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_color_name
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_draw_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
