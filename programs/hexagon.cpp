@@ -637,16 +637,6 @@ public:
       return true;
    }
 
-   bool increase_font_size()
-   {
-      global_font_size -= 1;
-   }
-
-   bool decrease_font_size()
-   {
-      global_font_size += 1;
-   }
-
    bool refresh_regex_hilights_on_stage()
    {
       CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
@@ -994,8 +984,6 @@ public:
    static const std::string DESTROY_ALL_CODE_EDITOR_STAGES;
    static const std::string ESCAPE_CURRENT_MODAL;
    static const std::string HIDE_FILE_NAVIGATOR;
-   static const std::string INCREASE_FONT_SIZE;
-   static const std::string DECREASE_FONT_SIZE;
    static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE;
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
@@ -1040,8 +1028,6 @@ public:
          else if (event_name == PUSH_COMPONENT_NAVIGATOR_SELECTION) { push_component_navigator_selection(); executed = true; }
          else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { refresh_regex_hilights_on_stage(); executed = true; }
          else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
-         else if (event_name == INCREASE_FONT_SIZE) { increase_font_size(); executed = true; }
-         else if (event_name == DECREASE_FONT_SIZE) { decrease_font_size(); executed = true; }
          else if (event_name == ADD_FILE_IS_UNSAVED_NOTIFICATION) { add_file_is_unsaved_notification(); executed = true; }
          else if (event_name == REMOVE_FILE_IS_UNSAVED_NOTIFICATION) { remove_file_is_unsaved_notification(); executed = true; }
          else if (event_name == ROTATE_STAGE_LEFT) { rotate_stage_left(); executed = true; }
@@ -1091,8 +1077,6 @@ public:
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_RERUN_OUTPUT_WATCHERS, REFRESH_RERUN_OUTPUT_WATCHERS });
       //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { DESTROY_TOPMOST_STAGE, SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { DESTROY_TOPMOST_STAGE });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, false, false, false, { INCREASE_FONT_SIZE });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, false, false, false, { DECREASE_FONT_SIZE });
       if (is_current_stage_a_modal())
       {
          //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Q, false, false, false, false, { ESCAPE_CURRENT_MODAL, SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST });
@@ -1156,8 +1140,6 @@ public:
          { System::DESTROY_ALL_CODE_EDITOR_STAGES, "" },
          { System::ESCAPE_CURRENT_MODAL, "" },
          { System::HIDE_FILE_NAVIGATOR, "" },
-         { System::INCREASE_FONT_SIZE, "" },
-         { System::DECREASE_FONT_SIZE, "" },
          { System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE, "" },
          { System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE, "" },
          { System::REFRESH_REGEX_HILIGHTS_ON_STAGE, "" },
@@ -1209,8 +1191,6 @@ const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";
 const std::string System::DESTROY_ALL_CODE_EDITOR_STAGES = "DESTROY_ALL_CODE_EDITOR_STAGES";
 const std::string System::ESCAPE_CURRENT_MODAL = "ESCAPE_CURRENT_MODAL";
 const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
-const std::string System::INCREASE_FONT_SIZE = "INCREASE_FONT_SIZE";
-const std::string System::DECREASE_FONT_SIZE = "DECREASE_FONT_SIZE";
 const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
 const std::string System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE";
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
