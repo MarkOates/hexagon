@@ -13,6 +13,8 @@ namespace Hexagon
       static AllegroFlare::FontBin dummy_font_bin;
       AllegroFlare::FontBin& fonts;
       std::string title_text;
+      float screen_width;
+      float screen_height;
 
    public:
       Frame();

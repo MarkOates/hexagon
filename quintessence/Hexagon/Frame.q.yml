@@ -9,6 +9,12 @@ properties:
   - name: title_text
     type: std::string
     init_with: "\"\""
+  - name: screen_width
+    type: float
+    init_with: 1920
+  - name: screen_height
+    type: float
+    init_with: 1080
 functions:
   - name: get_dummy_font_bin
     type: AllegroFlare::FontBin&
@@ -21,12 +27,14 @@ functions:
       ALLEGRO_FONT *large_title_font = fonts["eurostyle.ttf 30"];
       ALLEGRO_COLOR color = al_color_name("dodgerblue");
       al_draw_text(large_title_font, color, 0, 0, 0, title_text.c_str());
+      al_draw_rectangle(0, 0, screen_width, screen_height, color, 1.0);
       return;
     body_dependency_symbols:
       - ALLEGRO_FONT*
       - ALLEGRO_COLOR
       - al_color_name
       - al_draw_text
+      - al_draw_rectangle
 dependencies:
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
@@ -34,6 +42,8 @@ dependencies:
     headers: [ allegro5/allegro_color.h ]
   - symbol: al_draw_text
     headers: [ allegro5/allegro_font.h ]
+  - symbol: al_draw_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro.h ]
   - symbol: AllegroFlare::FontBin&
