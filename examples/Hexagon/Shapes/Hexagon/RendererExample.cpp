@@ -44,6 +44,13 @@ void render_hexagons()
 
    Hexagon::Shapes::Hexagon::Renderer(0, 0, radius, {
       { 5, 13, al_color_name("green"), 3 },
+   }).render();
+
+   Hexagon::Shapes::Hexagon::Renderer(-9, 0, radius, {
+      { 2, 4, al_color_name("chartreuse"), 6 },
+   }).render();
+
+   Hexagon::Shapes::Hexagon::Renderer(9, 0, radius, {
       { 2, 4, al_color_name("chartreuse"), 6 },
    }).render();
 
@@ -56,11 +63,6 @@ void render_hexagons()
       { 8, 10, al_color_name("red"), 6 },
       { 11, 7, al_color_name("brown"), 3 },
    }).render();
-
-   //Hexagon::Shapes::Hexagon::Renderer(h_spacing, -radius, radius, {
-      //{ 10, 12, al_color_name("red"), 6 },
-      //{ 1, 9, al_color_name("brown"), 3 },
-   //}).render();
 
    place.restore_transform();
 }
