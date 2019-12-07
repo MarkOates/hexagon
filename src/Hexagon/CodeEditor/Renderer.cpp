@@ -32,34 +32,8 @@ void Renderer::draw_selections(int cell_width, int cell_height)
 
 void Renderer::draw_cursor(int cursor_x, float _cursor_y, float _cell_width, CodeEditor::Stage::mode_t mode)
 {
-   Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_x, _cursor_y, cursor_x + _cell_width, _cursor_y + cell_height, mode);
+   Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_x, _cursor_y, _cell_width, cell_height, mode);
    cursor_renderer.render();
-
-   //ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
-   //float cursor_outset = 2.0;
-   //float cursor_thickness = 3.0;
-
-   //switch(mode)
-   //{
-   //case CodeEditor::Stage::EDIT:
-      //{
-         //float x = cursor_x*_cell_width - cursor_outset;
-         //float y = _cursor_y*cell_height - cursor_outset;
-         //float x2 = cursor_x*_cell_width + _cell_width + cursor_outset;
-         //float y2 = _cursor_y*cell_height + cell_height;
-         //al_draw_rounded_rectangle(x, y, x2, y2, 2.0, 2.0, cursor_color, cursor_thickness);
-         //break;
-      //}
-   //case CodeEditor::Stage::INSERT:
-      //{
-         //float x = cursor_x*_cell_width;
-         //float y = _cursor_y*cell_height;
-         //float x2 = cursor_x*_cell_width;
-         //float y2 = _cursor_y*cell_height + cell_height;
-         //al_draw_line(x, y, x2, y2, cursor_color, cursor_thickness);
-         //break;
-      //}
-   //}
 }
 
 
