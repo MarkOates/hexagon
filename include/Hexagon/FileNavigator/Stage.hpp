@@ -51,7 +51,7 @@ namespace Hexagon
       void set_node_root_to_parent_directory();
       void set_node_root_to_current_selection_if_folder();
       void refresh_list();
-      void render(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
+      void render(bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       bool save_file();
       void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());

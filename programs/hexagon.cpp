@@ -1388,7 +1388,8 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
 
          for (auto &stage : system.stages)
          {
-            stage->render(display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
+            bool is_focused = (system.get_frontmost_stage() == stage);
+            stage->render(is_focused, display, consolas_font, al_get_text_width(consolas_font, " "), al_get_font_line_height(consolas_font));
          }
          //system.file_navigator.render(file_navigator_placement, consolas_font);
          //rudimentary_camera_place.restore_transform();

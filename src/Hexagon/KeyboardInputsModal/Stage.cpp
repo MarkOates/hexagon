@@ -19,7 +19,7 @@ Stage::~Stage()
 }
 
 
-void Stage::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
 {
    if (!display) throw std::runtime_error("[Stage] error: display cannot be a nullptr.");
    if (!font) throw std::runtime_error("[Stage] error: font cannot be a nullptr.");

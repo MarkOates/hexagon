@@ -86,7 +86,7 @@ executor.execute();
 
 }
 
-void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
+void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
 ALLEGRO_COLOR pass_color = al_color_name("aquamarine");
 ALLEGRO_COLOR running_color = al_color_name("sandybrown");

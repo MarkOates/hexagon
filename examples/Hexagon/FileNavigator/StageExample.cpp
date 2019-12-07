@@ -87,7 +87,7 @@ void run_program()
          stage->process_local_event(command);
       }
 
-      stage->render(nullptr, font);
+      stage->render(true, nullptr, font);
       al_flip_display();
 
       usleep(0.1 * 1000000);

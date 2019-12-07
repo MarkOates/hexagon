@@ -50,6 +50,9 @@ functions:
     virtual: true
     override: true
     parameters:
+      - name: is_focused
+        type: bool
+        default_argument: true
       - name: display
         type: ALLEGRO_DISPLAY*
         default_argument: nullptr

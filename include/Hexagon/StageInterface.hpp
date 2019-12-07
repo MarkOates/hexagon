@@ -38,7 +38,7 @@ public:
    void set_place(placement3d place);
    bool infer_is_modal(); // this should be removed from the base class
 
-   virtual void render(ALLEGRO_DISPLAY *display=nullptr, ALLEGRO_FONT *font=nullptr, int cell_width=0, int cell_height=0) = 0;
+   virtual void render(bool is_focused, ALLEGRO_DISPLAY *display=nullptr, ALLEGRO_FONT *font=nullptr, int cell_width=0, int cell_height=0) = 0;
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) = 0;
    virtual void process_event(ALLEGRO_EVENT &event) = 0;
 };

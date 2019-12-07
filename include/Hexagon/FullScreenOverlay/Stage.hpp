@@ -31,7 +31,7 @@ namespace Hexagon
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void initialize();
       void draw_design();
-      void render(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
+      void render(bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
       void draw();
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());

@@ -16,6 +16,7 @@ namespace CodeEditor
    class Renderer : public Hexagon::RendererInterface
    {
    private:
+      bool is_focused;
       ALLEGRO_DISPLAY *display;
       RenderCache render_cache;
       CodeEditor::Stage *stage;
@@ -29,7 +30,7 @@ namespace CodeEditor
       void draw_selections(int cell_width, int cell_height);
 
    public:
-      Renderer(CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height);
+      Renderer(bool is_focused, CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height);
       ~Renderer();
 
       virtual void render() override;

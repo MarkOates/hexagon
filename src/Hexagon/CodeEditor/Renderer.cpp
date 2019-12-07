@@ -39,7 +39,6 @@ void Renderer::render_code_lines(placement3d &place)
    float _cell_width = cell_width;
    float _cell_height = cell_height;
    CodeEditor::Stage::mode_t mode = stage->get_mode();
-   bool is_focused = true;
 
    Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_x, _cursor_y, _cell_width, cell_height, mode, is_focused);
    cursor_renderer.render();
@@ -181,8 +180,9 @@ void Renderer::render_raw()
 
 
 
-Renderer::Renderer(CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
+Renderer::Renderer(bool is_focused, CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
    : Hexagon::RendererInterface()
+   , is_focused(is_focused)
    , stage(stage)
    , font(font)
    , display(display)

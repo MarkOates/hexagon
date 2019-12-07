@@ -792,7 +792,7 @@ void Stage::render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, in
 
 
 
-void Stage::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
 {
    //place = this->place;
 
@@ -802,7 +802,7 @@ void Stage::render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width,
    }
    else
    {
-      CodeEditor::Renderer renderer(this, font, display, cell_width, cell_height);
+      CodeEditor::Renderer renderer(is_focused, this, font, display, cell_width, cell_height);
       renderer.render();
    }
 

@@ -142,7 +142,7 @@ namespace CodeEditor
       // complete
 
       void render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height);
-      void render(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) override;
+      void render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height) override;
       void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override;
       void process_event(ALLEGRO_EVENT &event) override;
    };

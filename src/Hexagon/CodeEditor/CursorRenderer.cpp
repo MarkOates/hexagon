@@ -47,6 +47,8 @@ float y = 0;
 float x2 = 1;
 float y2 = 1;
 
+ALLEGRO_COLOR halo_color = cursor_color;
+
 switch(mode)
 {
 case ::CodeEditor::Stage::EDIT:
@@ -75,10 +77,10 @@ default:
 if (focus)
 {
    int max_outset = 23;
-   for (int outset=0; outset<max_outset; outset++)
+   for (int outset=1; outset<max_outset; outset++)
    {
      float color_opacity = (1.0 - (float)outset / max_outset) * 0.25;
-     ALLEGRO_COLOR col = color::color(cursor_color, color_opacity);
+     ALLEGRO_COLOR col = color::color(halo_color, color_opacity);
      al_draw_rounded_rectangle(
        x - outset,
        y - outset,

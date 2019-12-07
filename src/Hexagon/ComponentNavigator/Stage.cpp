@@ -130,7 +130,7 @@ nodes = list.components();
 
 }
 
-void Stage::render(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
+void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
 if (!font) throw std::runtime_error("font missing");
 
