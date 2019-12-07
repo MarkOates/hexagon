@@ -1,0 +1,21 @@
+properties:
+  - name: fonts
+    type: FontBin&
+    init_with: nullptr
+  - name: title_text
+    type: std::string
+    init_with: "\"\""
+functions:
+  - name: render
+    type: void
+    body: |
+      ALLEGRO_FONT *large_title_font = fonts["eurostyle.ttf 30"];
+      ALLEGRO_COLOR color = al_color_name("dodgerblue");
+      al_draw_text(0, 0, color, large_title_font, title_text.c_str());
+      return;
+dependencies:
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro.h ]
+  - symbol: FontBin&
+    headers: [ AllegroFlare/FontBin.hpp ]
+  
