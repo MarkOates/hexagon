@@ -108,12 +108,15 @@ if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not o
 std::vector<std::string> test_file_contents = {};
 if (!::read_file(test_file_contents, test_filename)) throw std::runtime_error("Could not open the selected component test file");
 
+float width_scale_of_halfwidth = 0.8; //0.6180339;
+
 {
-  float horizontal_position = display_default_width/4;
+  float width = display_default_width/2 * width_scale_of_halfwidth;
+  float horizontal_position = 0;
 
   placement3d place(horizontal_position, 0, 0);
-  place.size = vec3d(display_default_width/2, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
-  place.align = vec3d(0.5, 0.5, 0.0);
+  place.size = vec3d(width, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+  place.align = vec3d(0.0, 0.5, 0.0);
   place.scale = vec3d(0.9, 0.9, 0.0);
 
   CodeEditor::Stage *test_file_stage = new CodeEditor::Stage(test_filename);
@@ -124,11 +127,12 @@ if (!::read_file(test_file_contents, test_filename)) throw std::runtime_error("C
 }
 
 {
-  float horizontal_position = -display_default_width/4;
+  float width = display_default_width/2 * width_scale_of_halfwidth;
+  float horizontal_position = 0;
 
   placement3d place(horizontal_position, 0, 0);
-  place.size = vec3d(display_default_width/2, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
-  place.align = vec3d(0.5, 0.5, 0.0);
+  place.size = vec3d(width, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+  place.align = vec3d(1.0, 0.5, 0.0);
   place.scale = vec3d(0.9, 0.9, 0.0);
 
   CodeEditor::Stage *quintessence_file_stage = new CodeEditor::Stage(filename);

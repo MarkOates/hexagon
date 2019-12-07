@@ -1,4 +1,8 @@
 properties:
+  - name: color
+    type: ALLEGRO_COLOR
+    init_with: "al_color_name(\"white\")"
+    constructor_arg: true
   - name: x
     type: float
     init_with: 0
@@ -42,6 +46,8 @@ functions:
       float y2 = 1;
 
       ALLEGRO_COLOR halo_color = cursor_color;
+
+      //al_draw_line(x, y, x, y2, cursor_color, cursor_thickness);
 
       switch(mode)
       {

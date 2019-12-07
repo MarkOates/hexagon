@@ -15,8 +15,9 @@ namespace CodeEditor
 {
 
 
-CursorRenderer::CursorRenderer(float x, float y, float width, float height, ::CodeEditor::Stage::mode_t mode, bool focus)
-   : x(x)
+CursorRenderer::CursorRenderer(ALLEGRO_COLOR color, float x, float y, float width, float height, ::CodeEditor::Stage::mode_t mode, bool focus)
+   : color(color)
+   , x(x)
    , y(y)
    , width(width)
    , height(height)
@@ -48,6 +49,8 @@ float x2 = 1;
 float y2 = 1;
 
 ALLEGRO_COLOR halo_color = cursor_color;
+
+//al_draw_line(x, y, x, y2, cursor_color, cursor_thickness);
 
 switch(mode)
 {

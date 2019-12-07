@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <allegro5/allegro_color.h>
 
 
 namespace Hexagon
@@ -11,6 +12,7 @@ namespace Hexagon
       class CursorRenderer
       {
       private:
+         ALLEGRO_COLOR color;
          float x;
          float y;
          float width;
@@ -19,7 +21,7 @@ namespace Hexagon
          bool focus;
 
       public:
-         CursorRenderer(float x=0, float y=0, float width=1, float height=1, ::CodeEditor::Stage::mode_t mode=::CodeEditor::Stage::EDIT, bool focus=true);
+         CursorRenderer(ALLEGRO_COLOR color=al_color_name("white"), float x=0, float y=0, float width=1, float height=1, ::CodeEditor::Stage::mode_t mode=::CodeEditor::Stage::EDIT, bool focus=true);
          ~CursorRenderer();
 
 
