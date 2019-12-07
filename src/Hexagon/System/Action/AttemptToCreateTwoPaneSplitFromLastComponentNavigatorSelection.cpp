@@ -109,21 +109,6 @@ std::vector<std::string> test_file_contents = {};
 if (!::read_file(test_file_contents, test_filename)) throw std::runtime_error("Could not open the selected component test file");
 
 {
-  float horizontal_position = -display_default_width/4;
-
-  placement3d place(horizontal_position, 0, 0);
-  place.size = vec3d(display_default_width/2, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
-  place.align = vec3d(0.5, 0.5, 0.0);
-  place.scale = vec3d(0.9, 0.9, 0.0);
-
-  CodeEditor::Stage *quintessence_file_stage = new CodeEditor::Stage(filename);
-
-  quintessence_file_stage->set_place(place);
-  quintessence_file_stage->set_content(file_contents);
-  stages.push_back(quintessence_file_stage);
-}
-
-{
   float horizontal_position = display_default_width/4;
 
   placement3d place(horizontal_position, 0, 0);
@@ -136,6 +121,21 @@ if (!::read_file(test_file_contents, test_filename)) throw std::runtime_error("C
   test_file_stage->set_place(place);
   test_file_stage->set_content(test_file_contents);
   stages.push_back(test_file_stage);
+}
+
+{
+  float horizontal_position = -display_default_width/4;
+
+  placement3d place(horizontal_position, 0, 0);
+  place.size = vec3d(display_default_width/2, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+  place.align = vec3d(0.5, 0.5, 0.0);
+  place.scale = vec3d(0.9, 0.9, 0.0);
+
+  CodeEditor::Stage *quintessence_file_stage = new CodeEditor::Stage(filename);
+
+  quintessence_file_stage->set_place(place);
+  quintessence_file_stage->set_content(file_contents);
+  stages.push_back(quintessence_file_stage);
 }
 
 return true;
