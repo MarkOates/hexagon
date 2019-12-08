@@ -18,10 +18,10 @@ namespace Action
 std::vector<StageInterface *> CreateThreeSplitFromComponent::dummy_stages = {};
 
 
-CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project_path, std::vector<StageInterface *>& stages, int display_default_width, int display_default_height)
+CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project_path, Blast::Project::Component component, std::vector<StageInterface *>& stages, int display_default_width, int display_default_height)
    : ::Action("System::Action::CreateThreeSplitFromComponent", ActionData())
    , project_path(project_path)
-   , component()
+   , component(component)
    , stages(stages)
    , display_default_width(display_default_width)
    , display_default_height(display_default_height)

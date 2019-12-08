@@ -25,7 +25,7 @@ namespace Hexagon
             static std::vector<StageInterface *> dummy_stages;
 
          public:
-            CreateThreeSplitFromComponent(std::string project_path="/Users/markoates/Repos/hexagon/", std::vector<StageInterface *>& stages=get_dummy_stages_ref(), int display_default_width=2430, int display_default_height=1350);
+            CreateThreeSplitFromComponent(std::string project_path="/Users/markoates/Repos/hexagon/", Blast::Project::Component component={}, std::vector<StageInterface *>& stages=get_dummy_stages_ref(), int display_default_width=2430, int display_default_height=1350);
             ~CreateThreeSplitFromComponent();
 
             void set_stages(std::vector<StageInterface *>& stages);

@@ -10,7 +10,8 @@ properties:
     getter: true
   - name: component
     type: Blast::Project::Component
-    init_with: ""
+    init_with: "{}"
+    constructor_arg: true
   - name: stages
     type: std::vector<StageInterface *>&
     constructor_arg: true
