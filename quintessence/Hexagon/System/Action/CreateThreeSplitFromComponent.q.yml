@@ -1,0 +1,69 @@
+parent_classes:
+  - class: ::Action
+    scope: public
+    init_with: "\"System::Action::CreateThreeSplitFromComponent\", ActionData()"
+properties:
+  - name: component
+    type: Blast::Project::Component
+    init_with: ""
+  - name: stages
+    type: std::vector<StageInterface *>&
+    constructor_arg: true
+    init_with: "get_dummy_stages_ref()"
+    getter: true
+    setter: true
+  - name: display_default_width
+    type: int
+    init_with: 2430
+    constructor_arg: true
+  - name: display_default_height
+    type: int
+    init_with: 1350
+    constructor_arg: true
+  - name: dummy_stages
+    type: std::vector<StageInterface *>
+    init_with: "{}"
+    static: true
+    getter_ref: true
+functions:
+  - name: place_stage
+    type: bool
+    parameters:
+      - name: filename
+        type: std::string
+        default_argument: "\"/foobar.txt\""
+      - name: file_contents
+        type: std::string
+        default_argument: "\"/Hello World\""
+      - name: place
+        type: placement3d
+        default_argument: "{}"
+    body: |
+      CodeEditor::Stage *file_stage = new CodeEditor::Stage(filename);
+      file_stage->set_place(place);
+      file_stage->set_content(file_contents);
+      stages.push_back(file_stage);
+
+      return true;
+  - name: execute
+    type: bool
+    body: |
+      float left_anchor = -display_default_width / 3;
+      float right_anchor = display_default_width / 3;
+
+      return true;
+    body_dependency_symbols:
+      - CodeEditor::Stage
+dependencies:
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
+  - symbol: CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: std::vector<StageInterface *>&
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: std::vector<StageInterface *>
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
