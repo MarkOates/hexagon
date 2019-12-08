@@ -962,7 +962,7 @@ public:
          process_local_event(PUSH_COMPONENT_NAVIGATOR_SELECTION);
          process_local_event(DESTROY_TOPMOST_STAGE);
          process_local_event(DESTROY_ALL_CODE_EDITOR_STAGES);
-         process_local_event(ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
+         process_local_event(CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
          break;
       default:
          throw std::runtime_error("submit_current_modal(): invalid modal type");

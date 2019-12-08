@@ -99,20 +99,20 @@ return project_path + Blast::ProjectComponentFilenameGenerator(component.get_nam
 
 bool CreateThreeSplitFromComponent::execute()
 {
-float left_anchor = -display_default_width / 3;
-float right_anchor = display_default_width / 3;
+float left_anchor = -display_default_width / 3 / 2;
+float right_anchor = display_default_width / 3 / 2;
 
+std::string test_filename = generate_test_filename();
 std::string header_filename = generate_header_filename();
 std::string source_filename = generate_source_filename();
-std::string test_filename = generate_test_filename();
 
-std::string header_file_contents = generate_header_filename();
-std::string source_file_contents = generate_source_filename();
-std::string test_file_contents = generate_test_filename();
+std::string header_file_contents = php::file_get_contents(generate_header_filename());
+std::string source_file_contents = php::file_get_contents(generate_source_filename());
+std::string test_file_contents = php::file_get_contents(generate_test_filename());
 
-place_stage(header_filename, header_file_contents, left_anchor, 1.0);
-place_stage(source_filename, source_file_contents, 0.0, 0.5);
 place_stage(test_filename, test_file_contents, right_anchor, 0.0);
+place_stage(source_filename, source_file_contents, 0.5, 0.5);
+place_stage(header_filename, header_file_contents, left_anchor, 1.0);
 
 return true;
 
