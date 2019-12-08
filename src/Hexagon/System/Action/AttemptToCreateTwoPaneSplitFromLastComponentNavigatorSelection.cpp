@@ -83,17 +83,17 @@ std::vector<std::string> missing_files = {};
 if (!Blast::FileExistenceChecker(filename).exists()) missing_files.push_back(filename);
 if (!Blast::FileExistenceChecker(test_filename).exists()) missing_files.push_back(test_filename);
 
-if (!missing_files.empty())
-{
-   std::stringstream error_message;
-   error_message << "The following files are missing and cannot be opened: [";
-   for (auto &missing_file : missing_files)
-   {
-      error_message << "\"" << missing_file << "\"";
-   }
-   error_message << "]";
-   throw std::runtime_error(error_message.str());
-}
+//if (!missing_files.empty())
+//{
+   //std::stringstream error_message;
+   //error_message << "The following files are missing and cannot be opened: [";
+   //for (auto &missing_file : missing_files)
+   //{
+      //error_message << "\"" << missing_file << "\"";
+   //}
+   //error_message << "]";
+   //throw std::runtime_error(error_message.str());
+//}
 
 std::cout << "TEST_SRC" << test_src_filename << std::endl;
 std::cout << "TEST_SRC" << test_src_filename << std::endl;
@@ -103,13 +103,14 @@ std::cout << "TEST_SRC" << test_src_filename << std::endl;
 std::cout << "TEST_SRC" << test_src_filename << std::endl;
 
 std::vector<std::string> file_contents = {};
-if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected component quintessence file");
+::read_file(file_contents, filename);
 
 std::vector<std::string> test_file_contents = {};
-if (!::read_file(test_file_contents, test_filename)) throw std::runtime_error("Could not open the selected component test file");
+::read_file(test_file_contents, test_filename);
 
 float width_scale_of_halfwidth = 0.8; //0.6180339;
 
+if (!test_file_contents.empty())
 {
   float width = display_default_width/2 * width_scale_of_halfwidth;
   float horizontal_position = 0;
@@ -126,6 +127,7 @@ float width_scale_of_halfwidth = 0.8; //0.6180339;
   stages.push_back(test_file_stage);
 }
 
+if (!file_contents.empty())
 {
   float width = display_default_width/2 * width_scale_of_halfwidth;
   float horizontal_position = 0;

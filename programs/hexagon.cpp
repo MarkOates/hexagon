@@ -913,9 +913,29 @@ public:
       return action.managed_execute();
    }
 
+   bool create_two_or_three_split_layout_from_last_component_navigator_selection()
+   {
+      Blast::Project::Component component(last_component_navigator_selection, get_default_navigator_directory());
+
+      if (component.has_only_source_and_header())
+      {
+         return create_three_split_from_last_component_navigator_selection();
+      }
+      else if (component.has_quintessence() || component.has_test())
+      {
+         return attempt_to_create_stage_from_last_component_navigator_selection();
+      }
+      else
+      {
+         std::cout << "cannot create_two_or_three_split_layout_from_last_component_navigator_selection because the component \"" << component.get_name() << "\" " \
+            "neither has a header/source combo nor a quintessence or test file." << std::endl;
+         return true;
+      }
+   }
+
    bool create_three_split_from_last_component_navigator_selection()
    {
-      Blast::Project::Component component(last_component_navigator_selection);
+      Blast::Project::Component component(last_component_navigator_selection, get_default_navigator_directory());
       Hexagon::System::Action::CreateThreeSplitFromComponent action(
          get_default_navigator_directory(),
          component,
@@ -963,7 +983,7 @@ public:
          process_local_event(PUSH_COMPONENT_NAVIGATOR_SELECTION);
          process_local_event(DESTROY_TOPMOST_STAGE);
          process_local_event(DESTROY_ALL_CODE_EDITOR_STAGES);
-         process_local_event(CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
+         process_local_event(CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
          break;
       default:
          throw std::runtime_error("submit_current_modal(): invalid modal type");
@@ -991,6 +1011,7 @@ public:
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
+   static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE;
    static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE;
    static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
@@ -1031,6 +1052,7 @@ public:
          if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_file_navigator_selection(); executed = true; }
          else if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_component_navigator_selection(); executed = true; }
          else if (event_name == CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { create_three_split_from_last_component_navigator_selection(); executed = true; }
+         else if (event_name == CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { create_two_or_three_split_layout_from_last_component_navigator_selection(); executed = true; }
          //else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
          else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE) { attempt_to_flip_to_correlated_component_quintessence_file(); executed = true; }
          else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE) { attempt_to_flip_to_correlated_component_test_file(); executed = true; }
@@ -1200,6 +1222,7 @@ const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
+const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE";
 const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
