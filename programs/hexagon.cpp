@@ -915,9 +915,10 @@ public:
 
    bool create_three_split_from_last_component_navigator_selection()
    {
+      Blast::Project::Component component(last_component_navigator_selection);
       Hexagon::System::Action::CreateThreeSplitFromComponent action(
          get_default_navigator_directory(),
-         Blast::Project::Component(last_component_navigator_selection),
+         component,
          stages,
          get_display_default_width(),
          get_display_default_height()
