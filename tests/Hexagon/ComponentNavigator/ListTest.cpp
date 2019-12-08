@@ -20,7 +20,7 @@ TEST(Hexagon_ComponentNavigator_ListTest, run__returns_the_expected_response)
       "Blast/StringSplitter",
    };
 
-   std::vector<std::string> actual_list = list.components();
+   std::vector<std::string> actual_list = list.component_names();
 
    EXPECT_EQ(expected_list, actual_list);
 }

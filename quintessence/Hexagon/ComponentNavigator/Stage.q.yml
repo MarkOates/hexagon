@@ -58,8 +58,8 @@ functions:
   - name: refresh_list
     body: |
       Hexagon::ComponentNavigator::List list(get_project_root());
-      std::vector<std::string> elements = list.components();
-      nodes = list.components();
+      std::vector<std::string> elements = list.component_names();
+      nodes = list.component_names();
     body_dependency_symbols:
       - Hexagon::ComponentNavigator::List
   - name: render

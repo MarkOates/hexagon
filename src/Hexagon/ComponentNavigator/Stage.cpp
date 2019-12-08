@@ -125,8 +125,8 @@ return nodes[get_cursor_position()];
 void Stage::refresh_list()
 {
 Hexagon::ComponentNavigator::List list(get_project_root());
-std::vector<std::string> elements = list.components();
-nodes = list.components();
+std::vector<std::string> elements = list.component_names();
+nodes = list.component_names();
 
 }
 

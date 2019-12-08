@@ -19,7 +19,7 @@ namespace Hexagon
          ~List();
 
 
-      std::vector<std::string> components();
+      std::vector<std::string> component_names();
       };
    }
 }
