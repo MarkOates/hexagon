@@ -24,27 +24,37 @@ From me far off, with others all too near.
 
 TEST(Hexagon_CodeRangeRendererTest, can_be_created_without_blowing_up)
 {
-   Hexagon::CodeRangeRenderer renderer;
+   std::vector<std::string> lines = {};
+   CodeRange range = { 0, 0, 0, 0 };
+   CodeRangeRenderer renderer(lines, range, 0, 10, 32);
 }
 
 TEST(Hexagon_CodeRangeRendererTest, the_expected_functions__without_initializing__raise_the_expected_errors)
 {
-   Hexagon::CodeRangeRenderer renderer;
+   std::vector<std::string> lines = {};
+   CodeRange range = { 0, 0, 0, 0 };
+   CodeRangeRenderer renderer(lines, range, 0, 10, 32);
 }
 
 TEST(Hexagon_CodeRangeRendererTest, render__renders_as_expected_on_a_single_line)
 {
-   Hexagon::CodeRangeRenderer renderer;
+   std::vector<std::string> lines = {};
+   CodeRange range = { 0, 0, 0, 0 };
+   CodeRangeRenderer renderer(lines, range, 0, 10, 32);
 }
 
 TEST(Hexagon_CodeRangeRendererTest, render__renders_the_expected_cursor_when_range_is_empty)
 {
-   Hexagon::CodeRangeRenderer renderer;
+   std::vector<std::string> lines = {};
+   CodeRange range = { 0, 0, 0, 0 };
+   CodeRangeRenderer renderer(lines, range, 0, 10, 32);
 }
 
 TEST(Hexagon_CodeRangeRendererTest, render__renders_red__if_the_cursor_extends_over_void_range)
 {
-   Hexagon::CodeRangeRenderer renderer;
+   std::vector<std::string> lines = {};
+   CodeRange range = { 0, 0, 0, 0 };
+   CodeRangeRenderer renderer(lines, range, 0, 10, 32);
 }
 
 
