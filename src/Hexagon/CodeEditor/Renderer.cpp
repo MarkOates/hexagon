@@ -39,10 +39,7 @@ void Renderer::render_code_lines(placement3d &place)
    float _cell_width = cell_width;
    float _cell_height = cell_height;
    CodeEditor::Stage::mode_t mode = stage->get_mode();
-   ALLEGRO_COLOR line_color = al_color_name("dodgerblue");
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
-
-   al_draw_line(0, 0, 0, place.size.x, line_color, 1.0);
 
    Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_color, cursor_x, _cursor_y, _cell_width, cell_height, mode, is_focused);
    cursor_renderer.render();
