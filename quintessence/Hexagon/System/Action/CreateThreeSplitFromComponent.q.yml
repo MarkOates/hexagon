@@ -32,6 +32,7 @@ properties:
     getter_ref: true
 functions:
   - name: place_stage
+    static: true
     type: bool
     parameters:
       - name: filename
