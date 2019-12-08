@@ -4,6 +4,7 @@
 #include <allegro_flare/placement3d.h>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
+#include <allegro_flare/useful_php.h>
 
 
 namespace Hexagon
@@ -59,6 +60,8 @@ std::vector<StageInterface *> &CreateThreeSplitFromComponent::get_dummy_stages_r
 
 bool CreateThreeSplitFromComponent::place_stage(std::string filename, std::string file_contents, float x, float align_x)
 {
+if (file_contents.empty()) return false;
+
 CodeEditor::Stage *file_stage = new CodeEditor::Stage(filename);
 
 float width = display_default_width/3;
@@ -102,6 +105,14 @@ float right_anchor = display_default_width / 3;
 std::string header_filename = generate_header_filename();
 std::string source_filename = generate_source_filename();
 std::string test_filename = generate_test_filename();
+
+std::string header_file_contents = generate_header_filename();
+std::string source_file_contents = generate_source_filename();
+std::string test_file_contents = generate_test_filename();
+
+place_stage(header_filename, header_file_contents, left_anchor, 1.0);
+place_stage(source_filename, source_file_contents, 0.0, 0.5);
+place_stage(test_filename, test_file_contents, right_anchor, 0.0);
 
 return true;
 
