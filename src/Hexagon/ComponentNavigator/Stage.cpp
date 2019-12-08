@@ -2,6 +2,7 @@
 
 #include <Hexagon/ComponentNavigator/Stage.hpp>
 #include <Hexagon/ComponentNavigator/List.hpp>
+#include <allegro_flare/color.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <Hexagon/FileSystemNode.hpp>
@@ -23,7 +24,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 Stage::Stage(std::string project_root)
    : StageInterface(StageInterface::COMPONENT_NAVIGATOR)
    , cursor_position(0)
-   , cursor_position_static(false)
+   , cursor_position_static(true)
    , selector_color(al_color_name("slategray"))
    , project_root(project_root)
    , nodes({})
@@ -54,7 +55,7 @@ void Stage::set_project_root(std::string project_root)
 }
 
 
-void Stage::set_nodes(std::vector<std::string> nodes)
+void Stage::set_nodes(std::vector<Blast::Project::Component> nodes)
 {
    this->nodes = nodes;
 }
@@ -78,7 +79,7 @@ std::string Stage::get_project_root()
 }
 
 
-std::vector<std::string> Stage::get_nodes()
+std::vector<Blast::Project::Component> Stage::get_nodes()
 {
    return nodes;
 }
@@ -115,18 +116,18 @@ return true;
 
 }
 
-std::string Stage::get_current_selection_or_spaced_empty_string()
+std::string Stage::get_current_selection_label_or_empty_string()
 {
-if (!current_selection_is_valid()) return " ";
-return nodes[get_cursor_position()];
+if (!current_selection_is_valid()) return "";
+return nodes[get_cursor_position()].get_name();
 
 }
 
 void Stage::refresh_list()
 {
 Hexagon::ComponentNavigator::List list(get_project_root());
-std::vector<std::string> elements = list.component_names();
-nodes = list.component_names();
+//std::vector<std::string> elements = list.component_names();
+nodes = list.components();
 
 }
 
@@ -177,8 +178,8 @@ ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
 ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
 
 float selector_y = line_height * cursor_position + cursor_y;
-std::string current_selection_text_or_empty_string = get_current_selection_or_spaced_empty_string();
-float selector_rectangle_width = al_get_text_width(font, current_selection_text_or_empty_string.c_str());
+std::string current_selection_label_or_empty_string = get_current_selection_label_or_empty_string();
+float selector_rectangle_width = al_get_text_width(font, current_selection_label_or_empty_string.c_str());
 float selector_rectangle_roundness = 0; //4;
 if (current_selection_is_valid())
 {
@@ -202,11 +203,30 @@ al_draw_text(font, node_root_font_color, pos_x, current_node_root_y_pos, 0, get_
 
 for (auto &node : nodes)
 {
-  std::string line_content = node;
-  FileSystemNode current_line_node(line_content);
-  bool is_directory = current_line_node.infer_is_directory();
-  ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
-  col = al_color_name("skyblue");
+  std::string line_content = node.get_name();
+  //FileSystemNode current_line_node(line_content);
+  //bool is_directory = current_line_node.infer_is_directory();
+  //ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
+  ALLEGRO_COLOR col = al_color_name("skyblue");
+
+  if (node.has_quintessence())
+  {
+    line_content += " *";
+  }
+  else if (node.has_only_source_and_header())
+  {
+     col = color::mix(col, al_color_name("green"), 0.1);
+  }
+  else if (!node.exists())
+  {
+     col = al_color_name("red");
+  }
+  else
+  {
+     col = al_color_name("gray");
+  }
+
+  if (!node.has_test()) line_content += " (missing test)";
   
   al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
   cursor_y += line_height;

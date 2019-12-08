@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Blast/Project/Component.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
@@ -21,7 +22,7 @@ namespace Hexagon
          ALLEGRO_COLOR selector_color;
          std::string project_root;
          static ALLEGRO_EVENT a_default_empty_event;
-         std::vector<std::string> nodes;
+         std::vector<Blast::Project::Component> nodes;
 
       public:
          Stage(std::string project_root="/Users/markoates/Repos/hexagon");
@@ -30,18 +31,18 @@ namespace Hexagon
          void set_cursor_position_static(bool cursor_position_static);
          void set_selector_color(ALLEGRO_COLOR selector_color);
          void set_project_root(std::string project_root);
-         void set_nodes(std::vector<std::string> nodes);
+         void set_nodes(std::vector<Blast::Project::Component> nodes);
 
          int get_cursor_position();
          ALLEGRO_COLOR get_selector_color();
          std::string get_project_root();
-         std::vector<std::string> get_nodes();
+         std::vector<Blast::Project::Component> get_nodes();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void move_cursor_up();
       void move_cursor_down();
       void move_cursor_to_top();
       bool current_selection_is_valid();
-      std::string get_current_selection_or_spaced_empty_string();
+      std::string get_current_selection_label_or_empty_string();
       void refresh_list();
       void render(bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());

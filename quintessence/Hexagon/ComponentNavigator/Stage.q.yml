@@ -10,7 +10,7 @@ properties:
   - name: cursor_position_static
     type: bool
     setter: true
-    init_with: false
+    init_with: true
   - name: selector_color
     type: ALLEGRO_COLOR
     init_with: "al_color_name(\"slategray\")"
@@ -28,7 +28,7 @@ properties:
     init_with: "{}"
     getter_ref: true
   - name: nodes
-    type: std::vector<std::string>
+    type: std::vector<Blast::Project::Component>
     init_with: "{}"
     getter: true
     setter: true
@@ -50,16 +50,16 @@ functions:
     body: |
       if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
       return true;
-  - name: get_current_selection_or_spaced_empty_string
+  - name: get_current_selection_label_or_empty_string
     type: std::string
     body: |
-      if (!current_selection_is_valid()) return " ";
-      return nodes[get_cursor_position()];
+      if (!current_selection_is_valid()) return "";
+      return nodes[get_cursor_position()].get_name();
   - name: refresh_list
     body: |
       Hexagon::ComponentNavigator::List list(get_project_root());
-      std::vector<std::string> elements = list.component_names();
-      nodes = list.component_names();
+      //std::vector<std::string> elements = list.component_names();
+      nodes = list.components();
     body_dependency_symbols:
       - Hexagon::ComponentNavigator::List
   - name: render
@@ -126,8 +126,8 @@ functions:
       ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
 
       float selector_y = line_height * cursor_position + cursor_y;
-      std::string current_selection_text_or_empty_string = get_current_selection_or_spaced_empty_string();
-      float selector_rectangle_width = al_get_text_width(font, current_selection_text_or_empty_string.c_str());
+      std::string current_selection_label_or_empty_string = get_current_selection_label_or_empty_string();
+      float selector_rectangle_width = al_get_text_width(font, current_selection_label_or_empty_string.c_str());
       float selector_rectangle_roundness = 0; //4;
       if (current_selection_is_valid())
       {
@@ -151,11 +151,30 @@ functions:
 
       for (auto &node : nodes)
       {
-        std::string line_content = node;
-        FileSystemNode current_line_node(line_content);
-        bool is_directory = current_line_node.infer_is_directory();
-        ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
-        col = al_color_name("skyblue");
+        std::string line_content = node.get_name();
+        //FileSystemNode current_line_node(line_content);
+        //bool is_directory = current_line_node.infer_is_directory();
+        //ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
+        ALLEGRO_COLOR col = al_color_name("skyblue");
+
+        if (node.has_quintessence())
+        {
+          line_content += " *";
+        }
+        else if (node.has_only_source_and_header())
+        {
+           col = color::mix(col, al_color_name("green"), 0.1);
+        }
+        else if (!node.exists())
+        {
+           col = al_color_name("red");
+        }
+        else
+        {
+           col = al_color_name("gray");
+        }
+
+        if (!node.has_test()) line_content += " (missing test)";
         
         al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
         cursor_y += line_height;
@@ -165,6 +184,7 @@ functions:
 
       return;
     body_dependency_symbols:
+      - color::mix
       - al_color_name
       - al_draw_circle
       - FileSystemNode
@@ -258,6 +278,8 @@ functions:
     body_dependency_symbols:
       - KeyboardCommandMapper
 dependencies:
+  - symbol: color::mix
+    headers: [ 'allegro_flare/color.h' ]
   - symbol: StageInterface
     headers: [ 'Hexagon/StageInterface.hpp' ]
   - symbol: ALLEGRO_DISPLAY*
@@ -282,6 +304,10 @@ dependencies:
     headers: [ 'iostream' ]
   - symbol: al_draw_circle
     headers: [ 'allegro5/allegro_primitives.h' ]
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
+  - symbol: std::vector<Blast::Project::Component>
+    headers: [ vector, Blast/Project/Component.hpp ]
   - symbol: std::vector<std::string>
     headers: [ 'vector', 'string' ]
   - symbol: FileSystemNode

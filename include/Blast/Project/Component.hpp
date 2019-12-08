@@ -13,13 +13,15 @@ namespace Blast
       {
       private:
          std::string name;
+         std::string project_root;
 
       public:
-         Component(std::string name="Unnamed/Component");
+         Component(std::string name="Unnamed/Component", std::string project_root="/Users/markoates/Repos/blast/");
          ~Component();
 
 
          std::string get_name();
+         std::string get_project_root();
       bool check_file_existence(Blast::ProjectComponentFileTypes::project_file_type_t type=Blast::ProjectComponentFileTypes::QUINTESSENCE_FILE);
       bool exists();
       bool has_quintessence();

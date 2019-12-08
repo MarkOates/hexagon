@@ -10,8 +10,22 @@ functions:
       return Blast::Project::ComponentLister(project_root_directory).components();
     body_dependency_symbols:
       - Blast::Project::ComponentLister
+  - name: components
+    type: std::vector<Blast::Project::Component>
+    body: |
+      std::vector<Blast::Project::Component> result;
+      std::vector<std::string> component_names = Blast::Project::ComponentLister(project_root_directory).components();
+      for (auto &component_name : component_names)
+      {
+         result.push_back(Blast::Project::Component(component_name, project_root_directory));
+      }
+      return result;
+    body_dependency_symbols:
+      - Blast::Project::ComponentLister
 dependencies:
   - symbol: std::vector<std::string>
     headers: [ 'vector', 'string' ]
   - symbol: Blast::Project::ComponentLister
     headers: [ 'Blast/Project/ComponentLister.hpp' ]
+  - symbol: std::vector<Blast::Project::Component>
+    headers: [ vector, Blast/Project/Component.hpp ]

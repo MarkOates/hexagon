@@ -17,8 +17,9 @@ namespace Project
 {
 
 
-Component::Component(std::string name)
+Component::Component(std::string name, std::string project_root)
    : name(name)
+   , project_root(project_root)
 {
 }
 
@@ -34,10 +35,17 @@ std::string Component::get_name()
 }
 
 
+std::string Component::get_project_root()
+{
+   return project_root;
+}
+
+
 bool Component::check_file_existence(Blast::ProjectComponentFileTypes::project_file_type_t type)
 {
 std::string filename = Blast::ProjectComponentFilenameGenerator(name, type).generate_filename();
-return Blast::FileExistenceChecker(filename).exists();
+std::string full_filename = project_root + filename;
+return Blast::FileExistenceChecker(full_filename).exists();
 
 }
 

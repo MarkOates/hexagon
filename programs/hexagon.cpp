@@ -834,7 +834,7 @@ public:
       }
       Hexagon::ComponentNavigator::Stage *component_navigator = static_cast<Hexagon::ComponentNavigator::Stage *>(frontmost_stage_interface);
 
-      std::string current_component_navigator_selection = component_navigator->get_current_selection_or_spaced_empty_string();
+      std::string current_component_navigator_selection = component_navigator->get_current_selection_label_or_empty_string();
 
       last_component_navigator_selection = current_component_navigator_selection;
       return true;

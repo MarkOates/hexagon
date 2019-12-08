@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Blast/Project/Component.hpp>
 #include <string>
 #include <vector>
 
@@ -20,6 +21,7 @@ namespace Hexagon
 
 
       std::vector<std::string> component_names();
+      std::vector<Blast::Project::Component> components();
       };
    }
 }
