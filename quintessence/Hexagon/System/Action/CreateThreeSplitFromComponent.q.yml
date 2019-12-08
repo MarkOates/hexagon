@@ -3,6 +3,11 @@ parent_classes:
     scope: public
     init_with: "\"System::Action::CreateThreeSplitFromComponent\", ActionData()"
 properties:
+  - name: project_path
+    type: std::string
+    init_with: "\"/Users/markoates/Repos/hexagon/\""
+    constructor_arg: true
+    getter: true
   - name: component
     type: Blast::Project::Component
     init_with: ""
@@ -35,25 +40,55 @@ functions:
       - name: file_contents
         type: std::string
         default_argument: "\"/Hello World\""
-      - name: place
-        type: placement3d
-        default_argument: "{}"
+      - name: x
+        type: float
+        default_argument: "0.0"
+      - name: align_x
+        type: float
+        default_argument: "0.0"
     body: |
       CodeEditor::Stage *file_stage = new CodeEditor::Stage(filename);
+
+      float width = display_default_width/3;
+
+      placement3d place(x, 0, 0);
+      place.size = vec3d(width, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+      place.align = vec3d(align_x, 0.5, 0.0);
+      place.scale = vec3d(0.9, 0.9, 0.0);
+
       file_stage->set_place(place);
       file_stage->set_content(file_contents);
       stages.push_back(file_stage);
 
       return true;
+    body_dependency_symbols:
+      - placement3d
+  - name: generate_header_filename
+    type: std::string
+    body: |
+      return project_path + Blast::ProjectComponentFilenameGenerator(component.get_name(), Blast::ProjectComponentFileTypes::HEADER_FILE).generate_filename();
+  - name: generate_source_filename
+    type: std::string
+    body: |
+      return project_path + Blast::ProjectComponentFilenameGenerator(component.get_name(), Blast::ProjectComponentFileTypes::SOURCE_FILE).generate_filename();
+  - name: generate_test_filename
+    type: std::string
+    body: |
+      return project_path + Blast::ProjectComponentFilenameGenerator(component.get_name(), Blast::ProjectComponentFileTypes::TEST_FILE).generate_filename();
   - name: execute
     type: bool
     body: |
       float left_anchor = -display_default_width / 3;
       float right_anchor = display_default_width / 3;
 
+      std::string header_filename = generate_header_filename();
+      std::string source_filename = generate_source_filename();
+      std::string test_filename = generate_test_filename();
+
       return true;
     body_dependency_symbols:
       - CodeEditor::Stage
+      - Blast::ProjectComponentFilenameGenerator
 dependencies:
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
@@ -67,3 +102,5 @@ dependencies:
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
+  - symbol: Blast::ProjectComponentFilenameGenerator
+    headers: [ Blast/ProjectComponentFilenameGenerator.hpp ]
