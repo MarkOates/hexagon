@@ -211,7 +211,7 @@ for (auto &node : nodes)
 
   if (node.has_quintessence())
   {
-    line_content += " *";
+    //line_content += " *";
   }
   else if (node.has_only_source_and_header())
   {
@@ -226,7 +226,7 @@ for (auto &node : nodes)
      col = al_color_name("gray");
   }
 
-  if (!node.has_test()) line_content += " (missing test)";
+  //if (!node.has_test()) line_content += " (missing test)";
   
   al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
   cursor_y += line_height;
