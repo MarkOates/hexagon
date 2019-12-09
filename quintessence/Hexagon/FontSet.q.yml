@@ -1,0 +1,47 @@
+properties:
+  - name: font_dictionary
+    type: std::map<std::string, std::string>
+    init_with: "{}"
+  - name: dummy_font_bin
+    type: AllegroFlare::FontBin
+    static: true
+    init_with: "{}"
+  - name: fonts
+    type: AllegroFlare::FontBin&
+    init_with: "get_dummy_font_bin()"
+functions:
+  - name: get_dummy_font_bin
+    type: AllegroFlare::FontBin&
+    static: true
+    body: return dummy_font_bin;
+  - name: obtain_font
+    type: ALLEGRO_FONT*
+    parameters:
+      - name: identifier
+        type: std::string
+        default_argument: "\"dummy_font\""
+    body: |
+      if (font_dictionary.find(identifier) == font_dictionary.end())
+      {
+         std::stringstream error_message;
+         error_message << "[FontSet::obtain_font error]: can not obtain font \""
+           << identifier
+           << "\" it does not exist in the dictionary."
+           << std::endl;
+         throw std::runtime_error(error_message.str());
+      }
+  
+      return fonts[font_dictionary[identifier]];
+    body_dependency_symbols:
+      - std::stringstream
+dependencies:
+  - symbol: std::stringstream
+    headers: [ sstream ]
+  - symbol: std::map<std::string, std::string>
+    headers: [ 'map', 'string' ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro.h ]
+  - symbol: AllegroFlare::FontBin&
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
