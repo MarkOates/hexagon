@@ -271,7 +271,7 @@ public:
       , last_component_navigator_selection("")
       , config()
       , global_font_resource_filename("consolas.ttf")
-      , global_font_size(-22)
+      , global_font_size(-20)
 
    {
       config.initialize();
