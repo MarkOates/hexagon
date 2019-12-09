@@ -140,7 +140,7 @@ if (!font) throw std::runtime_error("font missing");
 placement3d &place = get_place();
 place.start_transform();
 
-float line_stroke_thickness = 3.0;
+float line_stroke_thickness = 2.5;
 
 float roundness = 0.0; //6.0;
 float padding_x = cell_width;
