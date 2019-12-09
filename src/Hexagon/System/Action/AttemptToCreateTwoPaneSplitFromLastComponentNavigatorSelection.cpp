@@ -123,7 +123,7 @@ if (!test_file_contents.empty())
   CodeEditor::Stage *test_file_stage = new CodeEditor::Stage(test_filename);
 
   test_file_stage->set_place(place);
-  test_file_stage->set_content(test_file_contents);
+  test_file_stage->set_initial_content(test_file_contents);
   stages.push_back(test_file_stage);
 }
 
@@ -140,7 +140,7 @@ if (!file_contents.empty())
   CodeEditor::Stage *quintessence_file_stage = new CodeEditor::Stage(filename);
 
   quintessence_file_stage->set_place(place);
-  quintessence_file_stage->set_content(file_contents);
+  quintessence_file_stage->set_initial_content(file_contents);
   stages.push_back(quintessence_file_stage);
 }
 

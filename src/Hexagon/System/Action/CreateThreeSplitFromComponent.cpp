@@ -72,7 +72,7 @@ place.align = vec3d(align_x, 0.5, 0.0);
 place.scale = vec3d(0.9, 0.9, 0.0);
 
 file_stage->set_place(place);
-file_stage->set_content(file_contents);
+file_stage->set_initial_content(file_contents);
 stages.push_back(file_stage);
 
 return true;
