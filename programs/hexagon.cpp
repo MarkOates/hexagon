@@ -623,7 +623,7 @@ public:
 
       std::vector<std::string> file_contents;
 
-      stage->set_content(std::vector<std::string>{"", ""});
+      stage->set_initial_content(std::vector<std::string>{"", ""});
 
       return true;
    }
