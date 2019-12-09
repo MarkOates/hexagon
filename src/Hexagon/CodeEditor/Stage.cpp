@@ -92,6 +92,24 @@ std::string Stage::get_filename()
 
 
 
+bool Stage::set_initial_content(std::string content)
+{
+   set_content(content);
+   unmark_content_is_modified();
+   return true;
+}
+
+
+
+bool Stage::set_initial_content(std::vector<std::string> content)
+{
+   set_content(content);
+   unmark_content_is_modified();
+   return true;
+}
+
+
+
 bool Stage::set_content(std::string content)
 {
    lines = Blast::StringSplitter(content, '\n').split();

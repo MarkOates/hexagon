@@ -53,6 +53,8 @@ namespace CodeEditor
       void set_cursor_x(int cursor_x);
       void set_cursor_y(int cursor_y);
       std::string get_filename();
+      bool set_initial_content(std::string content);
+      bool set_initial_content(std::vector<std::string> content);
       bool set_content(std::string content);
       bool set_content(std::vector<std::string> content);
       placement3d &get_place_ref();
