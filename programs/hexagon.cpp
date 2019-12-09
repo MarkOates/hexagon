@@ -1074,14 +1074,14 @@ public:
       {
          //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Q, false, false, false, false, { ESCAPE_CURRENT_MODAL, SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST });
          //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { ESCAPE_CURRENT_MODAL, SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST });
-         if (is_current_stage_a_regex_input_box())
-         {
+         //if (is_current_stage_a_regex_input_box())
+         //{
            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, { SUBMIT_CURRENT_MODAL });
-         }
-         else
-         {
-            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, true, false, false, false, { SUBMIT_CURRENT_MODAL });
-         }
+         //}
+         //else
+         //{
+            //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, { SUBMIT_CURRENT_MODAL });
+         //}
       }
       else
       {
