@@ -67,8 +67,8 @@ main:
 	@make quintessences -j8
 	$(call output_terminal_message,"Make all the object files")
 	@make objects -j8
-	$(call output_terminal_message,"Make all the test files")
-	@make tests -j8
+	#$(call output_terminal_message,"Make all the test files")
+	#@make tests -j8
 	#$(call output_terminal_message,"Run the tests for all the components")
 	#@make run_tests
 	#$(call output_terminal_message,"Build the library")
