@@ -11,6 +11,7 @@ properties:
     type: std::map<std::string, std::string>
     init_with: "{}"
     constructor_arg: true
+    setter: true
 functions:
   - name: get_dummy_font_bin
     type: AllegroFlare::FontBin&

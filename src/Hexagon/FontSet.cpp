@@ -23,6 +23,12 @@ FontSet::~FontSet()
 }
 
 
+void FontSet::set_font_dictionary(std::map<std::string, std::string> font_dictionary)
+{
+   this->font_dictionary = font_dictionary;
+}
+
+
 AllegroFlare::FontBin& FontSet::get_dummy_font_bin()
 {
 return dummy_font_bin;
