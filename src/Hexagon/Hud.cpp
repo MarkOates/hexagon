@@ -11,10 +11,13 @@ namespace Hexagon
 {
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* text_font)
+AllegroFlare::FontBin Hud::dummy_font_bin = {};
+
+
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts)
    : initialized(false)
    , display(display)
-   , text_font(text_font)
+   , fonts(fonts)
    , screen_sub_bitmap(nullptr)
    , notifications({})
 {
@@ -23,12 +26,6 @@ Hud::Hud(ALLEGRO_DISPLAY* display, ALLEGRO_FONT* text_font)
 
 Hud::~Hud()
 {
-}
-
-
-void Hud::set_text_font(ALLEGRO_FONT* text_font)
-{
-   this->text_font = text_font;
 }
 
 
@@ -50,6 +47,17 @@ std::vector<std::string> Hud::get_notifications()
 }
 
 
+AllegroFlare::FontBin& Hud::get_dummy_font_bin()
+{
+return dummy_font_bin;
+
+}
+
+ALLEGRO_FONT* Hud::obtain_text_font()
+{
+return fonts["Eurostile.ttf -22"];
+}
+
 void Hud::initialize()
 {
 if (initialized) return;
@@ -67,18 +75,17 @@ return;
 void Hud::draw()
 {
 if (!initialized) throw std::runtime_error("[Hud::draw()] Cannot call until Hud has been initialized");
-if (!text_font) throw std::runtime_error("[Hud::draw()] Cannot call with a nullptr text_font");
 
 ALLEGRO_STATE previous_target_bitmap_state;
 al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
 al_set_target_bitmap(screen_sub_bitmap);
 ALLEGRO_COLOR color = al_color_name("red");
-float notification_bottom_padding = al_get_font_ascent(text_font);
+float notification_bottom_padding = al_get_font_ascent(obtain_text_font());
 int y_cursor=0;
 for (auto &notification : notifications)
 {
   float y_position = y_cursor * notification_bottom_padding;
-  al_draw_text(text_font, color, 0, y_position, 0, notification.c_str());
+  al_draw_text(obtain_text_font(), color, 0, y_position, 0, notification.c_str());
   y_cursor++;
 }
 al_restore_state(&previous_target_bitmap_state);

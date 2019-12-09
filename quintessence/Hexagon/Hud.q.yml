@@ -6,11 +6,14 @@ properties:
     type: ALLEGRO_DISPLAY*
     init_with: "nullptr"
     constructor_arg: true
-  - name: text_font
-    type: ALLEGRO_FONT*
-    init_with: "nullptr"
+  - name: dummy_font_bin
+    type: AllegroFlare::FontBin
+    static: true
+    init_with: "{}"
+  - name: fonts
+    type: AllegroFlare::FontBin&
+    init_with: "get_dummy_font_bin()"
     constructor_arg: true
-    setter: true
   - name: screen_sub_bitmap
     type: ALLEGRO_BITMAP*
     init_with: "nullptr"
@@ -21,6 +24,14 @@ properties:
     getter: true
     setter: true
 functions:
+  - name: get_dummy_font_bin
+    type: AllegroFlare::FontBin&
+    static: true
+    body: |
+      return dummy_font_bin;
+  - name: obtain_text_font
+    type: ALLEGRO_FONT*
+    body: return fonts["Eurostile.ttf -22"];
   - name: initialize
     type: void
     body: |
@@ -37,18 +48,17 @@ functions:
     type: void
     body: |
       if (!initialized) throw std::runtime_error("[Hud::draw()] Cannot call until Hud has been initialized");
-      if (!text_font) throw std::runtime_error("[Hud::draw()] Cannot call with a nullptr text_font");
 
       ALLEGRO_STATE previous_target_bitmap_state;
       al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
       al_set_target_bitmap(screen_sub_bitmap);
       ALLEGRO_COLOR color = al_color_name("red");
-      float notification_bottom_padding = al_get_font_ascent(text_font);
+      float notification_bottom_padding = al_get_font_ascent(obtain_text_font());
       int y_cursor=0;
       for (auto &notification : notifications)
       {
         float y_position = y_cursor * notification_bottom_padding;
-        al_draw_text(text_font, color, 0, y_position, 0, notification.c_str());
+        al_draw_text(obtain_text_font(), color, 0, y_position, 0, notification.c_str());
         y_cursor++;
       }
       al_restore_state(&previous_target_bitmap_state);
@@ -73,3 +83,9 @@ dependencies:
     headers: [ allegro5/allegro_color.h ]
   - symbol: al_draw_text
     headers: [ allegro5/allegro_font.h ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro.h ]
+  - symbol: AllegroFlare::FontBin&
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]

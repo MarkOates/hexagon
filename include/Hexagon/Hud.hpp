@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/FontBin.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <string>
@@ -14,19 +15,21 @@ namespace Hexagon
    private:
       bool initialized;
       ALLEGRO_DISPLAY* display;
-      ALLEGRO_FONT* text_font;
+      static AllegroFlare::FontBin dummy_font_bin;
+      AllegroFlare::FontBin& fonts;
       ALLEGRO_BITMAP* screen_sub_bitmap;
       std::vector<std::string> notifications;
 
    public:
-      Hud(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* text_font=nullptr);
+      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin());
       ~Hud();
 
-      void set_text_font(ALLEGRO_FONT* text_font);
       void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
       void set_notifications(std::vector<std::string> notifications);
 
       std::vector<std::string> get_notifications();
+   static AllegroFlare::FontBin& get_dummy_font_bin();
+   ALLEGRO_FONT* obtain_text_font();
    void initialize();
    void draw();
    };

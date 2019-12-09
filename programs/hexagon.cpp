@@ -1289,8 +1289,6 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    ALLEGRO_DISPLAY *display = al_create_display(get_display_default_width(), get_display_default_height());
    if (!display) std::cerr << "al_create_display() failed" << std::endl;
    al_set_window_title(display, "[ProjectName] - Hexagon");
-   ALLEGRO_FONT *consolas_font = al_load_font(resource_path({"data", "fonts"}, "consolas.ttf").c_str(), 22, 0);
-   if (!consolas_font) throw std::runtime_error("could not load consolas.ttf");
 
    REGEX_TEMP_FILENAME = resource_path({"data", "tmp"}, "regex.txt");
    if (!php::file_exists(REGEX_TEMP_FILENAME))
@@ -1416,7 +1414,7 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    }
 
 
-   Hexagon::Hud hud(display, consolas_font);
+   Hexagon::Hud hud(display, fonts);
    hud.initialize();
 
 
@@ -1493,7 +1491,6 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
 
 
    al_destroy_event_queue(event_queue);
-   al_destroy_font(consolas_font);
    al_destroy_display(display);
 }
 
