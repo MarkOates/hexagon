@@ -151,67 +151,6 @@ public:
 };
 
 
-class ThreeSplitLayout
-{
-private:
-   CodeEditor::Stage *left_stage;
-   CodeEditor::Stage *center_stage;
-   CodeEditor::Stage *right_stage;
-
-   Hexagon::LayoutPlacements layout;
-
-public:
-
-   static const std::string LEFT_STAGE_KEY;
-   static const std::string CENTER_STAGE_KEY;
-   static const std::string RIGHT_STAGE_KEY;
-
-   ThreeSplitLayout(CodeEditor::Stage *left_stage, CodeEditor::Stage *center_stage, CodeEditor::Stage *right_stage)
-      : left_stage(left_stage)
-      , center_stage(center_stage)
-      , right_stage(right_stage)
-      , layout()
-   {
-      float stage_position_grid_len = get_display_default_width() / 6.0f;
-      float stage_width = get_display_default_width() / 3.0f;
-      //float stage_height = get_display_default_height();
-      float leftmost_anchor = -stage_position_grid_len * 2;
-      float topmost_anchor = get_display_default_width() / 2;
-
-      layout.set_placements({
-         { LEFT_STAGE_KEY, placement3d(leftmost_anchor + stage_width * 0, 0, 0) },
-         { CENTER_STAGE_KEY, placement3d(leftmost_anchor + stage_width * 1, 0, 0) },
-         { RIGHT_STAGE_KEY, placement3d(leftmost_anchor + stage_width * 2, 0, 0) },
-      });
-      for (auto &placement : layout.get_placements_ref())
-      {
-         placement.second.align = vec3d(0.5, 0.5, 0.0);
-         placement.second.size = vec3d(700, topmost_anchor, 0.0);
-         placement.second.scale = vec3d(0.8, 0.8, 0.8);
-      }
-   }
-
-   void place_stages()
-   {
-      validate_stages();
-
-      left_stage->set_place(layout.placement_for(LEFT_STAGE_KEY));
-      center_stage->set_place(layout.placement_for(CENTER_STAGE_KEY));
-      right_stage->set_place(layout.placement_for(RIGHT_STAGE_KEY));
-   }
-
-   void validate_stages()
-   {
-      if (!left_stage) throw std::runtime_error("left_stage is a nullptr");
-      if (!center_stage) throw std::runtime_error("center_stage is a nullptr");
-      if (!right_stage) throw std::runtime_error("right_stage is a nullptr");
-   }
-};
-
-
-const std::string ThreeSplitLayout::LEFT_STAGE_KEY = "LEFT_STAGE_KEY";
-const std::string ThreeSplitLayout::CENTER_STAGE_KEY = "CENTER_STAGE_KEY";
-const std::string ThreeSplitLayout::RIGHT_STAGE_KEY = "RIGHT_STAGE_KEY";
 
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
@@ -1393,24 +1332,6 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
       //filenames.push_back(DEFAULT_CONTENT_FILENAME);
       //std::stringstream
       std::cerr << "Warning: No filenames were passed when opening the program.  This may cause the program to crash" << std::endl;
-   }
-
-
-   for (auto &filename : filenames)
-   {
-      CodeEditor::Stage *stage = new CodeEditor::Stage(filename);
-      stage->set_place(place);
-
-      std::vector<std::string> lines;
-      read_file(lines, filename);
-
-      stage->set_content(lines);
-      system.stages.push_back(stage);
-
-      //
-
-      ThreeSplitLayout layout(stage, stage, stage);
-      layout.place_stages();
    }
 
 
