@@ -37,10 +37,11 @@ return dummy_font_bin;
 
 void Frame::render()
 {
+float line_thickness = 2.5;
 ALLEGRO_FONT *large_title_font = fonts["eurostyle.ttf 30"];
 ALLEGRO_COLOR color = al_color_name("dodgerblue");
 al_draw_text(large_title_font, color, 0, 0, 0, title_text.c_str());
-al_draw_rectangle(0, 0, screen_width, screen_height, color, 1.0);
+al_draw_rectangle(0, 0, screen_width, screen_height, color, line_thickness);
 return;
 
 }
