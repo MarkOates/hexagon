@@ -1,7 +1,4 @@
 properties:
-  - name: font_dictionary
-    type: std::map<std::string, std::string>
-    init_with: "{}"
   - name: dummy_font_bin
     type: AllegroFlare::FontBin
     static: true
@@ -9,6 +6,11 @@ properties:
   - name: fonts
     type: AllegroFlare::FontBin&
     init_with: "get_dummy_font_bin()"
+    constructor_arg: true
+  - name: font_dictionary
+    type: std::map<std::string, std::string>
+    init_with: "{}"
+    constructor_arg: true
 functions:
   - name: get_dummy_font_bin
     type: AllegroFlare::FontBin&

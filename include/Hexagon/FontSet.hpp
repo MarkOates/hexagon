@@ -12,12 +12,12 @@ namespace Hexagon
    class FontSet
    {
    private:
-      std::map<std::string, std::string> font_dictionary;
       static AllegroFlare::FontBin dummy_font_bin;
       AllegroFlare::FontBin& fonts;
+      std::map<std::string, std::string> font_dictionary;
 
    public:
-      FontSet();
+      FontSet(AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::map<std::string, std::string> font_dictionary={});
       ~FontSet();
 
 

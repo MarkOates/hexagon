@@ -11,9 +11,9 @@ namespace Hexagon
 AllegroFlare::FontBin FontSet::dummy_font_bin = {};
 
 
-FontSet::FontSet()
-   : font_dictionary({})
-   , fonts(get_dummy_font_bin())
+FontSet::FontSet(AllegroFlare::FontBin& fonts, std::map<std::string, std::string> font_dictionary)
+   : fonts(fonts)
+   , font_dictionary(font_dictionary)
 {
 }
 
