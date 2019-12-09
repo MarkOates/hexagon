@@ -6,6 +6,8 @@
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <Hexagon/FileSystemNode.hpp>
+#include <Hexagon/Shapes/Hexagon/Renderer.hpp>
+#include <Hexagon/Shapes/Hexagon/Stroke.hpp>
 #include <iostream>
 #include <iostream>
 #include <iostream>
@@ -138,6 +140,8 @@ if (!font) throw std::runtime_error("font missing");
 placement3d &place = get_place();
 place.start_transform();
 
+float line_stroke_thickness = 3.0;
+
 float roundness = 0.0; //6.0;
 float padding_x = cell_width;
 float padding_y = cell_width;
@@ -160,7 +164,7 @@ al_draw_filled_rounded_rectangle(
 );
 al_draw_rounded_rectangle(- padding_x, - padding_y,
    place.size.x+padding_x, place.size.y+padding_y,
-   roundness, roundness, frame_color, 3.0);
+   roundness, roundness, frame_color, line_stroke_thickness);
 
 //new_render(display, font, cell_width, cell_height);
 //return;
@@ -204,6 +208,9 @@ std::string node_root_val = get_project_root();
 al_draw_text(font, node_root_font_color,
   pos_x, -line_height * 1.5, 0, get_project_root().c_str());
 
+bool list_clipping_occurred_above = false;
+bool list_clipping_occurred_below = false;
+
 for (auto &node : nodes)
 {
   std::string line_content = node.get_name();
@@ -232,8 +239,6 @@ for (auto &node : nodes)
   //if (!node.has_test()) line_content += " (missing test)";
   
   float final_y = pos_y + cursor_y;
-  bool list_clipping_occurred_above = false;
-  bool list_clipping_occurred_below = false;
   // clip the region of text displayed in the list
   if (final_y < 0)
   {
@@ -249,6 +254,31 @@ for (auto &node : nodes)
   }
   cursor_y += line_height;
 }
+
+float list_extension_indicator_radius = 30;
+if (list_clipping_occurred_above)
+{
+   Hexagon::Shapes::Hexagon::Renderer(
+       place.size.x - list_extension_indicator_radius,
+       list_extension_indicator_radius,
+       list_extension_indicator_radius,
+       {
+         { 9, 3, frame_color, line_stroke_thickness },
+       }
+     ).render();
+}
+if (list_clipping_occurred_below)
+{
+   Hexagon::Shapes::Hexagon::Renderer(
+       place.size.x - list_extension_indicator_radius,
+       place.size.y - list_extension_indicator_radius,
+       list_extension_indicator_radius,
+       {
+         { 3, 9, frame_color, line_stroke_thickness },
+       }
+     ).render();
+}
+
 
 place.restore_transform();
 
