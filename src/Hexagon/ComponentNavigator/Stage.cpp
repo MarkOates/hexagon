@@ -158,7 +158,9 @@ al_draw_filled_rounded_rectangle(
   roundness,
   not_quite_black
 );
-al_draw_rounded_rectangle(- padding_x, - padding_y, place.size.x+padding_x, place.size.y+padding_y, roundness, roundness, frame_color, 3.0);
+al_draw_rounded_rectangle(- padding_x, - padding_y,
+   place.size.x+padding_x, place.size.y+padding_y,
+   roundness, roundness, frame_color, 3.0);
 
 //new_render(display, font, cell_width, cell_height);
 //return;
@@ -199,7 +201,8 @@ else
 }
 
 std::string node_root_val = get_project_root();
-al_draw_text(font, node_root_font_color, pos_x, current_node_root_y_pos, 0, get_project_root().c_str());
+al_draw_text(font, node_root_font_color,
+  pos_x, -line_height * 1.5, 0, get_project_root().c_str());
 
 for (auto &node : nodes)
 {
@@ -228,7 +231,22 @@ for (auto &node : nodes)
 
   //if (!node.has_test()) line_content += " (missing test)";
   
-  al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+  float final_y = pos_y + cursor_y;
+  bool list_clipping_occurred_above = false;
+  bool list_clipping_occurred_below = false;
+  // clip the region of text displayed in the list
+  if (final_y < 0)
+  {
+     list_clipping_occurred_above = true;
+  }
+  else if ((final_y + line_height) > place.size.y)
+  {
+     list_clipping_occurred_below = true;
+  }
+  else
+  {
+     al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+  }
   cursor_y += line_height;
 }
 
