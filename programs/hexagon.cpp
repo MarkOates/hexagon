@@ -1369,16 +1369,8 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
       {
          al_clear_to_color(al_color_name("black"));
 
-         //rudimentary_camera_place.start_reverse_transform();
-
          system.camera.setup_camera_perspective(al_get_backbuffer(display));
-         //system.camera.zoom_pos -= 0.2;
          al_clear_depth_buffer(1000);
-         //al_draw_filled_rectangle(0, 0, 2000, 2000, al_color_name("orange"));
-         //al_draw_filled_circle(0, 0, 20, al_color_name("deeppink"));
-
-         //file_navigator_placement.size = vec2d(al_get_display_width(display)/3, al_get_display_height(display)/3*2);
-         //file_navigator_placement.position = vec2d(al_get_display_width(display)/2, al_get_display_height(display)/2);
 
          for (auto &stage : system.stages)
          {
@@ -1386,8 +1378,6 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
             ALLEGRO_FONT *font = fonts[system.get_global_font_str()];
             stage->render(is_focused, display, font, al_get_text_width(font, " "), al_get_font_line_height(font));
          }
-         //system.file_navigator.render(file_navigator_placement, consolas_font);
-         //rudimentary_camera_place.restore_transform();
 
 
          // refresh the notifications, and grab "content_is_unmodified" states from each stage
