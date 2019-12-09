@@ -1129,8 +1129,8 @@ public:
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_RERUN_OUTPUT_WATCHERS, REFRESH_RERUN_OUTPUT_WATCHERS });
       //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { DESTROY_TOPMOST_STAGE, SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { DESTROY_TOPMOST_STAGE });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, false, false, false, { INCREASE_FONT_SIZE });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, false, false, false, { DECREASE_FONT_SIZE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_PLUS, false, false, false, false, { INCREASE_FONT_SIZE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, { DECREASE_FONT_SIZE });
       if (is_current_stage_a_modal())
       {
          //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Q, false, false, false, false, { ESCAPE_CURRENT_MODAL, SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST });
