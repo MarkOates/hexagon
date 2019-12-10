@@ -119,50 +119,6 @@ From me far off, with others all too near.
 - William Shakespere)END";
 
 
-std::string remove_absolute_path_components_from_project_filename(
-   std::string project_file_absolute_filename)
-{
-   std::string mainStr = project_file_absolute_filename;
-   std::string toErase;
-   size_t pos = 0;
-
-
-   // Search for the substring in string
-   toErase = "/Users/markoates/Repos/";
-   pos = mainStr.find(toErase);
-
-   if (pos != std::string::npos)
-   {
-      // If found then erase it from string
-      mainStr.erase(pos, toErase.length());
-   }
-
-
-   // this is also hacky, and will presume that the given path that was passed is
-   // _already_ relative to the project directory if true
-   if (mainStr == project_file_absolute_filename)
-   {
-      return project_file_absolute_filename;
-   }
-
-
-   // now erase the project's path component
-   toErase = "/";
-   pos = mainStr.find(toErase);
-
-   if (pos != std::string::npos)
-   {
-      // If found then erase it from string
-      mainStr.erase(mainStr.begin(), mainStr.begin()+pos+toErase.length());
-   }
-
-   std::cout << "MODIFIFIEIED STRINGGGGG: \"" << mainStr << "\"" << std::endl;
-
-   
-   return mainStr;
-}
-
-
 class SystemConfig
 {
 private:
