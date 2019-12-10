@@ -101,24 +101,6 @@ public:
 
 
 
-const std::string sonnet = R"END(Is it thy will thy image should keep open
-My heavy eyelids to the weary night?
-Dost thou desire my slumbers should be broken,
-While shadows like to thee do mock my sight?
-Is it thy spirit that thou send'st from thee
-So far from home into my deeds to pry,
-To find out shames and idle hours in me,
-The scope and tenor of thy jealousy?
-O, no! thy love, though much, is not so great:
-It is my love that keeps mine eye awake;
-Mine own true love that doth my rest defeat,
-To play the watchman ever for thy sake:
-For thee watch I whilst thou dost wake elsewhere,
-From me far off, with others all too near.
-
-- William Shakespere)END";
-
-
 class SystemConfig
 {
 private:
@@ -149,6 +131,24 @@ const std::string SystemConfig::DEFAULT_NAVIGATOR_DIRECTORY_KEY = "default_navig
 class System
 {
 public:
+   const std::string sonnet = R"END(Is it thy will thy image should keep open
+   My heavy eyelids to the weary night?
+   Dost thou desire my slumbers should be broken,
+   While shadows like to thee do mock my sight?
+   Is it thy spirit that thou send'st from thee
+   So far from home into my deeds to pry,
+   To find out shames and idle hours in me,
+   The scope and tenor of thy jealousy?
+   O, no! thy love, though much, is not so great:
+   It is my love that keeps mine eye awake;
+   Mine own true love that doth my rest defeat,
+   To play the watchman ever for thy sake:
+   For thee watch I whilst thou dost wake elsewhere,
+   From me far off, with others all too near.
+
+   - William Shakespere)END";
+
+
    std::vector<StageInterface *> stages;
    ALLEGRO_DISPLAY *display;
    Camera camera;
