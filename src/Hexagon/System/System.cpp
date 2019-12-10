@@ -1,18 +1,18 @@
 
 
 
-#include <Hexagon/System/System.hpp>
+//#include <Hexagon/System/System.hpp>
 
 
-System::System()
-{
-}
+//System::System()
+//{
+//}
 
 
 
-System::~System()
-{
-}
+//System::~System()
+//{
+//}
 
 
 
