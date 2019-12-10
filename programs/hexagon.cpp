@@ -296,7 +296,7 @@ public:
       return stages.back();
    }
 
-   CodeEditor::Stage *get_frontmost_code_editor_stage() // TODO: rename this function to get_frontmost_code_editor_stage()
+   CodeEditor::Stage *get_frontmost_code_editor_stage()
    {
       StageInterface *frontmost_stage = get_frontmost_stage();
       if (!frontmost_stage) return nullptr;
