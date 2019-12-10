@@ -328,23 +328,15 @@ public:
    bool is_current_stage_in_edit_mode()
    {
       CodeEditor::Stage *frontmost_stage = get_frontmost_code_editor_stage();
-      if (!frontmost_stage)
-      {
-         std::cout << "Warning: attempting to infer if is_current_stage_in_edit_mode() but no frontmost stage exists" << std::endl;
-         return false;
-      }
+      if (!frontmost_stage) return false;
       return frontmost_stage->get_mode() == CodeEditor::Stage::EDIT;
    }
 
    bool is_current_stage_a_modal()
    {
       StageInterface *frontmost_stage = get_frontmost_stage();
-      if (!frontmost_stage)
-      {
-         std::cout << "Warning: attempting to infer if is_current_stage_a_modal() but no frontmost stage exists" << std::endl;
-         return false;
-      }
-      return frontmost_stage && frontmost_stage->infer_is_modal();
+      if (!frontmost_stage) return false;
+      return frontmost_stage->infer_is_modal();
    }
 
    bool is_current_stage_a_regex_input_box()
