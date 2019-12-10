@@ -11,7 +11,7 @@
 #include <allegro_flare/useful_php.h>
 #include <allegro_flare/render_cache.h>
 #include <Blast/StringSplitter.hpp>
-#include <Blast/KeyboardCommandMapper.hpp>
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 #include <lib/camera.h>
 #include <AllegroFlare/Config.hpp>

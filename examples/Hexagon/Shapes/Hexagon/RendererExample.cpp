@@ -4,7 +4,7 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_image.h>
-#include <Blast/KeyboardCommandMapper.hpp>
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 
 
 #include <allegro_flare/vec3d.h>

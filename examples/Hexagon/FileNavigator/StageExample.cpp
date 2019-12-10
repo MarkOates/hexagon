@@ -3,7 +3,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_color.h>
-#include <Blast/KeyboardCommandMapper.hpp>
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 
 
 #include <Hexagon/FileNavigator/Stage.hpp>

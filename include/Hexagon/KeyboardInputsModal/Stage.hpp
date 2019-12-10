@@ -1,5 +1,5 @@
 #include <Hexagon/StageInterface.hpp>
-#include <Blast/KeyboardCommandMapper.hpp>
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 
 
 namespace KeyboardInputsModal
