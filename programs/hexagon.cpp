@@ -225,6 +225,10 @@ public:
       , global_font_size(-20)
 
    {
+   }
+
+   bool initialize()
+   {
       config.initialize();
 
       file_navigator_initial_place.size = vec3d(500, 600, 0);
@@ -244,7 +248,7 @@ public:
       //ALLEGRO_FS_ENTRY *current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
       //file_navigator.set_file_system_entries(get_directory_listing_recursive(al_get_current_directory()));
       //process_local_event(SPAWN_RERUN_OUTPUT_WATCHER);
-      process_local_event(SPAWN_COMPONENT_NAVIGATOR);
+      //process_local_event(SPAWN_COMPONENT_NAVIGATOR);
       //process_local_event(REFRESH_RERUN_OUTPUT_WATCHERS);
    }
 
@@ -1142,6 +1146,7 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    rudimentary_camera_place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
 
    System system(display, motion);
+   system.initialize();
 
 
    // create the first stage
