@@ -91,16 +91,6 @@ int get_display_default_height()
 }
 
 
-placement3d get_stage_default_place()
-{
-   placement3d place(0, 0, 0);
-   place.size = vec3d(get_display_default_width(), get_display_default_height(), 0.0);
-   place.align = vec3d(0.5, 0.5, 0.0);
-   place.scale = vec3d(0.9, 0.9, 0.0);
-   return place;
-}
-
-
 void wait_for_keypress()
 {
   ALLEGRO_EVENT_QUEUE *event_queue;
