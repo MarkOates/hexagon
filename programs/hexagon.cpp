@@ -878,6 +878,8 @@ public:
       KeyboardCommandMapper keyboard_command_mapper;
 
 
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { DESTROY_TOPMOST_STAGE });
+
       if (is_current_stage_a_modal())
       {
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, { SUBMIT_CURRENT_MODAL });
@@ -886,7 +888,6 @@ public:
       {
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_PLUS, false, false, false, false, { INCREASE_FONT_SIZE });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, { DECREASE_FONT_SIZE });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { DESTROY_TOPMOST_STAGE });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, true,  false, false, false, { SPAWN_KEYBOARD_INPUTS_MODAL });
 
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
