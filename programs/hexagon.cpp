@@ -79,23 +79,6 @@ void clear_notifications()
 
 
 
-void wait_for_keypress()
-{
-  ALLEGRO_EVENT_QUEUE *event_queue;
-  ALLEGRO_EVENT event;
-  
-  al_install_keyboard();
-  event_queue = al_create_event_queue();
-  al_register_event_source(event_queue, al_get_keyboard_event_source());
-
-  do
-    al_wait_for_event(event_queue, &event);
-  while (event.type != ALLEGRO_EVENT_KEY_DOWN);
-  
-  al_destroy_event_queue(event_queue);
-}
-
-
 class RailsMinitestTestResultToCodeMessagePointConverter
 {
 private:
@@ -1242,7 +1225,22 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    logo.render();
 
    al_flip_display();
-   wait_for_keypress();
+
+   // wait for keypress
+   {
+     ALLEGRO_EVENT_QUEUE *event_queue;
+     ALLEGRO_EVENT event;
+
+     al_install_keyboard();
+     event_queue = al_create_event_queue();
+     al_register_event_source(event_queue, al_get_keyboard_event_source());
+
+     do
+       al_wait_for_event(event_queue, &event);
+     while (event.type != ALLEGRO_EVENT_KEY_DOWN);
+
+     al_destroy_event_queue(event_queue);
+   }
 
 
    //al_hide_mouse_cursor(display); // this is disabled because there are a small handfull of sideeffects
