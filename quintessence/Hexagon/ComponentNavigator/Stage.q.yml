@@ -361,7 +361,7 @@ dependencies:
   - symbol: FileSystemNode
     headers: [ 'Hexagon/FileSystemNode.hpp' ]
   - symbol: KeyboardCommandMapper
-    headers: [ 'Blast/KeyboardCommandMapper.hpp' ]
+    headers: [ 'AllegroFlare/KeyboardCommandMapper.hpp' ]
   - symbol: Hexagon::ComponentNavigator::List
     headers: [ 'Hexagon/ComponentNavigator/List.hpp' ]
   - symbol: Hexagon::Shapes::Hexagon::Renderer

@@ -3,7 +3,7 @@
 
 #include <Hexagon/CodeEditor/EventController.hpp>
 
-#include <Blast/KeyboardCommandMapper.hpp>
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <iostream>
 

@@ -53,120 +53,81 @@
 
 
 //#define OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE (std::cout << "calling get_fontmost_stage() on function " << __FUNCTION__ << std::endl)
-#define OUTPUT_CALLING_FRONTMOST_STAGE_MESSAGE (true)
 
 
 
 
-#define NOTIFICATION_FILE_IS_UNSAVED "file is unsaved"
+//std::vector<std::string> notifications = {};
 
-std::vector<std::string> notifications = {};
+//void add_notification(std::string notification)
+//{
+   //notifications.push_back(notification);
+//}
 
-void add_notification(std::string notification)
-{
-   notifications.push_back(notification);
-}
+//void remove_notification(std::string notification)
+//{
+   //notifications.push_back(notification);
+//}
 
-void remove_notification(std::string notification)
-{
-   notifications.push_back(notification);
-}
-
-void clear_notifications()
-{
-   notifications.clear();
-}
+//void clear_notifications()
+//{
+   //notifications.clear();
+//}
 
 
 
-class RailsMinitestTestResultToCodeMessagePointConverter
-{
-private:
-   RailsMinitestTestResult rails_minitest_test_result;
+//#include <Hexagon/RailsMinitestTestResultToCodeMessagePointConverter.hpp>
+//class RailsMinitestTestResultToCodeMessagePointConverter
+//{
+//private:
+   //RailsMinitestTestResult rails_minitest_test_result;
 
-public:
-   RailsMinitestTestResultToCodeMessagePointConverter(RailsMinitestTestResult rails_minitest_test_result)
-      : rails_minitest_test_result(rails_minitest_test_result)
-   {}
+//public:
+   //RailsMinitestTestResultToCodeMessagePointConverter(RailsMinitestTestResult rails_minitest_test_result)
+      //: rails_minitest_test_result(rails_minitest_test_result)
+   //{}
 
-   CodeMessagePoint convert()
-   {
-      CodeMessagePoint::type_t code_message_point_type = CodeMessagePoint::NONE;
-      if (rails_minitest_test_result.test_state == RailsMinitestTestResult::ERROR) code_message_point_type = CodeMessagePoint::ERROR;
-      else if (rails_minitest_test_result.test_state == RailsMinitestTestResult::FAILURE) code_message_point_type = CodeMessagePoint::TEST_FAILURE;
-      return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, 0, 0, rails_minitest_test_result.test_result_output, code_message_point_type);
-   }
-};
+   //CodeMessagePoint convert()
+   //{
+      //CodeMessagePoint::type_t code_message_point_type = CodeMessagePoint::NONE;
+      //if (rails_minitest_test_result.test_state == RailsMinitestTestResult::ERROR) code_message_point_type = CodeMessagePoint::ERROR;
+      //else if (rails_minitest_test_result.test_state == RailsMinitestTestResult::FAILURE) code_message_point_type = CodeMessagePoint::TEST_FAILURE;
+      //return CodeMessagePoint(0, rails_minitest_test_result.error_line_number, 0, 0, rails_minitest_test_result.test_result_output, code_message_point_type);
+   //}
+//};
 
 
 
-class SystemConfig
-{
-private:
-   static const std::string DEFAULT_NAVIGATOR_DIRECTORY_KEY;
+//class SystemConfig
+//{
+//private:
+   //static const std::string DEFAULT_NAVIGATOR_DIRECTORY_KEY;
 
-   std::string config_filename;
-   AllegroFlare::Config config;
+   //std::string config_filename;
+   //AllegroFlare::Config config;
 
-public:
-   SystemConfig()
-      : config_filename("/Users/markoates/Repos/me/config/hexagon.boot.cfg")
-      , config(config_filename)
-   {}
+//public:
+   //SystemConfig()
+      //: config_filename("/Users/markoates/Repos/me/config/hexagon.boot.cfg")
+      //, config(config_filename)
+   //{}
 
-   void initialize()
-   {
-      config.load();
-   }
+   //void initialize()
+   //{
+      //config.load();
+   //}
 
-   std::string get_default_navigator_directory()
-   {
-      return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
-   }
-};
-const std::string SystemConfig::DEFAULT_NAVIGATOR_DIRECTORY_KEY = "default_navigator_directory";
+   //std::string get_default_navigator_directory()
+   //{
+      //return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
+   //}
+//};
+//const std::string SystemConfig::DEFAULT_NAVIGATOR_DIRECTORY_KEY = "default_navigator_directory";
 
 
 
 #include "Hexagon/System/System.hpp"
 
-
-
-
-
-
-const std::string System::ADD_FILE_IS_UNSAVED_NOTIFICATION = "ADD_FILE_IS_UNSAVED_NOTIFICATION";
-const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_UNSAVED_NOTIFICATION";
-const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
-const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
-const std::string System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
-const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
-const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
-const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
-const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";
-const std::string System::DESTROY_ALL_CODE_EDITOR_STAGES = "DESTROY_ALL_CODE_EDITOR_STAGES";
-const std::string System::ESCAPE_CURRENT_MODAL = "ESCAPE_CURRENT_MODAL";
-const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
-const std::string System::INCREASE_FONT_SIZE = "INCREASE_FONT_SIZE";
-const std::string System::DECREASE_FONT_SIZE = "DECREASE_FONT_SIZE";
-const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
-const std::string System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE";
-const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
-const std::string System::PUSH_COMPONENT_NAVIGATOR_SELECTION = "PUSH_COMPONENT_NAVIGATOR_SELECTION";
-const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
-const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
-const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
-const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
-const std::string System::RUN_MAKE = "RUN_MAKE";
-const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
-const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
-const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
-const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
-const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
-const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
-const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
-const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
-const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 
 
 void run_program(std::vector<std::string> filenames, std::vector<std::string> components)

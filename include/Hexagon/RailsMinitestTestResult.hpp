@@ -25,7 +25,7 @@ public:
    std::string test_result_output;
    int error_line_number;
 
-   RailsMinitestTestResult(std::string test_name, std::string test_time_in_seconds, std::string test_result, test_state_t test_state);
+   RailsMinitestTestResult(std::string test_name="foo", std::string test_time_in_seconds="123", std::string test_result="failed", test_state_t test_state=UNKNOWN);
    ~RailsMinitestTestResult();
 
    test_state_t get_test_state() const;

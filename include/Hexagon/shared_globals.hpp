@@ -14,4 +14,15 @@ extern std::string MAKE_COMMAND_FILENAME;
 extern std::string DEFAULT_CONTENT_FILENAME;
 
 
+extern std::string NOTIFICATION_FILE_IS_UNSAVED;
 
+
+
+#include <string>
+#include <vector>
+
+extern std::vector<std::string> notifications;
+
+void add_notification(std::string notification);
+void remove_notification(std::string notification);
+void clear_notifications();

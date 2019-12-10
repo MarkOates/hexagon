@@ -11,7 +11,7 @@
 #include <iostream>
 #include <iostream>
 #include <iostream>
-#include <Blast/KeyboardCommandMapper.hpp>
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 
 
 namespace Hexagon
