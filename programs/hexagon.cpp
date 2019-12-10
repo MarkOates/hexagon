@@ -757,7 +757,7 @@ public:
          break;
       case StageInterface::FILE_NAVIGATOR:
          process_local_event(PUSH_FILE_NAVIGATOR_SELECTION);
-         process_local_event(DESTROY_TOPMOST_STAGE);
+         process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
          process_local_event(ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION);
          break;
       case StageInterface::COMPONENT_NAVIGATOR:
