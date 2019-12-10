@@ -756,12 +756,9 @@ public:
          process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
          break;
       case StageInterface::FILE_NAVIGATOR:
-         //process_local_event(SAVE_CURRENT_STAGE);  // saves the modal (commits its contents to database)
          process_local_event(PUSH_FILE_NAVIGATOR_SELECTION);
-         process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
+         process_local_event(DESTROY_TOPMOST_STAGE);
          process_local_event(ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION);
-         //throw std::runtime_error("there is no valid \"submit_current_modal()\" behavior for StageInterface::FILE_NAVIGATOR");
-         //process_local_event(ATTEMPT_TO_OPEN_OLD_FILE_NAVIGATION_SELECTED_PATH);
          break;
       case StageInterface::COMPONENT_NAVIGATOR:
          process_local_event(PUSH_COMPONENT_NAVIGATOR_SELECTION);
