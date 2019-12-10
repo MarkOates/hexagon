@@ -79,18 +79,6 @@ void clear_notifications()
 
 
 
-int get_display_default_width()
-{
-   return 2430;
-}
-
-
-int get_display_default_height()
-{
-   return 1350;
-}
-
-
 void wait_for_keypress()
 {
   ALLEGRO_EVENT_QUEUE *event_queue;
@@ -233,6 +221,9 @@ public:
    SystemConfig config;
    std::string global_font_resource_filename;
    int global_font_size;
+
+   static int get_display_default_width() { return 2430; }
+   static int get_display_default_height() { return 1350; }
 
    //RerunOutputWatcher *rerun_output_watcher;
 
@@ -1193,7 +1184,7 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    al_set_new_display_flags(ALLEGRO_RESIZABLE);
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
-   ALLEGRO_DISPLAY *display = al_create_display(get_display_default_width(), get_display_default_height());
+   ALLEGRO_DISPLAY *display = al_create_display(System::get_display_default_width(), System::get_display_default_height());
    if (!display) std::cerr << "al_create_display() failed" << std::endl;
    al_set_window_title(display, "[ProjectName] - Hexagon");
 
