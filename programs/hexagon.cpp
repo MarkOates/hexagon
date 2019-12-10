@@ -1270,7 +1270,7 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    if (!expansiva_font) throw std::runtime_error("could not load 'Expansiva bold.ttf'");
 
 
-   Hexagon::Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, expansiva_font, al_color_html("#bc2d48"), 3);
+   Hexagon::Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, expansiva_font, al_color_html("#bc2d48"), 2.5);
    logo.render();
 
    al_flip_display();
