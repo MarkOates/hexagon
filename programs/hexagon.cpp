@@ -403,120 +403,6 @@ public:
       return true;
    }
 
-   bool attempt_to_flip_to_correlated_component_test_file()
-   {
-      CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
-      // get current stage's filename
-      std::string stage_filename = stage->get_filename();
-      std::cout << "SAAAHHTAGE FILENAMEEE:::::: " << stage_filename << std::endl;
-
-      stage_filename = remove_absolute_path_components_from_project_filename(stage_filename);
-      
-      std::cout << "SANITIZED FILEHHHNAMEEE:::::: " << stage_filename << std::endl;
-      // use the ProjectComponentBasenameExtractor to extract a possible component name
-      NcursesArt::ProjectComponentBasenameExtractor extractor(stage_filename);
-      // check if it's a valid component
-      if (!extractor.is_identifiable_component())
-      {
-         std::stringstream error_message;
-         error_message << "[attempt_to_flip_to_correlated_component_test_file() error]: "
-                       << "could not identify the frontmost stage as an identifiable component"
-                       << std::endl;
-         throw std::runtime_error(error_message.str());
-      }
-      // obtain the basename
-      std::string basename = extractor.identify_component_basename();
-      std::cout << "BASEAMEJEEE:::::: " << basename << std::endl;
-
-      // use the basename with the ProjectFilenameGenerator to generate the desired test filename
-      NcursesArt::ProjectFilenameGenerator generator(basename);
-      std::string test_filename = generator.generate_test_src_filename();
-      // WARNING: this project prefix is a workaround.  This complex state is the result
-      // of an inproperly managed file naming system.  It's unclear at this point whether the
-      // program is being run as an Application (absolute filenames) or as a binary (relative
-      // filenames.  As a result, the project prefix cannot be easily inferred.  For this case,
-      // we're going to prefix the file with this hardcoded string and assume the file is in
-      // the hexagon repo
-      std::string project_prefix = "/Users/markoates/Repos/hexagon/";
-      test_filename = project_prefix + test_filename;
-      // make sure the file exists before destroying the first one and opening the new file
-      if (!php::file_exists(test_filename))
-      {
-         std::stringstream error_message;
-         error_message << "[attempt_to_flip_to_correlated_component_test_file() error]: "
-                       << "could not proceed to opening the test filename "
-                       << "\"" << test_filename << "\" "
-                       << "because it does not exist."
-                       << std::endl;
-         throw std::runtime_error(error_message.str());
-      }
-      // save the current stage
-      save_current_stage();
-      // destroy the current stage
-      destroy_topmost_stage();
-      // create a new stage
-      // WARNING: this selection is a bit of a hack
-      last_file_navigator_selection = test_filename;
-      attempt_to_create_stage_from_last_file_navigator_selection();
-   }
-
-   bool attempt_to_flip_to_correlated_component_quintessence_file()
-   {
-      CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
-      // get current stage's filename
-      std::string stage_filename = stage->get_filename();
-      std::cout << "SAAAHHTAGE FILENAMEEE:::::: " << stage_filename << std::endl;
-
-      stage_filename = remove_absolute_path_components_from_project_filename(stage_filename);
-      
-      std::cout << "SANITIZED FILEHHHNAMEEE:::::: " << stage_filename << std::endl;
-      // use the ProjectComponentBasenameExtractor to extract a possible component name
-      NcursesArt::ProjectComponentBasenameExtractor extractor(stage_filename);
-      // check if it's a valid component
-      if (!extractor.is_identifiable_component())
-      {
-         std::stringstream error_message;
-         error_message << "[attempt_to_flip_to_correlated_component_quintessence_file() error]: "
-                       << "could not identify the frontmost stage as an identifiable component"
-                       << std::endl;
-         throw std::runtime_error(error_message.str());
-      }
-      // obtain the basename
-      std::string basename = extractor.identify_component_basename();
-      std::cout << "BASEAMEJEEE:::::: " << basename << std::endl;
-
-      // use the basename with the ProjectFilenameGenerator to generate the desired quintessence filename
-      NcursesArt::ProjectFilenameGenerator generator(basename);
-      std::string quintessence_filename = generator.generate_quintessence_filename();
-      // WARNING: this project prefix is a workaround.  This complex state is the result
-      // of an inproperly managed file naming system.  It's unclear at this point whether the
-      // program is being run as an Application (absolute filenames) or as a binary (relative
-      // filenames.  As a result, the project prefix cannot be easily inferred.  For this case,
-      // we're going to prefix the file with this hardcoded string and assume the file is in
-      // the hexagon repo
-      std::string project_prefix = "/Users/markoates/Repos/hexagon/";
-      quintessence_filename = project_prefix + quintessence_filename;
-      // make sure the file exists before destroying the first one and opening the new file
-      if (!php::file_exists(quintessence_filename))
-      {
-         std::stringstream error_message;
-         error_message << "[attempt_to_flip_to_correlated_component_quintessence_file() error]: "
-                       << "could not proceed to opening the quintessence filename "
-                       << """ << quintessence_filename << "" "
-                       << "because it does not exist."
-                       << std::endl;
-         throw std::runtime_error(error_message.str());
-      }
-      // save the current stage
-      save_current_stage();
-      // destroy the current stage
-      destroy_topmost_stage();
-      // create a new stage
-      // WARNING: this selection is a bit of a hack
-      last_file_navigator_selection = quintessence_filename;
-      attempt_to_create_stage_from_last_file_navigator_selection();
-   }
-
    bool save_current_stage()
    {
       CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
@@ -912,8 +798,6 @@ public:
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
-   static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE;
-   static const std::string ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE;
    static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
    static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string DESTROY_TOPMOST_STAGE;
@@ -956,8 +840,6 @@ public:
          else if (event_name == CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { create_three_split_from_last_component_navigator_selection(); executed = true; }
          else if (event_name == CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { create_two_or_three_split_layout_from_last_component_navigator_selection(); executed = true; }
          //else if (event_name == ESCAPE_CURRENT_MODAL) { executed = true; escape_current_modal(); }
-         else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE) { attempt_to_flip_to_correlated_component_quintessence_file(); executed = true; }
-         else if (event_name == ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE) { attempt_to_flip_to_correlated_component_test_file(); executed = true; }
          else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
          else if (event_name == DESTROY_TOPMOST_STAGE) { destroy_topmost_stage(); executed = true; }
          else if (event_name == DESTROY_ALL_CODE_EDITOR_STAGES) { destroy_all_code_editor_stages(); executed = true; }
@@ -1011,8 +893,6 @@ public:
 
                                                  // al_keycodee, shift, ctrl, alt, command, { command_identifier }
 
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, true, false, false, false, { ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false, { ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, true, false, { ROTATE_STAGE_RIGHT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
@@ -1122,8 +1002,6 @@ const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELEC
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
-const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_QUINTESSENCE_FILE";
-const std::string System::ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE = "ATTEMPT_TO_FLIP_TO_CORRELATED_COMPONENT_TEST_FILE";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";
