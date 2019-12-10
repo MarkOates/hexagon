@@ -603,12 +603,6 @@ public:
       return true;
    }
 
-   //bool spawn_file_navigator_if_no_stages_exist()
-   //{
-      //if (stages.empty()) process_local_event(SPAWN_FILE_NAVIGATOR);
-      //return true;
-   //}
-
    bool push_component_navigator_selection()
    {
       StageInterface *frontmost_stage_interface = get_frontmost_stage();
@@ -821,7 +815,6 @@ public:
    static const std::string SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
-   //static const std::string SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST;
    static const std::string SPAWN_KEYBOARD_INPUTS_MODAL;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
    static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
@@ -862,7 +855,6 @@ public:
          else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { set_regex_input_box_modal_to_insert_mode(); executed = true; }
          else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
          else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
-         //else if (event_name == SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST) { spawn_file_navigator_if_no_stages_exist(); executed = true; }
          else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
          else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { spawn_regex_input_box_modal(); executed = true; }
          else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
@@ -897,7 +889,6 @@ public:
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_RERUN_OUTPUT_WATCHERS, REFRESH_RERUN_OUTPUT_WATCHERS });
-      //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { DESTROY_TOPMOST_STAGE, SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { DESTROY_TOPMOST_STAGE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_PLUS, false, false, false, false, { INCREASE_FONT_SIZE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, { DECREASE_FONT_SIZE });
@@ -1024,7 +1015,6 @@ const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
 const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
-//const std::string System::SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST = "SPAWN_FILE_NAVIGATOR_IF_NO_STAGES_EXIST";
 const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
 const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
 const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
