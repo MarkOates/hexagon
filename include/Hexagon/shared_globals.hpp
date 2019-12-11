@@ -21,7 +21,13 @@ extern std::string NOTIFICATION_FILE_IS_UNSAVED;
 #include <string>
 #include <vector>
 
+
 extern std::vector<std::string> notifications;
+
+void clear_last_compiled_error_messages();
+void set_last_compiled_error_messages(std::string);
+std::string get_last_compiled_error_messages();
+bool is_last_compiled_error_messages_empty();
 
 void add_notification(std::string notification);
 void remove_notification(std::string notification);

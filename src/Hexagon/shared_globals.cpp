@@ -17,6 +17,35 @@ std::string NOTIFICATION_FILE_IS_UNSAVED = "file is unsaved";
 
 
 
+static std::string last_compiled_error_messages = "";
+
+
+void clear_last_compiled_error_messages()
+{
+   last_compiled_error_messages = "";
+}
+
+
+void set_last_compiled_error_messages(std::string val)
+{
+   last_compiled_error_messages = val;
+}
+
+
+std::string get_last_compiled_error_messages()
+{
+   return last_compiled_error_messages;
+}
+
+
+bool is_last_compiled_error_messages_empty()
+{
+   return last_compiled_error_messages == "";
+}
+
+
+
+
 std::vector<std::string> notifications = {};
 
 void add_notification(std::string notification)
