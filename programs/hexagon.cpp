@@ -56,7 +56,7 @@
 
 
 
-void run_program(std::vector<std::string> filenames, std::vector<std::string> components)
+void run_program()
 {
    if (!al_init()) std::cerr << "al_init() failed" << std::endl;
    if (!al_init_font_addon()) std::cerr << "al_init_font_addon() failed" << std::endl;
@@ -156,7 +156,7 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
    fonts.set_path("data/fonts");
 
 
-   std::string first_filename = filenames.empty() ? "" : filenames[0];
+   //std::string first_filename = filenames.empty() ? "" : filenames[0];
 
 
    //placement2d place(100, 20, 400, 400);
@@ -258,15 +258,15 @@ void run_program(std::vector<std::string> filenames, std::vector<std::string> co
 
 int main(int argc, char **argv)
 {
-   std::vector<std::string> args;
-   for (int i=0; i<argc; i++) args.push_back(argv[i]);
-   Blast::CommandLineFlaggedArgumentsParser command_line_flagged_arguments_parser(args);
+   //std::vector<std::string> args;
+   //for (int i=0; i<argc; i++) args.push_back(argv[i]);
+   //Blast::CommandLineFlaggedArgumentsParser command_line_flagged_arguments_parser(args);
 
-   std::vector<std::vector<std::string>> filenames = command_line_flagged_arguments_parser.get_flagged_args("-f");
-   std::vector<std::string> first_filenames_set = filenames.empty() ? std::vector<std::string>{} : filenames[0];
+   //std::vector<std::vector<std::string>> filenames = command_line_flagged_arguments_parser.get_flagged_args("-f");
+   //std::vector<std::string> first_filenames_set = filenames.empty() ? std::vector<std::string>{} : filenames[0];
 
-   std::vector<std::vector<std::string>> components = command_line_flagged_arguments_parser.get_flagged_args("-c");
-   std::vector<std::string> first_component_set = components.empty() ? std::vector<std::string>{} : components[0];
+   //std::vector<std::vector<std::string>> components = command_line_flagged_arguments_parser.get_flagged_args("-c");
+   //std::vector<std::string> first_component_set = components.empty() ? std::vector<std::string>{} : components[0];
 
    //if (first_filenames_set.empty())
    //{
@@ -274,7 +274,8 @@ int main(int argc, char **argv)
       //throw std::runtime_error(error_message);
    //}
 
-   run_program(first_filenames_set, first_component_set);
+   //run_program(first_filenames_set, first_component_set);
+   run_program();
    return 0;
 }
 
