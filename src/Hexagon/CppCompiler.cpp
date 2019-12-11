@@ -24,16 +24,17 @@ namespace CppCompiler
    {
       //std::stringstream make_command_string;
       //make_command_string << "make 2>&1"; // should be "make" by default
-      Blast::ShellCommandExecutor shell_command_executor(command_string);
+      std::string cmd = "cd /Users/markoates/Repos/hexagon && " + command_string;
+      Blast::ShellCommandExecutor shell_command_executor(cmd);
       std::string output = shell_command_executor.execute();
-      std::cout << output << std::endl;
+      //std::cout << output << std::endl;
       return output;
    }
 }
 
 
 const std::string CppCompiler::CompileRunner::MAKE_COMMAND_ONLY_STDOUT = "make";
-const std::string CppCompiler::CompileRunner::MAKE_COMMAND_ONLY_STDERR = "make > /dev/null";
+const std::string CppCompiler::CompileRunner::MAKE_COMMAND_ONLY_STDERR = "make 2>&1 >/dev/null";
 const std::string CppCompiler::CompileRunner::MAKE_COMMAND_STDOUT_AND_STDERR = "make 2>&1";
 
 
