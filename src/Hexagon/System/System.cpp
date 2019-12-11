@@ -109,7 +109,7 @@ System::System(ALLEGRO_DISPLAY *display, Motion &motion)
    , last_file_navigator_selection("")
    , last_component_navigator_selection("")
    , config()
-   , global_font_resource_filename("ocrb regular.ttf")
+   , global_font_resource_filename("consolas.ttf")
    , global_font_size(-20)
 
 {
