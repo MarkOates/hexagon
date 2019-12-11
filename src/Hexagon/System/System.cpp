@@ -471,10 +471,18 @@ bool System::jump_to_next_code_point_on_stage()
    return true;
 }
 
+bool System::clear_last_compiled_error_messages()
+{
+   ::clear_last_compiled_error_messages();
+   return true;
+}
+
 bool System::run_make()
 {
    CppCompiler::CompileRunner compile_runner("foobar");
    std::string compile_output = compile_runner.run();
+   std::cout << compile_output << std::endl;
+   set_last_compiled_error_messages(compile_output);
    //CppCompiler::CompileOutputToCodeMessagePointSetter(compile_output, this);
    return true;
 }
@@ -695,6 +703,7 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == ROTATE_STAGE_LEFT) { rotate_stage_left(); executed = true; }
       else if (event_name == ROTATE_STAGE_RIGHT) { rotate_stage_right(); executed = true; }
       else if (event_name == RUN_MAKE) { run_make(); executed = true; }
+      else if (event_name == CLEAR_LAST_COMPILED_ERROR_MESSAGES) { clear_last_compiled_error_messages(); executed = true; }
       else if (event_name == RUN_PROJECT_TESTS) { run_project_tests(); executed = true; }
       else if (event_name == SAVE_CURRENT_STAGE) { save_current_stage(); executed = true; }
       else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { set_regex_input_box_modal_to_insert_mode(); executed = true; }
@@ -739,7 +748,7 @@ void System::process_event(ALLEGRO_EVENT &event)
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, true, false, { ROTATE_STAGE_LEFT });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
       //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_RERUN_OUTPUT_WATCHERS, REFRESH_RERUN_OUTPUT_WATCHERS });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_MAKE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_LAST_COMPILED_ERROR_MESSAGES, RUN_MAKE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, { SPAWN_FILE_NAVIGATOR });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, { SPAWN_COMPONENT_NAVIGATOR });
 
@@ -798,6 +807,7 @@ std::string System::get_action_description(std::string action_identifier)
       { System::ROTATE_STAGE_LEFT, "" },
       { System::ROTATE_STAGE_RIGHT, "" },
       { System::RUN_MAKE, "" },
+      { System::CLEAR_LAST_COMPILED_ERROR_MESSAGES, "" },
       { System::RUN_PROJECT_TESTS, "" },
       { System::SAVE_CURRENT_STAGE, "" },
       { System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE, "" },
@@ -849,6 +859,7 @@ const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::RUN_MAKE = "RUN_MAKE";
+const std::string System::CLEAR_LAST_COMPILED_ERROR_MESSAGES = "CLEAR_LAST_COMPILED_ERROR_MESSAGES";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
 const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";

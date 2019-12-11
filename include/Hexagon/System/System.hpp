@@ -88,6 +88,7 @@ public:
    bool submit_current_modal();
    bool escape_current_modal();
    bool spawn_keyboard_inputs_modal();
+   bool clear_last_compiled_error_messages();
 
    // events
    static const std::string ADD_FILE_IS_UNSAVED_NOTIFICATION;
@@ -96,6 +97,7 @@ public:
    static const std::string CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
+   static const std::string CLEAR_LAST_COMPILED_ERROR_MESSAGES;
    static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string DESTROY_TOPMOST_STAGE;
    static const std::string DESTROY_ALL_CODE_EDITOR_STAGES;
