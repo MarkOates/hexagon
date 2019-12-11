@@ -243,6 +243,15 @@ void run_program()
             }
          }
 
+         if (!is_last_compiled_error_messages_empty())
+         {
+            std::vector<std::string> error_message_lines = Blast::StringSplitter(get_last_compiled_error_messages(), '\n').split();
+            for (auto &error_message_line : error_message_lines)
+            {
+               add_notification(error_message_line);
+            }
+         }
+
          hud.set_notifications(notifications);
          hud.draw();
 
