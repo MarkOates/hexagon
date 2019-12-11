@@ -722,6 +722,7 @@ void System::process_event(ALLEGRO_EVENT &event)
    KeyboardCommandMapper keyboard_command_mapper;
 
 
+   //                      set_mapping(al_keycode,         shift, ctrl,  alt,   command, std::vector<std::string> command_identifiers
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { DESTROY_TOPMOST_STAGE });
 
    if (is_current_stage_a_modal())
