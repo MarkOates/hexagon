@@ -12,6 +12,7 @@ namespace CppCompiler
 {
    CompileRunner::CompileRunner(std::string filename)
       : filename(filename)
+      , command_string(MAKE_COMMAND_ONLY_STDERR)
    {}
 
 
@@ -21,13 +22,18 @@ namespace CppCompiler
 
    std::string CompileRunner::run()
    {
-      std::stringstream make_command_string;
-      make_command_string << "make 2>&1"; // should be "make" by default
-      Blast::ShellCommandExecutor shell_command_executor(make_command_string.str());
+      //std::stringstream make_command_string;
+      //make_command_string << "make 2>&1"; // should be "make" by default
+      Blast::ShellCommandExecutor shell_command_executor(command_string);
       std::string output = shell_command_executor.execute();
       std::cout << output << std::endl;
       return output;
    }
 }
+
+
+const std::string CppCompiler::CompileRunner::MAKE_COMMAND_ONLY_STDOUT = "make";
+const std::string CppCompiler::CompileRunner::MAKE_COMMAND_ONLY_STDERR = "make > /dev/null";
+const std::string CppCompiler::CompileRunner::MAKE_COMMAND_STDOUT_AND_STDERR = "make 2>&1";
 
 
