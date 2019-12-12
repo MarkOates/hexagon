@@ -479,7 +479,9 @@ bool System::clear_last_compiled_error_messages()
 
 bool System::run_make()
 {
-   CppCompiler::CompileRunner compile_runner("foobar");
+   CppCompiler::CompileRunner compile_runner(
+     get_default_navigator_directory(),
+     "foobar");
    std::string compile_output = compile_runner.run();
    std::cout << compile_output << std::endl;
    set_last_compiled_error_messages(compile_output);

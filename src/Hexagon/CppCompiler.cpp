@@ -10,8 +10,9 @@
 
 namespace CppCompiler
 {
-   CompileRunner::CompileRunner(std::string filename)
-      : filename(filename)
+   CompileRunner::CompileRunner(std::string project_root_directory, std::string filename)
+      : project_root_directory(project_root_directory)
+      , filename(filename)
       , command_string(MAKE_COMMAND_ONLY_STDERR)
    {}
 
@@ -22,12 +23,17 @@ namespace CppCompiler
 
    std::string CompileRunner::run()
    {
-      //std::stringstream make_command_string;
-      //make_command_string << "make 2>&1"; // should be "make" by default
-      std::string cmd = "cd /Users/markoates/Repos/hexagon && " + command_string;
+      std::string cmd
+        = std::string("(")
+        + "cd "
+        + project_root_directory
+        + " && "
+        + command_string
+        + ")"
+        + "; echo FINAL_EXIT_CODE:$?";
       Blast::ShellCommandExecutor shell_command_executor(cmd);
       std::string output = shell_command_executor.execute();
-      //std::cout << output << std::endl;
+
       return output;
    }
 }
