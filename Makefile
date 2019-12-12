@@ -8,9 +8,10 @@ GOOGLE_TEST_LIB_DIR=$(GOOGLE_TEST_DIR)/build/googlemock/gtest
 GOOGLE_TEST_INCLUDE_DIR=$(GOOGLE_TEST_DIR)/googletest/include
 NCURSES_INCLUDE_DIR=/usr/local/opt/ncurses/include
 NCURSES_LIB_DIR=/usr/local/opt/ncurses/lib
-YAML_CPP_DIR=$(LIBS_ROOT)/yaml-cpp
-YAML_CPP_LIB_DIR=$(YAML_CPP_DIR)/build
-YAML_CPP_INCLUDE_DIR=$(YAML_CPP_DIR)/include
+### note: yaml-cpp is expected to be installed on the system
+#YAML_CPP_DIR=$(LIBS_ROOT)/yaml-cpp
+#YAML_CPP_LIB_DIR=$(YAML_CPP_DIR)/build
+#YAML_CPP_INCLUDE_DIR=$(YAML_CPP_DIR)/include
 
 
 
@@ -116,7 +117,7 @@ run_tests: tests
 bin/programs/%: programs/%.cpp $(OBJECTS)
 	@mkdir -p $(@D)
 	@printf "compiling program \e[1m\e[36m$<\033[0m..."
-	@g++ -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $(OBJECTS) $< -o $@ -I./include -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -I$(YAML_CPP_INCLUDE_DIR) -L$(YAML_CPP_LIB_DIR) -l$(YAML_CPP_LIBS) $(ALLEGRO_LIBS_LINK_MAIN_ARGS) -D_XOPEN_SOURCE_EXTENDED
+	@g++ -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $(OBJECTS) $< -o $@ -I./include -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -l$(YAML_CPP_LIBS) $(ALLEGRO_LIBS_LINK_MAIN_ARGS) -D_XOPEN_SOURCE_EXTENDED
 	@echo "done. Executable at \033[1m\033[32m$@\033[0m"
 
 
@@ -124,7 +125,7 @@ bin/programs/%: programs/%.cpp $(OBJECTS)
 bin/examples/%: examples/%.cpp $(OBJECTS)
 	@mkdir -p $(@D)
 	@printf "compiling example \e[1m\e[36m$<\033[0m..."
-	@g++ -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $(OBJECTS) $< -o $@ -I./include -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -I$(YAML_CPP_INCLUDE_DIR) -L$(YAML_CPP_LIB_DIR) -l$(YAML_CPP_LIBS) $(ALLEGRO_LIBS_LINK_MAIN_ARGS) -D_XOPEN_SOURCE_EXTENDED
+	@g++ -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $(OBJECTS) $< -o $@ -I./include -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -l$(YAML_CPP_LIBS) $(ALLEGRO_LIBS_LINK_MAIN_ARGS) -D_XOPEN_SOURCE_EXTENDED
 	@echo "done. Executable at \033[1m\033[32m$@\033[0m"
 
 
@@ -132,7 +133,7 @@ bin/examples/%: examples/%.cpp $(OBJECTS)
 obj/%.o: src/%.cpp
 	@mkdir -p $(@D)
 	@printf "compiling object file \e[1m\e[34m$<\033[0m..."
-	@g++ -c -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -I$(YAML_CPP_INCLUDE_DIR) -D_XOPEN_SOURCE_EXTENDED
+	@g++ -c -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -D_XOPEN_SOURCE_EXTENDED
 	@echo "done. object at \033[1m\033[32m$@\033[0m"
 
 
@@ -147,7 +148,7 @@ $(LIBRARY_NAME): $(OBJECTS)
 obj/tests/%.o: tests/%.cpp $(OBJECTS)
 	@mkdir -p $(@D)
 	@printf "compiling test object file \e[1m\e[36m$<\033[0m..."
-	@g++ -c -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -I$(GOOGLE_TEST_INCLUDE_DIR) -I$(YAML_CPP_INCLUDE_DIR) -I$(ALLEGRO_FLARE_INCLUDE_DIR)
+	@g++ -c -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $< -o $@ -I./include -I$(GOOGLE_TEST_INCLUDE_DIR) -I$(ALLEGRO_FLARE_INCLUDE_DIR)
 	@echo "done. Object at \033[1m\033[32m$@\033[0m"
 
 
@@ -172,7 +173,7 @@ bin/run_all_tests: tests/test_runner.cpp $(TEST_OBJECTS)
 	echo $(TEST_OBJECTS)
 	@mkdir -p $(@D)
 	@printf "compiling test_runer \e[1m\e[36m$<\033[0m..."
-	@g++ -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $(OBJECTS) $(TEST_OBJECTS) $< -o $@ -I./include -l$(GOOGLE_TEST_LIBS) -I$(GOOGLE_TEST_INCLUDE_DIR) -L$(GOOGLE_TEST_LIB_DIR) -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -I$(YAML_CPP_INCLUDE_DIR) -L$(YAML_CPP_LIB_DIR) -l$(YAML_CPP_LIBS) $(ALLEGRO_LIBS_LINK_ARGS) -D_XOPEN_SOURCE_EXTENDED
+	@g++ -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ $(OBJECTS) $(TEST_OBJECTS) $< -o $@ -I./include -l$(GOOGLE_TEST_LIBS) -I$(GOOGLE_TEST_INCLUDE_DIR) -L$(GOOGLE_TEST_LIB_DIR) -I$(NCURSES_INCLUDE_DIR) -L$(NCURSES_LIB_DIR) -l$(NCURSES_LIB) -l$(YAML_CPP_LIBS) $(ALLEGRO_LIBS_LINK_ARGS) -D_XOPEN_SOURCE_EXTENDED
 
 
 
