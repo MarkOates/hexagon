@@ -20,6 +20,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts)
    , fonts(fonts)
    , screen_sub_bitmap(nullptr)
    , notifications({})
+   , notifications2({})
 {
 }
 
@@ -41,9 +42,21 @@ void Hud::set_notifications(std::vector<std::string> notifications)
 }
 
 
+void Hud::set_notifications2(std::vector<std::string> notifications2)
+{
+   this->notifications2 = notifications2;
+}
+
+
 std::vector<std::string> Hud::get_notifications()
 {
    return notifications;
+}
+
+
+std::vector<std::string> Hud::get_notifications2()
+{
+   return notifications2;
 }
 
 
@@ -76,16 +89,28 @@ void Hud::draw()
 {
 if (!initialized) throw std::runtime_error("[Hud::draw()] Cannot call until Hud has been initialized");
 
+int y_cursor = 0;
+int frame_width = al_get_bitmap_width(screen_sub_bitmap);
+int frame_height = al_get_bitmap_height(screen_sub_bitmap);
+
 ALLEGRO_STATE previous_target_bitmap_state;
 al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
 al_set_target_bitmap(screen_sub_bitmap);
 ALLEGRO_COLOR color = al_color_name("red");
 float notification_bottom_padding = al_get_font_ascent(obtain_text_font());
-int y_cursor=0;
+y_cursor=0;
 for (auto &notification : notifications)
 {
   float y_position = y_cursor * notification_bottom_padding;
   al_draw_text(obtain_text_font(), color, 0, y_position, 0, notification.c_str());
+  y_cursor++;
+}
+
+y_cursor=0;
+for (auto &notification2 : notifications2)
+{
+  float y_position = y_cursor * notification_bottom_padding;
+  al_draw_text(obtain_text_font(), color, frame_width, frame_height-y_cursor, ALLEGRO_ALIGN_RIGHT, notification2.c_str());
   y_cursor++;
 }
 al_restore_state(&previous_target_bitmap_state);
