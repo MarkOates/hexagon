@@ -109,7 +109,7 @@ System::System(ALLEGRO_DISPLAY *display, Motion &motion)
    , last_file_navigator_selection("")
    , last_component_navigator_selection("")
    , config()
-   , global_font_resource_filename("consolas.ttf")
+   , global_font_resource_filename("ocrb.otf")
    , global_font_size(-20)
 
 {
@@ -119,15 +119,15 @@ bool System::initialize()
 {
    config.initialize();
 
-   file_navigator_initial_place.size = vec3d(500, 600, 0);
+   file_navigator_initial_place.size = vec3d(500, 600, 30);
    file_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
    file_navigator_initial_place.scale = vec3d(0.8, 0.8, 1.0);
-   file_navigator_initial_place.rotation = vec3d(0.0, 0.02, 0.0);
+   file_navigator_initial_place.rotation = vec3d(0.0, 0.0, 0.0);
 
-   component_navigator_initial_place.size = vec3d(800, 700, 0);
+   component_navigator_initial_place.size = vec3d(800, 700, 30);
    component_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
    component_navigator_initial_place.scale = vec3d(0.8, 0.8, 1.0);
-   component_navigator_initial_place.rotation = vec3d(0.0, 0.02, 0.0);
+   component_navigator_initial_place.rotation = vec3d(0.0, 0.0, 0.0);
 
    //camera.zoom_pos -= 3.1;
    //camera.position.x += 20;
@@ -337,10 +337,10 @@ bool System::spawn_regex_input_box_modal()
    stages.push_back(stage);
 
    placement3d& stage_place = stage->get_place();
-   stage_place.scale.x = 1.7;
-   stage_place.scale.y = 1.7;
-   motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
-   motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   stage_place.scale.x = 1.5;
+   stage_place.scale.y = 1.5;
+   //motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   //motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
 
    std::vector<std::string> file_contents;
 
@@ -359,8 +359,8 @@ bool System::spawn_component_navigator()
    stages.push_back(component_navigator);
 
    placement3d& stage_place = component_navigator->get_place();
-   motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
-   motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   //motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   //motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
    return true;
 }
 
@@ -387,9 +387,9 @@ bool System::spawn_file_navigator()
    placement3d& stage_place = file_navigator->get_place();
    //stage_place.scale.x = 1.2;
    //stage_place.scale.y = 1.2;
-   motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   //motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
    //motion.cmove_to(&stage_place.scale.y, 1.1, 0.1); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
-   motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   //motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
    //file_navigator.show();
    return true;
 }

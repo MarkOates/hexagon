@@ -85,7 +85,7 @@ void Renderer::render_code_lines(placement3d &place)
          if (truncated_line.size() != line.size()) has_line_been_truncated = true;
 
          // draw the actual line (truncated, possibly) here:
-         al_draw_text(font, al_color_name("white"), 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, truncated_line.c_str());
+         al_draw_text(font, al_color_html("99ddc4"), 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, truncated_line.c_str());
 
          // draw an "indication" marker for a line too long
          if (has_line_been_truncated)
@@ -150,7 +150,7 @@ void Renderer::render_raw()
    frame_color.a *= frame_opacity;
    float roundness = 0; // was previously 6.0;
    float line_thickness = 3.0;
-   bool draw_outline = false;
+   bool draw_outline = true;
 
    al_draw_filled_rounded_rectangle(0, 0,
                             place.size.x, place.size.y,

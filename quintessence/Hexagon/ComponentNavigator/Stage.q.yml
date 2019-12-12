@@ -93,12 +93,12 @@ functions:
       float padding_y = cell_width;
       //std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
       float not_quite_black_value = 0.0;
-      ALLEGRO_COLOR frame_color = al_color_name("steelblue");
+      ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
       ALLEGRO_COLOR not_quite_black;
       not_quite_black.r = not_quite_black_value;
       not_quite_black.g = not_quite_black_value;
       not_quite_black.b = not_quite_black_value;
-      not_quite_black.a = 0.75;
+      not_quite_black.a = 0.8;
       al_draw_filled_rounded_rectangle(
         0 - padding_x*2,
         0 - padding_y*2,
