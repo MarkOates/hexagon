@@ -20,6 +20,8 @@ static void *primary_thread(ALLEGRO_THREAD *thread, void *arg)
    al_lock_mutex(mutex);
    result_string = result;
    al_unlock_mutex(mutex);
+
+   return nullptr;
 }
 
 static void *secondary_thread(ALLEGRO_THREAD *thread, void *arg)
@@ -34,6 +36,8 @@ static void *secondary_thread(ALLEGRO_THREAD *thread, void *arg)
    al_lock_mutex(mutex);
    result_string = result;
    al_unlock_mutex(mutex);
+
+   return nullptr;
 }
 
 class Thread
@@ -71,5 +75,7 @@ int main(int argc, char **argv)
 
    std::cout << "Final string content:" << std::endl;
    std::cout << result_string << std::endl;
+
+   return 0;
 }
 
