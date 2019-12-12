@@ -264,6 +264,7 @@ while(!shutdown_program)
          }
       }
 
+      hud.set_notifications2({ "[ - ]" });
       hud.set_notifications(notifications);
       hud.draw();
 

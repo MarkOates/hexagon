@@ -97,7 +97,8 @@ ALLEGRO_STATE previous_target_bitmap_state;
 al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
 al_set_target_bitmap(screen_sub_bitmap);
 ALLEGRO_COLOR color = al_color_name("red");
-float notification_bottom_padding = al_get_font_ascent(obtain_text_font());
+float notification_bottom_padding = al_get_font_line_height(obtain_text_font());
+float font_line_height = al_get_font_line_height(obtain_text_font());
 y_cursor=0;
 for (auto &notification : notifications)
 {
@@ -109,8 +110,8 @@ for (auto &notification : notifications)
 y_cursor=0;
 for (auto &notification2 : notifications2)
 {
-  float y_position = y_cursor * notification_bottom_padding;
-  al_draw_text(obtain_text_font(), color, frame_width, frame_height-y_cursor, ALLEGRO_ALIGN_RIGHT, notification2.c_str());
+  float y_position = (y_cursor+1) * font_line_height;
+  al_draw_text(obtain_text_font(), color, frame_width, frame_height-y_position, ALLEGRO_ALIGN_RIGHT, notification2.c_str());
   y_cursor++;
 }
 al_restore_state(&previous_target_bitmap_state);
