@@ -18,6 +18,7 @@ std::string NOTIFICATION_FILE_IS_UNSAVED = "file is unsaved";
 
 
 static std::string last_compiled_error_messages = "";
+static int last_compiler_run_exit_code = -1;
 
 
 void clear_last_compiled_error_messages()
@@ -42,6 +43,19 @@ bool is_last_compiled_error_messages_empty()
 {
    return last_compiled_error_messages == "";
 }
+
+
+
+void set_last_compiler_run_exit_code(int exit_code)
+{
+   last_compiler_run_exit_code = exit_code;
+}
+
+int get_last_compiler_run_exit_code()
+{
+   return last_compiler_run_exit_code;
+}
+
 
 
 

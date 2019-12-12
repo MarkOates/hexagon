@@ -29,6 +29,11 @@ void set_last_compiled_error_messages(std::string);
 std::string get_last_compiled_error_messages();
 bool is_last_compiled_error_messages_empty();
 
+void set_last_compiler_run_exit_code(int exit_code);
+int get_last_compiler_run_exit_code();
+
+
+
 void add_notification(std::string notification);
 void remove_notification(std::string notification);
 void clear_notifications();
