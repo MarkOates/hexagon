@@ -773,8 +773,10 @@ void System::process_event(ALLEGRO_EVENT &event)
       bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
       bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
       bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
-      bool ctrl_or_command = ctrl || command;
-      std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
+      //bool ctrl_or_command = ctrl || command;
+      std::vector<std::string> mapped_events =
+        keyboard_command_mapper.get_mapping(
+          event.keyboard.keycode, shift, ctrl, alt, command);
       if (!mapped_events.empty()) event_caught = true;
       for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
       break;
