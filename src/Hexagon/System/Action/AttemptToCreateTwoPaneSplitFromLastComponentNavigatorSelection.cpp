@@ -108,7 +108,7 @@ std::vector<std::string> file_contents = {};
 std::vector<std::string> test_file_contents = {};
 ::read_file(test_file_contents, test_filename);
 
-float width_scale_of_halfwidth = 0.8; //0.6180339;
+float width_scale_of_halfwidth = 1.0; //0.6180339;
 
 if (!test_file_contents.empty())
 {
