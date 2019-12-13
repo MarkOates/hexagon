@@ -34,10 +34,16 @@ functions:
 
   - name: run
     type: std::string
-    body: return "Hello World!";
+    body: |
+      Blast::ShellCommandExecutorWithCallback executor(generate_make_run_test_command());
+      return executor.execute();
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
 
 
 dependencies:
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
 

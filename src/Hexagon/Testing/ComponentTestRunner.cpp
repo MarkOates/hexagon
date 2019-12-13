@@ -2,6 +2,7 @@
 
 #include <Hexagon/Testing/ComponentTestRunner.hpp>
 #include <Blast/Project/Component.hpp>
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
 namespace Hexagon
@@ -56,7 +57,9 @@ return result;
 
 std::string ComponentTestRunner::run()
 {
-return "Hello World!";
+Blast::ShellCommandExecutorWithCallback executor(generate_make_run_test_command());
+return executor.execute();
+
 }
 } // namespace Testing
 } // namespace Hexagon
