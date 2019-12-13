@@ -247,7 +247,7 @@ dependencies:
       - Hexagon/RailsMinitestTestResult.hpp
       - Hexagon/RailsTestOutputParser.hpp
       - Hexagon/RailsMinitestTestRunner.hpp
-      - Hexagon/CppCompiler.hpp
+      - Hexagon/CppCompiler/CompileRunner.hpp
       - Hexagon/FullScreenOverlay/Stage.hpp
       - Hexagon/CodeRangeExtractor.hpp
       - Hexagon/CodeMessagePoint.hpp

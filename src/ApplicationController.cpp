@@ -35,7 +35,7 @@
 #include <Hexagon/RailsMinitestTestResult.hpp>
 #include <Hexagon/RailsTestOutputParser.hpp>
 #include <Hexagon/RailsMinitestTestRunner.hpp>
-#include <Hexagon/CppCompiler.hpp>
+#include <Hexagon/CppCompiler/CompileRunner.hpp>
 #include <Hexagon/FullScreenOverlay/Stage.hpp>
 #include <Hexagon/CodeRangeExtractor.hpp>
 #include <Hexagon/CodeMessagePoint.hpp>
