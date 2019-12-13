@@ -1,0 +1,56 @@
+parent_classes:
+  - class: 'StageInterface'
+    scope: public
+    init_with: "StageInterface::FILE_MISSING"
+properties:
+  - name: text
+    type: std::string
+    init_with: "\"MISSING FILE\""
+functions:
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+  - name: render
+    is_override: true
+    parameters:
+      - name: is_focused
+        type: bool
+        default_argument: true
+      - name: display
+        type: ALLEGRO_DISPLAY*
+        default_argument: nullptr
+      - name: font
+        type: ALLEGRO_FONT*
+        default_argument: nullptr
+      - name: cell_width
+        type: int
+        default_argument: 10
+      - name: cell_height
+        type: int
+        default_argument: 20
+    body: |
+      float width = al_get_display_width(display);
+      float height = al_get_display_height(display);
+      ALLEGRO_COLOR color = al_color_html("d82133");
+      float thickness = 2.5;
+      al_draw_rectangle(0, 0, width, height, color, thickness);
+      al_draw_text(font, color, width/2, height/3*2, ALLEGRO_ALIGN_CENTER, text.c_str());
+    body_dependency_symbols:
+      - al_color_html
+      - al_draw_rectangle
+      - al_draw_text
+dependencies:
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: al_color_html
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_draw_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_draw_text
+    headers: [ allegro5/allegro_font.h ]
+
+    

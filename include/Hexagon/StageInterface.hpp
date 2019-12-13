@@ -23,6 +23,7 @@ public:
       COMPONENT_NAVIGATOR,
       KEYBOARD_INPUTS_MODAL,
       RERUN_OUTPUT_WATCHER,
+      FILE_MISSING,
    }; // these types should not be included within the base class
 
 private:
