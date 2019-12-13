@@ -88,10 +88,6 @@ functions:
       std::string header_filename = generate_header_filename();
       std::string source_filename = generate_source_filename();
 
-      //std::string header_file_contents = php::file_get_contents(generate_header_filename());
-      //std::string source_file_contents = php::file_get_contents(generate_source_filename());
-      //std::string test_file_contents = php::file_get_contents(generate_test_filename());
-
       place_stage(test_filename, right_anchor, 0.0);
       place_stage(source_filename, 0.5, 0.5);
       place_stage(header_filename, left_anchor, 1.0);
