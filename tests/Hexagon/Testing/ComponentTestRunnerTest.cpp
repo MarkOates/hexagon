@@ -22,8 +22,9 @@ TEST(Hexagon_Testing_ComponentTestRunnerTest, generate_make_test_command__return
    std::string expected_make_command
       = std::string("(")
       + "cd /Users/markoates/Repos/hexagon/ "
-      + "&& make /Users/markoates/Repos/hexagon/tests/Hexagon/UnnamedComponentTest "
-      + "; /Users/markoates/Repos/hexagon/tests/Hexagon/UnnamedComponentTest) "
+      + "&& make /Users/markoates/Repos/hexagon/bin/tests/Hexagon/UnnamedComponentTest"
+      + ")"
+      + "; /Users/markoates/Repos/hexagon/bin/tests/Hexagon/UnnamedComponentTest "
       + "&& echo FINAL_EXIT_CODE:$?"
       ;
 
