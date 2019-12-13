@@ -1,0 +1,49 @@
+properties:
+  - name: project_root
+    init_with: "\"/Users/markoates/Repos/hexagon/\""
+    getter: true
+
+  - name: component_name
+    init_with: "\"Hexagon/UnnamedComponent\""
+    getter: true
+    
+
+functions:
+
+  - name: generate_make_test_command
+    type: std::string
+    body: |
+      Blast::Project::Component component(get_component_name(), get_project_root());
+      std::string full_path_test_filename = component.generate_full_path_test_filename();
+      std::string result
+        = std::string("(")
+        + "cd "
+        + project_root
+        + " && make "
+        + full_path_test_filename
+        + ")"
+        + "; "
+        + full_path_test_filename
+        + " && "
+        + "echo FINAL_EXIT_CODE:$?"
+        ;
+      return result;
+    private: true
+
+  - name: generate_run_test_command
+    type: std::string
+    body: |
+      Blast::Project::Component component(get_component_name(), get_project_root());
+      return "foobar";
+    body_dependency_symbols:
+      - Blast::Project::Component
+
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+
+
+dependencies:
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
+
