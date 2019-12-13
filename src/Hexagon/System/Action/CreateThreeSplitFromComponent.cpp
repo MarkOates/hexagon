@@ -3,6 +3,7 @@
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 #include <allegro_flare/placement3d.h>
 #include <Blast/FileExistenceChecker.hpp>
+#include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <allegro_flare/useful_php.h>
@@ -76,6 +77,10 @@ if (file_exists)
    CodeEditor::Stage *file_stage = new CodeEditor::Stage(filename);
    file_stage->set_initial_content(file_contents);
    stage = file_stage;
+}
+else
+{
+   stage = new Hexagon::MissingFile::Stage;
 }
 
 stage->set_place(place);

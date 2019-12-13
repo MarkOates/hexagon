@@ -62,6 +62,10 @@ functions:
          file_stage->set_initial_content(file_contents);
          stage = file_stage;
       }
+      else
+      {
+         stage = new Hexagon::MissingFile::Stage;
+      }
 
       stage->set_place(place);
       stages.push_back(stage);
@@ -70,6 +74,7 @@ functions:
     body_dependency_symbols:
       - placement3d
       - Blast::FileExistenceChecker
+      - Hexagon::MissingFile::Stage
   - name: generate_header_filename
     type: std::string
     body: |
@@ -118,5 +123,7 @@ dependencies:
     headers: [ allegro_flare/useful_php.h ]
   - symbol: Blast::ProjectComponentFilenameGenerator
     headers: [ Blast/ProjectComponentFilenameGenerator.hpp ]
+  - symbol: Hexagon::MissingFile::Stage
+    headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
