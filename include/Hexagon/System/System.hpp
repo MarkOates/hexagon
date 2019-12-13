@@ -2,7 +2,7 @@
 
 
 class StageInterface;
-class ALLEGRO_DISPLAY;
+struct ALLEGRO_DISPLAY;
 namespace CodeEditor
 {
    class Stage;
