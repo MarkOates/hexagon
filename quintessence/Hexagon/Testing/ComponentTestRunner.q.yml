@@ -10,7 +10,7 @@ properties:
 
 functions:
 
-  - name: generate_make_test_command
+  - name: generate_make_run_test_command
     type: std::string
     body: |
       Blast::Project::Component component(get_component_name(), get_project_root());
@@ -29,12 +29,6 @@ functions:
         ;
       return result;
     private: true
-
-  - name: generate_run_test_command
-    type: std::string
-    body: |
-      Blast::Project::Component component(get_component_name(), get_project_root());
-      return "foobar";
     body_dependency_symbols:
       - Blast::Project::Component
 

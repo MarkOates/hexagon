@@ -34,7 +34,7 @@ std::string ComponentTestRunner::get_component_name()
 }
 
 
-std::string ComponentTestRunner::generate_make_test_command()
+std::string ComponentTestRunner::generate_make_run_test_command()
 {
 Blast::Project::Component component(get_component_name(), get_project_root());
 std::string full_path_test_filename = component.generate_full_path_test_binary_filename();
@@ -51,13 +51,6 @@ std::string result
   + "echo FINAL_EXIT_CODE:$?"
   ;
 return result;
-
-}
-
-std::string ComponentTestRunner::generate_run_test_command()
-{
-Blast::Project::Component component(get_component_name(), get_project_root());
-return "foobar";
 
 }
 

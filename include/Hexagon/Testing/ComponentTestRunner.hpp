@@ -21,8 +21,7 @@ namespace Hexagon
 
          std::string get_project_root();
          std::string get_component_name();
-      std::string generate_make_test_command();
-      std::string generate_run_test_command();
+      std::string generate_make_run_test_command();
       std::string run();
       };
    }
