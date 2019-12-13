@@ -43,10 +43,10 @@ std::string Component::get_project_root()
 }
 
 
-std::string Component::generate_full_path_test_filename()
+std::string Component::generate_full_path_test_binary_filename()
 {
 std::string filename = Blast::ProjectComponentFilenameGenerator(name, Blast::ProjectComponentFileTypes::TEST_FILE).generate_filename();
-std::string full_filename = project_root + filename;
+return project_root + filename;
 
 }
 
