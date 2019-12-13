@@ -1,7 +1,7 @@
 parent_classes:
   - class: 'StageInterface'
     scope: public
-    init_with: "StageInterface::FILE_MISSING"
+    init_with: "StageInterface::MISSING_FILE"
 properties:
   - name: text
     type: std::string

@@ -16,7 +16,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
 Stage::Stage()
-   : StageInterface(StageInterface::FILE_MISSING)
+   : StageInterface(StageInterface::MISSING_FILE)
    , text("MISSING FILE")
 {
 }

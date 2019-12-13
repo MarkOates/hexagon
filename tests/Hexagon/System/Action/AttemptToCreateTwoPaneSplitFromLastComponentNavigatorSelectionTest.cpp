@@ -78,6 +78,6 @@ TEST(Hexagon_System_Action_AttemptTo, execute__if_files_are_missing_will_create_
    EXPECT_EQ(2, stages.size());
    for (auto &stage : stages)
    {
-      EXPECT_EQ(StageInterface::FILE_MISSING, stage->get_type());
+      EXPECT_EQ(StageInterface::MISSING_FILE, stage->get_type());
    }
 }

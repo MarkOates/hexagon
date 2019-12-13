@@ -51,10 +51,10 @@ functions:
 
       std::vector<std::string> missing_files = {};
 
-      bool quintessence_file_missing = false;
-      bool test_file_missing = false;
-      if (!Blast::FileExistenceChecker(filename).exists()) quintessence_file_missing = true;
-      if (!Blast::FileExistenceChecker(test_filename).exists()) test_file_missing = true;
+      bool quintessence_file_present = true;
+      bool test_file_present = true;
+      if (!Blast::FileExistenceChecker(filename).exists()) quintessence_file_present = false;
+      if (!Blast::FileExistenceChecker(test_filename).exists()) test_file_present = false;
 
       float width_scale_of_halfwidth = 1.0; //0.6180339;
 
@@ -68,10 +68,17 @@ functions:
 
         StageInterface *stage = nullptr;
 
-        std::vector<std::string> file_contents = {};
-        ::read_file(file_contents, test_filename);
-        stage = new CodeEditor::Stage(test_filename);
-        static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
+        if (test_file_present)
+        {
+           std::vector<std::string> file_contents = {};
+           ::read_file(file_contents, test_filename);
+           stage = new CodeEditor::Stage(test_filename);
+           static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
+        }
+        else
+        {
+            stage = new Hexagon::MissingFile::Stage;
+        }
 
         stage->set_place(place);
         stages.push_back(stage);
@@ -85,14 +92,22 @@ functions:
         place.align = vec3d(1.0, 0.5, 0.0);
         place.scale = vec3d(0.9, 0.9, 0.0);
 
-        CodeEditor::Stage *quintessence_file_stage = new CodeEditor::Stage(filename);
+        StageInterface *stage = nullptr;
 
-        std::vector<std::string> file_contents = {};
-        ::read_file(file_contents, filename);
-        quintessence_file_stage->set_initial_content(file_contents);
-        quintessence_file_stage->set_place(place);
+        if (quintessence_file_present)
+        {
+           std::vector<std::string> file_contents = {};
+           ::read_file(file_contents, filename);
+           stage = new CodeEditor::Stage(filename);
+           static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
+        }
+        else
+        {
+            stage = new Hexagon::MissingFile::Stage;
+        }
 
-        stages.push_back(quintessence_file_stage);
+        stage->set_place(place);
+        stages.push_back(stage);
       }
 
       return true;
