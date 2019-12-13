@@ -2,6 +2,7 @@
 
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 #include <allegro_flare/placement3d.h>
+#include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <allegro_flare/useful_php.h>

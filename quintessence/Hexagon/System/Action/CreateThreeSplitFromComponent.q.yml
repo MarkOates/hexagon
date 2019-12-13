@@ -67,6 +67,7 @@ functions:
       return true;
     body_dependency_symbols:
       - placement3d
+      - Blast::FileExistenceChecker
   - name: generate_header_filename
     type: std::string
     body: |
@@ -119,3 +120,5 @@ dependencies:
     headers: [ allegro_flare/useful_php.h ]
   - symbol: Blast::ProjectComponentFilenameGenerator
     headers: [ Blast/ProjectComponentFilenameGenerator.hpp ]
+  - symbol: Blast::FileExistenceChecker
+    headers: [ Blast/FileExistenceChecker.hpp ]
