@@ -1,10 +1,12 @@
 properties:
   - name: project_root
     init_with: "\"/Users/markoates/Repos/hexagon/\""
+    constructor_arg: true
     getter: true
 
   - name: component_name
     init_with: "\"Hexagon/UnnamedComponent\""
+    constructor_arg: true
     getter: true
     
 

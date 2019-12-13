@@ -15,7 +15,7 @@ namespace Hexagon
          std::string component_name;
 
       public:
-         ComponentTestRunner();
+         ComponentTestRunner(std::string project_root="/Users/markoates/Repos/hexagon/", std::string component_name="Hexagon/UnnamedComponent");
          ~ComponentTestRunner();
 
 

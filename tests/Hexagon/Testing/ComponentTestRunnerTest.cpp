@@ -10,9 +10,13 @@ TEST(Hexagon_Testing_ComponentTestRunnerTest, can_be_created_without_blowing_up)
 
 TEST(Hexagon_Testing_ComponentTestRunnerTest, run__returns_the_expected_response)
 {
-   Hexagon::Testing::ComponentTestRunner component_test_runner;
-   //std::string expected_string = "Hello World!";
-   //EXPECT_EQ(expected_string, component_test_runner.run());
+   std::string project_root = "/Users/markoates/Repos/hexagon/";
+   std::string component = "Hexagon/RendererInterface";
+   Hexagon::Testing::ComponentTestRunner component_test_runner(project_root, component);
+
+   std::string expected_response_string = "Testing ...";
+   std::string actual_response_string = component_test_runner.run();
+   EXPECT_EQ(expected_response_string, actual_response_string);
 }
 
 TEST(Hexagon_Testing_ComponentTestRunnerTest, generate_make_run_test_command__returns_the_expectd_string)
@@ -30,3 +34,4 @@ TEST(Hexagon_Testing_ComponentTestRunnerTest, generate_make_run_test_command__re
 
    ASSERT_EQ(expected_make_command, component_test_runner.generate_make_run_test_command());
 }
+

@@ -11,9 +11,9 @@ namespace Testing
 {
 
 
-ComponentTestRunner::ComponentTestRunner()
-   : project_root("/Users/markoates/Repos/hexagon/")
-   , component_name("Hexagon/UnnamedComponent")
+ComponentTestRunner::ComponentTestRunner(std::string project_root, std::string component_name)
+   : project_root(project_root)
+   , component_name(component_name)
 {
 }
 
