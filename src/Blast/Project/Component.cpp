@@ -3,6 +3,8 @@
 #include <Blast/Project/Component.hpp>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <Blast/ProjectComponentFileTypes.hpp>
+#include <Blast/ProjectComponentFilenameGenerator.hpp>
+#include <Blast/ProjectComponentFileTypes.hpp>
 #include <Blast/FileExistenceChecker.hpp>
 #include <Blast/ProjectComponentFileTypes.hpp>
 #include <vector>
@@ -40,6 +42,13 @@ std::string Component::get_project_root()
    return project_root;
 }
 
+
+std::string Component::generate_full_path_test_filename()
+{
+std::string filename = Blast::ProjectComponentFilenameGenerator(name, Blast::ProjectComponentFileTypes::TEST_FILE).generate_filename();
+std::string full_filename = project_root + filename;
+
+}
 
 bool Component::check_file_existence(Blast::ProjectComponentFileTypes::project_file_type_t type)
 {
