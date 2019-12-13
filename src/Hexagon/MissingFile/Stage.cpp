@@ -12,6 +12,9 @@ namespace MissingFile
 {
 
 
+ALLEGRO_EVENT Stage::a_default_empty_event = {};
+
+
 Stage::Stage()
    : StageInterface(StageInterface::FILE_MISSING)
    , text("MISSING FILE")
@@ -21,6 +24,12 @@ Stage::Stage()
 
 Stage::~Stage()
 {
+}
+
+
+ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
+{
+   return a_default_empty_event;
 }
 
 
@@ -38,6 +47,16 @@ float thickness = 2.5;
 al_draw_rectangle(0, 0, width, height, color, thickness);
 al_draw_text(font, color, width/2, height/3*2, ALLEGRO_ALIGN_CENTER, text.c_str());
 
+}
+
+void Stage::process_local_event(std::string event_name, ActionData action_data)
+{
+return;
+}
+
+void Stage::process_event(ALLEGRO_EVENT& event)
+{
+return;
 }
 } // namespace MissingFile
 } // namespace Hexagon

@@ -14,3 +14,19 @@ TEST(Hexagon_System_Action_AttemptToCreateTwoPaneSplitFromLastComponentNavigator
    std::string expected_string = "Hello World!";
    EXPECT_EQ(expected_string, attempt_to_create_two_pane_split_from_last_component_navigator_selection.run());
 }
+
+TEST(Hexagon_System_Action_AttemptTo, execute__if_files_are_missing_will_create_missing_file_stages)
+{
+   std::vector<StageInterface *> stages;
+
+   Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection
+      action(
+         "/Users/markoates/Repos/hexagon/",
+         "Hexagon/ComponentThatIsNotPresent",
+         2430,
+         1350,
+         stages
+      );
+
+   action.execute();
+}

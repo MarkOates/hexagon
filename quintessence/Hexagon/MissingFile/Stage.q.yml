@@ -6,6 +6,11 @@ properties:
   - name: text
     type: std::string
     init_with: "\"MISSING FILE\""
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
 functions:
   - name: run
     type: std::string
@@ -39,6 +44,23 @@ functions:
       - al_color_html
       - al_draw_rectangle
       - al_draw_text
+  - name: process_local_event
+    is_override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: "\"\""
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: return;
+  - name: process_event
+    is_override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: return;
 dependencies:
   - symbol: ALLEGRO_DISPLAY*
     headers: [ allegro5/allegro.h ]
@@ -52,5 +74,11 @@ dependencies:
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: al_draw_text
     headers: [ allegro5/allegro_font.h ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ActionData
+    headers: [ Hexagon/ActionData.hpp ]
 
     
