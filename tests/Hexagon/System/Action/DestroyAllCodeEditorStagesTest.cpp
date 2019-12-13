@@ -32,6 +32,14 @@ public:
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };
 
+class MissingFileTestStage : public StageInterface
+{
+public:
+   MissingFileTestStage() : StageInterface(StageInterface::MISSING_FILE) {}
+   virtual void render(bool is_focused, ALLEGRO_DISPLAY *display=nullptr, ALLEGRO_FONT *font=nullptr, int cell_width=0, int cell_height=0) override {}
+   virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
+   virtual void process_event(ALLEGRO_EVENT &event) override {}
+};
 
 
 TEST(Hexagon_System_Action_DestroyAllCodeEditorStagesTest, can_be_created_without_blowing_up)
@@ -51,11 +59,13 @@ TEST(Hexagon_System_Action_DestroyAllCodeEditorStagesTest, execute__modifieds_th
    CodeEditorTestStage *code_editor2 = new CodeEditorTestStage();
    OneLineInputBoxTestStage *one_line_input_box = new OneLineInputBoxTestStage();
    FileNavigatorTestStage *file_navigator = new FileNavigatorTestStage();
+   MissingFileTestStage *missing_file = new MissingFileTestStage();
 
    std::vector<StageInterface *> stages = {
       code_editor1,
       one_line_input_box,
       code_editor2,
+      missing_file,
       file_navigator,
    };
 

@@ -51,7 +51,10 @@ for (unsigned i=0; i<stages.size(); i++)
 {
    auto &stage = stages[i];
 
-   if (stage->get_type() == StageInterface::CODE_EDITOR)
+   if (
+        stage->get_type() == StageInterface::CODE_EDITOR
+        || stage->get_type() == StageInterface::MISSING_FILE
+      )
    {
       CodeEditor::Stage *code_editor = static_cast<CodeEditor::Stage *>(stage);
       delete code_editor;
