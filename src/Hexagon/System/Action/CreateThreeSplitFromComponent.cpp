@@ -61,21 +61,25 @@ std::vector<StageInterface *> &CreateThreeSplitFromComponent::get_dummy_stages_r
 
 bool CreateThreeSplitFromComponent::place_stage(std::string filename, float x, float align_x)
 {
-std::string file_contents = php::file_get_contents(filename);
-if (file_contents.empty()) return false;
-
-CodeEditor::Stage *file_stage = new CodeEditor::Stage(filename);
-
+bool file_exists = Blast::FileExistenceChecker(filename).exists();
 float width = display_default_width/3;
-
 placement3d place(x, 0, 0);
 place.size = vec3d(width, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
 place.align = vec3d(align_x, 0.5, 0.0);
 place.scale = vec3d(0.9, 0.9, 0.0);
 
-file_stage->set_place(place);
-file_stage->set_initial_content(file_contents);
-stages.push_back(file_stage);
+StageInterface *stage = nullptr;
+
+if (file_exists)
+{
+   std::string file_contents = php::file_get_contents(filename);
+   CodeEditor::Stage *file_stage = new CodeEditor::Stage(filename);
+   file_stage->set_initial_content(file_contents);
+   stage = file_stage;
+}
+
+stage->set_place(place);
+stages.push_back(stage);
 
 return true;
 
