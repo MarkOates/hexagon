@@ -2,6 +2,7 @@
 
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Blast/FileExistenceChecker.hpp>
+#include <Hexagon/MissingFile/Stage.hpp>
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
 #include <sstream>
 #include <vector>
@@ -80,67 +81,47 @@ std::string test_filename = test_src_filename;
 
 std::vector<std::string> missing_files = {};
 
-if (!Blast::FileExistenceChecker(filename).exists()) missing_files.push_back(filename);
-if (!Blast::FileExistenceChecker(test_filename).exists()) missing_files.push_back(test_filename);
-
-//if (!missing_files.empty())
-//{
-   //std::stringstream error_message;
-   //error_message << "The following files are missing and cannot be opened: [";
-   //for (auto &missing_file : missing_files)
-   //{
-      //error_message << "\"" << missing_file << "\"";
-   //}
-   //error_message << "]";
-   //throw std::runtime_error(error_message.str());
-//}
-
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-std::cout << "TEST_SRC" << test_src_filename << std::endl;
-
-std::vector<std::string> file_contents = {};
-::read_file(file_contents, filename);
-
-std::vector<std::string> test_file_contents = {};
-::read_file(test_file_contents, test_filename);
+bool quintessence_file_missing = false;
+bool test_file_missing = false;
+if (!Blast::FileExistenceChecker(filename).exists()) quintessence_file_missing = true;
+if (!Blast::FileExistenceChecker(test_filename).exists()) test_file_missing = true;
 
 float width_scale_of_halfwidth = 1.0; //0.6180339;
 
-if (!test_file_contents.empty())
+//if (!test_file_contents.empty())
 {
   float width = display_default_width/2 * width_scale_of_halfwidth;
-  float horizontal_position = 0;
-
-  placement3d place(horizontal_position, 0, 0);
-  place.size = vec3d(width, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+  placement3d place(0, 0, 0);
+  place.size = vec3d(width, display_default_height, 0.0);
   place.align = vec3d(0.0, 0.5, 0.0);
   place.scale = vec3d(0.9, 0.9, 0.0);
 
-  CodeEditor::Stage *test_file_stage = new CodeEditor::Stage(test_filename);
+  StageInterface *stage = nullptr;
 
-  test_file_stage->set_place(place);
-  test_file_stage->set_initial_content(test_file_contents);
-  stages.push_back(test_file_stage);
+  std::vector<std::string> file_contents = {};
+  ::read_file(file_contents, test_filename);
+  stage = new CodeEditor::Stage(test_filename);
+  static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
+
+  stage->set_place(place);
+  stages.push_back(stage);
 }
 
-if (!file_contents.empty())
+//if (!file_contents.empty())
 {
   float width = display_default_width/2 * width_scale_of_halfwidth;
-  float horizontal_position = 0;
-
-  placement3d place(horizontal_position, 0, 0);
-  place.size = vec3d(width, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+  placement3d place(0, 0, 0);
+  place.size = vec3d(width, display_default_height, 0.0);
   place.align = vec3d(1.0, 0.5, 0.0);
   place.scale = vec3d(0.9, 0.9, 0.0);
 
   CodeEditor::Stage *quintessence_file_stage = new CodeEditor::Stage(filename);
 
-  quintessence_file_stage->set_place(place);
+  std::vector<std::string> file_contents = {};
+  ::read_file(file_contents, filename);
   quintessence_file_stage->set_initial_content(file_contents);
+  quintessence_file_stage->set_place(place);
+
   stages.push_back(quintessence_file_stage);
 }
 
