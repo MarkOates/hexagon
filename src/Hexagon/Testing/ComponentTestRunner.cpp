@@ -37,7 +37,7 @@ std::string ComponentTestRunner::get_component_name()
 std::string ComponentTestRunner::generate_make_test_command()
 {
 Blast::Project::Component component(get_component_name(), get_project_root());
-std::string full_path_test_filename = component.generate_full_path_test_filename();
+std::string full_path_test_filename = ""; //component.generate_full_path_test_filename();
 std::string result
   = std::string("(")
   + "cd "
