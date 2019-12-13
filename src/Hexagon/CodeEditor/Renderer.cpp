@@ -8,6 +8,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/CursorRenderer.hpp>
 #include <Hexagon/CodeRangeRenderer.hpp>
+#include <AllegroFlare/Color.hpp>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -59,6 +60,7 @@ void Renderer::render_code_lines(placement3d &place)
    int line_length_character_limit = place.size.x / cell_width;
    std::vector<int> &git_modified_line_numbers = stage->git_modified_line_numbers;
    std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = stage->code_message_points_overlays;
+   ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
 
    for (int line_number = first_line_number; line_number < (int)lines.size(); line_number++)
    {
@@ -85,7 +87,7 @@ void Renderer::render_code_lines(placement3d &place)
          if (truncated_line.size() != line.size()) has_line_been_truncated = true;
 
          // draw the actual line (truncated, possibly) here:
-         al_draw_text(font, al_color_html("99ddc4"), 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, truncated_line.c_str());
+         al_draw_text(font, epic_green_color, 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, truncated_line.c_str());
 
          // draw an "indication" marker for a line too long
          if (has_line_been_truncated)
@@ -133,6 +135,7 @@ void Renderer::render_raw()
    float padding = cell_width;
    float half_padding = padding * 0.5;
 
+   ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
 
 
    // draw the background and frame (basically the chrome)
@@ -142,7 +145,12 @@ void Renderer::render_raw()
    background_overlay_color.g *= opacity;
    background_overlay_color.b *= opacity;
    background_overlay_color.a *= opacity;
-   ALLEGRO_COLOR frame_color = al_color_name("gray");
+   ALLEGRO_COLOR frame_color = 
+      AllegroFlare::color::color(
+         AllegroFlare::color::mix(
+             al_color_html("99ddc4"), al_color_name("white"),0.5
+           ), 0.85
+         );
    float frame_opacity = 0.6;
    frame_color.r *= frame_opacity;
    frame_color.g *= frame_opacity;
@@ -151,6 +159,7 @@ void Renderer::render_raw()
    float roundness = 0; // was previously 6.0;
    float line_thickness = 3.0;
    bool draw_outline = true;
+
 
    al_draw_filled_rounded_rectangle(0, 0,
                             place.size.x, place.size.y,
