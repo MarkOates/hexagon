@@ -1,5 +1,8 @@
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
+
+using ::testing::HasSubstr;
 
 #include <Hexagon/Testing/ComponentTestRunner.hpp>
 
@@ -8,15 +11,15 @@ TEST(Hexagon_Testing_ComponentTestRunnerTest, can_be_created_without_blowing_up)
    Hexagon::Testing::ComponentTestRunner component_test_runner;
 }
 
-TEST(DISABLED_Hexagon_Testing_ComponentTestRunnerTest, run__returns_the_expected_response)
+TEST(Hexagon_Testing_ComponentTestRunnerTest, run__returns_the_expected_response)
 {
    std::string project_root = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/RendererInterface";
    Hexagon::Testing::ComponentTestRunner component_test_runner(project_root, component);
 
-   std::string expected_response_string = "Testing ...";
+   std::string expected_included_string = "Global test environment set-up.";
    std::string actual_response_string = component_test_runner.run();
-   EXPECT_EQ(expected_response_string, actual_response_string);
+   EXPECT_THAT(actual_response_string, HasSubstr(expected_included_string));
 }
 
 TEST(Hexagon_Testing_ComponentTestRunnerTest, generate_make_run_test_command__returns_the_expectd_string)
