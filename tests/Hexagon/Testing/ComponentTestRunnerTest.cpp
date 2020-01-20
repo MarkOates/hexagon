@@ -8,7 +8,7 @@ TEST(Hexagon_Testing_ComponentTestRunnerTest, can_be_created_without_blowing_up)
    Hexagon::Testing::ComponentTestRunner component_test_runner;
 }
 
-TEST(Hexagon_Testing_ComponentTestRunnerTest, run__returns_the_expected_response)
+TEST(DISABLED_Hexagon_Testing_ComponentTestRunnerTest, run__returns_the_expected_response)
 {
    std::string project_root = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/RendererInterface";
