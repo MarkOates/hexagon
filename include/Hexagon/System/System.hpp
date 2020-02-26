@@ -86,6 +86,7 @@ public:
    bool create_two_or_three_split_layout_from_last_component_navigator_selection();
    bool create_three_split_from_last_component_navigator_selection();
    bool attempt_to_create_stage_from_last_component_navigator_selection();
+   bool execute_magic_command();
    bool submit_current_modal();
    bool escape_current_modal();
    bool spawn_keyboard_inputs_modal();
@@ -102,6 +103,7 @@ public:
    static const std::string CLEAR_LAST_COMPILED_ERROR_MESSAGES;
    static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string DESTROY_TOPMOST_STAGE;
+   static const std::string EXECUTE_MAGIC_COMMAND;
    static const std::string DESTROY_ALL_CODE_EDITOR_STAGES;
    static const std::string ESCAPE_CURRENT_MODAL;
    static const std::string HIDE_FILE_NAVIGATOR;

@@ -483,6 +483,11 @@ bool System::destroy_topmost_stage()
    }
 }
 
+bool System::execute_magic_command()
+{
+   std::cout << "Magic command executed." << std::endl;
+}
+
 bool System::jump_to_next_code_point_on_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -730,6 +735,7 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == SAVE_CURRENT_STAGE) { save_current_stage(); executed = true; }
       else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { set_regex_input_box_modal_to_insert_mode(); executed = true; }
       else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
+      else if (event_name == EXECUTE_MAGIC_COMMAND) { execute_magic_command(); executed = true; }
       else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
       else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
       else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { spawn_regex_input_box_modal(); executed = true; }
@@ -773,6 +779,7 @@ void System::process_event(ALLEGRO_EVENT &event)
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_LAST_COMPILED_ERROR_MESSAGES, RUN_MAKE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, { SPAWN_FILE_NAVIGATOR });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, { SPAWN_COMPONENT_NAVIGATOR });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_8, true, true, false, false, { EXECUTE_MAGIC_COMMAND });
 
       if (is_current_stage_in_edit_mode())
       {
@@ -836,6 +843,7 @@ std::string System::get_action_description(std::string action_identifier)
       { System::SAVE_CURRENT_STAGE, "" },
       { System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE, "" },
       { System::SPAWN_COMPONENT_NAVIGATOR, "" },
+      { System::EXECUTE_MAGIC_COMMAND, "" },
       { System::SPAWN_FILE_NAVIGATOR, "" },
       { System::SPAWN_KEYBOARD_INPUTS_MODAL, "" },
       { System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, "" },
@@ -889,6 +897,7 @@ const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
 const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
+const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
 const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
 const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
