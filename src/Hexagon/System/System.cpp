@@ -394,6 +394,26 @@ bool System::spawn_file_navigator()
    return true;
 }
 
+bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
+{
+   //TODO: this function does not guard against a "last_file_navigator_selection" that could potentially not be a folder 
+
+   Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(last_file_navigator_selection);
+   file_navigator->process_local_event("refresh_list");
+   file_navigator->set_place(file_navigator_initial_place);
+
+   stages.push_back(file_navigator);
+
+   placement3d& stage_place = file_navigator->get_place();
+   //stage_place.scale.x = 1.2;
+   //stage_place.scale.y = 1.2;
+   //motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   //motion.cmove_to(&stage_place.scale.y, 1.1, 0.1); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   //motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   //file_navigator.show();
+   return true;
+}
+
 bool System::spawn_rerun_output_watcher()
 {
    float golden_ratio = 0.61803f;
@@ -548,11 +568,10 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
       throw std::runtime_error(error_message.str().c_str());
    }
    FileSystemNode file_system_node(fs_entry);
-   if (file_system_node.infer_is_directory())
+   if (file_system_node.infer_is_directory()) // is a valid folder
    {
-      std::stringstream error_message;
-      error_message << "Could not attempt_to_create_stage_from_last_file_navigator_selection: is a directory." << std::endl;
-      throw std::runtime_error(error_message.str().c_str());
+      //TODO: some sloppy behavior here.  This method should be better encapsulated in the file navigator component
+      process_local_event(SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION);
    }
    else // is a valid file
    {
@@ -686,6 +705,7 @@ void System::process_local_event(std::string event_name) // this function is 1:1
 
       if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_file_navigator_selection(); executed = true; }
       else if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_component_navigator_selection(); executed = true; }
+      else if (event_name == SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION) { spawn_file_navigator_from_last_file_navigator_folder_selection(); executed = true; }
       else if (event_name == CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { create_three_split_from_last_component_navigator_selection(); executed = true; }
       else if (event_name == CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { create_two_or_three_split_layout_from_last_component_navigator_selection(); executed = true; }
       else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
@@ -844,6 +864,7 @@ const std::string System::ADD_FILE_IS_UNSAVED_NOTIFICATION = "ADD_FILE_IS_UNSAVE
 const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
+const std::string System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION = "SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION";
 const std::string System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
