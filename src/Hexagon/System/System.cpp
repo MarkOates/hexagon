@@ -129,6 +129,8 @@ bool System::initialize()
    component_navigator_initial_place.scale = vec3d(0.8, 0.8, 1.0);
    component_navigator_initial_place.rotation = vec3d(0.0, 0.0, 0.0);
 
+   process_local_event(EXECUTE_MAGIC_COMMAND);
+
    //camera.zoom_pos -= 3.1;
    //camera.position.x += 20;
    //camera.position.y -= 10;
