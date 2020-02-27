@@ -537,8 +537,6 @@ bool System::execute_magic_command()
    std::string test_filename = project_path + "spec/models/external_job_spec.rb";
    std::string factory_filename = project_path + "spec/factories/external_job_factory.rb";
 
-   std::vector<std::string> missing_files = {};
-
    bool quintessence_file_present = true;
    bool test_file_present = true;
    if (!Blast::FileExistenceChecker(filename).exists()) quintessence_file_present = false;
