@@ -529,8 +529,17 @@ bool System::execute_magic_command()
 
    ///
 
-   std::string project_path = "/Users/markoates/dev_repos/partners/";
-   std::vector<std::string> filenames = {
+   std::string project_path;
+   std::vector<std::string> filenames = {};
+
+   //project_path = "/Users/markoates/dev_repos/partners/";
+   //filenames = {
+      //"/Users/markoates/dev_repos/partners/app/models/external_job.rb",
+      //project_path + "spec/models/external_job_spec.rb",
+      //project_path + "spec/factories/external_job_factory.rb",
+   //};
+   project_path = "/Users/markoates/dev_repos/partners/";
+   filenames = {
       "/Users/markoates/dev_repos/partners/app/models/external_job.rb",
       project_path + "spec/models/external_job_spec.rb",
       project_path + "spec/factories/external_job_factory.rb",
