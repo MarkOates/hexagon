@@ -538,12 +538,12 @@ bool System::execute_magic_command()
 
    std::string filename = "";
    bool file_present = false;
+   int i=0;
+
 
    ///
 
-
-
-   filename = filenames[0];
+   filename = filenames[i];
    file_present = true;
    if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
    //if (!file_contents.empty())
@@ -572,9 +572,10 @@ bool System::execute_magic_command()
      stage->set_place(place);
      stages.push_back(stage);
    }
+   i++;
 
 
-   filename = filenames[1];
+   filename = filenames[i];
    file_present = true;
    if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
    //if (!test_file_contents.empty())
@@ -603,8 +604,10 @@ bool System::execute_magic_command()
      stage->set_place(place);
      stages.push_back(stage);
    }
+   i++;
 
-   filename = filenames[2];
+
+   filename = filenames[i];
    file_present = true;
    if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
    //if (!file_contents.empty())
@@ -633,6 +636,8 @@ bool System::execute_magic_command()
      stage->set_place(place);
      stages.push_back(stage);
    }
+   i++;
+
 
    return true;
 }
