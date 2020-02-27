@@ -242,6 +242,22 @@ bool System::is_current_stage_a_regex_input_box()
 
 // actions
 
+bool System::fx__play_focus_animation_on_frontmost_stage()
+{
+   StageInterface *frontmost_stage = get_frontmost_stage();
+   if (!frontmost_stage)
+   {
+      std::cout << "Warning: attempting to infer if is_current_stage_a_regex_input_box() but no frontmost stage exists" << std::endl;
+      return false;
+   }
+
+   placement3d &stage_place = frontmost_stage->get_place();
+
+   motion.canimate(&stage_place.position.z, stage_place.position.z-10, stage_place.scale.x, al_get_time(), al_get_time()+0.3, interpolator::double_fast_in, nullptr, nullptr);
+
+   return true;
+}
+
 bool System::rotate_stage_right()
 {
    std::rotate(stages.begin(), stages.begin() + 1, stages.end());
@@ -868,6 +884,7 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { spawn_regex_input_box_modal(); executed = true; }
       else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
       else if (event_name == SUBMIT_CURRENT_MODAL) { submit_current_modal(); executed = true; }
+      else if (event_name == FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE) { fx__play_focus_animation_on_frontmost_stage(); executed = true; }
 
       if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
    }
@@ -899,8 +916,8 @@ void System::process_event(ALLEGRO_EVENT &event)
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, { DECREASE_FONT_SIZE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, true,  false, false, false, { SPAWN_KEYBOARD_INPUTS_MODAL });
 
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, true, { ROTATE_STAGE_LEFT, CENTER_CAMERA_ON_FRONTMOST_STAGE });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, true, { ROTATE_STAGE_RIGHT, CENTER_CAMERA_ON_FRONTMOST_STAGE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, true, { ROTATE_STAGE_LEFT, CENTER_CAMERA_ON_FRONTMOST_STAGE, FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, true, { ROTATE_STAGE_RIGHT, CENTER_CAMERA_ON_FRONTMOST_STAGE, FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
       //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_RERUN_OUTPUT_WATCHERS, REFRESH_RERUN_OUTPUT_WATCHERS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_LAST_COMPILED_ERROR_MESSAGES, RUN_MAKE });
@@ -976,6 +993,7 @@ std::string System::get_action_description(std::string action_identifier)
       { System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, "" },
       { System::SPAWN_RERUN_OUTPUT_WATCHER, "" },
       { System::SUBMIT_CURRENT_MODAL, "" },
+      { System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE, "" },
    };
 
    for (std::map<std::string, std::string>::iterator it=dictionary.begin(); it!=dictionary.end(); ++it)
@@ -1031,6 +1049,7 @@ const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_M
 const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
 const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
+const std::string System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE = "FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE";
 
 
 

@@ -93,6 +93,9 @@ public:
    bool spawn_keyboard_inputs_modal();
    bool clear_last_compiled_error_messages();
 
+   // motion fx
+   bool fx__play_focus_animation_on_frontmost_stage();
+
    // events
    static const std::string ADD_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
@@ -130,6 +133,7 @@ public:
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
    static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
    static const std::string SUBMIT_CURRENT_MODAL;
+   static const std::string FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE;
 
    void process_local_event(std::string event_name); // this function is 1:1 execute the action.  It does no calling of other actions before or after
    void process_event(ALLEGRO_EVENT &event);
