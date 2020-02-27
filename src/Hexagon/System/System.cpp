@@ -485,9 +485,89 @@ bool System::destroy_topmost_stage()
    }
 }
 
+
+#include <Blast/FileExistenceChecker.hpp>
+#include <Hexagon/MissingFile/Stage.hpp>
 bool System::execute_magic_command()
 {
-   std::cout << "Magic command executed." << std::endl;
+   std::string project_path = "/Users/markoates/dev_repos/partners/";
+   float display_default_width = get_display_default_width();
+   float display_default_height = get_display_default_height();
+
+   ///
+   std::string component_name = last_component_navigator_selection;
+
+   NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name, false);
+   //std::string quintessence_filename = project_path + project_component_filename_generator.generate_quintessence_filename();
+   //std::string test_src_filename = project_path + project_component_filename_generator.generate_test_src_filename();
+
+   std::string filename = "/Users/markoates/dev_repos/partners/app/models/external_job.rb";
+   std::string test_filename = project_path + "spec/models/external_job_spec.rb";
+
+   std::vector<std::string> missing_files = {};
+
+   bool quintessence_file_present = true;
+   bool test_file_present = true;
+   if (!Blast::FileExistenceChecker(filename).exists()) quintessence_file_present = false;
+   if (!Blast::FileExistenceChecker(test_filename).exists()) test_file_present = false;
+
+   float width_scale_of_halfwidth = 1.0; //0.6180339;
+
+   //if (!test_file_contents.empty())
+   {
+     float width = display_default_width/2 * width_scale_of_halfwidth;
+     placement3d place(0, 0, 0);
+     place.size = vec3d(width, display_default_height, 0.0);
+     place.align = vec3d(0.0, 0.5, 0.0);
+     place.scale = vec3d(0.9, 0.9, 0.0);
+
+     StageInterface *stage = nullptr;
+
+     if (test_file_present)
+     {
+        std::vector<std::string> file_contents = {};
+        ::read_file(file_contents, test_filename);
+        stage = new CodeEditor::Stage(test_filename);
+        static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
+     }
+     else
+     {
+         stage = new Hexagon::MissingFile::Stage;
+     }
+
+     stage->set_place(place);
+     stages.push_back(stage);
+   }
+
+   //if (!file_contents.empty())
+   {
+     float width = display_default_width/2 * width_scale_of_halfwidth;
+     placement3d place(0, 0, 0);
+     place.size = vec3d(width, display_default_height, 0.0);
+     place.align = vec3d(1.0, 0.5, 0.0);
+     place.scale = vec3d(0.9, 0.9, 0.0);
+
+     StageInterface *stage = nullptr;
+
+     if (quintessence_file_present)
+     {
+        std::vector<std::string> file_contents = {};
+        ::read_file(file_contents, filename);
+        stage = new CodeEditor::Stage(filename);
+        static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
+     }
+     else
+     {
+         stage = new Hexagon::MissingFile::Stage;
+     }
+
+     stage->set_place(place);
+     stages.push_back(stage);
+   }
+
+   camera.position.x = stages.front()->get_place().position.x;
+
+   return true;
 }
 
 bool System::jump_to_next_code_point_on_stage()
