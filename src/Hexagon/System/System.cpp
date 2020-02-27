@@ -534,15 +534,13 @@ bool System::execute_magic_command()
    //std::string test_src_filename = project_path + project_component_filename_generator.generate_test_src_filename();
 
    std::string filename = "/Users/markoates/dev_repos/partners/app/models/external_job.rb";
-   std::string test_filename = project_path + "spec/models/external_job_spec.rb";
    std::string factory_filename = project_path + "spec/factories/external_job_factory.rb";
+
+   float width_scale_of_halfwidth = 1.0; //0.6180339;
 
    bool quintessence_file_present = true;
    bool test_file_present = true;
    if (!Blast::FileExistenceChecker(filename).exists()) quintessence_file_present = false;
-   if (!Blast::FileExistenceChecker(test_filename).exists()) test_file_present = false;
-
-   float width_scale_of_halfwidth = 1.0; //0.6180339;
 
    //if (!file_contents.empty())
    {
@@ -571,6 +569,8 @@ bool System::execute_magic_command()
      stages.push_back(stage);
    }
 
+   std::string test_filename = project_path + "spec/models/external_job_spec.rb";
+   if (!Blast::FileExistenceChecker(test_filename).exists()) test_file_present = false;
    //if (!test_file_contents.empty())
    {
      float width = display_default_width/2 * width_scale_of_halfwidth;
