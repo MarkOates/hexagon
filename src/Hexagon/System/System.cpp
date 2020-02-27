@@ -522,7 +522,6 @@ bool System::destroy_topmost_stage()
 #include <Hexagon/MissingFile/Stage.hpp>
 bool System::execute_magic_command()
 {
-   std::string project_path = "/Users/markoates/dev_repos/partners/";
    float display_default_width = get_display_default_width();
    float display_default_height = get_display_default_height();
    std::string component_name = last_component_navigator_selection;
@@ -530,15 +529,23 @@ bool System::execute_magic_command()
 
    ///
 
+   std::string project_path = "/Users/markoates/dev_repos/partners/";
    std::vector<std::string> filenames = {
       "/Users/markoates/dev_repos/partners/app/models/external_job.rb",
       project_path + "spec/models/external_job_spec.rb",
       project_path + "spec/factories/external_job_factory.rb",
    };
 
-   std::string filename = filenames[0];
-   bool quintessence_file_present = true;
-   if (!Blast::FileExistenceChecker(filename).exists()) quintessence_file_present = false;
+   std::string filename = "";
+   bool file_present = false;
+
+   ///
+
+
+
+   filename = filenames[0];
+   file_present = true;
+   if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
    //if (!file_contents.empty())
    {
      float width = display_default_width/2 * width_scale_of_halfwidth;
@@ -550,7 +557,7 @@ bool System::execute_magic_command()
 
      StageInterface *stage = nullptr;
 
-     if (quintessence_file_present)
+     if (file_present)
      {
         std::vector<std::string> file_contents = {};
         ::read_file(file_contents, filename);
@@ -568,8 +575,8 @@ bool System::execute_magic_command()
 
 
    filename = filenames[1];
-   bool test_file_present = true;
-   if (!Blast::FileExistenceChecker(filename).exists()) test_file_present = false;
+   file_present = true;
+   if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
    //if (!test_file_contents.empty())
    {
      float width = display_default_width/2 * width_scale_of_halfwidth;
@@ -581,7 +588,7 @@ bool System::execute_magic_command()
 
      StageInterface *stage = nullptr;
 
-     if (test_file_present)
+     if (file_present)
      {
         std::vector<std::string> file_contents = {};
         ::read_file(file_contents, filename);
@@ -598,8 +605,8 @@ bool System::execute_magic_command()
    }
 
    filename = filenames[2];
-   bool factory_file_present = true;
-   if (!Blast::FileExistenceChecker(filename).exists()) factory_file_present = false;
+   file_present = true;
+   if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
    //if (!file_contents.empty())
    {
      float width = display_default_width/2 * width_scale_of_halfwidth;
@@ -611,7 +618,7 @@ bool System::execute_magic_command()
 
      StageInterface *stage = nullptr;
 
-     if (factory_file_present)
+     if (file_present)
      {
         std::vector<std::string> file_contents = {};
         ::read_file(file_contents, filename);
