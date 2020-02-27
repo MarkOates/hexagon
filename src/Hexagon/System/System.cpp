@@ -530,7 +530,13 @@ bool System::execute_magic_command()
 
    ///
 
-   std::string filename = "/Users/markoates/dev_repos/partners/app/models/external_job.rb";
+   std::vector<std::string> filenames = {
+      "/Users/markoates/dev_repos/partners/app/models/external_job.rb",
+      project_path + "spec/models/external_job_spec.rb",
+      project_path + "spec/factories/external_job_factory.rb",
+   };
+
+   std::string filename = filenames[0];
    bool quintessence_file_present = true;
    if (!Blast::FileExistenceChecker(filename).exists()) quintessence_file_present = false;
    //if (!file_contents.empty())
@@ -560,7 +566,7 @@ bool System::execute_magic_command()
      stages.push_back(stage);
    }
 
-   std::string test_filename = project_path + "spec/models/external_job_spec.rb";
+   std::string test_filename = filenames[1];
    bool test_file_present = true;
    if (!Blast::FileExistenceChecker(test_filename).exists()) test_file_present = false;
    //if (!test_file_contents.empty())
@@ -590,7 +596,7 @@ bool System::execute_magic_command()
      stages.push_back(stage);
    }
 
-   std::string factory_filename = project_path + "spec/factories/external_job_factory.rb";
+   std::string factory_filename = filenames[2];
    bool factory_file_present = true;
    if (!Blast::FileExistenceChecker(factory_filename).exists()) factory_file_present = false;
    //if (!file_contents.empty())
