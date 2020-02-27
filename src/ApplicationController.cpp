@@ -136,6 +136,7 @@ ALLEGRO_FONT *expansiva_font = al_load_font(resource_path({"data", "fonts"}, log
 if (!expansiva_font) throw std::runtime_error("could not load 'Expansiva bold.ttf'");
 
 
+/*
 Hexagon::Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, expansiva_font, al_color_html("#bc2d48"), 2.5);
 logo.render();
 
@@ -156,6 +157,7 @@ al_flip_display();
 
   al_destroy_event_queue(event_queue);
 }
+*/
 
 
 //al_hide_mouse_cursor(display); // this is disabled because there are a small handfull of sideeffects
