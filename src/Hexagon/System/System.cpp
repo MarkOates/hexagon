@@ -566,9 +566,10 @@ bool System::execute_magic_command()
      stages.push_back(stage);
    }
 
-   std::string test_filename = filenames[1];
+
+   filename = filenames[1];
    bool test_file_present = true;
-   if (!Blast::FileExistenceChecker(test_filename).exists()) test_file_present = false;
+   if (!Blast::FileExistenceChecker(filename).exists()) test_file_present = false;
    //if (!test_file_contents.empty())
    {
      float width = display_default_width/2 * width_scale_of_halfwidth;
@@ -583,8 +584,8 @@ bool System::execute_magic_command()
      if (test_file_present)
      {
         std::vector<std::string> file_contents = {};
-        ::read_file(file_contents, test_filename);
-        stage = new CodeEditor::Stage(test_filename);
+        ::read_file(file_contents, filename);
+        stage = new CodeEditor::Stage(filename);
         static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
      }
      else
@@ -596,9 +597,9 @@ bool System::execute_magic_command()
      stages.push_back(stage);
    }
 
-   std::string factory_filename = filenames[2];
+   filename = filenames[2];
    bool factory_file_present = true;
-   if (!Blast::FileExistenceChecker(factory_filename).exists()) factory_file_present = false;
+   if (!Blast::FileExistenceChecker(filename).exists()) factory_file_present = false;
    //if (!file_contents.empty())
    {
      float width = display_default_width/2 * width_scale_of_halfwidth;
@@ -613,8 +614,8 @@ bool System::execute_magic_command()
      if (factory_file_present)
      {
         std::vector<std::string> file_contents = {};
-        ::read_file(file_contents, factory_filename);
-        stage = new CodeEditor::Stage(factory_filename);
+        ::read_file(file_contents, filename);
+        stage = new CodeEditor::Stage(filename);
         static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
      }
      else
