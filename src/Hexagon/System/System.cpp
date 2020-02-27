@@ -525,11 +525,10 @@ bool System::execute_magic_command()
    std::string project_path = "/Users/markoates/dev_repos/partners/";
    float display_default_width = get_display_default_width();
    float display_default_height = get_display_default_height();
+   std::string component_name = last_component_navigator_selection;
+   float width_scale_of_halfwidth = 1.0; //0.6180339;
 
    ///
-   std::string component_name = last_component_navigator_selection;
-
-   float width_scale_of_halfwidth = 1.0; //0.6180339;
 
    std::string filename = "/Users/markoates/dev_repos/partners/app/models/external_job.rb";
    bool quintessence_file_present = true;
