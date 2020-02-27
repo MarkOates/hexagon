@@ -543,100 +543,38 @@ bool System::execute_magic_command()
 
    ///
 
-   filename = filenames[i];
-   file_present = true;
-   if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
-   //if (!file_contents.empty())
+   for (unsigned i=0; i<filenames.size(); i++)
    {
-     float width = display_default_width/2 * width_scale_of_halfwidth;
-     placement3d place(0, 0, 0);
-     place.size = vec3d(width, display_default_height, 0.0);
-     place.position = vec3d(0.0, 0.0, 0.0);
-     place.align = vec3d(0.5, 0.5, 0.0);
-     place.scale = vec3d(0.9, 0.9, 0.0);
+      filename = filenames[i];
+      file_present = true;
+      if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
+      //if (!file_contents.empty())
+      {
+        float width = display_default_width/2 * width_scale_of_halfwidth;
+        placement3d place(0, 0, 0);
+        place.size = vec3d(width, display_default_height, 0.0);
+        place.position = vec3d(width*i, 0.0, 0.0);
+        place.align = vec3d(0.5, 0.5, 0.0);
+        place.scale = vec3d(0.9, 0.9, 0.0);
 
-     StageInterface *stage = nullptr;
+        StageInterface *stage = nullptr;
 
-     if (file_present)
-     {
-        std::vector<std::string> file_contents = {};
-        ::read_file(file_contents, filename);
-        stage = new CodeEditor::Stage(filename);
-        static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
-     }
-     else
-     {
-         stage = new Hexagon::MissingFile::Stage;
-     }
+        if (file_present)
+        {
+           std::vector<std::string> file_contents = {};
+           ::read_file(file_contents, filename);
+           stage = new CodeEditor::Stage(filename);
+           static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
+        }
+        else
+        {
+            stage = new Hexagon::MissingFile::Stage;
+        }
 
-     stage->set_place(place);
-     stages.push_back(stage);
+        stage->set_place(place);
+        stages.push_back(stage);
+      }
    }
-   i++;
-
-
-   filename = filenames[i];
-   file_present = true;
-   if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
-   //if (!test_file_contents.empty())
-   {
-     float width = display_default_width/2 * width_scale_of_halfwidth;
-     placement3d place(0, 0, 0);
-     place.size = vec3d(width, display_default_height, 0.0);
-     place.position = vec3d(width, 0.0, 0.0);
-     place.align = vec3d(0.5, 0.5, 0.0);
-     place.scale = vec3d(0.9, 0.9, 0.0);
-
-     StageInterface *stage = nullptr;
-
-     if (file_present)
-     {
-        std::vector<std::string> file_contents = {};
-        ::read_file(file_contents, filename);
-        stage = new CodeEditor::Stage(filename);
-        static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
-     }
-     else
-     {
-         stage = new Hexagon::MissingFile::Stage;
-     }
-
-     stage->set_place(place);
-     stages.push_back(stage);
-   }
-   i++;
-
-
-   filename = filenames[i];
-   file_present = true;
-   if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
-   //if (!file_contents.empty())
-   {
-     float width = display_default_width/2 * width_scale_of_halfwidth;
-     placement3d place(0, 0, 0);
-     place.size = vec3d(width, display_default_height, 0.0);
-     place.position = vec3d(width*2, 0.0, 0.0);
-     place.align = vec3d(0.5, 0.5, 0.0);
-     place.scale = vec3d(0.9, 0.9, 0.0);
-
-     StageInterface *stage = nullptr;
-
-     if (file_present)
-     {
-        std::vector<std::string> file_contents = {};
-        ::read_file(file_contents, filename);
-        stage = new CodeEditor::Stage(filename);
-        static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
-     }
-     else
-     {
-         stage = new Hexagon::MissingFile::Stage;
-     }
-
-     stage->set_place(place);
-     stages.push_back(stage);
-   }
-   i++;
 
 
    return true;
