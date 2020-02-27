@@ -59,6 +59,7 @@ public:
    // actions
    bool rotate_stage_right();
    bool rotate_stage_left();
+   bool center_camera_on_frontmost_stage();
    bool run_project_tests();
    bool save_current_stage();
    bool increase_font_size();
@@ -100,6 +101,7 @@ public:
    static const std::string CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
+   static const std::string CENTER_CAMERA_ON_FRONTMOST_STAGE;
    static const std::string CLEAR_LAST_COMPILED_ERROR_MESSAGES;
    static const std::string DESTROY_FILE_NAVIGATOR;
    static const std::string DESTROY_TOPMOST_STAGE;

@@ -254,6 +254,22 @@ bool System::rotate_stage_left()
    return true;
 }
 
+bool System::center_camera_on_frontmost_stage()
+{
+   StageInterface *frontmost_stage = get_frontmost_stage();
+   if (!frontmost_stage)
+   {
+      std::cout << "Warning: attempting to center_camera_on_frontmost_stage() but no frontmost stage exists" << std::endl;
+      return false;
+   }
+
+   placement3d &place = frontmost_stage->get_place();
+   vec3d target = place.position;
+   camera.position = target;
+
+   return true;
+}
+
 bool System::run_project_tests()
 {
    CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
@@ -796,6 +812,7 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { create_three_split_from_last_component_navigator_selection(); executed = true; }
       else if (event_name == CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { create_two_or_three_split_layout_from_last_component_navigator_selection(); executed = true; }
       else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
+      else if (event_name == CENTER_CAMERA_ON_FRONTMOST_STAGE) { center_camera_on_frontmost_stage(); executed = true; }
       else if (event_name == DESTROY_TOPMOST_STAGE) { destroy_topmost_stage(); executed = true; }
       else if (event_name == DESTROY_ALL_CODE_EDITOR_STAGES) { destroy_all_code_editor_stages(); executed = true; }
       else if (event_name == ESCAPE_CURRENT_MODAL) { escape_current_modal(); executed = true; }
@@ -854,8 +871,8 @@ void System::process_event(ALLEGRO_EVENT &event)
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, { DECREASE_FONT_SIZE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, true,  false, false, false, { SPAWN_KEYBOARD_INPUTS_MODAL });
 
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, true, false, false, true, { ROTATE_STAGE_RIGHT });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, true, false, false, true, { ROTATE_STAGE_LEFT });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, true, { ROTATE_STAGE_LEFT, CENTER_CAMERA_ON_FRONTMOST_STAGE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, true, { ROTATE_STAGE_RIGHT, CENTER_CAMERA_ON_FRONTMOST_STAGE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
       //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_RERUN_OUTPUT_WATCHERS, REFRESH_RERUN_OUTPUT_WATCHERS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, true, false, { SAVE_CURRENT_STAGE, CLEAR_LAST_COMPILED_ERROR_MESSAGES, RUN_MAKE });
@@ -958,6 +975,7 @@ const std::string System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_S
 const std::string System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
+const std::string System::CENTER_CAMERA_ON_FRONTMOST_STAGE = "CENTER_CAMERA_ON_FRONTMOST_STAGE";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";
 const std::string System::DESTROY_ALL_CODE_EDITOR_STAGES = "DESTROY_ALL_CODE_EDITOR_STAGES";
