@@ -529,10 +529,6 @@ bool System::execute_magic_command()
    ///
    std::string component_name = last_component_navigator_selection;
 
-   NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name, false);
-   //std::string quintessence_filename = project_path + project_component_filename_generator.generate_quintessence_filename();
-   //std::string test_src_filename = project_path + project_component_filename_generator.generate_test_src_filename();
-
    float width_scale_of_halfwidth = 1.0; //0.6180339;
 
    std::string filename = "/Users/markoates/dev_repos/partners/app/models/external_job.rb";
