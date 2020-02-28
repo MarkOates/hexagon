@@ -585,6 +585,7 @@ bool System::execute_magic_command()
       }
    }
 
+   process_local_event(CENTER_CAMERA_ON_FRONTMOST_STAGE);
 
    return true;
 }
