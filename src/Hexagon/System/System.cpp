@@ -523,19 +523,17 @@ bool System::destroy_topmost_stage()
 
 #include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
-#include <tuple>
 bool System::execute_magic_command()
 {
    float display_default_width = get_display_default_width();
    float display_default_height = get_display_default_height();
    std::string component_name = last_component_navigator_selection;
-   //float width_scale_of_halfwidth = 1.0; //0.6180339;
-   float width = display_default_width/2; //* width_scale_of_halfwidth;
+   float width_scale_of_halfwidth = 1.0; //0.6180339;
 
    ///
 
    std::string project_path;
-   std::vector<std::tuple<std::string, float, float, float, float>> filenames = {};
+   std::vector<std::string> filenames = {};
 
    //project_path = "/Users/markoates/dev_repos/partners/";
    //filenames = {
@@ -545,25 +543,26 @@ bool System::execute_magic_command()
    //};
    project_path = "/Users/markoates/Repos/hexagon/";
    filenames = {
-      { project_path + "quintessence/System/System.cpp", 0, 0, 0, 0 },
-      { project_path + "include/Hexagon/System/System.hpp", 0, 0, 0, 0 },
-      { project_path + "src/Hexagon/System/System.hpp", 0, 0, 0, 0 },
+      project_path + "quintessence/System/System.cpp",
+      project_path + "include/Hexagon/System/System.hpp",
+      project_path + "src/Hexagon/System/System.hpp",
    };
+
+   std::string filename = "";
+   bool file_present = false;
+   int i=0;
+
 
    ///
 
    for (unsigned i=0; i<filenames.size(); i++)
    {
-      std::string filename = "";
-      bool file_present = true;
-
-      filename = std::get<0>(filenames[i]);
-      float x = std::get<1>(filenames[i]);
-      float y = std::get<2>(filenames[i]);
-
+      filename = filenames[i];
+      file_present = true;
       if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
       //if (!file_contents.empty())
       {
+        float width = display_default_width/2 * width_scale_of_halfwidth;
         placement3d place(0, 0, 0);
         place.size = vec3d(width, display_default_height, 0.0);
         place.position = vec3d(width*i, 0.0, 0.0);
