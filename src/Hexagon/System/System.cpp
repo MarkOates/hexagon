@@ -552,6 +552,7 @@ bool System::execute_magic_command()
       project_path + "src/Hexagon/System/System.cpp",
    };
 
+   float width = display_default_width/2 * width_scale_of_halfwidth;
    std::string filename = "";
    bool file_present = false;
    int i=0;
@@ -559,14 +560,13 @@ bool System::execute_magic_command()
 
    ///
 
-   for (unsigned i=0; i<filenames.size(); i++)
+   for (i=0; i<filenames.size(); i++)
    {
       filename = filenames[i];
       file_present = true;
       if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
       //if (!file_contents.empty())
       {
-        float width = display_default_width/2 * width_scale_of_halfwidth;
         placement3d place(0, 0, 0);
         place.size = vec3d(width, display_default_height, 0.0);
 
@@ -599,9 +599,11 @@ bool System::execute_magic_command()
       float golden_ratio = 0.61803f;
       float x_pos = golden_ratio * get_display_default_width() - get_display_default_width()/2;
       placement3d place(x_pos, -get_display_default_height()/2 + 30, 0);
-      place.size = vec3d(0, 0, 0.0);
-      place.align = vec3d(0, 0, 0);
-      place.scale = vec3d(0.7, 0.7, 0.0);
+
+      place.position = vec3d(width*i, 0.0, 0.0);
+      place.size = vec3d(width, display_default_height, 0.0);
+      place.align = vec3d(0.5, 0.5, 0);
+      place.scale = vec3d(0.9, 0.9, 0.0);
 
       Hexagon::RerunOutputWatcher::Stage *rerun_output_watcher = new Hexagon::RerunOutputWatcher::Stage();
       rerun_output_watcher->set_place(place);
