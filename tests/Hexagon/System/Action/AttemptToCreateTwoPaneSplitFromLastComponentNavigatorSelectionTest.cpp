@@ -16,7 +16,7 @@ TEST(Hexagon_System_Action_AttemptTo, execute__creates_two_stages)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
-   std::string component_name = "Hexagon/Frame";
+   std::string component_name = "Hexagon/Elements/Frame";
 
    CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages);
 
@@ -28,7 +28,7 @@ TEST(Hexagon_System_Action_AttemptTo, execute__with_a_valid_component_creats_two
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
-   std::string component_name = "Hexagon/Frame";
+   std::string component_name = "Hexagon/Elements/Frame";
 
    CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages);
 
@@ -44,15 +44,15 @@ TEST(Hexagon_System_Action_AttemptTo, execute__with_a_valid_component_opens_the_
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
-   std::string component_name = "Hexagon/Frame";
+   std::string component_name = "Hexagon/Elements/Frame";
 
    CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages);
 
    create_two_split.execute();
    EXPECT_EQ(2, stages.size());
 
-   std::string expected_quintessence_filename = "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Frame.q.yml";
-   std::string expected_test_filename = "/Users/markoates/Repos/hexagon/tests/Hexagon/FrameTest.cpp";
+   std::string expected_quintessence_filename = "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Elements/Frame.q.yml";
+   std::string expected_test_filename = "/Users/markoates/Repos/hexagon/tests/Hexagon/Elements/FrameTest.cpp";
 
    ASSERT_EQ(StageInterface::CODE_EDITOR, stages[0]->get_type());
    EXPECT_EQ(expected_test_filename, static_cast<CodeEditor::Stage*>(stages[0])->get_filename());

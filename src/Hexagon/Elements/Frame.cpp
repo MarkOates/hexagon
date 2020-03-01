@@ -1,6 +1,6 @@
 
 
-#include <Hexagon/Frame.hpp>
+#include <Hexagon/Elements/Frame.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_color.h>
@@ -9,6 +9,8 @@
 
 
 namespace Hexagon
+{
+namespace Elements
 {
 
 
@@ -45,6 +47,7 @@ al_draw_rectangle(0, 0, screen_width, screen_height, color, line_thickness);
 return;
 
 }
+} // namespace Elements
 } // namespace Hexagon
 
 
