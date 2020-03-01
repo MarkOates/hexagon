@@ -17,17 +17,35 @@ namespace Elements
 AllegroFlare::FontBin Frame::dummy_font_bin = {};
 
 
-Frame::Frame()
+Frame::Frame(float width, float height)
    : fonts(get_dummy_font_bin())
    , title_text("")
-   , width(1.0f)
-   , height(1.0f)
+   , width(width)
+   , height(height)
 {
 }
 
 
 Frame::~Frame()
 {
+}
+
+
+void Frame::set_title_text(std::string title_text)
+{
+   this->title_text = title_text;
+}
+
+
+void Frame::set_width(float width)
+{
+   this->width = width;
+}
+
+
+void Frame::set_height(float height)
+{
+   this->height = height;
 }
 
 

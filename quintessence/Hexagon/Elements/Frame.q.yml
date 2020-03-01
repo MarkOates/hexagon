@@ -9,12 +9,17 @@ properties:
   - name: title_text
     type: std::string
     init_with: "\"\""
+    setter: true
   - name: width
     type: float
     init_with: 1.0f
+    constructor_arg: true
+    setter: true
   - name: height
     type: float
     init_with: 1.0f
+    constructor_arg: true
+    setter: true
 functions:
   - name: get_dummy_font_bin
     type: AllegroFlare::FontBin&

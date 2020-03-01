@@ -19,9 +19,12 @@ namespace Hexagon
          float height;
 
       public:
-         Frame();
+         Frame(float width=1.0f, float height=1.0f);
          ~Frame();
 
+         void set_title_text(std::string title_text);
+         void set_width(float width);
+         void set_height(float height);
 
       static AllegroFlare::FontBin& get_dummy_font_bin();
       void render();
