@@ -63,7 +63,7 @@ std::vector<StageInterface *> &CreateThreeSplitFromComponent::get_dummy_stages_r
 bool CreateThreeSplitFromComponent::place_stage(std::string filename, float x, float align_x)
 {
 bool file_exists = Blast::FileExistenceChecker(filename).exists();
-float width = display_default_width/3;
+float width = display_default_width/2;
 placement3d place(x, 0, 0);
 place.size = vec3d(width, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
 place.align = vec3d(align_x, 0.5, 0.0);
@@ -110,16 +110,16 @@ return project_path + Blast::ProjectComponentFilenameGenerator(component.get_nam
 
 bool CreateThreeSplitFromComponent::execute()
 {
-float left_anchor = -display_default_width / 3 / 2;
-float right_anchor = display_default_width / 3 / 2;
+float left_anchor = -display_default_width / 2;
+float right_anchor = display_default_width / 2;
 
 std::string test_filename = generate_test_filename();
 std::string header_filename = generate_header_filename();
 std::string source_filename = generate_source_filename();
 
-place_stage(test_filename, right_anchor, 0.0);
-place_stage(source_filename, 0.5, 0.5);
-place_stage(header_filename, left_anchor, 1.0);
+place_stage(test_filename, left_anchor, 0.5);
+place_stage(source_filename, 0, 0.5);
+place_stage(header_filename, right_anchor, 0.5);
 
 return true;
 

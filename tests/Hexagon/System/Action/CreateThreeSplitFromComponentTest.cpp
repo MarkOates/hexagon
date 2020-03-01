@@ -56,3 +56,22 @@ TEST(Hexagon_System_Action_CreateThreeSplitTest,
       EXPECT_EQ(StageInterface::MISSING_FILE, stage->get_type());
    }
 }
+
+TEST(Hexagon_System_Action_CreateThreeSplitTest,
+   execute__places_the_stages_in_the_expected_positions)
+{
+   std::string project_path = "/Users/markoates/Repos/hexagon/";
+   std::string component = "Hexagon/System/Action/CreateThreeSplitFromComponent";
+   std::vector<StageInterface *> stages;
+   float display_width = 300;
+
+   CreateThreeSplit create_three_split(project_path, component, stages, display_width);
+
+   EXPECT_EQ(true, create_three_split.execute());
+
+   ASSERT_EQ(3, stages.size());
+
+   ASSERT_EQ(-150, stages[0]->get_place().position.x);
+   ASSERT_EQ(0, stages[1]->get_place().position.x);
+   ASSERT_EQ(150, stages[2]->get_place().position.x);
+}
