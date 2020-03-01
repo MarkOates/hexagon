@@ -30,7 +30,7 @@ functions:
     type: void
     body: |
       float line_thickness = 2.5;
-      ALLEGRO_COLOR color = al_color_name("dodgerblue");
+      ALLEGRO_COLOR color = al_color_name("gray");
       //ALLEGRO_FONT *large_title_font = fonts["eurostyle.ttf 30"];
       //al_draw_text(large_title_font, color, 0, 0, 0, title_text.c_str());
       al_draw_rectangle(0, 0, width, height, color, line_thickness);
