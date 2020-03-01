@@ -258,6 +258,18 @@ bool System::fx__play_focus_animation_on_frontmost_stage()
    return true;
 }
 
+bool System::toggle_command_mode_on()
+{
+   //std::rotate(stages.begin(), stages.begin() + 1, stages.end());
+   return true;
+}
+
+bool System::toggle_command_mode_off()
+{
+   //std::rotate(stages.begin(), stages.begin() + 1, stages.end());
+   return true;
+}
+
 bool System::rotate_stage_right()
 {
    std::rotate(stages.begin(), stages.begin() + 1, stages.end());
@@ -858,6 +870,8 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == DECREASE_FONT_SIZE) { decrease_font_size(); executed = true; }
       else if (event_name == ADD_FILE_IS_UNSAVED_NOTIFICATION) { add_file_is_unsaved_notification(); executed = true; }
       else if (event_name == REMOVE_FILE_IS_UNSAVED_NOTIFICATION) { remove_file_is_unsaved_notification(); executed = true; }
+      else if (event_name == TOGGLE_COMMAND_MODE_ON) { toggle_command_mode_on(); executed = true; }
+      else if (event_name == TOGGLE_COMMAND_MODE_OFF) { toggle_command_mode_off(); executed = true; }
       else if (event_name == ROTATE_STAGE_LEFT) { rotate_stage_left(); executed = true; }
       else if (event_name == ROTATE_STAGE_RIGHT) { rotate_stage_right(); executed = true; }
       else if (event_name == RUN_MAKE) { run_make(); executed = true; }
@@ -928,6 +942,7 @@ void System::process_event(ALLEGRO_EVENT &event)
    case ALLEGRO_EVENT_KEY_UP:
       break;
    case ALLEGRO_EVENT_KEY_DOWN:
+      //if (event.keyboard.keycode == ALLEGRO_KEY_COMMAND) throw std::runtime_error("fooo");
       break;
    case ALLEGRO_EVENT_KEY_CHAR:
       bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
@@ -967,6 +982,8 @@ std::string System::get_action_description(std::string action_identifier)
       { System::REFRESH_REGEX_HILIGHTS_ON_STAGE, "" },
       { System::ADD_FILE_IS_UNSAVED_NOTIFICATION, "" },
       { System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION, "" },
+      { System::TOGGLE_COMMAND_MODE_ON, "" },
+      { System::TOGGLE_COMMAND_MODE_OFF, "" },
       { System::ROTATE_STAGE_LEFT, "" },
       { System::ROTATE_STAGE_RIGHT, "" },
       { System::RUN_MAKE, "" },
@@ -1023,6 +1040,8 @@ const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_S
 const std::string System::PUSH_COMPONENT_NAVIGATOR_SELECTION = "PUSH_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
 const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
+const std::string System::TOGGLE_COMMAND_MODE_ON = "TOGGLE_COMMAND_MODE_ON";
+const std::string System::TOGGLE_COMMAND_MODE_OFF = "TOGGLE_COMMAND_MODE_OFF";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::RUN_MAKE = "RUN_MAKE";

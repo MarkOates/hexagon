@@ -52,6 +52,8 @@ public:
    bool is_current_stage_a_regex_input_box();
 
    // actions
+   bool toggle_command_mode_on();
+   bool toggle_command_mode_off();
    bool rotate_stage_right();
    bool rotate_stage_left();
    bool center_camera_on_frontmost_stage();
@@ -116,6 +118,8 @@ public:
    static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
    static const std::string REFRESH_RERUN_OUTPUT_WATCHERS;
    static const std::string REMOVE_FILE_IS_UNSAVED_NOTIFICATION;
+   static const std::string TOGGLE_COMMAND_MODE_ON;
+   static const std::string TOGGLE_COMMAND_MODE_OFF;
    static const std::string ROTATE_STAGE_LEFT;
    static const std::string ROTATE_STAGE_RIGHT;
    static const std::string RUN_MAKE;
