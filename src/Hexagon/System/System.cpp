@@ -111,7 +111,7 @@ System::System(ALLEGRO_DISPLAY *display, Motion &motion)
    , config()
    , global_font_resource_filename("consolas.ttf")
    , global_font_size(-20)
-
+   , command_mode(false)
 {
 }
 
@@ -260,9 +260,12 @@ bool System::fx__play_focus_animation_on_frontmost_stage()
 
 bool System::toggle_command_mode_on()
 {
+   if (command_mode) return true;
+
    float camera_zoomed_out_position = 10;
    float camera_zoomed_in_position = 0;
    motion.canimate(&camera.stepback.z, camera.stepback.z, camera_zoomed_out_position, al_get_time(), al_get_time()+0.2, interpolator::fast_in, nullptr, nullptr);
+   command_mode = true;
    //camera.rotation
    //std::rotate(stages.begin(), stages.begin() + 1, stages.end());
    return true;
@@ -270,9 +273,12 @@ bool System::toggle_command_mode_on()
 
 bool System::toggle_command_mode_off()
 {
+   if (!command_mode) return true;
+
    float camera_zoomed_out_position = 10;
    float camera_zoomed_in_position = 0;
    motion.canimate(&camera.stepback.z, camera.stepback.z, camera_zoomed_in_position, al_get_time(), al_get_time()+0.2, interpolator::fast_in, nullptr, nullptr);
+   command_mode = false;
    //std::rotate(stages.begin(), stages.begin() + 1, stages.end());
    return true;
 }

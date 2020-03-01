@@ -26,6 +26,7 @@ public:
    Hexagon::System::Config config;
    std::string global_font_resource_filename;
    int global_font_size;
+   bool command_mode;
 
    static int get_display_default_width();
    static int get_display_default_height();
