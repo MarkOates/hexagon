@@ -549,9 +549,7 @@ bool System::execute_magic_command()
    //};
    project_path = "/Users/markoates/Repos/hexagon/";
    filenames = {
-      project_path + "quintessence/System/System.cpp",
-      project_path + "include/Hexagon/System/System.hpp",
-      project_path + "src/Hexagon/System/System.hpp",
+      project_path + "src/Hexagon/System/System.cpp",
    };
 
    std::string filename = "";
