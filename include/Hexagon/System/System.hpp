@@ -1,19 +1,14 @@
 #pragma once
 
 
-class StageInterface;
-struct ALLEGRO_DISPLAY;
-namespace CodeEditor
-{
-   class Stage;
-};
-
-
 #include <lib/camera.h>
+#include <allegro5/allegro.h>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/motion.h>
 #include <string>
 #include <vector>
+#include <Hexagon/StageInterface.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/System/Config.hpp>
 
 
