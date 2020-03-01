@@ -541,6 +541,12 @@ bool System::execute_magic_command()
       //project_path + "spec/models/external_job_spec.rb",
       //project_path + "spec/factories/external_job_factory.rb",
    //};
+   //project_path = "/Users/markoates/Repos/hexagon/";
+   //filenames = {
+      //project_path + "quintessence/System/System.cpp",
+      //project_path + "include/Hexagon/System/System.hpp",
+      //project_path + "src/Hexagon/System/System.hpp",
+   //};
    project_path = "/Users/markoates/Repos/hexagon/";
    filenames = {
       project_path + "quintessence/System/System.cpp",
