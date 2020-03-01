@@ -9,12 +9,12 @@ properties:
   - name: title_text
     type: std::string
     init_with: "\"\""
-  - name: screen_width
+  - name: width
     type: float
-    init_with: 1920
-  - name: screen_height
+    init_with: 1.0f
+  - name: height
     type: float
-    init_with: 1080
+    init_with: 1.0f
 functions:
   - name: get_dummy_font_bin
     type: AllegroFlare::FontBin&
@@ -25,10 +25,10 @@ functions:
     type: void
     body: |
       float line_thickness = 2.5;
-      ALLEGRO_FONT *large_title_font = fonts["eurostyle.ttf 30"];
       ALLEGRO_COLOR color = al_color_name("dodgerblue");
-      al_draw_text(large_title_font, color, 0, 0, 0, title_text.c_str());
-      al_draw_rectangle(0, 0, screen_width, screen_height, color, line_thickness);
+      //ALLEGRO_FONT *large_title_font = fonts["eurostyle.ttf 30"];
+      //al_draw_text(large_title_font, color, 0, 0, 0, title_text.c_str());
+      al_draw_rectangle(0, 0, width, height, color, line_thickness);
       return;
     body_dependency_symbols:
       - ALLEGRO_FONT*
