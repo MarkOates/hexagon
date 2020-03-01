@@ -1,4 +1,7 @@
 properties:
+  - name: font_set
+    type: Hexagon::FontSet*
+    init_with: nullptr
   - name: text
     type: std::string
     getter: true
@@ -6,4 +9,10 @@ functions:
   - name: render
     type: void
     body: |
+      //al_draw_text(
       return;
+    body_dependency_symbols:
+      - Hexagon::FontSet*
+dependencies:
+  - symbol: Hexagon::FontSet*
+    headers: [ 'Hexagon/FontSet.hpp' ]

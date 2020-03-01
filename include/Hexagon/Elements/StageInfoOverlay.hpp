@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/FontSet.hpp>
 #include <string>
 
 
@@ -11,6 +12,7 @@ namespace Hexagon
       class StageInfoOverlay
       {
       private:
+         Hexagon::FontSet* font_set;
          std::string text;
 
       public:

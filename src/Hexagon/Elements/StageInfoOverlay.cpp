@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
-
+#include <Hexagon/FontSet.hpp>
 
 
 namespace Hexagon
@@ -11,7 +11,8 @@ namespace Elements
 
 
 StageInfoOverlay::StageInfoOverlay()
-   : text("")
+   : font_set(nullptr)
+   , text("")
 {
 }
 
@@ -29,6 +30,7 @@ std::string StageInfoOverlay::get_text()
 
 void StageInfoOverlay::render()
 {
+//al_draw_text(
 return;
 
 }
