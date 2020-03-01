@@ -245,10 +245,14 @@ bool System::is_current_stage_a_regex_input_box()
 
 bool System::write_focused_component_name_to_file()
 {
-   std::string FOCUSED_COMPONENT_FILENAME = "bin/programs/data/tmp/focused_component.txt";
-   std::string focused_component_to_write = focused_component_name;//"Hexagon/Hud";
+   std::string hard_coded_project_path = "/Users/markoates/Repos/hexagon/";
+   std::string FOCUSED_COMPONENT_FILENAME = hard_coded_project_path + "bin/programs/data/tmp/focused_component.txt";
+   std::string focused_component_to_write = focused_component_name;
 
-   return php::file_put_contents(FOCUSED_COMPONENT_FILENAME, focused_component_to_write);
+   bool success = php::file_put_contents(FOCUSED_COMPONENT_FILENAME, focused_component_to_write);
+   if (!success) throw std::runtime_error("[System::write_focused_component_name_to_file()] error: could not file_put_contents()");
+
+   return true;
 }
 
 bool System::fx__play_focus_animation_on_frontmost_stage()
@@ -781,10 +785,14 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
 
    if (component.has_only_source_and_header())
    {
+      focused_component_name = last_component_navigator_selection;
+      write_focused_component_name_to_file();
       return create_three_split_from_last_component_navigator_selection();
    }
    else if (component.has_quintessence() || component.has_test())
    {
+      focused_component_name = last_component_navigator_selection;
+      write_focused_component_name_to_file();
       return attempt_to_create_stage_from_last_component_navigator_selection();
    }
    else
