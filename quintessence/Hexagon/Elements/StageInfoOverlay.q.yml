@@ -1,0 +1,9 @@
+properties:
+  - name: text
+    type: std::string
+    getter: true
+functions:
+  - name: render
+    type: void
+    body: |
+      return;
