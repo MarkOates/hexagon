@@ -117,9 +117,9 @@ std::string test_filename = generate_test_filename();
 std::string header_filename = generate_header_filename();
 std::string source_filename = generate_source_filename();
 
-place_stage(test_filename, left_anchor, 0.5);
+place_stage(header_filename, left_anchor, 0.5);
 place_stage(source_filename, 0, 0.5);
-place_stage(header_filename, right_anchor, 0.5);
+place_stage(test_filename, right_anchor, 0.5);
 
 return true;
 
