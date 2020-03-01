@@ -260,12 +260,19 @@ bool System::fx__play_focus_animation_on_frontmost_stage()
 
 bool System::toggle_command_mode_on()
 {
+   float camera_zoomed_out_position = 10;
+   float camera_zoomed_in_position = 0;
+   motion.canimate(&camera.stepback.z, camera.stepback.z, camera_zoomed_out_position, al_get_time(), al_get_time()+0.2, interpolator::fast_in, nullptr, nullptr);
+   //camera.rotation
    //std::rotate(stages.begin(), stages.begin() + 1, stages.end());
    return true;
 }
 
 bool System::toggle_command_mode_off()
 {
+   float camera_zoomed_out_position = 10;
+   float camera_zoomed_in_position = 0;
+   motion.canimate(&camera.stepback.z, camera.stepback.z, camera_zoomed_in_position, al_get_time(), al_get_time()+0.2, interpolator::fast_in, nullptr, nullptr);
    //std::rotate(stages.begin(), stages.begin() + 1, stages.end());
    return true;
 }
@@ -902,7 +909,12 @@ void System::process_local_event(std::string event_name) // this function is 1:1
 
 void System::process_event(ALLEGRO_EVENT &event)
 {
+   KeyboardCommandMapper keyboard_key_up_mapper;
+   KeyboardCommandMapper keyboard_key_down_mapper;
    KeyboardCommandMapper keyboard_command_mapper;
+
+   keyboard_key_down_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, false, { TOGGLE_COMMAND_MODE_ON });
+   keyboard_key_up_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, false, { TOGGLE_COMMAND_MODE_OFF });
 
 
    //                      set_mapping(al_keycode,         shift, ctrl,  alt,   command, std::vector<std::string> command_identifiers
@@ -940,21 +952,46 @@ void System::process_event(ALLEGRO_EVENT &event)
    switch(event.type)
    {
    case ALLEGRO_EVENT_KEY_UP:
+      {
+         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+         bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+         //bool ctrl_or_command = ctrl || command;
+         std::vector<std::string> mapped_events =
+           keyboard_key_up_mapper.get_mapping(
+             event.keyboard.keycode, shift, ctrl, alt, command);
+         if (!mapped_events.empty()) event_caught = true;
+         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+      }
       break;
    case ALLEGRO_EVENT_KEY_DOWN:
-      //if (event.keyboard.keycode == ALLEGRO_KEY_COMMAND) throw std::runtime_error("fooo");
+      {
+         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+         bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+         //bool ctrl_or_command = ctrl || command;
+         std::vector<std::string> mapped_events =
+           keyboard_key_down_mapper.get_mapping(
+             event.keyboard.keycode, shift, ctrl, alt, command);
+         if (!mapped_events.empty()) event_caught = true;
+         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+      }
       break;
    case ALLEGRO_EVENT_KEY_CHAR:
-      bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
-      bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
-      bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
-      bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
-      //bool ctrl_or_command = ctrl || command;
-      std::vector<std::string> mapped_events =
-        keyboard_command_mapper.get_mapping(
-          event.keyboard.keycode, shift, ctrl, alt, command);
-      if (!mapped_events.empty()) event_caught = true;
-      for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+      {
+         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+         bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+         //bool ctrl_or_command = ctrl || command;
+         std::vector<std::string> mapped_events =
+           keyboard_command_mapper.get_mapping(
+             event.keyboard.keycode, shift, ctrl, alt, command);
+         if (!mapped_events.empty()) event_caught = true;
+         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+      }
       break;
    }
 

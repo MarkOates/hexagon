@@ -24,7 +24,7 @@ void Camera::set45_isometric()
 
 void Camera::setup_camera_perspective(ALLEGRO_BITMAP *bmp)
 {
-   stepback = vec3d(0, 0, 600);
+   vec3d stepback_with_stepback_baseline = stepback + vec3d(0, 0, 600);
    //rotation = vec3d(-TAU/8.0, TAU/16.0, 0) * 0.1;
 
    ALLEGRO_TRANSFORM p;
@@ -38,9 +38,9 @@ void Camera::setup_camera_perspective(ALLEGRO_BITMAP *bmp)
 
       // position
       al_translate_transform_3d(&p,
-         -position.x-stepback.x,
-         -position.y-stepback.y,
-         -position.z-stepback.z);
+         -position.x-stepback_with_stepback_baseline.x,
+         -position.y-stepback_with_stepback_baseline.y,
+         -position.z-stepback_with_stepback_baseline.z);
 
       // tilt the camera up-down
       al_rotate_transform_3d(&p, -1, 0, 0, rotation.x);
@@ -49,7 +49,7 @@ void Camera::setup_camera_perspective(ALLEGRO_BITMAP *bmp)
    //al_perspective_transform(&p, -1, aspect_ratio, 1, 1, -aspect_ratio, 1000);
    float znear = 5;
    float zoom = (zoom_max - zoom_min) * zoom_pos + zoom_min; // 4 is closeup, 10 is wide
-   stepback = vec3d(0, znear*zoom, znear*zoom);
+   stepback_with_stepback_baseline = vec3d(0, znear*zoom, znear*zoom);
 
    float viewport_scale = 200.0;
    //al_perspective_transform(&p,      -1, aspect_ratio, znear,      1, -aspect_ratio, 1000);
