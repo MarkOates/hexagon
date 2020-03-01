@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
-
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro.h>
 
 
 namespace Hexagon
@@ -37,6 +38,8 @@ std::string StageInfoOverlay::get_text()
 void StageInfoOverlay::render()
 {
 if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
+ALLEGRO_COLOR color = al_color_name("orange");
+al_draw_text(title_font, color, 0, 0, ALLEGRO_ALIGN_CENTER, text.c_str());
 return;
 
 }

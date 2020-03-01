@@ -12,7 +12,16 @@ functions:
     type: void
     body: |
       if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
+      ALLEGRO_COLOR color = al_color_name("orange");
+      al_draw_text(title_font, color, 0, 0, ALLEGRO_ALIGN_CENTER, text.c_str());
       return;
+    body_dependency_symbols:
+      - al_color_name
+      - al_draw_text
 dependencies:
+  - symbol: al_color_name
+    headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: al_draw_text
+    headers: [ 'allegro5/allegro.h' ]
   - symbol: ALLEGRO_FONT*
     headers: [ 'allegro5/allegro_font.h' ]
