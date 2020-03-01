@@ -633,6 +633,8 @@ bool System::execute_magic_command()
 
    //
 
+   bool show_rerun_output_watcher = false;
+   if (show_rerun_output_watcher)
    {
       float golden_ratio = 0.61803f;
       float x_pos = golden_ratio * get_display_default_width() - get_display_default_width()/2;
