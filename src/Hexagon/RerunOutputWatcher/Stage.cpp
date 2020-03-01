@@ -3,6 +3,7 @@
 #include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <allegro5/allegro_color.h>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <Hexagon/Elements/Frame.hpp>
 #include <iostream>
 #include <vector>
 #include <Blast/StringSplitter.hpp>
@@ -95,6 +96,9 @@ get_place().start_transform();
 
 if (!font) throw std::runtime_error("could not load font font");
 //al_draw_text(font, al_color_name("yellow"), 0, 0, 0, "+ RerunOutputWatcher");
+
+Hexagon::Elements::Frame frame(get_place().size.x, get_place().size.y);
+frame.render();
 
 int y_spacing = 20;
 int x_col = 170;

@@ -74,6 +74,9 @@ functions:
        if (!font) throw std::runtime_error("could not load font font");
        //al_draw_text(font, al_color_name("yellow"), 0, 0, 0, "+ RerunOutputWatcher");
 
+       Hexagon::Elements::Frame frame(get_place().size.x, get_place().size.y);
+       frame.render();
+
        int y_spacing = 20;
        int x_col = 170;
        int line_height = al_get_font_line_height(font);
@@ -131,11 +134,14 @@ functions:
 function_body_symbol_dependencies:
   - al_color_name
   - Blast::ShellCommandExecutorWithCallback
+  - Hexagon::Elements::Frame
   - std::cout
   - Blast::StringSplitter
 dependencies:
   - symbol: std::cout
     headers: [ 'iostream' ]
+  - symbol: Hexagon::Elements::Frame
+    headers: [ 'Hexagon/Elements/Frame.hpp' ]
   - symbol: Blast::StringSplitter
     headers: [ 'vector', 'Blast/StringSplitter.hpp' ]
   - symbol: Blast::ShellCommandExecutorWithCallback
