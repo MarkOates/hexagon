@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <Hexagon/FontSet.hpp>
+#include <allegro5/allegro_font.h>
 #include <string>
 
 
@@ -12,14 +12,15 @@ namespace Hexagon
       class StageInfoOverlay
       {
       private:
-         Hexagon::FontSet* font_set;
+         ALLEGRO_FONT* title_font;
          std::string text;
 
       public:
-         StageInfoOverlay();
+         StageInfoOverlay(ALLEGRO_FONT* title_font=nullptr);
          ~StageInfoOverlay();
 
 
+         ALLEGRO_FONT* get_title_font();
          std::string get_text();
       void render();
       };

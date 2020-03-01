@@ -1,7 +1,9 @@
 properties:
-  - name: font_set
-    type: Hexagon::FontSet*
+  - name: title_font
+    type: ALLEGRO_FONT*
     init_with: nullptr
+    constructor_arg: true
+    getter: true
   - name: text
     type: std::string
     getter: true
@@ -9,10 +11,8 @@ functions:
   - name: render
     type: void
     body: |
-      //al_draw_text(
+      if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
       return;
-    body_dependency_symbols:
-      - Hexagon::FontSet*
 dependencies:
-  - symbol: Hexagon::FontSet*
-    headers: [ 'Hexagon/FontSet.hpp' ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ 'allegro5/allegro_font.h' ]
