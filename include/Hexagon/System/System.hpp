@@ -27,6 +27,7 @@ public:
    std::string global_font_resource_filename;
    int global_font_size;
    bool command_mode;
+   std::string focused_component_name;
 
    static int get_display_default_width();
    static int get_display_default_height();
@@ -53,6 +54,7 @@ public:
    bool is_current_stage_a_regex_input_box();
 
    // actions
+   bool write_focused_component_name_to_file();
    bool toggle_command_mode_on();
    bool toggle_command_mode_off();
    bool rotate_stage_right();
@@ -95,6 +97,7 @@ public:
    bool fx__play_focus_animation_on_frontmost_stage();
 
    // events
+   static const std::string WRITE_FOCUSED_COMPONENT_NAME_TO_FILE;
    static const std::string ADD_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;

@@ -112,6 +112,7 @@ System::System(ALLEGRO_DISPLAY *display, Motion &motion)
    , global_font_resource_filename("consolas.ttf")
    , global_font_size(-20)
    , command_mode(false)
+   , focused_component_name("")
 {
 }
 
@@ -241,6 +242,14 @@ bool System::is_current_stage_a_regex_input_box()
 }
 
 // actions
+
+bool System::write_focused_component_name_to_file()
+{
+   std::string FOCUSED_COMPONENT_FILENAME = "bin/programs/data/tmp/focused_component.txt";
+   std::string focused_component_to_write = focused_component_name;//"Hexagon/Hud";
+
+   return php::file_put_contents(FOCUSED_COMPONENT_FILENAME, focused_component_to_write);
+}
 
 bool System::fx__play_focus_animation_on_frontmost_stage()
 {
@@ -882,6 +891,7 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == INCREASE_FONT_SIZE) { increase_font_size(); executed = true; }
       else if (event_name == DECREASE_FONT_SIZE) { decrease_font_size(); executed = true; }
       else if (event_name == ADD_FILE_IS_UNSAVED_NOTIFICATION) { add_file_is_unsaved_notification(); executed = true; }
+      else if (event_name == WRITE_FOCUSED_COMPONENT_NAME_TO_FILE) { write_focused_component_name_to_file(); executed = true; }
       else if (event_name == REMOVE_FILE_IS_UNSAVED_NOTIFICATION) { remove_file_is_unsaved_notification(); executed = true; }
       else if (event_name == TOGGLE_COMMAND_MODE_ON) { toggle_command_mode_on(); executed = true; }
       else if (event_name == TOGGLE_COMMAND_MODE_OFF) { toggle_command_mode_off(); executed = true; }
@@ -1023,6 +1033,7 @@ std::string System::get_action_description(std::string action_identifier)
       { System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE, "" },
       { System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE, "" },
       { System::REFRESH_REGEX_HILIGHTS_ON_STAGE, "" },
+      { System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE, "" },
       { System::ADD_FILE_IS_UNSAVED_NOTIFICATION, "" },
       { System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION, "" },
       { System::TOGGLE_COMMAND_MODE_ON, "" },
@@ -1061,6 +1072,7 @@ std::string System::get_action_description(std::string action_identifier)
 }
 
 
+const std::string System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE = "WRITE_FOCUSED_COMPONENT_NAME_TO_FILE";
 const std::string System::ADD_FILE_IS_UNSAVED_NOTIFICATION = "ADD_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
