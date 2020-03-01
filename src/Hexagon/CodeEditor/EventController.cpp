@@ -165,8 +165,8 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_L, true, false, false, false, { CodeEditor::EventController::MOVE_CURSOR_TO_BOTTOM_OF_SCREEN });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, false, false, false, false, { CodeEditor::EventController::MOVE_CURSOR_JUMP_TO_NEXT_WORD });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_W, true, false, false, false, { CodeEditor::EventController::MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD });
-   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, false, false, false, { CodeEditor::EventController::JUMP_CURSOR_TO_END_OF_NEXT_WORD });
-   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, true, false, false, false, { CodeEditor::EventController::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD });
+   //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, false, false, false, { CodeEditor::EventController::JUMP_CURSOR_TO_END_OF_NEXT_WORD });
+   //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, true, false, false, false, { CodeEditor::EventController::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, false, false, false, { CodeEditor::EventController::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, false, false, false, false, { CodeEditor::EventController::JUMP_TO_NEXT_CODE_POINT, CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_N, true, false, false, false, { CodeEditor::EventController::JUMP_TO_PREVIOUS_CODE_POINT, CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
@@ -180,7 +180,7 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_U, false, true, false, false, { CodeEditor::EventController::JUMP_FIRST_LINE_NUM_UP, CodeEditor::EventController::OFFSET_CURSOR_POSITION_Y_UP });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_D, false, true, false, false, { CodeEditor::EventController::JUMP_FIRST_LINE_NUM_DOWN, CodeEditor::EventController::OFFSET_CURSOR_POSITION_Y_DOWN });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, true, false, false, { CodeEditor::EventController::STEP_FIRST_LINE_NUM_UP });
-   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, true, false, false, { CodeEditor::EventController::STEP_FIRST_LINE_NUM_DOWN });
+   //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, true, false, false, { CodeEditor::EventController::STEP_FIRST_LINE_NUM_DOWN });
    //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, false, { CodeEditor::EventController::SCALE_STAGE_UP });
    //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, false, { CodeEditor::EventController::SCALE_STAGE_DOWN });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, false, { CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE, CodeEditor::EventController::SPLIT_LINES, CodeEditor::EventController::MOVE_CURSOR_DOWN, CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE, CodeEditor::EventController::SET_INSERT_MODE, });
