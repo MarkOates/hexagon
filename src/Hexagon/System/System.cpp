@@ -598,7 +598,7 @@ bool System::execute_magic_command()
    {
       float golden_ratio = 0.61803f;
       float x_pos = golden_ratio * get_display_default_width() - get_display_default_width()/2;
-      placement3d place(x_pos, -get_display_default_height()/2 + 30, 0);
+      placement3d place(0, 0, 0);
 
       place.position = vec3d(width*i, 0.0, 0.0);
       place.size = vec3d(width, display_default_height, 0.0);
