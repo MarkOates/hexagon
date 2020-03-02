@@ -60,7 +60,7 @@ if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: t
 if (!place) throw std::runtime_error("[StageInfoOverlay::render() error]: place can not be a nullptr");
 
 ALLEGRO_COLOR color = al_color_name("orange");
-al_draw_text(title_font, color, 0, 0, ALLEGRO_ALIGN_CENTER, text.c_str());
+al_draw_text(title_font, color, place->size.x/2, place->size.y/2, ALLEGRO_ALIGN_CENTER, text.c_str());
 return;
 
 }
