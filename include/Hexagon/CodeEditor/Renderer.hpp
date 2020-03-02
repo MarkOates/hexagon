@@ -17,6 +17,7 @@ namespace CodeEditor
    {
    private:
       bool is_focused;
+      bool is_showing_info;
       ALLEGRO_DISPLAY *display;
       RenderCache render_cache;
       CodeEditor::Stage *stage;
@@ -27,6 +28,7 @@ namespace CodeEditor
       //void draw_cursor(bool is_focused, int cursor_x, float _cursor_y, float _cell_width, CodeEditor::Stage::mode_t mode);
       void render_code_lines(placement3d &place);
       void render_raw();
+      void render_info_overlay();
       void draw_selections(int cell_width, int cell_height);
 
    public:

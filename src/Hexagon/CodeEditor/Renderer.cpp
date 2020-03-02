@@ -8,6 +8,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/CursorRenderer.hpp>
 #include <Hexagon/CodeRangeRenderer.hpp>
+#include <Hexagon/Elements/StageInfoOverlay.hpp>
 #include <AllegroFlare/Color.hpp>
 #include <sstream>
 #include <string>
@@ -189,10 +190,22 @@ void Renderer::render_raw()
 }
 
 
+void Renderer::render_info_overlay()
+{
+   if (is_showing_info)
+   {
+      Hexagon::Elements::StageInfoOverlay info_overlay(font, &stage->get_place());
+      info_overlay.set_text("hello");
+      info_overlay.render();
+   }
+}
+
+
 
 Renderer::Renderer(bool is_focused, CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
    : Hexagon::RendererInterface()
    , is_focused(is_focused)
+   , is_showing_info(false)
    , stage(stage)
    , font(font)
    , display(display)
@@ -213,6 +226,7 @@ void Renderer::render()
 
    render_cache.setup_surface(place.size.x, place.size.y);
    render_raw();
+   if (is_showing_info) render_info_overlay();
    render_cache.finish_surface();
 
    place.start_transform();
