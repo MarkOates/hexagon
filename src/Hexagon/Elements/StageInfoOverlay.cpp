@@ -11,9 +11,9 @@ namespace Elements
 {
 
 
-StageInfoOverlay::StageInfoOverlay(ALLEGRO_FONT* title_font, placement3d* placement)
+StageInfoOverlay::StageInfoOverlay(ALLEGRO_FONT* title_font, placement3d* place)
    : title_font(title_font)
-   , placement(placement)
+   , place(place)
    , text("")
 {
 }
@@ -24,9 +24,9 @@ StageInfoOverlay::~StageInfoOverlay()
 }
 
 
-void StageInfoOverlay::set_placement(placement3d* placement)
+void StageInfoOverlay::set_place(placement3d* place)
 {
-   this->placement = placement;
+   this->place = place;
 }
 
 
@@ -42,9 +42,9 @@ ALLEGRO_FONT* StageInfoOverlay::get_title_font()
 }
 
 
-placement3d* StageInfoOverlay::get_placement()
+placement3d* StageInfoOverlay::get_place()
 {
-   return placement;
+   return place;
 }
 
 
@@ -57,6 +57,8 @@ std::string StageInfoOverlay::get_text()
 void StageInfoOverlay::render()
 {
 if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
+if (!place) throw std::runtime_error("[StageInfoOverlay::render() error]: place can not be a nullptr");
+
 ALLEGRO_COLOR color = al_color_name("orange");
 al_draw_text(title_font, color, 0, 0, ALLEGRO_ALIGN_CENTER, text.c_str());
 return;
