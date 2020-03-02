@@ -22,6 +22,7 @@ namespace Hexagon
          ~StageInfoOverlay();
 
          void set_placement(placement3d* placement);
+         void set_text(std::string text);
 
          ALLEGRO_FONT* get_title_font();
          placement3d* get_placement();

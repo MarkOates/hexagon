@@ -30,6 +30,12 @@ void StageInfoOverlay::set_placement(placement3d* placement)
 }
 
 
+void StageInfoOverlay::set_text(std::string text)
+{
+   this->text = text;
+}
+
+
 ALLEGRO_FONT* StageInfoOverlay::get_title_font()
 {
    return title_font;
