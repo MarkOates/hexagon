@@ -4,6 +4,12 @@ properties:
     init_with: nullptr
     constructor_arg: true
     getter: true
+  - name: placement
+    type: placement3d*
+    init_with: nullptr
+    constructor_arg: true
+    getter: true
+    setter: true
   - name: text
     type: std::string
     getter: true
@@ -21,6 +27,8 @@ functions:
 dependencies:
   - symbol: al_color_name
     headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: placement3d*
+    headers: [ 'allegro_flare/placement3d.h' ]
   - symbol: al_draw_text
     headers: [ 'allegro5/allegro.h' ]
   - symbol: ALLEGRO_FONT*

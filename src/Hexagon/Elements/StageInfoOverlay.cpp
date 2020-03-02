@@ -11,8 +11,9 @@ namespace Elements
 {
 
 
-StageInfoOverlay::StageInfoOverlay(ALLEGRO_FONT* title_font)
+StageInfoOverlay::StageInfoOverlay(ALLEGRO_FONT* title_font, placement3d* placement)
    : title_font(title_font)
+   , placement(placement)
    , text("")
 {
 }
@@ -23,9 +24,21 @@ StageInfoOverlay::~StageInfoOverlay()
 }
 
 
+void StageInfoOverlay::set_placement(placement3d* placement)
+{
+   this->placement = placement;
+}
+
+
 ALLEGRO_FONT* StageInfoOverlay::get_title_font()
 {
    return title_font;
+}
+
+
+placement3d* StageInfoOverlay::get_placement()
+{
+   return placement;
 }
 
 
