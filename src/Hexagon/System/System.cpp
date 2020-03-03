@@ -103,7 +103,6 @@ System::System(ALLEGRO_DISPLAY *display, Motion &motion)
    //, file_navigator(al_get_current_directory())
    , display(display)
    , camera(0, 0, 0)
-   , file_navigator_initial_place(0, 0, 0)
    , motion(motion)
    , last_file_navigator_selection("")
    , last_component_navigator_selection("")
@@ -118,11 +117,6 @@ System::System(ALLEGRO_DISPLAY *display, Motion &motion)
 bool System::initialize()
 {
    config.initialize();
-
-   file_navigator_initial_place.size = vec3d(500, 600, 30);
-   file_navigator_initial_place.align = vec3d(0.5, 0.5, 0.5);
-   file_navigator_initial_place.scale = vec3d(0.8, 0.8, 1.0);
-   file_navigator_initial_place.rotation = vec3d(0.0, 0.0, 0.0);
 
    process_local_event(EXECUTE_MAGIC_COMMAND);
 

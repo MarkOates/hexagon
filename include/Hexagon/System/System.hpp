@@ -18,7 +18,6 @@ public:
    std::vector<StageInterface *> stages;
    ALLEGRO_DISPLAY *display;
    Camera camera;
-   placement3d file_navigator_initial_place;
    Motion &motion;
    std::string last_file_navigator_selection;
    std::string last_component_navigator_selection;
