@@ -145,6 +145,7 @@ std::string System::get_default_navigator_directory()
 placement3d System::build_component_navigator_initial_place()
 {
    placement3d result;
+   result.position = camera.position;
    result.size = vec3d(800, 700, 30);
    result.align = vec3d(0.5, 0.5, 0.5);
    result.scale = vec3d(0.8, 0.8, 1.0);
