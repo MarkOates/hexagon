@@ -148,6 +148,16 @@ std::string System::get_default_navigator_directory()
    return config.get_default_navigator_directory();
 }
 
+placement3d System::build_component_navigator_initial_place()
+{
+   placement3d result;
+   result.size = vec3d(800, 700, 30);
+   result.align = vec3d(0.5, 0.5, 0.5);
+   result.scale = vec3d(0.8, 0.8, 1.0);
+   result.rotation = vec3d(0.0, 0.0, 0.0);
+   return result;
+}
+
 std::string System::get_global_font_str()
 {
    std::stringstream result;
@@ -430,7 +440,7 @@ bool System::spawn_component_navigator()
   
    Hexagon::ComponentNavigator::Stage *component_navigator = new Hexagon::ComponentNavigator::Stage(get_default_navigator_directory());
    component_navigator->process_local_event("refresh_list");
-   component_navigator->set_place(component_navigator_initial_place);
+   component_navigator->set_place(build_component_navigator_initial_place());
    stages.push_back(component_navigator);
 
    placement3d& stage_place = component_navigator->get_place();

@@ -42,6 +42,7 @@ public:
 
    // util
    static std::vector<std::string> get_directory_listing_recursive(std::string directory);
+   placement3d build_component_navigator_initial_place();
 
    // retrieval
    StageInterface *get_frontmost_stage();
