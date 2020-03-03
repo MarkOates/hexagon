@@ -153,6 +153,17 @@ placement3d System::build_component_navigator_initial_place()
    return result;
 }
 
+placement3d System::build_file_navigator_initial_place()
+{
+   placement3d result;
+   result.position = camera.position;
+   result.size = vec3d(500, 600, 30);
+   result.align = vec3d(0.5, 0.5, 0.5);
+   result.scale = vec3d(0.8, 0.8, 1.0);
+   result.rotation = vec3d(0.0, 0.0, 0.0);
+   return result;
+}
+
 std::string System::get_global_font_str()
 {
    std::stringstream result;
