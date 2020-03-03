@@ -471,7 +471,7 @@ bool System::spawn_file_navigator()
 
    Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(get_default_navigator_directory());
    file_navigator->process_local_event("refresh_list");
-   file_navigator->set_place(file_navigator_initial_place);
+   file_navigator->set_place(build_file_navigator_initial_place());
    //file_navigator.set_child_nodes();
    stages.push_back(file_navigator);
 
@@ -491,7 +491,7 @@ bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
 
    Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(last_file_navigator_selection);
    file_navigator->process_local_event("refresh_list");
-   file_navigator->set_place(file_navigator_initial_place);
+   file_navigator->set_place(build_file_navigator_initial_place());
 
    stages.push_back(file_navigator);
 
