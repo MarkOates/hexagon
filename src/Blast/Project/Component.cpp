@@ -3,6 +3,8 @@
 #include <Blast/Project/Component.hpp>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <Blast/ProjectComponentFileTypes.hpp>
+#include <Blast/FileLastWriteTime.hpp>
+#include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <Blast/ProjectComponentFileTypes.hpp>
 #include <Blast/FileExistenceChecker.hpp>
@@ -47,6 +49,39 @@ std::string Component::generate_full_path_test_binary_filename()
 {
 std::string filename = Blast::ProjectComponentFilenameGenerator(name, Blast::ProjectComponentFileTypes::TEST_BINARY).generate_filename();
 return project_root + filename;
+
+}
+
+std::time_t Component::last_write_time()
+{
+std::time_t most_recent_file_write_time = 0;
+
+std::vector<Blast::ProjectComponentFileTypes::project_file_type_t> types_to_scan_for = {
+   Blast::ProjectComponentFileTypes::QUINTESSENCE_FILE,
+   Blast::ProjectComponentFileTypes::SOURCE_FILE,
+   Blast::ProjectComponentFileTypes::HEADER_FILE,
+   Blast::ProjectComponentFileTypes::TEST_FILE,
+   Blast::ProjectComponentFileTypes::EXAMPLE_FILE,
+   //Blast::ProjectComponentFileTypes::OBJECT_FILE,
+   //Blast::ProjectComponentFileTypes::TEST_BINARY,
+   //Blast::ProjectComponentFileTypes::EXAMPLE_BINARY,
+};
+
+for (auto &type_to_scan_for : types_to_scan_for)
+{
+   std::string filename = Blast::ProjectComponentFilenameGenerator(name, type_to_scan_for).generate_filename();
+   std::string full_filename = project_root + filename;
+   if (Blast::FileExistenceChecker(full_filename).exists())
+   {
+      std::time_t this_file_last_write_time = Blast::FileLastWriteTime(full_filename).last_write_time();
+      if (this_file_last_write_time > most_recent_file_write_time)
+      {
+         most_recent_file_write_time = this_file_last_write_time;
+      }
+   }
+}
+
+return most_recent_file_write_time;
 
 }
 
