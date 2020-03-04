@@ -569,8 +569,21 @@ bool System::destroy_topmost_stage()
 }
 
 
+static std::vector<std::string> __list_of_files_in_file_list()
+{
+   std::string hard_coded_project_path = "/Users/markoates/Repos/hexagon/";
+   static std::string FILE_LIST_FILENAME = hard_coded_project_path + "bin/programs/data/tmp/files_to_open_at_startup.txt";
+
+   std::vector<std::string> lines;
+   ::read_file(lines, FILE_LIST_FILENAME);
+
+   return lines;
+}
+
+
 #include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
+#include <allegro_flare/useful.h>
 bool System::execute_magic_command()
 {
    float display_default_width = get_display_default_width();
@@ -599,6 +612,12 @@ bool System::execute_magic_command()
    filenames = {
       project_path + "src/Hexagon/System/System.cpp",
    };
+   focused_component_name = "Hexagon/System/System";
+   write_focused_component_name_to_file();
+
+   filenames = __list_of_files_in_file_list();
+
+   ///
 
    float width = display_default_width/2 * width_scale_of_halfwidth;
    std::string filename = "";
