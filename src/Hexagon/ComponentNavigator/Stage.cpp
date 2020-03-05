@@ -129,7 +129,7 @@ void Stage::refresh_list()
 {
 Hexagon::ComponentNavigator::List list(get_project_root());
 //std::vector<std::string> elements = list.component_names();
-nodes = list.components();
+nodes = list.components_sorted_by_most_recent();
 
 }
 
