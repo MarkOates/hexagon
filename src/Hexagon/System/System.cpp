@@ -308,12 +308,24 @@ bool System::toggle_command_mode_off()
 
 bool System::rotate_stage_right()
 {
+   if (stages.empty())
+   {
+      std::cout << "Warning: attempting to rotate_stage_right() but no frontmost stage exists" << std::endl;
+      return false;
+   }
+
    std::rotate(stages.begin(), stages.begin() + 1, stages.end());
    return true;
 }
 
 bool System::rotate_stage_left()
 {
+   if (stages.empty())
+   {
+      std::cout << "Warning: attempting to rotate_stage_right() but no frontmost stage exists" << std::endl;
+      return false;
+   }
+
    std::rotate(stages.rbegin(), stages.rbegin() + 1, stages.rend());
    return true;
 }
