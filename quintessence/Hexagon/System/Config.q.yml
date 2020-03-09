@@ -7,7 +7,7 @@ properties:
   - name: config_filename
     type: std::string
     constructor_arg: true
-    init_with: "\"/Users/markoates/Repos/me/config/hexagon.boot.cfg\""
+    init_with: "\"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg\""
   - name: config
     type: AllegroFlare::Config
     init_with: config_filename

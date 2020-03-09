@@ -17,7 +17,7 @@ namespace Hexagon
          AllegroFlare::Config config;
 
       public:
-         Config(std::string config_filename="/Users/markoates/Repos/me/config/hexagon.boot.cfg");
+         Config(std::string config_filename="/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg");
          ~Config();
 
 
