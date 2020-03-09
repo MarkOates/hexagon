@@ -584,7 +584,7 @@ bool System::destroy_topmost_stage()
 static std::vector<std::string> __list_of_files_in_file_list()
 {
    std::string hard_coded_project_path = "/Users/markoates/Repos/hexagon/";
-   static std::string FILE_LIST_FILENAME = hard_coded_project_path + "bin/programs/data/tmp/files_to_open_at_startup.txt";
+   static std::string FILE_LIST_FILENAME = hard_coded_project_path + "bin/programs/data/config/files_to_open_at_startup.txt";
 
    std::vector<std::string> lines;
    ::read_file(lines, FILE_LIST_FILENAME);

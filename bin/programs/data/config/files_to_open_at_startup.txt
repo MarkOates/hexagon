@@ -1,0 +1,4 @@
+/Users/markoates/dev_repos/partners/app/operations/services_marketplace/external_job_review_create.rb
+/Users/markoates/dev_repos/partners/spec/operations/services_marketplace/external_job_review_create_spec.rb
+/Users/markoates/dev_repos/partners/spec/factories/external_job_factory.rb
+/Users/markoates/dev_repos/partners/spec/factories/shop_factory.rb
