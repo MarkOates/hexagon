@@ -103,6 +103,7 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
       else if (event_name == JOIN_LINES) stage->join_lines();
       else if (event_name == SPLIT_LINES) stage->split_lines();
       else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) stage->move_cursor_to_start_of_line();
+      else if (event_name == DELETE_LINE) stage->delete_line();
       else if (event_name == MOVE_CURSOR_TO_END_OF_LINE) stage->move_cursor_to_end_of_line();
       else if (event_name == SAVE_FILE) stage->save_file();
       else if (event_name == MOVE_STAGE_UP) stage->move_stage_up();
@@ -193,6 +194,7 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, false, { CodeEditor::EventController::YANK_SELECTED_TEXT_TO_CLIPBOARD });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, true, false, false, false, { CodeEditor::EventController::PASTE_SELECTED_TEXT_FROM_CLIPBOARD });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP, false, false, false, false, { CodeEditor::EventController::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, true, false, false, false, { CodeEditor::EventController::DELETE_LINE });
 
 
    //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
@@ -277,6 +279,7 @@ std::string const CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE = "MOV
 std::string const CodeEditor::EventController::SAVE_FILE = "SAVE_FILE";
 std::string const CodeEditor::EventController::MOVE_STAGE_UP = "MOVE_STAGE_UP";
 std::string const CodeEditor::EventController::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
+std::string const CodeEditor::EventController::DELETE_LINE = "DELETE_LINE";
 std::string const CodeEditor::EventController::JUMP_FIRST_LINE_NUM_UP = "JUMP_FIRST_LINE_NUM_UP";
 std::string const CodeEditor::EventController::JUMP_FIRST_LINE_NUM_DOWN = "JUMP_FIRST_LINE_NUM_DOWN";
 std::string const CodeEditor::EventController::JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN = "JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN";
