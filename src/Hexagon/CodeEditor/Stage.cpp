@@ -461,16 +461,6 @@ bool Stage::delete_line()
 
 
 
-bool Stage::delete_line_and_copy_contents_to_clipboard()
-{
-   int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());
-   lines.erase(lines.begin()+range_safe_y);
-   mark_content_is_modified();
-   return true;
-}
-
-
-
 bool Stage::insert_lines(std::vector<std::string> &lines_to_insert)
 {
    int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());

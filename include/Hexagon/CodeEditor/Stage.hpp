@@ -93,7 +93,6 @@ namespace CodeEditor
       bool join_lines();
       bool split_lines();
       bool delete_line();
-      bool delete_line_and_copy_contents_to_clipboard();
       bool insert_lines(std::vector<std::string> &lines_to_insert);
       bool insert_string(std::string string);
       bool save_file();
