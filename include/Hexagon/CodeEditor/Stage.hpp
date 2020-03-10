@@ -70,6 +70,7 @@ namespace CodeEditor
       std::string &next_line_ref();
       std::string get_current_mode_string();
       int infer_num_lines_to_draw();
+      bool infer_cursor_is_on_line_that_exists();
 
       bool get_content_is_modified();
 
@@ -92,6 +93,7 @@ namespace CodeEditor
       bool join_lines();
       bool split_lines();
       bool delete_line();
+      bool delete_line_and_copy_contents_to_clipboard();
       bool insert_lines(std::vector<std::string> &lines_to_insert);
       bool insert_string(std::string string);
       bool save_file();

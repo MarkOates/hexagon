@@ -25,6 +25,35 @@ TEST(Hexagon_CodeEditor_StageTest, can_be_created_without_blowing_up)
    CodeEditor::Stage stage("foobar_filename.txt");
 }
 
+TEST(Hexagon_CodeEditor_StageTest,
+   infer_cursor_is_on_line_that_exists__returns_true_when_the_cursor_is_within_the_range_of_number_of_lines)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   stage.set_cursor_y(9);
+   EXPECT_TRUE(stage.infer_cursor_is_on_line_that_exists());
+
+   stage.set_cursor_y(stage.num_lines()-1);
+   EXPECT_TRUE(stage.infer_cursor_is_on_line_that_exists());
+
+   stage.set_cursor_y(0);
+   EXPECT_TRUE(stage.infer_cursor_is_on_line_that_exists());
+}
+
+TEST(Hexagon_CodeEditor_StageTest,
+   infer_cursor_is_on_line_that_exists__returns_false_when_the_cursor_is_not_within_the_range_of_number_of_lines)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   stage.set_cursor_y(-1);
+   EXPECT_FALSE(stage.infer_cursor_is_on_line_that_exists());
+
+   stage.set_cursor_y(stage.num_lines());
+   EXPECT_FALSE(stage.infer_cursor_is_on_line_that_exists());
+}
+
 TEST(Hexagon_CodeEditor_StageTest, delete_line__removes_the_current_line)
 {
    CodeEditor::Stage stage("a_sonnet.txt");

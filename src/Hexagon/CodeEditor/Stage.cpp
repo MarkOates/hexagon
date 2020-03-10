@@ -219,6 +219,15 @@ int Stage::infer_num_lines_to_draw()
 
 
 
+bool Stage::infer_cursor_is_on_line_that_exists()
+{
+   if (cursor_y < 0) return false;
+   if (cursor_y >= num_lines()) return false;
+   return true;
+}
+
+
+
 // actions
 
 
@@ -441,6 +450,18 @@ bool Stage::split_lines()
 
 
 bool Stage::delete_line()
+{
+   // TODO: this function needs to
+   // 1) not delete if the cursor is out of range, and return false
+   int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());
+   lines.erase(lines.begin()+range_safe_y);
+   mark_content_is_modified();
+   return true;
+}
+
+
+
+bool Stage::delete_line_and_copy_contents_to_clipboard()
 {
    int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());
    lines.erase(lines.begin()+range_safe_y);
