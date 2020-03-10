@@ -33,8 +33,16 @@ TEST(Hexagon_CodeEditor_StageTest, delete_line__removes_the_current_line)
    EXPECT_EQ(16, stage.num_lines());
 
    stage.set_cursor_y(9);
+
    stage.delete_line();
 
    EXPECT_EQ(15, stage.num_lines());
+   EXPECT_EQ(9, stage.get_cursor_y()); // cursor stays at the same line number
+
+   std::string expected_line_at_cursor = "Then the conceit of this inconstant stay,";
+
+   ASSERT_EQ(expected_line_at_cursor, stage.current_line_ref());
+
+   ASSERT_TRUE(stage.get_content_is_modified());
 }
 

@@ -432,10 +432,10 @@ bool Stage::join_lines()
 
 bool Stage::split_lines()
 {
-  lines.insert(lines.begin() + cursor_y + 1, lines[cursor_y].substr(cursor_x));
-  current_line_ref().erase(cursor_x);
+   lines.insert(lines.begin() + cursor_y + 1, lines[cursor_y].substr(cursor_x));
+   current_line_ref().erase(cursor_x);
    mark_content_is_modified();
-  return true;
+   return true;
 }
 
 
@@ -444,6 +444,8 @@ bool Stage::delete_line()
 {
    int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());
    lines.erase(lines.begin()+range_safe_y);
+   mark_content_is_modified();
+   return true;
 }
 
 
