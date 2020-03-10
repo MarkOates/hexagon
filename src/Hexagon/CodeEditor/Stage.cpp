@@ -440,6 +440,14 @@ bool Stage::split_lines()
 
 
 
+bool Stage::delete_line()
+{
+   int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());
+   lines.erase(lines.begin()+range_safe_y);
+}
+
+
+
 bool Stage::insert_lines(std::vector<std::string> &lines_to_insert)
 {
    int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());
