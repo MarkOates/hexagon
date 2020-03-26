@@ -34,9 +34,11 @@ std::string ComponentElasticsearchIndex::get_index_mapping()
 {
 std::string index_mapping = R"INDEX_MAPPING({
   "mappings": {
-    "project": {
-      "type": "keyword"
-    }
+    "uid": { "type": "keyword" },
+    "id": { "type": "keyword" },
+    "project": { "type": "keyword" },
+    "name": { "type": "text" },
+    "content": { "type": "text" }
   }
 })INDEX_MAPPING";
 return index_mapping;

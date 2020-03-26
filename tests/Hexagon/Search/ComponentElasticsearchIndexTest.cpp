@@ -14,9 +14,11 @@ TEST(Hexagon_Search_ComponentElasticsearchIndexTest, get_index_mapping__returns_
 
    std::string expected_index_mapping = R"INDEX_MAPPING({
   "mappings": {
-    "project": {
-      "type": "keyword"
-    }
+    "uid": { "type": "keyword" },
+    "id": { "type": "keyword" },
+    "project": { "type": "keyword" },
+    "name": { "type": "text" },
+    "content": { "type": "text" }
   }
 })INDEX_MAPPING";
 
