@@ -16,11 +16,20 @@ functions:
          error_message << "[ComponentElasticsearchIndex error:] can not import_or_update on a nullptr component";
          throw std::runtime_error(error_message.str());
       }
+
+      nlohmann::json document_as_json = {};
+
       return true;
     body_dependency_symbols:
       - std::stringstream
       - Blast::Project::Component*
+      - Blast::ShellCommandExecutorWithCallback
+      - nlohmann::json
 dependencies:
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+  - symbol: nlohmann::json
+    headers: [ lib/nlohmann/json.hpp ]
   - symbol: Blast::Project::Component*
     headers: [ Blast/Project/Component.hpp ]
 

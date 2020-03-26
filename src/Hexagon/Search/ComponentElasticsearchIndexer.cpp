@@ -3,6 +3,8 @@
 #include <Hexagon/Search/ComponentElasticsearchIndexer.hpp>
 #include <sstream>
 #include <Blast/Project/Component.hpp>
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <lib/nlohmann/json.hpp>
 
 
 namespace Hexagon
@@ -30,6 +32,9 @@ if (!component)
    error_message << "[ComponentElasticsearchIndex error:] can not import_or_update on a nullptr component";
    throw std::runtime_error(error_message.str());
 }
+
+nlohmann::json document_as_json = {};
+
 return true;
 
 }
