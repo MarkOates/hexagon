@@ -24,6 +24,20 @@ ComponentElasticsearchIndexer::~ComponentElasticsearchIndexer()
 }
 
 
+void ComponentElasticsearchIndexer::guard_nullptr_component(std::string function_name)
+{
+if (!component)
+{
+   std::stringstream error_message;
+   error_message << "[ComponentElasticsearchIndex error:] can not "
+                 << "\"" << function_name << "\""
+                 << " on a nullptr component";
+   throw std::runtime_error(error_message.str());
+}
+return;
+
+}
+
 std::string ComponentElasticsearchIndexer::generate_uid()
 {
 std::string delimiter = ":";
@@ -33,12 +47,7 @@ return component->get_project_root() + delimiter + component->get_name();
 
 bool ComponentElasticsearchIndexer::import_or_update()
 {
-if (!component)
-{
-   std::stringstream error_message;
-   error_message << "[ComponentElasticsearchIndex error:] can not import_or_update on a nullptr component";
-   throw std::runtime_error(error_message.str());
-}
+guard_nullptr_component(__FUNCTION__);
 
 // this is the mapping for reference:
 //

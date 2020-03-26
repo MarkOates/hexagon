@@ -4,6 +4,23 @@ properties:
     init_with: nullptr
     constructor_arg: true
 functions:
+  - name: guard_nullptr_component
+    private: true
+    type: void
+    parameters:
+      - name: function_name
+        type: std::string
+        default_argument: "\"unset_function_name\""
+    body: |
+      if (!component)
+      {
+         std::stringstream error_message;
+         error_message << "[ComponentElasticsearchIndex error:] can not "
+                       << "\"" << function_name << "\""
+                       << " on a nullptr component";
+         throw std::runtime_error(error_message.str());
+      }
+      return;
   - name: generate_uid
     type: std::string
     body: |
@@ -12,12 +29,7 @@ functions:
   - name: import_or_update
     type: bool
     body: |
-      if (!component)
-      {
-         std::stringstream error_message;
-         error_message << "[ComponentElasticsearchIndex error:] can not import_or_update on a nullptr component";
-         throw std::runtime_error(error_message.str());
-      }
+      guard_nullptr_component(__FUNCTION__);
 
       // this is the mapping for reference:
       //

@@ -19,6 +19,7 @@ namespace Hexagon
          ~ComponentElasticsearchIndexer();
 
 
+      void guard_nullptr_component(std::string function_name="unset_function_name");
       std::string generate_uid();
       bool import_or_update();
       };
