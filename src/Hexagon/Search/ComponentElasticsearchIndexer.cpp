@@ -40,6 +40,8 @@ return;
 
 std::string ComponentElasticsearchIndexer::generate_uid()
 {
+guard_nullptr_component(__FUNCTION__);
+
 std::string delimiter = ":";
 return component->get_project_root() + delimiter + component->get_name();
 

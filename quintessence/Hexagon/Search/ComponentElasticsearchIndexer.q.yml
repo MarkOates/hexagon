@@ -24,6 +24,8 @@ functions:
   - name: generate_uid
     type: std::string
     body: |
+      guard_nullptr_component(__FUNCTION__);
+
       std::string delimiter = ":";
       return component->get_project_root() + delimiter + component->get_name();
   - name: import_or_update
