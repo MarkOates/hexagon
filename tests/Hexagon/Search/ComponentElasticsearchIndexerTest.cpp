@@ -1,5 +1,6 @@
 
 #include <gtest/gtest.h>
+#include "lib/nlohmann/json.hpp"
 
 #define ASSERT_THROW_WITH_MESSAGE(stmt, etype, whatstring) ASSERT_THROW( \
         try { \
@@ -45,7 +46,7 @@ TEST(Hexagon_Search_ComponentElasticsearchIndexerTest, generate_index_shell_comm
 {
    Blast::Project::Component component("Component/Name", "hexagon");
    Hexagon::Search::ComponentElasticsearchIndexer indexer(&component);
-   std::string expected_shell_command = "curl -XPOST \"http://localhost:9200/components/_doc/\" " \
+   std::string expected_shell_command = "curl -XPOST \"http://localhost:9200/components_test/_doc/\" " \
                                         "-H 'Content-Type: application/json' " \
                                         "-d'{\"content\":\"Component/Name\",\"id\":\"Component/Name\"," \
                                         "\"name\":\"Component/Name\",\"project\":\"hexagon\"," \
@@ -59,4 +60,18 @@ TEST(Hexagon_Search_ComponentElasticsearchIndexerTest, import_or_update__with_a_
    Hexagon::Search::ComponentElasticsearchIndexer indexer;
    std::string expected_error_message = "[ComponentElasticsearchIndex error:] can not \"import_or_update\" on a nullptr component";
    ASSERT_THROW_WITH_MESSAGE(indexer.import_or_update(), std::runtime_error, expected_error_message);
+}
+
+TEST(Hexagon_Search_ComponentElasticsearchIndexerTest, import_or_update__imports_the_component_into_elasticsearch)
+{
+   Blast::Project::Component component("Component/Name", "hexagon");
+   Hexagon::Search::ComponentElasticsearchIndexer indexer(&component);
+
+   std::string result = indexer.import_or_update();
+   nlohmann::json result_json = nlohmann::json::parse(result);
+
+   std::string expected_result = "created";
+   std::string actual_result = result_json["result"];
+
+   ASSERT_EQ(expected_result, actual_result);
 }
