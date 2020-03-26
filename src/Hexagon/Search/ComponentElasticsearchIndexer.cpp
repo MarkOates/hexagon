@@ -13,8 +13,8 @@ namespace Search
 {
 
 
-ComponentElasticsearchIndexer::ComponentElasticsearchIndexer()
-   : component(nullptr)
+ComponentElasticsearchIndexer::ComponentElasticsearchIndexer(Blast::Project::Component* component)
+   : component(component)
 {
 }
 
@@ -24,7 +24,14 @@ ComponentElasticsearchIndexer::~ComponentElasticsearchIndexer()
 }
 
 
-bool ComponentElasticsearchIndexer::import_or_update(Blast::Project::Component* component)
+std::string ComponentElasticsearchIndexer::generate_uid()
+{
+std::string delimiter = ":";
+return component->get_project_root() + delimiter + component->get_name();
+
+}
+
+bool ComponentElasticsearchIndexer::import_or_update()
 {
 if (!component)
 {
@@ -33,7 +40,17 @@ if (!component)
    throw std::runtime_error(error_message.str());
 }
 
-nlohmann::json document_as_json = {};
+// this is the mapping for reference:
+//
+//"uid": { "type": "keyword" },
+//"id": { "type": "keyword" },
+//"project": { "type": "keyword" },
+//"name": { "type": "text" },
+//"content": { "type": "text" }
+
+nlohmann::json document_as_json = {
+  { "uid", generate_uid() }
+};
 
 return true;
 

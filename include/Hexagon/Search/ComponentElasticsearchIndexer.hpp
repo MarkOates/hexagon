@@ -2,6 +2,7 @@
 
 
 #include <Blast/Project/Component.hpp>
+#include <string>
 
 
 namespace Hexagon
@@ -14,11 +15,12 @@ namespace Hexagon
          Blast::Project::Component* component;
 
       public:
-         ComponentElasticsearchIndexer();
+         ComponentElasticsearchIndexer(Blast::Project::Component* component=nullptr);
          ~ComponentElasticsearchIndexer();
 
 
-      bool import_or_update(Blast::Project::Component* component=nullptr);
+      std::string generate_uid();
+      bool import_or_update();
       };
    }
 }

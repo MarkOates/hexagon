@@ -2,13 +2,15 @@ properties:
   - name: component
     type: Blast::Project::Component*
     init_with: nullptr
+    constructor_arg: true
 functions:
+  - name: generate_uid
+    type: std::string
+    body: |
+      std::string delimiter = ":";
+      return component->get_project_root() + delimiter + component->get_name();
   - name: import_or_update
     type: bool
-    parameters:
-      - name: component
-        type: Blast::Project::Component*
-        default_argument: nullptr
     body: |
       if (!component)
       {
@@ -17,7 +19,17 @@ functions:
          throw std::runtime_error(error_message.str());
       }
 
-      nlohmann::json document_as_json = {};
+      // this is the mapping for reference:
+      //
+      //"uid": { "type": "keyword" },
+      //"id": { "type": "keyword" },
+      //"project": { "type": "keyword" },
+      //"name": { "type": "text" },
+      //"content": { "type": "text" }
+
+      nlohmann::json document_as_json = {
+        { "uid", generate_uid() }
+      };
 
       return true;
     body_dependency_symbols:
