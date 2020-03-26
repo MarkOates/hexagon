@@ -1,0 +1,22 @@
+functions:
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+  - name: get_health_check_shell_command
+    type: std::string
+    body: |
+      std::string command = "curl -XGET \"http://localhost:9200/_cat/health\"";
+      return command;
+  - name: request_health
+    type: std::string
+    body: |
+      std::string command = get_health_check_shell_command();
+      Blast::ShellCommandExecutorWithCallback executor(command);
+      std::string result = executor.execute();
+      return result;
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
+dependencies:
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+
