@@ -1,11 +1,11 @@
 
 
-#include <Blast/Search/Elasticsearch/HealthChecker.hpp>
+#include <Hexagon/Search/Elasticsearch/HealthChecker.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
-namespace Blast
+namespace Hexagon
 {
 namespace Search
 {
@@ -57,6 +57,6 @@ return result;
 }
 } // namespace Elasticsearch
 } // namespace Search
-} // namespace Blast
+} // namespace Hexagon
 
 

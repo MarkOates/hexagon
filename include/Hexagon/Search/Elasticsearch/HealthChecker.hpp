@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace Blast
+namespace Hexagon
 {
    namespace Search
    {
