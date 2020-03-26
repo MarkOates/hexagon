@@ -1,0 +1,26 @@
+properties:
+  - name: component
+    type: Blast::Project::Component*
+    init_with: nullptr
+functions:
+  - name: import_or_update
+    type: bool
+    parameters:
+      - name: component
+        type: Blast::Project::Component*
+        default_argument: nullptr
+    body: |
+      if (!component)
+      {
+         std::stringstream error_message;
+         error_message << "[ComponentElasticsearchIndex error:] can not import_or_update on a nullptr component";
+         throw std::runtime_error(error_message.str());
+      }
+      return true;
+    body_dependency_symbols:
+      - std::stringstream
+      - Blast::Project::Component*
+dependencies:
+  - symbol: Blast::Project::Component*
+    headers: [ Blast/Project/Component.hpp ]
+
