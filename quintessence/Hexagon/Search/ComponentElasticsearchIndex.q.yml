@@ -1,0 +1,18 @@
+functions:
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+  - name: get_index_name
+    type: std::string
+    body: return "components";
+  - name: get_index_mapping
+    type: std::string
+    body: |
+      std::string index_mapping = R"INDEX_MAPPING({
+        "mappings": {
+          "project": {
+            "type": "keyword"
+          }
+        }
+      })INDEX_MAPPING";
+      return index_mapping;
