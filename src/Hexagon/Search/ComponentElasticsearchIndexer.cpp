@@ -51,16 +51,12 @@ bool ComponentElasticsearchIndexer::import_or_update()
 {
 guard_nullptr_component(__FUNCTION__);
 
-// this is the mapping for reference:
-//
-//"uid": { "type": "keyword" },
-//"id": { "type": "keyword" },
-//"project": { "type": "keyword" },
-//"name": { "type": "text" },
-//"content": { "type": "text" }
-
 nlohmann::json document_as_json = {
-  { "uid", generate_uid() }
+  { "uid", generate_uid() },
+  { "id", component->get_name() },
+  { "project", component->get_project_root() },
+  { "name", component->get_name() },
+  { "content", component->get_name() }
 };
 
 return true;
