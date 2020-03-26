@@ -1,6 +1,7 @@
 
 
 #include <Blast/Search/Elasticsearch/HealthChecker.hpp>
+#include <Hexagon/RegexMatcher.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
@@ -31,6 +32,18 @@ std::string HealthChecker::get_health_check_shell_command()
 {
 std::string command = "curl -XGET \"http://localhost:9200/_cat/health\"";
 return command;
+
+}
+
+bool HealthChecker::is_up()
+{
+std::string health_response = request_health();
+std::string up_regex = "[0-9]+ [0-9]+:[0-9]+:[0-9]+ [0-0a-zA-Z_]+ (yellow|red|green) .+";
+RegexMatcher matcher(health_response, up_regex);
+std::vector<std::pair<int, int>> match_infos = matcher.get_match_info();
+if (match_infos.empty()) return false;
+if (health_response.empty()) return false;
+return true;
 
 }
 

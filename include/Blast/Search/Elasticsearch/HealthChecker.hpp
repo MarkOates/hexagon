@@ -21,6 +21,7 @@ namespace Blast
 
          std::string run();
          std::string get_health_check_shell_command();
+         bool is_up();
          std::string request_health();
          };
       }
