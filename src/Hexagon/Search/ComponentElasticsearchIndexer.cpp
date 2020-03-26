@@ -13,14 +13,21 @@ namespace Search
 {
 
 
-ComponentElasticsearchIndexer::ComponentElasticsearchIndexer(Blast::Project::Component* component)
+ComponentElasticsearchIndexer::ComponentElasticsearchIndexer(Blast::Project::Component* component, std::string index_name)
    : component(component)
+   , index_name(index_name)
 {
 }
 
 
 ComponentElasticsearchIndexer::~ComponentElasticsearchIndexer()
 {
+}
+
+
+std::string ComponentElasticsearchIndexer::get_index_name()
+{
+   return index_name;
 }
 
 
@@ -64,7 +71,9 @@ std::string document_as_json_string = document_as_json.dump();
 // TODO: we need to escape single quote strings inside document_as_json_string
 
 std::stringstream index_shell_command;
-index_shell_command << "curl -XPOST \"http://localhost:9200/components_test/_doc/\" "
+index_shell_command << "curl -XPOST \"http://localhost:9200/"
+                    << get_index_name()
+                    << "/_doc/\" "
                     << "-H 'Content-Type: application/json' -d'"
                     << document_as_json_string
                     << "'";
