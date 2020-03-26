@@ -47,7 +47,7 @@ return component->get_project_root() + delimiter + component->get_name();
 
 }
 
-bool ComponentElasticsearchIndexer::import_or_update()
+std::string ComponentElasticsearchIndexer::generate_index_shell_command()
 {
 guard_nullptr_component(__FUNCTION__);
 
@@ -59,7 +59,28 @@ nlohmann::json document_as_json = {
   { "content", component->get_name() }
 };
 
-return true;
+std::string document_as_json_string = document_as_json.dump();
+
+std::stringstream index_shell_command;
+index_shell_command << "curl -XPOST \"http://localhost:9200/components/_doc/\" "
+                    << "-H 'Content-Type: application/json' -d'"
+                    << document_as_json_string
+                    << "'";
+
+return index_shell_command.str();
+
+}
+
+std::string ComponentElasticsearchIndexer::import_or_update()
+{
+guard_nullptr_component(__FUNCTION__);
+
+std::string index_shell_command = generate_index_shell_command();
+Blast::ShellCommandExecutorWithCallback executor(index_shell_command);
+
+std::string response = executor.execute();
+
+return response;
 
 }
 } // namespace Search

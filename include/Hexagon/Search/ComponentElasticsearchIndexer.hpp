@@ -21,7 +21,8 @@ namespace Hexagon
 
       void guard_nullptr_component(std::string function_name="unset_function_name");
       std::string generate_uid();
-      bool import_or_update();
+      std::string generate_index_shell_command();
+      std::string import_or_update();
       };
    }
 }

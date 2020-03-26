@@ -34,6 +34,26 @@ TEST(Hexagon_Search_ComponentElasticsearchIndexerTest, generate_uid__returns_a_u
    ASSERT_EQ(expected_uid, actual_uid);
 }
 
+TEST(Hexagon_Search_ComponentElasticsearchIndexerTest, generate_index_shell_command__with_a_nullptr_component__throws_an_error)
+{
+   Hexagon::Search::ComponentElasticsearchIndexer indexer;
+   std::string expected_error_message = "[ComponentElasticsearchIndex error:] can not \"generate_index_shell_command\" on a nullptr component";
+   ASSERT_THROW_WITH_MESSAGE(indexer.generate_index_shell_command(), std::runtime_error, expected_error_message);
+}
+
+TEST(Hexagon_Search_ComponentElasticsearchIndexerTest, generate_index_shell_command__returns_the_expected_shell_command)
+{
+   Blast::Project::Component component("Component/Name", "hexagon");
+   Hexagon::Search::ComponentElasticsearchIndexer indexer(&component);
+   std::string expected_shell_command = "curl -XPOST \"http://localhost:9200/components/_doc/\" " \
+                                        "-H 'Content-Type: application/json' " \
+                                        "-d'{\"content\":\"Component/Name\",\"id\":\"Component/Name\"," \
+                                        "\"name\":\"Component/Name\",\"project\":\"hexagon\"," \
+                                        "\"uid\":\"hexagon:Component/Name\"}'";
+
+   ASSERT_EQ(expected_shell_command, indexer.generate_index_shell_command());
+}
+
 TEST(Hexagon_Search_ComponentElasticsearchIndexerTest, import_or_update__with_a_nullptr_component__throws_an_error)
 {
    Hexagon::Search::ComponentElasticsearchIndexer indexer;

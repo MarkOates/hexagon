@@ -28,8 +28,8 @@ functions:
 
       std::string delimiter = ":";
       return component->get_project_root() + delimiter + component->get_name();
-  - name: import_or_update
-    type: bool
+  - name: generate_index_shell_command
+    type: std::string
     body: |
       guard_nullptr_component(__FUNCTION__);
 
@@ -41,7 +41,26 @@ functions:
         { "content", component->get_name() }
       };
 
-      return true;
+      std::string document_as_json_string = document_as_json.dump();
+
+      std::stringstream index_shell_command;
+      index_shell_command << "curl -XPOST \"http://localhost:9200/components/_doc/\" "
+                          << "-H 'Content-Type: application/json' -d'"
+                          << document_as_json_string
+                          << "'";
+
+      return index_shell_command.str();
+  - name: import_or_update
+    type: std::string
+    body: |
+      guard_nullptr_component(__FUNCTION__);
+
+      std::string index_shell_command = generate_index_shell_command();
+      Blast::ShellCommandExecutorWithCallback executor(index_shell_command);
+
+      std::string response = executor.execute();
+
+      return response;
     body_dependency_symbols:
       - std::stringstream
       - Blast::Project::Component*
