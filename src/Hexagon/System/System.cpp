@@ -31,6 +31,7 @@
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/useful_php.h>
 #include <allegro_flare/render_cache.h>
+#include <Blast/Project/ComponentRelativeLister.hpp>
 #include <Blast/StringSplitter.hpp>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
@@ -111,6 +112,7 @@ System::System(ALLEGRO_DISPLAY *display, Motion &motion)
    , global_font_size(-20)
    , command_mode(false)
    , focused_component_name("")
+   , focused_component_name_relative_names()
    , font_bin()
    , hud(display, font_bin)
 {
@@ -274,6 +276,15 @@ bool System::write_focused_component_name_to_file()
 bool System::set_hud_title_to_focused_component_name()
 {
    hud.set_title_text(focused_component_name);
+   return true;
+}
+
+bool System::set_focused_component_name_relative_names_from_focused_component_name()
+{
+   //get_default_navigator_directory(),
+   Blast::Project::Component component(focused_component_name, get_default_navigator_directory());
+   Blast::Project::ComponentRelativeLister lister(&component);
+   this->focused_component_name_relative_names  = lister.list_component_relative_names();
    return true;
 }
 
@@ -639,6 +650,7 @@ bool System::execute_magic_command()
    focused_component_name = "Hexagon/System/System";
    set_hud_title_to_focused_component_name();
    write_focused_component_name_to_file();
+   set_focused_component_name_relative_names_from_focused_component_name();
 
    filenames = __list_of_files_in_file_list();
 
@@ -844,6 +856,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       focused_component_name = last_component_navigator_selection;
       set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
+      set_focused_component_name_relative_names_from_focused_component_name();
       return create_three_split_from_last_component_navigator_selection();
    }
    else if (component.has_quintessence() || component.has_test())
@@ -851,6 +864,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       focused_component_name = last_component_navigator_selection;
       set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
+      set_focused_component_name_relative_names_from_focused_component_name();
       return attempt_to_create_stage_from_last_component_navigator_selection();
    }
    else

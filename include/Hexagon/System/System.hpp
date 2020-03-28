@@ -31,6 +31,7 @@ public:
    int global_font_size;
    bool command_mode;
    std::string focused_component_name;
+   std::vector<std::string> focused_component_name_relative_names;
    AllegroFlare::FontBin font_bin;
    Hexagon::Hud hud;
 
@@ -63,6 +64,7 @@ public:
    // actions
    bool write_focused_component_name_to_file();
    bool set_hud_title_to_focused_component_name();
+   bool set_focused_component_name_relative_names_from_focused_component_name();
    bool toggle_command_mode_on();
    bool toggle_command_mode_off();
    bool rotate_stage_right();
