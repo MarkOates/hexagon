@@ -112,6 +112,7 @@ System::System(ALLEGRO_DISPLAY *display, Motion &motion)
    , command_mode(false)
    , focused_component_name("")
    , font_bin()
+   , hud(display, font_bin)
 {
 }
 
@@ -120,6 +121,8 @@ bool System::initialize()
    config.initialize();
 
    font_bin.set_path("data/fonts");
+
+   hud.initialize();
 
    process_local_event(EXECUTE_MAGIC_COMMAND);
 

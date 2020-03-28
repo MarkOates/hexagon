@@ -98,8 +98,6 @@ functions:
        al_flip_display();
 
        Motion motion;
-       AllegroFlare::FontBin fonts;
-       fonts.set_path("data/fonts");
 
 
        //std::string first_filename = filenames.empty() ? "" : filenames[0];
@@ -130,10 +128,6 @@ functions:
 
 
        // initialize first stage
-
-
-       Hexagon::Hud hud(display, fonts);
-       hud.initialize();
 
 
        while(!shutdown_program)
@@ -198,9 +192,9 @@ functions:
                 }
              }
 
-             hud.set_notifications2({ "[ - ]" });
-             hud.set_notifications(notifications);
-             hud.draw();
+             system.hud.set_notifications2({ "[ - ]" });
+             system.hud.set_notifications(notifications);
+             system.hud.draw();
 
              al_flip_display();
              //rudimentary_camera_place.restore_transform();
@@ -232,7 +226,6 @@ dependencies:
       - Blast/CommandLineFlaggedArgumentsParser.hpp
       - lib/camera.h
       - AllegroFlare/Config.hpp
-      - AllegroFlare/FontBin.hpp
       - Hexagon/System/Action/DestroyAllCodeEditorStages.hpp
       - Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp
       - Hexagon/System/Action/CreateThreeSplitFromComponent.hpp

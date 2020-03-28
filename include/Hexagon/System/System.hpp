@@ -11,6 +11,7 @@
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/System/Config.hpp>
+#include <Hexagon/Hud.hpp>
 
 
 class System
@@ -28,6 +29,7 @@ public:
    bool command_mode;
    std::string focused_component_name;
    AllegroFlare::FontBin font_bin;
+   Hexagon::Hud hud;
 
    static int get_display_default_width();
    static int get_display_default_height();

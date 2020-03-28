@@ -18,7 +18,6 @@
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
 #include <lib/camera.h>
 #include <AllegroFlare/Config.hpp>
-#include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
@@ -166,8 +165,6 @@ al_flip_display();
 al_flip_display();
 
 Motion motion;
-AllegroFlare::FontBin fonts;
-fonts.set_path("data/fonts");
 
 
 //std::string first_filename = filenames.empty() ? "" : filenames[0];
@@ -198,10 +195,6 @@ system.initialize();
 
 
 // initialize first stage
-
-
-Hexagon::Hud hud(display, fonts);
-hud.initialize();
 
 
 while(!shutdown_program)
@@ -266,9 +259,9 @@ while(!shutdown_program)
          }
       }
 
-      hud.set_notifications2({ "[ - ]" });
-      hud.set_notifications(notifications);
-      hud.draw();
+      system.hud.set_notifications2({ "[ - ]" });
+      system.hud.set_notifications(notifications);
+      system.hud.draw();
 
       al_flip_display();
       //rudimentary_camera_place.restore_transform();
