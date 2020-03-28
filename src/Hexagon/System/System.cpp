@@ -111,12 +111,15 @@ System::System(ALLEGRO_DISPLAY *display, Motion &motion)
    , global_font_size(-20)
    , command_mode(false)
    , focused_component_name("")
+   , font_bin()
 {
 }
 
 bool System::initialize()
 {
    config.initialize();
+
+   font_bin.set_path("data/fonts");
 
    process_local_event(EXECUTE_MAGIC_COMMAND);
 

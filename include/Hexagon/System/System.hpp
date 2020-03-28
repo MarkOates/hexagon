@@ -5,6 +5,7 @@
 #include <allegro5/allegro.h>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/motion.h>
+#include <AllegroFlare/FontBin.hpp>
 #include <string>
 #include <vector>
 #include <Hexagon/StageInterface.hpp>
@@ -26,6 +27,7 @@ public:
    int global_font_size;
    bool command_mode;
    std::string focused_component_name;
+   AllegroFlare::FontBin font_bin;
 
    static int get_display_default_width();
    static int get_display_default_height();
