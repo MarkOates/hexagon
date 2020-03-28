@@ -16,6 +16,9 @@
 
 class System
 {
+private:
+   static Motion dummy_motion;
+
 public:
    std::vector<StageInterface *> stages;
    ALLEGRO_DISPLAY *display;
@@ -36,7 +39,7 @@ public:
 
    //RerunOutputWatcher *rerun_output_watcher;
 
-   System(ALLEGRO_DISPLAY *display, Motion &motion);
+   System(ALLEGRO_DISPLAY *display=nullptr, Motion &motion = System::dummy_motion);
 
    bool initialize();
    std::string get_default_navigator_directory();
@@ -59,6 +62,7 @@ public:
 
    // actions
    bool write_focused_component_name_to_file();
+   bool set_hud_title_to_focused_component_name();
    bool toggle_command_mode_on();
    bool toggle_command_mode_off();
    bool rotate_stage_right();

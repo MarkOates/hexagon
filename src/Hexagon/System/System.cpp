@@ -271,6 +271,12 @@ bool System::write_focused_component_name_to_file()
    return true;
 }
 
+bool System::set_hud_title_to_focused_component_name()
+{
+   hud.set_title_text(focused_component_name);
+   return true;
+}
+
 bool System::fx__play_focus_animation_on_frontmost_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -1171,6 +1177,9 @@ const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCH
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 const std::string System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE = "FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE";
 
+
+
+Motion System::dummy_motion;
 
 
 
