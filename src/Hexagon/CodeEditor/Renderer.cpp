@@ -192,12 +192,9 @@ void Renderer::render_raw()
 
 void Renderer::render_info_overlay()
 {
-   if (is_showing_info)
-   {
-      Hexagon::Elements::StageInfoOverlay info_overlay(font, &stage->get_place());
-      info_overlay.set_text("hello");
-      info_overlay.render();
-   }
+   Hexagon::Elements::StageInfoOverlay info_overlay(font, &stage->get_place());
+   info_overlay.set_text("hello");
+   info_overlay.render();
 }
 
 
