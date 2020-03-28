@@ -288,6 +288,21 @@ bool System::set_focused_component_name_relative_names_from_focused_component_na
    return true;
 }
 
+bool System::set_focused_component_name_to_topmost_relative()
+{
+   if (this->focused_component_name_relative_names.empty())
+   {
+      std::cout << "Warning: attempting to set_focused_component_name_to_topmost_relative() "
+                << "but no focused_component_name_relative_names exists"
+                << std::endl;
+      return false;
+   }
+
+   focused_component_name = focused_component_name_relative_names.front();
+
+   return true;
+}
+
 bool System::fx__play_focus_animation_on_frontmost_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -365,6 +380,7 @@ bool System::rotate_relative_up()
       focused_component_name_relative_names.rbegin(),
       focused_component_name_relative_names.rbegin() + 1,
       focused_component_name_relative_names.rend());
+
    return true;
 }
 
@@ -1015,6 +1031,7 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == RUN_PROJECT_TESTS) { run_project_tests(); executed = true; }
       else if (event_name == SAVE_CURRENT_STAGE) { save_current_stage(); executed = true; }
       else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { set_regex_input_box_modal_to_insert_mode(); executed = true; }
+      else if (event_name == SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE) { set_focused_component_name_to_topmost_relative(); executed = true; }
       else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
       else if (event_name == EXECUTE_MAGIC_COMMAND) { execute_magic_command(); executed = true; }
       else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
@@ -1061,6 +1078,15 @@ void System::process_event(ALLEGRO_EVENT &event)
 
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, true, { ROTATE_STAGE_LEFT, CENTER_CAMERA_ON_FRONTMOST_STAGE, FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, true, { ROTATE_STAGE_RIGHT, CENTER_CAMERA_ON_FRONTMOST_STAGE, FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, true, false, false, true, {
+          ROTATE_RELATIVE_UP,
+          CENTER_CAMERA_ON_FRONTMOST_STAGE,
+          FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, true, false, false, true, {
+          DESTROY_ALL_CODE_EDITOR_STAGES,
+          ROTATE_RELATIVE_DOWN,
+          CENTER_CAMERA_ON_FRONTMOST_STAGE,
+          FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
       //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, { SAVE_CURRENT_STAGE, CLEAR_RERUN_OUTPUT_WATCHERS, REFRESH_RERUN_OUTPUT_WATCHERS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, { SAVE_CURRENT_STAGE, CLEAR_LAST_COMPILED_ERROR_MESSAGES, RUN_MAKE });
@@ -1157,6 +1183,7 @@ std::string System::get_action_description(std::string action_identifier)
       { System::ROTATE_RELATIVE_DOWN, "" },
       { System::RUN_MAKE, "" },
       { System::CLEAR_LAST_COMPILED_ERROR_MESSAGES, "" },
+      { System::SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE, "" },
       { System::RUN_PROJECT_TESTS, "" },
       { System::SAVE_CURRENT_STAGE, "" },
       { System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE, "" },
@@ -1196,6 +1223,7 @@ const std::string System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_S
 const std::string System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CLEAR_RERUN_OUTPUT_WATCHERS = "CLEAR_RERUN_OUTPUT_WATCHERS";
+const std::string System::SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE = "SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE";
 const std::string System::CENTER_CAMERA_ON_FRONTMOST_STAGE = "CENTER_CAMERA_ON_FRONTMOST_STAGE";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";

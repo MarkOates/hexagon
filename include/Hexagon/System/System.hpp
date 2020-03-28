@@ -65,6 +65,7 @@ public:
    bool write_focused_component_name_to_file();
    bool set_hud_title_to_focused_component_name();
    bool set_focused_component_name_relative_names_from_focused_component_name();
+   bool set_focused_component_name_to_topmost_relative();
    bool toggle_command_mode_on();
    bool toggle_command_mode_off();
    bool rotate_stage_right();
@@ -117,6 +118,7 @@ public:
    static const std::string CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
+   static const std::string SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE;
    static const std::string CENTER_CAMERA_ON_FRONTMOST_STAGE;
    static const std::string CLEAR_LAST_COMPILED_ERROR_MESSAGES;
    static const std::string DESTROY_FILE_NAVIGATOR;
