@@ -353,6 +353,36 @@ bool System::rotate_stage_left()
    return true;
 }
 
+bool System::rotate_relative_up()
+{
+   if (focused_component_name_relative_names.empty())
+   {
+      std::cout << "Warning: attempting to " << __FUNCTION__ << " but no frontmost stage exists" << std::endl;
+      return false;
+   }
+
+   std::rotate(
+      focused_component_name_relative_names.rbegin(),
+      focused_component_name_relative_names.rbegin() + 1,
+      focused_component_name_relative_names.rend());
+   return true;
+}
+
+bool System::rotate_relative_down()
+{
+   if (focused_component_name_relative_names.empty())
+   {
+      std::cout << "Warning: attempting to " << __FUNCTION__ << " but no frontmost stage exists" << std::endl;
+      return false;
+   }
+
+   std::rotate(
+      focused_component_name_relative_names.begin(),
+      focused_component_name_relative_names.begin() + 1,
+      focused_component_name_relative_names.end());
+   return true;
+}
+
 bool System::center_camera_on_frontmost_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -978,6 +1008,8 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == TOGGLE_COMMAND_MODE_OFF) { toggle_command_mode_off(); executed = true; }
       else if (event_name == ROTATE_STAGE_LEFT) { rotate_stage_left(); executed = true; }
       else if (event_name == ROTATE_STAGE_RIGHT) { rotate_stage_right(); executed = true; }
+      else if (event_name == ROTATE_RELATIVE_UP) { rotate_relative_up(); executed = true; }
+      else if (event_name == ROTATE_RELATIVE_DOWN) { rotate_relative_down(); executed = true; }
       else if (event_name == RUN_MAKE) { run_make(); executed = true; }
       else if (event_name == CLEAR_LAST_COMPILED_ERROR_MESSAGES) { clear_last_compiled_error_messages(); executed = true; }
       else if (event_name == RUN_PROJECT_TESTS) { run_project_tests(); executed = true; }
@@ -1121,6 +1153,8 @@ std::string System::get_action_description(std::string action_identifier)
       { System::TOGGLE_COMMAND_MODE_OFF, "" },
       { System::ROTATE_STAGE_LEFT, "" },
       { System::ROTATE_STAGE_RIGHT, "" },
+      { System::ROTATE_RELATIVE_UP, "" },
+      { System::ROTATE_RELATIVE_DOWN, "" },
       { System::RUN_MAKE, "" },
       { System::CLEAR_LAST_COMPILED_ERROR_MESSAGES, "" },
       { System::RUN_PROJECT_TESTS, "" },
@@ -1180,6 +1214,8 @@ const std::string System::TOGGLE_COMMAND_MODE_ON = "TOGGLE_COMMAND_MODE_ON";
 const std::string System::TOGGLE_COMMAND_MODE_OFF = "TOGGLE_COMMAND_MODE_OFF";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
+const std::string System::ROTATE_RELATIVE_UP = "ROTATE_RELATIVE_UP";
+const std::string System::ROTATE_RELATIVE_DOWN = "ROTATE_RELATIVE_DOWN";
 const std::string System::RUN_MAKE = "RUN_MAKE";
 const std::string System::CLEAR_LAST_COMPILED_ERROR_MESSAGES = "CLEAR_LAST_COMPILED_ERROR_MESSAGES";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";

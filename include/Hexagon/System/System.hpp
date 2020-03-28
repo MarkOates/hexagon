@@ -69,6 +69,8 @@ public:
    bool toggle_command_mode_off();
    bool rotate_stage_right();
    bool rotate_stage_left();
+   bool rotate_relative_up();
+   bool rotate_relative_down();
    bool center_camera_on_frontmost_stage();
    bool run_project_tests();
    bool save_current_stage();
@@ -136,6 +138,8 @@ public:
    static const std::string TOGGLE_COMMAND_MODE_OFF;
    static const std::string ROTATE_STAGE_LEFT;
    static const std::string ROTATE_STAGE_RIGHT;
+   static const std::string ROTATE_RELATIVE_UP;
+   static const std::string ROTATE_RELATIVE_DOWN;
    static const std::string RUN_MAKE;
    static const std::string RUN_PROJECT_TESTS;
    static const std::string SAVE_CURRENT_STAGE;
