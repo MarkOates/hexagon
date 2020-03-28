@@ -106,15 +106,12 @@ ALLEGRO_COLOR color = epic_green_color;
 float display_center_x = al_get_display_width(display) / 2;
 int y_position = 20;
 
-std::stringstream text_to_draw;
-text_to_draw << " ----- DISTRUCT ----- ";
-
 al_draw_text(obtain_text_font(),
              color,
              display_center_x,
              y_position,
              ALLEGRO_ALIGN_CENTER,
-             text_to_draw.str().c_str());
+             title_text.c_str());
 return;
 
 }

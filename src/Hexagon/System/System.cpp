@@ -637,6 +637,7 @@ bool System::execute_magic_command()
       project_path + "src/Hexagon/System/System.cpp",
    };
    focused_component_name = "Hexagon/System/System";
+   set_hud_title_to_focused_component_name();
    write_focused_component_name_to_file();
 
    filenames = __list_of_files_in_file_list();
@@ -841,12 +842,14 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
    if (component.has_only_source_and_header())
    {
       focused_component_name = last_component_navigator_selection;
+      set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
       return create_three_split_from_last_component_navigator_selection();
    }
    else if (component.has_quintessence() || component.has_test())
    {
       focused_component_name = last_component_navigator_selection;
+      set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
       return attempt_to_create_stage_from_last_component_navigator_selection();
    }
