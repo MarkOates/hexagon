@@ -252,7 +252,6 @@ dependencies:
       - Hexagon/EventControllerInterface.hpp
       - Hexagon/CodeEditor/EventController.hpp
       - Hexagon/CodeEditor/Stage.hpp
-      - Hexagon/Hud.hpp
       - Hexagon/FileSystemNode.hpp
       - Hexagon/FileNavigator/Stage.hpp
       - Hexagon/ComponentNavigator/Stage.hpp
