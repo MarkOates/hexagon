@@ -47,6 +47,7 @@ functions:
   - name: initialize
     type: void
     body: |
+      if (initialized) return false;
       config.load();
       initialized = true;
 

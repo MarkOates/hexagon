@@ -25,6 +25,18 @@ TEST(Hexagon_System_ConfigTest, expected_fixture_files_exist)
    ASSERT_EQ(true, Blast::FileExistenceChecker(TEST_FIXTURE_CONFIG_FILENAME).exists());
 }
 
+TEST(DISABLED_Hexagon_System_ConfigTest, initialize__can_be_called_multiple_times_without_side_effects)
+{
+   al_init();
+   Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
+
+   // test needs to be modified to expect no extranious calls to config.load()
+
+   config.initialize();
+   config.initialize();
+   config.initialize();
+}
+
 // get_initial_display_width
 
 TEST(Hexagon_System_ConfigTest, get_initial_display_width__without_initialization__throws_an_error)
