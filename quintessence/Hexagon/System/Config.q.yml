@@ -1,4 +1,14 @@
 properties:
+  - name: INITIAL_DISPLAY_WIDTH_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: "\"initial_display_width\""
+  - name: INITIAL_DISPLAY_HEIGHT_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: "\"initial_display_height\""
   - name: DEFAULT_NAVIGATOR_DIRECTORY_KEY
     type: std::string
     static: true
@@ -11,14 +21,55 @@ properties:
   - name: config
     type: AllegroFlare::Config
     init_with: config_filename
+  - name: initialized
+    type: bool
+    init_with: false
 functions:
+  - name: validate_initialized
+    private: true
+    type: void
+    parameters:
+      - name: function_name
+        type: std::string
+        default_argument: "\"[unnamed_function]\""
+    body: |
+      if (!initialized)
+      {
+         std::stringstream error_message;
+         error_message << "[Hexagon::System::Config error:] cannot call "
+                       << "\"" << function_name << "\". "
+                       << "This component must be initialized before this function can be used.";
+         throw std::runtime_error(error_message.str());
+      }
+    body_dependency_symbols:
+      - std::stringstream
+
   - name: initialize
     type: void
-    body: config.load();
+    body: |
+      config.load();
+      initialized = true;
+
+  - name: get_initial_display_width
+    type: int
+    body: |
+      validate_initialized(__FUNCTION__);
+      return config.get_or_default_int("", INITIAL_DISPLAY_WIDTH_KEY, 2430);
+
+  - name: get_initial_display_height
+    type: int
+    body: |
+      validate_initialized(__FUNCTION__);
+      return config.get_or_default_int("", INITIAL_DISPLAY_HEIGHT_KEY, 1350);
+
   - name: get_default_navigator_directory
     type: std::string
     body: |
+      validate_initialized(__FUNCTION__);
       return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
+
 dependencies:
+  - symbol: std::stringstream
+    headers: [ sstream ]
   - symbol: AllegroFlare::Config
     headers: [ AllegroFlare/Config.hpp ]
