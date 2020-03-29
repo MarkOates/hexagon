@@ -43,8 +43,8 @@ void Renderer::render_code_lines(placement3d &place)
    CodeEditor::Stage::mode_t mode = stage->get_mode();
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
 
-   Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_color, cursor_x, _cursor_y, _cell_width, cell_height, mode, is_focused);
-   cursor_renderer.render();
+   //Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_color, cursor_x, _cursor_y, _cell_width, cell_height, mode, is_focused);
+   //cursor_renderer.render();
 
 
 
@@ -101,14 +101,39 @@ void Renderer::render_code_lines(placement3d &place)
       }
 
       // draw the line numbers (currently_disabled)
-      bool draw_line_numbers = false;
       if (draw_line_numbers)
       {
+         ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(epic_green_color, 0.4);
          std::stringstream ss;
          ss << (line_number+1);
-         ALLEGRO_COLOR text_color = al_color_name("darkolivegreen");
+         ALLEGRO_COLOR text_color = default_line_number_green_color;
          if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
          al_draw_text(font, text_color, -20, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
+      }
+
+      // draw extra spaces at end of line
+      if (draw_extra_spaces_at_end_of_line)
+      {
+         const char whitespace_char = ' ';
+         const std::string &line = lines[line_number];
+         if (!line.empty() && (line.back() == whitespace_char))
+         {
+            int pos_last_non_whitespace_character = line.find_last_not_of(whitespace_char);
+            int character_line_height = al_get_font_line_height(font);
+            //int character_width = al_get_(font);
+            ALLEGRO_COLOR color = al_color_name("firebrick");
+            float character_width = cell_width;
+
+            float leftmost_box_position = (pos_last_non_whitespace_character+1) * character_width;
+            float rightmost_box_position = line.length() * character_width;
+
+            al_draw_filled_rectangle(
+               leftmost_box_position,
+               line_height * (line_number - first_line_number),
+               rightmost_box_position,
+               line_height * (line_number - first_line_number + 1),
+               color);
+         }
       }
 
       lines_rendered_count++;
@@ -119,6 +144,12 @@ void Renderer::render_code_lines(placement3d &place)
    {
       code_message_points_overlay.render(font, first_line_number, al_get_font_line_height(font), cursor_x, _cursor_y);
    }
+
+
+   Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_color, cursor_x, _cursor_y, _cell_width, cell_height, mode, is_focused);
+   cursor_renderer.render();
+
+
    //for (auto &code_message_point : code_message_points)
    //{
       //CodeMessagePointRenderer code_message_point_renderer(code_message_point, font, first_line_number, al_get_font_line_height(font));
@@ -199,8 +230,10 @@ void Renderer::render_info_overlay()
 
 
 
-Renderer::Renderer(bool is_focused, CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
+Renderer::Renderer(bool draw_line_numbers, bool is_focused, CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
    : Hexagon::RendererInterface()
+   , draw_line_numbers(draw_line_numbers)
+   , draw_extra_spaces_at_end_of_line(true)
    , is_focused(is_focused)
    , is_showing_info(false)
    , stage(stage)

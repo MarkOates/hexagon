@@ -841,7 +841,8 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
    }
    else
    {
-      CodeEditor::Renderer renderer(is_focused, this, font, display, cell_width, cell_height);
+      bool draw_line_numbers = true;
+      CodeEditor::Renderer renderer(draw_line_numbers, is_focused, this, font, display, cell_width, cell_height);
       renderer.render();
    }
 
