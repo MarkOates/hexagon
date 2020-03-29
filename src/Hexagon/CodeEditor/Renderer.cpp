@@ -43,10 +43,6 @@ void Renderer::render_code_lines(placement3d &place)
    CodeEditor::Stage::mode_t mode = stage->get_mode();
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
 
-   //Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_color, cursor_x, _cursor_y, _cell_width, cell_height, mode, is_focused);
-   //cursor_renderer.render();
-
-
 
    // draw code range selection hilight box(es);
    draw_selections(_cell_width, cell_height);
