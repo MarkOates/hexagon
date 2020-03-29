@@ -233,12 +233,12 @@ while(!shutdown_program)
       //system.camera.setup_camera_perspective(al_get_backbuffer(display));
       //al_clear_depth_buffer(1000);
 
-      for (auto &stage : system.stages)
-      {
-         bool is_focused = (system.get_frontmost_stage() == stage);
-         ALLEGRO_FONT *font = system.font_bin[system.get_global_font_str()];
-         stage->render(is_focused, display, font, al_get_text_width(font, " "), al_get_font_line_height(font));
-      }
+      //for (auto &stage : system.stages)
+      //{
+      //   bool is_focused = (system.get_frontmost_stage() == stage);
+      //   ALLEGRO_FONT *font = system.font_bin[system.get_global_font_str()];
+      //   stage->render(is_focused, display, font, al_get_text_width(font, " "), al_get_font_line_height(font));
+      //}
 
 
       // refresh the notifications, and grab "content_is_unmodified" states from each stage
