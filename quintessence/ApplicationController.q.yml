@@ -177,15 +177,15 @@ functions:
 
              // refresh the notifications, and grab "content_is_unmodified" states from each stage
              //clear_notifications();
-             for (auto &stage : system.stages)
-             {
-                StageInterface::type_t type = stage->get_type();
-                if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
-                {
-                   bool this_stage_content_is_modified = static_cast<CodeEditor::Stage *>(stage)->get_content_is_modified();
-                   if (this_stage_content_is_modified) add_notification(NOTIFICATION_FILE_IS_UNSAVED);
-                }
-             }
+             //for (auto &stage : system.stages)
+             //{
+             //   StageInterface::type_t type = stage->get_type();
+             //   if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
+             //   {
+             //      bool this_stage_content_is_modified = static_cast<CodeEditor::Stage *>(stage)->get_content_is_modified();
+             //      if (this_stage_content_is_modified) add_notification(NOTIFICATION_FILE_IS_UNSAVED);
+             //   }
+             //}
 
              if (!is_last_compiled_error_messages_empty())
              {
