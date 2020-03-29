@@ -177,7 +177,7 @@ void Renderer::render_raw()
    background_overlay_color.g *= opacity;
    background_overlay_color.b *= opacity;
    background_overlay_color.a *= opacity;
-   ALLEGRO_COLOR frame_color = 
+   ALLEGRO_COLOR frame_color =
       AllegroFlare::color::color(
          AllegroFlare::color::mix(
              al_color_html("99ddc4"), al_color_name("white"),0.5
@@ -210,7 +210,7 @@ void Renderer::render_raw()
    // render the code lines, cursor, and acutal code markings and information
 
    placement3d code_lines_placement;
-   code_lines_placement.size = place.size - vec3d(padding*2, padding*2, 0);  
+   code_lines_placement.size = place.size - vec3d(padding*2, padding*2, 0);
    code_lines_placement.position = vec3d(padding, padding, 0);
    code_lines_placement.align = vec3d(0, 0, 0);
 
