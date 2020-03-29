@@ -94,12 +94,9 @@ From me far off, with others all too near.
 
 
 
-int System::get_display_default_width() { return 2430; }
-int System::get_display_default_height() { return 1350; }
-
 //RerunOutputWatcher *rerun_output_watcher;
 
-System::System(ALLEGRO_DISPLAY *display, Motion &motion)
+System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion &motion)
    : stages({})
    //, file_navigator(al_get_current_directory())
    , display(display)
@@ -107,7 +104,7 @@ System::System(ALLEGRO_DISPLAY *display, Motion &motion)
    , motion(motion)
    , last_file_navigator_selection("")
    , last_component_navigator_selection("")
-   , config()
+   , config(config)
    , global_font_resource_filename("consolas.ttf")
    , global_font_size(-20)
    , command_mode(false)
@@ -142,6 +139,16 @@ bool System::initialize()
 std::string System::get_default_navigator_directory()
 {
    return config.get_default_navigator_directory();
+}
+
+int System::get_display_default_width()
+{
+   return config.get_initial_display_width();
+}
+
+int System::get_display_default_height()
+{
+   return config.get_initial_display_height();
 }
 
 placement3d System::build_component_navigator_initial_place()
@@ -1271,6 +1278,7 @@ const std::string System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE = "FX__PLA
 
 
 Motion System::dummy_motion;
+Hexagon::System::Config System::dummy_config;
 
 
 

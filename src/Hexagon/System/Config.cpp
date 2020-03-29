@@ -47,7 +47,7 @@ if (!initialized)
 
 void Config::initialize()
 {
-if (initialized) return false;
+if (initialized) return;
 config.load();
 initialized = true;
 

@@ -18,6 +18,7 @@ class System
 {
 private:
    static Motion dummy_motion;
+   static Hexagon::System::Config dummy_config;
 
 public:
    std::vector<StageInterface *> stages;
@@ -26,7 +27,7 @@ public:
    Motion &motion;
    std::string last_file_navigator_selection;
    std::string last_component_navigator_selection;
-   Hexagon::System::Config config;
+   Hexagon::System::Config &config;
    std::string global_font_resource_filename;
    int global_font_size;
    bool command_mode;
@@ -35,14 +36,15 @@ public:
    AllegroFlare::FontBin font_bin;
    Hexagon::Hud hud;
 
-   static int get_display_default_width();
-   static int get_display_default_height();
-
    //RerunOutputWatcher *rerun_output_watcher;
 
-   System(ALLEGRO_DISPLAY *display=nullptr, Motion &motion = System::dummy_motion);
+   System(ALLEGRO_DISPLAY *display=nullptr,
+          Hexagon::System::Config &config = System::dummy_config,
+          Motion &motion = System::dummy_motion);
 
    bool initialize();
+   int get_display_default_width();
+   int get_display_default_height();
    std::string get_default_navigator_directory();
    std::string get_global_font_str();
 

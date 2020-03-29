@@ -80,8 +80,13 @@ al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
 al_set_new_display_option(ALLEGRO_DEPTH_SIZE, 32, ALLEGRO_SUGGEST);
 al_set_new_display_flags(ALLEGRO_RESIZABLE);
 
+Hexagon::System::Config config;
+config.initialize();
+
 al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
-ALLEGRO_DISPLAY *display = al_create_display(System::get_display_default_width(), System::get_display_default_height());
+ALLEGRO_DISPLAY *display = al_create_display(
+   config.get_initial_display_width(),
+   config.get_initial_display_height());
 if (!display) std::cerr << "al_create_display() failed" << std::endl;
 al_set_window_title(display, "[ProjectName] - Hexagon");
 
@@ -187,7 +192,7 @@ bool first_load = true;
 placement3d rudimentary_camera_place(0, 0, 0);
 rudimentary_camera_place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
 
-System system(display, motion);
+System system(display, config, motion);
 system.initialize();
 
 
