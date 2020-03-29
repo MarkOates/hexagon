@@ -259,4 +259,5 @@ dependencies:
       - Hexagon/LayoutPlacements.hpp
       - NcursesArt/ProjectComponentBasenameExtractor.hpp
       - NcursesArt/ProjectFilenameGenerator.hpp
+      - Hexagon/System/Renderer.hpp
       - Hexagon/System/System.hpp

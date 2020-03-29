@@ -51,6 +51,7 @@
 #include <Hexagon/LayoutPlacements.hpp>
 #include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
+#include <Hexagon/System/Renderer.hpp>
 #include <Hexagon/System/System.hpp>
 
 

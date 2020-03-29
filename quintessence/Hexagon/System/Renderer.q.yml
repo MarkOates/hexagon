@@ -1,4 +1,18 @@
+properties:
+  - name: system
+    type: ::System*
+    init_with: nullptr
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: render
+    type: bool
+    body: |
+      if (!system)
+      {
+         std::stringstream error_message;
+         error_message << "[System::Renderer error:] cannot render() with a nullptr system";
+         throw std::runtime_error(error_message.str());
+      }
+      return true;
+dependencies:
+  - symbol: ::System*
+    headers: [ Hexagon/System/System.hpp ]
