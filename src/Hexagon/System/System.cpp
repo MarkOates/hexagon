@@ -126,7 +126,7 @@ bool System::initialize()
 
    hud.initialize();
 
-   process_local_event(EXECUTE_MAGIC_COMMAND);
+   //process_local_event(EXECUTE_MAGIC_COMMAND);
 
    //camera.zoom_pos -= 3.1;
    //camera.position.x += 20;
@@ -895,11 +895,21 @@ bool System::destroy_all_code_editor_stages()
 
 bool System::create_two_or_three_split_layout_from_last_component_navigator_selection()
 {
+   if (last_component_navigator_selection.empty())
+   {
+      std::stringstream error_message;
+      error_message << "[" << typeid(*this).name() << "::" << __FUNCTION__ << " error:]"
+                    << " guard not met: last_component_navigator_selection cannot be empty";
+      throw std::runtime_error(error_message.str());
+      return false;
+   }
+
    Blast::Project::Component component(last_component_navigator_selection, get_default_navigator_directory());
 
    if (component.has_only_source_and_header())
    {
       focused_component_name = last_component_navigator_selection;
+
       set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
       set_focused_component_name_relative_names_from_focused_component_name();
@@ -908,6 +918,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
    else if (component.has_quintessence() || component.has_test())
    {
       focused_component_name = last_component_navigator_selection;
+
       set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
       set_focused_component_name_relative_names_from_focused_component_name();
