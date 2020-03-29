@@ -21,13 +21,14 @@ private:
    static Hexagon::System::Config dummy_config;
 
 public:
-   std::vector<StageInterface *> stages;
    ALLEGRO_DISPLAY *display;
-   Camera camera;
+   Hexagon::System::Config &config;
    Motion &motion;
+
+   std::vector<StageInterface *> stages;
+   Camera camera;
    std::string last_file_navigator_selection;
    std::string last_component_navigator_selection;
-   Hexagon::System::Config &config;
    std::string global_font_resource_filename;
    int global_font_size;
    bool command_mode;
