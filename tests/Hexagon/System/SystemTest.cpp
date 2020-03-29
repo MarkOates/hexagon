@@ -3,14 +3,10 @@
 
 #include <Hexagon/System/System.hpp>
 
-#define ASSERT_THROW_WITH_MESSAGE(stmt, etype, whatstring) ASSERT_THROW( \
-        try { \
-            stmt; \
-        } catch (const etype& ex) { \
-            ASSERT_EQ(std::string(ex.what()), whatstring); \
-            throw; \
-        } \
-    , etype)
+#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
+   try { code; FAIL() << "Expected " # raised_exception_type; } \
+   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
+   catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 TEST(Hexagon_System_System, can_be_created_without_blowing_up)
 {
