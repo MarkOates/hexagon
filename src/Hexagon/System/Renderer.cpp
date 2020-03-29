@@ -51,16 +51,7 @@ for (auto &stage : system->stages)
    stage->render(is_focused, display, font, al_get_text_width(font, " "), al_get_font_line_height(font));
 }
 
-// this next paragraph may not belong in the renderer
-for (auto &stage : system->stages)
-{
-   StageInterface::type_t type = stage->get_type();
-   if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
-   {
-      bool this_stage_content_is_modified = static_cast<CodeEditor::Stage *>(stage)->get_content_is_modified();
-      if (this_stage_content_is_modified) add_notification(NOTIFICATION_FILE_IS_UNSAVED);
-   }
-}
+system->hud.draw();
 
 return true;
 

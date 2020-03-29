@@ -160,32 +160,15 @@ functions:
           {
              clear_notifications();
 
-             Hexagon::System::Renderer renderer(&system, display);
-             renderer.render();
-
-             //al_clear_to_color(al_color_name("black"));
-
-             //system.camera.setup_camera_perspective(al_get_backbuffer(display));
-             //al_clear_depth_buffer(1000);
-
-             //for (auto &stage : system.stages)
-             //{
-             //   bool is_focused = (system.get_frontmost_stage() == stage);
-             //   ALLEGRO_FONT *font = system.font_bin[system.get_global_font_str()];
-             //   stage->render(is_focused, display, font, al_get_text_width(font, " "), al_get_font_line_height(font));
-             //}
-
-             // refresh the notifications, and grab "content_is_unmodified" states from each stage
-             //clear_notifications();
-             //for (auto &stage : system.stages)
-             //{
-             //   StageInterface::type_t type = stage->get_type();
-             //   if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
-             //   {
-             //      bool this_stage_content_is_modified = static_cast<CodeEditor::Stage *>(stage)->get_content_is_modified();
-             //      if (this_stage_content_is_modified) add_notification(NOTIFICATION_FILE_IS_UNSAVED);
-             //   }
-             //}
+             for (auto &stage : system.stages)
+             {
+                StageInterface::type_t type = stage->get_type();
+                if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
+                {
+                   bool this_stage_content_is_modified = static_cast<CodeEditor::Stage *>(stage)->get_content_is_modified();
+                   if (this_stage_content_is_modified) add_notification(NOTIFICATION_FILE_IS_UNSAVED);
+                }
+             }
 
              if (!is_last_compiled_error_messages_empty())
              {
@@ -198,10 +181,13 @@ functions:
 
              system.hud.set_notifications2({ "[ - ]" });
              system.hud.set_notifications(notifications);
-             system.hud.draw();
+
+             al_clear_to_color(al_color_name("black"));
+
+             Hexagon::System::Renderer renderer(&system, display);
+             renderer.render();
 
              al_flip_display();
-             //rudimentary_camera_place.restore_transform();
           }
        }
 
