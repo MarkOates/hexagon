@@ -27,3 +27,14 @@ TEST(Hexagon_System_RendererTest, render__without_a_display__throws_an_error)
    std::string expected_error_message = "[System::Renderer error:] cannot render() with a nullptr display";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
+
+TEST(Hexagon_System_RendererTest, render__renders_the_scene)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(800, 600);
+
+   ::System system(display);
+   Hexagon::System::Renderer renderer(&system, display);
+
+   SUCCEED();
+}

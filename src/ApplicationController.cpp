@@ -225,10 +225,13 @@ while(!shutdown_program)
 
    if (refresh)
    {
-      al_clear_to_color(al_color_name("black"));
+      Hexagon::System::Renderer renderer(&system, display);
+      renderer.render();
 
-      system.camera.setup_camera_perspective(al_get_backbuffer(display));
-      al_clear_depth_buffer(1000);
+      //al_clear_to_color(al_color_name("black"));
+
+      //system.camera.setup_camera_perspective(al_get_backbuffer(display));
+      //al_clear_depth_buffer(1000);
 
       for (auto &stage : system.stages)
       {
