@@ -225,6 +225,8 @@ while(!shutdown_program)
 
    if (refresh)
    {
+      clear_notifications();
+
       Hexagon::System::Renderer renderer(&system, display);
       renderer.render();
 
@@ -240,9 +242,8 @@ while(!shutdown_program)
       //   stage->render(is_focused, display, font, al_get_text_width(font, " "), al_get_font_line_height(font));
       //}
 
-
       // refresh the notifications, and grab "content_is_unmodified" states from each stage
-      clear_notifications();
+      //clear_notifications();
       for (auto &stage : system.stages)
       {
          StageInterface::type_t type = stage->get_type();
