@@ -431,6 +431,8 @@ bool Stage::delete_character()
 bool Stage::join_lines()
 {
    // TODO: there is a frequent crash here
+   if ((cursor_y+1) >= num_lines()) return false;
+   if (cursor_y < 0) return false;
    lines[cursor_y] += lines[cursor_y+1];
    lines.erase(lines.begin() + cursor_y+1);
    mark_content_is_modified();
