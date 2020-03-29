@@ -2,6 +2,11 @@ properties:
   - name: system
     type: ::System*
     init_with: nullptr
+    constructor_arg: true
+  - name: display
+    type: ALLEGRO_DISPLAY*
+    init_with: nullptr
+    constructor_arg: true
 functions:
   - name: render
     type: bool
@@ -12,7 +17,28 @@ functions:
          error_message << "[System::Renderer error:] cannot render() with a nullptr system";
          throw std::runtime_error(error_message.str());
       }
+      if (!display)
+      {
+         std::stringstream error_message;
+         error_message << "[System::Renderer error:] cannot render() with a nullptr display";
+         throw std::runtime_error(error_message.str());
+      }
+
+      al_clear_to_color(al_color_name("black"));
+
+      system->camera.setup_camera_perspective(al_get_backbuffer(display));
+      al_clear_depth_buffer(1000);
+
       return true;
+    body_dependency_symbols:
+      - al_color_name
+      - al_clear_to_color
 dependencies:
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ allegro5/allegro.h ]
+  - symbol: al_color_name
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_clear_to_color
+    headers: [ allegro5/allegro.h ]
   - symbol: ::System*
     headers: [ Hexagon/System/System.hpp ]

@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/System/System.hpp>
+#include <allegro5/allegro.h>
 
 
 namespace Hexagon
@@ -12,9 +13,10 @@ namespace Hexagon
       {
       private:
          ::System* system;
+         ALLEGRO_DISPLAY* display;
 
       public:
-         Renderer();
+         Renderer(::System* system=nullptr, ALLEGRO_DISPLAY* display=nullptr);
          ~Renderer();
 
 

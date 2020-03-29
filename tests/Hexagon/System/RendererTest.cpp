@@ -19,3 +19,11 @@ TEST(Hexagon_System_RendererTest, render__without_a_system__throws_an_error)
    std::string expected_error_message = "[System::Renderer error:] cannot render() with a nullptr system";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
+
+TEST(Hexagon_System_RendererTest, render__without_a_display__throws_an_error)
+{
+   ::System system;
+   Hexagon::System::Renderer renderer(&system);
+   std::string expected_error_message = "[System::Renderer error:] cannot render() with a nullptr display";
+   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+}
