@@ -6,11 +6,21 @@
    catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
+#include <Blast/FileExistenceChecker.hpp>
+
 #include <Hexagon/System/Config.hpp>
+
+static const std::string TEST_FIXTURE_DIRECTORY_ROOT = "/Users/markoates/Repos/hexagon/tests/fixtures/";
+static const std::string TEST_FIXTURE_EMPTY_CONFIG_FILENAME = TEST_FIXTURE_DIRECTORY_ROOT + "hexagon.empty.cfg";
 
 TEST(Hexagon_System_ConfigTest, can_be_created_without_blowing_up)
 {
    Hexagon::System::Config config;
+}
+
+TEST(Hexagon_System_ConfigTest, expected_fixture_files_exist)
+{
+   ASSERT_EQ(true, Blast::FileExistenceChecker(TEST_FIXTURE_EMPTY_CONFIG_FILENAME).exists());
 }
 
 TEST(Hexagon_System_ConfigTest, get_initial_display_width__without_initialization__throws_an_error)
