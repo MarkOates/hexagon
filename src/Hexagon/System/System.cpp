@@ -489,7 +489,6 @@ bool System::set_regex_input_box_modal_to_insert_mode()
 
 bool System::spawn_regex_input_box_modal()
 {
-   //placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/3, 0.0);
    //TODO: this placement should be relative to the camera, or, the window should be placed on a non-transforming render surface
    // for now, I'm going to have it spawn at the position of the camera
    placement3d place(0.0, 0.0, 0.0);
