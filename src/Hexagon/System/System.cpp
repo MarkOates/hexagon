@@ -153,7 +153,7 @@ int System::get_display_default_height()
 
 float System::get_default_code_editor_stage_width()
 {
-   return 2430/2 + 100;
+   return 2430/2 + 20;
 }
 
 placement3d System::build_component_navigator_initial_place()
@@ -956,7 +956,8 @@ bool System::create_three_split_from_last_component_navigator_selection()
       component,
       stages,
       get_display_default_width(),
-      get_display_default_height()
+      get_display_default_height(),
+      get_default_code_editor_stage_width()
    );
    return action.managed_execute();
 }
@@ -968,7 +969,8 @@ bool System::attempt_to_create_stage_from_last_component_navigator_selection()
          last_component_navigator_selection,
          get_display_default_width(),
          get_display_default_height(),
-         stages);
+         stages,
+         get_default_code_editor_stage_width());
    return action.managed_execute();
 }
 

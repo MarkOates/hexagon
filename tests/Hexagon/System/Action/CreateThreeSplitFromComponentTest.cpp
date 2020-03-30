@@ -17,7 +17,7 @@ TEST(Hexagon_System_Action_CreateThreeSplitTest,
    std::string component = "Hexagon/Action";
    std::vector<StageInterface *> stages;
    int code_editor_width = 234;
-   CreateThreeSplit create_three_split(project_path, component, stages, code_editor_width);
+   CreateThreeSplit create_three_split(project_path, component, stages, 200, 100, code_editor_width);
    EXPECT_EQ(true, create_three_split.execute());
    ASSERT_EQ(3, stages.size());
 
@@ -71,14 +71,15 @@ TEST(Hexagon_System_Action_CreateThreeSplitTest,
    std::string component = "Hexagon/System/Action/CreateThreeSplitFromComponent";
    std::vector<StageInterface *> stages;
    float display_width = 300;
+   int code_editor_width = 234;
 
-   CreateThreeSplit create_three_split(project_path, component, stages, display_width);
+   CreateThreeSplit create_three_split(project_path, component, stages, display_width, 100, code_editor_width);
 
    EXPECT_EQ(true, create_three_split.execute());
 
    ASSERT_EQ(3, stages.size());
 
-   ASSERT_EQ(-150, stages[0]->get_place().position.x);
+   ASSERT_EQ(-234, stages[0]->get_place().position.x);
    ASSERT_EQ(0, stages[1]->get_place().position.x);
-   ASSERT_EQ(150, stages[2]->get_place().position.x);
+   ASSERT_EQ(234, stages[2]->get_place().position.x);
 }

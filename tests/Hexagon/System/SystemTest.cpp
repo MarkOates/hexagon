@@ -22,7 +22,7 @@ TEST(DISABLED_Hexagon_System_System, initialize__will_initialize_the_config)
    system.initialize();
 }
 
-TEST(Hexagon_System_System, get_default_code_editor_stage_width__returns_the_expected_value)
+TEST(DISABLED_Hexagon_System_System, get_default_code_editor_stage_width__returns_the_expected_value)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
@@ -30,7 +30,7 @@ TEST(Hexagon_System_System, get_default_code_editor_stage_width__returns_the_exp
    System system(display);
    system.initialize();
 
-   EXPECT_EQ(1215+6, system.get_default_code_editor_stage_width());
+   EXPECT_EQ(1235, system.get_default_code_editor_stage_width());
 }
 
 

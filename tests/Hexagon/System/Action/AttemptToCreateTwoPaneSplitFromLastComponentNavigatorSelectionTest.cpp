@@ -12,16 +12,25 @@ TEST(Hexagon_System_Action_AttemptToCreateTwoPaneSplitFromLastComponentNavigator
    CreateTwoSplit create_two_split_action;
 }
 
-TEST(Hexagon_System_Action_AttemptTo, execute__creates_two_stages)
+TEST(Hexagon_System_Action_AttemptTo, execute__creates_two_stages_with_the_expected_size)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/Elements/Frame";
+   int code_editor_width = 234;
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages);
+   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, code_editor_width);
 
    create_two_split.execute();
    EXPECT_EQ(2, stages.size());
+
+   for (auto &stage : stages)
+   {
+      placement3d &place = stage->get_place();
+      EXPECT_EQ(code_editor_width, place.size.x);
+   }
+
+   SUCCEED();
 }
 
 TEST(Hexagon_System_Action_AttemptTo, execute__with_a_valid_component_creats_two_code_editor_stages)

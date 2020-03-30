@@ -23,13 +23,14 @@ namespace Action
 std::vector<StageInterface *> AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::dummy_stages = {};
 
 
-AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection(std::string project_path, std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages)
+AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection(std::string project_path, std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages, int code_editor_width)
    : ::Action("System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection", ActionData())
    , project_path(project_path)
    , last_component_navigator_selection(last_component_navigator_selection)
    , display_default_width(display_default_width)
    , display_default_height(display_default_height)
    , stages(stages)
+   , code_editor_width(code_editor_width)
 {
 }
 
@@ -54,6 +55,12 @@ std::string AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::get_
 std::vector<StageInterface *>& AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::get_stages()
 {
    return stages;
+}
+
+
+int AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::get_code_editor_width()
+{
+   return code_editor_width;
 }
 
 
@@ -87,10 +94,10 @@ if (!Blast::FileExistenceChecker(filename).exists()) quintessence_file_present =
 if (!Blast::FileExistenceChecker(test_filename).exists()) test_file_present = false;
 
 float width_scale_of_halfwidth = 1.0; //0.6180339;
+float width = get_code_editor_width(); //display_default_width/2 * width_scale_of_halfwidth;
 
 //if (!test_file_contents.empty())
 {
-  float width = display_default_width/2 * width_scale_of_halfwidth;
   placement3d place(0, 0, 0);
   place.size = vec3d(width, display_default_height, 0.0);
   place.align = vec3d(0.0, 0.5, 0.0);
@@ -116,7 +123,6 @@ float width_scale_of_halfwidth = 1.0; //0.6180339;
 
 //if (!file_contents.empty())
 {
-  float width = display_default_width/2 * width_scale_of_halfwidth;
   placement3d place(0, 0, 0);
   place.size = vec3d(width, display_default_height, 0.0);
   place.align = vec3d(1.0, 0.5, 0.0);

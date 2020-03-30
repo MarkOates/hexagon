@@ -1,5 +1,8 @@
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
+
+using ::testing::MatchesRegex;
 
 #include <Hexagon/Git/Staged.hpp>
 
@@ -19,6 +22,6 @@ TEST(Hexagon_Git_StagedTest, get_commit_everything_shell_command__returns_the_ex
 TEST(Hexagon_Git_StagedTest, get_staged_response__returns_the_expected_response)
 {
    Hexagon::Git::Staged staged;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, staged.get_staged_response());
+   std::string a_regex_that_will_match_a_bunc_of_git_diff_staged_output = ".*";
+   EXPECT_THAT(staged.get_staged_response(), MatchesRegex(a_regex_that_will_match_a_bunc_of_git_diff_staged_output));
 }

@@ -32,7 +32,7 @@ void Renderer::draw_selections(int cell_width, int cell_height)
 
 
 
-void Renderer::render_code_lines(placement3d &place)
+void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 {
    // render cursor
    int first_line_number = stage->get_first_line_number();
@@ -58,6 +58,7 @@ void Renderer::render_code_lines(placement3d &place)
    std::vector<int> &git_modified_line_numbers = stage->git_modified_line_numbers;
    std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = stage->code_message_points_overlays;
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
+   ALLEGRO_COLOR font_color = frame_color;
 
    for (int line_number = first_line_number; line_number < (int)lines.size(); line_number++)
    {
@@ -84,7 +85,7 @@ void Renderer::render_code_lines(placement3d &place)
          if (truncated_line.size() != line.size()) has_line_been_truncated = true;
 
          // draw the actual line (truncated, possibly) here:
-         al_draw_text(font, epic_green_color, 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, truncated_line.c_str());
+         al_draw_text(font, font_color, 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, truncated_line.c_str());
 
          // draw an "indication" marker for a line too long
          if (has_line_been_truncated)
@@ -124,7 +125,7 @@ void Renderer::render_code_lines(placement3d &place)
       // draw the line numbers
       if (draw_line_numbers)
       {
-         ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(epic_green_color, 0.2);
+         ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(font_color, 0.2);
          float frame_right_x = place.size.x - cell_width * 0.5;
          std::stringstream ss;
          ss << (line_number+1);
@@ -223,7 +224,7 @@ void Renderer::render_raw()
 
 
    code_lines_placement.start_transform();
-   render_code_lines(code_lines_placement);
+   render_code_lines(code_lines_placement, frame_color);
    render_cursor_position_info();
    code_lines_placement.restore_transform();
 }
@@ -244,12 +245,12 @@ void Renderer::render_cursor_position_info()
    int line_length_character_limit = place.size.x / cell_width;
 
    // draw the current cursor position
-   cursor_position_info << " " << stage->get_cursor_x() << "." << (stage->get_cursor_y()+1) << " ";
+   cursor_position_info << " x" << stage->get_cursor_x() << " y" << (stage->get_cursor_y()+1) << " ";
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR color = AllegroFlare::color::color(epic_green_color, 0.4);
 
    // draw the width dimensions of the frame
-   cursor_position_info << " " << line_length_character_limit << "^";
+   cursor_position_info << line_length_character_limit << "^";
 
    // draw whole line of status text
    al_draw_text(font,
