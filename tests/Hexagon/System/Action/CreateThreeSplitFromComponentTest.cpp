@@ -16,9 +16,16 @@ TEST(Hexagon_System_Action_CreateThreeSplitTest,
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/Action";
    std::vector<StageInterface *> stages;
-   CreateThreeSplit create_three_split(project_path, component, stages);
+   int code_editor_width = 234;
+   CreateThreeSplit create_three_split(project_path, component, stages, code_editor_width);
    EXPECT_EQ(true, create_three_split.execute());
    ASSERT_EQ(3, stages.size());
+
+   for (auto &stage : stages)
+   {
+      placement3d &place = stage->get_place();
+      ASSERT_EQ(code_editor_width, place.size.x);
+   }
 }
 
 TEST(Hexagon_System_Action_CreateThreeSplitTest,

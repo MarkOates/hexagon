@@ -20,13 +20,14 @@ namespace Action
 std::vector<StageInterface *> CreateThreeSplitFromComponent::dummy_stages = {};
 
 
-CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project_path, Blast::Project::Component component, std::vector<StageInterface *>& stages, int display_default_width, int display_default_height)
+CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project_path, Blast::Project::Component component, std::vector<StageInterface *>& stages, int display_default_width, int display_default_height, int code_editor_width)
    : ::Action("System::Action::CreateThreeSplitFromComponent", ActionData())
    , project_path(project_path)
    , component(component)
    , stages(stages)
    , display_default_width(display_default_width)
    , display_default_height(display_default_height)
+   , code_editor_width(code_editor_width)
 {
 }
 
@@ -63,7 +64,7 @@ std::vector<StageInterface *> &CreateThreeSplitFromComponent::get_dummy_stages_r
 bool CreateThreeSplitFromComponent::place_stage(std::string filename, float x, float align_x)
 {
 bool file_exists = Blast::FileExistenceChecker(filename).exists();
-float width = display_default_width/2;
+float width = code_editor_width;
 placement3d place(x, 0, 0);
 place.size = vec3d(width, display_default_height, 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
 place.align = vec3d(align_x, 0.5, 0.0);
