@@ -100,6 +100,31 @@ TEST(Hexagon_CodeEditor_StageTest, join_lines__on_a_line_number_that_is_out_of_b
    SUCCEED();
 }
 
+TEST(Hexagon_CodeEditor_StageTest, move_cursor_to_last_line__moves_the_cursor_to_the_last_line_of_the_file)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   ASSERT_EQ(true, stage.move_cursor_to_last_line());
+   ASSERT_EQ("As he takes from you, I engraft you new.", stage.current_line_ref());
+}
+
+TEST(Hexagon_CodeEditor_StageTest,
+   move_cursor_down__when_on_or_beyond_the_last_line__does_nothing_and_returns_false)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   int last_line_number = stage.num_lines() - 1;
+
+   int line_numbers_to_test[] = { last_line_number, last_line_number+1, last_line_number+99};
+   for (auto &line_number_to_test : line_numbers_to_test)
+   {
+     stage.set_cursor_y(line_number_to_test);
+     ASSERT_EQ(false, stage.move_cursor_down());
+   }
+}
+
 TEST(Hexagon_CodeEditor_StageTest, delete_line__removes_the_current_line)
 {
    CodeEditor::Stage stage("a_sonnet.txt");

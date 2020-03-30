@@ -78,6 +78,7 @@ namespace CodeEditor
       bool move_cursor_down();
       bool move_cursor_left();
       bool move_cursor_right();
+      bool move_cursor_to_last_line();
       bool move_cursor_to_top_of_screen();
       bool move_cursor_to_middle_of_screen();
       bool move_cursor_to_bottom_of_screen();

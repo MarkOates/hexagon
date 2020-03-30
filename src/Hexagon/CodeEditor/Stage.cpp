@@ -242,7 +242,8 @@ bool Stage::move_cursor_up()
 
 bool Stage::move_cursor_down()
 {
-   if (cursor_y >= num_lines()) return false;
+   if (cursor_y >= (num_lines() - 1)) return false;
+
    set_cursor_y(cursor_y + 1);
    return true;
 }
@@ -263,6 +264,15 @@ bool Stage::move_cursor_right()
    return true;
 }
 
+
+
+bool Stage::move_cursor_to_last_line()
+{
+   if (num_lines() == 0) return false;
+
+   else set_cursor_y(num_lines() - 1);
+   return true;
+}
 
 
 bool Stage::move_cursor_to_top_of_screen()
