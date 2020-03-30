@@ -94,6 +94,31 @@ void Renderer::render_code_lines(placement3d &place)
                          (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT,
                          "- --=xxXX#");
          }
+
+         // draw extra spaces at end of line
+         if (draw_extra_spaces_at_end_of_line)
+         {
+            const char whitespace_char = ' ';
+            const std::string &line = lines[line_number];
+            if (!line.empty() && (line.back() == whitespace_char))
+            {
+               int pos_last_non_whitespace_character = line.find_last_not_of(whitespace_char);
+               int character_line_height = al_get_font_line_height(font);
+               //int character_width = al_get_(font);
+               ALLEGRO_COLOR color = al_color_name("firebrick");
+               float character_width = cell_width;
+
+               float leftmost_box_position = (pos_last_non_whitespace_character+1) * character_width;
+               float rightmost_box_position = line.length() * character_width;
+
+               al_draw_filled_rectangle(
+                  leftmost_box_position,
+                  line_height * (line_number - first_line_number),
+                  rightmost_box_position,
+                  line_height * (line_number - first_line_number + 1),
+                  color);
+            }
+         }
       }
 
       // draw the line numbers (currently_disabled)
@@ -105,31 +130,6 @@ void Renderer::render_code_lines(placement3d &place)
          ALLEGRO_COLOR text_color = default_line_number_green_color;
          if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
          al_draw_text(font, text_color, -20, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
-      }
-
-      // draw extra spaces at end of line
-      if (draw_extra_spaces_at_end_of_line)
-      {
-         const char whitespace_char = ' ';
-         const std::string &line = lines[line_number];
-         if (!line.empty() && (line.back() == whitespace_char))
-         {
-            int pos_last_non_whitespace_character = line.find_last_not_of(whitespace_char);
-            int character_line_height = al_get_font_line_height(font);
-            //int character_width = al_get_(font);
-            ALLEGRO_COLOR color = al_color_name("firebrick");
-            float character_width = cell_width;
-
-            float leftmost_box_position = (pos_last_non_whitespace_character+1) * character_width;
-            float rightmost_box_position = line.length() * character_width;
-
-            al_draw_filled_rectangle(
-               leftmost_box_position,
-               line_height * (line_number - first_line_number),
-               rightmost_box_position,
-               line_height * (line_number - first_line_number + 1),
-               color);
-         }
       }
 
       lines_rendered_count++;

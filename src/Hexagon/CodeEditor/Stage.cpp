@@ -39,7 +39,7 @@ Stage::Stage(std::string filename, mode_t mode, type_t type)
    , selections()
 {
    code_message_points_overlays.push_back(CodeMessagePointsOverlay(al_color_name("dogerblue"), {}));
-} 
+}
 
 
 
