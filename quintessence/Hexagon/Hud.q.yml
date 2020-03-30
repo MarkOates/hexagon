@@ -60,7 +60,7 @@ functions:
     private: true
     body: |
       ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
-      ALLEGRO_COLOR color = epic_green_color;
+      ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
       float display_center_x = al_get_display_width(display) / 2;
       int y_position = 20;
 
@@ -73,6 +73,7 @@ functions:
       return;
     body_dependency_symbols:
       - al_get_display_width
+      - AllegroFlare::color::mix
   - name: draw
     type: void
     body: |
@@ -137,6 +138,8 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro.h ]
+  - symbol: AllegroFlare::color::mix
+    headers: [ AllegroFlare/Color.hpp ]
   - symbol: AllegroFlare::FontBin&
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: AllegroFlare::FontBin

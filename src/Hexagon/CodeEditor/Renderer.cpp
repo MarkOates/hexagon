@@ -159,6 +159,7 @@ void Renderer::render_raw()
 {
    if (!stage) throw std::runtime_error("[Renderer] stage cannot be a nullptr");
 
+   bool content_is_modified = stage->get_content_is_modified();
    placement3d &place = stage->get_place();
    float padding = cell_width;
    float half_padding = padding * 0.5;
@@ -173,21 +174,25 @@ void Renderer::render_raw()
    background_overlay_color.g *= opacity;
    background_overlay_color.b *= opacity;
    background_overlay_color.a *= opacity;
-   ALLEGRO_COLOR frame_color =
+   ALLEGRO_COLOR normal_frame_color =
       AllegroFlare::color::color(
          AllegroFlare::color::mix(
              al_color_html("99ddc4"), al_color_name("white"),0.5
            ), 0.85
          );
+   ALLEGRO_COLOR content_is_modified_color =
+      AllegroFlare::color::mix(normal_frame_color, al_color_name("orange"), 0.3);
    float frame_opacity = 0.6;
-   frame_color.r *= frame_opacity;
-   frame_color.g *= frame_opacity;
-   frame_color.b *= frame_opacity;
-   frame_color.a *= frame_opacity;
    float roundness = 0; // was previously 6.0;
    float line_thickness = 3.0;
    bool draw_outline = true;
 
+   ALLEGRO_COLOR frame_color = content_is_modified ? content_is_modified_color : normal_frame_color;
+
+   frame_color.r *= frame_opacity;
+   frame_color.g *= frame_opacity;
+   frame_color.b *= frame_opacity;
+   frame_color.a *= frame_opacity;
 
    al_draw_filled_rounded_rectangle(0, 0,
                             place.size.x, place.size.y,
@@ -213,6 +218,7 @@ void Renderer::render_raw()
 
    code_lines_placement.start_transform();
    render_code_lines(code_lines_placement);
+   render_cursor_position_info();
    code_lines_placement.restore_transform();
 }
 
@@ -222,6 +228,22 @@ void Renderer::render_info_overlay()
    Hexagon::Elements::StageInfoOverlay info_overlay(font, &stage->get_place());
    info_overlay.set_text("hello");
    info_overlay.render();
+}
+
+
+void Renderer::render_cursor_position_info()
+{
+   placement3d &place = stage->get_place();
+   std::stringstream cursor_position_info;
+   cursor_position_info << " " << stage->get_cursor_x() << "." << (stage->get_cursor_y()+1) << " ";
+   ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
+   ALLEGRO_COLOR color = AllegroFlare::color::color(epic_green_color, 0.4);
+   al_draw_text(font,
+                color,
+                place.size.x - 20,
+                place.size.y - cell_height * 0.5,
+                ALLEGRO_ALIGN_RIGHT,
+                cursor_position_info.str().c_str());
 }
 
 

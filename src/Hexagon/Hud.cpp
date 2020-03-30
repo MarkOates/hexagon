@@ -2,6 +2,7 @@
 
 #include <Hexagon/Hud.hpp>
 #include <allegro5/allegro.h>
+#include <AllegroFlare/Color.hpp>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_color.h>
@@ -102,7 +103,7 @@ return;
 void Hud::draw_current_focus_name()
 {
 ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
-ALLEGRO_COLOR color = epic_green_color;
+ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
 float display_center_x = al_get_display_width(display) / 2;
 int y_position = 20;
 

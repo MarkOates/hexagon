@@ -31,6 +31,7 @@ namespace CodeEditor
       void render_code_lines(placement3d &place);
       void render_raw();
       void render_info_overlay();
+      void render_cursor_position_info();
       void draw_selections(int cell_width, int cell_height);
 
    public:
