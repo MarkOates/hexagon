@@ -46,6 +46,7 @@ public:
    bool initialize();
    int get_display_default_width();
    int get_display_default_height();
+   float get_default_code_editor_stage_width();
    std::string get_default_navigator_directory();
    std::string get_global_font_str();
 

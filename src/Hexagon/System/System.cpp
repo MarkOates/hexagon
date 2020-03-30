@@ -151,6 +151,11 @@ int System::get_display_default_height()
    return config.get_initial_display_height();
 }
 
+float System::get_default_code_editor_stage_width()
+{
+   return 2430/2 + 100;
+}
+
 placement3d System::build_component_navigator_initial_place()
 {
    placement3d result;
@@ -710,7 +715,8 @@ bool System::execute_magic_command()
 
    ///
 
-   float width = display_default_width/2 * width_scale_of_halfwidth;
+
+   float width = get_default_code_editor_stage_width();
    std::string filename = "";
    bool file_present = false;
    int i=0;
@@ -854,6 +860,8 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
 
    std::string filename = last_file_navigator_selection;
 
+   float stage_width = get_default_code_editor_stage_width();
+
    // validate the selected path is a valid file
    ALLEGRO_FS_ENTRY *fs_entry = al_create_fs_entry(filename.c_str());
    if (!fs_entry)
@@ -877,7 +885,7 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
       float one_third_screen_width = get_display_default_width() / 3;
 
       placement3d place(one_third_screen_width*number_of_files, 0, 0);
-      place.size = vec3d(get_display_default_width()/2, get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+      place.size = vec3d(stage_width, get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
       place.align = vec3d(0.5, 0.5, 0.0);
       place.scale = vec3d(0.9, 0.9, 0.0);
 
