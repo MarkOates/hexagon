@@ -124,12 +124,18 @@ void Renderer::render_code_lines(placement3d &place)
       // draw the line numbers
       if (draw_line_numbers)
       {
-         ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(epic_green_color, 0.4);
+         ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(epic_green_color, 0.2);
+         float frame_right_x = place.size.x - cell_width * 0.5;
          std::stringstream ss;
          ss << (line_number+1);
          ALLEGRO_COLOR text_color = default_line_number_green_color;
          if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
-         al_draw_text(font, text_color, -20, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_RIGHT, ss.str().c_str());
+         al_draw_text(font,
+                      text_color,
+                      frame_right_x,
+                      (line_number-first_line_number)*cell_height,
+                      ALLEGRO_ALIGN_RIGHT,
+                      ss.str().c_str());
       }
 
       lines_rendered_count++;
@@ -235,12 +241,20 @@ void Renderer::render_cursor_position_info()
 {
    placement3d &place = stage->get_place();
    std::stringstream cursor_position_info;
+   int line_length_character_limit = place.size.x / cell_width;
+
+   // draw the current cursor position
    cursor_position_info << " " << stage->get_cursor_x() << "." << (stage->get_cursor_y()+1) << " ";
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR color = AllegroFlare::color::color(epic_green_color, 0.4);
+
+   // draw the width dimensions of the frame
+   cursor_position_info << " " << line_length_character_limit << "^";
+
+   // draw whole line of status text
    al_draw_text(font,
                 color,
-                place.size.x - 20,
+                place.size.x - cell_width,
                 place.size.y - cell_height * 0.5,
                 ALLEGRO_ALIGN_RIGHT,
                 cursor_position_info.str().c_str());
