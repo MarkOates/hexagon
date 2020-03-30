@@ -769,7 +769,6 @@ void Stage::draw_selections(int cell_width, int cell_height)
 }
 
 
-
 bool Stage::set_current_selection_end_x(int x)
 {
    if (selections.empty()) return true;
