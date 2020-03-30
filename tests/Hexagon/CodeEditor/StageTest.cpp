@@ -110,17 +110,31 @@ TEST(Hexagon_CodeEditor_StageTest, move_cursor_to_last_line__moves_the_cursor_to
 }
 
 TEST(Hexagon_CodeEditor_StageTest,
+   move_cursor_up__when_on_or_above_the_first_line__does_nothing_and_returns_false)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   int line_indices_to_test[] = { 0, -1, -99 };
+   for (auto &line_index_to_test : line_indices_to_test)
+   {
+     stage.set_cursor_y(line_index_to_test);
+     ASSERT_EQ(false, stage.move_cursor_up());
+   }
+}
+
+TEST(Hexagon_CodeEditor_StageTest,
    move_cursor_down__when_on_or_beyond_the_last_line__does_nothing_and_returns_false)
 {
    CodeEditor::Stage stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
-   int last_line_number = stage.num_lines() - 1;
+   int last_line_index = stage.num_lines() - 1;
 
-   int line_numbers_to_test[] = { last_line_number, last_line_number+1, last_line_number+99};
-   for (auto &line_number_to_test : line_numbers_to_test)
+   int line_indices_to_test[] = { last_line_index, last_line_index+1, last_line_index+99};
+   for (auto &line_index_to_test : line_indices_to_test)
    {
-     stage.set_cursor_y(line_number_to_test);
+     stage.set_cursor_y(line_index_to_test);
      ASSERT_EQ(false, stage.move_cursor_down());
    }
 }
@@ -137,7 +151,7 @@ TEST(Hexagon_CodeEditor_StageTest, delete_line__removes_the_current_line)
    stage.delete_line();
 
    EXPECT_EQ(15, stage.num_lines());
-   EXPECT_EQ(9, stage.get_cursor_y()); // cursor stays at the same line number
+   EXPECT_EQ(9, stage.get_cursor_y()); // cursor stays at the same line index
 
    std::string expected_line_at_cursor = "Then the conceit of this inconstant stay,";
 

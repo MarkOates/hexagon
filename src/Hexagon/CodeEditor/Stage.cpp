@@ -233,7 +233,8 @@ bool Stage::infer_cursor_is_on_line_that_exists()
 
 bool Stage::move_cursor_up()
 {
-   if (num_lines() <= 0) return false;
+   if (cursor_y <= 0) return false;
+
    set_cursor_y(cursor_y - 1);
    return true;
 }
