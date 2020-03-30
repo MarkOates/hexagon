@@ -121,7 +121,7 @@ void Renderer::render_code_lines(placement3d &place)
          }
       }
 
-      // draw the line numbers (currently_disabled)
+      // draw the line numbers
       if (draw_line_numbers)
       {
          ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(epic_green_color, 0.4);
