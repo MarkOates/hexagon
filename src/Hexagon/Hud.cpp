@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/Hud.hpp>
+#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro.h>
 #include <AllegroFlare/Color.hpp>
 #include <allegro5/allegro_font.h>
@@ -16,11 +17,12 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, bool show_disabled_screen)
    : initialized(false)
    , display(display)
    , fonts(fonts)
    , title_text(title_text)
+   , show_disabled_screen(show_disabled_screen)
    , screen_sub_bitmap(nullptr)
    , notifications({})
    , notifications2({})
@@ -36,6 +38,12 @@ Hud::~Hud()
 void Hud::set_title_text(std::string title_text)
 {
    this->title_text = title_text;
+}
+
+
+void Hud::set_show_disabled_screen(bool show_disabled_screen)
+{
+   this->show_disabled_screen = show_disabled_screen;
 }
 
 
@@ -60,6 +68,12 @@ void Hud::set_notifications2(std::vector<std::string> notifications2)
 std::string Hud::get_title_text()
 {
    return title_text;
+}
+
+
+bool Hud::get_show_disabled_screen()
+{
+   return show_disabled_screen;
 }
 
 
@@ -113,6 +127,26 @@ al_draw_text(obtain_text_font(),
              y_position,
              ALLEGRO_ALIGN_CENTER,
              title_text.c_str());
+
+float text_width = al_get_text_width(obtain_text_font(), title_text.c_str());
+
+if (show_disabled_screen)
+{
+   al_draw_line(0,
+                0,
+                al_get_display_width(display),
+                al_get_display_height(display),
+                al_color_name("red"),
+                3.0);
+}
+
+//al_draw_rectangle(0,
+//                  0,
+//                  al_get_display_width(display),
+//                  al_get_display_height(display),
+//                  al_color_name("dodgerblue"),
+//                  6.0);
+
 return;
 
 }

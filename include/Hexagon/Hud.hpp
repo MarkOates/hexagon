@@ -18,20 +18,23 @@ namespace Hexagon
       static AllegroFlare::FontBin dummy_font_bin;
       AllegroFlare::FontBin& fonts;
       std::string title_text;
+      bool show_disabled_screen;
       ALLEGRO_BITMAP* screen_sub_bitmap;
       std::vector<std::string> notifications;
       std::vector<std::string> notifications2;
 
    public:
-      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="");
+      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", bool show_disabled_screen=false);
       ~Hud();
 
       void set_title_text(std::string title_text);
+      void set_show_disabled_screen(bool show_disabled_screen);
       void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
       void set_notifications(std::vector<std::string> notifications);
       void set_notifications2(std::vector<std::string> notifications2);
 
       std::string get_title_text();
+      bool get_show_disabled_screen();
       std::vector<std::string> get_notifications();
       std::vector<std::string> get_notifications2();
    static AllegroFlare::FontBin& get_dummy_font_bin();

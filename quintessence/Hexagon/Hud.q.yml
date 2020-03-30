@@ -20,6 +20,12 @@ properties:
     setter: true
     getter: true
     constructor_arg: true
+  - name: show_disabled_screen
+    type: bool
+    init_with: false
+    setter: true
+    getter: true
+    constructor_arg: true
   - name: screen_sub_bitmap
     type: ALLEGRO_BITMAP*
     init_with: "nullptr"
@@ -70,8 +76,29 @@ functions:
                    y_position,
                    ALLEGRO_ALIGN_CENTER,
                    title_text.c_str());
+
+      float text_width = al_get_text_width(obtain_text_font(), title_text.c_str());
+
+      if (show_disabled_screen)
+      {
+         al_draw_line(0,
+                      0,
+                      al_get_display_width(display),
+                      al_get_display_height(display),
+                      al_color_name("red"),
+                      3.0);
+      }
+
+      //al_draw_rectangle(0,
+      //                  0,
+      //                  al_get_display_width(display),
+      //                  al_get_display_height(display),
+      //                  al_color_name("dodgerblue"),
+      //                  6.0);
+
       return;
     body_dependency_symbols:
+      - al_draw_rectangle
       - al_get_display_width
       - AllegroFlare::color::mix
   - name: draw
@@ -120,6 +147,8 @@ functions:
       - al_color_name
       - al_draw_text
 dependencies:
+  - symbol: al_draw_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
   - symbol: ALLEGRO_DISPLAY*
     headers: [ allegro5/allegro.h ]
   - symbol: al_get_display_width

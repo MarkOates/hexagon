@@ -530,9 +530,11 @@ bool System::spawn_component_navigator()
    component_navigator->set_place(build_component_navigator_initial_place());
    stages.push_back(component_navigator);
 
+   motion.cmove_to(&camera.rotation.y, camera.rotation.y, camera.rotation.y+0.02, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+
    placement3d& stage_place = component_navigator->get_place();
-   //motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
-   //motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in); //, al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in); //al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
    return true;
 }
 
