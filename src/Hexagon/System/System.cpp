@@ -1001,12 +1001,12 @@ bool System::escape_current_modal()
    return true;
 }
 
-bool System::spawn_keyboard_inputs_modal()
-{
-   KeyboardInputsModal::Stage *keyboard_input_modal = new KeyboardInputsModal::Stage(nullptr);
-   stages.push_back(keyboard_input_modal);
-   return true;
-}
+//bool System::spawn_keyboard_inputs_modal()
+//{
+//   KeyboardInputsModal::Stage *keyboard_input_modal = new KeyboardInputsModal::Stage(nullptr);
+//   stages.push_back(keyboard_input_modal);
+//   return true;
+//}
 
 void System::process_local_event(std::string event_name) // this function is 1:1 execute the action.  It does no calling of other actions before or after
 {
@@ -1052,7 +1052,7 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
       else if (event_name == EXECUTE_MAGIC_COMMAND) { execute_magic_command(); executed = true; }
       else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
-      else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
+      //else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
       else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { spawn_regex_input_box_modal(); executed = true; }
       else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
       else if (event_name == SUBMIT_CURRENT_MODAL) { submit_current_modal(); executed = true; }
@@ -1091,7 +1091,7 @@ void System::process_event(ALLEGRO_EVENT &event)
    {
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_PLUS, false, false, false, false, { INCREASE_FONT_SIZE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, { DECREASE_FONT_SIZE });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, true,  false, false, false, { SPAWN_KEYBOARD_INPUTS_MODAL });
+      //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, true,  false, false, false, { SPAWN_KEYBOARD_INPUTS_MODAL });
 
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, true, { ROTATE_STAGE_LEFT, CENTER_CAMERA_ON_FRONTMOST_STAGE, FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, true, { ROTATE_STAGE_RIGHT, CENTER_CAMERA_ON_FRONTMOST_STAGE, FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
@@ -1207,7 +1207,7 @@ std::string System::get_action_description(std::string action_identifier)
       { System::SPAWN_COMPONENT_NAVIGATOR, "" },
       { System::EXECUTE_MAGIC_COMMAND, "" },
       { System::SPAWN_FILE_NAVIGATOR, "" },
-      { System::SPAWN_KEYBOARD_INPUTS_MODAL, "" },
+      //{ System::SPAWN_KEYBOARD_INPUTS_MODAL, "" },
       { System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, "" },
       { System::SPAWN_RERUN_OUTPUT_WATCHER, "" },
       { System::SUBMIT_CURRENT_MODAL, "" },
@@ -1269,7 +1269,7 @@ const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "S
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
 const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
-const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
+//const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
 const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
 const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";

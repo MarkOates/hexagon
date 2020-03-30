@@ -106,7 +106,7 @@ public:
    bool execute_magic_command();
    bool submit_current_modal();
    bool escape_current_modal();
-   bool spawn_keyboard_inputs_modal();
+   //bool spawn_keyboard_inputs_modal();
    bool clear_last_compiled_error_messages();
 
    // motion fx
@@ -151,7 +151,7 @@ public:
    static const std::string SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
-   static const std::string SPAWN_KEYBOARD_INPUTS_MODAL;
+   //static const std::string SPAWN_KEYBOARD_INPUTS_MODAL;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
    static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
    static const std::string SUBMIT_CURRENT_MODAL;
