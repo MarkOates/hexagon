@@ -1,0 +1,20 @@
+properties:
+  - name: current_project_directory
+    type: std::string
+    init_with: "\"/Users/markoates/Repos/hexagon/\""
+    constructor_arg: true
+functions:
+  - name: stage_everything
+    type: bool
+    body: |
+      std::stringstream commit_everything_shell_command;
+      commit_everything_shell_command << "(cd " << current_project_directory << " && git add .)";
+      Blast::ShellCommandExecutorWithCallback executor(commit_everything_shell_command.str());
+      executor.execute();
+      return true;
+    body_dependency_symbols:
+      - std::stringstream
+      - Blast::ShellCommandExecutorWithCallback
+dependencies:
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
