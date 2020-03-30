@@ -13,7 +13,7 @@ TEST(Hexagon_System_System, can_be_created_without_blowing_up)
    System system;
 }
 
-TEST(Hexagon_System_System, initialize__will_initialize_the_config)
+TEST(DISABLED_Hexagon_System_System, initialize__will_initialize_the_config)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
@@ -22,7 +22,7 @@ TEST(Hexagon_System_System, initialize__will_initialize_the_config)
    system.initialize();
 }
 
-TEST(Hexagon_System_System,
+TEST(DISABLED_Hexagon_System_System,
    create_two_or_three_split_layout_from_last_component_navigator_selection__will_set_the_hud_title)
 {
    al_init();
