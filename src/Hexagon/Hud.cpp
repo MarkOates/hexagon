@@ -127,26 +127,6 @@ al_draw_text(obtain_text_font(),
              y_position,
              ALLEGRO_ALIGN_CENTER,
              title_text.c_str());
-
-float text_width = al_get_text_width(obtain_text_font(), title_text.c_str());
-
-if (show_disabled_screen)
-{
-   al_draw_line(0,
-                0,
-                al_get_display_width(display),
-                al_get_display_height(display),
-                al_color_name("red"),
-                3.0);
-}
-
-//al_draw_rectangle(0,
-//                  0,
-//                  al_get_display_width(display),
-//                  al_get_display_height(display),
-//                  al_color_name("dodgerblue"),
-//                  6.0);
-
 return;
 
 }
@@ -164,6 +144,16 @@ al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
 al_set_target_bitmap(screen_sub_bitmap);
 
 draw_current_focus_name();
+
+if (show_disabled_screen)
+{
+   al_draw_line(0,
+                0,
+                al_get_display_width(display),
+                al_get_display_height(display),
+                al_color_name("red"),
+                3.0);
+}
 
 ALLEGRO_COLOR color = al_color_name("red");
 float notification_bottom_padding = al_get_font_line_height(obtain_text_font());
