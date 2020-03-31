@@ -178,6 +178,11 @@ for (auto &notification2 : notifications2)
                notification2.c_str());
   y_cursor++;
 }
+
+Hexagon::Powerbar::Powerbar powerbar;
+Hexagon::Powerbar::Renderer powerbar_renderer(&powerbar);
+powerbar_renderer.render();
+
 al_restore_state(&previous_target_bitmap_state);
 return;
 

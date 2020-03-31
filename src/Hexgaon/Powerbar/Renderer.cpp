@@ -12,8 +12,9 @@ namespace Powerbar
 {
 
 
-Renderer::Renderer(float width)
-   : width(width)
+Renderer::Renderer(Hexagon::Powerbar::Powerbar* powerbar, float width)
+   : powerbar(powerbar)
+   , width(width)
 {
 }
 

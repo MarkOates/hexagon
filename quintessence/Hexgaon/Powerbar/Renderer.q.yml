@@ -1,4 +1,8 @@
 properties:
+  - name: powerbar
+    type: Hexagon::Powerbar::Powerbar*
+    init_with: nullptr
+    constructor_arg: true
   - name: width
     type: float
     init_with: 1000.0f
@@ -21,6 +25,8 @@ functions:
       - al_color_name
       - al_draw_rectangle
 dependencies:
+  - symbol: Hexagon::Powerbar::Powerbar*
+    headers: [ Hexgaon/Powerbar/Powerbar.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
   - symbol: al_color_name

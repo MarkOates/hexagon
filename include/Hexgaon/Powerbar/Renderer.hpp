@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexgaon/Powerbar/Powerbar.hpp>
 
 
 namespace Hexgaon
@@ -10,10 +11,11 @@ namespace Hexgaon
       class Renderer
       {
       private:
+         Hexagon::Powerbar::Powerbar* powerbar;
          float width;
 
       public:
-         Renderer(float width=1000.0f);
+         Renderer(Hexagon::Powerbar::Powerbar* powerbar=nullptr, float width=1000.0f);
          ~Renderer();
 
 
