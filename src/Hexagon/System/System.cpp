@@ -422,7 +422,10 @@ bool System::center_camera_on_frontmost_stage()
 
    placement3d &place = frontmost_stage->get_place();
    vec3d target = place.position;
-   camera.position = target;
+   //camera.position = target;
+   motion.cmove_to(&camera.position.x, target.x, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.position.y, target.y, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.position.z, target.z, 0.2, interpolator::double_fast_in);
 
    return true;
 }
