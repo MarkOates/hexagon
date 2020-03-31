@@ -222,6 +222,12 @@ while(!shutdown_program)
       //note that each rezie will cause the display to reload, and will be a bit laggy
       //refresh = false;
       break;
+   case ALLEGRO_EVENT_DISPLAY_SWITCH_OUT:
+      system.acknowledge_display_switch_out(display);
+      break;
+   case ALLEGRO_EVENT_DISPLAY_SWITCH_IN:
+      system.acknowledge_display_switch_in(display);
+      break;
    case ALLEGRO_EVENT_TIMER:
       motion.update(al_get_time());
       if (motion.get_num_active_animations() == 0) continue;

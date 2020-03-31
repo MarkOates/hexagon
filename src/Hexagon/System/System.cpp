@@ -278,6 +278,15 @@ bool System::is_current_stage_a_regex_input_box()
    return frontmost_stage && (frontmost_stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX);
 }
 
+// internal messages
+void System::acknowledge_display_switch_out(ALLEGRO_DISPLAY *display)
+{
+}
+
+void System::acknowledge_display_switch_in(ALLEGRO_DISPLAY *display)
+{
+}
+
 // actions
 
 bool System::write_focused_component_name_to_file()
