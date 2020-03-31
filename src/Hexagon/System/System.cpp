@@ -112,6 +112,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , focused_component_name_relative_names()
    , font_bin()
    , hud(display, font_bin)
+   , default_camera_stepback(60)
 {
 }
 
@@ -125,6 +126,7 @@ bool System::initialize()
 
    //process_local_event(EXECUTE_MAGIC_COMMAND);
 
+   camera.stepback = 10;
    //camera.zoom_pos -= 3.1;
    //camera.position.x += 20;
    //camera.position.y -= 10;
@@ -149,6 +151,11 @@ int System::get_display_default_width()
 int System::get_display_default_height()
 {
    return config.get_initial_display_height();
+}
+
+float System::get_default_camera_stepback()
+{
+   return default_camera_stepback;
 }
 
 float System::get_default_code_editor_stage_width()
@@ -335,8 +342,8 @@ bool System::toggle_command_mode_on()
 {
    if (command_mode) return true;
 
-   float camera_zoomed_out_position = 10;
-   float camera_zoomed_in_position = 0;
+   float camera_zoomed_out_position = get_default_camera_stepback() + 10;
+   float camera_zoomed_in_position = get_default_camera_stepback();
    motion.canimate(&camera.stepback.z, camera.stepback.z, camera_zoomed_out_position, al_get_time(), al_get_time()+0.2, interpolator::fast_in, nullptr, nullptr);
    command_mode = true;
    //camera.rotation
@@ -348,8 +355,8 @@ bool System::toggle_command_mode_off()
 {
    if (!command_mode) return true;
 
-   float camera_zoomed_out_position = 10;
-   float camera_zoomed_in_position = 0;
+   float camera_zoomed_out_position = get_default_camera_stepback() + 10;
+   float camera_zoomed_in_position = get_default_camera_stepback();
    motion.canimate(&camera.stepback.z, camera.stepback.z, camera_zoomed_in_position, al_get_time(), al_get_time()+0.2, interpolator::fast_in, nullptr, nullptr);
    command_mode = false;
    //std::rotate(stages.begin(), stages.begin() + 1, stages.end());

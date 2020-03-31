@@ -101,7 +101,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
   placement3d place(0, 0, 0);
   place.size = vec3d(width, display_default_height, 0.0);
   place.align = vec3d(0.0, 0.5, 0.0);
-  place.scale = vec3d(0.9, 0.9, 0.0);
+  place.scale = vec3d(1.0, 1.0, 0.0);
 
   StageInterface *stage = nullptr;
 
@@ -126,7 +126,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
   placement3d place(0, 0, 0);
   place.size = vec3d(width, display_default_height, 0.0);
   place.align = vec3d(1.0, 0.5, 0.0);
-  place.scale = vec3d(0.9, 0.9, 0.0);
+  place.scale = vec3d(1.0, 1.0, 0.0);
 
   StageInterface *stage = nullptr;
 

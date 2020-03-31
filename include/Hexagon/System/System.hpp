@@ -36,6 +36,7 @@ public:
    std::vector<std::string> focused_component_name_relative_names;
    AllegroFlare::FontBin font_bin;
    Hexagon::Hud hud;
+   float default_camera_stepback;
 
    //RerunOutputWatcher *rerun_output_watcher;
 
@@ -46,6 +47,7 @@ public:
    bool initialize();
    int get_display_default_width();
    int get_display_default_height();
+   float get_default_camera_stepback();
    float get_default_code_editor_stage_width();
    std::string get_default_navigator_directory();
    std::string get_global_font_str();
