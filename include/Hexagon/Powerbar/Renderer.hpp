@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include <Hexgaon/Powerbar/Powerbar.hpp>
+#include <Hexagon/Powerbar/Powerbar.hpp>
 
 
-namespace Hexgaon
+namespace Hexagon
 {
    namespace Powerbar
    {

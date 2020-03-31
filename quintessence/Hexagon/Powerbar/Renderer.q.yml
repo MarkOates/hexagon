@@ -26,7 +26,7 @@ functions:
       - al_draw_rectangle
 dependencies:
   - symbol: Hexagon::Powerbar::Powerbar*
-    headers: [ Hexgaon/Powerbar/Powerbar.hpp ]
+    headers: [ Hexagon/Powerbar/Powerbar.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
   - symbol: al_color_name

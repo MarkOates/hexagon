@@ -1,12 +1,12 @@
 
 
-#include <Hexgaon/Powerbar/Renderer.hpp>
+#include <Hexagon/Powerbar/Renderer.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 
 
-namespace Hexgaon
+namespace Hexagon
 {
 namespace Powerbar
 {
@@ -38,6 +38,6 @@ al_draw_rectangle(-h_width, -h_height, h_width, h_height, color, 3.0f);
 
 }
 } // namespace Powerbar
-} // namespace Hexgaon
+} // namespace Hexagon
 
 

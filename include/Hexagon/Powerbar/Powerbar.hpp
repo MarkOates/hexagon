@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace Hexgaon
+namespace Hexagon
 {
    namespace Powerbar
    {

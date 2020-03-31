@@ -1,10 +1,10 @@
 
 
-#include <Hexgaon/Powerbar/Powerbar.hpp>
+#include <Hexagon/Powerbar/Powerbar.hpp>
 
 
 
-namespace Hexgaon
+namespace Hexagon
 {
 namespace Powerbar
 {
@@ -25,6 +25,6 @@ std::string Powerbar::run()
 return "Hello World!";
 }
 } // namespace Powerbar
-} // namespace Hexgaon
+} // namespace Hexagon
 
 

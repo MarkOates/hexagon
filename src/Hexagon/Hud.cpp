@@ -8,6 +8,8 @@
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
+#include <Hexagon/Powerbar/Powerbar.hpp>
+#include <Hexagon/Powerbar/Renderer.hpp>
 
 
 namespace Hexagon

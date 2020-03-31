@@ -141,7 +141,13 @@ functions:
       - ALLEGRO_COLOR
       - al_color_name
       - al_draw_text
+      - Hexagon::Powerbar::Powerbar
+      - Hexagon::Powerbar::Renderer
 dependencies:
+  - symbol: Hexagon::Powerbar::Powerbar
+    headers: [ Hexagon/Powerbar/Powerbar.hpp ]
+  - symbol: Hexagon::Powerbar::Renderer
+    headers: [ Hexagon/Powerbar/Renderer.hpp ]
   - symbol: al_draw_rectangle
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: ALLEGRO_DISPLAY*
