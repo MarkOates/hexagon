@@ -128,16 +128,25 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
       {
          ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(font_color, 0.2);
          float frame_right_x = place.size.x - cell_width * 0.5;
+         bool cursor_is_on_this_line = _cursor_y == (line_number - first_line_number);
          std::stringstream ss;
          ss << (line_number+1);
          ALLEGRO_COLOR text_color = default_line_number_green_color;
+         std::string string_to_display = ss.str();
+
          if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
+         if (cursor_is_on_this_line)
+         {
+            text_color = AllegroFlare::color::mix(text_color, cursor_color, 0.5);
+            string_to_display = std::string(">") + string_to_display;
+         }
+
          al_draw_text(font,
                       text_color,
                       frame_right_x,
                       (line_number-first_line_number)*cell_height,
                       ALLEGRO_ALIGN_RIGHT,
-                      ss.str().c_str());
+                      string_to_display.c_str());
       }
 
       lines_rendered_count++;
