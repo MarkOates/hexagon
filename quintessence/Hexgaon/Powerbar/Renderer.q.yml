@@ -1,4 +1,29 @@
+properties:
+  - name: width
+    type: float
+    init_with: 1000.0f
+    constructor_arg: true
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: render
+    type: void
+    body: |
+      float width = this->width;
+      float height = 40;
+      float line_thickness = 3.0f;
+      ALLEGRO_COLOR color = al_color_name("gray");
+
+      float h_width = width * 0.5f;
+      float h_height = height * 0.5f;
+
+      al_draw_rectangle(-h_width, -h_height, h_width, h_height, color, 3.0f);
+    body_dependency_symbols:
+      - ALLEGRO_COLOR
+      - al_color_name
+      - al_draw_rectangle
+dependencies:
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_color_name
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_draw_rectangle
+    headers: [ allegro5/allegro_primitives.h ]

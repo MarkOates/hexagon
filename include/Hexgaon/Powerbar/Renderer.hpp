@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include <string>
 
 
 namespace Hexgaon
@@ -11,13 +10,14 @@ namespace Hexgaon
       class Renderer
       {
       private:
+         float width;
 
       public:
-         Renderer();
+         Renderer(float width=1000.0f);
          ~Renderer();
 
 
-      std::string run();
+      void render();
       };
    }
 }
