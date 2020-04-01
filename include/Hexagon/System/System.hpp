@@ -25,6 +25,9 @@ public:
    Hexagon::System::Config &config;
    Motion &motion;
 
+   bool files_changed;
+   bool files_committed;
+   bool in_sync_with_remote;
    std::vector<StageInterface *> stages;
    Camera camera;
    std::string last_file_navigator_selection;
@@ -72,6 +75,12 @@ public:
    void acknowledge_display_switch_in(ALLEGRO_DISPLAY *display);
 
    // actions
+   bool mark_as_files_changed();
+   bool mark_as_files_committed();
+   bool mark_as_in_sync_with_remote();
+   bool mark_as_files_unchanged();
+   bool mark_as_files_uncommitted();
+   bool mark_as_not_in_sync_with_remote();
    bool write_focused_component_name_to_file();
    bool set_hud_title_to_focused_component_name();
    bool set_focused_component_name_relative_names_from_focused_component_name();

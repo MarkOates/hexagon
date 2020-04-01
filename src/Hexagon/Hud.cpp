@@ -19,12 +19,15 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, bool show_disabled_screen)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, bool show_disabled_screen, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote)
    : initialized(false)
    , display(display)
    , fonts(fonts)
    , title_text(title_text)
    , show_disabled_screen(show_disabled_screen)
+   , files_are_modified(files_are_modified)
+   , files_are_committed(files_are_committed)
+   , commits_are_in_sync_with_remote(commits_are_in_sync_with_remote)
    , screen_sub_bitmap(nullptr)
    , notifications({})
    , notifications2({})

@@ -100,6 +100,9 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    : display(display)
    , config(config)
    , motion(motion)
+   , files_changed(false)
+   , files_committed(true)
+   , in_sync_with_remote(true)
    , stages({})
    //, file_navigator(al_get_current_directory())
    , camera(0, 0, 0)
@@ -289,6 +292,42 @@ void System::acknowledge_display_switch_in(ALLEGRO_DISPLAY *display)
 }
 
 // actions
+
+bool System::mark_as_files_changed()
+{
+   this->files_changed = true;
+   return true;
+}
+
+bool System::mark_as_files_committed()
+{
+   this->files_committed = true;
+   return true;
+}
+
+bool System::mark_as_in_sync_with_remote()
+{
+   this->in_sync_with_remote = true;
+   return true;
+}
+
+bool System::mark_as_files_unchanged()
+{
+   this->files_changed = false;
+   return true;
+}
+
+bool System::mark_as_files_uncommitted()
+{
+   this->files_committed = false;
+   return true;
+}
+
+bool System::mark_as_not_in_sync_with_remote()
+{
+   this->in_sync_with_remote = false;
+   return true;
+}
 
 bool System::write_focused_component_name_to_file()
 {
