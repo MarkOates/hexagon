@@ -69,7 +69,7 @@ float line_thickness = 3.0f;
 ALLEGRO_COLOR background_color = AllegroFlare::color::color(al_color_name("black"), 0.85f);
 ALLEGRO_COLOR color = al_color_name("gray");
 
-std::string left_powerbox_text = powerbar->get_files_are_modified() ? "STAGED" : "FILE MODIFIED";
+std::string left_powerbox_text = powerbar->get_files_are_modified() ? "GREEN" : "FILE MODIFIED";
 std::string center_powerbox_text = powerbar->get_files_are_committed() ? "COMMITTED" : "PENDING COMMIT";
 std::string right_powerbox_text = powerbar->get_commits_are_in_sync_with_remote() ? "IN SYNC" : "OUT OF SYNC";
 

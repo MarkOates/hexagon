@@ -113,7 +113,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , focused_component_name_relative_names()
    , font_bin()
    , hud(display, font_bin)
-   , default_camera_stepback(60)
+   , default_camera_stepback(70)
 {
 }
 
