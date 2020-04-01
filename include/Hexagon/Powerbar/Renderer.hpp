@@ -3,6 +3,7 @@
 
 #include <Hexagon/Powerbar/Powerbar.hpp>
 #include <allegro5/allegro.h>
+#include <string>
 
 
 namespace Hexagon
@@ -21,7 +22,7 @@ namespace Hexagon
          ~Renderer();
 
 
-      void draw_individual_rectangle(float x1=0.0f, float y1=0.0f, float x2=0.0f, float y2=0.0f);
+      void draw_individual_rectangle(float x1=0.0f, float y1=0.0f, float x2=0.0f, float y2=0.0f, std::string text="[-]");
       void render();
       };
    }

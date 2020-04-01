@@ -29,7 +29,7 @@ Renderer::~Renderer()
 }
 
 
-void Renderer::draw_individual_rectangle(float x1, float y1, float x2, float y2)
+void Renderer::draw_individual_rectangle(float x1, float y1, float x2, float y2, std::string text)
 {
 float line_thickness = 3.0f;
 ALLEGRO_COLOR color = al_color_name("gray");
