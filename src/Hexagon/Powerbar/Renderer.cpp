@@ -62,9 +62,9 @@ placement3d place(x, y, 0.0);
 
 place.start_transform();
 
-al_draw_rectangle(-h_width + rectangle_width*-1, -h_height, h_width + rectangle_width*-1, h_height, color, 3.0f);
-al_draw_rectangle(-h_width + rectangle_width*0, -h_height, h_width + rectangle_width*0, h_height, color, 3.0f);
-al_draw_rectangle(-h_width + rectangle_width*1, -h_height, h_width + rectangle_width*1, h_height, color, 3.0f);
+draw_individual_rectangle(-h_width + rectangle_width*-1, -h_height, h_width + rectangle_width*-1, h_height);
+draw_individual_rectangle(-h_width + rectangle_width*0, -h_height, h_width + rectangle_width*0, h_height);
+draw_individual_rectangle(-h_width + rectangle_width*1, -h_height, h_width + rectangle_width*1, h_height);
 
 place.restore_transform();
 
