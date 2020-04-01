@@ -74,9 +74,18 @@ functions:
 
       place.start_transform();
 
-      draw_individual_rectangle(-h_width + rectangle_width*-1, -h_height, h_width + rectangle_width*-1, h_height);
-      draw_individual_rectangle(-h_width + rectangle_width*0, -h_height, h_width + rectangle_width*0, h_height);
-      draw_individual_rectangle(-h_width + rectangle_width*1, -h_height, h_width + rectangle_width*1, h_height);
+      draw_individual_rectangle(-h_width + rectangle_width*-1,
+                                -h_height,
+                                h_width + rectangle_width*-1,
+                                h_height);
+      draw_individual_rectangle(-h_width + rectangle_width*0,
+                                -h_height,
+                                h_width + rectangle_width*0,
+                                h_height);
+      draw_individual_rectangle(-h_width + rectangle_width*1,
+                                -h_height,
+                                h_width + rectangle_width*1,
+                                h_height);
 
       place.restore_transform();
     body_dependency_symbols:
