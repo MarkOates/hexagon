@@ -130,8 +130,16 @@ functions:
         y_cursor++;
       }
 
-      Hexagon::Powerbar::Powerbar powerbar;
-      Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar);
+      bool files_are_staged = true;
+      bool files_are_comitted = true;
+      bool commits_are_in_sync_with_remote = true;
+
+      std::string left_powerbox_text = "left";
+      std::string center_powerbox_text = "center";
+      std::string right_powerbox_text = "right";
+
+      Hexagon::Powerbar::Powerbar powerbar(left_powerbox_text, center_powerbox_text, right_powerbox_text);
+      Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());
       powerbar_renderer.render();
 
       al_restore_state(&previous_target_bitmap_state);
