@@ -99,7 +99,10 @@ return true;
 
 std::string CreateThreeSplitFromComponent::generate_header_filename()
 {
-return project_path + Blast::ProjectComponentFilenameGenerator(component.get_name(), Blast::ProjectComponentFileTypes::HEADER_FILE).generate_filename();
+Blast::ProjectComponentFilenameGenerator filename_generator(
+        component.get_name(),
+        Blast::ProjectComponentFileTypes::HEADER_FILE);
+return project_path + filename_generator.generate_filename();
 
 }
 

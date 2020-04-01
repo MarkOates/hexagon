@@ -83,7 +83,10 @@ functions:
   - name: generate_header_filename
     type: std::string
     body: |
-      return project_path + Blast::ProjectComponentFilenameGenerator(component.get_name(), Blast::ProjectComponentFileTypes::HEADER_FILE).generate_filename();
+      Blast::ProjectComponentFilenameGenerator filename_generator(
+              component.get_name(),
+              Blast::ProjectComponentFileTypes::HEADER_FILE);
+      return project_path + filename_generator.generate_filename();
   - name: generate_source_filename
     type: std::string
     body: |
