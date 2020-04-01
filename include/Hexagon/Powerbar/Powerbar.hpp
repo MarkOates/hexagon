@@ -11,13 +11,17 @@ namespace Hexagon
       class Powerbar
       {
       private:
+         std::string box_1_text;
+         std::string box_2_text;
+         std::string box_3_text;
 
       public:
-         Powerbar();
+         Powerbar(std::string box_1_text="", std::string box_2_text="", std::string box_3_text="");
          ~Powerbar();
 
 
-      std::string run();
+         std::string get_box_1_text();
+         std::string get_box_2_text();
       };
    }
 }

@@ -1,4 +1,13 @@
-functions:
-  - name: run
+properties:
+  - name: box_1_text
     type: std::string
-    body: return "Hello World!";
+    constructor_arg: true
+    getter: true
+  - name: box_2_text
+    type: std::string
+    constructor_arg: true
+    getter: true
+  - name: box_3_text
+    type: std::string
+    constructor_arg: true
+
