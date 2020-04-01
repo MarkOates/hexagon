@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/Powerbar/Renderer.hpp>
+#include <AllegroFlare/Color.hpp>
 #include <sstream>
 #include <allegro_flare/placement3d.h>
 #include <allegro5/allegro.h>
@@ -65,6 +66,7 @@ float x = al_get_display_width(display) * 0.5;
 float y = al_get_display_height(display) - height * 2;
 float width = al_get_display_width(display) * 0.75f;
 float line_thickness = 3.0f;
+ALLEGRO_COLOR background_color = AllegroFlare::color::color(al_color_name("black"), 0.85f);
 ALLEGRO_COLOR color = al_color_name("gray");
 
 std::string left_powerbox_text = powerbar->get_files_are_modified() ? "STAGED" : "FILE MODIFIED";
@@ -80,23 +82,27 @@ float h_width = rectangle_width * 0.5; //width * 0.3333f;
 float h_height = height * 0.5f;
 
 placement3d place(x, y, 0.0);
+place.size.x = width;
+place.size.y = height;
 
 place.start_transform();
 
-draw_individual_rectangle(-h_width + rectangle_width*-1,
-                          -h_height,
-                          h_width + rectangle_width*-1,
-                          h_height,
+al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_color);
+
+draw_individual_rectangle(rectangle_width*0,
+                          0,
+                          rectangle_width*1,
+                          height,
                           left_powerbox_text.c_str());
-draw_individual_rectangle(-h_width + rectangle_width*0,
-                          -h_height,
-                          h_width + rectangle_width*0,
-                          h_height,
+draw_individual_rectangle(rectangle_width*1,
+                          0,
+                          rectangle_width*2,
+                          height,
                           center_powerbox_text.c_str());
-draw_individual_rectangle(-h_width + rectangle_width*1,
-                          -h_height,
-                          h_width + rectangle_width*1,
-                          h_height,
+draw_individual_rectangle(rectangle_width*2,
+                          0,
+                          rectangle_width*3,
+                          height,
                           right_powerbox_text.c_str());
 
 place.restore_transform();
