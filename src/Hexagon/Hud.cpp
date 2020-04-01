@@ -181,15 +181,11 @@ for (auto &notification2 : notifications2)
   y_cursor++;
 }
 
-bool files_are_staged = true;
-bool files_are_comitted = true;
+bool files_are_modified = true;
+bool files_are_committed = true;
 bool commits_are_in_sync_with_remote = true;
 
-std::string left_powerbox_text = "left";
-std::string center_powerbox_text = "center";
-std::string right_powerbox_text = "right";
-
-Hexagon::Powerbar::Powerbar powerbar(left_powerbox_text, center_powerbox_text, right_powerbox_text);
+Hexagon::Powerbar::Powerbar powerbar(files_are_modified, files_are_committed, commits_are_in_sync_with_remote);
 Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());
 powerbar_renderer.render();
 

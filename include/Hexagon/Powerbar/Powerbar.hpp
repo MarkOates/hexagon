@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include <string>
 
 
 namespace Hexagon
@@ -11,18 +10,18 @@ namespace Hexagon
       class Powerbar
       {
       private:
-         std::string box_1_text;
-         std::string box_2_text;
-         std::string box_3_text;
+         bool files_are_modified;
+         bool files_are_committed;
+         bool commits_are_in_sync_with_remote;
 
       public:
-         Powerbar(std::string box_1_text="", std::string box_2_text="", std::string box_3_text="");
+         Powerbar(bool files_are_modified=true, bool files_are_committed=true, bool commits_are_in_sync_with_remote=true);
          ~Powerbar();
 
 
-         std::string get_box_1_text();
-         std::string get_box_2_text();
-         std::string get_box_3_text();
+         bool get_files_are_modified();
+         bool get_files_are_committed();
+         bool get_commits_are_in_sync_with_remote();
       };
    }
 }

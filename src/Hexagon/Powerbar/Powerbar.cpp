@@ -10,10 +10,10 @@ namespace Powerbar
 {
 
 
-Powerbar::Powerbar(std::string box_1_text, std::string box_2_text, std::string box_3_text)
-   : box_1_text(box_1_text)
-   , box_2_text(box_2_text)
-   , box_3_text(box_3_text)
+Powerbar::Powerbar(bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote)
+   : files_are_modified(files_are_modified)
+   , files_are_committed(files_are_committed)
+   , commits_are_in_sync_with_remote(commits_are_in_sync_with_remote)
 {
 }
 
@@ -23,21 +23,21 @@ Powerbar::~Powerbar()
 }
 
 
-std::string Powerbar::get_box_1_text()
+bool Powerbar::get_files_are_modified()
 {
-   return box_1_text;
+   return files_are_modified;
 }
 
 
-std::string Powerbar::get_box_2_text()
+bool Powerbar::get_files_are_committed()
 {
-   return box_2_text;
+   return files_are_committed;
 }
 
 
-std::string Powerbar::get_box_3_text()
+bool Powerbar::get_commits_are_in_sync_with_remote()
 {
-   return box_3_text;
+   return commits_are_in_sync_with_remote;
 }
 
 
