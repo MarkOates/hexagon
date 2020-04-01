@@ -29,6 +29,15 @@ Renderer::~Renderer()
 }
 
 
+void Renderer::draw_individual_rectangle(float x1, float y1, float x2, float y2)
+{
+float line_thickness = 3.0f;
+ALLEGRO_COLOR color = al_color_name("gray");
+al_draw_rectangle(x1, y1, x2, y2, color, line_thickness);
+return;
+
+}
+
 void Renderer::render()
 {
 if (!powerbar)

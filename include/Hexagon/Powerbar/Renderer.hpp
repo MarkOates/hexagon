@@ -21,6 +21,7 @@ namespace Hexagon
          ~Renderer();
 
 
+      void draw_individual_rectangle(float x1=0.0f, float y1=0.0f, float x2=0.0f, float y2=0.0f);
       void render();
       };
    }

@@ -12,6 +12,27 @@ properties:
     init_with: 1000.0f
     constructor_arg: true
 functions:
+  - name: draw_individual_rectangle
+    type: void
+    private: true
+    parameters:
+      - name: x1
+        type: float
+        default_argument: 0.0f
+      - name: y1
+        type: float
+        default_argument: 0.0f
+      - name: x2
+        type: float
+        default_argument: 0.0f
+      - name: y2
+        type: float
+        default_argument: 0.0f
+    body: |
+      float line_thickness = 3.0f;
+      ALLEGRO_COLOR color = al_color_name("gray");
+      al_draw_rectangle(x1, y1, x2, y2, color, line_thickness);
+      return;
   - name: render
     type: void
     body: |
