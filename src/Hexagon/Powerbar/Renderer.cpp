@@ -16,9 +16,10 @@ namespace Powerbar
 {
 
 
-Renderer::Renderer(ALLEGRO_DISPLAY* display, Hexagon::Powerbar::Powerbar* powerbar, float width)
+Renderer::Renderer(ALLEGRO_DISPLAY* display, Hexagon::Powerbar::Powerbar* powerbar, ALLEGRO_FONT* font, float width)
    : display(display)
    , powerbar(powerbar)
+   , font(font)
    , width(width)
 {
 }
@@ -34,6 +35,9 @@ void Renderer::draw_individual_rectangle(float x1, float y1, float x2, float y2,
 float line_thickness = 3.0f;
 ALLEGRO_COLOR color = al_color_name("gray");
 al_draw_rectangle(x1, y1, x2, y2, color, line_thickness);
+
+float font_height = al_get_font_line_height(font);
+al_draw_text(font, color, x1, y1, ALLEGRO_ALIGN_LEFT, text.c_str());
 return;
 
 }
@@ -44,6 +48,12 @@ if (!powerbar)
 {
    std::stringstream error_message;
    error_message << "[Hexagon/Powerbar/Renderer error:] cannot \"" << __FUNCTION__ << "\" with a nullptr powerbar";
+   throw std::runtime_error(error_message.str());
+}
+if (!font)
+{
+   std::stringstream error_message;
+   error_message << "[Hexagon/Powerbar/Renderer error:] cannot "" << __FUNCTION__ << "" with a nullptr font";
    throw std::runtime_error(error_message.str());
 }
 

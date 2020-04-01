@@ -3,6 +3,7 @@
 
 #include <Hexagon/Powerbar/Powerbar.hpp>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
 #include <string>
 
 
@@ -15,10 +16,11 @@ namespace Hexagon
       private:
          ALLEGRO_DISPLAY* display;
          Hexagon::Powerbar::Powerbar* powerbar;
+         ALLEGRO_FONT* font;
          float width;
 
       public:
-         Renderer(ALLEGRO_DISPLAY* display=nullptr, Hexagon::Powerbar::Powerbar* powerbar=nullptr, float width=1000.0f);
+         Renderer(ALLEGRO_DISPLAY* display=nullptr, Hexagon::Powerbar::Powerbar* powerbar=nullptr, ALLEGRO_FONT* font=nullptr, float width=1000.0f);
          ~Renderer();
 
 

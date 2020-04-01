@@ -7,6 +7,10 @@ properties:
     type: Hexagon::Powerbar::Powerbar*
     init_with: nullptr
     constructor_arg: true
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    constructor_arg: true
   - name: width
     type: float
     init_with: 1000.0f
@@ -35,6 +39,9 @@ functions:
       float line_thickness = 3.0f;
       ALLEGRO_COLOR color = al_color_name("gray");
       al_draw_rectangle(x1, y1, x2, y2, color, line_thickness);
+
+      float font_height = al_get_font_line_height(font);
+      al_draw_text(font, color, x1, y1, ALLEGRO_ALIGN_LEFT, text.c_str());
       return;
   - name: render
     type: void
@@ -43,6 +50,12 @@ functions:
       {
          std::stringstream error_message;
          error_message << "[Hexagon/Powerbar/Renderer error:] cannot \"" << __FUNCTION__ << "\" with a nullptr powerbar";
+         throw std::runtime_error(error_message.str());
+      }
+      if (!font)
+      {
+         std::stringstream error_message;
+         error_message << "[Hexagon/Powerbar/Renderer error:] cannot "" << __FUNCTION__ << "" with a nullptr font";
          throw std::runtime_error(error_message.str());
       }
 
@@ -83,6 +96,8 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: Hexagon::Powerbar::Powerbar*
     headers: [ Hexagon/Powerbar/Powerbar.hpp ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_DISPLAY*
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_COLOR

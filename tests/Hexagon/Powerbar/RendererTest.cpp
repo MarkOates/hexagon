@@ -27,9 +27,10 @@ TEST(Hexagon_Powerbar_RendererTest, render__draws_the_powerbar)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(600, 320);
+   ALLEGRO_FONT *font = al_create_builtin_font();
    Hexagon::Powerbar::Powerbar powerbar;
 
-   Hexagon::Powerbar::Renderer renderer(display, &powerbar);
+   Hexagon::Powerbar::Renderer renderer(display, &powerbar, font);
    renderer.render();
 
    al_flip_display();
