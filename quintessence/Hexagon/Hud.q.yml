@@ -30,14 +30,17 @@ properties:
     type: bool
     init_with: false
     constructor_arg: true
+    setter: true
   - name: files_are_committed
     type: bool
     init_with: false
     constructor_arg: true
+    setter: true
   - name: commits_are_in_sync_with_remote
     type: bool
     init_with: false
     constructor_arg: true
+    setter: true
   - name: screen_sub_bitmap
     type: ALLEGRO_BITMAP*
     init_with: "nullptr"
@@ -141,10 +144,6 @@ functions:
                      notification2.c_str());
         y_cursor++;
       }
-
-      bool files_are_modified = true;
-      bool files_are_committed = true;
-      bool commits_are_in_sync_with_remote = true;
 
       Hexagon::Powerbar::Powerbar powerbar(files_are_modified, files_are_committed, commits_are_in_sync_with_remote);
       Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());

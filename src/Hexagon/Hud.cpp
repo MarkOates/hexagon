@@ -52,6 +52,24 @@ void Hud::set_show_disabled_screen(bool show_disabled_screen)
 }
 
 
+void Hud::set_files_are_modified(bool files_are_modified)
+{
+   this->files_are_modified = files_are_modified;
+}
+
+
+void Hud::set_files_are_committed(bool files_are_committed)
+{
+   this->files_are_committed = files_are_committed;
+}
+
+
+void Hud::set_commits_are_in_sync_with_remote(bool commits_are_in_sync_with_remote)
+{
+   this->commits_are_in_sync_with_remote = commits_are_in_sync_with_remote;
+}
+
+
 void Hud::set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap)
 {
    this->screen_sub_bitmap = screen_sub_bitmap;
@@ -183,10 +201,6 @@ for (auto &notification2 : notifications2)
                notification2.c_str());
   y_cursor++;
 }
-
-bool files_are_modified = true;
-bool files_are_committed = true;
-bool commits_are_in_sync_with_remote = true;
 
 Hexagon::Powerbar::Powerbar powerbar(files_are_modified, files_are_committed, commits_are_in_sync_with_remote);
 Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());

@@ -32,6 +32,9 @@ namespace Hexagon
 
       void set_title_text(std::string title_text);
       void set_show_disabled_screen(bool show_disabled_screen);
+      void set_files_are_modified(bool files_are_modified);
+      void set_files_are_committed(bool files_are_committed);
+      void set_commits_are_in_sync_with_remote(bool commits_are_in_sync_with_remote);
       void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
       void set_notifications(std::vector<std::string> notifications);
       void set_notifications2(std::vector<std::string> notifications2);
