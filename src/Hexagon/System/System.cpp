@@ -1177,9 +1177,17 @@ void System::process_event(ALLEGRO_EVENT &event)
           ROTATE_RELATIVE_DOWN,
           CENTER_CAMERA_ON_FRONTMOST_STAGE,
           FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, { SAVE_CURRENT_STAGE, RUN_PROJECT_TESTS });
-      //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, { SAVE_CURRENT_STAGE, CLEAR_RERUN_OUTPUT_WATCHERS, REFRESH_RERUN_OUTPUT_WATCHERS });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, { SAVE_CURRENT_STAGE, CLEAR_LAST_COMPILED_ERROR_MESSAGES, RUN_MAKE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, {
+          SAVE_CURRENT_STAGE,
+          RUN_PROJECT_TESTS });
+      //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, {
+      //    SAVE_CURRENT_STAGE,
+      //    CLEAR_RERUN_OUTPUT_WATCHERS,
+      //    REFRESH_RERUN_OUTPUT_WATCHERS });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, {
+          SAVE_CURRENT_STAGE,
+          CLEAR_LAST_COMPILED_ERROR_MESSAGES,
+          RUN_MAKE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, { SPAWN_FILE_NAVIGATOR });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, { SPAWN_COMPONENT_NAVIGATOR });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_8, true, true, false, false, { EXECUTE_MAGIC_COMMAND });
