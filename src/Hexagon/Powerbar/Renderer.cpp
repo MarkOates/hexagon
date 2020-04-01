@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/Powerbar/Renderer.hpp>
+#include <sstream>
 #include <allegro_flare/placement3d.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro.h>
@@ -30,6 +31,13 @@ Renderer::~Renderer()
 
 void Renderer::render()
 {
+if (!powerbar)
+{
+   std::stringstream error_message;
+   error_message << "[Hexagon/Powerbar/Renderer error:] cannot \"" << __FUNCTION__ << "\" with a nullptr powerbar";
+   throw std::runtime_error(error_message.str());
+}
+
 float height = 40;
 float x = al_get_display_width(display) * 0.5;
 float y = al_get_display_height(display) - height * 2;

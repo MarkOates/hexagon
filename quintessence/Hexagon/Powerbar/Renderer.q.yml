@@ -15,6 +15,13 @@ functions:
   - name: render
     type: void
     body: |
+      if (!powerbar)
+      {
+         std::stringstream error_message;
+         error_message << "[Hexagon/Powerbar/Renderer error:] cannot \"" << __FUNCTION__ << "\" with a nullptr powerbar";
+         throw std::runtime_error(error_message.str());
+      }
+
       float height = 40;
       float x = al_get_display_width(display) * 0.5;
       float y = al_get_display_height(display) - height * 2;
@@ -36,6 +43,7 @@ functions:
 
       place.restore_transform();
     body_dependency_symbols:
+      - std::stringstream
       - allegro_flare::placement3d
       - al_get_display_width
       - al_get_display_height
