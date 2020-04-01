@@ -53,7 +53,7 @@ if (!powerbar)
 if (!font)
 {
    std::stringstream error_message;
-   error_message << "[Hexagon/Powerbar/Renderer error:] cannot "" << __FUNCTION__ << "" with a nullptr font";
+   error_message << "[Hexagon/Powerbar/Renderer error:] cannot \"" << __FUNCTION__ << "\" with a nullptr font";
    throw std::runtime_error(error_message.str());
 }
 
