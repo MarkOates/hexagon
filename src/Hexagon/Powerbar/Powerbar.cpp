@@ -35,6 +35,12 @@ std::string Powerbar::get_box_2_text()
 }
 
 
+std::string Powerbar::get_box_3_text()
+{
+   return box_3_text;
+}
+
+
 } // namespace Powerbar
 } // namespace Hexagon
 

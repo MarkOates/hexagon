@@ -63,6 +63,9 @@ float y = al_get_display_height(display) - height * 2;
 float width = al_get_display_width(display) * 0.75f;
 float line_thickness = 3.0f;
 ALLEGRO_COLOR color = al_color_name("gray");
+std::string left_box_text = powerbar->get_box_1_text();
+std::string center_box_text = powerbar->get_box_2_text();
+std::string right_box_text = powerbar->get_box_3_text();
 
 float rectangle_width = width * 0.3333f;
 float h_width = rectangle_width * 0.5; //width * 0.3333f;
@@ -72,9 +75,21 @@ placement3d place(x, y, 0.0);
 
 place.start_transform();
 
-draw_individual_rectangle(-h_width + rectangle_width*-1, -h_height, h_width + rectangle_width*-1, h_height);
-draw_individual_rectangle(-h_width + rectangle_width*0, -h_height, h_width + rectangle_width*0, h_height);
-draw_individual_rectangle(-h_width + rectangle_width*1, -h_height, h_width + rectangle_width*1, h_height);
+draw_individual_rectangle(-h_width + rectangle_width*-1,
+                          -h_height,
+                          h_width + rectangle_width*-1,
+                          h_height,
+                          left_box_text.c_str());
+draw_individual_rectangle(-h_width + rectangle_width*0,
+                          -h_height,
+                          h_width + rectangle_width*0,
+                          h_height,
+                          center_box_text.c_str());
+draw_individual_rectangle(-h_width + rectangle_width*1,
+                          -h_height,
+                          h_width + rectangle_width*1,
+                          h_height,
+                          right_box_text.c_str());
 
 place.restore_transform();
 

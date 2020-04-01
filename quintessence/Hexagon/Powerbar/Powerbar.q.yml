@@ -10,4 +10,5 @@ properties:
   - name: box_3_text
     type: std::string
     constructor_arg: true
+    getter: true
 

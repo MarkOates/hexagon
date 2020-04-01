@@ -22,6 +22,7 @@ namespace Hexagon
 
          std::string get_box_1_text();
          std::string get_box_2_text();
+         std::string get_box_3_text();
       };
    }
 }
