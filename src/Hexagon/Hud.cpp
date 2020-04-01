@@ -182,7 +182,7 @@ for (auto &notification2 : notifications2)
 }
 
 Hexagon::Powerbar::Powerbar powerbar;
-Hexagon::Powerbar::Renderer powerbar_renderer(&powerbar);
+Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar);
 powerbar_renderer.render();
 
 al_restore_state(&previous_target_bitmap_state);
