@@ -463,10 +463,9 @@ bool Stage::split_lines()
 
 bool Stage::delete_line()
 {
-   // TODO: this function needs to
-   // 1) not delete if the cursor is out of range, and return false
-   int range_safe_y = std::min(std::max(0, cursor_y), (int)lines.size());
-   lines.erase(lines.begin()+range_safe_y);
+   if (cursor_y < 0 || cursor_y >= lines.size()) return false;
+
+   lines.erase(lines.begin()+cursor_y);
    mark_content_is_modified();
    return true;
 }

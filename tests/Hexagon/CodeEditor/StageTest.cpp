@@ -160,3 +160,14 @@ TEST(Hexagon_CodeEditor_StageTest, delete_line__removes_the_current_line)
    ASSERT_TRUE(stage.get_content_is_modified());
 }
 
+TEST(Hexagon_CodeEditor_StageTest, delete_line__on_an_invalid_line__does_nothing_and_returns_false)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   stage.set_cursor_y(stage.num_lines()+1);
+
+   EXPECT_EQ(false, stage.delete_line());
+   EXPECT_EQ(16, stage.num_lines());
+}
+
