@@ -122,6 +122,7 @@ public:
    bool execute_magic_command();
    bool submit_current_modal();
    bool escape_current_modal();
+   bool open_hexagon_config_file();
    //bool spawn_keyboard_inputs_modal();
    bool clear_last_compiled_error_messages();
 

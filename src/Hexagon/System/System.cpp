@@ -41,6 +41,7 @@
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
+#include <Hexagon/System/Action/OpenConfigFile.hpp>
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/shared_globals.hpp>
@@ -1051,6 +1052,12 @@ bool System::escape_current_modal()
 {
    process_local_event(DESTROY_TOPMOST_STAGE);
    return true;
+}
+
+bool System::open_hexagon_config_file()
+{
+   Hexagon::System::Action::OpenConfigFile open_config_file;
+   return open_config_file.managed_execute();
 }
 
 //bool System::spawn_keyboard_inputs_modal()

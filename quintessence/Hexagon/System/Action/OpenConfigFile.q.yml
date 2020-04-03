@@ -1,0 +1,13 @@
+parent_classes:
+  - class: ::Action
+    scope: public
+    init_with: "\"System::Action::OpenConfigFile\", ActionData()"
+functions:
+  - name: execute
+    type: bool
+    body: |
+      return true;
+dependencies:
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]
+
