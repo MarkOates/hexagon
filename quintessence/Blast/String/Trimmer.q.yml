@@ -1,0 +1,43 @@
+properties:
+  - name: text
+    type: std::string
+    init_with: "\"\""
+    constructor_arg: true
+
+functions:
+  - name: trim
+    type: std::string
+    body: |
+      std::string s1 = text;
+      std::string s2 = rtrim(s1);
+      std::string s3 = ltrim(s2);
+      return s3;
+
+  - name: ltrim
+    private: true
+    type: std::string
+    parameters:
+      - name: s
+        type: std::string
+        default_argument: "\"\""
+    body: |
+      s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int c) {return !std::isspace(c);}));
+      return s;
+    body_dependency_symbols:
+      - std::find_if
+
+  - name: rtrim
+    private: true
+    type: std::string
+    parameters:
+      - name: s
+        type: std::string
+        default_argument: "\"\""
+    body: |
+      s.erase(std::find_if(s.rbegin(), s.rend(), [](int c) {return !std::isspace(c);}).base(), s.end());
+      return s;
+
+dependencies:
+  - symbol: std::find_if
+    headers: [ algorithm ]
+
