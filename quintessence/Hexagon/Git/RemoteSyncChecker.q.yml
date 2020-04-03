@@ -1,4 +1,23 @@
-functions:
-  - name: run
+properties:
+  - name: repo_name
+    getter: true
+    init_with: "\"blast\""
+    constructor_arg: true
+  - name: repos_directory
     type: std::string
-    body: return "Hello World!";
+    getter: true
+    init_with: "\"~/Repos\""
+    constructor_arg: true
+
+functions:
+  - name: is_in_sync_with_remote
+    type: bool
+    body: |
+      NcursesArt::GithubRepoStatusFetcher fetcher;
+      return false;
+    body_dependency_symbols:
+      - NcursesArt::GithubRepoStatusFetcher
+
+dependencies:
+  - symbol: NcursesArt::GithubRepoStatusFetcher
+    headers: [ NcursesArt/GithubRepoStatusFetcher.hpp ]
