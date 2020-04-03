@@ -788,7 +788,10 @@ bool Stage::set_current_selection_end_y(int y)
 
 bool Stage::yank_selected_text_to_clipboard()
 {
-   if (selections.empty()) throw std::runtime_error(">BOOM< cannot yank selected text; No text selection is currently active");
+   if (selections.empty())
+   {
+      throw std::runtime_error(">BOOM< cannot yank selected text; No text selection is currently active");
+   }
    std::vector<std::string> extracted_selection = CodeRangeExtractor(get_lines_ref(), selections.back()).extract();
    ClipboardData::store(extracted_selection);
    return true;
