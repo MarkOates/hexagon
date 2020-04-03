@@ -901,6 +901,8 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
 
    std::string filename = last_file_navigator_selection;
 
+   ///
+
    float stage_width = get_default_code_editor_stage_width();
 
    // validate the selected path is a valid file
@@ -908,7 +910,9 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
    if (!fs_entry)
    {
       std::stringstream error_message;
-      error_message << "Could not attempt_to_create_stage_from_last_file_navigator_selection: fs_entry could not be created. al_get_errno() returned with " << al_get_errno() << std::endl;
+      error_message << "Could not attempt_to_create_stage_from_last_file_navigator_selection: "
+                    << "fs_entry could not be created. al_get_errno() returned with "
+                    << al_get_errno() << std::endl;
       throw std::runtime_error(error_message.str().c_str());
    }
    FileSystemNode file_system_node(fs_entry);
@@ -939,8 +943,6 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
       //throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented to open a file");
    }
 
-   // create a new stage
-   //std::string
    return true;
 }
 
