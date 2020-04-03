@@ -20,3 +20,17 @@ TEST(Hexagon_Git_RemoteSyncCheckerTest, repos_directory__has_a_getter_and_the_ex
    EXPECT_EQ("~/Repos", remote_sync_checker.get_repos_directory());
 }
 
+//TEST(Hexagon_Git_RemoteSyncCheckerTest, is_in_sync_with_remote__returns_true_when_the_repo_is_in_sync)
+//{
+//   std::string repo_that_is_expected_to_be_in_sync = "blast";
+//   Hexagon::Git::RemoteSyncChecker remote_sync_checker(repo_that_is_expected_to_be_in_sync);
+//   EXPECT_EQ(true, remote_sync_checker.is_in_sync_with_remote());
+//}
+
+//TEST(Hexagon_Git_RemoteSyncCheckerTest, is_in_sync_with_remote__returns_false_when_the_repo_is_not_in_sync)
+//{
+//   std::string repo_that_is_expected_to_be_out_of_sync = "hexagon";
+//   Hexagon::Git::RemoteSyncChecker remote_sync_checker(repo_that_is_expected_to_be_out_of_sync);
+//   EXPECT_EQ(false, remote_sync_checker.is_in_sync_with_remote());
+//}
+
