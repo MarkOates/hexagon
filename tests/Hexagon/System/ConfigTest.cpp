@@ -14,15 +14,15 @@ static const std::string TEST_FIXTURE_DIRECTORY_ROOT = "/Users/markoates/Repos/h
 static const std::string TEST_FIXTURE_EMPTY_CONFIG_FILENAME = TEST_FIXTURE_DIRECTORY_ROOT + "hexagon.empty.cfg";
 static const std::string TEST_FIXTURE_CONFIG_FILENAME = TEST_FIXTURE_DIRECTORY_ROOT + "hexagon.test.cfg";
 
-TEST(Hexagon_System_ConfigTest, can_be_created_without_blowing_up)
-{
-   Hexagon::System::Config config;
-}
-
 TEST(Hexagon_System_ConfigTest, expected_fixture_files_exist)
 {
    ASSERT_EQ(true, Blast::FileExistenceChecker(TEST_FIXTURE_EMPTY_CONFIG_FILENAME).exists());
    ASSERT_EQ(true, Blast::FileExistenceChecker(TEST_FIXTURE_CONFIG_FILENAME).exists());
+}
+
+TEST(Hexagon_System_ConfigTest, can_be_created_without_blowing_up)
+{
+   Hexagon::System::Config config;
 }
 
 TEST(DISABLED_Hexagon_System_ConfigTest, initialize__can_be_called_multiple_times_without_side_effects)
