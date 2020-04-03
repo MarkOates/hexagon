@@ -25,6 +25,17 @@ TEST(Hexagon_System_ConfigTest, can_be_created_without_blowing_up)
    Hexagon::System::Config config;
 }
 
+TEST(Hexagon_System_ConfigTest, config_filename__has_a_getter_with_the_expected_default)
+{
+   Hexagon::System::Config config;
+
+   std::string expected_default_config_filename =
+      "/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg";
+   std::string actual_default_config_filename = config.get_config_filename();
+
+   EXPECT_EQ(expected_default_config_filename, actual_default_config_filename);
+}
+
 TEST(DISABLED_Hexagon_System_ConfigTest, initialize__can_be_called_multiple_times_without_side_effects)
 {
    al_init();

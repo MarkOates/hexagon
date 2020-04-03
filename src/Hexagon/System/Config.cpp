@@ -32,6 +32,12 @@ Config::~Config()
 }
 
 
+std::string Config::get_config_filename()
+{
+   return config_filename;
+}
+
+
 void Config::validate_initialized(std::string function_name)
 {
 if (!initialized)

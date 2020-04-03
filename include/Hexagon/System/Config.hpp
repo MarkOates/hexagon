@@ -24,6 +24,7 @@ namespace Hexagon
          ~Config();
 
 
+         std::string get_config_filename();
       void validate_initialized(std::string function_name="[unnamed_function]");
       void initialize();
       int get_initial_display_width();
