@@ -13,8 +13,8 @@ functions:
   - name: is_in_sync_with_remote
     type: bool
     body: |
-      NcursesArt::GithubRepoStatusFetcher fetcher;
-      return false;
+      NcursesArt::GithubRepoStatusFetcher fetcher(repo_name, repos_directory);
+      return fetcher.is_the_repo_in_sync_with_remote();
     body_dependency_symbols:
       - NcursesArt::GithubRepoStatusFetcher
 
