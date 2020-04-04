@@ -390,9 +390,32 @@ bool System::fx__play_focus_animation_on_frontmost_stage()
       return false;
    }
 
-   placement3d &stage_place = frontmost_stage->get_place();
+   for (auto &stage : stages)
+   {
+      placement3d &stage_place = stage->get_place();
+      float unfocused_zoom = -70.0f;
+      float focused_zoom = -50.0f;
+      float duration = 0.3f;
 
-   motion.canimate(&stage_place.position.z, stage_place.position.z-10, stage_place.scale.x, al_get_time(), al_get_time()+0.3, interpolator::double_fast_in, nullptr, nullptr);
+      if (stage == frontmost_stage)
+      {
+         motion.cmove_to(&stage_place.position.z,
+                         focused_zoom,
+                         duration,
+                         interpolator::double_fast_in,
+                         nullptr,
+                         nullptr);
+      }
+      else
+      {
+         motion.cmove_to(&stage_place.position.z,
+                         unfocused_zoom,
+                         duration,
+                         interpolator::double_fast_in,
+                         nullptr,
+                         nullptr);
+      }
+   }
 
    return true;
 }
