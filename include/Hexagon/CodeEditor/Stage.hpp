@@ -38,6 +38,7 @@ namespace CodeEditor
       mode_t mode;
 
       std::string filename;
+      std::string file_category;
 
       int first_line_number;
 
@@ -46,13 +47,14 @@ namespace CodeEditor
       void unmark_content_is_modified();
 
    public:
-      Stage(std::string filename, mode_t mode=EDIT, type_t type=CODE_EDITOR);
+      Stage(std::string filename, std::string file_category="undefined", mode_t mode=EDIT, type_t type=CODE_EDITOR);
       ~Stage();
       // accessors
 
       void set_cursor_x(int cursor_x);
       void set_cursor_y(int cursor_y);
       std::string get_filename();
+      std::string get_file_category();
       bool set_initial_content(std::string content);
       bool set_initial_content(std::vector<std::string> content);
       bool set_content(std::string content);

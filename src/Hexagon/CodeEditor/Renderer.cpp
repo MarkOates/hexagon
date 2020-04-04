@@ -282,7 +282,15 @@ void Renderer::render_raw()
 void Renderer::render_info_overlay()
 {
    Hexagon::Elements::StageInfoOverlay info_overlay(font, &stage->get_place());
-   info_overlay.set_text("hello");
+   std::string text_to_display = "";
+
+   std::string file_category = stage->get_file_category();
+   if (file_category == "undefined")
+   {
+      text_to_display = " --- ";
+   }
+
+   info_overlay.set_text(text_to_display);
    info_overlay.render();
 }
 

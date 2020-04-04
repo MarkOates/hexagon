@@ -25,6 +25,14 @@ TEST(Hexagon_CodeEditor_StageTest, can_be_created_without_blowing_up)
    CodeEditor::Stage stage("foobar_filename.txt");
 }
 
+TEST(Hexagon_CodeEditor_StageTest, file_category__has_a_getter_and_has_the_expected_default)
+{
+   CodeEditor::Stage stage("foobar_filename.txt");
+   std::string expected_default_file_category = "undefined";
+   std::string actual_default_file_category = stage.get_file_category();
+   ASSERT_EQ(expected_default_file_category, actual_default_file_category);
+}
+
 TEST(Hexagon_CodeEditor_StageTest,
    infer_cursor_is_on_line_that_exists__returns_true_when_the_cursor_is_within_the_range_of_number_of_lines)
 {

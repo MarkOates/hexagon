@@ -24,7 +24,7 @@ namespace CodeEditor
 
 
 
-Stage::Stage(std::string filename, mode_t mode, type_t type)
+Stage::Stage(std::string filename, std::string file_category, mode_t mode, type_t type)
    : StageInterface(type)
    , content_is_modified(false)
    , cursor_x(0)
@@ -32,6 +32,7 @@ Stage::Stage(std::string filename, mode_t mode, type_t type)
    , mode(mode)
    //, type(type)
    , filename(filename)
+   , file_category(file_category)
    //, place(place)
    , first_line_number(0)
    , code_message_points_overlays()
@@ -88,6 +89,13 @@ void Stage::set_cursor_y(int cursor_y)
 std::string Stage::get_filename()
 {
    return filename;
+}
+
+
+
+std::string Stage::get_file_category()
+{
+   return file_category;
 }
 
 

@@ -601,7 +601,7 @@ bool System::spawn_regex_input_box_modal()
    place.scale = vec3d(1.4, 1.4, 1.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
 
-   CodeEditor::Stage *stage = new CodeEditor::Stage(REGEX_TEMP_FILENAME, CodeEditor::Stage::EDIT, CodeEditor::Stage::ONE_LINE_INPUT_BOX); // TODO: extract this one line input box from CodeEditor
+   CodeEditor::Stage *stage = new CodeEditor::Stage(REGEX_TEMP_FILENAME, "input_box", CodeEditor::Stage::EDIT, CodeEditor::Stage::ONE_LINE_INPUT_BOX); // TODO: extract this one line input box from CodeEditor
    stage->set_place(place);
    stages.push_back(stage);
 
