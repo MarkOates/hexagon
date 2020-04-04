@@ -393,8 +393,8 @@ bool System::fx__play_focus_animation_on_frontmost_stage()
    for (auto &stage : stages)
    {
       placement3d &stage_place = stage->get_place();
-      float unfocused_zoom = -70.0f;
-      float focused_zoom = -50.0f;
+      float unfocused_zoom = 0.0f;
+      float focused_zoom = 0.0f;
       float duration = 0.3f;
 
       if (stage == frontmost_stage)
