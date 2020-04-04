@@ -80,7 +80,7 @@ if (!stages)
  stage->set_content(file_contents);
  stages->push_back(stage);
 
- //throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented to open a file");
+ return true;
 
 }
 } // namespace Action
