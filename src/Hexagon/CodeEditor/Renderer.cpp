@@ -327,11 +327,11 @@ void Renderer::render()
    render_cache.finish_surface();
 
    placement3d place = stage_place;
-   if (!is_focused)
-   {
-      place.position.z -= 50;
+   //if (!is_focused)
+   //{
+      //place.position.z -= 50;
       //place.rotation.y += 0.01f;
-   }
+   //}
 
    place.start_transform();
    render_cache.draw(0, 0);

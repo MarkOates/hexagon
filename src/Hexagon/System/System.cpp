@@ -1184,6 +1184,7 @@ void System::process_event(ALLEGRO_EVENT &event)
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, true, { ROTATE_STAGE_RIGHT, CENTER_CAMERA_ON_FRONTMOST_STAGE, FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false, {
           OPEN_HEXAGON_CONFIG_FILE,
+          CENTER_CAMERA_ON_FRONTMOST_STAGE,
           });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, true, false, false, true, {
           ROTATE_RELATIVE_UP,
