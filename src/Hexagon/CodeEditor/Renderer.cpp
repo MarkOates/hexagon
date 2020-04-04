@@ -158,6 +158,17 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
       code_message_points_overlay.render(font, first_line_number, al_get_font_line_height(font), cursor_x, _cursor_y);
    }
 
+   if (draw_null_space)
+   {
+      float null_space_x1 = 0;
+      float null_space_y1 = lines_rendered_count * cell_height;
+      float null_space_x2 = place.size.x;
+      float null_space_y2 = place.size.y;
+      ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
+      //ALLEGRO_COLOR null_space_color = AllegroFlare::color::mix(al_color_name("firebrick"), al_color_name("black"), 0.5);;
+      ALLEGRO_COLOR null_space_color = AllegroFlare::color::color(epic_green_color, 0.03);
+      al_draw_filled_rectangle(null_space_x1, null_space_y1, null_space_x2, null_space_y2, null_space_color);
+   }
 
    Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_color, cursor_x, _cursor_y, _cell_width, cell_height, mode, is_focused);
    cursor_renderer.render();
@@ -277,6 +288,7 @@ Renderer::Renderer(bool draw_line_numbers, bool is_focused, CodeEditor::Stage *s
    : Hexagon::RendererInterface()
    , draw_line_numbers(draw_line_numbers)
    , draw_extra_spaces_at_end_of_line(true)
+   , draw_null_space(true)
    , is_focused(is_focused)
    , is_showing_info(false)
    , stage(stage)
