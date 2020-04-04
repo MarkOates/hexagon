@@ -126,7 +126,10 @@ return fonts["Eurostile.ttf -22"];
 void Hud::initialize()
 {
 if (initialized) return;
-if (!display) throw std::runtime_error("[Hud::initialize()] Cannot initialize Hud with a nullptr screen_sub_bitmap");
+if (!display)
+{
+   throw std::runtime_error("[Hud::initialize()] Cannot initialize Hud with a nullptr screen_sub_bitmap");
+}
 
 ALLEGRO_BITMAP *backbuffer = al_get_backbuffer(display);
 ALLEGRO_BITMAP *hud_screen_sub_bitmap = al_create_sub_bitmap(backbuffer, 0, 0, al_get_bitmap_width(backbuffer), al_get_bitmap_height(backbuffer));
