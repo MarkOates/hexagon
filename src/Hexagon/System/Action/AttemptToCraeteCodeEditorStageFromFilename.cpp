@@ -62,7 +62,11 @@ if (!stages)
 }
 
  std::vector<std::string> file_contents = {};
- if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
+ if (!::read_file(file_contents, filename))
+ {
+    //TODO: improve this error message
+    throw std::runtime_error("Could not open the selected file");
+ }
 
  //int number_of_files = get_number_of_code_editor_stages();
  //float one_third_screen_width = get_display_default_width() / 3;

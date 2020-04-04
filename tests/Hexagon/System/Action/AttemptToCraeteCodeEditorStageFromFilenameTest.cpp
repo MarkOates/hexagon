@@ -31,9 +31,19 @@ TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest, execu
    ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
 }
 
-TEST(DISABLED_Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
+TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
    execute__on_a_file_that_does_not_exist__throws_an_error)
 {
+   std::vector<StageInterface *> stages = {};
+   Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+      "file_that_does_not_exist.txt",
+      300,
+      200,
+      100,
+      &stages);
+
+   std::string expected_error_message = "Could not open the selected file";
+   ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
 }
 
 TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
