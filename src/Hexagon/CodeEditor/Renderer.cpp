@@ -42,6 +42,7 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
    float _cell_height = cell_height;
    CodeEditor::Stage::mode_t mode = stage->get_mode();
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
+   bool not_focused = !is_focused;
 
 
    // draw code range selection hilight box(es);
@@ -307,12 +308,19 @@ Renderer::~Renderer() {}
 
 void Renderer::render()
 {
-   placement3d &place = stage->get_place();
+   placement3d &stage_place = stage->get_place();
 
-   render_cache.setup_surface(place.size.x, place.size.y);
+   render_cache.setup_surface(stage_place.size.x, stage_place.size.y);
    render_raw();
    if (is_showing_info) render_info_overlay();
    render_cache.finish_surface();
+
+   placement3d place = stage_place;
+   if (!is_focused)
+   {
+      place.position.z -= 50;
+      place.rotation.y += 0.01f;
+   }
 
    place.start_transform();
    render_cache.draw(0, 0);
