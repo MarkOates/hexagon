@@ -1100,6 +1100,7 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
       else if (event_name == CENTER_CAMERA_ON_FRONTMOST_STAGE) { center_camera_on_frontmost_stage(); executed = true; }
       else if (event_name == DESTROY_TOPMOST_STAGE) { destroy_topmost_stage(); executed = true; }
+      else if (event_name == OPEN_HEXAGON_CONFIG_FILE) { open_hexagon_config_file(); executed = true; }
       else if (event_name == DESTROY_ALL_CODE_EDITOR_STAGES) { destroy_all_code_editor_stages(); executed = true; }
       else if (event_name == ESCAPE_CURRENT_MODAL) { escape_current_modal(); executed = true; }
       else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { jump_to_next_code_point_on_stage(); executed = true; }
@@ -1275,6 +1276,7 @@ std::string System::get_action_description(std::string action_identifier)
       { System::REFRESH_REGEX_HILIGHTS_ON_STAGE, "" },
       { System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE, "" },
       { System::ADD_FILE_IS_UNSAVED_NOTIFICATION, "" },
+      { System::OPEN_HEXAGON_CONFIG_FILE, "" },
       { System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION, "" },
       { System::TOGGLE_COMMAND_MODE_ON, "" },
       { System::TOGGLE_COMMAND_MODE_OFF, "" },
@@ -1315,6 +1317,7 @@ std::string System::get_action_description(std::string action_identifier)
 }
 
 
+const std::string System::OPEN_HEXAGON_CONFIG_FILE = "OPEN_HEXAGON_CONFIG_FILE";
 const std::string System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE = "WRITE_FOCUSED_COMPONENT_NAME_TO_FILE";
 const std::string System::ADD_FILE_IS_UNSAVED_NOTIFICATION = "ADD_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_UNSAVED_NOTIFICATION";

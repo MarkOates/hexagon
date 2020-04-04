@@ -131,6 +131,7 @@ public:
    bool fx__play_focus_animation_on_frontmost_stage();
 
    // events
+   static const std::string OPEN_HEXAGON_CONFIG_FILE;
    static const std::string WRITE_FOCUSED_COMPONENT_NAME_TO_FILE;
    static const std::string ADD_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;

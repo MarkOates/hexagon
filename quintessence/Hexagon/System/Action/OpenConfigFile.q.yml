@@ -12,7 +12,7 @@ functions:
   - name: execute
     type: bool
     body: |
-      Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action;
+      Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(config_filename);
       return action.execute();
     body_dependency_symbols:
       - Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename

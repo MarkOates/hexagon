@@ -32,7 +32,7 @@ std::string OpenConfigFile::get_config_filename()
 
 bool OpenConfigFile::execute()
 {
-Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action;
+Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(config_filename);
 return action.execute();
 
 }
