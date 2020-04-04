@@ -76,9 +76,10 @@ bool read_file(std::vector<std::string> &lines, std::string filename)
       std::string line;
       while (getline(file, line)) { lines.push_back(line); }
       file.close();
+      return true;
    }
 
-   return true;
+   return false;
 }
 
 bool save_file(std::vector<std::string> &lines, std::string filename)
