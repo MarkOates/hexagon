@@ -385,7 +385,8 @@ bool System::fx__play_focus_animation_on_frontmost_stage()
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage)
    {
-      std::cout << "Warning: attempting to infer if is_current_stage_a_regex_input_box() but no frontmost stage exists" << std::endl;
+      std::cout << "Warning: attempting to infer if is_current_stage_a_regex_input_box() "
+                << "but no frontmost stage exists" << std::endl;
       return false;
    }
 
