@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/Action.hpp>
+#include <Hexagon/System/Config.hpp>
 
 
 namespace Hexagon
@@ -13,6 +14,7 @@ namespace Hexagon
          class OpenConfigFile : public ::Action
          {
          private:
+            Hexagon::System::Config* config;
 
          public:
             OpenConfigFile();

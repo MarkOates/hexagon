@@ -14,6 +14,7 @@ namespace Action
 
 OpenConfigFile::OpenConfigFile()
    : ::Action("System::Action::OpenConfigFile", ActionData())
+   , config(nullptr)
 {
 }
 

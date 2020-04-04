@@ -2,6 +2,10 @@ parent_classes:
   - class: ::Action
     scope: public
     init_with: "\"System::Action::OpenConfigFile\", ActionData()"
+properties:
+  - name: config
+    type: Hexagon::System::Config*
+    init_with: nullptr
 functions:
   - name: execute
     type: bool
@@ -13,6 +17,8 @@ functions:
 dependencies:
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
+  - symbol: Hexagon::System::Config*
+    headers: [ Hexagon/System/Config.hpp ]
   - symbol: Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename
     headers: [ Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp ]
 
