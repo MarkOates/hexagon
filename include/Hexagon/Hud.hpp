@@ -46,6 +46,7 @@ namespace Hexagon
    static AllegroFlare::FontBin& get_dummy_font_bin();
    ALLEGRO_FONT* obtain_text_font();
    void initialize();
+   void reinitialize();
    void draw_current_focus_name();
    void draw();
    };
