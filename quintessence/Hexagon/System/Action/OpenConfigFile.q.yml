@@ -6,8 +6,13 @@ functions:
   - name: execute
     type: bool
     body: |
-      return true;
+      Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action;
+      return action.execute();
+    body_dependency_symbols:
+      - Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename
 dependencies:
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
+  - symbol: Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename
+    headers: [ Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp ]
 

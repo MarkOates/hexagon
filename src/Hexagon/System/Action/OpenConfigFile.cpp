@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/System/Action/OpenConfigFile.hpp>
-
+#include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
 
 
 namespace Hexagon
@@ -25,7 +25,8 @@ OpenConfigFile::~OpenConfigFile()
 
 bool OpenConfigFile::execute()
 {
-return true;
+Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action;
+return action.execute();
 
 }
 } // namespace Action
