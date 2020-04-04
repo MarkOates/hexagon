@@ -21,6 +21,27 @@ namespace CodeEditor
 
 
 
+Renderer::Renderer(bool draw_line_numbers, bool is_focused, CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
+   : Hexagon::RendererInterface()
+   , draw_line_numbers(draw_line_numbers)
+   , draw_extra_spaces_at_end_of_line(true)
+   , draw_null_space(true)
+   , is_focused(is_focused)
+   , is_showing_info(false)
+   , stage(stage)
+   , font(font)
+   , display(display)
+   , render_cache()
+   , cell_width(cell_width)
+   , cell_height(cell_height)
+{}
+
+
+
+Renderer::~Renderer() {}
+
+
+
 void Renderer::draw_selections(int cell_width, int cell_height)
 {
    for (auto &selection : stage->selections)
@@ -288,27 +309,6 @@ void Renderer::render_cursor_position_info()
                 ALLEGRO_ALIGN_RIGHT,
                 cursor_position_info.str().c_str());
 }
-
-
-
-Renderer::Renderer(bool draw_line_numbers, bool is_focused, CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
-   : Hexagon::RendererInterface()
-   , draw_line_numbers(draw_line_numbers)
-   , draw_extra_spaces_at_end_of_line(true)
-   , draw_null_space(true)
-   , is_focused(is_focused)
-   , is_showing_info(false)
-   , stage(stage)
-   , font(font)
-   , display(display)
-   , render_cache()
-   , cell_width(cell_width)
-   , cell_height(cell_height)
-{}
-
-
-
-Renderer::~Renderer() {}
 
 
 
