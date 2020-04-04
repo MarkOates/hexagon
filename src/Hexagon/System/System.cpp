@@ -1073,8 +1073,16 @@ bool System::escape_current_modal()
 
 bool System::open_hexagon_config_file()
 {
-   Hexagon::System::Action::OpenConfigFile open_config_file;
-   return open_config_file.managed_execute();
+   std::string config_filename = config.get_config_filename();
+   Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+      config_filename,
+      300,
+      200,
+      100,
+      &stages
+      );
+
+   return action.managed_execute();
 }
 
 //bool System::spawn_keyboard_inputs_modal()
@@ -1172,6 +1180,9 @@ void System::process_event(ALLEGRO_EVENT &event)
 
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, true, { ROTATE_STAGE_LEFT, CENTER_CAMERA_ON_FRONTMOST_STAGE, FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, true, { ROTATE_STAGE_RIGHT, CENTER_CAMERA_ON_FRONTMOST_STAGE, FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false, {
+          OPEN_HEXAGON_CONFIG_FILE,
+          });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, true, false, false, true, {
           ROTATE_RELATIVE_UP,
           CENTER_CAMERA_ON_FRONTMOST_STAGE,

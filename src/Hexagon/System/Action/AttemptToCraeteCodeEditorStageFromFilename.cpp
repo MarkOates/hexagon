@@ -18,7 +18,8 @@ namespace Action
 
 
 AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFilename(std::string filename, int display_default_width, int display_default_height, int stage_width, std::vector<StageInterface *>* stages)
-   : filename(filename)
+   : ::Action("System::Action::AttemptToCreateCodeEditorStageFromFilename", ActionData())
+   , filename(filename)
    , display_default_width(display_default_width)
    , display_default_height(display_default_height)
    , stage_width(stage_width)

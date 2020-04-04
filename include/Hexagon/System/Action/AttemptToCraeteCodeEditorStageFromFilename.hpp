@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/Action.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <string>
 #include <vector>
@@ -12,7 +13,7 @@ namespace Hexagon
    {
       namespace Action
       {
-         class AttemptToCraeteCodeEditorStageFromFilename
+         class AttemptToCraeteCodeEditorStageFromFilename : public ::Action
          {
          private:
             std::string filename;

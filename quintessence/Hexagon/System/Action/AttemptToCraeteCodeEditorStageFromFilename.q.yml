@@ -1,3 +1,7 @@
+parent_classes:
+  - class: ::Action
+    scope: public
+    init_with: "\"System::Action::AttemptToCreateCodeEditorStageFromFilename\", ActionData()"
 properties:
    - name: filename
      type: std::string
@@ -66,6 +70,8 @@ functions:
        - std::vector<std::string>
        - CodeEditor::Stage
 dependencies:
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]
   - symbol: std::vector<StageInterface *>*
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: CodeEditor::Stage
