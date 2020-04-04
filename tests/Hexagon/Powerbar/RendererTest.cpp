@@ -23,7 +23,7 @@ TEST(Hexagon_Powerbar_RendererTest, render__with_a_nullptr_powerbar_throws_an_er
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_Powerbar_RendererTest, render__with_a_nullptr_font_throws_an_error)
+TEST(DISABLED_Hexagon_Powerbar_RendererTest, render__with_a_nullptr_font_throws_an_error)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(600, 320);
@@ -34,7 +34,7 @@ TEST(Hexagon_Powerbar_RendererTest, render__with_a_nullptr_font_throws_an_error)
    std::string expected_error_message = "[Hexagon/Powerbar/Renderer error:] cannot \"render\" with a nullptr font";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
-TEST(Hexagon_Powerbar_RendererTest, render__draws_the_powerbar)
+TEST(DISABLED_Hexagon_Powerbar_RendererTest, render__draws_the_powerbar)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(600, 320);
