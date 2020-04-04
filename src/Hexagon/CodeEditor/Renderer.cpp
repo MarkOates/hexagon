@@ -26,7 +26,13 @@ void Renderer::draw_selections(int cell_width, int cell_height)
    for (auto &selection : stage->selections)
    {
       //std::cout << " drawing selection " << selection << std::endl;
-      CodeRangeRenderer(stage->get_lines_ref(), selection, stage->get_first_line_number(), cell_width, cell_height).render();
+      CodeRangeRenderer renderer(
+         stage->get_lines_ref(),
+         selection,
+         stage->get_first_line_number(),
+         cell_width,
+         cell_height);
+      renderer.render();
    }
 }
 
@@ -319,7 +325,7 @@ void Renderer::render()
    if (!is_focused)
    {
       place.position.z -= 50;
-      place.rotation.y += 0.01f;
+      //place.rotation.y += 0.01f;
    }
 
    place.start_transform();
