@@ -1074,11 +1074,13 @@ bool System::escape_current_modal()
 bool System::open_hexagon_config_file()
 {
    std::string config_filename = config.get_config_filename();
+   if (!display) throw std::runtime_error("fooob arrra");
+
    Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
       config_filename,
-      300,
-      200,
-      100,
+      al_get_display_width(display),
+      al_get_display_height(display),
+      get_default_code_editor_stage_width(),
       &stages
       );
 
