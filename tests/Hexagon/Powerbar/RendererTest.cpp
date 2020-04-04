@@ -34,6 +34,7 @@ TEST(DISABLED_Hexagon_Powerbar_RendererTest, render__with_a_nullptr_font_throws_
    std::string expected_error_message = "[Hexagon/Powerbar/Renderer error:] cannot \"render\" with a nullptr font";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
+
 TEST(DISABLED_Hexagon_Powerbar_RendererTest, render__draws_the_powerbar)
 {
    al_init();
