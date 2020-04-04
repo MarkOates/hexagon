@@ -130,9 +130,11 @@ bool System::initialize()
 
    hud.initialize();
 
+   camera.stepback.z = get_default_camera_stepback();
+
    //process_local_event(EXECUTE_MAGIC_COMMAND);
 
-   camera.stepback = 10;
+   //camera.stepback = 10;
    //camera.zoom_pos -= 3.1;
    //camera.position.x += 20;
    //camera.position.y -= 10;
