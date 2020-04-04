@@ -293,13 +293,18 @@ void Renderer::render_cursor_position_info()
    std::stringstream cursor_position_info;
    int line_length_character_limit = place.size.x / cell_width;
 
+   // draw the current cursor percentage in file
+   cursor_position_info << " n% ";
+
    // draw the current cursor position
    cursor_position_info << " x" << stage->get_cursor_x() << " y" << (stage->get_cursor_y()+1) << " ";
-   ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
-   ALLEGRO_COLOR color = AllegroFlare::color::color(epic_green_color, 0.4);
 
    // draw the width dimensions of the frame
    cursor_position_info << line_length_character_limit << "^";
+
+   // set colors
+   ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
+   ALLEGRO_COLOR color = AllegroFlare::color::color(epic_green_color, 0.4);
 
    // draw whole line of status text
    al_draw_text(font,

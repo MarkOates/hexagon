@@ -2,7 +2,7 @@
 
 
 #include <Hexagon/Action.hpp>
-#include <Hexagon/System/Config.hpp>
+#include <string>
 
 
 namespace Hexagon
@@ -14,13 +14,14 @@ namespace Hexagon
          class OpenConfigFile : public ::Action
          {
          private:
-            Hexagon::System::Config* config;
+            std::string config_filename;
 
          public:
-            OpenConfigFile();
+            OpenConfigFile(std::string config_filename="/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg");
             ~OpenConfigFile();
 
 
+            std::string get_config_filename();
          bool execute();
          };
       }

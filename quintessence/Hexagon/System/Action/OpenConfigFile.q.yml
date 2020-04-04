@@ -3,9 +3,11 @@ parent_classes:
     scope: public
     init_with: "\"System::Action::OpenConfigFile\", ActionData()"
 properties:
-  - name: config
-    type: Hexagon::System::Config*
-    init_with: nullptr
+  - name: config_filename
+    type: std::string
+    constructor_arg: true
+    init_with: "\"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg\""
+    getter: true
 functions:
   - name: execute
     type: bool

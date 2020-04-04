@@ -12,15 +12,21 @@ namespace Action
 {
 
 
-OpenConfigFile::OpenConfigFile()
+OpenConfigFile::OpenConfigFile(std::string config_filename)
    : ::Action("System::Action::OpenConfigFile", ActionData())
-   , config(nullptr)
+   , config_filename(config_filename)
 {
 }
 
 
 OpenConfigFile::~OpenConfigFile()
 {
+}
+
+
+std::string OpenConfigFile::get_config_filename()
+{
+   return config_filename;
 }
 
 
