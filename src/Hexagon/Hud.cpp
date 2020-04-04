@@ -139,17 +139,21 @@ return;
 
 void Hud::reinitialize()
 {
-if (!initialized) return;
+if (!initialized)
+{
+   throw std::runtime_error("[Hud::reinitialize()] Cannot reinitialize until initialize has been called.");
+}
 if (!display)
 {
-   throw std::runtime_error("[Hud::reinitialize()] Cannot reinitialize Hud with a nullptr screen_sub_bitmap");
+   throw std::runtime_error("[Hud::reinitialize()] Cannot reinitialize Hud with a nullptr display");
 }
 if (!screen_sub_bitmap)
 {
-   throw std::runtime_error("Should not have gotten here; Expecting screen_sub_bitmap");
+   throw std::runtime_error("[Hud::reinitialize()] Should not have gotten here; Expecting screen_sub_bitmap");
 }
 
 ALLEGRO_BITMAP *backbuffer = al_get_backbuffer(display);
+al_destroy_bitmap(screen_sub_bitmap);
 ALLEGRO_BITMAP *hud_screen_sub_bitmap = al_create_sub_bitmap(backbuffer, 0, 0, al_get_bitmap_width(backbuffer), al_get_bitmap_height(backbuffer));
 set_screen_sub_bitmap(hud_screen_sub_bitmap);
 
