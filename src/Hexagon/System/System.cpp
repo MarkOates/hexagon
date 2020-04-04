@@ -41,6 +41,7 @@
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
+#include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
 #include <Hexagon/System/Action/OpenConfigFile.hpp>
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>
@@ -928,24 +929,33 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
    }
    else // is a valid file
    {
-      std::vector<std::string> file_contents = {};
-      if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
+      Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+         filename,
+         get_display_default_width(),
+         get_display_default_height(),
+         get_default_code_editor_stage_width(),
+         &stages);
 
-      int number_of_files = get_number_of_code_editor_stages();
-      float one_third_screen_width = get_display_default_width() / 3;
+      action.execute();
 
-      placement3d place(one_third_screen_width*number_of_files, 0, 0);
-      place.size = vec3d(stage_width, get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
-      place.align = vec3d(0.5, 0.5, 0.0);
-      place.scale = vec3d(0.9, 0.9, 0.0);
+      //std::vector<std::string> file_contents = {};
+      //if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
 
-      CodeEditor::Stage *stage = new CodeEditor::Stage(filename);// place);
+      //int number_of_files = get_number_of_code_editor_stages();
+      //float one_third_screen_width = get_display_default_width() / 3;
 
-      stage->set_place(place);
-      stage->set_content(file_contents);
-      stages.push_back(stage);
+      //placement3d place(one_third_screen_width*number_of_files, 0, 0);
+      //place.size = vec3d(stage_width, get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
+      //place.align = vec3d(0.5, 0.5, 0.0);
+      //place.scale = vec3d(0.9, 0.9, 0.0);
 
-      //throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented to open a file");
+      //CodeEditor::Stage *stage = new CodeEditor::Stage(filename);// place);
+
+      //stage->set_place(place);
+      //stage->set_content(file_contents);
+      //stages.push_back(stage);
+
+      ////throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented to open a file");
    }
 
    return true;
