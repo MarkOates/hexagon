@@ -284,6 +284,11 @@ bool System::is_current_stage_a_regex_input_box()
 }
 
 // internal messages
+void System::acknowledge_display_resize(ALLEGRO_DISPLAY *display)
+{
+   hud.reinitialize();
+}
+
 void System::acknowledge_display_switch_out(ALLEGRO_DISPLAY *display)
 {
    hud.set_show_disabled_screen(true);

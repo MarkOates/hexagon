@@ -71,6 +71,7 @@ public:
    bool is_current_stage_a_regex_input_box();
 
    // internal messages
+   void acknowledge_display_resize(ALLEGRO_DISPLAY *display);
    void acknowledge_display_switch_out(ALLEGRO_DISPLAY *display);
    void acknowledge_display_switch_in(ALLEGRO_DISPLAY *display);
 

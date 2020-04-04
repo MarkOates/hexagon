@@ -152,6 +152,7 @@ functions:
              break;
           case ALLEGRO_EVENT_DISPLAY_RESIZE:
              al_acknowledge_resize(display);
+             system.acknowledge_display_resize(display);
              //note that each rezie will cause the display to reload, and will be a bit laggy
              //refresh = false;
              break;
