@@ -3,12 +3,12 @@ properties:
      type: std::string
      init_with: "\"file.txt\""
      constructor_arg: true
-   - name: display_default_height
+   - name: display_default_width
      type: int
      init_with: 1
      constructor_arg: true
      getter: true
-   - name: display_default_width
+   - name: display_default_height
      type: int
      init_with: 1
      constructor_arg: true

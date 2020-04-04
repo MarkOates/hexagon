@@ -17,10 +17,10 @@ namespace Action
 {
 
 
-AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFilename(std::string filename, int display_default_height, int display_default_width, int stage_width, std::vector<StageInterface *>* stages)
+AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFilename(std::string filename, int display_default_width, int display_default_height, int stage_width, std::vector<StageInterface *>* stages)
    : filename(filename)
-   , display_default_height(display_default_height)
    , display_default_width(display_default_width)
+   , display_default_height(display_default_height)
    , stage_width(stage_width)
    , stages(stages)
 {
@@ -32,15 +32,15 @@ AttemptToCraeteCodeEditorStageFromFilename::~AttemptToCraeteCodeEditorStageFromF
 }
 
 
-int AttemptToCraeteCodeEditorStageFromFilename::get_display_default_height()
-{
-   return display_default_height;
-}
-
-
 int AttemptToCraeteCodeEditorStageFromFilename::get_display_default_width()
 {
    return display_default_width;
+}
+
+
+int AttemptToCraeteCodeEditorStageFromFilename::get_display_default_height()
+{
+   return display_default_height;
 }
 
 
