@@ -92,8 +92,8 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
       else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) stage->move_cursor_jump_to_next_word();
       else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD) stage->move_cursor_jump_to_next_big_word();
       else if (event_name == MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD) stage->move_cursor_jump_to_previous_word();
-      else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_WORD) stage->jump_cursor_to_end_of_next_word();
-      else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD) stage->jump_cursor_to_end_of_next_big_word();
+      else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_WORD) stage->move_cursor_to_end_of_next_word();
+      else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD) stage->move_cursor_to_end_of_next_big_word();
       else if (event_name == JUMP_TO_NEXT_CODE_POINT) stage->jump_to_next_code_point();
       else if (event_name == JUMP_TO_PREVIOUS_CODE_POINT) stage->jump_to_previous_code_point();
       else if (event_name == DELETE_CHARACTER) stage->delete_character();

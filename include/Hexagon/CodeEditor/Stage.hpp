@@ -86,8 +86,8 @@ namespace CodeEditor
       bool move_cursor_to_bottom_of_screen();
       bool move_cursor_jump_to_next_word();
       bool move_cursor_jump_to_next_big_word();
-      bool jump_cursor_to_end_of_next_word();
-      bool jump_cursor_to_end_of_next_big_word();
+      bool move_cursor_to_end_of_next_word();
+      bool move_cursor_to_end_of_next_big_word();
       bool move_cursor_jump_to_previous_word();
       bool move_cursor_jump_to_previous_big_word();
       bool move_cursor_to_start_of_line();

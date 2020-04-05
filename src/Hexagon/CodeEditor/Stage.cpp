@@ -350,7 +350,7 @@ bool Stage::move_cursor_jump_to_next_big_word()
 
 
 
-bool Stage::jump_cursor_to_end_of_next_word()
+bool Stage::move_cursor_to_end_of_next_word()
 {
    std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
@@ -371,7 +371,7 @@ bool Stage::jump_cursor_to_end_of_next_word()
 
 
 
-bool Stage::jump_cursor_to_end_of_next_big_word()
+bool Stage::move_cursor_to_end_of_next_big_word()
 {
    std::string vim_equivelent_word_jump_regex = "[^\\s]+";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
