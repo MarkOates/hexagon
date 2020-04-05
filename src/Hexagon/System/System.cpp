@@ -428,7 +428,14 @@ bool System::toggle_command_mode_on()
 
    float camera_zoomed_out_position = get_default_camera_stepback() + 10;
    float camera_zoomed_in_position = get_default_camera_stepback();
-   motion.canimate(&camera.stepback.z, camera.stepback.z, camera_zoomed_out_position, al_get_time(), al_get_time()+0.2, interpolator::fast_in, nullptr, nullptr);
+   motion.canimate(&camera.stepback.z,
+                   camera.stepback.z,
+                   camera_zoomed_out_position,
+                   al_get_time(),
+                   al_get_time()+0.2,
+                   interpolator::fast_in,
+                   nullptr,
+                   nullptr);
    command_mode = true;
    //camera.rotation
    //std::rotate(stages.begin(), stages.begin() + 1, stages.end());
