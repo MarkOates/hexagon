@@ -110,25 +110,41 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
       else if (event_name == MOVE_STAGE_DOWN) stage->move_stage_down();
       else if (event_name == SCALE_STAGE_UP) stage->scale_stage_delta(0.1);
       else if (event_name == SCALE_STAGE_DOWN) stage->scale_stage_delta(-0.1);
-      else if (event_name == JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN) stage->offset_first_line_number(stage->infer_num_lines_to_draw());
-      else if (event_name == JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN) stage->offset_first_line_number(-stage->infer_num_lines_to_draw());
-      else if (event_name == JUMP_FIRST_LINE_NUM_DOWN) stage->offset_first_line_number(stage->infer_num_lines_to_draw()/2);
-      else if (event_name == JUMP_FIRST_LINE_NUM_UP) stage->offset_first_line_number(-stage->infer_num_lines_to_draw()/2);
+      else if (event_name == JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN)
+        stage->offset_first_line_number(stage->infer_num_lines_to_draw());
+      else if (event_name == JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN)
+        stage->offset_first_line_number(-stage->infer_num_lines_to_draw());
+      else if (event_name == JUMP_FIRST_LINE_NUM_DOWN)
+        stage->offset_first_line_number(stage->infer_num_lines_to_draw()/2);
+      else if (event_name == JUMP_FIRST_LINE_NUM_UP)
+        stage->offset_first_line_number(-stage->infer_num_lines_to_draw()/2);
       else if (event_name == STEP_FIRST_LINE_NUM_DOWN) stage->offset_first_line_number(1);
       else if (event_name == STEP_FIRST_LINE_NUM_UP) stage->offset_first_line_number(-1);
-      else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN) stage->offset_cursor_position_y(stage->infer_num_lines_to_draw()/2);
-      else if (event_name == OFFSET_CURSOR_POSITION_Y_UP) stage->offset_cursor_position_y(-stage->infer_num_lines_to_draw()/2);
-      else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN) stage->offset_cursor_position_y(stage->infer_num_lines_to_draw());
-      else if (event_name == OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN) stage->offset_cursor_position_y(-stage->infer_num_lines_to_draw());
-      else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS) stage->refresh_git_modified_line_numbers();
+      else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN)
+         stage->offset_cursor_position_y(stage->infer_num_lines_to_draw()/2);
+      else if (event_name == OFFSET_CURSOR_POSITION_Y_UP)
+         stage->offset_cursor_position_y(-stage->infer_num_lines_to_draw()/2);
+      else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN)
+         stage->offset_cursor_position_y(stage->infer_num_lines_to_draw());
+      else if (event_name == OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN)
+         stage->offset_cursor_position_y(-stage->infer_num_lines_to_draw());
+      else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS)
+         stage->refresh_git_modified_line_numbers();
       //else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS) toggle_showing_code_message_points();
-      else if (event_name == REFRESH_REGEX_MESSAGE_POINTS) stage->refresh_regex_message_points();
-      else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR) stage->offset_first_line_to_vertically_center_cursor();
-      else if (event_name == CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION) stage->create_visual_selection_at_current_cursor_location();
-      else if (event_name == DESTROY_CURRENT_VISUAL_SELECTION) stage->destroy_current_visual_selection();
-      else if (event_name == TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION) stage->toggle_currently_grabbing_visual_selection();
-      else if (event_name == YANK_SELECTED_TEXT_TO_CLIPBOARD) stage->yank_selected_text_to_clipboard();
-      else if (event_name == PASTE_SELECTED_TEXT_FROM_CLIPBOARD) stage->paste_selected_text_from_clipboard();
+      else if (event_name == REFRESH_REGEX_MESSAGE_POINTS)
+         stage->refresh_regex_message_points();
+      else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR)
+         stage->offset_first_line_to_vertically_center_cursor();
+      else if (event_name == CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION)
+         stage->create_visual_selection_at_current_cursor_location();
+      else if (event_name == DESTROY_CURRENT_VISUAL_SELECTION)
+         stage->destroy_current_visual_selection();
+      else if (event_name == TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION)
+         stage->toggle_currently_grabbing_visual_selection();
+      else if (event_name == YANK_SELECTED_TEXT_TO_CLIPBOARD)
+         stage->yank_selected_text_to_clipboard();
+      else if (event_name == PASTE_SELECTED_TEXT_FROM_CLIPBOARD)
+         stage->paste_selected_text_from_clipboard();
       else if (event_name == CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING) clear_last_performed_action_queue_recording();
       else if (event_name == START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING) start_recording_last_performed_action_queue_recording();
       else if (event_name == STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING) stop_recording_last_performed_action_queue_recording();
