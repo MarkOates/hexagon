@@ -168,9 +168,22 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
    //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
    KeyboardCommandMapper edit_mode__keyboard_command_mapper;
-   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, false, { CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE });
-   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, true,  false, false, false, { CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE, CodeEditor::EventController::MOVE_CURSOR_JUMP_TO_NEXT_WORD, CodeEditor::EventController::SET_INSERT_MODE, });
-   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, true,  false, false, false, { CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE, CodeEditor::EventController::SET_INSERT_MODE, });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, false, {
+      CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE,
+      });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, true,  false, false, false, {
+      CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
+      CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
+      CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE,
+      CodeEditor::EventController::MOVE_CURSOR_JUMP_TO_NEXT_WORD,
+      CodeEditor::EventController::SET_INSERT_MODE,
+      });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, true,  false, false, false, {
+     CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
+     CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
+     CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE,
+     CodeEditor::EventController::SET_INSERT_MODE,
+     });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, false,  false, false, false, { CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::MOVE_CURSOR_RIGHT, CodeEditor::EventController::SET_INSERT_MODE, });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, false, false, false, false, { CodeEditor::EventController::MOVE_CURSOR_DOWN });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, true,  false, false, false, { CodeEditor::EventController::JOIN_LINES });
