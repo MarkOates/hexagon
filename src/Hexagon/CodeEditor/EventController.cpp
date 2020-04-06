@@ -105,6 +105,8 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
       else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) stage->move_cursor_to_start_of_line();
       else if (event_name == DELETE_LINE) stage->delete_line();
       else if (event_name == MOVE_CURSOR_TO_END_OF_LINE) stage->move_cursor_to_end_of_line();
+      else if (event_name == MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER)
+         stage->move_cursor_to_first_non_whitespace_character();
       else if (event_name == SAVE_FILE) stage->save_file();
       else if (event_name == MOVE_STAGE_UP) stage->move_stage_up();
       else if (event_name == MOVE_STAGE_DOWN) stage->move_stage_down();
@@ -174,8 +176,9 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_I, true,  false, false, false, {
       CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
       CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
-      CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE,
-      CodeEditor::EventController::MOVE_CURSOR_JUMP_TO_NEXT_WORD,
+      //CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE,
+      //CodeEditor::EventController::MOVE_CURSOR_JUMP_TO_NEXT_WORD,
+      CodeEditor::EventController::MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER,
       CodeEditor::EventController::SET_INSERT_MODE,
       });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_A, true,  false, false, false, {
@@ -305,6 +308,8 @@ std::string const CodeEditor::EventController::JOIN_LINES = "JOIN_LINES";
 std::string const CodeEditor::EventController::SPLIT_LINES = "SPLIT_LINES";
 std::string const CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE = "MOVE_CURSOR_TO_START_OF_LINE";
 std::string const CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE = "MOVE_CURSOR_TO_END_OF_LINE";
+std::string const CodeEditor::EventController::MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER =
+   "MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER";
 std::string const CodeEditor::EventController::SAVE_FILE = "SAVE_FILE";
 std::string const CodeEditor::EventController::MOVE_STAGE_UP = "MOVE_STAGE_UP";
 std::string const CodeEditor::EventController::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
@@ -334,6 +339,3 @@ std::string const CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE
 std::string const CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
 std::string const CodeEditor::EventController::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
 std::string const CodeEditor::EventController::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
-
-
-
