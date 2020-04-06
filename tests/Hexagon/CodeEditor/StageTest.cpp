@@ -204,3 +204,28 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(0, stage.get_cursor_x());
 }
 
+TEST(Hexagon_CodeEditor_StageTest,
+   move_cursor_to_first_non_whitespace_character__on_a_line_containing_only_whitespace_characters__moves_cursor_to_end)
+{
+   std::vector<std::string> test_text = {
+     "   ",
+     "     \t  \t",
+     "\t",
+   };
+   CodeEditor::Stage stage("test_text.txt");
+   stage.set_initial_content(test_text);
+
+   ASSERT_EQ(true, stage.move_cursor_to_first_non_whitespace_character());
+   ASSERT_EQ(3, stage.get_cursor_x());
+
+   stage.move_cursor_down();
+
+   ASSERT_EQ(true, stage.move_cursor_to_first_non_whitespace_character());
+   ASSERT_EQ(9, stage.get_cursor_x());
+
+   stage.move_cursor_down();
+
+   ASSERT_EQ(true, stage.move_cursor_to_first_non_whitespace_character());
+   ASSERT_EQ(1, stage.get_cursor_x());
+}
+
