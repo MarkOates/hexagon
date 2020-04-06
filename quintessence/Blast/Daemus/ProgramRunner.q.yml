@@ -36,10 +36,15 @@ functions:
   - name: block_execution_with_rerun_pause
     type: void
     body: |
+      Hexagon::System::Config hexagon_config;
+      hexagon_config.initialize();
+
+      std::string project_directory = hexagon_config.get_default_navigator_directory();
+
       std::string rerun_command = "rerun --quiet -c -p \"**/*.{" \
          "rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}" \
          "\"";
-      std::string project_directory = "/Users/markoates/Repos/blast/";
+      //std::string project_directory = "/Users/markoates/Repos/blast/";
       std::vector<std::string> command_tokens;
       command_tokens = {
         //"(cd ",
@@ -69,6 +74,11 @@ functions:
   - name: run
     type: void
     body: |
+      Hexagon::System::Config hexagon_config;
+      hexagon_config.initialize();
+
+      std::string project_directory = hexagon_config.get_default_navigator_directory();
+
       //while(true)
       {
          std::string build_command = "rerun" \

@@ -2,6 +2,7 @@
 
 #include <Blast/Daemus/ProgramRunner.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <Hexagon/System/Config.hpp>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -48,10 +49,15 @@ return shell_command_executor.execute();
 
 void ProgramRunner::block_execution_with_rerun_pause()
 {
+Hexagon::System::Config hexagon_config;
+hexagon_config.initialize();
+
+std::string project_directory = hexagon_config.get_default_navigator_directory();
+
 std::string rerun_command = "rerun --quiet -c -p \"**/*.{" \
    "rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}" \
    "\"";
-std::string project_directory = "/Users/markoates/Repos/blast/";
+//std::string project_directory = "/Users/markoates/Repos/blast/";
 std::vector<std::string> command_tokens;
 command_tokens = {
   //"(cd ",
