@@ -14,7 +14,9 @@ functions:
       if (!al_is_system_installed())
       {
          std::stringstream error_message;
-         error_message << "[Hexagon/Elements/CheckTextures error:] cannot \"" << function_name << "\" before al_init()";
+         error_message << "[Hexagon/Elements/CheckTextureGenerator error:] cannot \""
+                       << function_name
+                       << "\" before al_init()";
          throw std::runtime_error(error_message.str());
       }
       return;
@@ -30,7 +32,7 @@ functions:
       if (!display)
       {
          std::stringstream error_message;
-         error_message << "[Hexagon/Elements/CheckTextures error:] cannot \""
+         error_message << "[Hexagon/Elements/CheckTextureGenerator error:] cannot \""
                        << function_name
                        << "\" with a nullptr display";
          throw std::runtime_error(error_message.str());

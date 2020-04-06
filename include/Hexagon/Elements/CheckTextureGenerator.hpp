@@ -9,14 +9,14 @@ namespace Hexagon
 {
    namespace Elements
    {
-      class CheckTextures
+      class CheckTextureGenerator
       {
       private:
          ALLEGRO_DISPLAY* display;
 
       public:
-         CheckTextures(ALLEGRO_DISPLAY* display=nullptr);
-         ~CheckTextures();
+         CheckTextureGenerator(ALLEGRO_DISPLAY* display=nullptr);
+         ~CheckTextureGenerator();
 
 
       void validate_al_init(std::string function_name="[unmamed_function]");

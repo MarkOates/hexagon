@@ -1,6 +1,6 @@
 
 
-#include <Hexagon/Elements/CheckTextures.hpp>
+#include <Hexagon/Elements/CheckTextureGenerator.hpp>
 #include <sstream>
 #include <sstream>
 
@@ -11,35 +11,37 @@ namespace Elements
 {
 
 
-CheckTextures::CheckTextures(ALLEGRO_DISPLAY* display)
+CheckTextureGenerator::CheckTextureGenerator(ALLEGRO_DISPLAY* display)
    : display(display)
 {
 }
 
 
-CheckTextures::~CheckTextures()
+CheckTextureGenerator::~CheckTextureGenerator()
 {
 }
 
 
-void CheckTextures::validate_al_init(std::string function_name)
+void CheckTextureGenerator::validate_al_init(std::string function_name)
 {
 if (!al_is_system_installed())
 {
    std::stringstream error_message;
-   error_message << "[Hexagon/Elements/CheckTextures error:] cannot \"" << function_name << "\" before al_init()";
+   error_message << "[Hexagon/Elements/CheckTextureGenerator error:] cannot \""
+                 << function_name
+                 << "\" before al_init()";
    throw std::runtime_error(error_message.str());
 }
 return;
 
 }
 
-void CheckTextures::validate_display(std::string function_name)
+void CheckTextureGenerator::validate_display(std::string function_name)
 {
 if (!display)
 {
    std::stringstream error_message;
-   error_message << "[Hexagon/Elements/CheckTextures error:] cannot \""
+   error_message << "[Hexagon/Elements/CheckTextureGenerator error:] cannot \""
                  << function_name
                  << "\" with a nullptr display";
    throw std::runtime_error(error_message.str());
@@ -48,7 +50,7 @@ return;
 
 }
 
-ALLEGRO_BITMAP* CheckTextures::generate_grid_check()
+ALLEGRO_BITMAP* CheckTextureGenerator::generate_grid_check()
 {
 validate_al_init(__FUNCTION__);
 validate_display(__FUNCTION__);
