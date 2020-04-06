@@ -1,6 +1,8 @@
 
 #include <gtest/gtest.h>
 
+bool show_texture_and_pause = false;
+
 #define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
    try { code; FAIL() << "Expected " # raised_exception_type; } \
    catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
@@ -57,6 +59,13 @@ TEST(Hexagon_Elements_CheckTextureGeneratorTest, generate_grid_check__creates_a_
 
    ASSERT_EQ(400, al_get_bitmap_width(generated_texture));
    ASSERT_EQ(300, al_get_bitmap_height(generated_texture));
+
+   if (show_texture_and_pause)
+   {
+      al_draw_bitmap(generated_texture, 0, 0, 0);
+      al_flip_display();
+      sleep(1);
+   }
 
    al_uninstall_system();
 }

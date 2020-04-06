@@ -47,7 +47,12 @@ namespace CodeEditor
       void unmark_content_is_modified();
 
    public:
-      Stage(std::string filename, std::string file_category="undefined", mode_t mode=EDIT, type_t type=CODE_EDITOR);
+      Stage(
+         std::string filename,
+         std::string file_category="undefined",
+         mode_t mode=EDIT,
+         type_t type=CODE_EDITOR
+         );
       ~Stage();
       // accessors
 
