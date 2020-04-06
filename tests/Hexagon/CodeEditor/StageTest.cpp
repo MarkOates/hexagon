@@ -179,3 +179,28 @@ TEST(Hexagon_CodeEditor_StageTest, delete_line__on_an_invalid_line__does_nothing
    EXPECT_EQ(16, stage.num_lines());
 }
 
+TEST(Hexagon_CodeEditor_StageTest,
+   move_cursor_to_first_non_whitespace_character__sets_the_cursor_x_to_the_first_non_whitespace_character)
+{
+   std::vector<std::string> test_text = {
+     "   Hello",
+     "     \tTest",
+     "Start",
+   };
+   CodeEditor::Stage stage("test_text.txt");
+   stage.set_initial_content(test_text);
+
+   ASSERT_EQ(true, stage.move_cursor_to_first_non_whitespace_character());
+   ASSERT_EQ(3, stage.get_cursor_x());
+
+   stage.move_cursor_down();
+
+   ASSERT_EQ(true, stage.move_cursor_to_first_non_whitespace_character());
+   ASSERT_EQ(6, stage.get_cursor_x());
+
+   stage.move_cursor_down();
+
+   ASSERT_EQ(true, stage.move_cursor_to_first_non_whitespace_character());
+   ASSERT_EQ(0, stage.get_cursor_x());
+}
+

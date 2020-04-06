@@ -438,6 +438,26 @@ bool Stage::move_cursor_to_end_of_line()
 
 
 
+bool Stage::move_cursor_to_first_non_whitespace_character()
+{
+   set_cursor_x(0);
+   if (cursor_y < 0) return false;
+   if (cursor_y >= num_lines()) return false;
+
+   std::size_t first_non_whitespace_position = current_line_ref().find_first_not_of(" \t\n\r");
+   if (first_non_whitespace_position == std::string::npos)
+   {
+      this->move_cursor_to_end_of_line();
+   }
+   else
+   {
+      set_cursor_x(first_non_whitespace_position);
+   }
+   return true;
+}
+
+
+
 bool Stage::delete_character()
 {
    current_line_ref().erase(cursor_x, 1);

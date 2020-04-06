@@ -97,6 +97,7 @@ namespace CodeEditor
       bool move_cursor_jump_to_previous_big_word();
       bool move_cursor_to_start_of_line();
       bool move_cursor_to_end_of_line();
+      bool move_cursor_to_first_non_whitespace_character();
       bool delete_character();
       bool join_lines();
       bool split_lines();
