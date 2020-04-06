@@ -47,39 +47,6 @@ return shell_command_executor.execute();
 
 }
 
-void ProgramRunner::block_execution_with_rerun_pause()
-{
-Hexagon::System::Config hexagon_config;
-hexagon_config.initialize();
-
-std::string project_directory = hexagon_config.get_default_navigator_directory();
-
-std::string rerun_command = "rerun --quiet -c -p \"**/*.{" \
-   "rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}" \
-   "\"";
-//std::string project_directory = "/Users/markoates/Repos/blast/";
-std::vector<std::string> command_tokens;
-command_tokens = {
-  //"(cd ",
-  //project_directory,
-  //" && ",
-  rerun_command,
-  " \"(cd ",
-     project_directory,
-     " && exit)\"",
-};
-
-std::stringstream command;
-for (auto &command_token : command_tokens)
-{
-   command << command_token << " ";
-}
-
-execute_command(command.str());
-return;
-
-}
-
 void ProgramRunner::run_full_rebuild()
 {
 std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
@@ -105,7 +72,8 @@ std::string project_directory = hexagon_config.get_default_navigator_directory()
      " " \
      "-p \"**/*.{rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}\"" \
      " " \
-     "\"(cd /Users/markoates/Repos/blast/ && make focus)\"";
+     "\"(cd ";
+   build_command += project_directory + " && make focus)\"";
    std::string output = execute_command(build_command);
    //std::cout << output << std::endl;
    //run_with_block_after_command();
@@ -151,7 +119,6 @@ std::string command_result_output = execute_command(command.str());
 std::cout << command_result_output << std::endl;
 
 std::cout << "finished command execution of \"" << command.str() << "\"" << std::endl;
-//block_execution_with_rerun_pause();
 return;
 
 }
