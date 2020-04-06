@@ -638,7 +638,8 @@ bool System::spawn_component_navigator()
 {
    //placement3d component_navigator_initial_place = component_navigator_initial_place;
   
-   Hexagon::ComponentNavigator::Stage *component_navigator = new Hexagon::ComponentNavigator::Stage(get_default_navigator_directory());
+   Hexagon::ComponentNavigator::Stage *component_navigator =
+      new Hexagon::ComponentNavigator::Stage(get_default_navigator_directory());
    component_navigator->process_local_event("refresh_list");
    component_navigator->set_place(build_component_navigator_initial_place());
    stages.push_back(component_navigator);
@@ -1097,6 +1098,7 @@ bool System::submit_current_modal()
       process_local_event(DESTROY_ALL_CODE_EDITOR_STAGES);
       process_local_event(CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
       process_local_event(CENTER_CAMERA_ON_FRONTMOST_STAGE);
+      process_local_event(ROTATE_STAGE_LEFT);
       break;
    default:
       throw std::runtime_error("submit_current_modal(): invalid modal type");

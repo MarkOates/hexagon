@@ -59,6 +59,8 @@ functions:
 
       execute_command(command.str());
       return;
+    body_dependency_symbols:
+      - Hexagon::System::Config
   - name: run_full_rebuild
     type: void
     body: |
@@ -130,4 +132,6 @@ functions:
 dependencies:
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+  - symbol: Hexagon::System::Config
+    headers: [ Hexagon/System/Config.hpp ]
 
