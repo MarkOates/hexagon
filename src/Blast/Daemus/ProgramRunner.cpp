@@ -89,6 +89,12 @@ execute_command(full_rebuild_command);
 
 void ProgramRunner::run()
 {
+al_init();
+Hexagon::System::Config hexagon_config;
+hexagon_config.initialize();
+
+std::string project_directory = hexagon_config.get_default_navigator_directory();
+
 //while(true)
 {
    std::string build_command = "rerun" \
