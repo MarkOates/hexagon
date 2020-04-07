@@ -825,7 +825,7 @@ bool System::execute_magic_command()
 
         place.position = vec3d(width*i, 0.0, 0.0);
         place.align = vec3d(0.5, 0.5, 0.0);
-        place.scale = vec3d(0.9, 0.9, 0.0);
+        place.scale = vec3d(1.0, 1.0, 0.0);
 
         StageInterface *stage = nullptr;
 
