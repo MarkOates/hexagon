@@ -108,6 +108,48 @@ TEST(Hexagon_CodeEditor_StageTest, join_lines__on_a_line_number_that_is_out_of_b
    SUCCEED();
 }
 
+TEST(Hexagon_CodeEditor_StageTest, move_cursor_to_last_character_of_line__moves_the_cursor_to_the_last_character)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   ASSERT_EQ(true, stage.move_cursor_to_last_character_of_line());
+   ASSERT_EQ(8, stage.get_cursor_x());
+
+   stage.set_cursor_y(2);
+   ASSERT_EQ(true, stage.move_cursor_to_last_character_of_line());
+   ASSERT_EQ(37, stage.get_cursor_x());
+
+   stage.set_cursor_y(8);
+   ASSERT_EQ(true, stage.move_cursor_to_last_character_of_line());
+   ASSERT_EQ(47, stage.get_cursor_x());
+}
+
+TEST(Hexagon_CodeEditor_StageTest, move_cursor_to_last_character_of_line__on_an_empty_line__moves_to_the_first_character)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   stage.set_cursor_y(1);
+   stage.set_cursor_x(99);
+
+   ASSERT_EQ(true, stage.move_cursor_to_last_character_of_line());
+   ASSERT_EQ(0, stage.get_cursor_x());
+}
+
+TEST(Hexagon_CodeEditor_StageTest,
+   move_cursor_to_last_character_of_line__on_an_invalid_line__moves_the_cursor_to_the_first_column_and_returns_false)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   stage.set_cursor_y(-1);
+   stage.set_cursor_x(5);
+
+   ASSERT_EQ(false, stage.move_cursor_to_last_character_of_line());
+   ASSERT_EQ(0, stage.get_cursor_x());
+}
+
 TEST(Hexagon_CodeEditor_StageTest, move_cursor_to_last_line__moves_the_cursor_to_the_last_line_of_the_file)
 {
    CodeEditor::Stage stage("a_sonnet.txt");

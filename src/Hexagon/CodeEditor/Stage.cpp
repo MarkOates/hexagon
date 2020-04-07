@@ -438,6 +438,21 @@ bool Stage::move_cursor_to_end_of_line()
 
 
 
+bool Stage::move_cursor_to_last_character_of_line()
+{
+   if (!infer_cursor_is_on_line_that_exists())
+   {
+      set_cursor_x(0);
+      return false;
+   }
+
+   int pos_to_place_cursor = std::max(0, int(current_line_ref().length())-1);
+   set_cursor_x(pos_to_place_cursor);
+   return true;
+}
+
+
+
 bool Stage::move_cursor_to_first_non_whitespace_character()
 {
    set_cursor_x(0);
