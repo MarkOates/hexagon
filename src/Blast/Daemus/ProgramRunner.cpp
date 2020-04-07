@@ -70,6 +70,8 @@ std::string project_directory = hexagon_config.get_default_navigator_directory()
      " " \
      "--background" \
      " " \
+     "--ignore \"**/bin/programs/data/tmp/*\"" \
+     " " \
      "-p \"**/*.{rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}\"" \
      " " \
      "\"(cd ";
