@@ -809,6 +809,7 @@ bool System::execute_magic_command()
    bool file_present = false;
    int i=0;
 
+   destroy_all_code_editor_stages();
 
    ///
 
