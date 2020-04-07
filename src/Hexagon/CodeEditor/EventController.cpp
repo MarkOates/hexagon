@@ -241,6 +241,9 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Z, false, false, false, false, { CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_V, false, false, false, false, { CodeEditor::EventController::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, false, { CodeEditor::EventController::YANK_SELECTED_TEXT_TO_CLIPBOARD });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_4, true, false, false, false, {
+      CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE
+      });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, true, false, false, false, {
       CodeEditor::EventController::PASTE_SELECTED_TEXT_FROM_CLIPBOARD
       });
