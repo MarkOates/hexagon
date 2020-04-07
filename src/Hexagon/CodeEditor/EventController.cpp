@@ -105,6 +105,7 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
       else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) stage->move_cursor_to_start_of_line();
       else if (event_name == DELETE_LINE) stage->delete_line();
       else if (event_name == MOVE_CURSOR_TO_END_OF_LINE) stage->move_cursor_to_end_of_line();
+      else if (event_name == MOVE_CURSOR_TO_LAST_CHARACTER_OF_LINE) stage->move_cursor_to_last_character_of_line();
       else if (event_name == MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER)
          stage->move_cursor_to_first_non_whitespace_character();
       else if (event_name == SAVE_FILE) stage->save_file();
@@ -242,7 +243,7 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_V, false, false, false, false, { CodeEditor::EventController::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, false, { CodeEditor::EventController::YANK_SELECTED_TEXT_TO_CLIPBOARD });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_4, true, false, false, false, {
-      CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE
+      CodeEditor::EventController::MOVE_CURSOR_TO_LAST_CHARACTER_OF_LINE
       });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, true, false, false, false, {
       CodeEditor::EventController::PASTE_SELECTED_TEXT_FROM_CLIPBOARD
@@ -330,6 +331,8 @@ std::string const CodeEditor::EventController::JOIN_LINES = "JOIN_LINES";
 std::string const CodeEditor::EventController::SPLIT_LINES = "SPLIT_LINES";
 std::string const CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE = "MOVE_CURSOR_TO_START_OF_LINE";
 std::string const CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE = "MOVE_CURSOR_TO_END_OF_LINE";
+std::string const CodeEditor::EventController::MOVE_CURSOR_TO_LAST_CHARACTER_OF_LINE =
+   "MOVE_CURSOR_TO_LAST_CHARACTER_OF_LINE";
 std::string const CodeEditor::EventController::MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER =
    "MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER";
 std::string const CodeEditor::EventController::SAVE_FILE = "SAVE_FILE";
