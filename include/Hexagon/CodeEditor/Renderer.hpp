@@ -35,7 +35,14 @@ namespace CodeEditor
       void draw_selections(int cell_width, int cell_height);
 
    public:
-      Renderer(bool draw_line_numbers, bool is_focused, CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height);
+      Renderer(
+         bool draw_line_numbers,
+         bool is_focused,
+         CodeEditor::Stage *stage,
+         ALLEGRO_FONT *font,
+         ALLEGRO_DISPLAY *display,
+         int cell_width,
+         int cell_height);
       ~Renderer();
 
       virtual void render() override;
