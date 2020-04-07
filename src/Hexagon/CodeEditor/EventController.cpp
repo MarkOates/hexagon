@@ -216,15 +216,34 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_E, false, true, false, false, { CodeEditor::EventController::STEP_FIRST_LINE_NUM_DOWN });
    //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, false, { CodeEditor::EventController::SCALE_STAGE_UP });
    //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_MINUS, false, true, false, false, { CodeEditor::EventController::SCALE_STAGE_DOWN });
-   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, false, { CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE, CodeEditor::EventController::SPLIT_LINES, CodeEditor::EventController::MOVE_CURSOR_DOWN, CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE, CodeEditor::EventController::SET_INSERT_MODE, });
-   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, true, false, false, false, { CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING, CodeEditor::EventController::MOVE_CURSOR_UP, CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE, CodeEditor::EventController::SPLIT_LINES, CodeEditor::EventController::MOVE_CURSOR_DOWN, CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE, CodeEditor::EventController::SET_INSERT_MODE, });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, false, false, false, false, {
+      CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
+      CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
+      CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE,
+      CodeEditor::EventController::SPLIT_LINES,
+      CodeEditor::EventController::MOVE_CURSOR_DOWN,
+      CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE,
+      CodeEditor::EventController::SET_INSERT_MODE,
+      });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, true, false, false, false, {
+      CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
+      CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
+      CodeEditor::EventController::MOVE_CURSOR_UP,
+      CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE,
+      CodeEditor::EventController::SPLIT_LINES,
+      CodeEditor::EventController::MOVE_CURSOR_DOWN,
+      CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE,
+      CodeEditor::EventController::SET_INSERT_MODE,
+      });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, false, { CodeEditor::EventController::SAVE_FILE, CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
    //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, { CodeEditor::EventController::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, { CodeEditor::EventController::REFRESH_REGEX_MESSAGE_POINTS });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Z, false, false, false, false, { CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_V, false, false, false, false, { CodeEditor::EventController::TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_Y, false, false, false, false, { CodeEditor::EventController::YANK_SELECTED_TEXT_TO_CLIPBOARD });
-   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, true, false, false, false, { CodeEditor::EventController::PASTE_SELECTED_TEXT_FROM_CLIPBOARD });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_P, true, false, false, false, {
+      CodeEditor::EventController::PASTE_SELECTED_TEXT_FROM_CLIPBOARD
+      });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP, false, false, false, false, { CodeEditor::EventController::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, true, false, false, false, { CodeEditor::EventController::DELETE_LINE });
 
