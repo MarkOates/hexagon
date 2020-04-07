@@ -17,6 +17,11 @@ TEST(Hexagon_Elements_CheckTextureGeneratorTest, can_be_created_without_blowing_
 
 TEST(Hexagon_Elements_CheckTextureGeneratorTest, generate_grid_check__without_allegro_initialized__throws_an_error)
 {
+   //TODO: figure out from where al_init() is happening before this test is run
+   // in the mean time, uninstall allegro if it is already initialized
+   // EXPECT_EQ(false, al_is_system_installed());
+   if (al_is_system_installed()) al_uninstall_system();
+
    Hexagon::Elements::CheckTextureGenerator check_textures;
    std::string expected_error_message = "[Hexagon/Elements/CheckTextureGenerator error:] cannot " \
                                         "\"generate_grid_check\" before al_init()";
@@ -25,6 +30,7 @@ TEST(Hexagon_Elements_CheckTextureGeneratorTest, generate_grid_check__without_al
 
 TEST(Hexagon_Elements_CheckTextureGeneratorTest, generate_grid_check__with_a_nullptr_display__throws_an_error)
 {
+
    al_init();
    //ALLEGRO_DISPLAY *display = al_create_display(800, 600);
 
