@@ -254,12 +254,6 @@ void Renderer::render_raw()
                             place.size.x, place.size.y,
                             roundness, roundness,
                             background_overlay_color);
-   bool draw_filename = true;
-   if (draw_filename)
-   {
-      al_draw_text(font, al_color_name("white"), 0, -al_get_font_line_height(font),
-                   ALLEGRO_ALIGN_LEFT, stage->get_filename().c_str());
-   }
    if (draw_outline)
    {
       al_draw_rounded_rectangle(half_padding, half_padding,
