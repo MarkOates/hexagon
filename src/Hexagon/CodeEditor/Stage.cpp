@@ -8,6 +8,7 @@
 #include <Hexagon/RegexMatcher.hpp> // should be in Blast?
 #include <Blast/StringSplitter.hpp>
 #include <Hexagon/GitLinesModifiedExtractor.hpp>
+#include <Hexagon/Elements/StageInfoOverlay.hpp>
 #include <Hexagon/CodeRangeRenderer.hpp>
 #include <Hexagon/CodeRangeExtractor.hpp>
 #include <Hexagon/ClipboardData.hpp>
@@ -900,6 +901,19 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
       bool draw_line_numbers = true;
       CodeEditor::Renderer renderer(draw_line_numbers, is_focused, this, font, display, cell_width, cell_height);
       renderer.render();
+
+      bool draw_info_overlay = true;
+      if (draw_info_overlay)
+      {
+         placement3d &place = this->get_place_ref();
+         std::string text_to_render = "";
+         place.start_transform();
+         Hexagon::Elements::StageInfoOverlay stage_info_overlay(font, &place);
+         if (!is_focused) text_to_render = this->get_filename();
+         stage_info_overlay.set_text(text_to_render);
+         stage_info_overlay.render();
+         place.restore_transform();
+      }
    }
 
    return;
