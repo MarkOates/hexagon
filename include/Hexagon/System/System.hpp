@@ -63,6 +63,7 @@ public:
    // retrieval
    StageInterface *get_frontmost_stage();
    CodeEditor::Stage *get_frontmost_code_editor_stage();
+   std::vector<CodeEditor::Stage *> get_all_code_editor_stages();
    int get_number_of_code_editor_stages();
 
    // inference
@@ -126,6 +127,8 @@ public:
    bool open_hexagon_config_file();
    //bool spawn_keyboard_inputs_modal();
    bool clear_last_compiled_error_messages();
+   bool enable_drawing_info_overlays_on_all_code_editor_stages();
+   bool disble_drawing_info_overlays_on_all_code_editor_stages();
 
    // motion fx
    bool fx__play_focus_animation_on_frontmost_stage();

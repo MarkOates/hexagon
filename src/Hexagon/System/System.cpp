@@ -249,6 +249,23 @@ CodeEditor::Stage *System::get_frontmost_code_editor_stage()
    return nullptr;
 }
 
+std::vector<CodeEditor::Stage *> System::get_all_code_editor_stages()
+{
+   std::vector<CodeEditor::Stage *> result;
+
+   for (auto &stage : stages)
+   {
+      StageInterface::type_t type = stage->get_type();
+      if (type == CodeEditor::Stage::CODE_EDITOR)
+      {
+         //return static_cast<CodeEditor::Stage *>(get_frontmost_stage());
+         result.push_back(static_cast<CodeEditor::Stage *>(stage));
+      }
+   }
+
+   return result;
+}
+
 int System::get_number_of_code_editor_stages()
 {
    int result = 0;
@@ -885,6 +902,14 @@ bool System::clear_last_compiled_error_messages()
 {
    ::clear_last_compiled_error_messages();
    return true;
+}
+
+bool System::enable_drawing_info_overlays_on_all_code_editor_stages()
+{
+}
+
+bool System::disble_drawing_info_overlays_on_all_code_editor_stages()
+{
 }
 
 bool System::run_make()
