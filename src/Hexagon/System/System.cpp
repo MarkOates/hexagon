@@ -1250,8 +1250,12 @@ void System::process_event(ALLEGRO_EVENT &event)
    KeyboardCommandMapper keyboard_key_down_mapper;
    KeyboardCommandMapper keyboard_command_mapper;
 
-   keyboard_key_down_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, false, { TOGGLE_COMMAND_MODE_ON });
-   keyboard_key_up_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, false, { TOGGLE_COMMAND_MODE_OFF });
+   keyboard_key_down_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, false, {
+     TOGGLE_COMMAND_MODE_ON,
+   });
+   keyboard_key_up_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, false, {
+      TOGGLE_COMMAND_MODE_OFF,
+   });
 
 
    //                      set_mapping(al_keycode,         shift, ctrl,  alt,   command, std::vector<std::string> command_identifiers
