@@ -78,6 +78,10 @@ namespace CodeEditor
       static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS;
       static const std::string DELETE_LINE;
       //static const std::string TOGGLE_SHOWING_CODE_MESSAGE_POINTS;
+
+      static const std::string ENABLE_DRAWING_INFO_OVERLAY;
+      static const std::string DISABLE_DRAWING_INFO_OVERLAY;
+
       static const std::string REFRESH_REGEX_MESSAGE_POINTS;
       static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR;
       static const std::string CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION;

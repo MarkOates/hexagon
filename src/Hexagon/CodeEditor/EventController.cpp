@@ -136,6 +136,10 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
          stage->offset_cursor_position_y(stage->infer_num_lines_to_draw());
       else if (event_name == OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN)
          stage->offset_cursor_position_y(-stage->infer_num_lines_to_draw());
+      else if (event_name == ENABLE_DRAWING_INFO_OVERLAY)
+         stage->enable_drawing_info_overlay();
+      else if (event_name == DISABLE_DRAWING_INFO_OVERLAY)
+         stage->disable_drawing_info_overlay();
       else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS)
          stage->refresh_git_modified_line_numbers();
       //else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS)
@@ -436,6 +440,8 @@ std::string const CodeEditor::EventController::SCALE_STAGE_UP = "SCALE_STAGE_UP"
 std::string const CodeEditor::EventController::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
 std::string const CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS = "REFRESH_GIT_MODIFIED_LINE_NUMBERS";
 //std::string const CodeEditor::EventController::TOGGLE_SHOWING_CODE_MESSAGE_POINTS = "TOGGLE_SHOWING_CODE_MESSAGE_POINTS";
+std::string const CodeEditor::EventController::ENABLE_DRAWING_INFO_OVERLAY = "ENABLE_DRAWING_INFO_OVERLAY";
+std::string const CodeEditor::EventController::DISABLE_DRAWING_INFO_OVERLAY = "DISABLE_DRAWING_INFO_OVERLAY";
 std::string const CodeEditor::EventController::REFRESH_REGEX_MESSAGE_POINTS = "REFRESH_REGEX_MESSAGE_POINTS";
 std::string const CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR";
 std::string const CodeEditor::EventController::CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION = "CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION";

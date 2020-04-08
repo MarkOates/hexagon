@@ -31,6 +31,7 @@ Stage::Stage(std::string filename, std::string file_category, mode_t mode, type_
    , cursor_x(0)
    , cursor_y(0)
    , mode(mode)
+   , draw_info_overlay(true)
    //, type(type)
    , filename(filename)
    , file_category(file_category)
@@ -560,6 +561,22 @@ bool Stage::set_edit_mode()
 
 
 
+bool Stage::enable_drawing_info_overlay()
+{
+   draw_info_overlay = true;
+   return true;
+}
+
+
+
+bool Stage::disable_drawing_info_overlay()
+{
+   draw_info_overlay = false;
+   return true;
+}
+
+
+
 // plugins
 // plugins
 // plugins
@@ -902,7 +919,6 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
       CodeEditor::Renderer renderer(draw_line_numbers, is_focused, this, font, display, cell_width, cell_height);
       renderer.render();
 
-      bool draw_info_overlay = true;
       if (draw_info_overlay)
       {
          placement3d &place = this->get_place_ref();

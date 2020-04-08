@@ -37,6 +37,8 @@ namespace CodeEditor
 
       mode_t mode;
 
+      bool draw_info_overlay;
+
       std::string filename;
       std::string file_category;
 
@@ -109,6 +111,10 @@ namespace CodeEditor
       bool set_insert_mode();
       bool set_edit_mode();
 
+      // render states
+
+      bool enable_drawing_info_overlay();
+      bool disable_drawing_info_overlay();
 
       // plugins
 
