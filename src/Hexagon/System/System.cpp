@@ -1195,13 +1195,13 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { jump_to_next_code_point_on_stage(); executed = true; }
       else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { offset_first_line_to_vertically_center_cursor_on_stage(); executed = true; }
       else if (event_name == ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES) {
-        enable_drawing_info_overlays_on_all_code_editor_stages();
-        executed = true;
+         enable_drawing_info_overlays_on_all_code_editor_stages();
+         executed = true;
       }
       else if (event_name == DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES)
       {
-        disable_drawing_info_overlays_on_all_code_editor_stages();
-        executed = true;
+         disable_drawing_info_overlays_on_all_code_editor_stages();
+         executed = true;
       }
       else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { push_file_navigator_selection(); executed = true; }
       else if (event_name == PUSH_COMPONENT_NAVIGATOR_SELECTION) { push_component_navigator_selection(); executed = true; }
