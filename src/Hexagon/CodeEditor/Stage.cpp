@@ -31,7 +31,7 @@ Stage::Stage(std::string filename, std::string file_category, mode_t mode, type_
    , cursor_x(0)
    , cursor_y(0)
    , mode(mode)
-   , draw_info_overlay(true)
+   , draw_info_overlay(false)
    //, type(type)
    , filename(filename)
    , file_category(file_category)
