@@ -128,7 +128,7 @@ public:
    //bool spawn_keyboard_inputs_modal();
    bool clear_last_compiled_error_messages();
    bool enable_drawing_info_overlays_on_all_code_editor_stages();
-   bool disble_drawing_info_overlays_on_all_code_editor_stages();
+   bool disable_drawing_info_overlays_on_all_code_editor_stages();
 
    // motion fx
    bool fx__play_focus_animation_on_frontmost_stage();
@@ -156,6 +156,9 @@ public:
    static const std::string DECREASE_FONT_SIZE;
    static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE;
+
+   static const std::string ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES;
+   static const std::string DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
    static const std::string PUSH_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;

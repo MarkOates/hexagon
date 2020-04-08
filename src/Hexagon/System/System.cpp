@@ -913,7 +913,7 @@ bool System::enable_drawing_info_overlays_on_all_code_editor_stages()
    return true;
 }
 
-bool System::disble_drawing_info_overlays_on_all_code_editor_stages()
+bool System::disable_drawing_info_overlays_on_all_code_editor_stages()
 {
    std::vector<CodeEditor::Stage *> code_editor_stages = System::get_all_code_editor_stages();
    for (auto &code_editor_stage : code_editor_stages)
@@ -1194,6 +1194,14 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == ESCAPE_CURRENT_MODAL) { escape_current_modal(); executed = true; }
       else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { jump_to_next_code_point_on_stage(); executed = true; }
       else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { offset_first_line_to_vertically_center_cursor_on_stage(); executed = true; }
+      else if (event_name == ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES) {
+        enable_drawing_info_overlays_on_all_code_editor_stages();
+        executed = true;
+      }
+      else if (event_name == DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES) {
+        disable_drawing_info_overlays_on_all_code_editor_stages();
+        executed = true;
+      }
       else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { push_file_navigator_selection(); executed = true; }
       else if (event_name == PUSH_COMPONENT_NAVIGATOR_SELECTION) { push_component_navigator_selection(); executed = true; }
       else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { refresh_regex_hilights_on_stage(); executed = true; }
@@ -1431,6 +1439,10 @@ const std::string System::INCREASE_FONT_SIZE = "INCREASE_FONT_SIZE";
 const std::string System::DECREASE_FONT_SIZE = "DECREASE_FONT_SIZE";
 const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
 const std::string System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE";
+const std::string System::ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES =
+   "ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES";
+const std::string DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES =
+   "DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES";
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
 const std::string System::PUSH_COMPONENT_NAVIGATOR_SELECTION = "PUSH_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
