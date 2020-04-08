@@ -1253,9 +1253,11 @@ void System::process_event(ALLEGRO_EVENT &event)
 
    keyboard_key_down_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, false, {
      TOGGLE_COMMAND_MODE_ON,
+     ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES,
    });
    keyboard_key_up_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, false, {
       TOGGLE_COMMAND_MODE_OFF,
+      DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES,
    });
 
 
