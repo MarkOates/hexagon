@@ -20,6 +20,7 @@ TEST(DISABLED_Hexagon_System_System, initialize__will_initialize_the_config)
 
    System system(display);
    system.initialize();
+   al_uninstall_system();
 }
 
 TEST(DISABLED_Hexagon_System_System, get_default_camera_stepback__returns_the_expected_value)
@@ -30,6 +31,7 @@ TEST(DISABLED_Hexagon_System_System, get_default_camera_stepback__returns_the_ex
    System system(display);
 
    EXPECT_EQ(60, system.get_default_camera_stepback());
+   al_uninstall_system();
 }
 
 TEST(DISABLED_Hexagon_System_System, get_default_code_editor_stage_width__returns_the_expected_value)
@@ -41,6 +43,7 @@ TEST(DISABLED_Hexagon_System_System, get_default_code_editor_stage_width__return
    system.initialize();
 
    EXPECT_EQ(1235, system.get_default_code_editor_stage_width());
+   al_uninstall_system();
 }
 
 TEST(DISABLED_Hexagon_System_System,
@@ -58,6 +61,7 @@ TEST(DISABLED_Hexagon_System_System,
       system.create_two_or_three_split_layout_from_last_component_navigator_selection(),
       std::runtime_error,
       expected_error_message);
+   al_uninstall_system();
 }
 
 TEST(DISABLED_Hexagon_System_System,
