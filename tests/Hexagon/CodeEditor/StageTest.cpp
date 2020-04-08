@@ -62,7 +62,8 @@ TEST(Hexagon_CodeEditor_StageTest,
    EXPECT_FALSE(stage.infer_cursor_is_on_line_that_exists());
 }
 
-TEST(Hexagon_CodeEditor_StageTest, join_lines__will_concat_the_contents_of_the_current_line_and_the_line_below_it_and_returns_true)
+TEST(Hexagon_CodeEditor_StageTest,
+   join_lines__will_concat_the_contents_of_the_current_line_and_the_line_below_it_and_returns_true)
 {
    CodeEditor::Stage stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
