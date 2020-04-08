@@ -26,6 +26,12 @@ properties:
     setter: true
     getter: true
     constructor_arg: true
+  - name: show_powerbar
+    type: bool
+    init_with: false
+    setter: true
+    getter: true
+    constructor_arg: true
   - name: files_are_modified
     type: bool
     init_with: false
@@ -171,9 +177,12 @@ functions:
         y_cursor++;
       }
 
-      Hexagon::Powerbar::Powerbar powerbar(files_are_modified, files_are_committed, commits_are_in_sync_with_remote);
-      Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());
-      powerbar_renderer.render();
+      if (show_powerbar)
+      {
+         Hexagon::Powerbar::Powerbar powerbar(files_are_modified, files_are_committed, commits_are_in_sync_with_remote);
+         Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());
+         powerbar_renderer.render();
+      }
 
       al_restore_state(&previous_target_bitmap_state);
       return;

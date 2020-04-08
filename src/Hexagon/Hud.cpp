@@ -19,12 +19,13 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, bool show_disabled_screen, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, bool show_disabled_screen, bool show_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote)
    : initialized(false)
    , display(display)
    , fonts(fonts)
    , title_text(title_text)
    , show_disabled_screen(show_disabled_screen)
+   , show_powerbar(show_powerbar)
    , files_are_modified(files_are_modified)
    , files_are_committed(files_are_committed)
    , commits_are_in_sync_with_remote(commits_are_in_sync_with_remote)
@@ -49,6 +50,12 @@ void Hud::set_title_text(std::string title_text)
 void Hud::set_show_disabled_screen(bool show_disabled_screen)
 {
    this->show_disabled_screen = show_disabled_screen;
+}
+
+
+void Hud::set_show_powerbar(bool show_powerbar)
+{
+   this->show_powerbar = show_powerbar;
 }
 
 
@@ -97,6 +104,12 @@ std::string Hud::get_title_text()
 bool Hud::get_show_disabled_screen()
 {
    return show_disabled_screen;
+}
+
+
+bool Hud::get_show_powerbar()
+{
+   return show_powerbar;
 }
 
 
@@ -230,9 +243,12 @@ for (auto &notification2 : notifications2)
   y_cursor++;
 }
 
-Hexagon::Powerbar::Powerbar powerbar(files_are_modified, files_are_committed, commits_are_in_sync_with_remote);
-Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());
-powerbar_renderer.render();
+if (show_powerbar)
+{
+   Hexagon::Powerbar::Powerbar powerbar(files_are_modified, files_are_committed, commits_are_in_sync_with_remote);
+   Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());
+   powerbar_renderer.render();
+}
 
 al_restore_state(&previous_target_bitmap_state);
 return;

@@ -19,6 +19,7 @@ namespace Hexagon
       AllegroFlare::FontBin& fonts;
       std::string title_text;
       bool show_disabled_screen;
+      bool show_powerbar;
       bool files_are_modified;
       bool files_are_committed;
       bool commits_are_in_sync_with_remote;
@@ -27,11 +28,12 @@ namespace Hexagon
       std::vector<std::string> notifications2;
 
    public:
-      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", bool show_disabled_screen=false, bool files_are_modified=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false);
+      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", bool show_disabled_screen=false, bool show_powerbar=false, bool files_are_modified=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false);
       ~Hud();
 
       void set_title_text(std::string title_text);
       void set_show_disabled_screen(bool show_disabled_screen);
+      void set_show_powerbar(bool show_powerbar);
       void set_files_are_modified(bool files_are_modified);
       void set_files_are_committed(bool files_are_committed);
       void set_commits_are_in_sync_with_remote(bool commits_are_in_sync_with_remote);
@@ -41,6 +43,7 @@ namespace Hexagon
 
       std::string get_title_text();
       bool get_show_disabled_screen();
+      bool get_show_powerbar();
       std::vector<std::string> get_notifications();
       std::vector<std::string> get_notifications2();
    static AllegroFlare::FontBin& get_dummy_font_bin();
