@@ -1198,10 +1198,14 @@ void System::process_local_event(std::string event_name) // this function is 1:1
         enable_drawing_info_overlays_on_all_code_editor_stages();
         executed = true;
       }
-      else if (event_name == DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES) {
-        disable_drawing_info_overlays_on_all_code_editor_stages();
-        executed = true;
-      }
+      //else if (event_name ==
+//DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES
+//DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES
+//)
+     //{
+        //disable_drawing_info_overlays_on_all_code_editor_stages();
+        //executed = true;
+      //}
       else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { push_file_navigator_selection(); executed = true; }
       else if (event_name == PUSH_COMPONENT_NAVIGATOR_SELECTION) { push_component_navigator_selection(); executed = true; }
       else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { refresh_regex_hilights_on_stage(); executed = true; }
