@@ -905,10 +905,22 @@ bool System::clear_last_compiled_error_messages()
 
 bool System::enable_drawing_info_overlays_on_all_code_editor_stages()
 {
+   std::vector<CodeEditor::Stage *> code_editor_stages = System::get_all_code_editor_stages();
+   for (auto &code_editor_stage : code_editor_stages)
+   {
+      code_editor_stage->enable_drawing_info_overlay();
+   }
+   return true;
 }
 
 bool System::disble_drawing_info_overlays_on_all_code_editor_stages()
 {
+   std::vector<CodeEditor::Stage *> code_editor_stages = System::get_all_code_editor_stages();
+   for (auto &code_editor_stage : code_editor_stages)
+   {
+      code_editor_stage->disable_drawing_info_overlay();
+   }
+   return true;
 }
 
 bool System::run_make()
