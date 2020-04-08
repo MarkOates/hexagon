@@ -258,7 +258,6 @@ std::vector<CodeEditor::Stage *> System::get_all_code_editor_stages()
       StageInterface::type_t type = stage->get_type();
       if (type == CodeEditor::Stage::CODE_EDITOR)
       {
-         //return static_cast<CodeEditor::Stage *>(get_frontmost_stage());
          result.push_back(static_cast<CodeEditor::Stage *>(stage));
       }
    }

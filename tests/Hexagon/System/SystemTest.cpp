@@ -43,7 +43,6 @@ TEST(DISABLED_Hexagon_System_System, get_default_code_editor_stage_width__return
    EXPECT_EQ(1235, system.get_default_code_editor_stage_width());
 }
 
-
 TEST(DISABLED_Hexagon_System_System,
    create_two_or_three_split_layout_from_last_component_navigator_selection__will_set_the_hud_title)
 {
@@ -61,4 +60,8 @@ TEST(DISABLED_Hexagon_System_System,
       expected_error_message);
 }
 
+TEST(DISABLED_Hexagon_System_System,
+   get_all_code_editor_stages__returns_a_list_of_all_the_code_editor_stages)
+{
+}
 
