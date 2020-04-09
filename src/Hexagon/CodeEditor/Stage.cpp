@@ -696,7 +696,8 @@ bool Stage::refresh_regex_message_points()
 
    // get regex expression input from file named REGEX_TEMP_FILENAME
    std::vector<std::string> regex_input_file_lines;
-   if (!read_file(regex_input_file_lines, REGEX_TEMP_FILENAME) || regex_input_file_lines.size() == 0) throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
+   if (!read_file(regex_input_file_lines, REGEX_TEMP_FILENAME) || regex_input_file_lines.size() == 0)
+      throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
 
    std::string regex_expression = regex_input_file_lines[0];
    std::size_t carat_position = regex_expression.find_last_of('^');
@@ -704,7 +705,9 @@ bool Stage::refresh_regex_message_points()
 
    if (regex_expression.empty()) return true;
 
-   regex_expression.erase(std::remove(regex_expression.begin() + 1, regex_expression.end(), '^'), regex_expression.end());
+   regex_expression.erase(
+     std::remove(regex_expression.begin() + 1, regex_expression.end(), '^'),
+     regex_expression.end());
 
    std::vector<CodeMessagePoint> results;
    for (unsigned i=0; i<lines.size(); i++)
@@ -713,7 +716,14 @@ bool Stage::refresh_regex_message_points()
       std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
       for (auto &match_position : match_positions)
       {
-         results.push_back(CodeMessagePoint(match_position.first, i+1, match_position.second, cursor_placement_offset, "[match]", CodeMessagePoint::POSITION));
+         results.push_back(CodeMessagePoint(
+                           match_position.first,
+                           i+1,
+                           match_position.second,
+                           cursor_placement_offset,
+                           "[match]",
+                           CodeMessagePoint::POSITION
+                           ));
       }
    }
    set_code_message_points(results);
