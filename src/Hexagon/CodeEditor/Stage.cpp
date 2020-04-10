@@ -722,12 +722,7 @@ bool Stage::refresh_regex_message_points()
 {
    clear_code_message_points();
 
-   // get regex expression input from file named REGEX_TEMP_FILENAME
-   std::vector<std::string> regex_input_file_lines;
-   if (!read_file(regex_input_file_lines, REGEX_TEMP_FILENAME) || regex_input_file_lines.size() == 0)
-      throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
-
-   std::string regex_expression = regex_input_file_lines[0];
+   std::string regex_expression = get_search_regex_expression();
    std::size_t carat_position = regex_expression.find_last_of('^');
    int cursor_placement_offset = (carat_position == std::string::npos) ? 0 : carat_position;
 
