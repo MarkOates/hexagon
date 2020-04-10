@@ -21,7 +21,15 @@ namespace CodeEditor
 
 
 
-Renderer::Renderer(bool draw_line_numbers, bool is_focused, CodeEditor::Stage *stage, ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, int cell_width, int cell_height)
+Renderer::Renderer(
+   bool draw_line_numbers,
+   bool is_focused,
+   CodeEditor::Stage *stage,
+   ALLEGRO_FONT *font,
+   ALLEGRO_DISPLAY *display,
+   int cell_width,
+   int cell_height
+)
    : Hexagon::RendererInterface()
    , draw_line_numbers(draw_line_numbers)
    , draw_extra_spaces_at_end_of_line(true)
