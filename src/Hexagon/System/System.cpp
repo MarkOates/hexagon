@@ -1132,7 +1132,7 @@ bool System::submit_current_modal()
    case StageInterface::ONE_LINE_INPUT_BOX:
       process_local_event(SAVE_CURRENT_STAGE);
       process_local_event(DESTROY_TOPMOST_STAGE);
-      process_local_event(REFRESH_REGEX_HILIGHTS_ON_STAGE);
+      process_local_event(REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
       process_local_event(JUMP_TO_NEXT_CODE_POINT_ON_STAGE);
       process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
       break;
