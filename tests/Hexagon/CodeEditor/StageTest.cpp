@@ -323,22 +323,60 @@ TEST(Hexagon_CodeEditor_StageTest,
 TEST(Hexagon_CodeEditor_StageTest,
    jump_to_next_or_nearest_code_point__with_code_points_after_the_cursor__jumps_to_the_next_code_point)
 {
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   stage.set_search_regex_expression("at");
+   stage.refresh_regex_message_points();
+
+   int start_cursor_x = 25;
+   int start_cursor_y = 7;
+
+   stage.set_cursor_x(start_cursor_x);
+   stage.set_cursor_y(start_cursor_y);
+
+   ASSERT_TRUE(stage.jump_to_next_or_nearest_code_point());
+
+   ASSERT_EQ(29, stage.get_cursor_x());
+   ASSERT_EQ(8, stage.get_cursor_y());
 }
 
 TEST(Hexagon_CodeEditor_StageTest,
    jump_to_next_or_nearest_code_point__with_no_code_points_after_the_cursor__jumps_to_the_previous_code_point)
 {
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   stage.set_search_regex_expression("at");
+   stage.refresh_regex_message_points();
+
+   int start_cursor_x = 29;
+   int start_cursor_y = 12;
+
+   stage.set_cursor_x(start_cursor_x);
+   stage.set_cursor_y(start_cursor_y);
+
+   ASSERT_TRUE(stage.jump_to_next_or_nearest_code_point());
+
+   ASSERT_EQ(23, stage.get_cursor_x());
+   ASSERT_EQ(12, stage.get_cursor_y());
 }
 
 TEST(Hexagon_CodeEditor_StageTest,
-   jump_to_next_or_nearest_code_point__with_code_points_after_the_cursor__does_not_move_the_cursor)
+   jump_to_next_or_nearest_code_point__with_no_code_points__does_not_move_the_cursor)
 {
    CodeEditor::Stage stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
-   int start_cursor_x = 10;
-   int start_cursor_y = 10;
+   int start_cursor_x = 12;
+   int start_cursor_y = 18;
 
-   stage.jump_to_next_or_nearest_code_point();
+   stage.set_cursor_x(start_cursor_x);
+   stage.set_cursor_y(start_cursor_y);
+
+   stage.jump_to_next_or_nearest_code_point(); // should return false, but is currently returning true
+
+   ASSERT_EQ(start_cursor_x, stage.get_cursor_x());
+   ASSERT_EQ(start_cursor_y, stage.get_cursor_y());
 }
 

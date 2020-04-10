@@ -694,11 +694,17 @@ bool Stage::jump_to_previous_code_point()
       }
    }
 
+   if (!most_viable_code_point)
+   {
+      return false;
+   }
+
    if (most_viable_code_point)
    {
       set_cursor_x(most_viable_code_point->get_x() + most_viable_code_point->get_cursor_placement_offset());
       set_cursor_y(most_viable_code_point->get_y()-1);
    }
+
    return true;
 }
 
