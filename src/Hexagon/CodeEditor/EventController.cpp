@@ -170,8 +170,7 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
 
    catch (const std::exception &e)
    {
-      std::cout << "cannot execute " << e.what() << std::endl;
-      //std::cout << "\033[0;33m💥 can exec     "" << event_name << "\": \033[0;31m" << e.what() << "\033[0;33m\033[0m" << std::endl;
+      std::cout << "cannot execute \"" << event_name << "\": "<< e.what() << std::endl;
    }
 
    if (last_performed_action_queue_is_recording && event_name != START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING)
