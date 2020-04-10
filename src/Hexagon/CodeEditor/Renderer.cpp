@@ -87,7 +87,8 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
    std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = stage->code_message_points_overlays;
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR font_color = AllegroFlare::color::mix(epic_green_color, frame_color, 0.5);
-   font_color = AllegroFlare::color::mix(font_color, al_color_name("white"), 0.5);
+   //font_color = AllegroFlare::color::mix(font_color, al_color_name("white"), 0.5);
+   font_color = al_color_name("white");
 
    for (int line_number = first_line_number; line_number < (int)lines.size(); line_number++)
    {
@@ -247,7 +248,9 @@ void Renderer::render_raw()
 
 
    // draw the background and frame (basically the chrome)
-   ALLEGRO_COLOR background_overlay_color = al_color_name("black");
+   //ALLEGRO_COLOR background_overlay_color = al_color_name("black");
+   ALLEGRO_COLOR background_overlay_color = al_color_html("5b5c60");
+
    float opacity = 0.7;
    background_overlay_color.r *= opacity;
    background_overlay_color.g *= opacity;

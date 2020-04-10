@@ -261,7 +261,8 @@ while(!shutdown_program)
       //system.hud.set_notifications2({ "[ - ]" });
       //system.hud.set_notifications(notifications);
 
-      al_clear_to_color(al_color_name("black"));
+      //al_clear_to_color(al_color_name("black"));
+      al_clear_to_color(al_color_html("5b5c60"));
 
       Hexagon::System::Renderer renderer(&system, display);
       renderer.render();

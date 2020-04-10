@@ -39,7 +39,7 @@ if (!display)
    throw std::runtime_error(error_message.str());
 }
 
-al_clear_to_color(al_color_name("black"));
+al_clear_to_color(al_color_html("5b5c60"));
 
 system->camera.setup_camera_perspective(al_get_backbuffer(display));
 al_clear_depth_buffer(1000);

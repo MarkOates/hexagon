@@ -80,7 +80,8 @@ bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::execute()
 std::string component_name = last_component_navigator_selection;
 
 NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name, false);
-std::string quintessence_filename = project_path + project_component_filename_generator.generate_quintessence_filename();
+std::string quintessence_filename = project_path
+   + project_component_filename_generator.generate_quintessence_filename();
 std::string test_src_filename = project_path + project_component_filename_generator.generate_test_src_filename();
 
 std::string filename = quintessence_filename;
