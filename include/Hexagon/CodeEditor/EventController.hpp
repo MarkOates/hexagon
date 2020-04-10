@@ -26,15 +26,15 @@ namespace CodeEditor
       ActionQueueRecording last_performed_action_queue_recording;
       bool last_performed_action_queue_is_recording;
 
-   public:
-      EventController(CodeEditor::Stage *stage);
-      virtual ~EventController();
-
       bool clear_last_performed_action_queue_recording();
       bool start_recording_last_performed_action_queue_recording();
       bool stop_recording_last_performed_action_queue_recording();
       bool is_last_performed_action_queue_recording();
       bool play_last_performed_action_queue_recording();
+
+   public:
+      EventController(CodeEditor::Stage *stage);
+      virtual ~EventController();
 
       static const std::string MOVE_CURSOR_UP;
       static const std::string MOVE_CURSOR_DOWN;
