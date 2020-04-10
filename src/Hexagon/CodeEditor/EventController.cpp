@@ -408,7 +408,8 @@ std::string const CodeEditor::EventController::MOVE_CURSOR_JUMP_TO_NEXT_WORD = "
 std::string const CodeEditor::EventController::MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD = "MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD";
 std::string const CodeEditor::EventController::MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD = "MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD";
 std::string const CodeEditor::EventController::JUMP_CURSOR_TO_END_OF_NEXT_WORD = "JUMP_CURSOR_TO_END_OF_NEXT_WORD";
-std::string const CodeEditor::EventController::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD = "JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD";
+std::string const CodeEditor::EventController::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD =
+   "JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD";
 std::string const CodeEditor::EventController::JUMP_TO_NEXT_CODE_POINT = "JUMP_TO_NEXT_CODE_POINT";
 std::string const CodeEditor::EventController::JUMP_TO_PREVIOUS_CODE_POINT = "JUMP_TO_PREVIOUS_CODE_POINT";
 std::string const CodeEditor::EventController::DELETE_CHARACTER = "DELETE_CHARACTER";
