@@ -615,6 +615,18 @@ bool System::refresh_regex_hilights_on_stage()
    return true;
 }
 
+bool System::refresh_regex_hilights_on_all_code_editor_stages()
+{
+   std::vector<CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
+
+   for (auto &code_editor_stage : all_code_editor_stages)
+   {
+      //if (!stage) throw std::runtime_error("Cannot refresh_regex_hilights_on_stage; current stage is not a stage stage");
+      code_editor_stage->refresh_regex_message_points();
+   }
+   return true;
+}
+
 bool System::set_regex_input_box_modal_to_insert_mode()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -1206,6 +1218,11 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { push_file_navigator_selection(); executed = true; }
       else if (event_name == PUSH_COMPONENT_NAVIGATOR_SELECTION) { push_component_navigator_selection(); executed = true; }
       else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { refresh_regex_hilights_on_stage(); executed = true; }
+      else if (event_name == REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES)
+      {
+         refresh_regex_hilights_on_all_code_editor_stages();
+         executed = true;
+      }
       else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
       else if (event_name == INCREASE_FONT_SIZE) { increase_font_size(); executed = true; }
       else if (event_name == DECREASE_FONT_SIZE) { decrease_font_size(); executed = true; }
@@ -1453,6 +1470,8 @@ const std::string System::DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGE
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
 const std::string System::PUSH_COMPONENT_NAVIGATOR_SELECTION = "PUSH_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
+const std::string System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES =
+   "REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES";
 const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
 const std::string System::TOGGLE_COMMAND_MODE_ON = "TOGGLE_COMMAND_MODE_ON";
 const std::string System::TOGGLE_COMMAND_MODE_OFF = "TOGGLE_COMMAND_MODE_OFF";

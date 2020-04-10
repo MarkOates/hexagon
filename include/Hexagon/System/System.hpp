@@ -99,6 +99,7 @@ public:
    bool increase_font_size();
    bool decrease_font_size();
    bool refresh_regex_hilights_on_stage();
+   bool refresh_regex_hilights_on_all_code_editor_stages();
    bool set_regex_input_box_modal_to_insert_mode();
    bool spawn_regex_input_box_modal();
    bool spawn_component_navigator();
@@ -162,6 +163,7 @@ public:
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
    static const std::string PUSH_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_STAGE;
+   static const std::string REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string REFRESH_RERUN_OUTPUT_WATCHERS;
    static const std::string REMOVE_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string TOGGLE_COMMAND_MODE_ON;
