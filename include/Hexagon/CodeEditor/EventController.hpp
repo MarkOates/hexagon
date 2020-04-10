@@ -6,6 +6,7 @@
 #include <Hexagon/EventControllerInterface.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/ActionQueueRecording.hpp>
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 
 
 
@@ -23,6 +24,9 @@ namespace CodeEditor
    private:
       CodeEditor::Stage *stage;
 
+      KeyboardCommandMapper edit_mode__keyboard_command_mapper;
+      KeyboardCommandMapper insert_mode__keyboard_command_mapper;
+
       ActionQueueRecording last_performed_action_queue_recording;
       bool last_performed_action_queue_is_recording;
 
@@ -35,6 +39,9 @@ namespace CodeEditor
    public:
       EventController(CodeEditor::Stage *stage);
       virtual ~EventController();
+
+      void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override;
+      void process_event(ALLEGRO_EVENT &event) override;
 
       static const std::string MOVE_CURSOR_UP;
       static const std::string MOVE_CURSOR_DOWN;
@@ -78,10 +85,8 @@ namespace CodeEditor
       static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS;
       static const std::string DELETE_LINE;
       //static const std::string TOGGLE_SHOWING_CODE_MESSAGE_POINTS;
-
       static const std::string ENABLE_DRAWING_INFO_OVERLAY;
       static const std::string DISABLE_DRAWING_INFO_OVERLAY;
-
       static const std::string REFRESH_REGEX_MESSAGE_POINTS;
       static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR;
       static const std::string CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION;
@@ -93,9 +98,6 @@ namespace CodeEditor
       static const std::string START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
       static const std::string STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
       static const std::string PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
-
-      void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override;
-      void process_event(ALLEGRO_EVENT &event) override;
    };
 } // namespace CodeEditor
 

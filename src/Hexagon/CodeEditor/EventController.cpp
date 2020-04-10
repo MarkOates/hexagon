@@ -3,7 +3,6 @@
 
 #include <Hexagon/CodeEditor/EventController.hpp>
 
-#include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <iostream>
 
@@ -187,7 +186,7 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
 {
    //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
    //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
-   KeyboardCommandMapper edit_mode__keyboard_command_mapper;
+   //KeyboardCommandMapper edit_mode__keyboard_command_mapper;
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_0, false, false, false, false, {
       CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE,
       });
@@ -330,7 +329,7 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
 
    //std::map<std::tuple<int, bool, bool, bool>, std::vector<std::string>> mapping;
    //bool set_mapping(int al_keycode, bool shift, bool ctrl, bool alt, std::vector<std::string> comand_identifier);
-   KeyboardCommandMapper insert_mode__keyboard_command_mapper;
+   //KeyboardCommandMapper insert_mode__keyboard_command_mapper;
    insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, {
       CodeEditor::EventController::SET_EDIT_MODE,
       CodeEditor::EventController::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
