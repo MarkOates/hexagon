@@ -1098,8 +1098,10 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
    }
    else
    {
-      std::cout << "cannot create_two_or_three_split_layout_from_last_component_navigator_selection because the component \"" << component.get_name() << "\" " \
-         "neither has a header/source combo nor a quintessence or test file." << std::endl;
+      std::cout << "cannot create_two_or_three_split_layout_from_last_component_navigator_selection "
+                << "because the component \"" << component.get_name() << "\" "
+                << "neither has a header/source combo nor a quintessence or test file."
+                << std::endl;
       return true;
    }
 }
