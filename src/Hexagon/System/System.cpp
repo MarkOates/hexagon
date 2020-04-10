@@ -607,10 +607,15 @@ bool System::decrease_font_size()
    global_font_size += 1;
 }
 
-bool System::refresh_regex_hilights_on_stage()
+bool System::refresh_regex_hilights_on_frontmost_stage()
 {
    CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
-   if (!stage) throw std::runtime_error("Cannot refresh_regex_hilights_on_stage; current stage is not a stage stage");
+   if (!stage)
+   {
+      std::stringstream error_message;
+      error_message << "Cannot refresh_regex_hilights_on_frontmost_stage; there is no frontmost code editor stage";
+      throw std::runtime_error(error_message.str());
+   }
    stage->refresh_regex_message_points();
    return true;
 }
@@ -618,12 +623,7 @@ bool System::refresh_regex_hilights_on_stage()
 bool System::refresh_regex_hilights_on_all_code_editor_stages()
 {
    std::vector<CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
-
-   for (auto &code_editor_stage : all_code_editor_stages)
-   {
-      //if (!stage) throw std::runtime_error("Cannot refresh_regex_hilights_on_stage; current stage is not a stage stage");
-      code_editor_stage->refresh_regex_message_points();
-   }
+   for (auto &code_editor_stage : all_code_editor_stages) code_editor_stage->refresh_regex_message_points();
    return true;
 }
 
@@ -1217,7 +1217,10 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       }
       else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { push_file_navigator_selection(); executed = true; }
       else if (event_name == PUSH_COMPONENT_NAVIGATOR_SELECTION) { push_component_navigator_selection(); executed = true; }
-      else if (event_name == REFRESH_REGEX_HILIGHTS_ON_STAGE) { refresh_regex_hilights_on_stage(); executed = true; }
+      else if (event_name == REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE)
+      {
+         refresh_regex_hilights_on_frontmost_stage(); executed = true;
+      }
       else if (event_name == REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES)
       {
          refresh_regex_hilights_on_all_code_editor_stages();
@@ -1398,7 +1401,7 @@ std::string System::get_action_description(std::string action_identifier)
       { System::DECREASE_FONT_SIZE, "" },
       { System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE, "" },
       { System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE, "" },
-      { System::REFRESH_REGEX_HILIGHTS_ON_STAGE, "" },
+      { System::REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE, "" },
       { System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE, "" },
       { System::ADD_FILE_IS_UNSAVED_NOTIFICATION, "" },
       { System::OPEN_HEXAGON_CONFIG_FILE, "" },
@@ -1469,7 +1472,7 @@ const std::string System::DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGE
    "DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES";
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
 const std::string System::PUSH_COMPONENT_NAVIGATOR_SELECTION = "PUSH_COMPONENT_NAVIGATOR_SELECTION";
-const std::string System::REFRESH_REGEX_HILIGHTS_ON_STAGE = "REFRESH_REGEX_HILIGHTS_ON_STAGE";
+const std::string System::REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE = "REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES =
    "REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES";
 const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
