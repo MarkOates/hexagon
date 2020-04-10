@@ -396,10 +396,15 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
 
 
 
-std::string const CodeEditor::EventController::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
-std::string const CodeEditor::EventController::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
-std::string const CodeEditor::EventController::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
-std::string const CodeEditor::EventController::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
+namespace CodeEditor
+{
+   std::string const EventController::MOVE_CURSOR_UP = "MOVE_CURSOR_UP";
+   std::string const EventController::MOVE_CURSOR_DOWN = "MOVE_CURSOR_DOWN";
+   std::string const EventController::MOVE_CURSOR_LEFT = "MOVE_CURSOR_LEFT";
+   std::string const EventController::MOVE_CURSOR_RIGHT = "MOVE_CURSOR_RIGHT";
+}
+
+
 std::string const CodeEditor::EventController::MOVE_CURSOR_TO_TOP_OF_SCREEN = "MOVE_CURSOR_TO_TOP_OF_SCREEN";
 std::string const CodeEditor::EventController::MOVE_CURSOR_TO_MIDDLE_OF_SCREEN = "MOVE_CURSOR_TO_MIDDLE_OF_SCREEN";
 std::string const CodeEditor::EventController::MOVE_CURSOR_TO_BOTTOM_OF_SCREEN = "MOVE_CURSOR_TO_BOTTOM_OF_SCREEN";
