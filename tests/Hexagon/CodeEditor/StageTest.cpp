@@ -63,6 +63,16 @@ TEST(Hexagon_CodeEditor_StageTest,
 }
 
 TEST(Hexagon_CodeEditor_StageTest,
+   move_cursor_left__while_at_the_0_position_will_do_nothing_and_return_false)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   EXPECT_FALSE(stage.move_cursor_left());
+   EXPECT_EQ(0, stage.get_cursor_x());
+}
+
+TEST(Hexagon_CodeEditor_StageTest,
    join_lines__will_concat_the_contents_of_the_current_line_and_the_line_below_it_and_returns_true)
 {
    CodeEditor::Stage stage("a_sonnet.txt");

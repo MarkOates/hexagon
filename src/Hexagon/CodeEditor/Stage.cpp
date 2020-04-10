@@ -263,6 +263,7 @@ bool Stage::move_cursor_down()
 
 bool Stage::move_cursor_left()
 {
+   if (cursor_x <= 0) return false;
    set_cursor_x(cursor_x - 1);
    return true;
 }
