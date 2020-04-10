@@ -543,7 +543,8 @@ bool System::center_camera_on_frontmost_stage()
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage)
    {
-      std::cout << "Warning: attempting to center_camera_on_frontmost_stage() but no frontmost stage exists" << std::endl;
+      std::cout << "Warning: attempting to center_camera_on_frontmost_stage() but no frontmost stage exists"
+                << std::endl;
       return false;
    }
 
@@ -643,7 +644,8 @@ bool System::set_regex_input_box_modal_to_insert_mode()
 
 bool System::spawn_regex_input_box_modal()
 {
-   //TODO: this placement should be relative to the camera, or, the window should be placed on a non-transforming render surface
+   //TODO: this placement should be relative to the camera, or, the window should be
+   // placed on a non-transforming render surface, or rendered within the hud.
    // for now, I'm going to have it spawn at the position of the camera
    placement3d place(0.0, 0.0, 0.0);
    place.position = camera.position;
