@@ -27,6 +27,7 @@ Frame::Frame(float width, float height)
    , width(width)
    , height(height)
    , outline_color(build_default_frame_color())
+   , line_thickness(2.5f)
 {
 }
 
@@ -60,9 +61,21 @@ void Frame::set_outline_color(ALLEGRO_COLOR outline_color)
 }
 
 
+void Frame::set_line_thickness(float line_thickness)
+{
+   this->line_thickness = line_thickness;
+}
+
+
 ALLEGRO_COLOR Frame::get_outline_color()
 {
    return outline_color;
+}
+
+
+float Frame::get_line_thickness()
+{
+   return line_thickness;
 }
 
 
@@ -90,11 +103,11 @@ return dummy_font_bin;
 
 void Frame::render()
 {
-float line_thickness = 2.5;
+//float line_thickness = 2.5;
 //ALLEGRO_COLOR color = al_color_name("gray");
 //ALLEGRO_FONT *large_title_font = fonts["eurostyle.ttf 30"];
 //al_draw_text(large_title_font, color, 0, 0, 0, title_text.c_str());
-al_draw_rectangle(0, 0, width, height, get_outline_color(), line_thickness);
+al_draw_rectangle(0, 0, width, height, get_outline_color(), get_line_thickness());
 return;
 
 }

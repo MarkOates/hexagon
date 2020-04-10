@@ -296,7 +296,8 @@ bool System::is_current_stage_a_regex_input_box()
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage)
    {
-      std::cout << "Warning: attempting to infer if is_current_stage_a_regex_input_box() but no frontmost stage exists" << std::endl;
+      std::cout << "Warning: attempting to infer if is_current_stage_a_regex_input_box() but no "
+                << "frontmost stage exists" << std::endl;
       return false;
    }
    return frontmost_stage && (frontmost_stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX);
@@ -363,7 +364,12 @@ bool System::write_focused_component_name_to_file()
    std::string focused_component_to_write = focused_component_name;
 
    bool success = php::file_put_contents(FOCUSED_COMPONENT_FILENAME, focused_component_to_write);
-   if (!success) throw std::runtime_error("[System::write_focused_component_name_to_file()] error: could not file_put_contents()");
+   if (!success)
+   {
+      std::stringstream error_message;
+      error_message << "[System::write_focused_component_name_to_file()] error: could not file_put_contents()";
+      throw std::runtime_error(error_message.str());
+   }
 
    return true;
 }

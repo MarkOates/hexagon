@@ -70,6 +70,7 @@ void Renderer::draw_selections(int cell_width, int cell_height)
 void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 {
    // render cursor
+
    int first_line_number = stage->get_first_line_number();
    float _cursor_y = stage->get_cursor_y() - stage->get_first_line_number();
    int cursor_x = stage->get_cursor_x();
@@ -81,11 +82,13 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 
 
    // draw code range selection hilight box(es);
+
    draw_selections(_cell_width, cell_height);
 
 
 
    // render code lines
+
    std::vector<std::string> const &lines = stage->get_lines_ref();
    int line_height = al_get_font_line_height(font);
    int line_count_render_limit = place.size.y / line_height;
@@ -95,8 +98,17 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
    std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = stage->code_message_points_overlays;
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR font_color = AllegroFlare::color::mix(epic_green_color, frame_color, 0.5);
-   //font_color = AllegroFlare::color::mix(font_color, al_color_name("white"), 0.5);
-   font_color = al_color_name("white");
+   bool using_white_font_color = false;
+   if (using_white_font_color)
+   {
+     // white
+     font_color = al_color_name("white");
+   }
+   else
+   {
+     // soft green font
+     font_color = AllegroFlare::color::mix(font_color, al_color_name("white"), 0.5);
+   }
 
    for (int line_number = first_line_number; line_number < (int)lines.size(); line_number++)
    {
