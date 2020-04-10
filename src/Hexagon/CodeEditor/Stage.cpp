@@ -689,6 +689,18 @@ bool Stage::jump_to_previous_code_point()
 
 
 
+bool Stage::jump_to_next_or_nearest_code_point()
+{
+   if (code_message_points_overlays.empty()) return true;
+
+   bool jump_to_next_was_successful = jump_to_next_code_point();
+   if (!jump_to_next_was_successful) return jump_to_previous_code_point();
+
+   return true;
+}
+
+
+
 // regex matcher plugin
 
 bool Stage::refresh_regex_message_points()

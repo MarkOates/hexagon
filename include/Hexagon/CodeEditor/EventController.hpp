@@ -57,6 +57,7 @@ namespace CodeEditor
       static const std::string JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD;
       static const std::string JUMP_TO_NEXT_CODE_POINT;
       static const std::string JUMP_TO_PREVIOUS_CODE_POINT;
+      static const std::string JUMP_TO_NEXT_OR_NEAREST_CODE_POINT;
       static const std::string DELETE_CHARACTER;
       static const std::string INSERT_STRING;
       static const std::string SET_INSERT_MODE;

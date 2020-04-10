@@ -98,6 +98,7 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
       else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD) stage->move_cursor_to_end_of_next_big_word();
       else if (event_name == JUMP_TO_NEXT_CODE_POINT) stage->jump_to_next_code_point();
       else if (event_name == JUMP_TO_PREVIOUS_CODE_POINT) stage->jump_to_previous_code_point();
+      else if (event_name == JUMP_TO_NEXT_OR_NEAREST_CODE_POINT) stage->jump_to_next_or_nearest_code_point();
       else if (event_name == DELETE_CHARACTER) stage->delete_character();
       else if (event_name == INSERT_STRING) stage->insert_string(action_data1.get_string());
       else if (event_name == SET_INSERT_MODE) stage->set_insert_mode();
@@ -416,6 +417,7 @@ std::string const CodeEditor::EventController::JUMP_CURSOR_TO_END_OF_NEXT_BIG_WO
    "JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD";
 std::string const CodeEditor::EventController::JUMP_TO_NEXT_CODE_POINT = "JUMP_TO_NEXT_CODE_POINT";
 std::string const CodeEditor::EventController::JUMP_TO_PREVIOUS_CODE_POINT = "JUMP_TO_PREVIOUS_CODE_POINT";
+std::string const CodeEditor::EventController::JUMP_TO_NEXT_OR_NEAREST_CODE_POINT = "JUMP_TO_NEXT_OR_NEAREST_CODE_POINT";
 std::string const CodeEditor::EventController::DELETE_CHARACTER = "DELETE_CHARACTER";
 std::string const CodeEditor::EventController::INSERT_STRING = "INSERT_STRING";
 std::string const CodeEditor::EventController::SET_INSERT_MODE = "SET_INSERT_MODE";

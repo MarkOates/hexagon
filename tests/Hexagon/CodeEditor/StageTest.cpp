@@ -308,3 +308,25 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(1, stage.get_cursor_x());
 }
 
+TEST(Hexagon_CodeEditor_StageTest,
+   jump_to_next_or_nearest_code_point__with_code_points_after_the_cursor__jumps_to_the_next_code_point)
+{
+}
+
+TEST(Hexagon_CodeEditor_StageTest,
+   jump_to_next_or_nearest_code_point__with_no_code_points_after_the_cursor__jumps_to_the_previous_code_point)
+{
+}
+
+TEST(Hexagon_CodeEditor_StageTest,
+   jump_to_next_or_nearest_code_point__with_code_points_after_the_cursor__does_not_move_the_cursor)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   int start_cursor_x = 10;
+   int start_cursor_y = 10;
+
+   stage.jump_to_next_or_nearest_code_point();
+}
+

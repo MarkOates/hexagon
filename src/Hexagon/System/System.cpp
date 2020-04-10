@@ -909,6 +909,14 @@ bool System::jump_to_next_code_point_on_stage()
    return true;
 }
 
+bool System::jump_to_next_or_nearest_code_point_on_stage()
+{
+   CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
+   if (!stage) return false;
+   stage->process_local_event(CodeEditor::EventController::JUMP_TO_NEXT_OR_NEAREST_CODE_POINT);
+   return true;
+}
+
 bool System::clear_last_compiled_error_messages()
 {
    ::clear_last_compiled_error_messages();
@@ -1133,7 +1141,7 @@ bool System::submit_current_modal()
       process_local_event(SAVE_CURRENT_STAGE);
       process_local_event(DESTROY_TOPMOST_STAGE);
       process_local_event(REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
-      process_local_event(JUMP_TO_NEXT_CODE_POINT_ON_STAGE);
+      process_local_event(JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE);
       process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
       break;
    case StageInterface::FILE_NAVIGATOR:
@@ -1205,6 +1213,11 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == DESTROY_ALL_CODE_EDITOR_STAGES) { destroy_all_code_editor_stages(); executed = true; }
       else if (event_name == ESCAPE_CURRENT_MODAL) { escape_current_modal(); executed = true; }
       else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { jump_to_next_code_point_on_stage(); executed = true; }
+      else if (event_name == JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE)
+      {
+         jump_to_next_or_nearest_code_point_on_stage();
+         executed = true;
+      }
       else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { offset_first_line_to_vertically_center_cursor_on_stage(); executed = true; }
       else if (event_name == ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES) {
          enable_drawing_info_overlays_on_all_code_editor_stages();
@@ -1465,6 +1478,7 @@ const std::string System::HIDE_FILE_NAVIGATOR = "HIDE_FILE_NAVIGATOR";
 const std::string System::INCREASE_FONT_SIZE = "INCREASE_FONT_SIZE";
 const std::string System::DECREASE_FONT_SIZE = "DECREASE_FONT_SIZE";
 const std::string System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_CODE_POINT_ON_STAGE";
+const std::string System::JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE = "JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE";
 const std::string System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE = "OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE";
 const std::string System::ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES =
    "ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES";

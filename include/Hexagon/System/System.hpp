@@ -112,6 +112,7 @@ public:
    bool refresh_rerun_output_watchers();
    bool destroy_topmost_stage();
    bool jump_to_next_code_point_on_stage();
+   bool jump_to_next_or_nearest_code_point_on_stage();
    bool run_make();
    bool offset_first_line_to_vertically_center_cursor_on_stage();
    bool push_component_navigator_selection();
@@ -156,6 +157,7 @@ public:
    static const std::string INCREASE_FONT_SIZE;
    static const std::string DECREASE_FONT_SIZE;
    static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
+   static const std::string JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE;
 
    static const std::string ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES;

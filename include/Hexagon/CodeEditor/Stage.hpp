@@ -130,6 +130,7 @@ namespace CodeEditor
       bool set_code_message_points(std::vector<CodeMessagePoint> code_message_points);
       bool jump_to_next_code_point();
       bool jump_to_previous_code_point();
+      bool jump_to_next_or_nearest_code_point();
 
       bool refresh_regex_message_points();
 
