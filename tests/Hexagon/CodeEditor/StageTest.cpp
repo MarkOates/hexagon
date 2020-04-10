@@ -33,6 +33,18 @@ TEST(Hexagon_CodeEditor_StageTest, file_category__has_a_getter_and_has_the_expec
    ASSERT_EQ(expected_default_file_category, actual_default_file_category);
 }
 
+TEST(Hexagon_CodeEditor_StageTest, search_regex_expression__has_a_getter_and_has_the_expected_default)
+{
+   CodeEditor::Stage stage("foobar_filename.txt");
+
+   ASSERT_EQ("", stage.get_search_regex_expression());
+
+   std::string expression1 = "(before|sullied)";
+
+   ASSERT_TRUE(stage.set_search_regex_expression(expression1));
+   ASSERT_EQ(expression1, stage.get_search_regex_expression());
+}
+
 TEST(Hexagon_CodeEditor_StageTest,
    infer_cursor_is_on_line_that_exists__returns_true_when_the_cursor_is_within_the_range_of_number_of_lines)
 {

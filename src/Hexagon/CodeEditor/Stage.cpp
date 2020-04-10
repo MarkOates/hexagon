@@ -35,6 +35,7 @@ Stage::Stage(std::string filename, std::string file_category, mode_t mode, type_
    //, type(type)
    , filename(filename)
    , file_category(file_category)
+   , search_regex_expression("")
    //, place(place)
    , first_line_number(0)
    , code_message_points_overlays()
@@ -137,6 +138,13 @@ bool Stage::set_content(std::vector<std::string> content)
 }
 
 
+bool Stage::set_search_regex_expression(std::string regex_expression)
+{
+   this->search_regex_expression = regex_expression;
+   return true;
+}
+
+
 
 placement3d &Stage::get_place_ref()
 {
@@ -169,6 +177,13 @@ int Stage::get_cursor_x()
 int Stage::get_cursor_y()
 {
    return cursor_y;
+}
+
+
+
+std::string Stage::get_search_regex_expression()
+{
+   return this->search_regex_expression;
 }
 
 

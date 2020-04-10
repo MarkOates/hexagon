@@ -41,6 +41,7 @@ namespace CodeEditor
 
       std::string filename;
       std::string file_category;
+      std::string search_regex_expression;
 
       int first_line_number;
 
@@ -66,6 +67,7 @@ namespace CodeEditor
       bool set_initial_content(std::vector<std::string> content);
       bool set_content(std::string content);
       bool set_content(std::vector<std::string> content);
+      bool set_search_regex_expression(std::string regex_expression);
       placement3d &get_place_ref();
       mode_t get_mode();
       int get_first_line_number();
@@ -78,6 +80,7 @@ namespace CodeEditor
       std::string &current_line_ref();
       std::string &next_line_ref();
       std::string get_current_mode_string();
+      std::string get_search_regex_expression();
       int infer_num_lines_to_draw();
       bool infer_cursor_is_on_line_that_exists();
 
