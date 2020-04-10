@@ -123,6 +123,7 @@ public:
    bool create_two_or_three_split_layout_from_last_component_navigator_selection();
    bool create_three_split_from_last_component_navigator_selection();
    bool attempt_to_create_stage_from_last_component_navigator_selection();
+   bool set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
    bool execute_magic_command();
    bool submit_current_modal();
    bool escape_current_modal();
@@ -167,6 +168,7 @@ public:
    static const std::string REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string REFRESH_RERUN_OUTPUT_WATCHERS;
+   static const std::string SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS;
    static const std::string REMOVE_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string TOGGLE_COMMAND_MODE_ON;
    static const std::string TOGGLE_COMMAND_MODE_OFF;

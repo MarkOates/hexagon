@@ -1130,6 +1130,24 @@ bool System::attempt_to_create_stage_from_last_component_navigator_selection()
    return action.managed_execute();
 }
 
+bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents()
+{
+   // get regex expression input from file named REGEX_TEMP_FILENAME
+   std::vector<std::string> regex_input_file_lines;
+   if (!read_file(regex_input_file_lines, REGEX_TEMP_FILENAME) || regex_input_file_lines.size() == 0)
+      throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
+
+   std::string regex_expression = regex_input_file_lines[0];
+
+   std::vector<CodeEditor::Stage *> stages = get_all_code_editor_stages();
+   for (auto &stage : stages)
+   {
+      stage->set_search_regex_expression(regex_expression);
+   }
+
+   return true;
+}
+
 bool System::submit_current_modal()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -1140,6 +1158,7 @@ bool System::submit_current_modal()
    case StageInterface::ONE_LINE_INPUT_BOX:
       process_local_event(SAVE_CURRENT_STAGE);
       process_local_event(DESTROY_TOPMOST_STAGE);
+      process_local_event(SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS);
       process_local_event(REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
       process_local_event(JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE);
       process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
@@ -1237,6 +1256,11 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES)
       {
          refresh_regex_hilights_on_all_code_editor_stages();
+         executed = true;
+      }
+      else if (event_name == SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS)
+      {
+         set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
          executed = true;
       }
       else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
@@ -1490,6 +1514,8 @@ const std::string System::REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE = "REFRESH_R
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES =
    "REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES";
 const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
+const std::string System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS =
+   "SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS";
 const std::string System::TOGGLE_COMMAND_MODE_ON = "TOGGLE_COMMAND_MODE_ON";
 const std::string System::TOGGLE_COMMAND_MODE_OFF = "TOGGLE_COMMAND_MODE_OFF";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
