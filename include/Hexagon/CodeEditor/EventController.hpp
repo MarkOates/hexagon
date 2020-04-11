@@ -99,6 +99,7 @@ namespace CodeEditor
       static const std::string START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
       static const std::string STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
       static const std::string PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING;
+      static const std::string INSERT_THREE_SPACES_AT_START_OF_LINE;
    };
 } // namespace CodeEditor
 

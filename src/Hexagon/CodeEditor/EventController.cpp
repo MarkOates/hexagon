@@ -166,6 +166,8 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
          stop_recording_last_performed_action_queue_recording();
       else if (event_name == PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING)
          play_last_performed_action_queue_recording();
+      else if (event_name == INSERT_THREE_SPACES_AT_START_OF_LINE)
+         stage->insert_three_spaces_at_start_of_line();
    }
 
    catch (const std::exception &e)
@@ -340,6 +342,9 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, false, {
       CodeEditor::EventController::MOVE_CURSOR_LEFT,
       CodeEditor::EventController::DELETE_CHARACTER });
+   insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SPACE, true, false, false, false, {
+      CodeEditor::EventController::INSERT_THREE_SPACES_AT_START_OF_LINE,
+      CodeEditor::EventController::MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER });
    insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, {
       CodeEditor::EventController::SPLIT_LINES,
       CodeEditor::EventController::MOVE_CURSOR_DOWN,
@@ -461,3 +466,5 @@ std::string const CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE
 std::string const CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
 std::string const CodeEditor::EventController::STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "STOP_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
 std::string const CodeEditor::EventController::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING = "PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING";
+std::string const CodeEditor::EventController::INSERT_THREE_SPACES_AT_START_OF_LINE =
+   "INSERT_THREE_SPACES_AT_START_OF_LINE";

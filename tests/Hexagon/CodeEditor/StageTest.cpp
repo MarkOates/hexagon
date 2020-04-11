@@ -380,3 +380,15 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(start_cursor_y, stage.get_cursor_y());
 }
 
+TEST(Hexagon_CodeEditor_StageTest,
+   insert_three_spaces_at_start_of_line__on_a_line_that_does_not_exist__does_nothing_and_returns_false)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   stage.set_cursor_y(-1);
+   EXPECT_EQ(false, stage.insert_three_spaces_at_start_of_line());
+   stage.set_cursor_y(9999);
+   EXPECT_EQ(false, stage.insert_three_spaces_at_start_of_line());
+}
+

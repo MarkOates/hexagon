@@ -134,6 +134,7 @@ namespace CodeEditor
       bool jump_to_next_code_point();
       bool jump_to_previous_code_point();
       bool jump_to_next_or_nearest_code_point();
+      bool insert_three_spaces_at_start_of_line();
 
       bool refresh_regex_message_points();
 

@@ -722,6 +722,14 @@ bool Stage::jump_to_next_or_nearest_code_point()
 
 
 
+bool Stage::insert_three_spaces_at_start_of_line()
+{
+   if (!infer_cursor_is_on_line_that_exists()) return false;
+   return true;
+}
+
+
+
 // regex matcher plugin
 
 bool Stage::refresh_regex_message_points()
