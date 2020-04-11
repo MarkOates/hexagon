@@ -1438,61 +1438,6 @@ void System::process_event(ALLEGRO_EVENT &event)
    }
 }
 
-std::string System::get_action_description(std::string action_identifier)
-{
-   // std::map<identifier, description>
-   static std::map<std::string, std::string> dictionary = {
-      { System::DESTROY_FILE_NAVIGATOR, "" },
-      { System::DESTROY_TOPMOST_STAGE, "" },
-      { System::DESTROY_ALL_CODE_EDITOR_STAGES, "" },
-      { System::ESCAPE_CURRENT_MODAL, "" },
-      { System::HIDE_FILE_NAVIGATOR, "" },
-      { System::INCREASE_FONT_SIZE, "" },
-      { System::DECREASE_FONT_SIZE, "" },
-      { System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE, "" },
-      { System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE, "" },
-      { System::REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE, "" },
-      { System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE, "" },
-      { System::ADD_FILE_IS_UNSAVED_NOTIFICATION, "" },
-      { System::OPEN_HEXAGON_CONFIG_FILE, "" },
-      { System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION, "" },
-      { System::TOGGLE_COMMAND_MODE_ON, "" },
-      { System::TOGGLE_COMMAND_MODE_OFF, "" },
-      { System::ROTATE_STAGE_LEFT, "" },
-      { System::ROTATE_STAGE_RIGHT, "" },
-      { System::ROTATE_RELATIVE_UP, "" },
-      { System::ROTATE_RELATIVE_DOWN, "" },
-      { System::RUN_MAKE, "" },
-      { System::CLEAR_LAST_COMPILED_ERROR_MESSAGES, "" },
-      { System::SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE, "" },
-      { System::RUN_PROJECT_TESTS, "" },
-      { System::SAVE_CURRENT_STAGE, "" },
-      { System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE, "" },
-      { System::SPAWN_COMPONENT_NAVIGATOR, "" },
-      { System::EXECUTE_MAGIC_COMMAND, "" },
-      { System::SPAWN_FILE_NAVIGATOR, "" },
-      //{ System::SPAWN_KEYBOARD_INPUTS_MODAL, "" },
-      { System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL, "" },
-      { System::SPAWN_RERUN_OUTPUT_WATCHER, "" },
-      { System::SUBMIT_CURRENT_MODAL, "" },
-      { System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE, "" },
-   };
-
-   for (std::map<std::string, std::string>::iterator it=dictionary.begin(); it!=dictionary.end(); ++it)
-   {
-      it->second = it->first;
-   }
-
-   std::map<std::string, std::string>::iterator it = dictionary.find(action_identifier);
-   if (it == dictionary.end())
-   {
-      std::stringstream error_message;
-      error_message << "🛑 Error: stuff stuff stuff stuff" << std::endl;
-      throw std::runtime_error(error_message.str());
-   }
-
-   return dictionary[action_identifier];
-}
 
 
 const std::string System::OPEN_HEXAGON_CONFIG_FILE = "OPEN_HEXAGON_CONFIG_FILE";

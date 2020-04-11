@@ -190,5 +190,4 @@ public:
 
    void process_local_event(std::string event_name); // this function is 1:1 execute the action.  It does no calling of other actions before or after
    void process_event(ALLEGRO_EVENT &event);
-   std::string get_action_description(std::string action_identifier);
 };
