@@ -928,7 +928,14 @@ void Stage::render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, in
 
    float roundness = 6;
    float padding = 6;
-   al_draw_filled_rounded_rectangle(0-padding*2, 0-padding*2, get_place().size.x+padding*2, get_place().size.y+padding*2, roundness, roundness, al_color_name("black"));
+   al_draw_filled_rounded_rectangle(
+      0-padding*2,
+      0-padding*2,
+      get_place().size.x+padding*2,
+      get_place().size.y+padding*2,
+      roundness,
+      roundness,
+      al_color_name("black"));
    al_draw_rounded_rectangle(0-padding, 0-padding, get_place().size.x+padding, get_place().size.y+padding, roundness, roundness, al_color_name("dodgerblue"), 3.0);
 
    float _cursor_y = cursor_y - first_line_number;
