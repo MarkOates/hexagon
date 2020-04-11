@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
-
+#include <Blast/Project/Component.hpp>
 
 
 namespace Hexagon
@@ -24,9 +24,10 @@ AttemptToCreateStagesForEntireFamilyOfComponent::~AttemptToCreateStagesForEntire
 }
 
 
-std::string AttemptToCreateStagesForEntireFamilyOfComponent::run()
+bool AttemptToCreateStagesForEntireFamilyOfComponent::execute()
 {
-return "Hello World!";
+return true;
+
 }
 } // namespace Action
 } // namespace System

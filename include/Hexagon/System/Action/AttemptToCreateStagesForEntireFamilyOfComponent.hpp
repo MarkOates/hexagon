@@ -21,7 +21,7 @@ namespace Hexagon
             ~AttemptToCreateStagesForEntireFamilyOfComponent();
 
 
-         std::string run();
+         bool execute() override;
          };
       }
    }

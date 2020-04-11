@@ -7,9 +7,15 @@ properties:
     type: std::string
     constructor_arg: true
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: execute
+    type: bool
+    override: true
+    body: |
+      return true;
+    body_dependency_symbols:
+      - Blast::Project::Component
 dependencies:
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
