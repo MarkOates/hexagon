@@ -725,6 +725,9 @@ bool Stage::jump_to_next_or_nearest_code_point()
 bool Stage::insert_three_spaces_at_start_of_line()
 {
    if (!infer_cursor_is_on_line_that_exists()) return false;
+   std::string &current_line = current_line_ref();
+   current_line.insert(0, "   ");
+   mark_content_is_modified();
    return true;
 }
 

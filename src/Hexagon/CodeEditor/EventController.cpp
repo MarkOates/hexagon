@@ -326,6 +326,9 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
       });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP, false, false, false, false, {
       CodeEditor::EventController::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
+   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP, true, false, false, false, {
+      CodeEditor::EventController::INSERT_THREE_SPACES_AT_START_OF_LINE,
+      CodeEditor::EventController::MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, true, false, false, false, {
       CodeEditor::EventController::DELETE_LINE });
 
@@ -342,9 +345,6 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, false, false, false, false, {
       CodeEditor::EventController::MOVE_CURSOR_LEFT,
       CodeEditor::EventController::DELETE_CHARACTER });
-   insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SPACE, true, false, false, false, {
-      CodeEditor::EventController::INSERT_THREE_SPACES_AT_START_OF_LINE,
-      CodeEditor::EventController::MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER });
    insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, {
       CodeEditor::EventController::SPLIT_LINES,
       CodeEditor::EventController::MOVE_CURSOR_DOWN,

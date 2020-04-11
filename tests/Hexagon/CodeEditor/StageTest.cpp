@@ -392,3 +392,17 @@ TEST(Hexagon_CodeEditor_StageTest,
    EXPECT_EQ(false, stage.insert_three_spaces_at_start_of_line());
 }
 
+TEST(Hexagon_CodeEditor_StageTest,
+   insert_three_spaces_at_start_of_line__will_insert_3_blank_spaces_at_the_start_of_the_line__and_return_true)
+{
+   CodeEditor::Stage stage("a_sonnet.txt");
+   stage.set_initial_content(SONNET_TEXT);
+
+   stage.set_cursor_y(6);
+   EXPECT_EQ(true, stage.insert_three_spaces_at_start_of_line());
+
+   std::string expected = "   When I perceive that men as plants increase,";
+   std::string actual = stage.current_line_ref();
+   EXPECT_EQ(expected, actual);
+}
+
