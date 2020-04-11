@@ -353,7 +353,7 @@ void Renderer::render_cursor_position_info()
    int line_length_character_limit = place.size.x / cell_width;
 
    // draw the current cursor percentage in file
-   cursor_position_info << " n% ";
+   cursor_position_info << " n%";
 
    // draw the current cursor position
    cursor_position_info << " x" << stage->get_cursor_x() << " y" << (stage->get_cursor_y()+1) << " ";
@@ -376,8 +376,9 @@ void Renderer::render_cursor_position_info()
                             );
 
    // draw whole line of status text
+   ALLEGRO_COLOR text_color = color;
    al_draw_text(font,
-                color,
+                text_color,
                 place.size.x - cell_width * 0.5,
                 place.size.y - cell_height,
                 ALLEGRO_ALIGN_RIGHT,
