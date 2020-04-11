@@ -6,24 +6,16 @@ properties:
   - name: component_name
     type: std::string
     constructor_arg: true
+    getter: true
   - name: stages
-    type: StageInterface*
-    init_with: nullptr
+    type: std::vector<StageInterface*>
+    init_with: "{}"
 functions:
   - name: execute
     type: bool
     override: true
     body: |
-      if (!stages)
-      {
-         std::stringstream error_message;
-
-         error_message << "[Hexagon/System/Action/"
-                       << "AttemptToCreateCodeEditorStagesForEntireFamilyOfComponent"
-                       << " error:] "
-                       << "cannot \"" << __FUNCTION__ << "\" with nullptr stages";
-         throw std::runtime_error(error_message.str());
-      }
+      Blast::Project::Component component(get_component_name());
       return true;
     body_dependency_symbols:
       - std::stringstream
@@ -33,5 +25,5 @@ dependencies:
     headers: [ Hexagon/Action.hpp ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
-  - symbol: StageInterface*
-    headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: std::vector<StageInterface*>
+    headers: [ vector, Hexagon/StageInterface.hpp ]

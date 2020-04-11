@@ -16,7 +16,7 @@ namespace Action
 AttemptToCreateStagesForEntireFamilyOfComponent::AttemptToCreateStagesForEntireFamilyOfComponent(std::string component_name)
    : ::Action("System::Action::AttemptToCreateStagesFromEntireFamilyOfComponent", ActionData())
    , component_name(component_name)
-   , stages(nullptr)
+   , stages({})
 {
 }
 
@@ -26,18 +26,15 @@ AttemptToCreateStagesForEntireFamilyOfComponent::~AttemptToCreateStagesForEntire
 }
 
 
+std::string AttemptToCreateStagesForEntireFamilyOfComponent::get_component_name()
+{
+   return component_name;
+}
+
+
 bool AttemptToCreateStagesForEntireFamilyOfComponent::execute()
 {
-if (!stages)
-{
-   std::stringstream error_message;
-
-   error_message << "[Hexagon/System/Action/"
-                 << "AttemptToCreateCodeEditorStagesForEntireFamilyOfComponent"
-                 << " error:] "
-                 << "cannot \"" << __FUNCTION__ << "\" with nullptr stages";
-   throw std::runtime_error(error_message.str());
-}
+Blast::Project::Component component(get_component_name());
 return true;
 
 }
