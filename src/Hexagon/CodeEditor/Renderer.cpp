@@ -325,27 +325,6 @@ void Renderer::render_raw()
    background_overlay_color.a *= opacity;
 
    bool draw_outline = true;
-/*
-   ALLEGRO_COLOR normal_frame_color =
-      AllegroFlare::color::color(
-         AllegroFlare::color::mix(
-             al_color_html("99ddc4"), al_color_name("white"),0.5
-           ), 0.85
-         );
-   ALLEGRO_COLOR content_is_modified_color =
-      AllegroFlare::color::mix(normal_frame_color, al_color_name("orange"), 0.5);
-   float frame_opacity = 0.6;
-   //float roundness = 0; // was previously 6.0;
-   //float line_thickness = 3.0;
-   //bool draw_outline = true;
-
-   ALLEGRO_COLOR frame_color = content_is_modified ? content_is_modified_color : normal_frame_color;
-
-   frame_color.r *= frame_opacity;
-   frame_color.g *= frame_opacity;
-   frame_color.b *= frame_opacity;
-   frame_color.a *= frame_opacity;
-*/
    float roundness = 0; // was previously 6.0;
    float line_thickness = 3.0;
 
@@ -449,7 +428,10 @@ void Renderer::render_cursor_position_info()
 
    // draw whole line of status text
    //ALLEGRO_COLOR text_color = color;
-   ALLEGRO_COLOR font_color = build_font_color(frame_color);
+   //ALLEGRO_COLOR font_color = build_font_color(frame_color);
+   ALLEGRO_COLOR font_color = build_frame_color();
+   bool draw_outline = true;
+
    al_draw_text(font,
                 font_color,
                 place.size.x - cell_width * 0.5,
