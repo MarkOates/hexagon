@@ -11,6 +11,9 @@ properties:
     type: std::vector<StageInterface*>
     init_with: "{}"
 functions:
+  - name: create_code_editor_stages_for_component_names
+    body: |
+       return;
   - name: execute
     type: bool
     override: true
@@ -26,11 +29,20 @@ functions:
          throw std::runtime_error(error_message.str());
          return false;
       }
+
+      Blast::Project::ComponentRelativeLister relative_lister(&component);
+      std::vector<std::string> results = relative_lister.list_component_relative_names();
+
+      // create_st
+
       return true;
     body_dependency_symbols:
+      - Blast::Project::ComponentRelativeLister
       - std::stringstream
       - Blast::Project::Component
 dependencies:
+  - symbol: Blast::Project::ComponentRelativeLister
+    headers: [ Blast/Project/ComponentRelativeLister.hpp ]
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
   - symbol: Blast::Project::Component

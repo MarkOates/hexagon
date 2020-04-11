@@ -25,6 +25,7 @@ namespace Hexagon
 
 
             std::string get_component_name();
+         void create_code_editor_stages_for_component_names();
          bool execute() override;
          };
       }
