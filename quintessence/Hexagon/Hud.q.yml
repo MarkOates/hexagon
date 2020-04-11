@@ -28,7 +28,7 @@ properties:
     constructor_arg: true
   - name: show_powerbar
     type: bool
-    init_with: false
+    init_with: true
     setter: true
     getter: true
     constructor_arg: true
