@@ -82,6 +82,39 @@ ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
      // soft green font
      font_color = AllegroFlare::color::mix(font_color, al_color_name("white"), 0.5);
    }
+
+   return font_color;
+}
+
+
+
+ALLEGRO_COLOR Renderer::build_frame_color()
+{
+   ALLEGRO_COLOR frame_color;
+
+   //
+
+   float frame_opacity = 0.6;
+
+   ALLEGRO_COLOR normal_frame_color =
+      AllegroFlare::color::color(
+         AllegroFlare::color::mix(
+             al_color_html("99ddc4"), al_color_name("white"),0.5
+           ), 0.85
+         );
+   bool content_is_modified = stage->get_content_is_modified();
+   ALLEGRO_COLOR content_is_modified_color =
+      AllegroFlare::color::mix(normal_frame_color, al_color_name("orange"), 0.5);
+   frame_color = content_is_modified ? content_is_modified_color : normal_frame_color;
+
+   frame_color.r *= frame_opacity;
+   frame_color.g *= frame_opacity;
+   frame_color.b *= frame_opacity;
+   frame_color.a *= frame_opacity;
+
+   //
+
+   return frame_color;
    //return al_color_name("red");
 }
 
@@ -101,7 +134,7 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
    bool not_focused = !is_focused;
 
 
-   // draw code range selection hilight box(es);
+    // draw code range selection hilight box(es);
 
    draw_selections(_cell_width, cell_height);
 
@@ -117,18 +150,7 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
    std::vector<int> &git_modified_line_numbers = stage->git_modified_line_numbers;
    std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = stage->code_message_points_overlays;
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
-   ALLEGRO_COLOR font_color = AllegroFlare::color::mix(epic_green_color, frame_color, 0.5);
-   bool using_white_font_color = false;
-   if (using_white_font_color)
-   {
-     // white
-     font_color = al_color_name("white");
-   }
-   else
-   {
-     // soft green font
-     font_color = AllegroFlare::color::mix(font_color, al_color_name("white"), 0.5);
-   }
+   ALLEGRO_COLOR font_color = build_font_color(frame_color);
 
    for (int line_number = first_line_number; line_number < (int)lines.size(); line_number++)
    {
@@ -395,10 +417,33 @@ void Renderer::render_cursor_position_info()
                             al_color_html("5b5c60")
                             );
 
+
+   ALLEGRO_COLOR frame_color;
+   {
+   float frame_opacity = 0.6;
+
+   ALLEGRO_COLOR normal_frame_color =
+      AllegroFlare::color::color(
+         AllegroFlare::color::mix(
+             al_color_html("99ddc4"), al_color_name("white"),0.5
+           ), 0.85
+         );
+   bool content_is_modified = stage->get_content_is_modified();
+   ALLEGRO_COLOR content_is_modified_color =
+      AllegroFlare::color::mix(normal_frame_color, al_color_name("orange"), 0.5);
+   frame_color = content_is_modified ? content_is_modified_color : normal_frame_color;
+
+   frame_color.r *= frame_opacity;
+   frame_color.g *= frame_opacity;
+   frame_color.b *= frame_opacity;
+   frame_color.a *= frame_opacity;
+   }
+
    // draw whole line of status text
-   ALLEGRO_COLOR text_color = color;
+   //ALLEGRO_COLOR text_color = color;
+   ALLEGRO_COLOR font_color = build_font_color(frame_color);
    al_draw_text(font,
-                text_color,
+                font_color,
                 place.size.x - cell_width * 0.5,
                 place.size.y - cell_height,
                 ALLEGRO_ALIGN_RIGHT,

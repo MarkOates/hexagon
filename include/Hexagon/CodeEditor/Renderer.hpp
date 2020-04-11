@@ -28,8 +28,6 @@ namespace CodeEditor
       int cell_height;
       ALLEGRO_FONT *font;
 
-      //ALLEGRO_COLOR build_font_color(ALLEGRO_COLOR frame_color);
-
       void render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color);
       void render_raw();
       void render_info_overlay();
@@ -51,6 +49,7 @@ namespace CodeEditor
 
    public: // not really, but listed as public so they can be tested
       ALLEGRO_COLOR build_font_color(ALLEGRO_COLOR frame_color);
+      ALLEGRO_COLOR build_frame_color();
    };
 } // namespace CodeEditor
 
