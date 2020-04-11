@@ -325,10 +325,11 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
       CodeEditor::EventController::PASTE_SELECTED_TEXT_FROM_CLIPBOARD
       });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP, false, false, false, false, {
-      CodeEditor::EventController::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING });
+      CodeEditor::EventController::PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING
+      });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_FULLSTOP, true, false, false, false, {
       CodeEditor::EventController::INSERT_THREE_SPACES_AT_START_OF_LINE,
-      CodeEditor::EventController::MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER });
+      });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKSPACE, true, false, false, false, {
       CodeEditor::EventController::DELETE_LINE });
 
