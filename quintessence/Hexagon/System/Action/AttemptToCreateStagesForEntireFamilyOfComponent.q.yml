@@ -6,6 +6,9 @@ properties:
   - name: component_name
     type: std::string
     constructor_arg: true
+  - name: stages
+    type: StageInterface*
+    init_with: nullptr
 functions:
   - name: execute
     type: bool
@@ -19,3 +22,5 @@ dependencies:
     headers: [ Hexagon/Action.hpp ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
+  - symbol: StageInterface*
+    headers: [ Hexagon/StageInterface.hpp ]

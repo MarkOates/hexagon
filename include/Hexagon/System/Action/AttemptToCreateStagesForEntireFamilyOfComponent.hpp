@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/Action.hpp>
+#include <Hexagon/StageInterface.hpp>
 #include <string>
 
 
@@ -15,6 +16,7 @@ namespace Hexagon
          {
          private:
             std::string component_name;
+            StageInterface* stages;
 
          public:
             AttemptToCreateStagesForEntireFamilyOfComponent(std::string component_name="");
