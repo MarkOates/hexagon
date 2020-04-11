@@ -35,6 +35,16 @@ std::string AttemptToCreateStagesForEntireFamilyOfComponent::get_component_name(
 bool AttemptToCreateStagesForEntireFamilyOfComponent::execute()
 {
 Blast::Project::Component component(get_component_name());
+if (!component.exists())
+{
+   std::stringstream error_message;
+   error_message << "["
+                 << "Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent"
+                 << " error:]"
+                 << " can not execute with a component that does not exist.";
+   throw std::runtime_error(error_message.str());
+   return false;
+}
 return true;
 
 }
