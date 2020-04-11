@@ -12,7 +12,9 @@ namespace Action
 {
 
 
-AttemptToCreateStagesForEntireFamilyOfComponent::AttemptToCreateStagesForEntireFamilyOfComponent()
+AttemptToCreateStagesForEntireFamilyOfComponent::AttemptToCreateStagesForEntireFamilyOfComponent(std::string component_name)
+   : ::Action("System::Action::AttemptToCreateStagesFromEntireFamilyOfComponent", ActionData())
+   , component_name(component_name)
 {
 }
 

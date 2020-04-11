@@ -1,4 +1,15 @@
+parent_classes:
+  - class: ::Action
+    scope: public
+    init_with: "\"System::Action::AttemptToCreateStagesFromEntireFamilyOfComponent\", ActionData()"
+properties:
+  - name: component_name
+    type: std::string
+    constructor_arg: true
 functions:
   - name: run
     type: std::string
     body: return "Hello World!";
+dependencies:
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]

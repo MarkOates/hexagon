@@ -42,6 +42,7 @@
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 #include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
+#include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
 #include <Hexagon/System/Action/OpenConfigFile.hpp>
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>
@@ -1164,8 +1165,8 @@ bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp
 bool System::open_entire_family_of_last_component_navigator_selection()
 {
    std::string component_to_open_family_from = last_component_navigator_selection;
-   //Hexagon::System::Action::OpenEntireFamilyOfComponent action(component_to_open_family_from);
-   //return action.execute();
+   Hexagon::System::Action::AttemptToCreateStagesForEntireFamilyOfComponent action(component_to_open_family_from);
+   return action.execute();
    //Hexagon::System::Action::OPEN_ENTIRE_FAMILY_OF_LAST_COMPONENT_NAVIGATOR_SELECTION
    //bool System::open_entire_family_of_last_component_navigator_selection()
    //bool System::open_entire_family_of_last_component_navigator_selection()
