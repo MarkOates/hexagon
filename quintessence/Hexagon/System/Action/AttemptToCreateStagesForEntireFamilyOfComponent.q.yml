@@ -14,8 +14,19 @@ functions:
     type: bool
     override: true
     body: |
+      if (!stages)
+      {
+         std::stringstream error_message;
+
+         error_message << "[Hexagon/System/Action/"
+                       << "AttemptToCreateCodeEditorStagesForEntireFamilyOfComponent"
+                       << " error:] "
+                       << "cannot \"" << __FUNCTION__ << "\" with nullptr stages";
+         throw std::runtime_error(error_message.str());
+      }
       return true;
     body_dependency_symbols:
+      - std::stringstream
       - Blast::Project::Component
 dependencies:
   - symbol: ::Action

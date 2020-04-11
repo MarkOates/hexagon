@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
+#include <sstream>
 #include <Blast/Project/Component.hpp>
 
 
@@ -27,6 +28,16 @@ AttemptToCreateStagesForEntireFamilyOfComponent::~AttemptToCreateStagesForEntire
 
 bool AttemptToCreateStagesForEntireFamilyOfComponent::execute()
 {
+if (!stages)
+{
+   std::stringstream error_message;
+
+   error_message << "[Hexagon/System/Action/"
+                 << "AttemptToCreateCodeEditorStagesForEntireFamilyOfComponent"
+                 << " error:] "
+                 << "cannot \"" << __FUNCTION__ << "\" with nullptr stages";
+   throw std::runtime_error(error_message.str());
+}
 return true;
 
 }
