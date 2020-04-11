@@ -67,6 +67,13 @@ void Renderer::draw_selections(int cell_width, int cell_height)
 
 
 
+ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
+{
+   return al_color_name("red");
+}
+
+
+
 void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 {
    // render cursor
