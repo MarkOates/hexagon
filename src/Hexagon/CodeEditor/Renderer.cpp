@@ -323,6 +323,9 @@ void Renderer::render_raw()
    background_overlay_color.g *= opacity;
    background_overlay_color.b *= opacity;
    background_overlay_color.a *= opacity;
+
+   bool draw_outline = true;
+/*
    ALLEGRO_COLOR normal_frame_color =
       AllegroFlare::color::color(
          AllegroFlare::color::mix(
@@ -332,9 +335,9 @@ void Renderer::render_raw()
    ALLEGRO_COLOR content_is_modified_color =
       AllegroFlare::color::mix(normal_frame_color, al_color_name("orange"), 0.5);
    float frame_opacity = 0.6;
-   float roundness = 0; // was previously 6.0;
-   float line_thickness = 3.0;
-   bool draw_outline = true;
+   //float roundness = 0; // was previously 6.0;
+   //float line_thickness = 3.0;
+   //bool draw_outline = true;
 
    ALLEGRO_COLOR frame_color = content_is_modified ? content_is_modified_color : normal_frame_color;
 
@@ -342,6 +345,11 @@ void Renderer::render_raw()
    frame_color.g *= frame_opacity;
    frame_color.b *= frame_opacity;
    frame_color.a *= frame_opacity;
+*/
+   float roundness = 0; // was previously 6.0;
+   float line_thickness = 3.0;
+
+   ALLEGRO_COLOR frame_color = build_frame_color();
 
    al_draw_filled_rounded_rectangle(0, 0,
                             place.size.x, place.size.y,
