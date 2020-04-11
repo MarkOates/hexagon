@@ -320,8 +320,8 @@ void Renderer::render_raw()
 
    code_lines_placement.start_transform();
    render_code_lines(code_lines_placement, frame_color);
-   render_cursor_position_info();
    code_lines_placement.restore_transform();
+   render_cursor_position_info();
 }
 
 
