@@ -124,6 +124,7 @@ public:
    bool create_three_split_from_last_component_navigator_selection();
    bool attempt_to_create_stage_from_last_component_navigator_selection();
    bool set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
+   bool open_entire_family_of_last_component_navigator_selection();
    bool execute_magic_command();
    bool submit_current_modal();
    bool escape_current_modal();

@@ -112,7 +112,12 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 
    for (int line_number = first_line_number; line_number < (int)lines.size(); line_number++)
    {
-      bool line_exists_in_git_modified_line_numbers = std::find(git_modified_line_numbers.begin(), git_modified_line_numbers.end(), (line_number+1)) != git_modified_line_numbers.end();
+      bool line_exists_in_git_modified_line_numbers = std::find(
+            git_modified_line_numbers.begin(),
+            git_modified_line_numbers.end(),
+            (line_number+1))
+         != git_modified_line_numbers.end();
+
       if (line_exists_in_git_modified_line_numbers)
       {
          ALLEGRO_COLOR color = al_color_name("orange");
@@ -360,11 +365,21 @@ void Renderer::render_cursor_position_info()
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR color = AllegroFlare::color::color(epic_green_color, 0.4);
 
+   // draw background box fill
+   float text_width = al_get_text_width(font, cursor_position_info.str().c_str());
+   ALLEGRO_COLOR background_overlay_color = al_color_html("5b5c60");
+   al_draw_filled_rectangle(place.size.x - text_width,
+                            place.size.y - cell_height,
+                            place.size.x,
+                            place.size.y,
+                            al_color_html("5b5c60")
+                            );
+
    // draw whole line of status text
    al_draw_text(font,
                 color,
-                place.size.x - cell_width,
-                place.size.y - cell_height * 0.5,
+                place.size.x - cell_width * 0.5,
+                place.size.y - cell_height,
                 ALLEGRO_ALIGN_RIGHT,
                 cursor_position_info.str().c_str());
 }
