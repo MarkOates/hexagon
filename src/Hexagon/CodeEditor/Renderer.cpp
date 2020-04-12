@@ -7,6 +7,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/CursorRenderer.hpp>
+#include <Hexagon/CodeEditor/Renderer/BasicLineRenderer.hpp>
 #include <Hexagon/CodeRangeRenderer.hpp>
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
 #include <AllegroFlare/Color.hpp>
@@ -182,12 +183,21 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
          if (truncated_line.size() != line.size()) has_line_been_truncated = true;
 
          // draw the actual line (truncated, possibly) here:
-         al_draw_text(font,
-                      font_color,
-                      0,
-                      (line_number-first_line_number)*cell_height,
-                      ALLEGRO_ALIGN_LEFT,
-                      truncated_line.c_str());
+         Hexagon::CodeEditor::Renderer::BasicLineRenderer line_renderer(
+            font,
+            &font_color,
+            0,
+            (line_number-first_line_number)*cell_height,
+            truncated_line.c_str());
+
+         line_renderer.render();
+
+         //al_draw_text(font,
+                      //font_color,
+                      //0,
+                      //(line_number-first_line_number)*cell_height,
+                      //ALLEGRO_ALIGN_LEFT,
+                      //truncated_line.c_str());
 
          // draw an "indication" marker for a line too long
          if (has_line_been_truncated)

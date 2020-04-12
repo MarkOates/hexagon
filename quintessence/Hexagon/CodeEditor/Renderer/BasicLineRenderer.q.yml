@@ -48,10 +48,13 @@ functions:
     body_dependency_symbols:
       - std::stringstream
       - al_draw_text
+      - al_color_name
       - ALLEGRO_ALIGN_LEFT
 dependencies:
   - symbol: al_draw_text
     headers: [ allegro5/allegro.h ]
+  - symbol: al_color_name
+    headers: [ allegro5/allegro_color.h ]
   - symbol: ALLEGRO_ALIGN_LEFT
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT*
