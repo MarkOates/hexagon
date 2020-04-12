@@ -2,6 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
+#include <Hexagon/Powerbar/Powerbar.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <string>
@@ -18,6 +19,7 @@ namespace Hexagon
       ALLEGRO_BITMAP* screen_sub_bitmap;
       std::vector<std::string> notifications;
       std::vector<std::string> notifications2;
+      Hexagon::Powerbar::Powerbar powerbar;
       ALLEGRO_DISPLAY* display;
       AllegroFlare::FontBin& fonts;
       std::string title_text;
@@ -46,6 +48,7 @@ namespace Hexagon
       std::string get_title_text();
       bool get_show_disabled_screen();
       bool get_show_powerbar();
+      Hexagon::Powerbar::Powerbar &get_powerbar_ref();
    static AllegroFlare::FontBin& get_dummy_font_bin();
    ALLEGRO_FONT* obtain_text_font();
    void initialize();

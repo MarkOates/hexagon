@@ -24,6 +24,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , screen_sub_bitmap(nullptr)
    , notifications({})
    , notifications2({})
+   , powerbar({})
    , display(display)
    , fonts(fonts)
    , title_text(title_text)
@@ -122,6 +123,12 @@ bool Hud::get_show_disabled_screen()
 bool Hud::get_show_powerbar()
 {
    return show_powerbar;
+}
+
+
+Hexagon::Powerbar::Powerbar &Hud::get_powerbar_ref()
+{
+   return powerbar;
 }
 
 
@@ -251,7 +258,10 @@ for (auto &notification2 : notifications2)
 
 if (show_powerbar)
 {
-   Hexagon::Powerbar::Powerbar powerbar(files_are_modified, files_are_committed, commits_are_in_sync_with_remote);
+   powerbar.set_files_are_committed(files_are_committed);
+   powerbar.set_files_are_modified(files_are_modified);
+   powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);
+
    Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());
    powerbar_renderer.render();
 }

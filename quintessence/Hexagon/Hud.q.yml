@@ -20,6 +20,10 @@ properties:
     init_with: "{}"
     getter: true
     setter: true
+  - name: powerbar
+    type: Hexagon::Powerbar::Powerbar
+    init_with: "{}"
+    getter_ref: true
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: "nullptr"
@@ -185,7 +189,10 @@ functions:
 
       if (show_powerbar)
       {
-         Hexagon::Powerbar::Powerbar powerbar(files_are_modified, files_are_committed, commits_are_in_sync_with_remote);
+         powerbar.set_files_are_committed(files_are_committed);
+         powerbar.set_files_are_modified(files_are_modified);
+         powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);
+
          Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());
          powerbar_renderer.render();
       }
