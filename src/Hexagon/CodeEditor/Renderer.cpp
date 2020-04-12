@@ -90,7 +90,6 @@ ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
 
 ALLEGRO_COLOR Renderer::build_frame_color()
 {
-   //return al_color_name("red");
    ALLEGRO_COLOR frame_color;
 
    //
@@ -103,6 +102,7 @@ ALLEGRO_COLOR Renderer::build_frame_color()
              al_color_html("99ddc4"), al_color_name("white"),0.5
            ), 0.85
          );
+
    bool content_is_modified = stage->get_content_is_modified();
    ALLEGRO_COLOR content_is_modified_color =
       AllegroFlare::color::mix(normal_frame_color, al_color_name("orange"), 0.5);
@@ -116,7 +116,6 @@ ALLEGRO_COLOR Renderer::build_frame_color()
    //
 
    return frame_color;
-   //return al_color_name("red");
 }
 
 

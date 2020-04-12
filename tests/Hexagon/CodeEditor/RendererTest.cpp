@@ -27,9 +27,9 @@ TEST(Hexagon_CodeEditor_RendererTest, build_font_color__returns_the_expected_fon
 
 TEST(Hexagon_CodeEditor_RendererTest, build_frame_color__returns_the_expected_frame_color)
 {
-   //al_init();
-   //al_init_color_addon();
-   CodeEditor::Renderer renderer(true, true, nullptr, nullptr, nullptr, 0, 0);
+   al_init();
+   CodeEditor::Stage code_editor_stage;
+   CodeEditor::Renderer renderer(true, true, &code_editor_stage, nullptr, nullptr, 0, 0);
    ALLEGRO_COLOR expected = al_color_name("white");
    ALLEGRO_COLOR actual = renderer.build_frame_color();
 
@@ -38,6 +38,6 @@ TEST(Hexagon_CodeEditor_RendererTest, build_frame_color__returns_the_expected_fr
    //ASSERT_EQ(0, actual_font_color.b);
    //ASSERT_EQ(1, actual_font_color.a);
 
-   //al_uninstall_system();
+   al_uninstall_system();
 }
 
