@@ -22,7 +22,7 @@ namespace Hexagon
             std::string truncated_line;
 
          public:
-            BasicLineRenderer();
+            BasicLineRenderer(ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR* font_color=nullptr, float x=0.0f, float y=0.0f, std::string truncated_line="");
             ~BasicLineRenderer();
 
 
