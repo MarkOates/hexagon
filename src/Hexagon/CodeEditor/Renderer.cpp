@@ -8,6 +8,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/CursorRenderer.hpp>
 #include <Hexagon/CodeEditor/Renderer/BasicLineRenderer.hpp>
+#include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <Hexagon/CodeRangeRenderer.hpp>
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
 #include <AllegroFlare/Color.hpp>
@@ -186,12 +187,21 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
          ALLEGRO_COLOR line_font_color = line_is_too_long ? line_too_long_font_color : font_color;
 
          // draw the actual line (truncated, possibly) here:
-         Hexagon::CodeEditor::Renderer::BasicLineRenderer line_renderer(
+         Hexagon::CodeEditor::Renderer::BasicLineRenderer basic_line_renderer(
             font,
             &line_font_color,
             0,
             (line_number-first_line_number)*cell_height,
             truncated_line.c_str());
+
+         Hexagon::CodeEditor::Renderer::BasicLineRenderer advanced_line_renderer(
+            font,
+            &line_font_color,
+            0,
+            (line_number-first_line_number)*cell_height,
+            truncated_line.c_str());
+
+         Hexagon::CodeEditor::Renderer::BasicLineRenderer line_renderer = advanced_line_renderer;
 
          line_renderer.render();
 

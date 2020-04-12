@@ -24,14 +24,14 @@ functions:
       if (!font)
       {
          std::stringstream error_message;
-         error_message << "[Hexagon/Powerbar/Renderer/BasicLineRenderer error:] cannot \""
+         error_message << "[Hexagon/Powerbar/Renderer/AdvancedLineRenderer error:] cannot \""
                        << __FUNCTION__ << "\" with a nullptr font";
          throw std::runtime_error(error_message.str());
       }
       if (!font_color)
       {
          std::stringstream error_message;
-         error_message << "[Hexagon/Powerbar/Renderer/BasicLineRenderer error:] cannot \""
+         error_message << "[Hexagon/Powerbar/Renderer/AdvancedLineRenderer error:] cannot \""
                        << __FUNCTION__ << "\" with a nullptr font";
          throw std::runtime_error(error_message.str());
       }
