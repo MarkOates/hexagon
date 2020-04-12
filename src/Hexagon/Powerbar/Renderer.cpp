@@ -67,7 +67,7 @@ float y = al_get_display_height(display) - height * 2;
 float width = al_get_display_width(display) * 0.75f;
 float line_thickness = 3.0f;
 //ALLEGRO_COLOR background_color = AllegroFlare::color::color(al_color_name("black"), 0.65f);
-ALLEGRO_COLOR background_color = AllegroFlare::color::color(al_color_html("5b5c360"), 0.65f);
+ALLEGRO_COLOR background_color = AllegroFlare::color::color(al_color_html("5b5c60"), 0.65f);
 ALLEGRO_COLOR color = al_color_name("gray");
 
 std::string left_powerbox_text = ""; //powerbar->get_files_are_modified() ? "GREEN" : "FILE MODIFIED";

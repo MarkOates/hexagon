@@ -35,7 +35,7 @@ TEST(DISABLED_Hexagon_Powerbar_RendererTest, render__with_a_nullptr_font_throws_
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
 
-TEST(DISABLED_Hexagon_Powerbar_RendererTest, render__draws_the_powerbar)
+TEST(Hexagon_Powerbar_RendererTest, render__draws_the_powerbar)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(600, 320);
@@ -47,7 +47,7 @@ TEST(DISABLED_Hexagon_Powerbar_RendererTest, render__draws_the_powerbar)
 
    al_flip_display();
 
-   //sleep(1);
+   sleep(1);
 
    al_destroy_display(display);
    al_uninstall_system();
