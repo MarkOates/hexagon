@@ -152,6 +152,7 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
    std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = stage->code_message_points_overlays;
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR font_color = build_font_color(frame_color);
+   ALLEGRO_COLOR line_too_long_font_color = AllegroFlare::color::mix(font_color, al_color_name("red"), 0.3);
 
    for (int line_number = first_line_number; line_number < (int)lines.size(); line_number++)
    {
@@ -179,11 +180,14 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
       {
          std::string line = lines[line_number];
          std::string truncated_line = line.substr(0, max_line_char_length);
+         bool line_has_been_truncated = truncated_line.length() != line.length();
+
+         ALLEGRO_COLOR line_font_color = line_has_been_truncated ? line_too_long_font_color : font_color;
 
          // draw the actual line (truncated, possibly) here:
          Hexagon::CodeEditor::Renderer::BasicLineRenderer line_renderer(
             font,
-            &font_color,
+            &line_font_color,
             0,
             (line_number-first_line_number)*cell_height,
             line,
@@ -199,9 +203,7 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
                       //truncated_line.c_str());
 
          // draw an "indication" marker for a line too long
-         bool has_line_been_truncated = false;
-         if (truncated_line.size() != line.size()) has_line_been_truncated = true;
-         if (has_line_been_truncated)
+         if (line_has_been_truncated)
          {
             float last_char_position_x = max_line_char_length * cell_width;
             al_draw_text(font, al_color_name("red"), last_char_position_x,
