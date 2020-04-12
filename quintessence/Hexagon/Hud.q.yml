@@ -2,14 +2,28 @@ properties:
   - name: initialized
     type: bool
     init_with: false
-  - name: display
-    type: ALLEGRO_DISPLAY*
-    init_with: "nullptr"
-    constructor_arg: true
   - name: dummy_font_bin
     type: AllegroFlare::FontBin
     static: true
     init_with: "{}"
+  - name: screen_sub_bitmap
+    type: ALLEGRO_BITMAP*
+    init_with: "nullptr"
+    setter: true
+  - name: notifications
+    type: std::vector<std::string>
+    init_with: "{}"
+    getter: true
+    setter: true
+  - name: notifications2
+    type: std::vector<std::string>
+    init_with: "{}"
+    getter: true
+    setter: true
+  - name: display
+    type: ALLEGRO_DISPLAY*
+    init_with: "nullptr"
+    constructor_arg: true
   - name: fonts
     type: AllegroFlare::FontBin&
     init_with: "get_dummy_font_bin()"
@@ -46,20 +60,6 @@ properties:
     type: bool
     init_with: false
     constructor_arg: true
-    setter: true
-  - name: screen_sub_bitmap
-    type: ALLEGRO_BITMAP*
-    init_with: "nullptr"
-    setter: true
-  - name: notifications
-    type: std::vector<std::string>
-    init_with: "{}"
-    getter: true
-    setter: true
-  - name: notifications2
-    type: std::vector<std::string>
-    init_with: "{}"
-    getter: true
     setter: true
 functions:
   - name: get_dummy_font_bin

@@ -21,6 +21,9 @@ AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, bool show_disabled_screen, bool show_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote)
    : initialized(false)
+   , screen_sub_bitmap(nullptr)
+   , notifications({})
+   , notifications2({})
    , display(display)
    , fonts(fonts)
    , title_text(title_text)
@@ -29,15 +32,30 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , files_are_modified(files_are_modified)
    , files_are_committed(files_are_committed)
    , commits_are_in_sync_with_remote(commits_are_in_sync_with_remote)
-   , screen_sub_bitmap(nullptr)
-   , notifications({})
-   , notifications2({})
 {
 }
 
 
 Hud::~Hud()
 {
+}
+
+
+void Hud::set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap)
+{
+   this->screen_sub_bitmap = screen_sub_bitmap;
+}
+
+
+void Hud::set_notifications(std::vector<std::string> notifications)
+{
+   this->notifications = notifications;
+}
+
+
+void Hud::set_notifications2(std::vector<std::string> notifications2)
+{
+   this->notifications2 = notifications2;
 }
 
 
@@ -77,21 +95,15 @@ void Hud::set_commits_are_in_sync_with_remote(bool commits_are_in_sync_with_remo
 }
 
 
-void Hud::set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap)
+std::vector<std::string> Hud::get_notifications()
 {
-   this->screen_sub_bitmap = screen_sub_bitmap;
+   return notifications;
 }
 
 
-void Hud::set_notifications(std::vector<std::string> notifications)
+std::vector<std::string> Hud::get_notifications2()
 {
-   this->notifications = notifications;
-}
-
-
-void Hud::set_notifications2(std::vector<std::string> notifications2)
-{
-   this->notifications2 = notifications2;
+   return notifications2;
 }
 
 
@@ -110,18 +122,6 @@ bool Hud::get_show_disabled_screen()
 bool Hud::get_show_powerbar()
 {
    return show_powerbar;
-}
-
-
-std::vector<std::string> Hud::get_notifications()
-{
-   return notifications;
-}
-
-
-std::vector<std::string> Hud::get_notifications2()
-{
-   return notifications2;
 }
 
 
