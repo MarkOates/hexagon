@@ -51,7 +51,7 @@ namespace CodeEditor
 
    public:
       Stage(
-         std::string filename,
+         std::string filename="unnamed_file.txt",
          std::string file_category="undefined",
          mode_t mode=EDIT,
          type_t type=CODE_EDITOR
