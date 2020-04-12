@@ -1,4 +1,11 @@
+parent_classes:
+  - class: ::Action
+    scope: public
+    init_with: "\"Hexagon::System::Action::CheckGitSyncAndUpdatePowerbar\", ActionData()"
 functions:
   - name: run
     type: std::string
     body: return "Hello World!";
+dependencies:
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]

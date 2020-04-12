@@ -13,6 +13,7 @@ namespace Action
 
 
 CheckGitSyncAndUpdatePowerbar::CheckGitSyncAndUpdatePowerbar()
+   : ::Action("Hexagon::System::Action::CheckGitSyncAndUpdatePowerbar", ActionData())
 {
 }
 
