@@ -15,11 +15,12 @@ namespace Renderer
 {
 
 
-BasicLineRenderer::BasicLineRenderer(ALLEGRO_FONT* font, ALLEGRO_COLOR* font_color, float x, float y, std::string truncated_line)
+BasicLineRenderer::BasicLineRenderer(ALLEGRO_FONT* font, ALLEGRO_COLOR* font_color, float x, float y, std::string line, std::string truncated_line)
    : font(font)
    , font_color(font_color)
    , x(x)
    , y(y)
+   , line(line)
    , truncated_line(truncated_line)
 {
 }
