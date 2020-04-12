@@ -1,4 +1,60 @@
+properties:
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    constructor_arg: true
+  - name: font_color
+    type: ALLEGRO_COLOR*
+    init_with: nullptr
+    constructor_arg: true
+  - name: x
+    type: float
+    init_with: 0.0f
+    constructor_arg: true
+  - name: y
+    type: float
+    init_with: 0.0f
+    constructor_arg: true
+  - name: truncated_line
+    constructor_arg: true
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: render
+    type: void
+    body: |
+      if (!font)
+      {
+         std::stringstream error_message;
+         error_message << "[Hexagon/Powerbar/Renderer/BasicLineRenderer error:] cannot \""
+                       << __FUNCTION__ << "\" with a nullptr font";
+         throw std::runtime_error(error_message.str());
+      }
+      if (!font_color)
+      {
+         std::stringstream error_message;
+         error_message << "[Hexagon/Powerbar/Renderer/BasicLineRenderer error:] cannot \""
+                       << __FUNCTION__ << "\" with a nullptr font";
+         throw std::runtime_error(error_message.str());
+      }
+
+      al_draw_text(font,
+                   *font_color,
+                   x,
+                   y, //(line_number-first_line_number)*cell_height,
+                   ALLEGRO_ALIGN_LEFT,
+                   truncated_line.c_str());
+    body_dependency_symbols:
+      - std::stringstream
+      - al_draw_text
+      - al_color_name
+      - ALLEGRO_ALIGN_LEFT
+dependencies:
+  - symbol: al_draw_text
+    headers: [ allegro5/allegro.h ]
+  - symbol: al_color_name
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: ALLEGRO_ALIGN_LEFT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: ALLEGRO_COLOR*
+    headers: [ allegro5/allegro.h ]
