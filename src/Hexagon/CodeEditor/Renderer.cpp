@@ -181,8 +181,9 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
          std::string line = lines[line_number];
          std::string truncated_line = line.substr(0, max_line_char_length);
          bool line_has_been_truncated = truncated_line.length() != line.length();
+         bool line_is_too_long = line.length() > (120 + 1);
 
-         ALLEGRO_COLOR line_font_color = line_has_been_truncated ? line_too_long_font_color : font_color;
+         ALLEGRO_COLOR line_font_color = line_is_too_long ? line_too_long_font_color : font_color;
 
          // draw the actual line (truncated, possibly) here:
          Hexagon::CodeEditor::Renderer::BasicLineRenderer line_renderer(
