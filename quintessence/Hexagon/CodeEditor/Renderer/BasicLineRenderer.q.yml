@@ -15,14 +15,9 @@ properties:
     type: float
     init_with: 0.0f
     constructor_arg: true
-  - name: line
-    constructor_arg: true
   - name: truncated_line
     constructor_arg: true
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
   - name: render
     type: void
     body: |

@@ -191,7 +191,6 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
             &line_font_color,
             0,
             (line_number-first_line_number)*cell_height,
-            line,
             truncated_line.c_str());
 
          line_renderer.render();
