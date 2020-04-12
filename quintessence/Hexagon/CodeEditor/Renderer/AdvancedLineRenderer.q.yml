@@ -15,7 +15,7 @@ properties:
     type: float
     init_with: 0.0f
     constructor_arg: true
-  - name: truncated_line
+  - name: line
     constructor_arg: true
 functions:
   - name: render
@@ -36,12 +36,16 @@ functions:
          throw std::runtime_error(error_message.str());
       }
 
+      std::size_t comment_starts_at = line.find("//");
+      //std::string uncommented
+      //float character_width = al_get_text_width(
+
       al_draw_text(font,
                    *font_color,
                    x,
                    y, //(line_number-first_line_number)*cell_height,
                    ALLEGRO_ALIGN_LEFT,
-                   truncated_line.c_str());
+                   line.c_str());
     body_dependency_symbols:
       - std::stringstream
       - al_draw_text

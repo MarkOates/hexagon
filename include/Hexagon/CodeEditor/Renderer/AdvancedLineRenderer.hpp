@@ -19,10 +19,10 @@ namespace Hexagon
             ALLEGRO_COLOR* font_color;
             float x;
             float y;
-            std::string truncated_line;
+            std::string line;
 
          public:
-            AdvancedLineRenderer(ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR* font_color=nullptr, float x=0.0f, float y=0.0f, std::string truncated_line="");
+            AdvancedLineRenderer(ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR* font_color=nullptr, float x=0.0f, float y=0.0f, std::string line="");
             ~AdvancedLineRenderer();
 
 

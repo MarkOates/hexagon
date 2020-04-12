@@ -187,23 +187,31 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
          ALLEGRO_COLOR line_font_color = line_is_too_long ? line_too_long_font_color : font_color;
 
          // draw the actual line (truncated, possibly) here:
-         Hexagon::CodeEditor::Renderer::BasicLineRenderer basic_line_renderer(
-            font,
-            &line_font_color,
-            0,
-            (line_number-first_line_number)*cell_height,
-            truncated_line.c_str());
+         bool use_advanced_line_renderer = true;
+         if (use_advanced_line_renderer)
+         {
+            Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(
+               font,
+               &line_font_color,
+               0,
+               (line_number-first_line_number)*cell_height,
+               line);
+            advanced_line_renderer.render();
+         }
+         else
+         {
+            Hexagon::CodeEditor::Renderer::BasicLineRenderer basic_line_renderer(
+               font,
+               &line_font_color,
+               0,
+               (line_number-first_line_number)*cell_height,
+               truncated_line.c_str());
+            basic_line_renderer.render();
+         }
 
-         Hexagon::CodeEditor::Renderer::BasicLineRenderer advanced_line_renderer(
-            font,
-            &line_font_color,
-            0,
-            (line_number-first_line_number)*cell_height,
-            truncated_line.c_str());
+         //Hexagon::CodeEditor::Renderer::BasicLineRenderer line_renderer = advanced_line_renderer;
 
-         Hexagon::CodeEditor::Renderer::BasicLineRenderer line_renderer = advanced_line_renderer;
-
-         line_renderer.render();
+         //line_renderer.render();
 
          //al_draw_text(font,
                       //font_color,
