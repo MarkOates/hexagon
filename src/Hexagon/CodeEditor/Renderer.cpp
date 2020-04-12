@@ -182,7 +182,12 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
          if (truncated_line.size() != line.size()) has_line_been_truncated = true;
 
          // draw the actual line (truncated, possibly) here:
-         al_draw_text(font, font_color, 0, (line_number-first_line_number)*cell_height, ALLEGRO_ALIGN_LEFT, truncated_line.c_str());
+         al_draw_text(font,
+                      font_color,
+                      0,
+                      (line_number-first_line_number)*cell_height,
+                      ALLEGRO_ALIGN_LEFT,
+                      truncated_line.c_str());
 
          // draw an "indication" marker for a line too long
          if (has_line_been_truncated)
