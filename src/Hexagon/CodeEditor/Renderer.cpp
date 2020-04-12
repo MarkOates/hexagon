@@ -90,6 +90,7 @@ ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
 
 ALLEGRO_COLOR Renderer::build_frame_color()
 {
+   //return al_color_name("red");
    ALLEGRO_COLOR frame_color;
 
    //

@@ -8,8 +8,9 @@ properties:
     constructor_arg: true
     getter: true
   - name: stages
-    type: std::vector<StageInterface*>
-    init_with: "{}"
+    type: std::vector<StageInterface*>*
+    init_with: nullptr
+    constructor_arg: true
 functions:
   - name: create_code_editor_stages_for_component_names
     body: |
@@ -19,6 +20,10 @@ functions:
     override: true
     body: |
       Blast::Project::Component component(get_component_name());
+      if (!stages)
+      {
+         throw std::runtime_error("stages must be present");
+      }
       if (!component.exists())
       {
          std::stringstream error_message;
@@ -31,21 +36,32 @@ functions:
       }
 
       Blast::Project::ComponentRelativeLister relative_lister(&component);
-      std::vector<std::string> results = relative_lister.list_component_relative_names();
+      std::vector<std::string> family_member_component_names = relative_lister.list_component_relative_names();
 
       // create_st
 
+      for (auto &family_member_component_name : family_member_component_names)
+      {
+         // create the stage
+         //CodeEditor::Stage *code_editor_stage = new CodeEditor::Stage;
+
+         // push it back into the stages
+      }
+
       return true;
     body_dependency_symbols:
+      - CodeEditor::Stage
       - Blast::Project::ComponentRelativeLister
       - std::stringstream
       - Blast::Project::Component
 dependencies:
+  - symbol: CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: Blast::Project::ComponentRelativeLister
     headers: [ Blast/Project/ComponentRelativeLister.hpp ]
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
-  - symbol: std::vector<StageInterface*>
+  - symbol: std::vector<StageInterface*>*
     headers: [ vector, Hexagon/StageInterface.hpp ]

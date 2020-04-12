@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Blast/Project/ComponentRelativeLister.hpp>
 #include <sstream>
 #include <Blast/Project/Component.hpp>
@@ -14,10 +15,10 @@ namespace Action
 {
 
 
-AttemptToCreateStagesForEntireFamilyOfComponent::AttemptToCreateStagesForEntireFamilyOfComponent(std::string component_name)
+AttemptToCreateStagesForEntireFamilyOfComponent::AttemptToCreateStagesForEntireFamilyOfComponent(std::string component_name, std::vector<StageInterface*>* stages)
    : ::Action("System::Action::AttemptToCreateStagesFromEntireFamilyOfComponent", ActionData())
    , component_name(component_name)
-   , stages({})
+   , stages(stages)
 {
 }
 
@@ -42,6 +43,10 @@ return;
 bool AttemptToCreateStagesForEntireFamilyOfComponent::execute()
 {
 Blast::Project::Component component(get_component_name());
+if (!stages)
+{
+   throw std::runtime_error("stages must be present");
+}
 if (!component.exists())
 {
    std::stringstream error_message;
@@ -54,9 +59,17 @@ if (!component.exists())
 }
 
 Blast::Project::ComponentRelativeLister relative_lister(&component);
-std::vector<std::string> results = relative_lister.list_component_relative_names();
+std::vector<std::string> family_member_component_names = relative_lister.list_component_relative_names();
 
 // create_st
+
+for (auto &family_member_component_name : family_member_component_names)
+{
+   // create the stage
+   //CodeEditor::Stage *code_editor_stage = new CodeEditor::Stage;
+
+   // push it back into the stages
+}
 
 return true;
 

@@ -17,10 +17,10 @@ namespace Hexagon
          {
          private:
             std::string component_name;
-            std::vector<StageInterface*> stages;
+            std::vector<StageInterface*>* stages;
 
          public:
-            AttemptToCreateStagesForEntireFamilyOfComponent(std::string component_name="");
+            AttemptToCreateStagesForEntireFamilyOfComponent(std::string component_name="", std::vector<StageInterface*>* stages=nullptr);
             ~AttemptToCreateStagesForEntireFamilyOfComponent();
 
 
