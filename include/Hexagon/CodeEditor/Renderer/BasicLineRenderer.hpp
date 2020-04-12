@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
 #include <string>
 
 
@@ -13,6 +15,11 @@ namespace Hexagon
          class BasicLineRenderer
          {
          private:
+            ALLEGRO_FONT* font;
+            ALLEGRO_COLOR* font_color;
+            float x;
+            float y;
+            std::string truncated_line;
 
          public:
             BasicLineRenderer();
@@ -20,6 +27,7 @@ namespace Hexagon
 
 
          std::string run();
+         void render();
          };
       }
    }
