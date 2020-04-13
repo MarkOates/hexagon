@@ -4,7 +4,12 @@
 #include <sstream>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
+#include <utility>
 #include <allegro5/allegro.h>
+#include <vector>
+#include <utility>
+#include <string>
+#include <allegro5/allegro_color.h>
 
 
 namespace Hexagon
@@ -43,7 +48,7 @@ if (!font_color)
 {
    std::stringstream error_message;
    error_message << "[Hexagon/Powerbar/Renderer/AdvancedLineRenderer error:] cannot \""
-                 << __FUNCTION__ << "\" with a nullptr font";
+                 << __FUNCTION__ << "\" with a nullptr font_color";
    throw std::runtime_error(error_message.str());
 }
 
@@ -51,12 +56,17 @@ std::size_t comment_starts_at = line.find("//");
 //std::string uncommented
 //float character_width = al_get_text_width(
 
-al_draw_text(font,
-             *font_color,
-             x,
-             y, //(line_number-first_line_number)*cell_height,
-             ALLEGRO_ALIGN_LEFT,
-             line.c_str());
+std::vector<std::pair<std::string, ALLEGRO_COLOR>> tokens;
+
+tokens = { { line, *font_color } };
+
+for (auto &token : tokens)
+{
+   std::string &text = std::get<0>(token);
+   ALLEGRO_COLOR &color = std::get<1>(token);
+
+   al_draw_text(font, *font_color, x, y, ALLEGRO_ALIGN_LEFT, text.c_str());
+}
 
 }
 } // namespace Renderer
