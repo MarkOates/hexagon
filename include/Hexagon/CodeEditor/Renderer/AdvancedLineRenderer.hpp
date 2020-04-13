@@ -30,7 +30,7 @@ namespace Hexagon
 
 
          std::vector<std::pair<std::string, ALLEGRO_COLOR>> build_tokens();
-         void render_tokens(std::vector<std::pair<std::string, ALLEGRO_COLOR>> tokens={});
+         void render_tokens(std::vector<std::pair<std::string, ALLEGRO_COLOR>> tokens={}, float cell_width=1.0f);
          void render();
          };
       }

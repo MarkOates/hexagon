@@ -51,7 +51,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_c
 
    float x = al_get_display_width(display)/2;
    float y = al_get_display_height(display)/2;
-   std::string text = "Hello World! // this is a comment";
+   std::string text = "Hello World! // this is a // comment";
 
    Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(font, &color, x, y, text);
 
