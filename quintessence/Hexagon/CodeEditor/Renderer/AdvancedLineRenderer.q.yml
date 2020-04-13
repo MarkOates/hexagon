@@ -19,10 +19,10 @@ properties:
     constructor_arg: true
 functions:
   - name: build_tokens
-    type: std::vector<std::pair<std::string, ALLEGRO_COLOR>>
+    type: std::vector<std::tuple<std::string, ALLEGRO_COLOR>>
     private: true
     body: |
-      std::vector<std::pair<std::string, ALLEGRO_COLOR>> tokens;
+      std::vector<std::tuple<std::string, ALLEGRO_COLOR>> tokens;
       ALLEGRO_COLOR comment_color = AllegroFlare::color::color(
          AllegroFlare::color::mix(*font_color, al_color_name("dodgerblue"), 0.35f),
          0.35f);
@@ -66,12 +66,14 @@ functions:
       }
 
       return tokens;
+    body_dependency_symbols:
+      - RegexMatcher
   - name: render_tokens
     type: void
     private: true
     parameters:
       - name: tokens
-        type: std::vector<std::pair<std::string, ALLEGRO_COLOR>>
+        type: std::vector<std::tuple<std::string, ALLEGRO_COLOR>>
         default_argument: "{}"
       - name: cell_width
         type: float
@@ -109,7 +111,7 @@ functions:
       }
 
       float cell_width = al_get_text_width(font, " ");
-      std::vector<std::pair<std::string, ALLEGRO_COLOR>> tokens = build_tokens();
+      std::vector<std::tuple<std::string, ALLEGRO_COLOR>> tokens = build_tokens();
       render_tokens(tokens, cell_width);
 
       return;
@@ -121,7 +123,7 @@ functions:
       - std::stringstream
       - al_color_name
       - ALLEGRO_ALIGN_LEFT
-      - std::vector<std::pair<std::string, ALLEGRO_COLOR>>
+      - std::vector<std::tuple<std::string, ALLEGRO_COLOR>>
 dependencies:
   - symbol: al_get_text_width
     headers: [ allegro5/allegro.h ]
@@ -131,8 +133,8 @@ dependencies:
     headers: [ Hexagon/RegexMatcher.hpp ]
   - symbol: std::get
     headers: [ utility ]
-  - symbol: std::vector<std::pair<std::string, ALLEGRO_COLOR>>
-    headers: [ vector, utility, string, allegro5/allegro_color.h ]
+  - symbol: std::vector<std::tuple<std::string, ALLEGRO_COLOR>>
+    headers: [ vector, tuple, string, allegro5/allegro_color.h ]
   - symbol: al_draw_text
     headers: [ allegro5/allegro.h ]
   - symbol: al_color_name

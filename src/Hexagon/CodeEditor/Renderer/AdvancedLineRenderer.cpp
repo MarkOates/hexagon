@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
+#include <Hexagon/RegexMatcher.hpp>
 #include <allegro5/allegro.h>
 #include <utility>
 #include <Hexagon/RegexMatcher.hpp>
@@ -10,7 +11,7 @@
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro.h>
 #include <vector>
-#include <utility>
+#include <tuple>
 #include <string>
 #include <allegro5/allegro_color.h>
 
@@ -38,9 +39,9 @@ AdvancedLineRenderer::~AdvancedLineRenderer()
 }
 
 
-std::vector<std::pair<std::string, ALLEGRO_COLOR>> AdvancedLineRenderer::build_tokens()
+std::vector<std::tuple<std::string, ALLEGRO_COLOR>> AdvancedLineRenderer::build_tokens()
 {
-std::vector<std::pair<std::string, ALLEGRO_COLOR>> tokens;
+std::vector<std::tuple<std::string, ALLEGRO_COLOR>> tokens;
 ALLEGRO_COLOR comment_color = AllegroFlare::color::color(
    AllegroFlare::color::mix(*font_color, al_color_name("dodgerblue"), 0.35f),
    0.35f);
@@ -87,7 +88,7 @@ return tokens;
 
 }
 
-void AdvancedLineRenderer::render_tokens(std::vector<std::pair<std::string, ALLEGRO_COLOR>> tokens, float cell_width)
+void AdvancedLineRenderer::render_tokens(std::vector<std::tuple<std::string, ALLEGRO_COLOR>> tokens, float cell_width)
 {
 float x_pos = 0;
 for (auto &token : tokens)
@@ -120,7 +121,7 @@ if (!font_color)
 }
 
 float cell_width = al_get_text_width(font, " ");
-std::vector<std::pair<std::string, ALLEGRO_COLOR>> tokens = build_tokens();
+std::vector<std::tuple<std::string, ALLEGRO_COLOR>> tokens = build_tokens();
 render_tokens(tokens, cell_width);
 
 return;
