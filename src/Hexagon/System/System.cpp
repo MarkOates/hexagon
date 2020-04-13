@@ -955,6 +955,11 @@ bool System::disable_drawing_info_overlays_on_all_code_editor_stages()
    return true;
 }
 
+bool System::check_git_sync_and_update_powerbar()
+{
+   return true;
+}
+
 bool System::run_make()
 {
    CppCompiler::CompileRunner compile_runner(
@@ -1315,6 +1320,11 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
       else if (event_name == SUBMIT_CURRENT_MODAL) { submit_current_modal(); executed = true; }
       else if (event_name == FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE) { fx__play_focus_animation_on_frontmost_stage(); executed = true; }
+      else if (event_name == CHECK_GIT_SYNC_AND_UPDATE_POWERBAR)
+      {
+         check_git_sync_and_update_powerbar();
+         executed = true;
+      }
 
       if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
    }

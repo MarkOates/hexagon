@@ -133,6 +133,7 @@ public:
    bool clear_last_compiled_error_messages();
    bool enable_drawing_info_overlays_on_all_code_editor_stages();
    bool disable_drawing_info_overlays_on_all_code_editor_stages();
+   bool check_git_sync_and_update_powerbar();
 
    // motion fx
    bool fx__play_focus_animation_on_frontmost_stage();
@@ -188,6 +189,7 @@ public:
    static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
    static const std::string SUBMIT_CURRENT_MODAL;
    static const std::string FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE;
+   static const std::string CHECK_GIT_SYNC_AND_UPDATE_POWERBAR;
 
    void process_local_event(std::string event_name); // this function is 1:1 execute the action.  It does no calling of other actions before or after
    void process_event(ALLEGRO_EVENT &event);
