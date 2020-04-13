@@ -2,8 +2,11 @@
 
 
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <string>
+#include <utility>
+#include <vector>
 
 
 namespace Hexagon
@@ -26,6 +29,8 @@ namespace Hexagon
             ~AdvancedLineRenderer();
 
 
+         std::vector<std::pair<std::string, ALLEGRO_COLOR>> build_tokens();
+         void render_tokens(std::vector<std::pair<std::string, ALLEGRO_COLOR>> tokens={});
          void render();
          };
       }
