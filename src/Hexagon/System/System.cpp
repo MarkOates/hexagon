@@ -43,6 +43,7 @@
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 #include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
 #include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
+#include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
 #include <Hexagon/System/Action/OpenConfigFile.hpp>
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>
@@ -957,7 +958,12 @@ bool System::disable_drawing_info_overlays_on_all_code_editor_stages()
 
 bool System::check_git_sync_and_update_powerbar()
 {
-   return true;
+   std::string repo_name = "blast";
+   std::string repos_directory = "~/Repos";
+   Hexagon::Powerbar::Powerbar* powerbar = nullptr;
+   Hexagon::System::Action::CheckGitSyncAndUpdatePowerbar action(repo_name, repos_directory, powerbar);
+
+   return action.execute();
 }
 
 bool System::run_make()
@@ -1516,6 +1522,7 @@ const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ON
 const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 const std::string System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE = "FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE";
+const std::string System::CHECK_GIT_SYNC_AND_UPDATE_POWERBAR = "CHECK_GIT_SYNC_AND_UPDATE_POWERBAR";
 
 
 
