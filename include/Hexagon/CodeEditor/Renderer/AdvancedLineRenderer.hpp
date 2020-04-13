@@ -29,8 +29,8 @@ namespace Hexagon
             ~AdvancedLineRenderer();
 
 
-         std::vector<std::tuple<std::string, ALLEGRO_COLOR>> build_tokens();
-         void render_tokens(std::vector<std::tuple<std::string, ALLEGRO_COLOR>> tokens={}, float cell_width=1.0f);
+         std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> build_comment_tokens();
+         void render_tokens(std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens={}, float cell_width=1.0f);
          void render();
          };
       }
