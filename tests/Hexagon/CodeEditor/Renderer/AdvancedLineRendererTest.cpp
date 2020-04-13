@@ -39,7 +39,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_t
    al_uninstall_system();
 }
 
-TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_comments_with_a_different_color)
+TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_quoted_strings_with_a_different_color)
 {
    al_init();
    al_init_font_addon();
@@ -51,7 +51,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_c
 
    float x = 100;
    float y = al_get_display_height(display)/2;
-   std::string text = "Hello World! \"Quoted string\" woo \"A second string\" // this is a // comment";
+   std::string text = "Hello World! \"Quoted string\" woo \"A second string\"";
 
    Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(font, &color, x, y, text);
 
@@ -59,7 +59,36 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_c
    advanced_line_renderer.render();
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
+
+   al_destroy_font(font);
+   al_destroy_display(display);
+
+   al_uninstall_system();
+}
+
+TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
+   render__will_properly_render_comments_outside_and_inside_quoted_strings)
+{
+   al_init();
+   al_init_font_addon();
+   ALLEGRO_DISPLAY *display = al_create_display(1000, 460);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   ALLEGRO_COLOR color = al_color_name("white");
+
+   EXPECT_NE(nullptr, font);
+
+   float x = 100;
+   float y = al_get_display_height(display)/2;
+   std::string text = "Hello World! \"Quoted string // that has comments\" woo // comment that has \"A second string\"";
+
+   Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(font, &color, x, y, text);
+
+   al_clear_to_color(al_color_name("black"));
+   advanced_line_renderer.render();
+   al_flip_display();
+
+   sleep(2);
 
    al_destroy_font(font);
    al_destroy_display(display);

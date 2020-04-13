@@ -76,6 +76,7 @@ ALLEGRO_COLOR comment_color = AllegroFlare::color::color(al_color_name("black"),
 std::string regex = "";
 {
    //std::string comments_not_inside_quotes_regex = "([\"'])(?:\\?+.)*?\1";
+   //std::string basic_comment_regex = "//.*";
    std::string basic_comment_regex = "//.*";
    regex = basic_comment_regex;
 }
@@ -146,8 +147,8 @@ float cell_width = al_get_text_width(font, " ");
 
 std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens;
 
-//tokens = build_comment_tokens();
-//render_tokens(tokens, cell_width);
+tokens = build_comment_tokens();
+render_tokens(tokens, cell_width);
 
 tokens = build_quoted_string_tokens();
 render_tokens(tokens, cell_width);
