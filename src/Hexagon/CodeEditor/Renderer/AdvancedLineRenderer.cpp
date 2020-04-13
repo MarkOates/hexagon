@@ -50,6 +50,7 @@ std::string regex = "";
 {
    //std::string comments_not_inside_quotes_regex = "([\"'])(?:\\?+.)*?\1";
    std::string basic_comment_regex = "//.*";
+   std::string quoted_string_regex = "\"([^\"]*)\"";
    //std::string attempt = "";
 
    regex = basic_comment_regex;
@@ -57,16 +58,17 @@ std::string regex = "";
 
 RegexMatcher regex_matcher(line, regex);
 
-std::vector<std::pair<int, int>> match_info = regex_matcher.get_match_info();
+std::vector<std::pair<int, int>> match_infos = regex_matcher.get_match_info();
 
-if (match_info.empty())
+//tokens = { { line, *font_color } };
+
+if (match_infos.empty())
 {
    tokens = { { line, *font_color } };
 }
-else if (match_info.size() == 1)
+else if (match_infos.size() == 1)
 {
-   //throw std::runtime_error("single match");
-   int string_end = match_info[0].first;
+   int string_end = match_infos[0].first;
    std::string uncommented_substr = line.substr(0, string_end);
    std::string commented_substr = line.substr(string_end);
    tokens = {
@@ -74,15 +76,13 @@ else if (match_info.size() == 1)
       { commented_substr, comment_color },
    };
 }
-else if (match_info.size() > 1)
+else if (match_infos.size() > 1)
 {
-   throw std::runtime_error("multi match");
-   //ALLEGRO_COLOR error_color = al_color_name("saddlebrown");
+   throw std::runtime_error("unexpected multi match error");
    ALLEGRO_COLOR error_color = al_color_name("red");
    tokens = { { line, error_color } };
 }
 
-//tokens = { { line, *font_color } };
 return tokens;
 
 }
