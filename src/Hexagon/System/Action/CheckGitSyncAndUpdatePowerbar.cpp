@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
-
+#include <Hexagon/Git/RemoteSyncChecker.hpp>
 
 
 namespace Hexagon
@@ -40,11 +40,15 @@ std::string CheckGitSyncAndUpdatePowerbar::get_repos_directory()
 
 bool CheckGitSyncAndUpdatePowerbar::execute()
 {
-//Hexagon::Git::RemoteSyncChecker sync_checker(repo_name, repos_directory);
 if (!powerbar)
 {
    throw std::runtime_error("asdfa joida f");
 }
+Hexagon::Git::RemoteSyncChecker sync_checker(repo_name, repos_directory);
+bool is_in_sync_with_remote = sync_checker.is_in_sync_with_remote();
+
+powerbar->set_commits_are_in_sync_with_remote(is_in_sync_with_remote);
+
 return true;
 
 }
