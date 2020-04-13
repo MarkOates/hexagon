@@ -27,7 +27,7 @@ functions:
       std::string regex = "";
       {
          // this regex provided by https://stackoverflow.com/a/249937/6072362
-         std::string quoted_string_regex = "\"(?:[^\"\\\\]|\\\\.)*\"";
+         std::string quoted_string_regex = Hexagon::RegexStore::double_quoted_strings_with_escapes();
          regex = quoted_string_regex;
       }
 
@@ -45,6 +45,7 @@ functions:
       return tokens;
     body_dependency_symbols:
       - RegexMatcher
+      - Hexagon::RegexStore
   - name: build_comment_tokens
     type: std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>
     private: true
@@ -152,6 +153,8 @@ functions:
       - ALLEGRO_ALIGN_LEFT
       - std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>
 dependencies:
+  - symbol: Hexagon::RegexStore
+    headers: [ Hexagon/RegexStore.hpp ]
   - symbol: al_get_text_width
     headers: [ allegro5/allegro.h ]
   - symbol: AllegroFlare::color::color

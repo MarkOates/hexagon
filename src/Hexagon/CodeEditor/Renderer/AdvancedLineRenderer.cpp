@@ -2,6 +2,7 @@
 
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <Hexagon/RegexMatcher.hpp>
+#include <Hexagon/RegexStore.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <allegro5/allegro.h>
 #include <utility>
@@ -47,7 +48,7 @@ std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens;
 std::string regex = "";
 {
    // this regex provided by https://stackoverflow.com/a/249937/6072362
-   std::string quoted_string_regex = "\"(?:[^\"\\\\]|\\\\.)*\"";
+   std::string quoted_string_regex = Hexagon::RegexStore::double_quoted_strings_with_escapes();
    regex = quoted_string_regex;
 }
 
