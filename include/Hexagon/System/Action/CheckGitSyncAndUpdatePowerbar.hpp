@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/Action.hpp>
+#include <Hexagon/Powerbar/Powerbar.hpp>
 #include <string>
 
 
@@ -14,13 +15,18 @@ namespace Hexagon
          class CheckGitSyncAndUpdatePowerbar : public ::Action
          {
          private:
+            std::string repo_name;
+            std::string repos_directory;
+            Hexagon::Powerbar::Powerbar* powerbar;
 
          public:
-            CheckGitSyncAndUpdatePowerbar();
+            CheckGitSyncAndUpdatePowerbar(std::string repo_name="blast", std::string repos_directory="~/Repos", Hexagon::Powerbar::Powerbar* powerbar=nullptr);
             ~CheckGitSyncAndUpdatePowerbar();
 
 
-         std::string run();
+            std::string get_repo_name();
+            std::string get_repos_directory();
+         bool execute() override;
          };
       }
    }
