@@ -2,6 +2,7 @@
 
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <Hexagon/RegexMatcher.hpp>
+#include <Hexagon/RegexMatcher.hpp>
 #include <allegro5/allegro.h>
 #include <utility>
 #include <Hexagon/RegexMatcher.hpp>
@@ -39,20 +40,42 @@ AdvancedLineRenderer::~AdvancedLineRenderer()
 }
 
 
+std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::build_quoted_string_tokens()
+{
+std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens;
+
+std::string regex = "";
+{
+   // this regex provided by https://stackoverflow.com/a/249937/6072362
+   std::string quoted_string_regex = "\"(?:[^\"\\\\]|\\\\.)*\"";
+   regex = quoted_string_regex;
+}
+
+RegexMatcher regex_matcher(line, regex);
+
+std::vector<std::pair<int, int>> match_infos = regex_matcher.get_match_info();
+
+for (auto &match_info : match_infos)
+{
+   ALLEGRO_COLOR quote_color = AllegroFlare::color::color(al_color_name("coral"), 0.225);
+   std::string str = line.substr(match_info.first, match_info.second);
+   tokens.push_back({ str, match_info.first, quote_color });
+}
+
+return tokens;
+
+}
+
 std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::build_comment_tokens()
 {
 std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens;
-ALLEGRO_COLOR comment_color = AllegroFlare::color::color(
-   AllegroFlare::color::mix(*font_color, al_color_name("dodgerblue"), 0.35f),
-   0.35f);
+ALLEGRO_COLOR comment_color = AllegroFlare::color::color(al_color_name("black"), 0.5f);
+   //AllegroFlare::color::color(al_color_name("black"), 0.3f)
 
 std::string regex = "";
 {
    //std::string comments_not_inside_quotes_regex = "([\"'])(?:\\?+.)*?\1";
    std::string basic_comment_regex = "//.*";
-   std::string quoted_string_regex = "\"([^\"]*)\"";
-   //std::string attempt = "";
-
    regex = basic_comment_regex;
 }
 
@@ -62,7 +85,7 @@ std::vector<std::pair<int, int>> match_infos = regex_matcher.get_match_info();
 
 if (match_infos.empty())
 {
-   tokens = { { line, 0, *font_color } };
+   //tokens = { { line, 0, *font_color } };
 }
 else if (match_infos.size() == 1)
 {
@@ -70,15 +93,15 @@ else if (match_infos.size() == 1)
    std::string uncommented_substr = line.substr(0, string_end);
    std::string commented_substr = line.substr(string_end);
    tokens = {
-      { uncommented_substr, 0, *font_color },
+      //{ uncommented_substr, 0, *font_color },
       { commented_substr, string_end, comment_color },
    };
 }
 else if (match_infos.size() > 1)
 {
    throw std::runtime_error("unexpected multi match error");
-   ALLEGRO_COLOR error_color = al_color_name("red");
-   tokens = { { line, 0, error_color } };
+   //ALLEGRO_COLOR error_color = al_color_name("red");
+   //tokens = { { line, 0, error_color } };
 }
 
 return tokens;
@@ -115,8 +138,17 @@ if (!font_color)
    throw std::runtime_error(error_message.str());
 }
 
+// draw the line straight out
+al_draw_text(font, *font_color, x, y, ALLEGRO_ALIGN_LEFT, line.c_str());
+
 float cell_width = al_get_text_width(font, " ");
-std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens = build_comment_tokens();
+
+std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens;
+
+//tokens = build_comment_tokens();
+//render_tokens(tokens, cell_width);
+
+tokens = build_quoted_string_tokens();
 render_tokens(tokens, cell_width);
 
 return;

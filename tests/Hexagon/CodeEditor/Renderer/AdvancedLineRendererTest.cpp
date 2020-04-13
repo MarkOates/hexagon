@@ -21,7 +21,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_t
 
    EXPECT_NE(nullptr, font);
 
-   float x = al_get_display_width(display)/2;
+   float x = 100;
    float y = al_get_display_height(display)/2;
    std::string text = "Hello World!";
 
@@ -49,9 +49,9 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_c
 
    EXPECT_NE(nullptr, font);
 
-   float x = al_get_display_width(display)/2;
+   float x = 100;
    float y = al_get_display_height(display)/2;
-   std::string text = "Hello World! \"Quoted string\" // this is a // comment";
+   std::string text = "Hello World! \"Quoted string\" woo \"A second string\" // this is a // comment";
 
    Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(font, &color, x, y, text);
 
@@ -59,7 +59,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_c
    advanced_line_renderer.render();
    al_flip_display();
 
-   //sleep(1);
+   sleep(1);
 
    al_destroy_font(font);
    al_destroy_display(display);
