@@ -21,3 +21,19 @@ TEST(Hexagon_RegexStoreTest, identifiers__is_able_to_match_identifiers)
 
 }
 
+TEST(Hexagon_RegexStoreTest, double_quoted_strings__is_able_to_match_strings_with_and_without_escapes)
+{
+   std::string identifiers_regex = Hexagon::RegexStore().double_quoted_strings_with_escapes();
+   std::string source_string = R"END(This "should" match and "this \"should\" should not")END";
+
+   std::vector<std::pair<int, int>> expected_results = {
+     { 5, 8 }, { 24, 28 },
+   };
+
+   std::vector<std::pair<int, int>> results;
+   results = RegexMatcher(source_string, identifiers_regex).get_match_info();
+
+   EXPECT_EQ(expected_results, results);
+
+}
+

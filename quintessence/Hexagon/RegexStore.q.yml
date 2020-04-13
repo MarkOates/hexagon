@@ -3,3 +3,7 @@ functions:
     static: true
     type: std::string
     body: return "\\b[A-Za-z_][0-9A-Za-z_]+\\b";
+  - name: double_quoted_strings_with_escapes
+    static: true
+    type: std::string
+    body: return "\"(?:[^\"\\\\]|\\\\.)*\"";
