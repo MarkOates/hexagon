@@ -42,6 +42,16 @@ functions:
       }
 
       initialized = true;
+  - name: pull
+    parameters:
+      - name: index
+        type: int
+        default_argument: 0
+    type: ALLEGRO_BITMAP*
+    body: |
+       if (index < 0) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range");
+       if (index >= cache.size()) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range");
+       return cache[index];
 dependencies:
   - symbol: all
     headers:

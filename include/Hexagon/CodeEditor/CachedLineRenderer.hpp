@@ -26,6 +26,7 @@ namespace Hexagon
 
 
       void initialize();
+      ALLEGRO_BITMAP* pull(int index=0);
       };
    }
 }

@@ -53,6 +53,14 @@ for (unsigned i=0; i<num_lines_in_cache; i++)
 initialized = true;
 
 }
+
+ALLEGRO_BITMAP* CachedLineRenderer::pull(int index)
+{
+if (index < 0) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range");
+if (index >= cache.size()) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range");
+return cache[index];
+
+}
 } // namespace CodeEditor
 } // namespace Hexagon
 
