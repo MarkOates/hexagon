@@ -641,6 +641,13 @@ bool System::refresh_regex_hilights_on_all_code_editor_stages()
    return true;
 }
 
+bool System::refresh_git_modified_line_numbers_on_all_code_editor_stages()
+{
+   std::vector<CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
+   for (auto &code_editor_stage : all_code_editor_stages) code_editor_stage->refresh_git_modified_line_numbers();
+   return true;
+}
+
 bool System::set_regex_input_box_modal_to_insert_mode()
 {
    // TODO: this function also handles git_commit_message modal, too

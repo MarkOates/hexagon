@@ -83,3 +83,8 @@ TEST(DISABLED_Hexagon_System_System,
    al_uninstall_system();
 }
 
+TEST(DISABLED_Hexagon_System_System,
+   refresh_git_modified_line_numbers_on_all_code_editor_stages__will_do_that)
+{
+}
+
