@@ -31,6 +31,8 @@ CachedLineRenderer::~CachedLineRenderer()
 
 void CachedLineRenderer::initialize()
 {
+if (!font) throw std::runtime_error("\"CachedLineRenderer::initialize\" font cannot be nullptr");
+
 // destroy any existing resources
 for (auto &strip : cache) if (strip) al_destroy_bitmap(strip);
 cache.clear();
@@ -56,8 +58,9 @@ initialized = true;
 
 ALLEGRO_BITMAP* CachedLineRenderer::pull(int index)
 {
-if (index < 0) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range");
-if (index >= cache.size()) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range");
+if (!initialized) throw std::runtime_error("\"CachedLineRenderer::pull\" must call initialize first");
+if (index < 0) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range (lt 0)");
+if (index >= cache.size()) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range (gt size)");
 return cache[index];
 
 }

@@ -14,6 +14,13 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, can_be_created_without_blowing_u
    Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
 }
 
+TEST(Hexagon_CodeEditor_CachedLineRendererTest, initialize__without_a_valid_font__throws_an_error)
+{
+   Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
+   std::string expected_error_message = "\"CachedLineRenderer::initialize\" font cannot be nullptr";
+   ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.initialize(), std::runtime_error, expected_error_message);
+}
+
 TEST(Hexagon_CodeEditor_CachedLineRendererTest, initialize__with_proper_dependencies_can_be_called_without_blowing_up)
 {
    al_init();
@@ -27,5 +34,32 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, initialize__with_proper_dependen
 
    al_uninstall_system();
    SUCCEED();
+}
+
+TEST(Hexagon_CodeEditor_CachedLineRendererTest, pull__without_initializing__throws_an_error)
+{
+   Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
+   std::string expected_error_message = "\"CachedLineRenderer::pull\" must call initialize first";
+   ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.pull(), std::runtime_error, expected_error_message);
+}
+
+TEST(Hexagon_CodeEditor_CachedLineRendererTest, pull__with_an_index_out_of_bounds__throws_an_error)
+{
+   al_init();
+   al_init_font_addon();
+
+   ALLEGRO_DISPLAY *display = al_create_display(300, 200);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+
+   Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer(font);
+   cached_line_renderer.initialize();
+
+   std::string expected_error_message_lt_0 = "\"CachedLineRenderer::pull\" out of range (lt 0)";
+   ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.pull(-1), std::runtime_error, expected_error_message_lt_0);
+
+   std::string expected_error_message_gt_size = "\"CachedLineRenderer::pull\" out of range (gt size)";
+   ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.pull(99999), std::runtime_error, expected_error_message_gt_size);
+
+   al_uninstall_system();
 }
 
