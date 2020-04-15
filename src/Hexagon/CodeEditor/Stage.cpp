@@ -925,7 +925,7 @@ bool Stage::paste_selected_text_from_clipboard()
 void Stage::render_as_input_box(
    ALLEGRO_DISPLAY *display,
    ALLEGRO_FONT *font,
-   ALLEGRO_COLOR outline_color,
+   ALLEGRO_COLOR outline_and_text_color,
    int cell_width,
    int cell_height)
 {
@@ -949,7 +949,7 @@ void Stage::render_as_input_box(
       get_place().size.y+padding,
       inner_roundness,
       inner_roundness,
-      outline_color,
+      outline_and_text_color,
       3.0);
 
    float _cursor_y = cursor_y - first_line_number;
@@ -979,7 +979,7 @@ void Stage::render_as_input_box(
    int line_height = al_get_font_line_height(font);
    for (int i=0; i<lines.size(); i++)
    {
-      al_draw_text(font, al_color_name("dodgerblue"), 0, i*line_height, ALLEGRO_ALIGN_LEFT, lines[i].c_str());
+      al_draw_text(font, outline_and_text_color, 0, i*line_height, ALLEGRO_ALIGN_LEFT, lines[i].c_str());
    }
 
    get_place().restore_transform();
@@ -993,13 +993,13 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
 
    if (get_type() == ONE_LINE_INPUT_BOX)
    {
-      ALLEGRO_COLOR outline_color = al_color_name("dodgerblue");
-      render_as_input_box(display, font, outline_color, cell_width, cell_height);
+      ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
+      render_as_input_box(display, font, outline_and_text_color, cell_width, cell_height);
    }
    else if (get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
    {
-      ALLEGRO_COLOR outline_color = al_color_name("salmon");
-      render_as_input_box(display, font, outline_color, cell_width, cell_height);
+      ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
+      render_as_input_box(display, font, outline_and_text_color, cell_width, cell_height);
    }
    else
    {

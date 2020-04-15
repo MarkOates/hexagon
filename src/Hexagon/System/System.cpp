@@ -45,6 +45,8 @@
 #include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
 #include <Hexagon/System/Action/OpenConfigFile.hpp>
+#include <Hexagon/Git/StageEverything.hpp>
+#include <Hexagon/Git/CommitStagedWithMessage.hpp>
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/shared_globals.hpp>
@@ -680,7 +682,7 @@ bool System::spawn_git_commit_message_input_box_modal()
    // for now, I'm going to have it spawn at the position of the camera
    placement3d place(0.0, 0.0, 0.0);
    place.position = camera.position;
-   place.size = vec3d(300, 25, 0.0);
+   place.size = vec3d(450, 25, 0.0);
    place.scale = vec3d(1.4, 1.4, 1.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
 
@@ -1215,9 +1217,15 @@ bool System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_
    if (!read_file(regex_input_file_lines, REGEX_TEMP_FILENAME) || regex_input_file_lines.size() == 0)
       throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
 
-   std::string file_contents = regex_input_file_lines[0];
+   std::string commit_message = regex_input_file_lines[0];
+   std::string current_project_directory = get_default_navigator_directory();
 
-   std::cout << "HERE!! stage everything and commit everything" << std::endl;
+   //std::co ut << "HERE!! stage everything and commit everything" << std::endl;
+   Hexagon::Git::StageEverything stage_everything(current_project_directory);
+   stage_everything.stage_everything();
+
+   Hexagon::Git::CommitStagedWithMessage commit_staged_with_message(current_project_directory, commit_message);
+   commit_staged_with_message.commit();
 
    return true;
 }
