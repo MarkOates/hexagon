@@ -34,17 +34,23 @@ return sanitized_commit_message;
 
 }
 
-bool CommitStagedWithMessage::commit()
+std::string CommitStagedWithMessage::build_shell_command()
 {
 std::stringstream commit_everything_shell_command;
-
 std::string sanitized_commit_message = build_sanitized_commit_message();
 commit_everything_shell_command << "(cd "
                                 << current_project_directory
                                 << " && git commit -m "
                                 << "\"" << sanitized_commit_message << "\""
                                 << ")";
-Blast::ShellCommandExecutorWithCallback executor(commit_everything_shell_command.str());
+return commit_everything_shell_command.str();
+
+}
+
+bool CommitStagedWithMessage::commit()
+{
+std::string commit_everything_shell_command = build_shell_command();
+Blast::ShellCommandExecutorWithCallback executor(commit_everything_shell_command);
 executor.execute();
 return true;
 

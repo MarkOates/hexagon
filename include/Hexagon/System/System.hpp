@@ -95,7 +95,7 @@ public:
    bool rotate_relative_down();
    bool center_camera_on_frontmost_stage();
    bool run_project_tests();
-   bool save_current_stage();
+   bool save_frontmost_code_editor_stage();
    bool increase_font_size();
    bool decrease_font_size();
    bool refresh_regex_hilights_on_frontmost_stage();
@@ -182,7 +182,7 @@ public:
    static const std::string ROTATE_RELATIVE_DOWN;
    static const std::string RUN_MAKE;
    static const std::string RUN_PROJECT_TESTS;
-   static const std::string SAVE_CURRENT_STAGE;
+   static const std::string SAVE_FRONTMOST_CODE_EDITOR_STAGE;
    static const std::string SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;

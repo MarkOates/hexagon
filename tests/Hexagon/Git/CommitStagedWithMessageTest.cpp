@@ -27,3 +27,17 @@ TEST(Hexagon_Git_CommitStagedWithMessageTest,
    EXPECT_EQ(expected_sanitized_message, commit_staged_with_message.build_sanitized_commit_message());
 }
 
+TEST(Hexagon_Git_CommitStagedWithMessageTest,
+   build_shell_command__returns_the_expected_shell_command)
+{
+
+   std::string project_directory = "/Users/markoates/Repos/hexagon/";
+   std::string commit_message = "Commit message with unsafe \"quotes\" and \\slashes\\";
+   Hexagon::Git::CommitStagedWithMessage commit_staged_with_message(project_directory, commit_message);
+
+   std::string expected_shell_command = "(cd /Users/markoates/Repos/hexagon/ && git commit -m " \
+                                        "\"* Commit message with unsafe #quotes# and #slashes#\")";
+
+   EXPECT_EQ(expected_shell_command, commit_staged_with_message.build_shell_command());
+}
+

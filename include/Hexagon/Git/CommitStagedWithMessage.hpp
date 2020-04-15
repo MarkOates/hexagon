@@ -20,6 +20,7 @@ namespace Hexagon
 
 
       std::string build_sanitized_commit_message();
+      std::string build_shell_command();
       bool commit();
       };
    }

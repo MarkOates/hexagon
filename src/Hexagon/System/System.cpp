@@ -597,10 +597,10 @@ bool System::run_project_tests()
    return true;
 }
 
-bool System::save_current_stage()
+bool System::save_frontmost_code_editor_stage()
 {
    CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
-   if (!stage) throw std::runtime_error("Cannot save_current_stage; current stage is not a stage stage");
+   if (!stage) throw std::runtime_error("Cannot save_frontmost_code_editor_stage; current stage is not a stage stage");
 
    stage->save_file();
    process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
@@ -1250,7 +1250,7 @@ bool System::submit_current_modal()
    switch (frontmost_stage->get_type())
    {
    case StageInterface::ONE_LINE_INPUT_BOX:
-      process_local_event(SAVE_CURRENT_STAGE);
+      process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE);
       process_local_event(DESTROY_TOPMOST_STAGE);
       process_local_event(SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS);
       process_local_event(REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
@@ -1258,7 +1258,7 @@ bool System::submit_current_modal()
       //process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
       break;
    case StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX:
-      process_local_event(SAVE_CURRENT_STAGE);
+      process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE);
       process_local_event(DESTROY_TOPMOST_STAGE);
       process_local_event(COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS);
       break;
@@ -1377,7 +1377,7 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == RUN_MAKE) { run_make(); executed = true; }
       else if (event_name == CLEAR_LAST_COMPILED_ERROR_MESSAGES) { clear_last_compiled_error_messages(); executed = true; }
       else if (event_name == RUN_PROJECT_TESTS) { run_project_tests(); executed = true; }
-      else if (event_name == SAVE_CURRENT_STAGE) { save_current_stage(); executed = true; }
+      else if (event_name == SAVE_FRONTMOST_CODE_EDITOR_STAGE) { save_frontmost_code_editor_stage(); executed = true; }
       else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { set_regex_input_box_modal_to_insert_mode(); executed = true; }
       else if (event_name == SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE) { set_focused_component_name_to_topmost_relative(); executed = true; }
       else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
@@ -1461,14 +1461,14 @@ void System::process_event(ALLEGRO_EVENT &event)
           CENTER_CAMERA_ON_FRONTMOST_STAGE,
           FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, {
-          SAVE_CURRENT_STAGE,
+          SAVE_FRONTMOST_CODE_EDITOR_STAGE,
           RUN_PROJECT_TESTS });
       //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, {
-      //    SAVE_CURRENT_STAGE,
+      //    SAVE_FRONTMOST_CODE_EDITOR_STAGE,
       //    CLEAR_RERUN_OUTPUT_WATCHERS,
       //    REFRESH_RERUN_OUTPUT_WATCHERS });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, {
-          SAVE_CURRENT_STAGE,
+          SAVE_FRONTMOST_CODE_EDITOR_STAGE,
           CLEAR_LAST_COMPILED_ERROR_MESSAGES,
           RUN_MAKE });
       keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, { SPAWN_FILE_NAVIGATOR });
@@ -1590,7 +1590,7 @@ const std::string System::ROTATE_RELATIVE_DOWN = "ROTATE_RELATIVE_DOWN";
 const std::string System::RUN_MAKE = "RUN_MAKE";
 const std::string System::CLEAR_LAST_COMPILED_ERROR_MESSAGES = "CLEAR_LAST_COMPILED_ERROR_MESSAGES";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
-const std::string System::SAVE_CURRENT_STAGE = "SAVE_CURRENT_STAGE";
+const std::string System::SAVE_FRONTMOST_CODE_EDITOR_STAGE = "SAVE_FRONTMOST_CODE_EDITOR_STAGE";
 const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
 const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";

@@ -17,18 +17,22 @@ functions:
       std::replace(sanitized_commit_message.begin(), sanitized_commit_message.end(), '\r', '#');
       std::replace(sanitized_commit_message.begin(), sanitized_commit_message.end(), '\n', '#');
       return sanitized_commit_message;
-  - name: commit
-    type: bool
+  - name: build_shell_command
+    type: std::string
     body: |
       std::stringstream commit_everything_shell_command;
-
       std::string sanitized_commit_message = build_sanitized_commit_message();
       commit_everything_shell_command << "(cd "
                                       << current_project_directory
                                       << " && git commit -m "
                                       << "\"" << sanitized_commit_message << "\""
                                       << ")";
-      Blast::ShellCommandExecutorWithCallback executor(commit_everything_shell_command.str());
+      return commit_everything_shell_command.str();
+  - name: commit
+    type: bool
+    body: |
+      std::string commit_everything_shell_command = build_shell_command();
+      Blast::ShellCommandExecutorWithCallback executor(commit_everything_shell_command);
       executor.execute();
       return true;
     body_dependency_symbols:
