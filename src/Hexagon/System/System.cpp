@@ -1367,6 +1367,11 @@ void System::process_local_event(std::string event_name) // this function is 1:1
          refresh_regex_hilights_on_all_code_editor_stages();
          executed = true;
       }
+      else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES)
+      {
+         refresh_git_modified_line_numbers_on_all_code_editor_stages();
+         executed = true;
+      }
       else if (event_name == SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS)
       {
          set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
@@ -1588,6 +1593,8 @@ const std::string System::PUSH_COMPONENT_NAVIGATOR_SELECTION = "PUSH_COMPONENT_N
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE = "REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES =
    "REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES";
+const std::string System::REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES =
+   "REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES";
 const std::string System::REFRESH_RERUN_OUTPUT_WATCHERS = "REFRESH_RERUN_OUTPUT_WATCHERS";
 const std::string System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS =
    "SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS";
