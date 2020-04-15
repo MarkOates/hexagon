@@ -96,3 +96,43 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
    al_uninstall_system();
 }
 
+TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
+   build_quintessence_yaml_name_element_tokens__will_hilight_single_indented_yaml_name_element)
+{
+   al_init();
+   al_init_font_addon();
+   ALLEGRO_DISPLAY *display = al_create_display(1000, 460);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   ALLEGRO_COLOR color = al_color_name("white");
+   al_clear_to_color(al_color_name("black"));
+
+   EXPECT_NE(nullptr, font);
+
+   float x = 100;
+   float y = al_get_display_height(display)/2;
+
+   std::vector<std::string> texts = {
+      "  - name: function_or_property_name",
+      "    name: another_function_or_property_name",
+      "    name:something_that_should_not_hilight",
+      "    namely: something_that_is_not_a_property_name",
+      "   name: a_not_properly_indented_name",
+   };
+
+   int passes = 0;
+   for (auto &text : texts)
+   {
+      Hexagon::CodeEditor::Renderer::AdvancedLineRenderer(font, &color, x, y + 20*passes, text).render();
+      passes++;
+   }
+
+   al_flip_display();
+
+   //sleep(1);
+
+   al_destroy_font(font);
+   al_destroy_display(display);
+
+   al_uninstall_system();
+}
+

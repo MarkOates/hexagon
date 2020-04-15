@@ -18,6 +18,22 @@ properties:
   - name: line
     constructor_arg: true
 functions:
+  - name: build_quintessence_yaml_name_element_tokens
+    type: std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>
+    private: true
+    body: |
+      std::string regex = "^  [\- ] name: .*$";
+      RegexMatcher regex_matcher(line, regex);
+      if (regex_matcher.get_match_info().empty()) return {};
+      ALLEGRO_COLOR yaml_name_element_color = AllegroFlare::color::mix(al_color_name("white"),
+                                                                       al_color_name("dodgerblue"),
+                                                                       0.5);
+      return std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>{
+         { line.substr(10), 10, yaml_name_element_color }
+      };
+    body_dependency_symbols:
+      - RegexMatcher
+      - Hexagon::RegexStore
   - name: build_quoted_string_tokens
     type: std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>
     private: true
@@ -143,8 +159,10 @@ functions:
       tokens = build_quoted_string_tokens();
       render_tokens(tokens, cell_width);
 
-      return;
+      tokens = build_quintessence_yaml_name_element_tokens();
+      render_tokens(tokens, cell_width);
 
+      return;
     body_dependency_symbols:
       - RegexMatcher
       - al_get_text_width

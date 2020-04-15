@@ -4,6 +4,8 @@
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexStore.hpp>
 #include <Hexagon/RegexMatcher.hpp>
+#include <Hexagon/RegexStore.hpp>
+#include <Hexagon/RegexMatcher.hpp>
 #include <allegro5/allegro.h>
 #include <utility>
 #include <Hexagon/RegexMatcher.hpp>
@@ -40,6 +42,20 @@ AdvancedLineRenderer::~AdvancedLineRenderer()
 {
 }
 
+
+std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::build_quintessence_yaml_name_element_tokens()
+{
+std::string regex = "^  [\- ] name: .*$";
+RegexMatcher regex_matcher(line, regex);
+if (regex_matcher.get_match_info().empty()) return {};
+ALLEGRO_COLOR yaml_name_element_color = AllegroFlare::color::mix(al_color_name("white"),
+                                                                 al_color_name("dodgerblue"),
+                                                                 0.5);
+return std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>{
+   { line.substr(10), 10, yaml_name_element_color }
+};
+
+}
 
 std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::build_quoted_string_tokens()
 {
@@ -151,6 +167,9 @@ tokens = build_comment_tokens();
 render_tokens(tokens, cell_width);
 
 tokens = build_quoted_string_tokens();
+render_tokens(tokens, cell_width);
+
+tokens = build_quintessence_yaml_name_element_tokens();
 render_tokens(tokens, cell_width);
 
 return;
