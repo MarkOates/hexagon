@@ -14,12 +14,12 @@ namespace CodeEditor
 
 
 CachedLineRenderer::CachedLineRenderer(ALLEGRO_FONT* font)
-   : bitmap_width(800)
+   : font(font)
+   , bitmap_width(800)
    , bitmap_height(1600)
    , initialized(false)
    , cache({})
    , source(nullptr)
-   , font(font)
 {
 }
 

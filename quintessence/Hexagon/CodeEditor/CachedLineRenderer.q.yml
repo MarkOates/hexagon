@@ -1,4 +1,8 @@
 properties:
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    constructor_arg: true
   - name: bitmap_width
     type: int
     init_with: 800
@@ -14,10 +18,6 @@ properties:
   - name: source
     type: ALLEGRO_BITMAP*
     init_with: nullptr
-  - name: font
-    type: ALLEGRO_FONT*
-    init_with: nullptr
-    constructor_arg: true
 functions:
   - name: initialize
     body_dependency_symbols: [ all ]

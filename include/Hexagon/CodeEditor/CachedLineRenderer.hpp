@@ -13,12 +13,12 @@ namespace Hexagon
       class CachedLineRenderer
       {
       private:
+         ALLEGRO_FONT* font;
          int bitmap_width;
          int bitmap_height;
          bool initialized;
          std::vector<ALLEGRO_BITMAP*> cache;
          ALLEGRO_BITMAP* source;
-         ALLEGRO_FONT* font;
 
       public:
          CachedLineRenderer(ALLEGRO_FONT* font=nullptr);
