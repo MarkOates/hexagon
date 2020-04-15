@@ -24,9 +24,9 @@ StageEverything::~StageEverything()
 
 bool StageEverything::stage_everything()
 {
-std::stringstream commit_everything_shell_command;
-commit_everything_shell_command << "(cd " << current_project_directory << " && git add .)";
-Blast::ShellCommandExecutorWithCallback executor(commit_everything_shell_command.str());
+std::stringstream stage_everything_shell_command;
+stage_everything_shell_command << "(cd " << current_project_directory << " && git add .)";
+Blast::ShellCommandExecutorWithCallback executor(stage_everything_shell_command.str());
 executor.execute();
 return true;
 
