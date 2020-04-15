@@ -685,7 +685,7 @@ bool System::spawn_git_commit_message_input_box_modal()
    // for now, I'm going to have it spawn at the position of the camera
    placement3d place(0.0, 0.0, 0.0);
    place.position = camera.position;
-   place.size = vec3d(450, 25, 0.0);
+   place.size = vec3d(500, 25, 0.0);
    place.scale = vec3d(1.4, 1.4, 1.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
 
