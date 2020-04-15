@@ -1271,6 +1271,7 @@ bool System::submit_current_modal()
       process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE);
       process_local_event(DESTROY_TOPMOST_STAGE);
       process_local_event(COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS);
+      process_local_event(REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES);
       break;
    case StageInterface::FILE_NAVIGATOR:
       process_local_event(PUSH_FILE_NAVIGATOR_SELECTION);
