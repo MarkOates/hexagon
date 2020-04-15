@@ -32,8 +32,6 @@ CachedLineRenderer::~CachedLineRenderer()
 void CachedLineRenderer::initialize()
 {
 if (!font) throw std::runtime_error("\"CachedLineRenderer::initialize\" font cannot be nullptr");
-int line_height = al_get_font_line_height(font);
-int bitmap_height = line_height * num_caches_to_build;
 
 // destroy any existing resources
 for (auto &strip : cache) if (strip) al_destroy_bitmap(strip);
@@ -41,6 +39,8 @@ cache.clear();
 if (source) al_destroy_bitmap(source);
 
 // build new source
+int line_height = al_get_font_line_height(font);
+int bitmap_height = line_height * num_caches_to_build;
 source = al_create_bitmap(bitmap_width, bitmap_height);
 
 // build cache strips
