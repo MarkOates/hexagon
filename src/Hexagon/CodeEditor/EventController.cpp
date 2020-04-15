@@ -299,11 +299,8 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_O, true, false, false, false, {
       CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
       CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
-      CodeEditor::EventController::MOVE_CURSOR_UP,
-      CodeEditor::EventController::MOVE_CURSOR_TO_END_OF_LINE,
-      CodeEditor::EventController::SPLIT_LINES,
-      CodeEditor::EventController::MOVE_CURSOR_DOWN,
       CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE,
+      CodeEditor::EventController::SPLIT_LINES,
       CodeEditor::EventController::SET_INSERT_MODE,
       });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, false, {
