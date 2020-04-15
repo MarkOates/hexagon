@@ -88,7 +88,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
    advanced_line_renderer.render();
    al_flip_display();
 
-   sleep(2);
+   //sleep(1);
 
    al_destroy_font(font);
    al_destroy_display(display);
