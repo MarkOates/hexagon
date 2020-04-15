@@ -246,7 +246,9 @@ CodeEditor::Stage *System::get_frontmost_code_editor_stage()
    if (!frontmost_stage) return nullptr;
 
    StageInterface::type_t type = frontmost_stage->get_type();
-   if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
+   if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX
+    || type == CodeEditor::Stage::CODE_EDITOR
+    || type == CodeEditor::Stage::GIT_COMMIT_MESSAGE_INPUT_BOX)
    {
       return static_cast<CodeEditor::Stage *>(get_frontmost_stage());
    }
