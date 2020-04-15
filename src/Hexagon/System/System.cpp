@@ -1261,6 +1261,7 @@ bool System::submit_current_modal()
    {
    case StageInterface::ONE_LINE_INPUT_BOX:
       process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE);
+
       process_local_event(DESTROY_TOPMOST_STAGE);
       process_local_event(SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS);
       process_local_event(REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
