@@ -166,7 +166,11 @@ namespace CodeEditor
       bool paste_selected_text_from_clipboard();
       // complete
 
-      void render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height);
+      void render_as_input_box(ALLEGRO_DISPLAY *display,
+                               ALLEGRO_FONT *font,
+                               ALLEGRO_COLOR outline_color,
+                               int cell_width,
+                               int cell_height);
       void render(bool is_focused,
                   ALLEGRO_DISPLAY *display,
                   ALLEGRO_FONT *font,

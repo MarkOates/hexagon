@@ -922,30 +922,55 @@ bool Stage::paste_selected_text_from_clipboard()
 
 // complete
 
-void Stage::render_as_input_box(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+void Stage::render_as_input_box(
+   ALLEGRO_DISPLAY *display,
+   ALLEGRO_FONT *font,
+   ALLEGRO_COLOR outline_color,
+   int cell_width,
+   int cell_height)
 {
    get_place().start_transform();
 
-   float roundness = 6;
+   float outer_roundness = 12;
+   float inner_roundness = 6;
    float padding = 6;
    al_draw_filled_rounded_rectangle(
       0-padding*2,
       0-padding*2,
       get_place().size.x+padding*2,
       get_place().size.y+padding*2,
-      roundness,
-      roundness,
+      outer_roundness,
+      outer_roundness,
       al_color_name("black"));
-   al_draw_rounded_rectangle(0-padding, 0-padding, get_place().size.x+padding, get_place().size.y+padding, roundness, roundness, al_color_name("dodgerblue"), 3.0);
+   al_draw_rounded_rectangle(
+      0-padding,
+      0-padding,
+      get_place().size.x+padding,
+      get_place().size.y+padding,
+      inner_roundness,
+      inner_roundness,
+      outline_color,
+      3.0);
 
    float _cursor_y = cursor_y - first_line_number;
    switch(mode)
    {
    case EDIT:
-      al_draw_filled_rectangle(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width + cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"));
+      al_draw_filled_rectangle(
+         cursor_x*cell_width,
+         _cursor_y*cell_height,
+         cursor_x*cell_width + cell_width,
+         _cursor_y*cell_height + cell_height,
+         al_color_name("gray"));
       break;
    case INSERT:
-      al_draw_line(cursor_x*cell_width, _cursor_y*cell_height, cursor_x*cell_width, _cursor_y*cell_height + cell_height, al_color_name("gray"), 3);
+      al_draw_line(
+         cursor_x*cell_width,
+         _cursor_y*cell_height,
+         cursor_x*cell_width,
+         _cursor_y*cell_height + cell_height,
+         al_color_name("gray"),
+         3);
       break;
    }
 
@@ -968,7 +993,13 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
 
    if (get_type() == ONE_LINE_INPUT_BOX)
    {
-      render_as_input_box(display, font, cell_width, cell_height);
+      ALLEGRO_COLOR outline_color = al_color_name("dodgerblue");
+      render_as_input_box(display, font, outline_color, cell_width, cell_height);
+   }
+   else if (get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
+   {
+      ALLEGRO_COLOR outline_color = al_color_name("salmon");
+      render_as_input_box(display, font, outline_color, cell_width, cell_height);
    }
    else
    {
