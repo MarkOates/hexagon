@@ -1,7 +1,9 @@
 #pragma once
 
 
-#include <string>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
+#include <vector>
 
 
 namespace Hexagon
@@ -11,13 +13,19 @@ namespace Hexagon
       class CachedLineRenderer
       {
       private:
+         int bitmap_width;
+         int bitmap_height;
+         bool initialized;
+         std::vector<ALLEGRO_BITMAP*> cache;
+         ALLEGRO_BITMAP* source;
+         ALLEGRO_FONT* font;
 
       public:
-         CachedLineRenderer();
+         CachedLineRenderer(ALLEGRO_FONT* font=nullptr);
          ~CachedLineRenderer();
 
 
-      std::string run();
+      void initialize();
       };
    }
 }

@@ -1,4 +1,57 @@
+properties:
+  - name: bitmap_width
+    type: int
+    init_with: 800
+  - name: bitmap_height
+    type: int
+    init_with: 1600
+  - name: initialized
+    type: bool
+    init_with: false
+  - name: cache
+    type: std::vector<ALLEGRO_BITMAP*>
+    init_with: "{}"
+  - name: source
+    type: ALLEGRO_BITMAP*
+    init_with: nullptr
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    constructor_arg: true
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: initialize
+    body_dependency_symbols: [ all ]
+    body: |
+      // destroy any existing resources
+      for (auto &strip : cache) if (strip) al_destroy_bitmap(strip);
+      cache.clear();
+      if (source) al_destroy_bitmap(source);
+
+      // build new source
+      source = al_create_bitmap(bitmap_width, bitmap_height);
+
+      // build cache strips
+      int line_height = al_get_font_line_height(font);
+      int num_lines_in_cache = bitmap_height / line_height;
+
+      cache.resize(num_lines_in_cache, nullptr);
+
+      for (unsigned i=0; i<num_lines_in_cache; i++)
+      {
+         cache[i] = al_create_sub_bitmap(source, 0, line_height*i, bitmap_width, line_height*(i+1));
+      }
+
+      initialized = true;
+dependencies:
+  - symbol: all
+    headers:
+      - allegro5/allegro.h
+      - map
+      - vector
+      - allegro5/allegro_font.h
+  - symbol: std::vector<ALLEGRO_BITMAP*>
+    headers: [ vector, allegro5/allegro.h ]
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
