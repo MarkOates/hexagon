@@ -44,6 +44,20 @@ functions:
       }
 
       initialized = true;
+  - name: size
+    type: int
+    body: return cache.size();
+  - name: exists
+    type: bool
+    parameters:
+      - name: index
+        type: int
+        default_argument: 0
+    body: |
+       if (!initialized) throw std::runtime_error("\"CachedLineRenderer::exists\" must call initialize first");
+       if (index < 0) return false;
+       if (index >= cache.size()) return false;
+       return true;
   - name: pull
     parameters:
       - name: index

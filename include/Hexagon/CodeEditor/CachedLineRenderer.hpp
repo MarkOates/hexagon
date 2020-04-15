@@ -26,6 +26,8 @@ namespace Hexagon
 
 
       void initialize();
+      int size();
+      bool exists(int index=0);
       ALLEGRO_BITMAP* pull(int index=0);
       };
    }

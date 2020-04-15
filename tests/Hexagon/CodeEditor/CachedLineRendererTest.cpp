@@ -63,3 +63,62 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, pull__with_an_index_out_of_bound
    al_uninstall_system();
 }
 
+TEST(Hexagon_CodeEditor_CachedLineRendererTest, size__returns_the_size_of_the_cache)
+{
+   al_init();
+   al_init_font_addon();
+
+   ALLEGRO_DISPLAY *display = al_create_display(300, 200);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+
+   Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer(font);
+   cached_line_renderer.initialize();
+
+   int expected_cache_size = 200;
+
+   ASSERT_EQ(expected_cache_size, cached_line_renderer.size());
+}
+
+TEST(Hexagon_CodeEditor_CachedLineRendererTest, exists__without_initializing__throws_an_error)
+{
+   Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
+   std::string expected_error_message = "\"CachedLineRenderer::exists\" must call initialize first";
+   ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.exists(), std::runtime_error, expected_error_message);
+}
+
+TEST(Hexagon_CodeEditor_CachedLineRendererTest, exists__with_indexes_out_of_bounds__returns_false)
+{
+   al_init();
+   al_init_font_addon();
+
+   ALLEGRO_DISPLAY *display = al_create_display(300, 200);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+
+   Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer(font);
+   cached_line_renderer.initialize();
+
+   int cache_size = cached_line_renderer.size();
+
+   ASSERT_EQ(false, cached_line_renderer.exists(-1));
+   ASSERT_EQ(false, cached_line_renderer.exists(cache_size+1));
+}
+
+TEST(Hexagon_CodeEditor_CachedLineRendererTest, exists__with_indexes_in_bounds__returns_true)
+{
+   al_init();
+   al_init_font_addon();
+
+   ALLEGRO_DISPLAY *display = al_create_display(300, 200);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+
+   Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer(font);
+   cached_line_renderer.initialize();
+
+   int cache_size = cached_line_renderer.size();
+
+   for (unsigned i=0; i<cache_size; i++)
+   {
+      ASSERT_EQ(true, cached_line_renderer.exists(i));
+   }
+}
+

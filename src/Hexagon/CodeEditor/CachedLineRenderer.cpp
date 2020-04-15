@@ -56,6 +56,20 @@ initialized = true;
 
 }
 
+int CachedLineRenderer::size()
+{
+return cache.size();
+}
+
+bool CachedLineRenderer::exists(int index)
+{
+if (!initialized) throw std::runtime_error("\"CachedLineRenderer::exists\" must call initialize first");
+if (index < 0) return false;
+if (index >= cache.size()) return false;
+return true;
+
+}
+
 ALLEGRO_BITMAP* CachedLineRenderer::pull(int index)
 {
 if (!initialized) throw std::runtime_error("\"CachedLineRenderer::pull\" must call initialize first");
