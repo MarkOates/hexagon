@@ -638,6 +638,7 @@ bool System::refresh_regex_hilights_on_all_code_editor_stages()
 
 bool System::set_regex_input_box_modal_to_insert_mode()
 {
+   // TODO: this function also handles git_commit_message modal, too
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return false;
    frontmost_stage->process_local_event(CodeEditor::EventController::SET_INSERT_MODE);
@@ -656,6 +657,40 @@ bool System::spawn_regex_input_box_modal()
    place.rotation = vec3d(0.0, 0.0, 0.0);
 
    CodeEditor::Stage *stage = new CodeEditor::Stage(REGEX_TEMP_FILENAME, "input_box", CodeEditor::Stage::EDIT, CodeEditor::Stage::ONE_LINE_INPUT_BOX); // TODO: extract this one line input box from CodeEditor
+   stage->set_place(place);
+   stages.push_back(stage);
+
+   placement3d& stage_place = stage->get_place();
+   stage_place.scale.x = 1.5;
+   stage_place.scale.y = 1.5;
+   //motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   //motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+
+   std::vector<std::string> file_contents;
+
+   stage->set_initial_content(std::vector<std::string>{"", ""});
+
+   return true;
+}
+
+bool System::spawn_git_commit_message_input_box_modal()
+{
+   //TODO: this placement should be relative to the camera, or, the window should be
+   // placed on a non-transforming render surface, or rendered within the hud.
+   // for now, I'm going to have it spawn at the position of the camera
+   placement3d place(0.0, 0.0, 0.0);
+   place.position = camera.position;
+   place.size = vec3d(300, 25, 0.0);
+   place.scale = vec3d(1.4, 1.4, 1.0);
+   place.rotation = vec3d(0.0, 0.0, 0.0);
+
+// TODO: extract this one line input box from CodeEditor
+   CodeEditor::Stage *stage = new CodeEditor::Stage(
+      REGEX_TEMP_FILENAME,
+      "git_commit_message_input_box",
+      CodeEditor::Stage::EDIT,
+      CodeEditor::Stage::GIT_COMMIT_MESSAGE_INPUT_BOX);
+
    stage->set_place(place);
    stages.push_back(stage);
 
@@ -1173,6 +1208,20 @@ bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp
    return true;
 }
 
+bool System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents()
+{
+   // get regex expression input from file named REGEX_TEMP_FILENAME
+   std::vector<std::string> regex_input_file_lines;
+   if (!read_file(regex_input_file_lines, REGEX_TEMP_FILENAME) || regex_input_file_lines.size() == 0)
+      throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
+
+   std::string file_contents = regex_input_file_lines[0];
+
+   std::cout << "HERE!! stage everything and commit everything" << std::endl;
+
+   return true;
+}
+
 bool System::open_entire_family_of_last_component_navigator_selection()
 {
    std::string component_to_open_family_from = last_component_navigator_selection;
@@ -1199,6 +1248,11 @@ bool System::submit_current_modal()
       process_local_event(REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
       process_local_event(JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE);
       process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
+      break;
+   case StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX:
+      process_local_event(SAVE_CURRENT_STAGE);
+      process_local_event(DESTROY_TOPMOST_STAGE);
+      process_local_event(COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS);
       break;
    case StageInterface::FILE_NAVIGATOR:
       process_local_event(PUSH_FILE_NAVIGATOR_SELECTION);
@@ -1323,12 +1377,22 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
       //else if (event_name == SPAWN_KEYBOARD_INPUTS_MODAL) { spawn_keyboard_inputs_modal(); executed = true; }
       else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { spawn_regex_input_box_modal(); executed = true; }
+      else if (event_name == SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL)
+      {
+         spawn_git_commit_message_input_box_modal();
+         executed = true;
+      }
       else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
       else if (event_name == SUBMIT_CURRENT_MODAL) { submit_current_modal(); executed = true; }
       else if (event_name == FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE) { fx__play_focus_animation_on_frontmost_stage(); executed = true; }
       else if (event_name == CHECK_GIT_SYNC_AND_UPDATE_POWERBAR)
       {
          check_git_sync_and_update_powerbar();
+         executed = true;
+      }
+      else if (event_name == COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS)
+      {
+         commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents();
          executed = true;
       }
 
@@ -1405,8 +1469,14 @@ void System::process_event(ALLEGRO_EVENT &event)
 
       if (is_current_stage_in_edit_mode())
       {
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, { SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL,
-               SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE });
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, {
+            SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL,
+            SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE
+            });
+         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, true, false, false, {
+            SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL,
+            SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE,
+            });
       }
    }
 
@@ -1519,10 +1589,13 @@ const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
 //const std::string System::SPAWN_KEYBOARD_INPUTS_MODAL = "SPAWN_KEYBOARD_INPUTS_MODAL";
 const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
+const std::string System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL = "SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL";
 const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCHER";
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 const std::string System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE = "FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE";
 const std::string System::CHECK_GIT_SYNC_AND_UPDATE_POWERBAR = "CHECK_GIT_SYNC_AND_UPDATE_POWERBAR";
+const std::string System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS =
+   "COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS";
 
 
 

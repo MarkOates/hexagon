@@ -102,6 +102,7 @@ public:
    bool refresh_regex_hilights_on_all_code_editor_stages();
    bool set_regex_input_box_modal_to_insert_mode();
    bool spawn_regex_input_box_modal();
+   bool spawn_git_commit_message_input_box_modal();
    bool spawn_component_navigator();
    bool spawn_red_overlay();
    bool spawn_file_navigator();
@@ -124,6 +125,7 @@ public:
    bool create_three_split_from_last_component_navigator_selection();
    bool attempt_to_create_stage_from_last_component_navigator_selection();
    bool set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
+   bool commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents();
    bool open_entire_family_of_last_component_navigator_selection();
    bool execute_magic_command();
    bool submit_current_modal();
@@ -186,10 +188,12 @@ public:
    static const std::string SPAWN_FILE_NAVIGATOR;
    //static const std::string SPAWN_KEYBOARD_INPUTS_MODAL;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
+   static const std::string SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL;
    static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
    static const std::string SUBMIT_CURRENT_MODAL;
    static const std::string FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE;
    static const std::string CHECK_GIT_SYNC_AND_UPDATE_POWERBAR;
+   static const std::string COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS;
 
    void process_local_event(std::string event_name); // this function is 1:1 execute the action.  It does no calling of other actions before or after
    void process_event(ALLEGRO_EVENT &event);
