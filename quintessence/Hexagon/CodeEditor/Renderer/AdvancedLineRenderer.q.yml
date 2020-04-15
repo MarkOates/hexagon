@@ -25,11 +25,11 @@ functions:
       std::string regex = "^  [\- ] name: .*$";
       RegexMatcher regex_matcher(line, regex);
       if (regex_matcher.get_match_info().empty()) return {};
-      ALLEGRO_COLOR yaml_name_element_color = AllegroFlare::color::mix(al_color_name("white"),
-                                                                       al_color_name("dodgerblue"),
-                                                                       0.5);
+      ALLEGRO_COLOR yaml_name_element_key_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.2);
+      ALLEGRO_COLOR yaml_name_element_value_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.3);
       return std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>{
-         { line.substr(10), 10, yaml_name_element_color }
+         { line, 0, yaml_name_element_key_color },
+         { line.substr(10), 10, yaml_name_element_value_color },
       };
     body_dependency_symbols:
       - RegexMatcher
