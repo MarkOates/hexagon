@@ -157,6 +157,7 @@ std::string System::get_default_navigator_directory()
 
 int System::get_display_default_width()
 {
+
    return config.get_initial_display_width();
 }
 
