@@ -15,7 +15,7 @@ namespace Hexagon
       private:
          ALLEGRO_FONT* font;
          int bitmap_width;
-         int bitmap_height;
+         int num_caches_to_build;
          bool initialized;
          std::vector<ALLEGRO_BITMAP*> cache;
          ALLEGRO_BITMAP* source;

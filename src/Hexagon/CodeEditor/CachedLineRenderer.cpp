@@ -16,7 +16,7 @@ namespace CodeEditor
 CachedLineRenderer::CachedLineRenderer(ALLEGRO_FONT* font)
    : font(font)
    , bitmap_width(800)
-   , bitmap_height(1600)
+   , num_caches_to_build(200)
    , initialized(false)
    , cache({})
    , source(nullptr)
@@ -32,6 +32,8 @@ CachedLineRenderer::~CachedLineRenderer()
 void CachedLineRenderer::initialize()
 {
 if (!font) throw std::runtime_error("\"CachedLineRenderer::initialize\" font cannot be nullptr");
+int line_height = al_get_font_line_height(font);
+int bitmap_height = line_height * num_caches_to_build;
 
 // destroy any existing resources
 for (auto &strip : cache) if (strip) al_destroy_bitmap(strip);
@@ -42,7 +44,6 @@ if (source) al_destroy_bitmap(source);
 source = al_create_bitmap(bitmap_width, bitmap_height);
 
 // build cache strips
-int line_height = al_get_font_line_height(font);
 int num_lines_in_cache = bitmap_height / line_height;
 
 cache.resize(num_lines_in_cache, nullptr);
