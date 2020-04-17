@@ -4,6 +4,9 @@
 #include <Hexagon/shared_globals.hpp>
 
 
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_color.h>
+
 
 std::string REGEX_TEMP_FILENAME = "regex.txt";
 std::string CLIPBOARD_TEMP_FILENAME = "clipboard.txt";
@@ -11,6 +14,7 @@ std::string FILE_NAVIGATOR_SELECTION_FILENAME = "file_navigator_selection.txt";
 std::string FILE_NAVIGATOR_SELECTION_last_content = "";
 std::string MAKE_COMMAND_FILENAME = "make_command.txt";
 std::string DEFAULT_CONTENT_FILENAME = "default.txt";
+std::string BACKFILL_COLOR_HEX = "5b5c90";
 
 
 std::string NOTIFICATION_FILE_IS_UNSAVED = "file is unsaved";
@@ -56,7 +60,10 @@ int get_last_compiler_run_exit_code()
    return last_compiler_run_exit_code;
 }
 
-
+ALLEGRO_COLOR get_backfill_color()
+{
+   return al_color_html("5b5c60");
+}
 
 
 

@@ -3,6 +3,8 @@
 
 
 #include <string>
+#include <vector>
+#include <allegro5/allegro.h>
 
 
 
@@ -12,14 +14,11 @@ extern std::string FILE_NAVIGATOR_SELECTION_FILENAME;
 extern std::string FILE_NAVIGATOR_SELECTION_last_content;
 extern std::string MAKE_COMMAND_FILENAME;
 extern std::string DEFAULT_CONTENT_FILENAME;
+extern std::string BACKFILL_COLOR_HEX;
 
 
 extern std::string NOTIFICATION_FILE_IS_UNSAVED;
 
-
-
-#include <string>
-#include <vector>
 
 
 extern std::vector<std::string> notifications;
@@ -31,6 +30,8 @@ bool is_last_compiled_error_messages_empty();
 
 void set_last_compiler_run_exit_code(int exit_code);
 int get_last_compiler_run_exit_code();
+
+ALLEGRO_COLOR get_backfill_color();
 
 
 
