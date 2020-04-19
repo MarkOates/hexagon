@@ -127,6 +127,7 @@ public:
    bool attempt_to_create_stage_from_last_component_navigator_selection();
    bool set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
    bool commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents();
+   bool push_to_git_remote();
    bool open_entire_family_of_last_component_navigator_selection();
    bool execute_magic_command();
    bool submit_current_modal();
@@ -196,6 +197,7 @@ public:
    static const std::string FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE;
    static const std::string CHECK_GIT_SYNC_AND_UPDATE_POWERBAR;
    static const std::string COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS;
+   static const std::string PUSH_TO_GIT_REMOTE;
 
    void process_local_event(std::string event_name); // this function is 1:1 execute the action.  It does no calling of other actions before or after
    void process_event(ALLEGRO_EVENT &event);

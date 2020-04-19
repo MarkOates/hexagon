@@ -47,6 +47,7 @@
 #include <Hexagon/System/Action/OpenConfigFile.hpp>
 #include <Hexagon/Git/StageEverything.hpp>
 #include <Hexagon/Git/CommitStagedWithMessage.hpp>
+#include <Hexagon/Git/Pusher.hpp>
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/shared_globals.hpp>
@@ -1240,6 +1241,16 @@ bool System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_
    return true;
 }
 
+bool System::push_to_git_remote()
+{
+   std::string current_project_directory = get_default_navigator_directory();
+   Hexagon::Git::Pusher git_pusher(current_project_directory);
+
+   git_pusher.push();
+
+   return true;
+}
+
 bool System::open_entire_family_of_last_component_navigator_selection()
 {
    std::string component_to_open_family_from = last_component_navigator_selection;
@@ -1272,6 +1283,7 @@ bool System::submit_current_modal()
       process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE);
       process_local_event(DESTROY_TOPMOST_STAGE);
       process_local_event(COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS);
+      process_local_event(PUSH_TO_GIT_REMOTE);
       process_local_event(REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES);
       break;
    case StageInterface::FILE_NAVIGATOR:
@@ -1418,6 +1430,11 @@ void System::process_local_event(std::string event_name) // this function is 1:1
       else if (event_name == COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS)
       {
          commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents();
+         executed = true;
+      }
+      else if (event_name == PUSH_TO_GIT_REMOTE)
+      {
+         push_to_git_remote();
          executed = true;
       }
 
@@ -1623,6 +1640,7 @@ const std::string System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE = "FX__PLA
 const std::string System::CHECK_GIT_SYNC_AND_UPDATE_POWERBAR = "CHECK_GIT_SYNC_AND_UPDATE_POWERBAR";
 const std::string System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS =
    "COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS";
+const std::string System::PUSH_TO_GIT_REMOTE = "PUSH_TO_GIT_REMOTE";
 
 
 
