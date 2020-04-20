@@ -50,6 +50,7 @@ namespace CodeEditor
    public: // not really, but listed as public so they can be tested
       ALLEGRO_COLOR build_font_color(ALLEGRO_COLOR frame_color);
       ALLEGRO_COLOR build_frame_color();
+      ALLEGRO_COLOR build_backfill_color();
    };
 } // namespace CodeEditor
 

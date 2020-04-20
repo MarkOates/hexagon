@@ -123,6 +123,15 @@ ALLEGRO_COLOR Renderer::build_frame_color()
 
 
 
+ALLEGRO_COLOR Renderer::build_backfill_color()
+{
+   ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
+   backfill_color = AllegroFlare::color::mix(backfill_color, build_frame_color(), 0.2);
+   return backfill_color;
+}
+
+
+
 void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 {
    // render cursor
@@ -354,7 +363,7 @@ void Renderer::render_raw()
    // draw the background and frame (basically the chrome)
    //ALLEGRO_COLOR background_overlay_color = al_color_name("black");
    //ALLEGRO_COLOR background_overlay_color = al_color_html("5b5c60");
-   ALLEGRO_COLOR background_overlay_color = hexagon_get_backfill_color(); //al_color_html("5b5c60");
+   ALLEGRO_COLOR background_overlay_color = build_backfill_color(); //hexagon_get_backfill_color();
 
    float opacity = 0.7;
    background_overlay_color.r *= opacity;
@@ -434,7 +443,7 @@ void Renderer::render_cursor_position_info()
 
    // draw background box fill
    float text_width = al_get_text_width(font, cursor_position_info.str().c_str());
-   ALLEGRO_COLOR background_overlay_color = hexagon_get_backfill_color(); //al_color_html("5b5c60");
+   ALLEGRO_COLOR background_overlay_color = build_backfill_color(); //hexagon_get_backfill_color();
    al_draw_filled_rectangle(place.size.x - text_width,
                             place.size.y - cell_height,
                             place.size.x,
