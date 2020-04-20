@@ -48,6 +48,9 @@ namespace CodeEditor
       bool content_is_modified;
       void mark_content_is_modified();
       void unmark_content_is_modified();
+      bool content_contains_errors;
+      void mark_content_contains_errors();
+      void unmark_content_contains_errors();
 
    public:
       Stage(
@@ -85,6 +88,7 @@ namespace CodeEditor
       bool infer_cursor_is_on_line_that_exists();
 
       bool get_content_is_modified();
+      bool get_content_contains_errors();
 
       bool move_cursor_up();
       bool move_cursor_down();

@@ -71,6 +71,24 @@ bool Stage::get_content_is_modified()
 }
 
 
+void Stage::mark_content_contains_errors()
+{
+   content_contains_errors = true;
+}
+
+
+void Stage::unmark_content_contains_errors()
+{
+   content_contains_errors = false;
+}
+
+
+bool Stage::get_content_contains_errors()
+{
+   return this->content_contains_errors;
+}
+
+
 // accessors
 
 void Stage::set_cursor_x(int cursor_x)
@@ -998,7 +1016,10 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
    }
    else if (get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
    {
+      std::string header = "Commit and Push";
       ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
+      int line_height = al_get_font_line_height(font);
+      al_draw_text(font, outline_and_text_color, 0, -1 * line_height, ALLEGRO_ALIGN_LEFT, header.c_str());
       render_as_input_box(display, font, outline_and_text_color, cell_width, cell_height);
    }
    else
