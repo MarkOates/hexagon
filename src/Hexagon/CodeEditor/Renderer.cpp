@@ -371,7 +371,7 @@ void Renderer::render_raw()
    background_overlay_color.b *= opacity;
    background_overlay_color.a *= opacity;
 
-   bool draw_outline = true;
+   bool draw_outline = false;
    float roundness = 0; // was previously 6.0;
    float line_thickness = 3.0;
 
