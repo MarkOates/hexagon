@@ -11,6 +11,7 @@
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <Hexagon/CodeRangeRenderer.hpp>
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
+#include <Hexagon/shared_globals.hpp> // for hexagon_get_backfill_color();
 #include <AllegroFlare/Color.hpp>
 #include <sstream>
 #include <string>
@@ -352,7 +353,8 @@ void Renderer::render_raw()
 
    // draw the background and frame (basically the chrome)
    //ALLEGRO_COLOR background_overlay_color = al_color_name("black");
-   ALLEGRO_COLOR background_overlay_color = al_color_html("5b5c60");
+   //ALLEGRO_COLOR background_overlay_color = al_color_html("5b5c60");
+   ALLEGRO_COLOR background_overlay_color = hexagon_get_backfill_color(); //al_color_html("5b5c60");
 
    float opacity = 0.7;
    background_overlay_color.r *= opacity;
@@ -432,12 +434,12 @@ void Renderer::render_cursor_position_info()
 
    // draw background box fill
    float text_width = al_get_text_width(font, cursor_position_info.str().c_str());
-   ALLEGRO_COLOR background_overlay_color = al_color_html("5b5c60");
+   ALLEGRO_COLOR background_overlay_color = hexagon_get_backfill_color(); //al_color_html("5b5c60");
    al_draw_filled_rectangle(place.size.x - text_width,
                             place.size.y - cell_height,
                             place.size.x,
                             place.size.y,
-                            al_color_html("5b5c60")
+                            background_overlay_color //al_color_html("5b5c60")
                             );
 
 

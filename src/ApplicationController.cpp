@@ -262,7 +262,7 @@ while(!shutdown_program)
       //system.hud.set_notifications(notifications);
 
       //al_clear_to_color(al_color_name("black"));
-      al_clear_to_color(get_backfill_color());
+      al_clear_to_color(hexagon_get_backfill_color());
 
       Hexagon::System::Renderer renderer(&system, display);
       renderer.render();

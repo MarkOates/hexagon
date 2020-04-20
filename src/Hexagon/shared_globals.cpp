@@ -60,7 +60,7 @@ int get_last_compiler_run_exit_code()
    return last_compiler_run_exit_code;
 }
 
-ALLEGRO_COLOR get_backfill_color()
+ALLEGRO_COLOR hexagon_get_backfill_color()
 {
    return al_color_html("5b5c60");
 }

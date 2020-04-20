@@ -4,6 +4,7 @@
 #include <Hexagon/shared_globals.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro.h>
+#include <Hexagon/shared_globals.hpp>
 
 
 namespace Hexagon
@@ -39,7 +40,8 @@ if (!display)
    throw std::runtime_error(error_message.str());
 }
 
-al_clear_to_color(al_color_html("5b5c60"));
+al_clear_to_color(hexagon_get_backfill_color());
+//al_clear_to_color(al_color_html("5b5c60"));
 
 system->camera.setup_camera_perspective(al_get_backbuffer(display));
 al_clear_depth_buffer(1000);

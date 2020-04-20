@@ -5,6 +5,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro.h>
+#include <Hexagon/shared_globals.hpp>
 
 
 namespace Hexagon
@@ -78,7 +79,8 @@ float x1 = place->size.x/2-text_width/2 - horizontal_padding;
 float y1 = place->size.y/2-line_height/2;
 float x2 = x1 + text_width + horizontal_padding * 2;
 float y2 = y1 + line_height * 2;
-al_draw_filled_rectangle(x1, y1, x2, y2, al_color_html("5b5c60"));
+ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
+al_draw_filled_rectangle(x1, y1, x2, y2, backfill_color);
 al_draw_rectangle(x1, y1, x2, y2, primary_color, 3.0f);
 //text_box_frame.set_outline_color(primary_color);
 //text_box_frame.render();

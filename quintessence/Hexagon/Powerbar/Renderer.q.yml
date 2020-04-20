@@ -68,7 +68,8 @@ functions:
       float width = al_get_display_width(display) * 0.75f;
       float line_thickness = 3.0f;
       //ALLEGRO_COLOR background_color = AllegroFlare::color::color(al_color_name("black"), 0.65f);
-      ALLEGRO_COLOR background_color = AllegroFlare::color::color(al_color_html("5b5c60"), 0.65f);
+      ALLEGRO_COLOR background_color = AllegroFlare::color::color(hexagon_get_backfill_color(), 0.65f);
+         //AllegroFlare::color::color(al_color_html("5b5c60"), 0.65f);
       ALLEGRO_COLOR color = al_color_name("gray");
 
       std::string left_powerbox_text = ""; //powerbar->get_files_are_modified() ? "GREEN" : "FILE MODIFIED";
@@ -109,6 +110,7 @@ functions:
 
       place.restore_transform();
     body_dependency_symbols:
+      - hexagon_get_backfill_color
       - AllegroFlare::color::mix
       - std::stringstream
       - allegro_flare::placement3d
@@ -118,6 +120,8 @@ functions:
       - al_color_name
       - al_draw_rectangle
 dependencies:
+  - symbol: hexagon_get_backfill_color
+    headers: [ Hexagon/shared_globals.hpp ]
   - symbol: AllegroFlare::color::mix
     headers: [ AllegroFlare/Color.hpp ]
   - symbol: allegro_flare::placement3d

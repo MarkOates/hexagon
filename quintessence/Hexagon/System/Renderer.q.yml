@@ -24,7 +24,8 @@ functions:
          throw std::runtime_error(error_message.str());
       }
 
-      al_clear_to_color(al_color_html("5b5c60"));
+      al_clear_to_color(hexagon_get_backfill_color());
+      //al_clear_to_color(al_color_html("5b5c60"));
 
       system->camera.setup_camera_perspective(al_get_backbuffer(display));
       al_clear_depth_buffer(1000);
@@ -43,7 +44,10 @@ functions:
       - NOTIFICATION_FILE_IS_UNSAVED
       - al_color_name
       - al_clear_to_color
+      - hexagon_get_backfill_color
 dependencies:
+  - symbol: hexagon_get_backfill_color
+    headers: [ Hexagon/shared_globals.hpp ]
   - symbol: NOTIFICATION_FILE_IS_UNSAVED
     headers: [ Hexagon/shared_globals.hpp ]
   - symbol: ALLEGRO_DISPLAY*
