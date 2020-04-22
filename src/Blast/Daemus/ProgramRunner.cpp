@@ -62,24 +62,20 @@ hexagon_config.initialize();
 
 std::string project_directory = hexagon_config.get_default_navigator_directory();
 
-//while(true)
-{
-   std::string build_command = "rerun" \
-     " " \
-     "-c" \
-     " " \
-     "--background" \
-     " " \
-     "--ignore \"**/bin/programs/data/tmp/*\"" \
-     " " \
-     "-p \"**/*.{rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}\"" \
-     " " \
-     "\"(cd ";
-   build_command += project_directory + " && make focus)\"";
-   std::string output = execute_command(build_command);
-   //std::cout << output << std::endl;
-   //run_with_block_after_command();
-}
+std::string build_command = "rerun" \
+  " " \
+  "-c" \
+  " " \
+  "--background" \
+  " " \
+  "--ignore \"**/bin/programs/data/tmp/*\"" \
+  " " \
+  "-p \"**/*.{rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}\"" \
+  " " \
+  "\"(cd ";
+
+build_command += project_directory + " && make focus)\"";
+std::string output = execute_command(build_command);
 return;
 
 }
