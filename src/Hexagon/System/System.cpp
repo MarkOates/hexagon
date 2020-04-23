@@ -734,7 +734,7 @@ bool System::spawn_component_navigator()
 
    placement3d& stage_place = component_navigator->get_place();
    motion.cmove_to(&stage_place.rotation.y, 0.0, 0.3, interpolator::tripple_fast_in);
-   motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in);
+   //motion.cmove_to(&stage_place.position.z, 30.0, 0.3, interpolator::tripple_fast_in);
    return true;
 }
 
