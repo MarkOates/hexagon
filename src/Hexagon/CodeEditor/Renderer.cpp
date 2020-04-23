@@ -365,11 +365,11 @@ void Renderer::render_raw()
    //ALLEGRO_COLOR background_overlay_color = al_color_html("5b5c60");
    ALLEGRO_COLOR background_overlay_color = build_backfill_color(); //hexagon_get_backfill_color();
 
-   float opacity = 0.7;
-   background_overlay_color.r *= opacity;
-   background_overlay_color.g *= opacity;
-   background_overlay_color.b *= opacity;
-   background_overlay_color.a *= opacity;
+   //float opacity = 0.7;
+   //background_overlay_color.r *= opacity;
+   //background_overlay_color.g *= opacity;
+   //background_overlay_color.b *= opacity;
+   //background_overlay_color.a *= opacity;
 
    bool draw_outline = false;
    float roundness = 0; // was previously 6.0;
