@@ -4,6 +4,7 @@
 #include <sstream>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Blast/StringSplitter.hpp>
+#include <algorithm>
 
 
 namespace Blast
@@ -51,6 +52,8 @@ std::string executor_response = executor.execute();
 StringSplitter splitter(executor_response, '\n');
 
 std::vector<std::string> result = splitter.split();
+
+std::sort(result.begin(), result.end());
 
 return result;
 

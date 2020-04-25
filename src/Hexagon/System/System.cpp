@@ -723,7 +723,7 @@ bool System::spawn_git_commit_message_input_box_modal()
 bool System::spawn_component_navigator()
 {
    //placement3d component_navigator_initial_place = component_navigator_initial_place;
-  
+
    Hexagon::ComponentNavigator::Stage *component_navigator =
       new Hexagon::ComponentNavigator::Stage(get_default_navigator_directory());
    component_navigator->process_local_event("refresh_list");
