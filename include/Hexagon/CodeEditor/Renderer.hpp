@@ -6,7 +6,6 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
-#include <allegro_flare/render_cache.h>
 #include <allegro_flare/placement3d.h>
 
 
@@ -23,7 +22,6 @@ namespace CodeEditor
       bool draw_null_space;
       bool draw_backfill;
       ALLEGRO_DISPLAY *display;
-      RenderCache render_cache;
       CodeEditor::Stage *stage;
       int cell_width;
       int cell_height;

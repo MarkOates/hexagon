@@ -43,7 +43,6 @@ Renderer::Renderer(
    , stage(stage)
    , font(font)
    , display(display)
-   , render_cache()
    , cell_width(cell_width)
    , cell_height(cell_height)
 {}
@@ -501,23 +500,14 @@ void Renderer::render_cursor_position_info()
 
 void Renderer::render()
 {
-   placement3d &stage_place = stage->get_place();
+   placement3d &place = stage->get_place_ref();
 
-   render_cache.setup_surface(stage_place.size.x, stage_place.size.y);
-   render_raw();
-   if (is_showing_info) render_info_overlay();
-   render_cache.finish_surface();
-
-   placement3d place = stage_place;
-   //if (!is_focused)
-   //{
-      //place.position.z -= 50;
-      //place.rotation.y += 0.01f;
-   //}
-
+   global::profiler.start("render");
    place.start_transform();
-   render_cache.draw(0, 0);
+   render_raw();
    place.restore_transform();
+   if (is_showing_info) render_info_overlay();
+   global::profiler.pause("render");
 }
 
 
