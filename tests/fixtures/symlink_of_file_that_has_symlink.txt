@@ -1,0 +1,1 @@
+file_that_has_symlink.txt
