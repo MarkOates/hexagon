@@ -1,0 +1,30 @@
+properties:
+  - name: filename
+    type: std::string
+    init_with: "\"file.txt\""
+    constructor_arg: true
+functions:
+  - name: touch_if_symlink
+    type: void
+    body: |
+      bool file_exists = Blast::FileExistenceChecker(filename).exists();
+      if (!file_exists) return;
+
+      bool is_symlink = Blast::Project::SymlinkChecker(filename).is_symlink();
+      if (!is_symlink) return;
+
+      std::string command = std::string("touch -h -c ") + filename;
+      Blast::ShellCommandExecutorWithCallback executor(command);
+      executor.execute();
+      return;
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
+      - Blast::Project::SymlinkChecker
+      - Blast::FileExistenceChecker
+dependencies:
+  - symbol: Blast::FileExistenceChecker
+    headers: [ Blast/FileExistenceChecker.hpp ]
+  - symbol: Blast::Project::SymlinkChecker
+    headers: [ Blast/Project/SymlinkChecker.hpp ]
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
