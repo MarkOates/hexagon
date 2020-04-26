@@ -11,7 +11,7 @@
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <Hexagon/CodeRangeRenderer.hpp>
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
-#include <Hexagon/shared_globals.hpp> // for hexagon_get_backfill_color();
+#include <Hexagon/shared_globals.hpp> // for hexagon_get_backfill_color() && profile_timer functions
 #include <AllegroFlare/Color.hpp>
 #include <sstream>
 #include <string>
@@ -36,7 +36,8 @@ Renderer::Renderer(
    : Hexagon::RendererInterface()
    , draw_line_numbers(draw_line_numbers)
    , draw_extra_spaces_at_end_of_line(true)
-   , draw_null_space(true)
+   , draw_null_space(false)
+   , draw_backfill(false)
    , is_focused(is_focused)
    , is_showing_info(false)
    , stage(stage)
@@ -377,10 +378,14 @@ void Renderer::render_raw()
 
    ALLEGRO_COLOR frame_color = build_frame_color();
 
-   al_draw_filled_rounded_rectangle(0, 0,
-                            place.size.x, place.size.y,
-                            roundness, roundness,
-                            background_overlay_color);
+   if (draw_backfill)
+   {
+      al_draw_filled_rounded_rectangle(0, 0,
+                               place.size.x, place.size.y,
+                               roundness, roundness,
+                               background_overlay_color);
+   }
+
    if (draw_outline)
    {
       al_draw_rounded_rectangle(half_padding, half_padding,
@@ -443,13 +448,18 @@ void Renderer::render_cursor_position_info()
 
    // draw background box fill
    float text_width = al_get_text_width(font, cursor_position_info.str().c_str());
-   ALLEGRO_COLOR background_overlay_color = build_backfill_color(); //hexagon_get_backfill_color();
-   al_draw_filled_rectangle(place.size.x - text_width,
-                            place.size.y - cell_height,
-                            place.size.x,
-                            place.size.y,
-                            background_overlay_color //al_color_html("5b5c60")
-                            );
+   bool draw_backfill = false;
+
+   if (draw_backfill)
+   {
+      ALLEGRO_COLOR background_overlay_color = build_backfill_color(); //hexagon_get_backfill_color();
+      al_draw_filled_rectangle(place.size.x - text_width,
+                               place.size.y - cell_height,
+                               place.size.x,
+                               place.size.y,
+                               background_overlay_color //al_color_html("5b5c60")
+                               );
+   }
 
 
    ALLEGRO_COLOR frame_color;
@@ -493,10 +503,13 @@ void Renderer::render()
 {
    placement3d &stage_place = stage->get_place();
 
-   render_cache.setup_surface(stage_place.size.x, stage_place.size.y);
-   render_raw();
-   if (is_showing_info) render_info_overlay();
-   render_cache.finish_surface();
+   if (is_focused)
+   {
+      render_cache.setup_surface(stage_place.size.x, stage_place.size.y);
+      render_raw();
+      if (is_showing_info) render_info_overlay();
+      render_cache.finish_surface();
+   }
 
    placement3d place = stage_place;
    //if (!is_focused)

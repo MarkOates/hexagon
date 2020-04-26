@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <allegro5/allegro.h>
+#include <allegro_flare/profile_timer.h>
 
 
 

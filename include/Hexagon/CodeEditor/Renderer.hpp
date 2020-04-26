@@ -21,6 +21,7 @@ namespace CodeEditor
       bool draw_line_numbers;
       bool draw_extra_spaces_at_end_of_line;
       bool draw_null_space;
+      bool draw_backfill;
       ALLEGRO_DISPLAY *display;
       RenderCache render_cache;
       CodeEditor::Stage *stage;
