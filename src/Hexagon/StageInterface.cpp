@@ -23,6 +23,48 @@ StageInterface::type_t StageInterface::get_type()
 }
 
 
+std::string StageInterface::get_type_name()
+{
+   switch(type)
+   {
+      case NONE:
+         return "none";
+         break;
+      case CODE_EDITOR:
+         return "CodeEditor";
+         break;
+      case ONE_LINE_INPUT_BOX:
+         return "OneLineInputBox";
+         break;
+      case GIT_COMMIT_MESSAGE_INPUT_BOX:
+         return "GitCommitMessageInputBox";
+         break;
+      case OLD_FILE_NAVIGATOR:
+         return "OldFileNavigator";
+         break;
+      case FILE_NAVIGATOR:
+         return "FileNavigator";
+         break;
+      case COMPONENT_NAVIGATOR:
+         return "ComponentNavigator";
+         break;
+      case KEYBOARD_INPUTS_MODAL:
+         return "KeyboardInputsModal";
+         break;
+      case RERUN_OUTPUT_WATCHER:
+         return "RerunOutputWatcher";
+         break;
+      case MISSING_FILE:
+         return "MissingFile";
+         break;
+      default:
+      {
+         throw std::runtime_error("StageInterface::get_type_name() unrecognized type");
+      }
+   }
+}
+
+
 
 placement3d &StageInterface::get_place()
 {

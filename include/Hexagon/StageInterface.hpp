@@ -35,6 +35,8 @@ public:
    StageInterface(StageInterface::type_t type);
    virtual ~StageInterface();
 
+   std::string get_type_name();
+
    StageInterface::type_t get_type();
    placement3d &get_place();
    void set_place(placement3d place);
