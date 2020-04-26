@@ -54,6 +54,7 @@ namespace Hexagon
    void initialize();
    void reinitialize();
    void draw_current_focus_name();
+   void draw_profile_timer_graph();
    void draw();
    };
 }

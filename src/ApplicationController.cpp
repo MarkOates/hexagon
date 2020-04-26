@@ -206,6 +206,7 @@ while(!shutdown_program)
 {
    ALLEGRO_EVENT this_event;
    if (!first_load) al_wait_for_event(event_queue, &this_event);
+   global::profiler.clear();
    first_load = false;
 
    system.process_event(this_event);

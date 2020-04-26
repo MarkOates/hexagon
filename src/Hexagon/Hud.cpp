@@ -4,6 +4,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro.h>
 #include <AllegroFlare/Color.hpp>
+#include <Hexagon/shared_globals.hpp>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_color.h>
@@ -212,6 +213,13 @@ return;
 
 }
 
+void Hud::draw_profile_timer_graph()
+{
+global::profiler.draw(10, 10, obtain_text_font());
+return;
+
+}
+
 void Hud::draw()
 {
 if (!initialized) throw std::runtime_error("[Hud::draw()] Cannot call until Hud has been initialized");
@@ -225,6 +233,8 @@ al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
 al_set_target_bitmap(screen_sub_bitmap);
 
 draw_current_focus_name();
+
+draw_profile_timer_graph();
 
 if (show_disabled_screen)
 {

@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include <allegro5/allegro.h>
-#include <allegro_flare/profile_timer.h>
+#include <AllegroFlare/Profiler.hpp>
 
 
 
@@ -23,6 +23,10 @@ extern std::string NOTIFICATION_FILE_IS_UNSAVED;
 
 
 extern std::vector<std::string> notifications;
+namespace global
+{
+   extern AllegroFlare::Profiler profiler;
+}
 
 void clear_last_compiled_error_messages();
 void set_last_compiled_error_messages(std::string);

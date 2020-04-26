@@ -142,6 +142,13 @@ functions:
       - al_draw_rectangle
       - al_get_display_width
       - AllegroFlare::color::mix
+  - name: draw_profile_timer_graph
+    type: void
+    body: |
+      global::profiler.draw(10, 10, obtain_text_font());
+      return;
+    body_dependency_symbols:
+      - global::profiler
   - name: draw
     type: void
     body: |
@@ -156,6 +163,8 @@ functions:
       al_set_target_bitmap(screen_sub_bitmap);
 
       draw_current_focus_name();
+
+      draw_profile_timer_graph();
 
       if (show_disabled_screen)
       {
@@ -241,3 +250,5 @@ dependencies:
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: AllegroFlare::FontBin
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: global::profiler
+    headers: [ Hexagon/shared_globals.hpp ]

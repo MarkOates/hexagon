@@ -86,3 +86,7 @@ void clear_notifications()
 }
 
 
+namespace global
+{
+   AllegroFlare::Profiler profiler;
+}
