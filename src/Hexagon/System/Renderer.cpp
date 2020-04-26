@@ -51,7 +51,7 @@ global::profiler.start("all stages");
 for (auto &stage : system->stages)
 {
    std::stringstream profile_timer_element_label;
-   profile_timer_element_label << "Stage [" << stage << "-" << stage->get_type() << "]";
+   profile_timer_element_label << "Stage [" << stage->get_type_name() << "]                    " << stage;
    global::profiler.start(profile_timer_element_label.str());
 
    bool is_focused = (system->get_frontmost_stage() == stage);
