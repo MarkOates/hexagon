@@ -231,7 +231,7 @@ while(!shutdown_program)
       break;
    case ALLEGRO_EVENT_TIMER:
       motion.update(al_get_time());
-      if (motion.get_num_active_animations() == 0) continue;
+      //if (motion.get_num_active_animations() == 0) continue;
       break;
    }
 
@@ -268,6 +268,16 @@ while(!shutdown_program)
       renderer.render();
 
       al_flip_display();
+
+      bool drop_backed_up_primary_timer_events = true;
+      if (drop_backed_up_primary_timer_events)
+      {
+         ALLEGRO_EVENT next_event;
+         while (al_peek_next_event(event_queue, &next_event)
+              && next_event.type == ALLEGRO_EVENT_TIMER
+              && next_event.timer.source == primary_timer)
+           al_drop_next_event(event_queue);
+      }
    }
 }
 
