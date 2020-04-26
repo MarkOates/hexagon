@@ -503,13 +503,10 @@ void Renderer::render()
 {
    placement3d &stage_place = stage->get_place();
 
-   if (is_focused)
-   {
-      render_cache.setup_surface(stage_place.size.x, stage_place.size.y);
-      render_raw();
-      if (is_showing_info) render_info_overlay();
-      render_cache.finish_surface();
-   }
+   render_cache.setup_surface(stage_place.size.x, stage_place.size.y);
+   render_raw();
+   if (is_showing_info) render_info_overlay();
+   render_cache.finish_surface();
 
    placement3d place = stage_place;
    //if (!is_focused)
