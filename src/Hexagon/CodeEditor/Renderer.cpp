@@ -198,7 +198,7 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
          ALLEGRO_COLOR line_font_color = line_is_too_long ? line_too_long_font_color : font_color;
 
          // draw the actual line (truncated, possibly) here:
-         bool use_advanced_line_renderer = false;
+         bool use_advanced_line_renderer = true;
          if (use_advanced_line_renderer)
          {
             Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(
