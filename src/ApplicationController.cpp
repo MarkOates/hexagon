@@ -211,7 +211,7 @@ while(!shutdown_program)
 
    system.process_event(this_event);
 
-   bool refresh = true;
+   bool refresh = false;
 
    switch(this_event.type)
    {
@@ -232,6 +232,7 @@ while(!shutdown_program)
       break;
    case ALLEGRO_EVENT_TIMER:
       motion.update(al_get_time());
+      refresh = true;
       //if (motion.get_num_active_animations() == 0) continue;
       break;
    }
