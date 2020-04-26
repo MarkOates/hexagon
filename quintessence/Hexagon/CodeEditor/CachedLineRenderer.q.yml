@@ -45,6 +45,11 @@ functions:
       }
 
       initialized = true;
+  - name: destruct
+    body: |
+      for (auto &strip : cache) if (strip) al_destroy_bitmap(strip);
+      cache.clear();
+      if (source) al_destroy_bitmap(source);
   - name: size
     type: int
     body: return cache.size();

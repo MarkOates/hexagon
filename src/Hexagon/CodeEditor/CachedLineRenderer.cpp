@@ -57,6 +57,14 @@ initialized = true;
 
 }
 
+void CachedLineRenderer::destruct()
+{
+for (auto &strip : cache) if (strip) al_destroy_bitmap(strip);
+cache.clear();
+if (source) al_destroy_bitmap(source);
+
+}
+
 int CachedLineRenderer::size()
 {
 return cache.size();
