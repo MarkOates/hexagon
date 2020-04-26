@@ -111,7 +111,7 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
       else if (event_name == MOVE_CURSOR_TO_LAST_CHARACTER_OF_LINE) stage->move_cursor_to_last_character_of_line();
       else if (event_name == MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER)
          stage->move_cursor_to_first_non_whitespace_character();
-      else if (event_name == SAVE_FILE) stage->save_file();
+      else if (event_name == SAVE_FILE_AND_TOUCH_IF_SYMLINK) stage->save_file_and_touch_if_symlink();
       else if (event_name == MOVE_STAGE_UP) stage->move_stage_up();
       else if (event_name == MOVE_STAGE_DOWN) stage->move_stage_down();
       else if (event_name == SCALE_STAGE_UP) stage->scale_stage_delta(0.1);
@@ -266,7 +266,7 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
       CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
       CodeEditor::EventController::DELETE_CHARACTER, CodeEditor::EventController::SET_INSERT_MODE, });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, false, {
-      CodeEditor::EventController::SAVE_FILE });
+      CodeEditor::EventController::SAVE_FILE_AND_TOUCH_IF_SYMLINK });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, true, false, false, {
       CodeEditor::EventController::JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN,
       CodeEditor::EventController::OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN });
@@ -304,7 +304,8 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
       CodeEditor::EventController::SET_INSERT_MODE,
       });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_G, false, false, true, false, {
-     CodeEditor::EventController::SAVE_FILE, CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
+     CodeEditor::EventController::SAVE_FILE_AND_TOUCH_IF_SYMLINK,
+     CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
    //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, {
    //   CodeEditor::EventController::TOGGLE_SHOWING_CODE_MESSAGE_POINTS });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, {
@@ -348,7 +349,7 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
       CodeEditor::EventController::MOVE_CURSOR_DOWN,
       CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE });
    insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, false, {
-      CodeEditor::EventController::SAVE_FILE });
+      CodeEditor::EventController::SAVE_FILE_AND_TOUCH_IF_SYMLINK });
 
 
    switch(stage->get_mode())
@@ -433,7 +434,7 @@ std::string const CodeEditor::EventController::MOVE_CURSOR_TO_LAST_CHARACTER_OF_
    "MOVE_CURSOR_TO_LAST_CHARACTER_OF_LINE";
 std::string const CodeEditor::EventController::MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER =
    "MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER";
-std::string const CodeEditor::EventController::SAVE_FILE = "SAVE_FILE";
+std::string const CodeEditor::EventController::SAVE_FILE_AND_TOUCH_IF_SYMLINK = "SAVE_FILE_AND_TOUCH_IF_SYMLINK";
 std::string const CodeEditor::EventController::MOVE_STAGE_UP = "MOVE_STAGE_UP";
 std::string const CodeEditor::EventController::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
 std::string const CodeEditor::EventController::DELETE_LINE = "DELETE_LINE";

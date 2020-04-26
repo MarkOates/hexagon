@@ -12,6 +12,7 @@
 #include <Hexagon/CodeRangeRenderer.hpp>
 #include <Hexagon/CodeRangeExtractor.hpp>
 #include <Hexagon/ClipboardData.hpp>
+#include <Hexagon/SymlinkToucher.hpp>
 #include <Hexagon/CodeEditor/Renderer.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
 #include <Hexagon/util.hpp>
@@ -570,9 +571,13 @@ bool Stage::insert_string(std::string string)
 
 
 
-bool Stage::save_file()
+bool Stage::save_file_and_touch_if_symlink()
 {
    ::save_file(lines, filename);
+
+   Hexagon::SymlinkToucher symlink_toucher(filename);
+   symlink_toucher.touch_if_symlink();
+
    unmark_content_is_modified();
    return true;
 }

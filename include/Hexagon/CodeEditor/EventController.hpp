@@ -68,7 +68,7 @@ namespace CodeEditor
       static const std::string MOVE_CURSOR_TO_END_OF_LINE;
       static const std::string MOVE_CURSOR_TO_LAST_CHARACTER_OF_LINE;
       static const std::string MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER;
-      static const std::string SAVE_FILE;
+      static const std::string SAVE_FILE_AND_TOUCH_IF_SYMLINK;
       static const std::string MOVE_STAGE_UP;
       static const std::string MOVE_STAGE_DOWN;
       static const std::string SCALE_STAGE_UP;

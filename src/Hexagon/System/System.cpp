@@ -606,7 +606,7 @@ bool System::save_frontmost_code_editor_stage()
    CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
    if (!stage) throw std::runtime_error("Cannot save_frontmost_code_editor_stage; current stage is not a stage stage");
 
-   stage->save_file();
+   stage->save_file_and_touch_if_symlink();
    process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
 
    return true;
