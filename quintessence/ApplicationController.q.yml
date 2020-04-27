@@ -144,7 +144,7 @@ functions:
 
           system.process_event(this_event);
 
-          bool refresh = false;
+          bool refresh = true;
 
           switch(this_event.type)
           {
@@ -165,8 +165,8 @@ functions:
              break;
           case ALLEGRO_EVENT_TIMER:
              motion.update(al_get_time());
-             refresh = true;
-             //if (motion.get_num_active_animations() == 0) continue;
+             //refresh = true;
+             if (motion.get_num_active_animations() == 0) continue;
              break;
           }
 
