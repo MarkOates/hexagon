@@ -41,6 +41,11 @@ functions:
   - name: run
     type: void
     body: |
+      run_with_rerun();
+      return;
+  - name: run_with_rerun
+    type: void
+    body: |
       al_init();
       Hexagon::System::Config hexagon_config;
       hexagon_config.initialize();

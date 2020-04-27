@@ -56,6 +56,13 @@ execute_command(full_rebuild_command);
 
 void ProgramRunner::run()
 {
+run_with_rerun();
+return;
+
+}
+
+void ProgramRunner::run_with_rerun()
+{
 al_init();
 Hexagon::System::Config hexagon_config;
 hexagon_config.initialize();
