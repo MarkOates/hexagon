@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <string>
 
 
 namespace Blast
@@ -16,7 +17,9 @@ namespace Blast
          ~Daemus();
 
 
+      std::string execute_command(std::string command="");
       void output_pid();
+      void run_full_rebuild();
       };
    }
 }

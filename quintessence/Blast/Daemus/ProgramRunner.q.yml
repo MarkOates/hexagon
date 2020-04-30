@@ -1,23 +1,4 @@
 functions:
-  - name: __replace
-    type: std::string
-    parameters:
-      - name: str
-        type: std::string
-        default_argument: "\"\""
-      - name: from
-        type: std::string
-        default_argument: "\"\""
-      - name: to
-        type: std::string
-        default_argument: "\"\""
-    body: |
-      size_t start_pos = 0;
-      while((start_pos = str.find(from, start_pos)) != std::string::npos) {
-         str.replace(start_pos, from.length(), to);
-         start_pos += to.length();
-      }
-      return str;
   - name: execute_command
     type: std::string
     parameters:
@@ -33,16 +14,6 @@ functions:
       return shell_command_executor.execute();
     body_dependency_symbols:
       - Blast::ShellCommandExecutorWithCallback
-  - name: output_pid
-    type: void
-    body: |
-      std::cout << "pid: " << getpid() << std::endl;
-      return;
-  - name: run_full_rebuild
-    type: void
-    body: |
-      std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
-      execute_command(full_rebuild_command);
   - name: run
     type: void
     body: |

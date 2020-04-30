@@ -25,17 +25,6 @@ ProgramRunner::~ProgramRunner()
 }
 
 
-std::string ProgramRunner::__replace(std::string str, std::string from, std::string to)
-{
-size_t start_pos = 0;
-while((start_pos = str.find(from, start_pos)) != std::string::npos) {
-   str.replace(start_pos, from.length(), to);
-   start_pos += to.length();
-}
-return str;
-
-}
-
 std::string ProgramRunner::execute_command(std::string command)
 {
 Blast::ShellCommandExecutorWithCallback shell_command_executor(
@@ -44,20 +33,6 @@ Blast::ShellCommandExecutorWithCallback shell_command_executor(
    //Blast::ShellCommandExecutorWithCallback::simple_silent_callback
 );
 return shell_command_executor.execute();
-
-}
-
-void ProgramRunner::output_pid()
-{
-std::cout << "pid: " << getpid() << std::endl;
-return;
-
-}
-
-void ProgramRunner::run_full_rebuild()
-{
-std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
-execute_command(full_rebuild_command);
 
 }
 
