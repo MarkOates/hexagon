@@ -1,0 +1,13 @@
+functions:
+  - name: output_pid
+    type: void
+    body: |
+      std::cout << "pid: " << getpid() << std::endl;
+      return;
+    body_dependency_symbols:
+      - std::cout
+      - std::endl
+      - getpid
+dependencies:
+  - symbol: getpid
+    headers: [ unistd.h ]

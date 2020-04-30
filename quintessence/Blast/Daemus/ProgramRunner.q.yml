@@ -33,6 +33,11 @@ functions:
       return shell_command_executor.execute();
     body_dependency_symbols:
       - Blast::ShellCommandExecutorWithCallback
+  - name: output_pid
+    type: void
+    body: |
+      std::cout << "pid: " << getpid() << std::endl;
+      return;
   - name: run_full_rebuild
     type: void
     body: |

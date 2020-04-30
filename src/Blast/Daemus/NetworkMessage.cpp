@@ -11,6 +11,7 @@ namespace Daemus
 
 
 NetworkMessage::NetworkMessage()
+   : daemus(nullptr)
 {
 }
 
@@ -20,9 +21,14 @@ NetworkMessage::~NetworkMessage()
 }
 
 
-std::string NetworkMessage::run()
+bool NetworkMessage::process_message(std::string message)
 {
-return "Hello World!";
+bool message_captured = false;
+
+if (message == "TO_DAEMUS: OUTPUT_PID") { daemus->output_pid(); message_captured = true; }
+
+return message_captured;
+
 }
 } // namespace Daemus
 } // namespace Blast

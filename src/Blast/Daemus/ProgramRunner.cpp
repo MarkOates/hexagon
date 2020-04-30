@@ -47,6 +47,13 @@ return shell_command_executor.execute();
 
 }
 
+void ProgramRunner::output_pid()
+{
+std::cout << "pid: " << getpid() << std::endl;
+return;
+
+}
+
 void ProgramRunner::run_full_rebuild()
 {
 std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";

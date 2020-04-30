@@ -19,6 +19,7 @@ namespace Blast
 
       std::string __replace(std::string str="", std::string from="", std::string to="");
       std::string execute_command(std::string command="");
+      void output_pid();
       void run_full_rebuild();
       void run();
       void run_with_rerun();
