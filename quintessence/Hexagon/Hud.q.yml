@@ -65,6 +65,12 @@ properties:
     init_with: false
     constructor_arg: true
     setter: true
+  - name: show_profiler
+    type: bool
+    init_with: false
+    setter: true
+    constructor_arg: true
+    getter: true
 functions:
   - name: get_dummy_font_bin
     type: AllegroFlare::FontBin&
@@ -164,7 +170,7 @@ functions:
 
       draw_current_focus_name();
 
-      draw_profile_timer_graph();
+      if (show_profiler) draw_profile_timer_graph();
 
       if (show_disabled_screen)
       {
