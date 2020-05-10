@@ -184,9 +184,5 @@ int main(int argc, char **argv)
    std::cout << "looking for key \"range_loop\": " << (repository.exists("range_loop") ? "exists!" : "does not exist!") << std::endl;
    std::cout << "looking for key \"key_that_does_not_exist\": " << (repository.exists("key_that_does_not_exist") ? "exists!" : "does not exist!") << std::endl;
 
-   //std::cout << divider() << std::endl;
-   //std::cout << guard_throw_with_error_message("!argument", "Foobar::ClassName", "doing_the_thing", "argument cannot be a nullptr") << std::endl;
-   //std::cout << divider() << std::endl;
-
    return 0;
 }
