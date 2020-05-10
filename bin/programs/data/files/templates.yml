@@ -17,9 +17,9 @@
        throw std::runtime_error(error_message.str());
     }
 - name: range_loop
-  variables: [ TYPE, TYPE_PLURAL ]
+  variables: [ TYPE, TYPE_COLLECTION ]
   template: |
-    for (auto &{{TYPE}} : {{TYPE_PLURAL}})
+    for (auto &{{TYPE}} : {{TYPE_COLLECTION}})
     {
        #
     }

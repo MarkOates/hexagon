@@ -185,6 +185,10 @@ int main(int argc, char **argv)
    repository.load_from_yaml_file(filename);
 
    std::cout << "num templates: " << repository.num_templates() << std::endl;
+   for (auto &str : repository.names())
+   {
+      std::cout << "   - " << str << std::endl;
+   }
 
    std::cout << "looking for key \"range_loop\": " << (repository.exists("range_loop") ? "exists!" : "does not exist!") << std::endl;
    std::cout << "looking for key \"key_that_does_not_exist\": " << (repository.exists("key_that_does_not_exist") ? "exists!" : "does not exist!") << std::endl;
