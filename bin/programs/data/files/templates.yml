@@ -1,0 +1,25 @@
+- name: guard_throw_with_error_message
+  variables: [ CONDITION, CLASS_NAME, FUNCTION_NAME, MESSAGE ]
+  template: |
+    if ({{CONDITION}})
+    {
+       std::string_stream error_message; 
+       error_message << "{{CLASS_NAME}}" << "::" << "{{FUNCTION_NAME}}" << ": error: " << "{{MESSAGE}}";
+       throw std::runtime_error(error_message.str());
+    }
+- name: guard_throw
+  variables: [ CONDITION, CLASS_NAME, FUNCTION_NAME ]
+  template: |
+    if ({{CONDITION}})
+    {
+       std::string_stream error_message; 
+       error_message << "{{CLASS_NAME}}" << "::" << "{{FUNCTION_NAME}}" << ": error: condition \"" << "{{CONDITION}}" << "\" not met.";
+       throw std::runtime_error(error_message.str());
+    }
+- name: range_loop
+  variables: [ TYPE, TYPE_PLURAL ]
+  template: |
+    for (auto &{{TYPE}} : {{TYPE_PLURAL}})
+    {
+       #
+    }

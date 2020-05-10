@@ -25,6 +25,12 @@ public:
    std::string name;
    std::string template_content;
    std::vector<std::string> variables;
+
+   std::string fill(std::vector<std::pair<std::string, std::string>> insertion_variables)
+   {
+      Blast::TemplatedFile templated_file(template_content, insertion_variables);
+      return templated_file.generate_content();
+   }
 };
 
 
@@ -116,7 +122,7 @@ public:
 
    CodeTemplate find_by_name(std::string name)
    {
-      if (exists(name)) throw std::runtime_error("find_by_name error: key \"(unset)\" does not exist");
+      if (!exists(name)) throw std::runtime_error("find_by_name error: key \"(unset)\" does not exist");
       return code_templates[name];
    }
 
@@ -138,7 +144,7 @@ public:
 
 
 
-std::string guard_throw_with_error_message(std::string condition, std::string class_name, std::string function_name, std::string message)
+std::string guard_throw_with_error_message_fun(std::string condition, std::string class_name, std::string function_name, std::string message)
 {
    std::string template_content = R"END(if ({{CONDITION}})
 {
@@ -178,11 +184,22 @@ int main(int argc, char **argv)
    CodeTemplateRepository repository;
    repository.load_from_yaml_file(filename);
 
-
-   std::cout << repository.num_templates();
+   std::cout << "num templates: " << repository.num_templates() << std::endl;
 
    std::cout << "looking for key \"range_loop\": " << (repository.exists("range_loop") ? "exists!" : "does not exist!") << std::endl;
    std::cout << "looking for key \"key_that_does_not_exist\": " << (repository.exists("key_that_does_not_exist") ? "exists!" : "does not exist!") << std::endl;
+
+   CodeTemplate guard_throw_with_error_message_template = repository.find_by_name("guard_throw_with_error_message");
+   std::string filled = guard_throw_with_error_message_template.fill({
+      { "{{CONDITION}}", "!argument" },
+      { "{{CLASS_NAME}}", "Foobar::ClassName" },
+      { "{{FUNCTION_NAME}}", "doing_the_thing" },
+      { "{{MESSAGE}}", "argument cannot be a nullptr" },
+   });
+
+   std::cout << divider() << std::endl;
+   std::cout << filled;
+   std::cout << divider() << std::endl;
 
    return 0;
 }
