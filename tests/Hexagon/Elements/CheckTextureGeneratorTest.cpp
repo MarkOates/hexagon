@@ -70,7 +70,7 @@ TEST(Hexagon_Elements_CheckTextureGeneratorTest, generate_grid_check__creates_a_
    {
       al_draw_bitmap(generated_texture, 0, 0, 0);
       al_flip_display();
-      sleep(1);
+      //sleep(1);
    }
 
    al_uninstall_system();

@@ -47,7 +47,7 @@ TEST(Hexagon_Powerbar_RendererTest, render__draws_the_powerbar)
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 
    al_destroy_display(display);
    al_uninstall_system();
