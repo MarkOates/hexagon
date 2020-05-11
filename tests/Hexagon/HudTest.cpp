@@ -19,10 +19,10 @@ TEST(Hexagon_HudTest, notifications2__has_a_getter_and_setter)
    ASSERT_EQ(true, hud.get_notifications2().empty());
 }
 
-TEST(Hexagon_HudTest, show_powerbar__has_a_getter_and_is_initialized_with_the_expected_default)
+TEST(Hexagon_HudTest, draw_powerbar__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
-   ASSERT_EQ(false, hud.get_show_powerbar());
+   ASSERT_EQ(true, hud.get_draw_powerbar());
 }
 
 TEST(Hexagon_HudTest, reinitialize__before_calling_initialize__raises_an_error)

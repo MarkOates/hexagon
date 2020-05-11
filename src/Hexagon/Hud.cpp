@@ -20,7 +20,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, bool show_disabled_screen, bool show_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -30,7 +30,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , fonts(fonts)
    , title_text(title_text)
    , show_disabled_screen(show_disabled_screen)
-   , show_powerbar(show_powerbar)
+   , draw_powerbar(draw_powerbar)
    , files_are_modified(files_are_modified)
    , files_are_committed(files_are_committed)
    , commits_are_in_sync_with_remote(commits_are_in_sync_with_remote)
@@ -74,9 +74,9 @@ void Hud::set_show_disabled_screen(bool show_disabled_screen)
 }
 
 
-void Hud::set_show_powerbar(bool show_powerbar)
+void Hud::set_draw_powerbar(bool draw_powerbar)
 {
-   this->show_powerbar = show_powerbar;
+   this->draw_powerbar = draw_powerbar;
 }
 
 
@@ -128,9 +128,9 @@ bool Hud::get_show_disabled_screen()
 }
 
 
-bool Hud::get_show_powerbar()
+bool Hud::get_draw_powerbar()
 {
-   return show_powerbar;
+   return draw_powerbar;
 }
 
 
@@ -283,7 +283,7 @@ for (auto &notification2 : notifications2)
   y_cursor++;
 }
 
-if (show_powerbar)
+if (draw_powerbar)
 {
    powerbar.set_files_are_committed(files_are_committed);
    powerbar.set_files_are_modified(files_are_modified);

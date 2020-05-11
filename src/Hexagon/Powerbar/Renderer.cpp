@@ -1,6 +1,11 @@
 
 
 #include <Hexagon/Powerbar/Renderer.hpp>
+#include <ctime>
+#include <cmath>
+#include <iostream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/shared_globals.hpp>
 #include <AllegroFlare/Color.hpp>
 #include <sstream>
@@ -23,6 +28,8 @@ Renderer::Renderer(ALLEGRO_DISPLAY* display, Hexagon::Powerbar::Powerbar* powerb
    , powerbar(powerbar)
    , font(font)
    , width(width)
+   , draw_state_boxes(false)
+   , draw_focus_timer(true)
 {
 }
 
@@ -31,6 +38,46 @@ Renderer::~Renderer()
 {
 }
 
+
+void Renderer::draw_focus_timer_bar()
+{
+if (!(display))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "draw_focus_timer_bar" << ": error: " << "guard \"display\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(powerbar))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "draw_focus_timer_bar" << ": error: " << "guard \"powerbar\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+float width = al_get_display_width(display) * 0.6;
+float height = 40;
+float x = al_get_display_width(display) / 2 - width / 2;
+float y = al_get_display_height(display) - height * 1;
+float time_length = 0.7f;
+float length = time_length * width;
+ALLEGRO_COLOR color = al_color_name("white");
+ALLEGRO_COLOR border_color = al_map_rgba_f(0.2, 0.2, 0.2, 0.2);
+
+std::time_t time_now = time(0);
+struct tm now_tm = *localtime(&time_now);
+//double seconds = difftime(time_now,mktime(&newyear));
+double seconds = difftime(time_now, mktime(0));
+double normal_length = std::fmod(seconds, powerbar->get_focus_timer_duration_sec())
+                     / powerbar->get_focus_timer_duration_sec();
+length = normal_length * width;
+
+float padding = 5.0f;
+float roundness = 0.0f;
+al_draw_rectangle(x - padding, y - padding, x + width + padding, y + padding, border_color, 2.0);
+al_draw_line(x, y, x+length, y, color, 1.0f);
+//al_draw_line(10, 10, 600, 300, al_color_name("white"), 10.0f);
+return;
+
+}
 
 void Renderer::draw_individual_rectangle(float x1, float y1, float x2, float y2, std::string text)
 {
@@ -90,25 +137,32 @@ place.size.y = height;
 
 place.start_transform();
 
-al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_color);
+if (draw_state_boxes)
+{
+   al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, background_color);
 
-draw_individual_rectangle(rectangle_width*0,
-                          0,
-                          rectangle_width*1,
-                          height,
-                          left_powerbox_text.c_str());
-draw_individual_rectangle(rectangle_width*1,
-                          0,
-                          rectangle_width*2,
-                          height,
-                          center_powerbox_text.c_str());
-draw_individual_rectangle(rectangle_width*2,
-                          0,
-                          rectangle_width*3,
-                          height,
-                          right_powerbox_text.c_str());
+   draw_individual_rectangle(rectangle_width*0,
+                             0,
+                             rectangle_width*1,
+                             height,
+                             left_powerbox_text.c_str());
+   draw_individual_rectangle(rectangle_width*1,
+                             0,
+                             rectangle_width*2,
+                             height,
+                             center_powerbox_text.c_str());
+   draw_individual_rectangle(rectangle_width*2,
+                             0,
+                             rectangle_width*3,
+                             height,
+                             right_powerbox_text.c_str());
+}
 
 place.restore_transform();
+
+if (draw_focus_timer) draw_focus_timer_bar();
+
+return;
 
 }
 } // namespace Powerbar

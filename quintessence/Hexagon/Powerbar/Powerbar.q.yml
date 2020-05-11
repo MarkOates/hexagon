@@ -21,6 +21,10 @@ properties:
     type: std::time_t
     init_with: "0"
     getter: true
+  - name: focus_timer_duration_sec
+    type: float
+    init_with: 1200.0f
+    getter: true
 dependencies:
   - symbol: std::time_t
     headers: [ ctime ]

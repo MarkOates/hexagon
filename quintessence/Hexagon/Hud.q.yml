@@ -44,9 +44,9 @@ properties:
     setter: true
     getter: true
     constructor_arg: true
-  - name: show_powerbar
+  - name: draw_powerbar
     type: bool
-    init_with: false
+    init_with: true
     setter: true
     getter: true
     constructor_arg: true
@@ -206,7 +206,7 @@ functions:
         y_cursor++;
       }
 
-      if (show_powerbar)
+      if (draw_powerbar)
       {
          powerbar.set_files_are_committed(files_are_committed);
          powerbar.set_files_are_modified(files_are_modified);

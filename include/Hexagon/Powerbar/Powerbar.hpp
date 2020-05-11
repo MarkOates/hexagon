@@ -15,6 +15,7 @@ namespace Hexagon
          bool files_are_committed;
          bool commits_are_in_sync_with_remote;
          std::time_t focus_timer_started_at;
+         float focus_timer_duration_sec;
 
       public:
          Powerbar(bool files_are_modified=true, bool files_are_committed=true, bool commits_are_in_sync_with_remote=true);
@@ -28,6 +29,7 @@ namespace Hexagon
          bool get_files_are_committed();
          bool get_commits_are_in_sync_with_remote();
          std::time_t get_focus_timer_started_at();
+         float get_focus_timer_duration_sec();
       };
    }
 }
