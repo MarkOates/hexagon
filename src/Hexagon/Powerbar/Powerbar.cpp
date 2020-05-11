@@ -14,6 +14,7 @@ Powerbar::Powerbar(bool files_are_modified, bool files_are_committed, bool commi
    : files_are_modified(files_are_modified)
    , files_are_committed(files_are_committed)
    , commits_are_in_sync_with_remote(commits_are_in_sync_with_remote)
+   , focus_timer_started_at(0)
 {
 }
 
@@ -56,6 +57,12 @@ bool Powerbar::get_files_are_committed()
 bool Powerbar::get_commits_are_in_sync_with_remote()
 {
    return commits_are_in_sync_with_remote;
+}
+
+
+std::time_t Powerbar::get_focus_timer_started_at()
+{
+   return focus_timer_started_at;
 }
 
 

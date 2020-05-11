@@ -17,3 +17,10 @@ properties:
     constructor_arg: true
     getter: true
     setter: true
+  - name: focus_timer_started_at
+    type: std::time_t
+    init_with: "0"
+    getter: true
+dependencies:
+  - symbol: std::time_t
+    headers: [ ctime ]
