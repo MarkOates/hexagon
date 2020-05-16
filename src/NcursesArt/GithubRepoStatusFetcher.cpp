@@ -24,6 +24,7 @@ GithubRepoStatusFetcher::GithubRepoStatusFetcher(std::string repo_name, std::str
    , git_current_branch_command("git branch | grep \\* | cut -d ' ' -f2")
    , git_remote_branch_names_command("git branch -r")
    , component_quintessence_filenames_command("find quintessence -name '*.q.yml'")
+   , git_current_staged_files_command("git diff --name-only --cached")
    , repo_name(repo_name)
    , repos_directory(repos_directory)
    , only_poll_once(true)
@@ -82,6 +83,12 @@ std::string GithubRepoStatusFetcher::get_git_remote_branch_names_command()
 std::string GithubRepoStatusFetcher::get_component_quintessence_filenames_command()
 {
    return component_quintessence_filenames_command;
+}
+
+
+std::string GithubRepoStatusFetcher::get_git_current_staged_files_command()
+{
+   return git_current_staged_files_command;
 }
 
 
@@ -207,6 +214,23 @@ std::string GithubRepoStatusFetcher::get_status_command()
 std::stringstream result;
 result << "(cd " << get_repos_directory() << "/" << get_repo_name() << " && git fetch && " << get_git_status_command() << ")";
 return result.str();
+
+}
+
+std::string GithubRepoStatusFetcher::get_current_staged_files_command()
+{
+std::stringstream result;
+result << "(cd " << get_repos_directory() << "/" << get_repo_name() << " && " << get_git_current_staged_files_command() << ")";
+return result.str();
+
+}
+
+std::vector<std::string> GithubRepoStatusFetcher::get_current_staged_files()
+{
+std::string current_staged_files_command = get_current_staged_files_command();
+//return execute_command(current_staged_files_command);
+std::string command_output = execute_command(current_staged_files_command);
+return Blast::StringSplitter(command_output, '\n').split();
 
 }
 
