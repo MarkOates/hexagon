@@ -1021,11 +1021,20 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
    }
    else if (get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
    {
-      std::string header = "Commit and Push";
       ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
-      int line_height = al_get_font_line_height(font);
-      al_draw_text(font, outline_and_text_color, 0, -1 * line_height, ALLEGRO_ALIGN_LEFT, header.c_str());
       render_as_input_box(display, font, outline_and_text_color, cell_width, cell_height);
+
+      // draw chrome
+      get_place().start_transform();
+      std::string header = "ESC: Close";
+      int line_height = al_get_font_line_height(font);
+      al_draw_text(font, outline_and_text_color, 0, -1 * line_height*1 - 10, ALLEGRO_ALIGN_LEFT, header.c_str());
+
+      std::string text = "ENTER: Commit and Push";
+      float submit_text_x = get_place().position.x + get_place().size.x;
+      float submit_text_y = get_place().position.y + get_place().size.y + 10;
+      al_draw_text(font, outline_and_text_color, submit_text_x, submit_text_y, ALLEGRO_ALIGN_RIGHT, text.c_str());
+      get_place().restore_transform();
    }
    else
    {
