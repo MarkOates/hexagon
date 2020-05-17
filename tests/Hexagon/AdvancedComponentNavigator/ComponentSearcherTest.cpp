@@ -25,7 +25,7 @@ TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest, component_names__
 
    std::vector<std::string> actual_list = list.component_names();
 
-   EXPECT_THAT(actual_list, IsSupersetOf(actual_list));
+   EXPECT_THAT(actual_list, IsSupersetOf(expected_list));
 }
 
 TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
@@ -36,19 +36,25 @@ TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
    Hexagon::AdvancedComponentNavigator::ComponentSearcher list(project_root_directory, search_text);
 
    std::vector<std::string> expected_list = {
-      "Blast/DirectoryCreator",
-      "Blast/ShellCommandExecutorWithCallback",
-      "Blast/CamelCaseToUnderscoreConverter",
+      "Blast/Project/BasenameExtractor",
+      "Blast/Project/Component",
       "Blast/Project/ComponentBasenameExtractor",
-      "Blast/TemplatedFile",
-      "Blast/Cpp/FunctionBody",
-      "Blast/Cpp/Function",
-      "Blast/DirectoryExistenceChecker",
-      "Blast/StringSplitter",
+      "Blast/Project/ComponentCreator",
+      "Blast/Project/ComponentFragmentTypeEnum",
+      "Blast/Project/ComponentLister",
+      "Blast/Project/ComponentListerNew",
+      "Blast/Project/ComponentRelativeLister",
+      "Blast/Project/ProgramLister",
+      "Blast/Project/ProjectSymlinkFixer",
+      "Blast/Project/SourceReleaseBuilder",
+      "Blast/Project/SymlinkChecker",
+      "Blast/ProjectComponentBasenameExtractor",
+      "Blast/ProjectComponentFileTypes",
+      "Blast/ProjectComponentFilenameGenerator",
    };
 
    std::vector<std::string> actual_list = list.component_names();
 
-   EXPECT_THAT(actual_list, IsSupersetOf(actual_list));
+   EXPECT_EQ(expected_list, actual_list);
 }
 

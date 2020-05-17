@@ -2,6 +2,7 @@
 
 #include <Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp>
 #include <Blast/Project/ComponentLister.hpp>
+#include <Blast/SimpleTextSearcher.hpp>
 #include <Blast/Project/ComponentLister.hpp>
 #include <Blast/Project/ComponentLister.hpp>
 
@@ -27,12 +28,10 @@ ComponentSearcher::~ComponentSearcher()
 std::vector<std::string> ComponentSearcher::component_names()
 {
 std::vector<std::string> result_names = {};
-std::vector<std::string> all_names = Blast::Project::ComponentLister(project_root_directory).components();
-for (auto &result_name : all_names)
-{
-   result_names.push_back(result_name);
-}
-return result_names;
+std::vector<std::string> elements = Blast::Project::ComponentLister(project_root_directory).components();
+if (search_text.empty()) return elements;
+Blast::SimpleTextSearcher searcher(search_text, elements);
+return searcher.results();
 
 }
 

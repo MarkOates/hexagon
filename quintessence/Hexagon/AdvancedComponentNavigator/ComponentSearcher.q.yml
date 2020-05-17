@@ -12,14 +12,13 @@ functions:
     type: std::vector<std::string>
     body: |
       std::vector<std::string> result_names = {};
-      std::vector<std::string> all_names = Blast::Project::ComponentLister(project_root_directory).components();
-      for (auto &result_name : all_names)
-      {
-         result_names.push_back(result_name);
-      }
-      return result_names;
+      std::vector<std::string> elements = Blast::Project::ComponentLister(project_root_directory).components();
+      if (search_text.empty()) return elements;
+      Blast::SimpleTextSearcher searcher(search_text, elements);
+      return searcher.results();
     body_dependency_symbols:
       - Blast::Project::ComponentLister
+      - Blast::SimpleTextSearcher
   - name: components_sorted_by_most_recent
     type: std::vector<Blast::Project::Component>
     body: |
@@ -50,5 +49,7 @@ dependencies:
     headers: [ 'vector', 'string' ]
   - symbol: Blast::Project::ComponentLister
     headers: [ 'Blast/Project/ComponentLister.hpp' ]
+  - symbol: Blast::SimpleTextSearcher
+    headers: [ 'Blast/SimpleTextSearcher.hpp' ]
   - symbol: std::vector<Blast::Project::Component>
     headers: [ vector, Blast/Project/Component.hpp ]
