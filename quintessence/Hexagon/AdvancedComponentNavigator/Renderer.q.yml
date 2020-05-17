@@ -30,6 +30,7 @@ functions:
 
 
   - name: build_not_quite_black_color
+    private: true
     type: ALLEGRO_COLOR
     body: |
       float not_quite_black_value = 0.0;
@@ -44,6 +45,7 @@ functions:
 
 
   - name: draw_search_text_box
+    private: true
     type: void
     body: |
       // draw the search_text
