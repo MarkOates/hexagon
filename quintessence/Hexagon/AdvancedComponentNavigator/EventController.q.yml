@@ -58,9 +58,6 @@ functions:
       return;
     body_dependency_symbols:
       - Hexagon::AdvancedComponentNavigator::EventController
-      - std::endl
-      - std::cout
-      - std::cerr
 dependencies:
   - symbol: Hexagon::AdvancedComponentNavigator::Stage*
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]

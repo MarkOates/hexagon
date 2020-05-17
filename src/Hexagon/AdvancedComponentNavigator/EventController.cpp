@@ -2,9 +2,6 @@
 
 #include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
 #include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
-#include <iostream>
-#include <iostream>
-#include <iostream>
 #include <stdexcept>
 #include <sstream>
 
