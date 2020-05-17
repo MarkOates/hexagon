@@ -60,46 +60,6 @@ else
    local_events[event_name](stage);
 }
 
-/*
-if (event_name == "refresh_list")
-{
-  executed = true;
-  stage.refresh_list();
-}
-else if (event_name == "move_cursor_to_top")
-{
-  executed = true;
-  stage.move_cursor_to_top();
-}
-else if (event_name == "move_cursor_up")
-{
-  executed = true;
-  stage.move_cursor_up();
-}
-else if (event_name == "move_cursor_down")
-{
-  executed = true;
-  stage.move_cursor_down();
-}
-else if (event_name == "set_mode_to_navigating_list")
-{
-  executed = true;
-  stage.set_mode_to_navigating_list();
-}
-else if (event_name == "set_mode_to_typing_in_search_bar")
-{
-  executed = true;
-  stage.set_mode_to_typing_in_search_bar();
-}
-*/
-
-if (false) //(!executed)
-{
-   std::stringstream error_message;
-   error_message << "AdvancedComponentNavigator::EventController::process_local_event: error: "
-                 << "No local event named \"" << event_name << "\" exists.";
-   throw std::runtime_error(error_message.str());
-}
 return;
 
 }
