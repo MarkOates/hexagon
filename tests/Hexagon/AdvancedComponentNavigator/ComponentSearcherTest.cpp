@@ -28,3 +28,27 @@ TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest, component_names__
    EXPECT_THAT(actual_list, IsSupersetOf(actual_list));
 }
 
+TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
+   component_names__with_search_string_returns_filtered_results)
+{
+   std::string project_root_directory = "/Users/markoates/Repos/blast";
+   std::string search_text = "Blast/Project";
+   Hexagon::AdvancedComponentNavigator::ComponentSearcher list(project_root_directory, search_text);
+
+   std::vector<std::string> expected_list = {
+      "Blast/DirectoryCreator",
+      "Blast/ShellCommandExecutorWithCallback",
+      "Blast/CamelCaseToUnderscoreConverter",
+      "Blast/Project/ComponentBasenameExtractor",
+      "Blast/TemplatedFile",
+      "Blast/Cpp/FunctionBody",
+      "Blast/Cpp/Function",
+      "Blast/DirectoryExistenceChecker",
+      "Blast/StringSplitter",
+   };
+
+   std::vector<std::string> actual_list = list.component_names();
+
+   EXPECT_THAT(actual_list, IsSupersetOf(actual_list));
+}
+

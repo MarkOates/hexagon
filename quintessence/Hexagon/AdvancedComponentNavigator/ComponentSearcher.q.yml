@@ -11,7 +11,13 @@ functions:
   - name: component_names
     type: std::vector<std::string>
     body: |
-      return Blast::Project::ComponentLister(project_root_directory).components();
+      std::vector<std::string> result_names = {};
+      std::vector<std::string> all_names = Blast::Project::ComponentLister(project_root_directory).components();
+      for (auto &result_name : all_names)
+      {
+         result_names.push_back(result_name);
+      }
+      return result_names;
     body_dependency_symbols:
       - Blast::Project::ComponentLister
   - name: components_sorted_by_most_recent

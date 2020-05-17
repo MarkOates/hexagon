@@ -26,7 +26,13 @@ ComponentSearcher::~ComponentSearcher()
 
 std::vector<std::string> ComponentSearcher::component_names()
 {
-return Blast::Project::ComponentLister(project_root_directory).components();
+std::vector<std::string> result_names = {};
+std::vector<std::string> all_names = Blast::Project::ComponentLister(project_root_directory).components();
+for (auto &result_name : all_names)
+{
+   result_names.push_back(result_name);
+}
+return result_names;
 
 }
 
