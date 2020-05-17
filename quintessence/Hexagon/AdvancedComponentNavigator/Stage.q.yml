@@ -1,0 +1,370 @@
+parent_classes:
+  - class: 'StageInterface'
+    scope: public
+    init_with: "StageInterface::COMPONENT_NAVIGATOR"
+properties:
+  - name: cursor_position
+    type: int
+    getter: true
+    init_with: 0
+  - name: cursor_position_static
+    type: bool
+    setter: true
+    init_with: true
+  - name: selector_color
+    type: ALLEGRO_COLOR
+    init_with: "al_color_name(\"slategray\")"
+    getter: true
+    setter: true
+  - name: project_root
+    type: std::string
+    init_with: "\"/Users/markoates/Repos/hexagon\""
+    constructor_arg: true
+    getter: true
+    setter: true
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
+  - name: nodes
+    type: std::vector<Blast::Project::Component>
+    init_with: "{}"
+    getter: true
+    setter: true
+functions:
+  - name: move_cursor_up
+    type: void
+    body: |
+      cursor_position -= 1;
+  - name: move_cursor_down
+    type: void
+    body: |
+      cursor_position += 1;
+  - name: move_cursor_to_top
+    type: void
+    body: |
+      cursor_position = 0;
+  - name: current_selection_is_valid
+    type: bool
+    body: |
+      if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
+      return true;
+  - name: get_current_selection_label_or_empty_string
+    type: std::string
+    body: |
+      if (!current_selection_is_valid()) return "";
+      return nodes[get_cursor_position()].get_name();
+  - name: refresh_list
+    body: |
+      Hexagon::AdvancedComponentNavigator::List list(get_project_root());
+      //std::vector<std::string> elements = list.component_names();
+      nodes = list.components_sorted_by_most_recent();
+    body_dependency_symbols:
+      - Hexagon::AdvancedComponentNavigator::List
+  - name: render
+    is_override: true
+    parameters:
+      - name: is_focused
+        type: bool
+        default_argument: true
+      - name: display
+        type: ALLEGRO_DISPLAY*
+        default_argument: nullptr
+      - name: font
+        type: ALLEGRO_FONT*
+        default_argument: nullptr
+      - name: cell_width
+        type: int
+        default_argument: 10
+      - name: cell_height
+        type: int
+        default_argument: 20
+    body: |
+      if (!font) throw std::runtime_error("font missing");
+
+      placement3d &place = get_place();
+      place.start_transform();
+
+      float line_stroke_thickness = 2.5;
+
+      float roundness = 0.0; //6.0;
+      float padding_x = cell_width;
+      float padding_y = cell_width;
+      //std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
+      float not_quite_black_value = 0.0;
+      ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
+      ALLEGRO_COLOR not_quite_black;
+      not_quite_black.r = not_quite_black_value;
+      not_quite_black.g = not_quite_black_value;
+      not_quite_black.b = not_quite_black_value;
+      not_quite_black.a = 0.8;
+      al_draw_filled_rounded_rectangle(
+        0 - padding_x*2,
+        0 - padding_y*2,
+        place.size.x + padding_x*2,
+        place.size.y + padding_y*2,
+        roundness,
+        roundness,
+        not_quite_black
+      );
+      al_draw_rounded_rectangle(- padding_x, - padding_y,
+         place.size.x+padding_x, place.size.y+padding_y,
+         roundness, roundness, frame_color, line_stroke_thickness);
+
+      //new_render(display, font, cell_width, cell_height);
+      //return;
+
+      int line = 0;
+      int line_height = cell_height * 1.1;
+      int pos_x = 0;
+      int pos_y = 0;
+      int cursor_y = 0;
+      if (cursor_position_static)
+      {
+        cursor_y = - line_height * cursor_position;
+      }
+      float current_node_root_y_pos = cursor_y - line_height * 1.5;
+      ALLEGRO_COLOR font_color = al_color_name("white");
+      ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
+      ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
+
+      float selector_y = line_height * cursor_position + cursor_y;
+      std::string current_selection_label_or_empty_string = get_current_selection_label_or_empty_string();
+      float selector_rectangle_width = al_get_text_width(font, current_selection_label_or_empty_string.c_str());
+      float selector_rectangle_roundness = 0; //4;
+      if (current_selection_is_valid())
+      {
+        al_draw_filled_rounded_rectangle(
+          0,
+          selector_y,
+          selector_rectangle_width,
+          selector_y+line_height,
+          selector_rectangle_roundness,
+          selector_rectangle_roundness,
+          get_selector_color()
+        );
+      }
+      else
+      {
+        al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
+      }
+
+      std::string node_root_val = get_project_root();
+      al_draw_text(font, node_root_font_color,
+        pos_x, -line_height * 1.5, 0, get_project_root().c_str());
+
+      bool list_clipping_occurred_above = false;
+      bool list_clipping_occurred_below = false;
+
+      for (auto &node : nodes)
+      {
+        std::string line_content = node.get_name();
+        //FileSystemNode current_line_node(line_content);
+        //bool is_directory = current_line_node.infer_is_directory();
+        //ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
+        ALLEGRO_COLOR col = al_color_name("skyblue");
+
+        if (node.has_quintessence())
+        {
+          //line_content += " *";
+        }
+        else if (node.has_only_source_and_header())
+        {
+           col = color::mix(col, al_color_name("green"), 0.1);
+        }
+        else if (!node.exists())
+        {
+           col = al_color_name("red");
+        }
+        else
+        {
+           col = al_color_name("gray");
+        }
+
+        //if (!node.has_test()) line_content += " (missing test)";
+        
+        float final_y = pos_y + cursor_y;
+        // clip the region of text displayed in the list
+        if (final_y < 0)
+        {
+           list_clipping_occurred_above = true;
+        }
+        else if ((final_y + line_height) > place.size.y)
+        {
+           list_clipping_occurred_below = true;
+        }
+        else
+        {
+           al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+        }
+        cursor_y += line_height;
+      }
+
+      float list_extension_indicator_radius = 30;
+      if (list_clipping_occurred_above)
+      {
+         Hexagon::Shapes::Hexagon::Renderer(
+             place.size.x - list_extension_indicator_radius,
+             list_extension_indicator_radius,
+             list_extension_indicator_radius,
+             {
+               { 9, 3, frame_color, line_stroke_thickness },
+             }
+           ).render();
+      }
+      if (list_clipping_occurred_below)
+      {
+         Hexagon::Shapes::Hexagon::Renderer(
+             place.size.x - list_extension_indicator_radius,
+             place.size.y - list_extension_indicator_radius,
+             list_extension_indicator_radius,
+             {
+               { 3, 9, frame_color, line_stroke_thickness },
+             }
+           ).render();
+      }
+
+
+      place.restore_transform();
+
+      return;
+    body_dependency_symbols:
+      - color::mix
+      - al_color_name
+      - al_draw_circle
+      - FileSystemNode
+      - Hexagon::Shapes::Hexagon::Renderer
+      - Hexagon::Shapes::Hexagon::Stroke
+  - name: process_local_event
+    is_override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: "\"\""
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: |
+      std::cout << "LocalEvent::" << event_name << std::endl;
+
+      try
+      {
+         bool executed = false;
+
+         if (event_name == "refresh_list")
+         {
+           executed = true;
+           refresh_list();
+         }
+         else if (event_name == "move_cursor_to_top")
+         {
+           executed = true;
+           move_cursor_to_top();
+         }
+         else if (event_name == "move_cursor_up")
+         {
+           executed = true;
+           move_cursor_up();
+         }
+         else if (event_name == "move_cursor_down")
+         {
+           executed = true;
+           move_cursor_down();
+         }
+      }
+      catch (const std::exception &exception)
+      {
+         std::cerr << ">BOOM< cannot execute \"" << event_name << "\".  The following exception occurred: " << exception.what() << std::endl;
+      }
+    body_dependency_symbols:
+      - std::endl
+      - std::cout
+      - std::cerr
+  - name: save_file
+    is_override: true
+    type: bool
+    body: |
+      return true;
+  - name: process_event
+    is_override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: |
+      KeyboardCommandMapper keyboard_command_mapper;
+                                                 // al_keycodee, shift, ctrl, alt, command, { command_identifier }
+      static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
+      static const std::string MOVE_CURSOR_UP = "move_cursor_up";
+      static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
+
+                                         // al_keycodee,         shift, ctrl, alt, command, { command_identifier }
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J,         false, false, false, false, { MOVE_CURSOR_DOWN });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K,         false, false, false, false, { MOVE_CURSOR_UP });
+
+      bool event_caught = false;
+
+      switch(event.type)
+      {
+      case ALLEGRO_EVENT_KEY_UP:
+         break;
+      case ALLEGRO_EVENT_KEY_DOWN:
+         break;
+      case ALLEGRO_EVENT_KEY_CHAR:
+         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+         bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+         bool ctrl_or_command = ctrl || command;
+         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
+         if (!mapped_events.empty()) event_caught = true;
+         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+         break;
+      }
+      return;
+    body_dependency_symbols:
+      - KeyboardCommandMapper
+dependencies:
+  - symbol: color::mix
+    headers: [ 'allegro_flare/color.h' ]
+  - symbol: StageInterface
+    headers: [ 'Hexagon/StageInterface.hpp' ]
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ 'allegro5/allegro_font.h' ]
+  - symbol: ActionData
+    headers: [ 'Hexagon/ActionData.hpp' ]
+  - symbol: al_color_name
+    headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: std::endl
+    headers: [ 'iostream' ]
+  - symbol: std::cerr
+    headers: [ 'iostream' ]
+  - symbol: std::cout
+    headers: [ 'iostream' ]
+  - symbol: al_draw_circle
+    headers: [ 'allegro5/allegro_primitives.h' ]
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
+  - symbol: std::vector<Blast::Project::Component>
+    headers: [ vector, Blast/Project/Component.hpp ]
+  - symbol: std::vector<std::string>
+    headers: [ 'vector', 'string' ]
+  - symbol: FileSystemNode
+    headers: [ 'Hexagon/FileSystemNode.hpp' ]
+  - symbol: KeyboardCommandMapper
+    headers: [ 'AllegroFlare/KeyboardCommandMapper.hpp' ]
+  - symbol: Hexagon::AdvancedComponentNavigator::List
+    headers: [ 'Hexagon/AdvancedComponentNavigator/List.hpp' ]
+  - symbol: Hexagon::Shapes::Hexagon::Renderer
+    headers: [ Hexagon/Shapes/Hexagon/Renderer.hpp ]
+  - symbol: Hexagon::Shapes::Hexagon::Stroke
+    headers: [ Hexagon/Shapes/Hexagon/Stroke.hpp ]
