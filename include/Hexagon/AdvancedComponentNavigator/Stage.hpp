@@ -38,6 +38,7 @@ namespace Hexagon
          void set_mode(std::string mode);
 
          int get_cursor_position();
+         bool get_cursor_position_static();
          ALLEGRO_COLOR get_selector_color();
          std::string get_project_root();
          std::vector<Blast::Project::Component> get_nodes();

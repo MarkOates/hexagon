@@ -83,6 +83,12 @@ int Stage::get_cursor_position()
 }
 
 
+bool Stage::get_cursor_position_static()
+{
+   return cursor_position_static;
+}
+
+
 ALLEGRO_COLOR Stage::get_selector_color()
 {
    return selector_color;

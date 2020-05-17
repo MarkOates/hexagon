@@ -9,6 +9,7 @@ properties:
     init_with: 0
   - name: cursor_position_static
     type: bool
+    getter: true
     setter: true
     init_with: true
   - name: selector_color
