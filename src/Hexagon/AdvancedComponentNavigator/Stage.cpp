@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
 #include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
@@ -118,6 +119,28 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
+KeyboardCommandMapper Stage::build_keyboard_command_mapping()
+{
+constexpr auto NO_MODIFIER = KeyboardCommandMapper::NO_MODIFIER;
+constexpr auto SHIFT = KeyboardCommandMapper::SHIFT;
+constexpr auto CTRL = KeyboardCommandMapper::CTRL;
+constexpr auto ALT = KeyboardCommandMapper::ALT;
+constexpr auto COMMAND = KeyboardCommandMapper::COMMAND;
+constexpr auto OPTION = KeyboardCommandMapper::OPTION;
+
+KeyboardCommandMapper mapping;
+
+static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
+static const std::string MOVE_CURSOR_UP = "move_cursor_up";
+static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
+
+mapping.set_mapping(ALLEGRO_KEY_J, NO_MODIFIER, { MOVE_CURSOR_DOWN });
+mapping.set_mapping(ALLEGRO_KEY_K, NO_MODIFIER, { MOVE_CURSOR_UP });
+
+return mapping;
+
+}
+
 void Stage::move_cursor_up()
 {
 cursor_position -= 1;
@@ -213,21 +236,7 @@ return;
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
-constexpr auto NO_MODIFIER = KeyboardCommandMapper::NO_MODIFIER;
-constexpr auto SHIFT = KeyboardCommandMapper::SHIFT;
-constexpr auto CTRL = KeyboardCommandMapper::CTRL;
-constexpr auto ALT = KeyboardCommandMapper::ALT;
-constexpr auto COMMAND = KeyboardCommandMapper::COMMAND;
-constexpr auto OPTION = KeyboardCommandMapper::OPTION;
-
-KeyboardCommandMapper keyboard_command_mapper;
-
-static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
-static const std::string MOVE_CURSOR_UP = "move_cursor_up";
-static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
-
-keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, NO_MODIFIER, { MOVE_CURSOR_DOWN });
-keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, NO_MODIFIER, { MOVE_CURSOR_UP });
+KeyboardCommandMapper keyboard_command_mapper = build_keyboard_command_mapping();
 
 bool event_caught = false;
 
@@ -243,7 +252,9 @@ case ALLEGRO_EVENT_KEY_CHAR:
    bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
    bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
    bool ctrl_or_command = ctrl || command;
-   std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
+
+   std::vector<std::string> mapped_events =
+      keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
    if (!mapped_events.empty()) event_caught = true;
    for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
    if (!event_caught) process_char_event(event.keyboard.keycode, event.keyboard.unichar, event.keyboard.repeat);

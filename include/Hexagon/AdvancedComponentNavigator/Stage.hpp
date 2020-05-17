@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Blast/Project/Component.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -46,6 +47,7 @@ namespace Hexagon
          std::string get_search_text();
          std::string get_mode();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
+      KeyboardCommandMapper build_keyboard_command_mapping();
       void move_cursor_up();
       void move_cursor_down();
       void move_cursor_to_top();

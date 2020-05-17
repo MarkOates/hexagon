@@ -47,6 +47,28 @@ properties:
 
 
 functions:
+  - name: build_keyboard_command_mapping
+    type: KeyboardCommandMapper
+    body: |
+      constexpr auto NO_MODIFIER = KeyboardCommandMapper::NO_MODIFIER;
+      constexpr auto SHIFT = KeyboardCommandMapper::SHIFT;
+      constexpr auto CTRL = KeyboardCommandMapper::CTRL;
+      constexpr auto ALT = KeyboardCommandMapper::ALT;
+      constexpr auto COMMAND = KeyboardCommandMapper::COMMAND;
+      constexpr auto OPTION = KeyboardCommandMapper::OPTION;
+
+      KeyboardCommandMapper mapping;
+
+      static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
+      static const std::string MOVE_CURSOR_UP = "move_cursor_up";
+      static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
+
+      mapping.set_mapping(ALLEGRO_KEY_J, NO_MODIFIER, { MOVE_CURSOR_DOWN });
+      mapping.set_mapping(ALLEGRO_KEY_K, NO_MODIFIER, { MOVE_CURSOR_UP });
+
+      return mapping;
+    body_dependency_symbols:
+      - KeyboardCommandMapper
 
 
 
@@ -198,21 +220,7 @@ functions:
         type: ALLEGRO_EVENT&
         default_argument: "get_a_default_empty_event_ref()"
     body: |
-      constexpr auto NO_MODIFIER = KeyboardCommandMapper::NO_MODIFIER;
-      constexpr auto SHIFT = KeyboardCommandMapper::SHIFT;
-      constexpr auto CTRL = KeyboardCommandMapper::CTRL;
-      constexpr auto ALT = KeyboardCommandMapper::ALT;
-      constexpr auto COMMAND = KeyboardCommandMapper::COMMAND;
-      constexpr auto OPTION = KeyboardCommandMapper::OPTION;
-
-      KeyboardCommandMapper keyboard_command_mapper;
-
-      static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
-      static const std::string MOVE_CURSOR_UP = "move_cursor_up";
-      static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
-
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, NO_MODIFIER, { MOVE_CURSOR_DOWN });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, NO_MODIFIER, { MOVE_CURSOR_UP });
+      KeyboardCommandMapper keyboard_command_mapper = build_keyboard_command_mapping();
 
       bool event_caught = false;
 
@@ -228,7 +236,9 @@ functions:
          bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
          bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
          bool ctrl_or_command = ctrl || command;
-         std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
+
+         std::vector<std::string> mapped_events =
+            keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
          if (!mapped_events.empty()) event_caught = true;
          for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
          if (!event_caught) process_char_event(event.keyboard.keycode, event.keyboard.unichar, event.keyboard.repeat);
