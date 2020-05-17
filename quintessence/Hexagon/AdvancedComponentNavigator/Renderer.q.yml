@@ -113,7 +113,8 @@ functions:
                                    selector_outline_color,
                                    2.0);
          // halo
-         int max_outset = 23;
+         int max_outset = 18 + 7 * std::sin(al_get_time() * 3); // is actually animated, but only visible
+                                                                // when every frame is rendering
          for (int outset=1; outset<max_outset; outset++)
          {
            float color_opacity = (1.0 - (float)outset / max_outset) * 0.25;
@@ -237,6 +238,7 @@ functions:
 
       return;
     body_dependency_symbols:
+      - std::sin
       - placement3d
       - color::mix
       - al_color_name
@@ -247,6 +249,8 @@ functions:
 
 
 dependencies:
+  - symbol: std::sin
+    headers: [ cmath ]
   - symbol: Hexagon::AdvancedComponentNavigator::Stage*
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
   - symbol: ALLEGRO_DISPLAY*

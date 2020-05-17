@@ -3,6 +3,7 @@
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <cmath>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/color.h>
 #include <allegro5/allegro_color.h>
@@ -145,7 +146,8 @@ if (component.current_selection_is_valid())
                              selector_outline_color,
                              2.0);
    // halo
-   int max_outset = 23;
+   int max_outset = 18 + 7 * std::sin(al_get_time() * 3); // is actually animated, but only visible
+                                                          // when every frame is rendering
    for (int outset=1; outset<max_outset; outset++)
    {
      float color_opacity = (1.0 - (float)outset / max_outset) * 0.25;
