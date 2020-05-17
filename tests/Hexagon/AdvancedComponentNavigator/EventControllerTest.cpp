@@ -15,13 +15,13 @@ TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest, can_be_created_with
 
 TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest, process_local_event__processes_the_events)
 {
-   using Hexagon::AdvancedComponentNavigator::Stage;
-   std::map<std::string, std::function<void(Stage&)>> event_dictionary = {
-      { "move_cursor_up", &Stage::move_cursor_up },
-      { "move_cursor_down", &Stage::move_cursor_down },
+   using Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator;
+   std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> event_dictionary = {
+      { "move_cursor_up", &AdvancedComponentNavigator::move_cursor_up },
+      { "move_cursor_down", &AdvancedComponentNavigator::move_cursor_down },
    };
 
-   Stage stage;
+   AdvancedComponentNavigator stage;
    Hexagon::AdvancedComponentNavigator::EventController event_controller(&stage, event_dictionary);
 
    event_controller.process_local_event("move_cursor_down");
@@ -35,7 +35,7 @@ TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest, process_local_event
 TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest,
    process_local_event__with_an_event_that_does_not_exist_throws_an_error)
 {
-   Hexagon::AdvancedComponentNavigator::Stage stage;
+   Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator stage;
    Hexagon::AdvancedComponentNavigator::EventController event_controller(&stage);
 
    std::string expected_error_message = "AdvancedComponentNavigator::EventController::process_local_event: " \

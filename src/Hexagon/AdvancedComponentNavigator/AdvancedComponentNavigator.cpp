@@ -13,6 +13,7 @@ namespace AdvancedComponentNavigator
 AdvancedComponentNavigator::AdvancedComponentNavigator(std::string project_root)
    : project_root(project_root)
    , cursor_position(0)
+   , cursor_position_static(true)
    , nodes({})
    , mode("navigating_list")
    , search_text("")
@@ -28,6 +29,12 @@ AdvancedComponentNavigator::~AdvancedComponentNavigator()
 void AdvancedComponentNavigator::set_project_root(std::string project_root)
 {
    this->project_root = project_root;
+}
+
+
+void AdvancedComponentNavigator::set_cursor_position_static(bool cursor_position_static)
+{
+   this->cursor_position_static = cursor_position_static;
 }
 
 
@@ -58,6 +65,12 @@ std::string AdvancedComponentNavigator::get_project_root()
 int AdvancedComponentNavigator::get_cursor_position()
 {
    return cursor_position;
+}
+
+
+bool AdvancedComponentNavigator::get_cursor_position_static()
+{
+   return cursor_position_static;
 }
 
 

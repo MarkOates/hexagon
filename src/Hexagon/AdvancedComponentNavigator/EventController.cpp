@@ -15,8 +15,8 @@ namespace AdvancedComponentNavigator
 {
 
 
-EventController::EventController(Hexagon::AdvancedComponentNavigator::Stage* stage, std::map<std::string, std::function<void(Stage&)>> event_dictionary)
-   : stage(stage)
+EventController::EventController(Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator* component, std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> event_dictionary)
+   : component(component)
    , event_dictionary(event_dictionary)
 {
 }
@@ -29,16 +29,17 @@ EventController::~EventController()
 
 void EventController::process_local_event(std::string event_name, ActionData action_data)
 {
-if (!(stage))
+if (!(component))
    {
       std::stringstream error_message;
-      error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"stage\" not met";
+      error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"component\" not met";
       throw std::runtime_error(error_message.str());
    }
-using Hexagon::AdvancedComponentNavigator::Stage;
-Stage &stage = *this->stage;
+using Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator;
+AdvancedComponentNavigator &component = *this->component;
 
-std::map<std::string, std::function<void(Stage&)>>::iterator it = event_dictionary.find(event_name);
+std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>::iterator it =
+   event_dictionary.find(event_name);
 if (it == event_dictionary.end())
 {
    std::stringstream error_message;
@@ -48,7 +49,7 @@ if (it == event_dictionary.end())
 }
 else
 {
-   event_dictionary[event_name](stage);
+   event_dictionary[event_name](component);
 }
 
 return;

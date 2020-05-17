@@ -1,15 +1,15 @@
 properties:
-  - name: stage
-    type: Hexagon::AdvancedComponentNavigator::Stage*
+  - name: component
+    type: Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator*
     init_with: nullptr
     constructor_arg: true
   - name: event_dictionary
-    type: std::map<std::string, std::function<void(Stage&)>>
+    type: std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>
     init_with: '{}'
     constructor_arg: true
 functions:
   - name: process_local_event
-    guards: [ stage ]
+    guards: [ component ]
     parameters:
       - name: event_name
         type: std::string
@@ -18,10 +18,11 @@ functions:
         type: ActionData
         default_argument: 'ActionData()'
     body: |
-      using Hexagon::AdvancedComponentNavigator::Stage;
-      Stage &stage = *this->stage;
+      using Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator;
+      AdvancedComponentNavigator &component = *this->component;
 
-      std::map<std::string, std::function<void(Stage&)>>::iterator it = event_dictionary.find(event_name);
+      std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>::iterator it =
+         event_dictionary.find(event_name);
       if (it == event_dictionary.end())
       {
          std::stringstream error_message;
@@ -31,7 +32,7 @@ functions:
       }
       else
       {
-         event_dictionary[event_name](stage);
+         event_dictionary[event_name](component);
       }
 
       return;
@@ -39,12 +40,12 @@ functions:
       - std::map<std::string, std::function>
       - Hexagon::AdvancedComponentNavigator::EventController
 dependencies:
-  - symbol:  std::map<std::string, std::function<void(Stage&)>>
-    headers: [ map, string, functional, Hexagon/AdvancedComponentNavigator/Stage.hpp ]
+  - symbol:  std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>
+    headers: [ map, string, functional, Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp ]
   - symbol: std::map<std::string, std::function>
     headers: [ map, string, functional ]
-  - symbol: Hexagon::AdvancedComponentNavigator::Stage*
-    headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
+  - symbol: Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator*
+    headers: [ Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::EventController
     headers: [ Hexagon/AdvancedComponentNavigator/EventController.hpp ]
   - symbol: ActionData

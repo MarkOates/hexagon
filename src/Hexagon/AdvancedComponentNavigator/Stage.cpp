@@ -20,11 +20,12 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 Stage::Stage(std::string project_root)
    : StageInterface(StageInterface::COMPONENT_NAVIGATOR)
    , project_root(project_root)
-   , cursor_position(0)
-   , cursor_position_static(true)
-   , nodes({})
-   , search_text("")
-   , mode("navigating_list")
+   , component(project_root)
+   , X_cursor_position(0)
+   , X_cursor_position_static(true)
+   , X_nodes({})
+   , X_search_text("")
+   , X_mode("navigating_list")
 {
 }
 
@@ -40,27 +41,27 @@ void Stage::set_project_root(std::string project_root)
 }
 
 
-void Stage::set_cursor_position_static(bool cursor_position_static)
+void Stage::set_X_cursor_position_static(bool X_cursor_position_static)
 {
-   this->cursor_position_static = cursor_position_static;
+   this->X_cursor_position_static = X_cursor_position_static;
 }
 
 
-void Stage::set_nodes(std::vector<Blast::Project::Component> nodes)
+void Stage::set_X_nodes(std::vector<Blast::Project::Component> X_nodes)
 {
-   this->nodes = nodes;
+   this->X_nodes = X_nodes;
 }
 
 
-void Stage::set_search_text(std::string search_text)
+void Stage::set_X_search_text(std::string X_search_text)
 {
-   this->search_text = search_text;
+   this->X_search_text = X_search_text;
 }
 
 
-void Stage::set_mode(std::string mode)
+void Stage::set_X_mode(std::string X_mode)
 {
-   this->mode = mode;
+   this->X_mode = X_mode;
 }
 
 
@@ -70,33 +71,39 @@ std::string Stage::get_project_root()
 }
 
 
-int Stage::get_cursor_position()
+int Stage::get_X_cursor_position()
 {
-   return cursor_position;
+   return X_cursor_position;
 }
 
 
-bool Stage::get_cursor_position_static()
+bool Stage::get_X_cursor_position_static()
 {
-   return cursor_position_static;
+   return X_cursor_position_static;
 }
 
 
-std::vector<Blast::Project::Component> Stage::get_nodes()
+std::vector<Blast::Project::Component> Stage::get_X_nodes()
 {
-   return nodes;
+   return X_nodes;
 }
 
 
-std::string Stage::get_search_text()
+std::string Stage::get_X_search_text()
 {
-   return search_text;
+   return X_search_text;
 }
 
 
-std::string Stage::get_mode()
+std::string Stage::get_X_mode()
 {
-   return mode;
+   return X_mode;
+}
+
+
+Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &Stage::get_component_ref()
+{
+   return component;
 }
 
 
@@ -128,15 +135,15 @@ return mapping;
 
 }
 
-std::map<std::string, std::function<void(Stage&)>> Stage::build_local_events_dictionary()
+std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> Stage::build_local_events_dictionary()
 {
-std::map<std::string, std::function<void(Stage&)>> local_events = {
-   { "refresh_list", &Stage::refresh_list },
-   { "move_cursor_to_top", &Stage::move_cursor_to_top },
-   { "move_cursor_up", &Stage::move_cursor_up },
-   { "move_cursor_down", &Stage::move_cursor_down },
-   { "set_mode_to_navigating_list", &Stage::set_mode_to_navigating_list },
-   { "set_mode_to_typing_in_search_bar", &Stage::set_mode_to_typing_in_search_bar },
+std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> local_events = {
+   { "refresh_list", &AdvancedComponentNavigator::refresh_list },
+   { "move_cursor_to_top", &AdvancedComponentNavigator::move_cursor_to_top },
+   { "move_cursor_up", &AdvancedComponentNavigator::move_cursor_up },
+   { "move_cursor_down", &AdvancedComponentNavigator::move_cursor_down },
+   { "set_mode_to_navigating_list", &AdvancedComponentNavigator::set_mode_to_navigating_list },
+   { "set_mode_to_typing_in_search_bar", &AdvancedComponentNavigator::set_mode_to_typing_in_search_bar },
 };
 return local_events;
 
@@ -144,52 +151,60 @@ return local_events;
 
 void Stage::move_cursor_up()
 {
-cursor_position -= 1;
+component.move_cursor_up();
+//cursor_position -= 1;
 
 }
 
 void Stage::move_cursor_down()
 {
-cursor_position += 1;
+component.move_cursor_down();
+//cursor_position += 1;
 
 }
 
 void Stage::move_cursor_to_top()
 {
-cursor_position = 0;
+component.move_cursor_to_top();
+//cursor_position = 0;
 
 }
 
 bool Stage::current_selection_is_valid()
 {
-if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
-return true;
+return component.current_selection_is_valid();
+//if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
+//return true;
 
 }
 
 void Stage::set_mode_to_navigating_list()
 {
-this->mode = "navigating_list";
+return component.set_mode_to_navigating_list();
+//this->mode = "navigating_list";
 
 }
 
 void Stage::set_mode_to_typing_in_search_bar()
 {
-this->mode = "typing_in_search_bar";
+return component.set_mode_to_typing_in_search_bar();
+//this->mode = "typing_in_search_bar";
 
 }
 
 std::string Stage::get_current_selection_label_or_empty_string()
 {
-if (!current_selection_is_valid()) return "";
-return nodes[get_cursor_position()].get_name();
+return component.get_current_selection_label_or_empty_string();
+//if (!current_selection_is_valid()) return "";
+//return nodes[component.get_cursor_position()].get_name();
 
 }
 
 void Stage::refresh_list()
 {
-Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
-nodes = searcher.components_sorted_by_most_recent();
+return component.refresh_list();
+//Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
+//nodes = searcher.components_sorted_by_most_recent();
 
 }
 
@@ -203,9 +218,10 @@ return;
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
-using Hexagon::AdvancedComponentNavigator::Stage;
-std::map<std::string, std::function<void(Stage&)>> local_events = build_local_events_dictionary();
-Hexagon::AdvancedComponentNavigator::EventController event_controller(this, local_events);
+using Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator;
+std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> local_events =
+   build_local_events_dictionary();
+Hexagon::AdvancedComponentNavigator::EventController event_controller(&component, local_events);
 event_controller.process_local_event(event_name, action_data);
 return;
 

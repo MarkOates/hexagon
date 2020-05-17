@@ -9,11 +9,15 @@ properties:
     constructor_arg: true
     getter: true
     setter: true
-  - name: cursor_position
+  - name: component
+    type: Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator
+    init_with: 'project_root'
+    getter_ref: true
+  - name: X_cursor_position
     type: int
     getter: true
     init_with: 0
-  - name: cursor_position_static
+  - name: X_cursor_position_static
     type: bool
     getter: true
     setter: true
@@ -23,17 +27,17 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
-  - name: nodes
+  - name: X_nodes
     type: std::vector<Blast::Project::Component>
     init_with: "{}"
     getter: true
     setter: true
-  - name: search_text
+  - name: X_search_text
     type: std::string
     init_with: '""'
     getter: true
     setter: true
-  - name: mode
+  - name: X_mode
     type: std::string
     init_with: '"navigating_list"'
     getter: true
@@ -68,15 +72,15 @@ functions:
 
 
   - name: build_local_events_dictionary
-    type: std::map<std::string, std::function<void(Stage&)>>
+    type: std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>
     body: |
-      std::map<std::string, std::function<void(Stage&)>> local_events = {
-         { "refresh_list", &Stage::refresh_list },
-         { "move_cursor_to_top", &Stage::move_cursor_to_top },
-         { "move_cursor_up", &Stage::move_cursor_up },
-         { "move_cursor_down", &Stage::move_cursor_down },
-         { "set_mode_to_navigating_list", &Stage::set_mode_to_navigating_list },
-         { "set_mode_to_typing_in_search_bar", &Stage::set_mode_to_typing_in_search_bar },
+      std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> local_events = {
+         { "refresh_list", &AdvancedComponentNavigator::refresh_list },
+         { "move_cursor_to_top", &AdvancedComponentNavigator::move_cursor_to_top },
+         { "move_cursor_up", &AdvancedComponentNavigator::move_cursor_up },
+         { "move_cursor_down", &AdvancedComponentNavigator::move_cursor_down },
+         { "set_mode_to_navigating_list", &AdvancedComponentNavigator::set_mode_to_navigating_list },
+         { "set_mode_to_typing_in_search_bar", &AdvancedComponentNavigator::set_mode_to_typing_in_search_bar },
       };
       return local_events;
 
@@ -85,58 +89,66 @@ functions:
   - name: move_cursor_up
     type: void
     body: |
-      cursor_position -= 1;
+      component.move_cursor_up();
+      //cursor_position -= 1;
 
 
 
   - name: move_cursor_down
     type: void
     body: |
-      cursor_position += 1;
+      component.move_cursor_down();
+      //cursor_position += 1;
 
 
 
   - name: move_cursor_to_top
     type: void
     body: |
-      cursor_position = 0;
+      component.move_cursor_to_top();
+      //cursor_position = 0;
 
 
 
   - name: current_selection_is_valid
     type: bool
     body: |
-      if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
-      return true;
+      return component.current_selection_is_valid();
+      //if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
+      //return true;
 
 
 
   - name: set_mode_to_navigating_list
     type: void
     body: |
-      this->mode = "navigating_list";
+      return component.set_mode_to_navigating_list();
+      //this->mode = "navigating_list";
 
 
 
   - name: set_mode_to_typing_in_search_bar
     type: void
     body: |
-      this->mode = "typing_in_search_bar";
+      return component.set_mode_to_typing_in_search_bar();
+      //this->mode = "typing_in_search_bar";
 
 
 
   - name: get_current_selection_label_or_empty_string
     type: std::string
     body: |
-      if (!current_selection_is_valid()) return "";
-      return nodes[get_cursor_position()].get_name();
+      return component.get_current_selection_label_or_empty_string();
+      //if (!current_selection_is_valid()) return "";
+      //return nodes[component.get_cursor_position()].get_name();
 
 
 
   - name: refresh_list
     body: |
-      Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
-      nodes = searcher.components_sorted_by_most_recent();
+      return component.refresh_list();
+      //Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
+      //nodes = searcher.components_sorted_by_most_recent();
     body_dependency_symbols:
       - Hexagon::AdvancedComponentNavigator::ComponentSearcher
 
@@ -179,9 +191,10 @@ functions:
         type: ActionData
         default_argument: "ActionData()"
     body: |
-      using Hexagon::AdvancedComponentNavigator::Stage;
-      std::map<std::string, std::function<void(Stage&)>> local_events = build_local_events_dictionary();
-      Hexagon::AdvancedComponentNavigator::EventController event_controller(this, local_events);
+      using Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator;
+      std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> local_events =
+         build_local_events_dictionary();
+      Hexagon::AdvancedComponentNavigator::EventController event_controller(&component, local_events);
       event_controller.process_local_event(event_name, action_data);
       return;
     body_dependency_symbols:
@@ -262,8 +275,10 @@ functions:
 dependencies:
 
 
-  - symbol:  std::map<std::string, std::function<void(Stage&)>>
-    headers: [ map, string, functional, Hexagon/AdvancedComponentNavigator/Stage.hpp ]
+  - symbol: Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator
+    headers: [ Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp ]
+  - symbol:  std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>
+    headers: [ map, string, functional, Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::Renderer
     headers: [ Hexagon/AdvancedComponentNavigator/Renderer.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::EventController

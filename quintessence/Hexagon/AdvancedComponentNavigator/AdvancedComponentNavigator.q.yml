@@ -9,6 +9,11 @@ properties:
     type: int
     getter: true
     init_with: 0
+  - name: cursor_position_static
+    type: bool
+    getter: true
+    setter: true
+    init_with: true
   - name: nodes
     type: std::vector<Blast::Project::Component>
     init_with: "{}"
