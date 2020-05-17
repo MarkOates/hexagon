@@ -142,8 +142,7 @@ TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest, render__rende
    Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
    using Blast::Project::Component;
 
-   component.set_nodes({ Component("Component/NotMatch"), Component("Blast/FooBar"), Component("Blast/BarBar") });
-   component.set_search_text("Bar");
+   component.set_search_text("Blast");
    component.refresh_list();
 
    renderer.render();
