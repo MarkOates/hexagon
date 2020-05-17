@@ -126,7 +126,7 @@ TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest, render__rende
    renderer.render();
    al_flip_display();
 
-   sleep(2);
+   //sleep(2);
 
    SUCCEED();
 }
@@ -138,7 +138,8 @@ TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest, render__rende
    Hexagon::AdvancedComponentNavigator::Stage &stage = get_stage_fixture();
    using Blast::Project::Component;
 
-   stage.set_nodes({ Component("Blast/Foobar"), Component("Blast/BarBar") });
+   stage.set_nodes({ Component("Component/NotMatch"), Component("Blast/FooBar"), Component("Blast/BarBar") });
+   stage.set_search_string("Bar");
 
    renderer.render();
    al_flip_display();
