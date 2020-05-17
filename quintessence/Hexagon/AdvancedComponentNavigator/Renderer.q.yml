@@ -67,6 +67,7 @@ functions:
       if (focus_is_search_bar)
       {
          ALLEGRO_COLOR col = search_text_font_color;
+         ALLEGRO_COLOR halo_color = search_text_font_color;
          float padding = 4.0f;
          float roundness = 3.0f;
          al_draw_rounded_rectangle(
@@ -76,6 +77,24 @@ functions:
                search_text_y+search_text_height+padding,
                roundness, roundness,
                col, 3.0);
+
+         {
+            // halo
+            float cursor_thickness = 3.0f;
+            int max_outset = 18 + 7 * std::sin(al_get_time() * 3); // is actually animated, but only visible
+                                                                // when every frame is rendering
+            for (int outset=1; outset<max_outset; outset++)
+            {
+              float color_opacity = (1.0 - (float)outset / max_outset) * 0.25;
+              ALLEGRO_COLOR col = color::color(halo_color, color_opacity);
+              al_draw_rounded_rectangle(
+                0-padding - outset,
+                search_text_y-padding - outset,
+                search_text_width+padding + outset,
+                search_text_y+search_text_height+padding + outset,
+                2.0, 2.0, col, cursor_thickness);
+            }
+         }
       }
 
       al_draw_text(font, search_text_font_color, 0, search_text_y, 0, search_text_val.c_str());
