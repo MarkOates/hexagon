@@ -146,15 +146,18 @@ else
                              3.0);
 }
 
+
+// draw the project root
+
 std::string node_root_val = stage.get_project_root();
 al_draw_text(font, node_root_font_color,
   pos_x, -line_height * 1.5, 0, stage.get_project_root().c_str());
 
-bool list_clipping_occurred_above = false;
-bool list_clipping_occurred_below = false;
-
 
 // draw list elements
+
+bool list_clipping_occurred_above = false;
+bool list_clipping_occurred_below = false;
 
 for (auto &node : stage.get_nodes())
 {
