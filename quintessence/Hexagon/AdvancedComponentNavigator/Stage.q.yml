@@ -18,11 +18,6 @@ properties:
     getter: true
     setter: true
     init_with: true
-  - name: selector_color
-    type: ALLEGRO_COLOR
-    init_with: "al_color_name(\"slategray\")"
-    getter: true
-    setter: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -73,7 +68,7 @@ functions:
 
 
   - name: build_local_events_dictionary
-    type: std::map<std::string, std::function<void(Stage&)>>
+    type: std::map<std::string, std::function<void(&)>>
     body: |
       std::map<std::string, std::function<void(Stage&)>> local_events = {
          { "refresh_list", &Stage::refresh_list },
