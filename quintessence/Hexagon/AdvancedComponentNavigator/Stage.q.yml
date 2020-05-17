@@ -33,7 +33,7 @@ properties:
     init_with: "{}"
     getter: true
     setter: true
-  - name: search_string
+  - name: search_text
     type: std::string
     init_with: '""'
     getter: true
@@ -103,7 +103,7 @@ functions:
 
   - name: refresh_list
     body: |
-      Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_string);
+      Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
       nodes = searcher.components_sorted_by_most_recent();
     body_dependency_symbols:
       - Hexagon::AdvancedComponentNavigator::ComponentSearcher

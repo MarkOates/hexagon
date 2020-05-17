@@ -25,7 +25,7 @@ Stage::Stage(std::string project_root)
    , selector_color(al_color_name("slategray"))
    , project_root(project_root)
    , nodes({})
-   , search_string("")
+   , search_text("")
    , mode("navigating_list")
 {
 }
@@ -60,9 +60,9 @@ void Stage::set_nodes(std::vector<Blast::Project::Component> nodes)
 }
 
 
-void Stage::set_search_string(std::string search_string)
+void Stage::set_search_text(std::string search_text)
 {
-   this->search_string = search_string;
+   this->search_text = search_text;
 }
 
 
@@ -102,9 +102,9 @@ std::vector<Blast::Project::Component> Stage::get_nodes()
 }
 
 
-std::string Stage::get_search_string()
+std::string Stage::get_search_text()
 {
-   return search_string;
+   return search_text;
 }
 
 
@@ -166,7 +166,7 @@ return nodes[get_cursor_position()].get_name();
 
 void Stage::refresh_list()
 {
-Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_string);
+Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
 nodes = searcher.components_sorted_by_most_recent();
 
 }

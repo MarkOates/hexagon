@@ -141,7 +141,7 @@ TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest, render__rende
    using Blast::Project::Component;
 
    stage.set_nodes({ Component("Component/NotMatch"), Component("Blast/FooBar"), Component("Blast/BarBar") });
-   stage.set_search_string("Bar");
+   stage.set_search_text("Bar");
 
    renderer.render();
    al_flip_display();
