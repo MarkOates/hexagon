@@ -35,6 +35,19 @@ properties:
 functions:
 
 
+  - name: is_mode_navigating_list
+    type: bool
+    body: |
+      return this->mode == "navigating_list";
+
+
+
+  - name: is_mode_typing_in_search_bar
+    type: bool
+    body: |
+      return this->mode == "typing_in_search_bar";
+
+
 
   - name: move_cursor_up
     type: void

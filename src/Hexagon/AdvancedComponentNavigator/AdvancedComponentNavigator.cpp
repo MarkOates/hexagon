@@ -92,6 +92,18 @@ std::string AdvancedComponentNavigator::get_search_text()
 }
 
 
+bool AdvancedComponentNavigator::is_mode_navigating_list()
+{
+return this->mode == "navigating_list";
+
+}
+
+bool AdvancedComponentNavigator::is_mode_typing_in_search_bar()
+{
+return this->mode == "typing_in_search_bar";
+
+}
+
 void AdvancedComponentNavigator::move_cursor_up()
 {
 cursor_position -= 1;

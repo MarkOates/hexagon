@@ -36,6 +36,8 @@ namespace Hexagon
          std::vector<Blast::Project::Component> get_nodes();
          std::string get_mode();
          std::string get_search_text();
+      bool is_mode_navigating_list();
+      bool is_mode_typing_in_search_bar();
       void move_cursor_up();
       void move_cursor_down();
       void move_cursor_to_top();
