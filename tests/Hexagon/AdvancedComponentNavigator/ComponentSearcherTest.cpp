@@ -58,3 +58,13 @@ TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
    EXPECT_EQ(expected_list, actual_list);
 }
 
+TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
+   components_sorted_by_most_recent__returns_results_filtered_by_search_string)
+{
+}
+
+TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
+   components__returns_results_filtered_by_search_string)
+{
+}
+

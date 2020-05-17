@@ -20,6 +20,13 @@ SimpleTextSearcher::~SimpleTextSearcher()
 }
 
 
+bool SimpleTextSearcher::would_be_included_in_results(std::string element)
+{
+std::size_t found = element.find(search_text);
+return found != std::string::npos;
+
+}
+
 std::vector<std::string> SimpleTextSearcher::results()
 {
 if (search_text.empty()) return {};
@@ -28,8 +35,7 @@ std::vector<std::string> results;
 
 for (auto &element : elements)
 {
-   std::size_t found = element.find(search_text);
-   if (found != std::string::npos) results.push_back(element);
+   if (would_be_included_in_results(element)) results.push_back(element);
 }
 
 return results;

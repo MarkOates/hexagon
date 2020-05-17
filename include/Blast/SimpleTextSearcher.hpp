@@ -18,6 +18,7 @@ namespace Blast
       ~SimpleTextSearcher();
 
 
+   bool would_be_included_in_results(std::string element="");
    std::vector<std::string> results();
    };
 }

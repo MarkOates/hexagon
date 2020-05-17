@@ -4,6 +4,7 @@
 #include <Blast/Project/ComponentLister.hpp>
 #include <Blast/SimpleTextSearcher.hpp>
 #include <Blast/Project/ComponentLister.hpp>
+#include <Blast/SimpleTextSearcher.hpp>
 #include <Blast/Project/ComponentLister.hpp>
 
 
@@ -25,6 +26,17 @@ ComponentSearcher::~ComponentSearcher()
 }
 
 
+std::vector<Blast::Project::Component> ComponentSearcher::convert_to_components(std::vector<std::string> names)
+{
+std::vector<Blast::Project::Component> results;
+for (auto &element : names)
+{
+   results.push_back(Blast::Project::Component(element, project_root_directory));
+}
+return results;
+
+}
+
 std::vector<std::string> ComponentSearcher::component_names()
 {
 std::vector<std::string> result_names = {};
@@ -38,25 +50,23 @@ return searcher.results();
 std::vector<Blast::Project::Component> ComponentSearcher::components_sorted_by_most_recent()
 {
 std::vector<Blast::Project::Component> result;
-std::vector<std::string> elements = {};
-elements = Blast::Project::ComponentLister(project_root_directory).components_sorted_by_most_recent();
-for (auto &element : elements)
-{
-   result.push_back(Blast::Project::Component(element, project_root_directory));
-}
-return result;
+std::vector<std::string> unfiltered_elements = {};
+
+// get list of elements
+unfiltered_elements = Blast::Project::ComponentLister(project_root_directory).components_sorted_by_most_recent();
+
+// filter list by search string
+std::vector<std::string> filtered_elements = Blast::SimpleTextSearcher(search_text, unfiltered_elements).results();
+
+// build (and return) components
+return convert_to_components(filtered_elements);
 
 }
 
 std::vector<Blast::Project::Component> ComponentSearcher::components()
 {
 std::vector<Blast::Project::Component> result;
-std::vector<std::string> component_names = Blast::Project::ComponentLister(project_root_directory).components();
-for (auto &component_name : component_names)
-{
-   result.push_back(Blast::Project::Component(component_name, project_root_directory));
-}
-return result;
+return convert_to_components(component_names());
 
 }
 } // namespace AdvancedComponentNavigator

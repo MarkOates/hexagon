@@ -8,6 +8,19 @@ properties:
     default: '""'
     constructor_arg: true
 functions:
+  - name: convert_to_components
+    type: std::vector<Blast::Project::Component>
+    parameters:
+      - name: names
+        type: std::vector<std::string>
+        default_argument: "{}"
+    body: |
+      std::vector<Blast::Project::Component> results;
+      for (auto &element : names)
+      {
+         results.push_back(Blast::Project::Component(element, project_root_directory));
+      }
+      return results;
   - name: component_names
     type: std::vector<std::string>
     body: |
@@ -23,25 +36,24 @@ functions:
     type: std::vector<Blast::Project::Component>
     body: |
       std::vector<Blast::Project::Component> result;
-      std::vector<std::string> elements = {};
-      elements = Blast::Project::ComponentLister(project_root_directory).components_sorted_by_most_recent();
-      for (auto &element : elements)
-      {
-         result.push_back(Blast::Project::Component(element, project_root_directory));
-      }
-      return result;
+      std::vector<std::string> unfiltered_elements = {};
+
+      // get list of elements
+      unfiltered_elements = Blast::Project::ComponentLister(project_root_directory).components_sorted_by_most_recent();
+
+      // filter list by search string
+      std::vector<std::string> filtered_elements = Blast::SimpleTextSearcher(search_text, unfiltered_elements).results();
+
+      // build (and return) components
+      return convert_to_components(filtered_elements);
     body_dependency_symbols:
       - Blast::Project::ComponentLister
+      - Blast::SimpleTextSearcher
   - name: components
     type: std::vector<Blast::Project::Component>
     body: |
       std::vector<Blast::Project::Component> result;
-      std::vector<std::string> component_names = Blast::Project::ComponentLister(project_root_directory).components();
-      for (auto &component_name : component_names)
-      {
-         result.push_back(Blast::Project::Component(component_name, project_root_directory));
-      }
-      return result;
+      return convert_to_components(component_names());
     body_dependency_symbols:
       - Blast::Project::ComponentLister
 dependencies:
