@@ -118,6 +118,8 @@ ALLEGRO_COLOR font_color = al_color_name("white");
 ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
 ALLEGRO_COLOR selector_fill_color = color::transparent; //color::mix(al_color_name("slategray"), 0.4);
 ALLEGRO_COLOR selector_outline_color = al_color_name("chartreuse");
+ALLEGRO_COLOR halo_color = al_color_name("chartreuse");
+float cursor_thickness = 3.0f;
 
 float selector_y = line_height * component.get_cursor_position() + cursor_y;
 std::string current_selection_label_or_empty_string = component.get_current_selection_label_or_empty_string();
@@ -142,6 +144,19 @@ if (component.current_selection_is_valid())
                              4,
                              selector_outline_color,
                              2.0);
+   // halo
+   int max_outset = 23;
+   for (int outset=1; outset<max_outset; outset++)
+   {
+     float color_opacity = (1.0 - (float)outset / max_outset) * 0.25;
+     ALLEGRO_COLOR col = color::color(halo_color, color_opacity);
+     al_draw_rounded_rectangle(
+       0 - outset,
+       selector_y - outset,
+       selector_rectangle_width + outset,
+       selector_y + line_height + outset,
+       2.0, 2.0, col, cursor_thickness);
+   }
 }
 else
 {
