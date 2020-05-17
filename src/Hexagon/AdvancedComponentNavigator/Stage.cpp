@@ -185,6 +185,12 @@ return;
 
 }
 
+void Stage::process_char_event(int keycode, int unichar)
+{
+return;
+
+}
+
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
 constexpr auto NO_MODIFIER = KeyboardCommandMapper::NO_MODIFIER;
@@ -220,6 +226,7 @@ case ALLEGRO_EVENT_KEY_CHAR:
    std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
    if (!mapped_events.empty()) event_caught = true;
    for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+   if (!event_caught) process_char_event(event.keyboard.keycode, event.keyboard.unichar);
    break;
 }
 return;

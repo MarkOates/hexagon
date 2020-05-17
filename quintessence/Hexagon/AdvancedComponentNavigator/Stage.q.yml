@@ -154,6 +154,17 @@ functions:
       - Hexagon::AdvancedComponentNavigator::EventController
 
 
+  - name: process_char_event
+    parameters:
+      - name: keycode
+        type: int
+        default_argument: 0
+      - name: unichar
+        type: int
+        default_argument: 0
+    body: |
+      return;
+
 
   - name: process_event
     is_override: true
@@ -195,6 +206,7 @@ functions:
          std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
          if (!mapped_events.empty()) event_caught = true;
          for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+         if (!event_caught) process_char_event(event.keyboard.keycode, event.keyboard.unichar);
          break;
       }
       return;
