@@ -3,6 +3,7 @@
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
+#include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
 #include <iostream>
 #include <iostream>
 #include <iostream>
@@ -181,6 +182,10 @@ return;
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
+Hexagon::AdvancedComponentNavigator::EventController event_controller(this);
+event_controller.process_local_event(event_name, action_data);
+return;
+
 std::cout << "LocalEvent::" << event_name << std::endl;
 
 try

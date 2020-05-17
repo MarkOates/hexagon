@@ -15,7 +15,7 @@ TEST(Hexagon_AdvancedComponentNavigator_StageTest, filter_list_with_search_text_
 {
 }
 
-TEST(Hexagon_AdvancedComponentNavigator_StageTest, run__returns_the_expected_response)
+TEST(Hexagon_AdvancedComponentNavigator_StageTest, process_local_event__processes_the_events)
 {
    Hexagon::AdvancedComponentNavigator::Stage stage;
    std::string expected_string = "Hello World!";
