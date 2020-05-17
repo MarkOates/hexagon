@@ -22,7 +22,9 @@ TEST(Hexagon_AdvancedComponentNavigator_StageTest, process_local_event__processe
 
    stage.process_local_event("move_cursor_down");
    stage.process_local_event("move_cursor_down");
+   stage.process_local_event("move_cursor_down");
    stage.process_local_event("move_cursor_up");
-   stage.process_local_event("move_cursor_up");
+
+   ASSERT_EQ(2, stage.get_cursor_position());
 }
 
