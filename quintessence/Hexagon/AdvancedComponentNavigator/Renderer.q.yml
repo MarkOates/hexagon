@@ -83,7 +83,6 @@ functions:
       }
       float current_node_root_y_pos = cursor_y - line_height * 1.5;
       ALLEGRO_COLOR font_color = al_color_name("white");
-      ALLEGRO_COLOR node_root_font_color = al_color_name("gray");
       ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
 
       float selector_y = line_height * stage.get_cursor_position() + cursor_y;
@@ -115,11 +114,15 @@ functions:
       }
 
 
-      // draw the project root
+      // draw the project root (window title)
 
+      ALLEGRO_COLOR node_root_font_color = frame_color;
       std::string node_root_val = stage.get_project_root();
-      al_draw_text(font, node_root_font_color,
-        pos_x, -line_height * 1.5, 0, stage.get_project_root().c_str());
+      float title_text_width = al_get_text_width(font, node_root_val.c_str());
+      float title_text_height = al_get_font_line_height(font);
+      float title_y = title_text_height * -1.3;
+      al_draw_filled_rectangle(0, title_y, title_text_width, title_y+title_text_height, not_quite_black);
+      al_draw_text(font, node_root_font_color, 0, title_y, 0, stage.get_project_root().c_str());
 
 
       // draw list elements
@@ -166,7 +169,7 @@ functions:
         }
         else
         {
-           al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
+           al_draw_text(font, col, 0, pos_y + cursor_y, 0, line_content.c_str());
         }
         cursor_y += line_height;
       }
