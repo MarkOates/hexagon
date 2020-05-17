@@ -50,6 +50,26 @@ return not_quite_black;
 
 }
 
+void Renderer::draw_search_text_box()
+{
+// draw the search_text
+Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
+Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
+
+ALLEGRO_COLOR not_quite_black = build_not_quite_black_color();
+
+ALLEGRO_COLOR search_text_font_color =
+   component.is_mode_typing_in_search_bar() ? al_color_name("chartreuse") : frame_color;
+std::string search_text_val = component.get_search_text();
+float search_text_width = al_get_text_width(font, search_text_val.c_str());
+float search_text_height = al_get_font_line_height(font);
+float search_text_y = search_text_height * -1.3;
+al_draw_filled_rectangle(0, search_text_y, search_text_width, search_text_y+search_text_height, not_quite_black);
+al_draw_text(font, search_text_font_color, 0, search_text_y, 0, search_text_val.c_str());
+return;
+
+}
+
 void Renderer::render()
 {
 if (!(stage))
@@ -68,26 +88,6 @@ placement3d &place = stage->get_place();
 place.start_transform();
 render_raw();
 place.restore_transform();
-return;
-
-}
-
-void Renderer::draw_search_text_box()
-{
-// draw the search_text
-Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
-Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
-
-ALLEGRO_COLOR not_quite_black = build_not_quite_black_color();
-
-ALLEGRO_COLOR search_text_font_color =
-   component.is_mode_typing_in_search_bar() ? al_color_name("chartreuse") : frame_color;
-std::string search_text_val = component.get_search_text();
-float search_text_width = al_get_text_width(font, search_text_val.c_str());
-float search_text_height = al_get_font_line_height(font);
-float search_text_y = search_text_height * -1.3;
-al_draw_filled_rectangle(0, search_text_y, search_text_width, search_text_y+search_text_height, not_quite_black);
-al_draw_text(font, search_text_font_color, 0, search_text_y, 0, search_text_val.c_str());
 return;
 
 }

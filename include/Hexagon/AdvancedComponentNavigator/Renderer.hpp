@@ -26,8 +26,8 @@ namespace Hexagon
 
 
       ALLEGRO_COLOR build_not_quite_black_color();
-      void render();
       void draw_search_text_box();
+      void render();
       void render_raw();
       };
    }

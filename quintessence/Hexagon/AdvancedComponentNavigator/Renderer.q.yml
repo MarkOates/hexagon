@@ -24,7 +24,9 @@ properties:
     init_with: 'al_color_html("39c3c5")'
 
 
+
 functions:
+
 
 
   - name: build_not_quite_black_color
@@ -39,16 +41,6 @@ functions:
       not_quite_black.a = 0.8;
       return not_quite_black;
 
-
-  - name: render
-    type: void
-    guards: [ stage, font ]
-    body: |
-      placement3d &place = stage->get_place();
-      place.start_transform();
-      render_raw();
-      place.restore_transform();
-      return;
 
 
   - name: draw_search_text_box
@@ -69,6 +61,19 @@ functions:
       al_draw_filled_rectangle(0, search_text_y, search_text_width, search_text_y+search_text_height, not_quite_black);
       al_draw_text(font, search_text_font_color, 0, search_text_y, 0, search_text_val.c_str());
       return;
+
+
+
+  - name: render
+    type: void
+    guards: [ stage, font ]
+    body: |
+      placement3d &place = stage->get_place();
+      place.start_transform();
+      render_raw();
+      place.restore_transform();
+      return;
+
 
 
   - name: render_raw
@@ -282,6 +287,7 @@ functions:
       - FileSystemNode
       - Hexagon::Shapes::Hexagon::Renderer
       - Hexagon::Shapes::Hexagon::Stroke
+
 
 
 dependencies:
