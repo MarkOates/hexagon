@@ -21,7 +21,7 @@ namespace Hexagon
          std::string search_text;
 
       public:
-         AdvancedComponentNavigator(std::string project_root="/Users/markoates/Repos/hexagon");
+         AdvancedComponentNavigator(std::string project_root="/Users/markoates/Repos/hexagon/");
          ~AdvancedComponentNavigator();
 
          void set_project_root(std::string project_root);

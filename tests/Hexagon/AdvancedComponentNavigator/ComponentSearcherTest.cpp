@@ -61,6 +61,13 @@ TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
 TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
    components_sorted_by_most_recent__returns_results_filtered_by_search_string)
 {
+   std::string project_root_directory = "/Users/markoates/Repos/blast";
+   Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(project_root_directory, "ProgramLister");
+
+   std::vector<std::string> expected = { "Blast/Project/ProgramLister" };
+   std::vector<std::string> actual = searcher.convert_to_names(searcher.components_sorted_by_most_recent());
+
+   ASSERT_EQ(expected, actual);
 }
 
 TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,

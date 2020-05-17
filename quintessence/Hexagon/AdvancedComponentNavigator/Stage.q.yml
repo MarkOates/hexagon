@@ -5,7 +5,7 @@ parent_classes:
 properties:
   - name: project_root
     type: std::string
-    init_with: '"/Users/markoates/Repos/hexagon"'
+    init_with: '"/Users/markoates/Repos/hexagon/"'
     constructor_arg: true
     getter: true
     setter: true

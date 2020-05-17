@@ -26,6 +26,18 @@ ComponentSearcher::~ComponentSearcher()
 }
 
 
+std::vector<std::string> ComponentSearcher::convert_to_names(std::vector<Blast::Project::Component> components)
+{
+std::vector<std::string> results;
+for (auto &element : components)
+{
+   results.push_back(element.get_name());
+   //results.push_back(Blast::Project::Component(element, project_root_directory));
+}
+return results;
+
+}
+
 std::vector<Blast::Project::Component> ComponentSearcher::convert_to_components(std::vector<std::string> names)
 {
 std::vector<Blast::Project::Component> results;

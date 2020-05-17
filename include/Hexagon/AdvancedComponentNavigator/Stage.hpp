@@ -24,7 +24,7 @@ namespace Hexagon
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         Stage(std::string project_root="/Users/markoates/Repos/hexagon");
+         Stage(std::string project_root="/Users/markoates/Repos/hexagon/");
          ~Stage();
 
          void set_project_root(std::string project_root);

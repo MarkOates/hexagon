@@ -29,7 +29,7 @@ return found != std::string::npos;
 
 std::vector<std::string> SimpleTextSearcher::results()
 {
-if (search_text.empty()) return {};
+if (search_text.empty()) return elements;
 
 std::vector<std::string> results;
 

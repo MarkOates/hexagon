@@ -8,6 +8,20 @@ properties:
     default: '""'
     constructor_arg: true
 functions:
+  - name: convert_to_names
+    type: std::vector<std::string>
+    parameters:
+      - name: components
+        type: std::vector<Blast::Project::Component>
+        default_argument: "{}"
+    body: |
+      std::vector<std::string> results;
+      for (auto &element : components)
+      {
+         results.push_back(element.get_name());
+         //results.push_back(Blast::Project::Component(element, project_root_directory));
+      }
+      return results;
   - name: convert_to_components
     type: std::vector<Blast::Project::Component>
     parameters:
