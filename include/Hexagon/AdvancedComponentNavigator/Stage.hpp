@@ -34,8 +34,6 @@ namespace Hexagon
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       KeyboardCommandMapper build_keyboard_command_mapping();
       std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> build_local_events_dictionary();
-      bool current_selection_is_valid();
-      std::string get_current_selection_label_or_empty_string();
       void render(bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       void process_char_event(int keycode=0, int unichar=0, bool is_repeat=false);

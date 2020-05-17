@@ -62,24 +62,6 @@ functions:
 
 
 
-  - name: current_selection_is_valid
-    type: bool
-    body: |
-      return component.current_selection_is_valid();
-      //if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
-      //return true;
-
-
-
-  - name: get_current_selection_label_or_empty_string
-    type: std::string
-    body: |
-      return component.get_current_selection_label_or_empty_string();
-      //if (!current_selection_is_valid()) return "";
-      //return nodes[component.get_cursor_position()].get_name();
-
-
-
   - name: render
     is_override: true
     parameters:

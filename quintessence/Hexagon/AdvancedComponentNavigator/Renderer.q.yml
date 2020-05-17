@@ -40,6 +40,7 @@ functions:
     guards: [ stage, font ]
     body: |
       Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
+      Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
       placement3d &place = stage.get_place();
 
       float line_stroke_thickness = 2.5;
@@ -87,10 +88,10 @@ functions:
       ALLEGRO_COLOR selector_color = al_color_name("slategray");
 
       float selector_y = line_height * stage.get_component_ref().get_cursor_position() + cursor_y;
-      std::string current_selection_label_or_empty_string = stage.get_current_selection_label_or_empty_string();
+      std::string current_selection_label_or_empty_string = component.get_current_selection_label_or_empty_string();
       float selector_rectangle_width = al_get_text_width(font, current_selection_label_or_empty_string.c_str());
       float selector_rectangle_roundness = 0; //4;
-      if (stage.current_selection_is_valid())
+      if (component.current_selection_is_valid())
       {
         al_draw_filled_rounded_rectangle(
           0,

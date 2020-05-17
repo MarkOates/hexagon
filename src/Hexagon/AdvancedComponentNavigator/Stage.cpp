@@ -89,22 +89,6 @@ return local_events;
 
 }
 
-bool Stage::current_selection_is_valid()
-{
-return component.current_selection_is_valid();
-//if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
-//return true;
-
-}
-
-std::string Stage::get_current_selection_label_or_empty_string()
-{
-return component.get_current_selection_label_or_empty_string();
-//if (!current_selection_is_valid()) return "";
-//return nodes[component.get_cursor_position()].get_name();
-
-}
-
 void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
 Hexagon::AdvancedComponentNavigator::Renderer renderer(this, is_focused, font, cell_width, cell_height);
