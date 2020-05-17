@@ -13,7 +13,7 @@ TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest, can_be_created_with
    Hexagon::AdvancedComponentNavigator::EventController event_controller;
 }
 
-TEST(Hexagon_AdvancedComponentNavigator_StageTest, process_local_event__processes_the_events)
+TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest, process_local_event__processes_the_events)
 {
    Hexagon::AdvancedComponentNavigator::Stage stage;
    Hexagon::AdvancedComponentNavigator::EventController event_controller(&stage);
@@ -26,7 +26,7 @@ TEST(Hexagon_AdvancedComponentNavigator_StageTest, process_local_event__processe
    EXPECT_EQ(2, stage.get_cursor_position());
 }
 
-TEST(Hexagon_AdvancedComponentNavigator_StageTest,
+TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest,
    process_local_event__with_an_event_that_does_not_exist_throws_an_error)
 {
    Hexagon::AdvancedComponentNavigator::Stage stage;
