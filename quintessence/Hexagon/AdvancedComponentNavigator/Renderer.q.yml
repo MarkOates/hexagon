@@ -24,7 +24,6 @@ functions:
     type: void
     guards: [ stage, font ]
     body: |
-      if (!font) throw std::runtime_error("font missing");
       Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
 
       placement3d &place = stage.get_place();

@@ -47,7 +47,6 @@ if (!(font))
       error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
       throw std::runtime_error(error_message.str());
    }
-if (!font) throw std::runtime_error("font missing");
 Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
 
 placement3d &place = stage.get_place();

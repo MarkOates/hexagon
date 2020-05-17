@@ -58,7 +58,7 @@ TEST_F(Hexagon_AdvancedComponentNavigator_RendererTest, render__without_a_font_t
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_message);
 }
 
-TEST_F(Hexagon_AdvancedComponentNavigator_RendererTest, render__renders_the_component_navigator)
+TEST_F(Hexagon_AdvancedComponentNavigator_RendererTest, render__renders_the_component_navigator_with_placement)
 {
    Hexagon::AdvancedComponentNavigator::Stage stage;
    ALLEGRO_FONT *font = al_create_builtin_font();
