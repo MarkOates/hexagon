@@ -165,14 +165,11 @@ bool list_clipping_occurred_below = false;
 for (auto &node : stage.get_nodes())
 {
   std::string line_content = node.get_name();
-  //FileSystemNode current_line_node(line_content);
-  //bool is_directory = current_line_node.infer_is_directory();
-  //ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
   ALLEGRO_COLOR col = al_color_name("skyblue");
 
   if (node.has_quintessence())
   {
-    //line_content += " *";
+     //line_content += " *";
   }
   else if (node.has_only_source_and_header())
   {
