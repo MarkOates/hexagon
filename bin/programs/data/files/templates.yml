@@ -28,3 +28,13 @@
   template: |
     std::vector<std::string> elements = ELEMENT_LIST_DEFINITION; // element list definition like { "Foo", "Bar", "FooBar" };
     return elements;
+- name: elements_filtered
+  variables: [ CONDITION, ELEMENT_LIST_DEFINITION ]
+  template: |
+    std::vector<std::string> result_elements = {};
+    std::vector<std::string> elements = ELEMENT_LIST_DEFINITION;
+    for (auto &element : elements)
+    {
+       if (CONDITION) result_elements.push_back(element);
+    }
+    return result_elements;
