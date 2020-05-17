@@ -23,3 +23,8 @@
     {
        #
     }
+- name: elements
+  variables: [ ELEMENT_LIST_DEFINITION ]
+  template: |
+    std::vector<std::string> elements = ELEMENT_LIST_DEFINITION; // element list definition like { "Foo", "Bar", "FooBar" };
+    return elements;
