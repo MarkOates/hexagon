@@ -148,7 +148,7 @@ TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest, render__rende
    renderer.render();
    al_flip_display();
 
-   sleep(2);
+   //sleep(2);
 
    SUCCEED();
 }
