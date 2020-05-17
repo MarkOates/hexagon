@@ -38,7 +38,7 @@ protected:
       al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
       ASSERT_EQ(ALLEGRO_OPENGL, al_get_new_display_flags() & ALLEGRO_OPENGL);
       ASSERT_EQ(ALLEGRO_PROGRAMMABLE_PIPELINE, al_get_new_display_flags() & ALLEGRO_PROGRAMMABLE_PIPELINE);
-      display = al_create_display(800, 600);
+      display = al_create_display(1920 / 5 * 4, 1080 / 5 * 4);
       ASSERT_NE(nullptr, display);
 
       font = al_create_builtin_font();
@@ -48,8 +48,10 @@ protected:
       renderer = new Hexagon::AdvancedComponentNavigator::Renderer(stage, true, font, cell_width, cell_height);
 
       placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
-      place.size.x = al_get_display_width(display)/2;
-      place.size.y = al_get_display_height(display)/2;
+      place.size.x = al_get_display_width(display)/4;
+      place.size.y = al_get_display_height(display)/4;
+      place.scale.x = 2.0;
+      place.scale.y = 2.0;
       stage->set_place(place);
    }
 
