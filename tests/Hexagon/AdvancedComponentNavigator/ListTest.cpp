@@ -3,24 +3,28 @@
 
 #include <Hexagon/AdvancedComponentNavigator/List.hpp>
 
-//TEST(Hexagon_AdvancedComponentNavigator_ListTest, run__returns_the_expected_response)
-//{
-   //std::string project_root_directory = "/Users/markoates/Repos/blast";
-   //Hexagon::AdvancedComponentNavigator::List list(project_root_directory);
+#include <gmock/gmock.h>
+using ::testing::IsSupersetOf;
 
-   //std::vector<std::string> expected_list = {
-      //"Blast/DirectoryCreator",
-      //"Blast/ShellCommandExecutorWithCallback",
-      //"Blast/CamelCaseToUnderscoreConverter",
-      //"Blast/Project/ComponentBasenameExtractor",
-      //"Blast/TemplatedFile",
-      //"Blast/Cpp/FunctionBody",
-      //"Blast/Cpp/Function",
-      //"Blast/DirectoryExistenceChecker",
-      //"Blast/StringSplitter",
-   //};
+TEST(Hexagon_AdvancedComponentNavigator_ListTest, component_names__returns_the_expected_response)
+{
+   std::string project_root_directory = "/Users/markoates/Repos/blast";
+   Hexagon::AdvancedComponentNavigator::List list(project_root_directory);
 
-   //std::vector<std::string> actual_list = list.component_names();
+   std::vector<std::string> expected_list = {
+      "Blast/DirectoryCreator",
+      "Blast/ShellCommandExecutorWithCallback",
+      "Blast/CamelCaseToUnderscoreConverter",
+      "Blast/Project/ComponentBasenameExtractor",
+      "Blast/TemplatedFile",
+      "Blast/Cpp/FunctionBody",
+      "Blast/Cpp/Function",
+      "Blast/DirectoryExistenceChecker",
+      "Blast/StringSplitter",
+   };
 
-   //EXPECT_EQ(expected_list, actual_list);
-//}
+   std::vector<std::string> actual_list = list.component_names();
+
+   EXPECT_THAT(actual_list, IsSupersetOf(actual_list));
+}
+

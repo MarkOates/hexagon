@@ -60,12 +60,6 @@ functions:
     body: |
       if (!current_selection_is_valid()) return "";
       return nodes[get_cursor_position()].get_name();
-  - name: filter_list_with_search_string
-    type: std::vector<Blast::Project::Component>
-    body: |
-      std::vector<Blast::Project::Component> results;
-      //std::vector<std::string> list_to_filter;
-      //Hexagon::AdvancedComponentNavigator::List
   - name: refresh_list
     body: |
       Hexagon::AdvancedComponentNavigator::List list(get_project_root());

@@ -46,7 +46,6 @@ namespace Hexagon
       void move_cursor_to_top();
       bool current_selection_is_valid();
       std::string get_current_selection_label_or_empty_string();
-      std::vector<Blast::Project::Component> filter_list_with_search_string();
       void refresh_list();
       void render(bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
