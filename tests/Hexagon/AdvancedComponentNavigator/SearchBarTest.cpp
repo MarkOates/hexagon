@@ -1,16 +1,16 @@
 
 #include <gtest/gtest.h>
 
-#include <Hexagon/ComponentNavigator/SearchBar.hpp>
+#include <Hexagon/AdvancedComponentNavigator/SearchBar.hpp>
 
-TEST(Hexagon_ComponentNavigator_SearchBarTest, can_be_created_without_blowing_up)
+TEST(Hexagon_AdvancedComponentNavigator_SearchBarTest, can_be_created_without_blowing_up)
 {
-   Hexagon::ComponentNavigator::SearchBar search_bar;
+   Hexagon::AdvancedComponentNavigator::SearchBar search_bar;
 }
 
-TEST(Hexagon_ComponentNavigator_SearchBarTest, run__returns_the_expected_response)
+TEST(Hexagon_AdvancedComponentNavigator_SearchBarTest, run__returns_the_expected_response)
 {
-   Hexagon::ComponentNavigator::SearchBar search_bar;
+   Hexagon::AdvancedComponentNavigator::SearchBar search_bar;
    std::string expected_string = "Hello World!";
    EXPECT_EQ(expected_string, search_bar.run());
 }

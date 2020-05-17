@@ -1,12 +1,12 @@
 
 #include <gtest/gtest.h>
 
-#include <Hexagon/ComponentNavigator/List.hpp>
+#include <Hexagon/AdvancedComponentNavigator/List.hpp>
 
-//TEST(Hexagon_ComponentNavigator_ListTest, run__returns_the_expected_response)
+//TEST(Hexagon_AdvancedComponentNavigator_ListTest, run__returns_the_expected_response)
 //{
    //std::string project_root_directory = "/Users/markoates/Repos/blast";
-   //Hexagon::ComponentNavigator::List list(project_root_directory);
+   //Hexagon::AdvancedComponentNavigator::List list(project_root_directory);
 
    //std::vector<std::string> expected_list = {
       //"Blast/DirectoryCreator",
