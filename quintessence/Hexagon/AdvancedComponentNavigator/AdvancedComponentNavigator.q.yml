@@ -95,6 +95,7 @@ functions:
       - Hexagon::AdvancedComponentNavigator::ComponentSearcher
 
 
+
 dependencies:
   - symbol: Hexagon::AdvancedComponentNavigator::ComponentSearcher
     headers: [ 'Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp' ]
