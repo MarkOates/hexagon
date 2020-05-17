@@ -185,12 +185,6 @@ return;
 
 }
 
-bool Stage::save_file()
-{
-return true;
-
-}
-
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
 constexpr auto NO_MODIFIER = KeyboardCommandMapper::NO_MODIFIER;
@@ -229,6 +223,12 @@ case ALLEGRO_EVENT_KEY_CHAR:
    break;
 }
 return;
+
+}
+
+bool Stage::save_file()
+{
+return true;
 
 }
 } // namespace AdvancedComponentNavigator

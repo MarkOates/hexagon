@@ -155,14 +155,6 @@ functions:
 
 
 
-  - name: save_file
-    is_override: true
-    type: bool
-    body: |
-      return true;
-
-
-
   - name: process_event
     is_override: true
     parameters:
@@ -208,6 +200,14 @@ functions:
       return;
     body_dependency_symbols:
       - KeyboardCommandMapper
+
+
+
+  - name: save_file
+    is_override: true
+    type: bool
+    body: |
+      return true;
 
 
 
