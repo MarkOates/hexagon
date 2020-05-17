@@ -37,35 +37,78 @@ properties:
     init_with: '""'
     getter: true
     setter: true
+  - name: mode
+    type: std::string
+    init_with: '"navigating_list"'
+    getter: true
+    setter: true
+
+
+
 functions:
+
+
+
   - name: move_cursor_up
     type: void
     body: |
       cursor_position -= 1;
+
+
+
   - name: move_cursor_down
     type: void
     body: |
       cursor_position += 1;
+
+
+
   - name: move_cursor_to_top
     type: void
     body: |
       cursor_position = 0;
+
+
+
   - name: current_selection_is_valid
     type: bool
     body: |
       if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
       return true;
+
+
+
+  - name: set_mode_to_navigating_list
+    type: void
+    body: |
+      this->mode = "navigating_list";
+
+
+
+  - name: set_mode_to_typing_in_search_bar
+    type: void
+    body: |
+      this->mode = "typing_in_search_bar";
+
+
+
   - name: get_current_selection_label_or_empty_string
     type: std::string
     body: |
       if (!current_selection_is_valid()) return "";
       return nodes[get_cursor_position()].get_name();
+
+
+
   - name: refresh_list
     body: |
       Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_string);
       nodes = searcher.components_sorted_by_most_recent();
     body_dependency_symbols:
       - Hexagon::AdvancedComponentNavigator::ComponentSearcher
+
+
+
   - name: render
     is_override: true
     parameters:
@@ -240,6 +283,9 @@ functions:
       - FileSystemNode
       - Hexagon::Shapes::Hexagon::Renderer
       - Hexagon::Shapes::Hexagon::Stroke
+
+
+
   - name: process_local_event
     is_override: true
     parameters:
@@ -276,6 +322,16 @@ functions:
            executed = true;
            move_cursor_down();
          }
+         else if (event_name == "set_mode_to_navigating_list")
+         {
+           executed = true;
+           set_mode_to_navigating_list();
+         }
+         else if (event_name == "set_mode_to_typing_in_search_bar")
+         {
+           executed = true;
+           set_mode_to_typing_in_search_bar();
+         }
       }
       catch (const std::exception &exception)
       {
@@ -285,11 +341,17 @@ functions:
       - std::endl
       - std::cout
       - std::cerr
+
+
+
   - name: save_file
     is_override: true
     type: bool
     body: |
       return true;
+
+
+
   - name: process_event
     is_override: true
     parameters:
@@ -329,6 +391,9 @@ functions:
       return;
     body_dependency_symbols:
       - KeyboardCommandMapper
+
+
+
 dependencies:
   - symbol: color::mix
     headers: [ 'allegro_flare/color.h' ]

@@ -31,6 +31,7 @@ Stage::Stage(std::string project_root)
    , project_root(project_root)
    , nodes({})
    , search_string("")
+   , mode("navigating_list")
 {
 }
 
@@ -70,6 +71,12 @@ void Stage::set_search_string(std::string search_string)
 }
 
 
+void Stage::set_mode(std::string mode)
+{
+   this->mode = mode;
+}
+
+
 int Stage::get_cursor_position()
 {
    return cursor_position;
@@ -97,6 +104,12 @@ std::vector<Blast::Project::Component> Stage::get_nodes()
 std::string Stage::get_search_string()
 {
    return search_string;
+}
+
+
+std::string Stage::get_mode()
+{
+   return mode;
 }
 
 
@@ -128,6 +141,18 @@ bool Stage::current_selection_is_valid()
 {
 if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
 return true;
+
+}
+
+void Stage::set_mode_to_navigating_list()
+{
+this->mode = "navigating_list";
+
+}
+
+void Stage::set_mode_to_typing_in_search_bar()
+{
+this->mode = "typing_in_search_bar";
 
 }
 
@@ -325,6 +350,16 @@ try
    {
      executed = true;
      move_cursor_down();
+   }
+   else if (event_name == "set_mode_to_navigating_list")
+   {
+     executed = true;
+     set_mode_to_navigating_list();
+   }
+   else if (event_name == "set_mode_to_typing_in_search_bar")
+   {
+     executed = true;
+     set_mode_to_typing_in_search_bar();
    }
 }
 catch (const std::exception &exception)
