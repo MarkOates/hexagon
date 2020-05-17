@@ -140,8 +140,7 @@ return nodes[get_cursor_position()].get_name();
 
 void Stage::refresh_list()
 {
-Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root());
-//std::vector<std::string> elements = searcher.component_names();
+Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_string);
 nodes = searcher.components_sorted_by_most_recent();
 
 }
