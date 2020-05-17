@@ -32,6 +32,11 @@ TEST(Hexagon_AdvancedComponentNavigator_StageTest,
    Hexagon::AdvancedComponentNavigator::Stage stage;
    Hexagon::AdvancedComponentNavigator::EventController event_controller(&stage);
 
-   event_controller.process_local_event("event_that_does_not_exist");
+   std::string expected_error_message = "AdvancedComponentNavigator::EventController::process_local_event: " \
+                                        "error: No local event named \"event_that_does_not_exist\" exists.";
+
+   ASSERT_THROW_WITH_MESSAGE(event_controller.process_local_event("event_that_does_not_exist"),
+                             std::runtime_error,
+                             expected_error_message);
 }
 

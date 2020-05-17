@@ -35,7 +35,6 @@ if (!(stage))
       throw std::runtime_error(error_message.str());
    }
 Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
-std::cout << "LocalEvent::" << event_name << std::endl;
 bool executed = false;
 
 try
@@ -73,8 +72,21 @@ try
 }
 catch (const std::exception &exception)
 {
-   std::cerr << ">BOOM< cannot execute "" << event_name << "".  The following exception occurred: " << exception.what() << std::endl;
+   std::cerr << ">BOOM< cannot execute \""
+             << event_name
+             << "\".  The following exception occurred: "
+             << exception.what()
+             << std::endl;
 }
+
+if (!executed)
+{
+   std::stringstream error_message;
+   error_message << "AdvancedComponentNavigator::EventController::process_local_event: error: "
+                 << "No local event named \"" << event_name << "\" exists.";
+   throw std::runtime_error(error_message.str());
+}
+return;
 
 }
 } // namespace AdvancedComponentNavigator
