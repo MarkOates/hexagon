@@ -9,7 +9,7 @@
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
-#include <Hexagon/ComponentNavigator/Stage.hpp>
+//#include <Hexagon/ComponentNavigator/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/FullScreenOverlay/Stage.hpp>
 #include <Hexagon/RerunOutputWatcher/Stage.hpp>
@@ -75,6 +75,7 @@
 #include <Hexagon/FileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/ComponentNavigator/Stage.hpp>
+#include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/LayoutPlacements.hpp>
 #include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
@@ -724,8 +725,8 @@ bool System::spawn_component_navigator()
 {
    //placement3d component_navigator_initial_place = component_navigator_initial_place;
 
-   Hexagon::ComponentNavigator::Stage *component_navigator =
-      new Hexagon::ComponentNavigator::Stage(get_default_navigator_directory());
+   Hexagon::AdvancedComponentNavigator::Stage *component_navigator =
+      new Hexagon::AdvancedComponentNavigator::Stage(get_default_navigator_directory());
    component_navigator->process_local_event("refresh_list");
    component_navigator->set_place(build_component_navigator_initial_place());
    stages.push_back(component_navigator);
@@ -1044,9 +1045,11 @@ bool System::push_component_navigator_selection()
       error_message << "Could not " << function_name << ": Either the frontmost_stage_interface is a nullptr OR is not of type StageInterface::COMPONENT_NAVIGATOR." << std::endl;
       throw std::runtime_error(error_message.str().c_str());
    }
-   Hexagon::ComponentNavigator::Stage *component_navigator = static_cast<Hexagon::ComponentNavigator::Stage *>(frontmost_stage_interface);
+   Hexagon::AdvancedComponentNavigator::Stage *component_navigator =
+      static_cast<Hexagon::AdvancedComponentNavigator::Stage *>(frontmost_stage_interface);
 
-   std::string current_component_navigator_selection = component_navigator->get_current_selection_label_or_empty_string();
+   std::string current_component_navigator_selection =
+      component_navigator->get_component_ref().get_current_selection_label_or_empty_string();
 
    last_component_navigator_selection = current_component_navigator_selection;
    return true;
