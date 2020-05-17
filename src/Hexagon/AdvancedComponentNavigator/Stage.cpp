@@ -138,6 +138,14 @@ return nodes[get_cursor_position()].get_name();
 
 }
 
+std::vector<Blast::Project::Component> Stage::filter_list_with_search_string()
+{
+std::vector<Blast::Project::Component> results;
+//std::vector<std::string> list_to_filter;
+//Hexagon::AdvancedComponentNavigator::List
+
+}
+
 void Stage::refresh_list()
 {
 Hexagon::AdvancedComponentNavigator::List list(get_project_root());

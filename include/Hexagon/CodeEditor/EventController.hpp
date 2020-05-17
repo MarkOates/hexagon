@@ -37,7 +37,7 @@ namespace CodeEditor
       bool play_last_performed_action_queue_recording();
 
    public:
-      EventController(CodeEditor::Stage *stage);
+      EventController(CodeEditor::Stage *stage=nullptr);
       virtual ~EventController();
 
       void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override;

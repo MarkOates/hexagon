@@ -8,7 +8,9 @@
 
 #include <Hexagon/CodeEditor/EventController.hpp>
 
-TEST(Hexagon_CodeEditor_EventControllerTest, testing_environment_compiles)
+TEST(Hexagon_CodeEditor_EventControllerTest, can_be_created_without_blowing_up)
 {
-   SUCCEED();
+   CodeEditor::EventController controller;
 }
+
+
