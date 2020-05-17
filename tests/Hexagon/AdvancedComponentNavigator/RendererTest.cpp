@@ -144,6 +144,7 @@ TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest, render__rende
 
    component.set_nodes({ Component("Component/NotMatch"), Component("Blast/FooBar"), Component("Blast/BarBar") });
    component.set_search_text("Bar");
+   component.refresh_list();
 
    renderer.render();
    al_flip_display();

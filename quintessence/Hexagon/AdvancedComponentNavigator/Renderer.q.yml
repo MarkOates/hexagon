@@ -78,16 +78,16 @@ functions:
       int pos_x = 0;
       int pos_y = 0;
       int cursor_y = 0;
-      if (stage.get_component_ref().get_cursor_position_static())
+      if (component.get_cursor_position_static())
       {
-        cursor_y = - line_height * stage.get_component_ref().get_cursor_position();
+        cursor_y = - line_height * component.get_cursor_position();
       }
       float current_node_root_y_pos = cursor_y - line_height * 1.5;
       ALLEGRO_COLOR font_color = al_color_name("white");
       ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
       ALLEGRO_COLOR selector_color = al_color_name("slategray");
 
-      float selector_y = line_height * stage.get_component_ref().get_cursor_position() + cursor_y;
+      float selector_y = line_height * component.get_cursor_position() + cursor_y;
       std::string current_selection_label_or_empty_string = component.get_current_selection_label_or_empty_string();
       float selector_rectangle_width = al_get_text_width(font, current_selection_label_or_empty_string.c_str());
       float selector_rectangle_roundness = 0; //4;
@@ -119,18 +119,18 @@ functions:
       // draw the project root (window title)
 
       ALLEGRO_COLOR node_root_font_color = frame_color;
-      std::string node_root_val = stage.get_project_root();
+      std::string node_root_val = component.get_project_root();
       float title_text_width = al_get_text_width(font, node_root_val.c_str());
       float title_text_height = al_get_font_line_height(font);
       float title_y = (title_text_height * -1.3) * 2;
       al_draw_filled_rectangle(0, title_y, title_text_width, title_y+title_text_height, not_quite_black);
-      al_draw_text(font, node_root_font_color, 0, title_y, 0, stage.get_project_root().c_str());
+      al_draw_text(font, node_root_font_color, 0, title_y, 0, node_root_val.c_str());
 
 
       // draw the search_text
 
       ALLEGRO_COLOR search_text_font_color = al_color_name("yellow");
-      std::string search_text_val = stage.get_component_ref().get_search_text();
+      std::string search_text_val = component.get_search_text();
       float search_text_width = al_get_text_width(font, search_text_val.c_str());
       float search_text_height = al_get_font_line_height(font);
       float search_text_y = search_text_height * -1.3;
@@ -143,7 +143,7 @@ functions:
       bool list_clipping_occurred_above = false;
       bool list_clipping_occurred_below = false;
 
-      for (auto &node : stage.get_component_ref().get_nodes())
+      for (auto &node : component.get_nodes())
       {
         std::string line_content = node.get_name();
         ALLEGRO_COLOR col = al_color_name("skyblue");
