@@ -19,7 +19,11 @@ properties:
     type: int
     init_with: 20
     constructor_arg: true
+
+
 functions:
+
+
   - name: render
     type: void
     guards: [ stage, font ]
@@ -29,6 +33,8 @@ functions:
       render_raw();
       place.restore_transform();
       return;
+
+
   - name: render_raw
     type: void
     guards: [ stage, font ]
@@ -193,6 +199,8 @@ functions:
       - FileSystemNode
       - Hexagon::Shapes::Hexagon::Renderer
       - Hexagon::Shapes::Hexagon::Stroke
+
+
 dependencies:
   - symbol: Hexagon::AdvancedComponentNavigator::Stage*
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
