@@ -3,6 +3,12 @@ parent_classes:
     scope: public
     init_with: "StageInterface::COMPONENT_NAVIGATOR"
 properties:
+  - name: project_root
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon"'
+    constructor_arg: true
+    getter: true
+    setter: true
   - name: cursor_position
     type: int
     getter: true
@@ -15,12 +21,6 @@ properties:
   - name: selector_color
     type: ALLEGRO_COLOR
     init_with: "al_color_name(\"slategray\")"
-    getter: true
-    setter: true
-  - name: project_root
-    type: std::string
-    init_with: "\"/Users/markoates/Repos/hexagon\""
-    constructor_arg: true
     getter: true
     setter: true
   - name: a_default_empty_event

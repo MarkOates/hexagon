@@ -22,10 +22,10 @@ namespace Hexagon
       class Stage : public StageInterface
       {
       private:
+         std::string project_root;
          int cursor_position;
          bool cursor_position_static;
          ALLEGRO_COLOR selector_color;
-         std::string project_root;
          static ALLEGRO_EVENT a_default_empty_event;
          std::vector<Blast::Project::Component> nodes;
          std::string search_text;
@@ -35,17 +35,17 @@ namespace Hexagon
          Stage(std::string project_root="/Users/markoates/Repos/hexagon");
          ~Stage();
 
+         void set_project_root(std::string project_root);
          void set_cursor_position_static(bool cursor_position_static);
          void set_selector_color(ALLEGRO_COLOR selector_color);
-         void set_project_root(std::string project_root);
          void set_nodes(std::vector<Blast::Project::Component> nodes);
          void set_search_text(std::string search_text);
          void set_mode(std::string mode);
 
+         std::string get_project_root();
          int get_cursor_position();
          bool get_cursor_position_static();
          ALLEGRO_COLOR get_selector_color();
-         std::string get_project_root();
          std::vector<Blast::Project::Component> get_nodes();
          std::string get_search_text();
          std::string get_mode();

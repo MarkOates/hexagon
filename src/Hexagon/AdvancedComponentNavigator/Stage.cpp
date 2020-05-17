@@ -19,10 +19,10 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 Stage::Stage(std::string project_root)
    : StageInterface(StageInterface::COMPONENT_NAVIGATOR)
+   , project_root(project_root)
    , cursor_position(0)
    , cursor_position_static(true)
    , selector_color(al_color_name("slategray"))
-   , project_root(project_root)
    , nodes({})
    , search_text("")
    , mode("navigating_list")
@@ -35,6 +35,12 @@ Stage::~Stage()
 }
 
 
+void Stage::set_project_root(std::string project_root)
+{
+   this->project_root = project_root;
+}
+
+
 void Stage::set_cursor_position_static(bool cursor_position_static)
 {
    this->cursor_position_static = cursor_position_static;
@@ -44,12 +50,6 @@ void Stage::set_cursor_position_static(bool cursor_position_static)
 void Stage::set_selector_color(ALLEGRO_COLOR selector_color)
 {
    this->selector_color = selector_color;
-}
-
-
-void Stage::set_project_root(std::string project_root)
-{
-   this->project_root = project_root;
 }
 
 
@@ -71,6 +71,12 @@ void Stage::set_mode(std::string mode)
 }
 
 
+std::string Stage::get_project_root()
+{
+   return project_root;
+}
+
+
 int Stage::get_cursor_position()
 {
    return cursor_position;
@@ -86,12 +92,6 @@ bool Stage::get_cursor_position_static()
 ALLEGRO_COLOR Stage::get_selector_color()
 {
    return selector_color;
-}
-
-
-std::string Stage::get_project_root()
-{
-   return project_root;
 }
 
 
