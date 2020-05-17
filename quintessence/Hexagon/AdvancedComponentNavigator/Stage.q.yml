@@ -62,11 +62,11 @@ functions:
       return nodes[get_cursor_position()].get_name();
   - name: refresh_list
     body: |
-      Hexagon::AdvancedComponentNavigator::List list(get_project_root());
-      //std::vector<std::string> elements = list.component_names();
-      nodes = list.components_sorted_by_most_recent();
+      Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root());
+      //std::vector<std::string> elements = searcher.component_names();
+      nodes = searcher.components_sorted_by_most_recent();
     body_dependency_symbols:
-      - Hexagon::AdvancedComponentNavigator::List
+      - Hexagon::AdvancedComponentNavigator::ComponentSearcher
   - name: render
     is_override: true
     parameters:
@@ -367,8 +367,8 @@ dependencies:
     headers: [ 'Hexagon/FileSystemNode.hpp' ]
   - symbol: KeyboardCommandMapper
     headers: [ 'AllegroFlare/KeyboardCommandMapper.hpp' ]
-  - symbol: Hexagon::AdvancedComponentNavigator::List
-    headers: [ 'Hexagon/AdvancedComponentNavigator/List.hpp' ]
+  - symbol: Hexagon::AdvancedComponentNavigator::ComponentSearcher
+    headers: [ 'Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp' ]
   - symbol: Hexagon::Shapes::Hexagon::Renderer
     headers: [ Hexagon/Shapes/Hexagon/Renderer.hpp ]
   - symbol: Hexagon::Shapes::Hexagon::Stroke

@@ -1,15 +1,15 @@
 
 #include <gtest/gtest.h>
 
-#include <Hexagon/AdvancedComponentNavigator/List.hpp>
+#include <Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp>
 
 #include <gmock/gmock.h>
 using ::testing::IsSupersetOf;
 
-TEST(Hexagon_AdvancedComponentNavigator_ListTest, component_names__returns_the_expected_response)
+TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest, component_names__returns_the_expected_response)
 {
    std::string project_root_directory = "/Users/markoates/Repos/blast";
-   Hexagon::AdvancedComponentNavigator::List list(project_root_directory);
+   Hexagon::AdvancedComponentNavigator::ComponentSearcher list(project_root_directory);
 
    std::vector<std::string> expected_list = {
       "Blast/DirectoryCreator",
