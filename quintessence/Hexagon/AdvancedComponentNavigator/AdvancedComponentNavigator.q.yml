@@ -21,7 +21,7 @@ properties:
     setter: true
   - name: mode
     type: std::string
-    init_with: '"navigating_list"'
+    init_with: '"typing_in_search_bar"'
     getter: true
     setter: true
   - name: search_text
