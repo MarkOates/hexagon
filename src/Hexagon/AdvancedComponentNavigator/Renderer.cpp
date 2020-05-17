@@ -116,6 +116,7 @@ if (stage.get_cursor_position_static())
 float current_node_root_y_pos = cursor_y - line_height * 1.5;
 ALLEGRO_COLOR font_color = al_color_name("white");
 ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
+ALLEGRO_COLOR selector_color = al_color_name("slategray");
 
 float selector_y = line_height * stage.get_cursor_position() + cursor_y;
 std::string current_selection_label_or_empty_string = stage.get_current_selection_label_or_empty_string();
@@ -130,7 +131,7 @@ if (stage.current_selection_is_valid())
     selector_y+line_height,
     selector_rectangle_roundness,
     selector_rectangle_roundness,
-    stage.get_selector_color()
+    selector_color
   );
 }
 else
@@ -141,7 +142,7 @@ else
                              selector_y+line_height,
                              4,
                              4,
-                             stage.get_selector_color(),
+                             selector_color,
                              3.0);
 }
 
