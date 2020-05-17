@@ -1,6 +1,8 @@
 
 
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/color.h>
 #include <allegro5/allegro_color.h>
@@ -47,17 +49,36 @@ if (!(font))
       error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
       throw std::runtime_error(error_message.str());
    }
-Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
-
-placement3d &place = stage.get_place();
+placement3d &place = stage->get_place();
 place.start_transform();
+render_raw();
+place.restore_transform();
+return;
+
+}
+
+void Renderer::render_raw()
+{
+if (!(stage))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
+placement3d &place = stage.get_place();
 
 float line_stroke_thickness = 2.5;
 
 float roundness = 0.0; //6.0;
 float padding_x = cell_width;
 float padding_y = cell_width;
-//std::cout << " size: " << place.size.x << ", " << place.size.y << std::endl;
 float not_quite_black_value = 0.0;
 ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
 ALLEGRO_COLOR not_quite_black;
@@ -199,7 +220,7 @@ if (list_clipping_occurred_below)
 }
 
 
-place.restore_transform();
+//place.restore_transform();
 
 return;
 

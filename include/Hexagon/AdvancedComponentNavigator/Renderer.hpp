@@ -24,6 +24,7 @@ namespace Hexagon
 
 
       void render();
+      void render_raw();
       };
    }
 }
