@@ -37,8 +37,10 @@ protected:
       ASSERT_NE(nullptr, display);
 
       font = al_create_builtin_font();
+      int cell_width = al_get_text_width(font, "X");
+      int cell_height = al_get_font_line_height(font);
       stage = new Hexagon::AdvancedComponentNavigator::Stage();
-      renderer = new Hexagon::AdvancedComponentNavigator::Renderer(stage, true, font);
+      renderer = new Hexagon::AdvancedComponentNavigator::Renderer(stage, true, font, cell_width, cell_height);
 
       placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
       place.size.x = al_get_display_width(display)/2;
@@ -99,6 +101,22 @@ TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest, render__rende
    al_flip_display();
 
    //sleep(2);
+
+   SUCCEED();
+}
+
+TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest, render__renders_the_component_navigator_nodes)
+{
+   Hexagon::AdvancedComponentNavigator::Renderer &renderer = get_renderer_fixture();
+   Hexagon::AdvancedComponentNavigator::Stage &stage = get_stage_fixture();
+   using Blast::Project::Component;
+
+   stage.set_nodes({ Component("Blast/Foobar"), Component("Blast/BarBar") });
+
+   renderer.render();
+   al_flip_display();
+
+   sleep(2);
 
    SUCCEED();
 }
