@@ -76,6 +76,8 @@ placement3d &place = stage.get_place();
 
 float line_stroke_thickness = 2.5;
 
+// draw backfill and outline
+
 float roundness = 0.0; //6.0;
 float padding_x = cell_width;
 float padding_y = cell_width;
@@ -99,8 +101,8 @@ al_draw_rounded_rectangle(- padding_x, - padding_y,
    place.size.x+padding_x, place.size.y+padding_y,
    roundness, roundness, frame_color, line_stroke_thickness);
 
-//new_render(display, font, cell_width, cell_height);
-//return;
+
+// draw cursor box for focused line
 
 int line = 0;
 int line_height = cell_height * 1.1;
@@ -151,6 +153,9 @@ al_draw_text(font, node_root_font_color,
 bool list_clipping_occurred_above = false;
 bool list_clipping_occurred_below = false;
 
+
+// draw list elements
+
 for (auto &node : stage.get_nodes())
 {
   std::string line_content = node.get_name();
@@ -195,6 +200,9 @@ for (auto &node : stage.get_nodes())
   cursor_y += line_height;
 }
 
+
+// draw list clipping hint arrows
+
 float list_extension_indicator_radius = 30;
 if (list_clipping_occurred_above)
 {
@@ -218,9 +226,6 @@ if (list_clipping_occurred_below)
        }
      ).render();
 }
-
-
-//place.restore_transform();
 
 return;
 
