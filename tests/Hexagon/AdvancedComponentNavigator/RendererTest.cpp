@@ -8,37 +8,8 @@
 
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
 
-class Hexagon_AdvancedComponentNavigator_RendererTest : public ::testing::Test
-{
-protected:
-   ALLEGRO_DISPLAY *display;
 
-   Hexagon_AdvancedComponentNavigator_RendererTest()
-      : display(nullptr)
-   {
-   }
-
-   virtual void SetUp() override
-   {
-      ASSERT_EQ(false, al_is_system_installed());
-      ASSERT_EQ(true, al_init());
-
-      al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
-      ASSERT_EQ(ALLEGRO_OPENGL, al_get_new_display_flags() & ALLEGRO_OPENGL);
-      ASSERT_EQ(ALLEGRO_PROGRAMMABLE_PIPELINE, al_get_new_display_flags() & ALLEGRO_PROGRAMMABLE_PIPELINE);
-      display = al_create_display(800, 600);
-      ASSERT_NE(nullptr, display);
-   }
-
-   virtual void TearDown() override
-   {
-      if (al_get_current_display()) al_destroy_display(al_get_current_display());
-      al_uninstall_system();
-   }
-};
-
-
-class Hexagon_AdvancedComponentNavigator_RendererWithStageTest : public ::testing::Test
+class Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest : public ::testing::Test
 {
 protected:
    ALLEGRO_DISPLAY *display;
@@ -46,7 +17,7 @@ protected:
    ALLEGRO_FONT *font;
    Hexagon::AdvancedComponentNavigator::Renderer *renderer;
 
-   Hexagon_AdvancedComponentNavigator_RendererWithStageTest()
+   Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest()
       : display(nullptr)
       , stage(nullptr)
       , font(nullptr)
@@ -97,19 +68,21 @@ protected:
 };
 
 
-TEST_F(Hexagon_AdvancedComponentNavigator_RendererTest, can_be_created_without_blowing_up)
+TEST(Hexagon_AdvancedComponentNavigator_RendererTest, can_be_created_without_blowing_up)
 {
    Hexagon::AdvancedComponentNavigator::Renderer renderer;
 }
 
-TEST_F(Hexagon_AdvancedComponentNavigator_RendererTest, render__without_a_stage_throws_an_error)
+
+TEST(Hexagon_AdvancedComponentNavigator_RendererTest, render__without_a_stage_throws_an_error)
 {
    Hexagon::AdvancedComponentNavigator::Renderer renderer;
    std::string expected_message = "Renderer::render: error: guard \"stage\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_message);
 }
 
-TEST_F(Hexagon_AdvancedComponentNavigator_RendererTest, render__without_a_font_throws_an_error)
+
+TEST(Hexagon_AdvancedComponentNavigator_RendererTest, render__without_a_font_throws_an_error)
 {
    Hexagon::AdvancedComponentNavigator::Stage stage;
    Hexagon::AdvancedComponentNavigator::Renderer renderer(&stage);
@@ -117,14 +90,15 @@ TEST_F(Hexagon_AdvancedComponentNavigator_RendererTest, render__without_a_font_t
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_message);
 }
 
-TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithStageTest, render__renders_the_component_navigator)
+
+TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest, render__renders_the_component_navigator)
 {
    Hexagon::AdvancedComponentNavigator::Renderer &renderer = get_renderer_fixture();
 
    renderer.render();
    al_flip_display();
 
-   sleep(2);
+   //sleep(2);
 
    SUCCEED();
 }
