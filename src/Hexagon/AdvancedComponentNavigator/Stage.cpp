@@ -64,13 +64,27 @@ constexpr auto OPTION = KeyboardCommandMapper::OPTION;
 
 KeyboardCommandMapper mapping;
 
-static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
 static const std::string MOVE_CURSOR_UP = "move_cursor_up";
 static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
+static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
+static const std::string SET_MODE_TO_NAVIGATING_LIST = "set_mode_to_navigating_list";
+static const std::string SET_MODE_TO_TYPING_IN_SEARCH_BAR = "set_mode_to_typing_in_search_bar";
+static const std::string REFRESH_LIST = "refresh_list";
 
-mapping.set_mapping(ALLEGRO_KEY_J, NO_MODIFIER, { MOVE_CURSOR_DOWN });
-mapping.set_mapping(ALLEGRO_KEY_K, NO_MODIFIER, { MOVE_CURSOR_UP });
+if (component.is_mode_navigating_list())
+{
+   mapping.set_mapping(ALLEGRO_KEY_J, NO_MODIFIER, { MOVE_CURSOR_DOWN });
+   mapping.set_mapping(ALLEGRO_KEY_K, NO_MODIFIER, { MOVE_CURSOR_UP });
+   mapping.set_mapping(ALLEGRO_KEY_UP, NO_MODIFIER, { MOVE_CURSOR_UP });
+   mapping.set_mapping(ALLEGRO_KEY_DOWN, NO_MODIFIER, { MOVE_CURSOR_DOWN });
 
+   mapping.set_mapping(ALLEGRO_KEY_SLASH, NO_MODIFIER, { SET_MODE_TO_TYPING_IN_SEARCH_BAR });
+}
+else if (component.is_mode_typing_in_search_bar())
+{
+   mapping.set_mapping(ALLEGRO_KEY_TAB, NO_MODIFIER,
+      { REFRESH_LIST, MOVE_CURSOR_TO_TOP, SET_MODE_TO_NAVIGATING_LIST });
+}
 return mapping;
 
 }
@@ -110,13 +124,30 @@ return;
 
 void Stage::process_char_event(int keycode, int unichar, bool is_repeat)
 {
-if (keycode == ALLEGRO_KEY_BACKSPACE) {}
+if (keycode == ALLEGRO_KEY_BACKSPACE)
+{
+   if (component.is_mode_typing_in_search_bar())
+   {
+      std::string search_text = component.get_search_text();
+      if (!search_text.empty())
+      {
+         search_text.pop_back();
+         component.set_search_text(search_text);
+      }
+   }
+}
 else if (keycode == ALLEGRO_KEY_TAB) {}
 else if (keycode == ALLEGRO_KEY_ENTER) {}
 else if (keycode == ALLEGRO_KEY_ESCAPE) {}
 else if (keycode == ALLEGRO_KEY_DELETE) {}
 else
 {
+   if (component.is_mode_typing_in_search_bar())
+   {
+      std::string search_text = component.get_search_text();
+      search_text += unichar;
+      component.set_search_text(search_text);
+   }
    //search_text += unichar; // <-- for example
 }
 return;
