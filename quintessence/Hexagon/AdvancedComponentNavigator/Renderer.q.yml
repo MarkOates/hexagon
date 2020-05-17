@@ -7,10 +7,6 @@ properties:
     type: bool
     init_with: true
     constructor_arg: true
-  - name: display
-    type: ALLEGRO_DISPLAY*
-    init_with: nullptr
-    constructor_arg: true
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr

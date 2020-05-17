@@ -129,7 +129,7 @@ functions:
         type: int
         default_argument: 20
     body: |
-      Hexagon::AdvancedComponentNavigator::Renderer renderer(this, is_focused, display, font, cell_width, cell_height);
+      Hexagon::AdvancedComponentNavigator::Renderer renderer(this, is_focused, font, cell_width, cell_height);
       renderer.render();
       return;
 

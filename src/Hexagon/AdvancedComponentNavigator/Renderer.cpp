@@ -18,10 +18,9 @@ namespace AdvancedComponentNavigator
 {
 
 
-Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
+Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, bool is_focused, ALLEGRO_FONT* font, int cell_width, int cell_height)
    : stage(stage)
    , is_focused(is_focused)
-   , display(display)
    , font(font)
    , cell_width(cell_width)
    , cell_height(cell_height)

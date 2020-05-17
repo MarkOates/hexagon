@@ -179,7 +179,7 @@ nodes = searcher.components_sorted_by_most_recent();
 
 void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
-Hexagon::AdvancedComponentNavigator::Renderer renderer(this, is_focused, display, font, cell_width, cell_height);
+Hexagon::AdvancedComponentNavigator::Renderer renderer(this, is_focused, font, cell_width, cell_height);
 renderer.render();
 return;
 

@@ -2,7 +2,6 @@
 
 
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
-#include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 
 
@@ -15,13 +14,12 @@ namespace Hexagon
       private:
          Hexagon::AdvancedComponentNavigator::Stage* stage;
          bool is_focused;
-         ALLEGRO_DISPLAY* display;
          ALLEGRO_FONT* font;
          int cell_width;
          int cell_height;
 
       public:
-         Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage=nullptr, bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
+         Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage=nullptr, bool is_focused=true, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
          ~Renderer();
 
 

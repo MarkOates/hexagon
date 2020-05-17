@@ -19,3 +19,11 @@ TEST(Hexagon_AdvancedComponentNavigator_RendererTest, render__without_a_stage_th
    std::string expected_message = "Renderer::render: error: guard \"stage\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_message);
 }
+
+TEST(Hexagon_AdvancedComponentNavigator_RendererTest, render__without_a_font_throws_an_error)
+{
+   Hexagon::AdvancedComponentNavigator::Stage stage;
+   Hexagon::AdvancedComponentNavigator::Renderer renderer(&stage);
+   std::string expected_message = "Renderer::render: error: guard \"font\" not met";
+   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_message);
+}
