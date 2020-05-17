@@ -4,10 +4,13 @@
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Blast/Project/Component.hpp>
 #include <Hexagon/ActionData.hpp>
+#include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
+#include <functional>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -48,6 +51,7 @@ namespace Hexagon
          std::string get_mode();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       KeyboardCommandMapper build_keyboard_command_mapping();
+      std::map<std::string, std::function<void(Stage&)>> build_local_events_dictionary();
       void move_cursor_up();
       void move_cursor_down();
       void move_cursor_to_top();
