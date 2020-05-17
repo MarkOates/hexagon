@@ -170,15 +170,21 @@ functions:
         type: ALLEGRO_EVENT&
         default_argument: "get_a_default_empty_event_ref()"
     body: |
+      constexpr auto NO_MODIFIER = KeyboardCommandMapper::NO_MODIFIER;
+      constexpr auto SHIFT = KeyboardCommandMapper::SHIFT;
+      constexpr auto CTRL = KeyboardCommandMapper::CTRL;
+      constexpr auto ALT = KeyboardCommandMapper::ALT;
+      constexpr auto COMMAND = KeyboardCommandMapper::COMMAND;
+      constexpr auto OPTION = KeyboardCommandMapper::OPTION;
+
       KeyboardCommandMapper keyboard_command_mapper;
-                                                 // al_keycodee, shift, ctrl, alt, command, { command_identifier }
+
       static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
       static const std::string MOVE_CURSOR_UP = "move_cursor_up";
       static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
 
-                                         // al_keycodee,         shift, ctrl, alt, command, { command_identifier }
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J,         false, false, false, false, { MOVE_CURSOR_DOWN });
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K,         false, false, false, false, { MOVE_CURSOR_UP });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_J, NO_MODIFIER, { MOVE_CURSOR_DOWN });
+      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_K, NO_MODIFIER, { MOVE_CURSOR_UP });
 
       bool event_caught = false;
 
