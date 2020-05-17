@@ -249,7 +249,7 @@ for (auto &node : nodes)
   }
 
   //if (!node.has_test()) line_content += " (missing test)";
-  
+
   float final_y = pos_y + cursor_y;
   // clip the region of text displayed in the list
   if (final_y < 0)
