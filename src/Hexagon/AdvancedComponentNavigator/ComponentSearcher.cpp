@@ -12,8 +12,9 @@ namespace AdvancedComponentNavigator
 {
 
 
-ComponentSearcher::ComponentSearcher(std::string project_root_directory)
+ComponentSearcher::ComponentSearcher(std::string project_root_directory, std::string search_text)
    : project_root_directory(project_root_directory)
+   , search_text(search_text)
 {
 }
 

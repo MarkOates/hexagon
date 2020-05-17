@@ -14,9 +14,10 @@ namespace Hexagon
       {
       private:
          std::string project_root_directory;
+         std::string search_text;
 
       public:
-         ComponentSearcher(std::string project_root_directory="");
+         ComponentSearcher(std::string project_root_directory="", std::string search_text="");
          ~ComponentSearcher();
 
 

@@ -3,6 +3,10 @@ properties:
     type: std::string
     default: "/Users/markoates/Repos/hexagon"
     constructor_arg: true
+  - name: search_text
+    type: std::string
+    default: '""'
+    constructor_arg: true
 functions:
   - name: component_names
     type: std::vector<std::string>
