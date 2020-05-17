@@ -23,6 +23,7 @@ namespace Hexagon
          std::string project_root;
          static ALLEGRO_EVENT a_default_empty_event;
          std::vector<Blast::Project::Component> nodes;
+         std::string search_string;
 
       public:
          Stage(std::string project_root="/Users/markoates/Repos/hexagon");
@@ -32,11 +33,13 @@ namespace Hexagon
          void set_selector_color(ALLEGRO_COLOR selector_color);
          void set_project_root(std::string project_root);
          void set_nodes(std::vector<Blast::Project::Component> nodes);
+         void set_search_string(std::string search_string);
 
          int get_cursor_position();
          ALLEGRO_COLOR get_selector_color();
          std::string get_project_root();
          std::vector<Blast::Project::Component> get_nodes();
+         std::string get_search_string();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void move_cursor_up();
       void move_cursor_down();

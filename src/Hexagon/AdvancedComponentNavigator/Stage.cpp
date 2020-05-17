@@ -30,6 +30,7 @@ Stage::Stage(std::string project_root)
    , selector_color(al_color_name("slategray"))
    , project_root(project_root)
    , nodes({})
+   , search_string("")
 {
 }
 
@@ -63,6 +64,12 @@ void Stage::set_nodes(std::vector<Blast::Project::Component> nodes)
 }
 
 
+void Stage::set_search_string(std::string search_string)
+{
+   this->search_string = search_string;
+}
+
+
 int Stage::get_cursor_position()
 {
    return cursor_position;
@@ -84,6 +91,12 @@ std::string Stage::get_project_root()
 std::vector<Blast::Project::Component> Stage::get_nodes()
 {
    return nodes;
+}
+
+
+std::string Stage::get_search_string()
+{
+   return search_string;
 }
 
 
@@ -201,7 +214,7 @@ if (current_selection_is_valid())
 }
 else
 {
-  al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
+   al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
 }
 
 std::string node_root_val = get_project_root();

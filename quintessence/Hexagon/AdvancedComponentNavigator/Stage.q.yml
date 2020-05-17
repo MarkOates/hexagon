@@ -32,6 +32,11 @@ properties:
     init_with: "{}"
     getter: true
     setter: true
+  - name: search_string
+    type: std::string
+    init_with: '""'
+    getter: true
+    setter: true
 functions:
   - name: move_cursor_up
     type: void
@@ -147,7 +152,7 @@ functions:
       }
       else
       {
-        al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
+         al_draw_rounded_rectangle(0, selector_y, selector_rectangle_width, selector_y+line_height, 4, 4, get_selector_color(), 3.0);
       }
 
       std::string node_root_val = get_project_root();
