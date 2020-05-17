@@ -1,0 +1,21 @@
+propertis:
+  - name: is_focused
+    type: bool
+    init_with: true
+  - name: display
+    type: ALLEGRO_DISPLAY*
+    init_with: nullptr
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+  - name: cell_width
+    type: int
+    init_with: 10
+  - name: cell_height
+    type: int
+    init_with: 20
+functions:
+  - name: render
+    type: void
+    body: |
+      return;
