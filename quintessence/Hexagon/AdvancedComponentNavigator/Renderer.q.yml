@@ -2,21 +2,27 @@ properties:
   - name: stage
     type: Hexagon::AdvancedComponentNavigator::Stage*
     init_with: nullptr
+    constructor_arg: true
   - name: is_focused
     type: bool
     init_with: true
+    constructor_arg: true
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
+    constructor_arg: true
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
+    constructor_arg: true
   - name: cell_width
     type: int
     init_with: 10
+    constructor_arg: true
   - name: cell_height
     type: int
     init_with: 20
+    constructor_arg: true
 functions:
   - name: render
     type: void

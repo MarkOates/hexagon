@@ -21,7 +21,7 @@ namespace Hexagon
          int cell_height;
 
       public:
-         Renderer();
+         Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage=nullptr, bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
          ~Renderer();
 
 

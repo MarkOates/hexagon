@@ -129,7 +129,11 @@ functions:
         type: int
         default_argument: 20
     body: |
-      if (!font) throw std::runtime_error("font missing");
+      Hexagon::AdvancedComponentNavigator::Renderer renderer(this, is_focused, display, font, cell_width, cell_height);
+      renderer.render();
+      return;
+
+      //if (!font) throw std::runtime_error("font missing");
 
       placement3d &place = get_place();
       place.start_transform();
@@ -278,6 +282,7 @@ functions:
 
       return;
     body_dependency_symbols:
+      - Hexagon::AdvancedComponentNavigator::Renderer
       - color::mix
       - al_color_name
       - al_draw_circle
@@ -398,7 +403,8 @@ functions:
 dependencies:
 
 
-
+  - symbol: Hexagon::AdvancedComponentNavigator::Renderer
+    headers: [ Hexagon/AdvancedComponentNavigator/Renderer.hpp ]
   - symbol: color::mix
     headers: [ 'allegro_flare/color.h' ]
   - symbol: StageInterface
