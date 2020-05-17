@@ -142,10 +142,6 @@ functions:
         type: ALLEGRO_EVENT&
         default_argument: "get_a_default_empty_event_ref()"
     body: |
-      KeyboardCommandMapper keyboard_command_mapper = build_keyboard_command_mapping();
-
-      bool event_caught = false;
-
       switch(event.type)
       {
       case ALLEGRO_EVENT_KEY_UP:
@@ -153,17 +149,22 @@ functions:
       case ALLEGRO_EVENT_KEY_DOWN:
          break;
       case ALLEGRO_EVENT_KEY_CHAR:
-         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
-         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
-         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
-         bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
-         bool ctrl_or_command = ctrl || command;
+         {
+            KeyboardCommandMapper keyboard_command_mapper = build_keyboard_command_mapping();
+            bool event_caught = false;
 
-         std::vector<std::string> mapped_events =
-            keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
-         if (!mapped_events.empty()) event_caught = true;
-         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
-         if (!event_caught) process_char_event(event.keyboard.keycode, event.keyboard.unichar, event.keyboard.repeat);
+            bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+            bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+            bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+            bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+            bool ctrl_or_command = ctrl || command;
+
+            std::vector<std::string> mapped_events =
+               keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
+            if (!mapped_events.empty()) event_caught = true;
+            for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+            if (!event_caught) process_char_event(event.keyboard.keycode, event.keyboard.unichar, event.keyboard.repeat);
+         }
          break;
       }
       return;
