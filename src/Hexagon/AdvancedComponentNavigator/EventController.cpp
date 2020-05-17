@@ -36,7 +36,6 @@ if (!(stage))
    }
 using Hexagon::AdvancedComponentNavigator::Stage;
 Stage &stage = *this->stage;
-bool executed = false;
 
 std::map<std::string, std::function<void(Stage&)>> local_events = {
    { "refresh_list", &Stage::refresh_list },
