@@ -185,8 +185,17 @@ return;
 
 }
 
-void Stage::process_char_event(int keycode, int unichar)
+void Stage::process_char_event(int keycode, int unichar, bool is_repeat)
 {
+if (keycode == ALLEGRO_KEY_BACKSPACE) {}
+else if (keycode == ALLEGRO_KEY_TAB) {}
+else if (keycode == ALLEGRO_KEY_ENTER) {}
+else if (keycode == ALLEGRO_KEY_ESCAPE) {}
+else if (keycode == ALLEGRO_KEY_DELETE) {}
+else
+{
+   //search_text += unichar; // <-- for example
+}
 return;
 
 }
@@ -226,7 +235,7 @@ case ALLEGRO_EVENT_KEY_CHAR:
    std::vector<std::string> mapped_events = keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
    if (!mapped_events.empty()) event_caught = true;
    for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
-   if (!event_caught) process_char_event(event.keyboard.keycode, event.keyboard.unichar);
+   if (!event_caught) process_char_event(event.keyboard.keycode, event.keyboard.unichar, event.keyboard.repeat);
    break;
 }
 return;
