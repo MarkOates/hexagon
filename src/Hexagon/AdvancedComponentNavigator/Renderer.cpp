@@ -57,14 +57,31 @@ Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
 Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
 
 ALLEGRO_COLOR not_quite_black = build_not_quite_black_color();
+bool focus_is_search_bar = component.is_mode_typing_in_search_bar();
 
-ALLEGRO_COLOR search_text_font_color =
-   component.is_mode_typing_in_search_bar() ? al_color_name("chartreuse") : frame_color;
+ALLEGRO_COLOR search_text_font_color = focus_is_search_bar ? al_color_name("chartreuse") : frame_color;
 std::string search_text_val = component.get_search_text();
 float search_text_width = al_get_text_width(font, search_text_val.c_str());
 float search_text_height = al_get_font_line_height(font);
 float search_text_y = search_text_height * -1.3;
+// background
 al_draw_filled_rectangle(0, search_text_y, search_text_width, search_text_y+search_text_height, not_quite_black);
+
+// draw rectangle if typing
+if (focus_is_search_bar)
+{
+   ALLEGRO_COLOR col = search_text_font_color;
+   float padding = 4.0f;
+   float roundness = 3.0f;
+   al_draw_rounded_rectangle(
+         0-padding,
+         search_text_y-padding,
+         search_text_width+padding,
+         search_text_y+search_text_height+padding,
+         roundness, roundness,
+         col, 3.0);
+}
+
 al_draw_text(font, search_text_font_color, 0, search_text_y, 0, search_text_val.c_str());
 return;
 
