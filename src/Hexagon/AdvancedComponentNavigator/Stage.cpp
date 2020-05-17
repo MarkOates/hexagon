@@ -2,7 +2,6 @@
 
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
-#include <Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
 #include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
@@ -21,11 +20,6 @@ Stage::Stage(std::string project_root)
    : StageInterface(StageInterface::COMPONENT_NAVIGATOR)
    , project_root(project_root)
    , component(project_root)
-   , X_cursor_position(0)
-   , X_cursor_position_static(true)
-   , X_nodes({})
-   , X_search_text("")
-   , X_mode("navigating_list")
 {
 }
 
@@ -41,63 +35,9 @@ void Stage::set_project_root(std::string project_root)
 }
 
 
-void Stage::set_X_cursor_position_static(bool X_cursor_position_static)
-{
-   this->X_cursor_position_static = X_cursor_position_static;
-}
-
-
-void Stage::set_X_nodes(std::vector<Blast::Project::Component> X_nodes)
-{
-   this->X_nodes = X_nodes;
-}
-
-
-void Stage::set_X_search_text(std::string X_search_text)
-{
-   this->X_search_text = X_search_text;
-}
-
-
-void Stage::set_X_mode(std::string X_mode)
-{
-   this->X_mode = X_mode;
-}
-
-
 std::string Stage::get_project_root()
 {
    return project_root;
-}
-
-
-int Stage::get_X_cursor_position()
-{
-   return X_cursor_position;
-}
-
-
-bool Stage::get_X_cursor_position_static()
-{
-   return X_cursor_position_static;
-}
-
-
-std::vector<Blast::Project::Component> Stage::get_X_nodes()
-{
-   return X_nodes;
-}
-
-
-std::string Stage::get_X_search_text()
-{
-   return X_search_text;
-}
-
-
-std::string Stage::get_X_mode()
-{
-   return X_mode;
 }
 
 
@@ -149,27 +89,6 @@ return local_events;
 
 }
 
-void Stage::move_cursor_up()
-{
-component.move_cursor_up();
-//cursor_position -= 1;
-
-}
-
-void Stage::move_cursor_down()
-{
-component.move_cursor_down();
-//cursor_position += 1;
-
-}
-
-void Stage::move_cursor_to_top()
-{
-component.move_cursor_to_top();
-//cursor_position = 0;
-
-}
-
 bool Stage::current_selection_is_valid()
 {
 return component.current_selection_is_valid();
@@ -178,33 +97,11 @@ return component.current_selection_is_valid();
 
 }
 
-void Stage::set_mode_to_navigating_list()
-{
-return component.set_mode_to_navigating_list();
-//this->mode = "navigating_list";
-
-}
-
-void Stage::set_mode_to_typing_in_search_bar()
-{
-return component.set_mode_to_typing_in_search_bar();
-//this->mode = "typing_in_search_bar";
-
-}
-
 std::string Stage::get_current_selection_label_or_empty_string()
 {
 return component.get_current_selection_label_or_empty_string();
 //if (!current_selection_is_valid()) return "";
 //return nodes[component.get_cursor_position()].get_name();
-
-}
-
-void Stage::refresh_list()
-{
-return component.refresh_list();
-//Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
-//nodes = searcher.components_sorted_by_most_recent();
 
 }
 

@@ -13,35 +13,11 @@ properties:
     type: Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator
     init_with: 'project_root'
     getter_ref: true
-  - name: X_cursor_position
-    type: int
-    getter: true
-    init_with: 0
-  - name: X_cursor_position_static
-    type: bool
-    getter: true
-    setter: true
-    init_with: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
-  - name: X_nodes
-    type: std::vector<Blast::Project::Component>
-    init_with: "{}"
-    getter: true
-    setter: true
-  - name: X_search_text
-    type: std::string
-    init_with: '""'
-    getter: true
-    setter: true
-  - name: X_mode
-    type: std::string
-    init_with: '"navigating_list"'
-    getter: true
-    setter: true
 
 
 
@@ -86,30 +62,6 @@ functions:
 
 
 
-  - name: move_cursor_up
-    type: void
-    body: |
-      component.move_cursor_up();
-      //cursor_position -= 1;
-
-
-
-  - name: move_cursor_down
-    type: void
-    body: |
-      component.move_cursor_down();
-      //cursor_position += 1;
-
-
-
-  - name: move_cursor_to_top
-    type: void
-    body: |
-      component.move_cursor_to_top();
-      //cursor_position = 0;
-
-
-
   - name: current_selection_is_valid
     type: bool
     body: |
@@ -119,38 +71,12 @@ functions:
 
 
 
-  - name: set_mode_to_navigating_list
-    type: void
-    body: |
-      return component.set_mode_to_navigating_list();
-      //this->mode = "navigating_list";
-
-
-
-  - name: set_mode_to_typing_in_search_bar
-    type: void
-    body: |
-      return component.set_mode_to_typing_in_search_bar();
-      //this->mode = "typing_in_search_bar";
-
-
-
   - name: get_current_selection_label_or_empty_string
     type: std::string
     body: |
       return component.get_current_selection_label_or_empty_string();
       //if (!current_selection_is_valid()) return "";
       //return nodes[component.get_cursor_position()].get_name();
-
-
-
-  - name: refresh_list
-    body: |
-      return component.refresh_list();
-      //Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
-      //nodes = searcher.components_sorted_by_most_recent();
-    body_dependency_symbols:
-      - Hexagon::AdvancedComponentNavigator::ComponentSearcher
 
 
 
