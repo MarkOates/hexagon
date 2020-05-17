@@ -40,9 +40,9 @@ std::vector<Blast::Project::Component> ComponentSearcher::components_sorted_by_m
 std::vector<Blast::Project::Component> result;
 std::vector<std::string> elements = {};
 elements = Blast::Project::ComponentLister(project_root_directory).components_sorted_by_most_recent();
-for (auto &component_name : elements)
+for (auto &element : elements)
 {
-   result.push_back(Blast::Project::Component(component_name, project_root_directory));
+   result.push_back(Blast::Project::Component(element, project_root_directory));
 }
 return result;
 
