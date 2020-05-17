@@ -143,12 +143,15 @@ TEST_F(Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest, render__rende
    using Blast::Project::Component;
 
    component.set_search_text("Blast");
-   component.refresh_list();
+
+   stage.process_local_event("refresh_list");
+   stage.process_local_event("move_cursor_down");
+   stage.process_local_event("move_cursor_down");
 
    renderer.render();
    al_flip_display();
 
-   //sleep(2);
+   sleep(1);
 
    SUCCEED();
 }

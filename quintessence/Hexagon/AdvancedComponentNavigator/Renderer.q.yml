@@ -76,7 +76,6 @@ functions:
       int line = 0;
       int line_height = cell_height * 1.1;
       int pos_x = 0;
-      int pos_y = 0;
       int cursor_y = 0;
       if (component.get_cursor_position_static())
       {
@@ -85,7 +84,8 @@ functions:
       float current_node_root_y_pos = cursor_y - line_height * 1.5;
       ALLEGRO_COLOR font_color = al_color_name("white");
       ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
-      ALLEGRO_COLOR selector_color = al_color_name("slategray");
+      ALLEGRO_COLOR selector_fill_color = color::transparent; //color::mix(al_color_name("slategray"), 0.4);
+      ALLEGRO_COLOR selector_outline_color = al_color_name("chartreuse");
 
       float selector_y = line_height * component.get_cursor_position() + cursor_y;
       std::string current_selection_label_or_empty_string = component.get_current_selection_label_or_empty_string();
@@ -100,8 +100,16 @@ functions:
           selector_y+line_height,
           selector_rectangle_roundness,
           selector_rectangle_roundness,
-          selector_color
+          selector_fill_color
         );
+         al_draw_rounded_rectangle(0,
+                                   selector_y,
+                                   selector_rectangle_width,
+                                   selector_y+line_height,
+                                   4,
+                                   4,
+                                   selector_outline_color,
+                                   2.0);
       }
       else
       {
@@ -111,7 +119,7 @@ functions:
                                    selector_y+line_height,
                                    4,
                                    4,
-                                   selector_color,
+                                   selector_outline_color,
                                    3.0);
       }
 
@@ -129,7 +137,8 @@ functions:
 
       // draw the search_text
 
-      ALLEGRO_COLOR search_text_font_color = al_color_name("yellow");
+      ALLEGRO_COLOR search_text_font_color =
+         component.is_mode_typing_in_search_bar() ? al_color_name("chartreuse") : frame_color;
       std::string search_text_val = component.get_search_text();
       float search_text_width = al_get_text_width(font, search_text_val.c_str());
       float search_text_height = al_get_font_line_height(font);
@@ -167,7 +176,7 @@ functions:
 
         //if (!node.has_test()) line_content += " (missing test)";
 
-        float final_y = pos_y + cursor_y;
+        float final_y = cursor_y;
         // clip the region of text displayed in the list
         if (final_y < 0)
         {
@@ -179,7 +188,7 @@ functions:
         }
         else
         {
-           al_draw_text(font, col, 0, pos_y + cursor_y, 0, line_content.c_str());
+           al_draw_text(font, col, 0, cursor_y, 0, line_content.c_str());
         }
         cursor_y += line_height;
       }
