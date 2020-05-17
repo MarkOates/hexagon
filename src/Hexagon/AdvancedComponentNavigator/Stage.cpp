@@ -22,7 +22,6 @@ Stage::Stage(std::string project_root)
    , project_root(project_root)
    , cursor_position(0)
    , cursor_position_static(true)
-   , selector_color(al_color_name("slategray"))
    , nodes({})
    , search_text("")
    , mode("navigating_list")
@@ -44,12 +43,6 @@ void Stage::set_project_root(std::string project_root)
 void Stage::set_cursor_position_static(bool cursor_position_static)
 {
    this->cursor_position_static = cursor_position_static;
-}
-
-
-void Stage::set_selector_color(ALLEGRO_COLOR selector_color)
-{
-   this->selector_color = selector_color;
 }
 
 
@@ -86,12 +79,6 @@ int Stage::get_cursor_position()
 bool Stage::get_cursor_position_static()
 {
    return cursor_position_static;
-}
-
-
-ALLEGRO_COLOR Stage::get_selector_color()
-{
-   return selector_color;
 }
 
 

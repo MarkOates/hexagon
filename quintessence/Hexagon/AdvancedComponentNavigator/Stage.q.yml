@@ -68,7 +68,7 @@ functions:
 
 
   - name: build_local_events_dictionary
-    type: std::map<std::string, std::function<void(&)>>
+    type: std::map<std::string, std::function<void(Stage&)>>
     body: |
       std::map<std::string, std::function<void(Stage&)>> local_events = {
          { "refresh_list", &Stage::refresh_list },
