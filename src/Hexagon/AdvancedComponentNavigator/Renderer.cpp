@@ -58,6 +58,12 @@ return;
 
 }
 
+void Renderer::draw_search_text_box()
+{
+return;
+
+}
+
 void Renderer::render_raw()
 {
 if (!(stage))
@@ -117,15 +123,22 @@ if (component.get_cursor_position_static())
 float current_node_root_y_pos = cursor_y - line_height * 1.5;
 ALLEGRO_COLOR font_color = al_color_name("white");
 ALLEGRO_COLOR node_folder_color = al_color_name("lightgray");
-ALLEGRO_COLOR selector_fill_color = color::transparent; //color::mix(al_color_name("slategray"), 0.4);
-ALLEGRO_COLOR selector_outline_color = al_color_name("chartreuse");
-ALLEGRO_COLOR halo_color = al_color_name("chartreuse");
+
+bool mode_navigating_list = component.is_mode_navigating_list();
+ALLEGRO_COLOR selector_outline_color =
+   mode_navigating_list ? al_color_name("chartreuse") : al_color_name("slategray");
+ALLEGRO_COLOR selector_fill_color =
+   mode_navigating_list ? color::transparent : al_color_name("darkslategray");
+ALLEGRO_COLOR halo_color =
+   mode_navigating_list ? al_color_name("chartreuse") : al_color_name("slategray");
+
 float cursor_thickness = 3.0f;
 
 float selector_y = line_height * component.get_cursor_position() + cursor_y;
 std::string current_selection_label_or_empty_string = component.get_current_selection_label_or_empty_string();
 float selector_rectangle_width = al_get_text_width(font, current_selection_label_or_empty_string.c_str());
 float selector_rectangle_roundness = 0; //4;
+
 if (component.current_selection_is_valid())
 {
   al_draw_filled_rounded_rectangle(
@@ -145,19 +158,23 @@ if (component.current_selection_is_valid())
                              4,
                              selector_outline_color,
                              2.0);
-   // halo
-   int max_outset = 18 + 7 * std::sin(al_get_time() * 3); // is actually animated, but only visible
-                                                          // when every frame is rendering
-   for (int outset=1; outset<max_outset; outset++)
+
+   if (component.is_mode_navigating_list())
    {
-     float color_opacity = (1.0 - (float)outset / max_outset) * 0.25;
-     ALLEGRO_COLOR col = color::color(halo_color, color_opacity);
-     al_draw_rounded_rectangle(
-       0 - outset,
-       selector_y - outset,
-       selector_rectangle_width + outset,
-       selector_y + line_height + outset,
-       2.0, 2.0, col, cursor_thickness);
+      // halo
+      int max_outset = 18 + 7 * std::sin(al_get_time() * 3); // is actually animated, but only visible
+                                                          // when every frame is rendering
+      for (int outset=1; outset<max_outset; outset++)
+      {
+        float color_opacity = (1.0 - (float)outset / max_outset) * 0.25;
+        ALLEGRO_COLOR col = color::color(halo_color, color_opacity);
+        al_draw_rounded_rectangle(
+          0 - outset,
+          selector_y - outset,
+          selector_rectangle_width + outset,
+          selector_y + line_height + outset,
+          2.0, 2.0, col, cursor_thickness);
+      }
    }
 }
 else
