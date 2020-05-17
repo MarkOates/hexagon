@@ -1,4 +1,98 @@
-functions:
-  - name: run
+properties:
+  - name: project_root
     type: std::string
-    body: return "Hello World!";
+    init_with: '"/Users/markoates/Repos/hexagon"'
+    constructor_arg: true
+    getter: true
+    setter: true
+  - name: cursor_position
+    type: int
+    getter: true
+    init_with: 0
+  - name: nodes
+    type: std::vector<Blast::Project::Component>
+    init_with: "{}"
+    getter: true
+    setter: true
+  - name: mode
+    type: std::string
+    init_with: '"navigating_list"'
+    getter: true
+    setter: true
+  - name: search_text
+    type: std::string
+    init_with: '""'
+    getter: true
+    setter: true
+
+
+
+functions:
+
+
+
+  - name: move_cursor_up
+    type: void
+    body: |
+      cursor_position -= 1;
+
+
+
+  - name: move_cursor_down
+    type: void
+    body: |
+      cursor_position += 1;
+
+
+
+  - name: move_cursor_to_top
+    type: void
+    body: |
+      cursor_position = 0;
+
+
+
+  - name: current_selection_is_valid
+    type: bool
+    body: |
+      if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
+      return true;
+
+
+
+  - name: set_mode_to_navigating_list
+    type: void
+    body: |
+      this->mode = "navigating_list";
+
+
+
+  - name: set_mode_to_typing_in_search_bar
+    type: void
+    body: |
+      this->mode = "typing_in_search_bar";
+
+
+
+  - name: get_current_selection_label_or_empty_string
+    type: std::string
+    body: |
+      if (!current_selection_is_valid()) return "";
+      return nodes[get_cursor_position()].get_name();
+
+
+
+  - name: refresh_list
+    body: |
+      Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
+      nodes = searcher.components_sorted_by_most_recent();
+    body_dependency_symbols:
+      - Hexagon::AdvancedComponentNavigator::ComponentSearcher
+
+
+dependencies:
+  - symbol: Hexagon::AdvancedComponentNavigator::ComponentSearcher
+    headers: [ 'Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp' ]
+  - symbol: std::vector<Blast::Project::Component>
+    headers: [ vector, Blast/Project/Component.hpp ]
+
