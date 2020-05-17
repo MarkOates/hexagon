@@ -179,7 +179,18 @@ return;
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
-Hexagon::AdvancedComponentNavigator::EventController event_controller(this);
+using Hexagon::AdvancedComponentNavigator::Stage;
+
+std::map<std::string, std::function<void(Stage&)>> local_events = {
+   { "refresh_list", &Stage::refresh_list },
+   { "move_cursor_to_top", &Stage::move_cursor_to_top },
+   { "move_cursor_up", &Stage::move_cursor_up },
+   { "move_cursor_down", &Stage::move_cursor_down },
+   { "set_mode_to_navigating_list", &Stage::set_mode_to_navigating_list },
+   { "set_mode_to_typing_in_search_bar", &Stage::set_mode_to_typing_in_search_bar },
+};
+
+Hexagon::AdvancedComponentNavigator::EventController event_controller(this, local_events);
 event_controller.process_local_event(event_name, action_data);
 return;
 

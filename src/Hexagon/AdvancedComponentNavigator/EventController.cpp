@@ -15,8 +15,9 @@ namespace AdvancedComponentNavigator
 {
 
 
-EventController::EventController(Hexagon::AdvancedComponentNavigator::Stage* stage)
+EventController::EventController(Hexagon::AdvancedComponentNavigator::Stage* stage, std::map<std::string, std::function<void(Stage&)>> event_dictionary)
    : stage(stage)
+   , event_dictionary(event_dictionary)
 {
 }
 
@@ -37,17 +38,8 @@ if (!(stage))
 using Hexagon::AdvancedComponentNavigator::Stage;
 Stage &stage = *this->stage;
 
-std::map<std::string, std::function<void(Stage&)>> local_events = {
-   { "refresh_list", &Stage::refresh_list },
-   { "move_cursor_to_top", &Stage::move_cursor_to_top },
-   { "move_cursor_up", &Stage::move_cursor_up },
-   { "move_cursor_down", &Stage::move_cursor_down },
-   { "set_mode_to_navigating_list", &Stage::set_mode_to_navigating_list },
-   { "set_mode_to_typing_in_search_bar", &Stage::set_mode_to_typing_in_search_bar },
-};
-
-std::map<std::string, std::function<void(Stage&)>>::iterator it = local_events.find(event_name);
-if (it == local_events.end())
+std::map<std::string, std::function<void(Stage&)>>::iterator it = event_dictionary.find(event_name);
+if (it == event_dictionary.end())
 {
    std::stringstream error_message;
    error_message << "AdvancedComponentNavigator::EventController::process_local_event: error: "
@@ -56,7 +48,7 @@ if (it == local_events.end())
 }
 else
 {
-   local_events[event_name](stage);
+   event_dictionary[event_name](stage);
 }
 
 return;

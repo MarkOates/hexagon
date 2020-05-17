@@ -3,6 +3,8 @@
 
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+#include <functional>
+#include <map>
 #include <string>
 
 
@@ -14,9 +16,10 @@ namespace Hexagon
       {
       private:
          Hexagon::AdvancedComponentNavigator::Stage* stage;
+         std::map<std::string, std::function<void(Stage&)>> event_dictionary;
 
       public:
-         EventController(Hexagon::AdvancedComponentNavigator::Stage* stage=nullptr);
+         EventController(Hexagon::AdvancedComponentNavigator::Stage* stage=nullptr, std::map<std::string, std::function<void(Stage&)>> event_dictionary={});
          ~EventController();
 
 
