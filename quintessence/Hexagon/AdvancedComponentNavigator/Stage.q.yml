@@ -154,6 +154,7 @@ functions:
       - Hexagon::AdvancedComponentNavigator::EventController
 
 
+
   - name: process_char_event
     parameters:
       - name: keycode
@@ -164,6 +165,7 @@ functions:
         default_argument: 0
     body: |
       return;
+
 
 
   - name: process_event
