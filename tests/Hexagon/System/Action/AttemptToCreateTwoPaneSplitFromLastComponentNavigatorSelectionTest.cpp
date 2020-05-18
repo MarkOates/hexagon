@@ -6,6 +6,7 @@
 typedef Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection CreateTwoSplit;
 
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/MissingFile/Stage.hpp>
 
 TEST(Hexagon_System_Action_AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelectionTest, can_be_created_without_blowing_up)
 {
@@ -90,3 +91,24 @@ TEST(Hexagon_System_Action_AttemptTo, execute__if_files_are_missing_will_create_
       EXPECT_EQ(StageInterface::MISSING_FILE, stage->get_type());
    }
 }
+
+TEST(Hexagon_System_Action_AttemptTo, execute__will_set_the_expected_filename_when_creating_missing_file_stages)
+{
+   std::vector<StageInterface *> stages;
+   std::string home_directory = "/Users/markoates/Repos/hexagon/";
+   std::string component_name = "Hexagon/ComponentThatIsNotPresent";
+
+   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages);
+
+   create_two_split.execute();
+   EXPECT_EQ(2, stages.size());
+
+   Hexagon::MissingFile::Stage &missing_quintessence_file_stage = *static_cast<Hexagon::MissingFile::Stage *>(stages[1]);
+   Hexagon::MissingFile::Stage &missing_test_file_stage = *static_cast<Hexagon::MissingFile::Stage *>(stages[0]);
+
+   EXPECT_EQ("/Users/markoates/Repos/hexagon/quintessence/Hexagon/ComponentThatIsNotPresent.q.yml",
+             missing_quintessence_file_stage.get_expected_filename());
+   EXPECT_EQ("/Users/markoates/Repos/hexagon/tests/Hexagon/ComponentThatIsNotPresentTest.cpp",
+             missing_test_file_stage.get_expected_filename());
+}
+

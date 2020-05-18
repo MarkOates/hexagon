@@ -115,7 +115,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
   }
   else
   {
-      stage = new Hexagon::MissingFile::Stage;
+      stage = new Hexagon::MissingFile::Stage(test_filename);
   }
 
   stage->set_place(place);
@@ -140,7 +140,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
   }
   else
   {
-      stage = new Hexagon::MissingFile::Stage;
+      stage = new Hexagon::MissingFile::Stage(filename);
   }
 
   stage->set_place(place);
