@@ -1,4 +1,6 @@
 properties:
+
+
   - name: project_root_directory
     type: std::string
     default: "/Users/markoates/Repos/hexagon"
@@ -7,7 +9,11 @@ properties:
     type: std::string
     default: '""'
     constructor_arg: true
+
+
 functions:
+
+
   - name: convert_to_names
     type: std::vector<std::string>
     parameters:
@@ -22,6 +28,8 @@ functions:
          //results.push_back(Blast::Project::Component(element, project_root_directory));
       }
       return results;
+
+
   - name: convert_to_components
     type: std::vector<Blast::Project::Component>
     parameters:
@@ -35,6 +43,8 @@ functions:
          results.push_back(Blast::Project::Component(element, project_root_directory));
       }
       return results;
+
+
   - name: component_names
     type: std::vector<std::string>
     body: |
@@ -46,6 +56,8 @@ functions:
     body_dependency_symbols:
       - Blast::Project::ComponentLister
       - Blast::SimpleTextSearcher
+
+
   - name: components_sorted_by_most_recent
     type: std::vector<Blast::Project::Component>
     body: |
@@ -63,6 +75,8 @@ functions:
     body_dependency_symbols:
       - Blast::Project::ComponentLister
       - Blast::SimpleTextSearcher
+
+
   - name: components
     type: std::vector<Blast::Project::Component>
     body: |
@@ -70,7 +84,11 @@ functions:
       return convert_to_components(component_names());
     body_dependency_symbols:
       - Blast::Project::ComponentLister
+
+
 dependencies:
+
+
   - symbol: std::vector<std::string>
     headers: [ 'vector', 'string' ]
   - symbol: Blast::Project::ComponentLister
