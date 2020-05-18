@@ -28,7 +28,7 @@ namespace Hexagon
 
 
       void draw_selections(int cell_width=1, int cell_height=1);
-      void render_raw(int cursor_x=0, int cursor_y=0, placement3d place={}, int first_line_number=0, bool in_edit_mode=false, std::vector<std::string> lines={});
+      void render(int cursor_x=0, int cursor_y=0, placement3d place={}, int first_line_number=0, bool in_edit_mode=false, std::vector<std::string> lines={});
       };
    }
 }

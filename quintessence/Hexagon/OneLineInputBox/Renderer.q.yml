@@ -40,7 +40,7 @@ functions:
       }
 
 
-  - name: render_raw
+  - name: render
     parameters:
       - name: cursor_x
         type: int

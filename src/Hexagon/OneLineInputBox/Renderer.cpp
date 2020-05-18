@@ -41,12 +41,12 @@ void Renderer::draw_selections(int cell_width, int cell_height)
 
 }
 
-void Renderer::render_raw(int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode, std::vector<std::string> lines)
+void Renderer::render(int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode, std::vector<std::string> lines)
 {
 if (!(font))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
       throw std::runtime_error(error_message.str());
    }
 //placement3d place = get_place();

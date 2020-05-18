@@ -11,6 +11,6 @@ TEST(Hexagon_OneLineInputBox_RendererTest, can_be_created_without_blowing_up)
 TEST(Hexagon_OneLineInputBox_RendererTest, render__renders_the_box)
 {
    Hexagon::OneLineInputBox::Renderer renderer;
-   renderer.render_raw();
+   //renderer.render();
    SUCCEED();
 }
