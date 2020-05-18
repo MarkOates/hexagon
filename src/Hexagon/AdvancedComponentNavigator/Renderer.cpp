@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
+#include <Hexagon/shared_globals.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <cmath>
@@ -42,14 +43,11 @@ Renderer::~Renderer()
 
 ALLEGRO_COLOR Renderer::build_backfill_color()
 {
-float not_quite_black_value = 0.0;
-//ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
-ALLEGRO_COLOR not_quite_black;
-not_quite_black.r = not_quite_black_value;
-not_quite_black.g = not_quite_black_value;
-not_quite_black.b = not_quite_black_value;
-not_quite_black.a = 0.8;
-return not_quite_black;
+//ALLEGRO_COLOR base_backfill_color = al_color_name("black");
+ALLEGRO_COLOR base_backfill_color = hexagon_get_backfill_color();
+
+ALLEGRO_COLOR backfill_color = color::color(base_backfill_color, 0.8);
+return backfill_color;
 
 }
 
