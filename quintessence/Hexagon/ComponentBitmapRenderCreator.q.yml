@@ -4,20 +4,21 @@ properties:
   - name: component
     type: Blast::Project::Component*
     init_with: nullptr
+    constructor_arg: true
 
 
 functions:
 
 
   - name: create_bitmap_render
-    guards: [ component ]
+    guards: [ component, al_is_system_installed() ]
     type: ALLEGRO_BITMAP*
     body: |
       return nullptr;
 
 
   - name: render
-    guards: [ component ]
+    private: true
     type: std::string
     body: return "Hello World!";
 

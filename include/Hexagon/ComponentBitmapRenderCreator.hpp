@@ -14,7 +14,7 @@ namespace Hexagon
       Blast::Project::Component* component;
 
    public:
-      ComponentBitmapRenderCreator();
+      ComponentBitmapRenderCreator(Blast::Project::Component* component=nullptr);
       ~ComponentBitmapRenderCreator();
 
 
