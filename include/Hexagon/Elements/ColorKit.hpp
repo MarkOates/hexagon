@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <string>
+#include <allegro5/allegro_color.h>
 
 
 namespace Hexagon
@@ -17,7 +17,7 @@ namespace Hexagon
          ~ColorKit();
 
 
-      std::string run();
+      ALLEGRO_COLOR black();
       };
    }
 }

@@ -1,4 +1,11 @@
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+
+
+  - name: black
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f};
+
+
+dependencies:
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]

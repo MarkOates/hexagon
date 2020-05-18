@@ -20,9 +20,9 @@ ColorKit::~ColorKit()
 }
 
 
-std::string ColorKit::run()
+ALLEGRO_COLOR ColorKit::black()
 {
-return "Hello World!";
+return ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f};
 }
 } // namespace Elements
 } // namespace Hexagon
