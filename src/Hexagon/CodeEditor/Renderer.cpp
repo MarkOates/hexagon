@@ -73,17 +73,18 @@ void Renderer::draw_selections(int cell_width, int cell_height)
 ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
 {
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
+   ALLEGRO_COLOR base_font_color = hexagon_get_base_text_color();
    ALLEGRO_COLOR font_color = AllegroFlare::color::mix(epic_green_color, frame_color, 0.5);
    bool using_white_font_color = false;
    if (using_white_font_color)
    {
      // white
-     font_color = al_color_name("white");
+     font_color = base_font_color;
    }
    else
    {
      // soft green font
-     font_color = AllegroFlare::color::mix(font_color, al_color_name("white"), 0.5);
+     font_color = AllegroFlare::color::mix(font_color, base_font_color, 0.5);
    }
 
    return font_color;
