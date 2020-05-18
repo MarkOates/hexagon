@@ -1,4 +1,7 @@
 properties:
+
+
+
   - name: project_root
     type: std::string
     init_with: '"/Users/markoates/Repos/hexagon/"'
@@ -33,6 +36,7 @@ properties:
 
 
 functions:
+
 
 
   - name: is_mode_navigating_list
@@ -110,6 +114,9 @@ functions:
 
 
 dependencies:
+
+
+
   - symbol: Hexagon::AdvancedComponentNavigator::ComponentSearcher
     headers: [ 'Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp' ]
   - symbol: std::vector<Blast::Project::Component>
