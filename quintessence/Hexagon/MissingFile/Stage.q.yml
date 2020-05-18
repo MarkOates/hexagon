@@ -3,6 +3,10 @@ parent_classes:
     scope: public
     init_with: "StageInterface::MISSING_FILE"
 properties:
+  - name: expected_filename
+    type: std::string
+    init_with: '"[Expected filename not set]"'
+    constructor_arg: true
   - name: text
     type: std::string
     init_with: "\"MISSING FILE\""
@@ -39,6 +43,7 @@ functions:
 
       float padding = cell_width;
       float h_padding = (float)cell_width / 2;
+      float line_height = al_get_font_line_height(font);
 
       float width = place.size.x;
       float height = place.size.y;
@@ -49,6 +54,8 @@ functions:
         width-h_padding, height-h_padding,
         color, thickness);
       al_draw_text(font, color, width/2, height/3, ALLEGRO_ALIGN_CENTER, text.c_str());
+
+      al_draw_text(font, color, width/2, height/3 + line_height*3, ALLEGRO_ALIGN_CENTER, expected_filename.c_str());
 
       place.restore_transform();
     body_dependency_symbols:

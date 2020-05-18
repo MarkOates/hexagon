@@ -15,11 +15,12 @@ namespace Hexagon
       class Stage : public StageInterface
       {
       private:
+         std::string expected_filename;
          std::string text;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         Stage();
+         Stage(std::string expected_filename="[Expected filename not set]");
          ~Stage();
 
 

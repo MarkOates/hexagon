@@ -15,8 +15,9 @@ namespace MissingFile
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage()
+Stage::Stage(std::string expected_filename)
    : StageInterface(StageInterface::MISSING_FILE)
+   , expected_filename(expected_filename)
    , text("MISSING FILE")
 {
 }
@@ -45,6 +46,7 @@ place.start_transform();
 
 float padding = cell_width;
 float h_padding = (float)cell_width / 2;
+float line_height = al_get_font_line_height(font);
 
 float width = place.size.x;
 float height = place.size.y;
@@ -55,6 +57,8 @@ al_draw_rectangle(
   width-h_padding, height-h_padding,
   color, thickness);
 al_draw_text(font, color, width/2, height/3, ALLEGRO_ALIGN_CENTER, text.c_str());
+
+al_draw_text(font, color, width/2, height/3 + line_height*3, ALLEGRO_ALIGN_CENTER, expected_filename.c_str());
 
 place.restore_transform();
 
