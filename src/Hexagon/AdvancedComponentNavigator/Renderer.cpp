@@ -281,15 +281,23 @@ bool list_clipping_occurred_below = false;
 for (auto &node : component.get_nodes())
 {
   std::string line_content = node.get_name();
-  ALLEGRO_COLOR col = al_color_name("skyblue");
+  //ALLEGRO_COLOR base_text_color = al_color_name("skyblue");
+  ALLEGRO_COLOR global_base_text_color = hexagon_get_base_text_color();
+  ALLEGRO_COLOR base_text_color = color::mix(global_base_text_color, color::lightskyblue, 0.3);
+  ALLEGRO_COLOR col; //
+   //color::mix(base_text_color, al_color_name("chartreuce"), 0.4);
+
+  bool this_line_is_clipped = false;
 
   if (node.has_quintessence())
   {
+     col = color::mix(base_text_color, color::aqua, 0.4);
      //line_content += " *";
   }
   else if (node.has_only_source_and_header())
   {
-     col = color::mix(col, al_color_name("green"), 0.1);
+     col = color::mix(base_text_color, color::aqua, 0.4);
+     col = color::mix(col, color::green, 0.15);
   }
   else if (!node.exists())
   {
@@ -297,7 +305,8 @@ for (auto &node : component.get_nodes())
   }
   else
   {
-     col = al_color_name("gray");
+     col = color::mix(base_text_color, color::aqua, 0.5);
+     //col = color::color(col, 0.4);
   }
 
   //if (!node.has_test()) line_content += " (missing test)";
@@ -307,15 +316,16 @@ for (auto &node : component.get_nodes())
   if (final_y < 0)
   {
      list_clipping_occurred_above = true;
+     this_line_is_clipped = true;
   }
   else if ((final_y + line_height) > place.size.y)
   {
      list_clipping_occurred_below = true;
+     this_line_is_clipped = true;
   }
-  else
-  {
-     al_draw_text(font, col, 0, cursor_y, 0, line_content.c_str());
-  }
+
+  if (!this_line_is_clipped) al_draw_text(font, col, 0, cursor_y, 0, line_content.c_str());
+
   cursor_y += line_height;
 }
 
