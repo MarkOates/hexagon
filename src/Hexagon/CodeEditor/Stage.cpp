@@ -954,6 +954,8 @@ void Stage::render_as_input_box(
 {
    get_place().start_transform();
 
+   ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
+
    float outer_roundness = 12;
    float inner_roundness = 6;
    float padding = 6;
@@ -964,7 +966,7 @@ void Stage::render_as_input_box(
       get_place().size.y+padding*2,
       outer_roundness,
       outer_roundness,
-      al_color_name("black"));
+      backfill_color);
    al_draw_rounded_rectangle(
       0-padding,
       0-padding,
