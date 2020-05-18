@@ -63,7 +63,8 @@ int get_last_compiler_run_exit_code()
 ALLEGRO_COLOR hexagon_get_backfill_color()
 {
    //return al_color_name("black");
-   return al_color_html("d2dbd6"); // very nice light gray
+   //return al_color_html("d2dbd6"); // very nice light gray
+   return al_color_html("8f9996"); // deep rich gray
 
    //return al_color_html("5b5c60");
    //return al_color_name("black");
