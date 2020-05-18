@@ -7,6 +7,12 @@ properties:
   - name: outline_and_text_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f,0.0f,0.0f,0.0f}'
+  - name: width
+    type: float
+    init_with: 1.0f
+  - name: height
+    type: float
+    init_with: 1.0f
   - name: cell_width
     type: int
     init_with: 1
@@ -18,14 +24,31 @@ properties:
 functions:
 
 
-  - name: render
+  - name: render_raw
+    parameters:
+      - name: cursor_x
+        type: int
+        default_argument: 0
+      - name: cursor_y
+        type: int
+        default_argument: 0
     type: void
     body: |
       return;
+    body_dependency_symbols: []
 
 
 dependencies:
+  - symbol: al_draw_filled_rectangle
+    headers: [ 'allegro5/allegro_primitives.h' ]
+  - symbol: al_draw_filled_rounded_rectangle
+    headers: [ 'allegro5/allegro_primitives.h' ]
+  - symbol: color::color
+    headers: [ allegro_flare/color.h ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
+  - symbol: hexagon_get_backfill_color
+    headers: [ Hexagon/shared_globals.hpp ]
+

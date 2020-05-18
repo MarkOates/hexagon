@@ -14,6 +14,8 @@ namespace Hexagon
       private:
          ALLEGRO_FONT* font;
          ALLEGRO_COLOR outline_and_text_color;
+         float width;
+         float height;
          int cell_width;
          int cell_height;
 
@@ -22,7 +24,7 @@ namespace Hexagon
          ~Renderer();
 
 
-      void render();
+      void render_raw(int cursor_x=0, int cursor_y=0);
       };
    }
 }
