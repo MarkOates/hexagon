@@ -40,11 +40,6 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
-std::string Stage::run()
-{
-return "Hello World!";
-}
-
 void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
 placement3d place = get_place();

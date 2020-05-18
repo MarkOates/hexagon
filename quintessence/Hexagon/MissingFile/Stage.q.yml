@@ -17,9 +17,6 @@ properties:
     init_with: "{}"
     getter_ref: true
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
   - name: render
     is_override: true
     parameters:
