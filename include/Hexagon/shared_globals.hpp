@@ -37,6 +37,8 @@ void set_last_compiler_run_exit_code(int exit_code);
 int get_last_compiler_run_exit_code();
 
 ALLEGRO_COLOR hexagon_get_backfill_color();
+ALLEGRO_COLOR hexagon_get_base_background_color();
+ALLEGRO_COLOR hexagon_get_base_text_color();
 
 
 

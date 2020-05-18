@@ -66,6 +66,16 @@ ALLEGRO_COLOR hexagon_get_backfill_color()
    //return al_color_name("black");
 }
 
+ALLEGRO_COLOR hexagon_get_base_background_color()
+{
+   return al_color_name("blue");
+}
+
+ALLEGRO_COLOR hexagon_get_base_text_color()
+{
+   return al_color_name("white");
+}
+
 
 
 std::vector<std::string> notifications = {};
