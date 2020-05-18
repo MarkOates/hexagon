@@ -59,7 +59,7 @@ void Renderer::draw_search_text_box()
 Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
 Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
 
-ALLEGRO_COLOR not_quite_black = build_not_quite_black_color();
+ALLEGRO_COLOR backfill_color = build_not_quite_black_color();
 bool focus_is_search_bar = component.is_mode_typing_in_search_bar();
 
 ALLEGRO_COLOR search_text_font_color = focus_is_search_bar ? al_color_name("chartreuse") : frame_color;
@@ -68,7 +68,7 @@ float search_text_width = al_get_text_width(font, search_text_val.c_str());
 float search_text_height = al_get_font_line_height(font);
 float search_text_y = search_text_height * -1.3;
 // background
-al_draw_filled_rectangle(0, search_text_y, search_text_width, search_text_y+search_text_height, not_quite_black);
+al_draw_filled_rectangle(0, search_text_y, search_text_width, search_text_y+search_text_height, backfill_color);
 
 // draw rectangle if typing
 if (focus_is_search_bar)
@@ -163,7 +163,7 @@ float roundness = 0.0; //6.0;
 float padding_x = cell_width;
 float padding_y = cell_width;
 //ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
-ALLEGRO_COLOR not_quite_black = build_not_quite_black_color();
+ALLEGRO_COLOR backfill_color = build_not_quite_black_color();
 
 al_draw_filled_rounded_rectangle(
   0 - padding_x*2,
@@ -172,7 +172,7 @@ al_draw_filled_rounded_rectangle(
   place.size.y + padding_y*2,
   roundness,
   roundness,
-  not_quite_black
+  backfill_color
 );
 al_draw_rounded_rectangle(- padding_x, - padding_y,
    place.size.x+padding_x, place.size.y+padding_y,
@@ -266,7 +266,7 @@ std::string node_root_val = component.get_project_root();
 float title_text_width = al_get_text_width(font, node_root_val.c_str());
 float title_text_height = al_get_font_line_height(font);
 float title_y = (title_text_height * -1.3) * 2;
-al_draw_filled_rectangle(0, title_y, title_text_width, title_y+title_text_height, not_quite_black);
+al_draw_filled_rectangle(0, title_y, title_text_width, title_y+title_text_height, backfill_color);
 al_draw_text(font, node_root_font_color, 0, title_y, 0, node_root_val.c_str());
 
 
