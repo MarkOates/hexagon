@@ -1,0 +1,29 @@
+properties:
+
+
+  - name: component
+    type: Blast::Project::Component*
+    init_with: nullptr
+
+
+functions:
+
+
+  - name: create_bitmap_render
+    guards: [ component ]
+    type: ALLEGRO_BITMAP*
+    body: |
+      return nullptr;
+
+
+  - name: render
+    guards: [ component ]
+    type: std::string
+    body: return "Hello World!";
+
+
+dependencies:
+  - symbol: Blast::Project::Component*
+    headers: [ Blast/Project/Component.hpp ]
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
