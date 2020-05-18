@@ -28,6 +28,12 @@ Stage::~Stage()
 }
 
 
+std::string Stage::get_expected_filename()
+{
+   return expected_filename;
+}
+
+
 ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 {
    return a_default_empty_event;

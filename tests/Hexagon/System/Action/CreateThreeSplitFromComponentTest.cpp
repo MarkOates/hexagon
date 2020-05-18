@@ -3,6 +3,8 @@
 
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 
+#include <Hexagon/MissingFile/Stage.hpp>
+
 typedef Hexagon::System::Action::CreateThreeSplitFromComponent CreateThreeSplit;
 
 TEST(Hexagon_System_Action_CreateThreeSplitFromComponentTest, can_be_created_without_blowing_up)
@@ -62,6 +64,31 @@ TEST(Hexagon_System_Action_CreateThreeSplitTest,
    {
       EXPECT_EQ(StageInterface::MISSING_FILE, stage->get_type());
    }
+}
+
+TEST(Hexagon_System_Action_CreateThreeSplitTest,
+   execute__with_an_invalid_component_sets_the_expected_filename_on_the_missing_file_stage)
+{
+   std::string project_path = "/Users/markoates/Repos/hexagon/";
+   std::string component = "Hexagon/AComponentThatDoesNotExist";
+   std::vector<StageInterface *> stages;
+
+   CreateThreeSplit create_three_split(project_path, component, stages);
+
+   EXPECT_EQ(true, create_three_split.execute());
+
+   ASSERT_EQ(3, stages.size());
+
+   Hexagon::MissingFile::Stage &missing_header_file_stage = *static_cast<Hexagon::MissingFile::Stage *>(stages[0]);
+   Hexagon::MissingFile::Stage &missing_source_file_stage = *static_cast<Hexagon::MissingFile::Stage *>(stages[1]);
+   Hexagon::MissingFile::Stage &missing_test_file_stage = *static_cast<Hexagon::MissingFile::Stage *>(stages[2]);
+
+   EXPECT_EQ("/Users/markoates/Repos/hexagon/include/Hexagon/AComponentThatDoesNotExist.hpp",
+             missing_header_file_stage.get_expected_filename());
+   EXPECT_EQ("/Users/markoates/Repos/hexagon/src/Hexagon/AComponentThatDoesNotExist.cpp",
+             missing_source_file_stage.get_expected_filename());
+   EXPECT_EQ("/Users/markoates/Repos/hexagon/tests/Hexagon/AComponentThatDoesNotExistTest.cpp",
+             missing_test_file_stage.get_expected_filename());
 }
 
 TEST(Hexagon_System_Action_CreateThreeSplitTest,

@@ -24,6 +24,7 @@ namespace Hexagon
          ~Stage();
 
 
+         std::string get_expected_filename();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       std::string run();
       void render(bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
