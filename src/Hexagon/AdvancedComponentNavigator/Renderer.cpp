@@ -40,7 +40,7 @@ Renderer::~Renderer()
 }
 
 
-ALLEGRO_COLOR Renderer::build_not_quite_black_color()
+ALLEGRO_COLOR Renderer::build_backfill_color()
 {
 float not_quite_black_value = 0.0;
 //ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
@@ -59,7 +59,7 @@ void Renderer::draw_search_text_box()
 Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
 Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
 
-ALLEGRO_COLOR backfill_color = build_not_quite_black_color();
+ALLEGRO_COLOR backfill_color = build_backfill_color();
 bool focus_is_search_bar = component.is_mode_typing_in_search_bar();
 
 ALLEGRO_COLOR search_text_font_color = focus_is_search_bar ? al_color_name("chartreuse") : frame_color;
@@ -163,7 +163,7 @@ float roundness = 0.0; //6.0;
 float padding_x = cell_width;
 float padding_y = cell_width;
 //ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
-ALLEGRO_COLOR backfill_color = build_not_quite_black_color();
+ALLEGRO_COLOR backfill_color = build_backfill_color();
 
 al_draw_filled_rounded_rectangle(
   0 - padding_x*2,

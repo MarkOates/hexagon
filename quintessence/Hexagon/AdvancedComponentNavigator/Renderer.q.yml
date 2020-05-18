@@ -34,7 +34,7 @@ functions:
 
 
 
-  - name: build_not_quite_black_color
+  - name: build_backfill_color
     private: true
     type: ALLEGRO_COLOR
     body: |
@@ -57,7 +57,7 @@ functions:
       Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
       Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
 
-      ALLEGRO_COLOR backfill_color = build_not_quite_black_color();
+      ALLEGRO_COLOR backfill_color = build_backfill_color();
       bool focus_is_search_bar = component.is_mode_typing_in_search_bar();
 
       ALLEGRO_COLOR search_text_font_color = focus_is_search_bar ? al_color_name("chartreuse") : frame_color;
@@ -141,7 +141,7 @@ functions:
       float padding_x = cell_width;
       float padding_y = cell_width;
       //ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
-      ALLEGRO_COLOR backfill_color = build_not_quite_black_color();
+      ALLEGRO_COLOR backfill_color = build_backfill_color();
 
       al_draw_filled_rounded_rectangle(
         0 - padding_x*2,

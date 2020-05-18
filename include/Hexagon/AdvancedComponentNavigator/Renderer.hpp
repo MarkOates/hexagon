@@ -27,7 +27,7 @@ namespace Hexagon
          ~Renderer();
 
 
-      ALLEGRO_COLOR build_not_quite_black_color();
+      ALLEGRO_COLOR build_backfill_color();
       void draw_search_text_box();
       void foobar();
       void render();
