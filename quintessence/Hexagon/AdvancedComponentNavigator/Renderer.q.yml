@@ -22,6 +22,11 @@ properties:
   - name: frame_color
     type: ALLEGRO_COLOR
     init_with: 'al_color_html("39c3c5")'
+  - name: SOME_CONSTANT
+    const: true
+    static: true
+    type: std::string
+    init_with: '"SOME_CONSTANT"'
 
 
 
@@ -98,6 +103,12 @@ functions:
       }
 
       al_draw_text(font, search_text_font_color, 0, search_text_y, 0, search_text_val.c_str());
+      return;
+
+
+  - name: foobar
+    type: void
+    body: |
       return;
 
 

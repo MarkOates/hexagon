@@ -21,6 +21,9 @@ namespace AdvancedComponentNavigator
 {
 
 
+std::string Renderer::SOME_CONSTANT = "SOME_CONSTANT";
+
+
 Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, bool is_focused, ALLEGRO_FONT* font, int cell_width, int cell_height)
    : stage(stage)
    , is_focused(is_focused)
@@ -102,6 +105,12 @@ if (focus_is_search_bar)
 }
 
 al_draw_text(font, search_text_font_color, 0, search_text_y, 0, search_text_val.c_str());
+return;
+
+}
+
+void Renderer::foobar()
+{
 return;
 
 }

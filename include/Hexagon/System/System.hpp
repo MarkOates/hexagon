@@ -166,7 +166,6 @@ public:
    static const std::string JUMP_TO_NEXT_CODE_POINT_ON_STAGE;
    static const std::string JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE;
    static const std::string OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE;
-
    static const std::string ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;

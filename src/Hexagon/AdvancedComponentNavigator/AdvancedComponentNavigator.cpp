@@ -13,7 +13,7 @@ namespace AdvancedComponentNavigator
 AdvancedComponentNavigator::AdvancedComponentNavigator(std::string project_root)
    : project_root(project_root)
    , cursor_position(0)
-   , cursor_position_static(true)
+   , cursor_position_static(false)
    , nodes({})
    , mode("navigating_list")
    , search_text("")
