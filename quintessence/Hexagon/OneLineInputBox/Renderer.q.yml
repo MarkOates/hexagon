@@ -19,7 +19,12 @@ properties:
   - name: cell_height
     type: int
     init_with: 1
-
+  - name: lines
+    type: std::vector<std::string>
+    init_with: '{}'
+  - name: selections
+    type: std::vector<CodeRange>
+    init_with: '{}'
 
 functions:
 
@@ -32,12 +37,19 @@ functions:
       - name: cell_height
         type: int
         default_argument: 1
+      - name: first_line_number
+        type: int
+        default_argument: 0
     body: |
-      //for (auto &selection : selections)
+      for (auto &selection : selections)
       {
-         //std::cout << " drawing selection " << selection << std::endl;
-         //CodeRangeRenderer(get_lines_ref(), selection, first_line_number, cell_width, cell_height).render();
+         std::cout << " drawing selection " << selection << std::endl;
+         CodeRangeRenderer(lines, selection, first_line_number, cell_width, cell_height).render();
       }
+    body_dependency_symbols:
+      - std::cout
+      - std::endl
+      - CodeRangeRenderer
 
 
   - name: render
@@ -57,9 +69,6 @@ functions:
       - name: in_edit_mode
         type: bool
         default_argument: false
-      - name: lines
-        type: std::vector<std::string>
-        default_argument: '{}'
     guards: [ font ]
     body: |
       //placement3d place = get_place();
@@ -116,7 +125,7 @@ functions:
          //break;
       }
 
-      draw_selections(cell_width, cell_height);
+      draw_selections(cell_width, cell_height, first_line_number);
 
       int line_height = al_get_font_line_height(font);
       for (int i=0; i<lines.size(); i++)
@@ -133,6 +142,10 @@ functions:
 
 
 dependencies:
+  - symbol: std::vector<CodeRange>
+    headers: [ vector, Hexagon/CodeRange.hpp ]
+  - symbol: CodeRangeRenderer
+    headers: [ Hexagon/CodeRangeRenderer.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
   - symbol: al_draw_filled_rectangle

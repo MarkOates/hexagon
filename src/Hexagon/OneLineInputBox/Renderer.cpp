@@ -1,6 +1,9 @@
 
 
 #include <Hexagon/OneLineInputBox/Renderer.hpp>
+#include <iostream>
+#include <iostream>
+#include <Hexagon/CodeRangeRenderer.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/color.h>
 #include <allegro_flare/placement3d.h>
@@ -22,6 +25,8 @@ Renderer::Renderer()
    , height(1.0f)
    , cell_width(1)
    , cell_height(1)
+   , lines({})
+   , selections({})
 {
 }
 
@@ -31,17 +36,17 @@ Renderer::~Renderer()
 }
 
 
-void Renderer::draw_selections(int cell_width, int cell_height)
+void Renderer::draw_selections(int cell_width, int cell_height, int first_line_number)
 {
-//for (auto &selection : selections)
+for (auto &selection : selections)
 {
-   //std::cout << " drawing selection " << selection << std::endl;
-   //CodeRangeRenderer(get_lines_ref(), selection, first_line_number, cell_width, cell_height).render();
+   std::cout << " drawing selection " << selection << std::endl;
+   CodeRangeRenderer(lines, selection, first_line_number, cell_width, cell_height).render();
 }
 
 }
 
-void Renderer::render(int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode, std::vector<std::string> lines)
+void Renderer::render(int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode)
 {
 if (!(font))
    {
@@ -103,7 +108,7 @@ else
    //break;
 }
 
-draw_selections(cell_width, cell_height);
+draw_selections(cell_width, cell_height, first_line_number);
 
 int line_height = al_get_font_line_height(font);
 for (int i=0; i<lines.size(); i++)
