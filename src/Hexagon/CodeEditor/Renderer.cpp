@@ -128,6 +128,7 @@ ALLEGRO_COLOR Renderer::build_backfill_color()
 {
    ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
    backfill_color = AllegroFlare::color::mix(backfill_color, build_frame_color(), 0.2);
+   backfill_color = AllegroFlare::color::color(backfill_color, hexagon_get_backfill_opacity());
    return backfill_color;
 }
 

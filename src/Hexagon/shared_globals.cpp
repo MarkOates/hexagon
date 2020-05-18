@@ -69,6 +69,11 @@ ALLEGRO_COLOR hexagon_get_backfill_color()
    //return al_color_name("black");
 }
 
+float hexagon_get_backfill_opacity()
+{
+   return 0.8f;
+}
+
 ALLEGRO_COLOR hexagon_get_base_text_color()
 {
    //return al_color_name("white");

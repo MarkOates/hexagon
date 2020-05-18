@@ -18,6 +18,7 @@
 #include <Hexagon/util.hpp>
 #include <Hexagon/shared_globals.hpp>
 #include <Hexagon/shared_globals.hpp>
+#include <allegro_flare/color.h> // for color::color
 
 
 
@@ -955,6 +956,7 @@ void Stage::render_as_input_box(
    get_place().start_transform();
 
    ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
+   backfill_color = color::color(backfill_color, hexagon_get_backfill_opacity());
 
    float outer_roundness = 12;
    float inner_roundness = 6;
