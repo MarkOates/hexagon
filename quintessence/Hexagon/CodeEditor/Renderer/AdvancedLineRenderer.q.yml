@@ -67,7 +67,8 @@ functions:
     private: true
     body: |
       std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens;
-      ALLEGRO_COLOR comment_color = AllegroFlare::color::color(al_color_name("black"), 0.5f);
+      ALLEGRO_COLOR base_backfill_color = hexagon_get_backfill_color();
+      ALLEGRO_COLOR comment_color = AllegroFlare::color::color(base_backfill_color, 0.5f);
          //AllegroFlare::color::color(al_color_name("black"), 0.3f)
 
       std::string regex = "";
@@ -106,6 +107,7 @@ functions:
       return tokens;
     body_dependency_symbols:
       - RegexMatcher
+      - hexagon_get_backfill_color
   - name: render_tokens
     type: void
     private: true
@@ -194,3 +196,6 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_COLOR*
     headers: [ allegro5/allegro.h ]
+  - symbol: hexagon_get_backfill_color
+    headers: [ Hexagon/shared_globals.hpp ]
+

@@ -6,6 +6,7 @@
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexStore.hpp>
 #include <Hexagon/RegexMatcher.hpp>
+#include <Hexagon/shared_globals.hpp>
 #include <allegro5/allegro.h>
 #include <utility>
 #include <Hexagon/RegexMatcher.hpp>
@@ -86,7 +87,8 @@ return tokens;
 std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::build_comment_tokens()
 {
 std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens;
-ALLEGRO_COLOR comment_color = AllegroFlare::color::color(al_color_name("black"), 0.5f);
+ALLEGRO_COLOR base_backfill_color = hexagon_get_backfill_color();
+ALLEGRO_COLOR comment_color = AllegroFlare::color::color(base_backfill_color, 0.5f);
    //AllegroFlare::color::color(al_color_name("black"), 0.3f)
 
 std::string regex = "";
