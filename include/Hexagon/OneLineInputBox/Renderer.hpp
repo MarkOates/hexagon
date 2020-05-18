@@ -3,6 +3,9 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <allegro_flare/placement3d.h>
+#include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -24,7 +27,8 @@ namespace Hexagon
          ~Renderer();
 
 
-      void render_raw(int cursor_x=0, int cursor_y=0);
+      void draw_selections(int cell_width=1, int cell_height=1);
+      void render_raw(int cursor_x=0, int cursor_y=0, placement3d place={}, int first_line_number=0, bool in_edit_mode=false, std::vector<std::string> lines={});
       };
    }
 }
