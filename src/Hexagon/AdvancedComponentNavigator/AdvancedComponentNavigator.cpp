@@ -15,7 +15,7 @@ AdvancedComponentNavigator::AdvancedComponentNavigator(std::string project_root)
    , cursor_position(0)
    , cursor_position_static(true)
    , nodes({})
-   , mode("typing_in_search_bar")
+   , mode("navigating_list")
    , search_text("")
 {
 }

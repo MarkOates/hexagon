@@ -14,7 +14,7 @@ TEST(Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest,
    mode__has_a_getter_that_is_set_to_the_expected_default_value)
 {
    Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator advanced_component_navigator;
-   ASSERT_EQ("typing_in_search_bar", advanced_component_navigator.get_mode());
+   ASSERT_EQ("navigating_list", advanced_component_navigator.get_mode());
 }
 
 
