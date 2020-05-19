@@ -975,12 +975,6 @@ void Stage::render_as_input_box(
    );
 
    renderer.render();
-      //cursor_x,
-      //cursor_y,
-      //get_place(),
-      //first_line_number,
-      //(mode == Stage::EDIT) // in_edit_mode
-   //);
 
    return;
 
