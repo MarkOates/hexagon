@@ -71,7 +71,7 @@
     };
 
 
-- name: fixture_test_case
+- name: fixture_test
   variables: [ COMPONENT_TEST_CLASS_WITH_FIXTURE_NAME, FUNCTION_NAME, COMPONENT_NAME, TEST_DESCRIPTION_SNAKE_CASE, COMPONENT_INSTANCE_NAME ]
   template: |
     TEST_F(COMPONENT_TEST_CLASS_WITH_FIXTURE_NAME, FUNCTION_NAME__TEST_DESCRIPTION_SNAKE_CASE)
@@ -80,5 +80,18 @@
        COMPONENT_INSTANCE_NAME.FUNCTION_NAME();
        SUCCEED();
     }
+
+
+- name: fixture_test_return_value
+  variables: [ COMPONENT_TEST_CLASS_WITH_FIXTURE_NAME, FUNCTION_NAME, COMPONENT_NAME, COMPONENT_INSTANCE_NAME, RETURN_TYPE, EXPECTED_RETURN_VALUE]
+  template: |
+    TEST_F(COMPONENT_TEST_CLASS_WITH_FIXTURE_NAME, FUNCTION_NAME__returns_the_expected_value)
+    {
+       COMPONENT_NAME COMPONENT_INSTANCE_NAME;
+       RETURN_TYPE expected_return_value = EXPECTED_RETURN_VALUE;
+       RETURN_TYPE actual_return_value = COMPONENT_INSTANCE_NAME.FUNCTION_NAME();
+       EXPECT_EQ(expected_return_value, actual_return_value);
+    }
+
 
 
