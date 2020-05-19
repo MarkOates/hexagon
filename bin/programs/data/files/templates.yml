@@ -7,6 +7,8 @@
        error_message << "CLASS_NAME" << "::" << "FUNCTION_NAME" << ": error: " << "MESSAGE";
        throw std::runtime_error(error_message.str());
     }
+
+
 - name: guard_throw
   variables: [ CONDITION, CLASS_NAME, FUNCTION_NAME ]
   template: |
@@ -16,6 +18,8 @@
        error_message << "CLASS_NAME" << "::" << "FUNCTION_NAME" << ": error: condition \"" << "CONDITION" << "\" not met.";
        throw std::runtime_error(error_message.str());
     }
+
+
 - name: range_loop
   variables: [ TYPE, COLLECTION ]
   template: |
@@ -23,11 +27,15 @@
     {
        #
     }
+
+
 - name: elements
   variables: [ ELEMENT_LIST_DEFINITION ]
   template: |
     std::vector<std::string> elements = ELEMENT_LIST_DEFINITION; // element list definition like { "Foo", "Bar", "FooBar" };
     return elements;
+
+
 - name: elements_filtered
   variables: [ CONDITION, ELEMENT_LIST_DEFINITION ]
   template: |
@@ -38,3 +46,28 @@
        if (CONDITION) result_elements.push_back(element);
     }
     return result_elements;
+
+
+- name: test_fixture_class_with_allegro
+  variables: [ COMPONENT_TEST_CLASS_WITH_FIXTURE_NAME ]
+  template: |
+    class COMPONENT_TEST_CLASS_WITH_FIXTURE_NAME : public ::testing::Test
+    {
+    protected:
+       COMPONENT_TEST_CLASS_WITH_FIXTURE_NAME() {}
+
+       virtual void SetUp() override
+       {
+          ASSERT_EQ(false, al_is_system_installed());
+          ASSERT_EQ(true, al_init());
+
+          #
+       }
+
+       virtual void TearDown() override
+       {
+          al_uninstall_system();
+       }
+    };
+
+
