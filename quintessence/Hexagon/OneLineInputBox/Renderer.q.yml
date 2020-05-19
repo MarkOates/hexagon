@@ -144,12 +144,28 @@ functions:
          al_draw_text(font, outline_and_text_color, x, y, ALLEGRO_ALIGN_LEFT, top_left_text.c_str());
       }
 
+      // draw_top_right_text
+      if (!top_right_text.empty())
+      {
+         float line_height = al_get_font_line_height(font);
+         float x = place.size.x;
+         float y = -padding - line_height/2;
+
+         float x1 = x - al_get_text_width(font, top_right_text.c_str());
+         float y1 = y;
+         float x2 = x;
+         float y2 = y + line_height;
+
+         al_draw_filled_rectangle(x1, y1, x2, y2, backfill_color);
+         al_draw_text(font, outline_and_text_color, x, y, ALLEGRO_ALIGN_RIGHT, top_right_text.c_str());
+      }
+
       // draw_bottom_right_text
       if (!bottom_right_text.empty())
       {
          float line_height = al_get_font_line_height(font);
          float x = place.size.x;
-         float y = -padding - line_height/2;
+         float y = place.size.y + padding - line_height/2;
 
          float x1 = x - al_get_text_width(font, bottom_right_text.c_str());
          float y1 = y;
@@ -158,6 +174,11 @@ functions:
 
          al_draw_filled_rectangle(x1, y1, x2, y2, backfill_color);
          al_draw_text(font, outline_and_text_color, x, y, ALLEGRO_ALIGN_RIGHT, bottom_right_text.c_str());
+      }
+
+      if (!bottom_left_text.empty())
+      {
+         throw std::logic_error("OneLineInputBox/Render: error: function \"bottom_left_text\" not yet implemented");
       }
 
       float _cursor_y = cursor_y - first_line_number;

@@ -954,6 +954,7 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
       ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
       float width = get_place().size.x;
       float height = get_place().size.y;
+      std::string top_left_text = "ESC: Close";
 
       Hexagon::OneLineInputBox::Renderer renderer(
          font,
@@ -970,6 +971,8 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
          first_line_number,
          (mode == Stage::EDIT) // in_edit_mode
       );
+
+      renderer.set_top_left_text(top_left_text);
 
       renderer.render();
    }
