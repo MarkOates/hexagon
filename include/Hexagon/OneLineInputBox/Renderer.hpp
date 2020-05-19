@@ -26,7 +26,7 @@ namespace Hexagon
          std::vector<CodeRange> selections;
 
       public:
-         Renderer();
+         Renderer(ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR outline_and_text_color={0.0f,0.0f,0.0f,0.0f}, float width=1.0f, float height=1.0f, int cell_width=1, int cell_height=1, std::vector<std::string> lines={}, std::vector<CodeRange> selections={});
          ~Renderer();
 
 

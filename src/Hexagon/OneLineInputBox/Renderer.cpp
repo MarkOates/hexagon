@@ -18,15 +18,15 @@ namespace OneLineInputBox
 {
 
 
-Renderer::Renderer()
-   : font(nullptr)
-   , outline_and_text_color({0.0f,0.0f,0.0f,0.0f})
-   , width(1.0f)
-   , height(1.0f)
-   , cell_width(1)
-   , cell_height(1)
-   , lines({})
-   , selections({})
+Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, float width, float height, int cell_width, int cell_height, std::vector<std::string> lines, std::vector<CodeRange> selections)
+   : font(font)
+   , outline_and_text_color(outline_and_text_color)
+   , width(width)
+   , height(height)
+   , cell_width(cell_width)
+   , cell_height(cell_height)
+   , lines(lines)
+   , selections(selections)
 {
 }
 

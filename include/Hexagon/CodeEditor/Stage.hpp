@@ -30,7 +30,6 @@ namespace CodeEditor
 
    private:
       friend class CodeEditor::Renderer;
-
       std::vector<std::string> lines;
       int cursor_x;
       int cursor_y;

@@ -64,7 +64,9 @@ ALLEGRO_COLOR hexagon_get_backfill_color()
 {
    //return al_color_name("black");
    //return al_color_html("d2dbd6"); // very nice light gray
-   return al_color_html("8f9996"); // deep rich gray
+   //return al_color_html("8f9996"); // deep rich gray
+   return al_color_html("a67d5a"); // color of lamp light against wall
+
 
    //return al_color_html("5b5c60");
    //return al_color_name("black");
@@ -77,8 +79,8 @@ float hexagon_get_backfill_opacity()
 
 ALLEGRO_COLOR hexagon_get_base_text_color()
 {
-   //return al_color_name("white");
-   return al_color_name("black");
+   return al_color_name("white");
+   //return al_color_name("black");
 }
 
 

@@ -19,6 +19,7 @@
 #include <Hexagon/shared_globals.hpp>
 #include <Hexagon/shared_globals.hpp>
 #include <allegro_flare/color.h> // for color::color
+#include <Hexagon/OneLineInputBox/Renderer.hpp>
 
 
 
@@ -953,6 +954,27 @@ void Stage::render_as_input_box(
    int cell_width,
    int cell_height)
 {
+
+   float width = get_place().size.x;
+   float height = get_place().size.y;
+
+   Hexagon::OneLineInputBox::Renderer renderer(
+      font,
+      outline_and_text_color,
+      width,
+      height,
+      cell_width,
+      cell_height,
+      lines,
+      selections
+   );
+
+   renderer.render();
+
+   return;
+
+
+
    get_place().start_transform();
 
    ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
