@@ -945,8 +945,8 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
       ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
       float width = get_place().size.x;
       float height = get_place().size.y;
-      std::string top_left_text = "ESC: Close";
-      std::string bottom_right_text = "ENTER: Hilight matches in files";
+      //std::string top_left_text = "ESC: Close";
+      //std::string bottom_right_text = "ENTER: Hilight matches in files";
 
       Hexagon::OneLineInputBox::Renderer renderer(
          font,
@@ -964,8 +964,8 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
          (mode == Stage::EDIT) // in_edit_mode
       );
 
-      renderer.set_top_left_text(top_left_text);
-      renderer.set_bottom_right_text(bottom_right_text);
+      //renderer.set_top_left_text(top_left_text);
+      //renderer.set_bottom_right_text(bottom_right_text);
 
       renderer.render();
    }
@@ -974,8 +974,8 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
       ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
       float width = get_place().size.x;
       float height = get_place().size.y;
-      std::string top_left_text = "ESC: Close";
-      std::string bottom_right_text = "ENTER: Commit and Push";
+      //std::string top_left_text = "ESC: Close";
+      //std::string bottom_right_text = "ENTER: Commit and Push";
 
       Hexagon::OneLineInputBox::Renderer renderer(
          font,
@@ -993,22 +993,10 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
          (mode == Stage::EDIT) // in_edit_mode
       );
 
-      renderer.set_top_left_text(top_left_text);
-      renderer.set_bottom_right_text(bottom_right_text);
+      //renderer.set_top_left_text(top_left_text);
+      //renderer.set_bottom_right_text(bottom_right_text);
 
       renderer.render();
-
-      // draw chrome
-      //get_place().start_transform();
-      //std::string header = "ESC: Close";
-      //int line_height = al_get_font_line_height(font);
-      //al_draw_text(font, outline_and_text_color, 0, -1 * line_height*1 - 10, ALLEGRO_ALIGN_LEFT, header.c_str());
-
-      //std::string text = "ENTER: Commit and Push";
-      //float submit_text_x = get_place().position.x + get_place().size.x;
-      //float submit_text_y = get_place().position.y + get_place().size.y + 10;
-      //al_draw_text(font, outline_and_text_color, submit_text_x, submit_text_y, ALLEGRO_ALIGN_RIGHT, text.c_str());
-      //get_place().restore_transform();
    }
    else
    {
