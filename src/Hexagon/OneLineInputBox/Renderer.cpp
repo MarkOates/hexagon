@@ -91,7 +91,7 @@ if (!(font))
 place.start_transform();
 
 ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
-backfill_color = color::color(backfill_color, hexagon_get_backfill_opacity());
+//backfill_color = color::color(backfill_color, hexagon_get_backfill_opacity());
 
 float outer_roundness = 12;
 float inner_roundness = 6;
