@@ -659,16 +659,22 @@ bool System::set_regex_input_box_modal_to_insert_mode()
    return true;
 }
 
-bool System::spawn_regex_input_box_modal()
+placement3d System::build_regex_input_box_initial_place()
 {
-   //TODO: this placement should be relative to the camera, or, the window should be
-   // placed on a non-transforming render surface, or rendered within the hud.
-   // for now, I'm going to have it spawn at the position of the camera
    placement3d place(0.0, 0.0, 0.0);
    place.position = camera.position;
    place.size = vec3d(300, 25, 0.0);
    place.scale = vec3d(1.4, 1.4, 1.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
+   return place;
+}
+
+bool System::spawn_regex_input_box_modal()
+{
+   //TODO: this placement should be relative to the camera, or, the window should be
+   // placed on a non-transforming render surface, or rendered within the hud.
+   // for now, I'm going to have it spawn at the position of the camera
+   placement3d place = build_regex_input_box_initial_place();
 
    CodeEditor::Stage *stage = new CodeEditor::Stage(REGEX_TEMP_FILENAME, "input_box", CodeEditor::Stage::EDIT, CodeEditor::Stage::ONE_LINE_INPUT_BOX); // TODO: extract this one line input box from CodeEditor
    stage->set_place(place);
@@ -687,16 +693,22 @@ bool System::spawn_regex_input_box_modal()
    return true;
 }
 
-bool System::spawn_git_commit_message_input_box_modal()
+placement3d System::build_git_commit_message_input_box_initial_place()
 {
-   //TODO: this placement should be relative to the camera, or, the window should be
-   // placed on a non-transforming render surface, or rendered within the hud.
-   // for now, I'm going to have it spawn at the position of the camera
    placement3d place(0.0, 0.0, 0.0);
    place.position = camera.position;
    place.size = vec3d(500, 25, 0.0);
    place.scale = vec3d(1.4, 1.4, 1.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
+   return place;
+}
+
+bool System::spawn_git_commit_message_input_box_modal()
+{
+   //TODO: this placement should be relative to the camera, or, the window should be
+   // placed on a non-transforming render surface, or rendered within the hud.
+   // for now, I'm going to have it spawn at the position of the camera
+   placement3d place = build_git_commit_message_input_box_initial_place();
 
 // TODO: extract this one line input box from CodeEditor
    CodeEditor::Stage *stage = new CodeEditor::Stage(
