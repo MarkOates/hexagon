@@ -33,6 +33,26 @@ properties:
     type: std::vector<CodeRange>
     init_with: '{}'
     constructor_arg: true
+  - name: cursor_x
+    type: int
+    init_with: 0
+    constructor_arg: true
+  - name: cursor_y
+    type: int
+    init_with: 0
+    constructor_arg: true
+  - name: place
+    type: placement3d
+    init_with: '{}'
+    constructor_arg: true
+  - name: first_line_number
+    type: int
+    init_with: 0
+    constructor_arg: true
+  - name: in_edit_mode
+    type: bool
+    init_with: false
+    constructor_arg: true
 
 
 functions:
@@ -62,22 +82,6 @@ functions:
 
 
   - name: render
-    parameters:
-      - name: cursor_x
-        type: int
-        default_argument: 0
-      - name: cursor_y
-        type: int
-        default_argument: 0
-      - name: place
-        type: placement3d
-        default_argument: '{}'
-      - name: first_line_number
-        type: int
-        default_argument: 0
-      - name: in_edit_mode
-        type: bool
-        default_argument: false
     guards: [ font ]
     body: |
       //placement3d place = get_place();

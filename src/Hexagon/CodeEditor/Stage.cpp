@@ -966,16 +966,21 @@ void Stage::render_as_input_box(
       cell_width,
       cell_height,
       lines,
-      selections
-   );
-
-   renderer.render(
+      selections,
       cursor_x,
       cursor_y,
       get_place(),
       first_line_number,
       (mode == Stage::EDIT) // in_edit_mode
    );
+
+   renderer.render();
+      //cursor_x,
+      //cursor_y,
+      //get_place(),
+      //first_line_number,
+      //(mode == Stage::EDIT) // in_edit_mode
+   //);
 
    return;
 

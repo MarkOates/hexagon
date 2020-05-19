@@ -18,7 +18,7 @@ namespace OneLineInputBox
 {
 
 
-Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, float width, float height, int cell_width, int cell_height, std::vector<std::string> lines, std::vector<CodeRange> selections)
+Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, float width, float height, int cell_width, int cell_height, std::vector<std::string> lines, std::vector<CodeRange> selections, int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode)
    : font(font)
    , outline_and_text_color(outline_and_text_color)
    , width(width)
@@ -27,6 +27,11 @@ Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, flo
    , cell_height(cell_height)
    , lines(lines)
    , selections(selections)
+   , cursor_x(cursor_x)
+   , cursor_y(cursor_y)
+   , place(place)
+   , first_line_number(first_line_number)
+   , in_edit_mode(in_edit_mode)
 {
 }
 
@@ -46,7 +51,7 @@ for (auto &selection : selections)
 
 }
 
-void Renderer::render(int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode)
+void Renderer::render()
 {
 if (!(font))
    {
