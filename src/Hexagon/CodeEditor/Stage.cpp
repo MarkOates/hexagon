@@ -954,7 +954,6 @@ void Stage::render_as_input_box(
    int cell_width,
    int cell_height)
 {
-
    float width = get_place().size.x;
    float height = get_place().size.y;
 
