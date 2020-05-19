@@ -946,6 +946,7 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
       float width = get_place().size.x;
       float height = get_place().size.y;
       std::string top_left_text = "ESC: Close";
+      std::string bottom_right_text = "ENTER: Hilight matches in files";
 
       Hexagon::OneLineInputBox::Renderer renderer(
          font,
@@ -964,6 +965,7 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
       );
 
       renderer.set_top_left_text(top_left_text);
+      renderer.set_bottom_right_text(bottom_right_text);
 
       renderer.render();
    }
