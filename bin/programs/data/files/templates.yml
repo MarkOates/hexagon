@@ -48,6 +48,22 @@
     return result_elements;
 
 
+- name: elements_cleaned
+  variables: [ CONDITION, ELEMENTS_INSTANCE, ELEMENT_TYPE ]
+  template: |
+    std::vector<ELEMENT_TYPE> &elements = ELEMENTS_INSTANCE;
+    for (int i=0; i<elements.size(); i++)
+    {
+       ELEMENT_TYPE &element = elements[i];
+       if (CONDITION)
+       {
+          elements.erase(elements.begin() + i);
+          i--;
+       }
+    }
+    return elements;
+
+
 - name: test_fixture_class_with_allegro
   variables: [ COMPONENT_TEST_CLASS_WITH_FIXTURE_NAME ]
   template: |
