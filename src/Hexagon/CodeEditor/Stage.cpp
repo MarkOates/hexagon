@@ -894,6 +894,7 @@ bool Stage::toggle_currently_grabbing_visual_selection()
 // partials
 
 
+
 bool Stage::set_current_selection_end_x(int x)
 {
    if (selections.empty()) return true;
