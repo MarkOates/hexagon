@@ -978,6 +978,7 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
       ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
       float width = get_place().size.x;
       float height = get_place().size.y;
+      std::string top_left_text = "ESC: Close";
 
       Hexagon::OneLineInputBox::Renderer renderer(
          font,
@@ -992,16 +993,17 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
          cursor_y,
          get_place(),
          first_line_number,
-         (mode == Stage::EDIT) // in_edit_mode
+         (mode == Stage::EDIT), // in_edit_mode
+         top_left_text
       );
 
       renderer.render();
 
       // draw chrome
       get_place().start_transform();
-      std::string header = "ESC: Close";
-      int line_height = al_get_font_line_height(font);
-      al_draw_text(font, outline_and_text_color, 0, -1 * line_height*1 - 10, ALLEGRO_ALIGN_LEFT, header.c_str());
+      //std::string header = "ESC: Close";
+      //int line_height = al_get_font_line_height(font);
+      //al_draw_text(font, outline_and_text_color, 0, -1 * line_height*1 - 10, ALLEGRO_ALIGN_LEFT, header.c_str());
 
       std::string text = "ENTER: Commit and Push";
       float submit_text_x = get_place().position.x + get_place().size.x;

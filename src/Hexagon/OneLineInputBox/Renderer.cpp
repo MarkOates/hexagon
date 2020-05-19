@@ -18,7 +18,7 @@ namespace OneLineInputBox
 {
 
 
-Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, float width, float height, int cell_width, int cell_height, std::vector<std::string> lines, std::vector<CodeRange> selections, int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode)
+Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, float width, float height, int cell_width, int cell_height, std::vector<std::string> lines, std::vector<CodeRange> selections, int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode, std::string top_left_text)
    : font(font)
    , outline_and_text_color(outline_and_text_color)
    , width(width)
@@ -32,6 +32,7 @@ Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, flo
    , place(place)
    , first_line_number(first_line_number)
    , in_edit_mode(in_edit_mode)
+   , top_left_text(top_left_text)
 {
 }
 
@@ -85,6 +86,20 @@ al_draw_rounded_rectangle(
    inner_roundness,
    outline_and_text_color,
    3.0);
+
+// draw_top_left_text
+if (!top_left_text.empty())
+{
+   float line_height = al_get_font_line_height(font);
+   float x = 0;
+   float y = -padding - line_height/2;
+   float x2 = x + al_get_text_width(font, top_left_text.c_str());
+   float y2 = y + line_height;
+
+   al_draw_filled_rectangle(x, y, x2, y2, backfill_color);
+   al_draw_text(font, outline_and_text_color, x, y, ALLEGRO_ALIGN_LEFT, top_left_text.c_str());
+}
+
 
 float _cursor_y = cursor_y - first_line_number;
 //switch(mode)

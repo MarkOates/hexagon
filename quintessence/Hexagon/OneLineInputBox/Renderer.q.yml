@@ -53,6 +53,10 @@ properties:
     type: bool
     init_with: false
     constructor_arg: true
+  - name: top_left_text
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
 
 
 functions:
@@ -110,6 +114,20 @@ functions:
          inner_roundness,
          outline_and_text_color,
          3.0);
+
+      // draw_top_left_text
+      if (!top_left_text.empty())
+      {
+         float line_height = al_get_font_line_height(font);
+         float x = 0;
+         float y = -padding - line_height/2;
+         float x2 = x + al_get_text_width(font, top_left_text.c_str());
+         float y2 = y + line_height;
+
+         al_draw_filled_rectangle(x, y, x2, y2, backfill_color);
+         al_draw_text(font, outline_and_text_color, x, y, ALLEGRO_ALIGN_LEFT, top_left_text.c_str());
+      }
+
 
       float _cursor_y = cursor_y - first_line_number;
       //switch(mode)
