@@ -49,7 +49,7 @@
 
 
 - name: elements_cleaned
-  variables: [ CONDITION, ELEMENTS_INSTANCE, ELEMENT_TYPE ]
+  variables: [ CONDITION, ELEMENTS_INSTANCE, ELEMENT_TYPE, DESTRUCTION_LOGIC ]
   template: |
     std::vector<ELEMENT_TYPE> &elements = ELEMENTS_INSTANCE;
     for (int i=0; i<elements.size(); i++)
@@ -57,6 +57,7 @@
        ELEMENT_TYPE &element = elements[i];
        if (CONDITION)
        {
+          DESTRUCTION_LOGIC;
           elements.erase(elements.begin() + i);
           i--;
        }
