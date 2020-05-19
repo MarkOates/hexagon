@@ -162,7 +162,6 @@ namespace CodeEditor
       bool currently_grabbing_visual_selection;
       std::vector<CodeRange> selections;
 
-      void draw_selections(int cell_width, int cell_height);
       bool set_current_selection_end_x(int x);
       bool set_current_selection_end_y(int y);
       bool yank_selected_text_to_clipboard();

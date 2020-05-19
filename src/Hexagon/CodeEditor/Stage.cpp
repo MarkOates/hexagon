@@ -894,16 +894,6 @@ bool Stage::toggle_currently_grabbing_visual_selection()
 // partials
 
 
-void Stage::draw_selections(int cell_width, int cell_height)
-{
-   for (auto &selection : selections)
-   {
-      //std::cout << " drawing selection " << selection << std::endl;
-      CodeRangeRenderer(get_lines_ref(), selection, first_line_number, cell_width, cell_height).render();
-   }
-}
-
-
 bool Stage::set_current_selection_end_x(int x)
 {
    if (selections.empty()) return true;
