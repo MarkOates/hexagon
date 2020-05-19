@@ -1047,12 +1047,50 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font
    if (get_type() == ONE_LINE_INPUT_BOX)
    {
       ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
-      render_as_input_box(display, font, outline_and_text_color, cell_width, cell_height);
+      float width = get_place().size.x;
+      float height = get_place().size.y;
+
+      Hexagon::OneLineInputBox::Renderer renderer(
+         font,
+         outline_and_text_color,
+         width,
+         height,
+         cell_width,
+         cell_height,
+         lines,
+         selections,
+         cursor_x,
+         cursor_y,
+         get_place(),
+         first_line_number,
+         (mode == Stage::EDIT) // in_edit_mode
+      );
+
+      renderer.render();
    }
    else if (get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
    {
       ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
-      render_as_input_box(display, font, outline_and_text_color, cell_width, cell_height);
+      float width = get_place().size.x;
+      float height = get_place().size.y;
+
+      Hexagon::OneLineInputBox::Renderer renderer(
+         font,
+         outline_and_text_color,
+         width,
+         height,
+         cell_width,
+         cell_height,
+         lines,
+         selections,
+         cursor_x,
+         cursor_y,
+         get_place(),
+         first_line_number,
+         (mode == Stage::EDIT) // in_edit_mode
+      );
+
+      renderer.render();
 
       // draw chrome
       get_place().start_transform();
