@@ -678,7 +678,9 @@ bool Stage::jump_to_next_code_point()
          // set it as the current viable cursor if one isn't set; else if it's closer then set it
          if (most_viable_code_point == nullptr) most_viable_code_point = &message_point;
          else if (message_point_y < (most_viable_code_point->get_y() - 1)
-            || (message_point_y == (most_viable_code_point->get_y() - 1) && message_point.get_x() < most_viable_code_point->get_x())
+               || (message_point_y == (most_viable_code_point->get_y() - 1)
+               && message_point.get_x() < most_viable_code_point->get_x()
+            )
          )
          {
             // more viable than the current option, because it is closer to the cursor
