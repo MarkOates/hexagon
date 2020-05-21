@@ -30,6 +30,7 @@ namespace CodeEditor
 
 Stage::Stage(std::string filename, std::string file_category, mode_t mode, type_t type)
    : StageInterface(type)
+   , code_editor()
    , content_is_modified(false)
    , cursor_x(0)
    , cursor_y(0)
