@@ -721,7 +721,9 @@ bool Stage::jump_to_previous_code_point()
       {
          if (most_viable_code_point == nullptr) most_viable_code_point = &message_point;
          else if (message_point_y > (most_viable_code_point->get_y() - 1)
-           || (message_point_y == (most_viable_code_point->get_y() - 1) && message_point.get_x() > most_viable_code_point->get_x())
+               || (message_point_y == (most_viable_code_point->get_y() - 1)
+               && message_point.get_x() > most_viable_code_point->get_x()
+            )
          )
          {
             most_viable_code_point = &message_point;
