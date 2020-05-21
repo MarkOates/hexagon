@@ -108,13 +108,21 @@ return project_path + filename_generator.generate_filename();
 
 std::string CreateThreeSplitFromComponent::generate_source_filename()
 {
-return project_path + Blast::ProjectComponentFilenameGenerator(component.get_name(), Blast::ProjectComponentFileTypes::SOURCE_FILE).generate_filename();
+auto generator = Blast::ProjectComponentFilenameGenerator(
+   component.get_name(),
+   Blast::ProjectComponentFileTypes::SOURCE_FILE
+);
+return project_path + generator.generate_filename();
 
 }
 
 std::string CreateThreeSplitFromComponent::generate_test_filename()
 {
-return project_path + Blast::ProjectComponentFilenameGenerator(component.get_name(), Blast::ProjectComponentFileTypes::TEST_FILE).generate_filename();
+auto generator = Blast::ProjectComponentFilenameGenerator(
+   component.get_name(),
+   Blast::ProjectComponentFileTypes::TEST_FILE
+);
+return project_path + generator.generate_filename();
 
 }
 
