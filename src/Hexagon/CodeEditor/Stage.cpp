@@ -349,7 +349,9 @@ bool Stage::move_cursor_to_bottom_of_screen()
 
 bool Stage::move_cursor_jump_to_next_word()
 {
-   std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
+   // This regex from vimdoc.sourceforge.net/htmldoc/motion.html#word
+   std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";
+
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
    std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
 
@@ -371,7 +373,9 @@ bool Stage::move_cursor_jump_to_next_word()
 
 bool Stage::move_cursor_jump_to_next_big_word()
 {
-   std::string vim_equivelent_word_jump_regex = "[^\\s]+";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
+   // this regex from vimdoc.sourceforge.net/htmldoc/motion.html#word
+   std::string vim_equivelent_word_jump_regex = "[^\\s]+";
+
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
    std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
 
@@ -391,7 +395,9 @@ bool Stage::move_cursor_jump_to_next_big_word()
 
 bool Stage::move_cursor_to_end_of_next_word()
 {
-   std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
+   // this regex from: vimdoc.sourceforge.net/htmldoc/motion.html#word
+   std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";
+
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
    std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
 
@@ -412,7 +418,9 @@ bool Stage::move_cursor_to_end_of_next_word()
 
 bool Stage::move_cursor_to_end_of_next_big_word()
 {
-   std::string vim_equivelent_word_jump_regex = "[^\\s]+";      // vimdoc.sourceforge.net/htmldoc/motion.html#word
+   // This regex from vimdoc.sourceforge.net/htmldoc/motion.html#word
+   std::string vim_equivelent_word_jump_regex = "[^\\s]+";
+
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
    std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
 
