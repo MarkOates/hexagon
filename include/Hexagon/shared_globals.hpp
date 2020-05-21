@@ -40,6 +40,7 @@ bool is_light_mode();
 ALLEGRO_COLOR hexagon_get_backfill_color();
 float hexagon_get_backfill_opacity();
 ALLEGRO_COLOR hexagon_get_base_text_color();
+bool hexagon_window_frameless();
 
 
 

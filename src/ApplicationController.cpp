@@ -78,7 +78,9 @@ if (!al_install_keyboard()) std::cerr << "al_install_keyboard() failed" << std::
 al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
 al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
 al_set_new_display_option(ALLEGRO_DEPTH_SIZE, 32, ALLEGRO_SUGGEST);
-al_set_new_display_flags(ALLEGRO_RESIZABLE);
+//al_set_new_display_flags(ALLEGRO_RESIZABLE | ALLEGRO_NOFRAME);
+al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
+//al_set_new_display_flags(ALLEGRO_FRAMELESS);
 
 Hexagon::System::Config config;
 config.initialize();

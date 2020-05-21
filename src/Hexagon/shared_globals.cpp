@@ -63,7 +63,7 @@ int get_last_compiler_run_exit_code()
 
 bool hexagon_is_light_mode()
 {
-   return true;
+   return false;
 }
 
 
@@ -102,6 +102,12 @@ ALLEGRO_COLOR hexagon_get_base_text_color()
       return al_color_name("white");
    }
 }
+
+bool hexagon_window_frameless()
+{
+   return true;
+}
+
 
 
 
