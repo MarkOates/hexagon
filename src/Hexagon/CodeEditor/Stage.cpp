@@ -374,7 +374,8 @@ bool Stage::move_cursor_jump_to_next_word()
 bool Stage::move_cursor_jump_to_next_big_word()
 {
    // this regex from vimdoc.sourceforge.net/htmldoc/motion.html#word
-   std::string vim_equivelent_word_jump_regex = "[^\\s]+";
+   std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";
+   //std::string vim_equivelent_word_jump_regex = "[^\\s]+";
 
    RegexMatcher regex_matcher(current_line_ref(), vim_equivelent_word_jump_regex);
    std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
