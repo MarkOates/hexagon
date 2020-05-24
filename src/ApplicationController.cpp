@@ -142,7 +142,13 @@ if (!expansiva_font) throw std::runtime_error("could not load 'Expansiva bold.tt
 
 
 /*
-Hexagon::Logo logo(display_width/2, display_height/2 - logo_radius * 1.4, logo_radius, expansiva_font, al_color_html("#bc2d48"), 2.5);
+Hexagon::Logo logo(
+  display_width/2,
+  display_height/2 - logo_radius * 1.4,
+  logo_radius,
+  expansiva_font,
+  al_color_html("#bc2d48"),
+  2.5);
 logo.render();
 
 al_flip_display();
