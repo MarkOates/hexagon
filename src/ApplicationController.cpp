@@ -95,7 +95,8 @@ REGEX_TEMP_FILENAME = resource_path({"data", "tmp"}, "regex.txt");
 if (!php::file_exists(REGEX_TEMP_FILENAME))
 {
    std::stringstream error_message;
-   error_message << "🛑 Error: there is no \"" << REGEX_TEMP_FILENAME << "\" located in the directory tree.  It has to be present for hexagon to work.";
+   error_message << "Error: there is no \"" << REGEX_TEMP_FILENAME << "\" located in the directory tree.  "
+                 << "It has to be present for hexagon to work.";
    throw std::runtime_error(error_message.str());
 }
 
@@ -103,7 +104,8 @@ CLIPBOARD_TEMP_FILENAME = resource_path({"data", "tmp"}, "clipboard.txt");
 if (!php::file_exists(CLIPBOARD_TEMP_FILENAME))
 {
    std::stringstream error_message;
-   error_message << "🛑 Error: there is no \"" << CLIPBOARD_TEMP_FILENAME << "\" located in the directory tree.  It has to be present for hexagon to work.";
+   error_message << "Error: there is no \"" << CLIPBOARD_TEMP_FILENAME << "\" located in the directory tree. "
+                 << "It has to be present for hexagon to work.";
    throw std::runtime_error(error_message.str());
 }
 
@@ -111,7 +113,8 @@ FILE_NAVIGATOR_SELECTION_FILENAME = resource_path({"data", "tmp"}, "file_navigat
 if (!php::file_exists(FILE_NAVIGATOR_SELECTION_FILENAME))
 {
    std::stringstream error_message;
-   error_message << "🛑 Error: there is no \"" << FILE_NAVIGATOR_SELECTION_FILENAME << "\" located in the directory tree.  It has to be present for hexagon to work.";
+   error_message << "Error: there is no \"" << FILE_NAVIGATOR_SELECTION_FILENAME
+                 << "\" located in the directory tree.  It has to be present for hexagon to work.";
    throw std::runtime_error(error_message.str());
 }
 
@@ -119,7 +122,8 @@ MAKE_COMMAND_FILENAME = resource_path({"data", "tmp"}, "make_command.txt");
 if (!php::file_exists(MAKE_COMMAND_FILENAME))
 {
    std::stringstream error_message;
-   error_message << "|----| Error: there is no \"" << MAKE_COMMAND_FILENAME << "\" located in the directory tree.  It has to be present for hexagon to work.";
+   error_message << "Error: there is no \"" << MAKE_COMMAND_FILENAME
+                 << "\" located in the directory tree.  It has to be present for hexagon to work.";
    throw std::runtime_error(error_message.str());
 }
 
