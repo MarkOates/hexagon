@@ -35,9 +35,8 @@ public:
    StageInterface(StageInterface::type_t type);
    virtual ~StageInterface();
 
-   std::string get_type_name();
-
    StageInterface::type_t get_type();
+   std::string get_type_name();
    placement3d &get_place();
    void set_place(placement3d place);
    bool infer_is_modal(); // this should be removed from the base class
