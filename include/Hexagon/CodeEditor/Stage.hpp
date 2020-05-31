@@ -17,7 +17,6 @@ namespace Hexagon
       {
       private:
          ::CodeEditor::CodeEditor* code_editor;
-         std::string text;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:

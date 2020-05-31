@@ -23,6 +23,10 @@
 
 
 
+#include <Hexagon/CodeEditor/Stage.hpp>
+
+
+
 namespace CodeEditor
 {
 
@@ -956,8 +960,14 @@ bool CodeEditor::paste_selected_text_from_clipboard()
 
 
 
+
+//#include <Hexagon/CodeEditor/Stage.hpp>
 void CodeEditor::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
 {
+   Hexagon::CodeEditor::Stage stage(this);
+   stage.render(is_focused, display, font, cell_width, cell_height);
+   return;
+
    //place = this->place;
 
    if (get_type() == ONE_LINE_INPUT_BOX)

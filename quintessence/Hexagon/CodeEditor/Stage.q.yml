@@ -8,9 +8,6 @@ properties:
     init_with: nullptr
     constructor_arg: true
     getter: true
-  - name: text
-    type: std::string
-    init_with: '"MISSING FILE"'
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT

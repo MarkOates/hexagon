@@ -19,7 +19,6 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 Stage::Stage(::CodeEditor::CodeEditor* code_editor)
    : StageInterface(StageInterface::CODE_EDITOR)
    , code_editor(code_editor)
-   , text("MISSING FILE")
 {
 }
 
