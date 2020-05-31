@@ -976,7 +976,7 @@ void CodeEditor::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT 
       float width = get_place().size.x;
       float height = get_place().size.y;
       //std::string top_left_text = "ESC: Close";
-      std::string bottom_right_text = "search";
+      std::string bottom_right_text = "find";
 
       Hexagon::OneLineInputBox::Renderer renderer(
          font,
@@ -1054,16 +1054,18 @@ void CodeEditor::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT 
 
 void CodeEditor::process_local_event(std::string event_name, ActionData action_data1)
 {
-   ::CodeEditor::EventController stage_event_controller(this);
-   stage_event_controller.process_local_event(event_name, action_data1);
+   Hexagon::CodeEditor::Stage stage(this);
+   stage.process_local_event(event_name, action_data1);
+   return;
 }
 
 
 
 void CodeEditor::process_event(ALLEGRO_EVENT &event)
 {
-   ::CodeEditor::EventController stage_event_controller(this);
-   stage_event_controller.process_event(event);
+   Hexagon::CodeEditor::Stage stage(this);
+   stage.process_event(event);
+   return;
 }
 
 

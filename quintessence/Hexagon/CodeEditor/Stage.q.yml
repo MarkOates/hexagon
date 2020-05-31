@@ -2,7 +2,11 @@ parent_classes:
   - class: 'StageInterface'
     scope: public
     init_with: "StageInterface::CODE_EDITOR"
+
+
 properties:
+
+
   - name: code_editor
     type: ::CodeEditor::CodeEditor*
     init_with: nullptr
@@ -13,7 +17,11 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+
+
 functions:
+
+
   - name: render
     guard: [ code_editor ]
     is_override: true
@@ -36,7 +44,7 @@ functions:
     body: |
       //place = this->place;
 
-      if (get_type() == ONE_LINE_INPUT_BOX)
+      if (code_editor->get_type() == ONE_LINE_INPUT_BOX)
       {
          ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
          float width = code_editor->get_place().size.x;
@@ -65,7 +73,7 @@ functions:
 
          renderer.render();
       }
-      else if (get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
+      else if (code_editor->get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
       {
          ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
          float width = code_editor->get_place().size.x;
@@ -127,6 +135,8 @@ functions:
       - Hexagon::OneLineInputBox::Renderer
       - CodeEditor::Renderer
       - Hexagon::Elements::StageInfoOverlay
+
+
   - name: process_local_event
     is_override: true
     parameters:
@@ -136,14 +146,30 @@ functions:
       - name: action_data
         type: ActionData
         default_argument: "ActionData()"
+    guard: [ code_editor ]
     body: return;
+      ::CodeEditor::EventController stage_event_controller(code_editor);
+      stage_event_controller.process_local_event(event_name, action_data);
+      return;
+    body_dependency_symbols:
+      - ::CodeEditor::EventController
+
+
   - name: process_event
     is_override: true
     parameters:
       - name: event
         type: ALLEGRO_EVENT&
         default_argument: "get_a_default_empty_event_ref()"
-    body: return;
+    guard: [ code_editor ]
+    body: |
+      ::CodeEditor::EventController stage_event_controller(code_editor);
+      stage_event_controller.process_event(event);
+      return;
+    body_dependency_symbols:
+      - ::CodeEditor::EventController
+
+
 dependencies:
   - symbol: ALLEGRO_DISPLAY*
     headers: [ allegro5/allegro.h ]
@@ -153,6 +179,8 @@ dependencies:
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: ::CodeEditor::CodeEditor*
     headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
+  - symbol: ::CodeEditor::EventController
+    headers: [ Hexagon/CodeEditor/EventController.hpp ]
   - symbol: Hexagon::OneLineInputBox::Renderer
     headers: [ Hexagon/OneLineInputBox/Renderer.hpp ]
   - symbol: Hexagon::Elements::StageInfoOverlay

@@ -5,6 +5,8 @@
 #include <Hexagon/OneLineInputBox/Renderer.hpp>
 #include <Hexagon/CodeEditor/Renderer.hpp>
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
+#include <Hexagon/CodeEditor/EventController.hpp>
+#include <Hexagon/CodeEditor/EventController.hpp>
 
 
 namespace Hexagon
@@ -44,7 +46,7 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font
 {
 //place = this->place;
 
-if (get_type() == ONE_LINE_INPUT_BOX)
+if (code_editor->get_type() == ONE_LINE_INPUT_BOX)
 {
    ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
    float width = code_editor->get_place().size.x;
@@ -73,7 +75,7 @@ if (get_type() == ONE_LINE_INPUT_BOX)
 
    renderer.render();
 }
-else if (get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
+else if (code_editor->get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
 {
    ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
    float width = code_editor->get_place().size.x;
@@ -135,12 +137,15 @@ return;
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
-return;
+return; ::CodeEditor::EventController stage_event_controller(code_editor); stage_event_controller.process_local_event(event_name, action_data); return;
 }
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
+::CodeEditor::EventController stage_event_controller(code_editor);
+stage_event_controller.process_event(event);
 return;
+
 }
 } // namespace CodeEditor
 } // namespace Hexagon
