@@ -27,7 +27,7 @@ namespace CodeEditor
 Renderer::Renderer(
    bool draw_line_numbers,
    bool is_focused,
-   CodeEditor::Stage *stage,
+   ::CodeEditor::CodeEditor *stage,
    ALLEGRO_FONT *font,
    ALLEGRO_DISPLAY *display,
    int cell_width,
@@ -143,7 +143,7 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
    int cursor_x = stage->get_cursor_x();
    float _cell_width = cell_width;
    float _cell_height = cell_height;
-   CodeEditor::Stage::mode_t mode = stage->get_mode();
+   ::CodeEditor::CodeEditor::mode_t mode = stage->get_mode();
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
    bool not_focused = !is_focused;
 

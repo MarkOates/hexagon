@@ -22,7 +22,7 @@ namespace CodeEditor
       bool draw_null_space;
       bool draw_backfill;
       ALLEGRO_DISPLAY *display;
-      CodeEditor::Stage *stage;
+      ::CodeEditor::CodeEditor *stage;
       int cell_width;
       int cell_height;
       ALLEGRO_FONT *font;
@@ -37,7 +37,7 @@ namespace CodeEditor
       Renderer(
          bool draw_line_numbers,
          bool is_focused,
-         CodeEditor::Stage *stage,
+         ::CodeEditor::CodeEditor *stage,
          ALLEGRO_FONT *font,
          ALLEGRO_DISPLAY *display,
          int cell_width,

@@ -50,12 +50,12 @@ functions:
 
       return true;
     body_dependency_symbols:
-      - CodeEditor::Stage
+      - CodeEditor::CodeEditor
       - Blast::Project::ComponentRelativeLister
       - std::stringstream
       - Blast::Project::Component
 dependencies:
-  - symbol: CodeEditor::Stage
+  - symbol: CodeEditor::CodeEditor
     headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: Blast::Project::ComponentRelativeLister
     headers: [ Blast/Project/ComponentRelativeLister.hpp ]

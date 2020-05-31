@@ -15,7 +15,7 @@ namespace CodeEditor
 {
 
 
-CursorRenderer::CursorRenderer(ALLEGRO_COLOR color, float x, float y, float width, float height, ::CodeEditor::Stage::mode_t mode, bool focus)
+CursorRenderer::CursorRenderer(ALLEGRO_COLOR color, float x, float y, float width, float height, ::CodeEditor::CodeEditor::mode_t mode, bool focus)
    : color(color)
    , x(x)
    , y(y)
@@ -54,7 +54,7 @@ ALLEGRO_COLOR halo_color = cursor_color;
 
 switch(mode)
 {
-case ::CodeEditor::Stage::EDIT:
+case ::CodeEditor::CodeEditor::EDIT:
   {
      x = cursor_x*_cell_width - cursor_outset;
      y = _cursor_y*cell_height - cursor_outset;
@@ -63,7 +63,7 @@ case ::CodeEditor::Stage::EDIT:
      al_draw_rounded_rectangle(x, y, x2, y2, 2.0, 2.0, cursor_color, cursor_thickness);
   }
   break;
-case ::CodeEditor::Stage::INSERT:
+case ::CodeEditor::CodeEditor::INSERT:
   {
      x = cursor_x*_cell_width;
      y = _cursor_y*cell_height;
@@ -73,7 +73,7 @@ case ::CodeEditor::Stage::INSERT:
   }
   break;
 default:
-  throw std::runtime_error("Hexagon/CodeEditor/CursorRenderer: unsupported Stage::mode_t");
+  throw std::runtime_error("Hexagon/CodeEditor/CursorRenderer: unsupported CodeEditor::mode_t");
   break;
 }
 

@@ -20,22 +20,22 @@ To change your day of youth to sullied night,
 And all in war with Time for love of you,
 As he takes from you, I engraft you new.)END";
 
-TEST(Hexagon_CodeEditor_StageTest, can_be_created_without_blowing_up)
+TEST(Hexagon_CodeEditor_CodeEditorTest, can_be_created_without_blowing_up)
 {
-   CodeEditor::Stage stage("foobar_filename.txt");
+   CodeEditor::CodeEditor stage("foobar_filename.txt");
 }
 
-TEST(Hexagon_CodeEditor_StageTest, file_category__has_a_getter_and_has_the_expected_default)
+TEST(Hexagon_CodeEditor_CodeEditorTest, file_category__has_a_getter_and_has_the_expected_default)
 {
-   CodeEditor::Stage stage("foobar_filename.txt");
+   CodeEditor::CodeEditor stage("foobar_filename.txt");
    std::string expected_default_file_category = "undefined";
    std::string actual_default_file_category = stage.get_file_category();
    ASSERT_EQ(expected_default_file_category, actual_default_file_category);
 }
 
-TEST(Hexagon_CodeEditor_StageTest, search_regex_expression__has_a_getter_and_has_the_expected_default)
+TEST(Hexagon_CodeEditor_CodeEditorTest, search_regex_expression__has_a_getter_and_has_the_expected_default)
 {
-   CodeEditor::Stage stage("foobar_filename.txt");
+   CodeEditor::CodeEditor stage("foobar_filename.txt");
 
    ASSERT_EQ("", stage.get_search_regex_expression());
 
@@ -45,10 +45,10 @@ TEST(Hexagon_CodeEditor_StageTest, search_regex_expression__has_a_getter_and_has
    ASSERT_EQ(expression1, stage.get_search_regex_expression());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    infer_cursor_is_on_line_that_exists__returns_true_when_the_cursor_is_within_the_range_of_number_of_lines)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_cursor_y(9);
@@ -61,10 +61,10 @@ TEST(Hexagon_CodeEditor_StageTest,
    EXPECT_TRUE(stage.infer_cursor_is_on_line_that_exists());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    infer_cursor_is_on_line_that_exists__returns_false_when_the_cursor_is_not_within_the_range_of_number_of_lines)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_cursor_y(-1);
@@ -74,20 +74,20 @@ TEST(Hexagon_CodeEditor_StageTest,
    EXPECT_FALSE(stage.infer_cursor_is_on_line_that_exists());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    move_cursor_left__while_at_the_0_position_will_do_nothing_and_return_false)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    EXPECT_FALSE(stage.move_cursor_left());
    EXPECT_EQ(0, stage.get_cursor_x());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    join_lines__will_concat_the_contents_of_the_current_line_and_the_line_below_it_and_returns_true)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_cursor_y(4);
@@ -102,9 +102,9 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(expected_line_below_cursor, stage.next_line_ref());
 }
 
-TEST(Hexagon_CodeEditor_StageTest, join_lines__on_the_last_line__does_nothing_and_returns_false)
+TEST(Hexagon_CodeEditor_CodeEditorTest, join_lines__on_the_last_line__does_nothing_and_returns_false)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_cursor_y(stage.num_lines()-1);
@@ -115,9 +115,9 @@ TEST(Hexagon_CodeEditor_StageTest, join_lines__on_the_last_line__does_nothing_an
    ASSERT_EQ("As he takes from you, I engraft you new.", stage.current_line_ref());
 }
 
-TEST(Hexagon_CodeEditor_StageTest, join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
+TEST(Hexagon_CodeEditor_CodeEditorTest, join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    int line_numbers_to_test[] = { -1, stage.num_lines()+10, -10, };
@@ -131,9 +131,9 @@ TEST(Hexagon_CodeEditor_StageTest, join_lines__on_a_line_number_that_is_out_of_b
    SUCCEED();
 }
 
-TEST(Hexagon_CodeEditor_StageTest, move_cursor_to_last_character_of_line__moves_the_cursor_to_the_last_character)
+TEST(Hexagon_CodeEditor_CodeEditorTest, move_cursor_to_last_character_of_line__moves_the_cursor_to_the_last_character)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    ASSERT_EQ(true, stage.move_cursor_to_last_character_of_line());
@@ -148,9 +148,9 @@ TEST(Hexagon_CodeEditor_StageTest, move_cursor_to_last_character_of_line__moves_
    ASSERT_EQ(47, stage.get_cursor_x());
 }
 
-TEST(Hexagon_CodeEditor_StageTest, move_cursor_to_last_character_of_line__on_an_empty_line__moves_to_the_first_character)
+TEST(Hexagon_CodeEditor_CodeEditorTest, move_cursor_to_last_character_of_line__on_an_empty_line__moves_to_the_first_character)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_cursor_y(1);
@@ -160,10 +160,10 @@ TEST(Hexagon_CodeEditor_StageTest, move_cursor_to_last_character_of_line__on_an_
    ASSERT_EQ(0, stage.get_cursor_x());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    move_cursor_to_last_character_of_line__on_an_invalid_line__moves_the_cursor_to_the_first_column_and_returns_false)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_cursor_y(-1);
@@ -173,19 +173,19 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(0, stage.get_cursor_x());
 }
 
-TEST(Hexagon_CodeEditor_StageTest, move_cursor_to_last_line__moves_the_cursor_to_the_last_line_of_the_file)
+TEST(Hexagon_CodeEditor_CodeEditorTest, move_cursor_to_last_line__moves_the_cursor_to_the_last_line_of_the_file)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    ASSERT_EQ(true, stage.move_cursor_to_last_line());
    ASSERT_EQ("As he takes from you, I engraft you new.", stage.current_line_ref());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    move_cursor_up__when_on_or_above_the_first_line__does_nothing_and_returns_false)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    int line_indices_to_test[] = { 0, -1, -99 };
@@ -196,10 +196,10 @@ TEST(Hexagon_CodeEditor_StageTest,
    }
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    move_cursor_down__when_on_or_beyond_the_last_line__does_nothing_and_returns_false)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    int last_line_index = stage.num_lines() - 1;
@@ -212,9 +212,9 @@ TEST(Hexagon_CodeEditor_StageTest,
    }
 }
 
-TEST(Hexagon_CodeEditor_StageTest, delete_line__removes_the_current_line)
+TEST(Hexagon_CodeEditor_CodeEditorTest, delete_line__removes_the_current_line)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    EXPECT_EQ(16, stage.num_lines());
@@ -233,9 +233,9 @@ TEST(Hexagon_CodeEditor_StageTest, delete_line__removes_the_current_line)
    ASSERT_TRUE(stage.get_content_is_modified());
 }
 
-TEST(Hexagon_CodeEditor_StageTest, delete_line__on_an_invalid_line__does_nothing_and_returns_false)
+TEST(Hexagon_CodeEditor_CodeEditorTest, delete_line__on_an_invalid_line__does_nothing_and_returns_false)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_cursor_y(stage.num_lines()+1);
@@ -244,10 +244,10 @@ TEST(Hexagon_CodeEditor_StageTest, delete_line__on_an_invalid_line__does_nothing
    EXPECT_EQ(16, stage.num_lines());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    move_cursor_to_first_non_whitespace_character__on_an_invalid_line__moves_the_cursor_x_to_0_and_returns_false)
 {
-   CodeEditor::Stage stage("test_text.txt");
+   CodeEditor::CodeEditor stage("test_text.txt");
 
    stage.set_cursor_x(3);
 
@@ -270,7 +270,7 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(0, stage.get_cursor_x());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    move_cursor_to_first_non_whitespace_character__sets_the_cursor_x_to_the_first_non_whitespace_character)
 {
    std::vector<std::string> test_text = {
@@ -278,7 +278,7 @@ TEST(Hexagon_CodeEditor_StageTest,
      "     \tTest",
      "Start",
    };
-   CodeEditor::Stage stage("test_text.txt");
+   CodeEditor::CodeEditor stage("test_text.txt");
    stage.set_initial_content(test_text);
 
    ASSERT_EQ(true, stage.move_cursor_to_first_non_whitespace_character());
@@ -295,7 +295,7 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(0, stage.get_cursor_x());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    move_cursor_to_first_non_whitespace_character__on_a_line_containing_only_whitespace_characters__moves_cursor_to_end)
 {
    std::vector<std::string> test_text = {
@@ -303,7 +303,7 @@ TEST(Hexagon_CodeEditor_StageTest,
      "     \t  \t",
      "\t",
    };
-   CodeEditor::Stage stage("test_text.txt");
+   CodeEditor::CodeEditor stage("test_text.txt");
    stage.set_initial_content(test_text);
 
    ASSERT_EQ(true, stage.move_cursor_to_first_non_whitespace_character());
@@ -320,10 +320,10 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(1, stage.get_cursor_x());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    jump_to_next_or_nearest_code_point__with_code_points_after_the_cursor__jumps_to_the_next_code_point)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_search_regex_expression("at");
@@ -341,10 +341,10 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(8, stage.get_cursor_y());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    jump_to_next_or_nearest_code_point__with_no_code_points_after_the_cursor__jumps_to_the_previous_code_point)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_search_regex_expression("at");
@@ -362,10 +362,10 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(12, stage.get_cursor_y());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    jump_to_next_or_nearest_code_point__with_no_code_points__does_not_move_the_cursor)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    int start_cursor_x = 12;
@@ -380,10 +380,10 @@ TEST(Hexagon_CodeEditor_StageTest,
    ASSERT_EQ(start_cursor_y, stage.get_cursor_y());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    insert_three_spaces_at_start_of_line__on_a_line_that_does_not_exist__does_nothing_and_returns_false)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_cursor_y(-1);
@@ -392,10 +392,10 @@ TEST(Hexagon_CodeEditor_StageTest,
    EXPECT_EQ(false, stage.insert_three_spaces_at_start_of_line());
 }
 
-TEST(Hexagon_CodeEditor_StageTest,
+TEST(Hexagon_CodeEditor_CodeEditorTest,
    insert_three_spaces_at_start_of_line__will_insert_3_blank_spaces_at_the_start_of_the_line__and_return_true)
 {
-   CodeEditor::Stage stage("a_sonnet.txt");
+   CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
 
    stage.set_cursor_y(6);

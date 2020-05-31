@@ -56,7 +56,7 @@ for (unsigned i=0; i<stages.size(); i++)
         || stage->get_type() == StageInterface::MISSING_FILE
       )
    {
-      CodeEditor::Stage *code_editor = static_cast<CodeEditor::Stage *>(stage);
+      CodeEditor::CodeEditor *code_editor = static_cast<CodeEditor::CodeEditor *>(stage);
       delete code_editor;
       stages.erase(stages.begin()+i);
       i--;

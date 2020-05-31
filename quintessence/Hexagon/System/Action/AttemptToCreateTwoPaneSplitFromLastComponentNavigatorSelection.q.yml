@@ -78,8 +78,8 @@ functions:
         {
            std::vector<std::string> file_contents = {};
            ::read_file(file_contents, test_filename);
-           stage = new CodeEditor::Stage(test_filename);
-           static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
+           stage = new CodeEditor::CodeEditor(test_filename);
+           static_cast<CodeEditor::CodeEditor*>(stage)->set_initial_content(file_contents);
         }
         else
         {
@@ -103,8 +103,8 @@ functions:
         {
            std::vector<std::string> file_contents = {};
            ::read_file(file_contents, filename);
-           stage = new CodeEditor::Stage(filename);
-           static_cast<CodeEditor::Stage*>(stage)->set_initial_content(file_contents);
+           stage = new CodeEditor::CodeEditor(filename);
+           static_cast<CodeEditor::CodeEditor*>(stage)->set_initial_content(file_contents);
         }
         else
         {
@@ -125,7 +125,7 @@ functions:
       - std::string
       - read_file
       - placement3d
-      - CodeEditor::Stage
+      - CodeEditor::CodeEditor
 dependencies:
   - symbol: std::vector
     headers: [ vector ]
@@ -145,7 +145,7 @@ dependencies:
     headers: [ Hexagon/util.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
-  - symbol: CodeEditor::Stage
+  - symbol: CodeEditor::CodeEditor
     headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: std::vector<StageInterface *>&
     headers: [ vector, Hexagon/StageInterface.hpp ]

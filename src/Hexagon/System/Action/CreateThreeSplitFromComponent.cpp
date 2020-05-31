@@ -81,7 +81,7 @@ StageInterface *stage = nullptr;
 if (file_exists)
 {
    std::string file_contents = php::file_get_contents(filename);
-   CodeEditor::Stage *file_stage = new CodeEditor::Stage(filename);
+   CodeEditor::CodeEditor *file_stage = new CodeEditor::CodeEditor(filename);
    file_stage->set_initial_content(file_contents);
    stage = file_stage;
 }

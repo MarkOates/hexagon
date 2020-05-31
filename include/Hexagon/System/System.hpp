@@ -64,8 +64,8 @@ public:
 
    // retrieval
    StageInterface *get_frontmost_stage();
-   CodeEditor::Stage *get_frontmost_code_editor_stage();
-   std::vector<CodeEditor::Stage *> get_all_code_editor_stages();
+   ::CodeEditor::CodeEditor *get_frontmost_code_editor_stage();
+   std::vector<::CodeEditor::CodeEditor *> get_all_code_editor_stages();
    int get_number_of_code_editor_stages();
 
    // inference

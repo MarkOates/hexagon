@@ -72,7 +72,7 @@ TEST(DISABLED_Hexagon_System_System,
 TEST(DISABLED_Hexagon_System_System,
    enable_drawing_info_overlays_on_all_code_editor_stages)
 {
-   std::vector<CodeEditor::Stage *> stages;
+   std::vector<::CodeEditor::CodeEditor *> stages;
 
    System system(nullptr);
    system.initialize();

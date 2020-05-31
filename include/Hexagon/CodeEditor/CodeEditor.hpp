@@ -19,7 +19,7 @@ namespace CodeEditor
 
 namespace CodeEditor
 {
-   class Stage : public StageInterface
+   class CodeEditor : public StageInterface
    {
    public:
       enum mode_t
@@ -29,7 +29,7 @@ namespace CodeEditor
       };
 
    private:
-      friend class CodeEditor::Renderer;
+      friend class ::CodeEditor::Renderer;
       std::vector<std::string> lines;
       int cursor_x;
       int cursor_y;
@@ -52,13 +52,13 @@ namespace CodeEditor
       void unmark_content_contains_errors();
 
    public:
-      Stage(
+      CodeEditor(
          std::string filename="unnamed_file.txt",
          std::string file_category="undefined",
          mode_t mode=EDIT,
          type_t type=CODE_EDITOR
          );
-      ~Stage();
+      ~CodeEditor();
       // accessors
 
       void set_cursor_x(int cursor_x);

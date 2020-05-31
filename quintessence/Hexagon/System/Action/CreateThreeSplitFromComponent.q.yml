@@ -63,7 +63,7 @@ functions:
       if (file_exists)
       {
          std::string file_contents = php::file_get_contents(filename);
-         CodeEditor::Stage *file_stage = new CodeEditor::Stage(filename);
+         CodeEditor::CodeEditor *file_stage = new CodeEditor::CodeEditor(filename);
          file_stage->set_initial_content(file_contents);
          stage = file_stage;
       }
@@ -119,7 +119,7 @@ functions:
 
       return true;
     body_dependency_symbols:
-      - CodeEditor::Stage
+      - CodeEditor::CodeEditor
       - Blast::ProjectComponentFilenameGenerator
       - php::file_get_contents
 dependencies:
@@ -127,7 +127,7 @@ dependencies:
     headers: [ Hexagon/Action.hpp ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
-  - symbol: CodeEditor::Stage
+  - symbol: CodeEditor::CodeEditor
     headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: std::vector<StageInterface *>&
     headers: [ vector, Hexagon/StageInterface.hpp ]

@@ -65,10 +65,10 @@ TEST(Hexagon_System_Action_AttemptTo, execute__with_a_valid_component_opens_the_
    std::string expected_test_filename = "/Users/markoates/Repos/hexagon/tests/Hexagon/Elements/FrameTest.cpp";
 
    ASSERT_EQ(StageInterface::CODE_EDITOR, stages[0]->get_type());
-   EXPECT_EQ(expected_test_filename, static_cast<CodeEditor::Stage*>(stages[0])->get_filename());
+   EXPECT_EQ(expected_test_filename, static_cast<::CodeEditor::CodeEditor*>(stages[0])->get_filename());
 
    ASSERT_EQ(StageInterface::CODE_EDITOR, stages[1]->get_type());
-   EXPECT_EQ(expected_quintessence_filename, static_cast<CodeEditor::Stage*>(stages[1])->get_filename());
+   EXPECT_EQ(expected_quintessence_filename, static_cast<::CodeEditor::CodeEditor*>(stages[1])->get_filename());
 }
 
 TEST(Hexagon_System_Action_AttemptTo, execute__positions_two_stages_at_expected_placements)

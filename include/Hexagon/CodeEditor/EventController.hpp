@@ -12,7 +12,7 @@
 
 namespace CodeEditor
 {
-   class Stage;
+   class CodeEditor;
 }
 
 
@@ -22,7 +22,7 @@ namespace CodeEditor
    class EventController : public EventControllerInterface
    {
    private:
-      CodeEditor::Stage *stage;
+      ::CodeEditor::CodeEditor *stage;
 
       KeyboardCommandMapper edit_mode__keyboard_command_mapper;
       KeyboardCommandMapper insert_mode__keyboard_command_mapper;
@@ -37,7 +37,7 @@ namespace CodeEditor
       bool play_last_performed_action_queue_recording();
 
    public:
-      EventController(CodeEditor::Stage *stage=nullptr);
+      EventController(::CodeEditor::CodeEditor *stage=nullptr);
       virtual ~EventController();
 
       void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override;

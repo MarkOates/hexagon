@@ -20,8 +20,8 @@ properties:
     init_with: 1
     constructor_arg: true
   - name: mode
-    type: ::CodeEditor::Stage::mode_t
-    init_with: ::CodeEditor::Stage::EDIT
+    type: ::CodeEditor::CodeEditor::mode_t
+    init_with: ::CodeEditor::CodeEditor::EDIT
     constructor_arg: true
   - name: focus
     type: bool
@@ -51,7 +51,7 @@ functions:
 
       switch(mode)
       {
-      case ::CodeEditor::Stage::EDIT:
+      case ::CodeEditor::CodeEditor::EDIT:
         {
            x = cursor_x*_cell_width - cursor_outset;
            y = _cursor_y*cell_height - cursor_outset;
@@ -60,7 +60,7 @@ functions:
            al_draw_rounded_rectangle(x, y, x2, y2, 2.0, 2.0, cursor_color, cursor_thickness);
         }
         break;
-      case ::CodeEditor::Stage::INSERT:
+      case ::CodeEditor::CodeEditor::INSERT:
         {
            x = cursor_x*_cell_width;
            y = _cursor_y*cell_height;
@@ -70,7 +70,7 @@ functions:
         }
         break;
       default:
-        throw std::runtime_error("Hexagon/CodeEditor/CursorRenderer: unsupported Stage::mode_t");
+        throw std::runtime_error("Hexagon/CodeEditor/CursorRenderer: unsupported CodeEditor::mode_t");
         break;
       }
       
@@ -93,15 +93,15 @@ functions:
       - ALLEGRO_COLOR
       - al_color_name
       - al_draw_rectangle
-      - ::CodeEditor::Stage::EDIT
-      - ::CodeEditor::Stage::INSERT
+      - ::CodeEditor::CodeEditor::EDIT
+      - ::CodeEditor::CodeEditor::INSERT
       - color::color
 dependencies:
-  - symbol: ::CodeEditor::Stage::mode_t
+  - symbol: ::CodeEditor::CodeEditor::mode_t
     headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
-  - symbol: ::CodeEditor::Stage::EDIT
+  - symbol: ::CodeEditor::CodeEditor::EDIT
     headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
-  - symbol: ::CodeEditor::Stage::INSERT
+  - symbol: ::CodeEditor::CodeEditor::INSERT
     headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
