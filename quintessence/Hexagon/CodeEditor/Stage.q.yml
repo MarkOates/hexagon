@@ -1,0 +1,76 @@
+parent_classes:
+  - class: 'StageInterface'
+    scope: public
+    init_with: "StageInterface::CODE_EDITOR"
+properties:
+  - name: expected_filename
+    type: std::string
+    init_with: '"[Expected filename not set]"'
+    constructor_arg: true
+    getter: true
+  - name: text
+    type: std::string
+    init_with: '"MISSING FILE"'
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
+functions:
+  - name: render
+    is_override: true
+    parameters:
+      - name: is_focused
+        type: bool
+        default_argument: true
+      - name: display
+        type: ALLEGRO_DISPLAY*
+        default_argument: nullptr
+      - name: font
+        type: ALLEGRO_FONT*
+        default_argument: nullptr
+      - name: cell_width
+        type: int
+        default_argument: 10
+      - name: cell_height
+        type: int
+        default_argument: 20
+    body: |
+       return;
+    body_dependency_symbols: []
+  - name: process_local_event
+    is_override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: '""'
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: return;
+  - name: process_event
+    is_override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: return;
+dependencies:
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: al_color_html
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_draw_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_draw_text
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ActionData
+    headers: [ Hexagon/ActionData.hpp ]
