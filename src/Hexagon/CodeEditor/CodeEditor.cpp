@@ -961,92 +961,10 @@ bool CodeEditor::paste_selected_text_from_clipboard()
 
 
 
-//#include <Hexagon/CodeEditor/Stage.hpp>
 void CodeEditor::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
 {
    Hexagon::CodeEditor::Stage stage(this);
    stage.render(is_focused, display, font, cell_width, cell_height);
-   return;
-
-   //place = this->place;
-
-   if (get_type() == ONE_LINE_INPUT_BOX)
-   {
-      ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
-      float width = get_place().size.x;
-      float height = get_place().size.y;
-      //std::string top_left_text = "ESC: Close";
-      std::string bottom_right_text = "find";
-
-      Hexagon::OneLineInputBox::Renderer renderer(
-         font,
-         outline_and_text_color,
-         width,
-         height,
-         cell_width,
-         cell_height,
-         lines,
-         selections,
-         cursor_x,
-         cursor_y,
-         get_place(),
-         first_line_number,
-         (mode == CodeEditor::EDIT) // in_edit_mode
-      );
-
-      //renderer.set_top_left_text(top_left_text);
-      renderer.set_bottom_right_text(bottom_right_text);
-
-      renderer.render();
-   }
-   else if (get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
-   {
-      ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
-      float width = get_place().size.x;
-      float height = get_place().size.y;
-      //std::string top_left_text = "ESC: Close";
-      std::string bottom_right_text = "commit and push";
-
-      Hexagon::OneLineInputBox::Renderer renderer(
-         font,
-         outline_and_text_color,
-         width,
-         height,
-         cell_width,
-         cell_height,
-         lines,
-         selections,
-         cursor_x,
-         cursor_y,
-         get_place(),
-         first_line_number,
-         (mode == CodeEditor::EDIT) // in_edit_mode
-      );
-
-      //renderer.set_top_left_text(top_left_text);
-      renderer.set_bottom_right_text(bottom_right_text);
-
-      renderer.render();
-   }
-   else
-   {
-      bool draw_line_numbers = true;
-      ::CodeEditor::Renderer renderer(draw_line_numbers, is_focused, this, font, display, cell_width, cell_height);
-      renderer.render();
-
-      if (draw_info_overlay)
-      {
-         placement3d &place = this->get_place_ref();
-         std::string text_to_render = this->get_filename();
-         place.start_transform();
-         Hexagon::Elements::StageInfoOverlay stage_info_overlay(font, &place);
-         //if (!is_focused) text_to_render = this->get_filename();
-         stage_info_overlay.set_text(text_to_render);
-         stage_info_overlay.render();
-         place.restore_transform();
-      }
-   }
-
    return;
 }
 
