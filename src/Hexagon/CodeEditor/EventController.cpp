@@ -3,7 +3,7 @@
 
 #include <Hexagon/CodeEditor/EventController.hpp>
 
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <iostream>
 
 

@@ -9,7 +9,7 @@
 #include <string>
 #include <Hexagon/util.hpp>
 #include <allegro_flare/placement3d.h>
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 
 
 namespace Hexagon

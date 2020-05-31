@@ -23,7 +23,7 @@ TEST(Hexagon_System_Action_AttemptToCreateStagesForEntireFamilyOfComponentTest,
    execute__with_valid_inputs__returns_the_expected_response)
 {
    std::vector<StageInterface *> stages;
-   Blast::Project::Component component("Hexagon/CodeEditor/Stage");
+   Blast::Project::Component component("Hexagon/CodeEditor/CodeEditor");
    AttemptToCreateStagesForEntireFamilyOfComponent attempt_to_create_stages_for_entire_family_of_component(
       component.get_name(), &stages);
    EXPECT_EQ(true, attempt_to_create_stages_for_entire_family_of_component.execute());
@@ -32,7 +32,7 @@ TEST(Hexagon_System_Action_AttemptToCreateStagesForEntireFamilyOfComponentTest,
 TEST(Hexagon_System_Action_AttemptToCreateStagesForEntireFamilyOfComponentTest,
    execute__with_nullptr_stages__raises_an_exception)
 {
-   Blast::Project::Component component_that_does_not_exist("Hexagon/CodeEditor/Stage");
+   Blast::Project::Component component_that_does_not_exist("Hexagon/CodeEditor/CodeEditor");
    AttemptToCreateStagesForEntireFamilyOfComponent action(component_that_does_not_exist.get_name(), nullptr);
    std::string expected_error_message = "stages must be present";
    ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);

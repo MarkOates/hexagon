@@ -5,7 +5,7 @@
 
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/CodeEditor/CursorRenderer.hpp>
 #include <Hexagon/CodeEditor/Renderer/BasicLineRenderer.hpp>
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>

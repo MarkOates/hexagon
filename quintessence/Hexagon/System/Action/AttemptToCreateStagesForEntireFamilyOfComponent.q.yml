@@ -56,7 +56,7 @@ functions:
       - Blast::Project::Component
 dependencies:
   - symbol: CodeEditor::Stage
-    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+    headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: Blast::Project::ComponentRelativeLister
     headers: [ Blast/Project/ComponentRelativeLister.hpp ]
   - symbol: ::Action

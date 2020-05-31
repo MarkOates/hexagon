@@ -75,7 +75,7 @@ dependencies:
   - symbol: std::vector<StageInterface *>*
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: CodeEditor::Stage
-    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+    headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: ::read_file
     headers: [ Hexagon/util.hpp ]
   - symbol: std::vector<std::string>

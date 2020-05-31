@@ -5,7 +5,7 @@
 
 typedef Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection CreateTwoSplit;
 
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 
 TEST(Hexagon_System_Action_AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelectionTest, can_be_created_without_blowing_up)

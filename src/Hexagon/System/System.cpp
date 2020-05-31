@@ -7,7 +7,7 @@
 #include <Hexagon/RailsMinitestTestResult.hpp>
 #include <Hexagon/RailsMinitestTestResultToCodeMessagePointConverter.hpp>
 #include <Hexagon/StageInterface.hpp>
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
 //#include <Hexagon/ComponentNavigator/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
@@ -70,7 +70,7 @@
 #include <Hexagon/KeyboardInputsModal/Stage.hpp>
 #include <Hexagon/EventControllerInterface.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/Hud.hpp>
 #include <Hexagon/FileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>

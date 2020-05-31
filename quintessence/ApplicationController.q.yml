@@ -277,7 +277,7 @@ dependencies:
       - Hexagon/KeyboardInputsModal/Stage.hpp
       - Hexagon/EventControllerInterface.hpp
       - Hexagon/CodeEditor/EventController.hpp
-      - Hexagon/CodeEditor/Stage.hpp
+      - Hexagon/CodeEditor/CodeEditor.hpp
       - Hexagon/FileSystemNode.hpp
       - Hexagon/FileNavigator/Stage.hpp
       - Hexagon/ComponentNavigator/Stage.hpp

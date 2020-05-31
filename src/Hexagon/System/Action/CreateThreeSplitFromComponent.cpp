@@ -4,7 +4,7 @@
 #include <allegro_flare/placement3d.h>
 #include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <allegro_flare/useful_php.h>
 

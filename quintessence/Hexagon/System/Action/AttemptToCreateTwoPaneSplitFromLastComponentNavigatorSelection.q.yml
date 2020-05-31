@@ -146,7 +146,7 @@ dependencies:
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
   - symbol: CodeEditor::Stage
-    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+    headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: std::vector<StageInterface *>&
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: std::vector<StageInterface *>

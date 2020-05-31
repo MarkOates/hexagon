@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 
 
 namespace Hexagon

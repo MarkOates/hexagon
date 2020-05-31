@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Blast/Project/ComponentRelativeLister.hpp>
 #include <sstream>
 #include <Blast/Project/Component.hpp>

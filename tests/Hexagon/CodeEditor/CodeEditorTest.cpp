@@ -1,7 +1,7 @@
 
 #include <gtest/gtest.h>
 
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 
 const std::string SONNET_TEXT = R"END(Sonnet 15
 

@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 #include <Hexagon/StageInterface.hpp>
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/Hud.hpp>
 

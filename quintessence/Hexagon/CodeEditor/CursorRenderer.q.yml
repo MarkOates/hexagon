@@ -98,11 +98,11 @@ functions:
       - color::color
 dependencies:
   - symbol: ::CodeEditor::Stage::mode_t
-    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+    headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: ::CodeEditor::Stage::EDIT
-    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+    headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: ::CodeEditor::Stage::INSERT
-    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+    headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
   - symbol: al_color_name
