@@ -5,6 +5,7 @@
 #include <Hexagon/CodeMessagePointsOverlay.hpp>
 #include <Hexagon/CodeRange.hpp>
 #include <Hexagon/StageInterface.hpp>
+//#include <Hexagon/CodeEditor/Stage.hpp>
 #include <string>
 #include <vector>
 
@@ -29,6 +30,7 @@ namespace CodeEditor
       };
 
    private:
+      //Hexagon::CodeEditor::Stage *stage;
       friend class ::CodeEditor::Renderer;
       std::vector<std::string> lines;
       int cursor_x;
@@ -88,6 +90,7 @@ namespace CodeEditor
 
       bool get_content_is_modified();
       bool get_content_contains_errors();
+      bool get_draw_info_overlay();
 
       bool move_cursor_up();
       bool move_cursor_down();

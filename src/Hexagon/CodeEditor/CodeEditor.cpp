@@ -627,6 +627,13 @@ bool CodeEditor::disable_drawing_info_overlay()
 
 
 
+bool CodeEditor::get_draw_info_overlay()
+{
+   return draw_info_overlay;
+}
+
+
+
 // plugins
 // plugins
 // plugins
