@@ -1430,7 +1430,6 @@ void System::process_local_event(std::string event_name)
       else if (event_name == CLEAR_LAST_COMPILED_ERROR_MESSAGES) { clear_last_compiled_error_messages(); executed = true; }
       else if (event_name == RUN_PROJECT_TESTS) { run_project_tests(); executed = true; }
       else if (event_name == SAVE_FRONTMOST_CODE_EDITOR_STAGE) { save_frontmost_code_editor_stage(); executed = true; }
-      else if (event_name == SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE) { set_regex_input_box_modal_to_insert_mode(); executed = true; }
       else if (event_name == SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE) { set_focused_component_name_to_topmost_relative(); executed = true; }
       else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
       else if (event_name == EXECUTE_MAGIC_COMMAND) { execute_magic_command(); executed = true; }
@@ -1536,11 +1535,9 @@ void System::process_event(ALLEGRO_EVENT &event)
       {
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, {
             SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL,
-            SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE
             });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, true, false, false, {
             SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL,
-            SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE,
             });
       }
    }
@@ -1650,7 +1647,6 @@ const std::string System::RUN_MAKE = "RUN_MAKE";
 const std::string System::CLEAR_LAST_COMPILED_ERROR_MESSAGES = "CLEAR_LAST_COMPILED_ERROR_MESSAGES";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 const std::string System::SAVE_FRONTMOST_CODE_EDITOR_STAGE = "SAVE_FRONTMOST_CODE_EDITOR_STAGE";
-const std::string System::SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE = "SET_REGEX_ONE_LINE_INPUT_BOX_MODAL_TO_INSERT_MODE";
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
 const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
