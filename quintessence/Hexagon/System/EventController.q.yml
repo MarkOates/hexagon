@@ -6,6 +6,7 @@ properties:
 functions:
   - name: process_event
     type: void
+    guards: [ system ]
     body: |
       return;
 dependencies:
