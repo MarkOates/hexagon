@@ -1343,6 +1343,7 @@ bool System::open_hexagon_config_file()
    return action.managed_execute();
 }
 
+
 //bool System::spawn_keyboard_inputs_modal()
 //{
 //   KeyboardInputsModal::Stage *keyboard_input_modal = new KeyboardInputsModal::Stage(nullptr);
@@ -1350,7 +1351,9 @@ bool System::open_hexagon_config_file()
 //   return true;
 //}
 
-void System::process_local_event(std::string event_name) // this function is 1:1 execute the action.  It does no calling of other actions before or after
+
+// this function is 1:1 execute the action.  It does no calling of other actions before or after
+void System::process_local_event(std::string event_name)
 {
    std::cout << "System::" << event_name << std::endl;
 
