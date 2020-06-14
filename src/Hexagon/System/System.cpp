@@ -1353,123 +1353,13 @@ bool System::open_hexagon_config_file()
 }
 
 
-// this function is 1:1 execute the action.  It does no calling of other actions before or after
 void System::process_local_event(std::string event_name)
 {
    Hexagon::System::EventController event_controller(this);
    event_controller.process_local_event(event_name);
    return;
-
-   std::cout << "System::" << event_name << std::endl;
-
-   try
-   {
-      bool executed = false;
-
-      if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_file_navigator_selection(); executed = true; }
-      else if (event_name == ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { attempt_to_create_stage_from_last_component_navigator_selection(); executed = true; }
-      else if (event_name == SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION) { spawn_file_navigator_from_last_file_navigator_folder_selection(); executed = true; }
-      else if (event_name == CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { create_three_split_from_last_component_navigator_selection(); executed = true; }
-      else if (event_name == CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { create_two_or_three_split_layout_from_last_component_navigator_selection(); executed = true; }
-      else if (event_name == CLEAR_RERUN_OUTPUT_WATCHERS) { clear_rerun_output_watchers(); executed = true; }
-      else if (event_name == CENTER_CAMERA_ON_FRONTMOST_STAGE) { center_camera_on_frontmost_stage(); executed = true; }
-      else if (event_name == DESTROY_TOPMOST_STAGE) { destroy_topmost_stage(); executed = true; }
-      else if (event_name == OPEN_HEXAGON_CONFIG_FILE) { open_hexagon_config_file(); executed = true; }
-      else if (event_name == DESTROY_ALL_CODE_EDITOR_STAGES) { destroy_all_code_editor_stages(); executed = true; }
-      else if (event_name == ESCAPE_CURRENT_MODAL) { escape_current_modal(); executed = true; }
-      else if (event_name == JUMP_TO_NEXT_CODE_POINT_ON_STAGE) { jump_to_next_code_point_on_stage(); executed = true; }
-      else if (event_name == JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE)
-      {
-         jump_to_next_or_nearest_code_point_on_stage();
-         executed = true;
-      }
-      else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE) { offset_first_line_to_vertically_center_cursor_on_stage(); executed = true; }
-      else if (event_name == ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES) {
-         enable_drawing_info_overlays_on_all_code_editor_stages();
-         executed = true;
-      }
-      else if (event_name == DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES)
-      {
-         disable_drawing_info_overlays_on_all_code_editor_stages();
-         executed = true;
-      }
-      else if (event_name == PUSH_FILE_NAVIGATOR_SELECTION) { push_file_navigator_selection(); executed = true; }
-      else if (event_name == PUSH_COMPONENT_NAVIGATOR_SELECTION) { push_component_navigator_selection(); executed = true; }
-      else if (event_name == REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE)
-      {
-         refresh_regex_hilights_on_frontmost_stage(); executed = true;
-      }
-      else if (event_name == REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES)
-      {
-         refresh_regex_hilights_on_all_code_editor_stages();
-         executed = true;
-      }
-      else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES)
-      {
-         refresh_git_modified_line_numbers_on_all_code_editor_stages();
-         executed = true;
-      }
-      else if (event_name == SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS)
-      {
-         set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
-         executed = true;
-      }
-      else if (event_name == REFRESH_RERUN_OUTPUT_WATCHERS) { refresh_rerun_output_watchers(); executed = true; }
-      else if (event_name == INCREASE_FONT_SIZE) { increase_font_size(); executed = true; }
-      else if (event_name == DECREASE_FONT_SIZE) { decrease_font_size(); executed = true; }
-      else if (event_name == ADD_FILE_IS_UNSAVED_NOTIFICATION) { add_file_is_unsaved_notification(); executed = true; }
-      else if (event_name == WRITE_FOCUSED_COMPONENT_NAME_TO_FILE) { write_focused_component_name_to_file(); executed = true; }
-      else if (event_name == REMOVE_FILE_IS_UNSAVED_NOTIFICATION) { remove_file_is_unsaved_notification(); executed = true; }
-      else if (event_name == TOGGLE_COMMAND_MODE_ON) { toggle_command_mode_on(); executed = true; }
-      else if (event_name == TOGGLE_COMMAND_MODE_OFF) { toggle_command_mode_off(); executed = true; }
-      else if (event_name == ROTATE_STAGE_LEFT) { rotate_stage_left(); executed = true; }
-      else if (event_name == ROTATE_STAGE_RIGHT) { rotate_stage_right(); executed = true; }
-      else if (event_name == ROTATE_RELATIVE_UP) { rotate_relative_up(); executed = true; }
-      else if (event_name == ROTATE_RELATIVE_DOWN) { rotate_relative_down(); executed = true; }
-      else if (event_name == RUN_MAKE) { run_make(); executed = true; }
-      else if (event_name == CLEAR_LAST_COMPILED_ERROR_MESSAGES) { clear_last_compiled_error_messages(); executed = true; }
-      else if (event_name == RUN_PROJECT_TESTS) { run_project_tests(); executed = true; }
-      else if (event_name == SAVE_FRONTMOST_CODE_EDITOR_STAGE) { save_frontmost_code_editor_stage(); executed = true; }
-      else if (event_name == SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE) { set_focused_component_name_to_topmost_relative(); executed = true; }
-      else if (event_name == SPAWN_COMPONENT_NAVIGATOR) { spawn_component_navigator(); executed = true; }
-      else if (event_name == EXECUTE_MAGIC_COMMAND) { execute_magic_command(); executed = true; }
-      else if (event_name == SPAWN_FILE_NAVIGATOR) { spawn_file_navigator(); executed = true; }
-      else if (event_name == SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL) { spawn_regex_input_box_modal(); executed = true; }
-      else if (event_name == SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL)
-      {
-         spawn_git_commit_message_input_box_modal();
-         executed = true;
-      }
-      else if (event_name == SPAWN_RERUN_OUTPUT_WATCHER) { spawn_rerun_output_watcher(); executed = true; }
-      else if (event_name == SUBMIT_CURRENT_MODAL) { submit_current_modal(); executed = true; }
-      else if (event_name == FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE) { fx__play_focus_animation_on_frontmost_stage(); executed = true; }
-      else if (event_name == CHECK_GIT_SYNC_AND_UPDATE_POWERBAR)
-      {
-         check_git_sync_and_update_powerbar();
-         executed = true;
-      }
-      else if (event_name == COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS)
-      {
-         commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents();
-         executed = true;
-      }
-      else if (event_name == PUSH_TO_GIT_REMOTE)
-      {
-         push_to_git_remote();
-         executed = true;
-      }
-
-      if (!executed) std::cout << "???? cannot execute \"" << event_name << "\".  It does not exist." << std::endl;
-   }
-   catch (const std::exception &exception)
-   {
-      std::cout << ">BOOM< cannot execute \"" << event_name << "\".  The following exception occurred: " << exception.what() << std::endl;
-      // add the thing right here
-      std::stringstream error_message;
-      error_message << "An exception was thrown: \"" << exception.what() << "\"";
-      add_notification(error_message.str());
-   }
 }
+
 
 void System::process_event(ALLEGRO_EVENT &event)
 {
