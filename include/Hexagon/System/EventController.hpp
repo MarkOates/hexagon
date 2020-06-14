@@ -15,9 +15,10 @@ namespace Hexagon
       {
       private:
          ::System* system;
+         std::map<std::string, std::function<bool(::System&)>> function_mapping;
 
       public:
-         EventController(::System* system=nullptr);
+         EventController(::System* system=nullptr, std::map<std::string, std::function<bool(::System&)>> function_mapping=Hexagon::System::EventController::get_default_function_mapping());
          ~EventController();
 
 

@@ -5,6 +5,10 @@ properties:
     type: ::System*
     init_with: nullptr
     constructor_arg: true
+  - name: function_mapping
+    type: std::map<std::string, std::function<bool(::System&)>>
+    init_with: 'Hexagon::System::EventController::get_default_function_mapping()'
+    constructor_arg: true
 
 
 functions:

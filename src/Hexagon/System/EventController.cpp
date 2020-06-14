@@ -15,8 +15,9 @@ namespace System
 {
 
 
-EventController::EventController(::System* system)
+EventController::EventController(::System* system, std::map<std::string, std::function<bool(::System&)>> function_mapping)
    : system(system)
+   , function_mapping(function_mapping)
 {
 }
 
