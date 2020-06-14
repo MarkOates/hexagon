@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/System/System.hpp>
+#include <string>
 
 
 namespace Hexagon
@@ -18,7 +19,7 @@ namespace Hexagon
          ~EventController();
 
 
-      void process_event();
+      void process_local_event(std::string event_name="[event-is-a-default-that-represents-undefined]");
       };
    }
 }
