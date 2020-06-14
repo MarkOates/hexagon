@@ -11,6 +11,7 @@ namespace System
 
 
 EventController::EventController()
+   : system(nullptr)
 {
 }
 
@@ -20,9 +21,10 @@ EventController::~EventController()
 }
 
 
-std::string EventController::run()
+void EventController::process_event()
 {
-return "Hello World!";
+return;
+
 }
 } // namespace System
 } // namespace Hexagon

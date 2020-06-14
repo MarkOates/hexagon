@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include <string>
 
 
 namespace Hexagon
@@ -11,13 +10,14 @@ namespace Hexagon
       class EventController
       {
       private:
+         System* system;
 
       public:
          EventController();
          ~EventController();
 
 
-      std::string run();
+      void process_event();
       };
    }
 }
