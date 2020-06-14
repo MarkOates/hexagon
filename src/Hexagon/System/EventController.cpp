@@ -10,8 +10,8 @@ namespace System
 {
 
 
-EventController::EventController()
-   : system(nullptr)
+EventController::EventController(::System* system)
+   : system(system)
 {
 }
 

@@ -45,6 +45,7 @@
 #include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
 #include <Hexagon/System/Action/OpenConfigFile.hpp>
+#include <Hexagon/System/EventController.hpp>
 #include <Hexagon/Git/StageEverything.hpp>
 #include <Hexagon/Git/CommitStagedWithMessage.hpp>
 #include <Hexagon/Git/Pusher.hpp>
@@ -1352,6 +1353,8 @@ bool System::open_hexagon_config_file()
 // this function is 1:1 execute the action.  It does no calling of other actions before or after
 void System::process_local_event(std::string event_name)
 {
+   Hexagon::System::EventController event_controller(this);
+
    std::cout << "System::" << event_name << std::endl;
 
    try

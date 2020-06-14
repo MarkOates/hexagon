@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/System/System.hpp>
 
 
 namespace Hexagon
@@ -10,10 +11,10 @@ namespace Hexagon
       class EventController
       {
       private:
-         System* system;
+         ::System* system;
 
       public:
-         EventController();
+         EventController(::System* system=nullptr);
          ~EventController();
 
 

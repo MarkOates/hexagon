@@ -1,12 +1,13 @@
 properties:
   - name: system
-    type: System*
+    type: ::System*
     init_with: nullptr
+    constructor_arg: true
 functions:
   - name: process_event
     type: void
     body: |
       return;
 dependencies:
-  - symbol: System*
-    type: [ Hexagon/System/System.hpp ]
+  - symbol: ::System*
+    headers: [ Hexagon/System/System.hpp ]
