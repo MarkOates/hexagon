@@ -19,7 +19,7 @@ namespace Hexagon
          ~EventController();
 
 
-      void process_local_event(std::string event_name="[event-is-a-default-that-represents-undefined]");
+      void process_local_event(std::string event_name="[this-event-name-is-a-default-that-represents-undefined]");
       };
    }
 }

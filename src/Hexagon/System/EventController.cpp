@@ -41,14 +41,32 @@ std::map<std::string, std::function<bool(::System&)>> event_function_mapping = {
    }
 };
 
+std::map<std::string, std::function<bool(::System&)>>::const_iterator it = event_function_mapping.find(event_name);
+bool function_mapping_exists = it != event_function_mapping.end();
+
+if (!function_mapping_exists)
+{
+   std::cout << "???? attempted to find mapping for \""
+             << event_name
+             << "\" in \"System/EventController\" but it does not exist."
+             << std::endl;
+}
+else
+{
+   // could use the iterator element found via the find() call above, rather than doing a new lookup
+   std::function<bool(::System&)> function_to_be_called = event_function_mapping[event_name];
+   function_to_be_called(*system);
+   return;
+}
+
 try
 {
    bool executed = false;
 
    if (event_name == ::System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION)
    {
-      system->attempt_to_create_stage_from_last_file_navigator_selection();
-      executed = true;
+      //system->attempt_to_create_stage_from_last_file_navigator_selection();
+      //executed = true;
    }
    else if (event_name == ::System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION)
    {
