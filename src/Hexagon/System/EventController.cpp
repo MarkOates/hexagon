@@ -2,6 +2,9 @@
 
 #include <Hexagon/System/EventController.hpp>
 #include <Hexagon/shared_globals.hpp>
+#include <map>
+#include <string>
+#include <functional>
 #include <stdexcept>
 #include <sstream>
 
@@ -31,6 +34,13 @@ if (!(system))
       error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"system\" not met";
       throw std::runtime_error(error_message.str());
    }
+std::map<std::string, std::function<bool(::System&)>> event_function_mapping = {
+   {
+      ::System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION,
+      &::System::attempt_to_create_stage_from_last_file_navigator_selection,
+   }
+};
+
 try
 {
    bool executed = false;
@@ -40,9 +50,21 @@ try
       system->attempt_to_create_stage_from_last_file_navigator_selection();
       executed = true;
    }
-   else if (event_name == ::System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { system->attempt_to_create_stage_from_last_component_navigator_selection(); executed = true; }
-   else if (event_name == ::System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION) { system->spawn_file_navigator_from_last_file_navigator_folder_selection(); executed = true; }
-   else if (event_name == ::System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { system->create_three_split_from_last_component_navigator_selection(); executed = true; }
+   else if (event_name == ::System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION)
+   {
+      system->attempt_to_create_stage_from_last_component_navigator_selection();
+      executed = true;
+   }
+   else if (event_name == ::System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION)
+   {
+      system->spawn_file_navigator_from_last_file_navigator_folder_selection();
+      executed = true;
+   }
+   else if (event_name == ::System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION)
+   {
+      system->create_three_split_from_last_component_navigator_selection();
+      executed = true;
+   }
    else if (event_name == ::System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION) { system->create_two_or_three_split_layout_from_last_component_navigator_selection(); executed = true; }
    else if (event_name == ::System::CLEAR_RERUN_OUTPUT_WATCHERS) { system->clear_rerun_output_watchers(); executed = true; }
    else if (event_name == ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE) { system->center_camera_on_frontmost_stage(); executed = true; }
@@ -136,10 +158,10 @@ try
 }
 catch (const std::exception &exception)
 {
-   std::cout << ">BOOM< cannot execute "" << event_name << "".  The following exception occurred: " << exception.what() << std::endl;
+   std::cout << ">BOOM< cannot execute \"" << event_name << "\".  The following exception occurred: " << exception.what() << std::endl;
    // add the thing right here
    std::stringstream error_message;
-   error_message << "An exception was thrown: "" << exception.what() << """;
+   error_message << "An exception was thrown: \"" << exception.what() << "\"";
    add_notification(error_message.str());
 }
 return;
