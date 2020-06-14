@@ -27,6 +27,13 @@ EventController::~EventController()
 }
 
 
+ALLEGRO_EVENT& EventController::dummy_ALLEGRO_EVENT()
+{
+static ALLEGRO_EVENT ev;
+return ev;
+
+}
+
 std::map<std::string, std::function<bool(::System&)>> EventController::get_default_function_mapping()
 {
 std::map<std::string, std::function<bool(::System&)>> default_function_mapping = {
@@ -285,6 +292,12 @@ else
 }
 
 
+return;
+
+}
+
+void EventController::process_event(ALLEGRO_EVENT& event)
+{
 return;
 
 }

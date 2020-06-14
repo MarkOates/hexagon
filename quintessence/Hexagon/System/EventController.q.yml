@@ -14,6 +14,14 @@ properties:
 functions:
 
 
+  - name: dummy_ALLEGRO_EVENT
+    type: ALLEGRO_EVENT&
+    static: true
+    body: |
+      static ALLEGRO_EVENT ev;
+      return ev;
+
+
   - name: get_default_function_mapping
     static: true
     type: std::map<std::string, std::function<bool(::System&)>>
@@ -279,7 +287,19 @@ functions:
       - std::map<std::string, std::function<bool(::System&)>>
 
 
+  - name: process_event
+    type: void
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: Hexagon::System::EventController::dummy_ALLEGRO_EVENT()
+    body: |
+      return;
+
+
 dependencies:
+  - symbol: ALLEGRO_EVENT&
+    headers: [ 'allegro5/allegro.h' ]
   - symbol: std::map<std::string, std::function<bool(::System&)>>
     headers: [ map, string, functional ]
   - symbol: add_notification
