@@ -1354,8 +1354,8 @@ bool System::open_hexagon_config_file()
 void System::process_local_event(std::string event_name)
 {
    Hexagon::System::EventController event_controller(this);
-   //event_controller.process_local_event(event_name);
-   //return;
+   event_controller.process_local_event(event_name);
+   return;
 
    std::cout << "System::" << event_name << std::endl;
 
