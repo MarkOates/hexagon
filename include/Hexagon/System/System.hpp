@@ -135,7 +135,6 @@ public:
    bool submit_current_modal();
    bool escape_current_modal();
    bool open_hexagon_config_file();
-   //bool spawn_keyboard_inputs_modal();
    bool clear_last_compiled_error_messages();
    bool enable_drawing_info_overlays_on_all_code_editor_stages();
    bool disable_drawing_info_overlays_on_all_code_editor_stages();
@@ -189,7 +188,6 @@ public:
    static const std::string SAVE_FRONTMOST_CODE_EDITOR_STAGE;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
-   //static const std::string SPAWN_KEYBOARD_INPUTS_MODAL;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
    static const std::string SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL;
    static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
