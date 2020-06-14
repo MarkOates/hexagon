@@ -21,7 +21,7 @@ namespace Hexagon
          ~EventController();
 
 
-      std::map<std::string, std::function<bool(::System&)>> get_default_function_mapping();
+      static std::map<std::string, std::function<bool(::System&)>> get_default_function_mapping();
       void process_local_event(std::string event_name="[this-event-name-is-a-default-that-represents-undefined]");
       };
    }
