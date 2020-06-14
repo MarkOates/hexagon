@@ -676,7 +676,12 @@ bool System::spawn_regex_input_box_modal()
    // for now, I'm going to have it spawn at the position of the camera
    placement3d place = build_regex_input_box_initial_place();
 
-   ::CodeEditor::CodeEditor *stage = new ::CodeEditor::CodeEditor(REGEX_TEMP_FILENAME, "input_box", ::CodeEditor::CodeEditor::EDIT, ::CodeEditor::CodeEditor::ONE_LINE_INPUT_BOX); // TODO: extract this one line input box from CodeEditor
+   // TODO: extract this one line input box from CodeEditor
+   ::CodeEditor::CodeEditor *stage = new ::CodeEditor::CodeEditor(
+      REGEX_TEMP_FILENAME,
+      "input_box",
+      ::CodeEditor::CodeEditor::INSERT,
+      ::CodeEditor::CodeEditor::ONE_LINE_INPUT_BOX);
    stage->set_place(place);
    stages.push_back(stage);
 
@@ -714,7 +719,7 @@ bool System::spawn_git_commit_message_input_box_modal()
    ::CodeEditor::CodeEditor *stage = new ::CodeEditor::CodeEditor(
       REGEX_TEMP_FILENAME,
       "git_commit_message_input_box",
-      ::CodeEditor::CodeEditor::EDIT,
+      ::CodeEditor::CodeEditor::INSERT,
       ::CodeEditor::CodeEditor::GIT_COMMIT_MESSAGE_INPUT_BOX);
 
    stage->set_place(place);
