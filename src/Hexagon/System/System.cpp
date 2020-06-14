@@ -801,17 +801,19 @@ bool System::spawn_rerun_output_watcher()
    return true;
 }
 
-void System::add_file_is_unsaved_notification()
+bool System::add_file_is_unsaved_notification()
 {
    add_notification(NOTIFICATION_FILE_IS_UNSAVED);
+   return true;
 }
 
-void System::remove_file_is_unsaved_notification()
+bool System::remove_file_is_unsaved_notification()
 {
    remove_notification(NOTIFICATION_FILE_IS_UNSAVED);
+   return true;
 }
 
-void System::clear_rerun_output_watchers()
+bool System::clear_rerun_output_watchers()
 {
    for (auto &stage : stages)
    {
@@ -821,6 +823,7 @@ void System::clear_rerun_output_watchers()
          watcher->clear();
       }
    }
+   return true;
 }
 
 bool System::refresh_rerun_output_watchers()

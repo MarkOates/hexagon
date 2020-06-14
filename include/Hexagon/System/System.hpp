@@ -110,9 +110,9 @@ public:
    bool spawn_red_overlay();
    bool spawn_file_navigator();
    bool spawn_rerun_output_watcher();
-   void add_file_is_unsaved_notification();
-   void remove_file_is_unsaved_notification();
-   void clear_rerun_output_watchers();
+   bool add_file_is_unsaved_notification();
+   bool remove_file_is_unsaved_notification();
+   bool clear_rerun_output_watchers();
    bool refresh_rerun_output_watchers();
    bool destroy_topmost_stage();
    bool jump_to_next_code_point_on_stage();
