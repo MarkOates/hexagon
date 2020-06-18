@@ -20,3 +20,7 @@ TEST(Hexagon_System_EventControllerTest, process_local_event__without_a_valid_sy
    ASSERT_THROW_WITH_MESSAGE(event_controller.process_local_event(), std::runtime_error, expected_error_message);
 }
 
+TEST(Hexagon_System_EventControllerTest, process_local_event__responds_to_the_expected_mappings)
+{
+}
+

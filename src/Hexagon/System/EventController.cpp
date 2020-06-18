@@ -321,18 +321,21 @@ keyboard_key_up_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, fal
 });
 
 
-//                      set_mapping(al_keycode,         shift, ctrl,  alt,   command, std::vector<std::string> command_identifiers
-keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, { ::System::DESTROY_TOPMOST_STAGE });
+//                      set_mapping(al_keycode,         shift, ctrl,  alt,   command, std::vector<std::string>)
+keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, {
+   ::System::DESTROY_TOPMOST_STAGE });
 
 if (system->is_current_stage_a_modal())
 {
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, { ::System::SUBMIT_CURRENT_MODAL });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, {
+      ::System::SUBMIT_CURRENT_MODAL });
 }
 else
 {
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_PLUS, false, false, false, false, { ::System::INCREASE_FONT_SIZE });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, { ::System::DECREASE_FONT_SIZE });
-
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_PLUS, false, false, false, false, {
+      ::System::INCREASE_FONT_SIZE });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, {
+      ::System::DECREASE_FONT_SIZE });
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, true, {
       ::System::ROTATE_STAGE_LEFT,
       ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
@@ -361,9 +364,12 @@ else
       ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE,
       ::System::CLEAR_LAST_COMPILED_ERROR_MESSAGES,
       ::System::RUN_MAKE });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, { ::System::SPAWN_FILE_NAVIGATOR });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, { ::System::SPAWN_COMPONENT_NAVIGATOR });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_8, true, true, false, false, { ::System::EXECUTE_MAGIC_COMMAND });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, {
+      ::System::SPAWN_FILE_NAVIGATOR });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
+      ::System::SPAWN_COMPONENT_NAVIGATOR });
+   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_8, true, true, false, false, {
+      ::System::EXECUTE_MAGIC_COMMAND });
 
    if (system->is_current_stage_in_edit_mode())
    {
