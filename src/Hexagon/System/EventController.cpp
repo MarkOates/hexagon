@@ -357,10 +357,6 @@ else
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, {
       ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE,
       ::System::RUN_PROJECT_TESTS });
-   //keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, {
-   //    SAVE_FRONTMOST_CODE_EDITOR_STAGE,
-   //    CLEAR_RERUN_OUTPUT_WATCHERS,
-   //    REFRESH_RERUN_OUTPUT_WATCHERS });
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, {
       ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE,
       ::System::CLEAR_LAST_COMPILED_ERROR_MESSAGES,
