@@ -1,9 +1,15 @@
 properties:
+
+
   - name: project_root_directory
     type: std::string
     default: "/Users/markoates/Repos/hexagon"
     constructor_arg: true
+
+
 functions:
+
+
   - name: component_names
     type: std::vector<std::string>
     body: |
@@ -35,7 +41,11 @@ functions:
       return result;
     body_dependency_symbols:
       - Blast::Project::ComponentLister
+
+
 dependencies:
+
+
   - symbol: std::vector<std::string>
     headers: [ 'vector', 'string' ]
   - symbol: Blast::Project::ComponentLister
