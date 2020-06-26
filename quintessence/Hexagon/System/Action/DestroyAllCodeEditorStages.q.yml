@@ -1,8 +1,14 @@
 parent_classes:
+
+
   - class: ::Action
     scope: public
     init_with: "\"System::Action::DestroyAllCodeEditorStages\", ActionData()"
+
+
 properties:
+
+
   - name: stages
     type: std::vector<StageInterface *>&
     constructor_arg: true
@@ -14,7 +20,11 @@ properties:
     init_with: "{}"
     static: true
     getter_ref: true
+
+
 functions:
+
+
   - name: execute
     virtual: true
     override: true
@@ -38,7 +48,11 @@ functions:
       return true;
     body_dependency_symbols:
       - CodeEditor::CodeEditor
+
+
 dependencies:
+
+
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
   - symbol: std::vector<StageInterface *>&
