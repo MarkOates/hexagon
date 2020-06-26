@@ -82,7 +82,10 @@ void Stage::refresh()
 {
 output = "";
 using std::placeholders::_1;
-Blast::ShellCommandExecutorWithCallback executor(get_command(), std::bind(&RerunOutputWatcher::Stage::append_to_output, this, _1));
+Blast::ShellCommandExecutorWithCallback executor(
+      get_command(),
+      std::bind(&RerunOutputWatcher::Stage::append_to_output, this, _1)
+   );
 executor.execute();
 
 }
@@ -123,7 +126,8 @@ std::vector<std::string> output_lines = Blast::StringSplitter(get_output(), '\n'
 // draw the output
 for (auto &line : output_lines)
 {
-   al_draw_text(font, passed ? pass_color : running_color, 0, y_spacing * 2 + line_count * line_height, 0, line.c_str());
+   ALLEGRO_COLOR line_color = passed ? pass_color : running_color;
+   al_draw_text(font, line_color, 0, y_spacing * 2 + line_count * line_height, 0, line.c_str());
    line_count++;
    //std::cout << line << "-------" << std::endl;
 }
