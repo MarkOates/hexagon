@@ -1,7 +1,12 @@
 #include <Hexagon/RailsMinitestTestResult.hpp>
 
 
-RailsMinitestTestResult::RailsMinitestTestResult(std::string test_name, std::string test_time_in_seconds, std::string test_result, RailsMinitestTestResult::test_state_t test_state)
+RailsMinitestTestResult::RailsMinitestTestResult(
+      std::string test_name,
+      std::string test_time_in_seconds,
+      std::string test_result,
+      RailsMinitestTestResult::test_state_t test_state
+   )
    : test_name(test_name)
    , test_time_in_seconds(test_time_in_seconds)
    , test_result(test_result)
