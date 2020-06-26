@@ -43,7 +43,7 @@ find_command << "cd "
 
 Blast::ShellCommandExecutorWithCallback shell_command_executor(
    find_command.str(),
-   Blast::ShellCommandExecutorWithCallback::simple_cout_callback
+   Blast::ShellCommandExecutorWithCallback::simple_silent_callback
 );
 
 std::string executor_response = shell_command_executor.execute();
