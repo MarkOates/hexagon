@@ -197,6 +197,6 @@ public:
    static const std::string COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS;
    static const std::string PUSH_TO_GIT_REMOTE;
 
-   void process_local_event(std::string event_name); // this function is 1:1 execute the action.  It does no calling of other actions before or after
+   void process_local_event(std::string event_name);
    void process_event(ALLEGRO_EVENT &event);
 };
