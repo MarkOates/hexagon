@@ -1,10 +1,18 @@
+properties:
+
+
+  - name: project_root_directory
+    type: std::string
+    default: "/Users/markoates/Repos/disclife"
+    constructor_arg: true
+
+
 functions:
 
 
   - name: model_filenames
     type: std::vector<std::string>
     body: |
-      std::string project_root_directory = "/Users/markoates/Repos/disclife";
       std::string fragment_folder_name = "app/models";
       std::string fragment_extension = ".rb";
 

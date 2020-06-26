@@ -12,9 +12,10 @@ namespace Hexagon
       class ComponentLister
       {
       private:
+         std::string project_root_directory;
 
       public:
-         ComponentLister();
+         ComponentLister(std::string project_root_directory="");
          ~ComponentLister();
 
 
