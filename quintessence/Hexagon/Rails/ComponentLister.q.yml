@@ -13,7 +13,9 @@ functions:
   - name: model_filenames
     type: std::vector<std::string>
     body: |
-      return get_recursive_list_of_files_in_folder();
+      std::string fragment_folder_name = "app/models";
+      std::string fragment_extension = ".rb";
+      return get_recursive_list_of_files_in_folder(fragment_folder_name, fragment_extension);
 
 
   - name: get_recursive_list_of_files_in_folder
@@ -22,14 +24,11 @@ functions:
     parameters:
       - name: fragment_folder_name
         type: std::string
-        default_argument: '"app/models"'
+        default_argument: '"."'
       - name: fragment_extension
         type: std::string
-        default_argument: '".rb"'
+        default_argument: '".*"'
     body: |
-      //std::string fragment_folder_name = "app/models";
-      //std::string fragment_extension = ".rb";
-
       std::stringstream find_command;
       find_command << "cd "
                    << project_root_directory
