@@ -9,7 +9,13 @@ class CodeEditorTestStage : public StageInterface
 {
 public:
    CodeEditorTestStage() : StageInterface(StageInterface::CODE_EDITOR) {}
-   virtual void render(bool is_focused, ALLEGRO_DISPLAY *display=nullptr, ALLEGRO_FONT *font=nullptr, int cell_width=0, int cell_height=0) override {}
+   virtual void render(
+         bool is_focused,
+         ALLEGRO_DISPLAY *display=nullptr,
+         ALLEGRO_FONT *font=nullptr,
+         int cell_width=0,
+         int cell_height=0
+      ) override {}
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };
@@ -18,7 +24,13 @@ class OneLineInputBoxTestStage : public StageInterface
 {
 public:
    OneLineInputBoxTestStage() : StageInterface(StageInterface::ONE_LINE_INPUT_BOX) {}
-   virtual void render(bool is_focused, ALLEGRO_DISPLAY *display=nullptr, ALLEGRO_FONT *font=nullptr, int cell_width=0, int cell_height=0) override {}
+   virtual void render(
+         bool is_focused,
+         ALLEGRO_DISPLAY *display=nullptr,
+         ALLEGRO_FONT *font=nullptr,
+         int cell_width=0,
+         int cell_height=0
+      ) override {}
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };
@@ -27,7 +39,13 @@ class FileNavigatorTestStage : public StageInterface
 {
 public:
    FileNavigatorTestStage() : StageInterface(StageInterface::FILE_NAVIGATOR) {}
-   virtual void render(bool is_focused, ALLEGRO_DISPLAY *display=nullptr, ALLEGRO_FONT *font=nullptr, int cell_width=0, int cell_height=0) override {}
+   virtual void render(
+         bool is_focused,
+         ALLEGRO_DISPLAY *display=nullptr,
+         ALLEGRO_FONT *font=nullptr,
+         int cell_width=0,
+         int cell_height=0
+      ) override {}
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };
@@ -36,7 +54,13 @@ class MissingFileTestStage : public StageInterface
 {
 public:
    MissingFileTestStage() : StageInterface(StageInterface::MISSING_FILE) {}
-   virtual void render(bool is_focused, ALLEGRO_DISPLAY *display=nullptr, ALLEGRO_FONT *font=nullptr, int cell_width=0, int cell_height=0) override {}
+   virtual void render(
+         bool is_focused,
+         ALLEGRO_DISPLAY *display=nullptr,
+         ALLEGRO_FONT *font=nullptr,
+         int cell_width=0,
+         int cell_height=0
+      ) override {}
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };
@@ -53,7 +77,8 @@ TEST(Hexagon_System_Action_DestroyAllCodeEditorStagesTest, execute__returns_the_
    EXPECT_EQ(true, destroy_all_code_editor_stages.execute());
 }
 
-TEST(Hexagon_System_Action_DestroyAllCodeEditorStagesTest, execute__modifieds_the_stages_by_removing_all_code_editor_types)
+TEST(Hexagon_System_Action_DestroyAllCodeEditorStagesTest,
+   execute__modifieds_the_stages_by_removing_all_code_editor_types)
 {
    CodeEditorTestStage *code_editor1 = new CodeEditorTestStage();
    CodeEditorTestStage *code_editor2 = new CodeEditorTestStage();
