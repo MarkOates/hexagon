@@ -2,6 +2,8 @@
 
 #include <Hexagon/Rails/ComponentLister.hpp>
 #include <sstream>
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <Blast/StringSplitter.hpp>
 
 
 namespace Hexagon
@@ -38,7 +40,17 @@ find_command << "cd "
              << " -type l -name \"*"
              << fragment_extension
              << "\"";
- return {};
+
+Blast::ShellCommandExecutorWithCallback shell_command_executor(
+   find_command.str(),
+   Blast::ShellCommandExecutorWithCallback::simple_cout_callback
+);
+
+std::string executor_response = shell_command_executor.execute();
+Blast::StringSplitter splitter(executor_response, '\n');
+std::vector<std::string> model_filenames = splitter.split();
+
+return model_filenames;
 
 }
 } // namespace Rails
