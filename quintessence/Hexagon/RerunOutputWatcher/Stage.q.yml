@@ -93,11 +93,11 @@ functions:
        //std::string expected_passing_message = "FINISHED!";
        std::string expected_passing_message = ", 0 failures";
        bool passed = (get_output().find(expected_passing_message) != std::string::npos);
-    
+
        // split the lines
        int line_count = 0;
        std::vector<std::string> output_lines = Blast::StringSplitter(get_output(), '\n').split();
-       // draw the output       
+       // draw the output
        for (auto &line : output_lines)
        {
           al_draw_text(font, passed ? pass_color : running_color, 0, y_spacing * 2 + line_count * line_height, 0, line.c_str());
