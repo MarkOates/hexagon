@@ -16,6 +16,8 @@ functions:
       return Blast::Project::ComponentLister(project_root_directory).components();
     body_dependency_symbols:
       - Blast::Project::ComponentLister
+
+
   - name: components_sorted_by_most_recent
     type: std::vector<Blast::Project::Component>
     body: |
@@ -29,6 +31,8 @@ functions:
       return result;
     body_dependency_symbols:
       - Blast::Project::ComponentLister
+
+
   - name: components
     type: std::vector<Blast::Project::Component>
     body: |
