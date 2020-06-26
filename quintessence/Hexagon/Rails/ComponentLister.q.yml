@@ -13,6 +13,13 @@ functions:
   - name: model_filenames
     type: std::vector<std::string>
     body: |
+      return get_recursive_list_of_files_in_folder();
+
+
+  - name: get_recursive_list_of_files_in_folder
+    private: true
+    type: std::vector<std::string>
+    body: |
       std::string fragment_folder_name = "app/models";
       std::string fragment_extension = ".rb";
 

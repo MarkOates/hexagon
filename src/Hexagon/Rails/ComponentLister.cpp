@@ -25,6 +25,12 @@ ComponentLister::~ComponentLister()
 
 std::vector<std::string> ComponentLister::model_filenames()
 {
+return get_recursive_list_of_files_in_folder();
+
+}
+
+std::vector<std::string> ComponentLister::get_recursive_list_of_files_in_folder()
+{
 std::string fragment_folder_name = "app/models";
 std::string fragment_extension = ".rb";
 
