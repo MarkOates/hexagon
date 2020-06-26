@@ -63,7 +63,7 @@ int get_last_compiler_run_exit_code()
 
 bool hexagon_is_light_mode()
 {
-   return false;
+   return true;
 }
 
 

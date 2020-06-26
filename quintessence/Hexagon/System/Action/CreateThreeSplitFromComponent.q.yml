@@ -1,8 +1,14 @@
 parent_classes:
+
+
   - class: ::Action
     scope: public
     init_with: "\"System::Action::CreateThreeSplitFromComponent\", ActionData()"
+
+
 properties:
+
+
   - name: project_path
     type: std::string
     init_with: "\"/Users/markoates/Repos/hexagon/\""
@@ -36,7 +42,11 @@ properties:
     init_with: "{}"
     static: true
     getter_ref: true
+
+
 functions:
+
+
   - name: place_stage
     private: true
     type: bool
@@ -122,7 +132,11 @@ functions:
       - CodeEditor::CodeEditor
       - Blast::ProjectComponentFilenameGenerator
       - php::file_get_contents
+
+
 dependencies:
+
+
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
   - symbol: Blast::Project::Component
