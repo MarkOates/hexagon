@@ -22,9 +22,9 @@ ComponentLister::~ComponentLister()
 
 std::vector<std::string> ComponentLister::model_filenames()
 {
-std::string project_root_directory = "";
-std::string fragment_folder_name = "";
-std::string fragment_extension = "";
+std::string project_root_directory = "/Users/markoates/Repos/disclife";
+std::string fragment_folder_name = "app/models";
+std::string fragment_extension = ".rb";
 
 std::stringstream find_command;
 find_command << "cd "
