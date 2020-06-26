@@ -1,7 +1,7 @@
 functions:
 
 
-  - name: components
+  - name: model_filenames
     type: std::vector<std::string>
     body: |
       std::string project_root_directory = "";

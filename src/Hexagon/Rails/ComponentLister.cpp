@@ -20,7 +20,7 @@ ComponentLister::~ComponentLister()
 }
 
 
-std::vector<std::string> ComponentLister::components()
+std::vector<std::string> ComponentLister::model_filenames()
 {
 std::string project_root_directory = "";
 std::string fragment_folder_name = "";

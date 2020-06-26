@@ -18,7 +18,7 @@ namespace Hexagon
          ~ComponentLister();
 
 
-      std::vector<std::string> components();
+      std::vector<std::string> model_filenames();
       };
    }
 }
