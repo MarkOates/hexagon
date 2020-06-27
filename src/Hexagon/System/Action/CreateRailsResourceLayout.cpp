@@ -47,12 +47,12 @@ std::vector<StageInterface *> &CreateRailsResourceLayout::get_dummy_stages_ref()
 
 bool CreateRailsResourceLayout::execute()
 {
-std::string model_filename = "";
-std::string model_test_filename = "";
-std::string routes_filename = "";
-std::string controller_filename = "";
-std::string controller_test_filename = "";
-std::string view_filename = "";
+std::string model_filename = "app/models/truck.rb";
+std::string model_test_filename = "test/models/truck_test.rb";
+std::string routes_filename = "config/routes.rb";
+std::string controller_filename = "app/controllers/trucks_controller.rb";
+std::string controller_test_filename = "test/controllers/trucks_controller_test.rb";
+std::string view_filename = "app/views/trucks/index.html.erb";
 // model
 {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(model_filename);

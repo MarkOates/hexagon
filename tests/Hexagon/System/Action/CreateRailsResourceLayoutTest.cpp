@@ -3,6 +3,8 @@
 
 #include <Hexagon/System/Action/CreateRailsResourceLayout.hpp>
 
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
+
 
 
 TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, can_be_created_without_blowing_up)
@@ -64,4 +66,33 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___created_stag
    EXPECT_EQ(expected_place.rotation, actual_place.rotation);
    EXPECT_EQ(expected_place.scale, actual_place.scale);
 }
+
+
+
+TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___created_stages_have_the_expected_filenames)
+{
+   std::vector<StageInterface *> stages;
+   std::vector<std::string> expected_filenames = {
+      "app/models/truck.rb",
+      "test/models/truck_test.rb",
+      "config/routes.rb",
+      "app/controllers/trucks_controller.rb",
+      "test/controllers/trucks_controller_test.rb",
+      "app/views/trucks/index.html.erb",
+   };
+   Hexagon::System::Action::CreateRailsResourceLayout create_rails_resource_layout(stages);
+
+   EXPECT_TRUE(create_rails_resource_layout.execute());
+
+   std::vector<std::string> actual_filenames;
+
+   for (auto &stage : stages)
+   {
+      CodeEditor::CodeEditor *code_editor = static_cast<CodeEditor::CodeEditor *>(stage);
+      actual_filenames.push_back(code_editor->get_filename());
+   }
+
+   EXPECT_EQ(expected_filenames, actual_filenames);
+}
+
 
