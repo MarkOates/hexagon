@@ -13,6 +13,7 @@ namespace Action
 
 
 CreateRailsResourceLayout::CreateRailsResourceLayout()
+   : ::Action("System::Action::DestroyAllCodeEditorStages", ActionData())
 {
 }
 

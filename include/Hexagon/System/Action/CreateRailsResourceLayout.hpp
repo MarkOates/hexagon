@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/Action.hpp>
 #include <string>
 
 
@@ -10,7 +11,7 @@ namespace Hexagon
    {
       namespace Action
       {
-         class CreateRailsResourceLayout
+         class CreateRailsResourceLayout : public ::Action
          {
          private:
 
