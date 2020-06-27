@@ -1218,7 +1218,7 @@ bool System::create_three_split_from_last_component_navigator_selection()
 
 bool System::create_rails_resource_layout()
 {
-   Hexagon::System::Action::CreateRailsResourceLayout rails_resource_layout;
+   Hexagon::System::Action::CreateRailsResourceLayout rails_resource_layout(stages);
    return rails_resource_layout.execute();
 }
 

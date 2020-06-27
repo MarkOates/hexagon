@@ -1,5 +1,6 @@
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include <Hexagon/System/System.hpp>
 
@@ -91,6 +92,8 @@ TEST(DISABLED_Hexagon_System_System,
 TEST(DISABLED_Hexagon_System_System,
    create_rails_resource_layout__will_call_the_expected_collaborator)
 {
+   System system;
    // stub
+   ASSERT_TRUE(system.create_rails_resource_layout());
 }
 
