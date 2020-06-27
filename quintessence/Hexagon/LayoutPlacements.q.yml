@@ -1,4 +1,6 @@
 properties:
+
+
   - name: placements
     type: std::map<std::string, placement3d>
     getter: true
@@ -6,7 +8,11 @@ properties:
     setter: true
     constructor_arg: true
     init_with: "{}"
+
+
 functions:
+
+
   - name: placement_for
     type: placement3d
     parameters:
@@ -27,6 +33,8 @@ functions:
     body_dependency_symbols:
       - std::stringstream
       - std::runtime_error
+
+
 dependencies:
   - symbol: std::stringstream
     headers: [ 'sstream' ]
