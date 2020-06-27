@@ -9,6 +9,14 @@ parent_classes:
 functions:
 
 
+  - name: execute
+    virtual: true
+    override: true
+    type: bool
+    body: |
+      return true;
+
+
   - name: run
     type: std::string
     body: return "Hello World!";

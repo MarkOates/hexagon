@@ -23,6 +23,12 @@ CreateRailsResourceLayout::~CreateRailsResourceLayout()
 }
 
 
+bool CreateRailsResourceLayout::execute()
+{
+return true;
+
+}
+
 std::string CreateRailsResourceLayout::run()
 {
 return "Hello World!";

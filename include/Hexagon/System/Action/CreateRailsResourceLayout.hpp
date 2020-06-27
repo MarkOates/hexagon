@@ -17,9 +17,10 @@ namespace Hexagon
 
          public:
             CreateRailsResourceLayout();
-            ~CreateRailsResourceLayout();
+            virtual ~CreateRailsResourceLayout();
 
 
+         virtual bool execute() override;
          std::string run();
          };
       }
