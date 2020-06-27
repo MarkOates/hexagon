@@ -41,6 +41,7 @@
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
+#include <Hexagon/System/Action/CreateRailsResourceLayout.hpp>
 #include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
 #include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
@@ -1213,6 +1214,12 @@ bool System::create_three_split_from_last_component_navigator_selection()
       get_default_code_editor_stage_width()
    );
    return action.managed_execute();
+}
+
+bool System::create_rails_reource_layout()
+{
+   Hexagon::System::Action::CreateRailsResourceLayout rails_resource_layout;
+   return rails_resource_layout.execute();
 }
 
 bool System::attempt_to_create_stage_from_last_component_navigator_selection()

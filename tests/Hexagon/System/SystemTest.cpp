@@ -88,3 +88,9 @@ TEST(DISABLED_Hexagon_System_System,
 {
 }
 
+TEST(DISABLED_Hexagon_System_System,
+   create_rails_resource_layout__will_call_the_expected_collaborator)
+{
+   // stub
+}
+
