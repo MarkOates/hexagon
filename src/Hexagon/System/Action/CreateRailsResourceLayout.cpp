@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/System/Action/CreateRailsResourceLayout.hpp>
-
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 
 
 namespace Hexagon
@@ -47,6 +47,8 @@ std::vector<StageInterface *> &CreateRailsResourceLayout::get_dummy_stages_ref()
 
 bool CreateRailsResourceLayout::execute()
 {
+CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+stages.push_back(model_code_editor);
 return true;
 
 }

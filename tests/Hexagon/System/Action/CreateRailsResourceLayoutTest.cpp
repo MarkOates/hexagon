@@ -21,7 +21,16 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, run__returns_the_expec
 
 
 
-TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute__creates_code_editor_stages_in_the_expected_layout)
+TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute__returns_successful)
+{
+   Hexagon::System::Action::CreateRailsResourceLayout create_rails_resource_layout;
+
+   EXPECT_TRUE(create_rails_resource_layout.execute());
+}
+
+
+
+TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___expected_layout_is_created)
 {
    Hexagon::System::Action::CreateRailsResourceLayout create_rails_resource_layout;
 

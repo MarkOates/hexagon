@@ -30,7 +30,11 @@ functions:
     override: true
     type: bool
     body: |
+      CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+      stages.push_back(model_code_editor);
       return true;
+    body_dependency_symbols:
+     - CodeEditor::CodeEditor
 
 
   - name: run
