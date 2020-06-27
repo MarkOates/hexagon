@@ -32,8 +32,13 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute__returns_succe
 
 TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___expected_layout_is_created)
 {
-   Hexagon::System::Action::CreateRailsResourceLayout create_rails_resource_layout;
+   std::vector<StageInterface *> stages;
+   Hexagon::System::Action::CreateRailsResourceLayout create_rails_resource_layout(stages);
+
+   EXPECT_EQ(0, stages.size());
 
    EXPECT_TRUE(create_rails_resource_layout.execute());
+
+   EXPECT_EQ(1, stages.size());
 }
 
