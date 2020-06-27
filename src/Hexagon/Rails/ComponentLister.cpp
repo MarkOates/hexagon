@@ -31,6 +31,14 @@ return get_recursive_list_of_files_in_folder(fragment_folder_name, fragment_exte
 
 }
 
+std::vector<std::string> ComponentLister::test_filenames()
+{
+std::string fragment_folder_name = "test";
+std::string fragment_extension = "_test.rb";
+return get_recursive_list_of_files_in_folder(fragment_folder_name, fragment_extension);
+
+}
+
 std::vector<std::string> ComponentLister::get_recursive_list_of_files_in_folder(std::string fragment_folder_name, std::string fragment_extension)
 {
 std::stringstream find_command;
