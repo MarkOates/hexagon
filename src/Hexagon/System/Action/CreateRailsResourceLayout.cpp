@@ -16,11 +16,17 @@ namespace Action
 std::vector<StageInterface *> CreateRailsResourceLayout::dummy_stages = {};
 
 
-CreateRailsResourceLayout::CreateRailsResourceLayout(std::vector<StageInterface *>& stages, int display_default_height, int code_editor_width)
+CreateRailsResourceLayout::CreateRailsResourceLayout(std::vector<StageInterface *>& stages, int display_default_height, int code_editor_width, std::string model_filename, std::string model_test_filename, std::string routes_filename, std::string controller_filename, std::string controller_test_filename, std::string view_filename)
    : ::Action("System::Action::CreateRailsResourceLayout.hpp", ActionData())
    , stages(stages)
    , display_default_height(display_default_height)
    , code_editor_width(code_editor_width)
+   , model_filename(model_filename)
+   , model_test_filename(model_test_filename)
+   , routes_filename(routes_filename)
+   , controller_filename(controller_filename)
+   , controller_test_filename(controller_test_filename)
+   , view_filename(view_filename)
 {
 }
 
@@ -62,15 +68,6 @@ std::vector<StageInterface *> &CreateRailsResourceLayout::get_dummy_stages_ref()
 
 bool CreateRailsResourceLayout::execute()
 {
-std::string base_directory = "/Users/markoates/Repos/disclife/";
-
-std::string model_filename = base_directory + "app/models/disc.rb";
-std::string model_test_filename = base_directory + "test/models/disc_test.rb";
-std::string routes_filename = base_directory + "config/routes.rb";
-std::string controller_filename = base_directory + "app/controllers/discs_controller.rb";
-std::string controller_test_filename = base_directory + "test/controllers/discs_controller_test.rb";
-std::string view_filename = base_directory + "app/views/discs/index.html.erb";
-
 float code_editor_height = get_display_default_height();
 
 // model

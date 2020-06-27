@@ -25,6 +25,30 @@ properties:
     init_with: 1215
     constructor_arg: true
     getter: true
+  - name: model_filename
+    type: std::string
+    init_with: '"app/models/disc.rb"'
+    constructor_arg: true
+  - name: model_test_filename
+    type: std::string
+    init_with: '"test/models/disc_test.rb"'
+    constructor_arg: true
+  - name: routes_filename
+    type: std::string
+    init_with: '"config/routes.rb"'
+    constructor_arg: true
+  - name: controller_filename
+    type: std::string
+    init_with: '"app/controllers/discs_controller.rb"'
+    constructor_arg: true
+  - name: controller_test_filename
+    type: std::string
+    init_with: '"test/controllers/discs_controller_test.rb"'
+    constructor_arg: true
+  - name: view_filename
+    type: std::string
+    init_with: '"app/views/discs/index.html.erb"'
+    constructor_arg: true
   - name: dummy_stages
     type: std::vector<StageInterface *>
     init_with: "{}"
@@ -40,15 +64,6 @@ functions:
     override: true
     type: bool
     body: |
-      std::string base_directory = "/Users/markoates/Repos/disclife/";
-
-      std::string model_filename = base_directory + "app/models/disc.rb";
-      std::string model_test_filename = base_directory + "test/models/disc_test.rb";
-      std::string routes_filename = base_directory + "config/routes.rb";
-      std::string controller_filename = base_directory + "app/controllers/discs_controller.rb";
-      std::string controller_test_filename = base_directory + "test/controllers/discs_controller_test.rb";
-      std::string view_filename = base_directory + "app/views/discs/index.html.erb";
-
       float code_editor_height = get_display_default_height();
 
       // model
