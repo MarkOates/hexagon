@@ -126,7 +126,7 @@ public:
    bool destroy_all_code_editor_stages();
    bool create_two_or_three_split_layout_from_last_component_navigator_selection();
    bool create_three_split_from_last_component_navigator_selection();
-   bool create_rails_reource_layout();
+   bool create_rails_resource_layout();
    bool attempt_to_create_stage_from_last_component_navigator_selection();
    bool set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
    bool commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents();

@@ -61,6 +61,10 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
       &::System::create_two_or_three_split_layout_from_last_component_navigator_selection,
    },
    {
+      ::System::CREATE_RAILS_RESOURCE_LAYOUT,
+      &::System::create_rails_resource_layout,
+   },
+   {
       ::System::CLEAR_RERUN_OUTPUT_WATCHERS,
       &::System::clear_rerun_output_watchers,
    },
