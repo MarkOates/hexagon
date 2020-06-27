@@ -15,9 +15,11 @@ namespace Action
 std::vector<StageInterface *> CreateRailsResourceLayout::dummy_stages = {};
 
 
-CreateRailsResourceLayout::CreateRailsResourceLayout(std::vector<StageInterface *>& stages)
+CreateRailsResourceLayout::CreateRailsResourceLayout(std::vector<StageInterface *>& stages, int display_default_height, int code_editor_width)
    : ::Action("System::Action::CreateRailsResourceLayout.hpp", ActionData())
    , stages(stages)
+   , display_default_height(display_default_height)
+   , code_editor_width(code_editor_width)
 {
 }
 
@@ -36,6 +38,12 @@ void CreateRailsResourceLayout::set_stages(std::vector<StageInterface *>& stages
 std::vector<StageInterface *>& CreateRailsResourceLayout::get_stages()
 {
    return stages;
+}
+
+
+int CreateRailsResourceLayout::get_code_editor_width()
+{
+   return code_editor_width;
 }
 
 

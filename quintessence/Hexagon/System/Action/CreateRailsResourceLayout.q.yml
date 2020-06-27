@@ -15,6 +15,15 @@ properties:
     init_with: "get_dummy_stages_ref()"
     getter: true
     setter: true
+  - name: display_default_height
+    type: int
+    init_with: 1350
+    constructor_arg: true
+  - name: code_editor_width
+    type: int
+    init_with: 1215
+    constructor_arg: true
+    getter: true
   - name: dummy_stages
     type: std::vector<StageInterface *>
     init_with: "{}"
