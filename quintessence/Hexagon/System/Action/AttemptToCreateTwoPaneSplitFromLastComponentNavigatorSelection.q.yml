@@ -1,16 +1,22 @@
 parent_classes:
+
+
   - class: ::Action
     scope: public
-    init_with: "\"System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection\", ActionData()"
+    init_with: '"System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection", ActionData()'
+
+
 properties:
+
+
   - name: project_path
     type: std::string
-    init_with: "\"/Users/markoates/Repos/hexagon/\""
+    init_with: '"/Users/markoates/Repos/hexagon/"'
     constructor_arg: true
     getter: true
   - name: last_component_navigator_selection
     type: std::string
-    init_with: "\"\""
+    init_with: '""'
     constructor_arg: true
   - name: display_default_width
     type: int
@@ -23,12 +29,12 @@ properties:
   - name: stages
     type: std::vector<StageInterface *>&
     constructor_arg: true
-    init_with: "get_dummy_stages_ref()"
+    init_with: 'get_dummy_stages_ref()'
     getter: true
     setter: true
   - name: dummy_stages
     type: std::vector<StageInterface *>
-    init_with: "{}"
+    init_with: '{}'
     static: true
     getter_ref: true
   - name: code_editor_width
@@ -36,7 +42,11 @@ properties:
     init_with: 1215
     constructor_arg: true
     getter: true
+
+
 functions:
+
+
   - name: run
     type: std::string
     body: return "Hello World!";
@@ -126,7 +136,11 @@ functions:
       - read_file
       - placement3d
       - CodeEditor::CodeEditor
+
+
 dependencies:
+
+
   - symbol: std::vector
     headers: [ vector ]
   - symbol: std::string
