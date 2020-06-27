@@ -60,7 +60,7 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___created_stag
 
 
 
-TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___created_stages_have_the_expected_filenames)
+TEST(DISABLED_Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___created_stages_have_the_expected_filenames)
 {
    std::vector<StageInterface *> stages;
    std::vector<std::string> expected_filenames = {

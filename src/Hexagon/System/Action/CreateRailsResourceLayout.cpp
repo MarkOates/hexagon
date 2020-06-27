@@ -2,6 +2,7 @@
 
 #include <Hexagon/System/Action/CreateRailsResourceLayout.hpp>
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
+#include <allegro_flare/useful_php.h>
 
 
 namespace Hexagon
@@ -61,18 +62,23 @@ std::vector<StageInterface *> &CreateRailsResourceLayout::get_dummy_stages_ref()
 
 bool CreateRailsResourceLayout::execute()
 {
-std::string model_filename = "app/models/truck.rb";
-std::string model_test_filename = "test/models/truck_test.rb";
-std::string routes_filename = "config/routes.rb";
-std::string controller_filename = "app/controllers/trucks_controller.rb";
-std::string controller_test_filename = "test/controllers/trucks_controller_test.rb";
-std::string view_filename = "app/views/trucks/index.html.erb";
+std::string base_directory = "/Users/markoates/Repos/disclife/";
+
+std::string model_filename = base_directory + "app/models/disc.rb";
+std::string model_test_filename = base_directory + "test/models/disc_test.rb";
+std::string routes_filename = base_directory + "config/routes.rb";
+std::string controller_filename = base_directory + "app/controllers/discs_controller.rb";
+std::string controller_test_filename = base_directory + "test/controllers/discs_controller_test.rb";
+std::string view_filename = base_directory + "app/views/discs/index.html.erb";
 
 float code_editor_height = get_display_default_height();
 
 // model
 {
+   std::string file_contents = php::file_get_contents(model_filename);
+
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(model_filename);
+   model_code_editor->set_initial_content(file_contents);
 
    placement3d place(0, 0, 0);
    place.size = vec3d(code_editor_width, code_editor_height, 0);
