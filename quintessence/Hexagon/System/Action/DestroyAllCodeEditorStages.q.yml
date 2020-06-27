@@ -3,7 +3,7 @@ parent_classes:
 
   - class: ::Action
     scope: public
-    init_with: "\"System::Action::DestroyAllCodeEditorStages\", ActionData()"
+    init_with: '"System::Action::DestroyAllCodeEditorStages", ActionData()'
 
 
 properties:
