@@ -30,7 +30,7 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute__returns_succe
 
 
 
-TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___expected_layout_is_created)
+TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___expected_number_of_stages_are_created)
 {
    std::vector<StageInterface *> stages;
    Hexagon::System::Action::CreateRailsResourceLayout create_rails_resource_layout(stages);
@@ -39,7 +39,7 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___expected_lay
 
    EXPECT_TRUE(create_rails_resource_layout.execute());
 
-   EXPECT_EQ(1, stages.size());
+   EXPECT_EQ(6, stages.size());
 }
 
 
@@ -50,8 +50,6 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___created_stag
    Hexagon::System::Action::CreateRailsResourceLayout create_rails_resource_layout(stages);
 
    EXPECT_TRUE(create_rails_resource_layout.execute());
-
-   ASSERT_EQ(1, stages.size());
 
    placement3d expected_place(0, 0, 0);
    expected_place.size = vec3d(400, 650, 0);

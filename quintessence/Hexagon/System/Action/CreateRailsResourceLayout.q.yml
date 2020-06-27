@@ -30,17 +30,85 @@ functions:
     override: true
     type: bool
     body: |
-      CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+      // model
+      {
+         CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
 
-      placement3d place(0, 0, 0);
-      place.size = vec3d(400, 650, 0);
-      place.align = vec3d(0.5, 0.5, 0.0);
-      place.rotation = vec3d(0.0, 0.0, 0.0);
+         placement3d place(0, 0, 0);
+         place.size = vec3d(400, 650, 0);
+         place.align = vec3d(0.5, 0.5, 0.0);
+         place.rotation = vec3d(0.0, 0.0, 0.0);
 
-      model_code_editor->set_place(place);
+         model_code_editor->set_place(place);
 
-      stages.push_back(model_code_editor);
-      return true;
+         stages.push_back(model_code_editor);
+      }
+      // model test
+      {
+         CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+
+         placement3d place(100, 0, 0);
+         place.size = vec3d(400, 650, 0);
+         place.align = vec3d(0.5, 0.5, 0.0);
+         place.rotation = vec3d(0.0, 0.0, 0.0);
+
+         model_code_editor->set_place(place);
+
+         stages.push_back(model_code_editor);
+      }
+      // routes
+      {
+         CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+
+         placement3d place(-100, -100, 0);
+         place.size = vec3d(400, 650, 0);
+         place.align = vec3d(0.5, 0.5, 0.0);
+         place.rotation = vec3d(0.0, 0.0, 0.0);
+
+         model_code_editor->set_place(place);
+
+         stages.push_back(model_code_editor);
+       }
+      // controller
+      {
+         CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+
+         placement3d place(0, -100, 0);
+         place.size = vec3d(400, 650, 0);
+         place.align = vec3d(0.5, 0.5, 0.0);
+         place.rotation = vec3d(0.0, 0.0, 0.0);
+
+         model_code_editor->set_place(place);
+
+         stages.push_back(model_code_editor);
+       }
+      // controller test
+      {
+         CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+
+         placement3d place(100, -100, 0);
+         place.size = vec3d(400, 650, 0);
+         place.align = vec3d(0.5, 0.5, 0.0);
+         place.rotation = vec3d(0.0, 0.0, 0.0);
+
+         model_code_editor->set_place(place);
+
+         stages.push_back(model_code_editor);
+       }
+      // view
+      {
+         CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+
+         placement3d place(0, -100, 100);
+         place.size = vec3d(400, 650, 0);
+         place.align = vec3d(0.5, 0.5, 0.0);
+         place.rotation = vec3d(0.0, 0.0, 0.0);
+
+         model_code_editor->set_place(place);
+
+         stages.push_back(model_code_editor);
+       }
+       return true;
     body_dependency_symbols:
      - CodeEditor::CodeEditor
 
