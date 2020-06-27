@@ -6,6 +6,22 @@ parent_classes:
     init_with: '"System::Action::CreateRailsResourceLayout.hpp", ActionData()'
 
 
+properties:
+
+
+  - name: stages
+    type: std::vector<StageInterface *>&
+    constructor_arg: true
+    init_with: "get_dummy_stages_ref()"
+    getter: true
+    setter: true
+  - name: dummy_stages
+    type: std::vector<StageInterface *>
+    init_with: "{}"
+    static: true
+    getter_ref: true
+
+
 functions:
 
 
@@ -27,3 +43,9 @@ dependencies:
 
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
+  - symbol: std::vector<StageInterface *>&
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: std::vector<StageInterface *>
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: CodeEditor::CodeEditor
+    headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
