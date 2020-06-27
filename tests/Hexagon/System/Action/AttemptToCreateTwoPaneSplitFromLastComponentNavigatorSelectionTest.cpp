@@ -8,7 +8,8 @@ typedef Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNav
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 
-TEST(Hexagon_System_Action_AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelectionTest, can_be_created_without_blowing_up)
+TEST(Hexagon_System_Action_AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelectionTest,
+   can_be_created_without_blowing_up)
 {
    CreateTwoSplit create_two_split_action;
 }
@@ -61,7 +62,8 @@ TEST(Hexagon_System_Action_AttemptTo, execute__with_a_valid_component_opens_the_
    create_two_split.execute();
    EXPECT_EQ(2, stages.size());
 
-   std::string expected_quintessence_filename = "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Elements/Frame.q.yml";
+   std::string expected_quintessence_filename =
+      "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Elements/Frame.q.yml";
    std::string expected_test_filename = "/Users/markoates/Repos/hexagon/tests/Hexagon/Elements/FrameTest.cpp";
 
    ASSERT_EQ(StageInterface::CODE_EDITOR, stages[0]->get_type());
