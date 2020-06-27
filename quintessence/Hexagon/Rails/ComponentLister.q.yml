@@ -18,6 +18,14 @@ functions:
       return get_recursive_list_of_files_in_folder(fragment_folder_name, fragment_extension);
 
 
+  - name: controller_filenames
+    type: std::vector<std::string>
+    body: |
+      std::string fragment_folder_name = "app/controllers";
+      std::string fragment_extension = "_controller.rb";
+      return get_recursive_list_of_files_in_folder(fragment_folder_name, fragment_extension);
+
+
   - name: test_filenames
     type: std::vector<std::string>
     body: |
