@@ -41,6 +41,12 @@ std::vector<StageInterface *>& CreateRailsResourceLayout::get_stages()
 }
 
 
+int CreateRailsResourceLayout::get_display_default_height()
+{
+   return display_default_height;
+}
+
+
 int CreateRailsResourceLayout::get_code_editor_width()
 {
    return code_editor_width;
@@ -61,12 +67,15 @@ std::string routes_filename = "config/routes.rb";
 std::string controller_filename = "app/controllers/trucks_controller.rb";
 std::string controller_test_filename = "test/controllers/trucks_controller_test.rb";
 std::string view_filename = "app/views/trucks/index.html.erb";
+
+float code_editor_height = get_display_default_height();
+
 // model
 {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(model_filename);
 
    placement3d place(0, 0, 0);
-   place.size = vec3d(400, 650, 0);
+   place.size = vec3d(code_editor_width, code_editor_height, 0);
    place.align = vec3d(0.5, 0.5, 0.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
 
@@ -78,8 +87,8 @@ std::string view_filename = "app/views/trucks/index.html.erb";
 {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(model_test_filename);
 
-   placement3d place(100, 0, 0);
-   place.size = vec3d(400, 650, 0);
+   placement3d place(code_editor_width, 0, 0);
+   place.size = vec3d(code_editor_width, code_editor_height, 0);
    place.align = vec3d(0.5, 0.5, 0.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
 
@@ -91,8 +100,8 @@ std::string view_filename = "app/views/trucks/index.html.erb";
 {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(routes_filename);
 
-   placement3d place(-100, -100, 0);
-   place.size = vec3d(400, 650, 0);
+   placement3d place(-code_editor_width, -code_editor_height, 0);
+   place.size = vec3d(code_editor_width, code_editor_height, 0);
    place.align = vec3d(0.5, 0.5, 0.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
 
@@ -104,8 +113,8 @@ std::string view_filename = "app/views/trucks/index.html.erb";
 {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(controller_filename);
 
-   placement3d place(0, -100, 0);
-   place.size = vec3d(400, 650, 0);
+   placement3d place(0, -code_editor_height, 0);
+   place.size = vec3d(code_editor_width, code_editor_height, 0);
    place.align = vec3d(0.5, 0.5, 0.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
 
@@ -117,8 +126,8 @@ std::string view_filename = "app/views/trucks/index.html.erb";
 {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(controller_test_filename);
 
-   placement3d place(100, -100, 0);
-   place.size = vec3d(400, 650, 0);
+   placement3d place(code_editor_width, -code_editor_height, 0);
+   place.size = vec3d(code_editor_width, code_editor_height, 0);
    place.align = vec3d(0.5, 0.5, 0.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
 
@@ -130,8 +139,8 @@ std::string view_filename = "app/views/trucks/index.html.erb";
 {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(view_filename);
 
-   placement3d place(0, -100, 100);
-   place.size = vec3d(400, 650, 0);
+   placement3d place(0, -code_editor_height, 100);
+   place.size = vec3d(code_editor_width, code_editor_height, 0);
    place.align = vec3d(0.5, 0.5, 0.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
 

@@ -27,6 +27,7 @@ namespace Hexagon
             void set_stages(std::vector<StageInterface *>& stages);
 
             std::vector<StageInterface *>& get_stages();
+            int get_display_default_height();
             int get_code_editor_width();
             static std::vector<StageInterface *> &get_dummy_stages_ref();
          virtual bool execute() override;
