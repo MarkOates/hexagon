@@ -119,11 +119,6 @@ functions:
      - CodeEditor::CodeEditor
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
-
-
 dependencies:
 
 

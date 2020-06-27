@@ -14,15 +14,6 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, can_be_created_without
 
 
 
-TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, run__returns_the_expected_response)
-{
-   Hexagon::System::Action::CreateRailsResourceLayout create_rails_resource_layout;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, create_rails_resource_layout.run());
-}
-
-
-
 TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute__returns_successful)
 {
    Hexagon::System::Action::CreateRailsResourceLayout create_rails_resource_layout;

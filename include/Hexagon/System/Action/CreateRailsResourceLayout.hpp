@@ -3,7 +3,6 @@
 
 #include <Hexagon/Action.hpp>
 #include <Hexagon/StageInterface.hpp>
-#include <string>
 #include <vector>
 
 
@@ -28,7 +27,6 @@ namespace Hexagon
             std::vector<StageInterface *>& get_stages();
             static std::vector<StageInterface *> &get_dummy_stages_ref();
          virtual bool execute() override;
-         std::string run();
          };
       }
    }

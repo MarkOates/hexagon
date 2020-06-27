@@ -134,11 +134,6 @@ std::string view_filename = "app/views/trucks/index.html.erb";
  return true;
 
 }
-
-std::string CreateRailsResourceLayout::run()
-{
-return "Hello World!";
-}
 } // namespace Action
 } // namespace System
 } // namespace Hexagon
