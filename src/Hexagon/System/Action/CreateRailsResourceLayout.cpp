@@ -47,9 +47,15 @@ std::vector<StageInterface *> &CreateRailsResourceLayout::get_dummy_stages_ref()
 
 bool CreateRailsResourceLayout::execute()
 {
+std::string model_filename = "";
+std::string model_test_filename = "";
+std::string routes_filename = "";
+std::string controller_filename = "";
+std::string controller_test_filename = "";
+std::string view_filename = "";
 // model
 {
-   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(model_filename);
 
    placement3d place(0, 0, 0);
    place.size = vec3d(400, 650, 0);
@@ -62,7 +68,7 @@ bool CreateRailsResourceLayout::execute()
 }
 // model test
 {
-   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(model_test_filename);
 
    placement3d place(100, 0, 0);
    place.size = vec3d(400, 650, 0);
@@ -75,7 +81,7 @@ bool CreateRailsResourceLayout::execute()
 }
 // routes
 {
-   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(routes_filename);
 
    placement3d place(-100, -100, 0);
    place.size = vec3d(400, 650, 0);
@@ -88,7 +94,7 @@ bool CreateRailsResourceLayout::execute()
  }
 // controller
 {
-   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(controller_filename);
 
    placement3d place(0, -100, 0);
    place.size = vec3d(400, 650, 0);
@@ -101,7 +107,7 @@ bool CreateRailsResourceLayout::execute()
  }
 // controller test
 {
-   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(controller_test_filename);
 
    placement3d place(100, -100, 0);
    place.size = vec3d(400, 650, 0);
@@ -114,7 +120,7 @@ bool CreateRailsResourceLayout::execute()
  }
 // view
 {
-   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor();
+   CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(view_filename);
 
    placement3d place(0, -100, 100);
    place.size = vec3d(400, 650, 0);
