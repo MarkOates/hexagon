@@ -24,11 +24,23 @@ FileCategoryDecorator::~FileCategoryDecorator()
 
 std::string FileCategoryDecorator::label()
 {
+std::string result = "";
 std::map<std::string, std::string> file_category_labels = {
   { "undefined", "Undefined" },
 };
 
-return "Undefined";
+std::map<std::string, std::string>::iterator it = file_category_labels.find(file_category);
+bool category_label_exists = (it != file_category_labels.end());
+if (!category_label_exists)
+{
+   result = "Unknown";
+}
+else
+{
+   result = it->second;
+}
+
+return result;
 
 }
 } // namespace CodeEditor

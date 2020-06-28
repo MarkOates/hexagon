@@ -18,6 +18,14 @@ TEST(Hexagon_CodeEditor_FileCategoryDecoratorTest, label__returns_the_expected_l
 }
 
 
+TEST(Hexagon_CodeEditor_FileCategoryDecoratorTest, label__without_a_known_file_category__returns_the_expected_label)
+{
+   Hexagon::CodeEditor::FileCategoryDecorator file_category_decorator("file_category_that_does_not_exist");
+   std::string expected = "Unknown";
+   EXPECT_EQ(expected, file_category_decorator.label());
+}
+
+
 TEST(Hexagon_CodeEditor_FileCategoryDecoratorTest, label__returns_the_expected_labels_for_the_known_category_types)
 {
    // todo
