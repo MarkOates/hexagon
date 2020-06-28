@@ -66,6 +66,28 @@ std::vector<StageInterface *> &CreateRailsResourceLayout::get_dummy_stages_ref()
 }
 
 
+bool CreateRailsResourceLayout::place_and_load_code_editor(std::vector<StageInterface *>* stages_ptr, std::string filename, float x, float y)
+{
+float code_editor_height = get_display_default_height();
+{
+   std::string file_contents = php::file_get_contents(filename);
+
+   CodeEditor::CodeEditor *code_editor = new CodeEditor::CodeEditor(filename);
+   code_editor->set_initial_content(file_contents);
+
+   placement3d place(x * code_editor_width, y * code_editor_height, 0);
+   place.size = vec3d(code_editor_width, code_editor_height, 0);
+   place.align = vec3d(0.5, 0.5, 0.0);
+   place.rotation = vec3d(0.0, 0.0, 0.0);
+
+   code_editor->set_place(place);
+
+   stages.push_back(code_editor);
+}
+return true;
+
+}
+
 bool CreateRailsResourceLayout::execute()
 {
 float code_editor_height = get_display_default_height();
