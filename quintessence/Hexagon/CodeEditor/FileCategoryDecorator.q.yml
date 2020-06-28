@@ -1,0 +1,30 @@
+properties:
+
+
+  - name: file_category
+    type: std::string
+    init_with: '"undefined"'
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: label
+    type: std::string
+    body: |
+      std::map<std::string, std::string> file_category_labels = {
+        { "undefined", "Undefined" },
+      };
+
+      return "Undefined";
+    body_dependency_symbols:
+      - std::map<std::string>
+
+
+dependencies:
+
+
+  - symbol: std::map<std::string>
+    headers: [ map, string ]
+
