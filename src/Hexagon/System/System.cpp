@@ -1219,6 +1219,7 @@ bool System::create_three_split_from_last_component_navigator_selection()
 bool System::create_rails_resource_layout()
 {
    //Hexagon::RailsResourceFilenameGenerator generator;
+   std::string application_module_name = "Disclife";
    std::string resource_name = "Disc";
 
    std::string base_directory = "/Users/markoates/Repos/disclife/";
@@ -1231,12 +1232,10 @@ bool System::create_rails_resource_layout()
    std::string controller_test_filename = base_directory + "test/controllers/discs_controller_test.rb";
    std::string view_filename = base_directory + "app/views/discs/index.html.erb";
 
-
-   focused_component_name = resource_name;
-
-   set_hud_title_to_focused_component_name();
-   write_focused_component_name_to_file();
-
+   { // wrong layer of abstraction
+      std::string hud_title = application_module_name + ": " + resource_name;
+      hud.set_title_text(hud_title);
+   }
 
    Hexagon::System::Action::CreateRailsResourceLayout rails_resource_layout(
       stages,
