@@ -32,7 +32,7 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___expected_num
 
    EXPECT_TRUE(create_rails_resource_layout.execute());
 
-   EXPECT_EQ(6, stages.size());
+   EXPECT_EQ(5, stages.size());
 }
 
 

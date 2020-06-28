@@ -1,8 +1,14 @@
 parent_classes:
+
+
   - class: StageInterface
     scope: public
     init_with: "StageInterface::RERUN_OUTPUT_WATCHER"
+
+
 properties:
+
+
   - name: command
     type: std::string
     init_with: "\"make\""
@@ -19,7 +25,11 @@ properties:
     type: std::string
     init_with: "\"[no content]\""
     getter: true
+
+
 functions:
+
+
   - name: clear
     type: void
     body: |
@@ -48,6 +58,8 @@ functions:
             std::bind(&RerunOutputWatcher::Stage::append_to_output, this, _1)
          );
       executor.execute();
+
+
   - name: render
     type: void
     virtual: true
@@ -111,6 +123,8 @@ functions:
        get_place().restore_transform();
 
        return;
+
+
   - name: process_local_event
     type: void
     virtual: true
@@ -125,6 +139,8 @@ functions:
         default_argument: "{}"
     body: |
       return;
+
+
   - name: process_event
     type: void
     virtual: true
@@ -135,13 +151,21 @@ functions:
         default_argument: Stage::dummy_ALLEGRO_EVENT()
     body: |
       return;
+
+
 function_body_symbol_dependencies:
+
+
   - al_color_name
   - Blast::ShellCommandExecutorWithCallback
   - Hexagon::Elements::Frame
   - std::cout
   - Blast::StringSplitter
+
+
 dependencies:
+
+
   - symbol: std::cout
     headers: [ 'iostream' ]
   - symbol: Hexagon::Elements::Frame
