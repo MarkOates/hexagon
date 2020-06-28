@@ -1218,6 +1218,8 @@ bool System::create_three_split_from_last_component_navigator_selection()
 
 bool System::create_rails_resource_layout()
 {
+   //Hexagon::RailsResourceFilenameGenerator generator;
+
    std::string base_directory = "/Users/markoates/Repos/disclife/";
    int display_default_height = 1350;
    int code_editor_width = 1215;
