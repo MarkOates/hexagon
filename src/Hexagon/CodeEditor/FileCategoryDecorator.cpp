@@ -27,6 +27,7 @@ std::string FileCategoryDecorator::label()
 std::string result = "";
 std::map<std::string, std::string> file_category_labels = {
   { "undefined", "Undefined" },
+  { "rails_model", "Model" },
 };
 
 std::map<std::string, std::string>::iterator it = file_category_labels.find(file_category);

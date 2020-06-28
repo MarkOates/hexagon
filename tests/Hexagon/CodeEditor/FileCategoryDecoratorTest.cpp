@@ -3,6 +3,8 @@
 
 #include <Hexagon/CodeEditor/FileCategoryDecorator.hpp>
 
+#include <utility>
+
 
 TEST(Hexagon_CodeEditor_FileCategoryDecoratorTest, can_be_created_without_blowing_up)
 {
@@ -28,5 +30,18 @@ TEST(Hexagon_CodeEditor_FileCategoryDecoratorTest, label__without_a_known_file_c
 
 TEST(Hexagon_CodeEditor_FileCategoryDecoratorTest, label__returns_the_expected_labels_for_the_known_category_types)
 {
-   // todo
+   std::vector<std::pair<std::string, std::string>> expected_file_categories_and_labels = {
+      { "undefined", "Undefined" },
+      { "rails_model", "Model" },
+   };
+
+   for (auto &expected_file_category_and_label : expected_file_categories_and_labels)
+   {
+      std::string expected_file_category = expected_file_category_and_label.first;
+      std::string expected_label = expected_file_category_and_label.second;
+
+      Hexagon::CodeEditor::FileCategoryDecorator file_category_decorator(expected_file_category);
+      std::string actual_label = file_category_decorator.label();
+      EXPECT_EQ(expected_label, actual_label);
+   }
 }
