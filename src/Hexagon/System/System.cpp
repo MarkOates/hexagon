@@ -1218,7 +1218,27 @@ bool System::create_three_split_from_last_component_navigator_selection()
 
 bool System::create_rails_resource_layout()
 {
-   Hexagon::System::Action::CreateRailsResourceLayout rails_resource_layout(stages);
+   std::string base_directory = "/Users/markoates/Repos/disclife/";
+   int display_default_height = 1350;
+   int code_editor_width = 1215;
+   std::string model_filename = base_directory + "app/models/disc.rb";
+   std::string model_test_filename = base_directory + "test/models/disc_test.rb";
+   std::string routes_filename = base_directory + "config/routes.rb";
+   std::string controller_filename = base_directory + "app/controllers/discs_controller.rb";
+   std::string controller_test_filename = base_directory + "test/controllers/discs_controller_test.rb";
+   std::string view_filename = base_directory + "app/views/discs/index.html.erb";
+
+   Hexagon::System::Action::CreateRailsResourceLayout rails_resource_layout(
+      stages,
+      display_default_height,
+      code_editor_width,
+      model_filename,
+      model_test_filename,
+      routes_filename,
+      controller_filename,
+      controller_test_filename,
+      view_filename
+   );
    return rails_resource_layout.execute();
 }
 
