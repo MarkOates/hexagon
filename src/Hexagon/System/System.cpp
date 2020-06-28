@@ -459,7 +459,7 @@ bool System::toggle_command_mode_on()
 {
    if (command_mode) return true;
 
-   float camera_zoomed_out_position = get_default_camera_stepback() + 10;
+   float camera_zoomed_out_position = get_default_camera_stepback() + 60;
    float camera_zoomed_in_position = get_default_camera_stepback();
    motion.canimate(&camera.stepback.z,
                    camera.stepback.z,
@@ -479,7 +479,7 @@ bool System::toggle_command_mode_off()
 {
    if (!command_mode) return true;
 
-   float camera_zoomed_out_position = get_default_camera_stepback() + 10;
+   float camera_zoomed_out_position = get_default_camera_stepback() + 60;
    float camera_zoomed_in_position = get_default_camera_stepback();
    motion.canimate(&camera.stepback.z,
                    camera.stepback.z,
@@ -1219,6 +1219,7 @@ bool System::create_three_split_from_last_component_navigator_selection()
 bool System::create_rails_resource_layout()
 {
    //Hexagon::RailsResourceFilenameGenerator generator;
+   std::string resource_name = "Disc";
 
    std::string base_directory = "/Users/markoates/Repos/disclife/";
    int display_default_height = 1350;
@@ -1229,6 +1230,13 @@ bool System::create_rails_resource_layout()
    std::string controller_filename = base_directory + "app/controllers/discs_controller.rb";
    std::string controller_test_filename = base_directory + "test/controllers/discs_controller_test.rb";
    std::string view_filename = base_directory + "app/views/discs/index.html.erb";
+
+
+   focused_component_name = resource_name;
+
+   set_hud_title_to_focused_component_name();
+   write_focused_component_name_to_file();
+
 
    Hexagon::System::Action::CreateRailsResourceLayout rails_resource_layout(
       stages,
