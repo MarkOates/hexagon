@@ -92,8 +92,16 @@ bool CreateRailsResourceLayout::execute()
 {
 float code_editor_height = get_display_default_height();
 
+place_and_load_code_editor(&stages, model_filename, 0, 0);
+place_and_load_code_editor(&stages, model_test_filename, 1, 0);
+
+place_and_load_code_editor(&stages, routes_filename, -1, -1);
+place_and_load_code_editor(&stages, view_filename, 0, -1); // should be plural
+place_and_load_code_editor(&stages, controller_filename, 0, -1);
+place_and_load_code_editor(&stages, controller_test_filename, 1, -1);
+
 // model
-{
+if (false) {
    std::string file_contents = php::file_get_contents(model_filename);
 
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(model_filename);
@@ -109,7 +117,7 @@ float code_editor_height = get_display_default_height();
    stages.push_back(model_code_editor);
 }
 // model test
-{
+if (false) {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(model_test_filename);
 
    placement3d place(code_editor_width, 0, 0);
@@ -122,7 +130,7 @@ float code_editor_height = get_display_default_height();
    stages.push_back(model_code_editor);
 }
 // routes
-{
+if (false) {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(routes_filename);
 
    placement3d place(-code_editor_width, -code_editor_height, 0);
@@ -135,7 +143,7 @@ float code_editor_height = get_display_default_height();
    stages.push_back(model_code_editor);
  }
 // controller
-{
+if (false) {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(controller_filename);
 
    placement3d place(0, -code_editor_height, 0);
@@ -148,7 +156,7 @@ float code_editor_height = get_display_default_height();
    stages.push_back(model_code_editor);
  }
 // controller test
-{
+if (false) {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(controller_test_filename);
 
    placement3d place(code_editor_width, -code_editor_height, 0);
@@ -161,7 +169,7 @@ float code_editor_height = get_display_default_height();
    stages.push_back(model_code_editor);
  }
 // view
-{
+if (false) {
    CodeEditor::CodeEditor *model_code_editor = new CodeEditor::CodeEditor(view_filename);
 
    placement3d place(0, -code_editor_height, 100);
