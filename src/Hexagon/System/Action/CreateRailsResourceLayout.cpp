@@ -92,13 +92,13 @@ bool CreateRailsResourceLayout::execute()
 {
 float code_editor_height = get_display_default_height();
 
-place_and_load_code_editor(&stages, controller_test_filename, 1, -1);
-place_and_load_code_editor(&stages, controller_filename, 0, -1);
-//place_and_load_code_editor(&stages, view_filename, 0, -1); // should be plural
-place_and_load_code_editor(&stages, routes_filename, -1, -1);
-
-place_and_load_code_editor(&stages, model_test_filename, 1, 0);
 place_and_load_code_editor(&stages, model_filename, 0, 0);
+place_and_load_code_editor(&stages, model_test_filename, 1, 0);
+
+place_and_load_code_editor(&stages, routes_filename, -1, -1);
+//place_and_load_code_editor(&stages, view_filename, 0, -1); // should be plural
+place_and_load_code_editor(&stages, controller_filename, 0, -1);
+place_and_load_code_editor(&stages, controller_test_filename, 1, -1);
 
 return true;
 

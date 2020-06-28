@@ -49,8 +49,7 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___created_stag
    expected_place.align = vec3d(0.5, 0.5, 0.0);
    expected_place.rotation = vec3d(0.0, 0.0, 0.0);
 
-   ASSERT_FALSE(stages.empty());
-   placement3d actual_place = stages.back()->get_place();
+   placement3d actual_place = stages[0]->get_place();
 
    EXPECT_EQ(expected_place.size, actual_place.size);
    EXPECT_EQ(expected_place.position, actual_place.position);
