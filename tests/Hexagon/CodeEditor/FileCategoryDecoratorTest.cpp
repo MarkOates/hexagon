@@ -14,7 +14,7 @@ TEST(Hexagon_CodeEditor_FileCategoryDecoratorTest, label__returns_the_expected_l
 {
    Hexagon::CodeEditor::FileCategoryDecorator file_category_decorator;
    std::string expected = "Undefined";
-   EXPECT_EQ(expected, file_category_decorator.label());
+   ASSERT_EQ(expected, file_category_decorator.label());
 }
 
 
@@ -22,7 +22,7 @@ TEST(Hexagon_CodeEditor_FileCategoryDecoratorTest, label__without_a_known_file_c
 {
    Hexagon::CodeEditor::FileCategoryDecorator file_category_decorator("file_category_that_does_not_exist");
    std::string expected = "Unknown";
-   EXPECT_EQ(expected, file_category_decorator.label());
+   ASSERT_EQ(expected, file_category_decorator.label());
 }
 
 
