@@ -359,6 +359,7 @@ else
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_R, false, true, false, false, {
       ::System::DESTROY_ALL_CODE_EDITOR_STAGES,
       ::System::CREATE_RAILS_RESOURCE_LAYOUT,
+      ::System::ROTATE_STAGE_RIGHT,
       ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
       ::System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, true, false, false, true, {
