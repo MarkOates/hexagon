@@ -87,3 +87,30 @@ TEST(DISABLED_Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___cre
 }
 
 
+
+TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___created_stages_have_the_expected_file_categories)
+{
+   std::vector<StageInterface *> stages;
+   std::vector<std::string> expected_file_categories = {
+      "rails_model",
+      "rails_model_test",
+      "rails_routes",
+      "rails_controller",
+      "rails_controller_test",
+   };
+   Hexagon::System::Action::CreateRailsResourceLayout create_rails_resource_layout(stages);
+
+   EXPECT_TRUE(create_rails_resource_layout.execute());
+
+   std::vector<std::string> actual_file_categories;
+
+   for (auto &stage : stages)
+   {
+      CodeEditor::CodeEditor *code_editor = static_cast<CodeEditor::CodeEditor *>(stage);
+      actual_file_categories.push_back(code_editor->get_file_category());
+   }
+
+   EXPECT_EQ(expected_file_categories, actual_file_categories);
+}
+
+

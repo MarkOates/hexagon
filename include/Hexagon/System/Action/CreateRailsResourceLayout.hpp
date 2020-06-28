@@ -37,7 +37,7 @@ namespace Hexagon
             int get_display_default_height();
             int get_code_editor_width();
             static std::vector<StageInterface *> &get_dummy_stages_ref();
-         bool place_and_load_code_editor(std::vector<StageInterface *>* stages_ptr=nullptr, std::string filename="", float x=0.0f, float y=0.0f);
+         bool place_and_load_code_editor(std::vector<StageInterface *>* stages_ptr=nullptr, std::string filename="", std::string file_category="undefined_file_category", float x=0.0f, float y=0.0f);
          virtual bool execute() override;
          };
       }

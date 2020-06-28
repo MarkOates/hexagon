@@ -66,13 +66,13 @@ std::vector<StageInterface *> &CreateRailsResourceLayout::get_dummy_stages_ref()
 }
 
 
-bool CreateRailsResourceLayout::place_and_load_code_editor(std::vector<StageInterface *>* stages_ptr, std::string filename, float x, float y)
+bool CreateRailsResourceLayout::place_and_load_code_editor(std::vector<StageInterface *>* stages_ptr, std::string filename, std::string file_category, float x, float y)
 {
 float code_editor_height = get_display_default_height();
 {
    std::string file_contents = php::file_get_contents(filename);
 
-   CodeEditor::CodeEditor *code_editor = new CodeEditor::CodeEditor(filename);
+   CodeEditor::CodeEditor *code_editor = new CodeEditor::CodeEditor(filename, file_category);
    code_editor->set_initial_content(file_contents);
 
    placement3d place(x * code_editor_width, y * code_editor_height, 0);
@@ -92,13 +92,13 @@ bool CreateRailsResourceLayout::execute()
 {
 float code_editor_height = get_display_default_height();
 
-place_and_load_code_editor(&stages, model_filename, 0, 0);
-place_and_load_code_editor(&stages, model_test_filename, 1, 0);
+place_and_load_code_editor(&stages, model_filename, "rails_model", 0, 0);
+place_and_load_code_editor(&stages, model_test_filename, "rails_model_test", 1, 0);
 
-place_and_load_code_editor(&stages, routes_filename, -1, -1);
+place_and_load_code_editor(&stages, routes_filename, "rails_routes", -1, -1);
 //place_and_load_code_editor(&stages, view_filename, 0, -1); // should be plural
-place_and_load_code_editor(&stages, controller_filename, 0, -1);
-place_and_load_code_editor(&stages, controller_test_filename, 1, -1);
+place_and_load_code_editor(&stages, controller_filename, "rails_controller", 0, -1);
+place_and_load_code_editor(&stages, controller_test_filename, "rails_controller_test", 1, -1);
 
 return true;
 
