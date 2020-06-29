@@ -36,7 +36,7 @@ CodeEditor::CodeEditor(std::string filename, std::string file_category, mode_t m
    , cursor_y(0)
    , mode(mode)
    , draw_info_overlay(false)
-   //, type(type)
+   , type(type)
    , filename(filename)
    , file_category(file_category)
    , search_regex_expression("")
@@ -114,6 +114,13 @@ void CodeEditor::set_cursor_y(int cursor_y)
 std::string CodeEditor::get_filename()
 {
    return filename;
+}
+
+
+
+StageInterface::type_t StageInterface::get_type()
+{
+   return type;
 }
 
 

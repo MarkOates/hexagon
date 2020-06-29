@@ -33,6 +33,14 @@ TEST(Hexagon_CodeEditor_CodeEditorTest, file_category__has_a_getter_and_has_the_
    ASSERT_EQ(expected_default_file_category, actual_default_file_category);
 }
 
+TEST(Hexagon_CodeEditor_CodeEditorTest, type__has_a_getter_and_has_the_expected_default)
+{
+   CodeEditor::CodeEditor stage("foobar_filename.txt");
+   StageInterface::type_t expected_type = StageInterface::CODE_EDITOR;
+   StageInterface::type_t actual_type = stage.get_type();
+   ASSERT_EQ(expected_type, actual_type);
+}
+
 TEST(Hexagon_CodeEditor_CodeEditorTest, search_regex_expression__has_a_getter_and_has_the_expected_default)
 {
    CodeEditor::CodeEditor stage("foobar_filename.txt");

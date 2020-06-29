@@ -66,6 +66,7 @@ namespace CodeEditor
       void set_cursor_y(int cursor_y);
       std::string get_filename();
       std::string get_file_category();
+      StageInterface::type_t get_type();
       bool set_initial_content(std::string content);
       bool set_initial_content(std::vector<std::string> content);
       bool set_content(std::string content);
