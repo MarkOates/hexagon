@@ -9,17 +9,14 @@
 #include <Blast/StringSplitter.hpp>
 #include <Hexagon/GitLinesModifiedExtractor.hpp>
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
-#include <Hexagon/CodeRangeRenderer.hpp>
 #include <Hexagon/CodeRangeExtractor.hpp>
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/SymlinkToucher.hpp>
-#include <Hexagon/CodeEditor/Renderer.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
 #include <Hexagon/util.hpp>
 #include <Hexagon/shared_globals.hpp>
 #include <Hexagon/shared_globals.hpp>
 #include <allegro_flare/color.h> // for color::color
-#include <Hexagon/OneLineInputBox/Renderer.hpp>
 
 
 
@@ -881,8 +878,6 @@ bool CodeEditor::toggle_currently_grabbing_visual_selection()
 }
 
 
-
-// rendering
 
 // partials
 

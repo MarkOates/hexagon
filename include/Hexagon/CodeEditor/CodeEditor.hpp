@@ -30,7 +30,6 @@ namespace CodeEditor
       };
 
    private:
-      //Hexagon::CodeEditor::Stage *stage;
       friend class ::CodeEditor::Renderer;
       std::vector<std::string> lines;
       int cursor_x;
@@ -149,10 +148,7 @@ namespace CodeEditor
 
       bool offset_first_line_number(int delta);
       bool offset_cursor_position_y(int delta);
-      bool move_stage_up(float distance=100);
-      bool move_stage_down(float distance=100);
       bool offset_first_line_to_vertically_center_cursor(int distance_from_top=20);
-      bool scale_stage_delta(float delta);
       bool create_visual_selection_at_current_cursor_location();
       bool destroy_current_visual_selection();
       bool toggle_currently_grabbing_visual_selection();
