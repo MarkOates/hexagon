@@ -54,6 +54,9 @@ functions:
       - name: filename
         type: std::string
         default_argument: "\"/foobar.txt\""
+      - name: file_category
+        type: std::string
+        default_argument: '"undefined"'
       - name: x
         type: float
         default_argument: "0.0"
@@ -73,7 +76,7 @@ functions:
       if (file_exists)
       {
          std::string file_contents = php::file_get_contents(filename);
-         CodeEditor::CodeEditor *file_stage = new CodeEditor::CodeEditor(filename);
+         CodeEditor::CodeEditor *file_stage = new CodeEditor::CodeEditor(filename, file_category);
          file_stage->set_initial_content(file_contents);
          stage = file_stage;
       }
@@ -123,9 +126,9 @@ functions:
       std::string header_filename = generate_header_filename();
       std::string source_filename = generate_source_filename();
 
-      place_stage(header_filename, left_anchor, 0.5);
-      place_stage(source_filename, 0, 0.5);
-      place_stage(test_filename, right_anchor, 0.5);
+      place_stage(header_filename, "cpp_header", left_anchor, 0.5);
+      place_stage(source_filename, "cpp_source", 0, 0.5);
+      place_stage(test_filename, "blast_test", right_anchor, 0.5);
 
       return true;
     body_dependency_symbols:

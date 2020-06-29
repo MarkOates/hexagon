@@ -5,6 +5,7 @@
 #include <Hexagon/OneLineInputBox/Renderer.hpp>
 #include <Hexagon/CodeEditor/Renderer.hpp>
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
+#include <Hexagon/CodeEditor/FileCategoryDecorator.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
 
@@ -121,7 +122,9 @@ else
    if (code_editor->get_draw_info_overlay())
    {
       placement3d &place = code_editor->get_place_ref();
-      std::string text_to_render = code_editor->get_filename();
+      std::string file_category_label
+         = Hexagon::CodeEditor::FileCategoryDecorator(code_editor->get_file_category()).label();
+      std::string text_to_render = file_category_label;
       place.start_transform();
       Hexagon::Elements::StageInfoOverlay stage_info_overlay(font, &place);
       //if (!is_focused) text_to_render = this->get_filename();

@@ -67,7 +67,7 @@ std::vector<StageInterface *> &CreateThreeSplitFromComponent::get_dummy_stages_r
 }
 
 
-bool CreateThreeSplitFromComponent::place_stage(std::string filename, float x, float align_x)
+bool CreateThreeSplitFromComponent::place_stage(std::string filename, std::string file_category, float x, float align_x)
 {
 bool file_exists = Blast::FileExistenceChecker(filename).exists();
 float width = get_code_editor_width();
@@ -81,7 +81,7 @@ StageInterface *stage = nullptr;
 if (file_exists)
 {
    std::string file_contents = php::file_get_contents(filename);
-   CodeEditor::CodeEditor *file_stage = new CodeEditor::CodeEditor(filename);
+   CodeEditor::CodeEditor *file_stage = new CodeEditor::CodeEditor(filename, file_category);
    file_stage->set_initial_content(file_contents);
    stage = file_stage;
 }
@@ -135,9 +135,9 @@ std::string test_filename = generate_test_filename();
 std::string header_filename = generate_header_filename();
 std::string source_filename = generate_source_filename();
 
-place_stage(header_filename, left_anchor, 0.5);
-place_stage(source_filename, 0, 0.5);
-place_stage(test_filename, right_anchor, 0.5);
+place_stage(header_filename, "cpp_header", left_anchor, 0.5);
+place_stage(source_filename, "cpp_source", 0, 0.5);
+place_stage(test_filename, "blast_test", right_anchor, 0.5);
 
 return true;
 

@@ -35,7 +35,7 @@ namespace Hexagon
             std::vector<StageInterface *>& get_stages();
             int get_code_editor_width();
             static std::vector<StageInterface *> &get_dummy_stages_ref();
-         bool place_stage(std::string filename="/foobar.txt", float x=0.0, float align_x=0.0);
+         bool place_stage(std::string filename="/foobar.txt", std::string file_category="undefined", float x=0.0, float align_x=0.0);
          std::string generate_header_filename();
          std::string generate_source_filename();
          std::string generate_test_filename();

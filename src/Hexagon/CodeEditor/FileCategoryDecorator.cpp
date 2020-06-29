@@ -27,6 +27,10 @@ std::string FileCategoryDecorator::label()
 std::string result = "";
 std::map<std::string, std::string> file_category_labels = {
   { "undefined", "Undefined" },
+  { "blast_quintessence", "Quintessence" },
+  { "blast_test", "Test" },
+  { "cpp_header", "Header" },
+  { "cpp_source", "Source" },
   { "rails_model", "Model" },
   { "rails_model_test", "Model Test" },
   { "rails_controller", "Controller" },

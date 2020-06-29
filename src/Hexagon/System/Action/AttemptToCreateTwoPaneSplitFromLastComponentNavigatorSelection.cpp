@@ -110,7 +110,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
   {
      std::vector<std::string> file_contents = {};
      ::read_file(file_contents, test_filename);
-     stage = new CodeEditor::CodeEditor(test_filename);
+     stage = new CodeEditor::CodeEditor(test_filename, "blast_test");
      static_cast<CodeEditor::CodeEditor*>(stage)->set_initial_content(file_contents);
   }
   else
@@ -135,7 +135,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
   {
      std::vector<std::string> file_contents = {};
      ::read_file(file_contents, filename);
-     stage = new CodeEditor::CodeEditor(filename);
+     stage = new CodeEditor::CodeEditor(filename, "blast_quintessence");
      static_cast<CodeEditor::CodeEditor*>(stage)->set_initial_content(file_contents);
   }
   else

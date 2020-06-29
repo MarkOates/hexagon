@@ -119,7 +119,9 @@ functions:
          if (code_editor->get_draw_info_overlay())
          {
             placement3d &place = code_editor->get_place_ref();
-            std::string text_to_render = code_editor->get_filename();
+            std::string file_category_label
+               = Hexagon::CodeEditor::FileCategoryDecorator(code_editor->get_file_category()).label();
+            std::string text_to_render = file_category_label;
             place.start_transform();
             Hexagon::Elements::StageInfoOverlay stage_info_overlay(font, &place);
             //if (!is_focused) text_to_render = this->get_filename();
@@ -135,6 +137,7 @@ functions:
       - Hexagon::OneLineInputBox::Renderer
       - CodeEditor::Renderer
       - Hexagon::Elements::StageInfoOverlay
+      - Hexagon::CodeEditor::FileCategoryDecorator
 
 
   - name: process_local_event
@@ -201,3 +204,6 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
+  - symbol: Hexagon::CodeEditor::FileCategoryDecorator
+    headers: [ Hexagon/CodeEditor/FileCategoryDecorator.hpp ]
+
