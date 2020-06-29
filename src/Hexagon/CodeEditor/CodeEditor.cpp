@@ -118,7 +118,7 @@ std::string CodeEditor::get_filename()
 
 
 
-StageInterface::type_t StageInterface::get_type()
+StageInterface::type_t CodeEditor::get_type()
 {
    return type;
 }

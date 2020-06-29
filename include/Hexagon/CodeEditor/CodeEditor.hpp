@@ -35,6 +35,7 @@ namespace CodeEditor
       int cursor_x;
       int cursor_y;
 
+      StageInterface::type_t type;
       mode_t mode;
 
       bool draw_info_overlay;
