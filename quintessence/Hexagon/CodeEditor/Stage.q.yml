@@ -3,7 +3,7 @@ parent_classes:
 
   - class: 'StageInterface'
     scope: public
-    init_with: "StageInterface::CODE_EDITOR"
+    init_with: "code_editor.get_type()"
 
 
 properties:

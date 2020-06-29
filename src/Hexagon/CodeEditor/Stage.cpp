@@ -20,7 +20,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
 Stage::Stage(::CodeEditor::CodeEditor code_editor)
-   : StageInterface(StageInterface::CODE_EDITOR)
+   : StageInterface(code_editor.get_type())
    , code_editor(code_editor)
 {
 }
