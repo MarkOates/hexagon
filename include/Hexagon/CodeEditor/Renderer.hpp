@@ -16,7 +16,6 @@ namespace CodeEditor
    {
    private:
       bool is_focused;
-      bool is_showing_info;
       bool draw_line_numbers;
       bool draw_extra_spaces_at_end_of_line;
       bool draw_null_space;
@@ -29,7 +28,6 @@ namespace CodeEditor
 
       void render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color);
       void render_raw();
-      void render_info_overlay();
       void render_cursor_position_info();
       void draw_selections(int cell_width, int cell_height);
 

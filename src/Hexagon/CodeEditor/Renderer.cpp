@@ -10,7 +10,6 @@
 #include <Hexagon/CodeEditor/Renderer/BasicLineRenderer.hpp>
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <Hexagon/CodeRangeRenderer.hpp>
-#include <Hexagon/Elements/StageInfoOverlay.hpp>
 #include <Hexagon/shared_globals.hpp> // for hexagon_get_backfill_color() && profile_timer functions
 #include <AllegroFlare/Color.hpp>
 #include <sstream>
@@ -39,7 +38,6 @@ Renderer::Renderer(
    , draw_null_space(true)
    , draw_backfill(true)
    , is_focused(is_focused)
-   , is_showing_info(false)
    , stage(stage)
    , font(font)
    , display(display)
@@ -412,22 +410,6 @@ void Renderer::render_raw()
 }
 
 
-void Renderer::render_info_overlay()
-{
-   Hexagon::Elements::StageInfoOverlay info_overlay(font, &stage->get_place());
-   std::string text_to_display = "";
-
-   std::string file_category = stage->get_file_category();
-   if (file_category == "undefined")
-   {
-      text_to_display = " --- ";
-   }
-
-   info_overlay.set_text(text_to_display);
-   info_overlay.render();
-}
-
-
 void Renderer::render_cursor_position_info()
 {
    placement3d &place = stage->get_place();
@@ -508,7 +490,6 @@ void Renderer::render()
    place.start_transform();
    render_raw();
    place.restore_transform();
-   if (is_showing_info) render_info_overlay();
    global::profiler.pause("render");
 }
 
