@@ -19,7 +19,7 @@ namespace CodeEditor
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(::CodeEditor::CodeEditor* code_editor)
+Stage::Stage(::CodeEditor::CodeEditor code_editor)
    : StageInterface(StageInterface::CODE_EDITOR)
    , code_editor(code_editor)
 {
@@ -31,13 +31,13 @@ Stage::~Stage()
 }
 
 
-::CodeEditor::CodeEditor* Stage::get_code_editor()
+::CodeEditor::CodeEditor Stage::get_code_editor()
 {
    return code_editor;
 }
 
 
-::CodeEditor::CodeEditor* &Stage::get_code_editor_ref()
+::CodeEditor::CodeEditor &Stage::get_code_editor_ref()
 {
    return code_editor;
 }
@@ -53,7 +53,7 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font
 {
 //place = this->place;
 
-if (code_editor->get_type() == ONE_LINE_INPUT_BOX)
+if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
 {
    ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
    float width = get_place().size.x;
@@ -68,13 +68,13 @@ if (code_editor->get_type() == ONE_LINE_INPUT_BOX)
       height,
       cell_width,
       cell_height,
-      code_editor->get_lines_ref(),
-      code_editor->selections,
-      code_editor->get_cursor_x(),
-      code_editor->get_cursor_y(),
+      code_editor.get_lines_ref(),
+      code_editor.selections,
+      code_editor.get_cursor_x(),
+      code_editor.get_cursor_y(),
       get_place(),
-      code_editor->get_first_line_number(),
-      (code_editor->get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
+      code_editor.get_first_line_number(),
+      (code_editor.get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
    );
 
    //renderer.set_top_left_text(top_left_text);
@@ -82,7 +82,7 @@ if (code_editor->get_type() == ONE_LINE_INPUT_BOX)
 
    renderer.render();
 }
-else if (code_editor->get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
+else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
 {
    ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
    float width = get_place().size.x;
@@ -97,13 +97,13 @@ else if (code_editor->get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
       height,
       cell_width,
       cell_height,
-      code_editor->get_lines_ref(),
-      code_editor->selections,
-      code_editor->get_cursor_x(),
-      code_editor->get_cursor_y(),
+      code_editor.get_lines_ref(),
+      code_editor.selections,
+      code_editor.get_cursor_x(),
+      code_editor.get_cursor_y(),
       get_place(),
-      code_editor->get_first_line_number(),
-      (code_editor->get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
+      code_editor.get_first_line_number(),
+      (code_editor.get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
    );
 
    //renderer.set_top_left_text(top_left_text);
@@ -120,7 +120,7 @@ else
    ::CodeEditor::Renderer renderer(
       draw_line_numbers,
       is_focused,
-      code_editor,
+      &code_editor,
       code_font,
       display,
       cell_width,
@@ -128,15 +128,15 @@ else
    );
    renderer.render();
 
-   if (code_editor->get_draw_info_overlay())
+   if (code_editor.get_draw_info_overlay())
    {
       placement3d &place = get_place();
       std::string file_category_label
-         = Hexagon::CodeEditor::FileCategoryDecorator(code_editor->get_file_category()).label();
+         = Hexagon::CodeEditor::FileCategoryDecorator(code_editor.get_file_category()).label();
       std::string text_to_render = file_category_label;
       place.start_transform();
       Hexagon::Elements::StageInfoOverlay stage_info_overlay(overlay_font, &place);
-      //if (!is_focused) text_to_render = this->get_filename();
+      //if (!is_focused) text_to_render = this.get_filename();
       stage_info_overlay.set_text(text_to_render);
       stage_info_overlay.render();
       place.restore_transform();

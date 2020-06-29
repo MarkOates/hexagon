@@ -10,8 +10,8 @@ properties:
 
 
   - name: code_editor
-    type: ::CodeEditor::CodeEditor*
-    init_with: nullptr
+    type: ::CodeEditor::CodeEditor
+    init_with: '::CodeEditor::CodeEditor{}'
     constructor_arg: true
     getter: true
     getter_ref: true
@@ -26,7 +26,6 @@ functions:
 
 
   - name: render
-    guard: [ code_editor ]
     is_override: true
     parameters:
       - name: is_focused
@@ -47,7 +46,7 @@ functions:
     body: |
       //place = this->place;
 
-      if (code_editor->get_type() == ONE_LINE_INPUT_BOX)
+      if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
       {
          ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
          float width = get_place().size.x;
@@ -62,13 +61,13 @@ functions:
             height,
             cell_width,
             cell_height,
-            code_editor->get_lines_ref(),
-            code_editor->selections,
-            code_editor->get_cursor_x(),
-            code_editor->get_cursor_y(),
+            code_editor.get_lines_ref(),
+            code_editor.selections,
+            code_editor.get_cursor_x(),
+            code_editor.get_cursor_y(),
             get_place(),
-            code_editor->get_first_line_number(),
-            (code_editor->get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
+            code_editor.get_first_line_number(),
+            (code_editor.get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
          );
 
          //renderer.set_top_left_text(top_left_text);
@@ -76,7 +75,7 @@ functions:
 
          renderer.render();
       }
-      else if (code_editor->get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
+      else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
       {
          ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
          float width = get_place().size.x;
@@ -91,13 +90,13 @@ functions:
             height,
             cell_width,
             cell_height,
-            code_editor->get_lines_ref(),
-            code_editor->selections,
-            code_editor->get_cursor_x(),
-            code_editor->get_cursor_y(),
+            code_editor.get_lines_ref(),
+            code_editor.selections,
+            code_editor.get_cursor_x(),
+            code_editor.get_cursor_y(),
             get_place(),
-            code_editor->get_first_line_number(),
-            (code_editor->get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
+            code_editor.get_first_line_number(),
+            (code_editor.get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
          );
 
          //renderer.set_top_left_text(top_left_text);
@@ -114,7 +113,7 @@ functions:
          ::CodeEditor::Renderer renderer(
             draw_line_numbers,
             is_focused,
-            code_editor,
+            &code_editor,
             code_font,
             display,
             cell_width,
@@ -122,15 +121,15 @@ functions:
          );
          renderer.render();
 
-         if (code_editor->get_draw_info_overlay())
+         if (code_editor.get_draw_info_overlay())
          {
             placement3d &place = get_place();
             std::string file_category_label
-               = Hexagon::CodeEditor::FileCategoryDecorator(code_editor->get_file_category()).label();
+               = Hexagon::CodeEditor::FileCategoryDecorator(code_editor.get_file_category()).label();
             std::string text_to_render = file_category_label;
             place.start_transform();
             Hexagon::Elements::StageInfoOverlay stage_info_overlay(overlay_font, &place);
-            //if (!is_focused) text_to_render = this->get_filename();
+            //if (!is_focused) text_to_render = this.get_filename();
             stage_info_overlay.set_text(text_to_render);
             stage_info_overlay.render();
             place.restore_transform();
@@ -186,7 +185,7 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
-  - symbol: ::CodeEditor::CodeEditor*
+  - symbol: ::CodeEditor::CodeEditor
     headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: ::CodeEditor::EventController
     headers: [ Hexagon/CodeEditor/EventController.hpp ]

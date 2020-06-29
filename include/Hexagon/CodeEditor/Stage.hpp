@@ -16,16 +16,16 @@ namespace Hexagon
       class Stage : public StageInterface
       {
       private:
-         ::CodeEditor::CodeEditor* code_editor;
+         ::CodeEditor::CodeEditor code_editor;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         Stage(::CodeEditor::CodeEditor* code_editor=nullptr);
+         Stage(::CodeEditor::CodeEditor code_editor=::CodeEditor::CodeEditor{});
          ~Stage();
 
 
-         ::CodeEditor::CodeEditor* get_code_editor();
-         ::CodeEditor::CodeEditor* &get_code_editor_ref();
+         ::CodeEditor::CodeEditor get_code_editor();
+         ::CodeEditor::CodeEditor &get_code_editor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void render(bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
