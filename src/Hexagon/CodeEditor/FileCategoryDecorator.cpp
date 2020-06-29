@@ -28,6 +28,10 @@ std::string result = "";
 std::map<std::string, std::string> file_category_labels = {
   { "undefined", "Undefined" },
   { "rails_model", "Model" },
+  { "rails_model_test", "Model Test" },
+  { "rails_controller", "Controller" },
+  { "rails_controller_test", "Controller Test" },
+  { "rails_routes", "Routes" },
 };
 
 std::map<std::string, std::string>::iterator it = file_category_labels.find(file_category);

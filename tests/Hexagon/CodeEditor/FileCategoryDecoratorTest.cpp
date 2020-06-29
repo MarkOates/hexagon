@@ -33,6 +33,10 @@ TEST(Hexagon_CodeEditor_FileCategoryDecoratorTest, label__returns_the_expected_l
    std::vector<std::pair<std::string, std::string>> expected_file_categories_and_labels = {
       { "undefined", "Undefined" },
       { "rails_model", "Model" },
+      { "rails_model_test", "Model Test" },
+      { "rails_controller", "Controller" },
+      { "rails_controller_test", "Controller Test" },
+      { "rails_routes", "Routes" },
    };
 
    for (auto &expected_file_category_and_label : expected_file_categories_and_labels)
