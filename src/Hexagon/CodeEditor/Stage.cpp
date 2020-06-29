@@ -50,8 +50,8 @@ void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font
 if (code_editor->get_type() == ONE_LINE_INPUT_BOX)
 {
    ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
-   float width = code_editor->get_place().size.x;
-   float height = code_editor->get_place().size.y;
+   float width = get_place().size.x;
+   float height = get_place().size.y;
    //std::string top_left_text = "ESC: Close";
    std::string bottom_right_text = "search";
 
@@ -66,7 +66,7 @@ if (code_editor->get_type() == ONE_LINE_INPUT_BOX)
       code_editor->selections,
       code_editor->get_cursor_x(),
       code_editor->get_cursor_y(),
-      code_editor->get_place(),
+      get_place(),
       code_editor->get_first_line_number(),
       (code_editor->get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
    );
@@ -79,8 +79,8 @@ if (code_editor->get_type() == ONE_LINE_INPUT_BOX)
 else if (code_editor->get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
 {
    ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
-   float width = code_editor->get_place().size.x;
-   float height = code_editor->get_place().size.y;
+   float width = get_place().size.x;
+   float height = get_place().size.y;
    //std::string top_left_text = "ESC: Close";
    std::string bottom_right_text = "commit and push";
 
@@ -95,7 +95,7 @@ else if (code_editor->get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
       code_editor->selections,
       code_editor->get_cursor_x(),
       code_editor->get_cursor_y(),
-      code_editor->get_place(),
+      get_place(),
       code_editor->get_first_line_number(),
       (code_editor->get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
    );
@@ -124,7 +124,7 @@ else
 
    if (code_editor->get_draw_info_overlay())
    {
-      placement3d &place = code_editor->get_place_ref();
+      placement3d &place = get_place();
       std::string file_category_label
          = Hexagon::CodeEditor::FileCategoryDecorator(code_editor->get_file_category()).label();
       std::string text_to_render = file_category_label;
