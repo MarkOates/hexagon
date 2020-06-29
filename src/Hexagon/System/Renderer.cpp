@@ -56,7 +56,12 @@ for (auto &stage : system->stages)
 
    bool is_focused = (system->get_frontmost_stage() == stage);
    ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
+
+
+
    stage->render(is_focused, display, font, al_get_text_width(font, " "), al_get_font_line_height(font));
+
+
 
    global::profiler.pause(profile_timer_element_label.str());
 }

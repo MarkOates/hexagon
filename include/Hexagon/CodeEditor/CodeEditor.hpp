@@ -20,7 +20,7 @@ namespace CodeEditor
 
 namespace CodeEditor
 {
-   class CodeEditor : public StageInterface
+   class CodeEditor
    {
    public:
       enum mode_t
@@ -58,7 +58,7 @@ namespace CodeEditor
          std::string filename="unnamed_file.txt",
          std::string file_category="undefined",
          mode_t mode=EDIT,
-         type_t type=CODE_EDITOR
+         StageInterface::type_t type=StageInterface::CODE_EDITOR
          );
       ~CodeEditor();
       // accessors
@@ -72,7 +72,6 @@ namespace CodeEditor
       bool set_content(std::string content);
       bool set_content(std::vector<std::string> content);
       bool set_search_regex_expression(std::string regex_expression);
-      placement3d &get_place_ref();
       mode_t get_mode();
       int get_first_line_number();
       int get_cursor_x();
@@ -170,15 +169,6 @@ namespace CodeEditor
       bool yank_selected_text_to_clipboard();
       bool paste_selected_text_from_clipboard();
       // complete
-
-      void render(bool is_focused,
-                  ALLEGRO_DISPLAY *display,
-                  ALLEGRO_FONT *font,
-                  int cell_width,
-                  int cell_height
-                  ) override;
-      void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override;
-      void process_event(ALLEGRO_EVENT &event) override;
    };
 } // namespace CodeEditor
 

@@ -32,9 +32,9 @@ namespace CodeEditor
 
 
 
-CodeEditor::CodeEditor(std::string filename, std::string file_category, mode_t mode, type_t type)
-   : StageInterface(type)
-   , content_is_modified(false)
+CodeEditor::CodeEditor(std::string filename, std::string file_category, mode_t mode, StageInterface::type_t type)
+   //: StageInterface(type)
+   : content_is_modified(false)
    , cursor_x(0)
    , cursor_y(0)
    , mode(mode)
@@ -167,13 +167,6 @@ bool CodeEditor::set_search_regex_expression(std::string regex_expression)
 {
    this->search_regex_expression = regex_expression;
    return true;
-}
-
-
-
-placement3d &CodeEditor::get_place_ref()
-{
-   return get_place();
 }
 
 
@@ -846,33 +839,9 @@ bool CodeEditor::offset_cursor_position_y(int delta)
 
 
 
-bool CodeEditor::move_stage_up(float distance)
-{
-   get_place().position.y += distance;
-   return true;
-}
-
-
-
-bool CodeEditor::move_stage_down(float distance)
-{
-   get_place().position.y -= distance;
-   return true;
-}
-
-
-
 bool CodeEditor::offset_first_line_to_vertically_center_cursor(int distance_from_top)
 {
    first_line_number = cursor_y - distance_from_top;
-   return true;
-}
-
-
-
-bool CodeEditor::scale_stage_delta(float delta)
-{
-   get_place().scale += vec3d(delta, delta, 1.0);
    return true;
 }
 
@@ -956,40 +925,6 @@ bool CodeEditor::paste_selected_text_from_clipboard()
    insert_lines(retrieved_clipboard_data);
 
    return true;
-}
-
-
-
-
-void CodeEditor::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
-{
-   { // this is the hack
-      Hexagon::CodeEditor::Stage stage(this);
-      stage.render(is_focused, display, font, cell_width, cell_height);
-      return;
-   }
-}
-
-
-
-void CodeEditor::process_local_event(std::string event_name, ActionData action_data1)
-{
-   { // this is the hack
-      Hexagon::CodeEditor::Stage stage(this);
-      stage.process_local_event(event_name, action_data1);
-      return;
-   }
-}
-
-
-
-void CodeEditor::process_event(ALLEGRO_EVENT &event)
-{
-   { // this is the hack
-      Hexagon::CodeEditor::Stage stage(this);
-      stage.process_event(event);
-      return;
-   }
 }
 
 
