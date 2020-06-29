@@ -6,6 +6,7 @@
 typedef Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection CreateTwoSplit;
 
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 
 TEST(Hexagon_System_Action_AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelectionTest,
@@ -67,10 +68,14 @@ TEST(Hexagon_System_Action_AttemptTo, execute__with_a_valid_component_opens_the_
    std::string expected_test_filename = "/Users/markoates/Repos/hexagon/tests/Hexagon/Elements/FrameTest.cpp";
 
    ASSERT_EQ(StageInterface::CODE_EDITOR, stages[0]->get_type());
-   EXPECT_EQ(expected_test_filename, static_cast<::CodeEditor::CodeEditor*>(stages[0])->get_filename());
+   std::string actual_test_filename =
+      static_cast<Hexagon::CodeEditor::Stage*>(stages[0])->get_code_editor_ref().get_filename();
+   EXPECT_EQ(expected_test_filename,actual_test_filename);
 
    ASSERT_EQ(StageInterface::CODE_EDITOR, stages[1]->get_type());
-   EXPECT_EQ(expected_quintessence_filename, static_cast<::CodeEditor::CodeEditor*>(stages[1])->get_filename());
+   std::string actual_quintessence_filename =
+      static_cast<Hexagon::CodeEditor::Stage*>(stages[1])->get_code_editor_ref().get_filename();
+   EXPECT_EQ(expected_quintessence_filename, actual_quintessence_filename);
 }
 
 TEST(Hexagon_System_Action_AttemptTo, execute__positions_two_stages_at_expected_placements)
