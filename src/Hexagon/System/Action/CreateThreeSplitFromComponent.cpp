@@ -4,7 +4,7 @@
 #include <allegro_flare/placement3d.h>
 #include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <allegro_flare/useful_php.h>
 
@@ -81,8 +81,8 @@ StageInterface *stage = nullptr;
 if (file_exists)
 {
    std::string file_contents = php::file_get_contents(filename);
-   CodeEditor::CodeEditor *file_stage = new CodeEditor::CodeEditor(filename, file_category);
-   file_stage->set_initial_content(file_contents);
+   Hexagon::CodeEditor::Stage *file_stage = new Hexagon::CodeEditor::Stage({filename, file_category});
+   file_stage->get_code_editor_ref().set_initial_content(file_contents);
    stage = file_stage;
 }
 else

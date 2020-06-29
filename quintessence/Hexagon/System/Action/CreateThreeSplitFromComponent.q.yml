@@ -76,8 +76,8 @@ functions:
       if (file_exists)
       {
          std::string file_contents = php::file_get_contents(filename);
-         CodeEditor::CodeEditor *file_stage = new CodeEditor::CodeEditor(filename, file_category);
-         file_stage->set_initial_content(file_contents);
+         Hexagon::CodeEditor::Stage *file_stage = new Hexagon::CodeEditor::Stage({filename, file_category});
+         file_stage->get_code_editor_ref().set_initial_content(file_contents);
          stage = file_stage;
       }
       else
@@ -93,6 +93,7 @@ functions:
       - placement3d
       - Blast::FileExistenceChecker
       - Hexagon::MissingFile::Stage
+      - Hexagon::CodeEditor::Stage
   - name: generate_header_filename
     type: std::string
     body: |
@@ -132,7 +133,6 @@ functions:
 
       return true;
     body_dependency_symbols:
-      - CodeEditor::CodeEditor
       - Blast::ProjectComponentFilenameGenerator
       - php::file_get_contents
 
@@ -144,8 +144,8 @@ dependencies:
     headers: [ Hexagon/Action.hpp ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
-  - symbol: CodeEditor::CodeEditor
-    headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
+  - symbol: Hexagon::CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: std::vector<StageInterface *>&
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: std::vector<StageInterface *>
