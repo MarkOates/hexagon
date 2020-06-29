@@ -56,10 +56,10 @@ functions:
        place.align = vec3d(0.5, 0.5, 0.0);
        place.scale = vec3d(0.9, 0.9, 0.0);
 
-       ::CodeEditor::CodeEditor *stage = new ::CodeEditor::CodeEditor(filename);// place);
+       Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(::CodeEditor::CodeEditor{filename});// place);
 
        stage->set_place(place);
-       stage->set_content(file_contents);
+       stage->get_code_editor_ref().set_content(file_contents);
        stages->push_back(stage);
 
        return true;
@@ -68,14 +68,14 @@ functions:
        - ::read_file
        - placement3d
        - std::vector<std::string>
-       - ::CodeEditor::CodeEditor
+       - Hexagon::CodeEditor::Stage
 dependencies:
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
   - symbol: std::vector<StageInterface *>*
     headers: [ vector, Hexagon/StageInterface.hpp ]
-  - symbol: ::CodeEditor::CodeEditor
-    headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
+  - symbol: Hexagon::CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: ::read_file
     headers: [ Hexagon/util.hpp ]
   - symbol: std::vector<std::string>
