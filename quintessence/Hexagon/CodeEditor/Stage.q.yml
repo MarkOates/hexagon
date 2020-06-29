@@ -14,6 +14,7 @@ properties:
     init_with: nullptr
     constructor_arg: true
     getter: true
+    getter_ref: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -156,7 +157,7 @@ functions:
         default_argument: "ActionData()"
     guard: [ code_editor ]
     body: return;
-      ::CodeEditor::EventController stage_event_controller(code_editor);
+      ::CodeEditor::EventController stage_event_controller(this);
       stage_event_controller.process_local_event(event_name, action_data);
       return;
     body_dependency_symbols:
@@ -171,7 +172,7 @@ functions:
         default_argument: "get_a_default_empty_event_ref()"
     guard: [ code_editor ]
     body: |
-      ::CodeEditor::EventController stage_event_controller(code_editor);
+      ::CodeEditor::EventController stage_event_controller(this);
       stage_event_controller.process_event(event);
       return;
     body_dependency_symbols:

@@ -3,12 +3,13 @@
 
 #include <Hexagon/CodeEditor/EventController.hpp>
 
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <iostream>
 
 
 
-CodeEditor::EventController::EventController(::CodeEditor::CodeEditor *stage)
+CodeEditor::EventController::EventController(Hexagon::CodeEditor::Stage *stage)
    : EventControllerInterface()
    , stage(stage)
    , last_performed_action_queue_recording("last-performed-action-queue-recording")
@@ -83,81 +84,84 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
 
    std::cout << "CodeEditor::EventController::" << event_name << std::endl;
 
+   // hack is that this member should not be a pointer, and this ref should ref a concrete object
+   ::CodeEditor::CodeEditor *code_editor = stage->get_code_editor_ref();
+
    try {
-      if (event_name == MOVE_CURSOR_UP) stage->move_cursor_up();
-      else if (event_name == MOVE_CURSOR_DOWN) stage->move_cursor_down();
-      else if (event_name == MOVE_CURSOR_LEFT) stage->move_cursor_left();
-      else if (event_name == MOVE_CURSOR_RIGHT) stage->move_cursor_right();
-      else if (event_name == MOVE_CURSOR_TO_TOP_OF_SCREEN) stage->move_cursor_to_top_of_screen();
-      else if (event_name == MOVE_CURSOR_TO_MIDDLE_OF_SCREEN) stage->move_cursor_to_middle_of_screen();
-      else if (event_name == MOVE_CURSOR_TO_BOTTOM_OF_SCREEN) stage->move_cursor_to_bottom_of_screen();
-      else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) stage->move_cursor_jump_to_next_word();
-      else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD) stage->move_cursor_jump_to_next_big_word();
-      else if (event_name == MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD) stage->move_cursor_jump_to_previous_word();
-      else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_WORD) stage->move_cursor_to_end_of_next_word();
-      else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD) stage->move_cursor_to_end_of_next_big_word();
-      else if (event_name == JUMP_TO_NEXT_CODE_POINT) stage->jump_to_next_code_point();
-      else if (event_name == JUMP_TO_PREVIOUS_CODE_POINT) stage->jump_to_previous_code_point();
-      else if (event_name == JUMP_TO_NEXT_OR_NEAREST_CODE_POINT) stage->jump_to_next_or_nearest_code_point();
-      else if (event_name == DELETE_CHARACTER) stage->delete_character();
-      else if (event_name == INSERT_STRING) stage->insert_string(action_data1.get_string());
-      else if (event_name == SET_INSERT_MODE) stage->set_insert_mode();
-      else if (event_name == SET_EDIT_MODE) stage->set_edit_mode();
-      else if (event_name == JOIN_LINES) stage->join_lines();
-      else if (event_name == SPLIT_LINES) stage->split_lines();
-      else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) stage->move_cursor_to_start_of_line();
-      else if (event_name == DELETE_LINE) stage->delete_line();
-      else if (event_name == MOVE_CURSOR_TO_END_OF_LINE) stage->move_cursor_to_end_of_line();
-      else if (event_name == MOVE_CURSOR_TO_LAST_CHARACTER_OF_LINE) stage->move_cursor_to_last_character_of_line();
+      if (event_name == MOVE_CURSOR_UP) code_editor->move_cursor_up();
+      else if (event_name == MOVE_CURSOR_DOWN) code_editor->move_cursor_down();
+      else if (event_name == MOVE_CURSOR_LEFT) code_editor->move_cursor_left();
+      else if (event_name == MOVE_CURSOR_RIGHT) code_editor->move_cursor_right();
+      else if (event_name == MOVE_CURSOR_TO_TOP_OF_SCREEN) code_editor->move_cursor_to_top_of_screen();
+      else if (event_name == MOVE_CURSOR_TO_MIDDLE_OF_SCREEN) code_editor->move_cursor_to_middle_of_screen();
+      else if (event_name == MOVE_CURSOR_TO_BOTTOM_OF_SCREEN) code_editor->move_cursor_to_bottom_of_screen();
+      else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_WORD) code_editor->move_cursor_jump_to_next_word();
+      else if (event_name == MOVE_CURSOR_JUMP_TO_NEXT_BIG_WORD) code_editor->move_cursor_jump_to_next_big_word();
+      else if (event_name == MOVE_CURSOR_JUMP_TO_PREVIOUS_WORD) code_editor->move_cursor_jump_to_previous_word();
+      else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_WORD) code_editor->move_cursor_to_end_of_next_word();
+      else if (event_name == JUMP_CURSOR_TO_END_OF_NEXT_BIG_WORD) code_editor->move_cursor_to_end_of_next_big_word();
+      else if (event_name == JUMP_TO_NEXT_CODE_POINT) code_editor->jump_to_next_code_point();
+      else if (event_name == JUMP_TO_PREVIOUS_CODE_POINT) code_editor->jump_to_previous_code_point();
+      else if (event_name == JUMP_TO_NEXT_OR_NEAREST_CODE_POINT) code_editor->jump_to_next_or_nearest_code_point();
+      else if (event_name == DELETE_CHARACTER) code_editor->delete_character();
+      else if (event_name == INSERT_STRING) code_editor->insert_string(action_data1.get_string());
+      else if (event_name == SET_INSERT_MODE) code_editor->set_insert_mode();
+      else if (event_name == SET_EDIT_MODE) code_editor->set_edit_mode();
+      else if (event_name == JOIN_LINES) code_editor->join_lines();
+      else if (event_name == SPLIT_LINES) code_editor->split_lines();
+      else if (event_name == MOVE_CURSOR_TO_START_OF_LINE) code_editor->move_cursor_to_start_of_line();
+      else if (event_name == DELETE_LINE) code_editor->delete_line();
+      else if (event_name == MOVE_CURSOR_TO_END_OF_LINE) code_editor->move_cursor_to_end_of_line();
+      else if (event_name == MOVE_CURSOR_TO_LAST_CHARACTER_OF_LINE) code_editor->move_cursor_to_last_character_of_line();
       else if (event_name == MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER)
-         stage->move_cursor_to_first_non_whitespace_character();
-      else if (event_name == SAVE_FILE_AND_TOUCH_IF_SYMLINK) stage->save_file_and_touch_if_symlink();
-      else if (event_name == MOVE_STAGE_UP) stage->move_stage_up();
-      else if (event_name == MOVE_STAGE_DOWN) stage->move_stage_down();
-      else if (event_name == SCALE_STAGE_UP) stage->scale_stage_delta(0.1);
-      else if (event_name == SCALE_STAGE_DOWN) stage->scale_stage_delta(-0.1);
+         code_editor->move_cursor_to_first_non_whitespace_character();
+      else if (event_name == SAVE_FILE_AND_TOUCH_IF_SYMLINK) code_editor->save_file_and_touch_if_symlink();
+      //else if (event_name == MOVE_STAGE_UP) code_editor->move_stage_up();
+      //else if (event_name == MOVE_STAGE_DOWN) code_editor->move_stage_down();
+      //else if (event_name == SCALE_STAGE_UP) code_editor->scale_stage_delta(0.1);
+      //else if (event_name == SCALE_STAGE_DOWN) code_editor->scale_stage_delta(-0.1);
       else if (event_name == JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN)
-        stage->offset_first_line_number(stage->infer_num_lines_to_draw());
+        code_editor->offset_first_line_number(code_editor->infer_num_lines_to_draw());
       else if (event_name == JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN)
-        stage->offset_first_line_number(-stage->infer_num_lines_to_draw());
+        code_editor->offset_first_line_number(-code_editor->infer_num_lines_to_draw());
       else if (event_name == JUMP_FIRST_LINE_NUM_DOWN)
-        stage->offset_first_line_number(stage->infer_num_lines_to_draw()/2);
+        code_editor->offset_first_line_number(code_editor->infer_num_lines_to_draw()/2);
       else if (event_name == JUMP_FIRST_LINE_NUM_UP)
-        stage->offset_first_line_number(-stage->infer_num_lines_to_draw()/2);
+        code_editor->offset_first_line_number(-code_editor->infer_num_lines_to_draw()/2);
       else if (event_name == STEP_FIRST_LINE_NUM_DOWN)
-         stage->offset_first_line_number(1);
+         code_editor->offset_first_line_number(1);
       else if (event_name == STEP_FIRST_LINE_NUM_UP)
-         stage->offset_first_line_number(-1);
+         code_editor->offset_first_line_number(-1);
       else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN)
-         stage->offset_cursor_position_y(stage->infer_num_lines_to_draw()/2);
+         code_editor->offset_cursor_position_y(code_editor->infer_num_lines_to_draw()/2);
       else if (event_name == OFFSET_CURSOR_POSITION_Y_UP)
-         stage->offset_cursor_position_y(-stage->infer_num_lines_to_draw()/2);
+         code_editor->offset_cursor_position_y(-code_editor->infer_num_lines_to_draw()/2);
       else if (event_name == OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN)
-         stage->offset_cursor_position_y(stage->infer_num_lines_to_draw());
+         code_editor->offset_cursor_position_y(code_editor->infer_num_lines_to_draw());
       else if (event_name == OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN)
-         stage->offset_cursor_position_y(-stage->infer_num_lines_to_draw());
+         code_editor->offset_cursor_position_y(-code_editor->infer_num_lines_to_draw());
       else if (event_name == ENABLE_DRAWING_INFO_OVERLAY)
-         stage->enable_drawing_info_overlay();
+         code_editor->enable_drawing_info_overlay();
       else if (event_name == DISABLE_DRAWING_INFO_OVERLAY)
-         stage->disable_drawing_info_overlay();
+         code_editor->disable_drawing_info_overlay();
       else if (event_name == REFRESH_GIT_MODIFIED_LINE_NUMBERS)
-         stage->refresh_git_modified_line_numbers();
+         code_editor->refresh_git_modified_line_numbers();
       //else if (event_name == TOGGLE_SHOWING_CODE_MESSAGE_POINTS)
       //   toggle_showing_code_message_points();
       else if (event_name == REFRESH_REGEX_MESSAGE_POINTS)
-         stage->refresh_regex_message_points();
+         code_editor->refresh_regex_message_points();
       else if (event_name == OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR)
-         stage->offset_first_line_to_vertically_center_cursor();
+         code_editor->offset_first_line_to_vertically_center_cursor();
       else if (event_name == CREATE_VISUAL_SELECTION_AT_CURRENT_CURSOR_LOCATION)
-         stage->create_visual_selection_at_current_cursor_location();
+         code_editor->create_visual_selection_at_current_cursor_location();
       else if (event_name == DESTROY_CURRENT_VISUAL_SELECTION)
-         stage->destroy_current_visual_selection();
+         code_editor->destroy_current_visual_selection();
       else if (event_name == TOGGLE_CURRENTLY_GRABBING_VISUAL_SELECTION)
-         stage->toggle_currently_grabbing_visual_selection();
+         code_editor->toggle_currently_grabbing_visual_selection();
       else if (event_name == YANK_SELECTED_TEXT_TO_CLIPBOARD)
-         stage->yank_selected_text_to_clipboard();
+         code_editor->yank_selected_text_to_clipboard();
       else if (event_name == PASTE_SELECTED_TEXT_FROM_CLIPBOARD)
-         stage->paste_selected_text_from_clipboard();
+         code_editor->paste_selected_text_from_clipboard();
       else if (event_name == CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING)
          clear_last_performed_action_queue_recording();
       else if (event_name == START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING)
@@ -167,7 +171,7 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
       else if (event_name == PLAY_LAST_PERFORMED_ACTION_QUEUE_RECORDING)
          play_last_performed_action_queue_recording();
       else if (event_name == INSERT_THREE_SPACES_AT_START_OF_LINE)
-         stage->insert_three_spaces_at_start_of_line();
+         code_editor->insert_three_spaces_at_start_of_line();
    }
 
    catch (const std::exception &e)
@@ -350,7 +354,10 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
       ::CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
 
 
-   switch(stage->get_mode())
+   ::CodeEditor::CodeEditor *code_editor = stage->get_code_editor_ref();
+
+
+   switch(code_editor->get_mode())
    {
       case ::CodeEditor::CodeEditor::EDIT:
       switch(event.type)
@@ -433,8 +440,8 @@ std::string const CodeEditor::EventController::MOVE_CURSOR_TO_LAST_CHARACTER_OF_
 std::string const CodeEditor::EventController::MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER =
    "MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER";
 std::string const CodeEditor::EventController::SAVE_FILE_AND_TOUCH_IF_SYMLINK = "SAVE_FILE_AND_TOUCH_IF_SYMLINK";
-std::string const CodeEditor::EventController::MOVE_STAGE_UP = "MOVE_STAGE_UP";
-std::string const CodeEditor::EventController::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
+//std::string const CodeEditor::EventController::MOVE_STAGE_UP = "MOVE_STAGE_UP";
+//std::string const CodeEditor::EventController::MOVE_STAGE_DOWN = "MOVE_STAGE_DOWN";
 std::string const CodeEditor::EventController::DELETE_LINE = "DELETE_LINE";
 std::string const CodeEditor::EventController::JUMP_FIRST_LINE_NUM_UP = "JUMP_FIRST_LINE_NUM_UP";
 std::string const CodeEditor::EventController::JUMP_FIRST_LINE_NUM_DOWN = "JUMP_FIRST_LINE_NUM_DOWN";
@@ -446,8 +453,8 @@ std::string const CodeEditor::EventController::OFFSET_CURSOR_POSITION_Y_UP = "OF
 std::string const CodeEditor::EventController::OFFSET_CURSOR_POSITION_Y_DOWN = "OFFSET_CURSOR_POSITION_Y_DOWN";
 std::string const CodeEditor::EventController::OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN = "OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN";
 std::string const CodeEditor::EventController::OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN = "OFFSET_CURSOR_POSITION_Y_DOWN_WHOLE_SCREEN";
-std::string const CodeEditor::EventController::SCALE_STAGE_UP = "SCALE_STAGE_UP";
-std::string const CodeEditor::EventController::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
+//std::string const CodeEditor::EventController::SCALE_STAGE_UP = "SCALE_STAGE_UP";
+//std::string const CodeEditor::EventController::SCALE_STAGE_DOWN = "SCALE_STAGE_DOWN";
 std::string const CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS = "REFRESH_GIT_MODIFIED_LINE_NUMBERS";
 //std::string const CodeEditor::EventController::TOGGLE_SHOWING_CODE_MESSAGE_POINTS = "TOGGLE_SHOWING_CODE_MESSAGE_POINTS";
 std::string const CodeEditor::EventController::ENABLE_DRAWING_INFO_OVERLAY = "ENABLE_DRAWING_INFO_OVERLAY";

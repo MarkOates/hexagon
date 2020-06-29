@@ -10,9 +10,12 @@
 
 
 
-namespace CodeEditor
+namespace Hexagon
 {
-   class CodeEditor;
+   namespace CodeEditor
+   {
+      class Stage;
+   }
 }
 
 
@@ -22,7 +25,7 @@ namespace CodeEditor
    class EventController : public EventControllerInterface
    {
    private:
-      ::CodeEditor::CodeEditor *stage;
+      Hexagon::CodeEditor::Stage *stage;
 
       KeyboardCommandMapper edit_mode__keyboard_command_mapper;
       KeyboardCommandMapper insert_mode__keyboard_command_mapper;
@@ -37,7 +40,7 @@ namespace CodeEditor
       bool play_last_performed_action_queue_recording();
 
    public:
-      EventController(::CodeEditor::CodeEditor *stage=nullptr);
+      EventController(Hexagon::CodeEditor::Stage *stage=nullptr);
       virtual ~EventController();
 
       void process_local_event(std::string event_name, ActionData action_data1=ActionData()) override;
@@ -69,10 +72,10 @@ namespace CodeEditor
       static const std::string MOVE_CURSOR_TO_LAST_CHARACTER_OF_LINE;
       static const std::string MOVE_CURSOR_TO_FIRST_NON_WHITESPACE_CHARACTER;
       static const std::string SAVE_FILE_AND_TOUCH_IF_SYMLINK;
-      static const std::string MOVE_STAGE_UP;
-      static const std::string MOVE_STAGE_DOWN;
-      static const std::string SCALE_STAGE_UP;
-      static const std::string SCALE_STAGE_DOWN;
+      //static const std::string MOVE_STAGE_UP;
+      //static const std::string MOVE_STAGE_DOWN;
+      //static const std::string SCALE_STAGE_UP;
+      //static const std::string SCALE_STAGE_DOWN;
       static const std::string JUMP_FIRST_LINE_NUM_DOWN;
       static const std::string JUMP_FIRST_LINE_NUM_UP;
       static const std::string JUMP_FIRST_LINE_NUM_DOWN_WHOLE_SCREEN;

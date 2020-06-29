@@ -37,6 +37,12 @@ Stage::~Stage()
 }
 
 
+::CodeEditor::CodeEditor* &Stage::get_code_editor_ref()
+{
+   return code_editor;
+}
+
+
 ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 {
    return a_default_empty_event;
@@ -143,12 +149,12 @@ return;
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
-return; ::CodeEditor::EventController stage_event_controller(code_editor); stage_event_controller.process_local_event(event_name, action_data); return;
+return; ::CodeEditor::EventController stage_event_controller(this); stage_event_controller.process_local_event(event_name, action_data); return;
 }
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
-::CodeEditor::EventController stage_event_controller(code_editor);
+::CodeEditor::EventController stage_event_controller(this);
 stage_event_controller.process_event(event);
 return;
 

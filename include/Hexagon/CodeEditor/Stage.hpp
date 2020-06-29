@@ -25,6 +25,7 @@ namespace Hexagon
 
 
          ::CodeEditor::CodeEditor* get_code_editor();
+         ::CodeEditor::CodeEditor* &get_code_editor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void render(bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
