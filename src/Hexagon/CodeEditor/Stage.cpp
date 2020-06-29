@@ -120,7 +120,7 @@ else
    ::CodeEditor::Renderer renderer(
       draw_line_numbers,
       is_focused,
-      &code_editor,
+      this,
       code_font,
       display,
       cell_width,
