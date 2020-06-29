@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 
 
 namespace Hexagon
@@ -56,7 +56,7 @@ for (unsigned i=0; i<stages.size(); i++)
         || stage->get_type() == StageInterface::MISSING_FILE
       )
    {
-      CodeEditor::CodeEditor *code_editor = static_cast<CodeEditor::CodeEditor *>(stage);
+      Hexagon::CodeEditor::Stage *code_editor = static_cast<Hexagon::CodeEditor::Stage *>(stage);
       delete code_editor;
       stages.erase(stages.begin()+i);
       i--;
