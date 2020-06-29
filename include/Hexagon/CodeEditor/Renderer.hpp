@@ -3,7 +3,7 @@
 
 
 #include <Hexagon/RendererInterface.hpp>
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro_flare/placement3d.h>
@@ -21,7 +21,7 @@ namespace CodeEditor
       bool draw_null_space;
       bool draw_backfill;
       ALLEGRO_DISPLAY *display;
-      ::CodeEditor::CodeEditor *stage;
+      Hexagon::CodeEditor::Stage *stage;
       int cell_width;
       int cell_height;
       ALLEGRO_FONT *font;
@@ -35,7 +35,7 @@ namespace CodeEditor
       Renderer(
          bool draw_line_numbers,
          bool is_focused,
-         ::CodeEditor::CodeEditor *stage,
+         Hexagon::CodeEditor::Stage *stage,
          ALLEGRO_FONT *font,
          ALLEGRO_DISPLAY *display,
          int cell_width,

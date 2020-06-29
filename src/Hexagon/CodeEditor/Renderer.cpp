@@ -26,7 +26,7 @@ namespace CodeEditor
 Renderer::Renderer(
    bool draw_line_numbers,
    bool is_focused,
-   ::CodeEditor::CodeEditor *stage,
+   Hexagon::CodeEditor::Stage *stage,
    ALLEGRO_FONT *font,
    ALLEGRO_DISPLAY *display,
    int cell_width,
@@ -53,13 +53,15 @@ Renderer::~Renderer() {}
 
 void Renderer::draw_selections(int cell_width, int cell_height)
 {
-   for (auto &selection : stage->selections)
+   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+
+   for (auto &selection : code_editor->selections)
    {
       //std::cout << " drawing selection " << selection << std::endl;
       CodeRangeRenderer renderer(
-         stage->get_lines_ref(),
+         code_editor->get_lines_ref(),
          selection,
-         stage->get_first_line_number(),
+         code_editor->get_first_line_number(),
          cell_width,
          cell_height);
       renderer.render();
@@ -92,6 +94,8 @@ ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
 
 ALLEGRO_COLOR Renderer::build_frame_color()
 {
+   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+
    ALLEGRO_COLOR frame_color;
 
    //
@@ -105,7 +109,7 @@ ALLEGRO_COLOR Renderer::build_frame_color()
            ), 0.85
          );
 
-   bool content_is_modified = stage->get_content_is_modified();
+   bool content_is_modified = code_editor->get_content_is_modified();
    ALLEGRO_COLOR content_is_modified_color =
       AllegroFlare::color::mix(normal_frame_color, al_color_name("orange"), 0.5);
    frame_color = content_is_modified ? content_is_modified_color : normal_frame_color;
@@ -134,14 +138,16 @@ ALLEGRO_COLOR Renderer::build_backfill_color()
 
 void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 {
+   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+
    // render cursor
 
-   int first_line_number = stage->get_first_line_number();
-   float _cursor_y = stage->get_cursor_y() - stage->get_first_line_number();
-   int cursor_x = stage->get_cursor_x();
+   int first_line_number = code_editor->get_first_line_number();
+   float _cursor_y = code_editor->get_cursor_y() - code_editor->get_first_line_number();
+   int cursor_x = code_editor->get_cursor_x();
    float _cell_width = cell_width;
    float _cell_height = cell_height;
-   ::CodeEditor::CodeEditor::mode_t mode = stage->get_mode();
+   ::CodeEditor::CodeEditor::mode_t mode = code_editor->get_mode();
    ALLEGRO_COLOR cursor_color = al_color_name("chartreuse");
    bool not_focused = !is_focused;
 
@@ -154,13 +160,13 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 
    // render code lines
 
-   std::vector<std::string> const &lines = stage->get_lines_ref();
+   std::vector<std::string> const &lines = code_editor->get_lines_ref();
    int line_height = al_get_font_line_height(font);
    int line_count_render_limit = place.size.y / line_height;
    int lines_rendered_count = 0;
    int line_length_character_limit = place.size.x / cell_width;
-   std::vector<int> &git_modified_line_numbers = stage->git_modified_line_numbers;
-   std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = stage->code_message_points_overlays;
+   std::vector<int> &git_modified_line_numbers = code_editor->git_modified_line_numbers;
+   std::vector<CodeMessagePointsOverlay> &code_message_points_overlays = code_editor->code_message_points_overlays;
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR font_color = build_font_color(frame_color);
    ALLEGRO_COLOR line_too_long_font_color = AllegroFlare::color::mix(font_color, al_color_name("red"), 0.3);
@@ -352,7 +358,9 @@ void Renderer::render_raw()
 {
    if (!stage) throw std::runtime_error("[Renderer] stage cannot be a nullptr");
 
-   bool content_is_modified = stage->get_content_is_modified();
+   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+
+   bool content_is_modified = code_editor->get_content_is_modified();
    placement3d &place = stage->get_place();
    float padding = cell_width;
    float half_padding = padding * 0.5;
@@ -413,6 +421,8 @@ void Renderer::render_raw()
 void Renderer::render_cursor_position_info()
 {
    placement3d &place = stage->get_place();
+   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+
    std::stringstream cursor_position_info;
    int line_length_character_limit = place.size.x / cell_width;
 
@@ -420,7 +430,7 @@ void Renderer::render_cursor_position_info()
    cursor_position_info << " n%";
 
    // draw the current cursor position
-   cursor_position_info << " x" << stage->get_cursor_x() << " y" << (stage->get_cursor_y()+1) << " ";
+   cursor_position_info << " x" << code_editor->get_cursor_x() << " y" << (code_editor->get_cursor_y()+1) << " ";
 
    // draw the width dimensions of the frame
    cursor_position_info << line_length_character_limit << "^";
@@ -455,7 +465,7 @@ void Renderer::render_cursor_position_info()
              al_color_html("99ddc4"), al_color_name("white"),0.5
            ), 0.85
          );
-   bool content_is_modified = stage->get_content_is_modified();
+   bool content_is_modified = code_editor->get_content_is_modified();
    ALLEGRO_COLOR content_is_modified_color =
       AllegroFlare::color::mix(normal_frame_color, al_color_name("orange"), 0.5);
    frame_color = content_is_modified ? content_is_modified_color : normal_frame_color;
@@ -484,7 +494,7 @@ void Renderer::render_cursor_position_info()
 
 void Renderer::render()
 {
-   placement3d &place = stage->get_place_ref();
+   placement3d &place = stage->get_place(); // should be get_place_ref() but does not exist at time of refactor
 
    global::profiler.start("render");
    place.start_transform();
