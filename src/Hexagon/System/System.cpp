@@ -245,31 +245,31 @@ StageInterface *System::get_frontmost_stage()
    return stages.back();
 }
 
-::CodeEditor::CodeEditor *System::get_frontmost_code_editor_stage()
+Hexagon::CodeEditor::Stage *System::get_frontmost_code_editor_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return nullptr;
 
    StageInterface::type_t type = frontmost_stage->get_type();
-   if (type == ::CodeEditor::CodeEditor::ONE_LINE_INPUT_BOX
-    || type == ::CodeEditor::CodeEditor::CODE_EDITOR
-    || type == ::CodeEditor::CodeEditor::GIT_COMMIT_MESSAGE_INPUT_BOX)
+   if (type == StageInterface::ONE_LINE_INPUT_BOX
+    || type == StageInterface::CODE_EDITOR
+    || type == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX)
    {
-      return static_cast<::CodeEditor::CodeEditor *>(get_frontmost_stage());
+      return static_cast<Hexagon::CodeEditor::Stage *>(get_frontmost_stage());
    }
    return nullptr;
 }
 
-std::vector<::CodeEditor::CodeEditor *> System::get_all_code_editor_stages()
+std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
 {
-   std::vector<::CodeEditor::CodeEditor *> result;
+   std::vector<Hexagon::CodeEditor::Stage *> result;
 
    for (auto &stage : stages)
    {
       StageInterface::type_t type = stage->get_type();
-      if (type == ::CodeEditor::CodeEditor::CODE_EDITOR)
+      if (type == StageInterface::CODE_EDITOR)
       {
-         result.push_back(static_cast<::CodeEditor::CodeEditor *>(stage));
+         result.push_back(static_cast<Hexagon::CodeEditor::Stage *>(stage));
       }
    }
 
@@ -281,7 +281,7 @@ int System::get_number_of_code_editor_stages()
    int result = 0;
    for (auto &stage : stages)
    {
-      if (stage->get_type() == ::CodeEditor::CodeEditor::CODE_EDITOR) result++;
+      if (stage->get_type() == StageInterface::CODE_EDITOR) result++;
    }
    return result;
 }
@@ -290,9 +290,9 @@ int System::get_number_of_code_editor_stages()
 
 bool System::is_current_stage_in_edit_mode()
 {
-   ::CodeEditor::CodeEditor *frontmost_stage = get_frontmost_code_editor_stage();
+   Hexagon::CodeEditor::Stage *frontmost_stage = get_frontmost_code_editor_stage();
    if (!frontmost_stage) return false;
-   return frontmost_stage->get_mode() == ::CodeEditor::CodeEditor::EDIT;
+   return frontmost_stage->get_code_editor_ref().get_mode() == ::CodeEditor::CodeEditor::EDIT;
 }
 
 bool System::is_current_stage_a_modal()
@@ -571,10 +571,10 @@ bool System::center_camera_on_frontmost_stage()
 
 bool System::run_project_tests()
 {
-   ::CodeEditor::CodeEditor *stage = get_frontmost_code_editor_stage();
+   Hexagon::CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
    if (!stage) throw std::runtime_error("cannot run tests on current stage -- not a stage stage");
 
-   std::string test_output = RailsMinitestTestRunner(stage->get_filename()).run();
+   std::string test_output = RailsMinitestTestRunner(stage->get_code_editor_ref().get_filename()).run();
    Hexagon::RailsTestOutputParser rails_test_output_parser(test_output);
    //for (auto &test_result_line : rails_test_output_parser.get_test_result_lines())
    //{
@@ -598,18 +598,18 @@ bool System::run_project_tests()
       }
 
    }
-   stage->clear_code_message_points();
-   stage->set_code_message_points({ code_message_points });
+   stage->get_code_editor_ref().clear_code_message_points();
+   stage->get_code_editor_ref().set_code_message_points({ code_message_points });
 
    return true;
 }
 
 bool System::save_frontmost_code_editor_stage()
 {
-   ::CodeEditor::CodeEditor *stage = get_frontmost_code_editor_stage();
+   Hexagon::CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
    if (!stage) throw std::runtime_error("Cannot save_frontmost_code_editor_stage; current stage is not a stage stage");
 
-   stage->save_file_and_touch_if_symlink();
+   stage->get_code_editor_ref().save_file_and_touch_if_symlink();
    process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
 
    return true;
@@ -627,28 +627,34 @@ bool System::decrease_font_size()
 
 bool System::refresh_regex_hilights_on_frontmost_stage()
 {
-   ::CodeEditor::CodeEditor *stage = get_frontmost_code_editor_stage();
+   Hexagon::CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
    if (!stage)
    {
       std::stringstream error_message;
       error_message << "Cannot refresh_regex_hilights_on_frontmost_stage; there is no frontmost code editor stage";
       throw std::runtime_error(error_message.str());
    }
-   stage->refresh_regex_message_points();
+   stage->get_code_editor_ref().refresh_regex_message_points();
    return true;
 }
 
 bool System::refresh_regex_hilights_on_all_code_editor_stages()
 {
-   std::vector<::CodeEditor::CodeEditor *> all_code_editor_stages = get_all_code_editor_stages();
-   for (auto &code_editor_stage : all_code_editor_stages) code_editor_stage->refresh_regex_message_points();
+   std::vector<Hexagon::CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
+   for (auto &code_editor_stage : all_code_editor_stages)
+   {
+      code_editor_stage->get_code_editor_ref().refresh_regex_message_points();
+   }
    return true;
 }
 
 bool System::refresh_git_modified_line_numbers_on_all_code_editor_stages()
 {
-   std::vector<::CodeEditor::CodeEditor *> all_code_editor_stages = get_all_code_editor_stages();
-   for (auto &code_editor_stage : all_code_editor_stages) code_editor_stage->refresh_git_modified_line_numbers();
+   std::vector<Hexagon::CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
+   for (auto &code_editor_stage : all_code_editor_stages)
+   {
+      code_editor_stage->get_code_editor_ref().refresh_git_modified_line_numbers();
+   }
    return true;
 }
 
@@ -679,11 +685,12 @@ bool System::spawn_regex_input_box_modal()
    placement3d place = build_regex_input_box_initial_place();
 
    // TODO: extract this one line input box from CodeEditor
-   ::CodeEditor::CodeEditor *stage = new ::CodeEditor::CodeEditor(
-      REGEX_TEMP_FILENAME,
-      "input_box",
-      ::CodeEditor::CodeEditor::INSERT,
-      ::CodeEditor::CodeEditor::ONE_LINE_INPUT_BOX);
+   Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({
+         REGEX_TEMP_FILENAME,
+         "input_box",
+         ::CodeEditor::CodeEditor::INSERT,
+         StageInterface::ONE_LINE_INPUT_BOX
+      });
    stage->set_place(place);
    stages.push_back(stage);
 
@@ -695,7 +702,7 @@ bool System::spawn_regex_input_box_modal()
 
    std::vector<std::string> file_contents;
 
-   stage->set_initial_content(std::vector<std::string>{"", ""});
+   stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{"", ""});
 
    return true;
 }
@@ -718,11 +725,13 @@ bool System::spawn_git_commit_message_input_box_modal()
    placement3d place = build_git_commit_message_input_box_initial_place();
 
 // TODO: extract this one line input box from CodeEditor
-   ::CodeEditor::CodeEditor *stage = new ::CodeEditor::CodeEditor(
-      REGEX_TEMP_FILENAME,
-      "git_commit_message_input_box",
-      ::CodeEditor::CodeEditor::INSERT,
-      ::CodeEditor::CodeEditor::GIT_COMMIT_MESSAGE_INPUT_BOX);
+   Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(
+      {
+         REGEX_TEMP_FILENAME,
+         "git_commit_message_input_box",
+         ::CodeEditor::CodeEditor::INSERT,
+         StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX
+      });
 
    stage->set_place(place);
    stages.push_back(stage);
@@ -735,7 +744,7 @@ bool System::spawn_git_commit_message_input_box_modal()
 
    std::vector<std::string> file_contents;
 
-   stage->set_initial_content(std::vector<std::string>{"", ""});
+   stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{"", ""});
 
    return true;
 }
@@ -945,8 +954,8 @@ bool System::execute_magic_command()
         {
            std::vector<std::string> file_contents = {};
            ::read_file(file_contents, filename);
-           stage = new ::CodeEditor::CodeEditor(filename);
-           static_cast<::CodeEditor::CodeEditor*>(stage)->set_initial_content(file_contents);
+           stage = new Hexagon::CodeEditor::Stage(::CodeEditor::CodeEditor{filename});
+           static_cast<Hexagon::CodeEditor::Stage*>(stage)->get_code_editor_ref().set_initial_content(file_contents);
         }
         else
         {
@@ -995,7 +1004,7 @@ bool System::jump_to_next_code_point_on_stage()
 
 bool System::jump_to_next_or_nearest_code_point_on_stage()
 {
-   ::CodeEditor::CodeEditor *stage = get_frontmost_code_editor_stage();
+   Hexagon::CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
    if (!stage) return false;
    stage->process_local_event(CodeEditor::EventController::JUMP_TO_NEXT_OR_NEAREST_CODE_POINT);
    return true;
@@ -1009,20 +1018,20 @@ bool System::clear_last_compiled_error_messages()
 
 bool System::enable_drawing_info_overlays_on_all_code_editor_stages()
 {
-   std::vector<::CodeEditor::CodeEditor *> code_editor_stages = System::get_all_code_editor_stages();
+   std::vector<Hexagon::CodeEditor::Stage *> code_editor_stages = System::get_all_code_editor_stages();
    for (auto &code_editor_stage : code_editor_stages)
    {
-      code_editor_stage->enable_drawing_info_overlay();
+      code_editor_stage->get_code_editor_ref().enable_drawing_info_overlay();
    }
    return true;
 }
 
 bool System::disable_drawing_info_overlays_on_all_code_editor_stages()
 {
-   std::vector<::CodeEditor::CodeEditor *> code_editor_stages = System::get_all_code_editor_stages();
+   std::vector<Hexagon::CodeEditor::Stage *> code_editor_stages = System::get_all_code_editor_stages();
    for (auto &code_editor_stage : code_editor_stages)
    {
-      code_editor_stage->disable_drawing_info_overlay();
+      code_editor_stage->get_code_editor_ref().disable_drawing_info_overlay();
    }
    return true;
 }
@@ -1272,10 +1281,10 @@ bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp
 
    std::string regex_expression = regex_input_file_lines[0];
 
-   std::vector<::CodeEditor::CodeEditor *> stages = get_all_code_editor_stages();
+   std::vector<Hexagon::CodeEditor::Stage *> stages = get_all_code_editor_stages();
    for (auto &stage : stages)
    {
-      stage->set_search_regex_expression(regex_expression);
+      stage->get_code_editor_ref().set_search_regex_expression(regex_expression);
    }
 
    return true;

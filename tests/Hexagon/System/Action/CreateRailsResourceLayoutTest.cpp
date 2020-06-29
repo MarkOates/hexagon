@@ -3,7 +3,7 @@
 
 #include <Hexagon/System/Action/CreateRailsResourceLayout.hpp>
 
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 
 
 
@@ -79,8 +79,8 @@ TEST(DISABLED_Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___cre
 
    for (auto &stage : stages)
    {
-      CodeEditor::CodeEditor *code_editor = static_cast<CodeEditor::CodeEditor *>(stage);
-      actual_filenames.push_back(code_editor->get_filename());
+      Hexagon::CodeEditor::Stage *code_editor = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+      actual_filenames.push_back(code_editor->get_code_editor_ref().get_filename());
    }
 
    EXPECT_EQ(expected_filenames, actual_filenames);
@@ -106,8 +106,8 @@ TEST(Hexagon_System_Action_CreateRailsResourceLayoutTest, execute___created_stag
 
    for (auto &stage : stages)
    {
-      CodeEditor::CodeEditor *code_editor = static_cast<CodeEditor::CodeEditor *>(stage);
-      actual_file_categories.push_back(code_editor->get_file_category());
+      Hexagon::CodeEditor::Stage *code_editor = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+      actual_file_categories.push_back(code_editor->get_code_editor_ref().get_file_category());
    }
 
    EXPECT_EQ(expected_file_categories, actual_file_categories);

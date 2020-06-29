@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/System/Action/CreateRailsResourceLayout.hpp>
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <allegro_flare/useful_php.h>
 
 
@@ -72,17 +72,17 @@ float code_editor_height = get_display_default_height();
 {
    std::string file_contents = php::file_get_contents(filename);
 
-   CodeEditor::CodeEditor *code_editor = new CodeEditor::CodeEditor(filename, file_category);
-   code_editor->set_initial_content(file_contents);
+   Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({filename, file_category});
+   stage->get_code_editor_ref().set_initial_content(file_contents);
 
    placement3d place(x * code_editor_width, y * code_editor_height, 0);
    place.size = vec3d(code_editor_width, code_editor_height, 0);
    place.align = vec3d(0.5, 0.5, 0.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
 
-   code_editor->set_place(place);
+   stage->set_place(place);
 
-   stages.push_back(code_editor);
+   stages.push_back(stage);
 }
 return true;
 

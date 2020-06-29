@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 #include <Hexagon/StageInterface.hpp>
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/Hud.hpp>
 
@@ -64,8 +64,8 @@ public:
 
    // retrieval
    StageInterface *get_frontmost_stage();
-   ::CodeEditor::CodeEditor *get_frontmost_code_editor_stage();
-   std::vector<::CodeEditor::CodeEditor *> get_all_code_editor_stages();
+   Hexagon::CodeEditor::Stage *get_frontmost_code_editor_stage();
+   std::vector<Hexagon::CodeEditor::Stage *> get_all_code_editor_stages();
    int get_number_of_code_editor_stages();
 
    // inference
