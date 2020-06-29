@@ -1,4 +1,6 @@
 parent_classes:
+
+
   - class: 'StageInterface'
     scope: public
     init_with: "StageInterface::CODE_EDITOR"
