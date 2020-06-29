@@ -108,11 +108,14 @@ else if (code_editor->get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
 else
 {
    bool draw_line_numbers = true;
+   ALLEGRO_FONT *code_font = font;
+   ALLEGRO_FONT *overlay_font = font;
+
    ::CodeEditor::Renderer renderer(
       draw_line_numbers,
       is_focused,
       code_editor,
-      font,
+      code_font,
       display,
       cell_width,
       cell_height
@@ -126,7 +129,7 @@ else
          = Hexagon::CodeEditor::FileCategoryDecorator(code_editor->get_file_category()).label();
       std::string text_to_render = file_category_label;
       place.start_transform();
-      Hexagon::Elements::StageInfoOverlay stage_info_overlay(font, &place);
+      Hexagon::Elements::StageInfoOverlay stage_info_overlay(overlay_font, &place);
       //if (!is_focused) text_to_render = this->get_filename();
       stage_info_overlay.set_text(text_to_render);
       stage_info_overlay.render();

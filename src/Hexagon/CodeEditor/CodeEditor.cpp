@@ -963,27 +963,33 @@ bool CodeEditor::paste_selected_text_from_clipboard()
 
 void CodeEditor::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
 {
-   Hexagon::CodeEditor::Stage stage(this);
-   stage.render(is_focused, display, font, cell_width, cell_height);
-   return;
+   { // this is the hack
+      Hexagon::CodeEditor::Stage stage(this);
+      stage.render(is_focused, display, font, cell_width, cell_height);
+      return;
+   }
 }
 
 
 
 void CodeEditor::process_local_event(std::string event_name, ActionData action_data1)
 {
-   Hexagon::CodeEditor::Stage stage(this);
-   stage.process_local_event(event_name, action_data1);
-   return;
+   { // this is the hack
+      Hexagon::CodeEditor::Stage stage(this);
+      stage.process_local_event(event_name, action_data1);
+      return;
+   }
 }
 
 
 
 void CodeEditor::process_event(ALLEGRO_EVENT &event)
 {
-   Hexagon::CodeEditor::Stage stage(this);
-   stage.process_event(event);
-   return;
+   { // this is the hack
+      Hexagon::CodeEditor::Stage stage(this);
+      stage.process_event(event);
+      return;
+   }
 }
 
 
