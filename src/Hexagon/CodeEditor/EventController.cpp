@@ -85,7 +85,7 @@ void CodeEditor::EventController::process_local_event(std::string event_name, Ac
    std::cout << "CodeEditor::EventController::" << event_name << std::endl;
 
    // hack is that this member should not be a pointer, and this ref should ref a concrete object
-   ::CodeEditor::CodeEditor *code_editor = stage->get_code_editor_ref();
+   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
 
    try {
       if (event_name == MOVE_CURSOR_UP) code_editor->move_cursor_up();
@@ -354,7 +354,7 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
       ::CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
 
 
-   ::CodeEditor::CodeEditor *code_editor = stage->get_code_editor_ref();
+   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
 
 
    switch(code_editor->get_mode())
