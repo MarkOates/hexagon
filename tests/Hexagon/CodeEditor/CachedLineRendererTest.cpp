@@ -55,6 +55,19 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, pull__without_initializing__thro
    ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.pull(), std::runtime_error, expected_error_message);
 }
 
+TEST(DISABLED_Hexagon_CodeEditor_CachedLineRendererTest, pull__without_initializing_the_font_addon__throws_an_error)
+   // requires upgrade to allegro 5.2.7
+{
+   al_init();
+
+   Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
+   std::string expected_error_message =
+      "CachedLineRenderer::pull: error: guard \"al_is_font_addon_initialized()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.pull(), std::runtime_error, expected_error_message);
+
+   al_uninstall_system();
+}
+
 TEST(Hexagon_CodeEditor_CachedLineRendererTest, pull__with_an_index_out_of_bounds__throws_an_error)
 {
    al_init();
