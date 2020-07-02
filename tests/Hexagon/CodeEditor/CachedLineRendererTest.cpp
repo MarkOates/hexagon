@@ -17,7 +17,7 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, can_be_created_without_blowing_u
 TEST(Hexagon_CodeEditor_CachedLineRendererTest, initialize__without_a_valid_font__throws_an_error)
 {
    Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
-   std::string expected_error_message = "\"CachedLineRenderer::initialize\" font cannot be nullptr";
+   std::string expected_error_message = "CachedLineRenderer::initialize: error: guard \"font\" not met";
    ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.initialize(), std::runtime_error, expected_error_message);
 }
 
@@ -77,6 +77,8 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, size__returns_the_size_of_the_ca
    int expected_cache_size = 200;
 
    ASSERT_EQ(expected_cache_size, cached_line_renderer.size());
+
+   al_uninstall_system();
 }
 
 TEST(Hexagon_CodeEditor_CachedLineRendererTest, exists__without_initializing__throws_an_error)
@@ -101,6 +103,8 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, exists__with_indexes_out_of_boun
 
    ASSERT_EQ(false, cached_line_renderer.exists(-1));
    ASSERT_EQ(false, cached_line_renderer.exists(cache_size+1));
+
+   al_uninstall_system();
 }
 
 TEST(Hexagon_CodeEditor_CachedLineRendererTest, exists__with_indexes_in_bounds__returns_true)
@@ -120,5 +124,7 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, exists__with_indexes_in_bounds__
    {
       ASSERT_EQ(true, cached_line_renderer.exists(i));
    }
+
+   al_uninstall_system();
 }
 

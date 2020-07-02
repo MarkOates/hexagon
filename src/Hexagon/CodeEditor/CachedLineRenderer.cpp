@@ -5,6 +5,8 @@
 #include <map>
 #include <vector>
 #include <allegro5/allegro_font.h>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -31,8 +33,12 @@ CachedLineRenderer::~CachedLineRenderer()
 
 void CachedLineRenderer::initialize()
 {
-if (!font) throw std::runtime_error("\"CachedLineRenderer::initialize\" font cannot be nullptr");
-
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 // destroy any existing resources
 for (auto &strip : cache) if (strip) al_destroy_bitmap(strip);
 cache.clear();
