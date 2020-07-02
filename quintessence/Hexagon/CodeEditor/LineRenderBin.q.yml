@@ -13,12 +13,6 @@ properties:
     type: ALLEGRO_FONT*
     init_with: 'nullptr'
     constructor_arg: true
-  - name: render_cache
-    type: Hexagon::CodeEditor::CachedLineRenderer
-    init_with: '{}'
-  - name: line_text_to_index_mapping
-    type: std::map<std::string, int>
-    init_with: '{}'
 
 
 functions:

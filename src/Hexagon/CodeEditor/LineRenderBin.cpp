@@ -14,8 +14,6 @@ namespace CodeEditor
 LineRenderBin::LineRenderBin(ALLEGRO_FONT* font)
    : AllegroFlare::Bin<std::string, ALLEGRO_BITMAP *>()
    , font(font)
-   , render_cache({})
-   , line_text_to_index_mapping({})
 {
 }
 
