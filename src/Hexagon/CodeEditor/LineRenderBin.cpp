@@ -3,6 +3,7 @@
 #include <Hexagon/CodeEditor/LineRenderBin.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
+#include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 
 
 namespace Hexagon
@@ -40,7 +41,15 @@ ALLEGRO_BITMAP *render = nullptr;
       al_set_target_bitmap(render);
       al_clear_to_color(al_map_rgba_f(0.0f, 0.0f, 0.0f, 0.0f));
 
-      al_draw_text(font, al_color_name("white"), 0, 0, 0, text_to_render.c_str());
+      {
+         //al_draw_text(font, al_color_name("white"), 0, 0, 0, text_to_render.c_str());
+      }
+      {
+         ALLEGRO_COLOR color = al_color_name("white");
+         Hexagon::CodeEditor::Renderer::AdvancedLineRenderer renderer(font, &color, 0, 0, text_to_render.c_str());
+         renderer.render();
+         //al_draw_text(font, al_color_name("white"), 0, 0, 0, text_to_render.c_str());
+      }
 
       al_restore_state(&previous_render_state);
    }
