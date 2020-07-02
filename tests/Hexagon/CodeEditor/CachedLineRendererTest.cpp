@@ -51,7 +51,7 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, initialize__with_proper_dependen
 TEST(Hexagon_CodeEditor_CachedLineRendererTest, pull__without_initializing__throws_an_error)
 {
    Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
-   std::string expected_error_message = "\"CachedLineRenderer::pull\" must call initialize first";
+   std::string expected_error_message = "CachedLineRenderer::pull: error: guard \"initialized\" not met";
    ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.pull(), std::runtime_error, expected_error_message);
 }
 
@@ -66,10 +66,11 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, pull__with_an_index_out_of_bound
    Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer(font);
    cached_line_renderer.initialize();
 
-   std::string expected_error_message_lt_0 = "\"CachedLineRenderer::pull\" out of range (lt 0)";
+   std::string expected_error_message_lt_0 = "CachedLineRenderer::pull: error: guard \"index >= 0\" not met";
    ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.pull(-1), std::runtime_error, expected_error_message_lt_0);
 
-   std::string expected_error_message_gt_size = "\"CachedLineRenderer::pull\" out of range (gt size)";
+   std::string expected_error_message_gt_size =
+      "CachedLineRenderer::pull: error: guard \"index < cache.size()\" not met";
    ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.pull(99999), std::runtime_error, expected_error_message_gt_size);
 
    al_uninstall_system();

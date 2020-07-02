@@ -83,10 +83,8 @@ functions:
         type: int
         default_argument: 0
     type: ALLEGRO_BITMAP*
+    guards: [ initialized, index >= 0, index < cache.size() ]
     body: |
-       if (!initialized) throw std::runtime_error("\"CachedLineRenderer::pull\" must call initialize first");
-       if (index < 0) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range (lt 0)");
-       if (index >= cache.size()) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range (gt size)");
        return cache[index];
 
 

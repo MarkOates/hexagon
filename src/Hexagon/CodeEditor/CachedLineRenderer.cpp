@@ -7,6 +7,8 @@
 #include <allegro5/allegro_font.h>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -93,9 +95,24 @@ return true;
 
 ALLEGRO_BITMAP* CachedLineRenderer::pull(int index)
 {
-if (!initialized) throw std::runtime_error("\"CachedLineRenderer::pull\" must call initialize first");
-if (index < 0) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range (lt 0)");
-if (index >= cache.size()) throw std::runtime_error("\"CachedLineRenderer::pull\" out of range (gt size)");
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "pull" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(index >= 0))
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "pull" << ": error: " << "guard \"index >= 0\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(index < cache.size()))
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "pull" << ": error: " << "guard \"index < cache.size()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 return cache[index];
 
 }
