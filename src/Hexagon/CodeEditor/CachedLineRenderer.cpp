@@ -9,6 +9,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -86,7 +88,12 @@ return cache.size();
 
 bool CachedLineRenderer::exists(int index)
 {
-if (!initialized) throw std::runtime_error("\"CachedLineRenderer::exists\" must call initialize first");
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "exists" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 if (index < 0) return false;
 if (index >= cache.size()) return false;
 return true;

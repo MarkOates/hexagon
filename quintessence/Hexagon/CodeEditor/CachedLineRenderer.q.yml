@@ -70,8 +70,8 @@ functions:
       - name: index
         type: int
         default_argument: 0
+    guards: [ initialized ]
     body: |
-       if (!initialized) throw std::runtime_error("\"CachedLineRenderer::exists\" must call initialize first");
        if (index < 0) return false;
        if (index >= cache.size()) return false;
        return true;

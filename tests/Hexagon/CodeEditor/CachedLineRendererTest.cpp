@@ -97,7 +97,7 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, size__returns_the_size_of_the_ca
 TEST(Hexagon_CodeEditor_CachedLineRendererTest, exists__without_initializing__throws_an_error)
 {
    Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
-   std::string expected_error_message = "\"CachedLineRenderer::exists\" must call initialize first";
+   std::string expected_error_message = "CachedLineRenderer::exists: error: guard \"initialized\" not met";
    ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.exists(), std::runtime_error, expected_error_message);
 }
 
