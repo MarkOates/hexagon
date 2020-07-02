@@ -33,6 +33,12 @@ CachedLineRenderer::~CachedLineRenderer()
 
 void CachedLineRenderer::initialize()
 {
+if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 if (!(font))
    {
       std::stringstream error_message;

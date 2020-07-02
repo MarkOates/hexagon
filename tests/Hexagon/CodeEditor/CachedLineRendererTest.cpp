@@ -14,11 +14,23 @@ TEST(Hexagon_CodeEditor_CachedLineRendererTest, can_be_created_without_blowing_u
    Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
 }
 
+TEST(Hexagon_CodeEditor_CachedLineRendererTest, initialize__without_allegro_initialized__throws_an_error)
+{
+   Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
+   std::string expected_error_message =
+      "CachedLineRenderer::initialize: error: guard \"al_is_system_installed()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.initialize(), std::runtime_error, expected_error_message);
+}
+
 TEST(Hexagon_CodeEditor_CachedLineRendererTest, initialize__without_a_valid_font__throws_an_error)
 {
+   al_init();
+
    Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
    std::string expected_error_message = "CachedLineRenderer::initialize: error: guard \"font\" not met";
    ASSERT_THROW_WITH_MESSAGE(cached_line_renderer.initialize(), std::runtime_error, expected_error_message);
+
+   al_uninstall_system();
 }
 
 TEST(Hexagon_CodeEditor_CachedLineRendererTest, initialize__with_proper_dependencies_can_be_called_without_blowing_up)

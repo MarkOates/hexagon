@@ -26,8 +26,7 @@ functions:
 
 
   - name: initialize
-    body_dependency_symbols: [ all ]
-    guards: [ font ]
+    guards: [ al_is_system_installed(), font ]
     body: |
       // destroy any existing resources
       for (auto &strip : cache) if (strip) al_destroy_bitmap(strip);
@@ -50,6 +49,7 @@ functions:
       }
 
       initialized = true;
+    body_dependency_symbols: [ all ]
 
 
   - name: destruct
