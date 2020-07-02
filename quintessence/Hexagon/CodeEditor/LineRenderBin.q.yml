@@ -46,8 +46,8 @@ functions:
             ALLEGRO_STATE previous_render_state;
             al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
             al_set_target_bitmap(render);
-
             al_clear_to_color(al_map_rgba_f(0.0f, 0.0f, 0.0f, 0.0f));
+
             al_draw_text(font, al_color_name("white"), 0, 0, 0, text_to_render.c_str());
 
             al_restore_state(&previous_render_state);
