@@ -21,11 +21,6 @@ LineRenderBin::~LineRenderBin()
 }
 
 
-std::string LineRenderBin::run()
-{
-return "Hello World!";
-}
-
 ALLEGRO_BITMAP* LineRenderBin::load_data(std::string identifier)
 {
 return nullptr;

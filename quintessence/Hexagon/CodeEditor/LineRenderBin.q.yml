@@ -9,11 +9,6 @@ parent_classes:
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
-
-
   - name: load_data
     virtuall: true
     override: true
