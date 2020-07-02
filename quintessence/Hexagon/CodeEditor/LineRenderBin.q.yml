@@ -6,6 +6,21 @@ parent_classes:
     init_with: ''
 
 
+properties:
+
+
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: 'nullptr'
+    constructor_arg: true
+  - name: render_cache
+    type: Hexagon::CodeEditor::CachedLineRenderer
+    init_with: '{}'
+  - name: line_text_to_index_mapping
+    type: std::map<std::string, int>
+    init_with: '{}'
+
+
 functions:
 
 
@@ -18,7 +33,31 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
-      return nullptr;
+      std::string text_to_render = identifier;
+      ALLEGRO_BITMAP *render = nullptr;
+
+      {
+         int line_height = al_get_font_line_height(font);
+         int bitmap_width = al_get_text_width(font, text_to_render.c_str());
+         int bitmap_height = line_height;
+         render = al_create_bitmap(bitmap_width, bitmap_height);
+
+         {
+            ALLEGRO_STATE previous_render_state;
+            al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+            al_set_target_bitmap(render);
+
+            al_clear_to_color(al_color_name("violet"));
+            al_draw_text(font, al_color_name("white"), 0, 0, 0, text_to_render.c_str());
+
+            al_restore_state(&previous_render_state);
+         }
+      }
+
+      return render;
+    body_dependency_symbols:
+      - al_color_name
+      - al_draw_text
 
 
   - name: destroy_data
@@ -30,6 +69,7 @@ functions:
         type: ALLEGRO_BITMAP*
         default_argument: 'nullptr'
     body: |
+      al_destroy_bitmap(resource);
       return;
 
 
@@ -38,5 +78,15 @@ dependencies:
 
   - symbol: AllegroFlare::Bin<std::string, ALLEGRO_BITMAP *>
     headers: [ AllegroFlare/Bin.hpp, allegro5/allegro.h ]
+  - symbol: Hexagon::CodeEditor::CachedLineRenderer
+    headers: [ Hexagon/CodeEditor/CachedLineRenderer.hpp ]
+  - symbol: std::map<std::string, int>
+    headers: [ map, string ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: al_draw_text
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: al_color_name
+    headers: [ allegro5/allegro_color.h ]
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
