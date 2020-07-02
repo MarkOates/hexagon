@@ -49,6 +49,8 @@ if (!(font))
       error_message << "CachedLineRenderer" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (initialized) return;
+
 // destroy any existing resources
 for (auto &strip : cache) if (strip) al_destroy_bitmap(strip);
 cache.clear();

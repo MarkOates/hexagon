@@ -28,6 +28,8 @@ functions:
   - name: initialize
     guards: [ al_is_system_installed(), font ]
     body: |
+      if (initialized) return;
+
       // destroy any existing resources
       for (auto &strip : cache) if (strip) al_destroy_bitmap(strip);
       cache.clear();

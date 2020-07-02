@@ -7,7 +7,6 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro_flare/placement3d.h>
-#include <Hexagon/CodeEditor/CachedLineRenderer.hpp>
 
 
 namespace CodeEditor
@@ -30,8 +29,6 @@ namespace CodeEditor
       void render_raw();
       void render_cursor_position_info();
       void draw_selections(int cell_width, int cell_height);
-
-      Hexagon::CodeEditor::CachedLineRenderer cached_line_renderer;
 
    public:
       Renderer(

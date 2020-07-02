@@ -9,7 +9,6 @@
 #include <Hexagon/CodeEditor/CursorRenderer.hpp>
 #include <Hexagon/CodeEditor/Renderer/BasicLineRenderer.hpp>
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
-#include <Hexagon/CodeEditor/CachedLineRenderer.hpp>
 #include <Hexagon/CodeRangeRenderer.hpp>
 #include <Hexagon/shared_globals.hpp> // for hexagon_get_backfill_color() && profile_timer functions
 #include <AllegroFlare/Color.hpp>
