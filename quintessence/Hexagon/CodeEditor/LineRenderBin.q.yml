@@ -1,0 +1,47 @@
+parent_classes:
+
+
+  - class: AllegroFlare::Bin<std::string, ALLEGRO_BITMAP *>
+    scope: public
+    init_with: ''
+
+
+functions:
+
+
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+
+
+  - name: load_data
+    virtuall: true
+    override: true
+    type: ALLEGRO_BITMAP*
+    parameters:
+      - name: identifier
+        type: std::string
+        default_argument: '""'
+    body: |
+      return nullptr;
+
+
+  - name: destroy_data
+    virtuall: true
+    override: true
+    type: void
+    parameters:
+      - name: resource
+        type: ALLEGRO_BITMAP*
+        default_argument: 'nullptr'
+    body: |
+      return;
+
+
+dependencies:
+
+
+  - symbol: AllegroFlare::Bin<std::string, ALLEGRO_BITMAP *>
+    headers: [ AllegroFlare/Bin.hpp, allegro5/allegro.h ]
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
