@@ -17,6 +17,9 @@ namespace Hexagon
          static std::string INITIAL_DISPLAY_HEIGHT_KEY;
          static std::string DEFAULT_NAVIGATOR_DIRECTORY_KEY;
          static std::string REGEX_TEMP_FILENAME_KEY;
+         static std::string CLIPBOARD_TEMP_FILENAME_KEY;
+         static std::string FILE_NAVIGATOR_SELECTION_FILENAME_KEY;
+         static std::string MAKE_COMMAND_FILENAME_KEY;
          std::string config_filename;
          AllegroFlare::Config config;
          bool initialized;
@@ -33,6 +36,9 @@ namespace Hexagon
       int get_initial_display_height();
       std::string get_default_navigator_directory();
       std::string get_regex_temp_filename();
+      std::string get_clipboard_temp_filename();
+      std::string get_file_navigator_selection_filename();
+      std::string get_make_command_filename();
       std::string resource_path(std::vector<std::string> components={}, std::string filename={});
       };
    }

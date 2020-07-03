@@ -154,7 +154,7 @@ TEST(Hexagon_System_ConfigTest, get_default_navigator_directory__returns_the_exp
    al_uninstall_system();
 }
 
-TEST(Hexagon_System_ConfigTest, get_regex_temp_filename__returns_the_expected_default_value)
+TEST(DISABLED_Hexagon_System_ConfigTest, get_regex_temp_filename__returns_the_expected_default_value)
 {
    al_init();
 
@@ -165,5 +165,17 @@ TEST(Hexagon_System_ConfigTest, get_regex_temp_filename__returns_the_expected_de
    ASSERT_EQ(expected_default, config.get_regex_temp_filename());
 
    al_uninstall_system();
+}
+
+TEST(DISABLED_Hexagon_System_ConfigTest, get_clipboard_temp_filename__returns_the_expected_default_value)
+{
+}
+
+TEST(DISABLED_Hexagon_System_ConfigTest, get_file_navigator_selection_filename__returns_the_expected_default_value)
+{
+}
+
+TEST(DISABLED_Hexagon_System_ConfigTest, get_make_command_filename__returns_the_expected_default_value)
+{
 }
 

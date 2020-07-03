@@ -22,6 +22,15 @@ std::string Config::DEFAULT_NAVIGATOR_DIRECTORY_KEY = "default_navigator_directo
 std::string Config::REGEX_TEMP_FILENAME_KEY = "regex_temp_filename";
 
 
+std::string Config::CLIPBOARD_TEMP_FILENAME_KEY = "clipboard_temp_filename";
+
+
+std::string Config::FILE_NAVIGATOR_SELECTION_FILENAME_KEY = "file_navigator_selection_filename";
+
+
+std::string Config::MAKE_COMMAND_FILENAME_KEY = "make_command_filename";
+
+
 Config::Config(std::string config_filename)
    : config_filename(config_filename)
    , config(config_filename)
@@ -87,6 +96,27 @@ std::string Config::get_regex_temp_filename()
 {
 std::string default_filename = resource_path({"data", "tmp"}, "regex.txt");
 return config.get_or_default_str("", REGEX_TEMP_FILENAME_KEY, default_filename);
+
+}
+
+std::string Config::get_clipboard_temp_filename()
+{
+std::string default_filename = resource_path({"data", "tmp"}, "clipboard.txt");
+return config.get_or_default_str("", CLIPBOARD_TEMP_FILENAME_KEY, default_filename);
+
+}
+
+std::string Config::get_file_navigator_selection_filename()
+{
+std::string default_filename = resource_path({"data", "tmp"}, "file_navigator_selection.txt");
+return config.get_or_default_str("", FILE_NAVIGATOR_SELECTION_FILENAME_KEY, default_filename);
+
+}
+
+std::string Config::get_make_command_filename()
+{
+std::string default_filename = resource_path({"data", "tmp"}, "make_command.txt");
+return config.get_or_default_str("", MAKE_COMMAND_FILENAME_KEY, default_filename);
 
 }
 
