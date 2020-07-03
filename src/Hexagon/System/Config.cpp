@@ -25,10 +25,10 @@ std::string Config::REGEX_TEMP_FILENAME_KEY = "regex_temp_filename";
 std::string Config::CLIPBOARD_TEMP_FILENAME_KEY = "clipboard_temp_filename";
 
 
-std::string Config::FILE_NAVIGATOR_SELECTION_FILENAME_KEY = "file_navigator_selection_filename";
+std::string Config::FILE_NAVIGATOR_SELECTION_FILENAME_KEY = "file_navigator_selection_temp_filename";
 
 
-std::string Config::MAKE_COMMAND_FILENAME_KEY = "make_command_filename";
+std::string Config::MAKE_COMMAND_FILENAME_KEY = "make_command_temp_filename";
 
 
 Config::Config(std::string config_filename)

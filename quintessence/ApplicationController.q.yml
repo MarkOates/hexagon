@@ -1,11 +1,10 @@
 properties:
 
 
-  - name: regex_temp_filename
-    constructor_arg: true
   - name: config
     type: Hexagon::System::Config
-    init_with: '"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"'
+    init_with: '{"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"}'
+    constructor_arg: true
 
 
 functions:

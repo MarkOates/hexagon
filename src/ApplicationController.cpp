@@ -58,9 +58,8 @@
 
 
 
-ApplicationController::ApplicationController(std::string regex_temp_filename)
-   : regex_temp_filename(regex_temp_filename)
-   , config("/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg")
+ApplicationController::ApplicationController(Hexagon::System::Config config)
+   : config(config)
 {
 }
 

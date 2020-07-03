@@ -30,12 +30,12 @@ properties:
     type: std::string
     static: true
     const: true
-    init_with: '"file_navigator_selection_filename"'
+    init_with: '"file_navigator_selection_temp_filename"'
   - name: MAKE_COMMAND_FILENAME_KEY
     type: std::string
     static: true
     const: true
-    init_with: '"make_command_filename"'
+    init_with: '"make_command_temp_filename"'
   - name: config_filename
     type: std::string
     constructor_arg: true

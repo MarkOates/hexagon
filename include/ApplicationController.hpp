@@ -2,17 +2,15 @@
 
 
 #include <Hexagon/System/System.hpp>
-#include <string>
 
 
 class ApplicationController
 {
 private:
-   std::string regex_temp_filename;
    Hexagon::System::Config config;
 
 public:
-   ApplicationController(std::string regex_temp_filename="");
+   ApplicationController(Hexagon::System::Config config={"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"});
    ~ApplicationController();
 
 
