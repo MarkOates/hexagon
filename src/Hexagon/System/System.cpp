@@ -132,9 +132,10 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
 
 bool System::initialize()
 {
-   config.initialize();
+   config.initialize(); // is this redundant?  Should this be initialized before being passed in?
 
-   font_bin.set_path("data/fonts");
+   std::string font_bin_path = config.get_font_bin_path();
+   font_bin.set_full_path(font_bin_path);
 
    hud.initialize();
 
@@ -875,7 +876,8 @@ bool System::destroy_topmost_stage()
 static std::vector<std::string> __list_of_files_in_file_list()
 {
    std::string hard_coded_project_path = "/Users/markoates/Repos/hexagon/";
-   static std::string FILE_LIST_FILENAME = hard_coded_project_path + "bin/programs/data/config/files_to_open_at_startup.txt";
+   static std::string FILE_LIST_FILENAME =
+      hard_coded_project_path + "bin/programs/data/config/files_to_open_at_startup.txt";
 
    std::vector<std::string> lines;
    ::read_file(lines, FILE_LIST_FILENAME);

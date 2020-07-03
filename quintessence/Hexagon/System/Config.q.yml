@@ -36,6 +36,11 @@ properties:
     static: true
     const: true
     init_with: '"make_command_temp_filename"'
+  - name: FONT_BIN_PATH_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: '"font_bin_path"'
   - name: config_filename
     type: std::string
     constructor_arg: true
@@ -127,6 +132,13 @@ functions:
     body: |
       std::string default_filename = resource_path({"data", "tmp"}, "make_command.txt");
       return config.get_or_default_str("", MAKE_COMMAND_FILENAME_KEY, default_filename);
+
+
+  - name: get_font_bin_path
+    type: std::string
+    body: |
+      std::string default_font_bin_path = "/Users/markoates/Repos/hexagon/bin/programs/data/fonts";
+      return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
 
 
   - name: resource_path

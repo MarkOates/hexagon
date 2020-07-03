@@ -20,6 +20,7 @@ namespace Hexagon
          static std::string CLIPBOARD_TEMP_FILENAME_KEY;
          static std::string FILE_NAVIGATOR_SELECTION_FILENAME_KEY;
          static std::string MAKE_COMMAND_FILENAME_KEY;
+         static std::string FONT_BIN_PATH_KEY;
          std::string config_filename;
          AllegroFlare::Config config;
          bool initialized;
@@ -39,6 +40,7 @@ namespace Hexagon
       std::string get_clipboard_temp_filename();
       std::string get_file_navigator_selection_filename();
       std::string get_make_command_filename();
+      std::string get_font_bin_path();
       std::string resource_path(std::vector<std::string> components={}, std::string filename={});
       };
    }
