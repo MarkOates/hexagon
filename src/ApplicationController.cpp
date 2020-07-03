@@ -112,7 +112,6 @@ Motion motion;
 
 
 bool shutdown_program = false;
-bool first_load = true;
 
 System system(display, config, motion);
 system.initialize();
@@ -121,9 +120,8 @@ system.initialize();
 while(!shutdown_program)
 {
    ALLEGRO_EVENT this_event;
-   if (!first_load) al_wait_for_event(event_queue, &this_event);
+   al_wait_for_event(event_queue, &this_event);
    global::profiler.clear();
-   first_load = false;
 
    system.process_event(this_event);
 
