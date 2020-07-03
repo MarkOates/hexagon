@@ -64,16 +64,10 @@ functions:
     type: void
     body: |
        initialize_allegro_config_display_event_queue_and_timer();
-
-       //al_hide_mouse_cursor(display); // this is disabled because there are a small handfull of sideeffects
-                                        // 1) prior app focus (before h launches) is not returned after h is closed
-                                        // 2) it messes with the normal expected mouse visibility outside of the window
-
        verify_presence_of_temp_files_and_assign_to_global_constants();
 
        System system(display, config, motion);
        system.initialize();
-
 
        while(!shutdown_program)
        {
