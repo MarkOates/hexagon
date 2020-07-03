@@ -22,7 +22,9 @@ public:
 
 
 void initialize_allegro_config_display_event_queue_and_timer();
+void shutdown();
 void run_program();
+void run_event_loop(System* system=nullptr);
 void verify_presence_of_temp_files_and_assign_to_global_constants();
 void draw_hexagon_logo_and_wait_for_keypress(int display_width=1, int display_height=1);
 };

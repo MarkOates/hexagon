@@ -60,6 +60,15 @@ functions:
        al_start_timer(primary_timer);
 
 
+  - name: shutdown
+    type: void
+    body: |
+       al_destroy_event_queue(event_queue);
+       al_destroy_display(display);
+       //delete system;
+       //al_uninstall_system();
+
+
   - name: run_program
     type: void
     body: |
@@ -69,13 +78,26 @@ functions:
        System system(display, config, motion);
        system.initialize();
 
+       run_event_loop(&system);
+
+       shutdown();
+
+
+  - name: run_event_loop
+    type: void
+    parameters:
+      - name: system
+        type: System*
+        default_argument: nullptr
+    guards: [ system ]
+    body: |
        while(!shutdown_program)
        {
           ALLEGRO_EVENT this_event;
           al_wait_for_event(event_queue, &this_event);
           global::profiler.clear();
 
-          system.process_event(this_event);
+          system->process_event(this_event);
 
           bool refresh = true;
 
@@ -86,15 +108,15 @@ functions:
              break;
           case ALLEGRO_EVENT_DISPLAY_RESIZE:
              al_acknowledge_resize(display);
-             system.acknowledge_display_resize(display);
+             system->acknowledge_display_resize(display);
              //note that each rezie will cause the display to reload, and will be a bit laggy
              //refresh = false;
              break;
           case ALLEGRO_EVENT_DISPLAY_SWITCH_OUT:
-             system.acknowledge_display_switch_out(display);
+             system->acknowledge_display_switch_out(display);
              break;
           case ALLEGRO_EVENT_DISPLAY_SWITCH_IN:
-             system.acknowledge_display_switch_in(display);
+             system->acknowledge_display_switch_in(display);
              break;
           case ALLEGRO_EVENT_TIMER:
              motion.update(al_get_time());
@@ -132,7 +154,7 @@ functions:
              //al_clear_to_color(al_color_name("black"));
              al_clear_to_color(hexagon_get_backfill_color());
 
-             Hexagon::System::Renderer renderer(&system, display);
+             Hexagon::System::Renderer renderer(system, display);
              renderer.render();
 
              al_flip_display();
@@ -148,10 +170,7 @@ functions:
              }
           }
        }
-
-
-       al_destroy_event_queue(event_queue);
-       al_destroy_display(display);
+       return;
     body_dependency_symbols:
       - Hexagon::System::Config
       - all
@@ -265,6 +284,8 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: Motion
     headers: [ allegro_flare/motion.h ]
+  - symbol: System*
+    headers: [ Hexagon/System/System.hpp ]
   - symbol: all
     headers:
       - iostream

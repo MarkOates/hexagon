@@ -54,6 +54,8 @@
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
 #include <Hexagon/System/Renderer.hpp>
 #include <Hexagon/System/System.hpp>
+#include <stdexcept>
+#include <sstream>
 
 
 
@@ -109,6 +111,15 @@ al_start_timer(primary_timer);
 
 }
 
+void ApplicationController::shutdown()
+{
+al_destroy_event_queue(event_queue);
+al_destroy_display(display);
+//delete system;
+//al_uninstall_system();
+
+}
+
 void ApplicationController::run_program()
 {
 initialize_allegro_config_display_event_queue_and_timer();
@@ -117,13 +128,27 @@ verify_presence_of_temp_files_and_assign_to_global_constants();
 System system(display, config, motion);
 system.initialize();
 
+run_event_loop(&system);
+
+shutdown();
+
+}
+
+void ApplicationController::run_event_loop(System* system)
+{
+if (!(system))
+   {
+      std::stringstream error_message;
+      error_message << "ApplicationController" << "::" << "run_event_loop" << ": error: " << "guard \"system\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 while(!shutdown_program)
 {
    ALLEGRO_EVENT this_event;
    al_wait_for_event(event_queue, &this_event);
    global::profiler.clear();
 
-   system.process_event(this_event);
+   system->process_event(this_event);
 
    bool refresh = true;
 
@@ -134,15 +159,15 @@ while(!shutdown_program)
       break;
    case ALLEGRO_EVENT_DISPLAY_RESIZE:
       al_acknowledge_resize(display);
-      system.acknowledge_display_resize(display);
+      system->acknowledge_display_resize(display);
       //note that each rezie will cause the display to reload, and will be a bit laggy
       //refresh = false;
       break;
    case ALLEGRO_EVENT_DISPLAY_SWITCH_OUT:
-      system.acknowledge_display_switch_out(display);
+      system->acknowledge_display_switch_out(display);
       break;
    case ALLEGRO_EVENT_DISPLAY_SWITCH_IN:
-      system.acknowledge_display_switch_in(display);
+      system->acknowledge_display_switch_in(display);
       break;
    case ALLEGRO_EVENT_TIMER:
       motion.update(al_get_time());
@@ -180,7 +205,7 @@ while(!shutdown_program)
       //al_clear_to_color(al_color_name("black"));
       al_clear_to_color(hexagon_get_backfill_color());
 
-      Hexagon::System::Renderer renderer(&system, display);
+      Hexagon::System::Renderer renderer(system, display);
       renderer.render();
 
       al_flip_display();
@@ -196,10 +221,7 @@ while(!shutdown_program)
       }
    }
 }
-
-
-al_destroy_event_queue(event_queue);
-al_destroy_display(display);
+return;
 
 }
 
