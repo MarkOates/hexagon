@@ -138,6 +138,8 @@ TEST(Hexagon_System_ConfigTest,
    config.initialize();
 
    ASSERT_EQ(1350, config.get_initial_display_height());
+
+   al_uninstall_system();
 }
 
 TEST(Hexagon_System_ConfigTest, get_default_navigator_directory__returns_the_expected_value_from_the_config)
@@ -148,4 +150,20 @@ TEST(Hexagon_System_ConfigTest, get_default_navigator_directory__returns_the_exp
 
    std::string expected_fixture_default_navigator_directory = "/Some/path/on/the/system";
    ASSERT_EQ(expected_fixture_default_navigator_directory, config.get_default_navigator_directory());
+
+   al_uninstall_system();
 }
+
+TEST(Hexagon_System_ConfigTest, get_regex_temp_filename__returns_the_expected_default_value)
+{
+   al_init();
+
+   Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
+   config.initialize();
+
+   std::string expected_default = "/Some/path/on/the/system";
+   ASSERT_EQ(expected_default, config.get_regex_temp_filename());
+
+   al_uninstall_system();
+}
+

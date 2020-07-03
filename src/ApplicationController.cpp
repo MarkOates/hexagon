@@ -225,7 +225,7 @@ al_destroy_display(display);
 
 void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_constants()
 {
-REGEX_TEMP_FILENAME = resource_path({"data", "tmp"}, "regex.txt");
+REGEX_TEMP_FILENAME = config.get_regex_temp_filename();
 if (!php::file_exists(REGEX_TEMP_FILENAME))
 {
    std::stringstream error_message;

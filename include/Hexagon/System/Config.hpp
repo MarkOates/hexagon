@@ -3,6 +3,7 @@
 
 #include <AllegroFlare/Config.hpp>
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -15,6 +16,7 @@ namespace Hexagon
          static std::string INITIAL_DISPLAY_WIDTH_KEY;
          static std::string INITIAL_DISPLAY_HEIGHT_KEY;
          static std::string DEFAULT_NAVIGATOR_DIRECTORY_KEY;
+         static std::string REGEX_TEMP_FILENAME_KEY;
          std::string config_filename;
          AllegroFlare::Config config;
          bool initialized;
@@ -30,6 +32,8 @@ namespace Hexagon
       int get_initial_display_width();
       int get_initial_display_height();
       std::string get_default_navigator_directory();
+      std::string get_regex_temp_filename();
+      std::string resource_path(std::vector<std::string> components={}, std::string filename={});
       };
    }
 }

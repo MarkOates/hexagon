@@ -16,6 +16,11 @@ properties:
     static: true
     const: true
     init_with: "\"default_navigator_directory\""
+  - name: REGEX_TEMP_FILENAME_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: '"regex_temp_filename"'
   - name: config_filename
     type: std::string
     constructor_arg: true
@@ -79,6 +84,37 @@ functions:
     body: |
       validate_initialized(__FUNCTION__);
       return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
+
+
+  - name: get_regex_temp_filename
+    type: std::string
+    body: |
+      std::string default_filename = resource_path({"data", "tmp"}, "regex.txt");
+      return config.get_or_default_str("", REGEX_TEMP_FILENAME_KEY, default_filename);
+
+
+  - name: resource_path
+    private: true
+    type: std::string
+    parameters:
+      - name: components
+        type: std::vector<std::string>
+        default_argument: '{}'
+      - name: filename
+        type: std::string
+        default_argument: '{}'
+    body: |
+      std::string result;
+
+      ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+      for (auto &component : components) al_append_path_component(path, component.c_str());
+
+      al_set_path_filename(path, filename.c_str());
+      result = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
+
+      //std::cout << result << std::endl;
+
+      return result;
 
 
 dependencies:

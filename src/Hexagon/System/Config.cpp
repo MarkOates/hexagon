@@ -19,6 +19,9 @@ std::string Config::INITIAL_DISPLAY_HEIGHT_KEY = "initial_display_height";
 std::string Config::DEFAULT_NAVIGATOR_DIRECTORY_KEY = "default_navigator_directory";
 
 
+std::string Config::REGEX_TEMP_FILENAME_KEY = "regex_temp_filename";
+
+
 Config::Config(std::string config_filename)
    : config_filename(config_filename)
    , config(config_filename)
@@ -77,6 +80,29 @@ std::string Config::get_default_navigator_directory()
 {
 validate_initialized(__FUNCTION__);
 return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
+
+}
+
+std::string Config::get_regex_temp_filename()
+{
+std::string default_filename = resource_path({"data", "tmp"}, "regex.txt");
+return config.get_or_default_str("", REGEX_TEMP_FILENAME_KEY, default_filename);
+
+}
+
+std::string Config::resource_path(std::vector<std::string> components, std::string filename)
+{
+std::string result;
+
+ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+for (auto &component : components) al_append_path_component(path, component.c_str());
+
+al_set_path_filename(path, filename.c_str());
+result = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
+
+//std::cout << result << std::endl;
+
+return result;
 
 }
 } // namespace System
