@@ -179,7 +179,7 @@ TEST(DISABLED_Hexagon_System_ConfigTest, get_make_command_filename__returns_the_
 {
 }
 
-TEST(DISABLED_Hexagon_System_ConfigTest, is_dark_mode__returns_true_if_the_a_true_value_is_set_in_the_config)
+TEST(Hexagon_System_ConfigTest, is_dark_mode__returns_true_if_the_a_true_value_is_set_in_the_config)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
@@ -190,7 +190,7 @@ TEST(DISABLED_Hexagon_System_ConfigTest, is_dark_mode__returns_true_if_the_a_tru
    al_uninstall_system();
 }
 
-TEST(DISABLED_Hexagon_System_ConfigTest, is_dark_mode__returns_false_by_default)
+TEST(Hexagon_System_ConfigTest, is_dark_mode__returns_false_by_default)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
