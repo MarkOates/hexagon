@@ -2,6 +2,7 @@
 
 
 #include <AllegroFlare/Config.hpp>
+#include <allegro5/allegro_color.h>
 #include <string>
 #include <vector>
 
@@ -43,6 +44,7 @@ namespace Hexagon
       std::string get_make_command_filename();
       std::string get_font_bin_path();
       bool is_dark_mode();
+      ALLEGRO_COLOR get_backfill_color();
       std::string resource_path(std::vector<std::string> components={}, std::string filename={});
       };
    }

@@ -2,6 +2,8 @@
 
 #include <Hexagon/System/Config.hpp>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -71,6 +73,12 @@ if (!initialized)
 
 void Config::initialize()
 {
+if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "Config" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 if (initialized) return;
 config.load();
 initialized = true;
@@ -136,6 +144,25 @@ return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
 bool Config::is_dark_mode()
 {
 return config.get_or_default_bool("", DARK_MODE_KEY, false);
+
+}
+
+ALLEGRO_COLOR Config::get_backfill_color()
+{
+if (is_dark_mode())
+{
+   return al_color_name("black");
+}
+else
+{
+   return al_color_html("d2dbd6"); // very nice light gray
+}
+//return al_color_html("d2dbd6"); // very nice light gray
+//return al_color_html("8f9996"); // deep rich gray
+//return al_color_html("a67d5a"); // color of lamp light against wall
+
+//return al_color_html("5b5c60");
+//return al_color_name("black");
 
 }
 

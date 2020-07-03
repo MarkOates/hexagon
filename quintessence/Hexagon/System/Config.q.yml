@@ -84,6 +84,7 @@ functions:
 
   - name: initialize
     type: void
+    guards: [ al_is_system_installed() ]
     body: |
       if (initialized) return;
       config.load();
@@ -152,6 +153,25 @@ functions:
       return config.get_or_default_bool("", DARK_MODE_KEY, false);
 
 
+  - name: get_backfill_color
+    type: ALLEGRO_COLOR
+    body: |
+      if (is_dark_mode())
+      {
+         return al_color_name("black");
+      }
+      else
+      {
+         return al_color_html("d2dbd6"); // very nice light gray
+      }
+      //return al_color_html("d2dbd6"); // very nice light gray
+      //return al_color_html("8f9996"); // deep rich gray
+      //return al_color_html("a67d5a"); // color of lamp light against wall
+
+      //return al_color_html("5b5c60");
+      //return al_color_name("black");
+
+
   - name: resource_path
     private: true
     type: std::string
@@ -179,6 +199,8 @@ functions:
 dependencies:
 
 
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
   - symbol: std::stringstream
     headers: [ sstream ]
   - symbol: AllegroFlare::Config
