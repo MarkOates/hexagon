@@ -5,12 +5,21 @@ properties:
     type: Hexagon::System::Config
     init_with: '{"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"}'
     constructor_arg: true
+  - name: display
+    type: ALLEGRO_DISPLAY*
+    init_with: nullptr
+  - name: event_queue
+    type: ALLEGRO_EVENT_QUEUE*
+    init_with: nullptr
+  - name: primary_timer
+    type: ALLEGRO_TIMER*
+    init_with: nullptr
 
 
 functions:
 
 
-  - name: run_program
+  - name: initialize_allegro_config_display_event_queue_and_timer
     type: void
     body: |
        if (!al_init()) std::cerr << "al_init() failed" << std::endl;
@@ -27,7 +36,7 @@ functions:
        //al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 
        al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
-       ALLEGRO_DISPLAY *display = al_create_display(
+       display = al_create_display(
           config.get_initial_display_width(),
           config.get_initial_display_height());
        if (!display) std::cerr << "al_create_display() failed" << std::endl;
@@ -36,13 +45,19 @@ functions:
        int display_width = al_get_display_width(display);
        int display_height = al_get_display_height(display);
 
-       ALLEGRO_EVENT_QUEUE *event_queue = al_create_event_queue();
+       event_queue = al_create_event_queue();
        al_register_event_source(event_queue, al_get_keyboard_event_source());
        al_register_event_source(event_queue, al_get_display_event_source(display));
 
-       ALLEGRO_TIMER *primary_timer = al_create_timer(1.0/60.0);
+       primary_timer = al_create_timer(1.0/60.0);
        al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
        al_start_timer(primary_timer);
+
+
+  - name: run_program
+    type: void
+    body: |
+       initialize_allegro_config_display_event_queue_and_timer();
 
        //al_hide_mouse_cursor(display); // this is disabled because there are a small handfull of sideeffects
                                         // 1) prior app focus (before h launches) is not returned after h is closed
@@ -247,6 +262,12 @@ dependencies:
 
   - symbol: Hexagon::System::Config
     headers: [ Hexagon/System/System.hpp ]
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_EVENT_QUEUE*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_TIMER*
+    headers: [ allegro5/allegro.h ]
   - symbol: all
     headers:
       - iostream

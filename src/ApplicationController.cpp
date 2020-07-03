@@ -60,6 +60,9 @@
 
 ApplicationController::ApplicationController(Hexagon::System::Config config)
    : config(config)
+   , display(nullptr)
+   , event_queue(nullptr)
+   , primary_timer(nullptr)
 {
 }
 
@@ -69,7 +72,7 @@ ApplicationController::~ApplicationController()
 }
 
 
-void ApplicationController::run_program()
+void ApplicationController::initialize_allegro_config_display_event_queue_and_timer()
 {
 if (!al_init()) std::cerr << "al_init() failed" << std::endl;
 if (!al_init_font_addon()) std::cerr << "al_init_font_addon() failed" << std::endl;
@@ -85,7 +88,7 @@ al_set_new_display_flags(ALLEGRO_RESIZABLE);
 //al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 
 al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
-ALLEGRO_DISPLAY *display = al_create_display(
+display = al_create_display(
    config.get_initial_display_width(),
    config.get_initial_display_height());
 if (!display) std::cerr << "al_create_display() failed" << std::endl;
@@ -94,13 +97,19 @@ al_set_window_title(display, "[ProjectName] - Hexagon");
 int display_width = al_get_display_width(display);
 int display_height = al_get_display_height(display);
 
-ALLEGRO_EVENT_QUEUE *event_queue = al_create_event_queue();
+event_queue = al_create_event_queue();
 al_register_event_source(event_queue, al_get_keyboard_event_source());
 al_register_event_source(event_queue, al_get_display_event_source(display));
 
-ALLEGRO_TIMER *primary_timer = al_create_timer(1.0/60.0);
+primary_timer = al_create_timer(1.0/60.0);
 al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
 al_start_timer(primary_timer);
+
+}
+
+void ApplicationController::run_program()
+{
+initialize_allegro_config_display_event_queue_and_timer();
 
 //al_hide_mouse_cursor(display); // this is disabled because there are a small handfull of sideeffects
                                  // 1) prior app focus (before h launches) is not returned after h is closed
