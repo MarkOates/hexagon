@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/System/System.hpp>
 #include <string>
 
 
@@ -8,6 +9,7 @@ class ApplicationController
 {
 private:
    std::string regex_temp_filename;
+   Hexagon::System::Config config;
 
 public:
    ApplicationController(std::string regex_temp_filename="");

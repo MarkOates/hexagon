@@ -1,6 +1,7 @@
 
 
 #include <ApplicationController.hpp>
+#include <Hexagon/System/System.hpp>
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -59,6 +60,7 @@
 
 ApplicationController::ApplicationController(std::string regex_temp_filename)
    : regex_temp_filename(regex_temp_filename)
+   , config("")
 {
 }
 
@@ -81,7 +83,6 @@ al_set_new_display_option(ALLEGRO_DEPTH_SIZE, 32, ALLEGRO_SUGGEST);
 al_set_new_display_flags(ALLEGRO_RESIZABLE);
 //al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 
-Hexagon::System::Config config;
 config.initialize();
 
 al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
