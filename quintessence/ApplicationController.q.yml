@@ -17,6 +17,9 @@ properties:
   - name: motion
     type: Motion
     init_with: ''
+  - name: shutdown_program
+    type: bool
+    init_with: false
 
 
 functions:
@@ -67,8 +70,6 @@ functions:
                                         // 2) it messes with the normal expected mouse visibility outside of the window
 
        verify_presence_of_temp_files_and_assign_to_global_constants();
-
-       bool shutdown_program = false;
 
        System system(display, config, motion);
        system.initialize();

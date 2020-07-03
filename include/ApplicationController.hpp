@@ -14,6 +14,7 @@ private:
    ALLEGRO_EVENT_QUEUE* event_queue;
    ALLEGRO_TIMER* primary_timer;
    Motion motion;
+   bool shutdown_program;
 
 public:
    ApplicationController(Hexagon::System::Config config={"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"});

@@ -64,6 +64,7 @@ ApplicationController::ApplicationController(Hexagon::System::Config config)
    , event_queue(nullptr)
    , primary_timer(nullptr)
    , motion()
+   , shutdown_program(false)
 {
 }
 
@@ -117,8 +118,6 @@ initialize_allegro_config_display_event_queue_and_timer();
                                  // 2) it messes with the normal expected mouse visibility outside of the window
 
 verify_presence_of_temp_files_and_assign_to_global_constants();
-
-bool shutdown_program = false;
 
 System system(display, config, motion);
 system.initialize();
