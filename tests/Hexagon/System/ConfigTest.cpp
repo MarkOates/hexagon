@@ -238,3 +238,9 @@ TEST(Hexagon_System_ConfigTest, get_backfill_color__when_in_not_in_dark_mode__re
    al_uninstall_system();
 }
 
+TEST(Hexagon_System_ConfigTest, get_backfill_opacity__returns_the_expected_value)
+{
+   Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
+   ASSERT_EQ(0.8f, config.get_backfill_opacity());
+}
+

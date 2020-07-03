@@ -166,6 +166,11 @@ else
 
 }
 
+float Config::get_backfill_opacity()
+{
+return 0.8f;
+}
+
 std::string Config::resource_path(std::vector<std::string> components, std::string filename)
 {
 std::string result;

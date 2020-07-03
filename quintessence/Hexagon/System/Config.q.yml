@@ -172,6 +172,11 @@ functions:
       //return al_color_name("black");
 
 
+  - name: get_backfill_opacity
+    type: float
+    body: return 0.8f;
+
+
   - name: resource_path
     private: true
     type: std::string
