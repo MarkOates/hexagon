@@ -129,12 +129,6 @@ System system(display, config, motion);
 system.initialize();
 
 
-// create the first stage
-
-
-// initialize first stage
-
-
 while(!shutdown_program)
 {
    ALLEGRO_EVENT this_event;
