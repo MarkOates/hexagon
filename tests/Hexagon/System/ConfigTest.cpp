@@ -179,3 +179,7 @@ TEST(DISABLED_Hexagon_System_ConfigTest, get_make_command_filename__returns_the_
 {
 }
 
+TEST(DISABLED_Hexagon_System_ConfigTest, is_dark_mode__returns_the_expected_default_value)
+{
+}
+

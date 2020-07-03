@@ -34,6 +34,9 @@ std::string Config::MAKE_COMMAND_FILENAME_KEY = "make_command_temp_filename";
 std::string Config::FONT_BIN_PATH_KEY = "font_bin_path";
 
 
+std::string Config::DARK_MODE_KEY = "dark_mode";
+
+
 Config::Config(std::string config_filename)
    : config_filename(config_filename)
    , config(config_filename)
@@ -127,6 +130,12 @@ std::string Config::get_font_bin_path()
 {
 std::string default_font_bin_path = "/Users/markoates/Repos/hexagon/bin/programs/data/fonts";
 return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
+
+}
+
+bool Config::is_dark_mode()
+{
+return config.get_or_default_bool("", DARK_MODE_KEY, false);
 
 }
 
