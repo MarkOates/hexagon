@@ -225,7 +225,7 @@ al_destroy_display(display);
 
 void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_constants()
 {
-REGEX_TEMP_FILENAME = config.get_regex_temp_filename();
+std::string regex_temp_filename = config.get_regex_temp_filename();
 if (!php::file_exists(REGEX_TEMP_FILENAME))
 {
    std::stringstream error_message;
@@ -234,7 +234,7 @@ if (!php::file_exists(REGEX_TEMP_FILENAME))
    throw std::runtime_error(error_message.str());
 }
 
-CLIPBOARD_TEMP_FILENAME = config.get_clipboard_temp_filename();
+std::string clipboard_temp_filename = config.get_clipboard_temp_filename();
 if (!php::file_exists(CLIPBOARD_TEMP_FILENAME))
 {
    std::stringstream error_message;
@@ -243,7 +243,7 @@ if (!php::file_exists(CLIPBOARD_TEMP_FILENAME))
    throw std::runtime_error(error_message.str());
 }
 
-FILE_NAVIGATOR_SELECTION_FILENAME = config.get_file_navigator_selection_filename();
+std::string file_navigator_selection_filename = config.get_file_navigator_selection_filename();
 if (!php::file_exists(FILE_NAVIGATOR_SELECTION_FILENAME))
 {
    std::stringstream error_message;
@@ -252,7 +252,7 @@ if (!php::file_exists(FILE_NAVIGATOR_SELECTION_FILENAME))
    throw std::runtime_error(error_message.str());
 }
 
-MAKE_COMMAND_FILENAME = config.get_make_command_filename();
+std::string make_command_filename = config.get_make_command_filename();
 if (!php::file_exists(MAKE_COMMAND_FILENAME))
 {
    std::stringstream error_message;
@@ -260,6 +260,13 @@ if (!php::file_exists(MAKE_COMMAND_FILENAME))
                  << "\" located in the directory tree.  It has to be present for hexagon to work.";
    throw std::runtime_error(error_message.str());
 }
+
+// assign confirmed values to globals
+
+REGEX_TEMP_FILENAME = regex_temp_filename;
+CLIPBOARD_TEMP_FILENAME = clipboard_temp_filename;
+FILE_NAVIGATOR_SELECTION_FILENAME = file_navigator_selection_filename;
+MAKE_COMMAND_FILENAME = make_command_filename;
 
 return;
 
