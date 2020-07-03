@@ -18,13 +18,13 @@ functions:
        if (!al_init_ttf_addon()) std::cerr << "al_init_ttf_addon() failed" << std::endl;
        if (!al_install_keyboard()) std::cerr << "al_install_keyboard() failed" << std::endl;
 
+       config.initialize();
+
        al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
        al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
        al_set_new_display_option(ALLEGRO_DEPTH_SIZE, 32, ALLEGRO_SUGGEST);
        al_set_new_display_flags(ALLEGRO_RESIZABLE);
        //al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
-
-       config.initialize();
 
        al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
        ALLEGRO_DISPLAY *display = al_create_display(
