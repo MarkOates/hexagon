@@ -204,7 +204,6 @@ functions:
       - all
 
 
-
   - name: verify_presence_of_temp_files_and_assign_to_global_constants
     type: void
     body: |
