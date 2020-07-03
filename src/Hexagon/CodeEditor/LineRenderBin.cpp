@@ -4,6 +4,8 @@
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -26,6 +28,12 @@ LineRenderBin::~LineRenderBin()
 
 ALLEGRO_BITMAP* LineRenderBin::load_data(std::string identifier)
 {
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "LineRenderBin" << "::" << "load_data" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 std::string text_to_render = identifier;
 ALLEGRO_BITMAP *render = nullptr;
 

@@ -26,6 +26,7 @@ functions:
       - name: identifier
         type: std::string
         default_argument: '""'
+    guards: [ font ]
     body: |
       std::string text_to_render = identifier;
       ALLEGRO_BITMAP *render = nullptr;

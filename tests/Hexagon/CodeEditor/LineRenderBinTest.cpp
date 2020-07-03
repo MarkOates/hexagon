@@ -3,6 +3,11 @@
 
 #include <Hexagon/CodeEditor/LineRenderBin.hpp>
 
+#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
+   try { code; FAIL() << "Expected " # raised_exception_type; } \
+   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
+   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_color.h>
 
@@ -11,6 +16,13 @@ std::string TEST_OUTPUT_DIRECTORY = "/Users/markoates/Repos/hexagon/tmp/";
 TEST(Hexagon_CodeEditor_LineRenderBinTest, can_be_created_without_blowing_up)
 {
    Hexagon::CodeEditor::LineRenderBin line_render_bin;
+}
+
+TEST(Hexagon_CodeEditor_LineRenderBinTest, load_data__without_a_valid_font_raises_an_error)
+{
+   Hexagon::CodeEditor::LineRenderBin line_render_bin;
+   std::string expected_error_message = "LineRenderBin::load_data: error: guard \"font\" not met";
+   ASSERT_THROW_WITH_MESSAGE(line_render_bin.load_data(), std::runtime_error, expected_error_message);
 }
 
 TEST(Hexagon_CodeEditor_LineRenderBinTest, will_generate_the_expected_render_for_the_identifier)
