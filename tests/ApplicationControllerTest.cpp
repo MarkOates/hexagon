@@ -17,13 +17,14 @@ TEST(ApplicationControllerTest, run_program__is_successful_and_will_shutdown_on_
    ApplicationController application_controller(TEST_CONFIG_FILENAME);
    application_controller.initialize();
 
-   ALLEGRO_EVENT my_event;
-   my_event.user.type = ALLEGRO_EVENT_DISPLAY_CLOSE;
+   ALLEGRO_EVENT display_close_event;
+   display_close_event.type = ALLEGRO_EVENT_DISPLAY_CLOSE;
 
-   //al_emit_user_event(&my_event_source, &my_event, NULL);
-   //al_emit_user_event(application_controller.
-   //application_controller.run_program();
+   application_controller.emit_user_event(display_close_event);
 
+   application_controller.run_event_loop();
    application_controller.shutdown();
+
+   SUCCEED();
 }
 

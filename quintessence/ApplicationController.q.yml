@@ -20,6 +20,9 @@ properties:
   - name: system
     type: System*
     init_with: nullptr
+  - name: user_event_source
+    type: ALLEGRO_EVENT_SOURCE
+    init_with: ''
   - name: shutdown_program
     type: bool
     init_with: false
@@ -62,6 +65,9 @@ functions:
        al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
        al_start_timer(primary_timer);
 
+       al_init_user_event_source(&user_event_source);
+       al_register_event_source(event_queue, &user_event_source);
+
 
   - name: initialize
     type: void
@@ -80,6 +86,17 @@ functions:
        al_destroy_display(display);
        //delete system;
        //al_uninstall_system();
+
+
+  - name: emit_user_event
+    type: void
+    parameters:
+      - name: user_event
+        type: ALLEGRO_EVENT
+        default_argument: '{}'
+    body: |
+      al_emit_user_event(&user_event_source, &user_event, NULL);
+      return;
 
 
   - name: run_program
@@ -289,6 +306,10 @@ dependencies:
     headers: [ allegro_flare/motion.h ]
   - symbol: System*
     headers: [ Hexagon/System/System.hpp ]
+  - symbol: ALLEGRO_EVENT_SOURCE
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
   - symbol: all
     headers:
       - iostream

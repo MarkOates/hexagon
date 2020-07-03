@@ -67,6 +67,7 @@ ApplicationController::ApplicationController(Hexagon::System::Config config)
    , primary_timer(nullptr)
    , motion()
    , system(nullptr)
+   , user_event_source()
    , shutdown_program(false)
 {
 }
@@ -110,6 +111,9 @@ primary_timer = al_create_timer(1.0/60.0);
 al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
 al_start_timer(primary_timer);
 
+al_init_user_event_source(&user_event_source);
+al_register_event_source(event_queue, &user_event_source);
+
 }
 
 void ApplicationController::initialize()
@@ -128,6 +132,13 @@ al_destroy_event_queue(event_queue);
 al_destroy_display(display);
 //delete system;
 //al_uninstall_system();
+
+}
+
+void ApplicationController::emit_user_event(ALLEGRO_EVENT user_event)
+{
+al_emit_user_event(&user_event_source, &user_event, NULL);
+return;
 
 }
 
