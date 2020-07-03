@@ -1,4 +1,6 @@
 properties:
+
+
   - name: INITIAL_DISPLAY_WIDTH_KEY
     type: std::string
     static: true
@@ -25,7 +27,11 @@ properties:
   - name: initialized
     type: bool
     init_with: false
+
+
 functions:
+
+
   - name: validate_initialized
     private: true
     type: void
@@ -45,6 +51,7 @@ functions:
     body_dependency_symbols:
       - std::stringstream
 
+
   - name: initialize
     type: void
     body: |
@@ -52,11 +59,13 @@ functions:
       config.load();
       initialized = true;
 
+
   - name: get_initial_display_width
     type: int
     body: |
       validate_initialized(__FUNCTION__);
       return config.get_or_default_int("", INITIAL_DISPLAY_WIDTH_KEY, 2430);
+
 
   - name: get_initial_display_height
     type: int
@@ -64,13 +73,17 @@ functions:
       validate_initialized(__FUNCTION__);
       return config.get_or_default_int("", INITIAL_DISPLAY_HEIGHT_KEY, 1350);
 
+
   - name: get_default_navigator_directory
     type: std::string
     body: |
       validate_initialized(__FUNCTION__);
       return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
 
+
 dependencies:
+
+
   - symbol: std::stringstream
     headers: [ sstream ]
   - symbol: AllegroFlare::Config
