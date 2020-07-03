@@ -1,4 +1,6 @@
 functions:
+
+
   - name: run_program
     type: void
     body: |
@@ -232,7 +234,11 @@ functions:
        al_destroy_display(display);
     body_dependency_symbols:
       - all
+
+
 dependencies:
+
+
   - symbol: all
     headers:
       - iostream
