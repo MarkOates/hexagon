@@ -11,5 +11,6 @@ TEST(ApplicationControllerTest, can_be_created_without_blowing_up)
 TEST(ApplicationControllerTest, run_program__is_successful)
 {
    ApplicationController application_controller;
+   //application_controller.run_program();
 }
 

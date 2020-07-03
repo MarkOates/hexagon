@@ -66,9 +66,6 @@ functions:
        bool shutdown_program = false;
        bool first_load = true;
 
-       placement3d rudimentary_camera_place(0, 0, 0);
-       rudimentary_camera_place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
-
        System system(display, config, motion);
        system.initialize();
 
