@@ -15,6 +15,7 @@ public:
 
 
 void run_program();
+void draw_hexagon_logo_and_wait_for_keypress(int display_width=1, int display_height=1);
 };
 
 

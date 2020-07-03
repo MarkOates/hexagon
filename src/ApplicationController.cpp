@@ -300,4 +300,43 @@ al_destroy_display(display);
 
 }
 
+void ApplicationController::draw_hexagon_logo_and_wait_for_keypress(int display_width, int display_height)
+{
+float logo_radius = 60;
+
+std::string logo_font_filename = "Expansiva_bold.otf";
+ALLEGRO_FONT *expansiva_font = al_load_font(resource_path({"data", "fonts"}, logo_font_filename).c_str(), 23, 0);
+if (!expansiva_font) throw std::runtime_error("could not load 'Expansiva bold.ttf'");
+
+Hexagon::Logo logo(
+  display_width/2,
+  display_height/2 - logo_radius * 1.4,
+  logo_radius,
+  expansiva_font,
+  al_color_html("#bc2d48"),
+  2.5);
+logo.render();
+
+al_flip_display();
+
+// wait for keypress
+{
+  ALLEGRO_EVENT_QUEUE *event_queue;
+  ALLEGRO_EVENT event;
+
+  al_install_keyboard();
+  event_queue = al_create_event_queue();
+  al_register_event_source(event_queue, al_get_keyboard_event_source());
+
+  do
+    al_wait_for_event(event_queue, &event);
+  while (event.type != ALLEGRO_EVENT_KEY_DOWN);
+
+  al_destroy_event_queue(event_queue);
+}
+
+return;
+
+}
+
 
