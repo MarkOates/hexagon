@@ -111,17 +111,6 @@ verify_presence_of_temp_files_and_assign_to_global_constants();
 Motion motion;
 
 
-//placement2d place(100, 20, 400, 400);
-placement3d place(0, 0, 0);
-place.size = vec3d(al_get_display_width(display), al_get_display_height(display), 0.0);
-place.align = vec3d(0.5, 0.5, 0.0);
-place.scale = vec3d(0.9, 0.9, 0.0);
-
-
-//placement2d file_navigator_placement(al_get_display_width(display)/2, al_get_display_height(display)/3*2, al_get_display_width(display), al_get_display_height(display));
-//file_navigator_placement.align = vec2d(0.5, 0.5);
-//file_navigator_placement.scale = vec2d(1, 1);
-
 bool shutdown_program = false;
 bool first_load = true;
 
