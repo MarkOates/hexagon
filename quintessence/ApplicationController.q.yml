@@ -171,37 +171,37 @@ functions:
     type: void
     body: |
        std::string regex_temp_filename = config.get_regex_temp_filename();
-       if (!php::file_exists(REGEX_TEMP_FILENAME))
+       if (!php::file_exists(regex_temp_filename))
        {
           std::stringstream error_message;
-          error_message << "Error: there is no \"" << REGEX_TEMP_FILENAME << "\" located in the directory tree.  "
+          error_message << "Error: there is no \"" << regex_temp_filename << "\" located in the directory tree.  "
                         << "It has to be present for hexagon to work.";
           throw std::runtime_error(error_message.str());
        }
 
        std::string clipboard_temp_filename = config.get_clipboard_temp_filename();
-       if (!php::file_exists(CLIPBOARD_TEMP_FILENAME))
+       if (!php::file_exists(clipboard_temp_filename))
        {
           std::stringstream error_message;
-          error_message << "Error: there is no \"" << CLIPBOARD_TEMP_FILENAME << "\" located in the directory tree. "
+          error_message << "Error: there is no \"" << clipboard_temp_filename << "\" located in the directory tree. "
                         << "It has to be present for hexagon to work.";
           throw std::runtime_error(error_message.str());
        }
 
        std::string file_navigator_selection_filename = config.get_file_navigator_selection_filename();
-       if (!php::file_exists(FILE_NAVIGATOR_SELECTION_FILENAME))
+       if (!php::file_exists(file_navigator_selection_filename))
        {
           std::stringstream error_message;
-          error_message << "Error: there is no \"" << FILE_NAVIGATOR_SELECTION_FILENAME
+          error_message << "Error: there is no \"" << file_navigator_selection_filename
                         << "\" located in the directory tree.  It has to be present for hexagon to work.";
           throw std::runtime_error(error_message.str());
        }
 
        std::string make_command_filename = config.get_make_command_filename();
-       if (!php::file_exists(MAKE_COMMAND_FILENAME))
+       if (!php::file_exists(make_command_filename))
        {
           std::stringstream error_message;
-          error_message << "Error: there is no \"" << MAKE_COMMAND_FILENAME
+          error_message << "Error: there is no \"" << make_command_filename
                         << "\" located in the directory tree.  It has to be present for hexagon to work.";
           throw std::runtime_error(error_message.str());
        }
