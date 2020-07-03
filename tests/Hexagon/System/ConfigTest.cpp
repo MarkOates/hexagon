@@ -6,6 +6,15 @@
    catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
+#include <allegro5/allegro_color.h>
+void EXPECT_COLOR_EQ(const ALLEGRO_COLOR &color1, const ALLEGRO_COLOR &color2)
+{
+   EXPECT_EQ(color1.r, color2.r);
+   EXPECT_EQ(color1.g, color2.g);
+   EXPECT_EQ(color1.b, color2.b);
+   EXPECT_EQ(color1.a, color2.a);
+}
+
 #include <Blast/FileExistenceChecker.hpp>
 
 #include <Hexagon/System/Config.hpp>
@@ -197,6 +206,34 @@ TEST(Hexagon_System_ConfigTest, is_dark_mode__returns_false_by_default)
    config.initialize();
 
    ASSERT_EQ(false, config.is_dark_mode());
+
+   al_uninstall_system();
+}
+
+TEST(Hexagon_System_ConfigTest, get_backfill_color__when_in_dark_mode__returns_black)
+{
+   al_init();
+   Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
+   config.initialize();
+
+   ASSERT_EQ(true, config.is_dark_mode());
+
+   ALLEGRO_COLOR expected_color = al_color_name("black");
+   EXPECT_COLOR_EQ(expected_color, config.get_backfill_color());
+
+   al_uninstall_system();
+}
+
+TEST(Hexagon_System_ConfigTest, get_backfill_color__when_in_not_in_dark_mode__returns_the_expected_color)
+{
+   al_init();
+   Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
+   config.initialize();
+
+   ASSERT_EQ(false, config.is_dark_mode());
+
+   ALLEGRO_COLOR expected_color = al_color_html("d2dbd6");
+   EXPECT_COLOR_EQ(expected_color, config.get_backfill_color());
 
    al_uninstall_system();
 }
