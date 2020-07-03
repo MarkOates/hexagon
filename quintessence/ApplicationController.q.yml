@@ -5,6 +5,7 @@ properties:
     constructor_arg: true
   - name: config
     type: Hexagon::System::Config
+    init_with: '"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"'
 
 
 functions:
