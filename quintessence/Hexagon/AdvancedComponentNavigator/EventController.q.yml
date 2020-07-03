@@ -1,4 +1,6 @@
 properties:
+
+
   - name: component
     type: Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator*
     init_with: nullptr
@@ -7,7 +9,11 @@ properties:
     type: std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>
     init_with: '{}'
     constructor_arg: true
+
+
 functions:
+
+
   - name: process_local_event
     guards: [ component ]
     parameters:
@@ -39,7 +45,11 @@ functions:
     body_dependency_symbols:
       - std::map<std::string, std::function>
       - Hexagon::AdvancedComponentNavigator::EventController
+
+
 dependencies:
+
+
   - symbol:  std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>
     headers: [ map, string, functional, Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp ]
   - symbol: std::map<std::string, std::function>
