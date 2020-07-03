@@ -178,7 +178,7 @@ functions:
           throw std::runtime_error(error_message.str());
        }
 
-       CLIPBOARD_TEMP_FILENAME = resource_path({"data", "tmp"}, "clipboard.txt");
+       CLIPBOARD_TEMP_FILENAME = config.get_clipboard_temp_filename();
        if (!php::file_exists(CLIPBOARD_TEMP_FILENAME))
        {
           std::stringstream error_message;
@@ -187,7 +187,7 @@ functions:
           throw std::runtime_error(error_message.str());
        }
 
-       FILE_NAVIGATOR_SELECTION_FILENAME = resource_path({"data", "tmp"}, "file_navigator_selection.txt");
+       FILE_NAVIGATOR_SELECTION_FILENAME = config.get_file_navigator_selection_filename();
        if (!php::file_exists(FILE_NAVIGATOR_SELECTION_FILENAME))
        {
           std::stringstream error_message;
@@ -196,7 +196,7 @@ functions:
           throw std::runtime_error(error_message.str());
        }
 
-       MAKE_COMMAND_FILENAME = resource_path({"data", "tmp"}, "make_command.txt");
+       MAKE_COMMAND_FILENAME = config.get_make_command_filename();
        if (!php::file_exists(MAKE_COMMAND_FILENAME))
        {
           std::stringstream error_message;
