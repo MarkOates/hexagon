@@ -57,7 +57,8 @@
 
 
 
-ApplicationController::ApplicationController()
+ApplicationController::ApplicationController(std::string regex_temp_filename)
+   : regex_temp_filename(regex_temp_filename)
 {
 }
 
@@ -138,14 +139,13 @@ ALLEGRO_TIMER *primary_timer = al_create_timer(1.0/60.0);
 al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
 al_start_timer(primary_timer);
 
+/*
 float logo_radius = 60;
 
 std::string logo_font_filename = "Expansiva_bold.otf";
 ALLEGRO_FONT *expansiva_font = al_load_font(resource_path({"data", "fonts"}, logo_font_filename).c_str(), 23, 0);
 if (!expansiva_font) throw std::runtime_error("could not load 'Expansiva bold.ttf'");
 
-
-/*
 Hexagon::Logo logo(
   display_width/2,
   display_height/2 - logo_radius * 1.4,
@@ -172,13 +172,14 @@ al_flip_display();
 
   al_destroy_event_queue(event_queue);
 }
+
+al_flip_display();
 */
 
 
 //al_hide_mouse_cursor(display); // this is disabled because there are a small handfull of sideeffects
                                  // 1) prior app focus (before h launches) is not returned after h is closed
                                  // 2) it messes with the normal expected mouse visibility outside of the window
-al_flip_display();
 
 Motion motion;
 
