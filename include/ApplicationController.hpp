@@ -3,6 +3,7 @@
 
 #include <Hexagon/System/System.hpp>
 #include <allegro5/allegro.h>
+#include <allegro_flare/motion.h>
 
 
 class ApplicationController
@@ -12,6 +13,7 @@ private:
    ALLEGRO_DISPLAY* display;
    ALLEGRO_EVENT_QUEUE* event_queue;
    ALLEGRO_TIMER* primary_timer;
+   Motion motion;
 
 public:
    ApplicationController(Hexagon::System::Config config={"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"});

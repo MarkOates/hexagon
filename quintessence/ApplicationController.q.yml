@@ -14,6 +14,9 @@ properties:
   - name: primary_timer
     type: ALLEGRO_TIMER*
     init_with: nullptr
+  - name: motion
+    type: Motion
+    init_with: ''
 
 
 functions:
@@ -64,9 +67,6 @@ functions:
                                         // 2) it messes with the normal expected mouse visibility outside of the window
 
        verify_presence_of_temp_files_and_assign_to_global_constants();
-
-       Motion motion;
-
 
        bool shutdown_program = false;
 
@@ -268,6 +268,8 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_TIMER*
     headers: [ allegro5/allegro.h ]
+  - symbol: Motion
+    headers: [ allegro_flare/motion.h ]
   - symbol: all
     headers:
       - iostream
