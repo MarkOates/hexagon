@@ -17,6 +17,9 @@ properties:
   - name: motion
     type: Motion
     init_with: ''
+  - name: system
+    type: System*
+    init_with: nullptr
   - name: shutdown_program
     type: bool
     init_with: false
@@ -60,6 +63,16 @@ functions:
        al_start_timer(primary_timer);
 
 
+  - name: initialize
+    type: void
+    body: |
+       initialize_allegro_config_display_event_queue_and_timer();
+       verify_presence_of_temp_files_and_assign_to_global_constants();
+
+       system = new System(display, config, motion);
+       system->initialize();
+
+
   - name: shutdown
     type: void
     body: |
@@ -72,23 +85,13 @@ functions:
   - name: run_program
     type: void
     body: |
-       initialize_allegro_config_display_event_queue_and_timer();
-       verify_presence_of_temp_files_and_assign_to_global_constants();
-
-       System system(display, config, motion);
-       system.initialize();
-
-       run_event_loop(&system);
-
+       initialize();
+       run_event_loop();
        shutdown();
 
 
   - name: run_event_loop
     type: void
-    parameters:
-      - name: system
-        type: System*
-        default_argument: nullptr
     guards: [ system ]
     body: |
        while(!shutdown_program)

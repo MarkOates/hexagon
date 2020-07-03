@@ -66,6 +66,7 @@ ApplicationController::ApplicationController(Hexagon::System::Config config)
    , event_queue(nullptr)
    , primary_timer(nullptr)
    , motion()
+   , system(nullptr)
    , shutdown_program(false)
 {
 }
@@ -111,6 +112,16 @@ al_start_timer(primary_timer);
 
 }
 
+void ApplicationController::initialize()
+{
+initialize_allegro_config_display_event_queue_and_timer();
+verify_presence_of_temp_files_and_assign_to_global_constants();
+
+system = new System(display, config, motion);
+system->initialize();
+
+}
+
 void ApplicationController::shutdown()
 {
 al_destroy_event_queue(event_queue);
@@ -122,19 +133,13 @@ al_destroy_display(display);
 
 void ApplicationController::run_program()
 {
-initialize_allegro_config_display_event_queue_and_timer();
-verify_presence_of_temp_files_and_assign_to_global_constants();
-
-System system(display, config, motion);
-system.initialize();
-
-run_event_loop(&system);
-
+initialize();
+run_event_loop();
 shutdown();
 
 }
 
-void ApplicationController::run_event_loop(System* system)
+void ApplicationController::run_event_loop()
 {
 if (!(system))
    {

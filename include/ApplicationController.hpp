@@ -14,6 +14,7 @@ private:
    ALLEGRO_EVENT_QUEUE* event_queue;
    ALLEGRO_TIMER* primary_timer;
    Motion motion;
+   System* system;
    bool shutdown_program;
 
 public:
@@ -22,9 +23,10 @@ public:
 
 
 void initialize_allegro_config_display_event_queue_and_timer();
+void initialize();
 void shutdown();
 void run_program();
-void run_event_loop(System* system=nullptr);
+void run_event_loop();
 void verify_presence_of_temp_files_and_assign_to_global_constants();
 void draw_hexagon_logo_and_wait_for_keypress(int display_width=1, int display_height=1);
 };
