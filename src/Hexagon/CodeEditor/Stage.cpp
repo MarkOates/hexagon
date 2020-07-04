@@ -116,6 +116,7 @@ else
    bool draw_line_numbers = true;
    ALLEGRO_FONT *code_font = font;
    ALLEGRO_FONT *overlay_font = font;
+   ALLEGRO_COLOR base_font_color = al_color_name("white");
    ALLEGRO_COLOR backfill_color = al_color_name("black");
    float backfill_opacity = 0.8f;
 
@@ -127,6 +128,7 @@ else
       display,
       cell_width,
       cell_height,
+      base_font_color,
       backfill_color,
       backfill_opacity
    );
