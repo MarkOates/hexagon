@@ -134,8 +134,8 @@ ALLEGRO_COLOR Renderer::build_frame_color()
 ALLEGRO_COLOR Renderer::build_backfill_color()
 {
    ALLEGRO_COLOR result_color = backfill_color;
-   result_color = AllegroFlare::color::mix(backfill_color, build_frame_color(), 0.2);
-   result_color = AllegroFlare::color::color(backfill_color, backfill_opacity);
+   result_color = AllegroFlare::color::mix(result_color, build_frame_color(), 0.2);
+   result_color = AllegroFlare::color::color(result_color, backfill_opacity);
    return result_color;
 }
 

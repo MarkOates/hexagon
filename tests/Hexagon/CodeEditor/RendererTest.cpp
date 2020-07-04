@@ -42,3 +42,8 @@ TEST(Hexagon_CodeEditor_RendererTest, build_frame_color__returns_the_expected_fr
    al_uninstall_system();
 }
 
+TEST(Hexagon_CodeEditor_RendererTest, render__when_the_code_editor_content_is_modified__modifies_the_backfill_color)
+{
+   // todo
+}
+
