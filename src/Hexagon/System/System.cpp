@@ -126,7 +126,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , focused_component_name_relative_names()
    , font_bin()
    , hud(display, font_bin)
-   , default_camera_stepback(70)
+   , default_camera_stepback(70 + 60)
 {
 }
 
@@ -461,7 +461,7 @@ bool System::toggle_command_mode_on()
 {
    if (command_mode) return true;
 
-   float camera_zoomed_out_position = get_default_camera_stepback() + 60;
+   float camera_zoomed_out_position = get_default_camera_stepback() + 20;
    float camera_zoomed_in_position = get_default_camera_stepback();
    motion.canimate(&camera.stepback.z,
                    camera.stepback.z,
@@ -481,7 +481,7 @@ bool System::toggle_command_mode_off()
 {
    if (!command_mode) return true;
 
-   float camera_zoomed_out_position = get_default_camera_stepback() + 60;
+   float camera_zoomed_out_position = get_default_camera_stepback() + 20;
    float camera_zoomed_in_position = get_default_camera_stepback();
    motion.canimate(&camera.stepback.z,
                    camera.stepback.z,
