@@ -128,6 +128,7 @@ else
       draw_line_numbers,
       is_focused,
       this,
+      &code_editor,
       get_place(),
       code_font,
       display,

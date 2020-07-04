@@ -21,6 +21,7 @@ namespace CodeEditor
       bool draw_backfill;
       ALLEGRO_DISPLAY *display;
       Hexagon::CodeEditor::Stage *stage;
+      ::CodeEditor::CodeEditor *code_editor;
       placement3d place;
       int cell_width;
       int cell_height;
@@ -39,6 +40,7 @@ namespace CodeEditor
          bool draw_line_numbers,
          bool is_focused,
          Hexagon::CodeEditor::Stage *stage,
+         ::CodeEditor::CodeEditor *code_editor,
          placement3d place,
          ALLEGRO_FONT *font,
          ALLEGRO_DISPLAY *display,
