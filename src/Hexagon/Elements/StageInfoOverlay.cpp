@@ -81,8 +81,20 @@ if (!(backfill_color))
       error_message << "StageInfoOverlay" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
       throw std::runtime_error(error_message.str());
    }
-if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
-if (!place) throw std::runtime_error("[StageInfoOverlay::render() error]: place can not be a nullptr");
+if (!(title_font))
+   {
+      std::stringstream error_message;
+      error_message << "StageInfoOverlay" << "::" << "render" << ": error: " << "guard \"title_font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(place))
+   {
+      std::stringstream error_message;
+      error_message << "StageInfoOverlay" << "::" << "render" << ": error: " << "guard \"place\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+//if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
+//if (!place) throw std::runtime_error("[StageInfoOverlay::render() error]: place can not be a nullptr");
 
 ALLEGRO_COLOR color_for_components = al_color_name("dodgerblue");
 ALLEGRO_COLOR primary_color = color_for_components; //al_color_name("orange");
