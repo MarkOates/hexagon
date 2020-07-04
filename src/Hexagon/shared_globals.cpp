@@ -67,29 +67,11 @@ bool hexagon_is_light_mode()
 }
 
 
-ALLEGRO_COLOR __hexagon_get_backfill_color()
-{
-   if (hexagon_is_light_mode())
-   {
-      return al_color_html("d2dbd6"); // very nice light gray
-   }
-   else
-   {
-      return al_color_name("black");
-   }
-   //return al_color_html("d2dbd6"); // very nice light gray
-   //return al_color_html("8f9996"); // deep rich gray
-   //return al_color_html("a67d5a"); // color of lamp light against wall
-
-
-   //return al_color_html("5b5c60");
-   //return al_color_name("black");
-}
-
 float hexagon_get_backfill_opacity()
 {
    return 0.8f;
 }
+
 
 ALLEGRO_COLOR hexagon_get_base_text_color()
 {
