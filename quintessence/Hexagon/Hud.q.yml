@@ -93,7 +93,7 @@ functions:
   - name: obtain_text_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Eurostile.ttf -32"];
+      return fonts["Eurostile.ttf -27"];
       //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 

@@ -165,7 +165,7 @@ return dummy_font_bin;
 
 ALLEGRO_FONT* Hud::obtain_text_font()
 {
-return fonts["Eurostile.ttf -32"];
+return fonts["Eurostile.ttf -27"];
 //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 }
