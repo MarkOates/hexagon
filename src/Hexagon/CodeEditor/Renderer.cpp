@@ -27,6 +27,7 @@ Renderer::Renderer(
    bool draw_line_numbers,
    bool is_focused,
    Hexagon::CodeEditor::Stage *stage,
+   placement3d place,
    ALLEGRO_FONT *font,
    ALLEGRO_DISPLAY *display,
    int cell_width,
@@ -42,6 +43,7 @@ Renderer::Renderer(
    , draw_backfill(true)
    , is_focused(is_focused)
    , stage(stage)
+   , place(place)
    , font(font)
    , display(display)
    , cell_width(cell_width)
