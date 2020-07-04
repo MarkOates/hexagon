@@ -5,7 +5,7 @@
 
 #include <AllegroFlare/Color.hpp>
 
-void EXPECT_COLOR_EQ(const ALLEGRO_COLOR &color1, const ALLEGRO_COLOR &color2)
+static void EXPECT_COLOR_EQ(const ALLEGRO_COLOR &color1, const ALLEGRO_COLOR &color2)
 {
    EXPECT_EQ(color1.r, color2.r);
    EXPECT_EQ(color1.g, color2.g);
