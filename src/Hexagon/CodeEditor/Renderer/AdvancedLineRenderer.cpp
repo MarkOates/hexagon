@@ -32,13 +32,14 @@ namespace Renderer
 {
 
 
-AdvancedLineRenderer::AdvancedLineRenderer(ALLEGRO_FONT* font, ALLEGRO_COLOR* font_color, ALLEGRO_COLOR* backfill_color, float x, float y, std::string line)
+AdvancedLineRenderer::AdvancedLineRenderer(ALLEGRO_FONT* font, ALLEGRO_COLOR* font_color, ALLEGRO_COLOR* backfill_color, float x, float y, std::string full_line_text, int max_num_columns)
    : font(font)
    , font_color(font_color)
    , backfill_color(backfill_color)
    , x(x)
    , y(y)
-   , line(line)
+   , full_line_text(full_line_text)
+   , max_num_columns(max_num_columns)
 {
 }
 
@@ -51,13 +52,13 @@ AdvancedLineRenderer::~AdvancedLineRenderer()
 std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::build_quintessence_yaml_name_element_tokens()
 {
 std::string regex = "^  [\- ] name: .*$";
-RegexMatcher regex_matcher(line, regex);
+RegexMatcher regex_matcher(full_line_text, regex);
 if (regex_matcher.get_match_info().empty()) return {};
 ALLEGRO_COLOR yaml_name_element_key_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.2);
 ALLEGRO_COLOR yaml_name_element_value_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.3);
 return std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>{
-   { line, 0, yaml_name_element_key_color },
-   { line.substr(10), 10, yaml_name_element_value_color },
+   { full_line_text, 0, yaml_name_element_key_color },
+   { full_line_text.substr(10), 10, yaml_name_element_value_color },
 };
 
 }
@@ -73,14 +74,14 @@ std::string regex = "";
    regex = quoted_string_regex;
 }
 
-RegexMatcher regex_matcher(line, regex);
+RegexMatcher regex_matcher(full_line_text, regex);
 
 std::vector<std::pair<int, int>> match_infos = regex_matcher.get_match_info();
 
 for (auto &match_info : match_infos)
 {
    ALLEGRO_COLOR quote_color = AllegroFlare::color::color(al_color_name("coral"), 0.225);
-   std::string str = line.substr(match_info.first, match_info.second);
+   std::string str = full_line_text.substr(match_info.first, match_info.second);
    tokens.push_back({ str, match_info.first, quote_color });
 }
 
@@ -109,19 +110,19 @@ std::string regex = "";
    regex = basic_comment_regex;
 }
 
-RegexMatcher regex_matcher(line, regex);
+RegexMatcher regex_matcher(full_line_text, regex);
 
 std::vector<std::pair<int, int>> match_infos = regex_matcher.get_match_info();
 
 if (match_infos.empty())
 {
-   //tokens = { { line, 0, *font_color } };
+   //tokens = { { full_line_text, 0, *font_color } };
 }
 else if (match_infos.size() == 1)
 {
    int string_end = match_infos[0].first;
-   std::string uncommented_substr = line.substr(0, string_end);
-   std::string commented_substr = line.substr(string_end);
+   std::string uncommented_substr = full_line_text.substr(0, string_end);
+   std::string commented_substr = full_line_text.substr(string_end);
    tokens = {
       //{ uncommented_substr, 0, *font_color },
       { commented_substr, string_end, comment_color },
@@ -131,7 +132,7 @@ else if (match_infos.size() > 1)
 {
    throw std::runtime_error("unexpected multi match error");
    //ALLEGRO_COLOR error_color = al_color_name("red");
-   //tokens = { { line, 0, error_color } };
+   //tokens = { { full_line_text, 0, error_color } };
 }
 
 return tokens;
@@ -142,11 +143,15 @@ void AdvancedLineRenderer::render_tokens(std::vector<std::tuple<std::string, int
 {
 for (auto &token : tokens)
 {
-   std::string &text = std::get<0>(token);
    int x_position = std::get<1>(token);
-   ALLEGRO_COLOR color = std::get<2>(token);
+   if (x_position > max_num_columns) continue;
 
-   al_draw_text(font, color, x + (x_position * cell_width), y, ALLEGRO_ALIGN_LEFT, text.c_str());
+   std::string &text = std::get<0>(token);
+   ALLEGRO_COLOR color = std::get<2>(token);
+   int concatinated_string_max_length = max_num_columns - x_position;
+   std::string concatinated_string = text.substr(0, concatinated_string_max_length);
+
+   al_draw_text(font, color, x + (x_position * cell_width), y, ALLEGRO_ALIGN_LEFT, concatinated_string.c_str());
 }
 
 }
@@ -171,8 +176,9 @@ if (!(backfill_color))
       error_message << "AdvancedLineRenderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
       throw std::runtime_error(error_message.str());
    }
+std::string concatinated_line = full_line_text.substr(0, max_num_columns);
 // draw the line straight out
-al_draw_text(font, *font_color, x, y, ALLEGRO_ALIGN_LEFT, line.c_str());
+al_draw_text(font, *font_color, x, y, ALLEGRO_ALIGN_LEFT, concatinated_line.c_str());
 
 float cell_width = al_get_text_width(font, " ");
 

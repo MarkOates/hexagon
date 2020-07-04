@@ -23,10 +23,11 @@ namespace Hexagon
             ALLEGRO_COLOR* backfill_color;
             float x;
             float y;
-            std::string line;
+            std::string full_line_text;
+            int max_num_columns;
 
          public:
-            AdvancedLineRenderer(ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR* font_color=nullptr, ALLEGRO_COLOR* backfill_color=nullptr, float x=0.0f, float y=0.0f, std::string line="");
+            AdvancedLineRenderer(ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR* font_color=nullptr, ALLEGRO_COLOR* backfill_color=nullptr, float x=0.0f, float y=0.0f, std::string full_line_text="", int max_num_columns=121);
             ~AdvancedLineRenderer();
 
 
