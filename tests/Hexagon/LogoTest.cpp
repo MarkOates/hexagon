@@ -21,7 +21,7 @@ TEST(Hexagon_LogoTest, render__draws_the_expected_graphic)
    logo.render();
 
    al_flip_display();
-   sleep(2);
+   //sleep(2);
 
    al_destroy_display(display);
    al_uninstall_system();
