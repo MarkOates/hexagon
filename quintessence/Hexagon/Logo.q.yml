@@ -46,6 +46,7 @@ functions:
 
   - name: render
     type: void
+    guards: [ al_is_system_installed(), font ]
     body: |
       float h_radius = radius/2;
       float sqrt_h_radius = sqrt(3)/2 * radius;

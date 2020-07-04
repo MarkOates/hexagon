@@ -3,6 +3,8 @@
 #include <Hexagon/Logo.hpp>
 #include <cmath>
 #include <allegro_flare/path2d.h>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -38,6 +40,18 @@ return c;
 
 void Logo::render()
 {
+if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "Logo" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "Logo" << "::" << "render" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 float h_radius = radius/2;
 float sqrt_h_radius = sqrt(3)/2 * radius;
 
