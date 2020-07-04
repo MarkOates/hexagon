@@ -31,6 +31,7 @@ Renderer::Renderer(
    ALLEGRO_DISPLAY *display,
    int cell_width,
    int cell_height,
+   ALLEGRO_COLOR base_font_color,
    ALLEGRO_COLOR backfill_color,
    float backfill_opacity
 )
@@ -45,6 +46,7 @@ Renderer::Renderer(
    , display(display)
    , cell_width(cell_width)
    , cell_height(cell_height)
+   , base_font_color(base_font_color)
    , backfill_color(backfill_color)
    , backfill_opacity(backfill_opacity)
 {}
@@ -77,7 +79,6 @@ void Renderer::draw_selections(int cell_width, int cell_height)
 ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
 {
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
-   ALLEGRO_COLOR base_font_color = hexagon_get_base_text_color();
    ALLEGRO_COLOR font_color = AllegroFlare::color::mix(epic_green_color, frame_color, 0.5);
    bool using_white_font_color = false;
    if (using_white_font_color)
@@ -132,10 +133,10 @@ ALLEGRO_COLOR Renderer::build_frame_color()
 
 ALLEGRO_COLOR Renderer::build_backfill_color()
 {
-   ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
-   backfill_color = AllegroFlare::color::mix(backfill_color, build_frame_color(), 0.2);
-   backfill_color = AllegroFlare::color::color(backfill_color, hexagon_get_backfill_opacity());
-   return backfill_color;
+   ALLEGRO_COLOR result_color = backfill_color;
+   result_color = AllegroFlare::color::mix(backfill_color, build_frame_color(), 0.2);
+   result_color = AllegroFlare::color::color(backfill_color, backfill_opacity);
+   return result_color;
 }
 
 

@@ -24,6 +24,7 @@ namespace CodeEditor
       int cell_width;
       int cell_height;
       ALLEGRO_FONT *font;
+      ALLEGRO_COLOR base_font_color;
       ALLEGRO_COLOR backfill_color;
       float backfill_opacity;
 
@@ -41,6 +42,7 @@ namespace CodeEditor
          ALLEGRO_DISPLAY *display,
          int cell_width,
          int cell_height,
+         ALLEGRO_COLOR base_font_color,
          ALLEGRO_COLOR backfill_color,
          float backfill_opacity
          );
