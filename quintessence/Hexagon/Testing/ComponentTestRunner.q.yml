@@ -1,16 +1,20 @@
 properties:
+
+
   - name: project_root
     init_with: "\"/Users/markoates/Repos/hexagon/\""
     constructor_arg: true
     getter: true
 
+
   - name: component_name
     init_with: "\"Hexagon/UnnamedComponent\""
     constructor_arg: true
     getter: true
-    
+
 
 functions:
+
 
   - name: generate_make_run_test_command
     type: std::string
@@ -33,6 +37,7 @@ functions:
     private: true
     body_dependency_symbols:
       - Blast::Project::Component
+
 
   - name: run
     type: std::string
