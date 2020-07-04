@@ -1,8 +1,14 @@
 parent_classes:
+
+
   - class: 'StageInterface'
     scope: public
     init_with: "StageInterface::COMPONENT_NAVIGATOR"
+
+
 properties:
+
+
   - name: project_root
     type: std::string
     init_with: '"/Users/markoates/Repos/hexagon/"'
@@ -22,6 +28,8 @@ properties:
 
 
 functions:
+
+
   - name: build_keyboard_command_mapping
     type: KeyboardCommandMapper
     body: |
