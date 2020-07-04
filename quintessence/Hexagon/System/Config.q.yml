@@ -172,6 +172,19 @@ functions:
       //return al_color_name("black");
 
 
+  - name: get_base_text_color
+    type: ALLEGRO_COLOR
+    body: |
+      if (is_dark_mode())
+      {
+         return al_color_name("white");
+      }
+      else
+      {
+         return al_color_name("black");
+      }
+
+
   - name: get_backfill_opacity
     type: float
     body: return 0.8f;

@@ -238,6 +238,34 @@ TEST(Hexagon_System_ConfigTest, get_backfill_color__when_in_not_in_dark_mode__re
    al_uninstall_system();
 }
 
+TEST(Hexagon_System_ConfigTest, get_base_text_color__when_in_dark_mode__returns_white)
+{
+   al_init();
+   Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
+   config.initialize();
+
+   ASSERT_EQ(true, config.is_dark_mode());
+
+   ALLEGRO_COLOR expected_color = al_color_name("white");
+   EXPECT_COLOR_EQ(expected_color, config.get_base_text_color());
+
+   al_uninstall_system();
+}
+
+TEST(Hexagon_System_ConfigTest, get_base_text_color__when_in_not_in_dark_mode__returns_black)
+{
+   al_init();
+   Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
+   config.initialize();
+
+   ASSERT_EQ(false, config.is_dark_mode());
+
+   ALLEGRO_COLOR expected_color = al_color_name("black");
+   EXPECT_COLOR_EQ(expected_color, config.get_base_text_color());
+
+   al_uninstall_system();
+}
+
 TEST(Hexagon_System_ConfigTest, get_backfill_opacity__returns_the_expected_value)
 {
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);

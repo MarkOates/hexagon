@@ -45,6 +45,7 @@ namespace Hexagon
       std::string get_font_bin_path();
       bool is_dark_mode();
       ALLEGRO_COLOR get_backfill_color();
+      ALLEGRO_COLOR get_base_text_color();
       float get_backfill_opacity();
       std::string resource_path(std::vector<std::string> components={}, std::string filename={});
       };

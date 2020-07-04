@@ -166,6 +166,19 @@ else
 
 }
 
+ALLEGRO_COLOR Config::get_base_text_color()
+{
+if (is_dark_mode())
+{
+   return al_color_name("white");
+}
+else
+{
+   return al_color_name("black");
+}
+
+}
+
 float Config::get_backfill_opacity()
 {
 return 0.8f;
