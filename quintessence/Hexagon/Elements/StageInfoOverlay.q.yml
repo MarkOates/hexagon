@@ -1,4 +1,6 @@
 properties:
+
+
   - name: title_font
     type: ALLEGRO_FONT*
     init_with: nullptr
@@ -14,7 +16,11 @@ properties:
     type: std::string
     getter: true
     setter: true
+
+
 functions:
+
+
   - name: render
     type: void
     body: |
@@ -53,7 +59,11 @@ functions:
       - al_color_name
       - al_draw_text
       - hexagon_get_backfill_color
+
+
 dependencies:
+
+
   - symbol: color::mix
     headers: [ 'allegro_flare/color.h' ]
   - symbol: hexagon_get_backfill_color
