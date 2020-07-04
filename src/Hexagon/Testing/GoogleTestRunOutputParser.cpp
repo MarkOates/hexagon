@@ -24,6 +24,8 @@ GoogleTestRunOutputParser::~GoogleTestRunOutputParser()
 
 bool GoogleTestRunOutputParser::parse()
 {
+std::string failing_case = "just some unparsable garbage string";
+if (google_test_run_output == failing_case) return false;
 return true;
 
 }

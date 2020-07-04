@@ -3,7 +3,7 @@
 
 #include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
 
-const std::string test_run_output = R"TEST_FIXTURE(
+const std::string BASIC_TEST_RUN_OUTPUT = R"TEST_FIXTURE(
 make[1]: Nothing to be done for `/Users/markoates/Repos/hexagon/bin/tests/Hexagon/Elements/StageInfoOverlayTest'.
 [==========] Running 5 tests from 2 test suites.
 [----------] Global test environment set-up.
@@ -37,6 +37,13 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, can_be_created_without_blowi
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_true_if_the_parsing_was_successful)
 {
-   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser;
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
    EXPECT_EQ(true, google_test_run_output_parser.parse());
 }
+
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_false_parsing_was_not_successful)
+{
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser("just some unparsable garbage string");
+   EXPECT_EQ(false, google_test_run_output_parser.parse());
+}
+
