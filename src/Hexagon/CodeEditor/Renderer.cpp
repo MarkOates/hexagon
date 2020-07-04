@@ -26,7 +26,6 @@ namespace CodeEditor
 Renderer::Renderer(
    bool draw_line_numbers,
    bool is_focused,
-   Hexagon::CodeEditor::Stage *stage,
    ::CodeEditor::CodeEditor *code_editor,
    placement3d place,
    ALLEGRO_FONT *font,
@@ -43,7 +42,6 @@ Renderer::Renderer(
    , draw_null_space(true)
    , draw_backfill(true)
    , is_focused(is_focused)
-   , stage(stage)
    , code_editor(code_editor)
    , place(place)
    , font(font)
@@ -372,8 +370,6 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 
 void Renderer::render_raw()
 {
-   if (!stage) throw std::runtime_error("[Renderer] stage cannot be a nullptr");
-
    if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
 
    bool content_is_modified = code_editor->get_content_is_modified();
