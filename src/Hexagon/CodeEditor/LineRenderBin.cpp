@@ -53,8 +53,11 @@ ALLEGRO_BITMAP *render = nullptr;
          //al_draw_text(font, al_color_name("white"), 0, 0, 0, text_to_render.c_str());
       }
       {
-         ALLEGRO_COLOR color = al_color_name("white");
-         Hexagon::CodeEditor::Renderer::AdvancedLineRenderer renderer(font, &color, 0, 0, text_to_render.c_str());
+         ALLEGRO_COLOR font_color = al_color_name("white");
+         ALLEGRO_COLOR backfill_color = al_color_name("black");
+         Hexagon::CodeEditor::Renderer::AdvancedLineRenderer renderer(
+            font, &font_color, &backfill_color, 0, 0, text_to_render.c_str()
+         );
          renderer.render();
          //al_draw_text(font, al_color_name("white"), 0, 0, 0, text_to_render.c_str());
       }

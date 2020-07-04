@@ -201,6 +201,7 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
          bool line_is_too_long = line.length() > (120 + 1);
 
          ALLEGRO_COLOR line_font_color = line_is_too_long ? line_too_long_font_color : font_color;
+         ALLEGRO_COLOR backfill_color = build_backfill_color();
 
          // draw the actual line (truncated, possibly) here:
          bool use_advanced_line_renderer = true;
@@ -209,6 +210,7 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
             Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(
                font,
                &line_font_color,
+               &backfill_color,
                0,
                (line_number-first_line_number)*cell_height,
                line);
