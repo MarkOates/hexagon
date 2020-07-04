@@ -20,12 +20,13 @@ namespace Hexagon
          private:
             ALLEGRO_FONT* font;
             ALLEGRO_COLOR* font_color;
+            ALLEGRO_COLOR* backfill_color;
             float x;
             float y;
             std::string line;
 
          public:
-            AdvancedLineRenderer(ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR* font_color=nullptr, float x=0.0f, float y=0.0f, std::string line="");
+            AdvancedLineRenderer(ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR* font_color=nullptr, ALLEGRO_COLOR* backfill_color=nullptr, float x=0.0f, float y=0.0f, std::string line="");
             ~AdvancedLineRenderer();
 
 

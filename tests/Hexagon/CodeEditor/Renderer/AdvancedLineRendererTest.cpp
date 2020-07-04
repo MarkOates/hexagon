@@ -18,6 +18,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_t
    ALLEGRO_DISPLAY *display = al_create_display(800, 460);
    ALLEGRO_FONT *font = al_create_builtin_font();
    ALLEGRO_COLOR font_color = al_color_name("white");
+   ALLEGRO_COLOR backfill_color = al_color_name("black");
 
    EXPECT_NE(nullptr, font);
 
@@ -25,7 +26,9 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_t
    float y = al_get_display_height(display)/2;
    std::string text = "Hello World!";
 
-   Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(font, &font_color, x, y, text);
+   Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(
+      font, &font_color, &backfill_color, x, y, text
+   );
 
    al_clear_to_color(al_color_name("black"));
    advanced_line_renderer.render();
@@ -46,6 +49,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_q
    ALLEGRO_DISPLAY *display = al_create_display(800, 460);
    ALLEGRO_FONT *font = al_create_builtin_font();
    ALLEGRO_COLOR font_color = al_color_name("white");
+   ALLEGRO_COLOR backfill_color = al_color_name("black");
 
    EXPECT_NE(nullptr, font);
 
@@ -53,7 +57,9 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest, render__will_render_q
    float y = al_get_display_height(display)/2;
    std::string text = "Hello World! \"Quoted string\" woo \"A second string\"";
 
-   Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(font, &font_color, x, y, text);
+   Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(
+      font, &font_color, &backfill_color, x, y, text
+   );
 
    al_clear_to_color(al_color_name("black"));
    advanced_line_renderer.render();
@@ -75,6 +81,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
    ALLEGRO_DISPLAY *display = al_create_display(1000, 460);
    ALLEGRO_FONT *font = al_create_builtin_font();
    ALLEGRO_COLOR font_color = al_color_name("white");
+   ALLEGRO_COLOR backfill_color = al_color_name("black");
 
    EXPECT_NE(nullptr, font);
 
@@ -82,7 +89,9 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
    float y = al_get_display_height(display)/2;
    std::string text = "Hello World! \"Quoted string // that has comments\" woo // comment that has \"A second string\"";
 
-   Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(font, &font_color, x, y, text);
+   Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(
+      font, &font_color, &backfill_color, x, y, text
+   );
 
    al_clear_to_color(al_color_name("black"));
    advanced_line_renderer.render();
@@ -104,6 +113,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
    ALLEGRO_DISPLAY *display = al_create_display(1000, 460);
    ALLEGRO_FONT *font = al_create_builtin_font();
    ALLEGRO_COLOR font_color = al_color_name("white");
+   ALLEGRO_COLOR backfill_color = al_color_name("black");
    al_clear_to_color(al_color_name("black"));
 
    EXPECT_NE(nullptr, font);
@@ -122,7 +132,9 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
    int passes = 0;
    for (auto &text : texts)
    {
-      Hexagon::CodeEditor::Renderer::AdvancedLineRenderer(font, &font_color, x, y + 20*passes, text).render();
+      Hexagon::CodeEditor::Renderer::AdvancedLineRenderer(
+         font, &font_color, &backfill_color, x, y + 20*passes, text
+      ).render();
       passes++;
    }
 

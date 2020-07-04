@@ -29,9 +29,10 @@ namespace Renderer
 {
 
 
-AdvancedLineRenderer::AdvancedLineRenderer(ALLEGRO_FONT* font, ALLEGRO_COLOR* font_color, float x, float y, std::string line)
+AdvancedLineRenderer::AdvancedLineRenderer(ALLEGRO_FONT* font, ALLEGRO_COLOR* font_color, ALLEGRO_COLOR* backfill_color, float x, float y, std::string line)
    : font(font)
    , font_color(font_color)
+   , backfill_color(backfill_color)
    , x(x)
    , y(y)
    , line(line)

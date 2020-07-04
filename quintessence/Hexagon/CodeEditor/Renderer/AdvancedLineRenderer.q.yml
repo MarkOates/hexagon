@@ -9,6 +9,10 @@ properties:
     type: ALLEGRO_COLOR*
     init_with: nullptr
     constructor_arg: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR*
+    init_with: nullptr
+    constructor_arg: true
   - name: x
     type: float
     init_with: 0.0f
