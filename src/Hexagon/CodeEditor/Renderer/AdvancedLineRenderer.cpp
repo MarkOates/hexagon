@@ -19,6 +19,8 @@
 #include <tuple>
 #include <string>
 #include <allegro5/allegro_color.h>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -144,21 +146,24 @@ for (auto &token : tokens)
 
 void AdvancedLineRenderer::render()
 {
-if (!font)
-{
-   std::stringstream error_message;
-   error_message << "[Hexagon/Powerbar/Renderer/AdvancedLineRenderer error:] cannot \""
-                 << __FUNCTION__ << "\" with a nullptr font";
-   throw std::runtime_error(error_message.str());
-}
-if (!font_color)
-{
-   std::stringstream error_message;
-   error_message << "[Hexagon/Powerbar/Renderer/AdvancedLineRenderer error:] cannot \""
-                 << __FUNCTION__ << "\" with a nullptr font_color";
-   throw std::runtime_error(error_message.str());
-}
-
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "AdvancedLineRenderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font_color))
+   {
+      std::stringstream error_message;
+      error_message << "AdvancedLineRenderer" << "::" << "render" << ": error: " << "guard \"font_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(backfill_color))
+   {
+      std::stringstream error_message;
+      error_message << "AdvancedLineRenderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 // draw the line straight out
 al_draw_text(font, *font_color, x, y, ALLEGRO_ALIGN_LEFT, line.c_str());
 
