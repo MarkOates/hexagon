@@ -7,7 +7,6 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/color.h>
 #include <allegro_flare/placement3d.h>
-#include <Hexagon/shared_globals.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -18,9 +17,10 @@ namespace OneLineInputBox
 {
 
 
-Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, float width, float height, int cell_width, int cell_height, std::vector<std::string> lines, std::vector<CodeRange> selections, int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode, std::string top_left_text, std::string top_right_text, std::string bottom_left_text, std::string bottom_right_text)
+Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, ALLEGRO_COLOR backfill_color, float width, float height, int cell_width, int cell_height, std::vector<std::string> lines, std::vector<CodeRange> selections, int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode, std::string top_left_text, std::string top_right_text, std::string bottom_left_text, std::string bottom_right_text)
    : font(font)
    , outline_and_text_color(outline_and_text_color)
+   , backfill_color(backfill_color)
    , width(width)
    , height(height)
    , cell_width(cell_width)
@@ -90,7 +90,7 @@ if (!(font))
 //placement3d place = get_place();
 place.start_transform();
 
-ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
+//ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
 //backfill_color = color::color(backfill_color, hexagon_get_backfill_opacity());
 
 float outer_roundness = 12;

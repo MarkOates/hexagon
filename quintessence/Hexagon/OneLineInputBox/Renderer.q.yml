@@ -9,6 +9,10 @@ properties:
     type: ALLEGRO_COLOR
     init_with: '{0.0f,0.0f,0.0f,0.0f}'
     constructor_arg: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: '{0.0f,0.0f,0.0f,0.0f}'
+    constructor_arg: true
   - name: width
     type: float
     init_with: 1.0f
@@ -107,7 +111,7 @@ functions:
       //placement3d place = get_place();
       place.start_transform();
 
-      ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
+      //ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
       //backfill_color = color::color(backfill_color, hexagon_get_backfill_opacity());
 
       float outer_roundness = 12;
@@ -221,7 +225,6 @@ functions:
       - al_draw_filled_rounded_rectangle
       - color::color
       - placement3d
-      - hexagon_get_backfill_color
 
 
 dependencies:
@@ -241,6 +244,3 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
-  - symbol: hexagon_get_backfill_color
-    headers: [ Hexagon/shared_globals.hpp ]
-
