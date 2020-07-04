@@ -13,20 +13,20 @@ TEST(Hexagon_Elements_StageInfoOverlayTest, can_be_created_without_blowing_up)
    Hexagon::Elements::StageInfoOverlay stage_info_overlay;
 }
 
-TEST(Hexagon_Elements_StageInforOverlayTest, text__has_getters_and_setters)
+TEST(Hexagon_Elements_StageInfoOverlayTest, text__has_getters_and_setters)
 {
    Hexagon::Elements::StageInfoOverlay stage_info_overlay;
    ASSERT_EQ("", stage_info_overlay.get_text());
 }
 
-TEST(Hexagon_Elements_StageInforOverlayTest, render__without_a_valid_backfill_color__throws_an_error)
+TEST(Hexagon_Elements_StageInfoOverlayTest, render__without_a_valid_backfill_color__throws_an_error)
 {
    Hexagon::Elements::StageInfoOverlay stage_info_overlay(nullptr, nullptr);
    std::string expected_error_message = "StageInfoOverlay::render: error: guard \"backfill_color\" not met";
    ASSERT_THROW_WITH_MESSAGE(stage_info_overlay.render(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_Elements_StageInforOverlayTest, render__without_a_valid_title_font__throws_an_error)
+TEST(Hexagon_Elements_StageInfoOverlayTest, render__without_a_valid_title_font__throws_an_error)
 {
    ALLEGRO_COLOR backfill_color = al_color_name("black");
    Hexagon::Elements::StageInfoOverlay stage_info_overlay(nullptr, &backfill_color);
@@ -34,7 +34,7 @@ TEST(Hexagon_Elements_StageInforOverlayTest, render__without_a_valid_title_font_
    ASSERT_THROW_WITH_MESSAGE(stage_info_overlay.render(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_Elements_StageInforOverlayTest, render__with_valid_dependencies__does_not_blow_up)
+TEST(Hexagon_Elements_StageInfoOverlayTest, render__with_valid_dependencies__does_not_blow_up)
 {
    al_init();
    ALLEGRO_FONT *font = al_create_builtin_font();
