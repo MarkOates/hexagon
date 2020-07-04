@@ -1,4 +1,6 @@
 properties:
+
+
   - name: initialized
     type: bool
     init_with: false
@@ -38,6 +40,11 @@ properties:
     setter: true
     getter: true
     constructor_arg: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: "{0.0f, 0.0f, 0.0f, 0.0f}"
+    constructor_arg: true
+    setter: true
   - name: show_disabled_screen
     type: bool
     init_with: false
@@ -71,15 +78,23 @@ properties:
     setter: true
     constructor_arg: true
     getter: true
+
+
 functions:
+
+
   - name: get_dummy_font_bin
     type: AllegroFlare::FontBin&
     static: true
     body: |
       return dummy_font_bin;
+
+
   - name: obtain_text_font
     type: ALLEGRO_FONT*
     body: return fonts["Eurostile.ttf -22"];
+
+
   - name: initialize
     type: void
     body: |
@@ -101,6 +116,8 @@ functions:
 
       initialized = true;
       return;
+
+
   - name: reinitialize
     type: void
     body: |
@@ -128,6 +145,8 @@ functions:
 
       initialized = true;
       return;
+
+
   - name: draw_current_focus_name
     type: void
     private: true
@@ -148,6 +167,8 @@ functions:
       - al_draw_rectangle
       - al_get_display_width
       - AllegroFlare::color::mix
+
+
   - name: draw_profile_timer_graph
     type: void
     body: |
@@ -155,6 +176,8 @@ functions:
       return;
     body_dependency_symbols:
       - global::profiler
+
+
   - name: draw
     type: void
     body: |
@@ -212,7 +235,7 @@ functions:
          powerbar.set_files_are_modified(files_are_modified);
          powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);
 
-         Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());
+         Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font(), backfill_color);
          powerbar_renderer.render();
       }
 
@@ -225,7 +248,11 @@ functions:
       - al_draw_text
       - Hexagon::Powerbar::Powerbar
       - Hexagon::Powerbar::Renderer
+
+
 dependencies:
+
+
   - symbol: Hexagon::Powerbar::Powerbar
     headers: [ Hexagon/Powerbar/Powerbar.hpp ]
   - symbol: Hexagon::Powerbar::Renderer

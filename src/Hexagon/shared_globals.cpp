@@ -67,7 +67,7 @@ bool hexagon_is_light_mode()
 }
 
 
-ALLEGRO_COLOR __hexagon_get_backfill_color()
+ALLEGRO_COLOR hexagon_get_backfill_color()
 {
    if (hexagon_is_light_mode())
    {

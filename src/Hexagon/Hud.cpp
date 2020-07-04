@@ -20,7 +20,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -29,6 +29,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , display(display)
    , fonts(fonts)
    , title_text(title_text)
+   , backfill_color(backfill_color)
    , show_disabled_screen(show_disabled_screen)
    , draw_powerbar(draw_powerbar)
    , files_are_modified(files_are_modified)
@@ -65,6 +66,12 @@ void Hud::set_notifications2(std::vector<std::string> notifications2)
 void Hud::set_title_text(std::string title_text)
 {
    this->title_text = title_text;
+}
+
+
+void Hud::set_backfill_color(ALLEGRO_COLOR backfill_color)
+{
+   this->backfill_color = backfill_color;
 }
 
 
@@ -289,7 +296,7 @@ if (draw_powerbar)
    powerbar.set_files_are_modified(files_are_modified);
    powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);
 
-   Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font());
+   Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font(), backfill_color);
    powerbar_renderer.render();
 }
 

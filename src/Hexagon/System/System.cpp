@@ -137,6 +137,7 @@ bool System::initialize()
    std::string font_bin_path = config.get_font_bin_path();
    font_bin.set_full_path(font_bin_path);
 
+   hud.set_backfill_color(config.get_backfill_color());
    hud.initialize();
 
    camera.stepback.z = get_default_camera_stepback();
