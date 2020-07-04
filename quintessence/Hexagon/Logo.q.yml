@@ -3,28 +3,28 @@ properties:
 
   - name: x
     type: float
-    constructor_arg: true
     init_with: 0
+    constructor_arg: true
   - name: y
     type: float
-    constructor_arg: true
     init_with: 0
+    constructor_arg: true
   - name: radius
     type: float
-    constructor_arg: true
     init_with: 0
-  - name: font
-    type: ALLEGRO_FONT*  
     constructor_arg: true
+  - name: font
+    type: ALLEGRO_FONT*
     init_with: nullptr
+    constructor_arg: true
   - name: color
     type: ALLEGRO_COLOR
-    constructor_arg: true
     init_with: "default_color()"
+    constructor_arg: true
   - name: thickness
     type: float
-    constructor_arg: true
     init_with: 0
+    constructor_arg: true
 
 
 functions:
@@ -33,7 +33,6 @@ functions:
   - name: default_color
     type: ALLEGRO_COLOR
     static: true
-    body_symbol_dependencies: [ 'ALLEGRO_COLOR' ]
     body: |
       ALLEGRO_COLOR c;
       c.r = 188/255.0f;
@@ -41,6 +40,8 @@ functions:
       c.b = 72/255.0f;
       c.a = 1.0;
       return c;
+    body_symbol_dependencies:
+      - ALLEGRO_COLOR
 
 
   - name: render
