@@ -133,8 +133,12 @@ ALLEGRO_COLOR Renderer::build_frame_color()
 
 ALLEGRO_COLOR Renderer::build_backfill_color()
 {
+   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+   bool content_is_modified = code_editor->get_content_is_modified();
+   float blend_strength = content_is_modified ? 0.2f : 0.1f;
+
    ALLEGRO_COLOR result_color = backfill_color;
-   result_color = AllegroFlare::color::mix(result_color, build_frame_color(), 0.2);
+   result_color = AllegroFlare::color::mix(result_color, build_frame_color(), blend_strength);
    result_color = AllegroFlare::color::color(result_color, backfill_opacity);
    return result_color;
 }
