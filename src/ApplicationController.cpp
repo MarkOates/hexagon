@@ -145,6 +145,7 @@ return;
 void ApplicationController::run_program()
 {
 initialize();
+draw_hexagon_logo_and_wait_for_keypress();
 run_event_loop();
 shutdown();
 

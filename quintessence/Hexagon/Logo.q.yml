@@ -1,4 +1,6 @@
 properties:
+
+
   - name: x
     type: float
     constructor_arg: true
@@ -23,7 +25,11 @@ properties:
     type: float
     constructor_arg: true
     init_with: 0
+
+
 functions:
+
+
   - name: default_color
     type: ALLEGRO_COLOR
     static: true
@@ -35,6 +41,8 @@ functions:
       c.b = 72/255.0f;
       c.a = 1.0;
       return c;
+
+
   - name: render
     type: void
     body: |
@@ -57,7 +65,11 @@ functions:
     body_dependency_symbols:
       - sqrt
       - path2d
+
+
 dependencies:
+
+
   - symbol: ALLEGRO_COLOR
     headers: [ 'allegro5/allegro_color.h' ]
   - symbol: ALLEGRO_FONT*
