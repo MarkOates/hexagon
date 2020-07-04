@@ -116,6 +116,8 @@ else
    bool draw_line_numbers = true;
    ALLEGRO_FONT *code_font = font;
    ALLEGRO_FONT *overlay_font = font;
+   ALLEGRO_COLOR backfill_color = al_color_name("black");
+   float backfill_opacity = 0.8f;
 
    ::CodeEditor::Renderer renderer(
       draw_line_numbers,
@@ -124,7 +126,9 @@ else
       code_font,
       display,
       cell_width,
-      cell_height
+      cell_height,
+      backfill_color,
+      backfill_opacity
    );
    renderer.render();
 

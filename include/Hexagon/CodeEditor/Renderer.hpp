@@ -24,6 +24,8 @@ namespace CodeEditor
       int cell_width;
       int cell_height;
       ALLEGRO_FONT *font;
+      ALLEGRO_COLOR backfill_color;
+      float backfill_opacity;
 
       void render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color);
       void render_raw();
@@ -38,7 +40,10 @@ namespace CodeEditor
          ALLEGRO_FONT *font,
          ALLEGRO_DISPLAY *display,
          int cell_width,
-         int cell_height);
+         int cell_height,
+         ALLEGRO_COLOR backfill_color,
+         float backfill_opacity
+         );
       ~Renderer();
 
       virtual void render() override;

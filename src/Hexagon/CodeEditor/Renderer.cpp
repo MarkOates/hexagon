@@ -30,7 +30,9 @@ Renderer::Renderer(
    ALLEGRO_FONT *font,
    ALLEGRO_DISPLAY *display,
    int cell_width,
-   int cell_height
+   int cell_height,
+   ALLEGRO_COLOR backfill_color,
+   float backfill_opacity
 )
    : Hexagon::RendererInterface()
    , draw_line_numbers(draw_line_numbers)
@@ -43,6 +45,8 @@ Renderer::Renderer(
    , display(display)
    , cell_width(cell_width)
    , cell_height(cell_height)
+   , backfill_color(backfill_color)
+   , backfill_opacity(backfill_opacity)
 {}
 
 
