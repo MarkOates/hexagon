@@ -374,7 +374,6 @@ void Renderer::render_raw()
    ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
 
    bool content_is_modified = code_editor->get_content_is_modified();
-   placement3d &place = stage->get_place();
    float padding = cell_width;
    float half_padding = padding * 0.5;
 
@@ -433,7 +432,6 @@ void Renderer::render_raw()
 
 void Renderer::render_cursor_position_info()
 {
-   placement3d &place = stage->get_place();
    ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
 
    std::stringstream cursor_position_info;
@@ -507,8 +505,6 @@ void Renderer::render_cursor_position_info()
 
 void Renderer::render()
 {
-   placement3d &place = stage->get_place(); // should be get_place_ref() but does not exist at time of refactor
-
    global::profiler.start("render");
    place.start_transform();
    render_raw();
