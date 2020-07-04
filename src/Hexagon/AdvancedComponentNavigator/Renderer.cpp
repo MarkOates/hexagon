@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
-#include <Hexagon/shared_globals.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 #include <cmath>
@@ -25,12 +26,15 @@ namespace AdvancedComponentNavigator
 std::string Renderer::SOME_CONSTANT = "SOME_CONSTANT";
 
 
-Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, bool is_focused, ALLEGRO_FONT* font, int cell_width, int cell_height)
+Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, bool is_focused, ALLEGRO_FONT* font, int cell_width, int cell_height, ALLEGRO_COLOR* base_backfill_color, float backfill_opacity, ALLEGRO_COLOR* base_text_color)
    : stage(stage)
    , is_focused(is_focused)
    , font(font)
    , cell_width(cell_width)
    , cell_height(cell_height)
+   , base_backfill_color(base_backfill_color)
+   , backfill_opacity(backfill_opacity)
+   , base_text_color(base_text_color)
    , frame_color(al_color_html("39c3c5"))
 {
 }
@@ -41,13 +45,28 @@ Renderer::~Renderer()
 }
 
 
+ALLEGRO_COLOR* Renderer::get_base_backfill_color()
+{
+   return base_backfill_color;
+}
+
+
+ALLEGRO_COLOR* Renderer::get_base_text_color()
+{
+   return base_text_color;
+}
+
+
 ALLEGRO_COLOR Renderer::build_backfill_color()
 {
-//ALLEGRO_COLOR base_backfill_color = al_color_name("black");
-ALLEGRO_COLOR base_backfill_color = hexagon_get_backfill_color();
-
-ALLEGRO_COLOR backfill_color = color::color(base_backfill_color, 0.8);
-return backfill_color;
+if (!(base_backfill_color))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "build_backfill_color" << ": error: " << "guard \"base_backfill_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+ALLEGRO_COLOR result_backfill_color = color::color(*base_backfill_color, 0.8);
+return result_backfill_color;
 
 }
 
@@ -147,6 +166,12 @@ if (!(font))
    {
       std::stringstream error_message;
       error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(base_text_color))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
       throw std::runtime_error(error_message.str());
    }
 Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
@@ -282,8 +307,8 @@ for (auto &node : component.get_nodes())
 {
   std::string line_content = node.get_name();
   //ALLEGRO_COLOR base_text_color = al_color_name("skyblue");
-  ALLEGRO_COLOR global_base_text_color = hexagon_get_base_text_color();
-  ALLEGRO_COLOR base_text_color = color::mix(global_base_text_color, color::cyan, 0.3);
+  ALLEGRO_COLOR global_base_text_color = *get_base_text_color();
+  ALLEGRO_COLOR local_base_text_color = color::mix(global_base_text_color, color::cyan, 0.3);
   ALLEGRO_COLOR col; //
    //color::mix(base_text_color, al_color_name("chartreuce"), 0.4);
 
@@ -291,12 +316,12 @@ for (auto &node : component.get_nodes())
 
   if (node.has_quintessence())
   {
-     col = color::mix(base_text_color, color::aqua, 0.4);
+     col = color::mix(local_base_text_color, color::aqua, 0.4);
      //line_content += " *";
   }
   else if (node.has_only_source_and_header())
   {
-     col = color::mix(base_text_color, color::aqua, 0.4);
+     col = color::mix(local_base_text_color, color::aqua, 0.4);
      col = color::mix(col, color::green, 0.15);
   }
   else if (!node.exists())
@@ -305,7 +330,7 @@ for (auto &node : component.get_nodes())
   }
   else
   {
-     col = color::mix(base_text_color, color::aqua, 0.5);
+     col = color::mix(local_base_text_color, color::aqua, 0.5);
      //col = color::color(col, 0.4);
   }
 

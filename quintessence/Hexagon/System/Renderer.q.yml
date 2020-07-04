@@ -21,21 +21,8 @@ functions:
 
   - name: render
     type: bool
-    guards: [ backfill_color ]
+    guards: [ system, display, backfill_color ]
     body: |
-      if (!system)
-      {
-         std::stringstream error_message;
-         error_message << "[System::Renderer error:] cannot render() with a nullptr system";
-         throw std::runtime_error(error_message.str());
-      }
-      if (!display)
-      {
-         std::stringstream error_message;
-         error_message << "[System::Renderer error:] cannot render() with a nullptr display";
-         throw std::runtime_error(error_message.str());
-      }
-
       al_clear_to_color(*get_backfill_color());
       //al_clear_to_color(al_color_html("5b5c60"));
 

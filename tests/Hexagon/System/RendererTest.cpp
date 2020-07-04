@@ -16,7 +16,7 @@ TEST(Hexagon_System_RendererTest, can_be_created_without_blowing_up)
 TEST(Hexagon_System_RendererTest, render__without_a_system__throws_an_error)
 {
    Hexagon::System::Renderer renderer;
-   std::string expected_error_message = "[System::Renderer error:] cannot render() with a nullptr system";
+   std::string expected_error_message = "Renderer::render: error: guard \"system\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
 
@@ -24,8 +24,27 @@ TEST(Hexagon_System_RendererTest, render__without_a_display__throws_an_error)
 {
    ::System system;
    Hexagon::System::Renderer renderer(&system);
-   std::string expected_error_message = "[System::Renderer error:] cannot render() with a nullptr display";
+   std::string expected_error_message = "Renderer::render: error: guard \"display\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+}
+
+TEST(Hexagon_System_RendererTest, render__without_a_backfill_color__throws_an_error)
+{
+   al_init();
+
+   ALLEGRO_DISPLAY *display = al_create_display(800, 600);
+   ::System system;
+   Hexagon::System::Renderer renderer(&system, display);
+
+   std::string expected_error_message = "Renderer::render: error: guard \"backfill_color\" not met";
+   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+
+   al_uninstall_system();
+}
+
+TEST(DISABLED_Hexagon_System_RendererTest, render__with_the_expected_dependencies__does_not_blow_up)
+{
+   // todo
 }
 
 TEST(Hexagon_System_RendererTest, render__renders_the_scene)

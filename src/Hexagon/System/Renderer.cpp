@@ -36,25 +36,24 @@ ALLEGRO_COLOR* Renderer::get_backfill_color()
 
 bool Renderer::render()
 {
+if (!(system))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"system\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(display))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"display\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 if (!(backfill_color))
    {
       std::stringstream error_message;
       error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
       throw std::runtime_error(error_message.str());
    }
-if (!system)
-{
-   std::stringstream error_message;
-   error_message << "[System::Renderer error:] cannot render() with a nullptr system";
-   throw std::runtime_error(error_message.str());
-}
-if (!display)
-{
-   std::stringstream error_message;
-   error_message << "[System::Renderer error:] cannot render() with a nullptr display";
-   throw std::runtime_error(error_message.str());
-}
-
 al_clear_to_color(*get_backfill_color());
 //al_clear_to_color(al_color_html("5b5c60"));
 

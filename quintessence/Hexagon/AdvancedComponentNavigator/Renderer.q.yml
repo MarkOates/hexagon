@@ -1,4 +1,6 @@
 properties:
+
+
   - name: stage
     type: Hexagon::AdvancedComponentNavigator::Stage*
     init_with: nullptr
@@ -19,6 +21,20 @@ properties:
     type: int
     init_with: 20
     constructor_arg: true
+  - name: base_backfill_color
+    type: ALLEGRO_COLOR*
+    init_with: nullptr
+    constructor_arg: true
+    getter: true
+  - name: backfill_opacity
+    type: float
+    init_with: 1.0f
+    constructor_arg: true
+  - name: base_text_color
+    type: ALLEGRO_COLOR*
+    init_with: nullptr
+    constructor_arg: true
+    getter: true
   - name: frame_color
     type: ALLEGRO_COLOR
     init_with: 'al_color_html("39c3c5")'
@@ -37,14 +53,10 @@ functions:
   - name: build_backfill_color
     private: true
     type: ALLEGRO_COLOR
+    guards: [ base_backfill_color ]
     body: |
-      //ALLEGRO_COLOR base_backfill_color = al_color_name("black");
-      ALLEGRO_COLOR base_backfill_color = hexagon_get_backfill_color();
-
-      ALLEGRO_COLOR backfill_color = color::color(base_backfill_color, 0.8);
-      return backfill_color;
-    body_dependency_symbols:
-      - hexagon_get_backfill_color
+      ALLEGRO_COLOR result_backfill_color = color::color(*base_backfill_color, 0.8);
+      return result_backfill_color;
 
 
 
@@ -126,7 +138,7 @@ functions:
 
   - name: render_raw
     type: void
-    guards: [ stage, font ]
+    guards: [ stage, font, base_text_color ]
     body: |
       Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
       Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
@@ -261,8 +273,8 @@ functions:
       {
         std::string line_content = node.get_name();
         //ALLEGRO_COLOR base_text_color = al_color_name("skyblue");
-        ALLEGRO_COLOR global_base_text_color = hexagon_get_base_text_color();
-        ALLEGRO_COLOR base_text_color = color::mix(global_base_text_color, color::cyan, 0.3);
+        ALLEGRO_COLOR global_base_text_color = *get_base_text_color();
+        ALLEGRO_COLOR local_base_text_color = color::mix(global_base_text_color, color::cyan, 0.3);
         ALLEGRO_COLOR col; //
          //color::mix(base_text_color, al_color_name("chartreuce"), 0.4);
 
@@ -270,12 +282,12 @@ functions:
 
         if (node.has_quintessence())
         {
-           col = color::mix(base_text_color, color::aqua, 0.4);
+           col = color::mix(local_base_text_color, color::aqua, 0.4);
            //line_content += " *";
         }
         else if (node.has_only_source_and_header())
         {
-           col = color::mix(base_text_color, color::aqua, 0.4);
+           col = color::mix(local_base_text_color, color::aqua, 0.4);
            col = color::mix(col, color::green, 0.15);
         }
         else if (!node.exists())
@@ -284,7 +296,7 @@ functions:
         }
         else
         {
-           col = color::mix(base_text_color, color::aqua, 0.5);
+           col = color::mix(local_base_text_color, color::aqua, 0.5);
            //col = color::color(col, 0.4);
         }
 
@@ -355,6 +367,8 @@ dependencies:
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: ALLEGRO_COLOR*
+    headers: [ 'allegro5/allegro_color.h' ]
   - symbol: ALLEGRO_DISPLAY*
     headers: [ 'allegro5/allegro.h' ]
   - symbol: ALLEGRO_FONT*
@@ -373,6 +387,3 @@ dependencies:
     headers: [ Hexagon/Shapes/Hexagon/Stroke.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
-  - symbol: hexagon_get_backfill_color
-    headers: [ Hexagon/shared_globals.hpp ]
-
