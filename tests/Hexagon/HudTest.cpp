@@ -25,11 +25,17 @@ TEST(Hexagon_HudTest, draw_powerbar__has_a_getter_and_is_initialized_with_the_ex
    ASSERT_EQ(true, hud.get_draw_powerbar());
 }
 
-TEST(Hexagon_HudTest, reinitialize__before_calling_initialize__raises_an_error)
+TEST(Hexagon_HudTest, reinitialize__before_initialization__raises_an_error)
 {
    Hexagon::Hud hud;
-   std::string expected_message = "[Hud::reinitialize()] Cannot reinitialize until initialize has been called.";
-
+   std::string expected_message = "Hud::reinitialize: error: guard \"initialized\" not met";
    ASSERT_THROW_WITH_MESSAGE(hud.reinitialize(), std::runtime_error, expected_message);
+}
+
+TEST(Hexagon_HudTest, draw__before_initialization__raises_an_error)
+{
+   Hexagon::Hud hud;
+   std::string expected_message = "Hud::draw: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(hud.draw(), std::runtime_error, expected_message);
 }
 

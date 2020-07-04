@@ -93,8 +93,8 @@ functions:
   - name: obtain_text_font
     type: ALLEGRO_FONT*
     body: |
-      //return fonts["Eurostile.ttf -28"];
-      return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+      return fonts["Eurostile.ttf -32"];
+      //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
   - name: initialize
@@ -122,20 +122,8 @@ functions:
 
   - name: reinitialize
     type: void
+    guards: [ initialized, display, screen_sub_bitmap ]
     body: |
-      if (!initialized)
-      {
-         throw std::runtime_error("[Hud::reinitialize()] Cannot reinitialize until initialize has been called.");
-      }
-      if (!display)
-      {
-         throw std::runtime_error("[Hud::reinitialize()] Cannot reinitialize Hud with a nullptr display");
-      }
-      if (!screen_sub_bitmap)
-      {
-         throw std::runtime_error("[Hud::reinitialize()] Should not have gotten here; Expecting screen_sub_bitmap");
-      }
-
       ALLEGRO_BITMAP *backbuffer = al_get_backbuffer(display);
       al_destroy_bitmap(screen_sub_bitmap);
       ALLEGRO_BITMAP *hud_screen_sub_bitmap = al_create_sub_bitmap(backbuffer,
@@ -182,9 +170,8 @@ functions:
 
   - name: draw
     type: void
+    guards: [ initialized ]
     body: |
-      if (!initialized) throw std::runtime_error("[Hud::draw()] Cannot call until Hud has been initialized");
-
       int y_cursor = 0;
       int frame_width = al_get_bitmap_width(screen_sub_bitmap);
       int frame_height = al_get_bitmap_height(screen_sub_bitmap);

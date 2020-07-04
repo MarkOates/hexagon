@@ -1,6 +1,8 @@
 
 
 #include <Hexagon/Hud.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro.h>
 #include <AllegroFlare/Color.hpp>
@@ -11,6 +13,8 @@
 #include <allegro5/allegro_font.h>
 #include <Hexagon/Powerbar/Powerbar.hpp>
 #include <Hexagon/Powerbar/Renderer.hpp>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -161,8 +165,8 @@ return dummy_font_bin;
 
 ALLEGRO_FONT* Hud::obtain_text_font()
 {
-//return fonts["Eurostile.ttf -28"];
-return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+return fonts["Eurostile.ttf -32"];
+//return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 }
 
@@ -191,19 +195,24 @@ return;
 
 void Hud::reinitialize()
 {
-if (!initialized)
-{
-   throw std::runtime_error("[Hud::reinitialize()] Cannot reinitialize until initialize has been called.");
-}
-if (!display)
-{
-   throw std::runtime_error("[Hud::reinitialize()] Cannot reinitialize Hud with a nullptr display");
-}
-if (!screen_sub_bitmap)
-{
-   throw std::runtime_error("[Hud::reinitialize()] Should not have gotten here; Expecting screen_sub_bitmap");
-}
-
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Hud" << "::" << "reinitialize" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(display))
+   {
+      std::stringstream error_message;
+      error_message << "Hud" << "::" << "reinitialize" << ": error: " << "guard \"display\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(screen_sub_bitmap))
+   {
+      std::stringstream error_message;
+      error_message << "Hud" << "::" << "reinitialize" << ": error: " << "guard \"screen_sub_bitmap\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 ALLEGRO_BITMAP *backbuffer = al_get_backbuffer(display);
 al_destroy_bitmap(screen_sub_bitmap);
 ALLEGRO_BITMAP *hud_screen_sub_bitmap = al_create_sub_bitmap(backbuffer,
@@ -244,8 +253,12 @@ return;
 
 void Hud::draw()
 {
-if (!initialized) throw std::runtime_error("[Hud::draw()] Cannot call until Hud has been initialized");
-
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Hud" << "::" << "draw" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 int y_cursor = 0;
 int frame_width = al_get_bitmap_width(screen_sub_bitmap);
 int frame_height = al_get_bitmap_height(screen_sub_bitmap);
