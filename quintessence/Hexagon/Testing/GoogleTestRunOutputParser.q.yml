@@ -10,6 +10,16 @@ properties:
 functions:
 
 
+  - name: extract_test_class_name_and_test_description
+    parameters:
+      - name: line
+        type: std::string
+        default_argument: '""'
+    type: std::pair<std::string, std::string>
+    body: |
+      return std::pair<std::string, std::string>{ "TestClass_Name", "foobar" };
+
+
   - name: parse
     type: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
     body: |
@@ -25,8 +35,9 @@ functions:
          std::vector<std::pair<int, int>> matcher_results = matcher.get_match_info();
          if (!matcher_results.empty())
          {
-            std::string test_class_name = "TestClass_Name";
-            std::string test_description = "test_description_is_clear_and_between_underscores";
+            std::pair<std::string, std::string> tokens = extract_test_class_name_and_test_description(line);
+            std::string test_class_name = tokens.first;
+            std::string test_description = tokens.second;
             Hexagon::Testing::GoogleTestRunTestResult google_test_run_test_result(
                test_class_name,
                test_description,
@@ -63,6 +74,8 @@ dependencies:
 
   - symbol: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
     headers: [ vector, Hexagon/Testing/GoogleTestRunTestResult.hpp ]
+  - symbol: std::pair<std::string, std::string>
+    headers: [ utility, string ]
   - symbol: RegexMatcher
     headers: [ Hexagon/RegexMatcher.hpp ]
   - symbol: Blast::StringSplitter

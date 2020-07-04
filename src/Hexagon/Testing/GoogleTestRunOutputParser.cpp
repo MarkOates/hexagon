@@ -22,6 +22,12 @@ GoogleTestRunOutputParser::~GoogleTestRunOutputParser()
 }
 
 
+std::pair<std::string, std::string> GoogleTestRunOutputParser::extract_test_class_name_and_test_description(std::string line)
+{
+return std::pair<std::string, std::string>{ "TestClass_Name", "foobar" };
+
+}
+
 std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser::parse()
 {
 std::vector<Hexagon::Testing::GoogleTestRunTestResult> result;
@@ -36,8 +42,9 @@ for (auto &line : lines)
    std::vector<std::pair<int, int>> matcher_results = matcher.get_match_info();
    if (!matcher_results.empty())
    {
-      std::string test_class_name = "TestClass_Name";
-      std::string test_description = "test_description_is_clear_and_between_underscores";
+      std::pair<std::string, std::string> tokens = extract_test_class_name_and_test_description(line);
+      std::string test_class_name = tokens.first;
+      std::string test_description = tokens.second;
       Hexagon::Testing::GoogleTestRunTestResult google_test_run_test_result(
          test_class_name,
          test_description,

@@ -3,6 +3,7 @@
 
 #include <Hexagon/Testing/GoogleTestRunTestResult.hpp>
 #include <string>
+#include <utility>
 #include <vector>
 
 
@@ -20,6 +21,7 @@ namespace Hexagon
          ~GoogleTestRunOutputParser();
 
 
+      std::pair<std::string, std::string> extract_test_class_name_and_test_description(std::string line="");
       std::vector<Hexagon::Testing::GoogleTestRunTestResult> parse();
       };
    }
