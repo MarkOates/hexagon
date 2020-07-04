@@ -57,7 +57,10 @@ return result;
 
 std::string ComponentTestRunner::run()
 {
-Blast::ShellCommandExecutorWithCallback executor(generate_make_run_test_command());
+Blast::ShellCommandExecutorWithCallback executor(
+   generate_make_run_test_command(),
+   Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+);
 return executor.execute();
 
 }

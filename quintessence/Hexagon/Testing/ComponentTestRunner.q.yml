@@ -2,13 +2,11 @@ properties:
 
 
   - name: project_root
-    init_with: "\"/Users/markoates/Repos/hexagon/\""
+    init_with: '"/Users/markoates/Repos/hexagon/"'
     constructor_arg: true
     getter: true
-
-
   - name: component_name
-    init_with: "\"Hexagon/UnnamedComponent\""
+    init_with: '"Hexagon/UnnamedComponent"'
     constructor_arg: true
     getter: true
 
@@ -42,7 +40,10 @@ functions:
   - name: run
     type: std::string
     body: |
-      Blast::ShellCommandExecutorWithCallback executor(generate_make_run_test_command());
+      Blast::ShellCommandExecutorWithCallback executor(
+         generate_make_run_test_command(),
+         Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+      );
       return executor.execute();
     body_dependency_symbols:
       - Blast::ShellCommandExecutorWithCallback
