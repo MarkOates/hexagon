@@ -5,7 +5,8 @@
 #include <Hexagon/shared_globals.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro.h>
-#include <Hexagon/shared_globals.hpp>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -14,9 +15,10 @@ namespace System
 {
 
 
-Renderer::Renderer(::System* system, ALLEGRO_DISPLAY* display)
+Renderer::Renderer(::System* system, ALLEGRO_DISPLAY* display, ALLEGRO_COLOR* backfill_color)
    : system(system)
    , display(display)
+   , backfill_color(backfill_color)
 {
 }
 
@@ -26,8 +28,20 @@ Renderer::~Renderer()
 }
 
 
+ALLEGRO_COLOR* Renderer::get_backfill_color()
+{
+   return backfill_color;
+}
+
+
 bool Renderer::render()
 {
+if (!(backfill_color))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 if (!system)
 {
    std::stringstream error_message;
@@ -41,7 +55,7 @@ if (!display)
    throw std::runtime_error(error_message.str());
 }
 
-al_clear_to_color(hexagon_get_backfill_color());
+al_clear_to_color(*get_backfill_color());
 //al_clear_to_color(al_color_html("5b5c60"));
 
 system->camera.setup_camera_perspective(al_get_backbuffer(display));

@@ -219,9 +219,10 @@ while(!shutdown_program)
       //system.hud.set_notifications(notifications);
 
       //al_clear_to_color(al_color_name("black"));
-      al_clear_to_color(config.get_backfill_color());
+      ALLEGRO_COLOR backfill_color = config.get_backfill_color();
+      al_clear_to_color(backfill_color);
 
-      Hexagon::System::Renderer renderer(system, display);
+      Hexagon::System::Renderer renderer(system, display, &backfill_color);
       renderer.render();
 
       al_flip_display();

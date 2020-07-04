@@ -1,4 +1,6 @@
 properties:
+
+
   - name: system
     type: ::System*
     init_with: nullptr
@@ -7,9 +9,19 @@ properties:
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
     constructor_arg: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR*
+    init_with: nullptr
+    constructor_arg: true
+    getter: true
+
+
 functions:
+
+
   - name: render
     type: bool
+    guards: [ backfill_color ]
     body: |
       if (!system)
       {
@@ -24,7 +36,7 @@ functions:
          throw std::runtime_error(error_message.str());
       }
 
-      al_clear_to_color(hexagon_get_backfill_color());
+      al_clear_to_color(*get_backfill_color());
       //al_clear_to_color(al_color_html("5b5c60"));
 
       system->camera.setup_camera_perspective(al_get_backbuffer(display));
@@ -58,11 +70,14 @@ functions:
       - NOTIFICATION_FILE_IS_UNSAVED
       - al_color_name
       - al_clear_to_color
-      - hexagon_get_backfill_color
+
+
 dependencies:
+
+
+  - symbol: ALLEGRO_COLOR*
+    headers: [ allegro5/allegro_color.h ]
   - symbol: global::profiler
-    headers: [ Hexagon/shared_globals.hpp ]
-  - symbol: hexagon_get_backfill_color
     headers: [ Hexagon/shared_globals.hpp ]
   - symbol: NOTIFICATION_FILE_IS_UNSAVED
     headers: [ Hexagon/shared_globals.hpp ]
