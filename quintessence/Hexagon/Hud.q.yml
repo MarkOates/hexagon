@@ -92,7 +92,9 @@ functions:
 
   - name: obtain_text_font
     type: ALLEGRO_FONT*
-    body: return fonts["Eurostile.ttf -22"];
+    body: |
+      //return fonts["Eurostile.ttf -28"];
+      return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
   - name: initialize
@@ -159,7 +161,7 @@ functions:
       al_draw_text(obtain_text_font(),
                    color,
                    display_center_x,
-                   y_position,
+                   y_position + 20,
                    ALLEGRO_ALIGN_CENTER,
                    title_text.c_str());
       return;

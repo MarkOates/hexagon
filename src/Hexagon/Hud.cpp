@@ -161,7 +161,9 @@ return dummy_font_bin;
 
 ALLEGRO_FONT* Hud::obtain_text_font()
 {
-return fonts["Eurostile.ttf -22"];
+//return fonts["Eurostile.ttf -28"];
+return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
 }
 
 void Hud::initialize()
@@ -226,7 +228,7 @@ int y_position = 20;
 al_draw_text(obtain_text_font(),
              color,
              display_center_x,
-             y_position,
+             y_position + 20,
              ALLEGRO_ALIGN_CENTER,
              title_text.c_str());
 return;
