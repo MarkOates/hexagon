@@ -10,7 +10,9 @@ namespace Testing
 {
 
 
-GoogleTestRunOutputParser::GoogleTestRunOutputParser()
+GoogleTestRunOutputParser::GoogleTestRunOutputParser(std::string google_test_run_output, std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results)
+   : google_test_run_output(google_test_run_output)
+   , test_results(test_results)
 {
 }
 
@@ -20,9 +22,10 @@ GoogleTestRunOutputParser::~GoogleTestRunOutputParser()
 }
 
 
-std::string GoogleTestRunOutputParser::run()
+bool GoogleTestRunOutputParser::parse()
 {
-return "Hello World!";
+return true;
+
 }
 } // namespace Testing
 } // namespace Hexagon

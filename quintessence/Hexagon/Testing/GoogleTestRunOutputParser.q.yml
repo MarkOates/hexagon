@@ -1,4 +1,27 @@
-functions:
-  - name: run
+properties:
+
+
+  - name: google_test_run_output
     type: std::string
-    body: return "Hello World!";
+    init_with: '""'
+    constructor_arg: true
+  - name: test_results
+    type: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
+    init_with: '{}'
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: parse
+    type: bool
+    body: |
+      return true;
+
+
+dependencies:
+
+
+  - symbol: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
+    headers: [ vector, Hexagon/Testing/GoogleTestRunTestResult.hpp ]

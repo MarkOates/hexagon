@@ -1,7 +1,9 @@
 #pragma once
 
 
+#include <Hexagon/Testing/GoogleTestRunTestResult.hpp>
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -11,13 +13,15 @@ namespace Hexagon
       class GoogleTestRunOutputParser
       {
       private:
+         std::string google_test_run_output;
+         std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results;
 
       public:
-         GoogleTestRunOutputParser();
+         GoogleTestRunOutputParser(std::string google_test_run_output="", std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results={});
          ~GoogleTestRunOutputParser();
 
 
-      std::string run();
+      bool parse();
       };
    }
 }

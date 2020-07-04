@@ -1,0 +1,23 @@
+properties:
+
+
+  - name: test_class_name
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
+  - name: test_description
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
+  - name: result
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
+  - name: duration_msec
+    type: int
+    init_with: 0
+    constructor_arg: true
+  - name: failure_message
+    type: std::string
+    init_with: '""'
+    constructor_arg: true

@@ -3,7 +3,7 @@
 
 #include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
 
-const std::string test_run_output = R"ASDF(
+const std::string test_run_output = R"TEST_FIXTURE(
 make[1]: Nothing to be done for `/Users/markoates/Repos/hexagon/bin/tests/Hexagon/Elements/StageInfoOverlayTest'.
 [==========] Running 5 tests from 2 test suites.
 [----------] Global test environment set-up.
@@ -27,7 +27,7 @@ make[1]: Nothing to be done for `/Users/markoates/Repos/hexagon/bin/tests/Hexago
 [==========] 5 tests from 2 test suites ran. (131 ms total)
 [  PASSED  ] 5 tests.
 FINAL_EXIT_CODE:0
-)ASDF";
+)TEST_FIXTURE";
 
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, can_be_created_without_blowing_up)
@@ -35,9 +35,8 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, can_be_created_without_blowi
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser;
 }
 
-TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, run__returns_the_expected_response)
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_true_if_the_parsing_was_successful)
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, google_test_run_output_parser.run());
+   EXPECT_EQ(true, google_test_run_output_parser.parse());
 }
