@@ -63,7 +63,7 @@ Renderer::~Renderer() {}
 
 void Renderer::draw_selections(int cell_width, int cell_height)
 {
-   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+   if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
 
    for (auto &selection : code_editor->selections)
    {
@@ -103,7 +103,7 @@ ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
 
 ALLEGRO_COLOR Renderer::build_frame_color()
 {
-   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+   if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
 
    ALLEGRO_COLOR frame_color;
 
@@ -137,7 +137,8 @@ ALLEGRO_COLOR Renderer::build_frame_color()
 
 ALLEGRO_COLOR Renderer::build_backfill_color()
 {
-   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+   if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
+
    bool content_is_modified = code_editor->get_content_is_modified();
    float blend_strength = content_is_modified ? 0.2f : 0.1f;
 
@@ -151,7 +152,7 @@ ALLEGRO_COLOR Renderer::build_backfill_color()
 
 void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 {
-   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+   if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
 
    // render cursor
 
@@ -373,7 +374,7 @@ void Renderer::render_raw()
 {
    if (!stage) throw std::runtime_error("[Renderer] stage cannot be a nullptr");
 
-   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+   if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
 
    bool content_is_modified = code_editor->get_content_is_modified();
    float padding = cell_width;
@@ -434,7 +435,7 @@ void Renderer::render_raw()
 
 void Renderer::render_cursor_position_info()
 {
-   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+   if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
 
    std::stringstream cursor_position_info;
    int line_length_character_limit = place.size.x / cell_width;
