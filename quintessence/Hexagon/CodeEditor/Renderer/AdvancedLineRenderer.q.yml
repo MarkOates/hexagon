@@ -1,4 +1,6 @@
 properties:
+
+
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
@@ -17,7 +19,11 @@ properties:
     constructor_arg: true
   - name: line
     constructor_arg: true
+
+
 functions:
+
+
   - name: build_quintessence_yaml_name_element_tokens
     type: std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>
     private: true
@@ -34,6 +40,8 @@ functions:
     body_dependency_symbols:
       - RegexMatcher
       - Hexagon::RegexStore
+
+
   - name: build_quoted_string_tokens
     type: std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>
     private: true
@@ -62,6 +70,8 @@ functions:
     body_dependency_symbols:
       - RegexMatcher
       - Hexagon::RegexStore
+
+
   - name: build_comment_tokens
     type: std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>
     private: true
@@ -108,6 +118,8 @@ functions:
     body_dependency_symbols:
       - RegexMatcher
       - hexagon_get_backfill_color
+
+
   - name: render_tokens
     type: void
     private: true
@@ -130,6 +142,8 @@ functions:
     body_dependency_symbols:
       - al_draw_text
       - std::get
+
+
   - name: render
     type: void
     body: |
@@ -173,7 +187,11 @@ functions:
       - al_color_name
       - ALLEGRO_ALIGN_LEFT
       - std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>
+
+
 dependencies:
+
+
   - symbol: Hexagon::RegexStore
     headers: [ Hexagon/RegexStore.hpp ]
   - symbol: al_get_text_width
