@@ -145,7 +145,7 @@ return;
 void ApplicationController::run_program()
 {
 initialize();
-draw_hexagon_logo_and_wait_for_keypress();
+draw_hexagon_logo_and_wait_for_keypress(al_get_display_width(display), al_get_display_height(display));
 run_event_loop();
 shutdown();
 
@@ -294,7 +294,7 @@ return;
 
 void ApplicationController::draw_hexagon_logo_and_wait_for_keypress(int display_width, int display_height)
 {
-float logo_radius = 60;
+float logo_radius = 100;
 
 std::string logo_font_filename = "Expansiva_bold.otf";
 ALLEGRO_FONT *expansiva_font = al_load_font(resource_path({"data", "fonts"}, logo_font_filename).c_str(), 23, 0);
@@ -302,7 +302,7 @@ if (!expansiva_font) throw std::runtime_error("could not load 'Expansiva bold.tt
 
 Hexagon::Logo logo(
   display_width/2,
-  display_height/2 - logo_radius * 1.4,
+  display_height/2,
   logo_radius,
   expansiva_font,
   al_color_html("#bc2d48"),
