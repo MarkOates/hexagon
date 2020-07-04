@@ -105,7 +105,13 @@ return local_events;
 
 void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
 {
-Hexagon::AdvancedComponentNavigator::Renderer renderer(this, is_focused, font, cell_width, cell_height);
+ALLEGRO_COLOR base_backfill_color = al_color_name("black");
+float backfill_opacity = 0.8f;
+ALLEGRO_COLOR base_text_color = al_color_name("white");
+
+Hexagon::AdvancedComponentNavigator::Renderer renderer(
+   this, is_focused, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
+);
 renderer.render();
 return;
 
