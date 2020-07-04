@@ -14,14 +14,13 @@ namespace Hexagon
       {
       private:
          std::string google_test_run_output;
-         std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results;
 
       public:
-         GoogleTestRunOutputParser(std::string google_test_run_output="", std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results={});
+         GoogleTestRunOutputParser(std::string google_test_run_output="");
          ~GoogleTestRunOutputParser();
 
 
-      bool parse();
+      std::vector<Hexagon::Testing::GoogleTestRunTestResult> parse();
       };
    }
 }

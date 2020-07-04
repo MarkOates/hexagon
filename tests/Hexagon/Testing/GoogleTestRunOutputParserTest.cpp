@@ -35,15 +35,17 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, can_be_created_without_blowi
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser;
 }
 
-TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_true_if_the_parsing_was_successful)
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_named_test_result)
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
-   EXPECT_EQ(true, google_test_run_output_parser.parse());
-}
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results = google_test_run_output_parser.parse();
 
-TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_false_parsing_was_not_successful)
-{
-   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser("just some unparsable garbage string");
-   EXPECT_EQ(false, google_test_run_output_parser.parse());
-}
+   ASSERT_EQ(false, results.empty());
 
+   Hexagon::Testing::GoogleTestRunTestResult first_test_result = results[0];
+
+   std::string expected_result_class_name = "TestClass_Name";
+   std::string actual_result_class_name = first_test_result.get_test_class_name();
+
+   EXPECT_EQ(expected_result_class_name, actual_result_class_name);
+}

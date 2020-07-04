@@ -22,6 +22,11 @@ namespace Hexagon
          ~GoogleTestRunTestResult();
 
 
+         std::string get_test_class_name();
+         std::string get_test_description();
+         std::string get_result();
+         int get_duration_msec();
+         std::string get_failure_message();
       };
    }
 }
