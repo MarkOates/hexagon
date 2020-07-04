@@ -185,7 +185,7 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
 
    al_flip_display();
 
-   sleep(2);
+   //sleep(1);
 
    al_destroy_font(font);
    al_destroy_display(display);
