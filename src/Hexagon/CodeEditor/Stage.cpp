@@ -144,8 +144,16 @@ else
       std::string file_category_label
          = Hexagon::CodeEditor::FileCategoryDecorator(code_editor.get_file_category()).label();
       std::string text_to_render = file_category_label;
+      ALLEGRO_COLOR backfill_color = al_color_name("black");
+      float backfill_opacity = 0.8f;
+
       place.start_transform();
-      Hexagon::Elements::StageInfoOverlay stage_info_overlay(overlay_font, &place);
+      Hexagon::Elements::StageInfoOverlay stage_info_overlay(
+         overlay_font,
+         &backfill_color,
+         backfill_opacity,
+         &place
+      );
       //if (!is_focused) text_to_render = this.get_filename();
       stage_info_overlay.set_text(text_to_render);
       stage_info_overlay.render();

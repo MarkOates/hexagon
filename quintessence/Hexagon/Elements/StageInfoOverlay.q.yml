@@ -6,6 +6,16 @@ properties:
     init_with: nullptr
     constructor_arg: true
     getter: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR*
+    init_with: nullptr
+    constructor_arg: true
+    getter: true
+  - name: backfill_opacity
+    type: float
+    init_with: 1.0f
+    constructor_arg: true
+    getter: true
   - name: place
     type: placement3d*
     init_with: nullptr
@@ -23,6 +33,7 @@ functions:
 
   - name: render
     type: void
+    guards: [ backfill_color ]
     body: |
       if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
       if (!place) throw std::runtime_error("[StageInfoOverlay::render() error]: place can not be a nullptr");
@@ -44,8 +55,8 @@ functions:
       float y1 = place->size.y/2-line_height/2;
       float x2 = x1 + text_width + horizontal_padding * 2;
       float y2 = y1 + line_height * 2;
-      ALLEGRO_COLOR base_backfill_color = hexagon_get_backfill_color();
-      ALLEGRO_COLOR backfill_color = color::color(base_backfill_color, hexagon_get_backfill_opacity());
+      ALLEGRO_COLOR base_backfill_color = *get_backfill_color();
+      ALLEGRO_COLOR backfill_color = color::color(base_backfill_color, get_backfill_opacity());
       al_draw_filled_rectangle(x1, y1, x2, y2, backfill_color);
       al_draw_rectangle(x1, y1, x2, y2, primary_color, 3.0f);
       //text_box_frame.set_outline_color(primary_color);
@@ -58,16 +69,15 @@ functions:
       - al_draw_filled_rectangle
       - al_color_name
       - al_draw_text
-      - hexagon_get_backfill_color
 
 
 dependencies:
 
 
+  - symbol: ALLEGRO_COLOR*
+    headers: [ allegro5/allegro_color.h ]
   - symbol: color::mix
     headers: [ 'allegro_flare/color.h' ]
-  - symbol: hexagon_get_backfill_color
-    headers: [ Hexagon/shared_globals.hpp ]
   - symbol: Hexagon::Elements::Frame
     headers: [ Hexagon/Elements/Frame.hpp ]
   - symbol: al_draw_filled_rectangle
