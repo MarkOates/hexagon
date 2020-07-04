@@ -60,10 +60,12 @@ if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
    float height = get_place().size.y;
    //std::string top_left_text = "ESC: Close";
    std::string bottom_right_text = "search";
+   ALLEGRO_COLOR backfill_color = al_color_name("black");
 
    Hexagon::OneLineInputBox::Renderer renderer(
       font,
       outline_and_text_color,
+      backfill_color,
       width,
       height,
       cell_width,
@@ -89,10 +91,12 @@ else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
    float height = get_place().size.y;
    //std::string top_left_text = "ESC: Close";
    std::string bottom_right_text = "commit and push";
+   ALLEGRO_COLOR backfill_color = al_color_name("black");
 
    Hexagon::OneLineInputBox::Renderer renderer(
       font,
       outline_and_text_color,
+      backfill_color,
       width,
       height,
       cell_width,
