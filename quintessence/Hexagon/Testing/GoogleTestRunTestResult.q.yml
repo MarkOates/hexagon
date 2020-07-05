@@ -6,23 +6,28 @@ properties:
     init_with: '""'
     constructor_arg: true
     getter: true
+    setter: true
   - name: test_description
     type: std::string
     init_with: '""'
     constructor_arg: true
     getter: true
+    setter: true
   - name: result
     type: std::string
     init_with: '""'
     constructor_arg: true
     getter: true
+    setter: true
   - name: duration_msec
     type: int
     init_with: 0
     constructor_arg: true
     getter: true
+    setter: true
   - name: failure_message
     type: std::string
     init_with: '""'
     constructor_arg: true
     getter: true
+    setter: true

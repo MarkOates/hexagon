@@ -9,7 +9,7 @@ make[1]: Nothing to be done for `/Users/markoates/Repos/hexagon/bin/tests/Hexago
 [----------] Global test environment set-up.
 [----------] 1 test from Hexagon_Elements_StageInfoOverlayTest
 [ RUN      ] Hexagon_Elements_StageInfoOverlayTest.can_be_created_without_blowing_up
-[       OK ] Hexagon_Elements_StageInfoOverlayTest.can_be_created_without_blowing_up (0 ms)
+[       OK ] Hexagon_Elements_StageInfoOverlayTest.can_be_created_without_blowing_up (123 ms)
 [----------] 1 test from Hexagon_Elements_StageInfoOverlayTest (0 ms total)
 
 [----------] 4 tests from Hexagon_Elements_StageInforOverlayTest
@@ -70,5 +70,25 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
    std::string actual_result_test_description = first_test_result.get_test_description();
 
    EXPECT_EQ(expected_result_test_description, actual_result_test_description);
+}
+
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_set_duration_and_result)
+{
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results = google_test_run_output_parser.parse();
+
+   ASSERT_EQ(false, results.empty());
+
+   Hexagon::Testing::GoogleTestRunTestResult &first_test_result = results[0];
+
+   std::string expected_result = "ok";
+   std::string actual_result = first_test_result.get_result();
+
+   EXPECT_EQ(expected_result, actual_result);
+
+   int expected_duration_msec = 123;
+   int actual_duration_msec = first_test_result.get_duration_msec();
+
+   EXPECT_EQ(expected_duration_msec, actual_duration_msec);
 }
 
