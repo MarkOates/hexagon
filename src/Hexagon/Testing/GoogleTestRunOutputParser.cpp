@@ -15,6 +15,7 @@ namespace Testing
 GoogleTestRunOutputParser::GoogleTestRunOutputParser(std::string google_test_run_output)
    : google_test_run_output(google_test_run_output)
    , parsed_test_results({})
+   , parse_error_messages({})
 {
 }
 
@@ -30,10 +31,18 @@ std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser
 }
 
 
+std::vector<std::string> GoogleTestRunOutputParser::get_parse_error_messages()
+{
+   return parse_error_messages;
+}
+
+
 bool GoogleTestRunOutputParser::parse()
 {
-//std::vector<Hexagon::Testing::GoogleTestRunTestResult> result;
 parsed_test_results.empty();
+parse_error_messages.empty();
+bool parse_was_successful = false;
+
 Blast::StringSplitter splitter(google_test_run_output, '\n');
 std::vector<std::string> lines = splitter.split();
 
@@ -41,7 +50,22 @@ Hexagon::Testing::GoogleTestRunTestResult *current_test_case = nullptr;
 
 for (auto &line : lines)
 {
-   // check for "test run starts" line
+   // check for the "test suite is starting" line
+   {
+      std::string test_suite_starts_regex =
+         "\\[==========\\] Running [0-9]+ tests from [0-9]+ test suite(s)?.";
+         //an example:
+         //"[==========] Running 5 tests from 2 test suites."
+      RegexMatcher matcher(line, test_suite_starts_regex);
+      std::vector<std::pair<int, int>> matcher_results = matcher.get_match_info();
+      if (!matcher_results.empty())
+      {
+         if (parse_was_successful) parse_error_messages.push_back("test suite start line detected multiple times");
+         parse_was_successful = true;
+      }
+   }
+
+   // check for "test case run starts" line
    {
       std::string test_run_starts_regex =
          "\\[ RUN      \\] [A-Za-z0-9_]+\\.[A-Za-z0-9_]+";
@@ -119,7 +143,7 @@ for (auto &line : lines)
 //std::string failing_case = "just some unparsable garbage string";
 //if (google_test_run_output == failing_case) return {};
 
-return true;
+return parse_was_successful;
 
 }
 

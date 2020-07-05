@@ -3,7 +3,7 @@
 
 #include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
 
-const std::string BASIC_TEST_RUN_OUTPUT = R"TEST_FIXTURE(
+const std::string BASIC_PASSING_TEST_RUN_OUTPUT = R"TEST_FIXTURE(
 make[1]: Nothing to be done for `/Users/markoates/Repos/hexagon/bin/tests/Hexagon/Elements/StageInfoOverlayTest'.
 [==========] Running 5 tests from 2 test suites.
 [----------] Global test environment set-up.
@@ -64,9 +64,27 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, can_be_created_without_blowi
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser;
 }
 
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_true_if_the_parsing_was_successful)
+{
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_PASSING_TEST_RUN_OUTPUT);
+   ASSERT_EQ(true, google_test_run_output_parser.parse());
+}
+
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_false_if_the_parsing_was_not_successful)
+{
+   std::string unparseable_content = "Some content that has nothing to do with the expected parseable stuff.";
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(unparseable_content);
+   ASSERT_EQ(false, google_test_run_output_parser.parse());
+}
+
+TEST(DISABLED_Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_unsuccessful__will_store_error_messages)
+{
+   // todo
+}
+
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_expected_number_of_test_results)
 {
-   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_PASSING_TEST_RUN_OUTPUT);
    ASSERT_EQ(true, google_test_run_output_parser.parse());
    std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
       google_test_run_output_parser.get_parsed_test_results();
@@ -75,7 +93,7 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_expected_
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_named_test_class)
 {
-   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_PASSING_TEST_RUN_OUTPUT);
    ASSERT_EQ(true, google_test_run_output_parser.parse());
    std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
       google_test_run_output_parser.get_parsed_test_results();
@@ -92,7 +110,7 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_named_test_description)
 {
-   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_PASSING_TEST_RUN_OUTPUT);
    ASSERT_EQ(true, google_test_run_output_parser.parse());
    std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
       google_test_run_output_parser.get_parsed_test_results();
@@ -109,7 +127,7 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_set_duration_and_result)
 {
-   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_PASSING_TEST_RUN_OUTPUT);
    ASSERT_EQ(true, google_test_run_output_parser.parse());
    std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
       google_test_run_output_parser.get_parsed_test_results();
