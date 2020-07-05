@@ -35,6 +35,13 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, can_be_created_without_blowi
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser;
 }
 
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_expected_number_of_test_results)
+{
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results = google_test_run_output_parser.parse();
+   ASSERT_EQ(5, results.size());
+}
+
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_named_test_class)
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
@@ -44,7 +51,7 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
 
    Hexagon::Testing::GoogleTestRunTestResult first_test_result = results[0];
 
-   std::string expected_result_class_name = "Hexagon_Elements_StageInforOverlayTest";
+   std::string expected_result_class_name = "Hexagon_Elements_StageInfoOverlayTest";
    std::string actual_result_class_name = first_test_result.get_test_class_name();
 
    EXPECT_EQ(expected_result_class_name, actual_result_class_name);
@@ -59,7 +66,7 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
 
    Hexagon::Testing::GoogleTestRunTestResult first_test_result = results[0];
 
-   std::string expected_result_test_description = "text__has_getters_and_setters";
+   std::string expected_result_test_description = "can_be_created_without_blowing_up";
    std::string actual_result_test_description = first_test_result.get_test_description();
 
    EXPECT_EQ(expected_result_test_description, actual_result_test_description);

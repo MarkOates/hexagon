@@ -38,7 +38,9 @@ functions:
       for (auto &line : lines)
       {
          std::string test_run_starts_regex =
-            "\\[ RUN      \\] Hexagon_Elements_StageInforOverlayTest\\.text__has_getters_and_setters";
+            "\\[ RUN      \\] [A-Za-z0-9_]+\\.[A-Za-z0-9_]+";
+            //an example:
+            //"[ RUN      ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters";
          RegexMatcher matcher(line, test_run_starts_regex);
          std::vector<std::pair<int, int>> matcher_results = matcher.get_match_info();
          if (!matcher_results.empty())
