@@ -1,4 +1,6 @@
 functions:
+
+
   - name: execute_command
     type: std::string
     parameters:
@@ -14,11 +16,15 @@ functions:
       return shell_command_executor.execute();
     body_dependency_symbols:
       - Blast::ShellCommandExecutorWithCallback
+
+
   - name: run
     type: void
     body: |
       run_with_rerun();
       return;
+
+
   - name: run_with_rerun
     type: void
     body: |
@@ -45,6 +51,8 @@ functions:
       return;
     body_dependency_symbols:
       - Hexagon::System::Config
+
+
   - name: run_with_block_after_command
     type: void
     body: |
@@ -88,7 +96,11 @@ functions:
       - std::vector<std::string>
       - std::stringstream
       - std::cout
+
+
 dependencies:
+
+
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
   - symbol: Hexagon::System::Config
