@@ -30,6 +30,11 @@ execute_command(full_rebuild_command);
 
 }
 
+void Daemus::run_simple_echo_command()
+{
+execute_command("printf \"hello\"");
+}
+
 std::string Daemus::execute_command(std::string command)
 {
 Blast::ShellCommandExecutorWithCallback shell_command_executor(
