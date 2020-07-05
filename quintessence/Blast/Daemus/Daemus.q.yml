@@ -1,3 +1,12 @@
+properties:
+
+
+  - name: quintessence_build_executable
+    type: std::string
+    init_with: '"/Users/markoates/Repos/blast/bin/programs/quintessence_from_yaml"'
+    constructor_arg: true
+
+
 functions:
 
 
@@ -14,6 +23,20 @@ functions:
 
   - name: run_simple_sleep_command
     body: execute_command("echo \"sleeping\"; sleep 0.5; echo \"done\"");
+
+
+  - name: run_build_quintessence_file
+    parameters:
+      - name: quintessence_filename
+        type: std::string
+        default_argument: '""'
+    guards:
+      - Blast::FileExistenceChecker(quintessence_build_executable).exists()
+      - Blast::FileExistenceChecker(quintessence_filename).exists()
+    body: |
+      return;
+    body_dependency_symbols:
+      - Blast::FileExistenceChecker
 
 
   - name: execute_command
@@ -49,3 +72,5 @@ dependencies:
     headers: [ unistd.h ]
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+  - symbol: Blast::FileExistenceChecker
+    headers: [ Blast/FileExistenceChecker.hpp ]
