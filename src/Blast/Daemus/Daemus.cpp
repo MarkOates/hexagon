@@ -23,6 +23,13 @@ Daemus::~Daemus()
 }
 
 
+void Daemus::run_full_rebuild()
+{
+std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
+execute_command(full_rebuild_command);
+
+}
+
 std::string Daemus::execute_command(std::string command)
 {
 Blast::ShellCommandExecutorWithCallback shell_command_executor(
@@ -38,13 +45,6 @@ void Daemus::output_pid()
 {
 std::cout << "pid: " << getpid() << std::endl;
 return;
-
-}
-
-void Daemus::run_full_rebuild()
-{
-std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
-execute_command(full_rebuild_command);
 
 }
 } // namespace Daemus

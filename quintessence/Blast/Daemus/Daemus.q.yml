@@ -1,10 +1,19 @@
 functions:
+
+
+  - name: run_full_rebuild
+    type: void
+    body: |
+      std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
+      execute_command(full_rebuild_command);
+
+
   - name: execute_command
     type: std::string
     parameters:
       - name: command
         type: std::string
-        default_argument: "\"\""
+        default_argument: '""'
     body: |
       Blast::ShellCommandExecutorWithCallback shell_command_executor(
          command,
@@ -14,6 +23,8 @@ functions:
       return shell_command_executor.execute();
     body_dependency_symbols:
       - Blast::ShellCommandExecutorWithCallback
+
+
   - name: output_pid
     type: void
     body: |
@@ -23,11 +34,8 @@ functions:
       - std::cout
       - std::endl
       - getpid
-  - name: run_full_rebuild
-    type: void
-    body: |
-      std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
-      execute_command(full_rebuild_command);
+
+
 dependencies:
   - symbol: getpid
     headers: [ unistd.h ]
