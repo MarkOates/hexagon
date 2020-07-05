@@ -62,7 +62,8 @@ if (!Blast::FileExistenceChecker(quintessence_build_executable).exists())
                  << "is not present";
    throw std::runtime_error(error_message.str());
 }
-if (!Blast::FileExistenceChecker(quintessence_filename).exists())
+std::string full_path_to_quintessence_file = project_directory + "/" + quintessence_filename;
+if (!Blast::FileExistenceChecker(full_path_to_quintessence_file).exists())
 {
    std::stringstream error_message;
    error_message << "Daemus::run_build_quintessence_file: error: "
@@ -70,8 +71,15 @@ if (!Blast::FileExistenceChecker(quintessence_filename).exists())
                  << "does not exist";
    throw std::runtime_error(error_message.str());
 }
-//std::string command = quintessence_build_executable + " -f " + quintessence_filename;
-//execute_command(command);
+
+std::stringstream command;
+command << "("
+           << "cd " << project_directory
+           << " && "
+           << quintessence_build_executable << " -f " << quintessence_filename
+        << ")";
+execute_command(command.str());
+
 return;
 
 }

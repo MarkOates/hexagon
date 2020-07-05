@@ -54,7 +54,7 @@ TEST(Blast_Daemus_DaemusTest,
 TEST(Blast_Daemus_DaemusTest, run_build_quintessence_file__when_the_required_executable_is_not_present__raises_an_error)
 {
    Blast::Daemus::Daemus daemus("/An/executable/that/does_not_exist");
-   std::string project_directory = "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject/quintessence/";
+   std::string project_directory = "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject";
    std::string expected_error_message = "Daemus::run_build_quintessence_file: error: the expected executable " \
                                         "\"/An/executable/that/does_not_exist\" is not present";
    ASSERT_THROW_WITH_MESSAGE(
@@ -67,7 +67,7 @@ TEST(Blast_Daemus_DaemusTest, run_build_quintessence_file__when_the_required_exe
 TEST(Blast_Daemus_DaemusTest, run_build_quintessence_file__when_the_quintessence_file_is_not_present__raises_an_error)
 {
    std::string quintessence_file_that_does_not_exist = "/Users/markoates/Foo/DoesNotExist.q.yml";
-   std::string project_directory = "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject/quintessence/";
+   std::string project_directory = "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject";
    Blast::Daemus::Daemus daemus;
    std::string expected_error_message = "Daemus::run_build_quintessence_file: error: the quintessence file " \
                                         "\"/Users/markoates/Foo/DoesNotExist.q.yml\" does not exist";
@@ -76,5 +76,17 @@ TEST(Blast_Daemus_DaemusTest, run_build_quintessence_file__when_the_quintessence
       std::runtime_error,
       expected_error_message
    );
+}
+
+TEST(Blast_Daemus_DaemusTest, run_build_quintessence_file__with_the_valid_required_dependencies__will_not_blow_up)
+{
+   std::string project_directory = "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject";
+   std::string quintessence_file = "quintessence/FixtureObjectThing.q.yml";
+
+   Blast::Daemus::Daemus daemus;
+
+   daemus.run_build_quintessence_file(project_directory, quintessence_file);
+
+   SUCCEED();
 }
 
