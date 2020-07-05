@@ -3,9 +3,9 @@
 
 #include <Blast/Daemus/Daemus.hpp>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
+#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
    try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(err.what(), std::string( raised_exception_message )); } \
+   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 TEST(Blast_Daemus_DaemusTest, can_be_created_without_blowing_up)
