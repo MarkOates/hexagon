@@ -14,42 +14,6 @@ properties:
 functions:
 
 
-  - name: extract_test_class_name_and_test_description
-    parameters:
-      - name: line
-        type: std::string
-        default_argument: '""'
-    type: std::pair<std::string, std::string>
-    body: |
-      int initial_bracket_length = 13;
-      // example string: "[ RUN      ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters";
-      std::string::size_type dot_pos = line.find('.');
-      if (dot_pos == std::string::npos) return {};
-
-      std::string test_class_name = line.substr(initial_bracket_length, dot_pos - initial_bracket_length);
-      std::string test_description = line.substr(dot_pos + 1);
-
-      return std::pair<std::string, std::string>{ test_class_name, test_description };
-
-
-  - name: extract_ms
-    parameters:
-      - name: line
-        type: std::string
-        default_argument: '""'
-    type: int
-    body: |
-      int result = 0;
-      // example string: "[       OK ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters (312 ms)";
-      std::string::size_type left_paren_pos = line.find(" (");
-      if (left_paren_pos == std::string::npos) return 0;
-      std::string::size_type right_paren_pos = line.find(" ms)");
-      if (right_paren_pos == std::string::npos) return 0;
-
-      std::string extracted_ms_as_string = line.substr(left_paren_pos + 2, right_paren_pos - left_paren_pos - 2);
-      return atoi(extracted_ms_as_string.c_str());
-
-
   - name: parse
     type: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
     body: |
@@ -145,6 +109,42 @@ functions:
       - RegexMatcher
       - Blast::StringSplitter
       - debugging
+
+
+  - name: extract_test_class_name_and_test_description
+    parameters:
+      - name: line
+        type: std::string
+        default_argument: '""'
+    type: std::pair<std::string, std::string>
+    body: |
+      int initial_bracket_length = 13;
+      // example string: "[ RUN      ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters";
+      std::string::size_type dot_pos = line.find('.');
+      if (dot_pos == std::string::npos) return {};
+
+      std::string test_class_name = line.substr(initial_bracket_length, dot_pos - initial_bracket_length);
+      std::string test_description = line.substr(dot_pos + 1);
+
+      return std::pair<std::string, std::string>{ test_class_name, test_description };
+
+
+  - name: extract_ms
+    parameters:
+      - name: line
+        type: std::string
+        default_argument: '""'
+    type: int
+    body: |
+      int result = 0;
+      // example string: "[       OK ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters (312 ms)";
+      std::string::size_type left_paren_pos = line.find(" (");
+      if (left_paren_pos == std::string::npos) return 0;
+      std::string::size_type right_paren_pos = line.find(" ms)");
+      if (right_paren_pos == std::string::npos) return 0;
+
+      std::string extracted_ms_as_string = line.substr(left_paren_pos + 2, right_paren_pos - left_paren_pos - 2);
+      return atoi(extracted_ms_as_string.c_str());
 
 
 dependencies:

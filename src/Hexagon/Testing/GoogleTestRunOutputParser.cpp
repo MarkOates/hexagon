@@ -30,34 +30,6 @@ std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser
 }
 
 
-std::pair<std::string, std::string> GoogleTestRunOutputParser::extract_test_class_name_and_test_description(std::string line)
-{
-int initial_bracket_length = 13;
-// example string: "[ RUN      ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters";
-std::string::size_type dot_pos = line.find('.');
-if (dot_pos == std::string::npos) return {};
-
-std::string test_class_name = line.substr(initial_bracket_length, dot_pos - initial_bracket_length);
-std::string test_description = line.substr(dot_pos + 1);
-
-return std::pair<std::string, std::string>{ test_class_name, test_description };
-
-}
-
-int GoogleTestRunOutputParser::extract_ms(std::string line)
-{
-int result = 0;
-// example string: "[       OK ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters (312 ms)";
-std::string::size_type left_paren_pos = line.find(" (");
-if (left_paren_pos == std::string::npos) return 0;
-std::string::size_type right_paren_pos = line.find(" ms)");
-if (right_paren_pos == std::string::npos) return 0;
-
-std::string extracted_ms_as_string = line.substr(left_paren_pos + 2, right_paren_pos - left_paren_pos - 2);
-return atoi(extracted_ms_as_string.c_str());
-
-}
-
 std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser::parse()
 {
 //std::vector<Hexagon::Testing::GoogleTestRunTestResult> result;
@@ -148,6 +120,34 @@ for (auto &line : lines)
 //if (google_test_run_output == failing_case) return {};
 
 return parsed_test_results;
+
+}
+
+std::pair<std::string, std::string> GoogleTestRunOutputParser::extract_test_class_name_and_test_description(std::string line)
+{
+int initial_bracket_length = 13;
+// example string: "[ RUN      ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters";
+std::string::size_type dot_pos = line.find('.');
+if (dot_pos == std::string::npos) return {};
+
+std::string test_class_name = line.substr(initial_bracket_length, dot_pos - initial_bracket_length);
+std::string test_description = line.substr(dot_pos + 1);
+
+return std::pair<std::string, std::string>{ test_class_name, test_description };
+
+}
+
+int GoogleTestRunOutputParser::extract_ms(std::string line)
+{
+int result = 0;
+// example string: "[       OK ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters (312 ms)";
+std::string::size_type left_paren_pos = line.find(" (");
+if (left_paren_pos == std::string::npos) return 0;
+std::string::size_type right_paren_pos = line.find(" ms)");
+if (right_paren_pos == std::string::npos) return 0;
+
+std::string extracted_ms_as_string = line.substr(left_paren_pos + 2, right_paren_pos - left_paren_pos - 2);
+return atoi(extracted_ms_as_string.c_str());
 
 }
 } // namespace Testing
