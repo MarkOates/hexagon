@@ -41,7 +41,8 @@ bool GoogleTestRunOutputParser::parse()
 {
 parsed_test_results.empty();
 parse_error_messages.empty();
-bool parse_was_successful = false;
+bool test_suite_is_starting_line_was_found = false;
+bool test_suite_is_starting_line_was_detected_multiple_times = false;
 
 Blast::StringSplitter splitter(google_test_run_output, '\n');
 std::vector<std::string> lines = splitter.split();
@@ -53,15 +54,18 @@ for (auto &line : lines)
    // check for the "test suite is starting" line
    {
       std::string test_suite_starts_regex =
-         "\\[==========\\] Running [0-9]+ tests from [0-9]+ test suite(s)?.";
+         "\\[==========\\] Running [0-9]+ tests? from [0-9]+ test suites?.";
          //an example:
          //"[==========] Running 5 tests from 2 test suites."
       RegexMatcher matcher(line, test_suite_starts_regex);
       std::vector<std::pair<int, int>> matcher_results = matcher.get_match_info();
       if (!matcher_results.empty())
       {
-         if (parse_was_successful) parse_error_messages.push_back("test suite start line detected multiple times");
-         parse_was_successful = true;
+         if (test_suite_is_starting_line_was_found)
+         {
+            test_suite_is_starting_line_was_detected_multiple_times = true;
+         }
+         test_suite_is_starting_line_was_found = true;
       }
    }
 
@@ -143,7 +147,16 @@ for (auto &line : lines)
 //std::string failing_case = "just some unparsable garbage string";
 //if (google_test_run_output == failing_case) return {};
 
-return parse_was_successful;
+if (!test_suite_is_starting_line_was_found)
+{
+   parse_error_messages.push_back("expected test suite start line is missing");
+}
+if (test_suite_is_starting_line_was_detected_multiple_times)
+{
+   parse_error_messages.push_back("test suite start line detected multiple times");
+}
+
+return parse_error_messages.empty();
 
 }
 

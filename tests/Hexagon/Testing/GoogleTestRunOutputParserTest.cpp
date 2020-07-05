@@ -1,7 +1,10 @@
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
+
+using ::testing::Contains;
 
 const std::string BASIC_PASSING_TEST_RUN_OUTPUT = R"TEST_FIXTURE(
 make[1]: Nothing to be done for `/Users/markoates/Repos/hexagon/bin/tests/Hexagon/Elements/StageInfoOverlayTest'.
@@ -70,6 +73,13 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_true_if_the_p
    ASSERT_EQ(true, google_test_run_output_parser.parse());
 }
 
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_parsing_was_successful__will_have_no_error_messages)
+{
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_PASSING_TEST_RUN_OUTPUT);
+   ASSERT_EQ(true, google_test_run_output_parser.parse());
+   ASSERT_EQ(true, google_test_run_output_parser.get_parse_error_messages().empty());
+}
+
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_false_if_the_parsing_was_not_successful)
 {
    std::string unparseable_content = "Some content that has nothing to do with the expected parseable stuff.";
@@ -77,9 +87,38 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_false_if_the_
    ASSERT_EQ(false, google_test_run_output_parser.parse());
 }
 
-TEST(DISABLED_Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_unsuccessful__will_store_error_messages)
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_unsuccessful__will_store_error_messages)
 {
-   // todo
+   std::string unparseable_content = "Some content that has nothing to do with the expected parseable stuff.";
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(unparseable_content);
+
+   ASSERT_EQ(false, google_test_run_output_parser.parse());
+   std::vector<std::string> error_messages = google_test_run_output_parser.get_parse_error_messages();
+   ASSERT_EQ(false, error_messages.empty());
+
+   std::string expected_error_message = "expected test suite start line is missing";
+   ASSERT_THAT(error_messages, Contains(expected_error_message));
+}
+
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest,
+   parse__when_parsing_nested_test_run_outputs__produces_the_expected_error)
+{
+   std::string test_run_output_with_nested_test_outputs = std::string("")
+      + "[==========] Running 5 tests from 2 test suites." + "\n"
+      + "[----------] Global test environment set-up." + "\n"
+      + "[==========] Running 1 test from 1 test suite." + "\n"
+      + "[----------] Global test environment set-up." + "\n";
+
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(
+      test_run_output_with_nested_test_outputs
+   );
+
+   ASSERT_EQ(false, google_test_run_output_parser.parse());
+   std::vector<std::string> error_messages = google_test_run_output_parser.get_parse_error_messages();
+   ASSERT_EQ(false, error_messages.empty());
+
+   std::string expected_error_message = "test suite start line detected multiple times";
+   ASSERT_THAT(error_messages, Contains(expected_error_message));
 }
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_expected_number_of_test_results)
