@@ -73,18 +73,18 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_true_if_the_p
    ASSERT_EQ(true, google_test_run_output_parser.parse());
 }
 
-TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_parsing_was_successful__will_have_no_error_messages)
-{
-   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_PASSING_TEST_RUN_OUTPUT);
-   ASSERT_EQ(true, google_test_run_output_parser.parse());
-   ASSERT_EQ(true, google_test_run_output_parser.get_parse_error_messages().empty());
-}
-
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_false_if_the_parsing_was_not_successful)
 {
    std::string unparseable_content = "Some content that has nothing to do with the expected parseable stuff.";
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(unparseable_content);
    ASSERT_EQ(false, google_test_run_output_parser.parse());
+}
+
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_parsing_was_successful__will_have_no_error_messages)
+{
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_PASSING_TEST_RUN_OUTPUT);
+   ASSERT_EQ(true, google_test_run_output_parser.parse());
+   ASSERT_EQ(true, google_test_run_output_parser.get_parse_error_messages().empty());
 }
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_unsuccessful__will_store_error_messages)
