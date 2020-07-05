@@ -105,6 +105,25 @@ for (auto &line : lines)
          current_test_case->set_duration_msec(duration_msec_to_set);
       }
    }
+
+   // check for "test fails" line
+   {
+      std::string test_run_passes_regex =
+         "\\[  FAILED  \\] [A-Za-z0-9_]+\\.[A-Za-z0-9_]+ \\([0-9]+ ms\\)";
+         //an example:
+         //"[ RUN      ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters";
+      RegexMatcher matcher(line, test_run_passes_regex);
+      std::vector<std::pair<int, int>> matcher_results = matcher.get_match_info();
+      if (!matcher_results.empty())
+      {
+         if (!current_test_case) throw std::runtime_error("asdfasdfasdfasdf \"current_test_case\" expected");
+         std::string result_to_set = "failed";
+         int duration_msec_to_set = extract_ms(line);
+
+         current_test_case->set_result(result_to_set);
+         current_test_case->set_duration_msec(duration_msec_to_set);
+      }
+   }
 }
 
 //patterns:

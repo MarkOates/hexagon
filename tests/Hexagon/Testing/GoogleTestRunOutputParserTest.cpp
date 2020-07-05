@@ -30,6 +30,35 @@ FINAL_EXIT_CODE:0
 )TEST_FIXTURE";
 
 
+const std::string FAILING_TEST_RUN_OUTPUT = R"TEST_FIXTURE(
+[==========] Running 5 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 5 tests from Hexagon_Testing_GoogleTestRunOutputParserTest
+[ RUN      ] Hexagon_Testing_GoogleTestRunOutputParserTest.can_be_created_without_blowing_up
+[       OK ] Hexagon_Testing_GoogleTestRunOutputParserTest.can_be_created_without_blowing_up (0 ms)
+[ RUN      ] Hexagon_Testing_GoogleTestRunOutputParserTest.parse__returns_the_expected_number_of_test_results
+tests/Hexagon/Testing/GoogleTestRunOutputParserTest.cpp:42: Failure
+Expected: (5) != (results.size()), actual: 5 vs 5
+[  FAILED  ] Hexagon_Testing_GoogleTestRunOutputParserTest.parse__returns_the_expected_number_of_test_results (6 ms)
+[ RUN      ] Hexagon_Testing_GoogleTestRunOutputParserTest.parse__returns_the_correctly_named_test_class
+[       OK ] Hexagon_Testing_GoogleTestRunOutputParserTest.parse__returns_the_correctly_named_test_class (6 ms)
+[ RUN      ] Hexagon_Testing_GoogleTestRunOutputParserTest.parse__returns_the_correctly_named_test_description
+[       OK ] Hexagon_Testing_GoogleTestRunOutputParserTest.parse__returns_the_correctly_named_test_description (6 ms)
+[ RUN      ] Hexagon_Testing_GoogleTestRunOutputParserTest.parse__returns_the_correctly_set_duration_and_result
+[       OK ] Hexagon_Testing_GoogleTestRunOutputParserTest.parse__returns_the_correctly_set_duration_and_result (6 ms)
+[----------] 5 tests from Hexagon_Testing_GoogleTestRunOutputParserTest (24 ms total)
+
+[----------] Global test environment tear-down
+[==========] 5 tests from 1 test suite ran. (24 ms total)
+[  PASSED  ] 4 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] Hexagon_Testing_GoogleTestRunOutputParserTest.parse__returns_the_expected_number_of_test_results
+
+ 1 FAILED TEST
+)TEST_FIXTURE";
+
+
+
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, can_be_created_without_blowing_up)
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser;
@@ -88,6 +117,26 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
 
    int expected_duration_msec = 123;
    int actual_duration_msec = first_test_result.get_duration_msec();
+
+   EXPECT_EQ(expected_duration_msec, actual_duration_msec);
+}
+
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_set_duration_and_result_on_failure)
+{
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(FAILING_TEST_RUN_OUTPUT);
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results = google_test_run_output_parser.parse();
+
+   ASSERT_EQ(false, results.empty());
+
+   Hexagon::Testing::GoogleTestRunTestResult &second_test_result = results[1];
+
+   std::string expected_result = "failed";
+   std::string actual_result = second_test_result.get_result();
+
+   EXPECT_EQ(expected_result, actual_result);
+
+   int expected_duration_msec = 6;
+   int actual_duration_msec = second_test_result.get_duration_msec();
 
    EXPECT_EQ(expected_duration_msec, actual_duration_msec);
 }
