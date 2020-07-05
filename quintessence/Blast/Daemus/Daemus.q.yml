@@ -27,10 +27,21 @@ functions:
 
   - name: run_build_quintessence_file
     parameters:
+      - name: project_directory
+        type: std::string
+        default_argument: '""'
       - name: quintessence_filename
         type: std::string
         default_argument: '""'
     body: |
+      if (!Blast::DirectoryExistenceChecker(project_directory).exists())
+      {
+         std::stringstream error_message;
+         error_message << "Daemus::run_build_quintessence_file: error: "
+                       << "the expected project directory \"" << project_directory << "\" "
+                       << "does not exist";
+         throw std::runtime_error(error_message.str());
+      }
       if (!Blast::FileExistenceChecker(quintessence_build_executable).exists())
       {
          std::stringstream error_message;
@@ -47,8 +58,11 @@ functions:
                        << "does not exist";
          throw std::runtime_error(error_message.str());
       }
+      //std::string command = quintessence_build_executable + " -f " + quintessence_filename;
+      //execute_command(command);
       return;
     body_dependency_symbols:
+      - Blast::DirectoryExistenceChecker
       - Blast::FileExistenceChecker
       - std::stringstream
 
@@ -86,5 +100,7 @@ dependencies:
     headers: [ unistd.h ]
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+  - symbol: Blast::DirectoryExistenceChecker
+    headers: [ Blast/DirectoryExistenceChecker.hpp ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]

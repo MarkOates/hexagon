@@ -1,6 +1,7 @@
 
 
 #include <Blast/Daemus/Daemus.hpp>
+#include <Blast/DirectoryExistenceChecker.hpp>
 #include <Blast/FileExistenceChecker.hpp>
 #include <sstream>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
@@ -43,8 +44,16 @@ void Daemus::run_simple_sleep_command()
 execute_command("echo \"sleeping\"; sleep 0.5; echo \"done\"");
 }
 
-void Daemus::run_build_quintessence_file(std::string quintessence_filename)
+void Daemus::run_build_quintessence_file(std::string project_directory, std::string quintessence_filename)
 {
+if (!Blast::DirectoryExistenceChecker(project_directory).exists())
+{
+   std::stringstream error_message;
+   error_message << "Daemus::run_build_quintessence_file: error: "
+                 << "the expected project directory \"" << project_directory << "\" "
+                 << "does not exist";
+   throw std::runtime_error(error_message.str());
+}
 if (!Blast::FileExistenceChecker(quintessence_build_executable).exists())
 {
    std::stringstream error_message;
@@ -61,6 +70,8 @@ if (!Blast::FileExistenceChecker(quintessence_filename).exists())
                  << "does not exist";
    throw std::runtime_error(error_message.str());
 }
+//std::string command = quintessence_build_executable + " -f " + quintessence_filename;
+//execute_command(command);
 return;
 
 }

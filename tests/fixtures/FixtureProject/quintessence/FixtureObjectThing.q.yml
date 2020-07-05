@@ -1,0 +1,10 @@
+properties:
+  - name: foobar
+    type: std::string
+    init_with: '"boobaz"'
+    constructor_arg: true
+    getter: true
+functions:
+  - name: generate_two_foobars
+    type: std::vector<std::string>
+    body: return { get_foobar(), get_foobar() };
