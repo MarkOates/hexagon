@@ -40,17 +40,21 @@ TEST(Blast_Daemus_DaemusTest, run_simple_sleep_command__will_run_the_command)
 TEST(Blast_Daemus_DaemusTest, run_build_quintessence_file__when_the_required_executable_is_not_present__raises_an_error)
 {
    Blast::Daemus::Daemus daemus("/An/executable/that/does_not_exist");
-   std::string expected_error_message = "Daemus::run_build_quintessence_file: error: guard " \
-                                        "\"Blast::FileExistenceChecker(quintessence_build_executable).exists()\" " \
-                                        "not met";
+   std::string expected_error_message = "Daemus::run_build_quintessence_file: error: the expected executable " \
+                                        "\"/An/executable/that/does_not_exist\" is not present";
    ASSERT_THROW_WITH_MESSAGE(daemus.run_build_quintessence_file(), std::runtime_error, expected_error_message);
 }
 
 TEST(Blast_Daemus_DaemusTest, run_build_quintessence_file__when_the_quintessence_file_is_not_present__raises_an_error)
 {
+   std::string quintessence_file_that_does_not_exist = "/Users/markoates/Foo/DoesNotExist.q.yml";
    Blast::Daemus::Daemus daemus;
-   std::string expected_error_message = "Daemus::run_build_quintessence_file: error: guard " \
-                                        "\"Blast::FileExistenceChecker(quintessence_filename).exists()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(daemus.run_build_quintessence_file(), std::runtime_error, expected_error_message);
+   std::string expected_error_message = "Daemus::run_build_quintessence_file: error: the quintessence file " \
+                                        "\"/Users/markoates/Foo/DoesNotExist.q.yml\" does not exist";
+   ASSERT_THROW_WITH_MESSAGE(
+      daemus.run_build_quintessence_file(quintessence_file_that_does_not_exist),
+      std::runtime_error,
+      expected_error_message
+   );
 }
 

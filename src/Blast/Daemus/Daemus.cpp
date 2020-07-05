@@ -2,7 +2,6 @@
 
 #include <Blast/Daemus/Daemus.hpp>
 #include <Blast/FileExistenceChecker.hpp>
-#include <stdexcept>
 #include <sstream>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <iostream>
@@ -46,18 +45,22 @@ execute_command("echo \"sleeping\"; sleep 0.5; echo \"done\"");
 
 void Daemus::run_build_quintessence_file(std::string quintessence_filename)
 {
-if (!(Blast::FileExistenceChecker(quintessence_build_executable).exists()))
-   {
-      std::stringstream error_message;
-      error_message << "Daemus" << "::" << "run_build_quintessence_file" << ": error: " << "guard \"Blast::FileExistenceChecker(quintessence_build_executable).exists()\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(Blast::FileExistenceChecker(quintessence_filename).exists()))
-   {
-      std::stringstream error_message;
-      error_message << "Daemus" << "::" << "run_build_quintessence_file" << ": error: " << "guard \"Blast::FileExistenceChecker(quintessence_filename).exists()\" not met";
-      throw std::runtime_error(error_message.str());
-   }
+if (!Blast::FileExistenceChecker(quintessence_build_executable).exists())
+{
+   std::stringstream error_message;
+   error_message << "Daemus::run_build_quintessence_file: error: "
+                 << "the expected executable \"" << quintessence_build_executable << "\" "
+                 << "is not present";
+   throw std::runtime_error(error_message.str());
+}
+if (!Blast::FileExistenceChecker(quintessence_filename).exists())
+{
+   std::stringstream error_message;
+   error_message << "Daemus::run_build_quintessence_file: error: "
+                 << "the quintessence file \"" << quintessence_filename << "\" "
+                 << "does not exist";
+   throw std::runtime_error(error_message.str());
+}
 return;
 
 }
