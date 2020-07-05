@@ -112,6 +112,7 @@ functions:
 
 
   - name: extract_test_class_name_and_test_description
+    private: true
     parameters:
       - name: line
         type: std::string
@@ -130,6 +131,7 @@ functions:
 
 
   - name: extract_ms
+    private: true
     parameters:
       - name: line
         type: std::string
