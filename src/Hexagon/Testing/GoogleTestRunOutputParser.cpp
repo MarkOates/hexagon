@@ -24,7 +24,15 @@ GoogleTestRunOutputParser::~GoogleTestRunOutputParser()
 
 std::pair<std::string, std::string> GoogleTestRunOutputParser::extract_test_class_name_and_test_description(std::string line)
 {
-return std::pair<std::string, std::string>{ "TestClass_Name", "foobar" };
+int initial_bracket_length = 13;
+// example string: "[ RUN      ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters";
+std::string::size_type dot_pos = line.find('.');
+if (dot_pos == std::string::npos) return {};
+
+std::string test_class_name = line.substr(initial_bracket_length, dot_pos - initial_bracket_length);
+std::string test_description = line.substr(dot_pos + 1);
+
+return std::pair<std::string, std::string>{ test_class_name, test_description };
 
 }
 
