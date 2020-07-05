@@ -12,6 +12,10 @@ functions:
     body: execute_command("printf \"hello\"");
 
 
+  - name: run_simple_sleep_command
+    body: execute_command("echo \"sleeping\"; sleep 0.5; echo \"done\"");
+
+
   - name: execute_command
     type: std::string
     parameters:

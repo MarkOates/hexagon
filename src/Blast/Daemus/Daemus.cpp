@@ -35,6 +35,11 @@ void Daemus::run_simple_echo_command()
 execute_command("printf \"hello\"");
 }
 
+void Daemus::run_simple_sleep_command()
+{
+execute_command("echo \"sleeping\"; sleep 0.5; echo \"done\"");
+}
+
 std::string Daemus::execute_command(std::string command)
 {
 Blast::ShellCommandExecutorWithCallback shell_command_executor(

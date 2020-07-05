@@ -20,3 +20,15 @@ TEST(Blast_Daemus_DaemusTest, run_simple_echo_command__will_run_the_command)
    EXPECT_EQ(expected_captured_cout_output, captured_cout_output);
 }
 
+TEST(Blast_Daemus_DaemusTest, run_simple_sleep_command__will_run_the_command)
+{
+   Blast::Daemus::Daemus daemus;
+
+   testing::internal::CaptureStdout();
+   daemus.run_simple_sleep_command();
+   std::string captured_cout_output = testing::internal::GetCapturedStdout();
+
+   std::string expected_captured_cout_output = "sleeping\ndone\n";
+   EXPECT_EQ(expected_captured_cout_output, captured_cout_output);
+}
+
