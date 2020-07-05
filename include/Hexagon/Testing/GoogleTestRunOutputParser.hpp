@@ -23,7 +23,7 @@ namespace Hexagon
 
 
          std::vector<Hexagon::Testing::GoogleTestRunTestResult> get_parsed_test_results();
-      std::vector<Hexagon::Testing::GoogleTestRunTestResult> parse();
+      bool parse();
       std::pair<std::string, std::string> extract_test_class_name_and_test_description(std::string line="");
       int extract_ms(std::string line="");
       };

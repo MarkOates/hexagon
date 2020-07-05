@@ -15,7 +15,7 @@ functions:
 
 
   - name: parse
-    type: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
+    type: bool
     body: |
       //std::vector<Hexagon::Testing::GoogleTestRunTestResult> result;
       parsed_test_results.empty();
@@ -104,7 +104,7 @@ functions:
       //std::string failing_case = "just some unparsable garbage string";
       //if (google_test_run_output == failing_case) return {};
 
-      return parsed_test_results;
+      return true;
     body_dependency_symbols:
       - RegexMatcher
       - Blast::StringSplitter

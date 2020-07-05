@@ -30,7 +30,7 @@ std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser
 }
 
 
-std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser::parse()
+bool GoogleTestRunOutputParser::parse()
 {
 //std::vector<Hexagon::Testing::GoogleTestRunTestResult> result;
 parsed_test_results.empty();
@@ -119,7 +119,7 @@ for (auto &line : lines)
 //std::string failing_case = "just some unparsable garbage string";
 //if (google_test_run_output == failing_case) return {};
 
-return parsed_test_results;
+return true;
 
 }
 

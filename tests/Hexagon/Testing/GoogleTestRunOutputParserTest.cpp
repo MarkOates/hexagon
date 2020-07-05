@@ -67,14 +67,18 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, can_be_created_without_blowi
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_expected_number_of_test_results)
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
-   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results = google_test_run_output_parser.parse();
+   ASSERT_EQ(true, google_test_run_output_parser.parse());
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
+      google_test_run_output_parser.get_parsed_test_results();
    ASSERT_EQ(5, results.size());
 }
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_named_test_class)
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
-   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results = google_test_run_output_parser.parse();
+   ASSERT_EQ(true, google_test_run_output_parser.parse());
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
+      google_test_run_output_parser.get_parsed_test_results();
 
    ASSERT_EQ(false, results.empty());
 
@@ -89,7 +93,9 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_named_test_description)
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
-   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results = google_test_run_output_parser.parse();
+   ASSERT_EQ(true, google_test_run_output_parser.parse());
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
+      google_test_run_output_parser.get_parsed_test_results();
 
    ASSERT_EQ(false, results.empty());
 
@@ -104,7 +110,9 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_set_duration_and_result)
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_TEST_RUN_OUTPUT);
-   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results = google_test_run_output_parser.parse();
+   ASSERT_EQ(true, google_test_run_output_parser.parse());
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
+      google_test_run_output_parser.get_parsed_test_results();
 
    ASSERT_EQ(false, results.empty());
 
@@ -124,7 +132,9 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_set_duration_and_result_on_failure)
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(FAILING_TEST_RUN_OUTPUT);
-   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results = google_test_run_output_parser.parse();
+   ASSERT_EQ(true, google_test_run_output_parser.parse());
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
+      google_test_run_output_parser.get_parsed_test_results();
 
    ASSERT_EQ(false, results.empty());
 
