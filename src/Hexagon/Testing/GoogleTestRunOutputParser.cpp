@@ -14,12 +14,19 @@ namespace Testing
 
 GoogleTestRunOutputParser::GoogleTestRunOutputParser(std::string google_test_run_output)
    : google_test_run_output(google_test_run_output)
+   , parsed_test_results({})
 {
 }
 
 
 GoogleTestRunOutputParser::~GoogleTestRunOutputParser()
 {
+}
+
+
+std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser::get_parsed_test_results()
+{
+   return parsed_test_results;
 }
 
 
@@ -53,7 +60,8 @@ return atoi(extracted_ms_as_string.c_str());
 
 std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser::parse()
 {
-std::vector<Hexagon::Testing::GoogleTestRunTestResult> result;
+//std::vector<Hexagon::Testing::GoogleTestRunTestResult> result;
+parsed_test_results.empty();
 Blast::StringSplitter splitter(google_test_run_output, '\n');
 std::vector<std::string> lines = splitter.split();
 
@@ -82,8 +90,8 @@ for (auto &line : lines)
             ""
          );
 
-         result.push_back(google_test_run_test_result);
-         current_test_case = &result.back();
+         parsed_test_results.push_back(google_test_run_test_result);
+         current_test_case = &parsed_test_results.back();
       }
    }
 
@@ -139,7 +147,7 @@ for (auto &line : lines)
 //std::string failing_case = "just some unparsable garbage string";
 //if (google_test_run_output == failing_case) return {};
 
-return result;
+return parsed_test_results;
 
 }
 } // namespace Testing

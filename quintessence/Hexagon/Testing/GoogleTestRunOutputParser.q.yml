@@ -5,6 +5,10 @@ properties:
     type: std::string
     init_with: '""'
     constructor_arg: true
+  - name: parsed_test_results
+    type: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
+    init_with: '{}'
+    getter: true
 
 
 functions:
@@ -49,7 +53,8 @@ functions:
   - name: parse
     type: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
     body: |
-      std::vector<Hexagon::Testing::GoogleTestRunTestResult> result;
+      //std::vector<Hexagon::Testing::GoogleTestRunTestResult> result;
+      parsed_test_results.empty();
       Blast::StringSplitter splitter(google_test_run_output, '\n');
       std::vector<std::string> lines = splitter.split();
 
@@ -78,8 +83,8 @@ functions:
                   ""
                );
 
-               result.push_back(google_test_run_test_result);
-               current_test_case = &result.back();
+               parsed_test_results.push_back(google_test_run_test_result);
+               current_test_case = &parsed_test_results.back();
             }
          }
 
@@ -135,7 +140,7 @@ functions:
       //std::string failing_case = "just some unparsable garbage string";
       //if (google_test_run_output == failing_case) return {};
 
-      return result;
+      return parsed_test_results;
     body_dependency_symbols:
       - RegexMatcher
       - Blast::StringSplitter
