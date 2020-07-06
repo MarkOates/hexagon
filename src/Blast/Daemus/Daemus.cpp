@@ -53,26 +53,24 @@ std::string name = component.get_name();
 std::string project_directory = component.get_project_root();
 std::string test_binary = component.generate_full_path_test_binary_filename();
 
-{
-   // execute the test
-   std::stringstream command;
-   command << "("
-              << "cd " << project_directory
-              << " && "
-              << test_binary
-           << ")";
-   std::string test_run_output = execute_command(command.str(), false);
+// execute the test
+std::stringstream command;
+command << "("
+           << "cd " << project_directory
+           << " && "
+           << test_binary
+        << ")";
+std::string test_run_output = execute_command(command.str(), false);
 
-   // parse the results
-   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(test_run_output);
+// parse the results
+Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(test_run_output);
 
-   bool successful_parse = google_test_run_output_parser.parse();
-   if (!successful_parse) throw std::runtime_error("fooobbarrr");
-   std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results =
-      google_test_run_output_parser.get_parsed_test_results();
+bool successful_parse = google_test_run_output_parser.parse();
+if (!successful_parse) throw std::runtime_error("fooobbarrr");
+std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results =
+   google_test_run_output_parser.get_parsed_test_results();
 
-   return test_results;
-}
+return test_results;
 
 }
 
