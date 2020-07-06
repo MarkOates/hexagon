@@ -17,7 +17,7 @@ TEST(Hexagon_ComponentNavigator_StageTest, run__returns_the_expected_response)
 TEST(Hexagon_ComponentNavigator_StageTest, type__returns_the_expected_type)
 {
    Hexagon::ComponentNavigator::Stage stage;
-   StageInterface::type_t expected_type = StageInterface::COMPONENT_NAVIGATOR;
+   StageInterface::type_t expected_type = StageInterface::OLD_COMPONENT_NAVIGATOR;
 
    ASSERT_EQ(expected_type, stage.get_type());
 }

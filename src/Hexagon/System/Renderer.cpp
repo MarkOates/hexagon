@@ -134,7 +134,7 @@ for (auto &stage : system->stages)
       rerun_output_watcher_stage->set_font(font);
    }
 
-   if (stage->get_type() == StageInterface::COMPONENT_NAVIGATOR)
+   if (stage->get_type() == StageInterface::OLD_COMPONENT_NAVIGATOR)
    {
       Hexagon::ComponentNavigator::Stage *component_navigator_stage =
          static_cast<Hexagon::ComponentNavigator::Stage *>(stage);
