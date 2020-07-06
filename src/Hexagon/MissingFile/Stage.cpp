@@ -19,6 +19,11 @@ Stage::Stage(std::string expected_filename)
    : StageInterface(StageInterface::MISSING_FILE)
    , expected_filename(expected_filename)
    , text("MISSING FILE")
+   , is_focused(true)
+   , display(nullptr)
+   , font(nullptr)
+   , cell_width(10)
+   , cell_height(20)
 {
 }
 
@@ -28,9 +33,69 @@ Stage::~Stage()
 }
 
 
+void Stage::set_is_focused(bool is_focused)
+{
+   this->is_focused = is_focused;
+}
+
+
+void Stage::set_display(ALLEGRO_DISPLAY* display)
+{
+   this->display = display;
+}
+
+
+void Stage::set_font(ALLEGRO_FONT* font)
+{
+   this->font = font;
+}
+
+
+void Stage::set_cell_width(int cell_width)
+{
+   this->cell_width = cell_width;
+}
+
+
+void Stage::set_cell_height(int cell_height)
+{
+   this->cell_height = cell_height;
+}
+
+
 std::string Stage::get_expected_filename()
 {
    return expected_filename;
+}
+
+
+bool Stage::get_is_focused()
+{
+   return is_focused;
+}
+
+
+ALLEGRO_DISPLAY* Stage::get_display()
+{
+   return display;
+}
+
+
+ALLEGRO_FONT* Stage::get_font()
+{
+   return font;
+}
+
+
+int Stage::get_cell_width()
+{
+   return cell_width;
+}
+
+
+int Stage::get_cell_height()
+{
+   return cell_height;
 }
 
 
@@ -40,7 +105,7 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
-void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
+void Stage::render(bool _is_focused, ALLEGRO_DISPLAY* _display, ALLEGRO_FONT* _font, int _cell_width, int _cell_height)
 {
 placement3d place = get_place();
 place.start_transform();

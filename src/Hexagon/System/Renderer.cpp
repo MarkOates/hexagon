@@ -7,6 +7,7 @@
 #include <allegro5/allegro.h>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+#include <Hexagon/MissingFile/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -102,6 +103,17 @@ for (auto &stage : system->stages)
       advanced_component_navigator_stage->set_cell_width(cell_width);
       advanced_component_navigator_stage->set_cell_height(cell_height);
    }
+
+   if (stage->get_type() == StageInterface::MISSING_FILE)
+   {
+      Hexagon::MissingFile::Stage* missing_file_stage = static_cast<Hexagon::MissingFile::Stage *>(stage);
+      missing_file_stage->set_is_focused(is_focused);
+      missing_file_stage->set_display(display);
+      missing_file_stage->set_font(font);
+      missing_file_stage->set_cell_width(cell_width);
+      missing_file_stage->set_cell_height(cell_height);
+   }
+
 
    stage->render(is_focused, display, font, cell_width, cell_height);
 
