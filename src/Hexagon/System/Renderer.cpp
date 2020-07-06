@@ -7,6 +7,8 @@
 #include <allegro5/allegro.h>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -61,6 +63,11 @@ system->camera.setup_camera_perspective(al_get_backbuffer(display));
 al_clear_depth_buffer(1000);
 
 global::profiler.start("all stages");
+
+ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
+int cell_width = al_get_text_width(font, " ");
+int cell_height = al_get_font_line_height(font);
+
 for (auto &stage : system->stages)
 {
    std::stringstream profile_timer_element_label;
@@ -71,8 +78,16 @@ for (auto &stage : system->stages)
    ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
 
 
+   // for now, we're going to assign these values here so that render() can be argument-free
+   if (rendered_with_CodeEditor_Renderer(stage))
+   {
+      Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+      code_editor_stage->set_cell_width(cell_width);
+      code_editor_stage->set_cell_height(cell_height);
+   }
 
-   stage->render(is_focused, display, font, al_get_text_width(font, " "), al_get_font_line_height(font));
+
+   stage->render(is_focused, display, font, cell_width, cell_height);
 
 
 
@@ -83,6 +98,21 @@ global::profiler.pause("all stages");
 system->hud.draw();
 
 return true;
+
+}
+
+bool Renderer::rendered_with_CodeEditor_Renderer(StageInterface* stage)
+{
+if (!(stage))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "rendered_with_CodeEditor_Renderer" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (stage->get_type() == StageInterface::CODE_EDITOR
+  || stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX
+  || stage->get_type() == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX) return true;
+return false;
 
 }
 } // namespace System

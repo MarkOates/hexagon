@@ -20,6 +20,16 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+  - name: cell_width
+    type: int
+    init_with: 10
+    getter: true
+    setter: true
+  - name: cell_height
+    type: int
+    init_with: 20
+    getter: true
+    setter: true
 
 
 functions:
@@ -37,7 +47,7 @@ functions:
       - name: font
         type: ALLEGRO_FONT*
         default_argument: nullptr
-      - name: cell_width
+      - name: _cell_width
         type: int
         default_argument: 10
       - name: cell_height
@@ -61,8 +71,8 @@ functions:
             backfill_color,
             width,
             height,
-            cell_width,
-            cell_height,
+            get_cell_width(),
+            get_cell_height(),
             code_editor.get_lines_ref(),
             code_editor.selections,
             code_editor.get_cursor_x(),
@@ -92,8 +102,8 @@ functions:
             backfill_color,
             width,
             height,
-            cell_width,
-            cell_height,
+            get_cell_width(),
+            get_cell_height(),
             code_editor.get_lines_ref(),
             code_editor.selections,
             code_editor.get_cursor_x(),
@@ -124,8 +134,8 @@ functions:
             get_place(),
             code_font,
             display,
-            cell_width,
-            cell_height,
+            get_cell_width(),
+            get_cell_height(),
             base_font_color,
             backfill_color,
             backfill_opacity
@@ -198,6 +208,8 @@ functions:
 
 
 dependencies:
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_DISPLAY*
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT*

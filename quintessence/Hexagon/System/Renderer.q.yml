@@ -30,6 +30,11 @@ functions:
       al_clear_depth_buffer(1000);
 
       global::profiler.start("all stages");
+
+      ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
+      int cell_width = al_get_text_width(font, " ");
+      int cell_height = al_get_font_line_height(font);
+
       for (auto &stage : system->stages)
       {
          std::stringstream profile_timer_element_label;
@@ -40,8 +45,16 @@ functions:
          ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
 
 
+         // for now, we're going to assign these values here so that render() can be argument-free
+         if (rendered_with_CodeEditor_Renderer(stage))
+         {
+            Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+            code_editor_stage->set_cell_width(cell_width);
+            code_editor_stage->set_cell_height(cell_height);
+         }
 
-         stage->render(is_focused, display, font, al_get_text_width(font, " "), al_get_font_line_height(font));
+
+         stage->render(is_focused, display, font, cell_width, cell_height);
 
 
 
@@ -59,6 +72,20 @@ functions:
       - al_clear_to_color
 
 
+  - name: rendered_with_CodeEditor_Renderer
+    type: bool
+    parameters:
+      - name: stage
+        type: StageInterface*
+        default_argument: nullptr
+    guards: [ stage ]
+    body: |
+      if (stage->get_type() == StageInterface::CODE_EDITOR
+        || stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX
+        || stage->get_type() == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX) return true;
+      return false;
+
+
 dependencies:
 
 
@@ -70,6 +97,8 @@ dependencies:
     headers: [ Hexagon/shared_globals.hpp ]
   - symbol: ALLEGRO_DISPLAY*
     headers: [ allegro5/allegro.h ]
+  - symbol: StageInterface*
+    headers: [ Hexagon/StageInterface.hpp ]
   - symbol: al_color_name
     headers: [ allegro5/allegro_color.h ]
   - symbol: al_clear_to_color

@@ -22,6 +22,8 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 Stage::Stage(::CodeEditor::CodeEditor code_editor)
    : StageInterface(code_editor.get_type())
    , code_editor(code_editor)
+   , cell_width(10)
+   , cell_height(20)
 {
 }
 
@@ -31,9 +33,33 @@ Stage::~Stage()
 }
 
 
+void Stage::set_cell_width(int cell_width)
+{
+   this->cell_width = cell_width;
+}
+
+
+void Stage::set_cell_height(int cell_height)
+{
+   this->cell_height = cell_height;
+}
+
+
 ::CodeEditor::CodeEditor Stage::get_code_editor()
 {
    return code_editor;
+}
+
+
+int Stage::get_cell_width()
+{
+   return cell_width;
+}
+
+
+int Stage::get_cell_height()
+{
+   return cell_height;
 }
 
 
@@ -49,7 +75,7 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
-void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
+void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int _cell_width, int cell_height)
 {
 //place = this->place;
 
@@ -68,8 +94,8 @@ if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
       backfill_color,
       width,
       height,
-      cell_width,
-      cell_height,
+      get_cell_width(),
+      get_cell_height(),
       code_editor.get_lines_ref(),
       code_editor.selections,
       code_editor.get_cursor_x(),
@@ -99,8 +125,8 @@ else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
       backfill_color,
       width,
       height,
-      cell_width,
-      cell_height,
+      get_cell_width(),
+      get_cell_height(),
       code_editor.get_lines_ref(),
       code_editor.selections,
       code_editor.get_cursor_x(),
@@ -131,8 +157,8 @@ else
       get_place(),
       code_font,
       display,
-      cell_width,
-      cell_height,
+      get_cell_width(),
+      get_cell_height(),
       base_font_color,
       backfill_color,
       backfill_opacity

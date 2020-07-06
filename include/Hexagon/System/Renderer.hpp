@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/StageInterface.hpp>
 #include <Hexagon/System/System.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
@@ -24,6 +25,7 @@ namespace Hexagon
 
          ALLEGRO_COLOR* get_backfill_color();
       bool render();
+      bool rendered_with_CodeEditor_Renderer(StageInterface* stage=nullptr);
       };
    }
 }
