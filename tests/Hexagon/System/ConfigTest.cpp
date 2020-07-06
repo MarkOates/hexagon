@@ -188,6 +188,10 @@ TEST(DISABLED_Hexagon_System_ConfigTest, get_make_command_filename__returns_the_
 {
 }
 
+TEST(DISABLED_Hexagon_System_ConfigTest, get_focused_component_filename__returns_the_expected_default_value)
+{
+}
+
 TEST(Hexagon_System_ConfigTest, is_dark_mode__returns_true_if_the_a_true_value_is_set_in_the_config)
 {
    al_init();

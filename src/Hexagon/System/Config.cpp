@@ -33,6 +33,9 @@ std::string Config::FILE_NAVIGATOR_SELECTION_FILENAME_KEY = "file_navigator_sele
 std::string Config::MAKE_COMMAND_FILENAME_KEY = "make_command_temp_filename";
 
 
+std::string Config::FOCUSED_COMPONENT_FILENAME_KEY = "focused_component_filename";
+
+
 std::string Config::FONT_BIN_PATH_KEY = "font_bin_path";
 
 
@@ -131,6 +134,13 @@ std::string Config::get_make_command_filename()
 {
 std::string default_filename = resource_path({"data", "tmp"}, "make_command.txt");
 return config.get_or_default_str("", MAKE_COMMAND_FILENAME_KEY, default_filename);
+
+}
+
+std::string Config::get_focused_component_filename()
+{
+std::string default_filename = resource_path({"data", "tmp"}, "focused_component.txt");
+return config.get_or_default_str("", FOCUSED_COMPONENT_FILENAME_KEY, default_filename);
 
 }
 

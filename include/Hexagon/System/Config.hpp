@@ -21,6 +21,7 @@ namespace Hexagon
          static std::string CLIPBOARD_TEMP_FILENAME_KEY;
          static std::string FILE_NAVIGATOR_SELECTION_FILENAME_KEY;
          static std::string MAKE_COMMAND_FILENAME_KEY;
+         static std::string FOCUSED_COMPONENT_FILENAME_KEY;
          static std::string FONT_BIN_PATH_KEY;
          static std::string DARK_MODE_KEY;
          std::string config_filename;
@@ -42,6 +43,7 @@ namespace Hexagon
       std::string get_clipboard_temp_filename();
       std::string get_file_navigator_selection_filename();
       std::string get_make_command_filename();
+      std::string get_focused_component_filename();
       std::string get_font_bin_path();
       bool is_dark_mode();
       ALLEGRO_COLOR get_backfill_color();

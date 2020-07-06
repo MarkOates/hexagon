@@ -36,6 +36,11 @@ properties:
     static: true
     const: true
     init_with: '"make_command_temp_filename"'
+  - name: FOCUSED_COMPONENT_FILENAME_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: '"focused_component_filename"'
   - name: FONT_BIN_PATH_KEY
     type: std::string
     static: true
@@ -138,6 +143,13 @@ functions:
     body: |
       std::string default_filename = resource_path({"data", "tmp"}, "make_command.txt");
       return config.get_or_default_str("", MAKE_COMMAND_FILENAME_KEY, default_filename);
+
+
+  - name: get_focused_component_filename
+    type: std::string
+    body: |
+      std::string default_filename = resource_path({"data", "tmp"}, "focused_component.txt");
+      return config.get_or_default_str("", FOCUSED_COMPONENT_FILENAME_KEY, default_filename);
 
 
   - name: get_font_bin_path
