@@ -114,6 +114,9 @@ for (auto &stage : system->stages)
       missing_file_stage->set_cell_height(cell_height);
    }
 
+   //<Hexagon/FileNavigator/Stage.hpp>
+   //Hexagon::FileNavigator::Stage stage;
+   //"StageInterface::FILE_NAVIGATOR"
 
    stage->render(is_focused, display, font, cell_width, cell_height);
 
