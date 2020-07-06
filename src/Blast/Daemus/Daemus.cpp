@@ -53,6 +53,15 @@ std::string name = component.get_name();
 std::string project_directory = component.get_project_root();
 std::string test_binary = component.generate_full_path_test_binary_filename();
 
+if (!Blast::DirectoryExistenceChecker(project_directory).exists())
+{
+   std::stringstream error_message;
+   error_message << "Daemus::run_component_test: error: "
+                 << "the expected project directory \"" << project_directory << "\" "
+                 << "does not exist";
+   throw std::runtime_error(error_message.str());
+}
+
 // execute the test
 std::stringstream command;
 command << "("

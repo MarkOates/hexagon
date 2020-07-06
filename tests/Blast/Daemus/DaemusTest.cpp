@@ -56,6 +56,22 @@ TEST(Blast_Daemus_DaemusTest, run_component_test__returns_test_results)
 }
 
 TEST(Blast_Daemus_DaemusTest,
+   run_component_test__when_the_required_project_directory_is_not_present__raises_an_error)
+{
+   Blast::Daemus::Daemus daemus;
+
+   std::string project_directory_that_does_not_exist = "/Users/markoates/Repos/project_that_does_not_exist";
+   Blast::Project::Component component("Component/Does/Not/Exist", project_directory_that_does_not_exist);
+   std::string expected_error_message = "Daemus::run_component_test: error: the expected project directory " \
+                                        "\"/Users/markoates/Repos/project_that_does_not_exist\" does not exist";
+   ASSERT_THROW_WITH_MESSAGE(
+      daemus.run_component_test(component),
+      std::runtime_error,
+      expected_error_message
+   );
+}
+
+TEST(Blast_Daemus_DaemusTest,
    run_build_quintessence_file__when_the_required_project_directory_is_not_present__raises_an_error)
 {
    Blast::Daemus::Daemus daemus;
