@@ -20,6 +20,7 @@ Stage::Stage(std::string command, std::string watch_pattern)
    , command(command)
    , watch_pattern(watch_pattern)
    , output("[no content]")
+   , font(nullptr)
 {
 }
 
@@ -41,6 +42,12 @@ void Stage::set_watch_pattern(std::string watch_pattern)
 }
 
 
+void Stage::set_font(ALLEGRO_FONT* font)
+{
+   this->font = font;
+}
+
+
 std::string Stage::get_command()
 {
    return command;
@@ -56,6 +63,12 @@ std::string Stage::get_watch_pattern()
 std::string Stage::get_output()
 {
    return output;
+}
+
+
+ALLEGRO_FONT* Stage::get_font()
+{
+   return font;
 }
 
 
@@ -90,7 +103,7 @@ executor.execute();
 
 }
 
-void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
+void Stage::render(bool _is_focused, ALLEGRO_DISPLAY* _display, ALLEGRO_FONT* _font, int _cell_width, int _cell_height)
 {
 ALLEGRO_COLOR pass_color = al_color_name("aquamarine");
 ALLEGRO_COLOR running_color = al_color_name("sandybrown");

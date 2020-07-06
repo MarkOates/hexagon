@@ -88,6 +88,15 @@ functions:
             file_navigator_stage->set_cell_height(cell_height);
          }
 
+         if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
+         {
+            Hexagon::RerunOutputWatcher::Stage *rerun_output_watcher_stage =
+               static_cast<Hexagon::RerunOutputWatcher::Stage *>(stage);
+            rerun_output_watcher_stage->set_font(font);
+         }
+
+
+
          stage->render(is_focused, display, font, cell_width, cell_height);
 
 
@@ -108,6 +117,7 @@ functions:
       - Hexagon::AdvancedComponentNavigator::Stage*
       - Hexagon::MissingFile::Stage*
       - Hexagon::FileNavigator::Stage*
+      - Hexagon::RerunOutputWatcher::Stage*
 
 
   - name: rendered_with_CodeEditor_Renderer
@@ -151,3 +161,5 @@ dependencies:
     headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Hexagon::FileNavigator::Stage*
     headers: [ Hexagon/FileNavigator/Stage.hpp ]
+  - symbol: Hexagon::RerunOutputWatcher::Stage*
+    headers: [ Hexagon/RerunOutputWatcher/Stage.hpp ]

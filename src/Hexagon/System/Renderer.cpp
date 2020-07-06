@@ -9,6 +9,7 @@
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -124,6 +125,15 @@ for (auto &stage : system->stages)
       file_navigator_stage->set_cell_width(cell_width);
       file_navigator_stage->set_cell_height(cell_height);
    }
+
+   if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
+   {
+      Hexagon::RerunOutputWatcher::Stage *rerun_output_watcher_stage =
+         static_cast<Hexagon::RerunOutputWatcher::Stage *>(stage);
+      rerun_output_watcher_stage->set_font(font);
+   }
+
+
 
    stage->render(is_focused, display, font, cell_width, cell_height);
 
