@@ -19,10 +19,10 @@ Stage::~Stage()
 }
 
 
-void Stage::render(bool is_focused, ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font, int cell_width, int cell_height)
+void Stage::render(bool _is_focused, ALLEGRO_DISPLAY *_display, ALLEGRO_FONT *_font, int cell_width, int _cell_height)
 {
-   if (!display) throw std::runtime_error("[Stage] error: display cannot be a nullptr.");
-   if (!font) throw std::runtime_error("[Stage] error: font cannot be a nullptr.");
+   //if (!display) throw std::runtime_error("[Stage] error: display cannot be a nullptr.");
+   //if (!font) throw std::runtime_error("[Stage] error: font cannot be a nullptr.");
 
    placement3d &place = get_place();
 
