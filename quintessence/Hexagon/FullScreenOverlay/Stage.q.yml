@@ -59,19 +59,19 @@ functions:
   - name: render
     is_override: true
     parameters:
-      - name: is_focused
+      - name: _is_focused
         type: bool
         default_argument: true
-      - name: display
+      - name: _display
         type: ALLEGRO_DISPLAY*
         default_argument: nullptr
-      - name: font
+      - name: _font
         type: ALLEGRO_FONT*
         default_argument: nullptr
-      - name: cell_width
+      - name: _cell_width
         type: int
         default_argument: 10
-      - name: cell_height
+      - name: _cell_height
         type: int
         default_argument: 20
     body: |
