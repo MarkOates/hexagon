@@ -20,6 +20,11 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+  - name: display
+    type: ALLEGRO_DISPLAY*
+    init_with: nullptr
+    getter: true
+    setter: true
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
@@ -46,7 +51,7 @@ functions:
       - name: is_focused
         type: bool
         default_argument: true
-      - name: display
+      - name: _display
         type: ALLEGRO_DISPLAY*
         default_argument: nullptr
       - name: _font
@@ -138,7 +143,7 @@ functions:
             &code_editor,
             get_place(),
             code_font,
-            display,
+            get_display(),
             get_cell_width(),
             get_cell_height(),
             base_font_color,
