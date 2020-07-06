@@ -61,6 +61,14 @@ if (!Blast::DirectoryExistenceChecker(project_directory).exists())
                  << "does not exist";
    throw std::runtime_error(error_message.str());
 }
+if (!Blast::FileExistenceChecker(test_binary).exists())
+{
+   std::stringstream error_message;
+   error_message << "Daemus::run_component_test: error: "
+                 << "the test binary \"" << test_binary << "\" "
+                 << "does not exist";
+   throw std::runtime_error(error_message.str());
+}
 
 // execute the test
 std::stringstream command;
