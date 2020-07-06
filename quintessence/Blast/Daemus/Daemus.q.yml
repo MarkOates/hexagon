@@ -66,7 +66,7 @@ functions:
                  << " && "
                  << quintessence_build_executable << " -f " << quintessence_filename
               << ")";
-      execute_command(command.str());
+      execute_command(command.str(), false);
 
       return;
     body_dependency_symbols:
@@ -81,11 +81,14 @@ functions:
       - name: command
         type: std::string
         default_argument: '""'
+      - name: output_to_stdout
+        type: bool
+        default_argument: true
     body: |
       Blast::ShellCommandExecutorWithCallback shell_command_executor(
          command,
-         Blast::ShellCommandExecutorWithCallback::simple_cout_callback
-         //Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+         output_to_stdout ? Blast::ShellCommandExecutorWithCallback::simple_cout_callback
+                          : Blast::ShellCommandExecutorWithCallback::simple_silent_callback
       );
       return shell_command_executor.execute();
     body_dependency_symbols:

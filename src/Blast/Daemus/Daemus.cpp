@@ -78,18 +78,18 @@ command << "("
            << " && "
            << quintessence_build_executable << " -f " << quintessence_filename
         << ")";
-execute_command(command.str());
+execute_command(command.str(), false);
 
 return;
 
 }
 
-std::string Daemus::execute_command(std::string command)
+std::string Daemus::execute_command(std::string command, bool output_to_stdout)
 {
 Blast::ShellCommandExecutorWithCallback shell_command_executor(
    command,
-   Blast::ShellCommandExecutorWithCallback::simple_cout_callback
-   //Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+   output_to_stdout ? Blast::ShellCommandExecutorWithCallback::simple_cout_callback
+                    : Blast::ShellCommandExecutorWithCallback::simple_silent_callback
 );
 return shell_command_executor.execute();
 

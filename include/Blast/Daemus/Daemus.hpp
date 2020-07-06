@@ -22,7 +22,7 @@ namespace Blast
       void run_simple_echo_command();
       void run_simple_sleep_command();
       void run_build_quintessence_file(std::string project_directory="", std::string quintessence_filename="");
-      std::string execute_command(std::string command="");
+      std::string execute_command(std::string command="", bool output_to_stdout=true);
       void output_pid();
       };
    }

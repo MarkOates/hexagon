@@ -90,3 +90,17 @@ TEST(Blast_Daemus_DaemusTest, run_build_quintessence_file__with_the_valid_requir
    SUCCEED();
 }
 
+TEST(Blast_Daemus_DaemusTest, run_build_quintessence_file__will_not_output_anything_to_stdout)
+{
+   std::string project_directory = "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject";
+   std::string quintessence_file = "quintessence/FixtureObjectThing.q.yml";
+
+   Blast::Daemus::Daemus daemus;
+
+   testing::internal::CaptureStdout();
+   daemus.run_build_quintessence_file(project_directory, quintessence_file);
+   std::string captured_cout_output = testing::internal::GetCapturedStdout();
+
+   EXPECT_EQ(true, captured_cout_output.empty());
+}
+
