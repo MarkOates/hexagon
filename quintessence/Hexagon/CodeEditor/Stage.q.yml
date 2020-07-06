@@ -50,7 +50,7 @@ functions:
       - name: _cell_width
         type: int
         default_argument: 10
-      - name: cell_height
+      - name: _cell_height
         type: int
         default_argument: 20
     body: |
