@@ -20,6 +20,11 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+  - name: is_focused
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
@@ -48,7 +53,7 @@ functions:
   - name: render
     is_override: true
     parameters:
-      - name: is_focused
+      - name: _is_focused
         type: bool
         default_argument: true
       - name: _display
@@ -139,7 +144,7 @@ functions:
 
          ::CodeEditor::Renderer renderer(
             draw_line_numbers,
-            is_focused,
+            get_is_focused(),
             &code_editor,
             get_place(),
             code_font,

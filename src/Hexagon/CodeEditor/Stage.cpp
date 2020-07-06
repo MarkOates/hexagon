@@ -22,6 +22,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 Stage::Stage(::CodeEditor::CodeEditor code_editor)
    : StageInterface(code_editor.get_type())
    , code_editor(code_editor)
+   , is_focused(false)
    , display(nullptr)
    , font(nullptr)
    , cell_width(10)
@@ -32,6 +33,12 @@ Stage::Stage(::CodeEditor::CodeEditor code_editor)
 
 Stage::~Stage()
 {
+}
+
+
+void Stage::set_is_focused(bool is_focused)
+{
+   this->is_focused = is_focused;
 }
 
 
@@ -62,6 +69,12 @@ void Stage::set_cell_height(int cell_height)
 ::CodeEditor::CodeEditor Stage::get_code_editor()
 {
    return code_editor;
+}
+
+
+bool Stage::get_is_focused()
+{
+   return is_focused;
 }
 
 
@@ -101,7 +114,7 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
-void Stage::render(bool is_focused, ALLEGRO_DISPLAY* _display, ALLEGRO_FONT* _font, int _cell_width, int _cell_height)
+void Stage::render(bool _is_focused, ALLEGRO_DISPLAY* _display, ALLEGRO_FONT* _font, int _cell_width, int _cell_height)
 {
 //place = this->place;
 
@@ -178,7 +191,7 @@ else
 
    ::CodeEditor::Renderer renderer(
       draw_line_numbers,
-      is_focused,
+      get_is_focused(),
       &code_editor,
       get_place(),
       code_font,
