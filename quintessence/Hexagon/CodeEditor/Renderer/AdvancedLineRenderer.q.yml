@@ -47,11 +47,11 @@ functions:
          && secondary_regex_matcher.get_match_info().empty()
       ) return {};
 
-      std::string function_name_regex = " [a-z0-9_]+__";
+      std::string function_name_regex = " [a-z0-9_]+?__";
       RegexMatcher function_name_regex_matcher(full_line_text, function_name_regex);
 
-      ALLEGRO_COLOR function_name_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.3);
       ALLEGRO_COLOR test_declaration_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.2);
+      ALLEGRO_COLOR function_name_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.3);
 
       std::vector<std::pair<int, int>> function_name_regex_matcher_match_info =
          function_name_regex_matcher.get_match_info();

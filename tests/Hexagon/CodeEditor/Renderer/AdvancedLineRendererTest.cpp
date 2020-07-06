@@ -211,8 +211,11 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
 
    std::vector<std::string> texts = {
       "TEST(ThisIsClassName, this__is_the_description)",
+      "TEST(ThisIsClassName, this__with_an_additional_clause__is_the_description)",
       "TEST(ThisIsClassName,",
       "   valid_test_name)",
+      "   method_name__valid_test_name)",
+      "   method_name__with_an_additional_clause__is_a_valid_test_name)",
       "    does_not_parse)",
       "  does_not_parse)",
       "TEST(ThisShould not parse r)",
