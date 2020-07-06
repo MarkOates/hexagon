@@ -1,8 +1,14 @@
 parent_classes:
+
+
   - class: 'StageInterface'
     scope: public
     init_with: "StageInterface::FILE_NAVIGATOR"
+
+
 properties:
+
+
   - name: cursor_position_static
     type: bool
     setter: true
@@ -32,59 +38,89 @@ properties:
     constructor_arg: true
     getter: true
     setter: true
+
+
 functions:
+
+
   - name: move_cursor_down
     type: void
     body: |
       cursor_position += 1;
+
+
   - name: current_selection_is_valid
     type: bool
     body: |
       if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
       return true;
+
+
   - name: get_current_selection_or_spaced_empty_string
     type: std::string
     body: |
       if (!current_selection_is_valid()) return " ";
       return nodes[get_cursor_position()].second;
+
+
   - name: get_current_selection
     type: std::string
     body: |
       if (!current_selection_is_valid()) throw std::runtime_error("cannot current_selection_is_folder because is invalid");
       return nodes[get_cursor_position()].second;
+
+
   - name: current_selection_is_folder
     type: bool
     body: |
       std::string current_selection = get_current_selection();
       FileSystemNode current_selection_node(current_selection);
       return current_selection_node.infer_is_directory();
+
+
   - name: move_cursor_up
     type: void
     body: |
       cursor_position -= 1;
+
+
   - name: move_cursor_to_top
     type: void
     body: |
       cursor_position = 0;
+
+
   - name: set_node_root_to_system_root_directory
     body: set_node_root("/");
+
+
   - name: set_node_root_to_repos_directory
     body: set_node_root("/Users/markoates/Repos");
+
+
   - name: set_node_root_to_user_directory
     body: set_node_root("/Users/markoates");
+
+
   - name: set_node_root_to_shopify_repos_directory
     body: set_node_root("/Users/markoates/dev_repos");
+
+
   - name: set_node_root_to_parent_directory
     body: |
       FileSystemNode current_node(get_node_root());
       std::string parent_directory = current_node.infer_parent();
       set_node_root(parent_directory);
+
+
   - name: set_node_root_to_current_selection_if_folder
     body: |
       if (current_selection_is_valid() && current_selection_is_folder())
       {
         set_node_root(get_current_selection());
       }
+
+
   - name: refresh_list
     body: |
       nodes.clear();
@@ -99,6 +135,8 @@ functions:
       return;
     body_dependency_symbols:
       - FileSystemNode
+
+
   - name: render
     is_override: true
     parameters:
@@ -183,7 +221,7 @@ functions:
         bool is_directory = current_line_node.infer_is_directory();
         ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
         col = is_directory ? al_color_name("lime") : al_color_name("palegreen");
-        
+
         al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
         cursor_y += line_height;
       }
@@ -194,6 +232,8 @@ functions:
     body_dependency_symbols:
       - al_color_name
       - al_draw_circle
+
+
   - name: process_local_event
     is_override: true
     parameters:
@@ -277,11 +317,15 @@ functions:
       - std::endl
       - std::cout
       - std::cerr
+
+
   - name: save_file
     is_override: true
     type: bool
     body: |
       return true;
+
+
   - name: process_event
     is_override: true
     parameters:
@@ -334,7 +378,11 @@ functions:
       return;
     body_dependency_symbols:
       - KeyboardCommandMapper
+
+
 dependencies:
+
+
   - symbol: StageInterface
     headers: [ 'Hexagon/StageInterface.hpp' ]
   - symbol: ALLEGRO_DISPLAY*

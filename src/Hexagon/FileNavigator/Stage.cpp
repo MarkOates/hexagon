@@ -255,7 +255,7 @@ for (auto &node : nodes)
   bool is_directory = current_line_node.infer_is_directory();
   ALLEGRO_COLOR col = is_directory ? node_folder_color : font_color;
   col = is_directory ? al_color_name("lime") : al_color_name("palegreen");
-  
+
   al_draw_text(font, col, pos_x, pos_y + cursor_y, 0, line_content.c_str());
   cursor_y += line_height;
 }
