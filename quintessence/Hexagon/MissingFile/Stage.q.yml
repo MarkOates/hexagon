@@ -16,7 +16,7 @@ properties:
     getter: true
   - name: text
     type: std::string
-    init_with: "\"MISSING FILE\""
+    init_with: '"MISSING FILE"'
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
