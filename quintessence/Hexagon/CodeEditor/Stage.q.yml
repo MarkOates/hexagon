@@ -20,6 +20,11 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    getter: true
+    setter: true
   - name: cell_width
     type: int
     init_with: 10
@@ -44,7 +49,7 @@ functions:
       - name: display
         type: ALLEGRO_DISPLAY*
         default_argument: nullptr
-      - name: font
+      - name: _font
         type: ALLEGRO_FONT*
         default_argument: nullptr
       - name: _cell_width
@@ -66,7 +71,7 @@ functions:
          ALLEGRO_COLOR backfill_color = al_color_name("black");
 
          Hexagon::OneLineInputBox::Renderer renderer(
-            font,
+            get_font(),
             outline_and_text_color,
             backfill_color,
             width,
@@ -97,7 +102,7 @@ functions:
          ALLEGRO_COLOR backfill_color = al_color_name("black");
 
          Hexagon::OneLineInputBox::Renderer renderer(
-            font,
+            get_font(),
             outline_and_text_color,
             backfill_color,
             width,
@@ -121,8 +126,8 @@ functions:
       else
       {
          bool draw_line_numbers = true;
-         ALLEGRO_FONT *code_font = font;
-         ALLEGRO_FONT *overlay_font = font;
+         ALLEGRO_FONT *code_font = get_font();
+         ALLEGRO_FONT *overlay_font = get_font();
          ALLEGRO_COLOR base_font_color = al_color_name("white");
          ALLEGRO_COLOR backfill_color = al_color_name("black");
          float backfill_opacity = 0.8f;

@@ -22,6 +22,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 Stage::Stage(::CodeEditor::CodeEditor code_editor)
    : StageInterface(code_editor.get_type())
    , code_editor(code_editor)
+   , font(nullptr)
    , cell_width(10)
    , cell_height(20)
 {
@@ -30,6 +31,12 @@ Stage::Stage(::CodeEditor::CodeEditor code_editor)
 
 Stage::~Stage()
 {
+}
+
+
+void Stage::set_font(ALLEGRO_FONT* font)
+{
+   this->font = font;
 }
 
 
@@ -48,6 +55,12 @@ void Stage::set_cell_height(int cell_height)
 ::CodeEditor::CodeEditor Stage::get_code_editor()
 {
    return code_editor;
+}
+
+
+ALLEGRO_FONT* Stage::get_font()
+{
+   return font;
 }
 
 
@@ -75,7 +88,7 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
-void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int _cell_width, int _cell_height)
+void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* _font, int _cell_width, int _cell_height)
 {
 //place = this->place;
 
@@ -89,7 +102,7 @@ if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
    ALLEGRO_COLOR backfill_color = al_color_name("black");
 
    Hexagon::OneLineInputBox::Renderer renderer(
-      font,
+      get_font(),
       outline_and_text_color,
       backfill_color,
       width,
@@ -120,7 +133,7 @@ else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
    ALLEGRO_COLOR backfill_color = al_color_name("black");
 
    Hexagon::OneLineInputBox::Renderer renderer(
-      font,
+      get_font(),
       outline_and_text_color,
       backfill_color,
       width,
@@ -144,8 +157,8 @@ else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
 else
 {
    bool draw_line_numbers = true;
-   ALLEGRO_FONT *code_font = font;
-   ALLEGRO_FONT *overlay_font = font;
+   ALLEGRO_FONT *code_font = get_font();
+   ALLEGRO_FONT *overlay_font = get_font();
    ALLEGRO_COLOR base_font_color = al_color_name("white");
    ALLEGRO_COLOR backfill_color = al_color_name("black");
    float backfill_opacity = 0.8f;
