@@ -24,6 +24,31 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+  - name: is_focused
+    type: bool
+    init_with: true
+    getter: true
+    setter: true
+  - name: display
+    type: ALLEGRO_DISPLAY*
+    init_with: nullptr
+    getter: true
+    setter: true
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    getter: true
+    setter: true
+  - name: cell_width
+    type: int
+    init_with: 10
+    getter: true
+    setter: true
+  - name: cell_height
+    type: int
+    init_with: 20
+    getter: true
+    setter: true
 
 
 
@@ -87,19 +112,19 @@ functions:
   - name: render
     is_override: true
     parameters:
-      - name: is_focused
+      - name: _is_focused
         type: bool
         default_argument: true
-      - name: display
+      - name: _display
         type: ALLEGRO_DISPLAY*
         default_argument: nullptr
-      - name: font
+      - name: _font
         type: ALLEGRO_FONT*
         default_argument: nullptr
-      - name: cell_width
+      - name: _cell_width
         type: int
         default_argument: 10
-      - name: cell_height
+      - name: _cell_height
         type: int
         default_argument: 20
     body: |
