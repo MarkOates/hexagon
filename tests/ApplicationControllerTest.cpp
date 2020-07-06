@@ -49,17 +49,15 @@ TEST(ApplicationControllerTest, run_program__will_open_the_component_navigator)
       application_controller.emit_user_event(ev);
    }
 
-   // to fix this test, "focusd_component.txt" will need to be upgraded to a temp file
-   // that can be set in the config
+   // select option
+   {
+      ALLEGRO_EVENT ev;
+      ev.type = ALLEGRO_EVENT_KEY_CHAR;
+      ev.keyboard.keycode = ALLEGRO_KEY_ENTER;
+      application_controller.emit_user_event(ev);
+   }
 
-   //// select option
-   //{
-   //   ALLEGRO_EVENT ev;
-   //   ev.type = ALLEGRO_EVENT_KEY_CHAR;
-   //   ev.keyboard.keycode = ALLEGRO_KEY_ENTER;
-   //   application_controller.emit_user_event(ev);
-   //}
-
+   // close the window
    {
       ALLEGRO_EVENT display_close_event;
       display_close_event.type = ALLEGRO_EVENT_DISPLAY_CLOSE;
