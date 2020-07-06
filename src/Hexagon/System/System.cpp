@@ -372,8 +372,11 @@ bool System::mark_as_not_in_sync_with_remote()
 
 bool System::write_focused_component_name_to_file()
 {
-   std::string hard_coded_project_path = "/Users/markoates/Repos/hexagon/";
-   std::string FOCUSED_COMPONENT_FILENAME = hard_coded_project_path + "bin/programs/data/tmp/focused_component.txt";
+   //std::string hard_coded_project_path = "/Users/markoates/Repos/hexagon/";
+   //hard_coded_project_path + "bin/programs/data/tmp/focused_component.txt";
+   std::string FOCUSED_COMPONENT_FILENAME = config.get_focused_component_filename();
+
+
    std::string focused_component_to_write = focused_component_name;
 
    bool success = php::file_put_contents(FOCUSED_COMPONENT_FILENAME, focused_component_to_write);

@@ -139,7 +139,7 @@ return config.get_or_default_str("", MAKE_COMMAND_FILENAME_KEY, default_filename
 
 std::string Config::get_focused_component_filename()
 {
-std::string default_filename = resource_path({"data", "tmp"}, "focused_component.txt");
+std::string default_filename = "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/focused_component.txt";
 return config.get_or_default_str("", FOCUSED_COMPONENT_FILENAME_KEY, default_filename);
 
 }
