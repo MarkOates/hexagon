@@ -128,7 +128,8 @@ functions:
 
 
   - name: process_local_event
-    is_override: true
+    virtual: true
+    override: true
     parameters:
       - name: event_name
         type: std::string
@@ -191,7 +192,8 @@ functions:
 
 
   - name: process_event
-    is_override: true
+    virtual: true
+    override: true
     parameters:
       - name: event
         type: ALLEGRO_EVENT&
@@ -229,7 +231,6 @@ functions:
 
 
   - name: save_file
-    is_override: true
     type: bool
     body: |
       return true;

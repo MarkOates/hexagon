@@ -50,9 +50,9 @@ namespace Hexagon
       KeyboardCommandMapper build_keyboard_command_mapping();
       std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> build_local_events_dictionary();
       virtual void render() override;
-      void process_local_event(std::string event_name="", ActionData action_data=ActionData());
+      virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
       void process_char_event(int keycode=0, int unichar=0, bool is_repeat=false);
-      void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());
+      virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
       bool save_file();
       };
    }
