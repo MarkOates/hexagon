@@ -46,13 +46,13 @@ TEST(Blast_Daemus_DaemusTest, run_component_test__runs_the_test_executable_for_t
    SUCCEED();
 }
 
-TEST(Blast_Daemus_DaemusTest, run_component_test__returns_parsed_test_results)
-   // not a very complete test
+TEST(Blast_Daemus_DaemusTest, run_component_test__returns_test_results)
 {
    Blast::Project::Component component("Blast/String/Trimmer", "/Users/markoates/Repos/hexagon/");
    Blast::Daemus::Daemus daemus;
-   daemus.run_component_test(component);
-   SUCCEED();
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results = daemus.run_component_test(component);
+
+   EXPECT_EQ(false, test_results.empty());
 }
 
 TEST(Blast_Daemus_DaemusTest,

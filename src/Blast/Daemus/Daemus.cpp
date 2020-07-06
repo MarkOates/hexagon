@@ -47,7 +47,7 @@ void Daemus::run_simple_sleep_command()
 execute_command("echo \"sleeping\"; sleep 0.5; echo \"done\"");
 }
 
-void Daemus::run_component_test(Blast::Project::Component component)
+std::vector<Hexagon::Testing::GoogleTestRunTestResult> Daemus::run_component_test(Blast::Project::Component component)
 {
 std::string name = component.get_name();
 std::string project_directory = component.get_project_root();
@@ -70,9 +70,9 @@ std::string test_binary = component.generate_full_path_test_binary_filename();
    if (!successful_parse) throw std::runtime_error("fooobbarrr");
    std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results =
       google_test_run_output_parser.get_parsed_test_results();
-}
 
-return;
+   return test_results;
+}
 
 }
 

@@ -26,6 +26,7 @@ functions:
 
 
   - name: run_component_test
+    type: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
     parameters:
       - name: component
         type: Blast::Project::Component
@@ -52,9 +53,9 @@ functions:
          if (!successful_parse) throw std::runtime_error("fooobbarrr");
          std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results =
             google_test_run_output_parser.get_parsed_test_results();
-      }
 
-      return;
+         return test_results;
+      }
     body_dependency_symbols:
       - Hexagon::Testing::GoogleTestRunOutputParser
       - std::vector<Hexagon::Testing::GoogleTestRunTestResult>
