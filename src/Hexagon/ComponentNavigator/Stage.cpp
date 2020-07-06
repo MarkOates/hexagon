@@ -30,6 +30,9 @@ Stage::Stage(std::string project_root)
    , selector_color(al_color_name("slategray"))
    , project_root(project_root)
    , nodes({})
+   , font(nullptr)
+   , cell_width(10)
+   , cell_height(20)
 {
 }
 
@@ -63,6 +66,24 @@ void Stage::set_nodes(std::vector<Blast::Project::Component> nodes)
 }
 
 
+void Stage::set_font(ALLEGRO_FONT* font)
+{
+   this->font = font;
+}
+
+
+void Stage::set_cell_width(int cell_width)
+{
+   this->cell_width = cell_width;
+}
+
+
+void Stage::set_cell_height(int cell_height)
+{
+   this->cell_height = cell_height;
+}
+
+
 int Stage::get_cursor_position()
 {
    return cursor_position;
@@ -84,6 +105,24 @@ std::string Stage::get_project_root()
 std::vector<Blast::Project::Component> Stage::get_nodes()
 {
    return nodes;
+}
+
+
+ALLEGRO_FONT* Stage::get_font()
+{
+   return font;
+}
+
+
+int Stage::get_cell_width()
+{
+   return cell_width;
+}
+
+
+int Stage::get_cell_height()
+{
+   return cell_height;
 }
 
 
@@ -133,7 +172,7 @@ nodes = list.components_sorted_by_most_recent();
 
 }
 
-void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
+void Stage::render(bool _is_focused, ALLEGRO_DISPLAY* _display, ALLEGRO_FONT* _font, int _cell_width, int _cell_height)
 {
 if (!font) throw std::runtime_error("font missing");
 
