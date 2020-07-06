@@ -28,7 +28,10 @@ TEST(ApplicationControllerTest, run_program__is_successful_and_will_shutdown_on_
    SUCCEED();
 }
 
-TEST(ApplicationControllerTest, run_program__will_open_the_component_navigator)
+TEST(DISABLED_ApplicationControllerTest, run_program__will_open_the_component_navigator)
+   // this is an incomplete test, it does not have any assertion in it and is not reliable in some
+   // circumstances (multiple keypresses do sometimes not register).
+   // here, I've kept the test in place so that the technique can be examined in the future.
 {
    ApplicationController application_controller(TEST_CONFIG_FILENAME);
    application_controller.initialize();
