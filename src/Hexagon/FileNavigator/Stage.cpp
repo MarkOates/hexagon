@@ -26,6 +26,11 @@ Stage::Stage(std::string node_root)
    , nodes({})
    , cursor_position(0)
    , node_root(node_root)
+   , is_focused(true)
+   , display(nullptr)
+   , font(nullptr)
+   , cell_width(10)
+   , cell_height(20)
 {
 }
 
@@ -59,6 +64,36 @@ void Stage::set_node_root(std::string node_root)
 }
 
 
+void Stage::set_is_focused(bool is_focused)
+{
+   this->is_focused = is_focused;
+}
+
+
+void Stage::set_display(ALLEGRO_DISPLAY* display)
+{
+   this->display = display;
+}
+
+
+void Stage::set_font(ALLEGRO_FONT* font)
+{
+   this->font = font;
+}
+
+
+void Stage::set_cell_width(int cell_width)
+{
+   this->cell_width = cell_width;
+}
+
+
+void Stage::set_cell_height(int cell_height)
+{
+   this->cell_height = cell_height;
+}
+
+
 ALLEGRO_COLOR Stage::get_selector_color()
 {
    return selector_color;
@@ -80,6 +115,36 @@ int Stage::get_cursor_position()
 std::string Stage::get_node_root()
 {
    return node_root;
+}
+
+
+bool Stage::get_is_focused()
+{
+   return is_focused;
+}
+
+
+ALLEGRO_DISPLAY* Stage::get_display()
+{
+   return display;
+}
+
+
+ALLEGRO_FONT* Stage::get_font()
+{
+   return font;
+}
+
+
+int Stage::get_cell_width()
+{
+   return cell_width;
+}
+
+
+int Stage::get_cell_height()
+{
+   return cell_height;
 }
 
 
@@ -188,7 +253,7 @@ return;
 
 }
 
-void Stage::render(bool is_focused, ALLEGRO_DISPLAY* display, ALLEGRO_FONT* font, int cell_width, int cell_height)
+void Stage::render(bool _is_focused, ALLEGRO_DISPLAY* _display, ALLEGRO_FONT* _font, int _cell_width, int _cell_height)
 {
 if (!font) throw std::runtime_error("font missing");
 

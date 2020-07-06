@@ -78,9 +78,15 @@ functions:
             missing_file_stage->set_cell_height(cell_height);
          }
 
-         //<Hexagon/FileNavigator/Stage.hpp>
-         //Hexagon::FileNavigator::Stage stage;
-         //"StageInterface::FILE_NAVIGATOR"
+         if (stage->get_type() == StageInterface::FILE_NAVIGATOR)
+         {
+            Hexagon::FileNavigator::Stage *file_navigator_stage = static_cast<Hexagon::FileNavigator::Stage *>(stage);
+            file_navigator_stage->set_is_focused(is_focused);
+            file_navigator_stage->set_display(display);
+            file_navigator_stage->set_font(font);
+            file_navigator_stage->set_cell_width(cell_width);
+            file_navigator_stage->set_cell_height(cell_height);
+         }
 
          stage->render(is_focused, display, font, cell_width, cell_height);
 
@@ -101,6 +107,7 @@ functions:
       - Hexagon::CodeEditor::Stage*
       - Hexagon::AdvancedComponentNavigator::Stage*
       - Hexagon::MissingFile::Stage*
+      - Hexagon::FileNavigator::Stage*
 
 
   - name: rendered_with_CodeEditor_Renderer
@@ -142,3 +149,5 @@ dependencies:
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
   - symbol: Hexagon::MissingFile::Stage*
     headers: [ Hexagon/MissingFile/Stage.hpp ]
+  - symbol: Hexagon::FileNavigator::Stage*
+    headers: [ Hexagon/FileNavigator/Stage.hpp ]

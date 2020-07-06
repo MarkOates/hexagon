@@ -8,6 +8,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
+#include <Hexagon/FileNavigator/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -114,9 +115,15 @@ for (auto &stage : system->stages)
       missing_file_stage->set_cell_height(cell_height);
    }
 
-   //<Hexagon/FileNavigator/Stage.hpp>
-   //Hexagon::FileNavigator::Stage stage;
-   //"StageInterface::FILE_NAVIGATOR"
+   if (stage->get_type() == StageInterface::FILE_NAVIGATOR)
+   {
+      Hexagon::FileNavigator::Stage *file_navigator_stage = static_cast<Hexagon::FileNavigator::Stage *>(stage);
+      file_navigator_stage->set_is_focused(is_focused);
+      file_navigator_stage->set_display(display);
+      file_navigator_stage->set_font(font);
+      file_navigator_stage->set_cell_width(cell_width);
+      file_navigator_stage->set_cell_height(cell_height);
+   }
 
    stage->render(is_focused, display, font, cell_width, cell_height);
 

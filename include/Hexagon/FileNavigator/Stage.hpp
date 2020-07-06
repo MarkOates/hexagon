@@ -22,6 +22,11 @@ namespace Hexagon
          std::vector<std::pair<std::string, std::string>> nodes;
          int cursor_position;
          std::string node_root;
+         bool is_focused;
+         ALLEGRO_DISPLAY* display;
+         ALLEGRO_FONT* font;
+         int cell_width;
+         int cell_height;
 
       public:
          Stage(std::string node_root="/Users/markoates/Repos");
@@ -31,11 +36,21 @@ namespace Hexagon
          void set_selector_color(ALLEGRO_COLOR selector_color);
          void set_nodes(std::vector<std::pair<std::string, std::string>> nodes);
          void set_node_root(std::string node_root);
+         void set_is_focused(bool is_focused);
+         void set_display(ALLEGRO_DISPLAY* display);
+         void set_font(ALLEGRO_FONT* font);
+         void set_cell_width(int cell_width);
+         void set_cell_height(int cell_height);
 
          ALLEGRO_COLOR get_selector_color();
          std::vector<std::pair<std::string, std::string>> get_nodes();
          int get_cursor_position();
          std::string get_node_root();
+         bool get_is_focused();
+         ALLEGRO_DISPLAY* get_display();
+         ALLEGRO_FONT* get_font();
+         int get_cell_width();
+         int get_cell_height();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void move_cursor_down();
       bool current_selection_is_valid();
@@ -51,7 +66,7 @@ namespace Hexagon
       void set_node_root_to_parent_directory();
       void set_node_root_to_current_selection_if_folder();
       void refresh_list();
-      void render(bool is_focused=true, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20);
+      void render(bool _is_focused=true, ALLEGRO_DISPLAY* _display=nullptr, ALLEGRO_FONT* _font=nullptr, int _cell_width=10, int _cell_height=20);
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       bool save_file();
       void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());
