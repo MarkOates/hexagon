@@ -25,6 +25,27 @@ functions:
     body: execute_command("echo \"sleeping\"; sleep 0.5; echo \"done\"");
 
 
+  - name: run_component_test
+    parameters:
+      - name: component
+        type: Blast::Project::Component
+        default_argument: '{}'
+    body: |
+      std::string name = component.get_name();
+      std::string project_directory = component.get_project_root();
+      std::string test_binary = component.generate_full_path_test_binary_filename();
+
+      std::stringstream command;
+      command << "("
+                 << "cd " << project_directory
+                 << " && "
+                 << test_binary
+              << ")";
+      std::string test_result = execute_command(command.str(), false);
+
+      return;
+
+
   - name: run_build_quintessence_file
     parameters:
       - name: project_directory
@@ -115,3 +136,5 @@ dependencies:
     headers: [ Blast/DirectoryExistenceChecker.hpp ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]

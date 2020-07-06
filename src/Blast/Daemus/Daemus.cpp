@@ -44,6 +44,24 @@ void Daemus::run_simple_sleep_command()
 execute_command("echo \"sleeping\"; sleep 0.5; echo \"done\"");
 }
 
+void Daemus::run_component_test(Blast::Project::Component component)
+{
+std::string name = component.get_name();
+std::string project_directory = component.get_project_root();
+std::string test_binary = component.generate_full_path_test_binary_filename();
+
+std::stringstream command;
+command << "("
+           << "cd " << project_directory
+           << " && "
+           << test_binary
+        << ")";
+std::string test_result = execute_command(command.str(), false);
+
+return;
+
+}
+
 void Daemus::run_build_quintessence_file(std::string project_directory, std::string quintessence_filename)
 {
 if (!Blast::DirectoryExistenceChecker(project_directory).exists())
