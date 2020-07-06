@@ -3,6 +3,7 @@
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexStore.hpp>
+#include <iostream>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexStore.hpp>
 #include <Hexagon/RegexMatcher.hpp>
@@ -64,11 +65,30 @@ if (
    && secondary_regex_matcher.get_match_info().empty()
 ) return {};
 
-ALLEGRO_COLOR test_declaration_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.3);
+std::string function_name_regex = " [a-z0-9_]+__";
+RegexMatcher function_name_regex_matcher(full_line_text, function_name_regex);
 
-return std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>{
-   { full_line_text, 0, test_declaration_color },
-};
+ALLEGRO_COLOR function_name_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.3);
+ALLEGRO_COLOR test_declaration_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.2);
+
+std::vector<std::pair<int, int>> function_name_regex_matcher_match_info =
+   function_name_regex_matcher.get_match_info();
+if (!function_name_regex_matcher_match_info.empty())
+{
+   std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
+   int function_starts_at = function_name_regex_matcher_match_info[0].first;
+   int function_length = function_name_regex_matcher_match_info[0].second - 2;
+   std::string function_name = full_line_text.substr(function_starts_at, function_length);
+   return std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>{
+      { full_line_text, 0, test_declaration_color },
+      { function_name, function_starts_at, function_name_color },
+   };
+}
+else {
+   return std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>{
+      { full_line_text, 0, test_declaration_color },
+   };
+}
 
 }
 
