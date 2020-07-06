@@ -1,8 +1,14 @@
 parent_classes:
+
+
   - class: 'StageInterface'
     scope: public
     init_with: "StageInterface::FILE_NAVIGATOR"
+
+
 properties:
+
+
   - name: initialized
     type: bool
     init_with: false
@@ -24,7 +30,11 @@ properties:
     type: ALLEGRO_BITMAP*
     init_with: "nullptr"
     setter: true
+
+
 functions:
+
+
   - name: initialize
     type: void
     body: |
@@ -37,11 +47,15 @@ functions:
 
       initialized = true;
       return;
+
+
   - name: draw_design
     type: void
     body: |
       al_draw_text(text_font, al_color_name("green"), 0, 0, 0, "Hello Overlay");
       return;
+
+
   - name: render
     is_override: true
     parameters:
@@ -62,6 +76,8 @@ functions:
         default_argument: 20
     body: |
       return;
+
+
   - name: draw
     type: void
     body: |
@@ -83,6 +99,8 @@ functions:
       - ALLEGRO_COLOR
       - al_color_name
       - al_draw_text
+
+
   - name: process_local_event
     is_override: true
     parameters:
@@ -94,6 +112,8 @@ functions:
         default_argument: "ActionData()"
     body: |
       return;
+
+
   - name: process_event
     is_override: true
     parameters:
@@ -102,6 +122,8 @@ functions:
         default_argument: "get_a_default_empty_event_ref()"
     body: |
       return;
+
+
 dependencies:
   - symbol: std::runtime_error
     headers: [ stdexcept ]
@@ -127,7 +149,11 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
+
+
 functions:
+
+
   - name: run
     type: std::string
     body: return "Hello World!";
