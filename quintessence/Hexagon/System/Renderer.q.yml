@@ -105,7 +105,7 @@ functions:
          }
 
 
-         stage->render(is_focused, display, font, cell_width, cell_height);
+         stage->render();
 
 
 

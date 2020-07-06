@@ -26,7 +26,7 @@ namespace Hexagon
 
       public:
          Stage(std::string expected_filename="[Expected filename not set]");
-         ~Stage();
+         virtual ~Stage();
 
          void set_is_focused(bool is_focused);
          void set_display(ALLEGRO_DISPLAY* display);
@@ -41,7 +41,7 @@ namespace Hexagon
          int get_cell_width();
          int get_cell_height();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      void render(bool _is_focused=true, ALLEGRO_DISPLAY* _display=nullptr, ALLEGRO_FONT* _font=nullptr, int _cell_width=10, int _cell_height=20);
+      virtual void render() override;
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());
       };

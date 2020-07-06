@@ -23,7 +23,7 @@ namespace Hexagon
 
       public:
          Stage(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* text_font=nullptr);
-         ~Stage();
+         virtual ~Stage();
 
          void set_text_font(ALLEGRO_FONT* text_font);
          void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
@@ -31,7 +31,7 @@ namespace Hexagon
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void initialize();
       void draw_design();
-      void render(bool _is_focused=true, ALLEGRO_DISPLAY* _display=nullptr, ALLEGRO_FONT* _font=nullptr, int _cell_width=10, int _cell_height=20);
+      virtual void render() override;
       void draw();
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());

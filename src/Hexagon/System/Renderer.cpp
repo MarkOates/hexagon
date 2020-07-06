@@ -144,7 +144,7 @@ for (auto &stage : system->stages)
    }
 
 
-   stage->render(is_focused, display, font, cell_width, cell_height);
+   stage->render();
 
 
 

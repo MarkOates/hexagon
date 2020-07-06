@@ -87,7 +87,12 @@ void run_program()
          stage->process_local_event(command);
       }
 
-      stage->render(true, nullptr, font);
+      stage->set_is_focused(true);
+      stage->set_display(nullptr);
+      stage->set_font(font);
+
+      stage->render();
+
       al_flip_display();
 
       usleep(0.1 * 1000000);

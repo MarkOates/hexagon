@@ -66,25 +66,8 @@ functions:
 
 
   - name: render
-    type: void
     virtual: true
     override: true
-    parameters:
-      - name: _is_focused
-        type: bool
-        default_argument: true
-      - name: _display
-        type: ALLEGRO_DISPLAY*
-        default_argument: nullptr
-      - name: _font
-        type: ALLEGRO_FONT*
-        default_argument: nullptr
-      - name: _cell_width
-        type: int
-        default_argument: 60
-      - name: _cell_height
-        type: int
-        default_argument: 20
     body: |
        ALLEGRO_COLOR pass_color = al_color_name("aquamarine");
        ALLEGRO_COLOR running_color = al_color_name("sandybrown");

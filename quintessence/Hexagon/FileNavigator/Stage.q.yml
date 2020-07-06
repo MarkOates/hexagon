@@ -163,23 +163,8 @@ functions:
 
 
   - name: render
-    is_override: true
-    parameters:
-      - name: _is_focused
-        type: bool
-        default_argument: true
-      - name: _display
-        type: ALLEGRO_DISPLAY*
-        default_argument: nullptr
-      - name: _font
-        type: ALLEGRO_FONT*
-        default_argument: nullptr
-      - name: _cell_width
-        type: int
-        default_argument: 10
-      - name: _cell_height
-        type: int
-        default_argument: 20
+    virtual: true
+    override: true
     body: |
       if (!font) throw std::runtime_error("font missing");
 

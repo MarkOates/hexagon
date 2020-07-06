@@ -9,13 +9,7 @@ class CodeEditorTestStage : public StageInterface
 {
 public:
    CodeEditorTestStage() : StageInterface(StageInterface::CODE_EDITOR) {}
-   virtual void render(
-         bool is_focused,
-         ALLEGRO_DISPLAY *display=nullptr,
-         ALLEGRO_FONT *font=nullptr,
-         int cell_width=0,
-         int cell_height=0
-      ) override {}
+   virtual void render() override {}
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };
@@ -24,13 +18,7 @@ class OneLineInputBoxTestStage : public StageInterface
 {
 public:
    OneLineInputBoxTestStage() : StageInterface(StageInterface::ONE_LINE_INPUT_BOX) {}
-   virtual void render(
-         bool is_focused,
-         ALLEGRO_DISPLAY *display=nullptr,
-         ALLEGRO_FONT *font=nullptr,
-         int cell_width=0,
-         int cell_height=0
-      ) override {}
+   virtual void render() override {}
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };
@@ -39,13 +27,7 @@ class FileNavigatorTestStage : public StageInterface
 {
 public:
    FileNavigatorTestStage() : StageInterface(StageInterface::FILE_NAVIGATOR) {}
-   virtual void render(
-         bool is_focused,
-         ALLEGRO_DISPLAY *display=nullptr,
-         ALLEGRO_FONT *font=nullptr,
-         int cell_width=0,
-         int cell_height=0
-      ) override {}
+   virtual void render() override {}
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };
@@ -54,13 +36,7 @@ class MissingFileTestStage : public StageInterface
 {
 public:
    MissingFileTestStage() : StageInterface(StageInterface::MISSING_FILE) {}
-   virtual void render(
-         bool is_focused,
-         ALLEGRO_DISPLAY *display=nullptr,
-         ALLEGRO_FONT *font=nullptr,
-         int cell_width=0,
-         int cell_height=0
-      ) override {}
+   virtual void render() override {}
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };

@@ -36,7 +36,7 @@ namespace Hexagon
       static ALLEGRO_EVENT& dummy_ALLEGRO_EVENT();
       void append_to_output(std::string content_to_append="");
       void refresh();
-      virtual void render(bool _is_focused=true, ALLEGRO_DISPLAY* _display=nullptr, ALLEGRO_FONT* _font=nullptr, int _cell_width=60, int _cell_height=20) override;
+      virtual void render() override;
       virtual void process_local_event(std::string event_name="", ActionData action_data={}) override;
       virtual void process_event(ALLEGRO_EVENT& event=Stage::dummy_ALLEGRO_EVENT()) override;
       };

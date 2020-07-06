@@ -168,7 +168,7 @@ return local_events;
 
 }
 
-void Stage::render(bool _is_focused, ALLEGRO_DISPLAY* _display, ALLEGRO_FONT* _font, int _cell_width, int _cell_height)
+void Stage::render()
 {
 ALLEGRO_COLOR base_backfill_color = al_color_name("black");
 float backfill_opacity = 0.8f;

@@ -26,7 +26,7 @@ namespace Hexagon
 
       public:
          Stage(::CodeEditor::CodeEditor code_editor=::CodeEditor::CodeEditor{});
-         ~Stage();
+         virtual ~Stage();
 
          void set_is_focused(bool is_focused);
          void set_display(ALLEGRO_DISPLAY* display);
@@ -42,7 +42,7 @@ namespace Hexagon
          int get_cell_height();
          ::CodeEditor::CodeEditor &get_code_editor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      void render(bool _is_focused=true, ALLEGRO_DISPLAY* _display=nullptr, ALLEGRO_FONT* _font=nullptr, int _cell_width=10, int _cell_height=20);
+      virtual void render() override;
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());
       };

@@ -71,7 +71,7 @@ return;
 
 }
 
-void Stage::render(bool _is_focused, ALLEGRO_DISPLAY* _display, ALLEGRO_FONT* _font, int _cell_width, int _cell_height)
+void Stage::render()
 {
 return;
 
