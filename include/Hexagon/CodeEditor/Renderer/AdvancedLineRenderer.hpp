@@ -31,6 +31,7 @@ namespace Hexagon
             ~AdvancedLineRenderer();
 
 
+         std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> build_test_declaration_element_tokens();
          std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> build_quintessence_yaml_name_element_tokens();
          std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> build_quoted_string_tokens();
          std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> build_comment_tokens();

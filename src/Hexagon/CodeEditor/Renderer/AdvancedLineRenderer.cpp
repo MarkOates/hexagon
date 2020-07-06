@@ -6,6 +6,8 @@
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexStore.hpp>
 #include <Hexagon/RegexMatcher.hpp>
+#include <Hexagon/RegexStore.hpp>
+#include <Hexagon/RegexMatcher.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <allegro5/allegro.h>
@@ -48,6 +50,27 @@ AdvancedLineRenderer::~AdvancedLineRenderer()
 {
 }
 
+
+std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::build_test_declaration_element_tokens()
+{
+std::string primary_line_regex = "^   [a-z0-9_]+\\)$";
+RegexMatcher primary_regex_matcher(full_line_text, primary_line_regex);
+
+std::string secondary_line_regex = "^TEST\\([a-zA-Z_]+, ?[a-z_]*\\)?";
+RegexMatcher secondary_regex_matcher(full_line_text, secondary_line_regex);
+
+if (
+      primary_regex_matcher.get_match_info().empty()
+   && secondary_regex_matcher.get_match_info().empty()
+) return {};
+
+ALLEGRO_COLOR test_declaration_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.3);
+
+return std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>{
+   { full_line_text, 0, test_declaration_color },
+};
+
+}
 
 std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::build_quintessence_yaml_name_element_tokens()
 {
@@ -191,6 +214,9 @@ tokens = build_quoted_string_tokens();
 render_tokens(tokens, cell_width);
 
 tokens = build_quintessence_yaml_name_element_tokens();
+render_tokens(tokens, cell_width);
+
+tokens = build_test_declaration_element_tokens();
 render_tokens(tokens, cell_width);
 
 return;

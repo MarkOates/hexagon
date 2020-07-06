@@ -32,6 +32,31 @@ properties:
 functions:
 
 
+  - name: build_test_declaration_element_tokens
+    type: std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>
+    private: true
+    body: |
+      std::string primary_line_regex = "^   [a-z0-9_]+\\)$";
+      RegexMatcher primary_regex_matcher(full_line_text, primary_line_regex);
+
+      std::string secondary_line_regex = "^TEST\\([a-zA-Z_]+, ?[a-z_]*\\)?";
+      RegexMatcher secondary_regex_matcher(full_line_text, secondary_line_regex);
+
+      if (
+            primary_regex_matcher.get_match_info().empty()
+         && secondary_regex_matcher.get_match_info().empty()
+      ) return {};
+
+      ALLEGRO_COLOR test_declaration_color = AllegroFlare::color::color(al_color_name("dodgerblue"), 0.3);
+
+      return std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>{
+         { full_line_text, 0, test_declaration_color },
+      };
+    body_dependency_symbols:
+      - RegexMatcher
+      - Hexagon::RegexStore
+
+
   - name: build_quintessence_yaml_name_element_tokens
     type: std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>
     private: true
@@ -175,6 +200,9 @@ functions:
       render_tokens(tokens, cell_width);
 
       tokens = build_quintessence_yaml_name_element_tokens();
+      render_tokens(tokens, cell_width);
+
+      tokens = build_test_declaration_element_tokens();
       render_tokens(tokens, cell_width);
 
       return;

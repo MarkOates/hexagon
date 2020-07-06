@@ -193,3 +193,47 @@ TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
    al_uninstall_system();
 }
 
+TEST(Hexagon_CodeEditor_Renderer_AdvancedLineRendererTest,
+   render_tokens__hilights_test_lines)
+{
+   al_init();
+   al_init_font_addon();
+   ALLEGRO_DISPLAY *display = al_create_display(1000, 460);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   ALLEGRO_COLOR font_color = al_color_name("white");
+   ALLEGRO_COLOR backfill_color = al_color_name("black");
+   al_clear_to_color(al_color_name("black"));
+
+   EXPECT_NE(nullptr, font);
+
+   float x = 100;
+   float y = al_get_display_height(display)/2;
+
+   std::vector<std::string> texts = {
+      "TEST(ThisIsClassName, this__is_the_description)",
+      "TEST(ThisIsClassName,",
+      "   valid_test_name)",
+      "    does_not_parse)",
+      "  does_not_parse)",
+      "TEST(ThisShould not parse r)",
+   };
+
+   int passes = 0;
+   for (auto &text : texts)
+   {
+      Hexagon::CodeEditor::Renderer::AdvancedLineRenderer(
+         font, &font_color, &backfill_color, x, y + 20*passes, text, 120
+      ).render();
+      passes++;
+   }
+
+   al_flip_display();
+
+   sleep(3);
+
+   al_destroy_font(font);
+   al_destroy_display(display);
+
+   al_uninstall_system();
+}
+
