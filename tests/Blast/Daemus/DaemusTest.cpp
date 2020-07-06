@@ -46,6 +46,15 @@ TEST(Blast_Daemus_DaemusTest, run_component_test__runs_the_test_executable_for_t
    SUCCEED();
 }
 
+TEST(Blast_Daemus_DaemusTest, run_component_test__returns_parsed_test_results)
+   // not a very complete test
+{
+   Blast::Project::Component component("Blast/String/Trimmer", "/Users/markoates/Repos/hexagon/");
+   Blast::Daemus::Daemus daemus;
+   daemus.run_component_test(component);
+   SUCCEED();
+}
+
 TEST(Blast_Daemus_DaemusTest,
    run_build_quintessence_file__when_the_required_project_directory_is_not_present__raises_an_error)
 {
