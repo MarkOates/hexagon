@@ -49,6 +49,9 @@ TEST(ApplicationControllerTest, run_program__will_open_the_component_navigator)
       application_controller.emit_user_event(ev);
    }
 
+   // to fix this test, "focusd_component.txt" will need to be upgraded to a temp file
+   // that can be set in the config
+
    //// select option
    //{
    //   ALLEGRO_EVENT ev;
