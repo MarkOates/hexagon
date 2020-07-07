@@ -1,9 +1,15 @@
 properties:
+
+
   - name: current_project_directory
     type: std::string
     init_with: "\"/Users/markoates/Repos/hexagon/\""
     constructor_arg: true
+
+
 functions:
+
+
   - name: get_push_shell_command
     type: std::string
     private: true
@@ -13,6 +19,8 @@ functions:
          << "(cd " << current_project_directory << " && git push)"
          << "; echo \"RETURN_CODE($?)\"";
       return commit_everything_shell_command.str();
+
+
   - name: push
     type: std::string
     body: |
@@ -21,6 +29,10 @@ functions:
     body_dependency_symbols:
       - std::stringstream
       - Blast::ShellCommandExecutorWithCallback
+
+
 dependencies:
+
+
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
