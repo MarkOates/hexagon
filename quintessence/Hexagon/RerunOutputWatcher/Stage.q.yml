@@ -39,12 +39,16 @@ functions:
     type: void
     body: |
       output = "";
+
+
   - name: dummy_ALLEGRO_EVENT
     type: ALLEGRO_EVENT&
     static: true
     body: |
       static ALLEGRO_EVENT ev;
       return ev;
+
+
   - name: append_to_output
     type: void
     parameters:
@@ -53,6 +57,8 @@ functions:
         default_argument: "\"\""
     body: |
       output += content_to_append;
+
+
   - name: refresh
     type: void
     body: |
