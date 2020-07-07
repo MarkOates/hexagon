@@ -1,4 +1,6 @@
 properties:
+
+
   - name: current_project_directory
     type: std::string
     init_with: "\"/Users/markoates/Repos/hexagon/\""
@@ -7,7 +9,11 @@ properties:
     type: std::string
     init_with: "\"auto commit\""
     constructor_arg: true
+
+
 functions:
+
+
   - name: build_sanitized_commit_message
     type: std::string
     body: |
@@ -17,6 +23,8 @@ functions:
       std::replace(sanitized_commit_message.begin(), sanitized_commit_message.end(), '\r', '#');
       std::replace(sanitized_commit_message.begin(), sanitized_commit_message.end(), '\n', '#');
       return sanitized_commit_message;
+
+
   - name: build_shell_command
     type: std::string
     body: |
@@ -28,6 +36,8 @@ functions:
                                       << "\"" << sanitized_commit_message << "\""
                                       << ")";
       return commit_everything_shell_command.str();
+
+
   - name: commit
     type: bool
     body: |
@@ -38,6 +48,10 @@ functions:
     body_dependency_symbols:
       - std::stringstream
       - Blast::ShellCommandExecutorWithCallback
+
+
 dependencies:
+
+
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
