@@ -170,6 +170,13 @@ return fonts["Eurostile.ttf -27"];
 
 }
 
+ALLEGRO_FONT* Hud::obtain_powerbar_text_font()
+{
+return fonts["Eurostile.ttf -18"];
+//return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+}
+
 void Hud::initialize()
 {
 if (initialized) return;
@@ -311,7 +318,7 @@ if (draw_powerbar)
    powerbar.set_files_are_modified(files_are_modified);
    powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);
 
-   Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_text_font(), backfill_color);
+   Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_powerbar_text_font(), backfill_color);
    powerbar_renderer.render();
 }
 

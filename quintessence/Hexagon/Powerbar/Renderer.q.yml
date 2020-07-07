@@ -23,7 +23,7 @@ properties:
     constructor_arg: true
   - name: draw_state_boxes
     type: bool
-    init_with: false
+    init_with: true
   - name: draw_focus_timer
     type: bool
     init_with: true
@@ -36,12 +36,12 @@ functions:
     guards: [ display, powerbar ]
     body: |
       float width = al_get_display_width(display) * 0.6;
-      float height = 40;
+      float height = 30;
       float x = al_get_display_width(display) / 2 - width / 2;
       float y = al_get_display_height(display) - height * 1;
-      float time_length = 0.7f;
+      float time_length = 0.64f;
       float length = time_length * width;
-      ALLEGRO_COLOR color = al_color_name("white");
+      ALLEGRO_COLOR color = al_color_name("gray");
       ALLEGRO_COLOR border_color = al_map_rgba_f(0.2, 0.2, 0.2, 0.2);
 
       std::time_t time_now = time(0);
@@ -52,9 +52,10 @@ functions:
                            / powerbar->get_focus_timer_duration_sec();
       length = normal_length * width;
 
-      float padding = 5.0f;
+      float h_padding = 5.0f;
+      float v_padding = 5.0f;
       float roundness = 0.0f;
-      al_draw_rectangle(x - padding, y - padding, x + width + padding, y + padding, border_color, 2.0);
+      al_draw_rectangle(x - h_padding, y - v_padding, x + width + h_padding, y + v_padding, border_color, 2.0);
       al_draw_line(x, y, x+length, y, color, 1.0f);
       //al_draw_line(10, 10, 600, 300, al_color_name("white"), 10.0f);
       return;
@@ -84,13 +85,15 @@ functions:
         type: std::string
         default_argument: "\"[-]\""
     body: |
-      float line_thickness = 3.0f;
-      float padding = 8.0f;
+      float h_padding = 8.0f;
+      float v_padding = 8.0f;
+      ALLEGRO_COLOR border_color = al_map_rgba_f(0.2, 0.2, 0.2, 0.2);
+      float border_line_thickness = 2.0f;
       ALLEGRO_COLOR color = al_color_name("gray");
-      al_draw_rectangle(x1, y1, x2, y2, color, line_thickness);
+      al_draw_rectangle(x1, y1, x2, y2, border_color, border_line_thickness);
 
       float font_height = al_get_font_line_height(font);
-      float text_x = x1 + padding;
+      float text_x = x1 + h_padding;
       float text_y = y1 + (y2 - y1) * 0.5 - font_height * 0.5;
       al_draw_text(font, color, text_x, text_y, ALLEGRO_ALIGN_LEFT, text.c_str());
       return;
@@ -112,7 +115,7 @@ functions:
          throw std::runtime_error(error_message.str());
       }
 
-      float height = 40;
+      float height = 30;
       float x = al_get_display_width(display) * 0.5;
       float y = al_get_display_height(display) - height * 2;
       float width = al_get_display_width(display) * 0.75f;
@@ -122,9 +125,13 @@ functions:
          //AllegroFlare::color::color(al_color_html("5b5c60"), 0.65f);
       ALLEGRO_COLOR color = al_color_name("gray");
 
-      std::string left_powerbox_text = ""; //powerbar->get_files_are_modified() ? "GREEN" : "FILE MODIFIED";
-      std::string center_powerbox_text = ""; //powerbar->get_files_are_committed() ? "COMMITTED" : "PENDING COMMIT";
-      std::string right_powerbox_text = ""; //powerbar->get_commits_are_in_sync_with_remote() ? "IN SYNC" : "OUT OF SYNC";
+      std::string left_powerbox_text = "";
+      std::string center_powerbox_text = "";
+      std::string right_powerbox_text = "";
+
+      left_powerbox_text = powerbar->get_files_are_modified() ? "files modified" : "";
+      //center_powerbox_text = powerbar->get_files_are_committed() ? "COMMITTED" : "PENDING COMMIT";
+      //right_powerbox_text = powerbar->get_commits_are_in_sync_with_remote() ? "IN SYNC" : "OUT OF SYNC";
 
       //std::string left_box_text = powerbar->get_files_are_modified();
       //std::string center_box_text = powerbar->get_files_are_modified();
