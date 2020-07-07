@@ -25,7 +25,9 @@ Pusher::~Pusher()
 std::string Pusher::get_push_shell_command()
 {
 std::stringstream commit_everything_shell_command;
-commit_everything_shell_command << "(cd " << current_project_directory << " && git push)";
+commit_everything_shell_command
+   << "(cd " << current_project_directory << " && git push)"
+   << "; echo \"RETURN_CODE($?)\"";
 return commit_everything_shell_command.str();
 
 }
