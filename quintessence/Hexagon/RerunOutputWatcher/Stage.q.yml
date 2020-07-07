@@ -11,19 +11,19 @@ properties:
 
   - name: command
     type: std::string
-    init_with: "\"make\""
+    init_with: '"make"'
     getter: true
     setter: true
     constructor_arg: true
   - name: watch_pattern
     type: std::string
-    init_with: "\"**.*.q.yml\""
+    init_with: '"**.*.q.yml"'
     getter: true
     setter: true
     constructor_arg: true
   - name: output
     type: std::string
-    init_with: "\"[no content]\""
+    init_with: '"[no content]"'
     getter: true
   - name: font
     type: ALLEGRO_FONT*
@@ -54,7 +54,7 @@ functions:
     parameters:
       - name: content_to_append
         type: std::string
-        default_argument: "\"\""
+        default_argument: '""'
     body: |
       output += content_to_append;
 
@@ -126,11 +126,11 @@ functions:
     parameters:
       - name: event_name
         type: std::string
-        default_argument: "\"\""
+        default_argument: '""'
       - name: action_data
         type: ActionData
         override_default_argument_requirement: true
-        default_argument: "{}"
+        default_argument: '{}'
     body: |
       return;
 
