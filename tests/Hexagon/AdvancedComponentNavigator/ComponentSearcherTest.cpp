@@ -28,8 +28,9 @@ TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest, component_names__
    EXPECT_THAT(actual_list, IsSupersetOf(expected_list));
 }
 
-TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
+TEST(DISABLED_Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
    component_names__with_search_string_returns_filtered_results)
+   // this disabled because the list does not match across different computers
 {
    std::string project_root_directory = "/Users/markoates/Repos/blast";
    std::string search_text = "Blast/Project";
