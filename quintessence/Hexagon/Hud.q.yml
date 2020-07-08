@@ -78,6 +78,18 @@ properties:
     setter: true
     constructor_arg: true
     getter: true
+  - name: draw_save_count
+    type: bool
+    init_with: true
+    setter: true
+    getter: true
+    constructor_arg: true
+  - name: save_count
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
 
 
 functions:
@@ -223,6 +235,20 @@ functions:
                      ALLEGRO_ALIGN_RIGHT,
                      notification2.c_str());
         y_cursor++;
+      }
+
+      if (draw_save_count)
+      {
+         // bottom left of screen
+         std::string save_count_text_to_draw = std::string("SAVES: ") + std::to_string(save_count);
+         al_draw_text(
+            obtain_text_font(),
+            al_color_name("gray"),
+            90,
+            frame_height-30,
+            ALLEGRO_ALIGN_LEFT,
+            save_count_text_to_draw.c_str()
+         );
       }
 
       if (draw_powerbar)

@@ -25,6 +25,7 @@ public:
    Hexagon::System::Config &config;
    Motion &motion;
 
+   int save_count;
    bool files_changed;
    bool files_committed;
    bool in_sync_with_remote;

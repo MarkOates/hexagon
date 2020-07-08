@@ -24,7 +24,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -40,6 +40,8 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , files_are_committed(files_are_committed)
    , commits_are_in_sync_with_remote(commits_are_in_sync_with_remote)
    , show_profiler(show_profiler)
+   , draw_save_count(draw_save_count)
+   , save_count(save_count)
 {
 }
 
@@ -115,6 +117,18 @@ void Hud::set_show_profiler(bool show_profiler)
 }
 
 
+void Hud::set_draw_save_count(bool draw_save_count)
+{
+   this->draw_save_count = draw_save_count;
+}
+
+
+void Hud::set_save_count(int save_count)
+{
+   this->save_count = save_count;
+}
+
+
 std::vector<std::string> Hud::get_notifications()
 {
    return notifications;
@@ -148,6 +162,18 @@ bool Hud::get_draw_powerbar()
 bool Hud::get_show_profiler()
 {
    return show_profiler;
+}
+
+
+bool Hud::get_draw_save_count()
+{
+   return draw_save_count;
+}
+
+
+int Hud::get_save_count()
+{
+   return save_count;
 }
 
 
@@ -310,6 +336,20 @@ for (auto &notification2 : notifications2)
                ALLEGRO_ALIGN_RIGHT,
                notification2.c_str());
   y_cursor++;
+}
+
+if (draw_save_count)
+{
+   // bottom left of screen
+   std::string save_count_text_to_draw = std::string("SAVES: ") + std::to_string(save_count);
+   al_draw_text(
+      obtain_text_font(),
+      al_color_name("gray"),
+      90,
+      frame_height-30,
+      ALLEGRO_ALIGN_LEFT,
+      save_count_text_to_draw.c_str()
+   );
 }
 
 if (draw_powerbar)

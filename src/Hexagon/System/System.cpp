@@ -110,6 +110,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    : display(display)
    , config(config)
    , motion(motion)
+   , save_count(0)
    , files_changed(false)
    , files_committed(true)
    , in_sync_with_remote(true)
@@ -616,6 +617,8 @@ bool System::save_frontmost_code_editor_stage()
 
    stage->get_code_editor_ref().save_file_and_touch_if_symlink();
    process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
+
+   save_count++;
 
    return true;
 }
