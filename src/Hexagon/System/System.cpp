@@ -643,9 +643,6 @@ bool System::save_frontmost_code_editor_stage()
    stage->get_code_editor_ref().save_file_and_touch_if_symlink();
    process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
 
-   increment_save_count();
-   set_hud_save_count_to_save_count();
-
    return true;
 }
 
@@ -679,6 +676,8 @@ bool System::refresh_regex_hilights_on_all_code_editor_stages()
    {
       code_editor_stage->get_code_editor_ref().refresh_regex_message_points();
    }
+   increment_search_count();
+   set_hud_search_count_to_search_count();
    return true;
 }
 
