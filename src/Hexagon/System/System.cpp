@@ -111,6 +111,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , config(config)
    , motion(motion)
    , save_count(0)
+   , search_count(0)
    , files_changed(false)
    , files_committed(true)
    , in_sync_with_remote(true)
@@ -397,6 +398,30 @@ bool System::set_hud_title_to_focused_component_name()
    return true;
 }
 
+bool System::increment_save_count()
+{
+   save_count++;
+   return true;
+}
+
+bool System::set_hud_save_count_to_save_count()
+{
+   hud.set_save_count(save_count);
+   return true;
+}
+
+bool System::increment_search_count()
+{
+   search_count++;
+   return true;
+}
+
+bool System::set_hud_search_count_to_search_count()
+{
+   hud.set_search_count(search_count);
+   return true;
+}
+
 bool System::set_focused_component_name_relative_names_from_focused_component_name()
 {
    //get_default_navigator_directory(),
@@ -618,7 +643,8 @@ bool System::save_frontmost_code_editor_stage()
    stage->get_code_editor_ref().save_file_and_touch_if_symlink();
    process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
 
-   save_count++;
+   increment_save_count();
+   set_hud_save_count_to_save_count();
 
    return true;
 }

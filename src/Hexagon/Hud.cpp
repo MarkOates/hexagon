@@ -24,7 +24,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool draw_search_count, int search_count)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -42,6 +42,8 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , show_profiler(show_profiler)
    , draw_save_count(draw_save_count)
    , save_count(save_count)
+   , draw_search_count(draw_search_count)
+   , search_count(search_count)
 {
 }
 
@@ -129,6 +131,18 @@ void Hud::set_save_count(int save_count)
 }
 
 
+void Hud::set_draw_search_count(bool draw_search_count)
+{
+   this->draw_search_count = draw_search_count;
+}
+
+
+void Hud::set_search_count(int search_count)
+{
+   this->search_count = search_count;
+}
+
+
 std::vector<std::string> Hud::get_notifications()
 {
    return notifications;
@@ -177,6 +191,18 @@ int Hud::get_save_count()
 }
 
 
+bool Hud::get_draw_search_count()
+{
+   return draw_search_count;
+}
+
+
+int Hud::get_search_count()
+{
+   return search_count;
+}
+
+
 Hexagon::Powerbar::Powerbar &Hud::get_powerbar_ref()
 {
    return powerbar;
@@ -199,6 +225,13 @@ return fonts["Eurostile.ttf -27"];
 ALLEGRO_FONT* Hud::obtain_powerbar_text_font()
 {
 return fonts["Eurostile.ttf -18"];
+//return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+}
+
+ALLEGRO_FONT* Hud::obtain_score_text_font()
+{
+return fonts["Eurostile.ttf -22"];
 //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 }
@@ -342,13 +375,29 @@ if (draw_save_count)
 {
    // bottom left of screen
    std::string save_count_text_to_draw = std::string("SAVES: ") + std::to_string(save_count);
+   ALLEGRO_FONT *score_text_font = obtain_score_text_font();
    al_draw_text(
-      obtain_text_font(),
+      score_text_font,
       al_color_name("gray"),
       90,
-      frame_height-30,
+      frame_height - al_get_font_line_height(score_text_font) - 60,
       ALLEGRO_ALIGN_LEFT,
       save_count_text_to_draw.c_str()
+   );
+}
+
+if (draw_search_count)
+{
+   // bottom left of screen
+   std::string search_count_text_to_draw = std::string("SEARCHES: ") + std::to_string(search_count);
+   ALLEGRO_FONT *score_text_font = obtain_score_text_font();
+   al_draw_text(
+      score_text_font,
+      al_color_name("gray"),
+      90,
+      frame_height - al_get_font_line_height(score_text_font) - 60 - 20,
+      ALLEGRO_ALIGN_LEFT,
+      search_count_text_to_draw.c_str()
    );
 }
 

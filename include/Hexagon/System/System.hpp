@@ -26,6 +26,7 @@ public:
    Motion &motion;
 
    int save_count;
+   int search_count;
    bool files_changed;
    bool files_committed;
    bool in_sync_with_remote;
@@ -88,6 +89,10 @@ public:
    bool mark_as_not_in_sync_with_remote();
    bool write_focused_component_name_to_file();
    bool set_hud_title_to_focused_component_name();
+   bool increment_save_count();
+   bool set_hud_save_count_to_save_count();
+   bool increment_search_count();
+   bool set_hud_search_count_to_search_count();
    bool set_focused_component_name_relative_names_from_focused_component_name();
    bool set_focused_component_name_to_topmost_relative();
    bool toggle_command_mode_on();
