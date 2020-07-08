@@ -16,3 +16,8 @@ TEST(DISABLED_Hexagon_Git_PusherTest, can_be_created_without_blowing_up)
    //pusher.push();
 }
 
+TEST(DISABLED_Hexagon_Git_PusherTest,
+   validate_result_or_throw_error_on_failure__will_throw_an_error_when_a_destination_repo_does_not_exist)
+{
+}
+

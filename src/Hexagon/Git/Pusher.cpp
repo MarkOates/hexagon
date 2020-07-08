@@ -32,10 +32,19 @@ return commit_everything_shell_command.str();
 
 }
 
+void Pusher::validate_result_or_throw_error_on_failure(std::string response)
+{
+std::string capture_string_for_destination_repo_not_defined_error = "fatal: No configured push destination.";
+return;
+
+}
+
 std::string Pusher::push()
 {
 Blast::ShellCommandExecutorWithCallback executor(get_push_shell_command());
-return executor.execute();
+std::string response = executor.execute();
+validate_result_or_throw_error_on_failure(response);
+return response;
 
 }
 } // namespace Git

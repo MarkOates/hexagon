@@ -21,11 +21,24 @@ functions:
       return commit_everything_shell_command.str();
 
 
+  - name: validate_result_or_throw_error_on_failure
+    type: void
+    parameters:
+      - name: response
+        type: std::string
+        default_argument: '""'
+    body: |
+      std::string capture_string_for_destination_repo_not_defined_error = "fatal: No configured push destination.";
+      return;
+
+
   - name: push
     type: std::string
     body: |
       Blast::ShellCommandExecutorWithCallback executor(get_push_shell_command());
-      return executor.execute();
+      std::string response = executor.execute();
+      validate_result_or_throw_error_on_failure(response);
+      return response;
     body_dependency_symbols:
       - std::stringstream
       - Blast::ShellCommandExecutorWithCallback

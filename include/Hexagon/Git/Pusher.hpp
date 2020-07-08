@@ -19,6 +19,7 @@ namespace Hexagon
 
 
       std::string get_push_shell_command();
+      void validate_result_or_throw_error_on_failure(std::string response="");
       std::string push();
       };
    }
