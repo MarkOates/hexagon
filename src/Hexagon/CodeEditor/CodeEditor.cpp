@@ -32,6 +32,7 @@ namespace CodeEditor
 CodeEditor::CodeEditor(std::string filename, std::string file_category, mode_t mode, StageInterface::type_t type)
    //: StageInterface(type)
    : content_is_modified(false)
+   , save_count(0)
    , cursor_x(0)
    , cursor_y(0)
    , mode(mode)
@@ -223,6 +224,13 @@ int CodeEditor::num_columns()
 {
    if (cursor_y >= lines.size()) return -1;
    return lines[cursor_y].length();
+}
+
+
+
+int CodeEditor::get_save_count()
+{
+   return save_count;
 }
 
 
@@ -517,6 +525,22 @@ bool CodeEditor::move_cursor_to_first_non_whitespace_character()
    {
       set_cursor_x(first_non_whitespace_position);
    }
+   return true;
+}
+
+
+
+bool CodeEditor::increment_save_count()
+{
+   save_count++;
+   return true;
+}
+
+
+
+bool CodeEditor::reset_save_count()
+{
+   save_count = 0;
    return true;
 }
 

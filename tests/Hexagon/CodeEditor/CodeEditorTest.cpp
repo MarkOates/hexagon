@@ -328,6 +328,33 @@ TEST(Hexagon_CodeEditor_CodeEditorTest,
    ASSERT_EQ(1, stage.get_cursor_x());
 }
 
+TEST(Hexagon_CodeEditor_CodeEditorTest, save_count__has_a_getter_and_has_the_expected_value)
+{
+   CodeEditor::CodeEditor stage("test_text.txt");
+   ASSERT_EQ(0, stage.get_save_count());
+}
+
+TEST(Hexagon_CodeEditor_CodeEditorTest, increment_save_count__adds_one_to_the_current_save_count)
+{
+   CodeEditor::CodeEditor stage("test_text.txt");
+   stage.increment_save_count();
+   ASSERT_EQ(1, stage.get_save_count());
+   stage.increment_save_count();
+   ASSERT_EQ(2, stage.get_save_count());
+   stage.increment_save_count();
+   ASSERT_EQ(3, stage.get_save_count());
+}
+
+TEST(Hexagon_CodeEditor_CodeEditorTest, reset_save_count__sets_the_save_count_to_zero)
+{
+   CodeEditor::CodeEditor stage("test_text.txt");
+   stage.increment_save_count();
+   stage.increment_save_count();
+   ASSERT_EQ(2, stage.get_save_count());
+   stage.reset_save_count();
+   ASSERT_EQ(0, stage.get_save_count());
+}
+
 TEST(Hexagon_CodeEditor_CodeEditorTest,
    jump_to_next_or_nearest_code_point__with_code_points_after_the_cursor__jumps_to_the_next_code_point)
 {

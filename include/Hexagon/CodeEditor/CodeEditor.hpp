@@ -47,6 +47,7 @@ namespace CodeEditor
       int first_line_number;
 
       bool content_is_modified;
+      int save_count;
       void mark_content_is_modified();
       void unmark_content_is_modified();
       bool content_contains_errors;
@@ -80,6 +81,7 @@ namespace CodeEditor
 
       int num_lines();
       int num_columns();
+      int get_save_count();
       std::vector<std::string> const &get_lines_ref();
       std::string &current_line_ref();
       std::string &next_line_ref();
@@ -110,6 +112,8 @@ namespace CodeEditor
       bool move_cursor_to_end_of_line();
       bool move_cursor_to_last_character_of_line();
       bool move_cursor_to_first_non_whitespace_character();
+      bool increment_save_count();
+      bool reset_save_count();
       bool delete_character();
       bool join_lines();
       bool split_lines();
