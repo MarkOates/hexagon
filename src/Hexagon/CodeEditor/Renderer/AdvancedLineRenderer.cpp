@@ -57,7 +57,7 @@ std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::b
 std::string primary_line_regex = "^   [a-z0-9_]+\\)$";
 RegexMatcher primary_regex_matcher(full_line_text, primary_line_regex);
 
-std::string secondary_line_regex = "^TEST\\([a-zA-Z_]+, ?[a-z_]*\\)?";
+std::string secondary_line_regex = "^TEST(_F)?\\([a-zA-Z_]+, ?[a-z_]*\\)?";
 RegexMatcher secondary_regex_matcher(full_line_text, secondary_line_regex);
 
 if (
