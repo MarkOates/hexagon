@@ -21,17 +21,20 @@ namespace Hexagon
          int num_rows;
          float cell_width;
          float cell_height;
+         ALLEGRO_BITMAP* bitmap;
 
       public:
          TextMesh();
          ~TextMesh();
 
+         void set_bitmap(ALLEGRO_BITMAP* bitmap);
 
          std::vector<ALLEGRO_VERTEX> get_vertexes();
          int get_num_columns();
          int get_num_rows();
          float get_cell_width();
          float get_cell_height();
+         ALLEGRO_BITMAP* get_bitmap();
          static std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &get_dummy_grid_ref();
       bool resize(int num_columns=0, int num_rows=0, float cell_width=0.0f, float cell_height=0.0f);
       void render();

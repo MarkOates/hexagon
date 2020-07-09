@@ -29,6 +29,11 @@ properties:
     type: float
     init_with: 1.0f
     getter: true
+  - name: bitmap
+    type: ALLEGRO_BITMAP*
+    init_with: nullptr
+    getter: true
+    setter: true
 
 
 functions:
@@ -92,7 +97,7 @@ functions:
     type: void
     guards: [ al_is_system_installed() ]
     body: |
-      ALLEGRO_BITMAP *tile_atlas_bitmap = nullptr;
+      ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
       al_draw_prim(&vertexes[0], NULL, tile_atlas_bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
       return;
     body_dependency_symbols:

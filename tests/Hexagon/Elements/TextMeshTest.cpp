@@ -70,3 +70,21 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, resize__sets_the_number_o
    EXPECT_EQ(60, text_mesh.get_vertexes().size());
 }
 
+TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__draws_the_grid)
+{
+   ALLEGRO_BITMAP *white_bitmap = al_create_bitmap(40, 60);
+   al_set_target_bitmap(white_bitmap);
+   al_clear_to_color({1.0f, 1.0f, 1.0f, 1.0f});
+   al_set_target_bitmap(al_get_backbuffer(display));
+
+   Hexagon::Elements::TextMesh text_mesh;
+   text_mesh.resize(2, 5);
+   text_mesh.set_bitmap(white_bitmap);
+
+   text_mesh.render();
+
+   al_flip_display();
+
+   sleep(1);
+}
+

@@ -22,12 +22,19 @@ TextMesh::TextMesh()
    , num_rows(0)
    , cell_width(1.0f)
    , cell_height(1.0f)
+   , bitmap(nullptr)
 {
 }
 
 
 TextMesh::~TextMesh()
 {
+}
+
+
+void TextMesh::set_bitmap(ALLEGRO_BITMAP* bitmap)
+{
+   this->bitmap = bitmap;
 }
 
 
@@ -58,6 +65,12 @@ float TextMesh::get_cell_width()
 float TextMesh::get_cell_height()
 {
    return cell_height;
+}
+
+
+ALLEGRO_BITMAP* TextMesh::get_bitmap()
+{
+   return bitmap;
 }
 
 
@@ -116,7 +129,7 @@ if (!(al_is_system_installed()))
       error_message << "TextMesh" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
       throw std::runtime_error(error_message.str());
    }
-ALLEGRO_BITMAP *tile_atlas_bitmap = nullptr;
+ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
 al_draw_prim(&vertexes[0], NULL, tile_atlas_bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
 return;
 
