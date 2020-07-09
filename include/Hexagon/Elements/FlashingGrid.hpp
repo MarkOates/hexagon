@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include <string>
 
 
 namespace Hexagon
@@ -17,7 +16,7 @@ namespace Hexagon
          ~FlashingGrid();
 
 
-      std::string run();
+      void render();
       };
    }
 }

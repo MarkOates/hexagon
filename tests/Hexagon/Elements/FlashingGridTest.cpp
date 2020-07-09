@@ -3,6 +3,11 @@
 
 #include <Hexagon/Elements/FlashingGrid.hpp>
 
+#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
+   try { code; FAIL() << "Expected " # raised_exception_type; } \
+   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
+   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+
 #include <allegro5/allegro.h>
 
 class Hexagon_Elements_FlashingGridTest_WithEmptyFixture : public ::testing::Test
@@ -40,11 +45,16 @@ TEST_F(Hexagon_Elements_FlashingGridTest_WithEmptyFixture, can_be_created_withou
    Hexagon::Elements::FlashingGrid flashing_grid;
 }
 
-TEST_F(Hexagon_Elements_FlashingGridTest_WithAllegroRenderingFixture, run__returns_the_expected_response)
+TEST_F(Hexagon_Elements_FlashingGridTest_WithEmptyFixture, render__without_allegro_initialized__raises_an_error)
 {
    Hexagon::Elements::FlashingGrid flashing_grid;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, flashing_grid.run());
+   std::string expected_error_message = "FlashingGrid::render: error: guard \"al_is_system_installed()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(flashing_grid.render(), std::runtime_error, expected_error_message);
+}
 
-   sleep(1);
+TEST_F(Hexagon_Elements_FlashingGridTest_WithAllegroRenderingFixture,
+   render__with_the_valid_arguments__does_not_blow_up)
+{
+   Hexagon::Elements::FlashingGrid flashing_grid;
+   flashing_grid.render();
 }
