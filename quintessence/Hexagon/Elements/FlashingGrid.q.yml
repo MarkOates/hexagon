@@ -16,6 +16,7 @@ functions:
 
 dependencies:
 
+
   - symbol: al_is_system_installed
     headers: [ allegro5/allegro.h ]
   - symbol: al_draw_filled_rectangle
