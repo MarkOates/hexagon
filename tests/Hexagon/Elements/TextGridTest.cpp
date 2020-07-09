@@ -76,6 +76,13 @@ TEST_F(Hexagon_Elements_TextGridTest_WithEmptyFixture, render__without_allegro_i
 //   ASSERT_THROW_WITH_MESSAGE(flashing_grid.render(), std::runtime_error, expected_error_message);
 //}
 
+TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture, render__without_a_font__raises_an_error)
+{
+   Hexagon::Elements::TextGrid flashing_grid;
+   std::string expected_error_message = "TextGrid::render: error: guard \"font\" not met";
+   ASSERT_THROW_WITH_MESSAGE(flashing_grid.render(), std::runtime_error, expected_error_message);
+}
+
 TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
    render__with_the_valid_arguments__does_not_blow_up)
 {

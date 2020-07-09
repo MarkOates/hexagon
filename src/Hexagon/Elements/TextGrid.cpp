@@ -14,7 +14,10 @@ namespace Elements
 {
 
 
-TextGrid::TextGrid(ALLEGRO_FONT* font, float cell_width, float cell_height, float cell_spacing_x, float cell_spacing_y, std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid)
+std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> TextGrid::dummy_grid = {};
+
+
+TextGrid::TextGrid(ALLEGRO_FONT* font, float cell_width, float cell_height, float cell_spacing_x, float cell_spacing_y, std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>& grid)
    : font(font)
    , cell_width(cell_width)
    , cell_height(cell_height)
@@ -30,6 +33,12 @@ TextGrid::~TextGrid()
 }
 
 
+std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextGrid::get_dummy_grid_ref()
+{
+   return dummy_grid;
+}
+
+
 void TextGrid::set_cell_color(int x, int y, ALLEGRO_COLOR color)
 {
 return;
@@ -42,6 +51,12 @@ if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
       error_message << "TextGrid" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "TextGrid" << "::" << "render" << ": error: " << "guard \"font\" not met";
       throw std::runtime_error(error_message.str());
    }
 // note: missing guard for al_is_primitives_addon_initialized();
