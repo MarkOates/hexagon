@@ -84,7 +84,7 @@ TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
    int cell_width = al_get_text_width(font, " ");
    int cell_height = al_get_font_line_height(font);
    place.size = vec3d(600, 300, 0);
-   Hexagon::Elements::TextGrid flashing_grid(font, cell_width, cell_height, BASIC_GRID_FIXTURE);
+   Hexagon::Elements::TextGrid flashing_grid(font, cell_width, cell_height, 0, 0, BASIC_GRID_FIXTURE);
 
    for (unsigned i=0; i<60; i++)
    {
@@ -104,7 +104,7 @@ TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
    int cell_width = al_get_text_width(font, " ");
    int cell_height = al_get_font_line_height(font);
    place.size = vec3d(600, 300, 0);
-   Hexagon::Elements::TextGrid flashing_grid(font, cell_width, cell_height, COLORED_GRID_FIXTURE);
+   Hexagon::Elements::TextGrid flashing_grid(font, cell_width, cell_height, 0, 0, COLORED_GRID_FIXTURE);
 
    for (unsigned i=0; i<60; i++)
    {

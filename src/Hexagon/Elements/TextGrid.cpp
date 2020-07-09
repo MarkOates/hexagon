@@ -14,10 +14,12 @@ namespace Elements
 {
 
 
-TextGrid::TextGrid(ALLEGRO_FONT* font, float cell_width, float cell_height, std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid)
+TextGrid::TextGrid(ALLEGRO_FONT* font, float cell_width, float cell_height, float cell_margin_x, float cell_margin_y, std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid)
    : font(font)
    , cell_width(cell_width)
    , cell_height(cell_height)
+   , cell_margin_x(cell_margin_x)
+   , cell_margin_y(cell_margin_y)
    , grid(grid)
 {
 }

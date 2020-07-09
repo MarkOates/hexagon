@@ -7,11 +7,19 @@ properties:
     constructor_arg: true
   - name: cell_width
     type: float
-    init_with: 1.0
+    init_with: 1.0f
     constructor_arg: true
   - name: cell_height
     type: float
-    init_with: 1.0
+    init_with: 1.0f
+    constructor_arg: true
+  - name: cell_margin_x
+    type: float
+    init_with: 0.0f
+    constructor_arg: true
+  - name: cell_margin_y
+    type: float
+    init_with: 0.0f
     constructor_arg: true
   - name: grid
     type: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
