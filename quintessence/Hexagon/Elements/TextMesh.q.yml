@@ -113,6 +113,16 @@ functions:
       - ALLEGRO_BITMAP*
 
 
+  - name: calculate_width
+    type: float
+    body: return cell_width * num_columns;
+
+
+  - name: calculate_height
+    type: float
+    body: return cell_height * num_rows;
+
+
 dependencies:
 
 

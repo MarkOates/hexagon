@@ -38,6 +38,8 @@ namespace Hexagon
          static std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &get_dummy_grid_ref();
       bool resize(int num_columns=0, int num_rows=0, float cell_width=0.0f, float cell_height=0.0f);
       void render();
+      float calculate_width();
+      float calculate_height();
       };
    }
 }

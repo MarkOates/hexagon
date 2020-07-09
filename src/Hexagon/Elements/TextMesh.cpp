@@ -149,6 +149,16 @@ al_draw_prim(&vertexes[0], NULL, tile_atlas_bitmap, 0, vertexes.size(), ALLEGRO_
 return;
 
 }
+
+float TextMesh::calculate_width()
+{
+return cell_width * num_columns;
+}
+
+float TextMesh::calculate_height()
+{
+return cell_height * num_rows;
+}
 } // namespace Elements
 } // namespace Hexagon
 
