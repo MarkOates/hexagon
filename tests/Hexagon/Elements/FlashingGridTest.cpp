@@ -18,8 +18,8 @@ public:
 
 class Hexagon_Elements_FlashingGridTest_WithAllegroRenderingFixture : public ::testing::Test
 {
-private:
-   ALLEGRO_DISPLAY *display;
+public:
+   ALLEGRO_DISPLAY* display;
 
 public:
    Hexagon_Elements_FlashingGridTest_WithAllegroRenderingFixture()
@@ -64,7 +64,15 @@ TEST_F(Hexagon_Elements_FlashingGridTest_WithEmptyFixture, render__without_alleg
 TEST_F(Hexagon_Elements_FlashingGridTest_WithAllegroRenderingFixture,
    render__with_the_valid_arguments__does_not_blow_up)
 {
-   Hexagon::Elements::FlashingGrid flashing_grid;
+   placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   place.size = vec3d(600, 300, 0);
+   Hexagon::Elements::FlashingGrid flashing_grid(place);
+
+   place.start_transform();
    flashing_grid.render();
+   place.restore_transform();
+
+   al_flip_display();
+
    sleep(1);
 }

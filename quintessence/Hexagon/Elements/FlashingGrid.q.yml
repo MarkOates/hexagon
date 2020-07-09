@@ -1,3 +1,24 @@
+properties:
+
+
+  - name: place
+    type: placement3d
+    init_with: 'placement3d()'
+    constructor_arg: true
+  - name: num_columns
+    type: int
+    init_with: 16
+    constructor_arg: true
+  - name: num_rows
+    type: int
+    init_with: 12
+    constructor_arg: true
+  - name: box_size
+    type: int
+    init_with: 10
+    constructor_arg: true
+
+
 functions:
 
 
@@ -6,7 +27,18 @@ functions:
     guards: [ al_is_system_installed() ]
     body: |
       // note: missing guard for al_is_primitives_addon_initialized();
-      al_draw_filled_rectangle(0, 0, 10, 10, al_color_name("white"));
+      int width = place.size.x;
+      int height = place.size.y;
+
+      for (int y=0; y<num_rows; y++)
+      {
+         for (int x=0; x<num_columns; x++)
+         {
+            float xx = x * (box_size + 14);
+            float yy = y * (box_size + 14);
+            al_draw_filled_rectangle(xx, yy, xx+box_size, yy+box_size, al_color_name("white"));
+         }
+      }
       return;
     body_dependency_symbols:
       - al_is_system_installed
@@ -17,6 +49,8 @@ functions:
 dependencies:
 
 
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
   - symbol: al_is_system_installed
     headers: [ allegro5/allegro.h ]
   - symbol: al_draw_filled_rectangle
