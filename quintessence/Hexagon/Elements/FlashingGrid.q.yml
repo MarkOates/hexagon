@@ -1,9 +1,13 @@
 properties:
 
 
-  - name: place
-    type: placement3d
-    init_with: 'placement3d()'
+  - name: width
+    type: float
+    init_with: 1.0
+    constructor_arg: true
+  - name: height
+    type: float
+    init_with: 1.0
     constructor_arg: true
   - name: num_columns
     type: int
@@ -27,9 +31,6 @@ functions:
     guards: [ al_is_system_installed() ]
     body: |
       // note: missing guard for al_is_primitives_addon_initialized();
-      int width = place.size.x;
-      int height = place.size.y;
-
       for (int y=0; y<num_rows; y++)
       {
          for (int x=0; x<num_columns; x++)
@@ -49,8 +50,6 @@ functions:
 dependencies:
 
 
-  - symbol: placement3d
-    headers: [ allegro_flare/placement3d.h ]
   - symbol: al_is_system_installed
     headers: [ allegro5/allegro.h ]
   - symbol: al_draw_filled_rectangle

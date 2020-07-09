@@ -14,8 +14,9 @@ namespace Elements
 {
 
 
-FlashingGrid::FlashingGrid(placement3d place, int num_columns, int num_rows, int box_size)
-   : place(place)
+FlashingGrid::FlashingGrid(float width, float height, int num_columns, int num_rows, int box_size)
+   : width(width)
+   , height(height)
    , num_columns(num_columns)
    , num_rows(num_rows)
    , box_size(box_size)
@@ -37,9 +38,6 @@ if (!(al_is_system_installed()))
       throw std::runtime_error(error_message.str());
    }
 // note: missing guard for al_is_primitives_addon_initialized();
-int width = place.size.x;
-int height = place.size.y;
-
 for (int y=0; y<num_rows; y++)
 {
    for (int x=0; x<num_columns; x++)

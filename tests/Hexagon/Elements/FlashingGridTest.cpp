@@ -9,6 +9,7 @@
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 #include <allegro5/allegro.h>
+#include<allegro_flare/placement3d.h> // for placement3d
 
 class Hexagon_Elements_FlashingGridTest_WithEmptyFixture : public ::testing::Test
 {
@@ -66,7 +67,7 @@ TEST_F(Hexagon_Elements_FlashingGridTest_WithAllegroRenderingFixture,
 {
    placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
    place.size = vec3d(600, 300, 0);
-   Hexagon::Elements::FlashingGrid flashing_grid(place);
+   Hexagon::Elements::FlashingGrid flashing_grid(place.size.x, place.size.y);
 
    place.start_transform();
    flashing_grid.render();

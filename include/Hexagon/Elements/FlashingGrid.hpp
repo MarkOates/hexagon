@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include <allegro_flare/placement3d.h>
 
 
 namespace Hexagon
@@ -11,13 +10,14 @@ namespace Hexagon
       class FlashingGrid
       {
       private:
-         placement3d place;
+         float width;
+         float height;
          int num_columns;
          int num_rows;
          int box_size;
 
       public:
-         FlashingGrid(placement3d place=placement3d(), int num_columns=16, int num_rows=12, int box_size=10);
+         FlashingGrid(float width=1.0, float height=1.0, int num_columns=16, int num_rows=12, int box_size=10);
          ~FlashingGrid();
 
 
