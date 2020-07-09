@@ -57,30 +57,30 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> COLORED
 
 TEST_F(Hexagon_Elements_TextGridTest_WithEmptyFixture, can_be_created_without_blowing_up)
 {
-   Hexagon::Elements::TextGrid flashing_grid;
+   Hexagon::Elements::TextGrid text_grid;
 }
 
 TEST_F(Hexagon_Elements_TextGridTest_WithEmptyFixture, render__without_allegro_initialized__raises_an_error)
 {
-   Hexagon::Elements::TextGrid flashing_grid;
+   Hexagon::Elements::TextGrid text_grid;
    std::string expected_error_message = "TextGrid::render: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(flashing_grid.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_WITH_MESSAGE(text_grid.render(), std::runtime_error, expected_error_message);
 }
 
 //TEST_F(Hexagon_Elements_TextGridTest_WithEmptyFixture,
 //   render__without_primitives_initialized__raises_an_error)
 //{
-//   Hexagon::Elements::TextGrid flashing_grid;
+//   Hexagon::Elements::TextGrid text_grid;
 //   std::string expected_error_message =
 //      "TextGrid::render: error: guard "al_is_primitives_addon_initialized()" not met";
-//   ASSERT_THROW_WITH_MESSAGE(flashing_grid.render(), std::runtime_error, expected_error_message);
+//   ASSERT_THROW_WITH_MESSAGE(text_grid.render(), std::runtime_error, expected_error_message);
 //}
 
 TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture, render__without_a_font__raises_an_error)
 {
-   Hexagon::Elements::TextGrid flashing_grid;
+   Hexagon::Elements::TextGrid text_grid;
    std::string expected_error_message = "TextGrid::render: error: guard \"font\" not met";
-   ASSERT_THROW_WITH_MESSAGE(flashing_grid.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_WITH_MESSAGE(text_grid.render(), std::runtime_error, expected_error_message);
 }
 
 TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
@@ -91,11 +91,11 @@ TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
    int cell_width = al_get_text_width(font, " ");
    int cell_height = al_get_font_line_height(font);
    place.size = vec3d(600, 300, 0);
-   Hexagon::Elements::TextGrid flashing_grid(font, cell_width, cell_height, 0, 0, BASIC_GRID_FIXTURE);
+   Hexagon::Elements::TextGrid text_grid(font, cell_width, cell_height, 0, 0, BASIC_GRID_FIXTURE);
 
    al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
    place.start_transform();
-   flashing_grid.render();
+   text_grid.render();
    place.restore_transform();
    al_flip_display();
 
@@ -110,11 +110,11 @@ TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
    int cell_width = al_get_text_width(font, " ");
    int cell_height = al_get_font_line_height(font);
    place.size = vec3d(600, 300, 0);
-   Hexagon::Elements::TextGrid flashing_grid(font, cell_width, cell_height, 0, 0, COLORED_GRID_FIXTURE);
+   Hexagon::Elements::TextGrid text_grid(font, cell_width, cell_height, 0, 0, COLORED_GRID_FIXTURE);
 
    al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
    place.start_transform();
-   flashing_grid.render();
+   text_grid.render();
    place.restore_transform();
    al_flip_display();
 
@@ -129,11 +129,11 @@ TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
    int cell_width = al_get_text_width(font, " ");
    int cell_height = al_get_font_line_height(font);
    place.size = vec3d(600, 300, 0);
-   Hexagon::Elements::TextGrid flashing_grid(font, cell_width, cell_height, 6, 12, COLORED_GRID_FIXTURE);
+   Hexagon::Elements::TextGrid text_grid(font, cell_width, cell_height, 6, 12, COLORED_GRID_FIXTURE);
 
    al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
    place.start_transform();
-   flashing_grid.render();
+   text_grid.render();
    place.restore_transform();
    al_flip_display();
 
