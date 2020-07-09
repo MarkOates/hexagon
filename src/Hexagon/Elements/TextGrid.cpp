@@ -14,12 +14,12 @@ namespace Elements
 {
 
 
-TextGrid::TextGrid(ALLEGRO_FONT* font, float cell_width, float cell_height, float cell_margin_x, float cell_margin_y, std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid)
+TextGrid::TextGrid(ALLEGRO_FONT* font, float cell_width, float cell_height, float cell_spacing_x, float cell_spacing_y, std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid)
    : font(font)
    , cell_width(cell_width)
    , cell_height(cell_height)
-   , cell_margin_x(cell_margin_x)
-   , cell_margin_y(cell_margin_y)
+   , cell_spacing_x(cell_spacing_x)
+   , cell_spacing_y(cell_spacing_y)
    , grid(grid)
 {
 }
@@ -56,14 +56,14 @@ for (auto &grid_line : grid)
       str_to_render[0] = std::get<0>(grid_box);
       ALLEGRO_COLOR foreground_color = std::get<1>(grid_box);
       ALLEGRO_COLOR background_color = std::get<2>(grid_box);
-      float xx = x * cell_width;
-      float yy = y * cell_height;
+      float xx = x * (cell_width + cell_spacing_x);
+      float yy = y * (cell_height + cell_spacing_y);
 
       // draw background
       al_draw_filled_rectangle(xx, yy, xx+cell_width, yy+cell_height, background_color);
 
       // draw foreground
-      al_draw_text(font, foreground_color, xx, yy, 0, str_to_render.c_str());
+      if (str_to_render[0] != ' ') al_draw_text(font, foreground_color, xx, yy, 0, str_to_render.c_str());
 
       x++;
    }

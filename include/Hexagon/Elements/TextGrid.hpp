@@ -17,12 +17,12 @@ namespace Hexagon
          ALLEGRO_FONT* font;
          float cell_width;
          float cell_height;
-         float cell_margin_x;
-         float cell_margin_y;
+         float cell_spacing_x;
+         float cell_spacing_y;
          std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid;
 
       public:
-         TextGrid(ALLEGRO_FONT* font=nullptr, float cell_width=1.0f, float cell_height=1.0f, float cell_margin_x=0.0f, float cell_margin_y=0.0f, std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid={});
+         TextGrid(ALLEGRO_FONT* font=nullptr, float cell_width=1.0f, float cell_height=1.0f, float cell_spacing_x=0.0f, float cell_spacing_y=0.0f, std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid={});
          ~TextGrid();
 
 
