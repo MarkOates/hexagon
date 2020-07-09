@@ -3,7 +3,6 @@
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexStore.hpp>
-#include <iostream>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexStore.hpp>
 #include <Hexagon/RegexMatcher.hpp>
@@ -75,7 +74,6 @@ std::vector<std::pair<int, int>> function_name_regex_matcher_match_info =
    function_name_regex_matcher.get_match_info();
 if (!function_name_regex_matcher_match_info.empty())
 {
-   std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
    int function_starts_at = function_name_regex_matcher_match_info[0].first;
    int function_length = function_name_regex_matcher_match_info[0].second - 2;
    std::string function_name = full_line_text.substr(function_starts_at, function_length);

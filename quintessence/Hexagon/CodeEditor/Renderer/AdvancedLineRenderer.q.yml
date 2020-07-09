@@ -57,7 +57,6 @@ functions:
          function_name_regex_matcher.get_match_info();
       if (!function_name_regex_matcher_match_info.empty())
       {
-         std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
          int function_starts_at = function_name_regex_matcher_match_info[0].first;
          int function_length = function_name_regex_matcher_match_info[0].second - 2;
          std::string function_name = full_line_text.substr(function_starts_at, function_length);
@@ -74,7 +73,6 @@ functions:
     body_dependency_symbols:
       - RegexMatcher
       - Hexagon::RegexStore
-      - std::cout
 
 
   - name: build_quintessence_yaml_name_element_tokens
