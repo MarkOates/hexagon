@@ -4,7 +4,6 @@ properties:
   - name: grid
     type: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>&
     init_with: 'get_dummy_grid_ref()'
-    constructor_arg: true
   - name: dummy_grid
     static: true
     type: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
@@ -15,9 +14,12 @@ properties:
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: render
+    type: void
+    body: |
+      //std::vector<ALLEGRO_VERTEX> vertexes;
+      //al_draw_prim(&vertexes[0], NULL, tile_atlas->bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
+      return;
 
 
 dependencies:

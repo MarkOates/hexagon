@@ -2,7 +2,6 @@
 
 
 #include <allegro5/allegro.h>
-#include <string>
 #include <tuple>
 #include <vector>
 
@@ -18,12 +17,12 @@ namespace Hexagon
          static std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> dummy_grid;
 
       public:
-         TextMesh(std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>& grid=get_dummy_grid_ref());
+         TextMesh();
          ~TextMesh();
 
 
          static std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &get_dummy_grid_ref();
-      std::string run();
+      void render();
       };
    }
 }
