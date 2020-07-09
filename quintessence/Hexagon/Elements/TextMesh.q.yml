@@ -9,6 +9,9 @@ properties:
     type: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
     init_with: '{}'
     getter_ref: true
+  - name: vertexes
+    type: std::vector<ALLEGRO_VERTEX>
+    init_with: '{}'
 
 
 functions:
@@ -18,8 +21,7 @@ functions:
     type: void
     body: |
       ALLEGRO_BITMAP *tile_atlas_bitmap = nullptr;
-      //std::vector<ALLEGRO_VERTEX> vertexes;
-      //al_draw_prim(&vertexes[0], NULL, tile_atlas->bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
+      //al_draw_prim(&vertexes[0], NULL, tile_atlas_bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
       return;
     body_dependency_symbols:
       - ALLEGRO_BITMAP*
@@ -30,6 +32,8 @@ dependencies:
 
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
+  - symbol: std::vector<ALLEGRO_VERTEX>
+    headers: [ vector, allegro5/allegro_primitives.h ]
   - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>&
     headers: [ vector, tuple, allegro5/allegro.h ]
   - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>

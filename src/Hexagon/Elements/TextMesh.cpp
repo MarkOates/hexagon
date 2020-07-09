@@ -15,6 +15,7 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> TextMes
 
 TextMesh::TextMesh()
    : grid(get_dummy_grid_ref())
+   , vertexes({})
 {
 }
 
@@ -33,8 +34,7 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextMe
 void TextMesh::render()
 {
 ALLEGRO_BITMAP *tile_atlas_bitmap = nullptr;
-//std::vector<ALLEGRO_VERTEX> vertexes;
-//al_draw_prim(&vertexes[0], NULL, tile_atlas->bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
+//al_draw_prim(&vertexes[0], NULL, tile_atlas_bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
 return;
 
 }

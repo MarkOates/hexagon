@@ -2,6 +2,7 @@
 
 
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_primitives.h>
 #include <tuple>
 #include <vector>
 
@@ -15,6 +16,7 @@ namespace Hexagon
       private:
          std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>& grid;
          static std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> dummy_grid;
+         std::vector<ALLEGRO_VERTEX> vertexes;
 
       public:
          TextMesh();
