@@ -3,6 +3,11 @@
 
 #include <Hexagon/Elements/TextMesh.hpp>
 
+#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
+   try { code; FAIL() << "Expected " # raised_exception_type; } \
+   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
+   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+
 class Hexagon_Elements_TextMeshTest_WithEmptyFixture : public ::testing::Test
 {
 public:
@@ -39,18 +44,6 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, can_be_created_without_bl
    Hexagon::Elements::TextMesh text_mesh;
 }
 
-TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__works_without_blowing_up)
-{
-   Hexagon::Elements::TextMesh text_mesh;
-   text_mesh.render();
-
-   al_flip_display();
-
-   //sleep(1);
-
-   SUCCEED();
-}
-
 TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, resize__sets_the_width__height__cell_width__and__cell_height)
 {
    Hexagon::Elements::TextMesh text_mesh;
@@ -68,6 +61,14 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, resize__sets_the_number_o
    text_mesh.resize(2, 5);
 
    EXPECT_EQ(60, text_mesh.get_vertexes().size());
+}
+
+TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__without_a_valid_bitmap__raises_an_error)
+{
+   Hexagon::Elements::TextMesh text_mesh;
+   text_mesh.set_bitmap(nullptr);
+   std::string expected_error_message = "TextMesh::render: error: guard \"bitmap\" not met";
+   ASSERT_THROW_WITH_MESSAGE(text_mesh.render(), std::runtime_error, expected_error_message);
 }
 
 TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__draws_the_grid)

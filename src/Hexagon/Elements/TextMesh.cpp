@@ -129,6 +129,12 @@ if (!(al_is_system_installed()))
       error_message << "TextMesh" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (!(bitmap))
+   {
+      std::stringstream error_message;
+      error_message << "TextMesh" << "::" << "render" << ": error: " << "guard \"bitmap\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
 al_draw_prim(&vertexes[0], NULL, tile_atlas_bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
 return;
