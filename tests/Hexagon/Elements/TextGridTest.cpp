@@ -3,14 +3,82 @@
 
 #include <Hexagon/Elements/TextGrid.hpp>
 
-TEST(Hexagon_Elements_TextGridTest, can_be_created_without_blowing_up)
+#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
+   try { code; FAIL() << "Expected " # raised_exception_type; } \
+   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
+   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+
+#include <allegro5/allegro.h>
+#include<allegro_flare/placement3d.h> // for placement3d
+
+class Hexagon_Elements_TextGridTest_WithEmptyFixture : public ::testing::Test
 {
-   Hexagon::Elements::TextGrid text_grid;
+public:
+   Hexagon_Elements_TextGridTest_WithEmptyFixture() {}
+};
+
+class Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture : public ::testing::Test
+{
+public:
+   ALLEGRO_DISPLAY* display;
+
+public:
+   Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture()
+      : display(nullptr)
+   {}
+
+   virtual void SetUp() override
+   {
+      ASSERT_EQ(false, al_is_system_installed());
+      ASSERT_EQ(true, al_init());
+      display = al_create_display(1280, 720);
+   }
+
+   virtual void TearDown() override
+   {
+      al_destroy_display(display);
+      al_uninstall_system();
+   }
+};
+
+TEST_F(Hexagon_Elements_TextGridTest_WithEmptyFixture, can_be_created_without_blowing_up)
+{
+   Hexagon::Elements::TextGrid flashing_grid;
 }
 
-TEST(Hexagon_Elements_TextGridTest, run__returns_the_expected_response)
+TEST_F(Hexagon_Elements_TextGridTest_WithEmptyFixture, render__without_allegro_initialized__raises_an_error)
 {
-   Hexagon::Elements::TextGrid text_grid;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, text_grid.run());
+   Hexagon::Elements::TextGrid flashing_grid;
+   std::string expected_error_message = "TextGrid::render: error: guard \"al_is_system_installed()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(flashing_grid.render(), std::runtime_error, expected_error_message);
 }
+
+//TEST_F(Hexagon_Elements_TextGridTest_WithEmptyFixture,
+//   render__without_primitives_initialized__raises_an_error)
+//{
+//   Hexagon::Elements::TextGrid flashing_grid;
+//   std::string expected_error_message =
+//      "TextGrid::render: error: guard "al_is_primitives_addon_initialized()" not met";
+//   ASSERT_THROW_WITH_MESSAGE(flashing_grid.render(), std::runtime_error, expected_error_message);
+//}
+
+TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
+   render__with_the_valid_arguments__does_not_blow_up)
+{
+   placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   int cell_width = al_get_text_width(font, " ");
+   int cell_height = al_get_font_line_height(font);
+   place.size = vec3d(600, 300, 0);
+   Hexagon::Elements::TextGrid flashing_grid(font, 60, 30, cell_width, cell_height);
+
+   for (unsigned i=0; i<60; i++)
+   {
+      al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
+      place.start_transform();
+      flashing_grid.render();
+      place.restore_transform();
+      al_flip_display();
+   }
+}
+
