@@ -163,9 +163,19 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__draws_
 
    Hexagon::Elements::TextMesh text_mesh;
    text_mesh.set_bitmap(white_bitmap);
-   text_mesh.resize(30, 20, 9, 16);
+   text_mesh.resize(30, 20, 13, 22);
 
    text_mesh.set_cell_color(2, 2, al_color_name("pink"));
+   text_mesh.set_cell_color(0, 0, al_color_name("orange"));
+   text_mesh.set_cell_color(29, 19, al_color_name("orange"));
+
+   text_mesh.set_cell_color(7, 4, al_color_name("red"));
+   text_mesh.set_cell_color(8, 4, al_color_name("red"));
+   text_mesh.set_cell_color(9, 4, al_color_name("red"));
+
+   text_mesh.set_cell_color(12, 4, al_color_name("green"));
+   text_mesh.set_cell_color(13, 4, al_color_name("green"));
+   text_mesh.set_cell_color(14, 4, al_color_name("green"));
 
    place.size = vec3d(text_mesh.calculate_width(), text_mesh.calculate_height(), 0);
 
