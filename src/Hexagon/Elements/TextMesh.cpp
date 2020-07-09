@@ -119,6 +119,15 @@ for (; v<num_vertexes; v+=6)
    vertexes[v+5].y = y1;
 }
 
+v = 0;
+for (; v<num_vertexes; v++)
+{
+   vertexes[v].x *= cell_width;
+   vertexes[v].y *= cell_height;
+   vertexes[v].z = 0;
+   vertexes[v].color = al_map_rgba_f(1, 1, 1, 1);
+}
+
 }
 
 void TextMesh::render()

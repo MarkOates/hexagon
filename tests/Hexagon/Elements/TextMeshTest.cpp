@@ -79,7 +79,7 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__draws_
    al_set_target_bitmap(al_get_backbuffer(display));
 
    Hexagon::Elements::TextMesh text_mesh;
-   text_mesh.resize(2, 5);
+   text_mesh.resize(2, 5, 40, 60);
    text_mesh.set_bitmap(white_bitmap);
 
    text_mesh.render();
