@@ -328,7 +328,7 @@ TEST(Hexagon_CodeEditor_CodeEditorTest,
    ASSERT_EQ(1, stage.get_cursor_x());
 }
 
-TEST(Hexagon_CodeEditor_CodeEditorTest, save_count__has_a_getter_and_has_the_expected_value)
+TEST(Hexagon_CodeEditor_CodeEditorTest, save_count__has_a_getter_and_has_the_expected_default_value)
 {
    CodeEditor::CodeEditor stage("test_text.txt");
    ASSERT_EQ(0, stage.get_save_count());
