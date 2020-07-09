@@ -12,9 +12,31 @@ properties:
   - name: vertexes
     type: std::vector<ALLEGRO_VERTEX>
     init_with: '{}'
+  - name: width
+    type: int
+    init_with: 0
+    getter: true
+  - name: height
+    type: int
+    init_with: 0
+    getter: true
 
 
 functions:
+
+
+  - name: resize
+    type: bool
+    properties:
+      - name: width
+        type: int
+        default_argument: 0
+      - name: height
+        type: int
+        default_argument: 0
+    body: |
+      vertexes.clear();
+      vertexes.resize(width*height*6); // 6 vertexes per rectangle
 
 
   - name: render

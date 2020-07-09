@@ -18,6 +18,8 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> TextMes
 TextMesh::TextMesh()
    : grid(get_dummy_grid_ref())
    , vertexes({})
+   , width(0)
+   , height(0)
 {
 }
 
@@ -27,11 +29,30 @@ TextMesh::~TextMesh()
 }
 
 
+int TextMesh::get_width()
+{
+   return width;
+}
+
+
+int TextMesh::get_height()
+{
+   return height;
+}
+
+
 std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextMesh::get_dummy_grid_ref()
 {
    return dummy_grid;
 }
 
+
+bool TextMesh::resize()
+{
+vertexes.clear();
+vertexes.resize(width*height*6); // 6 vertexes per rectangle
+
+}
 
 void TextMesh::render()
 {
