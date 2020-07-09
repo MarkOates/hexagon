@@ -269,9 +269,9 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
       ::CodeEditor::EventController::CLEAR_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
       ::CodeEditor::EventController::START_RECORDING_LAST_PERFORMED_ACTION_QUEUE_RECORDING,
       ::CodeEditor::EventController::DELETE_CHARACTER, ::CodeEditor::EventController::SET_INSERT_MODE, });
-   edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, false, {
-      ::CodeEditor::EventController::SAVE_FILE_AND_TOUCH_IF_SYMLINK,
-      ::CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
+   //edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, false, {
+   //   ::CodeEditor::EventController::SAVE_FILE_AND_TOUCH_IF_SYMLINK,
+   //   ::CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
    edit_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_B, false, true, false, false, {
       ::CodeEditor::EventController::JUMP_FIRST_LINE_NUM_UP_WHOLE_SCREEN,
       ::CodeEditor::EventController::OFFSET_CURSOR_POSITION_Y_UP_WHOLE_SCREEN });
@@ -349,9 +349,9 @@ void CodeEditor::EventController::process_event(ALLEGRO_EVENT &event)
       ::CodeEditor::EventController::SPLIT_LINES,
       ::CodeEditor::EventController::MOVE_CURSOR_DOWN,
       ::CodeEditor::EventController::MOVE_CURSOR_TO_START_OF_LINE });
-   insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, false, {
-      ::CodeEditor::EventController::SAVE_FILE_AND_TOUCH_IF_SYMLINK,
-      ::CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
+   //insert_mode__keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, true, false, false, {
+   //   ::CodeEditor::EventController::SAVE_FILE_AND_TOUCH_IF_SYMLINK,
+   //   ::CodeEditor::EventController::REFRESH_GIT_MODIFIED_LINE_NUMBERS });
 
 
    ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
