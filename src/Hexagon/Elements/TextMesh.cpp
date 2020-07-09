@@ -31,6 +31,12 @@ TextMesh::~TextMesh()
 }
 
 
+std::vector<ALLEGRO_VERTEX> TextMesh::get_vertexes()
+{
+   return vertexes;
+}
+
+
 int TextMesh::get_num_columns()
 {
    return num_columns;
@@ -63,12 +69,42 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextMe
 
 bool TextMesh::resize(int num_columns, int num_rows, float cell_width, float cell_height)
 {
+int num_vertexes = num_columns * num_rows * 6;
 vertexes.clear();
-vertexes.resize(num_columns*num_rows*6); // 6 vertexes per rectangle
+vertexes.resize(num_vertexes); // 6 vertexes per rectangle
 this->num_columns = num_columns;
 this->num_rows = num_rows;
 this->cell_width = cell_width;
 this->cell_height = cell_height;
+
+int v = 0;
+for (; v<num_vertexes; v+=6)
+{
+   long tile_num = v / 6;
+
+   int x1 = (tile_num % num_columns);
+   int y1 = (tile_num / num_columns);
+   int x2 = x1 + 1;
+   int y2 = y1 + 1;
+
+   vertexes[v+0].x = x1;
+   vertexes[v+0].y = y1;
+
+   vertexes[v+1].x = x1;
+   vertexes[v+1].y = y2;
+
+   vertexes[v+2].x = x2;
+   vertexes[v+2].y = y2;
+
+   vertexes[v+3].x = x2;
+   vertexes[v+3].y = y2;
+
+   vertexes[v+4].x = x2;
+   vertexes[v+4].y = y1;
+
+   vertexes[v+5].x = x1;
+   vertexes[v+5].y = y1;
+}
 
 }
 

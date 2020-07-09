@@ -12,6 +12,7 @@ properties:
   - name: vertexes
     type: std::vector<ALLEGRO_VERTEX>
     init_with: '{}'
+    getter: true
   - name: num_columns
     type: int
     init_with: 0
@@ -49,12 +50,42 @@ functions:
         type: float
         default_argument: 0.0f
     body: |
+      int num_vertexes = num_columns * num_rows * 6;
       vertexes.clear();
-      vertexes.resize(num_columns*num_rows*6); // 6 vertexes per rectangle
+      vertexes.resize(num_vertexes); // 6 vertexes per rectangle
       this->num_columns = num_columns;
       this->num_rows = num_rows;
       this->cell_width = cell_width;
       this->cell_height = cell_height;
+
+      int v = 0;
+      for (; v<num_vertexes; v+=6)
+      {
+         long tile_num = v / 6;
+
+         int x1 = (tile_num % num_columns);
+         int y1 = (tile_num / num_columns);
+         int x2 = x1 + 1;
+         int y2 = y1 + 1;
+
+         vertexes[v+0].x = x1;
+         vertexes[v+0].y = y1;
+
+         vertexes[v+1].x = x1;
+         vertexes[v+1].y = y2;
+
+         vertexes[v+2].x = x2;
+         vertexes[v+2].y = y2;
+
+         vertexes[v+3].x = x2;
+         vertexes[v+3].y = y2;
+
+         vertexes[v+4].x = x2;
+         vertexes[v+4].y = y1;
+
+         vertexes[v+5].x = x1;
+         vertexes[v+5].y = y1;
+      }
 
 
   - name: render

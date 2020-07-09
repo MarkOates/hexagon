@@ -62,3 +62,11 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, resize__sets_the_width__h
    EXPECT_EQ(9.64f, text_mesh.get_cell_height());
 }
 
+TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, resize__sets_the_number_of_vertexes)
+{
+   Hexagon::Elements::TextMesh text_mesh;
+   text_mesh.resize(2, 5);
+
+   EXPECT_EQ(60, text_mesh.get_vertexes().size());
+}
+

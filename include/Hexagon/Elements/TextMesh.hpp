@@ -27,6 +27,7 @@ namespace Hexagon
          ~TextMesh();
 
 
+         std::vector<ALLEGRO_VERTEX> get_vertexes();
          int get_num_columns();
          int get_num_rows();
          float get_cell_width();
