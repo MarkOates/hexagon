@@ -17,14 +17,19 @@ functions:
   - name: render
     type: void
     body: |
+      ALLEGRO_BITMAP *tile_atlas_bitmap = nullptr;
       //std::vector<ALLEGRO_VERTEX> vertexes;
       //al_draw_prim(&vertexes[0], NULL, tile_atlas->bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
       return;
+    body_dependency_symbols:
+      - ALLEGRO_BITMAP*
 
 
 dependencies:
 
 
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
   - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>&
     headers: [ vector, tuple, allegro5/allegro.h ]
   - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
