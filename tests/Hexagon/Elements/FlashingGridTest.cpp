@@ -52,9 +52,19 @@ TEST_F(Hexagon_Elements_FlashingGridTest_WithEmptyFixture, render__without_alleg
    ASSERT_THROW_WITH_MESSAGE(flashing_grid.render(), std::runtime_error, expected_error_message);
 }
 
+//TEST_F(Hexagon_Elements_FlashingGridTest_WithEmptyFixture,
+//   render__without_primitives_initialized__raises_an_error)
+//{
+//   Hexagon::Elements::FlashingGrid flashing_grid;
+//   std::string expected_error_message =
+//      "FlashingGrid::render: error: guard \"al_is_primitives_addon_initialized()\" not met";
+//   ASSERT_THROW_WITH_MESSAGE(flashing_grid.render(), std::runtime_error, expected_error_message);
+//}
+
 TEST_F(Hexagon_Elements_FlashingGridTest_WithAllegroRenderingFixture,
    render__with_the_valid_arguments__does_not_blow_up)
 {
    Hexagon::Elements::FlashingGrid flashing_grid;
    flashing_grid.render();
+   sleep(1);
 }

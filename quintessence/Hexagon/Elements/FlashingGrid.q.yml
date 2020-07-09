@@ -5,12 +5,20 @@ functions:
     type: void
     guards: [ al_is_system_installed() ]
     body: |
+      // note: missing guard for al_is_primitives_addon_initialized();
+      al_draw_filled_rectangle(0, 0, 10, 10, al_color_name("white"));
       return;
     body_dependency_symbols:
       - al_is_system_installed
+      - al_draw_filled_rectangle
+      - al_color_name
 
 
 dependencies:
 
   - symbol: al_is_system_installed
     headers: [ allegro5/allegro.h ]
+  - symbol: al_draw_filled_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_color_name
+    headers: [ allegro5/allegro_color.h ]
