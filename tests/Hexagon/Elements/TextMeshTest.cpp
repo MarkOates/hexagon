@@ -19,6 +19,7 @@ static void EXPECT_EQ_COLOR(ALLEGRO_COLOR expected, ALLEGRO_COLOR actual)
 }
 
 #include<allegro_flare/placement3d.h> // for placement3d
+#include<allegro5/allegro_color.h> // for al_color_name
 
 class Hexagon_Elements_TextMeshTest_WithEmptyFixture : public ::testing::Test
 {
@@ -148,5 +149,32 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, set_cell_color__sets_the_
    ALLEGRO_COLOR actual_color = std::get<2>(grid[1][2]);
 
    EXPECT_EQ_COLOR(expected_color, actual_color);
+}
+
+TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__draws_the_grid_cell_colors)
+{
+   ALLEGRO_BITMAP *white_bitmap = al_create_bitmap(40, 60);
+   al_set_target_bitmap(white_bitmap);
+   al_clear_to_color({1.0f, 1.0f, 1.0f, 1.0f});
+   al_set_target_bitmap(al_get_backbuffer(display));
+
+   placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   place.size = vec3d(8*40, 5*60, 0);
+
+   Hexagon::Elements::TextMesh text_mesh;
+   text_mesh.set_bitmap(white_bitmap);
+   text_mesh.resize(30, 20, 9, 16);
+
+   text_mesh.set_cell_color(2, 2, al_color_name("pink"));
+
+   place.size = vec3d(text_mesh.calculate_width(), text_mesh.calculate_height(), 0);
+
+   place.start_transform();
+   text_mesh.render();
+   place.restore_transform();
+
+   al_flip_display();
+
+   sleep(1);
 }
 

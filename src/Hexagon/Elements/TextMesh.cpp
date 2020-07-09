@@ -88,11 +88,19 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextMe
 
 void TextMesh::set_cell_color(int x, int y, ALLEGRO_COLOR color)
 {
+// set the cell in the grid
 std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* cell = find_cell(x, y);
 if (!cell) throw std::runtime_error("cell not found");
-// std::get<0>(*cell) = '';// <- char
-// std::get<1>(*cell) = {};// <- foreground color
-std::get<2>(*cell) = color; // <- background color
+std::get<2>(*cell) = color;
+
+// set the vertexes in the mesh
+int vertex_start = (x + y * num_columns) * 6;
+vertexes[vertex_start+0].color = color;
+vertexes[vertex_start+1].color = color;
+vertexes[vertex_start+2].color = color;
+vertexes[vertex_start+3].color = color;
+vertexes[vertex_start+4].color = color;
+vertexes[vertex_start+5].color = color;
 
 }
 
