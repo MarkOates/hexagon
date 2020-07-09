@@ -29,6 +29,7 @@ namespace Hexagon
 
          void set_bitmap(ALLEGRO_BITMAP* bitmap);
 
+         std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>& get_grid();
          std::vector<ALLEGRO_VERTEX> get_vertexes();
          int get_num_columns();
          int get_num_rows();

@@ -38,6 +38,12 @@ void TextMesh::set_bitmap(ALLEGRO_BITMAP* bitmap)
 }
 
 
+std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>& TextMesh::get_grid()
+{
+   return grid;
+}
+
+
 std::vector<ALLEGRO_VERTEX> TextMesh::get_vertexes()
 {
    return vertexes;
@@ -82,6 +88,21 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextMe
 
 bool TextMesh::resize(int num_columns, int num_rows, float cell_width, float cell_height)
 {
+// resize the grid
+grid.clear();
+std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR> default_grid_cell =
+   std::make_tuple('-', ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR{0.2f, 0.2f, 0.2f, 0.2f});
+for (unsigned y=0; y<num_rows; y++)
+{
+   grid.push_back({});
+   std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>> &row = grid.back();
+   for (unsigned x=0; x<num_columns; x++)
+   {
+      row.push_back(default_grid_cell);
+   }
+}
+
+// resize the vertexes
 int num_vertexes = num_columns * num_rows * 6;
 vertexes.clear();
 vertexes.resize(num_vertexes); // 6 vertexes per rectangle

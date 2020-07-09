@@ -65,6 +65,21 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, resize__sets_the_number_o
    EXPECT_EQ(60, text_mesh.get_vertexes().size());
 }
 
+TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, resize__sets_the_number_of_elements_in_the_grid)
+{
+   Hexagon::Elements::TextMesh text_mesh;
+   text_mesh.resize(2, 5);
+
+   std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid = text_mesh.get_grid();
+
+   int expected_num_columns = 5;
+   EXPECT_EQ(expected_num_columns, grid.size());
+   for (auto &row : grid)
+   {
+      EXPECT_EQ(2, row.size());
+   }
+}
+
 TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, calculate_width__returns_the_width_of_the_mesh)
    // TODO
 {
@@ -107,6 +122,6 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__draws_
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
