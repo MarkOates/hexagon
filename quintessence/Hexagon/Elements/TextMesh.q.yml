@@ -19,9 +19,10 @@ functions:
 
   - name: render
     type: void
+    guards: [ al_is_system_installed() ]
     body: |
       ALLEGRO_BITMAP *tile_atlas_bitmap = nullptr;
-      //al_draw_prim(&vertexes[0], NULL, tile_atlas_bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
+      al_draw_prim(&vertexes[0], NULL, tile_atlas_bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
       return;
     body_dependency_symbols:
       - ALLEGRO_BITMAP*
