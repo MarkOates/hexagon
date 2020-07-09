@@ -86,6 +86,14 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextMe
 }
 
 
+std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* TextMesh::get_cell(int x, int y)
+{
+if (y < 0 || y >= grid.size()) return nullptr;
+if (x < 0 || x >= grid[y].size()) return nullptr;
+return nullptr;
+
+}
+
 bool TextMesh::resize(int num_columns, int num_rows, float cell_width, float cell_height)
 {
 // resize the grid

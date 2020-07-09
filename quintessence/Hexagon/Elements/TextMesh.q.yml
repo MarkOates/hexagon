@@ -40,6 +40,22 @@ properties:
 functions:
 
 
+  - name: get_cell
+    private: true
+    type: std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>*
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
+    body: |
+      if (y < 0 || y >= grid.size()) return nullptr;
+      if (x < 0 || x >= grid[y].size()) return nullptr;
+      return nullptr;
+
+
   - name: resize
     type: bool
     parameters:
@@ -149,4 +165,6 @@ dependencies:
   - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>&
     headers: [ vector, tuple, allegro5/allegro.h ]
   - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
+    headers: [ vector, tuple, allegro5/allegro.h ]
+  - symbol: std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>*
     headers: [ vector, tuple, allegro5/allegro.h ]
