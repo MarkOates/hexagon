@@ -1,4 +1,29 @@
+properties:
+
+
+  - name: grid
+    type: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>&
+    init_with: 'get_dummy_grid_ref()'
+    constructor_arg: true
+  - name: dummy_grid
+    static: true
+    type: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
+    init_with: '{}'
+    getter_ref: true
+
+
 functions:
+
+
   - name: run
     type: std::string
     body: return "Hello World!";
+
+
+dependencies:
+
+
+  - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>&
+    headers: [ vector, tuple, allegro5/allegro.h ]
+  - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
+    headers: [ vector, tuple, allegro5/allegro.h ]
