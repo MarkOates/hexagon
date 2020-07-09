@@ -21,6 +21,10 @@ properties:
     type: float
     init_with: 1.0
     constructor_arg: true
+  - name: grid
+    type: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
+    init_with: '{}'
+    constructor_arg: true
 
 
 functions:
@@ -47,17 +51,28 @@ functions:
     guards: [ al_is_system_installed() ]
     body: |
       // note: missing guard for al_is_primitives_addon_initialized();
-      ALLEGRO_COLOR box_color;
-
-      for (int y=0; y<num_rows; y++)
+      int y=0;
+      for (auto &grid_line : grid)
       {
-         for (int x=0; x<num_columns; x++)
+         int x=0;
+         for (auto &grid_box : grid_line)
          {
-            box_color = ((x+y)%5 == 0) ? al_color_name("white") : al_color_name("gray");
-            float xx = x * (cell_width);
-            float yy = y * (cell_height);
-            al_draw_filled_rectangle(xx, yy, xx+cell_width, yy+cell_height, box_color);
+            //std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR> &box = grid_box;
+            char character = std::get<0>(grid_box);
+            ALLEGRO_COLOR background_color = std::get<1>(grid_box);
+            ALLEGRO_COLOR foreground_color = std::get<2>(grid_box);
+            float xx = x * cell_width;
+            float yy = y * cell_height;
+
+            // draw background
+            al_draw_filled_rectangle(xx, yy, xx+cell_width, yy+cell_height, background_color);
+
+            // draw foreground
+            al_draw_text(font, foreground_color, xx, yy, 0, std::to_string((char)character).c_str());
+
+            x++;
          }
+         y++;
       }
       return;
     body_dependency_symbols:
@@ -79,3 +94,5 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
+  - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
+    headers: [ vector, tuple, allegro5/allegro.h ]

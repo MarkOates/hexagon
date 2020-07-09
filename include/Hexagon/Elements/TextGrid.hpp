@@ -3,6 +3,8 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <tuple>
+#include <vector>
 
 
 namespace Hexagon
@@ -17,9 +19,10 @@ namespace Hexagon
          int num_rows;
          float cell_width;
          float cell_height;
+         std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid;
 
       public:
-         TextGrid(ALLEGRO_FONT* font=nullptr, int num_columns=16, int num_rows=12, float cell_width=1.0, float cell_height=1.0);
+         TextGrid(ALLEGRO_FONT* font=nullptr, int num_columns=16, int num_rows=12, float cell_width=1.0, float cell_height=1.0, std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid={});
          ~TextGrid();
 
 
