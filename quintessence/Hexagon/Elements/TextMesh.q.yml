@@ -12,11 +12,11 @@ properties:
   - name: vertexes
     type: std::vector<ALLEGRO_VERTEX>
     init_with: '{}'
-  - name: width
+  - name: num_columns
     type: int
     init_with: 0
     getter: true
-  - name: height
+  - name: num_rows
     type: int
     init_with: 0
     getter: true
@@ -51,8 +51,8 @@ functions:
     body: |
       vertexes.clear();
       vertexes.resize(num_columns*num_rows*6); // 6 vertexes per rectangle
-      this->width = num_columns;
-      this->height = num_rows;
+      this->num_columns = num_columns;
+      this->num_rows = num_rows;
       this->cell_width = cell_width;
       this->cell_height = cell_height;
 

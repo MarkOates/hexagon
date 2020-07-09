@@ -18,8 +18,8 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> TextMes
 TextMesh::TextMesh()
    : grid(get_dummy_grid_ref())
    , vertexes({})
-   , width(0)
-   , height(0)
+   , num_columns(0)
+   , num_rows(0)
    , cell_width(1.0f)
    , cell_height(1.0f)
 {
@@ -31,15 +31,15 @@ TextMesh::~TextMesh()
 }
 
 
-int TextMesh::get_width()
+int TextMesh::get_num_columns()
 {
-   return width;
+   return num_columns;
 }
 
 
-int TextMesh::get_height()
+int TextMesh::get_num_rows()
 {
-   return height;
+   return num_rows;
 }
 
 
@@ -65,8 +65,8 @@ bool TextMesh::resize(int num_columns, int num_rows, float cell_width, float cel
 {
 vertexes.clear();
 vertexes.resize(num_columns*num_rows*6); // 6 vertexes per rectangle
-this->width = num_columns;
-this->height = num_rows;
+this->num_columns = num_columns;
+this->num_rows = num_rows;
 this->cell_width = cell_width;
 this->cell_height = cell_height;
 

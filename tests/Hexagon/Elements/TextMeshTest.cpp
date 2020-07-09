@@ -56,6 +56,8 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, resize__sets_the_width__h
    Hexagon::Elements::TextMesh text_mesh;
    text_mesh.resize(32, 67, 7.25f, 9.64f);
 
+   EXPECT_EQ(32, text_mesh.get_num_columns());
+   EXPECT_EQ(67, text_mesh.get_num_rows());
    EXPECT_EQ(7.25f, text_mesh.get_cell_width());
    EXPECT_EQ(9.64f, text_mesh.get_cell_height());
 }
