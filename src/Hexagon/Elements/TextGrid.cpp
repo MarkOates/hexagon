@@ -78,7 +78,8 @@ for (auto &grid_line : grid)
       al_draw_filled_rectangle(xx, yy, xx+cell_width, yy+cell_height, background_color);
 
       // draw foreground
-      if (str_to_render[0] != ' ') al_draw_text(font, foreground_color, xx, yy, 0, str_to_render.c_str());
+      if (str_to_render[0] != ' ')
+         al_draw_text(font, foreground_color, xx, yy, 0, str_to_render.c_str());
 
       x++;
    }
