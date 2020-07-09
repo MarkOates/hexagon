@@ -93,14 +93,13 @@ TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
    place.size = vec3d(600, 300, 0);
    Hexagon::Elements::TextGrid flashing_grid(font, cell_width, cell_height, 0, 0, BASIC_GRID_FIXTURE);
 
-   for (unsigned i=0; i<60; i++)
-   {
-      al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
-      place.start_transform();
-      flashing_grid.render();
-      place.restore_transform();
-      al_flip_display();
-   }
+   al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
+   place.start_transform();
+   flashing_grid.render();
+   place.restore_transform();
+   al_flip_display();
+
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
@@ -113,14 +112,13 @@ TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
    place.size = vec3d(600, 300, 0);
    Hexagon::Elements::TextGrid flashing_grid(font, cell_width, cell_height, 0, 0, COLORED_GRID_FIXTURE);
 
-   for (unsigned i=0; i<60; i++)
-   {
-      al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
-      place.start_transform();
-      flashing_grid.render();
-      place.restore_transform();
-      al_flip_display();
-   }
+   al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
+   place.start_transform();
+   flashing_grid.render();
+   place.restore_transform();
+   al_flip_display();
+
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
@@ -133,13 +131,12 @@ TEST_F(Hexagon_Elements_TextGridTest_WithAllegroRenderingFixture,
    place.size = vec3d(600, 300, 0);
    Hexagon::Elements::TextGrid flashing_grid(font, cell_width, cell_height, 6, 12, COLORED_GRID_FIXTURE);
 
-   for (unsigned i=0; i<60; i++)
-   {
-      al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
-      place.start_transform();
-      flashing_grid.render();
-      place.restore_transform();
-      al_flip_display();
-   }
+   al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
+   place.start_transform();
+   flashing_grid.render();
+   place.restore_transform();
+   al_flip_display();
+
+   //sleep(1);
 }
 
