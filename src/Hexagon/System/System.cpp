@@ -643,6 +643,11 @@ bool System::save_frontmost_code_editor_stage()
    stage->get_code_editor_ref().save_file_and_touch_if_symlink();
    process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
 
+   if (stage->get_type() == StageInterface::CODE_EDITOR)
+   {
+      increment_save_count();
+   }
+
    return true;
 }
 
