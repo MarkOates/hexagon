@@ -39,12 +39,6 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextGr
 }
 
 
-void TextGrid::set_cell_color(int x, int y, ALLEGRO_COLOR color)
-{
-return;
-
-}
-
 void TextGrid::render()
 {
 if (!(al_is_system_installed()))

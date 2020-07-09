@@ -35,22 +35,6 @@ properties:
 functions:
 
 
-  - name: set_cell_color
-    type: void
-    parameters:
-      - name: x
-        type: int
-        default_argument: 0
-      - name: y
-        type: int
-        default_argument: 0
-      - name: color
-        type: ALLEGRO_COLOR
-        default_argument: '{0.0f, 0.0f, 0.0f, 0.0f}'
-    body: |
-      return;
-
-
   - name: render
     type: void
     guards: [ al_is_system_installed(), font ]
