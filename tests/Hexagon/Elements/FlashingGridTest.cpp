@@ -69,11 +69,14 @@ TEST_F(Hexagon_Elements_FlashingGridTest_WithAllegroRenderingFixture,
    place.size = vec3d(600, 300, 0);
    Hexagon::Elements::FlashingGrid flashing_grid(place.size.x, place.size.y);
 
-   place.start_transform();
-   flashing_grid.render();
-   place.restore_transform();
+   for (unsigned i=0; i<60; i++)
+   {
+      flashing_grid.set_counter(i);
 
-   al_flip_display();
-
-   sleep(1);
+      al_clear_to_color({0.0f, 0.0f, 0.0f, 0.0f});
+      place.start_transform();
+      flashing_grid.render();
+      place.restore_transform();
+      al_flip_display();
+   }
 }
