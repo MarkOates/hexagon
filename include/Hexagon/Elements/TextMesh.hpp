@@ -19,6 +19,8 @@ namespace Hexagon
          std::vector<ALLEGRO_VERTEX> vertexes;
          int width;
          int height;
+         float cell_width;
+         float cell_height;
 
       public:
          TextMesh();
@@ -27,8 +29,10 @@ namespace Hexagon
 
          int get_width();
          int get_height();
+         float get_cell_width();
+         float get_cell_height();
          static std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &get_dummy_grid_ref();
-      bool resize();
+      bool resize(int num_columns=0, int num_rows=0, float cell_width=0.0f, float cell_height=0.0f);
       void render();
       };
    }

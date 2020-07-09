@@ -50,3 +50,13 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__works_
 
    SUCCEED();
 }
+
+TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, resize__sets_the_width__height__cell_width__and__cell_height)
+{
+   Hexagon::Elements::TextMesh text_mesh;
+   text_mesh.resize(32, 67, 7.25f, 9.64f);
+
+   EXPECT_EQ(7.25f, text_mesh.get_cell_width());
+   EXPECT_EQ(9.64f, text_mesh.get_cell_height());
+}
+

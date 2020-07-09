@@ -20,6 +20,14 @@ properties:
     type: int
     init_with: 0
     getter: true
+  - name: cell_width
+    type: float
+    init_with: 1.0f
+    getter: true
+  - name: cell_height
+    type: float
+    init_with: 1.0f
+    getter: true
 
 
 functions:
@@ -27,16 +35,26 @@ functions:
 
   - name: resize
     type: bool
-    properties:
-      - name: width
+    parameters:
+      - name: num_columns
         type: int
         default_argument: 0
-      - name: height
+      - name: num_rows
         type: int
         default_argument: 0
+      - name: cell_width
+        type: float
+        default_argument: 0.0f
+      - name: cell_height
+        type: float
+        default_argument: 0.0f
     body: |
       vertexes.clear();
-      vertexes.resize(width*height*6); // 6 vertexes per rectangle
+      vertexes.resize(num_columns*num_rows*6); // 6 vertexes per rectangle
+      this->width = num_columns;
+      this->height = num_rows;
+      this->cell_width = cell_width;
+      this->cell_height = cell_height;
 
 
   - name: render

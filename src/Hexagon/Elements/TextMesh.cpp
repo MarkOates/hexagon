@@ -20,6 +20,8 @@ TextMesh::TextMesh()
    , vertexes({})
    , width(0)
    , height(0)
+   , cell_width(1.0f)
+   , cell_height(1.0f)
 {
 }
 
@@ -41,16 +43,32 @@ int TextMesh::get_height()
 }
 
 
+float TextMesh::get_cell_width()
+{
+   return cell_width;
+}
+
+
+float TextMesh::get_cell_height()
+{
+   return cell_height;
+}
+
+
 std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextMesh::get_dummy_grid_ref()
 {
    return dummy_grid;
 }
 
 
-bool TextMesh::resize()
+bool TextMesh::resize(int num_columns, int num_rows, float cell_width, float cell_height)
 {
 vertexes.clear();
-vertexes.resize(width*height*6); // 6 vertexes per rectangle
+vertexes.resize(num_columns*num_rows*6); // 6 vertexes per rectangle
+this->width = num_columns;
+this->height = num_rows;
+this->cell_width = cell_width;
+this->cell_height = cell_height;
 
 }
 
