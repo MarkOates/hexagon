@@ -43,6 +43,7 @@ public:
 
 ALLEGRO_COLOR w = {1.0f, 1.0f, 1.0f, 1.0f};
 ALLEGRO_COLOR r = {1.0f, 0.0f, 0.0f, 1.0f};
+ALLEGRO_COLOR t = {0.0f, 1.0f, 1.0f, 1.0f};
 ALLEGRO_COLOR _ = {0.0f, 0.0f, 0.0f, 0.0f};
 std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> BASIC_GRID_FIXTURE = {
    { { 'H', w, _ }, { 'e', w, _ }, { 'l', w, _ }, { 'l', w, _ }, { 'o', w, _ }, },
@@ -50,8 +51,8 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> BASIC_G
 };
 
 std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> COLORED_GRID_FIXTURE = {
-   { { 'H', w, _ }, { 'e', w, r }, { 'l', w, _ }, { 'l', w, r }, { 'o', w, _ }, },
-   { { 'C', w, r }, { 'o', w, _ }, { 'l', w, r }, { 'o', w, _ }, { 'r', w, r }, { '!', w, _ }, },
+   { { 'H', w, _ }, { 'e', w, r }, { 'l', w, _ }, { 'l', t, r }, { 'o', t, _ }, },
+   { { 'C', w, r }, { 'o', w, _ }, { 'l', w, r }, { 'o', t, _ }, { 'r', t, r }, { '!', w, _ }, },
 };
 
 TEST_F(Hexagon_Elements_TextGridTest_WithEmptyFixture, can_be_created_without_blowing_up)
