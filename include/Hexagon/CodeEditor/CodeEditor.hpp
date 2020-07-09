@@ -5,7 +5,6 @@
 #include <Hexagon/CodeMessagePointsOverlay.hpp>
 #include <Hexagon/CodeRange.hpp>
 #include <Hexagon/StageInterface.hpp>
-//#include <Hexagon/CodeEditor/Stage.hpp>
 #include <string>
 #include <vector>
 
