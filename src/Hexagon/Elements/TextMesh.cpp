@@ -86,6 +86,16 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextMe
 }
 
 
+void TextMesh::set_cell_color(int x, int y, ALLEGRO_COLOR color)
+{
+std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* cell = find_cell(x, y);
+if (!cell) throw std::runtime_error("cell not found");
+// std::get<0>(*cell) = '';// <- char
+// std::get<1>(*cell) = {};// <- foreground color
+std::get<2>(*cell) = color; // <- background color
+
+}
+
 bool TextMesh::resize(int num_columns, int num_rows, float cell_width, float cell_height)
 {
 // resize the grid
@@ -181,11 +191,11 @@ float TextMesh::calculate_height()
 return cell_height * num_rows;
 }
 
-std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* TextMesh::get_cell(int x, int y)
+std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* TextMesh::find_cell(int x, int y)
 {
 if (y < 0 || y >= grid.size()) return nullptr;
 if (x < 0 || x >= grid[y].size()) return nullptr;
-return nullptr;
+return &grid[y][x];
 
 }
 } // namespace Elements

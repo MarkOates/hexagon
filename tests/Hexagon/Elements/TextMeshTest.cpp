@@ -8,6 +8,16 @@
    catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
+#define FLOATING_POINT_ERROR_MARGIN (0.00001f)
+
+static void EXPECT_EQ_COLOR(ALLEGRO_COLOR expected, ALLEGRO_COLOR actual)
+{
+   EXPECT_NEAR(expected.r, actual.r, FLOATING_POINT_ERROR_MARGIN);
+   EXPECT_NEAR(expected.g, actual.g, FLOATING_POINT_ERROR_MARGIN);
+   EXPECT_NEAR(expected.b, actual.b, FLOATING_POINT_ERROR_MARGIN);
+   EXPECT_NEAR(expected.a, actual.a, FLOATING_POINT_ERROR_MARGIN);
+}
+
 #include<allegro_flare/placement3d.h> // for placement3d
 
 class Hexagon_Elements_TextMeshTest_WithEmptyFixture : public ::testing::Test
@@ -123,5 +133,20 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__draws_
    al_flip_display();
 
    //sleep(1);
+}
+
+TEST_F(Hexagon_Elements_TextMeshTest_WithEmptyFixture, set_cell_color__sets_the_color_of_the_cell)
+{
+   ALLEGRO_COLOR color = {0.2f, 1.0f, 0.2f, 1.0f};
+   Hexagon::Elements::TextMesh text_mesh;
+   text_mesh.resize(3, 2, 20.0f, 30.0f);
+   text_mesh.set_cell_color(2, 1, color);
+
+   std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> grid = text_mesh.get_grid();
+
+   ALLEGRO_COLOR expected_color = color;
+   ALLEGRO_COLOR actual_color = std::get<2>(grid[1][2]);
+
+   EXPECT_EQ_COLOR(expected_color, actual_color);
 }
 

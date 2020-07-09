@@ -40,6 +40,25 @@ properties:
 functions:
 
 
+  - name: set_cell_color
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
+      - name: color
+        type: ALLEGRO_COLOR
+        default_argument: '{0.0f, 0.0f, 0.0f, 0.0f}'
+    body: |
+      std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* cell = find_cell(x, y);
+      if (!cell) throw std::runtime_error("cell not found");
+      // std::get<0>(*cell) = '';// <- char
+      // std::get<1>(*cell) = {};// <- foreground color
+      std::get<2>(*cell) = color; // <- background color
+
+
   - name: resize
     type: bool
     parameters:
@@ -139,7 +158,7 @@ functions:
     body: return cell_height * num_rows;
 
 
-  - name: get_cell
+  - name: find_cell
     private: true
     type: std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>*
     parameters:
@@ -152,7 +171,7 @@ functions:
     body: |
       if (y < 0 || y >= grid.size()) return nullptr;
       if (x < 0 || x >= grid[y].size()) return nullptr;
-      return nullptr;
+      return &grid[y][x];
 
 
 dependencies:
@@ -168,3 +187,5 @@ dependencies:
     headers: [ vector, tuple, allegro5/allegro.h ]
   - symbol: std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>*
     headers: [ vector, tuple, allegro5/allegro.h ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro.h ]
