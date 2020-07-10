@@ -31,10 +31,12 @@ class Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture : public ::testi
 {
 public:
    ALLEGRO_DISPLAY* display;
+   ALLEGRO_BITMAP* multi_colored_bitmap_fixture;
 
 public:
    Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture()
       : display(nullptr)
+      , multi_colored_bitmap_fixture(nullptr)
    {}
 
    virtual void SetUp() override
@@ -47,8 +49,35 @@ public:
 
    virtual void TearDown() override
    {
+      if (multi_colored_bitmap_fixture) al_destroy_bitmap(multi_colored_bitmap_fixture);
       al_destroy_display(display);
       al_uninstall_system();
+   }
+
+   ALLEGRO_BITMAP* get_or_build_multi_colored_bitmap_fixture()
+   {
+      if (multi_colored_bitmap_fixture) return multi_colored_bitmap_fixture;
+
+      multi_colored_bitmap_fixture = al_create_bitmap(30, 30);
+      al_set_target_bitmap(multi_colored_bitmap_fixture);
+      al_clear_to_color({1.0f, 1.0f, 1.0f, 1.0f});
+
+      al_draw_filled_rectangle(0, 0, 10, 10, al_color_name("pink"));
+      al_draw_filled_rectangle(10, 0, 20, 10, al_color_name("orange"));
+      al_draw_filled_rectangle(20, 0, 30, 10, al_color_name("blue"));
+
+      al_draw_filled_rectangle(0, 10, 10, 20, al_color_name("yellow"));
+      al_draw_filled_rectangle(10, 10, 20, 20, al_color_name("green"));
+      al_draw_filled_rectangle(20, 10, 30, 20, al_color_name("red"));
+
+      al_draw_filled_rectangle(0, 20, 10, 30, al_color_name("black"));
+      al_draw_filled_rectangle(10, 20, 20, 30, al_color_name("gray"));
+      al_draw_filled_rectangle(20, 20, 30, 30, al_color_name("white"));
+
+      // restore previous state
+      al_set_target_bitmap(al_get_backbuffer(display));
+
+      return multi_colored_bitmap_fixture;
    }
 };
 
@@ -186,5 +215,9 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__draws_
    al_flip_display();
 
    sleep(1);
+}
+
+TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__uses_the_uv_cordinates_on_the_bitmap)
+{
 }
 
