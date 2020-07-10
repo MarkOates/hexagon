@@ -214,10 +214,34 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__draws_
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__uses_the_uv_cordinates_on_the_bitmap)
 {
+   placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   place.size = vec3d(8*40, 5*60, 0);
+
+   Hexagon::Elements::TextMesh text_mesh;
+   text_mesh.resize(18, 16, 32, 18);
+   text_mesh.set_bitmap(get_or_build_multi_colored_bitmap_fixture());
+
+   int last_row = text_mesh.get_num_rows() - 1;
+   int last_column = text_mesh.get_num_columns() - 1;
+   text_mesh.set_cell_uv(0,           0,        0, 0, 10, 10);
+   text_mesh.set_cell_uv(last_column, 0,        10, 10, 20, 20);
+   text_mesh.set_cell_uv(0,           last_row, 20, 10, 30, 20);
+   text_mesh.set_cell_uv(last_column, last_row, 20, 10, 30, 20);
+
+   text_mesh.set_cell_uv(3, 2, 10, 10, 20, 20);
+   text_mesh.set_cell_uv(5, 2, 20, 10, 30, 20);
+
+   place.start_transform();
+   text_mesh.render();
+   place.restore_transform();
+
+   al_flip_display();
+
+   sleep(1);
 }
 
