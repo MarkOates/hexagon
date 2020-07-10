@@ -242,6 +242,6 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__uses_t
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
