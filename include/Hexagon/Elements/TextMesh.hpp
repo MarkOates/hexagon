@@ -37,6 +37,7 @@ namespace Hexagon
          float get_cell_height();
          ALLEGRO_BITMAP* get_bitmap();
          static std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &get_dummy_grid_ref();
+      void set_cell_uv(int x=0, int y=0, int u1=0, int v1=0, int u2=1, int v2=1);
       void set_cell_color(int x=0, int y=0, ALLEGRO_COLOR color={0.0f, 0.0f, 0.0f, 0.0f});
       bool resize(int num_columns=0, int num_rows=0, float cell_width=0.0f, float cell_height=0.0f);
       void render();

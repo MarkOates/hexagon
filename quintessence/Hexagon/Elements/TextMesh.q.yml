@@ -40,6 +40,30 @@ properties:
 functions:
 
 
+  - name: set_cell_uv
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
+      - name: u1
+        type: int
+        default_argument: 0
+      - name: v1
+        type: int
+        default_argument: 0
+      - name: u2
+        type: int
+        default_argument: 1
+      - name: v2
+        type: int
+        default_argument: 1
+    body: |
+      return;
+
+
   - name: set_cell_color
     parameters:
       - name: x

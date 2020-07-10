@@ -165,7 +165,8 @@ if (is_dark_mode())
 }
 else
 {
-   return al_color_html("d2dbd6"); // very nice light gray
+   return al_color_html("8f9996"); // deep rich gray
+   //return al_color_html("d2dbd6"); // very nice light gray
 }
 //return al_color_html("d2dbd6"); // very nice light gray
 //return al_color_html("8f9996"); // deep rich gray

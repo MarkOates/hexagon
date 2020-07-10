@@ -86,6 +86,12 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextMe
 }
 
 
+void TextMesh::set_cell_uv(int x, int y, int u1, int v1, int u2, int v2)
+{
+return;
+
+}
+
 void TextMesh::set_cell_color(int x, int y, ALLEGRO_COLOR color)
 {
 // set the cell in the grid
