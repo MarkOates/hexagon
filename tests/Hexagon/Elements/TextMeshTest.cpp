@@ -228,13 +228,13 @@ TEST_F(Hexagon_Elements_TextMeshTest_WithAllegroRenderingFixture, render__uses_t
 
    int last_row = text_mesh.get_num_rows() - 1;
    int last_column = text_mesh.get_num_columns() - 1;
-   text_mesh.set_cell_uv(0,           0,        0, 0, 10, 10);
-   text_mesh.set_cell_uv(last_column, 0,        10, 10, 20, 20);
-   text_mesh.set_cell_uv(0,           last_row, 20, 10, 30, 20);
-   text_mesh.set_cell_uv(last_column, last_row, 20, 10, 30, 20);
+   text_mesh.set_cell_uv(0,           0,        {0, 0, 10, 10});
+   text_mesh.set_cell_uv(last_column, 0,        {10, 10, 20, 20});
+   text_mesh.set_cell_uv(0,           last_row, {20, 10, 30, 20});
+   text_mesh.set_cell_uv(last_column, last_row, {20, 10, 30, 20});
 
-   text_mesh.set_cell_uv(3, 2, 10, 10, 20, 20);
-   text_mesh.set_cell_uv(5, 2, 20, 10, 30, 20);
+   text_mesh.set_cell_uv(3, 2, {10, 10, 20, 20});
+   text_mesh.set_cell_uv(5, 2, {20, 10, 30, 20});
 
    place.start_transform();
    text_mesh.render();

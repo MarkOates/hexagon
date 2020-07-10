@@ -86,12 +86,17 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextMe
 }
 
 
-void TextMesh::set_cell_uv(int x, int y, int u1, int v1, int u2, int v2)
+void TextMesh::set_cell_uv(int x, int y, std::tuple<float, float, float, float> uv_coords)
 {
 std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* cell = find_cell(x, y);
 if (!cell) throw std::runtime_error("set_cell_uv: cell not found");
 
 int vertex_start = (x + y * num_columns) * 6;
+
+float &u1 = std::get<0>(uv_coords);
+float &v1 = std::get<1>(uv_coords);
+float &u2 = std::get<2>(uv_coords);
+float &v2 = std::get<3>(uv_coords);
 
 vertexes[vertex_start+0].u = u1;
 vertexes[vertex_start+0].v = v1;

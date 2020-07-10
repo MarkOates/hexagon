@@ -48,23 +48,19 @@ functions:
       - name: y
         type: int
         default_argument: 0
-      - name: u1
-        type: int
-        default_argument: 0
-      - name: v1
-        type: int
-        default_argument: 0
-      - name: u2
-        type: int
-        default_argument: 1
-      - name: v2
-        type: int
-        default_argument: 1
+      - name: uv_coords
+        type: std::tuple<float, float, float, float>
+        default_argument: '{0.0f, 0.0f, 1.0f, 1.0f}'
     body: |
       std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* cell = find_cell(x, y);
       if (!cell) throw std::runtime_error("set_cell_uv: cell not found");
 
       int vertex_start = (x + y * num_columns) * 6;
+
+      float &u1 = std::get<0>(uv_coords);
+      float &v1 = std::get<1>(uv_coords);
+      float &u2 = std::get<2>(uv_coords);
+      float &v2 = std::get<3>(uv_coords);
 
       vertexes[vertex_start+0].u = u1;
       vertexes[vertex_start+0].v = v1;
@@ -244,3 +240,5 @@ dependencies:
     headers: [ vector, tuple, allegro5/allegro.h ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
+  - symbol: std::tuple<float, float, float, float>
+    headers: [ tuple ]
