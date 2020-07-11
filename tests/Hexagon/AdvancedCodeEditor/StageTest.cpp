@@ -66,6 +66,10 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, process_event__does_not_blow_up)
    SUCCEED();
 }
 
+TEST(Hexagon_AdvancedCodeEditor_StageTest, set_initial_content__fills_the_text_mesh_with_the_expected_content)
+{
+}
+
 TEST(Hexagon_AdvancedCodeEditor_StageTest, render__renders_the_advanced_code_editor)
 {
    al_init();
