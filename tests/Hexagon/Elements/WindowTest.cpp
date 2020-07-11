@@ -25,7 +25,8 @@ public:
    {
       ASSERT_EQ(false, al_is_system_installed());
       ASSERT_EQ(true, al_init());
-      display = al_create_display(1280, 720);
+      display = al_create_display(1280*2, 720*2);
+      al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
    }
 
    virtual void TearDown() override
@@ -44,5 +45,8 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture, draw__does_not_b
 {
    Hexagon::Elements::Window window;
    window.draw();
-   SUCCEED();
+
+   al_flip_display();
+
+   sleep(1);
 }
