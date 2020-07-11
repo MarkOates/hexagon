@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
+#include <Hexagon/Elements/TextMesh.hpp>
 
 
 namespace Hexagon
@@ -11,10 +11,10 @@ namespace Hexagon
       class Renderer
       {
       private:
-         Hexagon::AdvancedCodeEditor::Stage* stage;
+         Hexagon::Elements::TextMesh* text_mesh;
 
       public:
-         Renderer(Hexagon::AdvancedCodeEditor::Stage* stage=nullptr);
+         Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr);
          ~Renderer();
 
 

@@ -11,8 +11,8 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::AdvancedCodeEditor::Stage* stage)
-   : stage(stage)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh)
+   : text_mesh(text_mesh)
 {
 }
 
@@ -24,13 +24,13 @@ Renderer::~Renderer()
 
 void Renderer::render()
 {
-if (!(stage))
+if (!(text_mesh))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"stage\" not met";
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"text_mesh\" not met";
       throw std::runtime_error(error_message.str());
    }
-//stage->get_mesh()
+text_mesh->render();
 return;
 
 }

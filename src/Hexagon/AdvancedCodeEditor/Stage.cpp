@@ -55,6 +55,10 @@ if (initialized) return;
 text_mesh.set_font(obtain_text_font());
 text_mesh.initialize();
 
+// vvv ------ some temp data
+text_mesh.set_cell_character(0, 0, 'A');
+text_mesh.set_cell_color(0, 0, al_color_name("white"));
+
 initialized = true;
 return;
 
@@ -74,7 +78,9 @@ if (!(initialized))
       error_message << "Stage" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
-Hexagon::AdvancedCodeEditor::Renderer renderer(this);
+Hexagon::AdvancedCodeEditor::Renderer renderer(
+   &text_mesh
+);
 
 get_place().start_transform();
 renderer.render();

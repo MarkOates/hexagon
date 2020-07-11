@@ -1,8 +1,8 @@
 properties:
 
 
-  - name: stage
-    type: Hexagon::AdvancedCodeEditor::Stage*
+  - name: text_mesh
+    type: Hexagon::Elements::TextMesh*
     init_with: nullptr
     constructor_arg: true
 
@@ -12,14 +12,14 @@ functions:
 
   - name: render
     type: void
-    guards: [ stage ]
+    guards: [ text_mesh ]
     body: |
-      //stage->get_mesh()
+      text_mesh->render();
       return;
 
 
 dependencies:
 
 
-  - symbol: Hexagon::AdvancedCodeEditor::Stage*
-    headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
+  - symbol: Hexagon::Elements::TextMesh*
+    headers: [ Hexagon/Elements/TextMesh.hpp ]
