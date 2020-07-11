@@ -94,8 +94,6 @@ public:
       place.restore_transform();
    }
 };
-
-
 int TextMeshWindow::DEFAULT_NUM_ROWS = 70;
 int TextMeshWindow::DEFAULT_NUM_COLUMNS = 123;
 
