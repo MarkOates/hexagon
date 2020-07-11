@@ -41,6 +41,12 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
+void Stage::set_initial_content()
+{
+//foobar;
+
+}
+
 void Stage::initialize()
 {
 if (!(font_bin))

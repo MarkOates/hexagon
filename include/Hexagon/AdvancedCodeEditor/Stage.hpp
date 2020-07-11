@@ -30,6 +30,7 @@ namespace Hexagon
 
 
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
+      void set_initial_content();
       void initialize();
       virtual void render() override;
       virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;

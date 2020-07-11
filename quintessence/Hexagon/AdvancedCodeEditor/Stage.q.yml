@@ -37,6 +37,12 @@ properties:
 functions:
 
 
+  - name: set_initial_content
+    type: void
+    body: |
+      //foobar;
+
+
   - name: initialize
     guards: [ font_bin ]
     body: |

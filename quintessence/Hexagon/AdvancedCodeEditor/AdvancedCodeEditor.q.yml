@@ -1,0 +1,33 @@
+properties:
+
+
+  - name: lines
+    type: std::vector<std::string>
+    init_with: '{}'
+
+
+functions:
+
+
+  - name: set_initial_content
+    type: bool
+    parameters:
+      - name: content
+        type: std::string
+        default_argument: '""'
+    body: |
+      lines = Blast::StringSplitter(content, '\n').split();
+      return true;
+    body_dependency_symbols:
+      - Blast::StringSplitter
+
+
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+
+
+dependencies:
+
+  - symbol: Blast::StringSplitter
+    headers: [ Blast/StringSplitter.hpp ]
