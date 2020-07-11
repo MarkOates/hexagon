@@ -15,6 +15,8 @@ namespace Elements
 
 TextMesh::TextMesh(ALLEGRO_FONT* font)
    : font(font)
+   , num_columns(0)
+   , num_rows(0)
    , font_character_map_grid({font})
    , bitmap_grid_mesh({})
    , character_map_bitmap(nullptr)
@@ -39,9 +41,12 @@ if (!(font))
    }
 if (initialized) return;
 
-bitmap_grid_mesh.set_cell_uv();
+//bitmap_grid_mesh.set_cell_uv();
 ALLEGRO_BITMAP *font_character_map_bitmap = font_character_map_grid.create();
 character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
+
+bitmap_grid_mesh.resize(num_columns, num_rows);
+bitmap_grid_mesh.set_bitmap(font_character_map_bitmap);
 
 initialized = true;
 return;

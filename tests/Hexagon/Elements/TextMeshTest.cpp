@@ -8,6 +8,8 @@
 
 #include <Hexagon/Elements/TextMesh.hpp>
 
+#include <allegro5/allegro_color.h>
+
 TEST(Hexagon_Elements_TextMeshTest, can_be_created_without_blowing_up)
 {
    Hexagon::Elements::TextMesh text_mesh;
@@ -28,6 +30,23 @@ TEST(Hexagon_Elements_TextMeshTest, render__without_having_initialized__will_rai
    Hexagon::Elements::TextMesh text_mesh(a_valid_font);
    std::string expected_error_message = "TextMesh::render: error: guard \"initialized\" not met";
    ASSERT_THROW_WITH_MESSAGE(text_mesh.render(), std::runtime_error, expected_error_message);
+
+   al_destroy_font(a_valid_font);
+   al_uninstall_system();
+}
+
+TEST(Hexagon_Elements_TextMeshTest, render__will_draw_the_mesh)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(1280, 720);
+   al_clear_to_color(al_color_name("black"));
+   ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
+   Hexagon::Elements::TextMesh text_mesh(a_valid_font);
+
+   text_mesh.initialize();
+
+   text_mesh.render();
+   al_flip_display();
 
    al_destroy_font(a_valid_font);
    al_uninstall_system();

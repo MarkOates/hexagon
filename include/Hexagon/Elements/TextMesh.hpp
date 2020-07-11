@@ -17,6 +17,8 @@ namespace Hexagon
       {
       private:
          ALLEGRO_FONT* font;
+         int num_columns;
+         int num_rows;
          Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
          Hexagon::Elements::BitmapGridMesh bitmap_grid_mesh;
          ALLEGRO_BITMAP* character_map_bitmap;
