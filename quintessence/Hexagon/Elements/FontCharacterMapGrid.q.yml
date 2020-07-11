@@ -1,0 +1,25 @@
+properties:
+
+
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: create
+    type: ALLEGRO_BITMAP*
+    body:
+      return nullptr;
+
+
+dependencies:
+
+
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
