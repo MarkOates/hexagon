@@ -13,15 +13,25 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, can_be_created_without_blowing_u
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
 }
 
-TEST(Hexagon_Elements_FontCharacterMapGridTest, create__with_valid_arguments__returns_a_bitmap)
-{
-   GTEST_SKIP();
-   Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
-}
-
 TEST(Hexagon_Elements_FontCharacterMapGridTest, create__without_a_valid_font__raises_an_error)
 {
    Hexagon::Elements::FontCharacterMapGrid text_mesh;
    std::string expected_error_message = "FontCharacterMapGrid::create: error: guard \"font\" not met";
    ASSERT_THROW_WITH_MESSAGE(text_mesh.create(), std::runtime_error, expected_error_message);
 }
+
+
+TEST(Hexagon_Elements_FontCharacterMapGridTest, create__with_valid_arguments__returns_a_bitmap)
+{
+   al_init();
+   ALLEGRO_FONT *font = al_create_builtin_font();
+
+   Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
+
+   ALLEGRO_BITMAP *result = font_character_map_grid.create();
+   ASSERT_NE(nullptr, result);
+
+   al_destroy_font(font);
+   al_uninstall_system();
+}
+
