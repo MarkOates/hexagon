@@ -3,6 +3,7 @@
 #include <Hexagon/Elements/TextMesh.hpp>
 
 #include <allegro_flare/placement3d.h> // for placement3d
+#include <AllegroFlare/FontBin.hpp>
 
 
 static int random_int(int min, int max)
@@ -39,6 +40,53 @@ void random_fill(Hexagon::Elements::TextMesh &text_mesh)
       }
    }
 }
+
+
+class TextMeshWindow
+{
+private:
+   static int DEFAULT_NUM_ROWS;
+   static int DEFAULT_NUM_COLUMNS;
+   ALLEGRO_DISPLAY *display;
+   AllegroFlare::FontBin *font_bin;
+   Hexagon::Elements::TextMesh text_mesh;
+   placement3d place;
+
+   ALLEGRO_FONT *get_default_text_font()
+   {
+      if (!font_bin) throw std::runtime_error("TextMeshWindow needs a valid font_bin");
+      font_bin->operator[]("consolas.ttf -23");
+   }
+
+public:
+   TextMeshWindow(ALLEGRO_DISPLAY *display, AllegroFlare::FontBin *font_bin)
+      : display(display)
+      , text_mesh(get_default_text_font(), DEFAULT_NUM_COLUMNS, DEFAULT_NUM_ROWS)
+   {}
+
+   void initialize()
+   {
+      text_mesh.initialize();
+      place.size = vec3d(text_mesh.calculate_width(), text_mesh.calculate_height(), 0);
+      place.scale = vec3d(0.5, 0.5, 0.5);
+   }
+
+   void update()
+   {
+      random_fill(text_mesh);
+   }
+
+   void draw()
+   {
+      place.start_transform();
+      text_mesh.render();
+      place.restore_transform();
+   }
+};
+
+
+int TextMeshWindow::DEFAULT_NUM_ROWS = 122;
+int TextMeshWindow::DEFAULT_NUM_COLUMNS = 70;
 
 
 int main(int argc, char **argv)
