@@ -107,7 +107,7 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, render__renders_the_advanced_code_edi
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 
    font_bin.clear();
    al_destroy_display(display);
