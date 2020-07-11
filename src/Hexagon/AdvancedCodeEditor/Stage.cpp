@@ -21,7 +21,6 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    : StageInterface(StageInterface::ADVANCED_CODE_EDITOR)
-   , place(0.0f, 0.0f, 0.0f)
    , font_bin(font_bin)
    , num_columns(num_columns)
    , num_rows(num_rows)
@@ -52,9 +51,8 @@ if (!(font_bin))
    }
 if (initialized) return;
 
-//text_mesh.set_font(obtain_text_font());
-//, num_columns, num_rows);
-//text_mesh.initialize();
+text_mesh.set_font(obtain_text_font());
+text_mesh.initialize();
 
 initialized = true;
 return;
@@ -77,9 +75,9 @@ if (!(initialized))
    }
 Hexagon::AdvancedCodeEditor::Renderer renderer(this);
 
-place.start_transform();
+get_place().start_transform();
 renderer.render();
-place.restore_transform();
+get_place().restore_transform();
 
 return;
 

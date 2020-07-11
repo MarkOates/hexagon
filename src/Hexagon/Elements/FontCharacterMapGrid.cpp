@@ -25,6 +25,12 @@ FontCharacterMapGrid::~FontCharacterMapGrid()
 }
 
 
+void FontCharacterMapGrid::set_font(ALLEGRO_FONT* font)
+{
+   this->font = font;
+}
+
+
 int FontCharacterMapGrid::get_grid_width()
 {
    return grid_width;

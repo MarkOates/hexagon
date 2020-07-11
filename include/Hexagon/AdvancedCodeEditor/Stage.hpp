@@ -7,7 +7,6 @@
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
-#include <allegro_flare/placement3d.h>
 #include <string>
 
 
@@ -18,7 +17,6 @@ namespace Hexagon
       class Stage : public StageInterface
       {
       private:
-         placement3d place;
          AllegroFlare::FontBin* font_bin;
          int num_columns;
          int num_rows;

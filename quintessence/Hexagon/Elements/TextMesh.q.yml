@@ -53,6 +53,7 @@ functions:
     guards: [ '!initialized' ]
     body: |
       this->font = font;
+      font_character_map_grid.set_font(font);
       return;
 
 

@@ -5,6 +5,7 @@ properties:
     type: ALLEGRO_FONT*
     init_with: nullptr
     constructor_arg: true
+    setter: true
   - name: grid_width
     type: int
     init_with: 0

@@ -77,6 +77,7 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, render__renders_the_advanced_code_edi
 
    //sleep(1);
 
+   font_bin.clear();
    al_destroy_display(display);
    al_uninstall_system();
 }

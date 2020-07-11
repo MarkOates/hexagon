@@ -80,6 +80,7 @@ if (!(!initialized))
       throw std::runtime_error(error_message.str());
    }
 this->font = font;
+font_character_map_grid.set_font(font);
 return;
 
 }

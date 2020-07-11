@@ -23,6 +23,7 @@ namespace Hexagon
          FontCharacterMapGrid(ALLEGRO_FONT* font=nullptr);
          ~FontCharacterMapGrid();
 
+         void set_font(ALLEGRO_FONT* font);
 
          int get_grid_width();
          int get_grid_height();
