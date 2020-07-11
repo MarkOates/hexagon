@@ -96,7 +96,7 @@ functions:
         default_argument: 0
       - name: character
         type: char
-        default_argument: "'\0'"
+        default_argument: "'\\0'"
     body: |
       // TODO: validate 'character' index exists in character_uv_mapping
       std::tuple<float, float, float, float> character_map = font_character_uv_mapping[character];
