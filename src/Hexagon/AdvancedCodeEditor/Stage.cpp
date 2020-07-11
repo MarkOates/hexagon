@@ -18,6 +18,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 Stage::Stage()
    : StageInterface(StageInterface::ADVANCED_CODE_EDITOR)
    , place(0.0f, 0.0f, 0.0f)
+   , text_mesh({})
 {
 }
 

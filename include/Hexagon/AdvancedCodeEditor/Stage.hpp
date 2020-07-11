@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/ActionData.hpp>
+#include <Hexagon/Elements/TextMesh.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <allegro_flare/placement3d.h>
@@ -16,6 +17,7 @@ namespace Hexagon
       {
       private:
          placement3d place;
+         Hexagon::Elements::TextMesh text_mesh;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:

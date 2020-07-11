@@ -12,6 +12,9 @@ properties:
   - name: place
     type: placement3d
     init_with: '0.0f, 0.0f, 0.0f'
+  - name: text_mesh
+    type: Hexagon::Elements::TextMesh
+    init_with: '{}'
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -78,3 +81,5 @@ dependencies:
     headers: [ Hexagon/ActionData.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Renderer
     headers: [ Hexagon/AdvancedCodeEditor/Renderer.hpp ]
+  - symbol: Hexagon::Elements::TextMesh
+    headers: [ Hexagon/Elements/TextMesh.hpp ]
