@@ -123,7 +123,8 @@ TEST(Hexagon_CodeEditor_CodeEditorTest, join_lines__on_the_last_line__does_nothi
    ASSERT_EQ("As he takes from you, I engraft you new.", stage.current_line_ref());
 }
 
-TEST(Hexagon_CodeEditor_CodeEditorTest, join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
+TEST(Hexagon_CodeEditor_CodeEditorTest,
+   join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
 {
    CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
@@ -156,7 +157,8 @@ TEST(Hexagon_CodeEditor_CodeEditorTest, move_cursor_to_last_character_of_line__m
    ASSERT_EQ(47, stage.get_cursor_x());
 }
 
-TEST(Hexagon_CodeEditor_CodeEditorTest, move_cursor_to_last_character_of_line__on_an_empty_line__moves_to_the_first_character)
+TEST(Hexagon_CodeEditor_CodeEditorTest,
+   move_cursor_to_last_character_of_line__on_an_empty_line__moves_to_the_first_character)
 {
    CodeEditor::CodeEditor stage("a_sonnet.txt");
    stage.set_initial_content(SONNET_TEXT);
