@@ -78,7 +78,7 @@ for (int y=0; y<=num_rows; y++)
       float u1 = x * grid_width;
       float v1 = y * grid_height;
       float u2 = u1 + grid_width;
-      float v2 = v2 + grid_height;
+      float v2 = v1 + grid_height;
       character_uv_mapping[char_number] = {u1, v1, u2, v2};
    }
 }
