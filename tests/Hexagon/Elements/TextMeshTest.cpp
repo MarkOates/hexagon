@@ -58,12 +58,17 @@ TEST(Hexagon_Elements_TextMeshTest, render__will_draw_the_mesh__with_the_generat
    ALLEGRO_DISPLAY *display = al_create_display(1280, 720);
    al_clear_to_color(al_color_name("black"));
    ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
-   Hexagon::Elements::TextMesh text_mesh(a_valid_font);
+   Hexagon::Elements::TextMesh text_mesh(a_valid_font, 20, 30);
 
    text_mesh.initialize();
 
+   text_mesh.set_cell_background_color(1, 1, al_color_name("red"));
+   text_mesh.set_cell_character(0, 0, 'A');
+
    text_mesh.render();
    al_flip_display();
+
+   sleep(2);
 
    al_destroy_font(a_valid_font);
    al_uninstall_system();

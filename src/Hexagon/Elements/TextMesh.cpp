@@ -13,10 +13,10 @@ namespace Elements
 {
 
 
-TextMesh::TextMesh(ALLEGRO_FONT* font)
+TextMesh::TextMesh(ALLEGRO_FONT* font, int num_columns, int num_rows)
    : font(font)
-   , num_columns(0)
-   , num_rows(0)
+   , num_columns(num_columns)
+   , num_rows(num_rows)
    , font_character_map_grid({font})
    , bitmap_grid_mesh({})
    , character_map_bitmap(nullptr)
@@ -33,12 +33,17 @@ TextMesh::~TextMesh()
 
 void TextMesh::set_cell_background_color(int x, int y, ALLEGRO_COLOR color)
 {
+bitmap_grid_mesh.set_cell_color(x, y, color);
 return;
 
 }
 
 void TextMesh::set_cell_character(int x, int y, char character)
 {
+// TODO: validate 'character' index exists in character_uv_mapping
+std::tuple<float, float, float, float> character_map = character_uv_mapping[character];
+bitmap_grid_mesh.set_cell_uv(x, y, character_map);
+// update the
 return;
 
 }

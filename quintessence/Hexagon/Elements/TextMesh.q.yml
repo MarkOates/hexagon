@@ -8,9 +8,11 @@ properties:
   - name: num_columns
     type: int
     init_with: 0
+    constructor_arg: true
   - name: num_rows
     type: int
     init_with: 0
+    constructor_arg: true
   - name: font_character_map_grid
     type: Hexagon::Elements::FontCharacterMapGrid
     init_with: '{font}'
@@ -43,6 +45,7 @@ functions:
         type: ALLEGRO_COLOR
         default_argument: '{0.0f, 0.0f, 0.0f, 0.0f}'
     body: |
+      bitmap_grid_mesh.set_cell_color(x, y, color);
       return;
 
 
@@ -58,6 +61,10 @@ functions:
         type: char
         default_argument: "'\0'"
     body: |
+      // TODO: validate 'character' index exists in character_uv_mapping
+      std::tuple<float, float, float, float> character_map = character_uv_mapping[character];
+      bitmap_grid_mesh.set_cell_uv(x, y, character_map);
+      // update the
       return;
 
 
