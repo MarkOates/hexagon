@@ -1,0 +1,7 @@
+functions:
+
+
+  - name: render
+    type: void
+    body: |
+      return;

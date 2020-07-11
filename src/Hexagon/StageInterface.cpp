@@ -30,6 +30,9 @@ std::string StageInterface::get_type_name()
       case NONE:
          return "none";
          break;
+      case ADVANCED_CODE_EDITOR:
+         return "AdvancedCodeEditor";
+         break;
       case CODE_EDITOR:
          return "CodeEditor";
          break;

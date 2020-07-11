@@ -16,6 +16,7 @@ public:
    enum type_t
    {
       NONE,
+      ADVANCED_CODE_EDITOR,
       CODE_EDITOR,
       ONE_LINE_INPUT_BOX,
       GIT_COMMIT_MESSAGE_INPUT_BOX,
