@@ -61,12 +61,15 @@ functions:
       //advanced_code_editor.set_initial_content(content);
 
       std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
+
       int y=0;
       for (auto &line : lines)
       {
          int x=0;
+         if (y >= text_mesh.get_num_rows()) break;
          for (auto &character : line)
          {
+            if (x >= text_mesh.get_num_columns()) break;
             text_mesh.set_cell_character(x, y, character);
             x++;
          }
