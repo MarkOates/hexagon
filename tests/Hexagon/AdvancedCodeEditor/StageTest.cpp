@@ -11,6 +11,13 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
+static std::string FIXTURE_PASSAGE = R"PASSAGE(       - 64 -
+Act without doing;
+work without effort.
+Think of the small as large
+and the few as many.
+)PASSAGE";
+
 TEST(Hexagon_AdvancedCodeEditor_StageTest, can_be_created_without_blowing_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
@@ -70,6 +77,8 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, render__renders_the_advanced_code_edi
 
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();
+
+   stage.set_initial_content(FIXTURE_PASSAGE);
 
    stage.render();
 

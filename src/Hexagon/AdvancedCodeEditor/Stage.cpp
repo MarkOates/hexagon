@@ -55,6 +55,13 @@ if (initialized) return;
 text_mesh.set_font(obtain_text_font());
 text_mesh.initialize();
 
+initialized = true;
+return;
+
+}
+
+void Stage::set_initial_content(std::string content)
+{
 // vvv ------ some temp data
 text_mesh.set_cell_character(0, 0, 'H');
 text_mesh.set_cell_character(1, 0, 'e');
@@ -62,7 +69,6 @@ text_mesh.set_cell_character(2, 0, 'l');
 text_mesh.set_cell_character(3, 0, 'l');
 text_mesh.set_cell_character(4, 0, 'o');
 
-initialized = true;
 return;
 
 }
