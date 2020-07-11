@@ -56,7 +56,7 @@ private:
    ALLEGRO_FONT *get_default_text_font()
    {
       if (!font_bin) throw std::runtime_error("TextMeshWindow needs a valid font_bin");
-      return font_bin->auto_get("consolas.ttf -23");
+      return font_bin->auto_get("consolas.ttf -32");
    }
 
 public:
@@ -93,6 +93,11 @@ public:
       text_mesh.render();
       place.restore_transform();
    }
+
+   placement3d &get_place_ref()
+   {
+      return this->place;
+   }
 };
 int TextMeshWindow::DEFAULT_NUM_ROWS = 70;
 int TextMeshWindow::DEFAULT_NUM_COLUMNS = 123;
@@ -113,18 +118,35 @@ int main(int argc, char **argv)
    TextMeshWindow text_mesh_window(al_get_display_width(display)/2, al_get_display_height(display)/2, 0, &font_bin);
    text_mesh_window.initialize();
 
+   TextMeshWindow text_mesh_window_2(al_get_display_width(display)/2, al_get_display_height(display)/2, 0, &font_bin);
+   text_mesh_window_2.initialize();
+   text_mesh_window_2.get_place_ref().scale = {0.25f, 0.25f, 1.0f};
+
+   TextMeshWindow text_mesh_window_3(al_get_display_width(display)/2, al_get_display_height(display)/2, 0, &font_bin);
+   text_mesh_window_3.initialize();
+   text_mesh_window_3.get_place_ref().scale = {0.75f, 0.75f, 1.0f};
+
+   TextMeshWindow text_mesh_window_4(al_get_display_width(display)/2, al_get_display_height(display)/2, 0, &font_bin);
+   text_mesh_window_4.initialize();
+   text_mesh_window_4.get_place_ref().scale = {1.0f, 1.0f, 1.0f};
+
    for (unsigned i=0; i<60; i++)
    {
       al_clear_to_color(al_color_name("black"));
 
       text_mesh_window.update();
+      text_mesh_window_2.update();
+      text_mesh_window_3.update();
+      text_mesh_window_4.update();
 
       text_mesh_window.draw();
+      text_mesh_window_2.draw();
+      text_mesh_window_3.draw();
+      text_mesh_window_4.draw();
 
       al_flip_display();
    }
 
-   //al_destroy_font(a_valid_font);
    al_destroy_display(display);
    font_bin.clear();
    al_uninstall_system();
