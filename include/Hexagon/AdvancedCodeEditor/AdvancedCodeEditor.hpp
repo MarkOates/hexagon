@@ -20,7 +20,6 @@ namespace Hexagon
 
 
       bool set_initial_content(std::string content="");
-      std::string run();
       };
    }
 }

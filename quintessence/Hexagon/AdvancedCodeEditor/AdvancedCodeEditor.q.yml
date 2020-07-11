@@ -22,11 +22,6 @@ functions:
       - Blast::StringSplitter
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
-
-
 dependencies:
 
   - symbol: Blast::StringSplitter

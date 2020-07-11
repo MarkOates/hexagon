@@ -27,11 +27,6 @@ lines = Blast::StringSplitter(content, '\n').split();
 return true;
 
 }
-
-std::string AdvancedCodeEditor::run()
-{
-return "Hello World!";
-}
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 
