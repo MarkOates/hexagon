@@ -5,6 +5,14 @@ properties:
     type: ALLEGRO_FONT*
     init_with: nullptr
     constructor_arg: true
+  - name: grid_width
+    type: int
+    init_with: 0
+    getter: true
+  - name: grid_height
+    type: int
+    init_with: 0
+    getter: true
 
 
 functions:
@@ -12,7 +20,19 @@ functions:
 
   - name: create
     type: ALLEGRO_BITMAP*
+    guards: [ font ]
     body:
+      //int character_width = al_get_text_width(font, "W"); // 'W' character as an estimate for reasonable large width
+      //int character_height = al_get_font_line_height(font);
+
+      //ALLEGRO_BITMAP *result = al_create_bitmap(800, 600);
+      //for (int y=0; y<=10; y++)
+      //{
+         //for (int x=0; x<=10; x++)
+         //{
+            //al_draw_text(font, 
+         //}
+      //}
       return nullptr;
 
 

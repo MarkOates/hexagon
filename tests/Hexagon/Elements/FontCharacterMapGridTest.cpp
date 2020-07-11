@@ -1,6 +1,11 @@
 
 #include <gtest/gtest.h>
 
+#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
+   try { code; FAIL() << "Expected " # raised_exception_type; } \
+   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
+   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+
 #include <Hexagon/Elements/FontCharacterMapGrid.hpp>
 
 TEST(Hexagon_Elements_FontCharacterMapGridTest, can_be_created_without_blowing_up)
@@ -8,8 +13,15 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, can_be_created_without_blowing_u
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
 }
 
-TEST(Hexagon_Elements_FontCharacterMapGridTest, create__returns_nullptr)
+TEST(Hexagon_Elements_FontCharacterMapGridTest, create__with_valid_arguments__returns_a_bitmap)
 {
+   GTEST_SKIP();
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
-   EXPECT_EQ(nullptr, font_character_map_grid.create());
+}
+
+TEST(Hexagon_Elements_FontCharacterMapGridTest, create__without_a_valid_font__raises_an_error)
+{
+   Hexagon::Elements::FontCharacterMapGrid text_mesh;
+   std::string expected_error_message = "FontCharacterMapGrid::create: error: guard \"font\" not met";
+   ASSERT_THROW_WITH_MESSAGE(text_mesh.create(), std::runtime_error, expected_error_message);
 }
