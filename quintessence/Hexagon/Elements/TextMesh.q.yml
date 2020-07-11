@@ -33,6 +33,23 @@ properties:
 functions:
 
 
+  - name: initialize
+    type: void
+    guards: [ font ]
+    body: |
+      if (initialized) return;
+
+      //mesh.set_cell_uv();
+      ALLEGRO_BITMAP *font_character_map_bitmap = font_character_map_grid.create();
+      character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
+
+      mesh.resize(num_columns, num_rows);
+      mesh.set_bitmap(font_character_map_bitmap);
+
+      initialized = true;
+      return;
+
+
   - name: set_cell_background_color
     parameters:
       - name: x
@@ -65,23 +82,6 @@ functions:
       std::tuple<float, float, float, float> character_map = character_uv_mapping[character];
       mesh.set_cell_uv(x, y, character_map);
       // update the
-      return;
-
-
-  - name: initialize
-    type: void
-    guards: [ font ]
-    body: |
-      if (initialized) return;
-
-      //mesh.set_cell_uv();
-      ALLEGRO_BITMAP *font_character_map_bitmap = font_character_map_grid.create();
-      character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
-
-      mesh.resize(num_columns, num_rows);
-      mesh.set_bitmap(font_character_map_bitmap);
-
-      initialized = true;
       return;
 
 

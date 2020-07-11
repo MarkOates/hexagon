@@ -31,23 +31,6 @@ TextMesh::~TextMesh()
 }
 
 
-void TextMesh::set_cell_background_color(int x, int y, ALLEGRO_COLOR color)
-{
-mesh.set_cell_color(x, y, color);
-return;
-
-}
-
-void TextMesh::set_cell_character(int x, int y, char character)
-{
-// TODO: validate 'character' index exists in character_uv_mapping
-std::tuple<float, float, float, float> character_map = character_uv_mapping[character];
-mesh.set_cell_uv(x, y, character_map);
-// update the
-return;
-
-}
-
 void TextMesh::initialize()
 {
 if (!(font))
@@ -66,6 +49,23 @@ mesh.resize(num_columns, num_rows);
 mesh.set_bitmap(font_character_map_bitmap);
 
 initialized = true;
+return;
+
+}
+
+void TextMesh::set_cell_background_color(int x, int y, ALLEGRO_COLOR color)
+{
+mesh.set_cell_color(x, y, color);
+return;
+
+}
+
+void TextMesh::set_cell_character(int x, int y, char character)
+{
+// TODO: validate 'character' index exists in character_uv_mapping
+std::tuple<float, float, float, float> character_map = character_uv_mapping[character];
+mesh.set_cell_uv(x, y, character_map);
+// update the
 return;
 
 }
