@@ -34,3 +34,20 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, process_event__does_not_blow_up)
    SUCCEED();
 }
 
+TEST(Hexagon_AdvancedCodeEditor_StageTest, render__renders_the_advanced_code_editor)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(1280 * 2, 720 * 2);
+
+   Hexagon::AdvancedCodeEditor::Stage stage;
+
+   stage.render();
+
+   al_flip_display();
+
+   sleep(1);
+
+   al_destroy_display(display);
+   al_uninstall_system();
+}
+
