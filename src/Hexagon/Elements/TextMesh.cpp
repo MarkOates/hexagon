@@ -15,6 +15,8 @@ TextMesh::TextMesh(ALLEGRO_FONT* font)
    : font(font)
    , font_character_map_grid({font})
    , bitmap_grid_mesh({})
+   , character_map_bitmap(nullptr)
+   , character_uv_mapping({})
    , initialized(true)
 {
 }
@@ -36,7 +38,8 @@ if (!(font))
 if (initialized) return;
 
 bitmap_grid_mesh.set_cell_uv();
-//font_character_map_grid
+ALLEGRO_BITMAP *font_character_map_bitmap = font_character_map_grid.create();
+character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
 
 initialized = true;
 return;

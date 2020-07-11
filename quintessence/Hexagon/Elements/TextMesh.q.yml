@@ -10,6 +10,12 @@ properties:
   - name: bitmap_grid_mesh
     type: Hexagon::Elements::BitmapGridMesh
     init_with: '{}'
+  - name: character_map_bitmap
+    type: ALLEGRO_BITMAP*
+    init_with: nullptr
+  - name: character_uv_mapping
+    type: std::map<char, std::tuple<float, float, float, float>>
+    init_with: '{}'
   - name: initialized
     type: bool
     init_with: true
@@ -25,7 +31,8 @@ functions:
       if (initialized) return;
 
       bitmap_grid_mesh.set_cell_uv();
-      //font_character_map_grid
+      ALLEGRO_BITMAP *font_character_map_bitmap = font_character_map_grid.create();
+      character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
 
       initialized = true;
       return;
@@ -34,6 +41,10 @@ functions:
 dependencies:
 
 
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
+  - symbol: std::map<char, std::tuple<float, float, float, float>>
+    headers: [ map, tuple ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
   - symbol: Hexagon::Elements::BitmapGridMesh
