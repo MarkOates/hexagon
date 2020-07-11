@@ -21,6 +21,9 @@ properties:
     type: int
     init_with: 0
     constructor_arg: true
+  - name: advanced_code_editor
+    type: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
+    init_with: '{}'
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{nullptr, num_columns, num_rows}'
@@ -121,6 +124,8 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
+    headers: [ Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Renderer
     headers: [ Hexagon/AdvancedCodeEditor/Renderer.hpp ]
   - symbol: Hexagon::Elements::TextMesh
