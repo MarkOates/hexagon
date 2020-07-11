@@ -7,7 +7,7 @@ TEST(NcursesArt_ProjectComponentBasenameExtractorTest, extracts_the_expected_fil
 {
    std::string basename = "quintessence/Library/ComponentBasename.q.yml";
    NcursesArt::ProjectComponentBasenameExtractor extractor(basename);
-   
+
    std::string expected_basename = "Library/ComponentBasename";
    std::string actual_basename = extractor.identify_component_basename();
 
@@ -18,7 +18,7 @@ TEST(NcursesArt_ProjectComponentBasenameExtractorTest, is_able_to_identify_the_c
 {
    std::string basename = "quintessence/Library/ComponentBasename.q.yml";
    NcursesArt::ProjectComponentBasenameExtractor extractor(basename);
-   
+
    EXPECT_EQ(true, extractor.is_identifiable_component());
 }
 
@@ -26,7 +26,7 @@ TEST(NcursesArt_ProjectComponentBasenameExtractorTest, does_not_extract_the_expe
 {
    std::string basename = "/Users/markoates/ProjectName/quintessence/Library/ComponentBasename.q.yml";
    NcursesArt::ProjectComponentBasenameExtractor extractor(basename);
-   
+
    std::string expected_basename = "Library/ComponentBasename";
    std::string actual_basename = extractor.identify_component_basename();
 
