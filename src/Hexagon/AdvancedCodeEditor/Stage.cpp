@@ -3,6 +3,7 @@
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Blast/StringSplitter.hpp>
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -62,12 +63,20 @@ return;
 
 void Stage::set_initial_content(std::string content)
 {
-// vvv ------ some temp data
-text_mesh.set_cell_character(0, 0, 'H');
-text_mesh.set_cell_character(1, 0, 'e');
-text_mesh.set_cell_character(2, 0, 'l');
-text_mesh.set_cell_character(3, 0, 'l');
-text_mesh.set_cell_character(4, 0, 'o');
+//advanced_code_editor.set_initial_content(content);
+
+std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
+int y=0;
+for (auto &line : lines)
+{
+   int x=0;
+   for (auto &character : line)
+   {
+      text_mesh.set_cell_character(x, y, character);
+      x++;
+   }
+   y++;
+}
 
 return;
 
