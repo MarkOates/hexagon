@@ -30,8 +30,8 @@ functions:
 
       grid_width = al_get_text_width(font, "W"); // 'W' character as an estimate for reasonable large width
       grid_height = al_get_font_line_height(font);
-      int num_rows = 10;
-      int num_columns = 20;
+      int num_rows = 16;
+      int num_columns = 16;
       ALLEGRO_STATE previous_state;
       al_store_state(&previous_state, ALLEGRO_STATE_TARGET_BITMAP);
 
