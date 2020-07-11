@@ -66,7 +66,7 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, render__renders_the_advanced_code_edi
    al_init_ttf_addon();
    ALLEGRO_DISPLAY *display = al_create_display(1280 * 2, 720 * 2);
    AllegroFlare::FontBin font_bin;
-   font_bin.set_full_path("/Users/markoates/Repos/hexagon/tests/fixtures/data/fonts");
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
 
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();

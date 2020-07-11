@@ -56,8 +56,11 @@ text_mesh.set_font(obtain_text_font());
 text_mesh.initialize();
 
 // vvv ------ some temp data
-text_mesh.set_cell_character(0, 0, 'A');
-text_mesh.set_cell_color(0, 0, al_color_name("white"));
+text_mesh.set_cell_character(0, 0, 'H');
+text_mesh.set_cell_character(1, 0, 'e');
+text_mesh.set_cell_character(2, 0, 'l');
+text_mesh.set_cell_character(3, 0, 'l');
+text_mesh.set_cell_character(4, 0, 'o');
 
 initialized = true;
 return;
@@ -110,7 +113,7 @@ if (!(font_bin))
       error_message << "Stage" << "::" << "obtain_text_font" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
-return font_bin->auto_get("Eurostile.ttf -30");
+return font_bin->auto_get("Menlo-Regular.ttf -30");
 
 }
 } // namespace AdvancedCodeEditor
