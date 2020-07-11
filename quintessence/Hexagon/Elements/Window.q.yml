@@ -4,90 +4,119 @@ properties:
   - name: width
     type: float
     init_with: 0.0f
+    setter: true
   - name: height
     type: float
     init_with: 0.0f
+    setter: true
   - name: box_opacity
     type: float
     init_with: 0.0f
+    setter: true
   - name: cell_padding
     type: float
     init_with: 0.0f
+    setter: true
   - name: box_fill_color
     type: float
     init_with: 0.0f
+    setter: true
   - name: header_color
     type: float
     init_with: 0.0f
+    setter: true
   - name: bottom_line_color
     type: float
     init_with: 0.0f
+    setter: true
   - name: outer_line_color
     type: float
     init_with: 0.0f
+    setter: true
   - name: header_baseline_color
     type: float
     init_with: 0.0f
+    setter: true
   - name: top_left_little_bar_color
     type: float
     init_with: 0.0f
+    setter: true
   - name: corner_square_colour
     type: float
     init_with: 0.0f
+    setter: true
   - name: header_height
     type: float
     init_with: 0.0f
+    setter: true
   - name: header_baseline_thickness
     type: float
     init_with: 0.0f
+    setter: true
   - name: header_bar_opacity
     type: float
     init_with: 0.0f
+    setter: true
   - name: header_baseline_opacity
     type: float
     init_with: 0.0f
+    setter: true
   - name: top_left_little_bar_width
     type: float
     init_with: 0.0f
+    setter: true
   - name: outer_line_thickness
     type: float
     init_with: 0.0f
+    setter: true
   - name: outer_box_line_opacity
     type: float
     init_with: 0.0f
+    setter: true
   - name: bottom_line_thickness
     type: float
     init_with: 0.0f
+    setter: true
   - name: bottom_line_opacity
     type: float
     init_with: 0.0f
+    setter: true
   - name: corner_squares_resize_from_center
-    type: float
-    init_with: 0.0f
+    type: bool
+    init_with: false
+    setter: true
   - name: corner_squares_width
     type: float
     init_with: 0.0f
+    setter: true
   - name: corner_squares_height
     type: float
     init_with: 0.0f
+    setter: true
   - name: corner_squares_opacity
     type: float
     init_with: 0.0f
+    setter: true
   - name: corner_squares_are_circles
-    type: float
-    init_with: 0.0f
+    type: bool
+    init_with: false
+    setter: true
   - name: number_of_rows
-    type: float
-    init_with: 0.0f
+    type: int
+    init_with: 1
+    setter: true
   - name: number_of_columns
-    type: float
-    init_with: 0.0f
+    type: int
+    init_with: 1
+    setter: true
   - name: distance_of_rows
     type: float
     init_with: 0.0f
+    setter: true
   - name: distance_of_columns
     type: float
     init_with: 0.0f
+    setter: true
 
 
 functions:
@@ -95,5 +124,23 @@ functions:
 
   - name: draw
     type: void
+    guards: [ al_is_system_installed() ]
     body: |
+      // TODO: also need to check al_is_primitives_addon_initialized()
+      al_draw_rectangle(0, 0, width, height, al_color_name("dodgerblue"), 2.0f);
       return;
+    body_dependency_symbols:
+      - al_is_system_installed
+      - al_draw_rectangle
+      - al_color_name
+
+
+dependencies:
+
+
+  - symbol: al_is_system_installed
+    headers: [ allegro5/allegro.h ]
+  - symbol: al_draw_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_color_name
+    headers: [ allegro5/allegro_color.h ]
