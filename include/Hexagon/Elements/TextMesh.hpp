@@ -4,6 +4,7 @@
 #include <Hexagon/Elements/BitmapGridMesh.hpp>
 #include <Hexagon/Elements/FontCharacterMapGrid.hpp>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <map>
 #include <tuple>
@@ -30,6 +31,7 @@ namespace Hexagon
          ~TextMesh();
 
 
+      void set_cell_background_color(int x=0, int y=0, ALLEGRO_COLOR color={0.0f, 0.0f, 0.0f, 0.0f});
       void initialize();
       void render();
       };

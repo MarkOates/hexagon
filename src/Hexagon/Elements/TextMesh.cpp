@@ -31,6 +31,12 @@ TextMesh::~TextMesh()
 }
 
 
+void TextMesh::set_cell_background_color(int x, int y, ALLEGRO_COLOR color)
+{
+return;
+
+}
+
 void TextMesh::initialize()
 {
 if (!(font))

@@ -51,3 +51,21 @@ TEST(Hexagon_Elements_TextMeshTest, render__will_draw_the_mesh)
    al_destroy_font(a_valid_font);
    al_uninstall_system();
 }
+
+TEST(Hexagon_Elements_TextMeshTest, render__will_draw_the_mesh__with_the_generated_font_character_map_bitmap)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(1280, 720);
+   al_clear_to_color(al_color_name("black"));
+   ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
+   Hexagon::Elements::TextMesh text_mesh(a_valid_font);
+
+   text_mesh.initialize();
+
+   text_mesh.render();
+   al_flip_display();
+
+   al_destroy_font(a_valid_font);
+   al_uninstall_system();
+}
+
