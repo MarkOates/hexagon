@@ -19,9 +19,10 @@ namespace CodeEditor
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(::CodeEditor::CodeEditor code_editor)
+Stage::Stage(::CodeEditor::CodeEditor code_editor, Hexagon::Elements::FontCharacterMapGrid font_character_map_grid)
    : StageInterface(code_editor.get_type())
    , code_editor(code_editor)
+   , font_character_map_grid(font_character_map_grid)
    , is_focused(false)
    , display(nullptr)
    , font(nullptr)
@@ -72,6 +73,12 @@ void Stage::set_cell_height(int cell_height)
 }
 
 
+Hexagon::Elements::FontCharacterMapGrid Stage::get_font_character_map_grid()
+{
+   return font_character_map_grid;
+}
+
+
 bool Stage::get_is_focused()
 {
    return is_focused;
@@ -105,6 +112,12 @@ int Stage::get_cell_height()
 ::CodeEditor::CodeEditor &Stage::get_code_editor_ref()
 {
    return code_editor;
+}
+
+
+Hexagon::Elements::FontCharacterMapGrid &Stage::get_font_character_map_grid_ref()
+{
+   return font_character_map_grid;
 }
 
 
