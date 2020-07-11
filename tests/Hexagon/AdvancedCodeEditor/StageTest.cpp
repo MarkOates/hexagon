@@ -16,6 +16,17 @@ Act without doing;
 work without effort.
 Think of the small as large
 and the few as many.
+Confront the difficult
+while it is still easy;
+accomplish the great task
+by a series of small acts.
+
+The Master never reaches for the great;
+thus she achieves greatness.
+When she runs into a difficulty,
+she stops and gives herself to it.
+She doesn't cling to her own comfort;
+thus problems are no problem for her.
 )PASSAGE";
 
 TEST(Hexagon_AdvancedCodeEditor_StageTest, can_be_created_without_blowing_up)
