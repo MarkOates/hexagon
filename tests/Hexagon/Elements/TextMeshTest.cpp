@@ -133,3 +133,44 @@ TEST(Hexagon_Elements_TextMeshTest, set_cell_color__will_set_the_color_of_the_ce
    al_uninstall_system();
 }
 
+TEST(Hexagon_Elements_TextMeshTest, set_font__when_assigned_before_initialization__will_populate_the_font)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(1280, 720);
+   al_clear_to_color(al_color_name("black"));
+   ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
+
+   Hexagon::Elements::TextMesh text_mesh(nullptr, 30, 20);
+   text_mesh.set_font(a_valid_font);
+
+   text_mesh.initialize();
+
+   for (unsigned y=0; y<text_mesh.get_num_rows(); y++)
+   {
+      for (unsigned x=0; x<text_mesh.get_num_columns(); x++)
+      {
+         text_mesh.set_cell_color(x, y, al_color_name("blue"));
+         text_mesh.set_cell_character(x, y, '.');
+      }
+   }
+
+   text_mesh.set_cell_color(5, 5, al_color_name("yellow"));
+   text_mesh.set_cell_color(6, 5, al_color_name("yellow"));
+   text_mesh.set_cell_color(7, 5, al_color_name("yellow"));
+   text_mesh.set_cell_color(8, 5, al_color_name("yellow"));
+   text_mesh.set_cell_color(9, 5, al_color_name("yellow"));
+   text_mesh.set_cell_character(5, 5, 'H');
+   text_mesh.set_cell_character(6, 5, 'e');
+   text_mesh.set_cell_character(7, 5, 'l');
+   text_mesh.set_cell_character(8, 5, 'l');
+   text_mesh.set_cell_character(9, 5, 'o');
+
+   text_mesh.render();
+   al_flip_display();
+
+   sleep(1);
+
+   al_destroy_font(a_valid_font);
+   al_uninstall_system();
+}
+
