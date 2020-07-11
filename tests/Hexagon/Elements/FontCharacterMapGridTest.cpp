@@ -38,7 +38,7 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, create__with_valid_arguments__re
    al_init_image_addon();
    al_draw_bitmap(result, 0, 0, 0);
    al_flip_display();
-   //EXPECT_EQ(true, al_save_bitmap("./tmp/FontCharacterMapGridTest.png", result));
+   EXPECT_EQ(true, al_save_bitmap("/Users/markoates/Repos/hexagon/tmp/FontCharacterMapGridTest.png", result));
 
    sleep(2);
 

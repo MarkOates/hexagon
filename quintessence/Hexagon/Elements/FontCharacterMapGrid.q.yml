@@ -13,6 +13,10 @@ properties:
     type: int
     init_with: 0
     getter: true
+  - name: character_uv_mapping
+    type: std::map<char, std::tuple<float, float, float, float>>
+    init_with: '{}'
+    getter: true
 
 
 functions:
@@ -54,5 +58,7 @@ dependencies:
 
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
+  - symbol: std::map<char, std::tuple<float, float, float, float>>
+    headers: [ map, tuple ]
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]

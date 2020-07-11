@@ -15,6 +15,7 @@ FontCharacterMapGrid::FontCharacterMapGrid(ALLEGRO_FONT* font)
    : font(font)
    , grid_width(0)
    , grid_height(0)
+   , character_uv_mapping({})
 {
 }
 
@@ -33,6 +34,12 @@ int FontCharacterMapGrid::get_grid_width()
 int FontCharacterMapGrid::get_grid_height()
 {
    return grid_height;
+}
+
+
+std::map<char, std::tuple<float, float, float, float>> FontCharacterMapGrid::get_character_uv_mapping()
+{
+   return character_uv_mapping;
 }
 
 
