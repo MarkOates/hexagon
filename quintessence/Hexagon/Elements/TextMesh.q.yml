@@ -1,4 +1,31 @@
+properties:
+
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    constructor_arg: true
+  - name: font_character_map_grid
+    type: Hexagon::Elements::FontCharacterMapGrid
+    init_with: '{}'
+  - name: bitmap_grid_mesh
+    type: Hexagon::Elements::BitmapGridMesh
+    init_with: '{}'
+
+
 functions:
+
+
   - name: run
     type: std::string
     body: return "Hello World!";
+
+
+dependencies:
+
+
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: Hexagon::Elements::BitmapGridMesh
+    headers: [ Hexagon/Elements/BitmapGridMesh.hpp ]
+  - symbol: Hexagon::Elements::FontCharacterMapGrid
+    headers: [ Hexagon/Elements/FontCharacterMapGrid.hpp ]

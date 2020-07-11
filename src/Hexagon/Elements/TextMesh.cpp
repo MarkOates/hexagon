@@ -10,7 +10,10 @@ namespace Elements
 {
 
 
-TextMesh::TextMesh()
+TextMesh::TextMesh(ALLEGRO_FONT* font)
+   : font(font)
+   , font_character_map_grid({})
+   , bitmap_grid_mesh({})
 {
 }
 
