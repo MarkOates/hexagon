@@ -25,7 +25,6 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , font_bin(font_bin)
    , num_columns(num_columns)
    , num_rows(num_rows)
-   , advanced_code_editor({})
    , text_mesh({nullptr, num_columns, num_rows})
    , initialized(false)
 {
@@ -63,8 +62,6 @@ return;
 
 void Stage::set_initial_content(std::string content)
 {
-//advanced_code_editor.set_initial_content(content);
-
 std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
 
 int y=0;

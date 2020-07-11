@@ -21,9 +21,6 @@ properties:
     type: int
     init_with: 0
     constructor_arg: true
-  - name: advanced_code_editor
-    type: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
-    init_with: '{}'
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{nullptr, num_columns, num_rows}'
@@ -58,8 +55,6 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
-      //advanced_code_editor.set_initial_content(content);
-
       std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
 
       int y=0;

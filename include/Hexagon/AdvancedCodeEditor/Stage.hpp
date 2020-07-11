@@ -3,7 +3,6 @@
 
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/ActionData.hpp>
-#include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 #include <Hexagon/Elements/TextMesh.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
@@ -21,7 +20,6 @@ namespace Hexagon
          AllegroFlare::FontBin* font_bin;
          int num_columns;
          int num_rows;
-         Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
          Hexagon::Elements::TextMesh text_mesh;
          static ALLEGRO_EVENT a_default_empty_event;
          bool initialized;
