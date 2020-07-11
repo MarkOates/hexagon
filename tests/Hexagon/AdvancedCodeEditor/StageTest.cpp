@@ -8,6 +8,9 @@
 
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+
 TEST(Hexagon_AdvancedCodeEditor_StageTest, can_be_created_without_blowing_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
@@ -59,17 +62,20 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, process_event__does_not_blow_up)
 TEST(Hexagon_AdvancedCodeEditor_StageTest, render__renders_the_advanced_code_editor)
 {
    al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
    ALLEGRO_DISPLAY *display = al_create_display(1280 * 2, 720 * 2);
    AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/tests/fixtures/data/fonts");
 
-   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin);
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();
 
-   stage.render();
+   //stage.render();
 
-   al_flip_display();
+   //al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 
    al_destroy_display(display);
    al_uninstall_system();

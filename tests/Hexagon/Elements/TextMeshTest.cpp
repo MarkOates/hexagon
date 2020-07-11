@@ -49,6 +49,20 @@ TEST(Hexagon_Elements_TextMeshTest, initialize__will_set_the_cell_width_and_the_
    al_uninstall_system();
 }
 
+TEST(Hexagon_Elements_TextMeshTest, set_font__after_initialization_has_occurred__raises_an_exception)
+{
+   al_init();
+   ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
+
+   Hexagon::Elements::TextMesh text_mesh(a_valid_font);
+   text_mesh.initialize();
+   std::string expected_error_message = "TextMesh::set_font: error: guard \"!initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(text_mesh.set_font(a_valid_font), std::runtime_error, expected_error_message);
+
+   al_destroy_font(a_valid_font);
+   al_uninstall_system();
+}
+
 TEST(Hexagon_Elements_TextMeshTest, render__without_having_initialized__will_raise_an_error)
 {
    al_init();

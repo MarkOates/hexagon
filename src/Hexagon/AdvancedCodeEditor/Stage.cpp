@@ -6,6 +6,8 @@
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -17,11 +19,13 @@ namespace AdvancedCodeEditor
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(AllegroFlare::FontBin* font_bin)
+Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    : StageInterface(StageInterface::ADVANCED_CODE_EDITOR)
    , place(0.0f, 0.0f, 0.0f)
    , font_bin(font_bin)
-   , text_mesh({})
+   , num_columns(num_columns)
+   , num_rows(num_rows)
+   , text_mesh({nullptr, num_columns, num_rows})
    , initialized(false)
 {
 }
@@ -46,8 +50,11 @@ if (!(font_bin))
       error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
-// TODO: check if font_bin has been initialized
 if (initialized) return;
+
+//text_mesh.set_font(obtain_text_font());
+//, num_columns, num_rows);
+//text_mesh.initialize();
 
 initialized = true;
 return;
@@ -87,6 +94,18 @@ return;
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
 return;
+
+}
+
+ALLEGRO_FONT* Stage::obtain_text_font()
+{
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "obtain_text_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return font_bin->auto_get("Eurostile.ttf -30");
 
 }
 } // namespace AdvancedCodeEditor

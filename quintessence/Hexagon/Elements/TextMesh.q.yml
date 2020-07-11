@@ -45,6 +45,17 @@ properties:
 functions:
 
 
+  - name: set_font
+    parameters:
+      - name: font
+        type: ALLEGRO_FONT*
+        default_argument: nullptr
+    guards: [ '!initialized' ]
+    body: |
+      this->font = font;
+      return;
+
+
   - name: initialize
     type: void
     guards: [ font ]

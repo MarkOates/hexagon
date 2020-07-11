@@ -5,6 +5,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -68,6 +70,19 @@ ALLEGRO_BITMAP* TextMesh::get_font_character_map_bitmap()
    return font_character_map_bitmap;
 }
 
+
+void TextMesh::set_font(ALLEGRO_FONT* font)
+{
+if (!(!initialized))
+   {
+      std::stringstream error_message;
+      error_message << "TextMesh" << "::" << "set_font" << ": error: " << "guard \"!initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+this->font = font;
+return;
+
+}
 
 void TextMesh::initialize()
 {

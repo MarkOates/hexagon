@@ -16,9 +16,17 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+  - name: num_columns
+    type: int
+    init_with: 0
+    constructor_arg: true
+  - name: num_rows
+    type: int
+    init_with: 0
+    constructor_arg: true
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
-    init_with: '{}'
+    init_with: '{nullptr, num_columns, num_rows}'
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -35,8 +43,11 @@ functions:
   - name: initialize
     guards: [ font_bin ]
     body: |
-      // TODO: check if font_bin has been initialized
       if (initialized) return;
+
+      //text_mesh.set_font(obtain_text_font());
+      //, num_columns, num_rows);
+      //text_mesh.initialize();
 
       initialized = true;
       return;
@@ -83,6 +94,14 @@ functions:
       return;
 
 
+  - name: obtain_text_font
+    private: true
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      return font_bin->auto_get("Eurostile.ttf -30");
+
+
 dependencies:
 
 
@@ -92,6 +111,8 @@ dependencies:
     headers: [ allegro_flare/placement3d.h ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_EVENT
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT&
