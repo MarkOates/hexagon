@@ -86,7 +86,8 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture, can_be_created_with
    Hexagon::Elements::BitmapGridMesh bitmap_grid_mesh;
 }
 
-TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture, resize__sets_the_width__height__cell_width__and__cell_height)
+TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture,
+   resize__sets_the_width__height__cell_width__and__cell_height)
 {
    Hexagon::Elements::BitmapGridMesh bitmap_grid_mesh;
    bitmap_grid_mesh.resize(32, 67, 7.25f, 9.64f);
