@@ -6,18 +6,29 @@ properties:
     constructor_arg: true
   - name: font_character_map_grid
     type: Hexagon::Elements::FontCharacterMapGrid
-    init_with: '{}'
+    init_with: '{font}'
   - name: bitmap_grid_mesh
     type: Hexagon::Elements::BitmapGridMesh
     init_with: '{}'
+  - name: initialized
+    type: bool
+    init_with: true
 
 
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: initialize
+    type: void
+    guards: [ font ]
+    body: |
+      if (initialized) return;
+
+      bitmap_grid_mesh.set_cell_uv();
+      //font_character_map_grid
+
+      initialized = true;
+      return;
 
 
 dependencies:
