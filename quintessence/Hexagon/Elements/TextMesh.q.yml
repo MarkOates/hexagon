@@ -104,6 +104,18 @@ functions:
       return;
 
 
+  - name: calculate_width
+    type: int
+    body: |
+      return mesh.calculate_width();
+
+
+  - name: calculate_height
+    type: int
+    body: |
+      return mesh.calculate_height();
+
+
   - name: render
     type: void
     guards: [ initialized ]

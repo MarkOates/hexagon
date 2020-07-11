@@ -2,7 +2,7 @@
 
 #include <Hexagon/Elements/TextMesh.hpp>
 
-//#include <AllegroFlare/Random.hpp>
+#include <allegro_flare/placement3d.h> // for placement3d
 
 
 void random_fill(Hexagon::Elements::TextMesh &text_mesh)
@@ -27,16 +27,25 @@ int main(int argc, char **argv)
    al_clear_to_color(al_color_name("black"));
    ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
 
-   Hexagon::Elements::TextMesh text_mesh(a_valid_font, 60, 50);
+   Hexagon::Elements::TextMesh text_mesh(a_valid_font, 123, 70);
 
    text_mesh.initialize();
 
    random_fill(text_mesh);
 
-   text_mesh.render();
-   al_flip_display();
+   placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   place.size = vec3d(text_mesh.calculate_width(), text_mesh.calculate_height(), 0);
 
-   sleep(1);
+   for (unsigned i=0; i<60; i++)
+   {
+      al_clear_to_color(al_color_name("black"));
+      random_fill(text_mesh);
+
+      place.start_transform();
+      text_mesh.render();
+      place.restore_transform();
+      al_flip_display();
+   }
 
    al_destroy_font(a_valid_font);
    al_destroy_display(display);

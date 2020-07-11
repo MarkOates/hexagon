@@ -115,6 +115,18 @@ return;
 
 }
 
+int TextMesh::calculate_width()
+{
+return mesh.calculate_width();
+
+}
+
+int TextMesh::calculate_height()
+{
+return mesh.calculate_height();
+
+}
+
 void TextMesh::render()
 {
 if (!(initialized))
