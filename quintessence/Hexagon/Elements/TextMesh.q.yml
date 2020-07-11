@@ -46,6 +46,21 @@ functions:
       return;
 
 
+  - name: set_cell_character
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
+      - name: character
+        type: char
+        default_argument: "'\0'"
+    body: |
+      return;
+
+
   - name: initialize
     type: void
     guards: [ font ]

@@ -37,6 +37,12 @@ return;
 
 }
 
+void TextMesh::set_cell_character(int x, int y, char character)
+{
+return;
+
+}
+
 void TextMesh::initialize()
 {
 if (!(font))
