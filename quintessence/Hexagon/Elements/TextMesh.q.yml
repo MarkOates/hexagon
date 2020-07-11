@@ -16,7 +16,7 @@ properties:
   - name: font_character_map_grid
     type: Hexagon::Elements::FontCharacterMapGrid
     init_with: '{font}'
-  - name: bitmap_grid_mesh
+  - name: mesh
     type: Hexagon::Elements::BitmapGridMesh
     init_with: '{}'
   - name: character_map_bitmap
@@ -45,7 +45,7 @@ functions:
         type: ALLEGRO_COLOR
         default_argument: '{0.0f, 0.0f, 0.0f, 0.0f}'
     body: |
-      bitmap_grid_mesh.set_cell_color(x, y, color);
+      mesh.set_cell_color(x, y, color);
       return;
 
 
@@ -63,7 +63,7 @@ functions:
     body: |
       // TODO: validate 'character' index exists in character_uv_mapping
       std::tuple<float, float, float, float> character_map = character_uv_mapping[character];
-      bitmap_grid_mesh.set_cell_uv(x, y, character_map);
+      mesh.set_cell_uv(x, y, character_map);
       // update the
       return;
 
@@ -74,12 +74,12 @@ functions:
     body: |
       if (initialized) return;
 
-      //bitmap_grid_mesh.set_cell_uv();
+      //mesh.set_cell_uv();
       ALLEGRO_BITMAP *font_character_map_bitmap = font_character_map_grid.create();
       character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
 
-      bitmap_grid_mesh.resize(num_columns, num_rows);
-      bitmap_grid_mesh.set_bitmap(font_character_map_bitmap);
+      mesh.resize(num_columns, num_rows);
+      mesh.set_bitmap(font_character_map_bitmap);
 
       initialized = true;
       return;
@@ -89,7 +89,7 @@ functions:
     type: void
     guards: [ initialized ]
     body: |
-      bitmap_grid_mesh.render();
+      mesh.render();
       return;
 
 

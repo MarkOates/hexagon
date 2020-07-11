@@ -18,7 +18,7 @@ TextMesh::TextMesh(ALLEGRO_FONT* font, int num_columns, int num_rows)
    , num_columns(num_columns)
    , num_rows(num_rows)
    , font_character_map_grid({font})
-   , bitmap_grid_mesh({})
+   , mesh({})
    , character_map_bitmap(nullptr)
    , character_uv_mapping({})
    , initialized(false)
@@ -33,7 +33,7 @@ TextMesh::~TextMesh()
 
 void TextMesh::set_cell_background_color(int x, int y, ALLEGRO_COLOR color)
 {
-bitmap_grid_mesh.set_cell_color(x, y, color);
+mesh.set_cell_color(x, y, color);
 return;
 
 }
@@ -42,7 +42,7 @@ void TextMesh::set_cell_character(int x, int y, char character)
 {
 // TODO: validate 'character' index exists in character_uv_mapping
 std::tuple<float, float, float, float> character_map = character_uv_mapping[character];
-bitmap_grid_mesh.set_cell_uv(x, y, character_map);
+mesh.set_cell_uv(x, y, character_map);
 // update the
 return;
 
@@ -58,12 +58,12 @@ if (!(font))
    }
 if (initialized) return;
 
-//bitmap_grid_mesh.set_cell_uv();
+//mesh.set_cell_uv();
 ALLEGRO_BITMAP *font_character_map_bitmap = font_character_map_grid.create();
 character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
 
-bitmap_grid_mesh.resize(num_columns, num_rows);
-bitmap_grid_mesh.set_bitmap(font_character_map_bitmap);
+mesh.resize(num_columns, num_rows);
+mesh.set_bitmap(font_character_map_bitmap);
 
 initialized = true;
 return;
@@ -78,7 +78,7 @@ if (!(initialized))
       error_message << "TextMesh" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
-bitmap_grid_mesh.render();
+mesh.render();
 return;
 
 }
