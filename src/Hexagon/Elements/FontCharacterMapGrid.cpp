@@ -44,8 +44,28 @@ if (!(font))
       error_message << "FontCharacterMapGrid" << "::" << "create" << ": error: " << "guard \"font\" not met";
       throw std::runtime_error(error_message.str());
    }
-//throw std::runtime_error("aaa"); //int character_width = al_get_text_width(font, "W"); // 'W' character as an estimate for reasonable large width //int character_height = al_get_font_line_height(font);
-ALLEGRO_BITMAP *result = al_create_bitmap(800, 600); //for (int y=0; y<=10; y++) //{ //for (int x=0; x<=10; x++) //{ //al_draw_text(font, //} //} return result;
+int character_width = al_get_text_width(font, "W"); // 'W' character as an estimate for reasonable large width
+int character_height = al_get_font_line_height(font);
+int num_rows = 10;
+int num_columns = 20;
+ALLEGRO_STATE previous_state;
+al_store_state(&previous_state, ALLEGRO_STATE_TARGET_BITMAP);
+
+ALLEGRO_BITMAP *result = al_create_bitmap(character_width * num_columns, character_height * num_rows);
+al_set_target_bitmap(result);
+ALLEGRO_COLOR color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+std::string text_to_draw = " ";
+const char* text_to_draw_cstr = text_to_draw.c_str();
+for (int y=0; y<=num_rows; y++)
+{
+   for (int x=0; x<=num_columns; x++)
+   {
+      al_draw_text(font, color, x * grid_width, y * grid_height, ALLEGRO_ALIGN_LEFT, text_to_draw_cstr);
+   }
+}
+al_restore_state(&previous_state);
+return result;
+
 }
 } // namespace Elements
 } // namespace Hexagon

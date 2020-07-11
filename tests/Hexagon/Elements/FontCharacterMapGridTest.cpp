@@ -7,6 +7,7 @@
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 #include <Hexagon/Elements/FontCharacterMapGrid.hpp>
+#include <allegro5/allegro_image.h> // for al_save_bitmap to png
 
 TEST(Hexagon_Elements_FontCharacterMapGridTest, can_be_created_without_blowing_up)
 {
@@ -30,6 +31,9 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, create__with_valid_arguments__re
 
    ALLEGRO_BITMAP *result = font_character_map_grid.create();
    ASSERT_NE(nullptr, result);
+
+   al_init_image_addon();
+   EXPECT_EQ(true, al_save_bitmap("./tmp/FontCharacterMapGridTest.png", result));
 
    al_destroy_font(font);
    al_uninstall_system();
