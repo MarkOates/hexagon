@@ -12,6 +12,10 @@ properties:
   - name: place
     type: placement3d
     init_with: '0.0f, 0.0f, 0.0f'
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{}'
@@ -20,15 +24,28 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+  - name: initialized
+    type: bool
+    init_with: false
 
 
 functions:
 
 
+  - name: initialize
+    guards: [ font_bin ]
+    body: |
+      // TODO: check if font_bin has been initialized
+      if (initialized) return;
+
+      initialized = true;
+      return;
+
+
   - name: render
     virtual: true
     override: true
-    guards: [ al_is_system_installed() ]
+    guards: [ al_is_system_installed(), initialized ]
     body: |
       Hexagon::AdvancedCodeEditor::Renderer renderer(this);
 
@@ -73,6 +90,8 @@ dependencies:
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ALLEGRO_EVENT
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT&

@@ -20,6 +20,28 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, render__when_allegro_is_not_initializ
    ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
 }
 
+TEST(Hexagon_AdvancedCodeEditor_StageTest, initialize__without_a_fon_bin__raises_an_error)
+{
+   al_init();
+
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   std::string expected_error_message = "Stage::initialize: error: guard \"font_bin\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage.initialize(), std::runtime_error, expected_error_message);
+
+   al_uninstall_system();
+}
+
+TEST(Hexagon_AdvancedCodeEditor_StageTest, render__if_not_initialized__raises_an_error)
+{
+   al_init();
+
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   std::string expected_error_message = "Stage::render: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
+
+   al_uninstall_system();
+}
+
 TEST(Hexagon_AdvancedCodeEditor_StageTest, process_local_event__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
@@ -38,8 +60,10 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, render__renders_the_advanced_code_edi
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(1280 * 2, 720 * 2);
+   AllegroFlare::FontBin font_bin;
 
-   Hexagon::AdvancedCodeEditor::Stage stage;
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin);
+   stage.initialize();
 
    stage.render();
 
