@@ -17,10 +17,12 @@ TextMesh::TextMesh(ALLEGRO_FONT* font, int num_columns, int num_rows)
    : font(font)
    , num_columns(num_columns)
    , num_rows(num_rows)
+   , cell_width(1.0f)
+   , cell_height(1.0f)
    , font_character_map_grid({font})
    , mesh({})
-   , character_map_bitmap(nullptr)
-   , character_uv_mapping({})
+   , font_character_map_bitmap(nullptr)
+   , font_character_uv_mapping({})
    , initialized(false)
 {
 }
@@ -28,6 +30,42 @@ TextMesh::TextMesh(ALLEGRO_FONT* font, int num_columns, int num_rows)
 
 TextMesh::~TextMesh()
 {
+}
+
+
+int TextMesh::get_num_columns()
+{
+   return num_columns;
+}
+
+
+int TextMesh::get_num_rows()
+{
+   return num_rows;
+}
+
+
+float TextMesh::get_cell_width()
+{
+   return cell_width;
+}
+
+
+float TextMesh::get_cell_height()
+{
+   return cell_height;
+}
+
+
+Hexagon::Elements::BitmapGridMesh TextMesh::get_mesh()
+{
+   return mesh;
+}
+
+
+ALLEGRO_BITMAP* TextMesh::get_font_character_map_bitmap()
+{
+   return font_character_map_bitmap;
 }
 
 
@@ -41,12 +79,20 @@ if (!(font))
    }
 if (initialized) return;
 
-//mesh.set_cell_uv();
-ALLEGRO_BITMAP *font_character_map_bitmap = font_character_map_grid.create();
-character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
+if (font_character_map_bitmap) al_destroy_bitmap(font_character_map_bitmap);
+font_character_uv_mapping.clear();
+cell_width = 1;
+cell_height = 1;
+font_character_map_bitmap = font_character_map_grid.create();
+font_character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
 
-mesh.resize(num_columns, num_rows);
+if (!font_character_map_bitmap) throw std::runtime_error("boobaz");
+if (!font_character_uv_mapping.size() == 256) throw std::runtime_error("foobar");
+
 mesh.set_bitmap(font_character_map_bitmap);
+cell_width = al_get_text_width(font, "W");
+cell_height = al_get_font_line_height(font);
+mesh.resize(num_columns, num_rows, cell_width, cell_height);
 
 initialized = true;
 return;
@@ -63,9 +109,8 @@ return;
 void TextMesh::set_cell_character(int x, int y, char character)
 {
 // TODO: validate 'character' index exists in character_uv_mapping
-std::tuple<float, float, float, float> character_map = character_uv_mapping[character];
+std::tuple<float, float, float, float> character_map = font_character_uv_mapping[character];
 mesh.set_cell_uv(x, y, character_map);
-// update the
 return;
 
 }
