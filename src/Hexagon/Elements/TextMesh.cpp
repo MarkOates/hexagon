@@ -99,7 +99,7 @@ return;
 
 }
 
-void TextMesh::set_cell_background_color(int x, int y, ALLEGRO_COLOR color)
+void TextMesh::set_cell_color(int x, int y, ALLEGRO_COLOR color)
 {
 mesh.set_cell_color(x, y, color);
 return;

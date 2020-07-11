@@ -70,7 +70,7 @@ functions:
       return;
 
 
-  - name: set_cell_background_color
+  - name: set_cell_color
     parameters:
       - name: x
         type: int

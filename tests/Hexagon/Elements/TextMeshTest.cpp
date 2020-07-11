@@ -79,7 +79,7 @@ TEST(Hexagon_Elements_TextMeshTest, render__will_draw_the_mesh)
    al_uninstall_system();
 }
 
-TEST(Hexagon_Elements_TextMeshTest, set_cell_background_color__will_set_the_background_color_of_the_cell)
+TEST(Hexagon_Elements_TextMeshTest, set_cell_color__will_set_the_color_of_the_cell)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(1280, 720);
@@ -94,7 +94,7 @@ TEST(Hexagon_Elements_TextMeshTest, set_cell_background_color__will_set_the_back
    {
       for (unsigned x=0; x<text_mesh.get_num_columns(); x++)
       {
-         text_mesh.set_cell_background_color(x, y, al_color_name("red"));
+         text_mesh.set_cell_color(x, y, al_color_name("red"));
          text_mesh.set_cell_character(x, y, '*');
       }
    }

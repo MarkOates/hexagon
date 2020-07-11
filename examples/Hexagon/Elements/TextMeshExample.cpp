@@ -36,7 +36,7 @@ void random_fill(Hexagon::Elements::TextMesh &text_mesh)
    {
       for (unsigned x=0; x<text_mesh.get_num_columns(); x++)
       {
-         text_mesh.set_cell_background_color(x, y, random_element<ALLEGRO_COLOR>(colors));
+         text_mesh.set_cell_color(x, y, random_element<ALLEGRO_COLOR>(colors));
          text_mesh.set_cell_character(x, y, rand()%256);
       }
    }

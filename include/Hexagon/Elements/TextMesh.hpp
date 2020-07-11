@@ -40,7 +40,7 @@ namespace Hexagon
          Hexagon::Elements::BitmapGridMesh get_mesh();
          ALLEGRO_BITMAP* get_font_character_map_bitmap();
       void initialize();
-      void set_cell_background_color(int x=0, int y=0, ALLEGRO_COLOR color={0.0f, 0.0f, 0.0f, 0.0f});
+      void set_cell_color(int x=0, int y=0, ALLEGRO_COLOR color={0.0f, 0.0f, 0.0f, 0.0f});
       void set_cell_character(int x=0, int y=0, char character='\0');
       int calculate_width();
       int calculate_height();
