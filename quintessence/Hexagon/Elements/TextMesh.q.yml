@@ -1,5 +1,6 @@
 properties:
 
+
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
@@ -18,7 +19,7 @@ properties:
     init_with: '{}'
   - name: initialized
     type: bool
-    init_with: true
+    init_with: false
 
 
 functions:
@@ -35,6 +36,14 @@ functions:
       character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
 
       initialized = true;
+      return;
+
+
+  - name: render
+    type: void
+    guards: [ initialized ]
+    body: |
+      bitmap_grid_mesh.render();
       return;
 
 
