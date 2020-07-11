@@ -4,6 +4,7 @@
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
+#include <allegro_flare/placement3d.h>
 #include <string>
 
 
@@ -14,6 +15,7 @@ namespace Hexagon
       class Stage : public StageInterface
       {
       private:
+         placement3d place;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:

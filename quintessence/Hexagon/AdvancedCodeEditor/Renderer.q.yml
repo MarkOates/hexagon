@@ -1,7 +1,25 @@
+properties:
+
+
+  - name: stage
+    type: Hexagon::AdvancedCodeEditor::Stage*
+    init_with: nullptr
+    constructor_arg: true
+
+
 functions:
 
 
   - name: render
     type: void
+    guards: [ stage ]
     body: |
+      //stage->get_mesh()
       return;
+
+
+dependencies:
+
+
+  - symbol: Hexagon::AdvancedCodeEditor::Stage*
+    headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]

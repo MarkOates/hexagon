@@ -9,6 +9,9 @@ parent_classes:
 properties:
 
 
+  - name: place
+    type: placement3d
+    init_with: '0.0f, 0.0f, 0.0f'
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -22,9 +25,17 @@ functions:
   - name: render
     virtual: true
     override: true
+    guards: [ al_is_system_installed() ]
     body: |
+      Hexagon::AdvancedCodeEditor::Renderer renderer(this);
+
+      place.start_transform();
+      renderer.render();
+      place.restore_transform();
+
       return;
-    body_dependency_symbols: []
+    body_dependency_symbols:
+      - Hexagon::AdvancedCodeEditor::Renderer
 
 
   - name: process_local_event
@@ -57,9 +68,13 @@ dependencies:
 
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
   - symbol: ALLEGRO_EVENT
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT&
     headers: [ allegro5/allegro.h ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Renderer
+    headers: [ Hexagon/AdvancedCodeEditor/Renderer.hpp ]

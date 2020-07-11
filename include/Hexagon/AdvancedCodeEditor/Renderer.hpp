@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 
 
 namespace Hexagon
@@ -10,9 +11,10 @@ namespace Hexagon
       class Renderer
       {
       private:
+         Hexagon::AdvancedCodeEditor::Stage* stage;
 
       public:
-         Renderer();
+         Renderer(Hexagon::AdvancedCodeEditor::Stage* stage=nullptr);
          ~Renderer();
 
 
