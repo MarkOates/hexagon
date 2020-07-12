@@ -133,7 +133,24 @@ functions:
     body: |
       // TODO: also need to check al_is_primitives_addon_initialized()
       ALLEGRO_COLOR final_box_fill_color = color::color(box_fill_color, box_opacity);
-      al_draw_filled_rectangle(0, 0, width, height, final_box_fill_color);
+      al_draw_filled_rectangle(
+         0+cell_padding,
+         0+cell_padding,
+         width-cell_padding,
+         height-cell_padding,
+         final_box_fill_color
+      );
+
+      ALLEGRO_COLOR final_outer_line_color = color::color(outer_line_color, outer_box_line_opacity);
+      al_draw_rectangle(
+        0,
+        0,
+        width,
+        height,
+        final_outer_line_color,
+        outer_line_thickness
+      );
+
       return;
     body_dependency_symbols:
       - al_is_system_installed

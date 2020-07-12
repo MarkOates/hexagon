@@ -83,3 +83,25 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    sleep(1);
 }
+
+TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
+   draw__respects__outer_line_color__thickness__opacity)
+{
+   float window_width = 1000.0f;
+   float window_height = 520.0f;
+   placement3d place = centered_placement(window_width, window_height);
+   Hexagon::Elements::Window window(window_width, window_height);
+
+   window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+   window.set_outer_box_line_opacity(0.2);
+   window.set_outer_line_thickness(4.0);
+
+   place.start_transform();
+   window.draw();
+   place.restore_transform();
+
+   al_flip_display();
+
+   sleep(1);
+}
+
