@@ -127,7 +127,9 @@ if (!(initialized))
    }
 Hexagon::AdvancedCodeEditor::Renderer renderer(
    &text_mesh,
-   &cursor
+   &cursor,
+   get_place().size.x,
+   get_place().size.y
 );
 
 get_place().start_transform();

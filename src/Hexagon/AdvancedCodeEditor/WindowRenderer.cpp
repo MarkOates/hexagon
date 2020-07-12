@@ -28,6 +28,11 @@ Hexagon::Elements::Window window(width, height);
 
 window.set_box_fill_color(ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0});
 window.set_box_opacity(0.1);
+window.set_cell_padding(-15);
+
+window.set_outer_line_color(ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0});
+window.set_outer_line_thickness(1.0f);
+window.set_outer_line_opacity(0.2f);
 
 window.draw();
 return;
