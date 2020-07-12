@@ -4,6 +4,7 @@
 #include <Hexagon/Elements/Window.hpp>
 
 #include <allegro5/allegro.h>
+#include <allegro_flare/placement3d.h>
 
 class Hexagon_Elements_WindowTest_WithEmptyFixture : public ::testing::Test
 {
@@ -34,6 +35,13 @@ public:
       al_destroy_display(display);
       al_uninstall_system();
    }
+
+   placement3d centered_placement(float width, float height)
+   {
+      placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0f);
+      place.size = vec3d(width, height, 0);
+      return place;
+   }
 };
 
 TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, can_be_created_without_blowing_up)
@@ -43,8 +51,14 @@ TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, can_be_created_without_blow
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture, draw__does_not_blow_up)
 {
-   Hexagon::Elements::Window window;
+   float window_width = 500.0f;
+   float window_height = 300.0f;
+   placement3d place = centered_placement(window_width, window_height);
+   Hexagon::Elements::Window window(window_width, window_height, 0.2, 0.0, ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+
+   place.start_transform();
    window.draw();
+   place.restore_transform();
 
    al_flip_display();
 

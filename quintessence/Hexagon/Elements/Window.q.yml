@@ -5,45 +5,50 @@ properties:
     type: float
     init_with: 0.0f
     setter: true
+    constructor_arg: true
   - name: height
     type: float
     init_with: 0.0f
     setter: true
+    constructor_arg: true
   - name: box_opacity
     type: float
     init_with: 0.0f
     setter: true
+    constructor_arg: true
   - name: cell_padding
     type: float
     init_with: 0.0f
     setter: true
+    constructor_arg: true
   - name: box_fill_color
-    type: float
-    init_with: 0.0f
+    type: ALLEGRO_COLOR
+    init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
+    constructor_arg: true
   - name: header_color
-    type: float
-    init_with: 0.0f
+    type: ALLEGRO_COLOR
+    init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
   - name: bottom_line_color
-    type: float
-    init_with: 0.0f
+    type: ALLEGRO_COLOR
+    init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
   - name: outer_line_color
-    type: float
-    init_with: 0.0f
+    type: ALLEGRO_COLOR
+    init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
   - name: header_baseline_color
-    type: float
-    init_with: 0.0f
+    type: ALLEGRO_COLOR
+    init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
   - name: top_left_little_bar_color
-    type: float
-    init_with: 0.0f
+    type: ALLEGRO_COLOR
+    init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
   - name: corner_square_colour
-    type: float
-    init_with: 0.0f
+    type: ALLEGRO_COLOR
+    init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
   - name: header_height
     type: float
@@ -138,6 +143,8 @@ functions:
 dependencies:
 
 
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
   - symbol: al_is_system_installed
     headers: [ allegro5/allegro.h ]
   - symbol: al_draw_rectangle

@@ -14,18 +14,18 @@ namespace Elements
 {
 
 
-Window::Window()
-   : width(0.0f)
-   , height(0.0f)
-   , box_opacity(0.0f)
-   , cell_padding(0.0f)
-   , box_fill_color(0.0f)
-   , header_color(0.0f)
-   , bottom_line_color(0.0f)
-   , outer_line_color(0.0f)
-   , header_baseline_color(0.0f)
-   , top_left_little_bar_color(0.0f)
-   , corner_square_colour(0.0f)
+Window::Window(float width, float height, float box_opacity, float cell_padding, ALLEGRO_COLOR box_fill_color)
+   : width(width)
+   , height(height)
+   , box_opacity(box_opacity)
+   , cell_padding(cell_padding)
+   , box_fill_color(box_fill_color)
+   , header_color({0.0f, 0.0f, 0.0f, 0.0f})
+   , bottom_line_color({0.0f, 0.0f, 0.0f, 0.0f})
+   , outer_line_color({0.0f, 0.0f, 0.0f, 0.0f})
+   , header_baseline_color({0.0f, 0.0f, 0.0f, 0.0f})
+   , top_left_little_bar_color({0.0f, 0.0f, 0.0f, 0.0f})
+   , corner_square_colour({0.0f, 0.0f, 0.0f, 0.0f})
    , header_height(0.0f)
    , header_baseline_thickness(0.0f)
    , header_bar_opacity(0.0f)
@@ -77,43 +77,43 @@ void Window::set_cell_padding(float cell_padding)
 }
 
 
-void Window::set_box_fill_color(float box_fill_color)
+void Window::set_box_fill_color(ALLEGRO_COLOR box_fill_color)
 {
    this->box_fill_color = box_fill_color;
 }
 
 
-void Window::set_header_color(float header_color)
+void Window::set_header_color(ALLEGRO_COLOR header_color)
 {
    this->header_color = header_color;
 }
 
 
-void Window::set_bottom_line_color(float bottom_line_color)
+void Window::set_bottom_line_color(ALLEGRO_COLOR bottom_line_color)
 {
    this->bottom_line_color = bottom_line_color;
 }
 
 
-void Window::set_outer_line_color(float outer_line_color)
+void Window::set_outer_line_color(ALLEGRO_COLOR outer_line_color)
 {
    this->outer_line_color = outer_line_color;
 }
 
 
-void Window::set_header_baseline_color(float header_baseline_color)
+void Window::set_header_baseline_color(ALLEGRO_COLOR header_baseline_color)
 {
    this->header_baseline_color = header_baseline_color;
 }
 
 
-void Window::set_top_left_little_bar_color(float top_left_little_bar_color)
+void Window::set_top_left_little_bar_color(ALLEGRO_COLOR top_left_little_bar_color)
 {
    this->top_left_little_bar_color = top_left_little_bar_color;
 }
 
 
-void Window::set_corner_square_colour(float corner_square_colour)
+void Window::set_corner_square_colour(ALLEGRO_COLOR corner_square_colour)
 {
    this->corner_square_colour = corner_square_colour;
 }
