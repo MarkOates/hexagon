@@ -25,6 +25,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , font_bin(font_bin)
    , num_columns(num_columns)
    , num_rows(num_rows)
+   , lines({})
    , text_mesh({nullptr, num_columns, num_rows})
    , cursor({})
    , initialized(false)
@@ -100,14 +101,14 @@ return;
 
 void Stage::set_initial_content(std::string content)
 {
-std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
+std::vector<std::string> content_lines = Blast::StringSplitter(content, '\n').split();
 
 int y=0;
-for (auto &line : lines)
+for (auto &content_line : content_lines)
 {
    int x=0;
    if (y >= text_mesh.get_num_rows()) break;
-   for (auto &character : line)
+   for (auto &character : content_line)
    {
       if (x >= text_mesh.get_num_columns()) break;
       text_mesh.set_cell_character(x, y, character);

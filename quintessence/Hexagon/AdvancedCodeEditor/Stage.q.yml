@@ -21,6 +21,9 @@ properties:
     type: int
     init_with: 0
     constructor_arg: true
+  - name: lines
+    type: std::vector<std::string>
+    init_with: '{}'
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{nullptr, num_columns, num_rows}'
@@ -90,14 +93,14 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
-      std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
+      std::vector<std::string> content_lines = Blast::StringSplitter(content, '\n').split();
 
       int y=0;
-      for (auto &line : lines)
+      for (auto &content_line : content_lines)
       {
          int x=0;
          if (y >= text_mesh.get_num_rows()) break;
-         for (auto &character : line)
+         for (auto &character : content_line)
          {
             if (x >= text_mesh.get_num_columns()) break;
             text_mesh.set_cell_character(x, y, character);

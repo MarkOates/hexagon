@@ -9,6 +9,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -21,6 +22,7 @@ namespace Hexagon
          AllegroFlare::FontBin* font_bin;
          int num_columns;
          int num_rows;
+         std::vector<std::string> lines;
          Hexagon::Elements::TextMesh text_mesh;
          Hexagon::AdvancedCodeEditor::Cursor cursor;
          static ALLEGRO_EVENT a_default_empty_event;
