@@ -200,3 +200,33 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, set_initial_content__refreshes_the_me
    al_uninstall_system();
 }
 
+TEST(Hexagon_AdvancedCodeEditor_StageTest, set_initial_content__sets_the_lines_to_the_expected_content)
+{
+   al_init();
+   al_init_primitives_addon();
+   al_init_font_addon();
+   al_init_ttf_addon();
+   ALLEGRO_DISPLAY *display = al_create_display(1280 * 2, 720 * 2);
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
+   stage.initialize();
+
+   stage.set_initial_content(FIXTURE_PASSAGE);
+
+   std::vector<std::string> lines = stage.get_lines();
+
+   ASSERT_EQ(16, lines.size());
+
+   EXPECT_EQ("       - 64 -", lines[0]);
+   EXPECT_EQ("Confront the difficult", lines[5]);
+   EXPECT_EQ("by a series of small acts.", lines[8]);
+   EXPECT_EQ("thus problems are no problem for her.", lines.back());
+
+   font_bin.clear();
+   al_destroy_display(display);
+   al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
+   al_uninstall_system();
+}
+
