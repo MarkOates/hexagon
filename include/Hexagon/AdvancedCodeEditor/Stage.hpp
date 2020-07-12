@@ -32,6 +32,10 @@ namespace Hexagon
 
 
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
+      bool cursor_move_up();
+      bool cursor_move_down();
+      bool cursor_move_left();
+      bool cursor_move_right();
       void initialize();
       void set_initial_content(std::string content="");
       virtual void render() override;

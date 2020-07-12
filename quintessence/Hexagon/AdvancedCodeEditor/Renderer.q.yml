@@ -5,6 +5,10 @@ properties:
     type: Hexagon::Elements::TextMesh*
     init_with: nullptr
     constructor_arg: true
+  - name: cursor
+    type: Hexagon::AdvancedCodeEditor::Cursor*
+    init_with: nullptr
+    constructor_arg: true
 
 
 functions:
@@ -12,9 +16,17 @@ functions:
 
   - name: render
     type: void
-    guards: [ text_mesh ]
+    guards: [ text_mesh, cursor ]
     body: |
       text_mesh->render();
+      al_draw_rectangle(
+         cursor->get_x(),
+         cursor->get_y(),
+         cursor->get_x()+cursor->get_width(),
+         cursor->get_y()+cursor->get_height(),
+         ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f},
+         2.0f
+         );
       return;
 
 
@@ -23,3 +35,5 @@ dependencies:
 
   - symbol: Hexagon::Elements::TextMesh*
     headers: [ Hexagon/Elements/TextMesh.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Cursor*
+    headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]

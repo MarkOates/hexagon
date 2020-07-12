@@ -18,3 +18,13 @@ TEST(Hexagon_AdvancedCodeEditor_RendererTest, render__without_a_valid_text_mesh_
    std::string expected_error_message = "Renderer::render: error: guard \"text_mesh\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
+
+TEST(Hexagon_AdvancedCodeEditor_RendererTest, render__without_a_valid_cursor__raises_an_error)
+{
+   Hexagon::Elements::TextMesh text_mesh;
+
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh);
+   std::string expected_error_message = "Renderer::render: error: guard \"cursor\" not met";
+   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+}
+

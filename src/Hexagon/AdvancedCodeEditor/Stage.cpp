@@ -43,6 +43,34 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
+bool Stage::cursor_move_up()
+{
+cursor.move_up();
+return true;
+
+}
+
+bool Stage::cursor_move_down()
+{
+cursor.move_down();
+return true;
+
+}
+
+bool Stage::cursor_move_left()
+{
+cursor.move_left();
+return true;
+
+}
+
+bool Stage::cursor_move_right()
+{
+cursor.move_right();
+return true;
+
+}
+
 void Stage::initialize()
 {
 if (!(font_bin))
@@ -98,7 +126,8 @@ if (!(initialized))
       throw std::runtime_error(error_message.str());
    }
 Hexagon::AdvancedCodeEditor::Renderer renderer(
-   &text_mesh
+   &text_mesh,
+   &cursor
 );
 
 get_place().start_transform();
