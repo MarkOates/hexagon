@@ -26,7 +26,7 @@ Window::Window(float width, float height, float box_opacity, float cell_padding,
    , outer_line_color({0.0f, 0.0f, 0.0f, 0.0f})
    , header_baseline_color({0.0f, 0.0f, 0.0f, 0.0f})
    , top_left_little_bar_color({0.0f, 0.0f, 0.0f, 0.0f})
-   , corner_square_colour({0.0f, 0.0f, 0.0f, 0.0f})
+   , corner_squares_color({0.0f, 0.0f, 0.0f, 0.0f})
    , header_height(0.0f)
    , header_baseline_thickness(0.0f)
    , header_bar_opacity(0.0f)
@@ -114,9 +114,9 @@ void Window::set_top_left_little_bar_color(ALLEGRO_COLOR top_left_little_bar_col
 }
 
 
-void Window::set_corner_square_colour(ALLEGRO_COLOR corner_square_colour)
+void Window::set_corner_squares_color(ALLEGRO_COLOR corner_squares_color)
 {
-   this->corner_square_colour = corner_square_colour;
+   this->corner_squares_color = corner_squares_color;
 }
 
 
@@ -256,6 +256,42 @@ al_draw_rectangle(
   outer_line_thickness
 );
 
+draw_corner_squares();
+
+return;
+
+}
+
+void Window::draw_corner_squares()
+{
+ALLEGRO_COLOR final_corner_squares_color = color::color(corner_squares_color, corner_squares_opacity);
+
+// top left
+al_draw_filled_rectangle(0, 0, corner_squares_width, corner_squares_height, final_corner_squares_color);
+// top right
+al_draw_filled_rectangle(
+   width - corner_squares_width,
+   0,
+   width,
+   corner_squares_height,
+   final_corner_squares_color
+);
+// bottom left
+al_draw_filled_rectangle(
+   0,
+   height - corner_squares_height,
+   corner_squares_width,
+   height,
+   final_corner_squares_color
+);
+// bottom right
+al_draw_filled_rectangle(
+   width - corner_squares_width,
+   height - corner_squares_height,
+   width,
+   height,
+   final_corner_squares_color
+);
 return;
 
 }

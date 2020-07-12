@@ -21,7 +21,7 @@ namespace Hexagon
          ALLEGRO_COLOR outer_line_color;
          ALLEGRO_COLOR header_baseline_color;
          ALLEGRO_COLOR top_left_little_bar_color;
-         ALLEGRO_COLOR corner_square_colour;
+         ALLEGRO_COLOR corner_squares_color;
          float header_height;
          float header_baseline_thickness;
          float header_bar_opacity;
@@ -55,7 +55,7 @@ namespace Hexagon
          void set_outer_line_color(ALLEGRO_COLOR outer_line_color);
          void set_header_baseline_color(ALLEGRO_COLOR header_baseline_color);
          void set_top_left_little_bar_color(ALLEGRO_COLOR top_left_little_bar_color);
-         void set_corner_square_colour(ALLEGRO_COLOR corner_square_colour);
+         void set_corner_squares_color(ALLEGRO_COLOR corner_squares_color);
          void set_header_height(float header_height);
          void set_header_baseline_thickness(float header_baseline_thickness);
          void set_header_bar_opacity(float header_bar_opacity);
@@ -76,6 +76,7 @@ namespace Hexagon
          void set_distance_of_columns(float distance_of_columns);
 
       void draw();
+      void draw_corner_squares();
       };
    }
 }

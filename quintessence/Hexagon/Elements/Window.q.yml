@@ -46,7 +46,7 @@ properties:
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
-  - name: corner_square_colour
+  - name: corner_squares_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
@@ -151,12 +151,48 @@ functions:
         outer_line_thickness
       );
 
+      draw_corner_squares();
+
       return;
     body_dependency_symbols:
       - al_is_system_installed
       - al_draw_rectangle
       - al_color_name
       - color::color
+
+
+  - name: draw_corner_squares
+    private: true
+    body: |
+      ALLEGRO_COLOR final_corner_squares_color = color::color(corner_squares_color, corner_squares_opacity);
+
+      // top left
+      al_draw_filled_rectangle(0, 0, corner_squares_width, corner_squares_height, final_corner_squares_color);
+      // top right
+      al_draw_filled_rectangle(
+         width - corner_squares_width,
+         0,
+         width,
+         corner_squares_height,
+         final_corner_squares_color
+      );
+      // bottom left
+      al_draw_filled_rectangle(
+         0,
+         height - corner_squares_height,
+         corner_squares_width,
+         height,
+         final_corner_squares_color
+      );
+      // bottom right
+      al_draw_filled_rectangle(
+         width - corner_squares_width,
+         height - corner_squares_height,
+         width,
+         height,
+         final_corner_squares_color
+      );
+      return;
 
 
 dependencies:
