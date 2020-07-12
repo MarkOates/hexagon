@@ -4,6 +4,7 @@
 #include <Hexagon/System/System.hpp>
 #include <allegro5/allegro.h>
 #include <allegro_flare/motion.h>
+#include <string>
 
 
 class ApplicationController
@@ -31,6 +32,7 @@ void run_program();
 void run_event_loop();
 void verify_presence_of_temp_files_and_assign_to_global_constants();
 void draw_hexagon_logo_and_wait_for_keypress(int display_width=1, int display_height=1);
+std::string build_allegro_version_string();
 };
 
 

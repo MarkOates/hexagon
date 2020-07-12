@@ -28,6 +28,14 @@ TEST(ApplicationControllerTest, run_program__is_successful_and_will_shutdown_on_
    SUCCEED();
 }
 
+TEST(ApplicationControllerTest, build_allegro_version_string__will_create_the_expected_version)
+{
+   ApplicationController application_controller;
+   std::string expected_version_string = "Allegro v5.2.7 r0";
+   std::string actual_version_string = application_controller.build_allegro_version_string();
+   ASSERT_EQ(expected_version_string, actual_version_string);
+}
+
 TEST(DISABLED_ApplicationControllerTest, run_program__will_open_the_component_navigator)
    // this is an incomplete test, it does not have any assertion in it and is not reliable in some
    // circumstances (multiple keypresses do sometimes not register).

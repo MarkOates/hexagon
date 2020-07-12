@@ -56,6 +56,8 @@
 #include <Hexagon/System/System.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <allegro5/allegro.h>
+#include <sstream>
 
 
 
@@ -300,6 +302,11 @@ std::string logo_font_filename = "Expansiva_bold.otf";
 ALLEGRO_FONT *expansiva_font = al_load_font(resource_path({"data", "fonts"}, logo_font_filename).c_str(), 23, 0);
 if (!expansiva_font) throw std::runtime_error("could not load 'Expansiva bold.ttf'");
 
+std::string detail_text_font_filename = "Purista Medium.otf";
+ALLEGRO_FONT *purista_font =
+  al_load_font(resource_path({"data", "fonts"}, detail_text_font_filename).c_str(), 16, 0);
+if (!purista_font) throw std::runtime_error("could not load 'Purista Medium.otf'");
+
 Hexagon::Logo logo(
   display_width/2,
   display_height/2,
@@ -308,6 +315,11 @@ Hexagon::Logo logo(
   al_color_html("#bc2d48"),
   2.25);
 logo.render();
+
+std::string allegro_version_string = build_allegro_version_string();
+al_draw_text(purista_font, al_color_html("#bc2d48"),
+   display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
+   allegro_version_string.c_str());
 
 al_flip_display();
 
@@ -328,6 +340,20 @@ al_flip_display();
 }
 
 return;
+
+}
+
+std::string ApplicationController::build_allegro_version_string()
+{
+uint32_t version = al_get_allegro_version();
+int major = version >> 24;
+int minor = (version >> 16) & 255;
+int revision = (version >> 8) & 255;
+int release = version & 255;
+
+std::stringstream result;
+result << "Allegro v" << major << "." << minor << "." << revision << " r" << release;
+return result.str();
 
 }
 
