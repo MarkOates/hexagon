@@ -77,10 +77,12 @@ She doesn't cling to her own comfort;
 thus problems are no problem for her.
 )PASSAGE";
 
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, can_be_created_without_blowing_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    initialize__when_allegro_is_not_initialized__raises_an_error)
@@ -89,6 +91,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    std::string expected_error_message = "Stage::initialize: error: guard \"al_is_system_installed()\" not met";
    ASSERT_THROW_WITH_MESSAGE(stage.initialize(), std::runtime_error, expected_error_message);
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, initialize__without_a_font_bin__raises_an_error)
 {
@@ -101,11 +104,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, initialize__withou
    al_uninstall_system();
 }
 
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, initialize__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
    stage.initialize();
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, initialize__sets_the_cursor_width_and_height)
 {
@@ -115,6 +120,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, initial
    EXPECT_EQ(16, stage.get_cursor_ref().get_width());
    EXPECT_EQ(30, stage.get_cursor_ref().get_height());
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, render__if_not_initialized__raises_an_error)
 {
@@ -127,12 +133,14 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, render__if_not_ini
    al_uninstall_system();
 }
 
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, process_local_event__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
    stage.process_local_event();
    SUCCEED();
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, process_event__does_not_blow_up)
 {
@@ -141,11 +149,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, process_event__doe
    SUCCEED();
 }
 
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    DISABLED_set_initial_content__fills_the_text_mesh_with_the_expected_content)
 {
    // TODO
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    DISABLED_set_initial_content__if_wider_than_the_width__clips_the_filled_text_mesh)
@@ -153,11 +163,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    // TODO
 }
 
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    DISABLED_set_initial_content__if_taller_than_the_height__clips_the_filled_text_mesh)
 {
    // TODO
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, render__does_not_blow_up)
 {
@@ -166,12 +178,14 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, render_
    stage.render();
 }
 
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_initial_content__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
    std::string expected_error_message = "Stage::set_initial_content: error: guard \"initialized\" not met";
    ASSERT_THROW_WITH_MESSAGE(stage.set_initial_content(), std::runtime_error, expected_error_message);
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    set_initial_content__sets_the_lines_to_the_expected_content)
@@ -190,6 +204,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    EXPECT_EQ("by a series of small acts.", lines[8]);
    EXPECT_EQ("thus problems are no problem for her.", lines.back());
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    set_initial_content__refreshes_the_mesh_to_the_expected_content)
