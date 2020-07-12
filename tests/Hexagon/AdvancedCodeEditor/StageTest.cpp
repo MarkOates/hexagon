@@ -66,9 +66,6 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, initialize__does_not_blow_up)
 
    stage.initialize();
 
-   EXPECT_EQ(16, stage.get_cursor_ref().get_width());
-   EXPECT_EQ(30, stage.get_cursor_ref().get_height());
-
    font_bin.clear();
    al_destroy_display(display);
    al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
