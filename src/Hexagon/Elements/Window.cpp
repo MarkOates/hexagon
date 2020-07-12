@@ -257,8 +257,23 @@ al_draw_rectangle(
 );
 
 draw_header_bar();
+draw_header_baseline();
 draw_corner_squares();
 
+return;
+
+}
+
+void Window::draw_header_baseline()
+{
+ALLEGRO_COLOR final_header_baseline_color = color::color(header_baseline_color, header_baseline_opacity);
+al_draw_filled_rectangle(
+   0,
+   header_bar_height,
+   width,
+   header_bar_height+header_baseline_thickness,
+   final_header_baseline_color
+);
 return;
 
 }
