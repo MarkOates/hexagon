@@ -74,7 +74,7 @@ functions:
 
 
   - name: initialize
-    guards: [ font_bin ]
+    guards: [ al_is_system_installed(), font_bin ]
     body: |
       if (initialized) return;
 

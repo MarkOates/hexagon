@@ -90,6 +90,12 @@ return true;
 
 void Stage::initialize()
 {
+if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 if (!(font_bin))
    {
       std::stringstream error_message;

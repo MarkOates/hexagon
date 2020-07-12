@@ -82,6 +82,14 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, can_be_created_wit
    Hexagon::AdvancedCodeEditor::Stage stage;
 }
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   initialize__when_allegro_is_not_initialized__raises_an_error)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   std::string expected_error_message = "Stage::initialize: error: guard \"al_is_system_installed()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage.initialize(), std::runtime_error, expected_error_message);
+}
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, initialize__without_a_font_bin__raises_an_error)
 {
    al_init();
