@@ -71,6 +71,12 @@ ALLEGRO_BITMAP* TextMesh::get_font_character_map_bitmap()
 }
 
 
+bool TextMesh::get_initialized()
+{
+   return initialized;
+}
+
+
 void TextMesh::set_font(ALLEGRO_FONT* font)
 {
 if (!(!initialized))

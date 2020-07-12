@@ -4,7 +4,11 @@
 #include <stdexcept>
 #include <sstream>
 #include <Blast/StringSplitter.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -107,6 +111,12 @@ return;
 
 void Stage::set_initial_content(std::string content)
 {
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "set_initial_content" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 lines = Blast::StringSplitter(content, '\n').split();
 refresh_text_mesh();
 return;
@@ -168,6 +178,12 @@ return font_bin->auto_get("Menlo-Regular.ttf -30");
 
 void Stage::refresh_text_mesh()
 {
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "refresh_text_mesh" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 char clear_char = '\0';
 ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
 ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};

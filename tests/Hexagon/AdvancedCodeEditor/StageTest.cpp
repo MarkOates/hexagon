@@ -166,9 +166,11 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, render__renders_the_advanced_code_edi
    al_uninstall_system();
 }
 
-TEST(Hexagon_AdvancedCodeEditor_StageTest, set_initial_content__assigns_the_content_to_the_lines)
+TEST(Hexagon_AdvancedCodeEditor_StageTest, set_initial_content__if_not_initialized__raises_an_error)
 {
-   // TODO
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   std::string expected_error_message = "Stage::set_initial_content: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage.set_initial_content(), std::runtime_error, expected_error_message);
 }
 
 TEST(Hexagon_AdvancedCodeEditor_StageTest, set_initial_content__refreshes_the_mesh_to_the_expected_content)

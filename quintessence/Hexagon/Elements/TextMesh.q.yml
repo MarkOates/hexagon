@@ -40,6 +40,7 @@ properties:
   - name: initialized
     type: bool
     init_with: false
+    getter: true
 
 
 functions:
