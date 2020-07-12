@@ -129,7 +129,7 @@ functions:
 
   - name: draw
     type: void
-    guards: [ al_is_system_installed(), al_is_primitives_addon_initialized() ]
+    guards: [ al_is_system_installed(), al_is_primitives_addon_initialized(), al_get_target_bitmap() ]
     body: |
       ALLEGRO_COLOR final_box_fill_color = color::color(box_fill_color, box_opacity);
       al_draw_filled_rectangle(

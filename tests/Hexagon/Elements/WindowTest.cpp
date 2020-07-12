@@ -85,6 +85,25 @@ TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, draw__without_allegro_initi
    ASSERT_THROW_WITH_MESSAGE(window.draw(), std::runtime_error, expected_error_message);
 }
 
+TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, draw__without_primitives_addon_initialized__throws_an_error)
+{
+   al_init();
+   Hexagon::Elements::Window window;
+   std::string expected_error_message = "Window::draw: error: guard \"al_is_primitives_addon_initialized()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(window.draw(), std::runtime_error, expected_error_message);
+   al_uninstall_system();
+}
+
+TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, draw__without_a_render_target__throws_an_error)
+{
+   al_init();
+   al_init_primitives_addon();
+   Hexagon::Elements::Window window;
+   std::string expected_error_message = "Window::draw: error: guard \"al_get_target_bitmap()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(window.draw(), std::runtime_error, expected_error_message);
+   al_uninstall_system();
+}
+
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture, draw__does_not_blow_up)
 {
    Hexagon::Elements::Window window;
