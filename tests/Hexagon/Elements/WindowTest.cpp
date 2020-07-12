@@ -51,8 +51,8 @@ TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, can_be_created_without_blow
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture, draw__does_not_blow_up)
 {
-   float window_width = 500.0f;
-   float window_height = 300.0f;
+   float window_width = 1000.0f;
+   float window_height = 520.0f;
    placement3d place = centered_placement(window_width, window_height);
    Hexagon::Elements::Window window(window_width, window_height, 0.2, 0.0, ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
 

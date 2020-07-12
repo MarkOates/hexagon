@@ -4,6 +4,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
+#include <allegro_flare/color.h>
 #include <stdexcept>
 #include <sstream>
 
@@ -236,7 +237,8 @@ if (!(al_is_system_installed()))
       throw std::runtime_error(error_message.str());
    }
 // TODO: also need to check al_is_primitives_addon_initialized()
-al_draw_rectangle(0, 0, width, height, al_color_name("dodgerblue"), 2.0f);
+ALLEGRO_COLOR final_box_fill_color = color::color(box_fill_color, box_opacity);
+al_draw_filled_rectangle(0, 0, width, height, final_box_fill_color);
 return;
 
 }

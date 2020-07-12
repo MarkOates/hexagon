@@ -73,7 +73,7 @@ functions:
         throw std::runtime_error("Hexagon/CodeEditor/CursorRenderer: unsupported CodeEditor::mode_t");
         break;
       }
-      
+
       if (focus)
       {
          int max_outset = 23;
