@@ -21,24 +21,33 @@ class Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture : public 
 {
 public:
    ALLEGRO_DISPLAY* display;
+   AllegroFlare::FontBin font_bin;
 
 public:
    Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture()
       : display(nullptr)
+      , font_bin()
    {}
 
    virtual void SetUp() override
    {
       ASSERT_EQ(false, al_is_system_installed());
       ASSERT_EQ(true, al_init());
-      ASSERT_EQ(true, al_init_primitives_addon());
-      display = al_create_display(1280*2, 720*2);
-      al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+      al_init_primitives_addon();
+      al_init_font_addon();
+      al_init_ttf_addon();
+
+      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+
+      display = al_create_display(1280 * 2, 720 * 2);
+      al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
    }
 
    virtual void TearDown() override
    {
+      font_bin.clear();
       al_destroy_display(display);
+      al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
       al_uninstall_system();
    }
 
@@ -91,26 +100,10 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, initialize__withou
    al_uninstall_system();
 }
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, initialize__does_not_blow_up)
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, initialize__does_not_blow_up)
 {
-   al_init();
-   al_init_primitives_addon();
-   al_init_font_addon();
-   al_init_ttf_addon();
-   ALLEGRO_DISPLAY *display = al_create_display(1280 * 2, 720 * 2);
-   AllegroFlare::FontBin font_bin;
-   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
-
    stage.initialize();
-
-   font_bin.clear();
-   al_destroy_display(display);
-   al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
-   al_uninstall_system();
-
-   SUCCEED();
 }
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, initialize__sets_the_cursor_width_and_height)
