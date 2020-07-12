@@ -10,6 +10,7 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_primitives.h>
 #include <allegro_flare/placement3d.h>
 
 //#define ASSERT_GREEN(display, x, y) \
@@ -37,6 +38,7 @@ public:
    {
       ASSERT_EQ(false, al_is_system_installed());
       ASSERT_EQ(true, al_init());
+      ASSERT_EQ(true, al_init_primitives_addon());
       display = al_create_display(1280*2, 720*2);
       font = al_create_builtin_font();
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});

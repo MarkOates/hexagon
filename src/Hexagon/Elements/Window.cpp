@@ -3,6 +3,7 @@
 #include <Hexagon/Elements/Window.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
 #include <allegro_flare/color.h>
 #include <stdexcept>
@@ -236,7 +237,12 @@ if (!(al_is_system_installed()))
       error_message << "Window" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
       throw std::runtime_error(error_message.str());
    }
-// TODO: also need to check al_is_primitives_addon_initialized()
+if (!(al_is_primitives_addon_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "Window" << "::" << "draw" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 ALLEGRO_COLOR final_box_fill_color = color::color(box_fill_color, box_opacity);
 al_draw_filled_rectangle(
    0+cell_padding,

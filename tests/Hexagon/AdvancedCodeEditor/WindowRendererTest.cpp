@@ -15,7 +15,7 @@ TEST(Hexagon_AdvancedCodeEditor_WindowRendererTest, render__returns_the_expected
    al_init();
 
    Hexagon::AdvancedCodeEditor::WindowRenderer window_renderer;
-   //window_renderer.render();
+   window_renderer.render();
 
    al_uninstall_system();
 
