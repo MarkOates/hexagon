@@ -28,7 +28,7 @@ namespace Hexagon
          float header_baseline_opacity;
          float top_left_little_bar_width;
          float outer_line_thickness;
-         float outer_box_line_opacity;
+         float outer_line_opacity;
          float bottom_line_thickness;
          float bottom_line_opacity;
          bool corner_squares_resize_from_center;
@@ -62,7 +62,7 @@ namespace Hexagon
          void set_header_baseline_opacity(float header_baseline_opacity);
          void set_top_left_little_bar_width(float top_left_little_bar_width);
          void set_outer_line_thickness(float outer_line_thickness);
-         void set_outer_box_line_opacity(float outer_box_line_opacity);
+         void set_outer_line_opacity(float outer_line_opacity);
          void set_bottom_line_thickness(float bottom_line_thickness);
          void set_bottom_line_opacity(float bottom_line_opacity);
          void set_corner_squares_resize_from_center(bool corner_squares_resize_from_center);

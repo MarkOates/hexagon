@@ -114,7 +114,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
    Hexagon::Elements::Window window(window_width, window_height);
 
    window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
-   window.set_outer_box_line_opacity(0.2);
+   window.set_outer_line_opacity(0.2);
    window.set_outer_line_thickness(4.0);
 
    place.start_transform();

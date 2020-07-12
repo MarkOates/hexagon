@@ -74,7 +74,7 @@ properties:
     type: float
     init_with: 0.0f
     setter: true
-  - name: outer_box_line_opacity
+  - name: outer_line_opacity
     type: float
     init_with: 0.0f
     setter: true
@@ -141,7 +141,7 @@ functions:
          final_box_fill_color
       );
 
-      ALLEGRO_COLOR final_outer_line_color = color::color(outer_line_color, outer_box_line_opacity);
+      ALLEGRO_COLOR final_outer_line_color = color::color(outer_line_color, outer_line_opacity);
       al_draw_rectangle(
         0,
         0,

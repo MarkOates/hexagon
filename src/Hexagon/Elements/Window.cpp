@@ -33,7 +33,7 @@ Window::Window(float width, float height, float box_opacity, float cell_padding,
    , header_baseline_opacity(0.0f)
    , top_left_little_bar_width(0.0f)
    , outer_line_thickness(0.0f)
-   , outer_box_line_opacity(0.0f)
+   , outer_line_opacity(0.0f)
    , bottom_line_thickness(0.0f)
    , bottom_line_opacity(0.0f)
    , corner_squares_resize_from_center(false)
@@ -156,9 +156,9 @@ void Window::set_outer_line_thickness(float outer_line_thickness)
 }
 
 
-void Window::set_outer_box_line_opacity(float outer_box_line_opacity)
+void Window::set_outer_line_opacity(float outer_line_opacity)
 {
-   this->outer_box_line_opacity = outer_box_line_opacity;
+   this->outer_line_opacity = outer_line_opacity;
 }
 
 
@@ -246,7 +246,7 @@ al_draw_filled_rectangle(
    final_box_fill_color
 );
 
-ALLEGRO_COLOR final_outer_line_color = color::color(outer_line_color, outer_box_line_opacity);
+ALLEGRO_COLOR final_outer_line_color = color::color(outer_line_color, outer_line_opacity);
 al_draw_rectangle(
   0,
   0,
