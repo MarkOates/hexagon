@@ -181,15 +181,18 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, process_event__doe
    SUCCEED();
 }
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_initial_content__fills_the_text_mesh_with_the_expected_content)
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   set_initial_content__fills_the_text_mesh_with_the_expected_content)
 {
 }
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_initial_content__if_wider_than_the_width__clips_the_filled_text_mesh)
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   set_initial_content__if_wider_than_the_width__clips_the_filled_text_mesh)
 {
 }
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_initial_content__if_taller_than_the_height__clips_the_filled_text_mesh)
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   set_initial_content__if_taller_than_the_height__clips_the_filled_text_mesh)
 {
 }
 
@@ -227,7 +230,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_initial_conten
    ASSERT_THROW_WITH_MESSAGE(stage.set_initial_content(), std::runtime_error, expected_error_message);
 }
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_initial_content__sets_the_lines_to_the_expected_content)
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   set_initial_content__sets_the_lines_to_the_expected_content)
 {
    al_init();
    al_init_primitives_addon();
@@ -257,7 +261,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_initial_conten
    al_uninstall_system();
 }
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_initial_content__refreshes_the_mesh_to_the_expected_content)
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   set_initial_content__refreshes_the_mesh_to_the_expected_content)
 {
    al_init();
    al_init_primitives_addon();
