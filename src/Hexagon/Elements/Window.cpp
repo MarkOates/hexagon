@@ -260,7 +260,8 @@ draw_header_bar();
 draw_header_baseline();
 draw_top_left_little_bar();
 draw_bottom_line();
-draw_corner_squares();
+if (corner_squares_are_circles) draw_corner_circles();
+else draw_corner_squares();
 
 return;
 
@@ -306,6 +307,24 @@ void Window::draw_header_bar()
 {
 ALLEGRO_COLOR final_header_bar_color = color::color(header_bar_color, header_bar_opacity);
 al_draw_filled_rectangle(0, 0, width, header_bar_height, final_header_bar_color);
+return;
+
+}
+
+void Window::draw_corner_circles()
+{
+ALLEGRO_COLOR final_corner_squares_color = color::color(corner_squares_color, corner_squares_opacity);
+float x_offset = corner_squares_resize_from_center ? corner_squares_width * 0.5f : 0.0f;
+float y_offset = corner_squares_resize_from_center ? corner_squares_height * 0.5f : 0.0f;
+
+// top left
+al_draw_filled_circle(0, 0, corner_squares_width * 0.5f, final_corner_squares_color);
+// top right
+al_draw_filled_circle(width, 0, corner_squares_width * 0.5f, final_corner_squares_color);
+// bottom left
+al_draw_filled_circle(0, height, corner_squares_width * 0.5f, final_corner_squares_color);
+// bottom right
+al_draw_filled_circle(width, height, corner_squares_width * 0.5f, final_corner_squares_color);
 return;
 
 }
