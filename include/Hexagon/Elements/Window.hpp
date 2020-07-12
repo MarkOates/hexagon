@@ -76,6 +76,7 @@ namespace Hexagon
          void set_distance_of_columns(float distance_of_columns);
 
       void draw();
+      void draw_top_left_little_bar();
       void draw_header_baseline();
       void draw_bottom_line();
       void draw_header_bar();

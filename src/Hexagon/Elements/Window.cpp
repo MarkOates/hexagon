@@ -258,9 +258,17 @@ al_draw_rectangle(
 
 draw_header_bar();
 draw_header_baseline();
+draw_top_left_little_bar();
 draw_bottom_line();
 draw_corner_squares();
 
+return;
+
+}
+
+void Window::draw_top_left_little_bar()
+{
+al_draw_filled_rectangle(0, 0, top_left_little_bar_width, header_bar_height, top_left_little_bar_color);
 return;
 
 }
