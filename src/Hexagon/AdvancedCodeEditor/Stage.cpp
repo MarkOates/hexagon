@@ -37,6 +37,12 @@ Stage::~Stage()
 }
 
 
+Hexagon::AdvancedCodeEditor::Cursor &Stage::get_cursor_ref()
+{
+   return cursor;
+}
+
+
 ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 {
    return a_default_empty_event;
@@ -83,6 +89,9 @@ if (initialized) return;
 
 text_mesh.set_font(obtain_text_font());
 text_mesh.initialize();
+
+cursor.set_width(text_mesh.get_cell_width());
+cursor.set_height(text_mesh.get_cell_height());
 
 initialized = true;
 return;

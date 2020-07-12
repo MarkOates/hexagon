@@ -16,11 +16,13 @@ properties:
     init_with: 1
     constructor_arg: true
     getter: true
+    setter: true
   - name: height
     type: float
     init_with: 1
     constructor_arg: true
     getter: true
+    setter: true
 
 
 functions:

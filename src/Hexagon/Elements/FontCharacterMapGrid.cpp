@@ -51,6 +51,12 @@ std::map<char, std::tuple<float, float, float, float>> FontCharacterMapGrid::get
 
 ALLEGRO_BITMAP* FontCharacterMapGrid::create()
 {
+if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "FontCharacterMapGrid" << "::" << "create" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 if (!(font))
    {
       std::stringstream error_message;

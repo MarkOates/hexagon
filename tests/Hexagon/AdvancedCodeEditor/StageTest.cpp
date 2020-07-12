@@ -41,7 +41,7 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, render__when_allegro_is_not_initializ
    ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_AdvancedCodeEditor_StageTest, initialize__without_a_fon_bin__raises_an_error)
+TEST(Hexagon_AdvancedCodeEditor_StageTest, initialize__without_a_font_bin__raises_an_error)
 {
    al_init();
 
@@ -50,6 +50,56 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, initialize__without_a_fon_bin__raises
    ASSERT_THROW_WITH_MESSAGE(stage.initialize(), std::runtime_error, expected_error_message);
 
    al_uninstall_system();
+}
+
+TEST(Hexagon_AdvancedCodeEditor_StageTest, initialize__does_not_blow_up)
+{
+   al_init();
+   al_init_primitives_addon();
+   al_init_font_addon();
+   al_init_ttf_addon();
+   ALLEGRO_DISPLAY *display = al_create_display(1280 * 2, 720 * 2);
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+
+   stage.initialize();
+
+   EXPECT_EQ(16, stage.get_cursor_ref().get_width());
+   EXPECT_EQ(30, stage.get_cursor_ref().get_height());
+
+   font_bin.clear();
+   al_destroy_display(display);
+   al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
+   al_uninstall_system();
+
+   SUCCEED();
+}
+
+TEST(Hexagon_AdvancedCodeEditor_StageTest, initialize__sets_the_cursor_width_and_height)
+{
+   al_init();
+   al_init_primitives_addon();
+   al_init_font_addon();
+   al_init_ttf_addon();
+   ALLEGRO_DISPLAY *display = al_create_display(1280 * 2, 720 * 2);
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+
+   stage.initialize();
+
+   EXPECT_EQ(16, stage.get_cursor_ref().get_width());
+   EXPECT_EQ(30, stage.get_cursor_ref().get_height());
+
+   font_bin.clear();
+   al_destroy_display(display);
+   al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
+   al_uninstall_system();
+
+   SUCCEED();
 }
 
 TEST(Hexagon_AdvancedCodeEditor_StageTest, render__if_not_initialized__raises_an_error)

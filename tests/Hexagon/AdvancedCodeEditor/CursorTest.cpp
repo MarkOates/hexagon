@@ -15,21 +15,21 @@ TEST(Hexagon_AdvancedCodeEditor_CursorTest, move_up__decrements_the_y_position)
    ASSERT_EQ(-1, cursor.get_y());
 }
 
-TEST(Hexagon_AdvancedCodeEditor_CursorTest, move_down__decrements_the_y_position)
+TEST(Hexagon_AdvancedCodeEditor_CursorTest, move_down__increments_the_y_position)
 {
    Hexagon::AdvancedCodeEditor::Cursor cursor;
    cursor.move_down();
    ASSERT_EQ(1, cursor.get_y());
 }
 
-TEST(Hexagon_AdvancedCodeEditor_CursorTest, move_left__decrements_the_y_position)
+TEST(Hexagon_AdvancedCodeEditor_CursorTest, move_left__decrements_the_x_position)
 {
    Hexagon::AdvancedCodeEditor::Cursor cursor;
    cursor.move_left();
    ASSERT_EQ(-1, cursor.get_x());
 }
 
-TEST(Hexagon_AdvancedCodeEditor_CursorTest, move_right__decrements_the_y_position)
+TEST(Hexagon_AdvancedCodeEditor_CursorTest, move_right__increments_the_x_position)
 {
    Hexagon::AdvancedCodeEditor::Cursor cursor;
    cursor.move_right();

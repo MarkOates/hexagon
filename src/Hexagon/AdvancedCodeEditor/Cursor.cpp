@@ -24,6 +24,18 @@ Cursor::~Cursor()
 }
 
 
+void Cursor::set_width(float width)
+{
+   this->width = width;
+}
+
+
+void Cursor::set_height(float height)
+{
+   this->height = height;
+}
+
+
 float Cursor::get_x()
 {
    return x;

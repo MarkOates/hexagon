@@ -25,7 +25,7 @@ functions:
 
   - name: create
     type: ALLEGRO_BITMAP*
-    guards: [ font ]
+    guards: [ al_is_system_installed(), font ]
     body: |
       character_uv_mapping.clear();
 

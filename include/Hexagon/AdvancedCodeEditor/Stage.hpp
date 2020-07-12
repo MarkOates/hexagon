@@ -31,6 +31,7 @@ namespace Hexagon
          virtual ~Stage();
 
 
+         Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       bool cursor_move_up();
       bool cursor_move_down();

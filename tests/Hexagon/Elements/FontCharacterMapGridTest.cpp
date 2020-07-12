@@ -15,13 +15,22 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, can_be_created_without_blowing_u
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
 }
 
-TEST(Hexagon_Elements_FontCharacterMapGridTest, create__without_a_valid_font__raises_an_error)
+TEST(Hexagon_Elements_FontCharacterMapGridTest, create__without_allegro_initialized__raises_an_error)
 {
    Hexagon::Elements::FontCharacterMapGrid text_mesh;
-   std::string expected_error_message = "FontCharacterMapGrid::create: error: guard \"font\" not met";
+   std::string expected_error_message =
+      "FontCharacterMapGrid::create: error: guard \"al_is_system_installed()\" not met";
    ASSERT_THROW_WITH_MESSAGE(text_mesh.create(), std::runtime_error, expected_error_message);
 }
 
+TEST(Hexagon_Elements_FontCharacterMapGridTest, create__without_a_valid_font__raises_an_error)
+{
+   al_init();
+   Hexagon::Elements::FontCharacterMapGrid text_mesh;
+   std::string expected_error_message = "FontCharacterMapGrid::create: error: guard \"font\" not met";
+   ASSERT_THROW_WITH_MESSAGE(text_mesh.create(), std::runtime_error, expected_error_message);
+   al_uninstall_system();
+}
 
 TEST(Hexagon_Elements_FontCharacterMapGridTest, create__with_valid_arguments__returns_a_bitmap)
 {
