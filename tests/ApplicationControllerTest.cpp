@@ -6,6 +6,7 @@
 std::string TEST_CONFIG_FILENAME =
    "/Users/markoates/Repos/hexagon/tests/fixtures/hexagon.application_controller_test.cfg";
 
+#include <allegro5/allegro_primitives.h>
 
 TEST(ApplicationControllerTest, can_be_created_without_blowing_up)
 {
@@ -80,4 +81,15 @@ TEST(DISABLED_ApplicationControllerTest, run_program__will_open_the_component_na
 
    SUCCEED();
 }
+
+TEST(ApplicationControllerTest, initialize__will_initialize_the_primitives_addon)
+{
+   ApplicationController application_controller(TEST_CONFIG_FILENAME);
+   application_controller.initialize();
+
+   ASSERT_EQ(true, al_is_primitives_addon_initialized());
+
+   application_controller.shutdown();
+}
+
 

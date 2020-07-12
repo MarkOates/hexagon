@@ -85,6 +85,7 @@ void ApplicationController::initialize_allegro_config_display_event_queue_and_ti
 if (!al_init()) std::cerr << "al_init() failed" << std::endl;
 if (!al_init_font_addon()) std::cerr << "al_init_font_addon() failed" << std::endl;
 if (!al_init_ttf_addon()) std::cerr << "al_init_ttf_addon() failed" << std::endl;
+if (!al_init_primitives_addon()) std::cerr << "al_init_primitives_addon() failed" << std::endl;
 if (!al_install_keyboard()) std::cerr << "al_install_keyboard() failed" << std::endl;
 
 config.initialize();
