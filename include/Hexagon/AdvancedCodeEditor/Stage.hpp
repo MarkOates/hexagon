@@ -33,6 +33,7 @@ namespace Hexagon
          virtual ~Stage();
 
 
+         std::vector<std::string> get_lines();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       bool cursor_move_up();
@@ -45,6 +46,7 @@ namespace Hexagon
       virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
       virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
       ALLEGRO_FONT* obtain_text_font();
+      void refresh_text_mesh();
       };
    }
 }

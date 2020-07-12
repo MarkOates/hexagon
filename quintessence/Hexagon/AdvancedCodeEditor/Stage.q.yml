@@ -24,6 +24,7 @@ properties:
   - name: lines
     type: std::vector<std::string>
     init_with: '{}'
+    getter: true
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{nullptr, num_columns, num_rows}'
@@ -93,22 +94,8 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
-      std::vector<std::string> content_lines = Blast::StringSplitter(content, '\n').split();
-
-      int y=0;
-      for (auto &content_line : content_lines)
-      {
-         int x=0;
-         if (y >= text_mesh.get_num_rows()) break;
-         for (auto &character : content_line)
-         {
-            if (x >= text_mesh.get_num_columns()) break;
-            text_mesh.set_cell_character(x, y, character);
-            x++;
-         }
-         y++;
-      }
-
+      lines = Blast::StringSplitter(content, '\n').split();
+      refresh_text_mesh();
       return;
     body_dependency_symbols:
       - Blast::StringSplitter
@@ -166,6 +153,35 @@ functions:
     guards: [ font_bin ]
     body: |
       return font_bin->auto_get("Menlo-Regular.ttf -30");
+
+
+  - name: refresh_text_mesh
+    private: true
+    body: |
+      char clear_char = '\0';
+      ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+      ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+      for (unsigned y=0; y<num_rows; y++)
+      {
+         for (unsigned x=0; x<num_columns; x++)
+         {
+            char char_to_set = clear_char;
+            ALLEGRO_COLOR color_to_set = clear_color;
+
+            if (y < lines.size())
+            {
+               if (x < lines[y].size())
+               {
+                  char_to_set = lines[y][x];
+                  color_to_set = on_color;
+               }
+            }
+
+            text_mesh.set_cell_character(x, y, char_to_set);
+            text_mesh.set_cell_color(x, y, color_to_set);
+         }
+      }
+      return;
 
 
 dependencies:
