@@ -92,6 +92,7 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, set_initial_content__if_taller_than_t
 TEST(Hexagon_AdvancedCodeEditor_StageTest, render__renders_the_advanced_code_editor)
 {
    al_init();
+   al_init_primitives_addon();
    al_init_font_addon();
    al_init_ttf_addon();
    ALLEGRO_DISPLAY *display = al_create_display(1280 * 2, 720 * 2);
