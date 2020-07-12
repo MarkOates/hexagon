@@ -105,7 +105,7 @@ functions:
   - name: render
     virtual: true
     override: true
-    guards: [ al_is_system_installed(), initialized ]
+    guards: [ initialized ]
     body: |
       Hexagon::AdvancedCodeEditor::Renderer renderer(
          &text_mesh,

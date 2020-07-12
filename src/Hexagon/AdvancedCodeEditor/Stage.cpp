@@ -131,12 +131,6 @@ return;
 
 void Stage::render()
 {
-if (!(al_is_system_installed()))
-   {
-      std::stringstream error_message;
-      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
-   }
 if (!(initialized))
    {
       std::stringstream error_message;
