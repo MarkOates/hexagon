@@ -267,7 +267,13 @@ void Window::draw_corner_squares()
 ALLEGRO_COLOR final_corner_squares_color = color::color(corner_squares_color, corner_squares_opacity);
 
 // top left
-al_draw_filled_rectangle(0, 0, corner_squares_width, corner_squares_height, final_corner_squares_color);
+al_draw_filled_rectangle(
+   0,
+   0,
+   corner_squares_width,
+   corner_squares_height,
+   final_corner_squares_color
+);
 // top right
 al_draw_filled_rectangle(
    width - corner_squares_width,
