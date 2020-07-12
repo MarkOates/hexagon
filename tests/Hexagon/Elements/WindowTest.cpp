@@ -9,6 +9,7 @@
 #include <Hexagon/Elements/Window.hpp>
 
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
 #include <allegro_flare/placement3d.h>
 
 class Hexagon_Elements_WindowTest_WithEmptyFixture : public ::testing::Test
@@ -21,10 +22,12 @@ class Hexagon_Elements_WindowTest_WithAllegroRenderingFixture : public ::testing
 {
 public:
    ALLEGRO_DISPLAY* display;
+   ALLEGRO_FONT* font;
 
 public:
    Hexagon_Elements_WindowTest_WithAllegroRenderingFixture()
       : display(nullptr)
+      , font(nullptr)
    {}
 
    virtual void SetUp() override
@@ -32,11 +35,13 @@ public:
       ASSERT_EQ(false, al_is_system_installed());
       ASSERT_EQ(true, al_init());
       display = al_create_display(1280*2, 720*2);
+      font = al_create_builtin_font();
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
    }
 
    virtual void TearDown() override
    {
+      if (font) al_destroy_font(font);
       al_destroy_display(display);
       al_uninstall_system();
    }
@@ -46,6 +51,20 @@ public:
       placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0f);
       place.size = vec3d(width, height, 0);
       return place;
+   }
+
+   void draw_current_test_name()
+   {
+      std::string current_test_name = ::testing::UnitTest::GetInstance()->current_test_info()->name();
+      ALLEGRO_COLOR color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+      al_draw_text(
+         font,
+         color,
+         al_get_display_width(display)/2,
+         al_get_display_height(display)/4,
+         ALLEGRO_ALIGN_CENTER,
+         current_test_name.c_str()
+      );
    }
 };
 
@@ -79,6 +98,8 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
    window.draw();
    place.restore_transform();
 
+   draw_current_test_name();
+
    al_flip_display();
 
    sleep(1);
@@ -99,6 +120,8 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
    place.start_transform();
    window.draw();
    place.restore_transform();
+
+   draw_current_test_name();
 
    al_flip_display();
 
