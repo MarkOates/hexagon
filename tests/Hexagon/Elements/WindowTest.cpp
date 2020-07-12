@@ -12,6 +12,9 @@
 #include <allegro5/allegro_font.h>
 #include <allegro_flare/placement3d.h>
 
+//#define ASSERT_GREEN(display, x, y) \
+//   ASSERT_EQ(1.0f, al_get_pixel(al_get_backbuffer(display), x, y).g)
+
 class Hexagon_Elements_WindowTest_WithEmptyFixture : public ::testing::Test
 {
 public:
@@ -94,7 +97,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
    placement3d place = centered_placement(window_width, window_height);
    Hexagon::Elements::Window window(window_width, window_height);
 
-   window.set_box_fill_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+   window.set_box_fill_color(ALLEGRO_COLOR{0.0f, 1.0f, 0.0f, 1.0f});
    window.set_box_opacity(0.2);
 
    place.start_transform();
@@ -105,7 +108,9 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(3);
+
+   //ASSERT_GREEN(display, al_get_display_width(display)/2, al_get_display_height(display)/2);
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
@@ -132,7 +137,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
@@ -155,7 +160,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
@@ -183,7 +188,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
@@ -212,7 +217,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
@@ -239,7 +244,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
@@ -272,6 +277,6 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
