@@ -77,6 +77,7 @@ namespace Hexagon
 
       void draw();
       void draw_header_baseline();
+      void draw_bottom_line();
       void draw_header_bar();
       void draw_corner_squares();
       };

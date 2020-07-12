@@ -258,6 +258,7 @@ al_draw_rectangle(
 
 draw_header_bar();
 draw_header_baseline();
+draw_bottom_line();
 draw_corner_squares();
 
 return;
@@ -273,6 +274,21 @@ al_draw_filled_rectangle(
    width,
    header_bar_height+header_baseline_thickness,
    final_header_baseline_color
+);
+return;
+
+}
+
+void Window::draw_bottom_line()
+{
+ALLEGRO_COLOR final_bottom_line_color = color::color(bottom_line_color, bottom_line_opacity);
+float bottom_line_y = height + outer_line_thickness * 0.5f;
+al_draw_filled_rectangle(
+   -outer_line_thickness * 0.5,
+   bottom_line_y,
+   width + outer_line_thickness * 0.5,
+   bottom_line_y+bottom_line_thickness,
+   final_bottom_line_color
 );
 return;
 
