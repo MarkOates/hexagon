@@ -1,6 +1,11 @@
 
 #include <gtest/gtest.h>
 
+#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
+   try { code; FAIL() << "Expected " # raised_exception_type; } \
+   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
+   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+
 #include <Hexagon/Elements/Window.hpp>
 
 #include <allegro5/allegro.h>
@@ -49,12 +54,26 @@ TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, can_be_created_without_blow
    Hexagon::Elements::Window window;
 }
 
+TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, draw__without_allegro_initialized__throws_an_error)
+{
+   Hexagon::Elements::Window window;
+   std::string expected_error_message = "Window::draw: error: guard \"al_is_system_installed()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(window.draw(), std::runtime_error, expected_error_message);
+}
+
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture, draw__does_not_blow_up)
+{
+   Hexagon::Elements::Window window;
+   window.draw();
+}
+
+TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
+   draw__respects__width__height__box_opacity__cell_padding__fill_color)
 {
    float window_width = 1000.0f;
    float window_height = 520.0f;
    placement3d place = centered_placement(window_width, window_height);
-   Hexagon::Elements::Window window(window_width, window_height, 0.2, 0.0, ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+   Hexagon::Elements::Window window(window_width, window_height, 0.2, 8.0, ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
 
    place.start_transform();
    window.draw();
