@@ -127,7 +127,7 @@ TEST(Hexagon_Elements_TextMeshTest, set_cell_color__will_set_the_color_of_the_ce
    text_mesh.render();
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 
    al_destroy_font(a_valid_font);
    al_uninstall_system();
@@ -168,7 +168,7 @@ TEST(Hexagon_Elements_TextMeshTest, set_font__when_assigned_before_initializatio
    text_mesh.render();
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 
    al_destroy_font(a_valid_font);
    al_uninstall_system();
