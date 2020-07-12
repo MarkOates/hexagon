@@ -159,14 +159,11 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    // TODO
 }
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, render__renders_the_advanced_code_editor)
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, render__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();
-   stage.set_initial_content(FIXTURE_PASSAGE);
-
    stage.render();
-   al_flip_display();
 }
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_initial_content__if_not_initialized__raises_an_error)
