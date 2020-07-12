@@ -87,12 +87,15 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture, draw__does_not_b
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
-   draw__respects__width__height__box_opacity__cell_padding__fill_color)
+   draw__respects__width__height__box_opacity__fill_color)
 {
    float window_width = 1000.0f;
    float window_height = 520.0f;
    placement3d place = centered_placement(window_width, window_height);
-   Hexagon::Elements::Window window(window_width, window_height, 0.2, 8.0, ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+   Hexagon::Elements::Window window(window_width, window_height);
+
+   window.set_box_fill_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+   window.set_box_opacity(0.2);
 
    place.start_transform();
    window.draw();
@@ -102,7 +105,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   //sleep(1);
+   sleep(2);
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
@@ -153,7 +156,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
@@ -182,7 +185,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
