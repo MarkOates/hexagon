@@ -16,13 +16,13 @@ namespace Hexagon
          float box_opacity;
          float cell_padding;
          ALLEGRO_COLOR box_fill_color;
-         ALLEGRO_COLOR header_color;
+         ALLEGRO_COLOR header_bar_color;
          ALLEGRO_COLOR bottom_line_color;
          ALLEGRO_COLOR outer_line_color;
          ALLEGRO_COLOR header_baseline_color;
          ALLEGRO_COLOR top_left_little_bar_color;
          ALLEGRO_COLOR corner_squares_color;
-         float header_height;
+         float header_bar_height;
          float header_baseline_thickness;
          float header_bar_opacity;
          float header_baseline_opacity;
@@ -50,13 +50,13 @@ namespace Hexagon
          void set_box_opacity(float box_opacity);
          void set_cell_padding(float cell_padding);
          void set_box_fill_color(ALLEGRO_COLOR box_fill_color);
-         void set_header_color(ALLEGRO_COLOR header_color);
+         void set_header_bar_color(ALLEGRO_COLOR header_bar_color);
          void set_bottom_line_color(ALLEGRO_COLOR bottom_line_color);
          void set_outer_line_color(ALLEGRO_COLOR outer_line_color);
          void set_header_baseline_color(ALLEGRO_COLOR header_baseline_color);
          void set_top_left_little_bar_color(ALLEGRO_COLOR top_left_little_bar_color);
          void set_corner_squares_color(ALLEGRO_COLOR corner_squares_color);
-         void set_header_height(float header_height);
+         void set_header_bar_height(float header_bar_height);
          void set_header_baseline_thickness(float header_baseline_thickness);
          void set_header_bar_opacity(float header_bar_opacity);
          void set_header_baseline_opacity(float header_baseline_opacity);
@@ -76,6 +76,7 @@ namespace Hexagon
          void set_distance_of_columns(float distance_of_columns);
 
       void draw();
+      void draw_header_bar();
       void draw_corner_squares();
       };
    }

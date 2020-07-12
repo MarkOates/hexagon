@@ -26,7 +26,7 @@ properties:
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
     constructor_arg: true
-  - name: header_color
+  - name: header_bar_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
@@ -50,7 +50,7 @@ properties:
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
     setter: true
-  - name: header_height
+  - name: header_bar_height
     type: float
     init_with: 0.0f
     setter: true
@@ -151,6 +151,7 @@ functions:
         outer_line_thickness
       );
 
+      draw_header_bar();
       draw_corner_squares();
 
       return;
@@ -159,6 +160,14 @@ functions:
       - al_draw_rectangle
       - al_color_name
       - color::color
+
+
+  - name: draw_header_bar
+    private: true
+    body: |
+      ALLEGRO_COLOR final_header_bar_color = color::color(header_bar_color, header_bar_opacity);
+      al_draw_filled_rectangle(0, 0, width, header_bar_height, final_header_bar_color);
+      return;
 
 
   - name: draw_corner_squares

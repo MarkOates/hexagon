@@ -187,7 +187,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
-   draw__respects__resize_from_center)
+   draw__respects__corner_squares__resize_from_center)
 {
    float window_width = 1000.0f;
    float window_height = 520.0f;
@@ -213,6 +213,33 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
    al_flip_display();
 
    //sleep(1);
+}
+
+TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
+   draw__respects__header_bar__color__height__opacty)
+{
+   float window_width = 1000.0f;
+   float window_height = 520.0f;
+   placement3d place = centered_placement(window_width, window_height);
+   Hexagon::Elements::Window window(window_width, window_height);
+
+   window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+   window.set_outer_line_opacity(0.2);
+   window.set_outer_line_thickness(1.0);
+
+   window.set_header_bar_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+   window.set_header_bar_height(80.0f);
+   window.set_header_bar_opacity(0.2f);
+
+   place.start_transform();
+   window.draw();
+   place.restore_transform();
+
+   draw_current_test_name();
+
+   al_flip_display();
+
+   sleep(1);
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,

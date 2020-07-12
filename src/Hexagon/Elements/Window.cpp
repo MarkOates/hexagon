@@ -21,13 +21,13 @@ Window::Window(float width, float height, float box_opacity, float cell_padding,
    , box_opacity(box_opacity)
    , cell_padding(cell_padding)
    , box_fill_color(box_fill_color)
-   , header_color({0.0f, 0.0f, 0.0f, 0.0f})
+   , header_bar_color({0.0f, 0.0f, 0.0f, 0.0f})
    , bottom_line_color({0.0f, 0.0f, 0.0f, 0.0f})
    , outer_line_color({0.0f, 0.0f, 0.0f, 0.0f})
    , header_baseline_color({0.0f, 0.0f, 0.0f, 0.0f})
    , top_left_little_bar_color({0.0f, 0.0f, 0.0f, 0.0f})
    , corner_squares_color({0.0f, 0.0f, 0.0f, 0.0f})
-   , header_height(0.0f)
+   , header_bar_height(0.0f)
    , header_baseline_thickness(0.0f)
    , header_bar_opacity(0.0f)
    , header_baseline_opacity(0.0f)
@@ -84,9 +84,9 @@ void Window::set_box_fill_color(ALLEGRO_COLOR box_fill_color)
 }
 
 
-void Window::set_header_color(ALLEGRO_COLOR header_color)
+void Window::set_header_bar_color(ALLEGRO_COLOR header_bar_color)
 {
-   this->header_color = header_color;
+   this->header_bar_color = header_bar_color;
 }
 
 
@@ -120,9 +120,9 @@ void Window::set_corner_squares_color(ALLEGRO_COLOR corner_squares_color)
 }
 
 
-void Window::set_header_height(float header_height)
+void Window::set_header_bar_height(float header_bar_height)
 {
-   this->header_height = header_height;
+   this->header_bar_height = header_bar_height;
 }
 
 
@@ -256,8 +256,17 @@ al_draw_rectangle(
   outer_line_thickness
 );
 
+draw_header_bar();
 draw_corner_squares();
 
+return;
+
+}
+
+void Window::draw_header_bar()
+{
+ALLEGRO_COLOR final_header_bar_color = color::color(header_bar_color, header_bar_opacity);
+al_draw_filled_rectangle(0, 0, width, header_bar_height, final_header_bar_color);
 return;
 
 }
