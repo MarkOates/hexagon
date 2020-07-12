@@ -136,7 +136,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
-   draw__respects__outer_line_color__thickness__opacity)
+   draw__respects__outer_line__color__thickness__opacity)
 {
    float window_width = 1000.0f;
    float window_height = 520.0f;
@@ -145,7 +145,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
    window.set_outer_line_opacity(0.2);
-   window.set_outer_line_thickness(4.0);
+   window.set_outer_line_thickness(20.0);
 
    place.start_transform();
    window.draw();
