@@ -108,7 +108,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   //sleep(3);
+   //sleep(1);
 
    //ASSERT_GREEN(display, al_get_display_width(display)/2, al_get_display_height(display)/2);
 }
