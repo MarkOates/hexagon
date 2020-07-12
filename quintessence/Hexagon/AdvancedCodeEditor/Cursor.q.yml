@@ -1,0 +1,17 @@
+properties:
+  - name: x
+    type: float
+    init_with: 0
+    constructor_arg: true
+  - name: y
+    type: float
+    init_with: 0
+    constructor_arg: true
+  - name: width
+    type: float
+    init_with: 1
+    constructor_arg: true
+  - name: height
+    type: float
+    init_with: 1
+    constructor_arg: true
