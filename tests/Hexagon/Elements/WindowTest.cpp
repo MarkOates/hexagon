@@ -243,7 +243,7 @@ TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithAllegroRenderingFixture,
-   draw__respects__are_circles)
+   draw__respects__corner_squares_are_circles)
 {
    // TODO
 }
