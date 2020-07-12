@@ -20,6 +20,14 @@ namespace Hexagon
          ~Cursor();
 
 
+         float get_x();
+         float get_y();
+         float get_width();
+         float get_height();
+      void move_up();
+      void move_down();
+      void move_left();
+      void move_right();
       };
    }
 }

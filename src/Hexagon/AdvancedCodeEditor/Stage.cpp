@@ -26,6 +26,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , num_columns(num_columns)
    , num_rows(num_rows)
    , text_mesh({nullptr, num_columns, num_rows})
+   , cursor({})
    , initialized(false)
 {
 }

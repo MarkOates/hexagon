@@ -1,17 +1,36 @@
 properties:
+
+
   - name: x
     type: float
     init_with: 0
     constructor_arg: true
+    getter: true
   - name: y
     type: float
     init_with: 0
     constructor_arg: true
+    getter: true
   - name: width
     type: float
     init_with: 1
     constructor_arg: true
+    getter: true
   - name: height
     type: float
     init_with: 1
     constructor_arg: true
+    getter: true
+
+
+functions:
+
+
+  - name: move_up
+    body: y -= 1;
+  - name: move_down
+    body: y += 1;
+  - name: move_left
+    body: x -= 1;
+  - name: move_right
+    body: x += 1;

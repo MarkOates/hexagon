@@ -24,6 +24,9 @@ properties:
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{nullptr, num_columns, num_rows}'
+  - name: cursor
+    type: Hexagon::AdvancedCodeEditor::Cursor
+    init_with: '{}'
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -152,3 +155,5 @@ dependencies:
     headers: [ Hexagon/Elements/TextMesh.hpp ]
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Cursor
+    headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
