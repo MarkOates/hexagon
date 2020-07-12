@@ -15,12 +15,6 @@ properties:
     constructor_arg: true
     getter: true
     getter_ref: true
-  - name: font_character_map_grid
-    type: Hexagon::Elements::FontCharacterMapGrid
-    init_with: '{}'
-    constructor_arg: true
-    getter: true
-    getter_ref: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
