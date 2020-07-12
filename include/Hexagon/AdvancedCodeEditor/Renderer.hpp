@@ -14,9 +14,11 @@ namespace Hexagon
       private:
          Hexagon::Elements::TextMesh* text_mesh;
          Hexagon::AdvancedCodeEditor::Cursor* cursor;
+         float width;
+         float height;
 
       public:
-         Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr, Hexagon::AdvancedCodeEditor::Cursor* cursor=nullptr);
+         Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr, Hexagon::AdvancedCodeEditor::Cursor* cursor=nullptr, float width=1, float height=2);
          ~Renderer();
 
 

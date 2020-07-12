@@ -9,6 +9,14 @@ properties:
     type: Hexagon::AdvancedCodeEditor::Cursor*
     init_with: nullptr
     constructor_arg: true
+  - name: width
+    type: float
+    init_with: 1
+    constructor_arg: true
+  - name: height
+    type: float
+    init_with: 2
+    constructor_arg: true
 
 
 functions:
@@ -18,7 +26,16 @@ functions:
     type: void
     guards: [ text_mesh, cursor ]
     body: |
+      // draw the window
+      Hexagon::AdvancedCodeEditor::WindowRenderer(
+         width,
+         height
+      ).render();
+
+      // draw the mesh
       text_mesh->render();
+
+      // draw the cursor
       al_draw_rectangle(
          cursor->get_x(),
          cursor->get_y(),
@@ -27,7 +44,10 @@ functions:
          ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f},
          2.0f
          );
+
       return;
+    body_dependency_symbols:
+      - Hexagon::AdvancedCodeEditor::WindowRenderer
 
 
 dependencies:
@@ -35,5 +55,7 @@ dependencies:
 
   - symbol: Hexagon::Elements::TextMesh*
     headers: [ Hexagon/Elements/TextMesh.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::WindowRenderer
+    headers: [ Hexagon/AdvancedCodeEditor/WindowRenderer.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor*
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]

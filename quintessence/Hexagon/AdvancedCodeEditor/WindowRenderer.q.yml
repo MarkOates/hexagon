@@ -1,0 +1,35 @@
+properties:
+
+
+  - name: width
+    type: float
+    init_with: 1
+    constructor_arg: true
+  - name: height
+    type: float
+    init_with: 1
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: render
+    type: void
+    body: |
+      Hexagon::Elements::Window window(width, height);
+
+      window.set_box_fill_color(ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0});
+      window.set_box_opacity(0.1);
+
+      window.draw();
+      return;
+    body_dependency_symbols:
+      - Hexagon::Elements::Window
+
+
+dependencies:
+
+
+  - symbol: Hexagon::Elements::Window
+    headers: [ Hexagon/Elements/Window.hpp ]
