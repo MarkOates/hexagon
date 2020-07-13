@@ -70,36 +70,42 @@ return true;
 
 bool Stage::join_lines()
 {
+// TODO
 return false;
 
 }
 
 bool Stage::split_lines()
 {
+// TODO
 return false;
 
 }
 
 bool Stage::delete_line()
 {
+// TODO
 return false;
 
 }
 
 bool Stage::insert_lines()
 {
+// TODO
 return false;
 
 }
 
 bool Stage::insert_string()
 {
+// TODO
 return false;
 
 }
 
 bool Stage::insert_three_spaces_at_start_of_line()
 {
+// TODO
 return false;
 
 }
