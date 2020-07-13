@@ -100,8 +100,7 @@ bool Stage::insert_string(std::string string)
 {
 if (!is_cursor_in_bounds()) return false;
 lines[cursor.get_y()].insert(cursor.get_x(), string);
-// TODO
-return false;
+return true;
 
 }
 
