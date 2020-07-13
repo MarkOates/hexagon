@@ -54,33 +54,39 @@ functions:
 
 
   - name: join_lines
+    type: bool
     body: |
-      return;
+      return false;
 
 
   - name: split_lines
+    type: bool
     body: |
-      return;
+      return false;
 
 
   - name: delete_line
+    type: bool
     body: |
-      return;
+      return false;
 
 
   - name: insert_lines
+    type: bool
     body: |
-      return;
+      return false;
 
 
   - name: insert_string
+    type: bool
     body: |
-      return;
+      return false;
 
 
   - name: insert_three_spaces_at_start_of_line
+    type: bool
     body: |
-      return;
+      return false;
 
 
   - name: cursor_move_up

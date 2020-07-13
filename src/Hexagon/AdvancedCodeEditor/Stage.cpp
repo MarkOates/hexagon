@@ -68,39 +68,39 @@ return true;
 
 }
 
-void Stage::join_lines()
+bool Stage::join_lines()
 {
-return;
+return false;
 
 }
 
-void Stage::split_lines()
+bool Stage::split_lines()
 {
-return;
+return false;
 
 }
 
-void Stage::delete_line()
+bool Stage::delete_line()
 {
-return;
+return false;
 
 }
 
-void Stage::insert_lines()
+bool Stage::insert_lines()
 {
-return;
+return false;
 
 }
 
-void Stage::insert_string()
+bool Stage::insert_string()
 {
-return;
+return false;
 
 }
 
-void Stage::insert_three_spaces_at_start_of_line()
+bool Stage::insert_three_spaces_at_start_of_line()
 {
-return;
+return false;
 
 }
 

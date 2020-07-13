@@ -37,12 +37,12 @@ namespace Hexagon
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       bool delete_character();
-      void join_lines();
-      void split_lines();
-      void delete_line();
-      void insert_lines();
-      void insert_string();
-      void insert_three_spaces_at_start_of_line();
+      bool join_lines();
+      bool split_lines();
+      bool delete_line();
+      bool insert_lines();
+      bool insert_string();
+      bool insert_three_spaces_at_start_of_line();
       bool cursor_move_up();
       bool cursor_move_down();
       bool cursor_move_left();
