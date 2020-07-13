@@ -138,6 +138,13 @@ return true;
 
 }
 
+bool Stage::cursor_move_to(int x, int y)
+{
+cursor.move_to(x, y);
+return true;
+
+}
+
 void Stage::initialize()
 {
 if (!(al_is_system_installed()))

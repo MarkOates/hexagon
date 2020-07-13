@@ -47,6 +47,7 @@ namespace Hexagon
       bool cursor_move_down();
       bool cursor_move_left();
       bool cursor_move_right();
+      bool cursor_move_to(int x=0, int y=0);
       void initialize();
       void set_content(std::string content="");
       virtual void render() override;
