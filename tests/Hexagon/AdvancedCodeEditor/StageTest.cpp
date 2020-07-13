@@ -218,3 +218,33 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    al_flip_display();
 }
 
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, delete_character__does_not_blow_up)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   stage.delete_character();
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   delete_character__removes_the_character_at_the_cursor)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   stage.initialize();
+   stage.set_content(FIXTURE_PASSAGE);
+
+   std::vector<std::string> lines;
+
+   lines = stage.get_lines();
+   ASSERT_EQ(16, lines.size());
+
+   EXPECT_EQ("Act without doing;", lines[1]);
+
+   stage.cursor_move_down();
+   stage.delete_character();
+
+   lines = stage.get_lines();
+   EXPECT_EQ("ct without doing;", lines[1]);
+}
+
+

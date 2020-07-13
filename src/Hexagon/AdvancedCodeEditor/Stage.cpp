@@ -60,6 +60,50 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
+bool Stage::delete_character()
+{
+if (!is_cursor_in_bounds()) return false;
+lines[cursor.get_y()].erase(cursor.get_x(), 1);
+return true;
+
+}
+
+void Stage::join_lines()
+{
+return;
+
+}
+
+void Stage::split_lines()
+{
+return;
+
+}
+
+void Stage::delete_line()
+{
+return;
+
+}
+
+void Stage::insert_lines()
+{
+return;
+
+}
+
+void Stage::insert_string()
+{
+return;
+
+}
+
+void Stage::insert_three_spaces_at_start_of_line()
+{
+return;
+
+}
+
 bool Stage::cursor_move_up()
 {
 cursor.move_up();
@@ -173,6 +217,19 @@ if (!(font_bin))
       throw std::runtime_error(error_message.str());
    }
 return font_bin->auto_get("Menlo-Regular.ttf -30");
+
+}
+
+bool Stage::is_cursor_in_bounds()
+{
+if (cursor.get_y() < lines.size())
+{
+   if (cursor.get_x() < lines[cursor.get_y()].size())
+   {
+      return true;
+   }
+}
+return false;
 
 }
 

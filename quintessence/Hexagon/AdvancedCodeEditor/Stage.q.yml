@@ -45,6 +45,44 @@ properties:
 functions:
 
 
+  - name: delete_character
+    type: bool
+    body: |
+      if (!is_cursor_in_bounds()) return false;
+      lines[cursor.get_y()].erase(cursor.get_x(), 1);
+      return true;
+
+
+  - name: join_lines
+    body: |
+      return;
+
+
+  - name: split_lines
+    body: |
+      return;
+
+
+  - name: delete_line
+    body: |
+      return;
+
+
+  - name: insert_lines
+    body: |
+      return;
+
+
+  - name: insert_string
+    body: |
+      return;
+
+
+  - name: insert_three_spaces_at_start_of_line
+    body: |
+      return;
+
+
   - name: cursor_move_up
     type: bool
     body: |
@@ -154,6 +192,20 @@ functions:
     guards: [ font_bin ]
     body: |
       return font_bin->auto_get("Menlo-Regular.ttf -30");
+
+
+  - name: is_cursor_in_bounds
+    private: true
+    type: bool
+    body: |
+      if (cursor.get_y() < lines.size())
+      {
+         if (cursor.get_x() < lines[cursor.get_y()].size())
+         {
+            return true;
+         }
+      }
+      return false;
 
 
   - name: refresh_text_mesh
