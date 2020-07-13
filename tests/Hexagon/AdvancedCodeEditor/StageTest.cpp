@@ -77,6 +77,22 @@ She doesn't cling to her own comfort;
 thus problems are no problem for her.
 )PASSAGE";
 
+const std::string SONNET_TEXT = R"END(Sonnet 15
+
+When I consider every thing that grows
+Holds in perfection but a little moment.
+That this huge stage presenteth nought but shows
+Whereon the stars in secret influence comment.
+When I perceive that men as plants increase,
+Cheered and checked even by the self-same sky:
+Vaunt in their youthful sap, at height decrease,
+And wear their brave state out of memory.
+Then the conceit of this inconstant stay,
+Sets you most rich in youth before my sight,
+Where wasteful time debateth with decay
+To change your day of youth to sullied night,
+And all in war with Time for love of you,
+As he takes from you, I engraft you new.)END";
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, can_be_created_without_blowing_up)
 {
@@ -250,5 +266,33 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    lines = stage.get_lines();
    EXPECT_EQ("ct ithout doing;", lines[1]);
 }
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, insert_string__does_not_blow_up)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   stage.insert_string();
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   insert_string__inserts_the_string_to_the_content)
+{
+   std::vector<std::string> lines;
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   stage.initialize();
+   stage.set_content(SONNET_TEXT);
+
+   stage.cursor_move_to(14, 4);
+
+   lines = stage.get_lines();
+   EXPECT_EQ("That this huge stage presenteth nought but shows", lines[4]);
+
+   stage.insert_string(", massive");
+
+   lines = stage.get_lines();
+   EXPECT_EQ("That this huge, massive stage presenteth nought but shows", lines[4]);
+}
+
 
 

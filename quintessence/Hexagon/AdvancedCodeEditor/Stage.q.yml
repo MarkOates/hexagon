@@ -83,7 +83,13 @@ functions:
 
   - name: insert_string
     type: bool
+    parameters:
+      - name: string
+        type: std::string
+        default_argument: '""'
     body: |
+      if (!is_cursor_in_bounds()) return false;
+      lines[cursor.get_y()].insert(cursor.get_x(), string);
       // TODO
       return false;
 
