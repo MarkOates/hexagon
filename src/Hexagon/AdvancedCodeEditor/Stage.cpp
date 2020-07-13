@@ -115,12 +115,12 @@ return;
 
 }
 
-void Stage::set_initial_content(std::string content)
+void Stage::set_content(std::string content)
 {
 if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "Stage" << "::" << "set_initial_content" << ": error: " << "guard \"initialized\" not met";
+      error_message << "Stage" << "::" << "set_content" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
 lines = Blast::StringSplitter(content, '\n').split();

@@ -88,7 +88,7 @@ functions:
       return;
 
 
-  - name: set_initial_content
+  - name: set_content
     parameters:
       - name: content
         type: std::string

@@ -975,7 +975,7 @@ bool System::execute_magic_command()
            stage = new Hexagon::AdvancedCodeEditor::Stage(&font_bin, 120, 70); //(::CodeEditor::CodeEditor{filename});
            Hexagon::AdvancedCodeEditor::Stage *ace_stage = static_cast<Hexagon::AdvancedCodeEditor::Stage*>(stage);
            ace_stage->initialize();
-           ace_stage->set_initial_content(single_line);
+           ace_stage->set_content(single_line);
 
            //stage = ace_stage;
         }

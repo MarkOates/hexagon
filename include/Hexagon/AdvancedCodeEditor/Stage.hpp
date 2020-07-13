@@ -41,7 +41,7 @@ namespace Hexagon
       bool cursor_move_left();
       bool cursor_move_right();
       void initialize();
-      void set_initial_content(std::string content="");
+      void set_content(std::string content="");
       virtual void render() override;
       virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
       virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;

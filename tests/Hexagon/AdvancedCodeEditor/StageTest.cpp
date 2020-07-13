@@ -151,21 +151,21 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, process_event__doe
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
-   DISABLED_set_initial_content__fills_the_text_mesh_with_the_expected_content)
+   DISABLED_set_content__fills_the_text_mesh_with_the_expected_content)
 {
    // TODO
 }
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
-   DISABLED_set_initial_content__if_wider_than_the_width__clips_the_filled_text_mesh)
+   DISABLED_set_content__if_wider_than_the_width__clips_the_filled_text_mesh)
 {
    // TODO
 }
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
-   DISABLED_set_initial_content__if_taller_than_the_height__clips_the_filled_text_mesh)
+   DISABLED_set_content__if_taller_than_the_height__clips_the_filled_text_mesh)
 {
    // TODO
 }
@@ -179,21 +179,21 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, render_
 }
 
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_initial_content__if_not_initialized__raises_an_error)
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_content__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::set_initial_content: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.set_initial_content(), std::runtime_error, expected_error_message);
+   std::string expected_error_message = "Stage::set_content: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage.set_content(), std::runtime_error, expected_error_message);
 }
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   set_initial_content__sets_the_lines_to_the_expected_content)
+   set_content__sets_the_lines_to_the_expected_content)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();
 
-   stage.set_initial_content(FIXTURE_PASSAGE);
+   stage.set_content(FIXTURE_PASSAGE);
 
    std::vector<std::string> lines = stage.get_lines();
 
@@ -207,12 +207,12 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   set_initial_content__refreshes_the_mesh_to_the_expected_content)
+   set_content__refreshes_the_mesh_to_the_expected_content)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();
 
-   stage.set_initial_content(FIXTURE_PASSAGE);
+   stage.set_content(FIXTURE_PASSAGE);
 
    stage.render();
    al_flip_display();
