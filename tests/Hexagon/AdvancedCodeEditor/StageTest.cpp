@@ -269,7 +269,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   delete_character__refreshes_the_text_mesh)
+   DISABLED_delete_character__refreshes_the_text_mesh)
 {
    // TODO
 }
@@ -283,7 +283,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, insert_
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   insert_string__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
+   DISABLED_insert_string__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
 {
    // TODO
 }
@@ -310,7 +310,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   insert_string__refreshes_the_text_mesh)
+   DISABLED_insert_string__refreshes_the_text_mesh)
 {
    // TODO
 }
