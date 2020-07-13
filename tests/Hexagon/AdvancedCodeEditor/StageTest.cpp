@@ -242,9 +242,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
    stage.cursor_move_down();
    stage.delete_character();
+   stage.cursor_move_right();
+   stage.cursor_move_right();
+   stage.cursor_move_right();
+   stage.delete_character();
 
    lines = stage.get_lines();
-   EXPECT_EQ("ct without doing;", lines[1]);
+   EXPECT_EQ("ct ithout doing;", lines[1]);
 }
 
 
