@@ -36,3 +36,11 @@ TEST(Hexagon_AdvancedCodeEditor_CursorTest, move_right__increments_the_x_positio
    ASSERT_EQ(1, cursor.get_x());
 }
 
+TEST(Hexagon_AdvancedCodeEditor_CursorTest, move_to__sets_the_x_and_y_position_of_the_cursor)
+{
+   Hexagon::AdvancedCodeEditor::Cursor cursor;
+   cursor.move_to(9, 13);
+   ASSERT_EQ(9, cursor.get_x());
+   ASSERT_EQ(13, cursor.get_y());
+}
+

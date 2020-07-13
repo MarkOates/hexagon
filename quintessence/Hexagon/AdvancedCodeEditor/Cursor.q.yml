@@ -36,3 +36,14 @@ functions:
     body: x -= 1;
   - name: move_right
     body: x += 1;
+  - name: move_to
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
+    body: |
+      this->x = x;
+      this->y = y;

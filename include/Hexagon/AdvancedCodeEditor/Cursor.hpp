@@ -30,6 +30,7 @@ namespace Hexagon
       void move_down();
       void move_left();
       void move_right();
+      void move_to(int x=0, int y=0);
       };
    }
 }

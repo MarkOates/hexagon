@@ -79,6 +79,13 @@ void Cursor::move_right()
 {
 x += 1;
 }
+
+void Cursor::move_to(int x, int y)
+{
+this->x = x;
+this->y = y;
+
+}
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 
