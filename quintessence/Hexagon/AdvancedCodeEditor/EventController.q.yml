@@ -1,4 +1,21 @@
+properties:
+
+
+  - name: stage
+    type: Hexagon::AdvancedCodeEditor::Stage*
+    init_with: nullptr
+
+
 functions:
+
+
   - name: run
     type: std::string
     body: return "Hello World!";
+
+
+dependencies:
+
+
+  - symbol: Hexagon::AdvancedCodeEditor::Stage*
+    headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
