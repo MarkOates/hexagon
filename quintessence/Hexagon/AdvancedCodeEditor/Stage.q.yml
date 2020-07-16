@@ -205,7 +205,11 @@ functions:
         type: ActionData
         default_argument: "ActionData()"
     body: |
+      Hexagon::AdvancedCodeEditor::EventController event_controller;
+      event_controller.process_local_event(event_name, action_data);
       return;
+    body_dependency_symbols:
+      - Hexagon::AdvancedCodeEditor::EventController
 
 
   - name: process_event
@@ -216,7 +220,11 @@ functions:
         type: ALLEGRO_EVENT&
         default_argument: "get_a_default_empty_event_ref()"
     body: |
+      Hexagon::AdvancedCodeEditor::EventController event_controller;
+      event_controller.process_event(event);
       return;
+    body_dependency_symbols:
+      - Hexagon::AdvancedCodeEditor::EventController
 
 
   - name: obtain_text_font
@@ -298,3 +306,5 @@ dependencies:
     headers: [ Blast/StringSplitter.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::EventController
+    headers: [ Hexagon/AdvancedCodeEditor/EventController.hpp ]

@@ -9,6 +9,8 @@
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/AdvancedCodeEditor/EventController.hpp>
+#include <Hexagon/AdvancedCodeEditor/EventController.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -214,12 +216,16 @@ return;
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
+Hexagon::AdvancedCodeEditor::EventController event_controller;
+event_controller.process_local_event(event_name, action_data);
 return;
 
 }
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
+Hexagon::AdvancedCodeEditor::EventController event_controller;
+event_controller.process_event(event);
 return;
 
 }
