@@ -41,6 +41,15 @@ void EventController::process_event(ALLEGRO_EVENT& event)
 return;
 
 }
+
+std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> EventController::build_local_events_dictionary()
+{
+std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> local_events = {
+   { "cursor_move_up", &AdvancedCodeEditor::Stage::cursor_move_up },
+};
+return local_events;
+
+}
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

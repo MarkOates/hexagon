@@ -36,6 +36,15 @@ functions:
       return;
 
 
+  - name: build_local_events_dictionary
+    type: std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>>
+    body: |
+      std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> local_events = {
+         { "cursor_move_up", &AdvancedCodeEditor::Stage::cursor_move_up },
+      };
+      return local_events;
+
+
 dependencies:
 
 
@@ -47,3 +56,5 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT&
     headers: [ allegro5/allegro.h ]
+  - symbol: std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>>
+    headers: [ map, string, functional, Hexagon/AdvancedCodeEditor/Stage.hpp ]

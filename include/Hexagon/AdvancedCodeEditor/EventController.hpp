@@ -4,6 +4,8 @@
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <allegro5/allegro.h>
+#include <functional>
+#include <map>
 #include <string>
 
 
@@ -25,6 +27,7 @@ namespace Hexagon
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());
+      std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
       };
    }
 }
