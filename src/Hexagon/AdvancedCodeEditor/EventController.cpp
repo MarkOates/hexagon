@@ -32,6 +32,8 @@ ALLEGRO_EVENT &EventController::get_a_default_empty_event_ref()
 
 void EventController::process_local_event(std::string event_name, ActionData action_data)
 {
+std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> local_events_dictionary =
+   build_local_events_dictionary();
 return;
 
 }

@@ -24,6 +24,8 @@ functions:
         type: ActionData
         default_argument: "ActionData()"
     body: |
+      std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> local_events_dictionary =
+         build_local_events_dictionary();
       return;
 
 
