@@ -8,9 +8,11 @@ TEST(Hexagon_AdvancedCodeEditor_EventControllerTest, can_be_created_without_blow
    Hexagon::AdvancedCodeEditor::EventController event_controller;
 }
 
-TEST(Hexagon_AdvancedCodeEditor_EventControllerTest, run__returns_the_expected_response)
+TEST(DISABLED_Hexagon_AdvancedCodeEditor_EventControllerTest, process_local_event__processes_the_event)
 {
-   Hexagon::AdvancedCodeEditor::EventController event_controller;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, event_controller.run());
 }
+
+TEST(DISABLED_Hexagon_AdvancedCodeEditor_EventControllerTest, process_event__processes_the_event)
+{
+}
+

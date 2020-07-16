@@ -4,14 +4,36 @@ properties:
   - name: stage
     type: Hexagon::AdvancedCodeEditor::Stage*
     init_with: nullptr
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
 
 
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: process_local_event
+    type: void
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: '""'
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: |
+      return;
+
+
+  - name: process_event
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: |
+      return;
 
 
 dependencies:
@@ -19,3 +41,9 @@ dependencies:
 
   - symbol: Hexagon::AdvancedCodeEditor::Stage*
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
+  - symbol: ActionData
+    headers: [ Hexagon/ActionData.hpp ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ allegro5/allegro.h ]
