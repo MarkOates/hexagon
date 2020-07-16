@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/AdvancedCodeEditor/EventController.hpp>
-
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -32,8 +33,31 @@ ALLEGRO_EVENT &EventController::get_a_default_empty_event_ref()
 
 void EventController::process_local_event(std::string event_name, ActionData action_data)
 {
+if (!(stage))
+   {
+      std::stringstream error_message;
+      error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+AdvancedCodeEditor::Stage &component = *stage;
+
 std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> local_events_dictionary =
    build_local_events_dictionary();
+
+std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>>::iterator it =
+   local_events_dictionary.find(event_name);
+if (it == local_events_dictionary.end())
+{
+   std::stringstream error_message;
+   error_message << "AdvancedCodeEditor::EventController::process_local_event: error: "
+                 << "No local event named \"" << event_name << "\" exists.";
+   throw std::runtime_error(error_message.str());
+}
+else
+{
+   local_events_dictionary[event_name](component);
+}
+
 return;
 
 }
