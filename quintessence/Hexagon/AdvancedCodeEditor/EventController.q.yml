@@ -4,6 +4,7 @@ properties:
   - name: stage
     type: Hexagon::AdvancedCodeEditor::Stage*
     init_with: nullptr
+    constructor_arg: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT

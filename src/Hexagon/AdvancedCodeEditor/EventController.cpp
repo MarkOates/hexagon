@@ -14,8 +14,8 @@ namespace AdvancedCodeEditor
 ALLEGRO_EVENT EventController::a_default_empty_event = {};
 
 
-EventController::EventController()
-   : stage(nullptr)
+EventController::EventController(Hexagon::AdvancedCodeEditor::Stage* stage)
+   : stage(stage)
 {
 }
 

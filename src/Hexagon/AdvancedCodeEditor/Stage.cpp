@@ -216,7 +216,7 @@ return;
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
-Hexagon::AdvancedCodeEditor::EventController event_controller;
+Hexagon::AdvancedCodeEditor::EventController event_controller(this);
 event_controller.process_local_event(event_name, action_data);
 return;
 

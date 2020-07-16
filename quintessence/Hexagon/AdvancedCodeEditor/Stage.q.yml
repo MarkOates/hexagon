@@ -205,7 +205,7 @@ functions:
         type: ActionData
         default_argument: "ActionData()"
     body: |
-      Hexagon::AdvancedCodeEditor::EventController event_controller;
+      Hexagon::AdvancedCodeEditor::EventController event_controller(this);
       event_controller.process_local_event(event_name, action_data);
       return;
     body_dependency_symbols:

@@ -153,7 +153,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, render__if_not_ini
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, process_local_event__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
-   stage.process_local_event();
+   stage.process_local_event("cursor_move_up");
    SUCCEED();
 }
 

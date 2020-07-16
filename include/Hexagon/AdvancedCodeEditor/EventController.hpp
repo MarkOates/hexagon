@@ -20,7 +20,7 @@ namespace Hexagon
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         EventController();
+         EventController(Hexagon::AdvancedCodeEditor::Stage* stage=nullptr);
          ~EventController();
 
 
