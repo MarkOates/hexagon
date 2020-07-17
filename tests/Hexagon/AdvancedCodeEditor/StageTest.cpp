@@ -278,20 +278,26 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    join_lines__will_concat_the_contents_of_the_current_line_and_the_line_below_it_and_returns_true)
 {
+   std::vector<std::string> lines;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
    stage.initialize();
    stage.set_content(SONNET_TEXT);
 
-   //stage.set_cursor_y(4);
-   //ASSERT_EQ(true, stage.join_lines());
+   stage.cursor_move_to(0, 4);
+   ASSERT_EQ(true, stage.join_lines());
 
-   //std::string expected_line_at_cursor = "That this huge stage presenteth nought but showsWhereon the stars in secret " \
-   //                                      "influence comment.";
+   std::string expected_line_at_cursor = "That this huge stage presenteth nought but showsWhereon the stars in secret " \
+                                         "influence comment.";
 
-   //std::string expected_line_below_cursor = "When I perceive that men as plants increase,";
+   std::string expected_line_below_cursor = "When I perceive that men as plants increase,";
 
-   //ASSERT_EQ(expected_line_at_cursor, stage.current_line_ref());
-   //ASSERT_EQ(expected_line_below_cursor, stage.next_line_ref());
+   lines = stage.get_lines();
+
+   std::string &actual_line_at_cursor = lines[stage.get_cursor_ref().get_y()];
+   ASSERT_EQ(expected_line_at_cursor, actual_line_at_cursor);
+
+   std::string &actual_line_below_cursor = lines[stage.get_cursor_ref().get_y()+1];
+   ASSERT_EQ(expected_line_below_cursor, actual_line_below_cursor);
 }
 
 
