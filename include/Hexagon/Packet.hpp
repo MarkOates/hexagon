@@ -18,6 +18,7 @@ namespace Hexagon
 
       int get_searches_count();
       int get_saves_count();
+   int calculate_score();
    };
 }
 

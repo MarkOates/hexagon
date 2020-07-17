@@ -22,3 +22,9 @@ TEST(Hexagon_PacketTest, has_the_expected_constructor_arguments)
    ASSERT_EQ(7, packet.get_saves_count());
 }
 
+TEST(Hexagon_PacketTest, calculate_score__returns_the_expected_calculated_score)
+{
+   Hexagon::Packet packet(9, 7);
+   ASSERT_EQ(16, packet.calculate_score());
+}
+
