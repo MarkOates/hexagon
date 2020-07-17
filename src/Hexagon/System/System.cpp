@@ -1294,7 +1294,8 @@ bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp
    return true;
 }
 
-bool System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents()
+bool
+System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores()
 {
    // get regex expression input from file named REGEX_TEMP_FILENAME
    std::vector<std::string> regex_input_file_lines;
@@ -1355,7 +1356,7 @@ bool System::submit_current_modal()
    case StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX:
       process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE);
       process_local_event(DESTROY_TOPMOST_STAGE);
-      process_local_event(COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS);
+      process_local_event(COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES);
       process_local_event(PUSH_TO_GIT_REMOTE);
       process_local_event(REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES);
       break;
@@ -1474,8 +1475,8 @@ const std::string System::SPAWN_RERUN_OUTPUT_WATCHER = "SPAWN_RERUN_OUTPUT_WATCH
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 const std::string System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE = "FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE";
 const std::string System::CHECK_GIT_SYNC_AND_UPDATE_POWERBAR = "CHECK_GIT_SYNC_AND_UPDATE_POWERBAR";
-const std::string System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS =
-   "COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS";
+const std::string System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES =
+   "COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES";
 const std::string System::PUSH_TO_GIT_REMOTE = "PUSH_TO_GIT_REMOTE";
 
 

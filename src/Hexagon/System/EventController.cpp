@@ -237,8 +237,8 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
       &::System::check_git_sync_and_update_powerbar,
    },
    {
-      ::System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS,
-      &::System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents,
+      ::System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES,
+      &::System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores,
    },
    {
       ::System::PUSH_TO_GIT_REMOTE,
