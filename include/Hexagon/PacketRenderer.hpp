@@ -22,6 +22,7 @@ namespace Hexagon
 
    void render();
    void render_window();
+   void render_text();
    };
 }
 
