@@ -24,7 +24,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool draw_search_count, int search_count)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool draw_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -42,6 +42,8 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , show_profiler(show_profiler)
    , draw_save_count(draw_save_count)
    , save_count(save_count)
+   , draw_packets(draw_packets)
+   , packets(packets)
    , draw_search_count(draw_search_count)
    , search_count(search_count)
 {
@@ -131,6 +133,18 @@ void Hud::set_save_count(int save_count)
 }
 
 
+void Hud::set_draw_packets(bool draw_packets)
+{
+   this->draw_packets = draw_packets;
+}
+
+
+void Hud::set_packets(std::vector<Hexagon::Packet> packets)
+{
+   this->packets = packets;
+}
+
+
 void Hud::set_draw_search_count(bool draw_search_count)
 {
    this->draw_search_count = draw_search_count;
@@ -188,6 +202,18 @@ bool Hud::get_draw_save_count()
 int Hud::get_save_count()
 {
    return save_count;
+}
+
+
+bool Hud::get_draw_packets()
+{
+   return draw_packets;
+}
+
+
+std::vector<Hexagon::Packet> Hud::get_packets()
+{
+   return packets;
 }
 
 

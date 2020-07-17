@@ -90,6 +90,18 @@ properties:
     constructor_arg: true
     getter: true
     setter: true
+  - name: draw_packets
+    type: bool
+    init_with: true
+    setter: true
+    getter: true
+    constructor_arg: true
+  - name: packets
+    type: std::vector<Hexagon::Packet>
+    init_with: '{}'
+    constructor_arg: true
+    getter: true
+    setter: true
   - name: draw_search_count
     type: bool
     init_with: true
@@ -342,3 +354,5 @@ dependencies:
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: global::profiler
     headers: [ Hexagon/shared_globals.hpp ]
+  - symbol: std::vector<Hexagon::Packet>
+    headers: [ vector, Hexagon/Packet.hpp ]
