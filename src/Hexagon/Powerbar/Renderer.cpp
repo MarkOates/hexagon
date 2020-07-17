@@ -53,6 +53,7 @@ if (!(powerbar))
       error_message << "Renderer" << "::" << "draw_focus_timer_bar" << ": error: " << "guard \"powerbar\" not met";
       throw std::runtime_error(error_message.str());
    }
+return;
 float width = al_get_display_width(display) * 0.6;
 float height = 30;
 float x = al_get_display_width(display) / 2 - width / 2;

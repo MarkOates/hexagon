@@ -345,6 +345,13 @@ functions:
          powerbar_renderer.render();
       }
 
+      bool draw_focus_timer_bar = true;
+      if (draw_focus_timer_bar)
+      {
+         Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &powerbar);
+         focus_timer_bar_renderer.render();
+      }
+
       al_restore_state(&previous_target_bitmap_state);
       return;
     body_dependency_symbols:
@@ -355,6 +362,7 @@ functions:
       - al_draw_text
       - Hexagon::Powerbar::Powerbar
       - Hexagon::Powerbar::Renderer
+      - Hexagon::FocusTimerBar::Renderer
       - Hexagon::PacketRenderer
 
 
@@ -365,6 +373,8 @@ dependencies:
     headers: [ Hexagon/Powerbar/Powerbar.hpp ]
   - symbol: Hexagon::Powerbar::Renderer
     headers: [ Hexagon/Powerbar/Renderer.hpp ]
+  - symbol: Hexagon::FocusTimerBar::Renderer
+    headers: [ Hexagon/FocusTimerBar/Renderer.hpp ]
   - symbol: al_draw_rectangle
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: ALLEGRO_DISPLAY*

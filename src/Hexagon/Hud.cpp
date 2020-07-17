@@ -14,6 +14,7 @@
 #include <allegro5/allegro_font.h>
 #include <Hexagon/Powerbar/Powerbar.hpp>
 #include <Hexagon/Powerbar/Renderer.hpp>
+#include <Hexagon/FocusTimerBar/Renderer.hpp>
 #include <Hexagon/PacketRenderer.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -474,6 +475,13 @@ if (draw_powerbar)
 
    Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_powerbar_text_font(), backfill_color);
    powerbar_renderer.render();
+}
+
+bool draw_focus_timer_bar = true;
+if (draw_focus_timer_bar)
+{
+   Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &powerbar);
+   focus_timer_bar_renderer.render();
 }
 
 al_restore_state(&previous_target_bitmap_state);
