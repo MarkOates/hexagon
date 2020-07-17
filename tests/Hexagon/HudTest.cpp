@@ -68,31 +68,36 @@ public:
    }
 };
 
-TEST(Hexagon_HudTest, can_be_created_without_blowing_up)
+TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+   can_be_created_without_blowing_up)
 {
    Hexagon::Hud hud;
 }
 
-TEST(Hexagon_HudTest, notifications2__has_a_getter_and_setter)
+TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+   notifications2__has_a_getter_and_setter)
 {
    Hexagon::Hud hud;
    ASSERT_EQ(true, hud.get_notifications2().empty());
 }
 
-TEST(Hexagon_HudTest, draw_powerbar__has_a_getter_and_is_initialized_with_the_expected_default)
+TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+   draw_powerbar__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
    ASSERT_EQ(true, hud.get_draw_powerbar());
 }
 
-TEST(Hexagon_HudTest, reinitialize__before_initialization__raises_an_error)
+TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+   reinitialize__before_initialization__raises_an_error)
 {
    Hexagon::Hud hud;
    std::string expected_message = "Hud::reinitialize: error: guard \"initialized\" not met";
    ASSERT_THROW_WITH_MESSAGE(hud.reinitialize(), std::runtime_error, expected_message);
 }
 
-TEST(Hexagon_HudTest, draw__before_initialization__raises_an_error)
+TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+   draw__before_initialization__raises_an_error)
 {
    Hexagon::Hud hud;
    std::string expected_message = "Hud::draw: error: guard \"initialized\" not met";
