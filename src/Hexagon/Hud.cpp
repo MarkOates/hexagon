@@ -460,7 +460,7 @@ if (draw_packets)
 {
    float x = 90;
    float y = frame_height - 130;
-   float width = 180;
+   float width = 150;
    float height = 116;
    float spacing = 20;
 

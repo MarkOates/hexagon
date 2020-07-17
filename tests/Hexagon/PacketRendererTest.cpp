@@ -83,7 +83,7 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture,
 TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
    render__will_render_the_packet)
 {
-   int width = 180;
+   int width = 150;
    int height = 116;
    Hexagon::Packet packet(7, 12);
 
