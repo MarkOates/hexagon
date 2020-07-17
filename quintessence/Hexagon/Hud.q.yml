@@ -277,7 +277,7 @@ functions:
       if (draw_save_count)
       {
          // bottom left of screen
-         std::string save_count_text_to_draw = std::string("SAVES: ") + std::to_string(save_count);
+         std::string save_count_text_to_draw = std::string("Saves: ") + std::to_string(save_count);
          ALLEGRO_FONT *score_text_font = obtain_score_text_font();
          al_draw_text(
             score_text_font,
@@ -292,13 +292,13 @@ functions:
       if (draw_search_count)
       {
          // bottom left of screen
-         std::string search_count_text_to_draw = std::string("SEARCHES: ") + std::to_string(search_count);
+         std::string search_count_text_to_draw = std::string("Searches: ") + std::to_string(search_count);
          ALLEGRO_FONT *score_text_font = obtain_score_text_font();
          al_draw_text(
             score_text_font,
             al_color_name("gray"),
             90,
-            frame_height - al_get_font_line_height(score_text_font) - 60 - 20,
+            frame_height - al_get_font_line_height(score_text_font) - 60 - 28,
             ALLEGRO_ALIGN_LEFT,
             search_count_text_to_draw.c_str()
          );
