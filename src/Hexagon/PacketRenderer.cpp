@@ -79,8 +79,17 @@ void PacketRenderer::render_text()
 {
 ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 int line_height = al_get_font_line_height(font) * 1.4;
+
+// draw searches
 al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: %d", packet->get_searches_count());
+
+// draw saves
 al_draw_textf(font, text_color, 20, 20 + line_height, ALLEGRO_ALIGN_LEFT, "Saves: %d", packet->get_saves_count());
+
+// draw score
+al_draw_textf(font, text_color, 20, 20 + line_height * 2, ALLEGRO_ALIGN_LEFT,
+   "Score: 0",
+   packet->calculate_score());
 return;
 
 }
