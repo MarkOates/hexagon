@@ -275,18 +275,24 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    join_lines__on_the_last_line__does_nothing_and_returns_false)
 {
-   Hexagon::AdvancedCodeEditor::Stage stage;
-   //stage.set_content(SONNET_TEXT);
+   std::vector<std::string> lines;
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   stage.initialize();
+   stage.set_content(SONNET_TEXT);
 
-   //stage.set_cursor_y(stage.num_lines()-1);
-   //EXPECT_EQ("As he takes from you, I engraft you new.", stage.current_line_ref());
+   lines = stage.get_lines();
+   ASSERT_TRUE(stage.cursor_move_to(0, lines.size()-1));
 
-   //ASSERT_EQ(false, stage.join_lines());
+   std::string &current_cursor_line = lines[stage.get_cursor_ref().get_y()];
+   EXPECT_EQ("As he takes from you, I engraft you new.", current_cursor_line);
 
-   //ASSERT_EQ("As he takes from you, I engraft you new.", stage.current_line_ref());
+   ASSERT_EQ(false, stage.join_lines());
+
+   std::string &current_cursor_line_after_action = lines[stage.get_cursor_ref().get_y()];
+   EXPECT_EQ("As he takes from you, I engraft you new.", current_cursor_line_after_action);
 }
 
 
