@@ -75,8 +75,10 @@ bool Stage::join_lines()
 {
 if (!is_cursor_in_bounds()) return false;
 if (is_cursor_on_last_line()) return false;
-//lines[cursor_y] += lines[cursor_y+1];
-//lines.erase(lines.begin() + cursor_y+1);
+
+lines[cursor.get_y()] += lines[cursor.get_y()+1];
+lines.erase(lines.begin() + cursor.get_y()+1);
+
 //mark_content_is_modified();
 return true;
 
