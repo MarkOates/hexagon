@@ -257,14 +257,8 @@ functions:
     private: true
     type: bool
     body: |
-      if (cursor.get_y() < lines.size())
-      {
-         if (cursor.get_x() < lines[cursor.get_y()].size())
-         {
-            return true;
-         }
-      }
-      return false;
+      if (lines.empty()) return false;
+      return cursor.get_y() >= lines.size();
 
 
   - name: refresh_text_mesh

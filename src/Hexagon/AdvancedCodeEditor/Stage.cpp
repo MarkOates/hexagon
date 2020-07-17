@@ -261,14 +261,8 @@ return false;
 
 bool Stage::is_cursor_at_or_below_last_line()
 {
-if (cursor.get_y() < lines.size())
-{
-   if (cursor.get_x() < lines[cursor.get_y()].size())
-   {
-      return true;
-   }
-}
-return false;
+if (lines.empty()) return false;
+return cursor.get_y() >= lines.size();
 
 }
 
