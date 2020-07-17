@@ -66,6 +66,10 @@ window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
 window.set_outer_line_opacity(0.2);
 window.set_outer_line_thickness(2.0);
 
+window.set_header_bar_height(height);
+window.set_top_left_little_bar_color(ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0});
+window.set_top_left_little_bar_width(6.0f);
+
 window.draw();
 return;
 
