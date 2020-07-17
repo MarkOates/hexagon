@@ -107,3 +107,19 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    al_flip_display();
 }
 
+TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+   render__will_render_packets)
+{
+   Hexagon::Hud hud(display, font_bin);
+   hud.initialize();
+
+   std::vector<Hexagon::Packet> packets = {};
+   hud.set_packets(packets);
+
+   hud.draw();
+
+   al_flip_display();
+
+   sleep(1);
+}
+
