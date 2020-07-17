@@ -1305,7 +1305,6 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
    std::string commit_message = regex_input_file_lines[0];
    std::string current_project_directory = get_default_navigator_directory();
 
-   //std::co ut << "HERE!! stage everything and commit everything" << std::endl;
    Hexagon::Git::StageEverything stage_everything(current_project_directory);
    stage_everything.stage_everything();
 
