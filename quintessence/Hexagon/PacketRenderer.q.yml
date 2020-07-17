@@ -20,6 +20,11 @@ functions:
     body: |
       al_draw_filled_rectangle(0, 0, width, height, ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2});
       Hexagon::Elements::Window window(width, height);
+
+      window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+      window.set_outer_line_opacity(0.2);
+      window.set_outer_line_thickness(4.0);
+
       window.draw();
       return;
     body_dependency_symbols:
