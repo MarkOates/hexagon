@@ -2,6 +2,7 @@
 
 #include <Hexagon/PacketRenderer.hpp>
 #include <allegro5/allegro_primitives.h>
+#include <Hexagon/Elements/Window.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -38,6 +39,8 @@ if (!(al_is_primitives_addon_initialized()))
       throw std::runtime_error(error_message.str());
    }
 al_draw_filled_rectangle(0, 0, width, height, ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2});
+Hexagon::Elements::Window window(width, height);
+window.draw();
 return;
 
 }

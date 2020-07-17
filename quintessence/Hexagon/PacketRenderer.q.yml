@@ -19,9 +19,12 @@ functions:
     guards: [ packet, al_is_primitives_addon_initialized() ]
     body: |
       al_draw_filled_rectangle(0, 0, width, height, ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2});
+      Hexagon::Elements::Window window(width, height);
+      window.draw();
       return;
     body_dependency_symbols:
       - al_is_primitives_addon_initialized
+      - Hexagon::Elements::Window
 
 dependencies:
 
@@ -29,3 +32,5 @@ dependencies:
     headers: [ Hexagon/Packet.hpp ]
   - symbol: al_is_primitives_addon_initialized
     headers: [ allegro5/allegro_primitives.h ]
+  - symbol: Hexagon::Elements::Window
+    headers: [ Hexagon/Elements/Window.hpp ]
