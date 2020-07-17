@@ -104,3 +104,14 @@ TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
    ASSERT_THROW_WITH_MESSAGE(hud.draw(), std::runtime_error, expected_message);
 }
 
+TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+   DISABLED_render__will_render_the_hud)
+{
+   Hexagon::Hud hud(display);
+   hud.initialize();
+
+   hud.draw();
+
+   al_flip_display();
+}
+
