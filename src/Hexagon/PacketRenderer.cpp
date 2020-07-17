@@ -5,6 +5,9 @@
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/Elements/Window.hpp>
+#include <vector>
+#include <tuple>
+#include <string>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
@@ -79,6 +82,8 @@ void PacketRenderer::render_text()
 {
 ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 int line_height = al_get_font_line_height(font) * 1.4;
+
+std::vector<std::tuple<std::string, std::string>> table = {};
 
 // draw searches
 al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: %d", packet->get_searches_count());

@@ -61,6 +61,8 @@ functions:
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
       int line_height = al_get_font_line_height(font) * 1.4;
 
+      std::vector<std::tuple<std::string, std::string>> table = {};
+
       // draw searches
       al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: %d", packet->get_searches_count());
 
@@ -73,6 +75,7 @@ functions:
          packet->calculate_score());
       return;
     body_dependency_symbols:
+      - std::vector<std::tuple<std::string, std::string>>
       - al_draw_textf
       - ALLEGRO_COLOR
       - al_get_font_line_height
@@ -95,3 +98,6 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: al_get_font_line_height
     headers: [ allegro5/allegro_font.h ]
+  - symbol: std::vector<std::tuple<std::string, std::string>>
+    headers: [ vector, tuple, string ]
+
