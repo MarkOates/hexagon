@@ -60,8 +60,8 @@ functions:
     body: |
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
       int line_height = al_get_font_line_height(font) * 1.4;
-      al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: 0", packet->get_searches_count());
-      al_draw_textf(font, text_color, 20, 20 + line_height, ALLEGRO_ALIGN_LEFT, "Saves: 0", packet->get_saves_count());
+      al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: %d", packet->get_searches_count());
+      al_draw_textf(font, text_color, 20, 20 + line_height, ALLEGRO_ALIGN_LEFT, "Saves: %d", packet->get_saves_count());
       return;
     body_dependency_symbols:
       - al_draw_textf
