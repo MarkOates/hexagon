@@ -43,7 +43,7 @@ public:
       al_uninstall_system();
    }
 
-   placement3d centered_placement(float width, float height)
+   placement3d build_centered_placement(float width, float height)
    {
       placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0f);
       place.size = vec3d(width, height, 0);
