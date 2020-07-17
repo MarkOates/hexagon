@@ -33,6 +33,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , notifications({})
    , notifications2({})
    , powerbar({})
+   , focus_timer_bar({})
    , display(display)
    , fonts(fonts)
    , title_text(title_text)
@@ -248,6 +249,12 @@ bool Hud::get_draw_focus_timer_bar()
 Hexagon::Powerbar::Powerbar &Hud::get_powerbar_ref()
 {
    return powerbar;
+}
+
+
+Hexagon::FocusTimerBar::FocusTimerBar &Hud::get_focus_timer_bar_ref()
+{
+   return focus_timer_bar;
 }
 
 

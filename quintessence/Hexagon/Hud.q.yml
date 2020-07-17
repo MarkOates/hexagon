@@ -26,6 +26,10 @@ properties:
     type: Hexagon::Powerbar::Powerbar
     init_with: "{}"
     getter_ref: true
+  - name: focus_timer_bar
+    type: Hexagon::FocusTimerBar::FocusTimerBar
+    init_with: '{}'
+    getter_ref: true
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: "nullptr"
@@ -378,6 +382,8 @@ dependencies:
     headers: [ Hexagon/Powerbar/Powerbar.hpp ]
   - symbol: Hexagon::Powerbar::Renderer
     headers: [ Hexagon/Powerbar/Renderer.hpp ]
+  - symbol: Hexagon::FocusTimerBar::FocusTimerBar
+    headers: [ Hexagon/FocusTimerBar/FocusTimerBar.hpp ]
   - symbol: Hexagon::FocusTimerBar::Renderer
     headers: [ Hexagon/FocusTimerBar/Renderer.hpp ]
   - symbol: al_draw_rectangle
@@ -414,3 +420,4 @@ dependencies:
     headers: [ Hexagon/PacketRenderer.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
+

@@ -2,6 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
+#include <Hexagon/FocusTimerBar/FocusTimerBar.hpp>
 #include <Hexagon/Packet.hpp>
 #include <Hexagon/Powerbar/Powerbar.hpp>
 #include <allegro5/allegro.h>
@@ -22,6 +23,7 @@ namespace Hexagon
       std::vector<std::string> notifications;
       std::vector<std::string> notifications2;
       Hexagon::Powerbar::Powerbar powerbar;
+      Hexagon::FocusTimerBar::FocusTimerBar focus_timer_bar;
       ALLEGRO_DISPLAY* display;
       AllegroFlare::FontBin& fonts;
       std::string title_text;
@@ -77,6 +79,7 @@ namespace Hexagon
       int get_search_count();
       bool get_draw_focus_timer_bar();
       Hexagon::Powerbar::Powerbar &get_powerbar_ref();
+      Hexagon::FocusTimerBar::FocusTimerBar &get_focus_timer_bar_ref();
    static AllegroFlare::FontBin& get_dummy_font_bin();
    ALLEGRO_FONT* obtain_text_font();
    ALLEGRO_FONT* obtain_powerbar_text_font();
