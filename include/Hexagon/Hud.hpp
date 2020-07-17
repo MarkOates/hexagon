@@ -78,6 +78,7 @@ namespace Hexagon
    ALLEGRO_FONT* obtain_text_font();
    ALLEGRO_FONT* obtain_powerbar_text_font();
    ALLEGRO_FONT* obtain_score_text_font();
+   ALLEGRO_FONT* obtain_packet_text_font();
    void initialize();
    void reinitialize();
    void draw_current_focus_name();

@@ -264,6 +264,12 @@ return fonts["Eurostile.ttf -22"];
 
 }
 
+ALLEGRO_FONT* Hud::obtain_packet_text_font()
+{
+return fonts["Eurostile.ttf -22"];
+
+}
+
 void Hud::initialize()
 {
 if (initialized) return;
@@ -442,7 +448,7 @@ if (draw_packets)
    place.size.y = height;
    place.align.x = 0.0;
    place.align.y = 1.0;
-   ALLEGRO_FONT *packet_text_font = obtain_score_text_font();
+   ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
 
    for (auto &packet : packets)
    {
