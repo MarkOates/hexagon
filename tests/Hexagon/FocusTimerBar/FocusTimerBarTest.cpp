@@ -8,9 +8,10 @@ TEST(Hexagon_FocusTimerBar_FocusTimerBarTest, can_be_created_without_blowing_up)
    Hexagon::FocusTimerBar::FocusTimerBar focus_timer_bar;
 }
 
-TEST(Hexagon_FocusTimerBar_FocusTimerBarTest, run__returns_the_expected_response)
+TEST(Hexagon_FocusTimerBarTest, has_the_expected_getters_with_the_expected_defaults)
 {
    Hexagon::FocusTimerBar::FocusTimerBar focus_timer_bar;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, focus_timer_bar.run());
+   ASSERT_EQ(0, focus_timer_bar.get_focus_timer_started_at());
+   ASSERT_EQ(1200.0f, focus_timer_bar.get_focus_timer_duration_sec());
 }
+

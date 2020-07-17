@@ -11,6 +11,8 @@ namespace FocusTimerBar
 
 
 FocusTimerBar::FocusTimerBar()
+   : focus_timer_started_at(0)
+   , focus_timer_duration_sec(1200.0f)
 {
 }
 
@@ -20,10 +22,18 @@ FocusTimerBar::~FocusTimerBar()
 }
 
 
-std::string FocusTimerBar::run()
+std::time_t FocusTimerBar::get_focus_timer_started_at()
 {
-return "Hello World!";
+   return focus_timer_started_at;
 }
+
+
+float FocusTimerBar::get_focus_timer_duration_sec()
+{
+   return focus_timer_duration_sec;
+}
+
+
 } // namespace FocusTimerBar
 } // namespace Hexagon
 
