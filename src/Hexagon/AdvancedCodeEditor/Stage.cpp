@@ -74,6 +74,7 @@ return true;
 bool Stage::join_lines()
 {
 if (!is_cursor_in_bounds()) return false;
+if (!is_cursor_at_or_below_last_line()) return false;
 //lines[cursor_y] += lines[cursor_y+1];
 //lines.erase(lines.begin() + cursor_y+1);
 //mark_content_is_modified();
@@ -246,6 +247,19 @@ return font_bin->auto_get("Menlo-Regular.ttf -30");
 }
 
 bool Stage::is_cursor_in_bounds()
+{
+if (cursor.get_y() < lines.size())
+{
+   if (cursor.get_x() < lines[cursor.get_y()].size())
+   {
+      return true;
+   }
+}
+return false;
+
+}
+
+bool Stage::is_cursor_at_or_below_last_line()
 {
 if (cursor.get_y() < lines.size())
 {

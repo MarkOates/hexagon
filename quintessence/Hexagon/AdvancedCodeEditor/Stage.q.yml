@@ -58,6 +58,7 @@ functions:
     type: bool
     body: |
       if (!is_cursor_in_bounds()) return false;
+      if (!is_cursor_at_or_below_last_line()) return false;
       //lines[cursor_y] += lines[cursor_y+1];
       //lines.erase(lines.begin() + cursor_y+1);
       //mark_content_is_modified();
@@ -239,6 +240,20 @@ functions:
 
 
   - name: is_cursor_in_bounds
+    private: true
+    type: bool
+    body: |
+      if (cursor.get_y() < lines.size())
+      {
+         if (cursor.get_x() < lines[cursor.get_y()].size())
+         {
+            return true;
+         }
+      }
+      return false;
+
+
+  - name: is_cursor_at_or_below_last_line
     private: true
     type: bool
     body: |
