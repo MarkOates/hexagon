@@ -55,7 +55,7 @@ namespace Hexagon
       virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
       ALLEGRO_FONT* obtain_text_font();
       bool is_cursor_in_bounds();
-      bool is_cursor_at_or_below_last_line();
+      bool is_cursor_on_last_line();
       void refresh_text_mesh();
       };
    }
