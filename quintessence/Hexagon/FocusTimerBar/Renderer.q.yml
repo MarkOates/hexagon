@@ -5,8 +5,8 @@ properties:
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
     constructor_arg: true
-  - name: powerbar
-    type: Hexagon::Powerbar::Powerbar*
+  - name: focus_timer_bar
+    type: Hexagon::FocusTimerBar::FocusTimerBar*
     init_with: nullptr
     constructor_arg: true
 
@@ -15,7 +15,7 @@ functions:
 
 
   - name: render
-    guards: [ display, powerbar, al_is_primitives_addon_initialized() ]
+    guards: [ display, focus_timer_bar, al_is_primitives_addon_initialized() ]
     body: |
       float width = al_get_display_width(display) * 0.6;
       float height = 30;
@@ -30,8 +30,8 @@ functions:
       struct tm now_tm = *localtime(&time_now);
       //double seconds = difftime(time_now,mktime(&newyear));
       double seconds = difftime(time_now, mktime(0));
-      double normal_length = std::fmod(seconds, powerbar->get_focus_timer_duration_sec())
-                           / powerbar->get_focus_timer_duration_sec();
+      double normal_length = std::fmod(seconds, focus_timer_bar->get_focus_timer_duration_sec())
+                           / focus_timer_bar->get_focus_timer_duration_sec();
       length = normal_length * width;
 
       float h_padding = 5.0f;
@@ -55,8 +55,8 @@ dependencies:
 
   - symbol: ALLEGRO_DISPLAY*
     headers: [ allegro5/allegro.h ]
-  - symbol: Hexagon::Powerbar::Powerbar*
-    headers: [ Hexagon/Powerbar/Powerbar.hpp ]
+  - symbol: Hexagon::FocusTimerBar::FocusTimerBar*
+    headers: [ Hexagon/FocusTimerBar/FocusTimerBar.hpp ]
   - symbol: std::fmod
     headers: [ cmath ]
   - symbol: std::time_t

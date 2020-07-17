@@ -17,9 +17,9 @@ namespace FocusTimerBar
 {
 
 
-Renderer::Renderer(ALLEGRO_DISPLAY* display, Hexagon::Powerbar::Powerbar* powerbar)
+Renderer::Renderer(ALLEGRO_DISPLAY* display, Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar)
    : display(display)
-   , powerbar(powerbar)
+   , focus_timer_bar(focus_timer_bar)
 {
 }
 
@@ -37,10 +37,10 @@ if (!(display))
       error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"display\" not met";
       throw std::runtime_error(error_message.str());
    }
-if (!(powerbar))
+if (!(focus_timer_bar))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"powerbar\" not met";
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"focus_timer_bar\" not met";
       throw std::runtime_error(error_message.str());
    }
 if (!(al_is_primitives_addon_initialized()))
@@ -62,8 +62,8 @@ std::time_t time_now = time(0);
 struct tm now_tm = *localtime(&time_now);
 //double seconds = difftime(time_now,mktime(&newyear));
 double seconds = difftime(time_now, mktime(0));
-double normal_length = std::fmod(seconds, powerbar->get_focus_timer_duration_sec())
-                     / powerbar->get_focus_timer_duration_sec();
+double normal_length = std::fmod(seconds, focus_timer_bar->get_focus_timer_duration_sec())
+                     / focus_timer_bar->get_focus_timer_duration_sec();
 length = normal_length * width;
 
 float h_padding = 5.0f;

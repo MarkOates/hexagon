@@ -499,7 +499,7 @@ if (draw_powerbar)
 
 if (draw_focus_timer_bar)
 {
-   Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &powerbar); // this still uses the powerbar
+   Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &focus_timer_bar);
    focus_timer_bar_renderer.render();
 }
 

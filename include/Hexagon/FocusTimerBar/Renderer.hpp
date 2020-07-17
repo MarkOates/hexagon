@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <Hexagon/Powerbar/Powerbar.hpp>
+#include <Hexagon/FocusTimerBar/FocusTimerBar.hpp>
 #include <allegro5/allegro.h>
 
 
@@ -13,10 +13,10 @@ namespace Hexagon
       {
       private:
          ALLEGRO_DISPLAY* display;
-         Hexagon::Powerbar::Powerbar* powerbar;
+         Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar;
 
       public:
-         Renderer(ALLEGRO_DISPLAY* display=nullptr, Hexagon::Powerbar::Powerbar* powerbar=nullptr);
+         Renderer(ALLEGRO_DISPLAY* display=nullptr, Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar=nullptr);
          ~Renderer();
 
 
