@@ -275,6 +275,64 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   join_lines__will_concat_the_contents_of_the_current_line_and_the_line_below_it_and_returns_true)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   //stage.set_content(SONNET_TEXT);
+
+   //stage.set_cursor_y(4);
+   //ASSERT_EQ(true, stage.join_lines());
+
+   //std::string expected_line_at_cursor = "That this huge stage presenteth nought but showsWhereon the stars in secret " \
+   //                                      "influence comment.";
+
+   //std::string expected_line_below_cursor = "When I perceive that men as plants increase,";
+
+   //ASSERT_EQ(expected_line_at_cursor, stage.current_line_ref());
+   //ASSERT_EQ(expected_line_below_cursor, stage.next_line_ref());
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   join_lines__on_the_last_line__does_nothing_and_returns_false)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   //stage.set_content(SONNET_TEXT);
+
+   //stage.set_cursor_y(stage.num_lines()-1);
+   //EXPECT_EQ("As he takes from you, I engraft you new.", stage.current_line_ref());
+
+   //ASSERT_EQ(false, stage.join_lines());
+
+   //ASSERT_EQ("As he takes from you, I engraft you new.", stage.current_line_ref());
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   //stage.set_content(SONNET_TEXT);
+
+   //int line_numbers_to_test[] = { -1, stage.num_lines()+10, -10, };
+
+   //for (auto &line_number_to_test : line_numbers_to_test)
+   //{
+   //   stage.set_cursor_y(line_number_to_test);
+   //   ASSERT_EQ(false, stage.join_lines());
+   //}
+
+   //SUCCEED();
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   join_lines__refreshes_the_text_mesh)
+{
+}
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, insert_string__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);

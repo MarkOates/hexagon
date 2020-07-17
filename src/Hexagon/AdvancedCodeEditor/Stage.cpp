@@ -73,8 +73,11 @@ return true;
 
 bool Stage::join_lines()
 {
-// TODO
-return false;
+if (!is_cursor_in_bounds()) return false;
+//lines[cursor_y] += lines[cursor_y+1];
+//lines.erase(lines.begin() + cursor_y+1);
+//mark_content_is_modified();
+return true;
 
 }
 
