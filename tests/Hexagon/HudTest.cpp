@@ -88,6 +88,13 @@ TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+   draw_focus_timer_bar__has_a_getter_and_is_initialized_with_the_expected_default)
+{
+   Hexagon::Hud hud;
+   ASSERT_EQ(true, hud.get_draw_focus_timer_bar());
+}
+
+TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
    reinitialize__before_initialization__raises_an_error)
 {
    Hexagon::Hud hud;

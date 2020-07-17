@@ -38,9 +38,10 @@ namespace Hexagon
       std::vector<Hexagon::Packet> packets;
       bool draw_search_count;
       int search_count;
+      bool draw_focus_timer_bar;
 
    public:
-      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool draw_powerbar=true, bool files_are_modified=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=true, int save_count=0, bool draw_packets=true, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=true, int search_count=0);
+      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool draw_powerbar=true, bool files_are_modified=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=true, int save_count=0, bool draw_packets=true, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=true, int search_count=0, bool draw_focus_timer_bar=true);
       ~Hud();
 
       void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
@@ -60,6 +61,7 @@ namespace Hexagon
       void set_packets(std::vector<Hexagon::Packet> packets);
       void set_draw_search_count(bool draw_search_count);
       void set_search_count(int search_count);
+      void set_draw_focus_timer_bar(bool draw_focus_timer_bar);
 
       std::vector<std::string> get_notifications();
       std::vector<std::string> get_notifications2();
@@ -73,6 +75,7 @@ namespace Hexagon
       std::vector<Hexagon::Packet> get_packets();
       bool get_draw_search_count();
       int get_search_count();
+      bool get_draw_focus_timer_bar();
       Hexagon::Powerbar::Powerbar &get_powerbar_ref();
    static AllegroFlare::FontBin& get_dummy_font_bin();
    ALLEGRO_FONT* obtain_text_font();

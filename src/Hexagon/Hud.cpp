@@ -27,7 +27,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool draw_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool draw_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool draw_focus_timer_bar)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -49,6 +49,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , packets(packets)
    , draw_search_count(draw_search_count)
    , search_count(search_count)
+   , draw_focus_timer_bar(draw_focus_timer_bar)
 {
 }
 
@@ -160,6 +161,12 @@ void Hud::set_search_count(int search_count)
 }
 
 
+void Hud::set_draw_focus_timer_bar(bool draw_focus_timer_bar)
+{
+   this->draw_focus_timer_bar = draw_focus_timer_bar;
+}
+
+
 std::vector<std::string> Hud::get_notifications()
 {
    return notifications;
@@ -229,6 +236,12 @@ bool Hud::get_draw_search_count()
 int Hud::get_search_count()
 {
    return search_count;
+}
+
+
+bool Hud::get_draw_focus_timer_bar()
+{
+   return draw_focus_timer_bar;
 }
 
 
