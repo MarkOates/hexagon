@@ -287,7 +287,7 @@ return fonts["Eurostile.ttf -22"];
 
 ALLEGRO_FONT* Hud::obtain_packet_text_font()
 {
-return fonts["Eurostile.ttf -18"];
+return fonts["Purista Medium.otf -18"];
 
 }
 
