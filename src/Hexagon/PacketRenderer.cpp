@@ -56,8 +56,9 @@ window.set_outer_line_opacity(0.2);
 window.set_outer_line_thickness(2.0);
 
 ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+int line_height = al_get_font_line_height(font) * 2;
 al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: %d", packet->get_searches_count());
-al_draw_textf(font, text_color, 20, 40, ALLEGRO_ALIGN_LEFT, "Saves: %d", packet->get_saves_count());
+al_draw_textf(font, text_color, 20, 20 + line_height, ALLEGRO_ALIGN_LEFT, "Saves: %d", packet->get_saves_count());
 
 window.draw();
 return;
