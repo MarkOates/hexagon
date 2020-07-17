@@ -1,14 +1,16 @@
 
 
 #include <Hexagon/PacketRenderer.hpp>
-
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
 {
 
 
-PacketRenderer::PacketRenderer()
+PacketRenderer::PacketRenderer(Hexagon::Packet* packet)
+   : packet(packet)
 {
 }
 
@@ -18,9 +20,16 @@ PacketRenderer::~PacketRenderer()
 }
 
 
-std::string PacketRenderer::run()
+void PacketRenderer::render()
 {
-return "Hello World!";
+if (!(packet))
+   {
+      std::stringstream error_message;
+      error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"packet\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return;
+
 }
 } // namespace Hexagon
 

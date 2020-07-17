@@ -1,4 +1,18 @@
+properties:
+
+  - name: packet
+    type: Hexagon::Packet*
+    init_with: nullptr
+    constructor_arg: true
+
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+
+  - name: render
+    guards: [ packet ]
+    body: |
+      return;
+
+dependencies:
+
+  - symbol: Hexagon::Packet*
+    headers: [ Hexagon/Packet.hpp ]

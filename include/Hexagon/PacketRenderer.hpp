@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <string>
+#include <Hexagon/Packet.hpp>
 
 
 namespace Hexagon
@@ -9,13 +9,14 @@ namespace Hexagon
    class PacketRenderer
    {
    private:
+      Hexagon::Packet* packet;
 
    public:
-      PacketRenderer();
+      PacketRenderer(Hexagon::Packet* packet=nullptr);
       ~PacketRenderer();
 
 
-   std::string run();
+   void render();
    };
 }
 
