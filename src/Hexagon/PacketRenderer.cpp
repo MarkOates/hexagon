@@ -90,7 +90,7 @@ std::vector<std::tuple<std::string, std::string>> table = {
 
 int line_number = 0;
 float row1_x = 20;
-float row2_x = 175;
+float row2_x = 155;
 float first_row_y = 20;
 int line_height = al_get_font_line_height(font) * 1.4;
 for (auto &row : table)

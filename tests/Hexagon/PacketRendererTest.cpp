@@ -70,7 +70,7 @@ public:
    }
 };
 std::string Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture::FONT_PATH =
-   "/Users/markoates/Repos/hexagon/tests/fixtures/data/fonts/Eurostile.ttf";
+   "/Users/markoates/Repos/hexagon/bin/programs/data/fonts/Purista Medium.otf";
 
 
 TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture,
@@ -83,8 +83,8 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture,
 TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
    render__will_render_the_packet)
 {
-   int width = 300;
-   int height = 170;
+   int width = 180;
+   int height = 116;
    Hexagon::Packet packet(7, 12);
 
    placement3d place = build_centered_placement(width, height);

@@ -461,7 +461,7 @@ if (draw_packets)
    float x = 90;
    float y = frame_height - 130;
    float width = 180;
-   float height = 120;
+   float height = 116;
    float spacing = 20;
 
    float y_increment = -(height + spacing);
