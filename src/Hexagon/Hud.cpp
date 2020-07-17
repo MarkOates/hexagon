@@ -442,12 +442,13 @@ if (draw_packets)
    place.size.y = height;
    place.align.x = 0.0;
    place.align.y = 1.0;
+   ALLEGRO_FONT *packet_text_font = obtain_score_text_font();
 
    for (auto &packet : packets)
    {
       place.start_transform();
 
-      Hexagon::PacketRenderer packet_renderer(&packet, place.size.x, place.size.y);
+      Hexagon::PacketRenderer packet_renderer(&packet, packet_text_font, place.size.x, place.size.y);
       packet_renderer.render();
 
       place.restore_transform();

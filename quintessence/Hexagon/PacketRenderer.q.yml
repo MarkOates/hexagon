@@ -4,6 +4,10 @@ properties:
     type: Hexagon::Packet*
     init_with: nullptr
     constructor_arg: true
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    constructor_arg: true
   - name: width
     type: float
     init_with: 1.0
@@ -16,7 +20,7 @@ properties:
 functions:
 
   - name: render
-    guards: [ packet, al_is_primitives_addon_initialized() ]
+    guards: [ packet, font, al_is_primitives_addon_initialized() ]
     body: |
       Hexagon::Elements::Window window(width, height);
 
@@ -28,6 +32,10 @@ functions:
       window.set_outer_line_opacity(0.2);
       window.set_outer_line_thickness(2.0);
 
+      ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+      al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: %d", packet->get_searches_count());
+      al_draw_textf(font, text_color, 20, 40, ALLEGRO_ALIGN_LEFT, "Saves: %d", packet->get_saves_count());
+
       window.draw();
       return;
     body_dependency_symbols:
@@ -36,6 +44,8 @@ functions:
 
 dependencies:
 
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
   - symbol: Hexagon::Packet*
     headers: [ Hexagon/Packet.hpp ]
   - symbol: al_is_primitives_addon_initialized

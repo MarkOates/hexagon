@@ -83,7 +83,7 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
 
    place.start_transform();
 
-   Hexagon::PacketRenderer packet_renderer(&packet, place.size.x, place.size.y);
+   Hexagon::PacketRenderer packet_renderer(&packet, font, place.size.x, place.size.y);
    packet_renderer.render();
 
    place.restore_transform();

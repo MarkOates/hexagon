@@ -11,8 +11,9 @@ namespace Hexagon
 {
 
 
-PacketRenderer::PacketRenderer(Hexagon::Packet* packet, float width, float height)
+PacketRenderer::PacketRenderer(Hexagon::Packet* packet, ALLEGRO_FONT* font, float width, float height)
    : packet(packet)
+   , font(font)
    , width(width)
    , height(height)
 {
@@ -32,6 +33,12 @@ if (!(packet))
       error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"packet\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 if (!(al_is_primitives_addon_initialized()))
    {
       std::stringstream error_message;
@@ -47,6 +54,10 @@ window.set_cell_padding(10);
 window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
 window.set_outer_line_opacity(0.2);
 window.set_outer_line_thickness(2.0);
+
+ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: %d", packet->get_searches_count());
+al_draw_textf(font, text_color, 20, 40, ALLEGRO_ALIGN_LEFT, "Saves: %d", packet->get_saves_count());
 
 window.draw();
 return;
