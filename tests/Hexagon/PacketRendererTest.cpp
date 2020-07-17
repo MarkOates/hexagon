@@ -72,6 +72,7 @@ public:
 std::string Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture::FONT_PATH =
    "/Users/markoates/Repos/hexagon/tests/fixtures/data/fonts/Eurostile.ttf";
 
+
 TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture,
    can_be_created_without_blowing_up)
 {
