@@ -1,5 +1,6 @@
 properties:
 
+
   - name: packet
     type: Hexagon::Packet*
     init_with: nullptr
@@ -17,7 +18,9 @@ properties:
     init_with: 1.0
     constructor_arg: true
 
+
 functions:
+
 
   - name: render
     guards: [ packet, font, al_is_primitives_addon_initialized() ]
@@ -33,6 +36,7 @@ functions:
     body_dependency_symbols:
       - al_is_primitives_addon_initialized
       - Hexagon::Elements::Window
+
 
   - name: render_window
     private: true
@@ -54,6 +58,7 @@ functions:
 
 
 dependencies:
+
 
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
