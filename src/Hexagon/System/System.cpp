@@ -130,6 +130,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , focused_component_name("")
    , focused_component_name_relative_names()
    , font_bin()
+   , packets()
    , hud(display, font_bin)
    , default_camera_stepback(70 + 60)
 {

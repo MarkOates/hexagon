@@ -12,6 +12,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/Hud.hpp>
+#include <Hexagon/Packet.hpp>
 
 
 class System
@@ -39,6 +40,7 @@ public:
    bool command_mode;
    std::string focused_component_name;
    std::vector<std::string> focused_component_name_relative_names;
+   std::vector<Hexagon::Packet> packets;
    AllegroFlare::FontBin font_bin;
    Hexagon::Hud hud;
    float default_camera_stepback;
