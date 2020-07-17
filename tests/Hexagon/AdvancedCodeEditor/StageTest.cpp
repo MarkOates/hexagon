@@ -296,21 +296,27 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
 {
-   Hexagon::AdvancedCodeEditor::Stage stage;
-   //stage.set_content(SONNET_TEXT);
+   std::vector<std::string> lines, original_lines;
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   stage.initialize();
+   stage.set_content(SONNET_TEXT);
 
-   //int line_numbers_to_test[] = { -1, stage.num_lines()+10, -10, };
+   original_lines = stage.get_lines();
 
-   //for (auto &line_number_to_test : line_numbers_to_test)
-   //{
-   //   stage.set_cursor_y(line_number_to_test);
-   //   ASSERT_EQ(false, stage.join_lines());
-   //}
+   int line_numbers_to_test[] = { -1, (int)(original_lines.size()+10), -10, };
 
-   //SUCCEED();
+   for (auto &line_number_to_test : line_numbers_to_test)
+   {
+      stage.cursor_move_to(0, line_number_to_test);
+
+      ASSERT_EQ(false, stage.join_lines());
+
+      lines = stage.get_lines();
+      ASSERT_EQ(lines, original_lines);
+   }
 }
 
 
