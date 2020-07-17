@@ -5,6 +5,7 @@
 #include <Hexagon/Elements/Window.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/Elements/Window.hpp>
 
 
 namespace Hexagon
@@ -45,6 +46,19 @@ if (!(al_is_primitives_addon_initialized()))
       error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
       throw std::runtime_error(error_message.str());
    }
+render_window();
+
+ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+int line_height = al_get_font_line_height(font) * 2;
+al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: %d", packet->get_searches_count());
+al_draw_textf(font, text_color, 20, 20 + line_height, ALLEGRO_ALIGN_LEFT, "Saves: %d", packet->get_saves_count());
+
+return;
+
+}
+
+void PacketRenderer::render_window()
+{
 Hexagon::Elements::Window window(width, height);
 
 window.set_box_fill_color(ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 1.0f});
@@ -54,11 +68,6 @@ window.set_cell_padding(10);
 window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
 window.set_outer_line_opacity(0.2);
 window.set_outer_line_thickness(2.0);
-
-ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
-int line_height = al_get_font_line_height(font) * 2;
-al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: %d", packet->get_searches_count());
-al_draw_textf(font, text_color, 20, 20 + line_height, ALLEGRO_ALIGN_LEFT, "Saves: %d", packet->get_saves_count());
 
 window.draw();
 return;
