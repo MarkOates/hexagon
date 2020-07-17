@@ -9,6 +9,8 @@
 #include <Hexagon/Hud.hpp>
 
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include <allegro_flare/placement3d.h>
 
 class Hexagon_Elements_HudTest_WithEmptyFixture : public ::testing::Test
@@ -34,6 +36,8 @@ public:
       ASSERT_EQ(false, al_is_system_installed());
       ASSERT_EQ(true, al_init());
       ASSERT_EQ(true, al_init_primitives_addon());
+      ASSERT_EQ(true, al_init_font_addon());
+      ASSERT_EQ(true, al_init_ttf_addon());
       display = al_create_display(1280*2, 720*2);
       font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
@@ -42,6 +46,8 @@ public:
    virtual void TearDown() override
    {
       font_bin.clear();
+      al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
+                               // see https://www.allegro.cc/forums/thread/618183
       al_destroy_display(display);
       al_uninstall_system();
    }
@@ -91,13 +97,15 @@ TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
-   DISABLED_render__will_render_the_hud)
+   render__will_render_the_hud)
 {
-   Hexagon::Hud hud(display);
+   Hexagon::Hud hud(display, font_bin);
    hud.initialize();
 
    hud.draw();
 
    al_flip_display();
+
+   sleep(2);
 }
 
