@@ -28,7 +28,6 @@ namespace Hexagon
          ~Renderer();
 
 
-      void draw_focus_timer_bar();
       void draw_individual_rectangle(float x1=0.0f, float y1=0.0f, float x2=0.0f, float y2=0.0f, std::string text="[-]");
       void render();
       };
