@@ -307,10 +307,12 @@ functions:
       if (draw_packets)
       {
          float x = 90;
-         float y = frame_height - 100;
-         float y_increment = 200;
-         float width = 200;
-         float height = 180;
+         float y = frame_height - 130;
+         float width = 180;
+         float height = 120;
+         float spacing = 20;
+
+         float y_increment = -(height + spacing);
 
          placement3d place(x, y, 0.0);
          place.size.x = width;

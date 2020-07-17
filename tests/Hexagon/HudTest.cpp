@@ -113,7 +113,10 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    Hexagon::Hud hud(display, font_bin);
    hud.initialize();
 
-   std::vector<Hexagon::Packet> packets = {};
+   std::vector<Hexagon::Packet> packets = {
+      Hexagon::Packet(1, 42),
+      Hexagon::Packet(2, 15)
+   };
    hud.set_packets(packets);
 
    hud.draw();
