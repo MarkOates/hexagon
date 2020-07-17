@@ -115,14 +115,15 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
-   render__will_render_packets)
+   render__will_render_packets_with_newest_packets_at_the_bottom)
 {
    Hexagon::Hud hud(display, font_bin);
    hud.initialize();
 
    std::vector<Hexagon::Packet> packets = {
       Hexagon::Packet(1, 42),
-      Hexagon::Packet(2, 15)
+      Hexagon::Packet(2, 15),
+      Hexagon::Packet(3, 27),
    };
    hud.set_packets(packets);
 

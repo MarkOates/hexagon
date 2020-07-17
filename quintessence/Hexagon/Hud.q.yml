@@ -321,8 +321,9 @@ functions:
          place.align.y = 1.0;
          ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
 
-         for (auto &packet : packets)
+         for (int i = (packets.size()-1); i>=0; i--)
          {
+            auto &packet = packets[i];
             place.start_transform();
 
             Hexagon::PacketRenderer packet_renderer(&packet, packet_text_font, place.size.x, place.size.y);
