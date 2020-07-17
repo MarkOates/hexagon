@@ -2,7 +2,6 @@
 
 #include <Hexagon/PacketRenderer.hpp>
 #include <allegro5/allegro_primitives.h>
-#include <Hexagon/Elements/Window.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/Elements/Window.hpp>

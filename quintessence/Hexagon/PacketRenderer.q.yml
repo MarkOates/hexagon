@@ -35,7 +35,6 @@ functions:
       return;
     body_dependency_symbols:
       - al_is_primitives_addon_initialized
-      - Hexagon::Elements::Window
 
 
   - name: render_window
