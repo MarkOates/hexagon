@@ -298,6 +298,33 @@ functions:
          );
       }
 
+      if (draw_packets)
+      {
+         float x = 90;
+         float y = frame_height - 100;
+         float y_increment = 200;
+         float width = 200;
+         float height = 180;
+
+         placement3d place(x, y, 0.0);
+         place.size.x = width;
+         place.size.y = height;
+         place.align.x = 0.0;
+         place.align.y = 1.0;
+
+         for (auto &packet : packets)
+         {
+            place.start_transform();
+
+            Hexagon::PacketRenderer packet_renderer(&packet, place.size.x, place.size.y);
+            packet_renderer.render();
+
+            place.restore_transform();
+
+            place.position.y += y_increment;
+         }
+      }
+
       if (draw_powerbar)
       {
          powerbar.set_files_are_committed(files_are_committed);
@@ -311,12 +338,14 @@ functions:
       al_restore_state(&previous_target_bitmap_state);
       return;
     body_dependency_symbols:
+      - placement3d
       - al_get_font_ascent
       - ALLEGRO_COLOR
       - al_color_name
       - al_draw_text
       - Hexagon::Powerbar::Powerbar
       - Hexagon::Powerbar::Renderer
+      - Hexagon::PacketRenderer
 
 
 dependencies:
@@ -356,3 +385,7 @@ dependencies:
     headers: [ Hexagon/shared_globals.hpp ]
   - symbol: std::vector<Hexagon::Packet>
     headers: [ vector, Hexagon/Packet.hpp ]
+  - symbol: Hexagon::PacketRenderer
+    headers: [ Hexagon/PacketRenderer.hpp ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]

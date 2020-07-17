@@ -7,12 +7,14 @@
 #include <allegro5/allegro.h>
 #include <AllegroFlare/Color.hpp>
 #include <Hexagon/shared_globals.hpp>
+#include <allegro_flare/placement3d.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <Hexagon/Powerbar/Powerbar.hpp>
 #include <Hexagon/Powerbar/Renderer.hpp>
+#include <Hexagon/PacketRenderer.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -425,6 +427,33 @@ if (draw_search_count)
       ALLEGRO_ALIGN_LEFT,
       search_count_text_to_draw.c_str()
    );
+}
+
+if (draw_packets)
+{
+   float x = 90;
+   float y = frame_height - 100;
+   float y_increment = 200;
+   float width = 200;
+   float height = 180;
+
+   placement3d place(x, y, 0.0);
+   place.size.x = width;
+   place.size.y = height;
+   place.align.x = 0.0;
+   place.align.y = 1.0;
+
+   for (auto &packet : packets)
+   {
+      place.start_transform();
+
+      Hexagon::PacketRenderer packet_renderer(&packet, place.size.x, place.size.y);
+      packet_renderer.render();
+
+      place.restore_transform();
+
+      place.position.y += y_increment;
+   }
 }
 
 if (draw_powerbar)
