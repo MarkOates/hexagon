@@ -408,6 +408,12 @@ bool System::increment_save_count()
    return true;
 }
 
+bool System::clear_save_count()
+{
+   save_count = 0;
+   return true;
+}
+
 bool System::set_hud_save_count_to_save_count()
 {
    hud.set_save_count(save_count);
@@ -420,9 +426,21 @@ bool System::increment_search_count()
    return true;
 }
 
+bool System::clear_search_count()
+{
+   search_count = 0;
+   return true;
+}
+
 bool System::set_hud_search_count_to_search_count()
 {
    hud.set_search_count(search_count);
+   return true;
+}
+
+bool System::set_hud_packets_to_packets()
+{
+   hud.set_packets(packets);
    return true;
 }
 
@@ -1310,6 +1328,17 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
 
    Hexagon::Git::CommitStagedWithMessage commit_staged_with_message(current_project_directory, commit_message);
    commit_staged_with_message.commit();
+
+   // append packet to packets
+   Hexagon::Packet new_packet_to_append(search_count, save_count);
+   packets.push_back(new_packet_to_append);
+
+   // refresh hud packets
+   set_hud_packets_to_packets();
+
+   // clear scores
+   clear_search_count();
+   clear_save_count();
 
    return true;
 }
