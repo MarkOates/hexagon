@@ -61,7 +61,12 @@ functions:
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
       int line_height = al_get_font_line_height(font) * 1.4;
 
-      std::vector<std::tuple<std::string, std::string>> table = {};
+      std::vector<std::tuple<std::string, std::string>> table = {
+         { "SEARCHES", std::to_string(packet->get_searches_count()) },
+         { "SAVES",    std::to_string(packet->get_saves_count()) },
+         { "SCORE",    std::to_string(packet->calculate_score()) },
+      };
+
 
       // draw searches
       al_draw_textf(font, text_color, 20, 20, ALLEGRO_ALIGN_LEFT, "Searches: %d", packet->get_searches_count());
