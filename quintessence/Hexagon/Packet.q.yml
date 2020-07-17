@@ -1,0 +1,12 @@
+properties:
+
+  - name: searches_count
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
+  - name: saves_count
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
