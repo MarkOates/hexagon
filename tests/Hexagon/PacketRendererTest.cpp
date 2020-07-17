@@ -75,8 +75,8 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture,
 TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
    render__will_render_the_packet)
 {
-   int width = 200;
-   int height = 180;
+   int width = 300;
+   int height = 170;
    Hexagon::Packet packet;
 
    placement3d place = build_centered_placement(width, height);
