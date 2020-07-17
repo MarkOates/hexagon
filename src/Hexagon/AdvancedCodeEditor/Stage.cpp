@@ -79,6 +79,7 @@ if (is_cursor_on_last_line()) return false;
 lines[cursor.get_y()] += lines[cursor.get_y()+1];
 lines.erase(lines.begin() + cursor.get_y()+1);
 
+refresh_text_mesh();
 //mark_content_is_modified();
 return true;
 

@@ -349,6 +349,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    join_lines__refreshes_the_text_mesh)
 {
+   // TODO
 }
 
 
