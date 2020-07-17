@@ -4,15 +4,28 @@ properties:
     type: Hexagon::Packet*
     init_with: nullptr
     constructor_arg: true
+  - name: width
+    type: float
+    init_with: 1.0
+    constructor_arg: true
+  - name: height
+    type: float
+    init_with: 1.0
+    constructor_arg: true
 
 functions:
 
   - name: render
-    guards: [ packet ]
+    guards: [ packet, al_is_primitives_addon_initialized() ]
     body: |
+      al_draw_filled_rectangle(0, 0, width, height, ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2});
       return;
+    body_dependency_symbols:
+      - al_is_primitives_addon_initialized
 
 dependencies:
 
   - symbol: Hexagon::Packet*
     headers: [ Hexagon/Packet.hpp ]
+  - symbol: al_is_primitives_addon_initialized
+    headers: [ allegro5/allegro_primitives.h ]
