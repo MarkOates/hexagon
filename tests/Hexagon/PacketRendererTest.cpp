@@ -36,7 +36,7 @@ public:
       ASSERT_EQ(true, al_init_ttf_addon());
       ASSERT_EQ(true, al_init_primitives_addon());
       display = al_create_display(1280*2, 720*2);
-      font = al_load_font(FONT_PATH.c_str(), -22, 0);
+      font = al_load_font(FONT_PATH.c_str(), -18, 0);
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
    }
 

@@ -88,7 +88,7 @@ al_draw_textf(font, text_color, 20, 20 + line_height, ALLEGRO_ALIGN_LEFT, "Saves
 
 // draw score
 al_draw_textf(font, text_color, 20, 20 + line_height * 2, ALLEGRO_ALIGN_LEFT,
-   "Score: 0",
+   "Score: %d",
    packet->calculate_score());
 return;
 

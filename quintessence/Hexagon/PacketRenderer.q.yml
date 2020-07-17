@@ -69,7 +69,7 @@ functions:
 
       // draw score
       al_draw_textf(font, text_color, 20, 20 + line_height * 2, ALLEGRO_ALIGN_LEFT,
-         "Score: 0",
+         "Score: %d",
          packet->calculate_score());
       return;
     body_dependency_symbols:

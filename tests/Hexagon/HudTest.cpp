@@ -130,6 +130,6 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   sleep(2);
 }
 

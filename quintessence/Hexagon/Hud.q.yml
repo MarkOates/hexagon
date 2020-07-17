@@ -150,7 +150,7 @@ functions:
   - name: obtain_packet_text_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Eurostile.ttf -22"];
+      return fonts["Eurostile.ttf -18"];
 
 
   - name: initialize
