@@ -24,7 +24,6 @@ Renderer::Renderer(ALLEGRO_DISPLAY* display, Hexagon::Powerbar::Powerbar* powerb
    , backfill_color(backfill_color)
    , width(width)
    , draw_state_boxes(true)
-   , draw_focus_timer(true)
 {
 }
 

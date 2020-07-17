@@ -21,7 +21,6 @@ namespace Hexagon
          ALLEGRO_COLOR backfill_color;
          float width;
          bool draw_state_boxes;
-         bool draw_focus_timer;
 
       public:
          Renderer(ALLEGRO_DISPLAY* display=nullptr, Hexagon::Powerbar::Powerbar* powerbar=nullptr, ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR backfill_color={0.0f,0.0f,0.0f,0.0f}, float width=1000.0f);

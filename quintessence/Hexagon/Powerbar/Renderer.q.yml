@@ -24,9 +24,6 @@ properties:
   - name: draw_state_boxes
     type: bool
     init_with: true
-  - name: draw_focus_timer
-    type: bool
-    init_with: true
 
 
 functions:
