@@ -1340,6 +1340,10 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
    clear_search_count();
    clear_save_count();
 
+   // refresh the cleared scores on the hud
+   set_hud_search_count_to_search_count();
+   set_hud_save_count_to_save_count();
+
    return true;
 }
 
