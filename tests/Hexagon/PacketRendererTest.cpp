@@ -5,6 +5,7 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/placement3d.h>
 
@@ -17,6 +18,7 @@ public:
 class Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture : public ::testing::Test
 {
 public:
+   static std::string FONT_PATH;
    ALLEGRO_DISPLAY* display;
    ALLEGRO_FONT* font;
 
@@ -30,15 +32,18 @@ public:
    {
       ASSERT_EQ(false, al_is_system_installed());
       ASSERT_EQ(true, al_init());
+      ASSERT_EQ(true, al_init_font_addon());
+      ASSERT_EQ(true, al_init_ttf_addon());
       ASSERT_EQ(true, al_init_primitives_addon());
       display = al_create_display(1280*2, 720*2);
-      font = al_create_builtin_font();
+      font = al_load_font(FONT_PATH.c_str(), -22, 0);
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
    }
 
    virtual void TearDown() override
    {
       if (font) al_destroy_font(font);
+      al_shutdown_ttf_addon();
       al_destroy_display(display);
       al_uninstall_system();
    }
@@ -64,6 +69,8 @@ public:
       );
    }
 };
+std::string Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture::FONT_PATH =
+   "/Users/markoates/Repos/hexagon/tests/fixtures/data/fonts/Eurostile.ttf";
 
 TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture,
    can_be_created_without_blowing_up)
@@ -77,7 +84,7 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
 {
    int width = 300;
    int height = 170;
-   Hexagon::Packet packet;
+   Hexagon::Packet packet(7, 12);
 
    placement3d place = build_centered_placement(width, height);
 
