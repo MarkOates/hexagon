@@ -16,13 +16,13 @@ public:
    Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture() {}
 };
 
-TEST(Hexagon_Elements_SingleBlockBarGraphTest,
+TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture,
    can_be_created_without_blowing_up)
 {
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
 }
 
-TEST(Hexagon_Elements_SingleBlockBarGraphTest,
+TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture,
    draw__without_allegro_initalized__raises_an_error)
 {
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
@@ -30,7 +30,7 @@ TEST(Hexagon_Elements_SingleBlockBarGraphTest,
    ASSERT_THROW_WITH_MESSAGE(single_block_bar_graph.draw(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_Elements_SingleBlockBarGraphTest,
+TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture,
    draw__when_the_primitives_addon_is_not_initalized__raises_an_error)
 {
    al_init();
@@ -43,7 +43,7 @@ TEST(Hexagon_Elements_SingleBlockBarGraphTest,
    al_uninstall_system();
 }
 
-TEST(Hexagon_Elements_SingleBlockBarGraphTest,
+TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture,
    draw__when_there_is_no_rendering_target__raises_an_error)
 {
    al_init();
