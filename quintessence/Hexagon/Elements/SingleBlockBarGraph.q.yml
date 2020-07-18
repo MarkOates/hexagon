@@ -40,10 +40,21 @@ properties:
 functions:
 
   - name: draw
+    guards: [ al_is_system_installed(), al_is_primitives_addon_initialized(), al_get_target_bitmap() ]
     body: |
       return;
+    body_dependency_symbols:
+      - al_is_system_installed
+      - al_is_primitives_addon_initialized
+      - al_get_target_bitmap
 
 dependencies:
 
+  - symbol: al_is_system_installed
+    headers: [ allegro5/allegro.h ]
+  - symbol: al_is_primitives_addon_initialized
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_get_target_bitmap
+    headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
