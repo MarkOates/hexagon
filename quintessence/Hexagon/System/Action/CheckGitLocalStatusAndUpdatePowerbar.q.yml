@@ -1,4 +1,29 @@
+parent_classes:
+
+  - class: ::Action
+    scope: public
+    init_with: '"Hexagon::System::Action::CheckGitLocalStatusAndUpdatePowerbar", ActionData()'
+
+properties:
+
+  - name: powerbar
+    type: Hexagon::Powerbar::Powerbar*
+    init_with: nullptr
+    constructor_arg: true
+
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+
+  - name: execute
+    type: bool
+    override: true
+    guards: [ powerbar ]
+    body: |
+      return true;
+
+dependencies:
+
+  - symbol: Hexagon::Powerbar::Powerbar*
+    headers: [ Hexagon/Powerbar/Powerbar.hpp ]
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]
+
