@@ -1355,6 +1355,7 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
    // refresh the cleared scores on the hud
    set_hud_search_count_to_search_count();
    set_hud_save_count_to_save_count();
+   bool check_git_local_status_and_update_powerbar();
 
    return true;
 }
