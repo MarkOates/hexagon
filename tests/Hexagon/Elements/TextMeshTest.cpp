@@ -76,9 +76,20 @@ TEST(Hexagon_Elements_TextMeshTest, destruct__without_initialization__raises_an_
    al_uninstall_system();
 }
 
-TEST(Hexagon_Elements_TextMeshTest, DISABLED_destruct__will_set_the_initialized_variable_to_false)
+TEST(Hexagon_Elements_TextMeshTest, destruct__will_set_the_initialized_variable_to_false)
 {
-   // TODO
+   al_init();
+   ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
+
+   Hexagon::Elements::TextMesh text_mesh(a_valid_font);
+   text_mesh.initialize();
+
+   text_mesh.destruct();
+
+   EXPECT_EQ(false, text_mesh.get_initialized());
+
+   al_destroy_font(a_valid_font);
+   al_uninstall_system();
 }
 
 TEST(Hexagon_Elements_TextMeshTest, set_font__after_initialization_has_occurred__raises_an_exception)
