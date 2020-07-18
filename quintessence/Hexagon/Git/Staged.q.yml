@@ -7,7 +7,7 @@ properties:
 
 functions:
 
-  - name: get_staged_response
+  - name: get_shell_response
     type: std::string
     body: |
       Blast::ShellCommandExecutorWithCallback executor(

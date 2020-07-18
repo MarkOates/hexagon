@@ -22,7 +22,7 @@ Staged::~Staged()
 }
 
 
-std::string Staged::get_staged_response()
+std::string Staged::get_shell_response()
 {
 Blast::ShellCommandExecutorWithCallback executor(
       build_staged_files_shell_command(),
