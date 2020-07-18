@@ -132,7 +132,7 @@ properties:
     constructor_arg: true
   - name: left_column_x
     type: float
-    init_with: 90
+    init_with: 60
     getter: true
     setter: true
     constructor_arg: true
