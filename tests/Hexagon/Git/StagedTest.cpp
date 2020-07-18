@@ -11,11 +11,11 @@ TEST(Hexagon_Git_StagedTest, can_be_created_without_blowing_up)
    Hexagon::Git::Staged staged;
 }
 
-TEST(Hexagon_Git_StagedTest, get_commit_everything_shell_command__returns_the_expected_value)
+TEST(Hexagon_Git_StagedTest, build_staged_files_shell_command__returns_the_expected_value)
 {
    Hexagon::Git::Staged staged("/A/Directory/Where/A/Project/Is/");
-   std::string expected_command = "(cd /A/Directory/Where/A/Project/Is/ && git diff --staged)";
-   std::string actual_command = staged.get_commit_everything_shell_command();
+   std::string expected_command = "(cd /A/Directory/Where/A/Project/Is/ && git diff --staged --name-only)";
+   std::string actual_command = staged.build_staged_files_shell_command();
    EXPECT_EQ(expected_command, actual_command);
 }
 

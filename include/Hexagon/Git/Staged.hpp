@@ -18,7 +18,7 @@ namespace Hexagon
          ~Staged();
 
 
-      std::string get_commit_everything_shell_command();
+      std::string build_staged_files_shell_command();
       std::string get_staged_response();
       };
    }
