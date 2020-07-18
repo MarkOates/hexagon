@@ -112,3 +112,24 @@ TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithAllegroRenderingFixture,
    sleep(1);
 }
 
+TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithAllegroRenderingFixture,
+   draw__respects__number_of_active_bars__bar_width__bar_height__bar_spacing__main_bar_color)
+{
+   Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
+   placement3d place = build_centered_placement(0, 0);
+
+   single_block_bar_graph.set_number_of_active_bars(3);
+   single_block_bar_graph.set_bar_width(20);
+   single_block_bar_graph.set_bar_height(60);
+   single_block_bar_graph.set_bar_spacing(30);
+   single_block_bar_graph.set_main_bar_color(ALLEGRO_COLOR{0.0f, 0.2f, 0.0f, 1.0f});
+
+   place.start_transform();
+   single_block_bar_graph.draw();
+   place.restore_transform();
+
+   al_flip_display();
+
+   sleep(1);
+}
+
