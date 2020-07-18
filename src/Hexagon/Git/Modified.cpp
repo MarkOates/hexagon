@@ -44,7 +44,7 @@ std::stringstream commit_everything_shell_command;
 commit_everything_shell_command << "("
                                 << "cd " << current_project_directory
                                 << " && "
-                                << "git ls-files --others --exclude-standard"
+                                << "git diff --name-only"
                                 << ")";
 
 return commit_everything_shell_command.str();
