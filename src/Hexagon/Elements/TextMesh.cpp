@@ -131,7 +131,11 @@ if (!(initialized))
       error_message << "TextMesh" << "::" << "destruct" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
-if (font_character_map_bitmap) al_destroy_bitmap(font_character_map_bitmap);
+if (font_character_map_bitmap)
+{
+   al_destroy_bitmap(font_character_map_bitmap);
+   font_character_map_bitmap = nullptr;
+}
 return;
 
 }

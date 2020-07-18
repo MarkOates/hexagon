@@ -87,7 +87,11 @@ functions:
     type: void
     guards: [ initialized ]
     body: |
-      if (font_character_map_bitmap) al_destroy_bitmap(font_character_map_bitmap);
+      if (font_character_map_bitmap)
+      {
+         al_destroy_bitmap(font_character_map_bitmap);
+         font_character_map_bitmap = nullptr;
+      }
       return;
 
 
