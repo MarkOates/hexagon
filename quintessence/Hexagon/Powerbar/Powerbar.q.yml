@@ -1,4 +1,5 @@
 properties:
+
   - name: files_are_modified
     type: bool
     init_with: true
@@ -25,6 +26,8 @@ properties:
     type: float
     init_with: 1200.0f
     getter: true
+
 dependencies:
+
   - symbol: std::time_t
     headers: [ ctime ]
