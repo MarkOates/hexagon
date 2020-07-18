@@ -250,28 +250,32 @@ functions:
 
       if (show_profiler) draw_profile_timer_graph();
 
-      ALLEGRO_COLOR color = al_color_name("red");
-      float notification_bottom_padding = al_get_font_line_height(obtain_text_font());
-      float font_line_height = al_get_font_line_height(obtain_text_font());
-      y_cursor=0;
-      for (auto &notification : notifications)
+      bool draw_notifications = true;
+      if (draw_notifications)
       {
-        float y_position = y_cursor * notification_bottom_padding;
-        al_draw_text(obtain_text_font(), color, 0, y_position, 0, notification.c_str());
-        y_cursor++;
-      }
+         ALLEGRO_COLOR color = al_color_name("red");
+         float notification_bottom_padding = al_get_font_line_height(obtain_text_font());
+         float font_line_height = al_get_font_line_height(obtain_text_font());
+         y_cursor=0;
+         for (auto &notification : notifications)
+         {
+            float y_position = y_cursor * notification_bottom_padding;
+            al_draw_text(obtain_text_font(), color, 0, y_position, 0, notification.c_str());
+            y_cursor++;
+         }
 
-      y_cursor=0;
-      for (auto &notification2 : notifications2)
-      {
-        float y_position = (y_cursor+1) * font_line_height;
-        al_draw_text(obtain_text_font(),
-                     color,
-                     frame_width,
-                     frame_height-y_position,
-                     ALLEGRO_ALIGN_RIGHT,
-                     notification2.c_str());
-        y_cursor++;
+         y_cursor=0;
+         for (auto &notification2 : notifications2)
+         {
+            float y_position = (y_cursor+1) * font_line_height;
+            al_draw_text(obtain_text_font(),
+                         color,
+                         frame_width,
+                         frame_height-y_position,
+                         ALLEGRO_ALIGN_RIGHT,
+                         notification2.c_str());
+            y_cursor++;
+         }
       }
 
       if (draw_save_count)
