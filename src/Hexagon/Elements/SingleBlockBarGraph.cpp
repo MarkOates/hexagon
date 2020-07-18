@@ -53,6 +53,12 @@ if (!(al_get_target_bitmap()))
       error_message << "SingleBlockBarGraph" << "::" << "draw" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
       throw std::runtime_error(error_message.str());
    }
+float bar_hwidth = bar_width * 0.5f;
+float bar_hheight = bar_height * 0.5f;
+for (int i=0; i<number_of_bg_bars; i++)
+{
+   al_draw_filled_rectangle(-bar_hwidth, -bar_hheight, bar_hwidth, bar_hheight, bg_bar_color);
+}
 return;
 
 }

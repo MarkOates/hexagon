@@ -91,3 +91,18 @@ TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture,
    al_uninstall_system();
 }
 
+TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithAllegroRenderingFixture,
+   draw__respects__number_of_bg_bars__bar_width__bar_height__bg_bar_color)
+{
+   Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
+   placement3d place = build_centered_placement(0, 0);
+
+   place.start_transform();
+   single_block_bar_graph.draw();
+   place.restore_transform();
+
+   sleep(2);
+
+   al_flip_display();
+}
+
