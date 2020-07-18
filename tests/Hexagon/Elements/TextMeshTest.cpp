@@ -63,9 +63,17 @@ TEST(Hexagon_Elements_TextMeshTest, initialize__will_set_the_initialized_variabl
    al_uninstall_system();
 }
 
-TEST(Hexagon_Elements_TextMeshTest, DISABLED_destruct__without_initialization__raises_an_exception)
+TEST(Hexagon_Elements_TextMeshTest, destruct__without_initialization__raises_an_exception)
 {
-   // TODO
+   al_init();
+   ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
+
+   Hexagon::Elements::TextMesh text_mesh(a_valid_font);
+   std::string expected_error_message = "TextMesh::destruct: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(text_mesh.destruct(), std::runtime_error, expected_error_message);
+
+   al_destroy_font(a_valid_font);
+   al_uninstall_system();
 }
 
 TEST(Hexagon_Elements_TextMeshTest, DISABLED_destruct__will_set_the_initialized_variable_to_false)
