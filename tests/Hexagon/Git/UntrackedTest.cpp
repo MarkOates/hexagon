@@ -31,8 +31,8 @@ TEST(Hexagon_Git_UntrackedTest, DISABLED_get_shell_response__will_return_a_list_
 {
    Hexagon::Git::Untracked untracked;
 
-   std::string expected_response = "foobar.txt\n";
-   std::string actual_response = untracked.get_shell_response();
+   std::vector<std::string> expected_response = { "foobar.txt" };
+   std::vector<std::string> actual_response = untracked.get_shell_response();
 
    EXPECT_EQ(expected_response, actual_response);
 }

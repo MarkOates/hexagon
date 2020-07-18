@@ -3,6 +3,7 @@
 #include <Hexagon/Git/Modified.hpp>
 #include <sstream>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <Blast/StringSplitter.hpp>
 
 
 namespace Hexagon
@@ -28,13 +29,14 @@ std::string Modified::get_current_project_directory()
 }
 
 
-std::string Modified::get_shell_response()
+std::vector<std::string> Modified::get_shell_response()
 {
 Blast::ShellCommandExecutorWithCallback executor(
       build_tracked_files_shell_command(),
       Blast::ShellCommandExecutorWithCallback::simple_silent_callback
    );
-return executor.execute();
+std::string command_output = executor.execute();
+return Blast::StringSplitter(command_output, '\n').split();
 
 }
 

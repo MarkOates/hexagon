@@ -9,16 +9,18 @@ properties:
 functions:
 
   - name: get_shell_response
-    type: std::string
+    type: std::vector<std::string>
     body: |
       Blast::ShellCommandExecutorWithCallback executor(
             build_tracked_files_shell_command(),
             Blast::ShellCommandExecutorWithCallback::simple_silent_callback
          );
-      return executor.execute();
+      std::string command_output = executor.execute();
+      return Blast::StringSplitter(command_output, '\n').split();
     body_dependency_symbols:
       - std::stringstream
       - Blast::ShellCommandExecutorWithCallback
+      - Blast::StringSplitter
 
   - name: build_tracked_files_shell_command
     type: std::string
@@ -37,3 +39,5 @@ dependencies:
 
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+  - symbol: Blast::StringSplitter
+    headers: [ 'Blast/StringSplitter.hpp' ]

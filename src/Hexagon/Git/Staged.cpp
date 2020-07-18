@@ -3,6 +3,7 @@
 #include <Hexagon/Git/Staged.hpp>
 #include <sstream>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <Blast/StringSplitter.hpp>
 
 
 namespace Hexagon
@@ -22,13 +23,20 @@ Staged::~Staged()
 }
 
 
-std::string Staged::get_shell_response()
+std::string Staged::get_current_project_directory()
+{
+   return current_project_directory;
+}
+
+
+std::vector<std::string> Staged::get_shell_response()
 {
 Blast::ShellCommandExecutorWithCallback executor(
       build_staged_files_shell_command(),
       Blast::ShellCommandExecutorWithCallback::simple_silent_callback
    );
-return executor.execute();
+std::string command_output = executor.execute();
+return Blast::StringSplitter(command_output, '\n').split();
 
 }
 

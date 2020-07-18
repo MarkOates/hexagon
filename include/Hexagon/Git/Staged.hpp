@@ -2,6 +2,7 @@
 
 
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -18,7 +19,8 @@ namespace Hexagon
          ~Staged();
 
 
-      std::string get_shell_response();
+         std::string get_current_project_directory();
+      std::vector<std::string> get_shell_response();
       std::string build_staged_files_shell_command();
       };
    }

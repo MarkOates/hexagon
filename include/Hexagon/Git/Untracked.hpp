@@ -2,6 +2,7 @@
 
 
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -19,7 +20,7 @@ namespace Hexagon
 
 
          std::string get_current_project_directory();
-      std::string get_shell_response();
+      std::vector<std::string> get_shell_response();
       std::string build_tracked_files_shell_command();
       };
    }
