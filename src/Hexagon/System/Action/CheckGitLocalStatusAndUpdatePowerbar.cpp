@@ -36,6 +36,15 @@ if (!(powerbar))
       error_message << "CheckGitLocalStatusAndUpdatePowerbar" << "::" << "execute" << ": error: " << "guard \"powerbar\" not met";
       throw std::runtime_error(error_message.str());
    }
+Hexagon::Git::Modified modified;
+std::string modified_files = modified.get_shell_response();
+
+Hexagon::Git::Untracked untracked;
+std::string untracked_files = untracked.get_shell_response();
+
+Hexagon::Git::Staged staged;
+std::string staged_files = staged.get_shell_response();
+
 return true;
 
 }
