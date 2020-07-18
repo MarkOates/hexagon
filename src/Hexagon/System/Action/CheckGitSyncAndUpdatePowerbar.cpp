@@ -2,6 +2,8 @@
 
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
 #include <Hexagon/Git/RemoteSyncChecker.hpp>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -40,10 +42,12 @@ std::string CheckGitSyncAndUpdatePowerbar::get_repos_directory()
 
 bool CheckGitSyncAndUpdatePowerbar::execute()
 {
-if (!powerbar)
-{
-   throw std::runtime_error("asdfa joida f");
-}
+if (!(powerbar))
+   {
+      std::stringstream error_message;
+      error_message << "CheckGitSyncAndUpdatePowerbar" << "::" << "execute" << ": error: " << "guard \"powerbar\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 Hexagon::Git::RemoteSyncChecker sync_checker(repo_name, repos_directory);
 bool is_in_sync_with_remote = sync_checker.is_in_sync_with_remote();
 

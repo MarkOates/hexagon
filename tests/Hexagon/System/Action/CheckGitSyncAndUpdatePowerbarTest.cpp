@@ -14,10 +14,10 @@ TEST(Hexagon_System_Action_CheckGitSyncAndUpdatePowerbarTest, can_be_created_wit
 }
 
 TEST(Hexagon_System_Action_CheckGitSyncAndUpdatePowerbarTest,
-   execute__with_a_nullptr_powerbar_throws_an_error)
+   execute__without_a_valid_powerbar__throws_an_error)
 {
    Hexagon::System::Action::CheckGitSyncAndUpdatePowerbar check_git_sync_and_update_powerbar;
-   std::string expected_message = "asdfa joida f";
-   ASSERT_THROW_WITH_MESSAGE(check_git_sync_and_update_powerbar.execute(), std::runtime_error, expected_message);
+   std::string expected_error_message = "CheckGitSyncAndUpdatePowerbar::execute: error: guard \"powerbar\" not met";
+   ASSERT_THROW_WITH_MESSAGE(check_git_sync_and_update_powerbar.execute(), std::runtime_error, expected_error_message);
 }
 

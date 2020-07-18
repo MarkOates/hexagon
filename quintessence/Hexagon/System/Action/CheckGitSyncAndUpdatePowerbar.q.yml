@@ -25,11 +25,8 @@ functions:
   - name: execute
     type: bool
     override: true
+    guards: [ powerbar ]
     body: |
-      if (!powerbar)
-      {
-         throw std::runtime_error("asdfa joida f");
-      }
       Hexagon::Git::RemoteSyncChecker sync_checker(repo_name, repos_directory);
       bool is_in_sync_with_remote = sync_checker.is_in_sync_with_remote();
 
