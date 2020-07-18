@@ -45,6 +45,7 @@
 #include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
 #include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
+#include <Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.hpp>
 #include <Hexagon/System/Action/OpenConfigFile.hpp>
 #include <Hexagon/System/EventController.hpp>
 #include <Hexagon/Git/StageEverything.hpp>
@@ -1070,7 +1071,12 @@ bool System::check_git_sync_and_update_powerbar()
 
 bool System::check_git_local_status_and_update_powerbar()
 {
-   return true;
+   //std::string repo_name = "blast";
+   //std::string repos_directory = "~/Repos";
+   Hexagon::Powerbar::Powerbar* powerbar = &hud.get_powerbar_ref();
+   std::string current_project_directory = get_default_navigator_directory();
+   Hexagon::System::Action::CheckGitLocalStatusAndUpdatePowerbar action(current_project_directory, powerbar);
+   return action.execute();
 }
 
 bool System::run_make()

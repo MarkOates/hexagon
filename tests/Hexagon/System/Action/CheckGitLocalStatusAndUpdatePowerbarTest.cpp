@@ -26,8 +26,9 @@ TEST(Hexagon_System_Action_CheckGitLocalStatusAndUpdatePowerbarTest,
 TEST(Hexagon_System_Action_CheckGitLocalStatusAndUpdatePowerbarTest,
    execute__does_not_blow_up)
 {
+   std::string current_project_directory = "/Users/markoates/Repos/hexagon/";
    Hexagon::Powerbar::Powerbar powerbar;
-   Hexagon::System::Action::CheckGitLocalStatusAndUpdatePowerbar action(&powerbar);
+   Hexagon::System::Action::CheckGitLocalStatusAndUpdatePowerbar action(current_project_directory, &powerbar);
    ASSERT_EQ(true, action.execute());
 }
 

@@ -6,6 +6,11 @@ parent_classes:
 
 properties:
 
+  - name: current_project_directory
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon/"'
+    constructor_arg: true
+    getter: true
   - name: powerbar
     type: Hexagon::Powerbar::Powerbar*
     init_with: nullptr
@@ -18,13 +23,13 @@ functions:
     override: true
     guards: [ powerbar ]
     body: |
-      Hexagon::Git::Modified modified;
+      Hexagon::Git::Modified modified(current_project_directory);
       std::vector<std::string> modified_files = modified.get_shell_response();
 
-      Hexagon::Git::Untracked untracked;
+      Hexagon::Git::Untracked untracked(current_project_directory);
       std::vector<std::string> untracked_files = untracked.get_shell_response();
 
-      Hexagon::Git::Staged staged;
+      Hexagon::Git::Staged staged(current_project_directory);
       std::vector<std::string> staged_files = staged.get_shell_response();
 
       return true;
