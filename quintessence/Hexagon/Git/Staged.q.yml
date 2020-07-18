@@ -1,16 +1,12 @@
 properties:
+
   - name: current_project_directory
     type: std::string
     init_with: "\"/Users/markoates/Repos/hexagon/\""
     constructor_arg: true
+
 functions:
-  - name: build_staged_files_shell_command
-    type: std::string
-    private: true
-    body: |
-      std::stringstream commit_everything_shell_command;
-      commit_everything_shell_command << "(cd " << current_project_directory << " && git diff --staged --name-only)";
-      return commit_everything_shell_command.str();
+
   - name: get_staged_response
     type: std::string
     body: |
@@ -19,6 +15,16 @@ functions:
     body_dependency_symbols:
       - std::stringstream
       - Blast::ShellCommandExecutorWithCallback
+
+  - name: build_staged_files_shell_command
+    type: std::string
+    private: true
+    body: |
+      std::stringstream commit_everything_shell_command;
+      commit_everything_shell_command << "(cd " << current_project_directory << " && git diff --staged --name-only)";
+      return commit_everything_shell_command.str();
+
 dependencies:
+
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
