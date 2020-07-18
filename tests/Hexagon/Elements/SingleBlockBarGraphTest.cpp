@@ -109,7 +109,7 @@ TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithAllegroRenderingFixture,
@@ -130,7 +130,7 @@ TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithAllegroRenderingFixture,
@@ -146,6 +146,32 @@ TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithAllegroRenderingFixture,
    single_block_bar_graph.set_bar_spacing(30);
    single_block_bar_graph.set_main_bar_color(ALLEGRO_COLOR{0.0f, 0.4f, 0.4f, 1.0f});
    single_block_bar_graph.set_bg_bar_color(ALLEGRO_COLOR{0.2f, 0.2f, 0.2f, 1.0f});
+
+   place.start_transform();
+   single_block_bar_graph.draw();
+   place.restore_transform();
+
+   al_flip_display();
+
+   //sleep(1);
+}
+
+TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithAllegroRenderingFixture,
+   draw__respects__stroke_with__stroke_color)
+{
+   Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
+   placement3d place = build_centered_placement(0, 0);
+
+   single_block_bar_graph.set_number_of_bg_bars(8);
+   single_block_bar_graph.set_number_of_active_bars(5);
+   single_block_bar_graph.set_bar_width(20);
+   single_block_bar_graph.set_bar_height(60);
+   single_block_bar_graph.set_bar_spacing(40);
+   single_block_bar_graph.set_main_bar_color(ALLEGRO_COLOR{0.4f, 0.4f, 0.4f, 1.0f});
+   single_block_bar_graph.set_bg_bar_color(ALLEGRO_COLOR{0.2f, 0.2f, 0.2f, 1.0f});
+
+   single_block_bar_graph.set_stroke_width(5.0f);
+   single_block_bar_graph.set_stroke_color(ALLEGRO_COLOR{0.0f, 0.5f, 0.0f, 1.0f});
 
    place.start_transform();
    single_block_bar_graph.draw();

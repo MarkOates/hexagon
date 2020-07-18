@@ -62,7 +62,17 @@ functions:
       for (int i=0; i<number_of_active_bars; i++)
       {
          float bar_x = bar_start_x + bar_spacing * i;
+         // draw filled box
          al_draw_filled_rectangle(-bar_hwidth + bar_x, -bar_hheight, bar_hwidth + bar_x, bar_hheight, main_bar_color);
+         // draw outline stroke
+         al_draw_rectangle(
+            -bar_hwidth + bar_x,
+            -bar_hheight,
+            bar_hwidth + bar_x,
+            bar_hheight,
+            stroke_color,
+            stroke_width
+         );
       }
       return;
     body_dependency_symbols:
