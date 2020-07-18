@@ -453,7 +453,7 @@ if (draw_save_count)
    al_draw_text(
       score_text_font,
       al_color_name("gray"),
-      90,
+      left_column_x,
       frame_height - al_get_font_line_height(score_text_font) - 60,
       ALLEGRO_ALIGN_LEFT,
       save_count_text_to_draw.c_str()
@@ -468,7 +468,7 @@ if (draw_search_count)
    al_draw_text(
       score_text_font,
       al_color_name("gray"),
-      90,
+      left_column_x,
       frame_height - al_get_font_line_height(score_text_font) - 60 - 28,
       ALLEGRO_ALIGN_LEFT,
       search_count_text_to_draw.c_str()
@@ -477,7 +477,7 @@ if (draw_search_count)
 
 if (draw_packets)
 {
-   float x = 90;
+   float x = left_column_x;
    float y = frame_height - 130;
    float width = 150;
    float height = 116;
