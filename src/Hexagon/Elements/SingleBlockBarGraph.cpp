@@ -109,9 +109,11 @@ if (!(al_get_target_bitmap()))
    }
 float bar_hwidth = bar_width * 0.5f;
 float bar_hheight = bar_height * 0.5f;
+int bar_start_x = 0;
 for (int i=0; i<number_of_bg_bars; i++)
 {
-   al_draw_filled_rectangle(-bar_hwidth, -bar_hheight, bar_hwidth, bar_hheight, bg_bar_color);
+   float bar_x = bar_start_x + bar_spacing * i;
+   al_draw_filled_rectangle(-bar_hwidth + bar_x, -bar_hheight, bar_hwidth + bar_x, bar_hheight, bg_bar_color);
 }
 return;
 
