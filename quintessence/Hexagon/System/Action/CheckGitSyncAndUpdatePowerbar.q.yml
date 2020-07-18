@@ -1,8 +1,11 @@
 parent_classes:
+
   - class: ::Action
     scope: public
     init_with: "\"Hexagon::System::Action::CheckGitSyncAndUpdatePowerbar\", ActionData()"
+
 properties:
+
   - name: repo_name
     getter: true
     init_with: "\"blast\""
@@ -16,7 +19,9 @@ properties:
     type: Hexagon::Powerbar::Powerbar*
     init_with: nullptr
     constructor_arg: true
+
 functions:
+
   - name: execute
     type: bool
     override: true
@@ -33,7 +38,9 @@ functions:
       return true;
     body_dependency_symbols:
     - Hexagon::Git::RemoteSyncChecker
+
 dependencies:
+
   - symbol: Hexagon::Powerbar::Powerbar*
     headers: [ Hexagon/Powerbar/Powerbar.hpp ]
   - symbol: Hexagon::Git::RemoteSyncChecker
