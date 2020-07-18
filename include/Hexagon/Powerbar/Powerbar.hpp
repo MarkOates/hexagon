@@ -20,7 +20,7 @@ namespace Hexagon
          float focus_timer_duration_sec;
 
       public:
-         Powerbar(bool files_are_modified=true, bool files_are_staged=true, bool files_are_untracked=true, bool files_are_committed=true, bool commits_are_in_sync_with_remote=true);
+         Powerbar(bool files_are_modified=false, bool files_are_staged=false, bool files_are_untracked=false, bool files_are_committed=true, bool commits_are_in_sync_with_remote=true);
          ~Powerbar();
 
          void set_files_are_modified(bool files_are_modified);

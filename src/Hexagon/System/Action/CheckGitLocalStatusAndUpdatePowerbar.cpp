@@ -52,6 +52,15 @@ std::vector<std::string> untracked_files = untracked.get_shell_response();
 Hexagon::Git::Staged staged(current_project_directory);
 std::vector<std::string> staged_files = staged.get_shell_response();
 
+bool files_are_modified = !modified_files.empty();
+powerbar->set_files_are_modified(files_are_modified);
+
+bool files_are_untracked = !untracked_files.empty();
+powerbar->set_files_are_untracked(files_are_untracked);
+
+bool files_are_staged = !staged_files.empty();
+powerbar->set_files_are_staged(files_are_staged);
+
 return true;
 
 }

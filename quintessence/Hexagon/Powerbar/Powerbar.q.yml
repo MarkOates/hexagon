@@ -2,19 +2,19 @@ properties:
 
   - name: files_are_modified
     type: bool
-    init_with: true
+    init_with: false
     constructor_arg: true
     getter: true
     setter: true
   - name: files_are_staged
     type: bool
-    init_with: true
+    init_with: false
     constructor_arg: true
     getter: true
     setter: true
   - name: files_are_untracked
     type: bool
-    init_with: true
+    init_with: false
     constructor_arg: true
     getter: true
     setter: true

@@ -32,3 +32,17 @@ TEST(Hexagon_System_Action_CheckGitLocalStatusAndUpdatePowerbarTest,
    ASSERT_EQ(true, action.execute());
 }
 
+TEST(Hexagon_System_Action_CheckGitLocalStatusAndUpdatePowerbarTest,
+   DISABLED_execute__updates_the_powerbar)
+{
+   std::string current_project_directory = "/Users/markoates/Repos/hexagon/";
+   Hexagon::Powerbar::Powerbar powerbar;
+   Hexagon::System::Action::CheckGitLocalStatusAndUpdatePowerbar action(current_project_directory, &powerbar);
+
+   ASSERT_EQ(true, action.execute());
+
+   ASSERT_EQ(true, powerbar.get_files_are_modified());  // (hint: modify any file)
+   ASSERT_EQ(true, powerbar.get_files_are_staged());    // (hint: stage any file)
+   ASSERT_EQ(true, powerbar.get_files_are_untracked()); // (hint: touch foo.txt)
+}
+
