@@ -42,9 +42,10 @@ namespace Hexagon
       int search_count;
       bool draw_focus_timer_bar;
       bool draw_notifications;
+      float left_column_x;
 
    public:
-      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool draw_powerbar=false, bool files_are_modified=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=true, int save_count=0, bool draw_packets=true, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=true, int search_count=0, bool draw_focus_timer_bar=true, bool draw_notifications=true);
+      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool draw_powerbar=false, bool files_are_modified=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=true, int save_count=0, bool draw_packets=true, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=true, int search_count=0, bool draw_focus_timer_bar=true, bool draw_notifications=true, float left_column_x=90);
       ~Hud();
 
       void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
@@ -66,6 +67,7 @@ namespace Hexagon
       void set_search_count(int search_count);
       void set_draw_focus_timer_bar(bool draw_focus_timer_bar);
       void set_draw_notifications(bool draw_notifications);
+      void set_left_column_x(float left_column_x);
 
       std::vector<std::string> get_notifications();
       std::vector<std::string> get_notifications2();
@@ -81,6 +83,7 @@ namespace Hexagon
       int get_search_count();
       bool get_draw_focus_timer_bar();
       bool get_draw_notifications();
+      float get_left_column_x();
       Hexagon::Powerbar::Powerbar &get_powerbar_ref();
       Hexagon::FocusTimerBar::FocusTimerBar &get_focus_timer_bar_ref();
    static AllegroFlare::FontBin& get_dummy_font_bin();
