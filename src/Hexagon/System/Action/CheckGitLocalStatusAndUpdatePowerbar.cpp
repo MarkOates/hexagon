@@ -1,6 +1,9 @@
 
 
 #include <Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.hpp>
+#include <Hexagon/Git/Modified.hpp>
+#include <Hexagon/Git/Untracked.hpp>
+#include <Hexagon/Git/Staged.hpp>
 #include <stdexcept>
 #include <sstream>
 

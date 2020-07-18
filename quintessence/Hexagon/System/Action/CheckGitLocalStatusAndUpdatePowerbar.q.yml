@@ -19,11 +19,21 @@ functions:
     guards: [ powerbar ]
     body: |
       return true;
+    body_dependency_symbols:
+    - Hexagon::Git::Modified
+    - Hexagon::Git::Untracked
+    - Hexagon::Git::Staged
 
 dependencies:
 
   - symbol: Hexagon::Powerbar::Powerbar*
     headers: [ Hexagon/Powerbar/Powerbar.hpp ]
+  - symbol: Hexagon::Git::Modified
+    headers: [ Hexagon/Git/Modified.hpp ]
+  - symbol: Hexagon::Git::Untracked
+    headers: [ Hexagon/Git/Untracked.hpp ]
+  - symbol: Hexagon::Git::Staged
+    headers: [ Hexagon/Git/Staged.hpp ]
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
 
