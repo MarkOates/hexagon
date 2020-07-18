@@ -1,4 +1,49 @@
+properties:
+
+  - name: number_of_active_bars
+    type: int
+    init_with: 0
+    constructor_arg: true
+  - name: number_of_bg_bars
+    type: int
+    init_with: 0
+    constructor_arg: true
+  - name: bar_width
+    type: float
+    init_with: 1.0f
+    constructor_arg: true
+  - name: bar_height
+    type: float
+    init_with: 1.0f
+    constructor_arg: true
+  - name: bar_spacing
+    type: float
+    init_with: 0.0f
+    constructor_arg: true
+  - name: stroke_width
+    type: float
+    init_with: 1.0f
+    constructor_arg: true
+  - name: main_bar_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    constructor_arg: true
+  - name: bg_bar_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    constructor_arg: true
+  - name: stroke_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    constructor_arg: true
+
 functions:
+
   - name: run
     type: std::string
     body: return "Hello World!";
+
+dependencies:
+
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro.h ]
