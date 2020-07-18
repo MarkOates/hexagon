@@ -4,6 +4,7 @@ properties:
     type: std::string
     init_with: '"/Users/markoates/Repos/hexagon/"'
     constructor_arg: true
+    getter: true
 
 functions:
 

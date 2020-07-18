@@ -16,3 +16,14 @@ TEST(Hexagon_Git_UntrackedTest, build_tracked_files_shell_command__returns_the_e
    EXPECT_EQ(expected_command, actual_command);
 }
 
+TEST(Hexagon_Git_UntrackedTest, get_staged_response__will_not_output_anything_to_stdout)
+{
+   Hexagon::Git::Untracked untracked;
+
+   testing::internal::CaptureStdout();
+   untracked.get_shell_response();
+   std::string captured_cout_output = testing::internal::GetCapturedStdout();
+
+   EXPECT_EQ(true, captured_cout_output.empty());
+}
+

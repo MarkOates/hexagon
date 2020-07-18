@@ -22,6 +22,12 @@ Untracked::~Untracked()
 }
 
 
+std::string Untracked::get_current_project_directory()
+{
+   return current_project_directory;
+}
+
+
 std::string Untracked::get_shell_response()
 {
 Blast::ShellCommandExecutorWithCallback executor(
