@@ -27,3 +27,13 @@ TEST(Hexagon_Git_UntrackedTest, get_staged_response__will_not_output_anything_to
    EXPECT_EQ(true, captured_cout_output.empty());
 }
 
+TEST(Hexagon_Git_UntrackedTest, DISABLED_get_staged_response__will_return_a_list_of_untracked_files)
+{
+   Hexagon::Git::Untracked untracked;
+
+   std::string expected_response = "foobar.txt\n";
+   std::string actual_response = untracked.get_shell_response();
+
+   EXPECT_EQ(expected_response, actual_response);
+}
+
