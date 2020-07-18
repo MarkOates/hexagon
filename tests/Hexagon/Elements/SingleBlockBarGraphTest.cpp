@@ -8,6 +8,8 @@
 
 #include <Hexagon/Elements/SingleBlockBarGraph.hpp>
 
+#include <allegro5/allegro_primitives.h>
+
 TEST(Hexagon_Elements_SingleBlockBarGraphTest, can_be_created_without_blowing_up)
 {
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
@@ -27,6 +29,19 @@ TEST(Hexagon_Elements_SingleBlockBarGraphTest, draw__when_the_primitives_addon_i
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
    std::string expected_error_message =
       "SingleBlockBarGraph::draw: error: guard \"al_is_primitives_addon_initialized()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(single_block_bar_graph.draw(), std::runtime_error, expected_error_message);
+
+   al_uninstall_system();
+}
+
+TEST(Hexagon_Elements_SingleBlockBarGraphTest, draw__when_there_is_no_rendering_target_raises_an_error)
+{
+   al_init();
+   al_init_primitives_addon();
+
+   Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
+   std::string expected_error_message =
+      "SingleBlockBarGraph::draw: error: guard \"al_get_target_bitmap()\" not met";
    ASSERT_THROW_WITH_MESSAGE(single_block_bar_graph.draw(), std::runtime_error, expected_error_message);
 
    al_uninstall_system();
