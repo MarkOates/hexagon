@@ -49,6 +49,30 @@ TEST(Hexagon_Elements_TextMeshTest, initialize__will_set_the_cell_width_and_the_
    al_uninstall_system();
 }
 
+TEST(Hexagon_Elements_TextMeshTest, initialize__will_set_the_initialized_variable_to_true)
+{
+   al_init();
+   ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
+
+   Hexagon::Elements::TextMesh text_mesh(a_valid_font);
+   text_mesh.initialize();
+
+   EXPECT_EQ(true, text_mesh.get_initialized());
+
+   al_destroy_font(a_valid_font);
+   al_uninstall_system();
+}
+
+TEST(Hexagon_Elements_TextMeshTest, DISABLED_destruct__without_initialization__raises_an_exception)
+{
+   // TODO
+}
+
+TEST(Hexagon_Elements_TextMeshTest, DISABLED_destruct__will_set_the_initialized_variable_to_false)
+{
+   // TODO
+}
+
 TEST(Hexagon_Elements_TextMeshTest, set_font__after_initialization_has_occurred__raises_an_exception)
 {
    al_init();

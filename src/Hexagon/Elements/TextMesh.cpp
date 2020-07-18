@@ -136,6 +136,7 @@ if (font_character_map_bitmap)
    al_destroy_bitmap(font_character_map_bitmap);
    font_character_map_bitmap = nullptr;
 }
+initialized = false;
 return;
 
 }
