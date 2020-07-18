@@ -37,3 +37,13 @@ TEST(Hexagon_Git_StagedTest, get_staged_response__will_not_output_anything_to_st
    EXPECT_EQ(true, captured_cout_output.empty());
 }
 
+TEST(Hexagon_Git_StagedTest, DISABLED_get_staged_response__will_return_a_list_of_untracked_files)
+{
+   Hexagon::Git::Staged staged;
+
+   std::string expected_response = "tests/Hexagon/Git/StagedTest.cpp\n";
+   std::string actual_response = staged.get_staged_response();
+
+   EXPECT_EQ(expected_response, actual_response);
+}
+
