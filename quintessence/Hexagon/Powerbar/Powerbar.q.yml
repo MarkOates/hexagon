@@ -6,6 +6,18 @@ properties:
     constructor_arg: true
     getter: true
     setter: true
+  - name: files_are_staged
+    type: bool
+    init_with: true
+    constructor_arg: true
+    getter: true
+    setter: true
+  - name: files_are_untracked
+    type: bool
+    init_with: true
+    constructor_arg: true
+    getter: true
+    setter: true
   - name: files_are_committed
     type: bool
     init_with: true

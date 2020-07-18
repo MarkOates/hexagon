@@ -66,6 +66,16 @@ properties:
     init_with: false
     constructor_arg: true
     setter: true
+  - name: files_are_staged
+    type: bool
+    init_with: true
+    constructor_arg: true
+    setter: true
+  - name: files_are_untracked
+    type: bool
+    init_with: true
+    constructor_arg: true
+    setter: true
   - name: files_are_committed
     type: bool
     init_with: false
@@ -354,6 +364,8 @@ functions:
       {
          powerbar.set_files_are_committed(files_are_committed);
          powerbar.set_files_are_modified(files_are_modified);
+         powerbar.set_files_are_staged(files_are_staged);
+         powerbar.set_files_are_untracked(files_are_untracked);
          powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);
 
          Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_powerbar_text_font(), backfill_color);

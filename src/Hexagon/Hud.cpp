@@ -27,7 +27,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool draw_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool draw_focus_timer_bar, bool draw_notifications, float left_column_x)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_staged, bool files_are_untracked, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool draw_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool draw_focus_timer_bar, bool draw_notifications, float left_column_x)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -41,6 +41,8 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , show_disabled_screen(show_disabled_screen)
    , draw_powerbar(draw_powerbar)
    , files_are_modified(files_are_modified)
+   , files_are_staged(files_are_staged)
+   , files_are_untracked(files_are_untracked)
    , files_are_committed(files_are_committed)
    , commits_are_in_sync_with_remote(commits_are_in_sync_with_remote)
    , show_profiler(show_profiler)
@@ -107,6 +109,18 @@ void Hud::set_draw_powerbar(bool draw_powerbar)
 void Hud::set_files_are_modified(bool files_are_modified)
 {
    this->files_are_modified = files_are_modified;
+}
+
+
+void Hud::set_files_are_staged(bool files_are_staged)
+{
+   this->files_are_staged = files_are_staged;
+}
+
+
+void Hud::set_files_are_untracked(bool files_are_untracked)
+{
+   this->files_are_untracked = files_are_untracked;
 }
 
 
@@ -510,6 +524,8 @@ if (draw_powerbar)
 {
    powerbar.set_files_are_committed(files_are_committed);
    powerbar.set_files_are_modified(files_are_modified);
+   powerbar.set_files_are_staged(files_are_staged);
+   powerbar.set_files_are_untracked(files_are_untracked);
    powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);
 
    Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_powerbar_text_font(), backfill_color);

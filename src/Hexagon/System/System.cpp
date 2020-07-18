@@ -1068,6 +1068,11 @@ bool System::check_git_sync_and_update_powerbar()
    return action.execute();
 }
 
+bool System::check_git_local_status_and_update_powerbar()
+{
+   return true;
+}
+
 bool System::run_make()
 {
    CppCompiler::CompileRunner compile_runner(
