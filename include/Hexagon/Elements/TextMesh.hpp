@@ -42,6 +42,7 @@ namespace Hexagon
          bool get_initialized();
       void set_font(ALLEGRO_FONT* font=nullptr);
       void initialize();
+      void destruct();
       void set_cell_color(int x=0, int y=0, ALLEGRO_COLOR color={0.0f, 0.0f, 0.0f, 0.0f});
       void set_cell_character(int x=0, int y=0, char character='\0');
       int calculate_width();

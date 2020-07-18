@@ -83,6 +83,13 @@ functions:
       return;
 
 
+  - name: destruct
+    type: void
+    guards: [ initialized ]
+    body: |
+      return;
+
+
   - name: set_cell_color
     parameters:
       - name: x

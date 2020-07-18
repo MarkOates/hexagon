@@ -7,6 +7,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -117,6 +119,18 @@ cell_height = al_get_font_line_height(font);
 mesh.resize(num_columns, num_rows, cell_width, cell_height);
 
 initialized = true;
+return;
+
+}
+
+void TextMesh::destruct()
+{
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "TextMesh" << "::" << "destruct" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 return;
 
 }
