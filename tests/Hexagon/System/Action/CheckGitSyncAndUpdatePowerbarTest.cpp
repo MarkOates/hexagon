@@ -6,6 +6,7 @@
    catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
+
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
 
 TEST(Hexagon_System_Action_CheckGitSyncAndUpdatePowerbarTest, can_be_created_without_blowing_up)

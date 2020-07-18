@@ -57,8 +57,8 @@ functions:
       al_draw_rectangle(x1, y1, x2, y2, border_color, border_line_thickness);
 
       float font_height = al_get_font_line_height(font);
-      float text_x = x1 + h_padding;
-      float text_y = y1 + (y2 - y1) * 0.5 - font_height * 0.5;
+      float text_x = (int)(x1 + h_padding);
+      float text_y = (int)(y1 + (y2 - y1) * 0.5 - font_height * 0.5);
       al_draw_text(font, color, text_x, text_y, ALLEGRO_ALIGN_LEFT, text.c_str());
       return;
 
@@ -93,7 +93,9 @@ functions:
       std::string center_powerbox_text = "";
       std::string right_powerbox_text = "";
 
-      left_powerbox_text = powerbar->get_files_are_modified() ? "files modified" : "";
+      left_powerbox_text += powerbar->get_files_are_modified() ? "    MODIFIED_FILES    " : "";
+      left_powerbox_text += powerbar->get_files_are_staged() ? "    STAGED_FILES    " : "";
+      left_powerbox_text += powerbar->get_files_are_untracked() ? "    UNTRACKED_FILES    " : "";
       //center_powerbox_text = powerbar->get_files_are_committed() ? "COMMITTED" : "PENDING COMMIT";
       //right_powerbox_text = powerbar->get_commits_are_in_sync_with_remote() ? "IN SYNC" : "OUT OF SYNC";
 

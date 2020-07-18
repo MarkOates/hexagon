@@ -671,6 +671,7 @@ bool System::save_frontmost_code_editor_stage()
    {
       increment_save_count();
       set_hud_save_count_to_save_count();
+      check_git_local_status_and_update_powerbar();
    }
 
    return true;

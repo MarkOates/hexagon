@@ -292,7 +292,7 @@ return fonts["Eurostile.ttf -27"];
 
 ALLEGRO_FONT* Hud::obtain_powerbar_text_font()
 {
-return fonts["Eurostile.ttf -18"];
+return fonts["Purista Medium.otf -18"];
 //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 }

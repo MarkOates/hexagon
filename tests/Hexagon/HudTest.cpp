@@ -77,7 +77,7 @@ TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
    draw_powerbar__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
-   ASSERT_EQ(false, hud.get_draw_powerbar());
+   ASSERT_EQ(true, hud.get_draw_powerbar());
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
@@ -140,6 +140,26 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
       Hexagon::Packet(3, 27),
    };
    hud.set_packets(packets);
+
+   hud.draw();
+
+   al_flip_display();
+
+   //sleep(2);
+}
+
+TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+   render__will_render_powerbar_with_the_expected_text)
+{
+   Hexagon::Hud hud(display, font_bin);
+   hud.initialize();
+
+   Hexagon::Powerbar::Powerbar &powerbar = hud.get_powerbar_ref();
+
+   hud.set_draw_powerbar(true);
+   powerbar.set_files_are_modified(true);
+   powerbar.set_files_are_staged(true);
+   powerbar.set_files_are_untracked(true);
 
    hud.draw();
 
