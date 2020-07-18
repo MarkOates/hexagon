@@ -33,6 +33,60 @@ SingleBlockBarGraph::~SingleBlockBarGraph()
 }
 
 
+void SingleBlockBarGraph::set_number_of_active_bars(int number_of_active_bars)
+{
+   this->number_of_active_bars = number_of_active_bars;
+}
+
+
+void SingleBlockBarGraph::set_number_of_bg_bars(int number_of_bg_bars)
+{
+   this->number_of_bg_bars = number_of_bg_bars;
+}
+
+
+void SingleBlockBarGraph::set_bar_width(float bar_width)
+{
+   this->bar_width = bar_width;
+}
+
+
+void SingleBlockBarGraph::set_bar_height(float bar_height)
+{
+   this->bar_height = bar_height;
+}
+
+
+void SingleBlockBarGraph::set_bar_spacing(float bar_spacing)
+{
+   this->bar_spacing = bar_spacing;
+}
+
+
+void SingleBlockBarGraph::set_stroke_width(float stroke_width)
+{
+   this->stroke_width = stroke_width;
+}
+
+
+void SingleBlockBarGraph::set_main_bar_color(ALLEGRO_COLOR main_bar_color)
+{
+   this->main_bar_color = main_bar_color;
+}
+
+
+void SingleBlockBarGraph::set_bg_bar_color(ALLEGRO_COLOR bg_bar_color)
+{
+   this->bg_bar_color = bg_bar_color;
+}
+
+
+void SingleBlockBarGraph::set_stroke_color(ALLEGRO_COLOR stroke_color)
+{
+   this->stroke_color = stroke_color;
+}
+
+
 void SingleBlockBarGraph::draw()
 {
 if (!(al_is_system_installed()))

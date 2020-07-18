@@ -4,38 +4,47 @@ properties:
     type: int
     init_with: 0
     constructor_arg: true
+    setter: true
   - name: number_of_bg_bars
     type: int
     init_with: 0
     constructor_arg: true
+    setter: true
   - name: bar_width
     type: float
     init_with: 1.0f
     constructor_arg: true
+    setter: true
   - name: bar_height
     type: float
     init_with: 1.0f
     constructor_arg: true
+    setter: true
   - name: bar_spacing
     type: float
     init_with: 0.0f
     constructor_arg: true
+    setter: true
   - name: stroke_width
     type: float
     init_with: 1.0f
     constructor_arg: true
+    setter: true
   - name: main_bar_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
     constructor_arg: true
+    setter: true
   - name: bg_bar_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
     constructor_arg: true
+    setter: true
   - name: stroke_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
     constructor_arg: true
+    setter: true
 
 functions:
 
