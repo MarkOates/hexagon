@@ -8,9 +8,9 @@ TEST(Hexagon_Elements_SingleBlockBarGraphTest, can_be_created_without_blowing_up
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
 }
 
-TEST(Hexagon_Elements_SingleBlockBarGraphTest, run__returns_the_expected_response)
+TEST(Hexagon_Elements_SingleBlockBarGraphTest, draw__does_not_blow_up)
 {
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, single_block_bar_graph.run());
+   single_block_bar_graph.draw();
+   SUCCEED();
 }

@@ -2,7 +2,6 @@
 
 
 #include <allegro5/allegro.h>
-#include <string>
 
 
 namespace Hexagon
@@ -27,7 +26,7 @@ namespace Hexagon
          ~SingleBlockBarGraph();
 
 
-      std::string run();
+      void draw();
       };
    }
 }

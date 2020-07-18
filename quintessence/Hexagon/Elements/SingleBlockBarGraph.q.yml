@@ -39,9 +39,9 @@ properties:
 
 functions:
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: draw
+    body: |
+      return;
 
 dependencies:
 

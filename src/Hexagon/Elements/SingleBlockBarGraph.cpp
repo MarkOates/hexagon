@@ -29,9 +29,10 @@ SingleBlockBarGraph::~SingleBlockBarGraph()
 }
 
 
-std::string SingleBlockBarGraph::run()
+void SingleBlockBarGraph::draw()
 {
-return "Hello World!";
+return;
+
 }
 } // namespace Elements
 } // namespace Hexagon
