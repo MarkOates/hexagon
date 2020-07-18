@@ -179,6 +179,6 @@ TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
