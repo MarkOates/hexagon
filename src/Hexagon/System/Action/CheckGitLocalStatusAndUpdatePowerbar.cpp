@@ -37,13 +37,13 @@ if (!(powerbar))
       throw std::runtime_error(error_message.str());
    }
 Hexagon::Git::Modified modified;
-std::string modified_files = modified.get_shell_response();
+std::vector<std::string> modified_files = modified.get_shell_response();
 
 Hexagon::Git::Untracked untracked;
-std::string untracked_files = untracked.get_shell_response();
+std::vector<std::string> untracked_files = untracked.get_shell_response();
 
 Hexagon::Git::Staged staged;
-std::string staged_files = staged.get_shell_response();
+std::vector<std::string> staged_files = staged.get_shell_response();
 
 return true;
 
