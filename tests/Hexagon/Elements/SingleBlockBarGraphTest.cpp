@@ -34,7 +34,7 @@ TEST(Hexagon_Elements_SingleBlockBarGraphTest, draw__when_the_primitives_addon_i
    al_uninstall_system();
 }
 
-TEST(Hexagon_Elements_SingleBlockBarGraphTest, draw__when_there_is_no_rendering_target_raises_an_error)
+TEST(Hexagon_Elements_SingleBlockBarGraphTest, draw__when_there_is_no_rendering_target__raises_an_error)
 {
    al_init();
    al_init_primitives_addon();
