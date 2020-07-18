@@ -24,7 +24,10 @@ Staged::~Staged()
 
 std::string Staged::get_staged_response()
 {
-Blast::ShellCommandExecutorWithCallback executor(build_staged_files_shell_command());
+Blast::ShellCommandExecutorWithCallback executor(
+      build_staged_files_shell_command(),
+      Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+   );
 return executor.execute();
 
 }

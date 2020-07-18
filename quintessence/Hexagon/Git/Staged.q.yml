@@ -10,7 +10,10 @@ functions:
   - name: get_staged_response
     type: std::string
     body: |
-      Blast::ShellCommandExecutorWithCallback executor(build_staged_files_shell_command());
+      Blast::ShellCommandExecutorWithCallback executor(
+            build_staged_files_shell_command(),
+            Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+         );
       return executor.execute();
     body_dependency_symbols:
       - std::stringstream

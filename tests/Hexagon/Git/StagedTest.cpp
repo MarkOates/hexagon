@@ -25,3 +25,15 @@ TEST(Hexagon_Git_StagedTest, get_staged_response__returns_the_expected_response)
    std::string a_regex_that_will_match_a_bunch_of_git_diff_staged_output = ".*";
    EXPECT_THAT(staged.get_staged_response(), MatchesRegex(a_regex_that_will_match_a_bunch_of_git_diff_staged_output));
 }
+
+TEST(Hexagon_Git_StagedTest, get_staged_response__will_not_output_anything_to_stdout)
+{
+   Hexagon::Git::Staged staged;
+
+   testing::internal::CaptureStdout();
+   staged.get_staged_response();
+   std::string captured_cout_output = testing::internal::GetCapturedStdout();
+
+   EXPECT_EQ(true, captured_cout_output.empty());
+}
+
