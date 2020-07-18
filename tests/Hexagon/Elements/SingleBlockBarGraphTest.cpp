@@ -10,6 +10,12 @@
 
 #include <allegro5/allegro_primitives.h>
 
+class Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture : public ::testing::Test
+{
+public:
+   Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture() {}
+};
+
 TEST(Hexagon_Elements_SingleBlockBarGraphTest, can_be_created_without_blowing_up)
 {
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
