@@ -31,7 +31,7 @@ TEST(Hexagon_Git_ModifiedTest, DISABLED_get_shell_response__will_return_a_list_o
 {
    Hexagon::Git::Modified modified;
 
-   std::string expected_response = "foobar.txt\n";
+   std::string expected_response = "tests/Hexagon/Git/ModifiedTest.cpp\n";
    std::string actual_response = modified.get_shell_response();
 
    EXPECT_EQ(expected_response, actual_response);
