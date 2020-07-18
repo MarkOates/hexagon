@@ -392,16 +392,6 @@ draw_current_focus_name();
 
 if (show_profiler) draw_profile_timer_graph();
 
-if (show_disabled_screen)
-{
-   al_draw_line(0,
-                0,
-                al_get_display_width(display),
-                al_get_display_height(display),
-                al_color_name("red"),
-                3.0);
-}
-
 ALLEGRO_COLOR color = al_color_name("red");
 float notification_bottom_padding = al_get_font_line_height(obtain_text_font());
 float font_line_height = al_get_font_line_height(obtain_text_font());
@@ -501,6 +491,16 @@ if (draw_focus_timer_bar)
 {
    Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &focus_timer_bar);
    focus_timer_bar_renderer.render();
+}
+
+if (show_disabled_screen)
+{
+   al_draw_line(0,
+                0,
+                al_get_display_width(display),
+                al_get_display_height(display),
+                al_color_name("red"),
+                3.0);
 }
 
 al_restore_state(&previous_target_bitmap_state);
