@@ -27,7 +27,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool draw_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool draw_focus_timer_bar)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_modified, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool draw_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool draw_focus_timer_bar, bool draw_notifications)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -51,6 +51,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , draw_search_count(draw_search_count)
    , search_count(search_count)
    , draw_focus_timer_bar(draw_focus_timer_bar)
+   , draw_notifications(draw_notifications)
 {
 }
 
@@ -168,6 +169,12 @@ void Hud::set_draw_focus_timer_bar(bool draw_focus_timer_bar)
 }
 
 
+void Hud::set_draw_notifications(bool draw_notifications)
+{
+   this->draw_notifications = draw_notifications;
+}
+
+
 std::vector<std::string> Hud::get_notifications()
 {
    return notifications;
@@ -243,6 +250,12 @@ int Hud::get_search_count()
 bool Hud::get_draw_focus_timer_bar()
 {
    return draw_focus_timer_bar;
+}
+
+
+bool Hud::get_draw_notifications()
+{
+   return draw_notifications;
 }
 
 
@@ -392,7 +405,6 @@ draw_current_focus_name();
 
 if (show_profiler) draw_profile_timer_graph();
 
-bool draw_notifications = true;
 if (draw_notifications)
 {
    ALLEGRO_COLOR color = al_color_name("red");

@@ -124,6 +124,12 @@ properties:
     setter: true
     getter: true
     constructor_arg: true
+  - name: draw_notifications
+    type: bool
+    init_with: true
+    setter: true
+    getter: true
+    constructor_arg: true
 
 
 functions:
@@ -250,7 +256,6 @@ functions:
 
       if (show_profiler) draw_profile_timer_graph();
 
-      bool draw_notifications = true;
       if (draw_notifications)
       {
          ALLEGRO_COLOR color = al_color_name("red");
