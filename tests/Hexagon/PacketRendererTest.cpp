@@ -36,7 +36,7 @@ public:
       ASSERT_EQ(true, al_init_ttf_addon());
       ASSERT_EQ(true, al_init_primitives_addon());
       display = al_create_display(1280*2, 720*2);
-      font = al_load_font(FONT_PATH.c_str(), -18, 0);
+      font = al_load_font(FONT_PATH.c_str(), -16, 0);
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
    }
 
@@ -83,8 +83,8 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture,
 TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
    render__will_render_the_packet)
 {
-   int width = 150;
-   int height = 116;
+   int width = 140;
+   int height = 100;
    Hexagon::Packet packet(7, 12);
 
    placement3d place = build_centered_placement(width, height);

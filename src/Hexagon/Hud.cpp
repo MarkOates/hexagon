@@ -313,7 +313,7 @@ return fonts["Eurostile.ttf -22"];
 
 ALLEGRO_FONT* Hud::obtain_packet_text_font()
 {
-return fonts["Purista Medium.otf -18"];
+return fonts["Purista Medium.otf -16"];
 
 }
 
@@ -479,8 +479,8 @@ if (draw_packets)
 {
    float x = left_column_x;
    float y = frame_height - 130;
-   float width = 150;
-   float height = 116;
+   float width = 140;
+   float height = 100;
    float spacing = 20;
 
    float y_increment = -(height + spacing);
