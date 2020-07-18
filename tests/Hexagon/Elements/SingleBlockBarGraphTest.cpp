@@ -16,19 +16,22 @@ public:
    Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture() {}
 };
 
-TEST(Hexagon_Elements_SingleBlockBarGraphTest, can_be_created_without_blowing_up)
+TEST(Hexagon_Elements_SingleBlockBarGraphTest,
+   can_be_created_without_blowing_up)
 {
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
 }
 
-TEST(Hexagon_Elements_SingleBlockBarGraphTest, draw__without_allegro_initalized__raises_an_error)
+TEST(Hexagon_Elements_SingleBlockBarGraphTest,
+   draw__without_allegro_initalized__raises_an_error)
 {
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
    std::string expected_error_message = "SingleBlockBarGraph::draw: error: guard \"al_is_system_installed()\" not met";
    ASSERT_THROW_WITH_MESSAGE(single_block_bar_graph.draw(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_Elements_SingleBlockBarGraphTest, draw__when_the_primitives_addon_is_not_initalized__raises_an_error)
+TEST(Hexagon_Elements_SingleBlockBarGraphTest,
+   draw__when_the_primitives_addon_is_not_initalized__raises_an_error)
 {
    al_init();
 
@@ -40,7 +43,8 @@ TEST(Hexagon_Elements_SingleBlockBarGraphTest, draw__when_the_primitives_addon_i
    al_uninstall_system();
 }
 
-TEST(Hexagon_Elements_SingleBlockBarGraphTest, draw__when_there_is_no_rendering_target__raises_an_error)
+TEST(Hexagon_Elements_SingleBlockBarGraphTest,
+   draw__when_there_is_no_rendering_target__raises_an_error)
 {
    al_init();
    al_init_primitives_addon();
