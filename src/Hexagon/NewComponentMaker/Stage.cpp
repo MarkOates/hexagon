@@ -17,6 +17,8 @@ namespace NewComponentMaker
 
 Stage::Stage(std::string current_project_directory)
    : current_project_directory(current_project_directory)
+   , shell_command_has_executed(false)
+   , last_executed_shell_response("")
 {
 }
 
@@ -34,22 +36,19 @@ std::string Stage::get_current_project_directory()
 
 std::string Stage::get_shell_response()
 {
+if (shell_command_has_executed) return last_executed_shell_response;
 Blast::ShellCommandExecutorWithCallback executor(
       build_tracked_files_shell_command(),
       Blast::ShellCommandExecutorWithCallback::simple_silent_callback
    );
-return executor.execute();
+last_executed_shell_response = executor.execute();
+return last_executed_shell_response;
 
 }
 
 std::vector<std::string> Stage::get_shell_response_lines()
 {
-Blast::ShellCommandExecutorWithCallback executor(
-      build_tracked_files_shell_command(),
-      Blast::ShellCommandExecutorWithCallback::simple_silent_callback
-   );
-std::string command_output = executor.execute();
-return Blast::StringSplitter(command_output, '\n').split();
+return Blast::StringSplitter(get_shell_response(), '\n').split();
 
 }
 

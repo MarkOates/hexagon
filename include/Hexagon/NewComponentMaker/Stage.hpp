@@ -13,6 +13,8 @@ namespace Hexagon
       {
       private:
          std::string current_project_directory;
+         bool shell_command_has_executed;
+         std::string last_executed_shell_response;
 
       public:
          Stage(std::string current_project_directory="/Users/markoates/Repos/hexagon/");
