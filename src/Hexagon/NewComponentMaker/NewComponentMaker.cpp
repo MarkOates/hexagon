@@ -1,7 +1,6 @@
 
 
 #include <Hexagon/NewComponentMaker/NewComponentMaker.hpp>
-#include <allegro5/allegro_primitives.h>
 #include <sstream>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Blast/StringSplitter.hpp>
@@ -16,12 +15,8 @@ namespace NewComponentMaker
 {
 
 
-ALLEGRO_EVENT NewComponentMaker::a_default_empty_event = {};
-
-
 NewComponentMaker::NewComponentMaker(std::string current_project_directory, std::string component_name)
-   : StageInterface(StageInterface::NEW_COMPONENT_MAKER)
-   , current_project_directory(current_project_directory)
+   : current_project_directory(current_project_directory)
    , component_name(component_name)
    , shell_command_has_executed(false)
    , last_executed_shell_response("")
@@ -40,31 +35,6 @@ std::string NewComponentMaker::get_current_project_directory()
    return current_project_directory;
 }
 
-
-ALLEGRO_EVENT &NewComponentMaker::get_a_default_empty_event_ref()
-{
-   return a_default_empty_event;
-}
-
-
-void NewComponentMaker::render()
-{
-placement3d place = get_place();
-al_draw_rectangle(0, 0, place.size.x, place.size.y, ALLEGRO_COLOR{0.2f, 0.2f, 0.2f, 0.2f}, 4.0f);
-return;
-
-}
-
-void NewComponentMaker::process_local_event(std::string event_name, ActionData action_data)
-{
-return;
-}
-
-void NewComponentMaker::process_event(ALLEGRO_EVENT& event)
-{
-return;
-
-}
 
 std::string NewComponentMaker::get_shell_response()
 {

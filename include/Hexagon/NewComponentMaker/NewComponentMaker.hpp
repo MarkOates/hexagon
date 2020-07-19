@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include <Hexagon/ActionData.hpp>
-#include <Hexagon/StageInterface.hpp>
-#include <allegro5/allegro.h>
 #include <string>
 #include <vector>
 
@@ -12,7 +9,7 @@ namespace Hexagon
 {
    namespace NewComponentMaker
    {
-      class NewComponentMaker : public StageInterface
+      class NewComponentMaker
       {
       private:
          std::string current_project_directory;
@@ -20,18 +17,13 @@ namespace Hexagon
          bool shell_command_has_executed;
          std::string last_executed_shell_response;
          std::string path_to_executable;
-         static ALLEGRO_EVENT a_default_empty_event;
 
       public:
          NewComponentMaker(std::string current_project_directory="/Users/markoates/Repos/hexagon/", std::string component_name="");
-         virtual ~NewComponentMaker();
+         ~NewComponentMaker();
 
 
          std::string get_current_project_directory();
-         static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      virtual void render() override;
-      void process_local_event(std::string event_name="", ActionData action_data=ActionData());
-      void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());
       std::string get_shell_response();
       std::vector<std::string> get_shell_response_lines();
       std::string build_shell_command();
