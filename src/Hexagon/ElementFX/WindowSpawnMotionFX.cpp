@@ -10,7 +10,8 @@ namespace ElementFX
 {
 
 
-WindowSpawnMotionFX::WindowSpawnMotionFX()
+WindowSpawnMotionFX::WindowSpawnMotionFX(Hexagon::Elements::Window* window)
+   : window(window)
 {
 }
 

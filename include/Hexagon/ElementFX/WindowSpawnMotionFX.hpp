@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/Elements/Window.hpp>
 #include <string>
 
 
@@ -11,9 +12,10 @@ namespace Hexagon
       class WindowSpawnMotionFX
       {
       private:
+         Hexagon::Elements::Window* window;
 
       public:
-         WindowSpawnMotionFX();
+         WindowSpawnMotionFX(Hexagon::Elements::Window* window=nullptr);
          ~WindowSpawnMotionFX();
 
 
