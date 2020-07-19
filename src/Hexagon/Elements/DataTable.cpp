@@ -17,10 +17,11 @@ namespace Elements
 {
 
 
-DataTable::DataTable(ALLEGRO_FONT* font, float column_width, float row_height)
+DataTable::DataTable(ALLEGRO_FONT* font, float column_width, float row_height, std::vector<std::vector<std::string>> data2d)
    : font(font)
    , column_width(column_width)
    , row_height(row_height)
+   , data2d(data2d)
 {
 }
 
