@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include <string>
+#include <Hexagon/Packet.hpp>
+#include <allegro5/allegro_font.h>
 
 
 namespace Hexagon
@@ -11,13 +12,19 @@ namespace Hexagon
       class DataTable
       {
       private:
+         Hexagon::Packet* packet;
+         ALLEGRO_FONT* font;
+         float width;
+         float height;
 
       public:
-         DataTable();
+         DataTable(Hexagon::Packet* packet=nullptr, ALLEGRO_FONT* font=nullptr, float width=1.0, float height=1.0);
          ~DataTable();
 
 
-      std::string run();
+      void render();
+      void render_window();
+      void render_text();
       };
    }
 }
