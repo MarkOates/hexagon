@@ -45,6 +45,16 @@ properties:
     init_with: 20
     getter: true
     setter: true
+  - name: base_font_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
+    getter: true
+    setter: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f}
+    getter: true
+    setter: true
 
 
 functions:
@@ -123,6 +133,8 @@ functions:
          bool draw_line_numbers = true;
          ALLEGRO_FONT *code_font = get_font();
          ALLEGRO_FONT *overlay_font = get_font();
+         //ALLEGRO_COLOR base_font_color = al_color_name("white");
+         //ALLEGRO_COLOR backfill_color = al_color_name("black");
          ALLEGRO_COLOR base_font_color = al_color_name("white");
          ALLEGRO_COLOR backfill_color = al_color_name("black");
          float backfill_opacity = 0.8f;

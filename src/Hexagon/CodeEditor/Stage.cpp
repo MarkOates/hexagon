@@ -27,6 +27,8 @@ Stage::Stage(::CodeEditor::CodeEditor code_editor)
    , font(nullptr)
    , cell_width(10)
    , cell_height(20)
+   , base_font_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f})
+   , backfill_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f})
 {
 }
 
@@ -66,6 +68,18 @@ void Stage::set_cell_height(int cell_height)
 }
 
 
+void Stage::set_base_font_color(ALLEGRO_COLOR base_font_color)
+{
+   this->base_font_color = base_font_color;
+}
+
+
+void Stage::set_backfill_color(ALLEGRO_COLOR backfill_color)
+{
+   this->backfill_color = backfill_color;
+}
+
+
 ::CodeEditor::CodeEditor Stage::get_code_editor()
 {
    return code_editor;
@@ -99,6 +113,18 @@ int Stage::get_cell_width()
 int Stage::get_cell_height()
 {
    return cell_height;
+}
+
+
+ALLEGRO_COLOR Stage::get_base_font_color()
+{
+   return base_font_color;
+}
+
+
+ALLEGRO_COLOR Stage::get_backfill_color()
+{
+   return backfill_color;
 }
 
 
@@ -185,6 +211,8 @@ else
    bool draw_line_numbers = true;
    ALLEGRO_FONT *code_font = get_font();
    ALLEGRO_FONT *overlay_font = get_font();
+   //ALLEGRO_COLOR base_font_color = al_color_name("white");
+   //ALLEGRO_COLOR backfill_color = al_color_name("black");
    ALLEGRO_COLOR base_font_color = al_color_name("white");
    ALLEGRO_COLOR backfill_color = al_color_name("black");
    float backfill_opacity = 0.8f;

@@ -23,6 +23,8 @@ namespace Hexagon
          ALLEGRO_FONT* font;
          int cell_width;
          int cell_height;
+         ALLEGRO_COLOR base_font_color;
+         ALLEGRO_COLOR backfill_color;
 
       public:
          Stage(::CodeEditor::CodeEditor code_editor=::CodeEditor::CodeEditor{});
@@ -33,6 +35,8 @@ namespace Hexagon
          void set_font(ALLEGRO_FONT* font);
          void set_cell_width(int cell_width);
          void set_cell_height(int cell_height);
+         void set_base_font_color(ALLEGRO_COLOR base_font_color);
+         void set_backfill_color(ALLEGRO_COLOR backfill_color);
 
          ::CodeEditor::CodeEditor get_code_editor();
          bool get_is_focused();
@@ -40,6 +44,8 @@ namespace Hexagon
          ALLEGRO_FONT* get_font();
          int get_cell_width();
          int get_cell_height();
+         ALLEGRO_COLOR get_base_font_color();
+         ALLEGRO_COLOR get_backfill_color();
          ::CodeEditor::CodeEditor &get_code_editor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       virtual void render() override;
