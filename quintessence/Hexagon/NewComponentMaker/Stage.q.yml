@@ -1,3 +1,9 @@
+parent_classes:
+
+  - class: 'StageInterface'
+    scope: public
+    init_with: "StageInterface::NEW_COMPONENT_MAKER"
+
 properties:
 
   - name: current_project_directory
@@ -19,9 +25,44 @@ properties:
     stagic: true
     type: std::string
     init_with: '"~/Repos/blast/bin/programs/component_generator"'
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
 
 
 functions:
+
+
+  - name: render
+    virtual: true
+    override: true
+    body: |
+      return;
+
+
+  - name: process_local_event
+    is_override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: '""'
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: return;
+
+
+  - name: process_event
+    is_override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: |
+      return;
+
 
   - name: get_shell_response
     type: std::string
@@ -38,6 +79,7 @@ functions:
       - Blast::ShellCommandExecutorWithCallback
       - Blast::StringSplitter
 
+
   - name: get_shell_response_lines
     type: std::vector<std::string>
     body: |
@@ -46,6 +88,7 @@ functions:
       - std::stringstream
       - Blast::ShellCommandExecutorWithCallback
       - Blast::StringSplitter
+
 
   - name: build_shell_command
     type: std::string
@@ -60,10 +103,20 @@ functions:
 
       return commit_everything_shell_command.str();
 
+
 dependencies:
 
+
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
   - symbol: Blast::StringSplitter
     headers: [ 'Blast/StringSplitter.hpp' ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ allegro5/allegro.h ]
+  - symbol: ActionData
+    headers: [ Hexagon/ActionData.hpp ]
 

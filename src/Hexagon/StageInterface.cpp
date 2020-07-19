@@ -58,6 +58,9 @@ std::string StageInterface::get_type_name()
       case RERUN_OUTPUT_WATCHER:
          return "RerunOutputWatcher";
          break;
+      case NEW_COMPONENT_MAKER:
+         return "NewComponentMaker";
+         break;
       case MISSING_FILE:
          return "MissingFile";
          break;
@@ -108,6 +111,7 @@ bool StageInterface::infer_is_modal()
    case OLD_COMPONENT_NAVIGATOR:
    case COMPONENT_NAVIGATOR:
    case KEYBOARD_INPUTS_MODAL:
+   case NEW_COMPONENT_MAKER:
       return true;
    default:
       return false;

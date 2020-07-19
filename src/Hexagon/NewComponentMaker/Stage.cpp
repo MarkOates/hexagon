@@ -15,8 +15,12 @@ namespace NewComponentMaker
 {
 
 
+ALLEGRO_EVENT Stage::a_default_empty_event = {};
+
+
 Stage::Stage(std::string current_project_directory, std::string component_name)
-   : current_project_directory(current_project_directory)
+   : StageInterface(StageInterface::NEW_COMPONENT_MAKER)
+   , current_project_directory(current_project_directory)
    , component_name(component_name)
    , shell_command_has_executed(false)
    , last_executed_shell_response("")
@@ -35,6 +39,29 @@ std::string Stage::get_current_project_directory()
    return current_project_directory;
 }
 
+
+ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
+{
+   return a_default_empty_event;
+}
+
+
+void Stage::render()
+{
+return;
+
+}
+
+void Stage::process_local_event(std::string event_name, ActionData action_data)
+{
+return;
+}
+
+void Stage::process_event(ALLEGRO_EVENT& event)
+{
+return;
+
+}
 
 std::string Stage::get_shell_response()
 {

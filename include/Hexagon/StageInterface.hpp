@@ -25,6 +25,7 @@ public:
       COMPONENT_NAVIGATOR,
       KEYBOARD_INPUTS_MODAL,
       RERUN_OUTPUT_WATCHER,
+      NEW_COMPONENT_MAKER,
       MISSING_FILE,
    }; // these types should not be included within the base class
 
