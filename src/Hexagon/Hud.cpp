@@ -321,7 +321,8 @@ return fonts["Purista Medium.otf -18"];
 
 ALLEGRO_FONT* Hud::obtain_score_text_font()
 {
-return fonts["Eurostile.ttf -22"];
+return fonts["Purista Medium.otf -22"];
+//return fonts["Eurostile.ttf -22"];
 //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 }

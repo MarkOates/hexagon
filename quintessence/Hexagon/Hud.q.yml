@@ -175,7 +175,8 @@ functions:
   - name: obtain_score_text_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Eurostile.ttf -22"];
+      return fonts["Purista Medium.otf -22"];
+      //return fonts["Eurostile.ttf -22"];
       //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
