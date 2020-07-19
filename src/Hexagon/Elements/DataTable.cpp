@@ -17,10 +17,10 @@ namespace Elements
 {
 
 
-DataTable::DataTable(ALLEGRO_FONT* font, float width, float height)
+DataTable::DataTable(ALLEGRO_FONT* font, float column_width, float row_height)
    : font(font)
-   , width(width)
-   , height(height)
+   , column_width(column_width)
+   , row_height(row_height)
 {
 }
 
