@@ -2,11 +2,46 @@
 #include <gtest/gtest.h>
 
 #include <Hexagon/ElementFX/WindowSpawnMotionFX.hpp>
+#include <allegro5/allegro_primitives.h>
+#include <allegro_flare/placement3d.h>
 
 class Hexagon_ElementFX_WindowSpawnMotionFXTest_WithEmptyFixture : public ::testing::Test
 {
 public:
    Hexagon_ElementFX_WindowSpawnMotionFXTest_WithEmptyFixture() {}
+};
+
+class Hexagon_ElementFX_WindowSpawnMotionFXTest_WithAllegroRenderingFixture : public ::testing::Test
+{
+public:
+   ALLEGRO_DISPLAY* display;
+
+public:
+   Hexagon_ElementFX_WindowSpawnMotionFXTest_WithAllegroRenderingFixture()
+      : display(nullptr)
+   {}
+
+   virtual void SetUp() override
+   {
+      ASSERT_EQ(false, al_is_system_installed());
+      ASSERT_EQ(true, al_init());
+      ASSERT_EQ(true, al_init_primitives_addon());
+      display = al_create_display(1280*2, 720*2);
+      al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+   }
+
+   virtual void TearDown() override
+   {
+      al_destroy_display(display);
+      al_uninstall_system();
+   }
+
+   placement3d centered_placement(float width, float height)
+   {
+      placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0f);
+      place.size = vec3d(width, height, 0);
+      return place;
+   }
 };
 
 TEST_F(Hexagon_ElementFX_WindowSpawnMotionFXTest_WithEmptyFixture,
