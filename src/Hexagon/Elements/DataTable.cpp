@@ -98,6 +98,12 @@ for (auto &row : table)
 {
    for (auto &column : row)
    {
+      float x = 0;
+      float y = 0;
+      std::string text_to_draw = "foorbar";
+      ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+      ALLEGRO_FONT *font = this->font;
+      al_draw_text(font, text_color, x, y, ALLEGRO_ALIGN_LEFT, text_to_draw.c_str());
    }
 }
 
