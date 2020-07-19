@@ -10,9 +10,7 @@ functions:
   - name: construct_modified_window
     type: Hexagon::Elements::Window
     body: |
-      Hexagon::Elements::Window result;
-
-      return result;
+      return window;
     body_dependency_symbols:
       - Hexagon::Elements::Window
 

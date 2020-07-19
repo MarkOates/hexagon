@@ -27,10 +27,15 @@ functions:
       window.set_outer_line_thickness(1.0f);
       window.set_outer_line_opacity(0.2f);
 
+      Hexagon::ElementFX::WindowSpawnMotionFX window_spawn_motion_fx(window);
+      window = window_spawn_motion_fx.construct_modified_window();
+
       window.draw();
       return;
     body_dependency_symbols:
       - Hexagon::Elements::Window
+      - Hexagon::ElementFX::WindowSpawnMotionFX
+
 
 
 dependencies:
@@ -38,3 +43,6 @@ dependencies:
 
   - symbol: Hexagon::Elements::Window
     headers: [ Hexagon/Elements/Window.hpp ]
+  - symbol: Hexagon::ElementFX::WindowSpawnMotionFX
+    headers: [ Hexagon/ElementFX/WindowSpawnMotionFX.hpp ]
+
