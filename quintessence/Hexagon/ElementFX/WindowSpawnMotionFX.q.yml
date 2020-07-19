@@ -1,18 +1,23 @@
 properties:
 
   - name: window
-    type: Hexagon::Elements::Window*
-    init_with: nullptr
+    type: Hexagon::Elements::Window
+    init_with: '{}'
     constructor_arg: true
 
 functions:
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: construct_modified_window
+    type: Hexagon::Elements::Window
+    body: |
+      Hexagon::Elements::Window result;
+
+      return result;
+    body_dependency_symbols:
+      - Hexagon::Elements::Window
 
 dependencies:
 
-  - symbol: Hexagon::Elements::Window*
+  - symbol: Hexagon::Elements::Window
     headers: [ Hexagon/Elements/Window.hpp ]
 

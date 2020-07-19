@@ -2,7 +2,6 @@
 
 
 #include <Hexagon/Elements/Window.hpp>
-#include <string>
 
 
 namespace Hexagon
@@ -12,14 +11,14 @@ namespace Hexagon
       class WindowSpawnMotionFX
       {
       private:
-         Hexagon::Elements::Window* window;
+         Hexagon::Elements::Window window;
 
       public:
-         WindowSpawnMotionFX(Hexagon::Elements::Window* window=nullptr);
+         WindowSpawnMotionFX(Hexagon::Elements::Window window={});
          ~WindowSpawnMotionFX();
 
 
-      std::string run();
+      Hexagon::Elements::Window construct_modified_window();
       };
    }
 }

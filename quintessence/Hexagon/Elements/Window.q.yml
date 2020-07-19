@@ -4,123 +4,152 @@ properties:
   - name: width
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
     constructor_arg: true
   - name: height
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
     constructor_arg: true
   - name: box_opacity
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
     constructor_arg: true
   - name: cell_padding
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
     constructor_arg: true
   - name: box_fill_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
+    getter: true
     setter: true
     constructor_arg: true
   - name: header_bar_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
+    getter: true
     setter: true
   - name: bottom_line_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
+    getter: true
     setter: true
   - name: outer_line_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
+    getter: true
     setter: true
   - name: header_baseline_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
+    getter: true
     setter: true
   - name: top_left_little_bar_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
+    getter: true
     setter: true
   - name: corner_squares_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f, 0.0f, 0.0f, 0.0f}'
+    getter: true
     setter: true
   - name: header_bar_height
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: header_baseline_thickness
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: header_bar_opacity
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: header_baseline_opacity
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: top_left_little_bar_width
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: outer_line_thickness
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: outer_line_opacity
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: bottom_line_thickness
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: bottom_line_opacity
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: corner_squares_resize_from_center
     type: bool
     init_with: false
+    getter: true
     setter: true
   - name: corner_squares_width
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: corner_squares_height
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: corner_squares_opacity
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: corner_squares_are_circles
     type: bool
     init_with: false
+    getter: true
     setter: true
   - name: number_of_rows
     type: int
     init_with: 1
+    getter: true
     setter: true
   - name: number_of_columns
     type: int
     init_with: 1
+    getter: true
     setter: true
   - name: distance_of_rows
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
   - name: distance_of_columns
     type: float
     init_with: 0.0f
+    getter: true
     setter: true
 
 

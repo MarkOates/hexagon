@@ -229,6 +229,180 @@ void Window::set_distance_of_columns(float distance_of_columns)
 }
 
 
+float Window::get_width()
+{
+   return width;
+}
+
+
+float Window::get_height()
+{
+   return height;
+}
+
+
+float Window::get_box_opacity()
+{
+   return box_opacity;
+}
+
+
+float Window::get_cell_padding()
+{
+   return cell_padding;
+}
+
+
+ALLEGRO_COLOR Window::get_box_fill_color()
+{
+   return box_fill_color;
+}
+
+
+ALLEGRO_COLOR Window::get_header_bar_color()
+{
+   return header_bar_color;
+}
+
+
+ALLEGRO_COLOR Window::get_bottom_line_color()
+{
+   return bottom_line_color;
+}
+
+
+ALLEGRO_COLOR Window::get_outer_line_color()
+{
+   return outer_line_color;
+}
+
+
+ALLEGRO_COLOR Window::get_header_baseline_color()
+{
+   return header_baseline_color;
+}
+
+
+ALLEGRO_COLOR Window::get_top_left_little_bar_color()
+{
+   return top_left_little_bar_color;
+}
+
+
+ALLEGRO_COLOR Window::get_corner_squares_color()
+{
+   return corner_squares_color;
+}
+
+
+float Window::get_header_bar_height()
+{
+   return header_bar_height;
+}
+
+
+float Window::get_header_baseline_thickness()
+{
+   return header_baseline_thickness;
+}
+
+
+float Window::get_header_bar_opacity()
+{
+   return header_bar_opacity;
+}
+
+
+float Window::get_header_baseline_opacity()
+{
+   return header_baseline_opacity;
+}
+
+
+float Window::get_top_left_little_bar_width()
+{
+   return top_left_little_bar_width;
+}
+
+
+float Window::get_outer_line_thickness()
+{
+   return outer_line_thickness;
+}
+
+
+float Window::get_outer_line_opacity()
+{
+   return outer_line_opacity;
+}
+
+
+float Window::get_bottom_line_thickness()
+{
+   return bottom_line_thickness;
+}
+
+
+float Window::get_bottom_line_opacity()
+{
+   return bottom_line_opacity;
+}
+
+
+bool Window::get_corner_squares_resize_from_center()
+{
+   return corner_squares_resize_from_center;
+}
+
+
+float Window::get_corner_squares_width()
+{
+   return corner_squares_width;
+}
+
+
+float Window::get_corner_squares_height()
+{
+   return corner_squares_height;
+}
+
+
+float Window::get_corner_squares_opacity()
+{
+   return corner_squares_opacity;
+}
+
+
+bool Window::get_corner_squares_are_circles()
+{
+   return corner_squares_are_circles;
+}
+
+
+int Window::get_number_of_rows()
+{
+   return number_of_rows;
+}
+
+
+int Window::get_number_of_columns()
+{
+   return number_of_columns;
+}
+
+
+float Window::get_distance_of_rows()
+{
+   return distance_of_rows;
+}
+
+
+float Window::get_distance_of_columns()
+{
+   return distance_of_columns;
+}
+
+
 void Window::draw()
 {
 if (!(al_is_system_installed()))
