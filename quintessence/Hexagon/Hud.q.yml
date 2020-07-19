@@ -153,7 +153,7 @@ functions:
   - name: obtain_title_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Purista Medium.otf -27"];
+      return fonts["Purista Medium.otf -36"];
       //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 

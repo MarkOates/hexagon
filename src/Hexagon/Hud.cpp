@@ -292,7 +292,7 @@ return fonts["Eurostile.ttf -27"];
 
 ALLEGRO_FONT* Hud::obtain_title_font()
 {
-return fonts["Purista Medium.otf -27"];
+return fonts["Purista Medium.otf -36"];
 //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 }
