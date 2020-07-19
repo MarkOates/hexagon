@@ -19,6 +19,7 @@ Stage::Stage(std::string current_project_directory)
    : current_project_directory(current_project_directory)
    , shell_command_has_executed(false)
    , last_executed_shell_response("")
+   , command("git diff --name-only")
 {
 }
 
@@ -38,7 +39,7 @@ std::string Stage::get_shell_response()
 {
 if (shell_command_has_executed) return last_executed_shell_response;
 Blast::ShellCommandExecutorWithCallback executor(
-      build_tracked_files_shell_command(),
+      build_shell_command(),
       Blast::ShellCommandExecutorWithCallback::simple_silent_callback
    );
 last_executed_shell_response = executor.execute();
@@ -52,13 +53,13 @@ return Blast::StringSplitter(get_shell_response(), '\n').split();
 
 }
 
-std::string Stage::build_tracked_files_shell_command()
+std::string Stage::build_shell_command()
 {
 std::stringstream commit_everything_shell_command;
 commit_everything_shell_command << "("
                                 << "cd " << current_project_directory
                                 << " && "
-                                << "git diff --name-only"
+                                << command
                                 << ")";
 
 return commit_everything_shell_command.str();

@@ -11,6 +11,10 @@ properties:
   - name: last_executed_shell_response
     type: std::string
     init_with: '""'
+  - name: command
+    stagic: true
+    type: std::string
+    init_with: '"git diff --name-only"'
 
 functions:
 
@@ -19,7 +23,7 @@ functions:
     body: |
       if (shell_command_has_executed) return last_executed_shell_response;
       Blast::ShellCommandExecutorWithCallback executor(
-            build_tracked_files_shell_command(),
+            build_shell_command(),
             Blast::ShellCommandExecutorWithCallback::simple_silent_callback
          );
       last_executed_shell_response = executor.execute();
@@ -38,7 +42,7 @@ functions:
       - Blast::ShellCommandExecutorWithCallback
       - Blast::StringSplitter
 
-  - name: build_tracked_files_shell_command
+  - name: build_shell_command
     type: std::string
     private: true
     body: |
@@ -46,7 +50,7 @@ functions:
       commit_everything_shell_command << "("
                                       << "cd " << current_project_directory
                                       << " && "
-                                      << "git diff --name-only"
+                                      << command
                                       << ")";
 
       return commit_everything_shell_command.str();
