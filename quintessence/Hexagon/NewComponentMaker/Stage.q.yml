@@ -5,6 +5,10 @@ properties:
     init_with: '"/Users/markoates/Repos/hexagon/"'
     constructor_arg: true
     getter: true
+  - name: component_name
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
   - name: shell_command_has_executed
     type: bool
     init_with: false
@@ -14,7 +18,8 @@ properties:
   - name: command
     stagic: true
     type: std::string
-    init_with: '"git diff --name-only"'
+    init_with: '"~/Repos/blast/bin/programs/component_generator"'
+
 
 functions:
 

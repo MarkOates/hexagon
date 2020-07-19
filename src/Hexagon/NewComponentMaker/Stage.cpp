@@ -15,11 +15,12 @@ namespace NewComponentMaker
 {
 
 
-Stage::Stage(std::string current_project_directory)
+Stage::Stage(std::string current_project_directory, std::string component_name)
    : current_project_directory(current_project_directory)
+   , component_name(component_name)
    , shell_command_has_executed(false)
    , last_executed_shell_response("")
-   , command("git diff --name-only")
+   , command("~/Repos/blast/bin/programs/component_generator")
 {
 }
 
