@@ -341,7 +341,7 @@ return fonts["Purista Medium.otf -16"];
 
 ALLEGRO_FONT* Hud::obtain_component_navigator_font()
 {
-return fonts["Purista Medium.otf -20"];
+return fonts["Purista Medium.otf -22"];
 //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 }
