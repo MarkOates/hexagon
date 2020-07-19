@@ -66,22 +66,27 @@ functions:
          { "SCORE",    std::to_string(packet->calculate_score()) },
       };
 
-      int line_number = 0;
+      int row_num = 0;
+      int column_num = 0;
       float first_row_x = 22;
-      float column_height = 115;
+      float column_width = 95;
       float first_row_y = 20;
       int row_height = al_get_font_line_height(font) * 1.2;
+
       for (auto &row : table)
       {
-         for (auto &column : row)
+         int column_num = 0;
+         for (auto &cell : row)
          {
-            float x = 0;
-            float y = 0;
-            std::string text_to_draw = "foorbar";
+            float x = first_row_x + column_width * column_num;
+            float y = first_row_y + row_height * row_num;
+            std::string text_to_draw = cell;
             ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
             ALLEGRO_FONT *font = this->font;
             al_draw_text(font, text_color, x, y, ALLEGRO_ALIGN_LEFT, text_to_draw.c_str());
+            column_num++;
          }
+         row_num++;
       }
 
       return;
