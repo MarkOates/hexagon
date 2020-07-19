@@ -339,6 +339,13 @@ return fonts["Purista Medium.otf -16"];
 
 }
 
+ALLEGRO_FONT* Hud::obtain_component_navigator_font()
+{
+return fonts["Purista Medium.otf -20"];
+//return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+}
+
 void Hud::initialize()
 {
 if (initialized) return;
@@ -436,7 +443,8 @@ ALLEGRO_STATE previous_target_bitmap_state;
 al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
 al_set_target_bitmap(screen_sub_bitmap);
 
-ALLEGRO_FONT *font = obtain_global_font();
+//ALLEGRO_FONT *font = obtain_global_font();
+ALLEGRO_FONT *component_navigator_font = obtain_component_navigator_font();
 
 bool draw_stages = true;
 if (draw_stages && stages)
@@ -452,7 +460,7 @@ if (draw_stages && stages)
             static_cast<Hexagon::AdvancedComponentNavigator::Stage *>(stage);
          advanced_component_navigator_stage->set_is_focused(true);
          //advanced_component_navigator_stage->set_display(display);
-         advanced_component_navigator_stage->set_font(font);
+         advanced_component_navigator_stage->set_font(component_navigator_font);
          //advanced_component_navigator_stage->set_cell_width(cell_width);
          //advanced_component_navigator_stage->set_cell_height(cell_height);
       }

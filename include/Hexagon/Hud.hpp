@@ -96,6 +96,7 @@ namespace Hexagon
    ALLEGRO_FONT* obtain_score_text_font();
    ALLEGRO_FONT* obtain_global_font();
    ALLEGRO_FONT* obtain_packet_text_font();
+   ALLEGRO_FONT* obtain_component_navigator_font();
    void initialize();
    void reinitialize();
    void draw_current_title_text();
