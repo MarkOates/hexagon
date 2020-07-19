@@ -16,7 +16,7 @@ namespace Hexagon
          std::string component_name;
          bool shell_command_has_executed;
          std::string last_executed_shell_response;
-         std::string command;
+         std::string path_to_executable;
 
       public:
          Stage(std::string current_project_directory="/Users/markoates/Repos/hexagon/", std::string component_name="");

@@ -20,7 +20,7 @@ Stage::Stage(std::string current_project_directory, std::string component_name)
    , component_name(component_name)
    , shell_command_has_executed(false)
    , last_executed_shell_response("")
-   , command("~/Repos/blast/bin/programs/component_generator")
+   , path_to_executable("~/Repos/blast/bin/programs/component_generator")
 {
 }
 
@@ -60,7 +60,7 @@ std::stringstream commit_everything_shell_command;
 commit_everything_shell_command << "("
                                 << "cd " << current_project_directory
                                 << " && "
-                                << command
+                                << path_to_executable << " " << component_name
                                 << ")";
 
 return commit_everything_shell_command.str();

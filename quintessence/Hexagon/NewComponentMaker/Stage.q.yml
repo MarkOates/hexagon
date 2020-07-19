@@ -15,7 +15,7 @@ properties:
   - name: last_executed_shell_response
     type: std::string
     init_with: '""'
-  - name: command
+  - name: path_to_executable
     stagic: true
     type: std::string
     init_with: '"~/Repos/blast/bin/programs/component_generator"'
@@ -55,7 +55,7 @@ functions:
       commit_everything_shell_command << "("
                                       << "cd " << current_project_directory
                                       << " && "
-                                      << command
+                                      << path_to_executable << " " << component_name
                                       << ")";
 
       return commit_everything_shell_command.str();
