@@ -819,6 +819,7 @@ bool System::spawn_component_navigator()
 
    Hexagon::AdvancedComponentNavigator::Stage *component_navigator =
       new Hexagon::AdvancedComponentNavigator::Stage(get_default_navigator_directory());
+
    component_navigator->process_local_event("refresh_list");
    component_navigator->set_place(build_component_navigator_initial_place());
    stages.push_back(component_navigator);
