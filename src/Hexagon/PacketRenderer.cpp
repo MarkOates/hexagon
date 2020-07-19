@@ -69,7 +69,7 @@ window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
 window.set_outer_line_opacity(0.2);
 window.set_outer_line_thickness(2.0);
 
-ALLEGRO_COLOR top_left_little_bar_color = ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
+ALLEGRO_COLOR top_left_little_bar_color = generate_top_left_little_bar_color();
 
 window.set_header_bar_height(height);
 window.set_top_left_little_bar_color(top_left_little_bar_color);
@@ -111,6 +111,16 @@ for (auto &row : table)
 }
 
 return;
+
+}
+
+ALLEGRO_COLOR PacketRenderer::generate_top_left_little_bar_color()
+{
+int packet_score = packet->calculate_score();
+if (packet_score <= 10) return ALLEGRO_COLOR{0.26, 0.3, 0.3, 1.0};
+if (packet_score >= 100) return ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
+if (packet_score >= 20) return ALLEGRO_COLOR{1.0, 1.0, 0, 1.0};
+return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
 
 }
 } // namespace Hexagon

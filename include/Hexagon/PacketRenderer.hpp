@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/Packet.hpp>
+#include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 
 
@@ -23,6 +24,7 @@ namespace Hexagon
    void render();
    void render_window();
    void render_text();
+   ALLEGRO_COLOR generate_top_left_little_bar_color();
    };
 }
 
