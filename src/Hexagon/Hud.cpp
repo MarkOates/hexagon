@@ -450,7 +450,7 @@ if (draw_stages && stages)
       {
          Hexagon::AdvancedComponentNavigator::Stage *advanced_component_navigator_stage =
             static_cast<Hexagon::AdvancedComponentNavigator::Stage *>(stage);
-         //advanced_component_navigator_stage->set_is_focused(is_focused);
+         advanced_component_navigator_stage->set_is_focused(true);
          //advanced_component_navigator_stage->set_display(display);
          advanced_component_navigator_stage->set_font(font);
          //advanced_component_navigator_stage->set_cell_width(cell_width);

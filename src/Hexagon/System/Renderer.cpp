@@ -76,6 +76,8 @@ int cell_height = al_get_font_line_height(font);
 
 for (auto &stage : system->stages)
 {
+   if (stage->get_render_on_hud()) continue;
+
    std::stringstream profile_timer_element_label;
    profile_timer_element_label << "Stage [" << stage->get_type_name() << "]                    " << stage;
    global::profiler.start(profile_timer_element_label.str());

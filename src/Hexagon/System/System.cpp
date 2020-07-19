@@ -146,6 +146,7 @@ bool System::initialize()
 
    hud.set_backfill_color(config.get_backfill_color());
    hud.set_stages(&stages);
+   hud.set_global_font_str(get_global_font_str());
    hud.initialize();
 
    camera.stepback.z = get_default_camera_stepback();
@@ -193,10 +194,10 @@ float System::get_default_code_editor_stage_width()
 placement3d System::build_component_navigator_initial_place()
 {
    placement3d result;
-   result.position = camera.position;
-   result.size = vec3d(800, 700, 30);
+   result.position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   result.size = vec3d(800, 700, 0);
    result.align = vec3d(0.5, 0.5, 0.5);
-   //result.scale = vec3d(0.8, 0.8, 1.0);
+   result.scale = vec3d(0.8, 0.8, 1.0);
    result.rotation = vec3d(0.0, 0.0, 0.0);
    return result;
 }
@@ -823,6 +824,7 @@ bool System::spawn_component_navigator()
 
    component_navigator->process_local_event("refresh_list");
    component_navigator->set_place(build_component_navigator_initial_place());
+   component_navigator->set_render_on_hud(true);
    stages.push_back(component_navigator);
 
    motion.cmove_to(&camera.rotation.y, camera.rotation.y, camera.rotation.y+0.02, interpolator::tripple_fast_in);

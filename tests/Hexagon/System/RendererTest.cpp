@@ -57,3 +57,9 @@ TEST(Hexagon_System_RendererTest, render__renders_the_scene)
 
    SUCCEED();
 }
+
+TEST(DISABLED_Hexagon_System_RendererTest, render__will_render_stages_marked_as_render_on_hud_only_on_the_hud)
+{
+   // todo
+}
+
