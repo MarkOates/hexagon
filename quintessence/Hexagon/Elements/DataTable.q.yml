@@ -19,16 +19,8 @@ functions:
 
 
   - name: render
-    guards: [ font, al_is_primitives_addon_initialized() ]
-    body: |
-      render_text();
-      return;
-    body_dependency_symbols:
-      - al_is_primitives_addon_initialized
-
-
-  - name: render_text
     private: true
+    guards: [ font, al_is_primitives_addon_initialized() ]
     body: |
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 
@@ -63,6 +55,7 @@ functions:
 
       return;
     body_dependency_symbols:
+      - al_is_primitives_addon_initialized
       - std::vector<std::vector<std::string>>
       - al_draw_textf
       - ALLEGRO_COLOR

@@ -2,13 +2,13 @@
 
 #include <Hexagon/Elements/DataTable.hpp>
 #include <allegro5/allegro_primitives.h>
-#include <stdexcept>
-#include <sstream>
 #include <vector>
 #include <string>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -44,13 +44,6 @@ if (!(al_is_primitives_addon_initialized()))
       error_message << "DataTable" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
       throw std::runtime_error(error_message.str());
    }
-render_text();
-return;
-
-}
-
-void DataTable::render_text()
-{
 ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 
 std::vector<std::vector<std::string>> table = {
