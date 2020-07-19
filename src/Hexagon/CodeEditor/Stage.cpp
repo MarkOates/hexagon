@@ -213,8 +213,8 @@ else
    ALLEGRO_FONT *overlay_font = get_font();
    //ALLEGRO_COLOR base_font_color = al_color_name("white");
    //ALLEGRO_COLOR backfill_color = al_color_name("black");
-   ALLEGRO_COLOR base_font_color = al_color_name("white");
-   ALLEGRO_COLOR backfill_color = al_color_name("black");
+   //ALLEGRO_COLOR base_font_color = al_color_name("white");
+   //ALLEGRO_COLOR backfill_color = al_color_name("black");
    float backfill_opacity = 0.8f;
 
    ::CodeEditor::Renderer renderer(
