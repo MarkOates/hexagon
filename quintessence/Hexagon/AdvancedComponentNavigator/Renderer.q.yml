@@ -38,11 +38,6 @@ properties:
   - name: frame_color
     type: ALLEGRO_COLOR
     init_with: 'al_color_html("39c3c5")'
-  - name: SOME_CONSTANT
-    const: true
-    static: true
-    type: std::string
-    init_with: '"SOME_CONSTANT"'
 
 
 

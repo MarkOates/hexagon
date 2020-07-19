@@ -4,7 +4,6 @@
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
-#include <string>
 
 
 namespace Hexagon
@@ -23,7 +22,6 @@ namespace Hexagon
          float backfill_opacity;
          ALLEGRO_COLOR* base_text_color;
          ALLEGRO_COLOR frame_color;
-         static std::string SOME_CONSTANT;
 
       public:
          Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage=nullptr, bool is_focused=true, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20, ALLEGRO_COLOR* base_backfill_color=nullptr, float backfill_opacity=1.0f, ALLEGRO_COLOR* base_text_color=nullptr);

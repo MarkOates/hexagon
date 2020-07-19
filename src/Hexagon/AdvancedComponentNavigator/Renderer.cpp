@@ -23,9 +23,6 @@ namespace AdvancedComponentNavigator
 {
 
 
-std::string Renderer::SOME_CONSTANT = "SOME_CONSTANT";
-
-
 Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, bool is_focused, ALLEGRO_FONT* font, int cell_width, int cell_height, ALLEGRO_COLOR* base_backfill_color, float backfill_opacity, ALLEGRO_COLOR* base_text_color)
    : stage(stage)
    , is_focused(is_focused)
