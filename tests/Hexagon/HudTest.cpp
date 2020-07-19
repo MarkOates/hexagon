@@ -12,6 +12,19 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro_flare/placement3d.h>
+#include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+#include <Hexagon/StageInterface.hpp>
+
+class DummyUnrenderableStageType : public StageInterface
+{
+public:
+   DummyUnrenderableStageType()
+     : StageInterface(StageInterface::OLD_COMPONENT_NAVIGATOR)
+   {}
+   virtual void render() override {}
+   virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
+   virtual void process_event(ALLEGRO_EVENT &event) override {}
+};
 
 class Hexagon_Elements_HudTest_WithEmptyFixture : public ::testing::Test
 {
@@ -180,6 +193,47 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
+   //sleep(2);
+}
+
+TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+   render__will_render_advanced_component_navigator_stages_that_are_marked_as_render_on_hud)
+{
+   Hexagon::AdvancedComponentNavigator::Stage stage;
+   stage.set_render_on_hud(true);
+   stage.get_place() = build_centered_placement(800, 700);
+   stage.process_local_event("refresh_list");
+
+   std::vector<StageInterface *> stages = { &stage };
+
+   Hexagon::Hud hud(display, font_bin);
+   hud.initialize();
+   hud.set_global_font_str("Menlo-Regular.ttf -20");
+   hud.set_stages(&stages);
+
+   hud.draw();
+
+   al_flip_display();
+
    sleep(2);
+}
+
+TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+   render__when_given_stages_that_are_marked_as_render_on_hud__that_are_of_unknown_type__will_raise_an_error)
+{
+   DummyUnrenderableStageType dummy_stage;
+   dummy_stage.set_render_on_hud(true);
+
+   std::vector<StageInterface *> stages = { &dummy_stage };
+
+   Hexagon::Hud hud(display, font_bin);
+   hud.initialize();
+   hud.set_stages(&stages);
+
+   // terrible error message, please fix later :pray:
+   std::string expected_error_message =
+      "Hexagon/Hud::draw: error: Cannot render a stage marked as render_on_hud that is of type \"6\"";
+
+   ASSERT_THROW_WITH_MESSAGE(hud.draw(), std::runtime_error, expected_error_message);
 }
 

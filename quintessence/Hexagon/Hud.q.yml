@@ -135,6 +135,10 @@ properties:
     type: std::vector<StageInterface *>*
     init_with: nullptr
     setter: true
+  - name: global_font_str
+    type: std::string
+    init_with: '"unset-global_font_str"'
+    setter: true
 
 
 functions:
@@ -172,6 +176,13 @@ functions:
     type: ALLEGRO_FONT*
     body: |
       return fonts["Eurostile.ttf -22"];
+      //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+
+  - name: obtain_global_font
+    type: ALLEGRO_FONT*
+    body: |
+      return fonts[global_font_str];
       //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
@@ -263,6 +274,38 @@ functions:
       ALLEGRO_STATE previous_target_bitmap_state;
       al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
       al_set_target_bitmap(screen_sub_bitmap);
+
+      ALLEGRO_FONT *font = obtain_global_font();
+
+      bool draw_stages = true;
+      if (draw_stages && stages)
+      {
+         for (auto &stage : (*stages))
+         {
+            if (!stage->get_render_on_hud()) continue;
+
+            // another for now...
+            if (stage->get_type() == StageInterface::COMPONENT_NAVIGATOR)
+            {
+               Hexagon::AdvancedComponentNavigator::Stage *advanced_component_navigator_stage =
+                  static_cast<Hexagon::AdvancedComponentNavigator::Stage *>(stage);
+               //advanced_component_navigator_stage->set_is_focused(is_focused);
+               //advanced_component_navigator_stage->set_display(display);
+               advanced_component_navigator_stage->set_font(font);
+               //advanced_component_navigator_stage->set_cell_width(cell_width);
+               //advanced_component_navigator_stage->set_cell_height(cell_height);
+            }
+            else
+            {
+               std::stringstream error_message;
+               error_message << "Hexagon/Hud::draw: error: Cannot render a stage marked as render_on_hud "
+                             << "that is of type \"" << stage->get_type() << "\"";
+               throw std::runtime_error(error_message.str());
+            };
+
+            stage->render();
+         }
+      }
 
       draw_current_title_text();
 
@@ -397,6 +440,7 @@ functions:
       - Hexagon::Powerbar::Renderer
       - Hexagon::FocusTimerBar::Renderer
       - Hexagon::PacketRenderer
+      - Hexagon::AdvancedComponentNavigator::Stage*
 
 
 dependencies:
@@ -446,4 +490,8 @@ dependencies:
     headers: [ allegro_flare/placement3d.h ]
   - symbol: std::vector<StageInterface *>*
     headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: Hexagon::AdvancedComponentNavigator::Stage*
+    headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
+  - symbol: Hexagon::System::Config*
+    headers: [ Hexagon/System/Config.hpp ]
 

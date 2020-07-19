@@ -16,6 +16,7 @@
 #include <Hexagon/Powerbar/Renderer.hpp>
 #include <Hexagon/FocusTimerBar/Renderer.hpp>
 #include <Hexagon/PacketRenderer.hpp>
+#include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -53,6 +54,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , draw_notifications(draw_notifications)
    , left_column_x(left_column_x)
    , stages(nullptr)
+   , global_font_str("unset-global_font_str")
 {
 }
 
@@ -179,6 +181,12 @@ void Hud::set_left_column_x(float left_column_x)
 void Hud::set_stages(std::vector<StageInterface *>* stages)
 {
    this->stages = stages;
+}
+
+
+void Hud::set_global_font_str(std::string global_font_str)
+{
+   this->global_font_str = global_font_str;
 }
 
 
@@ -318,6 +326,13 @@ return fonts["Eurostile.ttf -22"];
 
 }
 
+ALLEGRO_FONT* Hud::obtain_global_font()
+{
+return fonts[global_font_str];
+//return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+}
+
 ALLEGRO_FONT* Hud::obtain_packet_text_font()
 {
 return fonts["Purista Medium.otf -16"];
@@ -420,6 +435,38 @@ int frame_height = al_get_bitmap_height(screen_sub_bitmap);
 ALLEGRO_STATE previous_target_bitmap_state;
 al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
 al_set_target_bitmap(screen_sub_bitmap);
+
+ALLEGRO_FONT *font = obtain_global_font();
+
+bool draw_stages = true;
+if (draw_stages && stages)
+{
+   for (auto &stage : (*stages))
+   {
+      if (!stage->get_render_on_hud()) continue;
+
+      // another for now...
+      if (stage->get_type() == StageInterface::COMPONENT_NAVIGATOR)
+      {
+         Hexagon::AdvancedComponentNavigator::Stage *advanced_component_navigator_stage =
+            static_cast<Hexagon::AdvancedComponentNavigator::Stage *>(stage);
+         //advanced_component_navigator_stage->set_is_focused(is_focused);
+         //advanced_component_navigator_stage->set_display(display);
+         advanced_component_navigator_stage->set_font(font);
+         //advanced_component_navigator_stage->set_cell_width(cell_width);
+         //advanced_component_navigator_stage->set_cell_height(cell_height);
+      }
+      else
+      {
+         std::stringstream error_message;
+         error_message << "Hexagon/Hud::draw: error: Cannot render a stage marked as render_on_hud "
+                       << "that is of type \"" << stage->get_type() << "\"";
+         throw std::runtime_error(error_message.str());
+      };
+
+      stage->render();
+   }
+}
 
 draw_current_title_text();
 
