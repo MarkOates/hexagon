@@ -86,12 +86,13 @@ namespace Hexagon
       Hexagon::FocusTimerBar::FocusTimerBar &get_focus_timer_bar_ref();
    static AllegroFlare::FontBin& get_dummy_font_bin();
    ALLEGRO_FONT* obtain_text_font();
+   ALLEGRO_FONT* obtain_title_font();
    ALLEGRO_FONT* obtain_powerbar_text_font();
    ALLEGRO_FONT* obtain_score_text_font();
    ALLEGRO_FONT* obtain_packet_text_font();
    void initialize();
    void reinitialize();
-   void draw_current_focus_name();
+   void draw_current_title_text();
    void draw_profile_timer_graph();
    void draw();
    };

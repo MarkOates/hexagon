@@ -165,6 +165,21 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
+   //sleep(2);
+}
+
+TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+   render__will_render_title)
+{
+   Hexagon::Hud hud(display, font_bin);
+   hud.initialize();
+
+   hud.set_title_text("Some/Title/Text");
+
+   hud.draw();
+
+   al_flip_display();
+
    sleep(2);
 }
 

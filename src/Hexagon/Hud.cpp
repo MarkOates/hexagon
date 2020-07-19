@@ -290,6 +290,13 @@ return fonts["Eurostile.ttf -27"];
 
 }
 
+ALLEGRO_FONT* Hud::obtain_title_font()
+{
+return fonts["Purista Medium.otf -27"];
+//return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+}
+
 ALLEGRO_FONT* Hud::obtain_powerbar_text_font()
 {
 return fonts["Purista Medium.otf -18"];
@@ -367,14 +374,14 @@ return;
 
 }
 
-void Hud::draw_current_focus_name()
+void Hud::draw_current_title_text()
 {
 ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
 ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
 float display_center_x = al_get_display_width(display) / 2;
 int y_position = 20;
 
-al_draw_text(obtain_text_font(),
+al_draw_text(obtain_title_font(),
              color,
              display_center_x,
              y_position + 20,
@@ -407,7 +414,7 @@ ALLEGRO_STATE previous_target_bitmap_state;
 al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
 al_set_target_bitmap(screen_sub_bitmap);
 
-draw_current_focus_name();
+draw_current_title_text();
 
 if (show_profiler) draw_profile_timer_graph();
 

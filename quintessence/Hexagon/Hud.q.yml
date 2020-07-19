@@ -150,6 +150,13 @@ functions:
       //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
+  - name: obtain_title_font
+    type: ALLEGRO_FONT*
+    body: |
+      return fonts["Purista Medium.otf -27"];
+      //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+
   - name: obtain_powerbar_text_font
     type: ALLEGRO_FONT*
     body: |
@@ -210,7 +217,7 @@ functions:
       return;
 
 
-  - name: draw_current_focus_name
+  - name: draw_current_title_text
     type: void
     private: true
     body: |
@@ -219,7 +226,7 @@ functions:
       float display_center_x = al_get_display_width(display) / 2;
       int y_position = 20;
 
-      al_draw_text(obtain_text_font(),
+      al_draw_text(obtain_title_font(),
                    color,
                    display_center_x,
                    y_position + 20,
@@ -253,7 +260,7 @@ functions:
       al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
       al_set_target_bitmap(screen_sub_bitmap);
 
-      draw_current_focus_name();
+      draw_current_title_text();
 
       if (show_profiler) draw_profile_timer_graph();
 
