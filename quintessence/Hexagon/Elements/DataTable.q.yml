@@ -60,35 +60,27 @@ functions:
     body: |
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 
-      std::vector<std::tuple<std::string, std::string>> table = {
+      std::vector<std::vector<std::string>> table = {
          { "SEARCHES", std::to_string(packet->get_searches_count()) },
          { "SAVES",    std::to_string(packet->get_saves_count()) },
          { "SCORE",    std::to_string(packet->calculate_score()) },
       };
 
       int line_number = 0;
-      float row1_x = 22;
-      float row2_x = 115;
+      float first_row_x = 22;
+      float column_height = 115;
       float first_row_y = 20;
-      int line_height = al_get_font_line_height(font) * 1.2;
+      int row_height = al_get_font_line_height(font) * 1.2;
       for (auto &row : table)
       {
-         std::string row_label = std::get<0>(row);
-         std::string row_value = std::get<1>(row);
-         float row_y = first_row_y + line_height * line_number;
-
-         // draw label
-         al_draw_text(font, text_color, row1_x, row_y, ALLEGRO_ALIGN_LEFT, row_label.c_str());
-
-         // draw data
-         al_draw_text(font, text_color, row2_x, row_y, ALLEGRO_ALIGN_RIGHT, row_value.c_str());
-
-         line_number++;
+         for (auto &column : row)
+         {
+         }
       }
 
       return;
     body_dependency_symbols:
-      - std::vector<std::tuple<std::string, std::string>>
+      - std::vector<std::vector<std::string>>
       - al_draw_textf
       - ALLEGRO_COLOR
       - al_get_font_line_height
@@ -111,6 +103,6 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: al_get_font_line_height
     headers: [ allegro5/allegro_font.h ]
-  - symbol: std::vector<std::tuple<std::string, std::string>>
-    headers: [ vector, tuple, string ]
+  - symbol: std::vector<std::vector<std::string>>
+    headers: [ vector, string ]
 
