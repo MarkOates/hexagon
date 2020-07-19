@@ -3,19 +3,28 @@
 
 #include <Hexagon/ElementFX/WindowSpawnMotionFX.hpp>
 
-TEST(Hexagon_ElementFX_WindowSpawnMotionFXTest, can_be_created_without_blowing_up)
+class Hexagon_ElementFX_WindowSpawnMotionFXTest_WithEmptyFixture : public ::testing::Test
+{
+public:
+   Hexagon_ElementFX_WindowSpawnMotionFXTest_WithEmptyFixture() {}
+};
+
+TEST_F(Hexagon_ElementFX_WindowSpawnMotionFXTest_WithEmptyFixture,
+   can_be_created_without_blowing_up)
 {
    Hexagon::ElementFX::WindowSpawnMotionFX window_spawn_motion_fx;
 }
 
-TEST(Hexagon_ElementFX_WindowSpawnMotionFXTest, construct_modified_window__does_not_blow_up)
+TEST_F(Hexagon_ElementFX_WindowSpawnMotionFXTest_WithEmptyFixture,
+   construct_modified_window__does_not_blow_up)
 {
    Hexagon::ElementFX::WindowSpawnMotionFX window_spawn_motion_fx;
    window_spawn_motion_fx.construct_modified_window();
    SUCCEED();
 }
 
-TEST(Hexagon_ElementFX_WindowSpawnMotionFXTest, construct_modified_window__returns_a_window)
+TEST_F(Hexagon_ElementFX_WindowSpawnMotionFXTest_WithEmptyFixture,
+   construct_modified_window__returns_a_window)
 {
    Hexagon::ElementFX::WindowSpawnMotionFX window_spawn_motion_fx;
    Hexagon::Elements::Window expected_result_window;
