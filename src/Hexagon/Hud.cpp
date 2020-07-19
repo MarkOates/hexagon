@@ -292,7 +292,7 @@ return fonts["Eurostile.ttf -27"];
 
 ALLEGRO_FONT* Hud::obtain_title_font()
 {
-return fonts["Purista Medium.otf -36"];
+return fonts["Purista Medium.otf -32"];
 //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 }
@@ -384,7 +384,7 @@ int y_position = 20;
 al_draw_text(obtain_title_font(),
              color,
              display_center_x,
-             y_position + 20,
+             y_position + 18,
              ALLEGRO_ALIGN_CENTER,
              title_text.c_str());
 return;

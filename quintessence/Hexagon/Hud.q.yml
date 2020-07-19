@@ -153,7 +153,7 @@ functions:
   - name: obtain_title_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Purista Medium.otf -36"];
+      return fonts["Purista Medium.otf -32"];
       //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
@@ -229,7 +229,7 @@ functions:
       al_draw_text(obtain_title_font(),
                    color,
                    display_center_x,
-                   y_position + 20,
+                   y_position + 18,
                    ALLEGRO_ALIGN_CENTER,
                    title_text.c_str());
       return;
