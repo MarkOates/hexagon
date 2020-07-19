@@ -83,14 +83,12 @@ TEST_F(Hexagon_Elements_DataTableTest_WithEmptyFixture,
 TEST_F(Hexagon_Elements_DataTableTest_WithAllegroRenderingFixture,
    render__will_render_the_data)
 {
-   int width = 140;
-   int height = 100;
-
-   placement3d place = build_centered_placement(width, height);
+   placement3d place = build_centered_placement(0, 0);
+   place.position -= vec3d(600, 300, 0);
 
    place.start_transform();
 
-   Hexagon::Elements::DataTable data_table(font, place.size.x, place.size.y);
+   Hexagon::Elements::DataTable data_table(font, 300, 70);
    data_table.render();
 
    place.restore_transform();
