@@ -47,8 +47,6 @@ if (!(al_is_primitives_addon_initialized()))
    }
 ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 
-std::vector<std::vector<std::string>> table = data2d;
-
 int row_num = 0;
 int column_num = 0;
 float first_row_x = 22;
@@ -56,7 +54,7 @@ float first_row_x = 22;
 float first_row_y = 20;
 //int row_height = al_get_font_line_height(font) * 1.2;
 
-for (auto &row : table)
+for (auto &row : data2d)
 {
    int column_num = 0;
    for (auto &cell : row)
