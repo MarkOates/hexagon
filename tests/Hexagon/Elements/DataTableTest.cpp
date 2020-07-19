@@ -88,7 +88,13 @@ TEST_F(Hexagon_Elements_DataTableTest_WithAllegroRenderingFixture,
 
    place.start_transform();
 
-   Hexagon::Elements::DataTable data_table(font, 300, 70);
+   std::vector<std::vector<std::string>> data2d = {
+      { "SEARCHES", "22", "DOPPER", "Active", "Running" },
+      { "SAVES",    "11", "DOPPER" },
+      { "SCORE",    "97", "DOPPER" },
+   };
+
+   Hexagon::Elements::DataTable data_table(font, 300, 70, data2d);
    data_table.render();
 
    place.restore_transform();

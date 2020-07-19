@@ -47,11 +47,7 @@ if (!(al_is_primitives_addon_initialized()))
    }
 ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 
-std::vector<std::vector<std::string>> table = {
-   { "SEARCHES", "22", "DOPPER", "Active", "Running"},
-   { "SAVES",    "11", "DOPPER"},
-   { "SCORE",    "97", "DOPPER"},
-};
+std::vector<std::vector<std::string>> table = data2d;
 
 int row_num = 0;
 int column_num = 0;
