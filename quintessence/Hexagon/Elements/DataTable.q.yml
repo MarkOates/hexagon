@@ -1,10 +1,6 @@
 properties:
 
 
-  - name: packet
-    type: Hexagon::Packet*
-    init_with: nullptr
-    constructor_arg: true
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
@@ -37,9 +33,9 @@ functions:
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 
       std::vector<std::vector<std::string>> table = {
-         { "SEARCHES", std::to_string(packet->get_searches_count()) },
-         { "SAVES",    std::to_string(packet->get_saves_count()) },
-         { "SCORE",    std::to_string(packet->calculate_score()) },
+         { "SEARCHES", "22", },
+         { "SAVES",    "11", },
+         { "SCORE",    "97", },
       };
 
       int row_num = 0;
@@ -78,8 +74,6 @@ dependencies:
 
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
-  - symbol: Hexagon::Packet*
-    headers: [ Hexagon/Packet.hpp ]
   - symbol: al_is_primitives_addon_initialized
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: Hexagon::Elements::Window

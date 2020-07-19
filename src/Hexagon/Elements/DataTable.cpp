@@ -17,9 +17,8 @@ namespace Elements
 {
 
 
-DataTable::DataTable(Hexagon::Packet* packet, ALLEGRO_FONT* font, float width, float height)
-   : packet(packet)
-   , font(font)
+DataTable::DataTable(ALLEGRO_FONT* font, float width, float height)
+   : font(font)
    , width(width)
    , height(height)
 {
@@ -55,9 +54,9 @@ void DataTable::render_text()
 ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 
 std::vector<std::vector<std::string>> table = {
-   { "SEARCHES", std::to_string(packet->get_searches_count()) },
-   { "SAVES",    std::to_string(packet->get_saves_count()) },
-   { "SCORE",    std::to_string(packet->calculate_score()) },
+   { "SEARCHES", "22", },
+   { "SAVES",    "11", },
+   { "SCORE",    "97", },
 };
 
 int row_num = 0;
