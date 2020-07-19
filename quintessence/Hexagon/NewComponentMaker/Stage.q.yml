@@ -42,7 +42,11 @@ functions:
     virtual: true
     override: true
     body: |
+      placement3d place = get_place();
+      al_draw_rectangle(0, 0, place.size.x, place.size.y, ALLEGRO_COLOR{0.2f, 0.2f, 0.2f, 0.2f}, 4.0f);
       return;
+    body_dependency_symbols:
+      - al_draw_rectangle
 
 
   - name: process_local_event
@@ -110,6 +114,8 @@ functions:
 dependencies:
 
 
+  - symbol: al_draw_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: Blast::ShellCommandExecutorWithCallback

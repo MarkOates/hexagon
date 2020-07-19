@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/NewComponentMaker/Stage.hpp>
+#include <allegro5/allegro_primitives.h>
 #include <sstream>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Blast/StringSplitter.hpp>
@@ -48,6 +49,8 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 
 void Stage::render()
 {
+placement3d place = get_place();
+al_draw_rectangle(0, 0, place.size.x, place.size.y, ALLEGRO_COLOR{0.2f, 0.2f, 0.2f, 0.2f}, 4.0f);
 return;
 
 }
