@@ -1,4 +1,130 @@
-functions:
-  - name: run
+parent_classes:
+
+
+  - class: 'StageInterface'
+    scope: public
+    init_with: "StageInterface::NEW_COMPONENT_MAKER"
+
+
+properties:
+
+
+  - name: current_project_directory
     type: std::string
-    body: return "Hello World!";
+    init_with: '"/Users/markoates/Repos/hexagon/"'
+    constructor_arg: true
+    getter: true
+  - name: component_name
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
+  - name: shell_command_has_executed
+    type: bool
+    init_with: false
+  - name: last_executed_shell_response
+    type: std::string
+    init_with: '""'
+  - name: path_to_executable
+    stagic: true
+    type: std::string
+    init_with: '"~/Repos/blast/bin/programs/component_generator"'
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
+
+
+functions:
+
+
+  - name: render
+    virtual: true
+    override: true
+    body: |
+      placement3d place = get_place();
+      al_draw_rectangle(0, 0, place.size.x, place.size.y, ALLEGRO_COLOR{0.2f, 0.2f, 0.2f, 0.2f}, 4.0f);
+      return;
+    body_dependency_symbols:
+      - al_draw_rectangle
+
+
+  - name: process_local_event
+    is_override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: '""'
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: return;
+
+
+  - name: process_event
+    is_override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: |
+      return;
+
+
+  - name: get_shell_response
+    type: std::string
+    body: |
+      if (shell_command_has_executed) return last_executed_shell_response;
+      Blast::ShellCommandExecutorWithCallback executor(
+            build_shell_command(),
+            Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+         );
+      last_executed_shell_response = executor.execute();
+      return last_executed_shell_response;
+    body_dependency_symbols:
+      - std::stringstream
+      - Blast::ShellCommandExecutorWithCallback
+      - Blast::StringSplitter
+
+
+  - name: get_shell_response_lines
+    type: std::vector<std::string>
+    body: |
+      return Blast::StringSplitter(get_shell_response(), '\n').split();
+    body_dependency_symbols:
+      - std::stringstream
+      - Blast::ShellCommandExecutorWithCallback
+      - Blast::StringSplitter
+
+
+  - name: build_shell_command
+    type: std::string
+    private: true
+    body: |
+      std::stringstream commit_everything_shell_command;
+      commit_everything_shell_command << "("
+                                      << "cd " << current_project_directory
+                                      << " && "
+                                      << path_to_executable << " " << component_name
+                                      << ")";
+
+      return commit_everything_shell_command.str();
+
+
+dependencies:
+
+
+  - symbol: al_draw_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+  - symbol: Blast::StringSplitter
+    headers: [ 'Blast/StringSplitter.hpp' ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ allegro5/allegro.h ]
+  - symbol: ActionData
+    headers: [ Hexagon/ActionData.hpp ]

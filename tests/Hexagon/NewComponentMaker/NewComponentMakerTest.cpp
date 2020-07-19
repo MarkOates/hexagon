@@ -8,9 +8,13 @@ TEST(Hexagon_NewComponentMaker_NewComponentMakerTest, can_be_created_without_blo
    Hexagon::NewComponentMaker::NewComponentMaker new_component_maker;
 }
 
-TEST(Hexagon_NewComponentMaker_NewComponentMakerTest, run__returns_the_expected_response)
+TEST(Hexagon_NewComponentMaker_NewComponentMakerTest, get_shell_response__returns_the_expected_response)
 {
-   Hexagon::NewComponentMaker::NewComponentMaker new_component_maker;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, new_component_maker.run());
+   // TODO
 }
+
+TEST(Hexagon_NewComponentMaker_NewComponentMakerTest, get_shell_response_lines__returns_the_expected_response)
+{
+   // TODO
+}
+
