@@ -52,6 +52,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , draw_focus_timer_bar(draw_focus_timer_bar)
    , draw_notifications(draw_notifications)
    , left_column_x(left_column_x)
+   , stages(nullptr)
 {
 }
 
@@ -172,6 +173,12 @@ void Hud::set_draw_notifications(bool draw_notifications)
 void Hud::set_left_column_x(float left_column_x)
 {
    this->left_column_x = left_column_x;
+}
+
+
+void Hud::set_stages(std::vector<StageInterface *>* stages)
+{
+   this->stages = stages;
 }
 
 

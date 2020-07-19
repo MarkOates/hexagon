@@ -145,6 +145,7 @@ bool System::initialize()
    font_bin.set_full_path(font_bin_path);
 
    hud.set_backfill_color(config.get_backfill_color());
+   hud.set_stages(&stages);
    hud.initialize();
 
    camera.stepback.z = get_default_camera_stepback();

@@ -5,6 +5,7 @@
 #include <Hexagon/FocusTimerBar/FocusTimerBar.hpp>
 #include <Hexagon/Packet.hpp>
 #include <Hexagon/Powerbar/Powerbar.hpp>
+#include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
@@ -42,6 +43,7 @@ namespace Hexagon
       bool draw_focus_timer_bar;
       bool draw_notifications;
       float left_column_x;
+      std::vector<StageInterface *>* stages;
 
    public:
       Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool draw_powerbar=true, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=true, int save_count=0, bool draw_packets=true, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=true, int search_count=0, bool draw_focus_timer_bar=true, bool draw_notifications=true, float left_column_x=60);
@@ -66,6 +68,7 @@ namespace Hexagon
       void set_draw_focus_timer_bar(bool draw_focus_timer_bar);
       void set_draw_notifications(bool draw_notifications);
       void set_left_column_x(float left_column_x);
+      void set_stages(std::vector<StageInterface *>* stages);
 
       std::vector<std::string> get_notifications();
       std::vector<std::string> get_notifications2();
