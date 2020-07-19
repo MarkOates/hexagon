@@ -30,6 +30,7 @@ public:
 
 private:
    StageInterface::type_t type;
+   bool render_on_hud;
    placement3d place;
 
 public:
@@ -40,6 +41,8 @@ public:
    std::string get_type_name();
    placement3d &get_place();
    void set_place(placement3d place);
+   void set_render_on_hud(bool render_on_hud);
+   bool get_render_on_hud();
    bool infer_is_modal(); // this should be removed from the base class
 
    virtual void render() = 0;

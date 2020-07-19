@@ -7,6 +7,7 @@
 
 StageInterface::StageInterface(StageInterface::type_t type)
    : type(type)
+   , render_on_hud(false)
    , place(0, 0, 0)
 {}
 
@@ -79,6 +80,20 @@ placement3d &StageInterface::get_place()
 void StageInterface::set_place(placement3d place)
 {
    this->place = place;
+}
+
+
+
+void StageInterface::set_render_on_hud(bool render_on_hud)
+{
+   this->render_on_hud = render_on_hud;
+}
+
+
+
+bool StageInterface::get_render_on_hud()
+{
+   return render_on_hud;
 }
 
 
