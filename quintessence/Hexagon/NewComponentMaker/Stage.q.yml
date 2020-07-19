@@ -1,10 +1,13 @@
 parent_classes:
 
+
   - class: 'StageInterface'
     scope: public
     init_with: "StageInterface::NEW_COMPONENT_MAKER"
 
+
 properties:
+
 
   - name: current_project_directory
     type: std::string
