@@ -414,11 +414,11 @@ void Renderer::render_raw()
    }
 
    Hexagon::Elements::Window window(place.size.x, place.size.y);
-   window.set_outer_line_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f});
+   window.set_outer_line_color(base_font_color);
    window.set_outer_line_opacity(0.2);
    window.set_outer_line_thickness(1.0);
 
-   window.set_corner_squares_color(ALLEGRO_COLOR{0.0f, 0.5f, 0.5f, 0.5f});
+   window.set_corner_squares_color(base_font_color);
    window.set_corner_squares_opacity(0.2);
    window.set_corner_squares_width(60.0f);
    window.set_corner_squares_height(10.0f);
