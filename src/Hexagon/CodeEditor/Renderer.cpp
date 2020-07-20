@@ -91,7 +91,7 @@ ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
    else
    {
      // soft green font
-     font_color = AllegroFlare::color::mix(font_color, base_font_color, 0.5);
+     font_color = AllegroFlare::color::mix(font_color, base_font_color, 0.8);
    }
 
    return font_color;
