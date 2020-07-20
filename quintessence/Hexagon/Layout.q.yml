@@ -16,9 +16,83 @@ properties:
     init_with: '""'
     constructor_arg: true
     getter: true
+  - name: display_default_height
+    type: int
+    init_with: 1350
+    constructor_arg: true
+    getter: true
+  - name: code_editor_width
+    type: int
+    init_with: 1215
+    constructor_arg: true
+    getter: true
+  - name: stages
+    type: std::vector<StageInterface *>&
+    constructor_arg: true
+    init_with: "get_dummy_stages_ref()"
+    getter: true
+    setter: true
+  - name: dummy_stages
+    type: std::vector<StageInterface *>
+    init_with: "{}"
+    static: true
+    getter_ref: true
+
+functions:
+
+  - name: place_and_load_code_editor
+    private: true
+    type: bool
+    parameters:
+      - name: stages_ptr
+        type: std::vector<StageInterface *>*
+        default_argument: nullptr
+      - name: filename
+        type: std::string
+        default_argument: '""'
+      - name: file_category
+        type: std::string
+        default_argument: '"undefined_file_category"'
+      - name: x
+        type: float
+        default_argument: 0.0f
+      - name: y
+        type: float
+        default_argument: 0.0f
+    body: |
+      float code_editor_height = get_display_default_height();
+      {
+         std::string file_contents = php::file_get_contents(filename);
+
+         Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({filename, file_category});
+         stage->get_code_editor_ref().set_initial_content(file_contents);
+
+         placement3d place(x * code_editor_width, y * code_editor_height, 0);
+         place.size = vec3d(code_editor_width, code_editor_height, 0);
+         place.align = vec3d(0.5, 0.5, 0.0);
+         place.rotation = vec3d(0.0, 0.0, 0.0);
+
+         stage->set_place(place);
+
+         stages.push_back(stage);
+      }
+      return true;
+    body_dependency_symbols:
+      - php::file_get_contents
+      - Hexagon::CodeEditor::Stage
 
 dependencies:
 
   - symbol: std::vector<std::tuple<std::string, float, float>>
     headers: [ vector, tuple ]
+  - symbol: std::vector<StageInterface *>
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: std::vector<StageInterface *>&
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: std::vector<StageInterface *>*
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: php::file_get_contents
+    headers: [ allegro_flare/useful_php.h ]
+  - symbol: Hexagon::CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
 
