@@ -23,18 +23,21 @@ static const std::string TEST_FIXTURE_DIRECTORY_ROOT = "/Users/markoates/Repos/h
 static const std::string TEST_FIXTURE_EMPTY_CONFIG_FILENAME = TEST_FIXTURE_DIRECTORY_ROOT + "hexagon.empty.cfg";
 static const std::string TEST_FIXTURE_CONFIG_FILENAME = TEST_FIXTURE_DIRECTORY_ROOT + "hexagon.test.cfg";
 
-TEST(Hexagon_System_ConfigTest, expected_fixture_files_exist)
+TEST(Hexagon_System_ConfigTest,
+   expected_fixture_files_exist)
 {
    ASSERT_EQ(true, Blast::FileExistenceChecker(TEST_FIXTURE_EMPTY_CONFIG_FILENAME).exists());
    ASSERT_EQ(true, Blast::FileExistenceChecker(TEST_FIXTURE_CONFIG_FILENAME).exists());
 }
 
-TEST(Hexagon_System_ConfigTest, can_be_created_without_blowing_up)
+TEST(Hexagon_System_ConfigTest,
+   can_be_created_without_blowing_up)
 {
    Hexagon::System::Config config;
 }
 
-TEST(Hexagon_System_ConfigTest, config_filename__has_a_getter_with_the_expected_default)
+TEST(Hexagon_System_ConfigTest,
+   config_filename__has_a_getter_with_the_expected_default)
 {
    Hexagon::System::Config config;
 
@@ -45,7 +48,8 @@ TEST(Hexagon_System_ConfigTest, config_filename__has_a_getter_with_the_expected_
    EXPECT_EQ(expected_default_config_filename, actual_default_config_filename);
 }
 
-TEST(DISABLED_Hexagon_System_ConfigTest, initialize__can_be_called_multiple_times_without_side_effects)
+TEST(DISABLED_Hexagon_System_ConfigTest,
+   initialize__can_be_called_multiple_times_without_side_effects)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
@@ -59,7 +63,8 @@ TEST(DISABLED_Hexagon_System_ConfigTest, initialize__can_be_called_multiple_time
 
 // get_initial_display_width
 
-TEST(Hexagon_System_ConfigTest, get_initial_display_width__without_initialization__throws_an_error)
+TEST(Hexagon_System_ConfigTest,
+   get_initial_display_width__without_initialization__throws_an_error)
 {
    al_init();
    Hexagon::System::Config config;
@@ -81,7 +86,8 @@ TEST(Hexagon_System_ConfigTest,
    ASSERT_EQ(2430, config.get_initial_display_width());
 }
 
-TEST(Hexagon_System_ConfigTest, get_initial_display_width__returns_the_expected_value_from_the_config)
+TEST(Hexagon_System_ConfigTest,
+   get_initial_display_width__returns_the_expected_value_from_the_config)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
@@ -93,7 +99,8 @@ TEST(Hexagon_System_ConfigTest, get_initial_display_width__returns_the_expected_
 
 // get_initial_display_height
 
-TEST(Hexagon_System_ConfigTest, get_initial_display_height__without_initialization__throws_an_error)
+TEST(Hexagon_System_ConfigTest,
+   get_initial_display_height__without_initialization__throws_an_error)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
@@ -115,7 +122,8 @@ TEST(Hexagon_System_ConfigTest,
    ASSERT_EQ(1350, config.get_initial_display_height());
 }
 
-TEST(Hexagon_System_ConfigTest, get_initial_display_height__returns_the_expected_value_from_the_config)
+TEST(Hexagon_System_ConfigTest,
+   get_initial_display_height__returns_the_expected_value_from_the_config)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
@@ -127,7 +135,8 @@ TEST(Hexagon_System_ConfigTest, get_initial_display_height__returns_the_expected
 
 // get_default_navigator_directory
 
-TEST(Hexagon_System_ConfigTest, get_default_navigator_directory__without_initialization__throws_an_error)
+TEST(Hexagon_System_ConfigTest,
+   get_default_navigator_directory__without_initialization__throws_an_error)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
@@ -151,7 +160,8 @@ TEST(Hexagon_System_ConfigTest,
    al_uninstall_system();
 }
 
-TEST(Hexagon_System_ConfigTest, get_default_navigator_directory__returns_the_expected_value_from_the_config)
+TEST(Hexagon_System_ConfigTest,
+   get_default_navigator_directory__returns_the_expected_value_from_the_config)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
@@ -163,7 +173,8 @@ TEST(Hexagon_System_ConfigTest, get_default_navigator_directory__returns_the_exp
    al_uninstall_system();
 }
 
-TEST(DISABLED_Hexagon_System_ConfigTest, get_regex_temp_filename__returns_the_expected_default_value)
+TEST(DISABLED_Hexagon_System_ConfigTest,
+   get_regex_temp_filename__returns_the_expected_default_value)
 {
    al_init();
 
@@ -176,23 +187,28 @@ TEST(DISABLED_Hexagon_System_ConfigTest, get_regex_temp_filename__returns_the_ex
    al_uninstall_system();
 }
 
-TEST(DISABLED_Hexagon_System_ConfigTest, get_clipboard_temp_filename__returns_the_expected_default_value)
+TEST(DISABLED_Hexagon_System_ConfigTest,
+   get_clipboard_temp_filename__returns_the_expected_default_value)
 {
 }
 
-TEST(DISABLED_Hexagon_System_ConfigTest, get_file_navigator_selection_filename__returns_the_expected_default_value)
+TEST(DISABLED_Hexagon_System_ConfigTest,
+   get_file_navigator_selection_filename__returns_the_expected_default_value)
 {
 }
 
-TEST(DISABLED_Hexagon_System_ConfigTest, get_make_command_filename__returns_the_expected_default_value)
+TEST(DISABLED_Hexagon_System_ConfigTest,
+   get_make_command_filename__returns_the_expected_default_value)
 {
 }
 
-TEST(DISABLED_Hexagon_System_ConfigTest, get_focused_component_filename__returns_the_expected_default_value)
+TEST(DISABLED_Hexagon_System_ConfigTest,
+   get_focused_component_filename__returns_the_expected_default_value)
 {
 }
 
-TEST(Hexagon_System_ConfigTest, is_dark_mode__returns_true_if_the_a_true_value_is_set_in_the_config)
+TEST(Hexagon_System_ConfigTest,
+   is_dark_mode__returns_true_if_the_a_true_value_is_set_in_the_config)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
@@ -203,7 +219,8 @@ TEST(Hexagon_System_ConfigTest, is_dark_mode__returns_true_if_the_a_true_value_i
    al_uninstall_system();
 }
 
-TEST(Hexagon_System_ConfigTest, is_dark_mode__returns_false_by_default)
+TEST(Hexagon_System_ConfigTest,
+   is_dark_mode__returns_false_by_default)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
@@ -214,7 +231,8 @@ TEST(Hexagon_System_ConfigTest, is_dark_mode__returns_false_by_default)
    al_uninstall_system();
 }
 
-TEST(Hexagon_System_ConfigTest, get_backfill_color__when_in_dark_mode__returns_the_expected_color)
+TEST(Hexagon_System_ConfigTest,
+   get_backfill_color__when_in_dark_mode__returns_the_expected_color)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
@@ -229,7 +247,8 @@ TEST(Hexagon_System_ConfigTest, get_backfill_color__when_in_dark_mode__returns_t
    al_uninstall_system();
 }
 
-TEST(DISABLED_Hexagon_System_ConfigTest, get_backfill_color__when_in_not_in_dark_mode__returns_the_expected_color)
+TEST(DISABLED_Hexagon_System_ConfigTest,
+   get_backfill_color__when_in_not_in_dark_mode__returns_the_expected_color)
    // disabled because changing the background color breaks this test
 {
    al_init();
@@ -244,7 +263,8 @@ TEST(DISABLED_Hexagon_System_ConfigTest, get_backfill_color__when_in_not_in_dark
    al_uninstall_system();
 }
 
-TEST(Hexagon_System_ConfigTest, get_base_text_color__when_in_dark_mode__returns_white)
+TEST(Hexagon_System_ConfigTest,
+   get_base_text_color__when_in_dark_mode__returns_white)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
@@ -258,7 +278,8 @@ TEST(Hexagon_System_ConfigTest, get_base_text_color__when_in_dark_mode__returns_
    al_uninstall_system();
 }
 
-TEST(Hexagon_System_ConfigTest, get_base_text_color__when_in_not_in_dark_mode__returns_black)
+TEST(Hexagon_System_ConfigTest,
+   get_base_text_color__when_in_not_in_dark_mode__returns_black)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
@@ -272,7 +293,8 @@ TEST(Hexagon_System_ConfigTest, get_base_text_color__when_in_not_in_dark_mode__r
    al_uninstall_system();
 }
 
-TEST(Hexagon_System_ConfigTest, get_backfill_opacity__returns_the_expected_value)
+TEST(Hexagon_System_ConfigTest,
+   get_backfill_opacity__returns_the_expected_value)
 {
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
    ASSERT_EQ(0.8f, config.get_backfill_opacity());
