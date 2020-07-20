@@ -42,6 +42,14 @@ properties:
     init_with: 1215
     constructor_arg: true
     getter: true
+  - name: text_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
+    constructor_arg: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    constructor_arg: true
 
 
 functions:
@@ -92,6 +100,10 @@ functions:
            static_cast<CodeEditor::Stage *>(stage)->get_code_editor_ref().set_initial_content(file_contents);
                                                                        // ^^ feels a tad hacky
                                                                        // not sure code should be filled here
+           static_cast<CodeEditor::Stage *>(stage)->set_base_font_color(text_color);
+           static_cast<CodeEditor::Stage *>(stage)->set_backfill_color(backfill_color);
+           //file_stage->set_base_font_color(text_color);
+           //file_stage->set_backfill_color(backfill_color);
         }
         else
         {
@@ -117,6 +129,8 @@ functions:
            ::read_file(file_contents, filename);
            stage = new CodeEditor::Stage({filename, "blast_quintessence"});
            static_cast<CodeEditor::Stage *>(stage)->get_code_editor_ref().set_initial_content(file_contents);
+           static_cast<CodeEditor::Stage *>(stage)->set_base_font_color(text_color);
+           static_cast<CodeEditor::Stage *>(stage)->set_backfill_color(backfill_color);
         }
         else
         {
@@ -143,6 +157,8 @@ functions:
 dependencies:
 
 
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
   - symbol: std::vector
     headers: [ vector ]
   - symbol: std::string

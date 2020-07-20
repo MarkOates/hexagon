@@ -1264,7 +1264,9 @@ bool System::create_three_split_from_last_component_navigator_selection()
       stages,
       get_display_default_width(),
       get_display_default_height(),
-      get_default_code_editor_stage_width()
+      get_default_code_editor_stage_width(),
+      config.get_base_text_color(),
+      config.get_backfill_color()
    );
    return action.managed_execute();
 }
@@ -1312,7 +1314,10 @@ bool System::attempt_to_create_stage_from_last_component_navigator_selection()
          get_display_default_width(),
          get_display_default_height(),
          stages,
-         get_default_code_editor_stage_width());
+         get_default_code_editor_stage_width(),
+         config.get_base_text_color(),
+         config.get_backfill_color()
+      );
    return action.managed_execute();
 }
 

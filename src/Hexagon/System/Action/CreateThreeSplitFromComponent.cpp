@@ -20,7 +20,7 @@ namespace Action
 std::vector<StageInterface *> CreateThreeSplitFromComponent::dummy_stages = {};
 
 
-CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project_path, Blast::Project::Component component, std::vector<StageInterface *>& stages, int display_default_width, int display_default_height, int code_editor_width)
+CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project_path, Blast::Project::Component component, std::vector<StageInterface *>& stages, int display_default_width, int display_default_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : ::Action("System::Action::CreateThreeSplitFromComponent", ActionData())
    , project_path(project_path)
    , component(component)
@@ -28,6 +28,8 @@ CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project
    , display_default_width(display_default_width)
    , display_default_height(display_default_height)
    , code_editor_width(code_editor_width)
+   , text_color(text_color)
+   , backfill_color(backfill_color)
 {
 }
 
@@ -83,6 +85,8 @@ if (file_exists)
    std::string file_contents = php::file_get_contents(filename);
    Hexagon::CodeEditor::Stage *file_stage = new Hexagon::CodeEditor::Stage({filename, file_category});
    file_stage->get_code_editor_ref().set_initial_content(file_contents);
+   file_stage->set_base_font_color(text_color);
+   file_stage->set_backfill_color(backfill_color);
    stage = file_stage;
 }
 else

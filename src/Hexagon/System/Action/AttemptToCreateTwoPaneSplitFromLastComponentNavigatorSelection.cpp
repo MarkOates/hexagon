@@ -23,7 +23,7 @@ namespace Action
 std::vector<StageInterface *> AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::dummy_stages = {};
 
 
-AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection(std::string project_path, std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages, int code_editor_width)
+AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection(std::string project_path, std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : ::Action("System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection", ActionData())
    , project_path(project_path)
    , last_component_navigator_selection(last_component_navigator_selection)
@@ -31,6 +31,8 @@ AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateT
    , display_default_height(display_default_height)
    , stages(stages)
    , code_editor_width(code_editor_width)
+   , text_color(text_color)
+   , backfill_color(backfill_color)
 {
 }
 
@@ -114,6 +116,10 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
      static_cast<CodeEditor::Stage *>(stage)->get_code_editor_ref().set_initial_content(file_contents);
                                                                  // ^^ feels a tad hacky
                                                                  // not sure code should be filled here
+     static_cast<CodeEditor::Stage *>(stage)->set_base_font_color(text_color);
+     static_cast<CodeEditor::Stage *>(stage)->set_backfill_color(backfill_color);
+     //file_stage->set_base_font_color(text_color);
+     //file_stage->set_backfill_color(backfill_color);
   }
   else
   {
@@ -139,6 +145,8 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
      ::read_file(file_contents, filename);
      stage = new CodeEditor::Stage({filename, "blast_quintessence"});
      static_cast<CodeEditor::Stage *>(stage)->get_code_editor_ref().set_initial_content(file_contents);
+     static_cast<CodeEditor::Stage *>(stage)->set_base_font_color(text_color);
+     static_cast<CodeEditor::Stage *>(stage)->set_backfill_color(backfill_color);
   }
   else
   {

@@ -37,6 +37,14 @@ properties:
     init_with: 1215
     constructor_arg: true
     getter: true
+  - name: text_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
+    constructor_arg: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    constructor_arg: true
   - name: dummy_stages
     type: std::vector<StageInterface *>
     init_with: "{}"
@@ -78,6 +86,8 @@ functions:
          std::string file_contents = php::file_get_contents(filename);
          Hexagon::CodeEditor::Stage *file_stage = new Hexagon::CodeEditor::Stage({filename, file_category});
          file_stage->get_code_editor_ref().set_initial_content(file_contents);
+         file_stage->set_base_font_color(text_color);
+         file_stage->set_backfill_color(backfill_color);
          stage = file_stage;
       }
       else
@@ -140,6 +150,8 @@ functions:
 dependencies:
 
 
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
   - symbol: Blast::Project::Component
