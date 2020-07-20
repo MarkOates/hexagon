@@ -214,7 +214,7 @@ TEST(Hexagon_System_ConfigTest, is_dark_mode__returns_false_by_default)
    al_uninstall_system();
 }
 
-TEST(Hexagon_System_ConfigTest, get_backfill_color__when_in_dark_mode__returns_black)
+TEST(Hexagon_System_ConfigTest, get_backfill_color__when_in_dark_mode__returns_the_expected_color)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
@@ -223,6 +223,7 @@ TEST(Hexagon_System_ConfigTest, get_backfill_color__when_in_dark_mode__returns_b
    ASSERT_EQ(true, config.is_dark_mode());
 
    ALLEGRO_COLOR expected_color = al_color_name("black");
+   //ALLEGRO_COLOR expected_color = al_color_html("a67d5a"); // color of lamp light against wall
    EXPECT_COLOR_EQ(expected_color, config.get_backfill_color());
 
    al_uninstall_system();
