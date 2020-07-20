@@ -1171,11 +1171,16 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
    }
    else // is a valid file
    {
+      ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f};
+      ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+
       Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
          filename,
          get_display_default_width(),
          get_display_default_height(),
          get_default_code_editor_stage_width(),
+         text_color,
+         backfill_color,
          &stages);
 
       action.execute();
@@ -1360,7 +1365,7 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
    // refresh the cleared scores on the hud
    set_hud_search_count_to_search_count();
    set_hud_save_count_to_save_count();
-   bool check_git_local_status_and_update_powerbar();
+   check_git_local_status_and_update_powerbar();
 
    return true;
 }
@@ -1446,6 +1451,8 @@ bool System::open_hexagon_config_file()
       al_get_display_width(display),
       al_get_display_height(display),
       get_default_code_editor_stage_width(),
+      config.get_base_text_color(),
+      config.get_backfill_color(),
       &stages
       );
 

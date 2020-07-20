@@ -40,6 +40,8 @@ TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
       300,
       200,
       100,
+      ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f},
+      ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f},
       &stages);
 
    std::string expected_error_message = "Could not open the selected file";
@@ -55,6 +57,8 @@ TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
       300,
       200,
       100,
+      ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f},
+      ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f},
       &stages);
 
    EXPECT_EQ(true, action.execute());

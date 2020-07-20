@@ -22,6 +22,14 @@ properties:
      init_with: 1
      constructor_arg: true
      getter: true
+   - name: text_color
+     type: ALLEGRO_COLOR
+     init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
+     constructor_arg: true
+   - name: backfill_color
+     type: ALLEGRO_COLOR
+     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+     constructor_arg: true
    - name: stages
      type: std::vector<StageInterface *>*
      init_with: nullptr
@@ -59,6 +67,8 @@ functions:
        Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(::CodeEditor::CodeEditor{filename});// place);
 
        stage->set_place(place);
+       stage->set_base_font_color(text_color);
+       stage->set_backfill_color(backfill_color);
        stage->get_code_editor_ref().set_content(file_contents);
        stages->push_back(stage);
 
@@ -70,6 +80,8 @@ functions:
        - std::vector<std::string>
        - Hexagon::CodeEditor::Stage
 dependencies:
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
   - symbol: std::vector<StageInterface *>*

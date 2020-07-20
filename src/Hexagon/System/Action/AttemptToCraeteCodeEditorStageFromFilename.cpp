@@ -17,12 +17,14 @@ namespace Action
 {
 
 
-AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFilename(std::string filename, int display_default_width, int display_default_height, int stage_width, std::vector<StageInterface *>* stages)
+AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFilename(std::string filename, int display_default_width, int display_default_height, int stage_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color, std::vector<StageInterface *>* stages)
    : ::Action("System::Action::AttemptToCreateCodeEditorStageFromFilename", ActionData())
    , filename(filename)
    , display_default_width(display_default_width)
    , display_default_height(display_default_height)
    , stage_width(stage_width)
+   , text_color(text_color)
+   , backfill_color(backfill_color)
    , stages(stages)
 {
 }
@@ -82,6 +84,8 @@ if (!stages)
  Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(::CodeEditor::CodeEditor{filename});// place);
 
  stage->set_place(place);
+ stage->set_base_font_color(text_color);
+ stage->set_backfill_color(backfill_color);
  stage->get_code_editor_ref().set_content(file_contents);
  stages->push_back(stage);
 
