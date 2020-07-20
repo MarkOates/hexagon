@@ -49,6 +49,18 @@ properties:
     init_with: 20
     getter: true
     setter: true
+  - name: base_text_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
+    constructor_arg: true
+    getter: true
+    setter: true
+  - name: base_backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    constructor_arg: true
+    getter: true
+    setter: true
 
 
 
@@ -113,9 +125,7 @@ functions:
     virtual: true
     override: true
     body: |
-      ALLEGRO_COLOR base_backfill_color = al_color_name("black");
       float backfill_opacity = 0.8f;
-      ALLEGRO_COLOR base_text_color = al_color_name("white");
 
       Hexagon::AdvancedComponentNavigator::Renderer renderer(
          this, is_focused, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color

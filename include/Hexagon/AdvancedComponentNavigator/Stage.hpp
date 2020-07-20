@@ -6,6 +6,7 @@
 #include <Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <functional>
 #include <map>
@@ -27,9 +28,11 @@ namespace Hexagon
          ALLEGRO_FONT* font;
          int cell_width;
          int cell_height;
+         ALLEGRO_COLOR base_text_color;
+         ALLEGRO_COLOR base_backfill_color;
 
       public:
-         Stage(std::string project_root="/Users/markoates/Repos/hexagon/");
+         Stage(std::string project_root="/Users/markoates/Repos/hexagon/", ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR base_backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
          virtual ~Stage();
 
          void set_project_root(std::string project_root);
@@ -38,6 +41,8 @@ namespace Hexagon
          void set_font(ALLEGRO_FONT* font);
          void set_cell_width(int cell_width);
          void set_cell_height(int cell_height);
+         void set_base_text_color(ALLEGRO_COLOR base_text_color);
+         void set_base_backfill_color(ALLEGRO_COLOR base_backfill_color);
 
          std::string get_project_root();
          bool get_is_focused();
@@ -45,6 +50,8 @@ namespace Hexagon
          ALLEGRO_FONT* get_font();
          int get_cell_width();
          int get_cell_height();
+         ALLEGRO_COLOR get_base_text_color();
+         ALLEGRO_COLOR get_base_backfill_color();
          Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &get_component_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       KeyboardCommandMapper build_keyboard_command_mapping();

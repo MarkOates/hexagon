@@ -16,7 +16,7 @@ namespace AdvancedComponentNavigator
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(std::string project_root)
+Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_COLOR base_backfill_color)
    : StageInterface(StageInterface::COMPONENT_NAVIGATOR)
    , project_root(project_root)
    , component(project_root)
@@ -25,6 +25,8 @@ Stage::Stage(std::string project_root)
    , font(nullptr)
    , cell_width(10)
    , cell_height(20)
+   , base_text_color(base_text_color)
+   , base_backfill_color(base_backfill_color)
 {
 }
 
@@ -70,6 +72,18 @@ void Stage::set_cell_height(int cell_height)
 }
 
 
+void Stage::set_base_text_color(ALLEGRO_COLOR base_text_color)
+{
+   this->base_text_color = base_text_color;
+}
+
+
+void Stage::set_base_backfill_color(ALLEGRO_COLOR base_backfill_color)
+{
+   this->base_backfill_color = base_backfill_color;
+}
+
+
 std::string Stage::get_project_root()
 {
    return project_root;
@@ -103,6 +117,18 @@ int Stage::get_cell_width()
 int Stage::get_cell_height()
 {
    return cell_height;
+}
+
+
+ALLEGRO_COLOR Stage::get_base_text_color()
+{
+   return base_text_color;
+}
+
+
+ALLEGRO_COLOR Stage::get_base_backfill_color()
+{
+   return base_backfill_color;
 }
 
 
@@ -170,9 +196,7 @@ return local_events;
 
 void Stage::render()
 {
-ALLEGRO_COLOR base_backfill_color = al_color_name("black");
 float backfill_opacity = 0.8f;
-ALLEGRO_COLOR base_text_color = al_color_name("white");
 
 Hexagon::AdvancedComponentNavigator::Renderer renderer(
    this, is_focused, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
