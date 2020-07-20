@@ -5,6 +5,12 @@ properties:
     init_with: '""'
     constructor_arg: true
     getter: true
+  - name: stages
+    type: std::vector<StageInterface *>*
+    constructor_arg: true
+    init_with: nullptr
+    getter: true
+    setter: true
   - name: files
     type: std::vector<std::tuple<std::string, std::string, float, float>>
     init_with: '{}'
@@ -16,7 +22,7 @@ properties:
     init_with: '""'
     constructor_arg: true
     getter: true
-  - name: display_default_height
+  - name: code_editor_height
     type: int
     init_with: 1350
     constructor_arg: true
@@ -26,12 +32,6 @@ properties:
     init_with: 1215
     constructor_arg: true
     getter: true
-  - name: stages
-    type: std::vector<StageInterface *>*
-    constructor_arg: true
-    init_with: nullptr
-    getter: true
-    setter: true
 
 functions:
 
@@ -56,7 +56,7 @@ functions:
         default_argument: 0.0f
     guards: [ stages ]
     body: |
-      float code_editor_height = get_display_default_height();
+      //float code_editor_height = get_display_default_height();
       {
          std::string file_contents = php::file_get_contents(filename);
 
@@ -79,8 +79,6 @@ functions:
 
   - name: create
     body: |
-      float code_editor_height = get_display_default_height();
-
       for (auto &file : files)
       {
          std::string filename = std::get<0>(file);
