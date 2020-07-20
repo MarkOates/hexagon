@@ -305,7 +305,7 @@ for (auto &node : component.get_nodes())
   std::string line_content = node.get_name();
   //ALLEGRO_COLOR base_text_color = al_color_name("skyblue");
   ALLEGRO_COLOR global_base_text_color = *get_base_text_color();
-  ALLEGRO_COLOR local_base_text_color = color::mix(global_base_text_color, color::cyan, 0.3);
+  ALLEGRO_COLOR local_base_text_color = color::mix(global_base_text_color, color::cyan, 0.8);
   ALLEGRO_COLOR col; //
    //color::mix(base_text_color, al_color_name("chartreuce"), 0.4);
 
