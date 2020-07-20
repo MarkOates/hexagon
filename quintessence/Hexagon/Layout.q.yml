@@ -27,16 +27,11 @@ properties:
     constructor_arg: true
     getter: true
   - name: stages
-    type: std::vector<StageInterface *>&
+    type: std::vector<StageInterface *>*
     constructor_arg: true
-    init_with: "get_dummy_stages_ref()"
+    init_with: nullptr
     getter: true
     setter: true
-  - name: dummy_stages
-    type: std::vector<StageInterface *>
-    init_with: "{}"
-    static: true
-    getter_ref: true
 
 functions:
 
@@ -59,6 +54,7 @@ functions:
       - name: y
         type: float
         default_argument: 0.0f
+    guards: [ stages ]
     body: |
       float code_editor_height = get_display_default_height();
       {
@@ -74,7 +70,7 @@ functions:
 
          stage->set_place(place);
 
-         stages.push_back(stage);
+         stages->push_back(stage);
       }
       return true;
     body_dependency_symbols:

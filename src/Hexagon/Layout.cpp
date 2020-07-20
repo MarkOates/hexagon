@@ -3,16 +3,15 @@
 #include <Hexagon/Layout.hpp>
 #include <allegro_flare/useful_php.h>
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
 {
 
 
-std::vector<StageInterface *> Layout::dummy_stages = {};
-
-
-Layout::Layout(std::string project_root, std::vector<std::tuple<std::string, float, float>> file, std::string daemus_command, int display_default_height, int code_editor_width, std::vector<StageInterface *>& stages)
+Layout::Layout(std::string project_root, std::vector<std::tuple<std::string, float, float>> file, std::string daemus_command, int display_default_height, int code_editor_width, std::vector<StageInterface *>* stages)
    : project_root(project_root)
    , file(file)
    , daemus_command(daemus_command)
@@ -34,7 +33,7 @@ void Layout::set_file(std::vector<std::tuple<std::string, float, float>> file)
 }
 
 
-void Layout::set_stages(std::vector<StageInterface *>& stages)
+void Layout::set_stages(std::vector<StageInterface *>* stages)
 {
    this->stages = stages;
 }
@@ -70,20 +69,20 @@ int Layout::get_code_editor_width()
 }
 
 
-std::vector<StageInterface *>& Layout::get_stages()
+std::vector<StageInterface *>* Layout::get_stages()
 {
    return stages;
 }
 
 
-std::vector<StageInterface *> &Layout::get_dummy_stages_ref()
-{
-   return dummy_stages;
-}
-
-
 bool Layout::place_and_load_code_editor(std::vector<StageInterface *>* stages_ptr, std::string filename, std::string file_category, float x, float y)
 {
+if (!(stages))
+   {
+      std::stringstream error_message;
+      error_message << "Layout" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"stages\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 float code_editor_height = get_display_default_height();
 {
    std::string file_contents = php::file_get_contents(filename);
@@ -98,7 +97,7 @@ float code_editor_height = get_display_default_height();
 
    stage->set_place(place);
 
-   stages.push_back(stage);
+   stages->push_back(stage);
 }
 return true;
 
