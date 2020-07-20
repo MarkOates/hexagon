@@ -5,17 +5,17 @@ properties:
     type: std::string
     static: true
     const: true
-    init_with: "\"initial_display_width\""
+    init_with: '"initial_display_width"'
   - name: INITIAL_DISPLAY_HEIGHT_KEY
     type: std::string
     static: true
     const: true
-    init_with: "\"initial_display_height\""
+    init_with: '"initial_display_height"'
   - name: DEFAULT_NAVIGATOR_DIRECTORY_KEY
     type: std::string
     static: true
     const: true
-    init_with: "\"default_navigator_directory\""
+    init_with: '"default_navigator_directory"'
   - name: REGEX_TEMP_FILENAME_KEY
     type: std::string
     static: true
@@ -54,7 +54,7 @@ properties:
   - name: config_filename
     type: std::string
     constructor_arg: true
-    init_with: "\"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg\""
+    init_with: '"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"'
     getter: true
   - name: config
     type: AllegroFlare::Config
@@ -73,7 +73,7 @@ functions:
     parameters:
       - name: function_name
         type: std::string
-        default_argument: "\"[unnamed_function]\""
+        default_argument: '"[unnamed_function]"'
     body: |
       if (!initialized)
       {
