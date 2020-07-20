@@ -1,4 +1,24 @@
-functions:
-  - name: run
+properties:
+
+  - name: project_root
     type: std::string
-    body: return "Hello World!";
+    init_with: '""'
+    constructor_arg: true
+    getter: true
+  - name: file
+    type: std::vector<std::tuple<std::string, float, float>>
+    init_with: '{}'
+    constructor_arg: true
+    getter: true
+    setter: true
+  - name: daemus_command
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
+    getter: true
+
+dependencies:
+
+  - symbol: std::vector<std::tuple<std::string, float, float>>
+    headers: [ vector, tuple ]
+
