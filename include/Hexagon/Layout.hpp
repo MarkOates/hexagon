@@ -13,26 +13,27 @@ namespace Hexagon
    {
    private:
       std::string project_root;
-      std::vector<std::tuple<std::string, float, float>> file;
+      std::vector<std::tuple<std::string, std::string, float, float>> files;
       std::string daemus_command;
       int display_default_height;
       int code_editor_width;
       std::vector<StageInterface *>* stages;
 
    public:
-      Layout(std::string project_root="", std::vector<std::tuple<std::string, float, float>> file={}, std::string daemus_command="", int display_default_height=1350, int code_editor_width=1215, std::vector<StageInterface *>* stages=nullptr);
+      Layout(std::string project_root="", std::vector<std::tuple<std::string, std::string, float, float>> files={}, std::string daemus_command="", int display_default_height=1350, int code_editor_width=1215, std::vector<StageInterface *>* stages=nullptr);
       ~Layout();
 
-      void set_file(std::vector<std::tuple<std::string, float, float>> file);
+      void set_files(std::vector<std::tuple<std::string, std::string, float, float>> files);
       void set_stages(std::vector<StageInterface *>* stages);
 
       std::string get_project_root();
-      std::vector<std::tuple<std::string, float, float>> get_file();
+      std::vector<std::tuple<std::string, std::string, float, float>> get_files();
       std::string get_daemus_command();
       int get_display_default_height();
       int get_code_editor_width();
       std::vector<StageInterface *>* get_stages();
    bool place_and_load_code_editor(std::vector<StageInterface *>* stages_ptr=nullptr, std::string filename="", std::string file_category="undefined_file_category", float x=0.0f, float y=0.0f);
+   void create();
    };
 }
 

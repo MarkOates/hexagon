@@ -11,9 +11,9 @@ namespace Hexagon
 {
 
 
-Layout::Layout(std::string project_root, std::vector<std::tuple<std::string, float, float>> file, std::string daemus_command, int display_default_height, int code_editor_width, std::vector<StageInterface *>* stages)
+Layout::Layout(std::string project_root, std::vector<std::tuple<std::string, std::string, float, float>> files, std::string daemus_command, int display_default_height, int code_editor_width, std::vector<StageInterface *>* stages)
    : project_root(project_root)
-   , file(file)
+   , files(files)
    , daemus_command(daemus_command)
    , display_default_height(display_default_height)
    , code_editor_width(code_editor_width)
@@ -27,9 +27,9 @@ Layout::~Layout()
 }
 
 
-void Layout::set_file(std::vector<std::tuple<std::string, float, float>> file)
+void Layout::set_files(std::vector<std::tuple<std::string, std::string, float, float>> files)
 {
-   this->file = file;
+   this->files = files;
 }
 
 
@@ -45,9 +45,9 @@ std::string Layout::get_project_root()
 }
 
 
-std::vector<std::tuple<std::string, float, float>> Layout::get_file()
+std::vector<std::tuple<std::string, std::string, float, float>> Layout::get_files()
 {
-   return file;
+   return files;
 }
 
 
@@ -100,6 +100,23 @@ float code_editor_height = get_display_default_height();
    stages->push_back(stage);
 }
 return true;
+
+}
+
+void Layout::create()
+{
+float code_editor_height = get_display_default_height();
+
+for (auto &file : files)
+{
+   std::string filename = std::get<0>(file);
+   std::string file_type = std::get<1>(file);
+   float x = std::get<2>(file);
+   float y = std::get<3>(file);
+
+   place_and_load_code_editor(stages, filename, file_type, x, y);
+}
+return;
 
 }
 } // namespace Hexagon

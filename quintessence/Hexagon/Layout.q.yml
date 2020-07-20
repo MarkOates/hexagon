@@ -5,8 +5,8 @@ properties:
     init_with: '""'
     constructor_arg: true
     getter: true
-  - name: file
-    type: std::vector<std::tuple<std::string, float, float>>
+  - name: files
+    type: std::vector<std::tuple<std::string, std::string, float, float>>
     init_with: '{}'
     constructor_arg: true
     getter: true
@@ -77,9 +77,24 @@ functions:
       - php::file_get_contents
       - Hexagon::CodeEditor::Stage
 
+  - name: create
+    body: |
+      float code_editor_height = get_display_default_height();
+
+      for (auto &file : files)
+      {
+         std::string filename = std::get<0>(file);
+         std::string file_type = std::get<1>(file);
+         float x = std::get<2>(file);
+         float y = std::get<3>(file);
+
+         place_and_load_code_editor(stages, filename, file_type, x, y);
+      }
+      return;
+
 dependencies:
 
-  - symbol: std::vector<std::tuple<std::string, float, float>>
+  - symbol: std::vector<std::tuple<std::string, std::string, float, float>>
     headers: [ vector, tuple ]
   - symbol: std::vector<StageInterface *>
     headers: [ vector, Hexagon/StageInterface.hpp ]
