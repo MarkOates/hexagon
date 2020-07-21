@@ -13,11 +13,11 @@ namespace Hexagon
 {
 
 
-Layout::Layout(std::string project_root, std::vector<StageInterface *>* stages, std::vector<std::tuple<std::string, std::string, float, float>> files, std::string daemus_command, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+Layout::Layout(std::string project_root, std::vector<StageInterface *>* stages, std::vector<std::tuple<std::string, std::string, float, float>> files, std::vector<std::tuple<std::string, std::string, placement3d>> new_files, std::string daemus_command, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : project_root(project_root)
    , stages(stages)
    , files(files)
-   , new_files({})
+   , new_files(new_files)
    , daemus_command(daemus_command)
    , code_editor_height(code_editor_height)
    , code_editor_width(code_editor_width)

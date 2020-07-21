@@ -25,7 +25,7 @@ namespace Hexagon
       ALLEGRO_COLOR backfill_color;
 
    public:
-      Layout(std::string project_root="", std::vector<StageInterface *>* stages=nullptr, std::vector<std::tuple<std::string, std::string, float, float>> files={}, std::string daemus_command="", int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+      Layout(std::string project_root="", std::vector<StageInterface *>* stages=nullptr, std::vector<std::tuple<std::string, std::string, float, float>> files={}, std::vector<std::tuple<std::string, std::string, placement3d>> new_files={}, std::string daemus_command="", int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
       ~Layout();
 
       void set_stages(std::vector<StageInterface *>* stages);

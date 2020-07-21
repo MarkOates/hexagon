@@ -20,6 +20,7 @@ properties:
   - name: new_files
     type: std::vector<std::tuple<std::string, std::string, placement3d>>
     init_with: '{}'
+    constructor_arg: true
     getter: true
     setter: true
   - name: daemus_command

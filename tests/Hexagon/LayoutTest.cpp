@@ -16,8 +16,9 @@ TEST(Hexagon_LayoutTest, create__will_create_the_passed_files)
    std::vector<std::tuple<std::string, std::string, float, float>> files = {
       { "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Logo.q.yml", "blast_quintessence", 0, 0 },
    };
+   std::vector<std::tuple<std::string, std::string, placement3d>> new_files;
 
-   Hexagon::Layout layout(project_root, &stages, files, daemus_command);
+   Hexagon::Layout layout(project_root, &stages, files, new_files, daemus_command);
 
    layout.create();
 
@@ -33,8 +34,9 @@ TEST(Hexagon_LayoutTest, create__will_create_code_editor_stages_for_the_passed_f
       { "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Logo.q.yml", "blast_quintessence", 0, 0 },
       { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", 0, 0 },
    };
+   std::vector<std::tuple<std::string, std::string, placement3d>> new_files;
 
-   Hexagon::Layout layout(project_root, &stages, files, daemus_command);
+   Hexagon::Layout layout(project_root, &stages, files, new_files, daemus_command);
 
    layout.create();
 
@@ -55,8 +57,9 @@ TEST(Hexagon_LayoutTest, create__will_create_missing_file_stages_for_files_that_
       { "/A/Path/To/A/File/ThatDoesNotExist.cpp", "blast_quintessence", 0, 0 },
       { "/Another/Path/To/A/NonExistentFile.cpp", "blast_test", 0, 0 },
    };
+   std::vector<std::tuple<std::string, std::string, placement3d>> new_files;
 
-   Hexagon::Layout layout(project_root, &stages, files, daemus_command);
+   Hexagon::Layout layout(project_root, &stages, files, new_files, daemus_command);
 
    layout.create();
 
@@ -78,8 +81,9 @@ TEST(Hexagon_LayoutTest, create__will_position_the_stages_at_the_passed_coordina
       { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", 147, 1920 },
       { "/A/Path/To/A/File/ThatDoesNotExist.cpp", "blast_quintessence", 69, 420 },
    };
+   std::vector<std::tuple<std::string, std::string, placement3d>> new_files;
 
-   Hexagon::Layout layout(project_root, &stages, files, daemus_command);
+   Hexagon::Layout layout(project_root, &stages, files, new_files, daemus_command);
 
    layout.create();
 
