@@ -13,10 +13,10 @@ namespace Hexagon
 {
 
 
-Layout::Layout(std::string project_root, std::vector<StageInterface *>* stages, std::vector<std::tuple<std::string, std::string, placement3d>> new_files, std::string daemus_command, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+Layout::Layout(std::string project_root, std::vector<StageInterface *>* stages, std::vector<std::tuple<std::string, std::string, placement3d>> files, std::string daemus_command, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : project_root(project_root)
    , stages(stages)
-   , new_files(new_files)
+   , files(files)
    , daemus_command(daemus_command)
    , code_editor_height(code_editor_height)
    , code_editor_width(code_editor_width)
@@ -37,9 +37,9 @@ void Layout::set_stages(std::vector<StageInterface *>* stages)
 }
 
 
-void Layout::set_new_files(std::vector<std::tuple<std::string, std::string, placement3d>> new_files)
+void Layout::set_files(std::vector<std::tuple<std::string, std::string, placement3d>> files)
 {
-   this->new_files = new_files;
+   this->files = files;
 }
 
 
@@ -55,9 +55,9 @@ std::vector<StageInterface *>* Layout::get_stages()
 }
 
 
-std::vector<std::tuple<std::string, std::string, placement3d>> Layout::get_new_files()
+std::vector<std::tuple<std::string, std::string, placement3d>> Layout::get_files()
 {
-   return new_files;
+   return files;
 }
 
 
@@ -120,7 +120,7 @@ return true;
 
 void Layout::create()
 {
-for (auto &file : new_files)
+for (auto &file : files)
 {
    std::string filename = std::get<0>(file);
    std::string file_type = std::get<1>(file);

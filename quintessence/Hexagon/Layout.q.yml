@@ -11,7 +11,7 @@ properties:
     init_with: nullptr
     getter: true
     setter: true
-  - name: new_files
+  - name: files
     type: std::vector<std::tuple<std::string, std::string, placement3d>>
     init_with: '{}'
     constructor_arg: true
@@ -97,7 +97,7 @@ functions:
 
   - name: create
     body: |
-      for (auto &file : new_files)
+      for (auto &file : files)
       {
          std::string filename = std::get<0>(file);
          std::string file_type = std::get<1>(file);
