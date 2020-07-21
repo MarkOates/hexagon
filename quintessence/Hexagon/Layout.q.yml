@@ -70,7 +70,7 @@ functions:
 
       StageInterface *stage = nullptr;
 
-      //float code_editor_height = get_display_default_height();
+      if (file_exists)
       {
          Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage({filename, file_category});
          std::string file_contents = php::file_get_contents(filename);
@@ -79,6 +79,10 @@ functions:
          code_editor_stage->set_backfill_color(backfill_color);
 
          stage = code_editor_stage;
+      }
+      else
+      {
+         stage = new Hexagon::MissingFile::Stage(filename);
       }
 
       stage->set_place(place);
@@ -89,6 +93,7 @@ functions:
       - php::file_get_contents
       - Hexagon::CodeEditor::Stage
       - Blast::FileExistenceChecker
+      - Hexagon::MissingFile::Stage
 
   - name: create
     body: |
@@ -117,6 +122,8 @@ dependencies:
     headers: [ allegro_flare/useful_php.h ]
   - symbol: Hexagon::CodeEditor::Stage
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: Hexagon::MissingFile::Stage
+    headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
   - symbol: ALLEGRO_COLOR

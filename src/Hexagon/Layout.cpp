@@ -4,6 +4,7 @@
 #include <allegro_flare/useful_php.h>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Blast/FileExistenceChecker.hpp>
+#include <Hexagon/MissingFile/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -95,7 +96,7 @@ place.rotation = vec3d(0.0, 0.0, 0.0);
 
 StageInterface *stage = nullptr;
 
-//float code_editor_height = get_display_default_height();
+if (file_exists)
 {
    Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage({filename, file_category});
    std::string file_contents = php::file_get_contents(filename);
@@ -104,6 +105,10 @@ StageInterface *stage = nullptr;
    code_editor_stage->set_backfill_color(backfill_color);
 
    stage = code_editor_stage;
+}
+else
+{
+   stage = new Hexagon::MissingFile::Stage(filename);
 }
 
 stage->set_place(place);
