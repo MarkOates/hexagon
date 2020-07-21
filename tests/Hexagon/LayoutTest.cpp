@@ -91,9 +91,11 @@ TEST(Hexagon_LayoutTest, create__will_position_the_stages_at_the_passed_placemen
    placement3d expected_second_stage_placement = std::get<2>(files[1]);
 
    EXPECT_EQ(expected_first_stage_placement.position, first_stage_placement.position);
-   //EXPECT_EQ(expected_first_stage_placement.rotation, first_stage_placement.rotation);
+   EXPECT_EQ(expected_first_stage_placement.rotation, first_stage_placement.rotation);
+   EXPECT_EQ(expected_first_stage_placement.scale, first_stage_placement.scale);
 
    EXPECT_EQ(expected_second_stage_placement.position, second_stage_placement.position);
-   //EXPECT_EQ(expected_second_stage_placement.position, second_stage_placement.rotation);
+   EXPECT_EQ(expected_second_stage_placement.rotation, second_stage_placement.rotation);
+   EXPECT_EQ(expected_second_stage_placement.scale, second_stage_placement.scale);
 }
 

@@ -53,12 +53,6 @@ functions:
       - name: file_category
         type: std::string
         default_argument: '"undefined_file_category"'
-      - name: x
-        type: float
-        default_argument: 0.0f
-      - name: y
-        type: float
-        default_argument: 0.0f
       - name: place
         type: placement3d
         default_argument: '{}'
@@ -100,10 +94,8 @@ functions:
          std::string filename = std::get<0>(file);
          std::string file_type = std::get<1>(file);
          placement3d place = std::get<2>(file);
-         float x = place.position.x;
-         float y = place.position.y;
 
-         place_and_load_code_editor(filename, file_type, x, y, place);
+         place_and_load_code_editor(filename, file_type, place);
       }
       return;
 

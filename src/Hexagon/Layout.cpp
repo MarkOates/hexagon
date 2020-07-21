@@ -79,7 +79,7 @@ int Layout::get_code_editor_width()
 }
 
 
-bool Layout::place_and_load_code_editor(std::string filename, std::string file_category, float x, float y, placement3d place)
+bool Layout::place_and_load_code_editor(std::string filename, std::string file_category, placement3d place)
 {
 if (!(stages))
    {
@@ -120,10 +120,8 @@ for (auto &file : files)
    std::string filename = std::get<0>(file);
    std::string file_type = std::get<1>(file);
    placement3d place = std::get<2>(file);
-   float x = place.position.x;
-   float y = place.position.y;
 
-   place_and_load_code_editor(filename, file_type, x, y, place);
+   place_and_load_code_editor(filename, file_type, place);
 }
 return;
 
