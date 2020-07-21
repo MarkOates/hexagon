@@ -31,16 +31,40 @@ TEST(Hexagon_LayoutTest, create__will_create_code_editor_stages_for_the_passed_f
    std::string daemus_command = "git diff";
    std::vector<std::tuple<std::string, std::string, float, float>> files = {
       { "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Logo.q.yml", "blast_quintessence", 0, 0 },
-      { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", 100, 200 },
+      { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", 0, 0 },
    };
 
    Hexagon::Layout layout(project_root, &stages, files, daemus_command);
 
    layout.create();
 
+   ASSERT_EQ(files.size(), stages.size());
+
    for (auto &stage : stages)
    {
       EXPECT_EQ(StageInterface::CODE_EDITOR, stage->get_type());
+   }
+}
+
+TEST(Hexagon_LayoutTest, create__will_create_missing_file_stages_for_files_that_do_not_exist)
+{
+   std::string project_root = "/Users/markoates/Repos/hexagon/";
+   std::vector<StageInterface *> stages;
+   std::string daemus_command = "git diff";
+   std::vector<std::tuple<std::string, std::string, float, float>> files = {
+      { "/A/Path/To/A/File/ThatDoesNotExist.cpp", "blast_quintessence", 0, 0 },
+      { "/Another/Path/To/A/NonExistentFile.cpp", "blast_test", 0, 0 },
+   };
+
+   Hexagon::Layout layout(project_root, &stages, files, daemus_command);
+
+   layout.create();
+
+   ASSERT_EQ(files.size(), stages.size());
+
+   for (auto &stage : stages)
+   {
+      EXPECT_EQ(StageInterface::MISSING_FILE, stage->get_type());
    }
 }
 
