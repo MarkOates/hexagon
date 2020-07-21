@@ -78,7 +78,7 @@ int Layout::get_code_editor_width()
 }
 
 
-bool Layout::place_and_load_code_editor(std::vector<StageInterface *>* stages_ptr, std::string filename, std::string file_category, float x, float y)
+bool Layout::place_and_load_code_editor(std::string filename, std::string file_category, float x, float y)
 {
 if (!(stages))
    {
@@ -88,24 +88,27 @@ if (!(stages))
    }
 bool file_exists = Blast::FileExistenceChecker(filename).exists();
 
+placement3d place(x, y, 0);
+place.size = vec3d(code_editor_width, code_editor_height, 0);
+place.align = vec3d(0.5, 0.5, 0.0);
+place.rotation = vec3d(0.0, 0.0, 0.0);
+
+StageInterface *stage = nullptr;
+
 //float code_editor_height = get_display_default_height();
 {
+   Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage({filename, file_category});
    std::string file_contents = php::file_get_contents(filename);
+   code_editor_stage->get_code_editor_ref().set_initial_content(file_contents);
+   code_editor_stage->set_base_font_color(text_color);
+   code_editor_stage->set_backfill_color(backfill_color);
 
-   Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({filename, file_category});
-   stage->get_code_editor_ref().set_initial_content(file_contents);
-   stage->set_base_font_color(text_color);
-   stage->set_backfill_color(backfill_color);
-
-   placement3d place(x * code_editor_width, y * code_editor_height, 0);
-   place.size = vec3d(code_editor_width, code_editor_height, 0);
-   place.align = vec3d(0.5, 0.5, 0.0);
-   place.rotation = vec3d(0.0, 0.0, 0.0);
-
-   stage->set_place(place);
-
-   stages->push_back(stage);
+   stage = code_editor_stage;
 }
+
+stage->set_place(place);
+stages->push_back(stage);
+
 return true;
 
 }
@@ -119,7 +122,7 @@ for (auto &file : files)
    float x = std::get<2>(file);
    float y = std::get<3>(file);
 
-   place_and_load_code_editor(stages, filename, file_type, x, y);
+   place_and_load_code_editor(filename, file_type, x, y);
 }
 return;
 
