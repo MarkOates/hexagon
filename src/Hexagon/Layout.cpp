@@ -89,11 +89,6 @@ if (!(stages))
    }
 bool file_exists = Blast::FileExistenceChecker(filename).exists();
 
-//placement3d place(x, y, 0);
-//place.size = vec3d(code_editor_width, code_editor_height, 0);
-//place.align = vec3d(0.5, 0.5, 0.0);
-//place.rotation = vec3d(0.0, 0.0, 0.0);
-
 StageInterface *stage = nullptr;
 
 if (file_exists)
