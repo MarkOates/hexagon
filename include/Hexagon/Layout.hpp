@@ -5,7 +5,6 @@
 #include <allegro5/allegro_color.h>
 #include <allegro_flare/placement3d.h>
 #include <string>
-#include <tuple>
 #include <vector>
 
 
@@ -16,7 +15,6 @@ namespace Hexagon
    private:
       std::string project_root;
       std::vector<StageInterface *>* stages;
-      std::vector<std::tuple<std::string, std::string, float, float>> files;
       std::vector<std::tuple<std::string, std::string, placement3d>> new_files;
       std::string daemus_command;
       int code_editor_height;
@@ -25,16 +23,14 @@ namespace Hexagon
       ALLEGRO_COLOR backfill_color;
 
    public:
-      Layout(std::string project_root="", std::vector<StageInterface *>* stages=nullptr, std::vector<std::tuple<std::string, std::string, float, float>> files={}, std::vector<std::tuple<std::string, std::string, placement3d>> new_files={}, std::string daemus_command="", int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+      Layout(std::string project_root="", std::vector<StageInterface *>* stages=nullptr, std::vector<std::tuple<std::string, std::string, placement3d>> new_files={}, std::string daemus_command="", int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
       ~Layout();
 
       void set_stages(std::vector<StageInterface *>* stages);
-      void set_files(std::vector<std::tuple<std::string, std::string, float, float>> files);
       void set_new_files(std::vector<std::tuple<std::string, std::string, placement3d>> new_files);
 
       std::string get_project_root();
       std::vector<StageInterface *>* get_stages();
-      std::vector<std::tuple<std::string, std::string, float, float>> get_files();
       std::vector<std::tuple<std::string, std::string, placement3d>> get_new_files();
       std::string get_daemus_command();
       int get_code_editor_height();
