@@ -79,7 +79,7 @@ int Layout::get_code_editor_width()
 }
 
 
-bool Layout::place_and_load_code_editor(std::string filename, std::string file_category, float x, float y)
+bool Layout::place_and_load_code_editor(std::string filename, std::string file_category, float x, float y, placement3d place)
 {
 if (!(stages))
    {
@@ -89,10 +89,10 @@ if (!(stages))
    }
 bool file_exists = Blast::FileExistenceChecker(filename).exists();
 
-placement3d place(x, y, 0);
-place.size = vec3d(code_editor_width, code_editor_height, 0);
-place.align = vec3d(0.5, 0.5, 0.0);
-place.rotation = vec3d(0.0, 0.0, 0.0);
+//placement3d place(x, y, 0);
+//place.size = vec3d(code_editor_width, code_editor_height, 0);
+//place.align = vec3d(0.5, 0.5, 0.0);
+//place.rotation = vec3d(0.0, 0.0, 0.0);
 
 StageInterface *stage = nullptr;
 
@@ -128,7 +128,7 @@ for (auto &file : files)
    float x = place.position.x;
    float y = place.position.y;
 
-   place_and_load_code_editor(filename, file_type, x, y);
+   place_and_load_code_editor(filename, file_type, x, y, place);
 }
 return;
 

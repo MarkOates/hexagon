@@ -68,15 +68,15 @@ TEST(Hexagon_LayoutTest, create__will_create_missing_file_stages_for_files_that_
    }
 }
 
-TEST(Hexagon_LayoutTest, create__will_position_the_stages_at_the_passed_coordinates)
+TEST(Hexagon_LayoutTest, create__will_position_the_stages_at_the_passed_placement)
 {
    std::string project_root = "/Users/markoates/Repos/hexagon/";
    std::vector<StageInterface *> stages;
    std::string daemus_command = "git diff";
 
    std::vector<std::tuple<std::string, std::string, placement3d>> files = {
-      { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", placement3d(147, 1920, 0) },
-      { "/A/Path/To/A/File/ThatDoesNotExist.cpp", "blast_quintessence", placement3d(69, 420, 0) },
+      { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", placement3d(147, 1920, 640) },
+      { "/A/Path/To/A/File/ThatDoesNotExist.cpp", "blast_quintessence", placement3d(69, 420, 89) },
    };
 
    Hexagon::Layout layout(project_root, &stages, files, daemus_command);
@@ -87,9 +87,13 @@ TEST(Hexagon_LayoutTest, create__will_position_the_stages_at_the_passed_coordina
    placement3d first_stage_placement = stages[0]->get_place();
    placement3d second_stage_placement = stages[1]->get_place();
 
-   EXPECT_EQ(147, first_stage_placement.position.x);
-   EXPECT_EQ(1920, first_stage_placement.position.y);
-   EXPECT_EQ(69, second_stage_placement.position.x);
-   EXPECT_EQ(420, second_stage_placement.position.y);
+   placement3d expected_first_stage_placement = std::get<2>(files[0]);
+   placement3d expected_second_stage_placement = std::get<2>(files[1]);
+
+   EXPECT_EQ(expected_first_stage_placement.position, first_stage_placement.position);
+   //EXPECT_EQ(expected_first_stage_placement.rotation, first_stage_placement.rotation);
+
+   EXPECT_EQ(expected_second_stage_placement.position, second_stage_placement.position);
+   //EXPECT_EQ(expected_second_stage_placement.position, second_stage_placement.rotation);
 }
 

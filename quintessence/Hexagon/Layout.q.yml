@@ -59,14 +59,17 @@ functions:
       - name: y
         type: float
         default_argument: 0.0f
+      - name: place
+        type: placement3d
+        default_argument: '{}'
     guards: [ stages ]
     body: |
       bool file_exists = Blast::FileExistenceChecker(filename).exists();
 
-      placement3d place(x, y, 0);
-      place.size = vec3d(code_editor_width, code_editor_height, 0);
-      place.align = vec3d(0.5, 0.5, 0.0);
-      place.rotation = vec3d(0.0, 0.0, 0.0);
+      //placement3d place(x, y, 0);
+      //place.size = vec3d(code_editor_width, code_editor_height, 0);
+      //place.align = vec3d(0.5, 0.5, 0.0);
+      //place.rotation = vec3d(0.0, 0.0, 0.0);
 
       StageInterface *stage = nullptr;
 
@@ -105,12 +108,14 @@ functions:
          float x = place.position.x;
          float y = place.position.y;
 
-         place_and_load_code_editor(filename, file_type, x, y);
+         place_and_load_code_editor(filename, file_type, x, y, place);
       }
       return;
 
 dependencies:
 
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
   - symbol: std::vector<std::tuple<std::string, std::string, placement3d>>
     headers: [ vector, string, allegro_flare/placement3d.h ]
   - symbol: std::vector<StageInterface *>

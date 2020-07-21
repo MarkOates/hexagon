@@ -35,7 +35,7 @@ namespace Hexagon
       std::string get_daemus_command();
       int get_code_editor_height();
       int get_code_editor_width();
-   bool place_and_load_code_editor(std::string filename="", std::string file_category="undefined_file_category", float x=0.0f, float y=0.0f);
+   bool place_and_load_code_editor(std::string filename="", std::string file_category="undefined_file_category", float x=0.0f, float y=0.0f, placement3d place={});
    void create();
    };
 }
