@@ -7,7 +7,7 @@ properties:
     getter_ref: true
     setter: true
     constructor_arg: true
-    init_with: "{}"
+    init_with: '{}'
 
 
 functions:
@@ -18,7 +18,7 @@ functions:
     parameters:
        - name: label
          type: std::string
-         default_argument: "\"\""
+         default_argument: '""'
     body: |
       std::map<std::string, placement3d>::iterator it;
       it = placements.find(label);
