@@ -103,12 +103,13 @@ functions:
 
   - name: create
     body: |
-      for (auto &file : files)
+      for (auto &file : new_files)
       {
          std::string filename = std::get<0>(file);
          std::string file_type = std::get<1>(file);
-         float x = std::get<2>(file);
-         float y = std::get<3>(file);
+         placement3d place = std::get<2>(file);
+         float x = place.position.x;
+         float y = place.position.y;
 
          place_and_load_code_editor(filename, file_type, x, y);
       }
