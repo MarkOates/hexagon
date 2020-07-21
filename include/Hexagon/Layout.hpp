@@ -3,6 +3,7 @@
 
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro_color.h>
+#include <allegro_flare/placement3d.h>
 #include <string>
 #include <tuple>
 #include <vector>
@@ -16,6 +17,7 @@ namespace Hexagon
       std::string project_root;
       std::vector<StageInterface *>* stages;
       std::vector<std::tuple<std::string, std::string, float, float>> files;
+      std::vector<std::tuple<std::string, std::string, placement3d>> new_files;
       std::string daemus_command;
       int code_editor_height;
       int code_editor_width;
@@ -28,10 +30,12 @@ namespace Hexagon
 
       void set_stages(std::vector<StageInterface *>* stages);
       void set_files(std::vector<std::tuple<std::string, std::string, float, float>> files);
+      void set_new_files(std::vector<std::tuple<std::string, std::string, placement3d>> new_files);
 
       std::string get_project_root();
       std::vector<StageInterface *>* get_stages();
       std::vector<std::tuple<std::string, std::string, float, float>> get_files();
+      std::vector<std::tuple<std::string, std::string, placement3d>> get_new_files();
       std::string get_daemus_command();
       int get_code_editor_height();
       int get_code_editor_width();

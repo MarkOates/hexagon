@@ -17,6 +17,7 @@ Layout::Layout(std::string project_root, std::vector<StageInterface *>* stages, 
    : project_root(project_root)
    , stages(stages)
    , files(files)
+   , new_files({})
    , daemus_command(daemus_command)
    , code_editor_height(code_editor_height)
    , code_editor_width(code_editor_width)
@@ -43,6 +44,12 @@ void Layout::set_files(std::vector<std::tuple<std::string, std::string, float, f
 }
 
 
+void Layout::set_new_files(std::vector<std::tuple<std::string, std::string, placement3d>> new_files)
+{
+   this->new_files = new_files;
+}
+
+
 std::string Layout::get_project_root()
 {
    return project_root;
@@ -58,6 +65,12 @@ std::vector<StageInterface *>* Layout::get_stages()
 std::vector<std::tuple<std::string, std::string, float, float>> Layout::get_files()
 {
    return files;
+}
+
+
+std::vector<std::tuple<std::string, std::string, placement3d>> Layout::get_new_files()
+{
+   return new_files;
 }
 
 

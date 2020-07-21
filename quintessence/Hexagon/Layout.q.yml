@@ -17,6 +17,11 @@ properties:
     constructor_arg: true
     getter: true
     setter: true
+  - name: new_files
+    type: std::vector<std::tuple<std::string, std::string, placement3d>>
+    init_with: '{}'
+    getter: true
+    setter: true
   - name: daemus_command
     type: std::string
     init_with: '""'
@@ -112,6 +117,8 @@ dependencies:
 
   - symbol: std::vector<std::tuple<std::string, std::string, float, float>>
     headers: [ vector, tuple ]
+  - symbol: std::vector<std::tuple<std::string, std::string, placement3d>>
+    headers: [ vector, string, allegro_flare/placement3d.h ]
   - symbol: std::vector<StageInterface *>
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: std::vector<StageInterface *>&
