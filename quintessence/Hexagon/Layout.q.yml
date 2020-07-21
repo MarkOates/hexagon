@@ -32,6 +32,14 @@ properties:
     init_with: 1215
     constructor_arg: true
     getter: true
+  - name: text_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
+    constructor_arg: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    constructor_arg: true
 
 functions:
 
@@ -56,12 +64,16 @@ functions:
         default_argument: 0.0f
     guards: [ stages ]
     body: |
+      bool file_exists = Blast::FileExistenceChecker(filename).exists();
+
       //float code_editor_height = get_display_default_height();
       {
          std::string file_contents = php::file_get_contents(filename);
 
          Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({filename, file_category});
          stage->get_code_editor_ref().set_initial_content(file_contents);
+         stage->set_base_font_color(text_color);
+         stage->set_backfill_color(backfill_color);
 
          placement3d place(x * code_editor_width, y * code_editor_height, 0);
          place.size = vec3d(code_editor_width, code_editor_height, 0);
@@ -76,6 +88,7 @@ functions:
     body_dependency_symbols:
       - php::file_get_contents
       - Hexagon::CodeEditor::Stage
+      - Blast::FileExistenceChecker
 
   - name: create
     body: |
@@ -104,4 +117,8 @@ dependencies:
     headers: [ allegro_flare/useful_php.h ]
   - symbol: Hexagon::CodeEditor::Stage
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: Blast::FileExistenceChecker
+    headers: [ Blast/FileExistenceChecker.hpp ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
 

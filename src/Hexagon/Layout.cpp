@@ -3,6 +3,7 @@
 #include <Hexagon/Layout.hpp>
 #include <allegro_flare/useful_php.h>
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <Blast/FileExistenceChecker.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -11,13 +12,15 @@ namespace Hexagon
 {
 
 
-Layout::Layout(std::string project_root, std::vector<StageInterface *>* stages, std::vector<std::tuple<std::string, std::string, float, float>> files, std::string daemus_command, int code_editor_height, int code_editor_width)
+Layout::Layout(std::string project_root, std::vector<StageInterface *>* stages, std::vector<std::tuple<std::string, std::string, float, float>> files, std::string daemus_command, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : project_root(project_root)
    , stages(stages)
    , files(files)
    , daemus_command(daemus_command)
    , code_editor_height(code_editor_height)
    , code_editor_width(code_editor_width)
+   , text_color(text_color)
+   , backfill_color(backfill_color)
 {
 }
 
@@ -83,12 +86,16 @@ if (!(stages))
       error_message << "Layout" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"stages\" not met";
       throw std::runtime_error(error_message.str());
    }
+bool file_exists = Blast::FileExistenceChecker(filename).exists();
+
 //float code_editor_height = get_display_default_height();
 {
    std::string file_contents = php::file_get_contents(filename);
 
    Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({filename, file_category});
    stage->get_code_editor_ref().set_initial_content(file_contents);
+   stage->set_base_font_color(text_color);
+   stage->set_backfill_color(backfill_color);
 
    placement3d place(x * code_editor_width, y * code_editor_height, 0);
    place.size = vec3d(code_editor_width, code_editor_height, 0);
