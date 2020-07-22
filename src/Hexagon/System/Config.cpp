@@ -165,7 +165,8 @@ if (is_dark_mode())
 }
 else
 {
-   return al_color_html("8f9996"); // deep rich gray
+   return al_color_name("white");
+   //return al_color_html("8f9996"); // deep rich gray
    //return al_color_html("8a5b38"); // darker, more true deep brown from lamp
    //return al_color_html("a67d5a"); // color of lamp light against wall
 
