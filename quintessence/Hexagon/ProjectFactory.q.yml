@@ -3,8 +3,11 @@ functions:
   - name: partner_performance_dashboard
     type: Hexagon::Project
     body: |
-      Hexagon::Project result;
-      return {};
+      std::string project_name = "Partner Performance Dashboard";
+      std::string project_root = "/Users/markoates/Repos/hexagon/";
+      std::vector<std::tuple<std::string, Hexagon::Layout>> layouts = {};
+
+      return Hexagon::Project(project_name, project_root, layouts);
 
 dependencies:
 
