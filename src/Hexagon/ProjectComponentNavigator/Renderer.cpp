@@ -302,7 +302,7 @@ bool list_clipping_occurred_below = false;
 
 for (auto &node : component.get_nodes())
 {
-  std::string line_content = node.get_name();
+  std::string line_content = node.get_concept_name();
   //ALLEGRO_COLOR base_text_color = al_color_name("skyblue");
   ALLEGRO_COLOR global_base_text_color = *get_base_text_color();
   ALLEGRO_COLOR local_base_text_color = color::mix(global_base_text_color, color::cyan, 0.8);
@@ -311,25 +311,7 @@ for (auto &node : component.get_nodes())
 
   bool this_line_is_clipped = false;
 
-  if (node.has_quintessence())
-  {
-     col = color::mix(local_base_text_color, color::aqua, 0.4);
-     //line_content += " *";
-  }
-  else if (node.has_only_source_and_header())
-  {
-     col = color::mix(local_base_text_color, color::aqua, 0.4);
-     col = color::mix(col, color::green, 0.15);
-  }
-  else if (!node.exists())
-  {
-     col = al_color_name("red");
-  }
-  else
-  {
-     col = color::mix(local_base_text_color, color::aqua, 0.5);
-     //col = color::color(col, 0.4);
-  }
+  col = color::mix(local_base_text_color, color::aqua, 0.9);
 
   //if (!node.has_test()) line_content += " (missing test)";
 

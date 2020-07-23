@@ -127,9 +127,9 @@ TEST_F(Hexagon_ProjectComponentNavigator_RendererWithFixtureTest, render__render
    Hexagon::ProjectComponentNavigator::Renderer &renderer = get_renderer_fixture();
    Hexagon::ProjectComponentNavigator::Stage &stage = get_stage_fixture();
    Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
-   using Blast::Project::Component;
+   using Hexagon::Layout;
 
-   component.set_nodes({ Component("Blast/Foobar"), Component("Blast/BarBar") });
+   component.set_nodes({ Layout("Blast/Foobar"), Layout("Blast/BarBar") });
 
    renderer.render();
    al_flip_display();
@@ -145,7 +145,7 @@ TEST_F(Hexagon_ProjectComponentNavigator_RendererWithFixtureTest, render__render
    Hexagon::ProjectComponentNavigator::Renderer &renderer = get_renderer_fixture();
    Hexagon::ProjectComponentNavigator::Stage &stage = get_stage_fixture();
    Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
-   using Blast::Project::Component;
+   using Hexagon::Layout;
 
    component.set_search_text("Blast");
 
