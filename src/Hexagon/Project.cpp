@@ -9,6 +9,9 @@ namespace Hexagon
 
 
 Project::Project()
+   : project_name("")
+   , project_root("")
+   , layouts({})
 {
 }
 

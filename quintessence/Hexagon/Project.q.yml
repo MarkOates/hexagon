@@ -1,4 +1,19 @@
+properties:
+
+  - name: project_name
+  - name: project_root
+  - name: layouts
+    type: std::vector<std::tuple<std::string, Hexagon::Layout>>
+    init_with: '{}'
+
 functions:
+
   - name: run
     type: std::string
     body: return "Hello World!";
+
+dependencies:
+
+  - symbol: std::vector<std::tuple<std::string, Hexagon::Layout>>
+    headers: [ vector, tuple, string, Hexagon/Layout.hpp ]
+
