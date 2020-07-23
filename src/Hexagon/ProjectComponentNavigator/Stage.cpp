@@ -17,7 +17,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
 Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_COLOR base_backfill_color)
-   : StageInterface(StageInterface::COMPONENT_NAVIGATOR)
+   : StageInterface(StageInterface::PROJECT_COMPONENT_NAVIGATOR)
    , project_root(project_root)
    , component(project_root)
    , is_focused(true)

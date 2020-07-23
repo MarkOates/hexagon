@@ -3,7 +3,7 @@ parent_classes:
 
   - class: 'StageInterface'
     scope: public
-    init_with: "StageInterface::COMPONENT_NAVIGATOR"
+    init_with: "StageInterface::PROJECT_COMPONENT_NAVIGATOR"
 
 
 properties:
