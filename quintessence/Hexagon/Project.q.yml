@@ -1,16 +1,23 @@
 properties:
 
   - name: project_name
+    type: std::string
+    init_with: '"- Untitled -"'
+    constructor_arg: true
+    getter: true
+    setter: true
   - name: project_root
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon/"'
+    constructor_arg: true
+    getter: true
+    setter: true
   - name: layouts
     type: std::vector<std::tuple<std::string, Hexagon::Layout>>
     init_with: '{}'
-
-functions:
-
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+    constructor_arg: true
+    getter: true
+    setter: true
 
 dependencies:
 
