@@ -1,5 +1,11 @@
 properties:
 
+  - name: concept_name
+    type: std::string
+    init_with: '"- Untitled -"'
+    constructor_arg: true
+    getter: true
+    setter: true
   - name: project_root
     type: std::string
     init_with: '""'
@@ -9,12 +15,6 @@ properties:
     type: std::vector<StageInterface *>*
     constructor_arg: true
     init_with: nullptr
-    getter: true
-    setter: true
-  - name: concept_name
-    type: std::string
-    init_with: '"- Untitled -"'
-    constructor_arg: true
     getter: true
     setter: true
   - name: files

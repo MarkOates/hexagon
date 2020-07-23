@@ -13,10 +13,10 @@ namespace Hexagon
 {
 
 
-Layout::Layout(std::string project_root, std::vector<StageInterface *>* stages, std::string concept_name, std::vector<std::tuple<std::string, std::string, placement3d>> files, std::string daemus_command, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
-   : project_root(project_root)
+Layout::Layout(std::string concept_name, std::string project_root, std::vector<StageInterface *>* stages, std::vector<std::tuple<std::string, std::string, placement3d>> files, std::string daemus_command, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+   : concept_name(concept_name)
+   , project_root(project_root)
    , stages(stages)
-   , concept_name(concept_name)
    , files(files)
    , daemus_command(daemus_command)
    , code_editor_height(code_editor_height)
@@ -32,21 +32,27 @@ Layout::~Layout()
 }
 
 
-void Layout::set_stages(std::vector<StageInterface *>* stages)
-{
-   this->stages = stages;
-}
-
-
 void Layout::set_concept_name(std::string concept_name)
 {
    this->concept_name = concept_name;
 }
 
 
+void Layout::set_stages(std::vector<StageInterface *>* stages)
+{
+   this->stages = stages;
+}
+
+
 void Layout::set_files(std::vector<std::tuple<std::string, std::string, placement3d>> files)
 {
    this->files = files;
+}
+
+
+std::string Layout::get_concept_name()
+{
+   return concept_name;
 }
 
 
@@ -59,12 +65,6 @@ std::string Layout::get_project_root()
 std::vector<StageInterface *>* Layout::get_stages()
 {
    return stages;
-}
-
-
-std::string Layout::get_concept_name()
-{
-   return concept_name;
 }
 
 
