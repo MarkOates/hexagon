@@ -1257,6 +1257,11 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
    }
 }
 
+bool System::create_layout_from_last_project_navigator_selection()
+{
+   return true;
+}
+
 bool System::create_three_split_from_last_component_navigator_selection()
 {
    Blast::Project::Component component(last_component_navigator_selection, get_default_navigator_directory());
@@ -1542,6 +1547,9 @@ const std::string System::CHECK_GIT_SYNC_AND_UPDATE_POWERBAR = "CHECK_GIT_SYNC_A
 const std::string System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES =
    "COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES";
 const std::string System::PUSH_TO_GIT_REMOTE = "PUSH_TO_GIT_REMOTE";
+const std::string System::CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION =
+   "CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION";
+
 
 
 

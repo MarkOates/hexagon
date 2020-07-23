@@ -136,6 +136,7 @@ public:
    bool spawn_file_navigator_from_last_file_navigator_folder_selection();
    bool destroy_all_code_editor_stages();
    bool create_two_or_three_split_layout_from_last_component_navigator_selection();
+   bool create_layout_from_last_project_navigator_selection();
    bool create_three_split_from_last_component_navigator_selection();
    bool create_rails_resource_layout();
    bool attempt_to_create_stage_from_last_component_navigator_selection();
@@ -164,6 +165,7 @@ public:
    static const std::string ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION;
    static const std::string CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
+   static const std::string CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION;
    static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_RAILS_RESOURCE_LAYOUT;
    static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
