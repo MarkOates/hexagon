@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <string>
+#include <Hexagon/Project.hpp>
 
 
 namespace Hexagon
@@ -15,7 +15,7 @@ namespace Hexagon
       ~ProjectFactory();
 
 
-   std::string run();
+   Hexagon::Project partner_performance_dashboard();
    };
 }
 

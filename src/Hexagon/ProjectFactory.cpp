@@ -18,9 +18,11 @@ ProjectFactory::~ProjectFactory()
 }
 
 
-std::string ProjectFactory::run()
+Hexagon::Project ProjectFactory::partner_performance_dashboard()
 {
-return "Hello World!";
+Hexagon::Project result;
+return {};
+
 }
 } // namespace Hexagon
 

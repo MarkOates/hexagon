@@ -1,4 +1,13 @@
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+
+  - name: partner_performance_dashboard
+    type: Hexagon::Project
+    body: |
+      Hexagon::Project result;
+      return {};
+
+dependencies:
+
+  - symbol: Hexagon::Project
+    headers: [ Hexagon/Project.hpp ]
+
