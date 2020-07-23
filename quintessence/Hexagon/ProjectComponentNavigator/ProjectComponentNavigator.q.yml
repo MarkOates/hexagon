@@ -1,0 +1,124 @@
+properties:
+
+
+
+  - name: project_root
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon/"'
+    constructor_arg: true
+    getter: true
+    setter: true
+  - name: cursor_position
+    type: int
+    getter: true
+    init_with: 0
+  - name: cursor_position_static
+    type: bool
+    getter: true
+    setter: true
+    init_with: false
+  - name: nodes
+    type: std::vector<Blast::Project::Component>
+    init_with: "{}"
+    getter: true
+    setter: true
+  - name: mode
+    type: std::string
+    init_with: '"navigating_list"'
+    getter: true
+    setter: true
+  - name: search_text
+    type: std::string
+    init_with: '""'
+    getter: true
+    setter: true
+
+
+
+functions:
+
+
+
+  - name: is_mode_navigating_list
+    type: bool
+    body: |
+      return this->mode == "navigating_list";
+
+
+
+  - name: is_mode_typing_in_search_bar
+    type: bool
+    body: |
+      return this->mode == "typing_in_search_bar";
+
+
+
+  - name: move_cursor_up
+    type: void
+    body: |
+      cursor_position -= 1;
+
+
+
+  - name: move_cursor_down
+    type: void
+    body: |
+      cursor_position += 1;
+
+
+
+  - name: move_cursor_to_top
+    type: void
+    body: |
+      cursor_position = 0;
+
+
+
+  - name: current_selection_is_valid
+    type: bool
+    body: |
+      if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
+      return true;
+
+
+
+  - name: set_mode_to_navigating_list
+    type: void
+    body: |
+      this->mode = "navigating_list";
+
+
+
+  - name: set_mode_to_typing_in_search_bar
+    type: void
+    body: |
+      this->mode = "typing_in_search_bar";
+
+
+
+  - name: get_current_selection_label_or_empty_string
+    type: std::string
+    body: |
+      if (!current_selection_is_valid()) return "";
+      return nodes[get_cursor_position()].get_name();
+
+
+
+  - name: refresh_list
+    body: |
+      Hexagon::ProjectComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
+      nodes = searcher.components_sorted_by_most_recent();
+    body_dependency_symbols:
+      - Hexagon::ProjectComponentNavigator::ComponentSearcher
+
+
+
+dependencies:
+
+
+
+  - symbol: Hexagon::ProjectComponentNavigator::ComponentSearcher
+    headers: [ 'Hexagon/ProjectComponentNavigator/ComponentSearcher.hpp' ]
+  - symbol: std::vector<Blast::Project::Component>
+    headers: [ vector, Blast/Project/Component.hpp ]
+

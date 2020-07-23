@@ -1,0 +1,302 @@
+parent_classes:
+
+
+  - class: 'StageInterface'
+    scope: public
+    init_with: "StageInterface::COMPONENT_NAVIGATOR"
+
+
+properties:
+
+
+  - name: project_root
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon/"'
+    constructor_arg: true
+    getter: true
+    setter: true
+  - name: component
+    type: Hexagon::ProjectComponentNavigator::ProjectComponentNavigator
+    init_with: 'project_root'
+    getter_ref: true
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
+  - name: is_focused
+    type: bool
+    init_with: true
+    getter: true
+    setter: true
+  - name: display
+    type: ALLEGRO_DISPLAY*
+    init_with: nullptr
+    getter: true
+    setter: true
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    getter: true
+    setter: true
+  - name: cell_width
+    type: int
+    init_with: 10
+    getter: true
+    setter: true
+  - name: cell_height
+    type: int
+    init_with: 20
+    getter: true
+    setter: true
+  - name: base_text_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
+    constructor_arg: true
+    getter: true
+    setter: true
+  - name: base_backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    constructor_arg: true
+    getter: true
+    setter: true
+
+
+
+functions:
+
+
+  - name: build_keyboard_command_mapping
+    type: KeyboardCommandMapper
+    body: |
+      constexpr auto NO_MODIFIER = KeyboardCommandMapper::NO_MODIFIER;
+      constexpr auto SHIFT = KeyboardCommandMapper::SHIFT;
+      constexpr auto CTRL = KeyboardCommandMapper::CTRL;
+      constexpr auto ALT = KeyboardCommandMapper::ALT;
+      constexpr auto COMMAND = KeyboardCommandMapper::COMMAND;
+      constexpr auto OPTION = KeyboardCommandMapper::OPTION;
+
+      KeyboardCommandMapper mapping;
+
+      static const std::string MOVE_CURSOR_UP = "move_cursor_up";
+      static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
+      static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
+      static const std::string SET_MODE_TO_NAVIGATING_LIST = "set_mode_to_navigating_list";
+      static const std::string SET_MODE_TO_TYPING_IN_SEARCH_BAR = "set_mode_to_typing_in_search_bar";
+      static const std::string REFRESH_LIST = "refresh_list";
+
+      if (component.is_mode_navigating_list())
+      {
+         mapping.set_mapping(ALLEGRO_KEY_J, NO_MODIFIER, { MOVE_CURSOR_DOWN });
+         mapping.set_mapping(ALLEGRO_KEY_K, NO_MODIFIER, { MOVE_CURSOR_UP });
+         mapping.set_mapping(ALLEGRO_KEY_UP, NO_MODIFIER, { MOVE_CURSOR_UP });
+         mapping.set_mapping(ALLEGRO_KEY_DOWN, NO_MODIFIER, { MOVE_CURSOR_DOWN });
+
+         mapping.set_mapping(ALLEGRO_KEY_SLASH, NO_MODIFIER, { SET_MODE_TO_TYPING_IN_SEARCH_BAR });
+      }
+      else if (component.is_mode_typing_in_search_bar())
+      {
+         mapping.set_mapping(ALLEGRO_KEY_TAB, NO_MODIFIER,
+            { REFRESH_LIST, MOVE_CURSOR_TO_TOP, SET_MODE_TO_NAVIGATING_LIST });
+      }
+      return mapping;
+    body_dependency_symbols:
+      - KeyboardCommandMapper
+
+
+
+  - name: build_local_events_dictionary
+    type: std::map<std::string, std::function<void(ProjectComponentNavigator&)>>
+    body: |
+      std::map<std::string, std::function<void(ProjectComponentNavigator&)>> local_events = {
+         { "refresh_list", &ProjectComponentNavigator::refresh_list },
+         { "move_cursor_to_top", &ProjectComponentNavigator::move_cursor_to_top },
+         { "move_cursor_up", &ProjectComponentNavigator::move_cursor_up },
+         { "move_cursor_down", &ProjectComponentNavigator::move_cursor_down },
+         { "set_mode_to_navigating_list", &ProjectComponentNavigator::set_mode_to_navigating_list },
+         { "set_mode_to_typing_in_search_bar", &ProjectComponentNavigator::set_mode_to_typing_in_search_bar },
+      };
+      return local_events;
+
+
+
+  - name: render
+    virtual: true
+    override: true
+    body: |
+      float backfill_opacity = 0.8f;
+
+      Hexagon::ProjectComponentNavigator::Renderer renderer(
+         this, is_focused, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
+      );
+      renderer.render();
+      return;
+    body_dependency_symbols:
+      - Hexagon::ProjectComponentNavigator::Renderer
+
+
+
+  - name: process_local_event
+    virtual: true
+    override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: "\"\""
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: |
+      using Hexagon::ProjectComponentNavigator::ProjectComponentNavigator;
+      std::map<std::string, std::function<void(ProjectComponentNavigator&)>> local_events =
+         build_local_events_dictionary();
+      Hexagon::ProjectComponentNavigator::EventController event_controller(&component, local_events);
+      event_controller.process_local_event(event_name, action_data);
+      return;
+    body_dependency_symbols:
+      - Hexagon::ProjectComponentNavigator::EventController
+
+
+
+  - name: process_char_event
+    parameters:
+      - name: keycode
+        type: int
+        default_argument: 0
+      - name: unichar
+        type: int
+        default_argument: 0
+      - name: is_repeat
+        type: bool
+        default_argument: false
+    body: |
+      if (keycode == ALLEGRO_KEY_BACKSPACE)
+      {
+         if (component.is_mode_typing_in_search_bar())
+         {
+            std::string search_text = component.get_search_text();
+            if (!search_text.empty())
+            {
+               search_text.pop_back();
+               component.set_search_text(search_text);
+            }
+         }
+      }
+      else if (keycode == ALLEGRO_KEY_TAB) {}
+      else if (keycode == ALLEGRO_KEY_ENTER) {}
+      else if (keycode == ALLEGRO_KEY_ESCAPE) {}
+      else if (keycode == ALLEGRO_KEY_DELETE) {}
+      else
+      {
+         if (component.is_mode_typing_in_search_bar())
+         {
+            std::string search_text = component.get_search_text();
+            search_text += unichar;
+            component.set_search_text(search_text);
+         }
+         //search_text += unichar; // <-- for example
+      }
+      return;
+
+
+
+  - name: process_event
+    virtual: true
+    override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: |
+      switch(event.type)
+      {
+      case ALLEGRO_EVENT_KEY_UP:
+         break;
+      case ALLEGRO_EVENT_KEY_DOWN:
+         break;
+      case ALLEGRO_EVENT_KEY_CHAR:
+         {
+            KeyboardCommandMapper keyboard_command_mapper = build_keyboard_command_mapping();
+            bool event_caught = false;
+
+            bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+            bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+            bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+            bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+            bool ctrl_or_command = ctrl || command;
+
+            std::vector<std::string> mapped_events =
+               keyboard_command_mapper.get_mapping(event.keyboard.keycode, shift, ctrl_or_command, alt);
+            if (!mapped_events.empty()) event_caught = true;
+            for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+            if (!event_caught) process_char_event(event.keyboard.keycode, event.keyboard.unichar, event.keyboard.repeat);
+         }
+         break;
+      }
+      return;
+    body_dependency_symbols:
+      - KeyboardCommandMapper
+
+
+
+  - name: save_file
+    type: bool
+    body: |
+      return true;
+
+
+
+dependencies:
+
+
+  - symbol: Hexagon::ProjectComponentNavigator::ProjectComponentNavigator
+    headers: [ Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.hpp ]
+  - symbol:  std::map<std::string, std::function<void(ProjectComponentNavigator&)>>
+    headers: [ map, string, functional, Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.hpp ]
+  - symbol: Hexagon::ProjectComponentNavigator::Renderer
+    headers: [ Hexagon/ProjectComponentNavigator/Renderer.hpp ]
+  - symbol: Hexagon::ProjectComponentNavigator::EventController
+    headers: [ Hexagon/ProjectComponentNavigator/EventController.hpp ]
+  - symbol: color::mix
+    headers: [ 'allegro_flare/color.h' ]
+  - symbol: StageInterface
+    headers: [ 'Hexagon/StageInterface.hpp' ]
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ 'allegro5/allegro.h', 'allegro5/allegro_color.h' ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ 'allegro5/allegro_font.h' ]
+  - symbol: ActionData
+    headers: [ 'Hexagon/ActionData.hpp' ]
+  - symbol: al_color_name
+    headers: [ 'allegro5/allegro_color.h' ]
+  - symbol: std::endl
+    headers: [ 'iostream' ]
+  - symbol: std::cerr
+    headers: [ 'iostream' ]
+  - symbol: std::cout
+    headers: [ 'iostream' ]
+  - symbol: al_draw_circle
+    headers: [ 'allegro5/allegro_primitives.h' ]
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
+  - symbol: std::vector<Blast::Project::Component>
+    headers: [ vector, Blast/Project/Component.hpp ]
+  - symbol: std::vector<std::string>
+    headers: [ 'vector', 'string' ]
+  - symbol: FileSystemNode
+    headers: [ 'Hexagon/FileSystemNode.hpp' ]
+  - symbol: KeyboardCommandMapper
+    headers: [ 'AllegroFlare/KeyboardCommandMapper.hpp' ]
+  - symbol: Hexagon::ProjectComponentNavigator::ComponentSearcher
+    headers: [ 'Hexagon/ProjectComponentNavigator/ComponentSearcher.hpp' ]
+  - symbol: Hexagon::Shapes::Hexagon::Renderer
+    headers: [ Hexagon/Shapes/Hexagon/Renderer.hpp ]
+  - symbol: Hexagon::Shapes::Hexagon::Stroke
+    headers: [ Hexagon/Shapes/Hexagon/Stroke.hpp ]

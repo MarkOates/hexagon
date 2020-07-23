@@ -1,0 +1,99 @@
+properties:
+
+
+  - name: project_root_directory
+    type: std::string
+    default: "/Users/markoates/Repos/hexagon"
+    constructor_arg: true
+  - name: search_text
+    type: std::string
+    default: '""'
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: convert_to_names
+    type: std::vector<std::string>
+    parameters:
+      - name: components
+        type: std::vector<Blast::Project::Component>
+        default_argument: "{}"
+    body: |
+      std::vector<std::string> results;
+      for (auto &element : components)
+      {
+         results.push_back(element.get_name());
+         //results.push_back(Blast::Project::Component(element, project_root_directory));
+      }
+      return results;
+
+
+  - name: convert_to_components
+    type: std::vector<Blast::Project::Component>
+    parameters:
+      - name: names
+        type: std::vector<std::string>
+        default_argument: "{}"
+    body: |
+      std::vector<Blast::Project::Component> results;
+      for (auto &element : names)
+      {
+         results.push_back(Blast::Project::Component(element, project_root_directory));
+      }
+      return results;
+
+
+  - name: component_names
+    type: std::vector<std::string>
+    body: |
+      std::vector<std::string> result_names = {};
+      std::vector<std::string> elements = Blast::Project::ComponentLister(project_root_directory).components();
+      if (search_text.empty()) return elements;
+      Blast::SimpleTextSearcher searcher(search_text, elements);
+      return searcher.results();
+    body_dependency_symbols:
+      - Blast::Project::ComponentLister
+      - Blast::SimpleTextSearcher
+
+
+  - name: components_sorted_by_most_recent
+    type: std::vector<Blast::Project::Component>
+    body: |
+      std::vector<Blast::Project::Component> result;
+      std::vector<std::string> unfiltered_elements = {};
+
+      // get list of elements
+      unfiltered_elements = Blast::Project::ComponentLister(project_root_directory).components_sorted_by_most_recent();
+
+      // filter list by search string
+      std::vector<std::string> filtered_elements = Blast::SimpleTextSearcher(search_text, unfiltered_elements).results();
+
+      // build (and return) components
+      return convert_to_components(filtered_elements);
+    body_dependency_symbols:
+      - Blast::Project::ComponentLister
+      - Blast::SimpleTextSearcher
+
+
+  - name: components
+    type: std::vector<Blast::Project::Component>
+    body: |
+      std::vector<Blast::Project::Component> result;
+      return convert_to_components(component_names());
+    body_dependency_symbols:
+      - Blast::Project::ComponentLister
+
+
+dependencies:
+
+
+  - symbol: std::vector<std::string>
+    headers: [ 'vector', 'string' ]
+  - symbol: Blast::Project::ComponentLister
+    headers: [ 'Blast/Project/ComponentLister.hpp' ]
+  - symbol: Blast::SimpleTextSearcher
+    headers: [ 'Blast/SimpleTextSearcher.hpp' ]
+  - symbol: std::vector<Blast::Project::Component>
+    headers: [ vector, Blast/Project/Component.hpp ]

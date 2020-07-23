@@ -1,0 +1,62 @@
+properties:
+
+
+  - name: component
+    type: Hexagon::ProjectComponentNavigator::ProjectComponentNavigator*
+    init_with: nullptr
+    constructor_arg: true
+  - name: event_dictionary
+    type: std::map<std::string, std::function<void(ProjectComponentNavigator&)>>
+    init_with: '{}'
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: process_local_event
+    guards: [ component ]
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: '""'
+      - name: action_data
+        type: ActionData
+        default_argument: 'ActionData()'
+    body: |
+      using Hexagon::ProjectComponentNavigator::ProjectComponentNavigator;
+      ProjectComponentNavigator &component = *this->component;
+
+      std::map<std::string, std::function<void(ProjectComponentNavigator&)>>::iterator it =
+         event_dictionary.find(event_name);
+      if (it == event_dictionary.end())
+      {
+         std::stringstream error_message;
+         error_message << "ProjectComponentNavigator::EventController::process_local_event: error: "
+                       << "No local event named \"" << event_name << "\" exists.";
+         throw std::runtime_error(error_message.str());
+      }
+      else
+      {
+         event_dictionary[event_name](component);
+      }
+
+      return;
+    body_dependency_symbols:
+      - std::map<std::string, std::function>
+      - Hexagon::ProjectComponentNavigator::EventController
+
+
+dependencies:
+
+
+  - symbol:  std::map<std::string, std::function<void(ProjectComponentNavigator&)>>
+    headers: [ map, string, functional, Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.hpp ]
+  - symbol: std::map<std::string, std::function>
+    headers: [ map, string, functional ]
+  - symbol: Hexagon::ProjectComponentNavigator::ProjectComponentNavigator*
+    headers: [ Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.hpp ]
+  - symbol: Hexagon::ProjectComponentNavigator::EventController
+    headers: [ Hexagon/ProjectComponentNavigator/EventController.hpp ]
+  - symbol: ActionData
+    headers: [ Hexagon/ActionData.hpp ]
