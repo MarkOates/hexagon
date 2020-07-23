@@ -18,7 +18,7 @@ properties:
     setter: true
     init_with: false
   - name: nodes
-    type: std::vector<Blast::Project::Component>
+    type: std::vector<Hexagon::Layout>
     init_with: "{}"
     getter: true
     setter: true
@@ -100,16 +100,14 @@ functions:
     type: std::string
     body: |
       if (!current_selection_is_valid()) return "";
-      return nodes[get_cursor_position()].get_name();
+      return nodes[get_cursor_position()].get_concept_name();
 
 
 
   - name: refresh_list
     body: |
-      Hexagon::ProjectComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
-      nodes = searcher.components_sorted_by_most_recent();
-    body_dependency_symbols:
-      - Hexagon::ProjectComponentNavigator::ComponentSearcher
+      return;
+    body_dependency_symbols: []
 
 
 
@@ -117,8 +115,6 @@ dependencies:
 
 
 
-  - symbol: Hexagon::ProjectComponentNavigator::ComponentSearcher
-    headers: [ 'Hexagon/ProjectComponentNavigator/ComponentSearcher.hpp' ]
-  - symbol: std::vector<Blast::Project::Component>
-    headers: [ vector, Blast/Project/Component.hpp ]
+  - symbol: std::vector<Hexagon::Layout>
+    headers: [ vector, Hexagon/Layout.hpp ]
 

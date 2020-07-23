@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.hpp>
-#include <Hexagon/ProjectComponentNavigator/ComponentSearcher.hpp>
+
 
 
 namespace Hexagon
@@ -38,7 +38,7 @@ void ProjectComponentNavigator::set_cursor_position_static(bool cursor_position_
 }
 
 
-void ProjectComponentNavigator::set_nodes(std::vector<Blast::Project::Component> nodes)
+void ProjectComponentNavigator::set_nodes(std::vector<Hexagon::Layout> nodes)
 {
    this->nodes = nodes;
 }
@@ -74,7 +74,7 @@ bool ProjectComponentNavigator::get_cursor_position_static()
 }
 
 
-std::vector<Blast::Project::Component> ProjectComponentNavigator::get_nodes()
+std::vector<Hexagon::Layout> ProjectComponentNavigator::get_nodes()
 {
    return nodes;
 }
@@ -144,14 +144,13 @@ this->mode = "typing_in_search_bar";
 std::string ProjectComponentNavigator::get_current_selection_label_or_empty_string()
 {
 if (!current_selection_is_valid()) return "";
-return nodes[get_cursor_position()].get_name();
+return nodes[get_cursor_position()].get_concept_name();
 
 }
 
 void ProjectComponentNavigator::refresh_list()
 {
-Hexagon::ProjectComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
-nodes = searcher.components_sorted_by_most_recent();
+return;
 
 }
 } // namespace ProjectComponentNavigator
