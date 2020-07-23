@@ -35,6 +35,7 @@ public:
    Camera camera;
    std::string last_file_navigator_selection;
    std::string last_component_navigator_selection;
+   std::string last_project_navigator_selection;
    std::string global_font_resource_filename;
    int global_font_size;
    bool command_mode;
@@ -131,6 +132,7 @@ public:
    bool run_make();
    bool offset_first_line_to_vertically_center_cursor_on_stage();
    bool push_component_navigator_selection();
+   bool push_project_navigator_selection();
    bool push_file_navigator_selection();
    bool attempt_to_create_stage_from_last_file_navigator_selection();
    bool spawn_file_navigator_from_last_file_navigator_folder_selection();

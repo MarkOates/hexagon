@@ -79,6 +79,7 @@
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/ComponentNavigator/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+#include <Hexagon/ProjectComponentNavigator/Stage.hpp>
 #include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/LayoutPlacements.hpp>
 #include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
@@ -1124,6 +1125,26 @@ bool System::push_component_navigator_selection()
       component_navigator->get_component_ref().get_current_selection_label_or_empty_string();
 
    last_component_navigator_selection = current_component_navigator_selection;
+   return true;
+}
+
+bool System::push_project_navigator_selection()
+{
+   StageInterface *frontmost_stage_interface = get_frontmost_stage();
+   if (!frontmost_stage_interface || !(frontmost_stage_interface->get_type() == StageInterface::COMPONENT_NAVIGATOR))
+   {
+      std::stringstream error_message;
+      std::string function_name = "push_project_navigator_selection";
+      error_message << "Could not " << function_name << ": Either the frontmost_stage_interface is a nullptr OR is not of type StageInterface::COMPONENT_NAVIGATOR." << std::endl;
+      throw std::runtime_error(error_message.str().c_str());
+   }
+   Hexagon::ProjectComponentNavigator::Stage *project_navigator =
+      static_cast<Hexagon::ProjectComponentNavigator::Stage *>(frontmost_stage_interface);
+
+   std::string current_project_navigator_selection =
+      project_navigator->get_component_ref().get_current_selection_label_or_empty_string();
+
+   last_project_navigator_selection = current_project_navigator_selection;
    return true;
 }
 
