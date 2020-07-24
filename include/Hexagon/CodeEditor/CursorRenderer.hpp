@@ -25,6 +25,7 @@ namespace Hexagon
          ~CursorRenderer();
 
 
+         ALLEGRO_COLOR get_color();
       void render();
       };
    }

@@ -4,6 +4,7 @@ properties:
     type: ALLEGRO_COLOR
     init_with: "al_color_name(\"white\")"
     constructor_arg: true
+    getter: true
   - name: x
     type: float
     init_with: 0

@@ -32,6 +32,12 @@ CursorRenderer::~CursorRenderer()
 }
 
 
+ALLEGRO_COLOR CursorRenderer::get_color()
+{
+   return color;
+}
+
+
 void CursorRenderer::render()
 {
 float cursor_x = x;
