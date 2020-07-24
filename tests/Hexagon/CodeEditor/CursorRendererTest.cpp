@@ -8,9 +8,10 @@ TEST(Hexagon_CodeEditor_CursorRendererTest, can_be_created_without_blowing_up)
    Hexagon::CodeEditor::CursorRenderer cursor_renderer;
 }
 
-TEST(Hexagon_CodeEditor_CursorRendererTest, run__returns_the_expected_response)
+TEST(Hexagon_CodeEditor_CursorRendererTest, render__will_draw_the_cursor)
 {
+   // TODO
    Hexagon::CodeEditor::CursorRenderer cursor_renderer;
-   //std::string expected_string = "Hello World!";
-   //EXPECT_EQ(expected_string, cursor_renderer.run());
+   //cursor_renderer.render();
 }
+

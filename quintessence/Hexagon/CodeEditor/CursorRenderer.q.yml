@@ -1,4 +1,5 @@
 properties:
+
   - name: color
     type: ALLEGRO_COLOR
     init_with: "al_color_name(\"white\")"
@@ -27,7 +28,9 @@ properties:
     type: bool
     init_with: true
     constructor_arg: true
+
 functions:
+
   - name: render
     type: void
     body: |
@@ -97,7 +100,9 @@ functions:
       - ::CodeEditor::CodeEditor::EDIT
       - ::CodeEditor::CodeEditor::INSERT
       - color::color
+
 dependencies:
+
   - symbol: ::CodeEditor::CodeEditor::mode_t
     headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
   - symbol: ::CodeEditor::CodeEditor::EDIT
@@ -112,3 +117,4 @@ dependencies:
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: color::color
     headers: [ allegro_flare/color.h ]
+
