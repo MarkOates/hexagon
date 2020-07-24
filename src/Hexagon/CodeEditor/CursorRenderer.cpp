@@ -79,7 +79,8 @@ default:
 
 if (focus)
 {
-   int max_outset = 23;
+   //int max_outset = 23;
+   int max_outset = 1;
    for (int outset=1; outset<max_outset; outset++)
    {
      float color_opacity = (1.0 - (float)outset / max_outset) * 0.25;
