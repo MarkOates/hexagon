@@ -34,7 +34,7 @@ functions:
 
   - name: render
     type: void
-    guards: [ al_is_system_installed(), al_is_primitives_addon_initialized() ]
+    guards: [ al_is_system_installed(), al_is_primitives_addon_initialized(), al_get_target_bitmap() ]
     body: |
       float cursor_x = x;
       float _cursor_x = x;

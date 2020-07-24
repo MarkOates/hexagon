@@ -12,6 +12,8 @@ static void EXPECT_COLOR_EQ(const ALLEGRO_COLOR &color1, const ALLEGRO_COLOR &co
    EXPECT_EQ(color1.a, color2.a);
 }
 
+#include <allegro5/allegro_primitives.h>
+
 TEST(Hexagon_CodeEditor_CursorRendererTest, can_be_created_without_blowing_up)
 {
    Hexagon::CodeEditor::CursorRenderer cursor_renderer;
@@ -28,11 +30,15 @@ TEST(Hexagon_CodeEditor_CursorRendererTest, color__has_a_getter_with_the_default
 
 TEST(Hexagon_CodeEditor_CursorRendererTest, render__will_not_blow_up)
 {
-   //al_init();
+   al_init();
+   al_init_primitives_addon();
+   ALLEGRO_BITMAP *surface_render = al_create_bitmap(1280, 720); // (vec2d(16, 9) * 80);
+   al_set_target_bitmap(surface_render);
 
-   //Hexagon::CodeEditor::CursorRenderer cursor_renderer;
-   //cursor_renderer.render();
+   Hexagon::CodeEditor::CursorRenderer cursor_renderer;
+   cursor_renderer.render();
 
-   //al_uninstall_system();
+   al_destroy_bitmap(surface_render);
+   al_uninstall_system();
 }
 

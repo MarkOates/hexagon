@@ -54,6 +54,12 @@ if (!(al_is_primitives_addon_initialized()))
       error_message << "CursorRenderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (!(al_get_target_bitmap()))
+   {
+      std::stringstream error_message;
+      error_message << "CursorRenderer" << "::" << "render" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 float cursor_x = x;
 float _cursor_x = x;
 float _cursor_y = y;
