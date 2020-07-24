@@ -2,7 +2,7 @@ properties:
 
   - name: color
     type: ALLEGRO_COLOR
-    init_with: "al_color_name(\"white\")"
+    init_with: 'ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}'
     constructor_arg: true
     getter: true
   - name: x
@@ -34,6 +34,7 @@ functions:
 
   - name: render
     type: void
+    guards: [ al_is_system_installed(), al_is_primitives_addon_initialized() ]
     body: |
       float cursor_x = x;
       float _cursor_x = x;
