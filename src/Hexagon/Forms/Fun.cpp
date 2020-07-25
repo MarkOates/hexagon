@@ -84,19 +84,13 @@ return;
 
 int Fun::process_char_input(char input_ch)
 {
-static const int ENTER_KEY = 10;
 static const int BACKSPACE_KEY = 127;
 static const int SPACEBAR_KEY = 32;
 
-static const int RESULT_ENTER_KEY_PRESSED = 2;
 static const int RESULT_BUFFER_CHANGED = 1;
 static const int RESULT_NO_CHANGE = 0;
 
-if (input_ch == ENTER_KEY)
-{
-   return RESULT_ENTER_KEY_PRESSED;
-}
-else if (input_ch == BACKSPACE_KEY)
+if (input_ch == BACKSPACE_KEY)
 {
    if (!buffer.empty())
    {

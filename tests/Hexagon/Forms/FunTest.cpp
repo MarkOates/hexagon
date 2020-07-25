@@ -48,7 +48,6 @@ TEST(Hexagon_Forms_FunTest, process_char_input__for_all_char_values_up_to_the_sp
 
    for (char character = 0; character < SPACEBAR_CHAR; character++)
    {
-      if (character == 10) continue;
       EXPECT_EQ(0, fun.process_char_input(character));
    }
 }
