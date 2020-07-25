@@ -1,17 +1,5 @@
 properties:
 
-  - name: place
-    type: placement3d
-    init_with: '{}'
-    constructor_arg: true
-    getter: true
-    setter: true
-  - name: backfill_color
-    type: ALLEGRO_COLOR
-    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
-    constructor_arg: true
-    getter: true
-    setter: true
   - name: buffer
     type: std::string
     init_with: '""'
@@ -20,6 +8,13 @@ properties:
 functions:
 
   - name: draw
+    parameters:
+      - name: place
+        type: placement3d
+        default_argument: '{}'
+      - name: backfill_color
+        type: ALLEGRO_COLOR
+        default_argument: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
     guards: [ al_is_system_installed(), al_is_primitives_addon_initialized(), al_get_target_bitmap() ]
     body: |
       al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, backfill_color);
