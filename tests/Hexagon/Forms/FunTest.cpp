@@ -52,3 +52,13 @@ TEST(Hexagon_Forms_FunTest, process_char_input__for_all_char_values_up_to_the_sp
    }
 }
 
+TEST(Hexagon_Forms_FunTest,
+   process_char_input__for_the_delete_character__will_make_no_changes_to_the_buffer_and_will_return_no_change)
+{
+   Hexagon::Forms::Fun fun;
+   const char DELETE_CHAR = 127;
+
+   EXPECT_EQ(0, fun.process_char_input(DELETE_CHAR));
+   EXPECT_EQ(true, fun.get_buffer().empty());
+}
+

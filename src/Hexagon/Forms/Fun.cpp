@@ -84,13 +84,13 @@ return;
 
 int Fun::process_char_input(char input_ch)
 {
-static const int BACKSPACE_KEY = 127;
+static const int DELETE_KEY = 127;
 static const int SPACEBAR_KEY = 32;
 
-static const int RESULT_BUFFER_CHANGED = 1;
 static const int RESULT_NO_CHANGE = 0;
+static const int RESULT_BUFFER_CHANGED = 1;
 
-if (input_ch == BACKSPACE_KEY)
+if (input_ch == DELETE_KEY)
 {
    if (!buffer.empty())
    {
