@@ -84,13 +84,13 @@ return;
 
 int Fun::process_char_input(char input_ch)
 {
-static const int DELETE_KEY = 127;
-static const int SPACEBAR_KEY = 32;
+static const int DELETE_CHAR = 127;
+static const int SPACEBAR_CHAR = 32;
 
 static const int RESULT_NO_CHANGE = 0;
 static const int RESULT_BUFFER_CHANGED = 1;
 
-if (input_ch == DELETE_KEY)
+if (input_ch == DELETE_CHAR)
 {
    if (!buffer.empty())
    {
@@ -100,7 +100,7 @@ if (input_ch == DELETE_KEY)
       return RESULT_BUFFER_CHANGED;
    }
 }
-else if (input_ch < SPACEBAR_KEY)
+else if (input_ch < SPACEBAR_CHAR)
 {
    return RESULT_NO_CHANGE;
 }
