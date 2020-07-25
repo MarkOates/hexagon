@@ -30,9 +30,14 @@ TEST(Hexagon_Forms_FunTest, process_char_input__will_append_the_character_to_the
 {
    Hexagon::Forms::Fun fun;
    std::string characters = "Hello, character input!";
+   int num_inputs = 0;
    for (char character : characters)
    {
       EXPECT_EQ(1, fun.process_char_input(character));
+      num_inputs++;
+      std::string expected_buffer_contents = characters.substr(0, num_inputs);
+      std::string actual_buffer_contents = fun.get_buffer();
+      EXPECT_EQ(expected_buffer_contents, actual_buffer_contents);
    }
 }
 
