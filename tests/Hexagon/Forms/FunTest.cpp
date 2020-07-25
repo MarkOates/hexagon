@@ -11,7 +11,7 @@ TEST(Hexagon_Forms_FunTest, can_be_created_without_blowing_up)
    Hexagon::Forms::Fun fun;
 }
 
-TEST(Hexagon_Forms_FunTest, run__returns_the_expected_response)
+TEST(Hexagon_Forms_FunTest, draw__does_not_blow_up)
 {
    al_init();
    al_init_primitives_addon();
@@ -19,8 +19,9 @@ TEST(Hexagon_Forms_FunTest, run__returns_the_expected_response)
    al_set_target_bitmap(render_surface);
 
    Hexagon::Forms::Fun fun;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, fun.run());
+   fun.draw();
 
    al_uninstall_system();
+
+   SUCCEED();
 }

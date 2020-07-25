@@ -1,9 +1,25 @@
+properties:
+
+  - name: place
+    type: placement3d
+    init_with: '{}'
+    constructor_arg: true
+    getter: true
+    setter: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    constructor_arg: true
+    getter: true
+    setter: true
+
 functions:
 
-  - name: run
-    type: std::string
+  - name: draw
     guards: [ al_is_system_installed(), al_is_primitives_addon_initialized(), al_get_target_bitmap() ]
-    body: return "Hello World!";
+    body: |
+      al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, backfill_color);
+      return;
     body_dependency_symbols:
       - al_is_system_installed
       - al_is_primitives_addon_initialized
@@ -11,6 +27,10 @@ functions:
 
 dependencies:
 
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro.h ]
   - symbol: al_is_system_installed
     headers: [ allegro5/allegro.h ]
   - symbol: al_is_primitives_addon_initialized
