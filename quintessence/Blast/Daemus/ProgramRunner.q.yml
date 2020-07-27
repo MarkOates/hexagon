@@ -33,6 +33,7 @@ functions:
       hexagon_config.initialize();
 
       std::string project_directory = hexagon_config.get_default_navigator_directory();
+      std::string actual_command_to_execute_in_project_directory = "make focus";
 
       std::string build_command = "rerun" \
         " " \
@@ -46,7 +47,7 @@ functions:
         " " \
         "\"(cd ";
 
-      build_command += project_directory + " && make focus)\"";
+      build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
       std::string output = execute_command(build_command);
       return;
     body_dependency_symbols:
