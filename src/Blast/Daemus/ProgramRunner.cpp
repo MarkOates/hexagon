@@ -3,10 +3,6 @@
 #include <Blast/Daemus/ProgramRunner.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Hexagon/System/Config.hpp>
-#include <vector>
-#include <string>
-#include <sstream>
-#include <iostream>
 
 
 namespace Blast
@@ -66,47 +62,6 @@ std::string build_command = "rerun" \
 
 build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
 std::string output = execute_command(build_command);
-return;
-
-}
-
-void ProgramRunner::run_with_block_after_command()
-{
-std::string rerun_command = "rerun --quiet -c -p \"**/*.{" \
-   "rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}" \
-   "\"";
-
-std::string project_directory = "/Users/markoates/Repos/blast/";
-
-
-//std::string COMMAND = "rerun --quiet -p \"**/*.{rb,js,tsx,coffee,css,scss,sass,erb,html,haml," \
-//                      "ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}\" --restart";
-
-
-std::vector<std::string> command_tokens;
-command_tokens = {
-  //"(cd ",
-  //project_directory,
-  //" && ",
-  //rerun_command,
-  //" \"(cd ",
-  //project_directory,
-  //" && make focus)\"",
-  //COMMAND,
-};
-
-std::stringstream command;
-for (auto &command_token : command_tokens)
-{
-   command << command_token << " ";
-}
-
-std::cout << "executing command \"" << command.str() << "\"" << std::endl;
-
-std::string command_result_output = execute_command(command.str());
-std::cout << command_result_output << std::endl;
-
-std::cout << "finished command execution of \"" << command.str() << "\"" << std::endl;
 return;
 
 }
