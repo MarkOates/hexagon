@@ -2,6 +2,7 @@
 
 #include <Blast/Daemus/ProgramRunner.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <sstream>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/Config.hpp>
 
@@ -43,6 +44,20 @@ std::string project_directory = hexagon_config.get_default_navigator_directory()
 
 run_with_rerun(project_directory);
 return;
+
+}
+
+void ProgramRunner::run_once(std::string project_directory)
+{
+std::string actual_command_to_execute_in_project_directory = "make focus";
+
+std::stringstream result_command;
+result_command << "cd "
+               << project_directory
+               << " && "
+               << actual_command_to_execute_in_project_directory;
+
+std::string output = execute_command(result_command.str());
 
 }
 

@@ -31,6 +31,26 @@ functions:
       return;
 
 
+  - name: run_once
+    type: void
+    parameters:
+      - name: project_directory
+        type: std::string
+        default_argument: '""'
+    body: |
+      std::string actual_command_to_execute_in_project_directory = "make focus";
+
+      std::stringstream result_command;
+      result_command << "cd "
+                     << project_directory
+                     << " && "
+                     << actual_command_to_execute_in_project_directory;
+
+      std::string output = execute_command(result_command.str());
+    body_dependency_symbols:
+      - std::stringstream
+
+
   - name: run_with_rerun
     type: void
     parameters:
