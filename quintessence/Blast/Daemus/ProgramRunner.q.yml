@@ -21,18 +21,23 @@ functions:
   - name: run
     type: void
     body: |
-      run_with_rerun();
-      return;
-
-
-  - name: run_with_rerun
-    type: void
-    body: |
       al_init();
       Hexagon::System::Config hexagon_config;
       hexagon_config.initialize();
 
       std::string project_directory = hexagon_config.get_default_navigator_directory();
+
+      run_with_rerun(project_directory);
+      return;
+
+
+  - name: run_with_rerun
+    type: void
+    parameters:
+      - name: project_directory
+        type: std::string
+        default_argument: '""'
+    body: |
       std::string actual_command_to_execute_in_project_directory = "make focus";
 
       std::string build_command = "rerun" \
@@ -52,6 +57,7 @@ functions:
       return;
     body_dependency_symbols:
       - Hexagon::System::Config
+      - Hexagon::System::Config*
 
 
 dependencies:
@@ -60,5 +66,7 @@ dependencies:
   - symbol: Blast::ShellCommandExecutorWithCallback
     headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
   - symbol: Hexagon::System::Config
+    headers: [ Hexagon/System/Config.hpp ]
+  - symbol: Hexagon::System::Config*
     headers: [ Hexagon/System/Config.hpp ]
 

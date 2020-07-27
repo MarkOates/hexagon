@@ -3,6 +3,7 @@
 #include <Blast/Daemus/ProgramRunner.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Hexagon/System/Config.hpp>
+#include <Hexagon/System/Config.hpp>
 
 
 namespace Blast
@@ -34,18 +35,19 @@ return shell_command_executor.execute();
 
 void ProgramRunner::run()
 {
-run_with_rerun();
-return;
-
-}
-
-void ProgramRunner::run_with_rerun()
-{
 al_init();
 Hexagon::System::Config hexagon_config;
 hexagon_config.initialize();
 
 std::string project_directory = hexagon_config.get_default_navigator_directory();
+
+run_with_rerun(project_directory);
+return;
+
+}
+
+void ProgramRunner::run_with_rerun(std::string project_directory)
+{
 std::string actual_command_to_execute_in_project_directory = "make focus";
 
 std::string build_command = "rerun" \

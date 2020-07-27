@@ -19,7 +19,7 @@ namespace Blast
 
       std::string execute_command(std::string command="");
       void run();
-      void run_with_rerun();
+      void run_with_rerun(std::string project_directory="");
       };
    }
 }
