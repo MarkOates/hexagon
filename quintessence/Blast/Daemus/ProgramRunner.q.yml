@@ -31,6 +31,18 @@ functions:
       return;
 
 
+  - name: run_in_holding_pattern
+    type: void
+    body: |
+      al_init();
+      ALLEGRO_EVENT_QUEUE *event_queue = al_create_event_queue();
+
+      // have event source initialized here
+
+      al_destroy_event_queue(event_queue);
+      return;
+
+
   - name: run_once
     type: void
     parameters:

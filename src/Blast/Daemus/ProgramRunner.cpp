@@ -47,6 +47,18 @@ return;
 
 }
 
+void ProgramRunner::run_in_holding_pattern()
+{
+al_init();
+ALLEGRO_EVENT_QUEUE *event_queue = al_create_event_queue();
+
+// have event source initialized here
+
+al_destroy_event_queue(event_queue);
+return;
+
+}
+
 void ProgramRunner::run_once(std::string project_directory)
 {
 std::string actual_command_to_execute_in_project_directory = "make focus";
