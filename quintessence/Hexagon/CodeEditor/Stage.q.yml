@@ -160,8 +160,8 @@ functions:
             std::string file_category_label
                = Hexagon::CodeEditor::FileCategoryDecorator(code_editor.get_file_category()).label();
             std::string text_to_render = file_category_label;
-            ALLEGRO_COLOR backfill_color = al_color_name("black");
-            float backfill_opacity = 0.8f;
+            //ALLEGRO_COLOR backfill_color = al_color_name("black");
+            //float backfill_opacity = 0.8f;
 
             place.start_transform();
             Hexagon::Elements::StageInfoOverlay stage_info_overlay(
