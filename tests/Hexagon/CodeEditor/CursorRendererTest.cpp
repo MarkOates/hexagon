@@ -13,6 +13,7 @@ static void EXPECT_COLOR_EQ(const ALLEGRO_COLOR &color1, const ALLEGRO_COLOR &co
 }
 
 #include <allegro5/allegro_primitives.h>
+#include <AllegroFlare/Timer.hpp>
 
 TEST(Hexagon_CodeEditor_CursorRendererTest, can_be_created_without_blowing_up)
 {
@@ -37,6 +38,25 @@ TEST(Hexagon_CodeEditor_CursorRendererTest, render__will_not_blow_up)
 
    Hexagon::CodeEditor::CursorRenderer cursor_renderer;
    cursor_renderer.render();
+
+   al_destroy_bitmap(surface_render);
+   al_uninstall_system();
+}
+
+TEST(Hexagon_CodeEditor_CursorRendererTest, render__will_execute_in_under_the_expected_time)
+{
+   al_init();
+   al_init_primitives_addon();
+   ALLEGRO_BITMAP *surface_render = al_create_bitmap(1280, 720); // (vec2d(16, 9) * 80);
+   al_set_target_bitmap(surface_render);
+
+   Hexagon::CodeEditor::CursorRenderer cursor_renderer;
+   AllegroFlare::Timer timer;
+   timer.start();
+   cursor_renderer.render();
+   timer.pause();
+
+   ASSERT_LT(timer.get_elapsed_time_microseconds(), 100);
 
    al_destroy_bitmap(surface_render);
    al_uninstall_system();
