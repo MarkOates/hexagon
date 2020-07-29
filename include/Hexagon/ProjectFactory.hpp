@@ -15,6 +15,7 @@ namespace Hexagon
       ~ProjectFactory();
 
 
+   Hexagon::Project hexagon();
    Hexagon::Project partner_performance_dashboard();
    };
 }

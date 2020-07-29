@@ -18,6 +18,15 @@ ProjectFactory::~ProjectFactory()
 }
 
 
+Hexagon::Project ProjectFactory::hexagon()
+{
+std::string project_name = "Hexagon";
+std::string project_root = "/Users/markoates/Repos/hexagon/";
+std::vector<std::tuple<std::string, Hexagon::Layout>> layouts = {};
+return Hexagon::Project(project_name, project_root, layouts);
+
+}
+
 Hexagon::Project ProjectFactory::partner_performance_dashboard()
 {
 type: std::vector<StageInterface *>* stages = nullptr;
