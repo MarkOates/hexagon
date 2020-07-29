@@ -1,5 +1,6 @@
 functions:
 
+
   - name: hexagon
     type: Hexagon::Project
     body: |
@@ -7,6 +8,7 @@ functions:
       std::string project_root = "/Users/markoates/Repos/hexagon/";
       std::vector<std::tuple<std::string, Hexagon::Layout>> layouts = {};
       return Hexagon::Project(project_name, project_root, layouts);
+
 
   - name: partner_performance_dashboard
     type: Hexagon::Project
@@ -39,7 +41,9 @@ functions:
 
       return Hexagon::Project(project_name, project_root, layouts);
 
+
 dependencies:
+
 
   - symbol: Hexagon::Project
     headers: [ Hexagon/Project.hpp ]
