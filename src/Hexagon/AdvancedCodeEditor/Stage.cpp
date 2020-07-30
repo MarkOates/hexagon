@@ -76,6 +76,8 @@ return advanced_code_editor.get_cursor_ref();
 
 bool Stage::delete_character()
 {
+return advanced_code_editor.delete_character();
+
 Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
 std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
