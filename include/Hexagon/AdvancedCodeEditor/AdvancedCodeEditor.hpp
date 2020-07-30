@@ -21,6 +21,7 @@ namespace Hexagon
          ~AdvancedCodeEditor();
 
 
+         std::vector<std::string> get_lines();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
       bool set_initial_content(std::string content="");
       bool cursor_move_up();

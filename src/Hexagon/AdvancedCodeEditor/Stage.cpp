@@ -62,6 +62,12 @@ Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &Stage::get_advanced_code_editor
 }
 
 
+std::vector<std::string> Stage::_get_lines()
+{
+return advanced_code_editor.get_lines();
+
+}
+
 Hexagon::AdvancedCodeEditor::Cursor& Stage::get_cursor_ref()
 {
 return advanced_code_editor.get_cursor_ref();

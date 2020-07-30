@@ -45,6 +45,12 @@ properties:
 functions:
 
 
+  - name: _get_lines
+    type: std::vector<std::string>
+    body: |
+      return advanced_code_editor.get_lines();
+
+
   - name: get_cursor_ref
     type: Hexagon::AdvancedCodeEditor::Cursor&
     body: |

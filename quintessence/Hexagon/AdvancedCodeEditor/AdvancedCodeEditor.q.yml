@@ -4,6 +4,7 @@ properties:
   - name: lines
     type: std::vector<std::string>
     init_with: '{}'
+    getter: true
   - name: cursor
     type: Hexagon::AdvancedCodeEditor::Cursor
     init_with: '{}'

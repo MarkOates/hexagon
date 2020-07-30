@@ -37,6 +37,7 @@ namespace Hexagon
          std::vector<std::string> get_lines();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
+      std::vector<std::string> _get_lines();
       Hexagon::AdvancedCodeEditor::Cursor& get_cursor_ref();
       bool delete_character();
       bool join_lines();
