@@ -49,6 +49,12 @@ properties:
 functions:
 
 
+  - name: _get_cursor_ref
+    type: Hexagon::AdvancedCodeEditor::Cursor&
+    body: |
+      return advanced_code_editor.get_cursor_ref();
+
+
   - name: delete_character
     type: bool
     body: |
@@ -320,6 +326,8 @@ dependencies:
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor
+    headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Cursor&
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::EventController
     headers: [ Hexagon/AdvancedCodeEditor/EventController.hpp ]

@@ -69,6 +69,12 @@ Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &Stage::get_advanced_code_editor
 }
 
 
+Hexagon::AdvancedCodeEditor::Cursor& Stage::_get_cursor_ref()
+{
+return advanced_code_editor.get_cursor_ref();
+
+}
+
 bool Stage::delete_character()
 {
 if (!is_cursor_in_bounds()) return false;

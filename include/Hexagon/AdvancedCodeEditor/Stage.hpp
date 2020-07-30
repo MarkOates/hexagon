@@ -39,6 +39,7 @@ namespace Hexagon
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
+      Hexagon::AdvancedCodeEditor::Cursor& _get_cursor_ref();
       bool delete_character();
       bool join_lines();
       bool split_lines();
