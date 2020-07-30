@@ -308,7 +308,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   DISABLED_join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
+   join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
 {
    std::vector<std::string> lines, original_lines;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
