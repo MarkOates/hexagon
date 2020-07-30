@@ -26,6 +26,34 @@ functions:
       - Blast::StringSplitter
 
 
+  - name: cursor_move_up
+    type: bool
+    body: |
+      cursor.move_up();
+      return true;
+
+
+  - name: cursor_move_down
+    type: bool
+    body: |
+      cursor.move_down();
+      return true;
+
+
+  - name: cursor_move_left
+    type: bool
+    body: |
+      cursor.move_left();
+      return true;
+
+
+  - name: cursor_move_right
+    type: bool
+    body: |
+      cursor.move_right();
+      return true;
+
+
 dependencies:
 
 

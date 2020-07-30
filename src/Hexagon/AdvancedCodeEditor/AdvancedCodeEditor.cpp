@@ -34,6 +34,34 @@ lines = Blast::StringSplitter(content, '\n').split();
 return true;
 
 }
+
+bool AdvancedCodeEditor::cursor_move_up()
+{
+cursor.move_up();
+return true;
+
+}
+
+bool AdvancedCodeEditor::cursor_move_down()
+{
+cursor.move_down();
+return true;
+
+}
+
+bool AdvancedCodeEditor::cursor_move_left()
+{
+cursor.move_left();
+return true;
+
+}
+
+bool AdvancedCodeEditor::cursor_move_right()
+{
+cursor.move_right();
+return true;
+
+}
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 
