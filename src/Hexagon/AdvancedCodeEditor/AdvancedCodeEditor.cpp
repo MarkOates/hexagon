@@ -12,12 +12,19 @@ namespace AdvancedCodeEditor
 
 AdvancedCodeEditor::AdvancedCodeEditor()
    : lines({})
+   , cursor({})
 {
 }
 
 
 AdvancedCodeEditor::~AdvancedCodeEditor()
 {
+}
+
+
+Hexagon::AdvancedCodeEditor::Cursor &AdvancedCodeEditor::get_cursor_ref()
+{
+   return cursor;
 }
 
 
