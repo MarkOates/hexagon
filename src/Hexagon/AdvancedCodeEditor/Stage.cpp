@@ -111,14 +111,6 @@ bool Stage::insert_string(std::string string)
 {
 return advanced_code_editor.insert_string(string);
 
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
-
-if (!is_cursor_in_bounds()) return false;
-lines[cursor.get_y()].insert(cursor.get_x(), string);
-refresh_text_mesh();
-return true;
-
 }
 
 bool Stage::insert_three_spaces_at_start_of_line()
