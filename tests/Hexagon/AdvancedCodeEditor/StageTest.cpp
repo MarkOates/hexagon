@@ -204,7 +204,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_content__if_no
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   DISABLED_set_content__sets_the_lines_to_the_expected_content)
+   set_content__sets_the_lines_to_the_expected_content)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();
