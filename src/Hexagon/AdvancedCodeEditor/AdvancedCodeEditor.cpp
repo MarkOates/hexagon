@@ -47,6 +47,17 @@ return true;
 
 }
 
+bool AdvancedCodeEditor::delete_character()
+{
+Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+std::vector<std::string> &lines = get_lines_ref();
+
+if (!is_cursor_in_bounds()) return false;
+lines[cursor.get_y()].erase(cursor.get_x(), 1);
+return true;
+
+}
+
 bool AdvancedCodeEditor::join_lines()
 {
 Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();

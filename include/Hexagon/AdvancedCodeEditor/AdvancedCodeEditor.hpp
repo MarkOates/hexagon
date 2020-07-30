@@ -25,6 +25,7 @@ namespace Hexagon
          std::vector<std::string> &get_lines_ref();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
       bool set_content(std::string content="");
+      bool delete_character();
       bool join_lines();
       bool cursor_move_up();
       bool cursor_move_down();
