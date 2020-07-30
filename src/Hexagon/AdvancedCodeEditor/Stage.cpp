@@ -109,6 +109,8 @@ return false;
 
 bool Stage::insert_string(std::string string)
 {
+return advanced_code_editor.insert_string(string);
+
 Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
 std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
