@@ -54,6 +54,20 @@ functions:
       return true;
 
 
+  - name: cursor_move_to
+    type: bool
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
+    body: |
+      cursor.move_to(x, y);
+      return true;
+
+
   - name: is_cursor_in_bounds
     private: true
     type: bool

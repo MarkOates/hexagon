@@ -63,6 +63,13 @@ return true;
 
 }
 
+bool AdvancedCodeEditor::cursor_move_to(int x, int y)
+{
+cursor.move_to(x, y);
+return true;
+
+}
+
 bool AdvancedCodeEditor::is_cursor_in_bounds()
 {
 if (cursor.get_y() >= lines.size()) return false;
