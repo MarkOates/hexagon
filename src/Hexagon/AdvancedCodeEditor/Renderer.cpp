@@ -49,12 +49,15 @@ Hexagon::AdvancedCodeEditor::WindowRenderer(
 // draw the mesh
 text_mesh->render();
 
+float cursor_x = cursor->get_x() * text_mesh->get_cell_width();
+float cursor_y = cursor->get_y() * text_mesh->get_cell_height();
+
 // draw the cursor
 al_draw_rectangle(
-   cursor->get_x(),
-   cursor->get_y(),
-   cursor->get_x()+cursor->get_width(),
-   cursor->get_y()+cursor->get_height(),
+   cursor_x,
+   cursor_y,
+   cursor_x+cursor->get_width(),
+   cursor_y+cursor->get_height(),
    ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f},
    2.0f
    );
