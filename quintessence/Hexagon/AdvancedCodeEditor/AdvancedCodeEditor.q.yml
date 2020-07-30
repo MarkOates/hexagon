@@ -54,6 +54,24 @@ functions:
       return true;
 
 
+  - name: is_cursor_in_bounds
+    private: true
+    type: bool
+    body: |
+      if (cursor.get_y() >= lines.size()) return false;
+      if (cursor.get_y() < 0) return false;
+      if (cursor.get_x() >= lines[cursor.get_y()].size()) return false;
+      return true;
+
+
+  - name: is_cursor_on_last_line
+    private: true
+    type: bool
+    body: |
+      if (lines.empty()) return false;
+      return cursor.get_y() == (lines.size() - 1);
+
+
 dependencies:
 
 

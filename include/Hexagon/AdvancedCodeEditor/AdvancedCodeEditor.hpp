@@ -27,6 +27,8 @@ namespace Hexagon
       bool cursor_move_down();
       bool cursor_move_left();
       bool cursor_move_right();
+      bool is_cursor_in_bounds();
+      bool is_cursor_on_last_line();
       };
    }
 }

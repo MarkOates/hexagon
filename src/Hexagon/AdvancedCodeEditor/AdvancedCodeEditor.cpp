@@ -62,6 +62,22 @@ cursor.move_right();
 return true;
 
 }
+
+bool AdvancedCodeEditor::is_cursor_in_bounds()
+{
+if (cursor.get_y() >= lines.size()) return false;
+if (cursor.get_y() < 0) return false;
+if (cursor.get_x() >= lines[cursor.get_y()].size()) return false;
+return true;
+
+}
+
+bool AdvancedCodeEditor::is_cursor_on_last_line()
+{
+if (lines.empty()) return false;
+return cursor.get_y() == (lines.size() - 1);
+
+}
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 
