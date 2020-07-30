@@ -28,6 +28,21 @@ functions:
       - Blast::StringSplitter
 
 
+  - name: insert_string
+    type: bool
+    parameters:
+      - name: string
+        type: std::string
+        default_argument: '""'
+    body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+      std::vector<std::string> &lines = get_lines_ref();
+
+      if (!is_cursor_in_bounds()) return false;
+      lines[cursor.get_y()].insert(cursor.get_x(), string);
+      return true;
+
+
   - name: delete_character
     type: bool
     body: |
