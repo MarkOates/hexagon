@@ -28,6 +28,7 @@ functions:
 
 dependencies:
 
+
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor
