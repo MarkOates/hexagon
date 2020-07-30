@@ -124,36 +124,28 @@ functions:
   - name: cursor_move_up
     type: bool
     body: |
-      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-      cursor.move_up();
+      advanced_code_editor.cursor_move_up();
       return true;
 
 
   - name: cursor_move_down
     type: bool
     body: |
-      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-      cursor.move_down();
+      advanced_code_editor.cursor_move_down();
       return true;
 
 
   - name: cursor_move_left
     type: bool
     body: |
-      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-      cursor.move_left();
+      advanced_code_editor.cursor_move_left();
       return true;
 
 
   - name: cursor_move_right
     type: bool
     body: |
-      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-      cursor.move_right();
+      advanced_code_editor.cursor_move_right();
       return true;
 
 
@@ -167,9 +159,7 @@ functions:
         type: int
         default_argument: 0
     body: |
-      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-      cursor.move_to(x, y);
+      advanced_code_editor.cursor_move_to(x, y);
       return true;
 
 

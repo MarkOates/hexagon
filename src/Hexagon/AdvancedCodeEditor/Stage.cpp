@@ -136,45 +136,35 @@ return false;
 
 bool Stage::cursor_move_up()
 {
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-cursor.move_up();
+advanced_code_editor.cursor_move_up();
 return true;
 
 }
 
 bool Stage::cursor_move_down()
 {
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-cursor.move_down();
+advanced_code_editor.cursor_move_down();
 return true;
 
 }
 
 bool Stage::cursor_move_left()
 {
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-cursor.move_left();
+advanced_code_editor.cursor_move_left();
 return true;
 
 }
 
 bool Stage::cursor_move_right()
 {
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-cursor.move_right();
+advanced_code_editor.cursor_move_right();
 return true;
 
 }
 
 bool Stage::cursor_move_to(int x, int y)
 {
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-cursor.move_to(x, y);
+advanced_code_editor.cursor_move_to(x, y);
 return true;
 
 }
