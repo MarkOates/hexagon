@@ -332,7 +332,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   DISABLED_join_lines__will_concat_the_contents_of_the_current_line_and_the_line_below_it_and_returns_true)
+   join_lines__will_concat_the_contents_of_the_current_line_and_the_line_below_it_and_returns_true)
 {
    std::vector<std::string> lines;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
