@@ -276,6 +276,17 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   join_lines__does_not_blow_up)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   stage.initialize();
+   stage.set_content(SONNET_TEXT);
+   stage.join_lines();
+   SUCCEED();
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    DISABLED_join_lines__on_the_last_line__does_nothing_and_returns_false)
 {
    std::vector<std::string> lines;

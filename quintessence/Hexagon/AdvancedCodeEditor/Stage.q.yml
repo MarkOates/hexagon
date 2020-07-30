@@ -21,7 +21,7 @@ properties:
     type: int
     init_with: 0
     constructor_arg: true
-  - name: lines
+  - name: __lines
     type: std::vector<std::string>
     init_with: '{}'
     getter: true
@@ -45,7 +45,7 @@ properties:
 functions:
 
 
-  - name: _get_lines
+  - name: get_lines
     type: std::vector<std::string>
     body: |
       return advanced_code_editor.get_lines();
@@ -61,6 +61,7 @@ functions:
     type: bool
     body: |
       Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+      std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
       if (!is_cursor_in_bounds()) return false;
       lines[cursor.get_y()].erase(cursor.get_x(), 1);
@@ -72,6 +73,7 @@ functions:
     type: bool
     body: |
       Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+      std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
       if (!is_cursor_in_bounds()) return false;
       if (is_cursor_on_last_line()) return false;
@@ -113,6 +115,7 @@ functions:
         default_argument: '""'
     body: |
       Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+      std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
       if (!is_cursor_in_bounds()) return false;
       lines[cursor.get_y()].insert(cursor.get_x(), string);
@@ -283,6 +286,8 @@ functions:
       char clear_char = '\0';
       ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
       ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+      std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+
       for (unsigned y=0; y<num_rows; y++)
       {
          for (unsigned x=0; x<num_columns; x++)

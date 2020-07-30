@@ -31,7 +31,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , font_bin(font_bin)
    , num_columns(num_columns)
    , num_rows(num_rows)
-   , lines({})
+   , __lines({})
    , text_mesh({nullptr, num_columns, num_rows})
    , initialized(false)
    , advanced_code_editor({})
@@ -44,9 +44,9 @@ Stage::~Stage()
 }
 
 
-std::vector<std::string> Stage::get_lines()
+std::vector<std::string> Stage::get___lines()
 {
-   return lines;
+   return __lines;
 }
 
 
@@ -62,7 +62,7 @@ Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &Stage::get_advanced_code_editor
 }
 
 
-std::vector<std::string> Stage::_get_lines()
+std::vector<std::string> Stage::get_lines()
 {
 return advanced_code_editor.get_lines();
 
@@ -77,6 +77,7 @@ return advanced_code_editor.get_cursor_ref();
 bool Stage::delete_character()
 {
 Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
 if (!is_cursor_in_bounds()) return false;
 lines[cursor.get_y()].erase(cursor.get_x(), 1);
@@ -88,6 +89,7 @@ return true;
 bool Stage::join_lines()
 {
 Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
 if (!is_cursor_in_bounds()) return false;
 if (is_cursor_on_last_line()) return false;
@@ -125,6 +127,7 @@ return false;
 bool Stage::insert_string(std::string string)
 {
 Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
 if (!is_cursor_in_bounds()) return false;
 lines[cursor.get_y()].insert(cursor.get_x(), string);
@@ -292,6 +295,8 @@ if (!(initialized))
 char clear_char = '\0';
 ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
 ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+
 for (unsigned y=0; y<num_rows; y++)
 {
    for (unsigned x=0; x<num_columns; x++)

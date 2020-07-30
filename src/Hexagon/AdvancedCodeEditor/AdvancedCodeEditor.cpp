@@ -28,6 +28,12 @@ std::vector<std::string> AdvancedCodeEditor::get_lines()
 }
 
 
+std::vector<std::string> &AdvancedCodeEditor::get_lines_ref()
+{
+   return lines;
+}
+
+
 Hexagon::AdvancedCodeEditor::Cursor &AdvancedCodeEditor::get_cursor_ref()
 {
    return cursor;
