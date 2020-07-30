@@ -26,12 +26,12 @@ functions:
         default_argument: "ActionData()"
     guards: [ stage ]
     body: |
-      AdvancedCodeEditor::Stage &component = *stage;
+      Hexagon::AdvancedCodeEditor::Stage &component = *stage;
 
-      std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> local_events_dictionary =
+      std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events_dictionary =
          build_local_events_dictionary();
 
-      std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>>::iterator it =
+      std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>::iterator it =
          local_events_dictionary.find(event_name);
       if (it == local_events_dictionary.end())
       {
@@ -58,10 +58,10 @@ functions:
 
 
   - name: build_local_events_dictionary
-    type: std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>>
+    type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
     body: |
-      std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> local_events = {
-         { "cursor_move_up", &AdvancedCodeEditor::Stage::cursor_move_up },
+      std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
+         { "cursor_move_up", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_up },
       };
       return local_events;
 
@@ -77,5 +77,5 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT&
     headers: [ allegro5/allegro.h ]
-  - symbol: std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>>
+  - symbol: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
     headers: [ map, string, functional, Hexagon/AdvancedCodeEditor/Stage.hpp ]

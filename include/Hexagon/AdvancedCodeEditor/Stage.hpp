@@ -3,6 +3,7 @@
 
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/ActionData.hpp>
+#include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
 #include <Hexagon/Elements/TextMesh.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -27,6 +28,7 @@ namespace Hexagon
          Hexagon::AdvancedCodeEditor::Cursor cursor;
          static ALLEGRO_EVENT a_default_empty_event;
          bool initialized;
+         Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
@@ -36,6 +38,7 @@ namespace Hexagon
          std::vector<std::string> get_lines();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
+         Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
       bool delete_character();
       bool join_lines();
       bool split_lines();

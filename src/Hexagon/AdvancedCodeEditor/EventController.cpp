@@ -39,12 +39,12 @@ if (!(stage))
       error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"stage\" not met";
       throw std::runtime_error(error_message.str());
    }
-AdvancedCodeEditor::Stage &component = *stage;
+Hexagon::AdvancedCodeEditor::Stage &component = *stage;
 
-std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> local_events_dictionary =
+std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events_dictionary =
    build_local_events_dictionary();
 
-std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>>::iterator it =
+std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>::iterator it =
    local_events_dictionary.find(event_name);
 if (it == local_events_dictionary.end())
 {
@@ -68,10 +68,10 @@ return;
 
 }
 
-std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> EventController::build_local_events_dictionary()
+std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> EventController::build_local_events_dictionary()
 {
-std::map<std::string, std::function<void(AdvancedCodeEditor::Stage&)>> local_events = {
-   { "cursor_move_up", &AdvancedCodeEditor::Stage::cursor_move_up },
+std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
+   { "cursor_move_up", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_up },
 };
 return local_events;
 
