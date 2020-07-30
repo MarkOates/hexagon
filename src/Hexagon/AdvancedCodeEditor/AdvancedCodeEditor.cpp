@@ -47,6 +47,21 @@ return true;
 
 }
 
+bool AdvancedCodeEditor::join_lines()
+{
+Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+std::vector<std::string> &lines = get_lines_ref();
+
+if (!is_cursor_in_bounds()) return false;
+if (is_cursor_on_last_line()) return false;
+
+lines[cursor.get_y()] += lines[cursor.get_y()+1];
+lines.erase(lines.begin() + cursor.get_y()+1);
+
+return true;
+
+}
+
 bool AdvancedCodeEditor::cursor_move_up()
 {
 cursor.move_up();

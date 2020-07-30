@@ -28,6 +28,21 @@ functions:
       - Blast::StringSplitter
 
 
+  - name: join_lines
+    type: bool
+    body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+      std::vector<std::string> &lines = get_lines_ref();
+
+      if (!is_cursor_in_bounds()) return false;
+      if (is_cursor_on_last_line()) return false;
+
+      lines[cursor.get_y()] += lines[cursor.get_y()+1];
+      lines.erase(lines.begin() + cursor.get_y()+1);
+
+      return true;
+
+
   - name: cursor_move_up
     type: bool
     body: |
