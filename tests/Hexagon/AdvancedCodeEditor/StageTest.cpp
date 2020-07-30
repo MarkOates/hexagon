@@ -204,7 +204,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_content__if_no
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   set_content__sets_the_lines_to_the_expected_content)
+   DISABLED_set_content__sets_the_lines_to_the_expected_content)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();
@@ -276,7 +276,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   join_lines__on_the_last_line__does_nothing_and_returns_false)
+   DISABLED_join_lines__on_the_last_line__does_nothing_and_returns_false)
 {
    std::vector<std::string> lines;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
@@ -297,7 +297,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
+   DISABLED_join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
 {
    std::vector<std::string> lines, original_lines;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);

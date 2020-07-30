@@ -212,7 +212,7 @@ if (!(initialized))
       error_message << "Stage" << "::" << "set_content" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
-lines = Blast::StringSplitter(content, '\n').split();
+advanced_code_editor.set_content(content);
 refresh_text_mesh();
 return;
 

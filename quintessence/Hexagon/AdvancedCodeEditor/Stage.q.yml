@@ -193,7 +193,7 @@ functions:
         default_argument: '""'
     guards: [ initialized ]
     body: |
-      lines = Blast::StringSplitter(content, '\n').split();
+      advanced_code_editor.set_content(content);
       refresh_text_mesh();
       return;
     body_dependency_symbols:
