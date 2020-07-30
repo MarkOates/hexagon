@@ -220,11 +220,9 @@ if (!(initialized))
       error_message << "Stage" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
 Hexagon::AdvancedCodeEditor::Renderer renderer(
    &text_mesh,
-   &cursor,
+   &advanced_code_editor.get_cursor_ref(),
    get_place().size.x,
    get_place().size.y
 );
@@ -267,21 +265,13 @@ return font_bin->auto_get("Menlo-Regular.ttf -30");
 
 bool Stage::is_cursor_in_bounds()
 {
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-if (cursor.get_y() >= lines.size()) return false;
-if (cursor.get_y() < 0) return false;
-if (cursor.get_x() >= lines[cursor.get_y()].size()) return false;
-return true;
+return advanced_code_editor.is_cursor_in_bounds();
 
 }
 
 bool Stage::is_cursor_on_last_line()
 {
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-if (lines.empty()) return false;
-return cursor.get_y() == (lines.size() - 1);
+return advanced_code_editor.is_cursor_on_last_line();
 
 }
 

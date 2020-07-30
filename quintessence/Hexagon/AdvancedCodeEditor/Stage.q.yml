@@ -199,11 +199,9 @@ functions:
     override: true
     guards: [ initialized ]
     body: |
-      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
       Hexagon::AdvancedCodeEditor::Renderer renderer(
          &text_mesh,
-         &cursor,
+         &advanced_code_editor.get_cursor_ref(),
          get_place().size.x,
          get_place().size.y
       );
@@ -262,22 +260,14 @@ functions:
     private: true
     type: bool
     body: |
-      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-      if (cursor.get_y() >= lines.size()) return false;
-      if (cursor.get_y() < 0) return false;
-      if (cursor.get_x() >= lines[cursor.get_y()].size()) return false;
-      return true;
+      return advanced_code_editor.is_cursor_in_bounds();
 
 
   - name: is_cursor_on_last_line
     private: true
     type: bool
     body: |
-      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
-      if (lines.empty()) return false;
-      return cursor.get_y() == (lines.size() - 1);
+      return advanced_code_editor.is_cursor_on_last_line();
 
 
   - name: refresh_text_mesh
