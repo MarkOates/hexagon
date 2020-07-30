@@ -28,10 +28,6 @@ properties:
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{nullptr, num_columns, num_rows}'
-  - name: _cursor
-    type: Hexagon::AdvancedCodeEditor::Cursor
-    init_with: '{}'
-    getter_ref: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT

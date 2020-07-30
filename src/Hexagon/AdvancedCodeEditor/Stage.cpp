@@ -33,7 +33,6 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , num_rows(num_rows)
    , lines({})
    , text_mesh({nullptr, num_columns, num_rows})
-   , _cursor({})
    , initialized(false)
    , advanced_code_editor({})
 {
@@ -48,12 +47,6 @@ Stage::~Stage()
 std::vector<std::string> Stage::get_lines()
 {
    return lines;
-}
-
-
-Hexagon::AdvancedCodeEditor::Cursor &Stage::get__cursor_ref()
-{
-   return _cursor;
 }
 
 

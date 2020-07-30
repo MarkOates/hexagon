@@ -25,7 +25,6 @@ namespace Hexagon
          int num_rows;
          std::vector<std::string> lines;
          Hexagon::Elements::TextMesh text_mesh;
-         Hexagon::AdvancedCodeEditor::Cursor _cursor;
          static ALLEGRO_EVENT a_default_empty_event;
          bool initialized;
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
@@ -36,7 +35,6 @@ namespace Hexagon
 
 
          std::vector<std::string> get_lines();
-         Hexagon::AdvancedCodeEditor::Cursor &get__cursor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
       Hexagon::AdvancedCodeEditor::Cursor& get_cursor_ref();
