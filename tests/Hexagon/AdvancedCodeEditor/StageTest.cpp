@@ -379,7 +379,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   DISABLED_insert_string__inserts_the_string_to_the_content_and_returns_true)
+   insert_string__inserts_the_string_to_the_content_and_returns_true)
 {
    std::vector<std::string> lines;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
