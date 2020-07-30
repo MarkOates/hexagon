@@ -88,6 +88,8 @@ return true;
 
 bool Stage::join_lines()
 {
+return advanced_code_editor.join_lines();
+
 Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
 std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
