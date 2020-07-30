@@ -14,7 +14,7 @@ properties:
 functions:
 
 
-  - name: set_initial_content
+  - name: set_content
     type: bool
     parameters:
       - name: content

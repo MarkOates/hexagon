@@ -34,7 +34,7 @@ Hexagon::AdvancedCodeEditor::Cursor &AdvancedCodeEditor::get_cursor_ref()
 }
 
 
-bool AdvancedCodeEditor::set_initial_content(std::string content)
+bool AdvancedCodeEditor::set_content(std::string content)
 {
 lines = Blast::StringSplitter(content, '\n').split();
 return true;
