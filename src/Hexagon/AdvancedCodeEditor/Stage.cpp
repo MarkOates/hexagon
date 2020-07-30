@@ -78,14 +78,6 @@ bool Stage::delete_character()
 {
 return advanced_code_editor.delete_character();
 
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
-
-if (!is_cursor_in_bounds()) return false;
-lines[cursor.get_y()].erase(cursor.get_x(), 1);
-refresh_text_mesh();
-return true;
-
 }
 
 bool Stage::join_lines()
