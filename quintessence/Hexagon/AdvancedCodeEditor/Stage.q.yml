@@ -74,19 +74,6 @@ functions:
     body: |
       return advanced_code_editor.join_lines();
 
-      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-      std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
-
-      if (!is_cursor_in_bounds()) return false;
-      if (is_cursor_on_last_line()) return false;
-
-      lines[cursor.get_y()] += lines[cursor.get_y()+1];
-      lines.erase(lines.begin() + cursor.get_y()+1);
-
-      refresh_text_mesh();
-      //mark_content_is_modified();
-      return true;
-
 
   - name: split_lines
     type: bool
