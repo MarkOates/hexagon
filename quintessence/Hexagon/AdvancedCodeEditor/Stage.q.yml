@@ -28,7 +28,7 @@ properties:
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{nullptr, num_columns, num_rows}'
-  - name: cursor
+  - name: _cursor
     type: Hexagon::AdvancedCodeEditor::Cursor
     init_with: '{}'
     getter_ref: true
@@ -49,7 +49,7 @@ properties:
 functions:
 
 
-  - name: _get_cursor_ref
+  - name: get_cursor_ref
     type: Hexagon::AdvancedCodeEditor::Cursor&
     body: |
       return advanced_code_editor.get_cursor_ref();
@@ -58,6 +58,8 @@ functions:
   - name: delete_character
     type: bool
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       if (!is_cursor_in_bounds()) return false;
       lines[cursor.get_y()].erase(cursor.get_x(), 1);
       refresh_text_mesh();
@@ -67,6 +69,8 @@ functions:
   - name: join_lines
     type: bool
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       if (!is_cursor_in_bounds()) return false;
       if (is_cursor_on_last_line()) return false;
 
@@ -106,6 +110,8 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       if (!is_cursor_in_bounds()) return false;
       lines[cursor.get_y()].insert(cursor.get_x(), string);
       refresh_text_mesh();
@@ -122,6 +128,8 @@ functions:
   - name: cursor_move_up
     type: bool
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       cursor.move_up();
       return true;
 
@@ -129,6 +137,8 @@ functions:
   - name: cursor_move_down
     type: bool
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       cursor.move_down();
       return true;
 
@@ -136,6 +146,8 @@ functions:
   - name: cursor_move_left
     type: bool
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       cursor.move_left();
       return true;
 
@@ -143,6 +155,8 @@ functions:
   - name: cursor_move_right
     type: bool
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       cursor.move_right();
       return true;
 
@@ -157,6 +171,8 @@ functions:
         type: int
         default_argument: 0
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       cursor.move_to(x, y);
       return true;
 
@@ -165,6 +181,8 @@ functions:
     guards: [ al_is_system_installed(), font_bin ]
     body: |
       if (initialized) return;
+
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
 
       text_mesh.set_font(obtain_text_font());
       text_mesh.initialize();
@@ -195,6 +213,8 @@ functions:
     override: true
     guards: [ initialized ]
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       Hexagon::AdvancedCodeEditor::Renderer renderer(
          &text_mesh,
          &cursor,
@@ -256,6 +276,8 @@ functions:
     private: true
     type: bool
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       if (cursor.get_y() >= lines.size()) return false;
       if (cursor.get_y() < 0) return false;
       if (cursor.get_x() >= lines[cursor.get_y()].size()) return false;
@@ -266,6 +288,8 @@ functions:
     private: true
     type: bool
     body: |
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+
       if (lines.empty()) return false;
       return cursor.get_y() == (lines.size() - 1);
 
