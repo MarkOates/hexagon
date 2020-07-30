@@ -243,7 +243,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, delete_
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   delete_character__removes_the_character_at_the_cursor)
+   DISABLED_delete_character__removes_the_character_at_the_cursor)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
    stage.initialize();
@@ -321,7 +321,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   join_lines__will_concat_the_contents_of_the_current_line_and_the_line_below_it_and_returns_true)
+   DISABLED_join_lines__will_concat_the_contents_of_the_current_line_and_the_line_below_it_and_returns_true)
 {
    std::vector<std::string> lines;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
@@ -368,7 +368,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   insert_string__inserts_the_string_to_the_content_and_returns_true)
+   DISABLED_insert_string__inserts_the_string_to_the_content_and_returns_true)
 {
    std::vector<std::string> lines;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
