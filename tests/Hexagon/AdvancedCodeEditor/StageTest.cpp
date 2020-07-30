@@ -243,7 +243,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, delete_
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   DISABLED_delete_character__removes_the_character_at_the_cursor)
+   delete_character__removes_the_character_at_the_cursor)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
    stage.initialize();
