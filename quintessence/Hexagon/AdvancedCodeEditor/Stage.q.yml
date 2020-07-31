@@ -86,25 +86,32 @@ functions:
     type: bool
     body: |
       bool result = advanced_code_editor.delete_character();
+      if (result == true) refresh_text_mesh();
       return result;
 
 
   - name: join_lines
     type: bool
     body: |
-      return advanced_code_editor.join_lines();
+      bool result = advanced_code_editor.join_lines();
+      if (result == true) refresh_text_mesh();
+      return result;
 
 
   - name: split_lines
     type: bool
     body: |
-      return advanced_code_editor.split_lines();
+      bool result = advanced_code_editor.split_lines();
+      if (result == true) refresh_text_mesh();
+      return result;
 
 
   - name: delete_line
     type: bool
     body: |
-      return advanced_code_editor.delete_line();
+      bool result = advanced_code_editor.delete_line();
+      if (result == true) refresh_text_mesh();
+      return result;
 
 
   - name: insert_string
@@ -114,7 +121,9 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
-      return advanced_code_editor.insert_string(string);
+      bool result = advanced_code_editor.insert_string(string);
+      if (result == true) refresh_text_mesh();
+      return result;
 
 
   - name: insert_lines
@@ -124,7 +133,9 @@ functions:
         type: std::vector<std::string>
         default_argument: '{}'
     body: |
-      return advanced_code_editor.insert_lines(lines_to_insert);
+      bool result = advanced_code_editor.insert_lines(lines_to_insert);
+      if (result == true) refresh_text_mesh();
+      return result;
 
 
   - name: insert_three_spaces_at_start_of_line
@@ -155,8 +166,8 @@ functions:
         default_argument: '""'
     guards: [ initialized ]
     body: |
-      advanced_code_editor.set_content(content);
-      refresh_text_mesh();
+      bool result = advanced_code_editor.set_content(content);
+      if (result == true) refresh_text_mesh();
       return;
 
 

@@ -108,37 +108,48 @@ return advanced_code_editor.cursor_move_right();
 bool Stage::delete_character()
 {
 bool result = advanced_code_editor.delete_character();
+if (result == true) refresh_text_mesh();
 return result;
 
 }
 
 bool Stage::join_lines()
 {
-return advanced_code_editor.join_lines();
+bool result = advanced_code_editor.join_lines();
+if (result == true) refresh_text_mesh();
+return result;
 
 }
 
 bool Stage::split_lines()
 {
-return advanced_code_editor.split_lines();
+bool result = advanced_code_editor.split_lines();
+if (result == true) refresh_text_mesh();
+return result;
 
 }
 
 bool Stage::delete_line()
 {
-return advanced_code_editor.delete_line();
+bool result = advanced_code_editor.delete_line();
+if (result == true) refresh_text_mesh();
+return result;
 
 }
 
 bool Stage::insert_string(std::string string)
 {
-return advanced_code_editor.insert_string(string);
+bool result = advanced_code_editor.insert_string(string);
+if (result == true) refresh_text_mesh();
+return result;
 
 }
 
 bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
 {
-return advanced_code_editor.insert_lines(lines_to_insert);
+bool result = advanced_code_editor.insert_lines(lines_to_insert);
+if (result == true) refresh_text_mesh();
+return result;
 
 }
 
@@ -164,8 +175,8 @@ if (!(initialized))
       error_message << "Stage" << "::" << "set_content" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
-advanced_code_editor.set_content(content);
-refresh_text_mesh();
+bool result = advanced_code_editor.set_content(content);
+if (result == true) refresh_text_mesh();
 return;
 
 }
