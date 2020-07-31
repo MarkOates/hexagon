@@ -5,6 +5,11 @@ properties:
     type: Hexagon::AdvancedCodeEditor::Stage*
     init_with: nullptr
     constructor_arg: true
+  - name: events_dictionary
+    type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
+    init_with: '{}'
+    getter_ref: true
+    constructor_arg: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -58,6 +63,7 @@ functions:
 
 
   - name: build_local_events_dictionary
+    static: true
     type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
     body: |
       std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {

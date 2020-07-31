@@ -14,14 +14,21 @@ namespace AdvancedCodeEditor
 ALLEGRO_EVENT EventController::a_default_empty_event = {};
 
 
-EventController::EventController(Hexagon::AdvancedCodeEditor::Stage* stage)
+EventController::EventController(Hexagon::AdvancedCodeEditor::Stage* stage, std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary)
    : stage(stage)
+   , events_dictionary(events_dictionary)
 {
 }
 
 
 EventController::~EventController()
 {
+}
+
+
+std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> &EventController::get_events_dictionary_ref()
+{
+   return events_dictionary;
 }
 
 

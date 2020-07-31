@@ -17,17 +17,19 @@ namespace Hexagon
       {
       private:
          Hexagon::AdvancedCodeEditor::Stage* stage;
+         std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         EventController(Hexagon::AdvancedCodeEditor::Stage* stage=nullptr);
+         EventController(Hexagon::AdvancedCodeEditor::Stage* stage=nullptr, std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary={});
          ~EventController();
 
 
+         std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> &get_events_dictionary_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());
-      std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
+      static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
       };
    }
 }
