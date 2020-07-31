@@ -59,6 +59,55 @@ public:
    }
 };
 
+class Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture : public ::testing::Test
+{
+public:
+   ALLEGRO_DISPLAY* display;
+   AllegroFlare::FontBin font_bin;
+   ALLEGRO_EVENT_QUEUE *event_queue;
+
+public:
+   Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture()
+      : display(nullptr)
+      , font_bin()
+      , event_queue(nullptr)
+   {}
+
+   virtual void SetUp() override
+   {
+      ASSERT_EQ(false, al_is_system_installed());
+      ASSERT_EQ(true, al_init());
+      al_init_primitives_addon();
+      al_init_font_addon();
+      al_init_ttf_addon();
+      al_install_keyboard();
+
+      event_queue = al_create_event_queue();
+      al_register_event_source(event_queue, al_get_keyboard_event_source());
+
+      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+
+      display = al_create_display(1280 * 2, 720 * 2);
+      al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
+   }
+
+   virtual void TearDown() override
+   {
+      font_bin.clear();
+      al_destroy_display(display);
+      al_destroy_event_queue(event_queue);
+      al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
+      al_uninstall_system();
+   }
+
+   placement3d centered_placement(float width, float height)
+   {
+      placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0f);
+      place.size = vec3d(width, height, 0);
+      return place;
+   }
+};
+
 static std::string FIXTURE_PASSAGE = R"PASSAGE(       - 64 -
 Act without doing;
 work without effort.
@@ -232,6 +281,35 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
    stage.render();
    al_flip_display();
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
+   DISABLED__works)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
+   stage.initialize();
+
+   stage.set_content(FIXTURE_PASSAGE);
+
+   bool abort_test = false;
+   while(!abort_test)
+   {
+      ALLEGRO_EVENT this_event;
+      al_wait_for_event(event_queue, &this_event);
+
+      if (this_event.type == ALLEGRO_EVENT_KEY_DOWN && this_event.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
+      {
+         abort_test = true;
+      }
+      else
+      {
+         stage.process_event(this_event);
+         al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
+         stage.render();
+         al_flip_display();
+      }
+   }
 }
 
 

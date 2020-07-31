@@ -89,7 +89,7 @@ case ALLEGRO_EVENT_KEY_CHAR:
       char character = (char)(event.keyboard.unichar);
       stage->get_input_buffer_ref() = " ";
       stage->get_input_buffer_ref()[0] = character;
-      process_local_event("insert_string");
+      process_local_event("insert_string_from_input_buffer");
       process_local_event("cursor_move_right");
    }
    return;

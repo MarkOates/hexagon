@@ -273,7 +273,7 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    { "delete_character", &Hexagon::AdvancedCodeEditor::Stage::delete_character },
    { "split_lines", &Hexagon::AdvancedCodeEditor::Stage::split_lines },
    { "join_lines", &Hexagon::AdvancedCodeEditor::Stage::join_lines },
-   { "insert_string_from_inuput_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
+   { "insert_string_from_input_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
 };
 return local_events;
 
