@@ -103,10 +103,11 @@ return true;
 
 }
 
-bool AdvancedCodeEditor::insert_lines()
+bool AdvancedCodeEditor::insert_lines(std::vector<std::string> lines_to_insert)
 {
-// TODO
-return false;
+int range_safe_y = std::min(std::max(0, cursor.get_y()), (int)lines.size());
+lines.insert(lines.begin() + range_safe_y, lines_to_insert.begin(), lines_to_insert.end());
+return true;
 
 }
 

@@ -10,22 +10,22 @@ namespace Hexagon
       class Cursor
       {
       private:
-         float x;
-         float y;
+         int x;
+         int y;
          float width;
          float height;
 
       public:
-         Cursor(float x=0, float y=0, float width=1, float height=1);
+         Cursor(int x=0, int y=0, float width=1, float height=1);
          ~Cursor();
 
-         void set_x(float x);
-         void set_y(float y);
+         void set_x(int x);
+         void set_y(int y);
          void set_width(float width);
          void set_height(float height);
 
-         float get_x();
-         float get_y();
+         int get_x();
+         int get_y();
          float get_width();
          float get_height();
       void move_up();

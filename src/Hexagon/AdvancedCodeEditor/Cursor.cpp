@@ -10,7 +10,7 @@ namespace AdvancedCodeEditor
 {
 
 
-Cursor::Cursor(float x, float y, float width, float height)
+Cursor::Cursor(int x, int y, float width, float height)
    : x(x)
    , y(y)
    , width(width)
@@ -24,13 +24,13 @@ Cursor::~Cursor()
 }
 
 
-void Cursor::set_x(float x)
+void Cursor::set_x(int x)
 {
    this->x = x;
 }
 
 
-void Cursor::set_y(float y)
+void Cursor::set_y(int y)
 {
    this->y = y;
 }
@@ -48,13 +48,13 @@ void Cursor::set_height(float height)
 }
 
 
-float Cursor::get_x()
+int Cursor::get_x()
 {
    return x;
 }
 
 
-float Cursor::get_y()
+int Cursor::get_y()
 {
    return y;
 }

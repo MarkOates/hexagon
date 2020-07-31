@@ -30,7 +30,7 @@ namespace Hexagon
       bool join_lines();
       bool split_lines();
       bool delete_line();
-      bool insert_lines();
+      bool insert_lines(std::vector<std::string> lines_to_insert={});
       bool cursor_set_width(float width=0.0f);
       bool cursor_set_height(float height=0.0f);
       bool cursor_move_up();

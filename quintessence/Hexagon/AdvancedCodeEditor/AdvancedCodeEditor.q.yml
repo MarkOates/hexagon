@@ -90,9 +90,16 @@ functions:
 
   - name: insert_lines
     type: bool
+    parameters:
+      - name: lines_to_insert
+        type: std::vector<std::string>
+        default_argument: '{}'
     body: |
-      // TODO
-      return false;
+      int range_safe_y = std::min(std::max(0, cursor.get_y()), (int)lines.size());
+      lines.insert(lines.begin() + range_safe_y, lines_to_insert.begin(), lines_to_insert.end());
+      return true;
+    body_dependency_symbols:
+      - std::max
 
 
   - name: cursor_set_width
@@ -214,8 +221,12 @@ functions:
 dependencies:
 
 
+  - symbol: std::vector<std::string>&
+    headers: [ vector, string ]
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
+  - symbol: std::max
+    header: [ algorithm ]
 
