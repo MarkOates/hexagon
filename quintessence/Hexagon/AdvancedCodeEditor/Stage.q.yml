@@ -43,18 +43,6 @@ properties:
 functions:
 
 
-  - name: get_lines
-    type: std::vector<std::string>
-    body: |
-      return advanced_code_editor.get_lines();
-
-
-  - name: get_cursor
-    type: Hexagon::AdvancedCodeEditor::Cursor
-    body: |
-      return advanced_code_editor.get_cursor_ref();
-
-
   - name: delete_character
     type: bool
     body: |
@@ -232,6 +220,18 @@ functions:
     guards: [ font_bin ]
     body: |
       return font_bin->auto_get("Menlo-Regular.ttf -30");
+
+
+  - name: get_lines
+    type: std::vector<std::string>
+    body: |
+      return advanced_code_editor.get_lines();
+
+
+  - name: get_cursor
+    type: Hexagon::AdvancedCodeEditor::Cursor
+    body: |
+      return advanced_code_editor.get_cursor_ref();
 
 
   - name: build_local_events_dictionary

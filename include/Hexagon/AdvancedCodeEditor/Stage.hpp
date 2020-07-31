@@ -38,8 +38,6 @@ namespace Hexagon
 
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      std::vector<std::string> get_lines();
-      Hexagon::AdvancedCodeEditor::Cursor get_cursor();
       bool delete_character();
       bool join_lines();
       bool split_lines();
@@ -58,6 +56,8 @@ namespace Hexagon
       virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
       virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
       ALLEGRO_FONT* obtain_text_font();
+      std::vector<std::string> get_lines();
+      Hexagon::AdvancedCodeEditor::Cursor get_cursor();
       static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
       void refresh_text_mesh();
       };

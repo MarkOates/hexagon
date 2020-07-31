@@ -54,18 +54,6 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
-std::vector<std::string> Stage::get_lines()
-{
-return advanced_code_editor.get_lines();
-
-}
-
-Hexagon::AdvancedCodeEditor::Cursor Stage::get_cursor()
-{
-return advanced_code_editor.get_cursor_ref();
-
-}
-
 bool Stage::delete_character()
 {
 bool result = advanced_code_editor.delete_character();
@@ -230,6 +218,18 @@ if (!(font_bin))
       throw std::runtime_error(error_message.str());
    }
 return font_bin->auto_get("Menlo-Regular.ttf -30");
+
+}
+
+std::vector<std::string> Stage::get_lines()
+{
+return advanced_code_editor.get_lines();
+
+}
+
+Hexagon::AdvancedCodeEditor::Cursor Stage::get_cursor()
+{
+return advanced_code_editor.get_cursor_ref();
 
 }
 
