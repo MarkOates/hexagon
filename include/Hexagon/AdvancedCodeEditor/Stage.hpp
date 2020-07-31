@@ -27,17 +27,17 @@ namespace Hexagon
          int num_columns;
          int num_rows;
          Hexagon::Elements::TextMesh text_mesh;
+         Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
          static ALLEGRO_EVENT a_default_empty_event;
          bool initialized;
-         Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
          virtual ~Stage();
 
 
-         static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
+         static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       std::vector<std::string> get_lines();
       Hexagon::AdvancedCodeEditor::Cursor get_cursor();
       bool delete_character();

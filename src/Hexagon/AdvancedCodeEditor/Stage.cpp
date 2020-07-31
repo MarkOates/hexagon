@@ -31,8 +31,8 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , num_columns(num_columns)
    , num_rows(num_rows)
    , text_mesh({nullptr, num_columns, num_rows})
-   , initialized(false)
    , advanced_code_editor({})
+   , initialized(false)
 {
 }
 
@@ -42,15 +42,15 @@ Stage::~Stage()
 }
 
 
-ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
-{
-   return a_default_empty_event;
-}
-
-
 Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &Stage::get_advanced_code_editor_ref()
 {
    return advanced_code_editor;
+}
+
+
+ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
+{
+   return a_default_empty_event;
 }
 
 
