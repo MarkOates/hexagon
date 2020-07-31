@@ -86,8 +86,12 @@ return true;
 
 bool AdvancedCodeEditor::split_lines()
 {
-// TODO
-return false;
+if (!is_cursor_in_bounds()) return false;
+
+lines.insert(lines.begin() + cursor.get_y() + 1, lines[cursor.get_y()].substr(cursor.get_x()));
+std::string &current_line = lines[cursor.get_y()];
+current_line.erase(cursor.get_x());
+return true;
 
 }
 
