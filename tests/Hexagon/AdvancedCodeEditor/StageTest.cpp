@@ -285,12 +285,16 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
-   works)
+   DISABLED_works)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();
 
    stage.set_content(FIXTURE_PASSAGE);
+
+   al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
+   stage.render();
+   al_flip_display();
 
    bool abort_test = false;
    while(!abort_test)
@@ -305,6 +309,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
       else
       {
          stage.process_event(this_event);
+
          al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
          stage.render();
          al_flip_display();

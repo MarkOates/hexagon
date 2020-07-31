@@ -286,6 +286,10 @@ return local_events;
 KeyboardCommandMapper Stage::build_keyboard_command_mapping()
 {
 KeyboardCommandMapper result;
+result.set_mapping(ALLEGRO_KEY_UP, 0, { "cursor_move_up" });
+result.set_mapping(ALLEGRO_KEY_DOWN, 0, { "cursor_move_down" });
+result.set_mapping(ALLEGRO_KEY_LEFT, 0, { "cursor_move_left" });
+result.set_mapping(ALLEGRO_KEY_RIGHT, 0, { "cursor_move_right" });
 result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
 return result;
 
