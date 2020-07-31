@@ -54,6 +54,30 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
+bool Stage::cursor_move_up()
+{
+return advanced_code_editor.cursor_move_up();
+
+}
+
+bool Stage::cursor_move_down()
+{
+return advanced_code_editor.cursor_move_down();
+
+}
+
+bool Stage::cursor_move_left()
+{
+return advanced_code_editor.cursor_move_left();
+
+}
+
+bool Stage::cursor_move_right()
+{
+return advanced_code_editor.cursor_move_right();
+
+}
+
 bool Stage::delete_character()
 {
 bool result = advanced_code_editor.delete_character();
@@ -95,30 +119,6 @@ bool Stage::insert_three_spaces_at_start_of_line()
 {
 // TODO
 return false;
-
-}
-
-bool Stage::cursor_move_up()
-{
-return advanced_code_editor.cursor_move_up();
-
-}
-
-bool Stage::cursor_move_down()
-{
-return advanced_code_editor.cursor_move_down();
-
-}
-
-bool Stage::cursor_move_left()
-{
-return advanced_code_editor.cursor_move_left();
-
-}
-
-bool Stage::cursor_move_right()
-{
-return advanced_code_editor.cursor_move_right();
 
 }
 

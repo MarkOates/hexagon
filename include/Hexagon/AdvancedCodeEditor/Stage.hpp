@@ -38,6 +38,10 @@ namespace Hexagon
 
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
+      bool cursor_move_up();
+      bool cursor_move_down();
+      bool cursor_move_left();
+      bool cursor_move_right();
       bool delete_character();
       bool join_lines();
       bool split_lines();
@@ -45,10 +49,6 @@ namespace Hexagon
       bool insert_lines(std::vector<std::string> lines_to_insert={});
       bool insert_string(std::string string="");
       bool insert_three_spaces_at_start_of_line();
-      bool cursor_move_up();
-      bool cursor_move_down();
-      bool cursor_move_left();
-      bool cursor_move_right();
       bool cursor_move_to(int x=0, int y=0);
       void initialize();
       void set_content(std::string content="");
