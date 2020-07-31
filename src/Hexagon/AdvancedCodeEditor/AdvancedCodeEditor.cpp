@@ -97,8 +97,9 @@ return true;
 
 bool AdvancedCodeEditor::delete_line()
 {
-// TODO
-return false;
+if (cursor.get_y() < 0 || cursor.get_y() >= lines.size()) return false;
+lines.erase(lines.begin()+cursor.get_y());
+return true;
 
 }
 

@@ -83,8 +83,9 @@ functions:
   - name: delete_line
     type: bool
     body: |
-      // TODO
-      return false;
+      if (cursor.get_y() < 0 || cursor.get_y() >= lines.size()) return false;
+      lines.erase(lines.begin()+cursor.get_y());
+      return true;
 
 
   - name: insert_lines
