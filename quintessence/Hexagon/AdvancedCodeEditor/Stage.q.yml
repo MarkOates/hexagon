@@ -223,12 +223,14 @@ functions:
 
 
   - name: get_lines
+    private: true
     type: std::vector<std::string>
     body: |
       return advanced_code_editor.get_lines();
 
 
   - name: get_cursor
+    private: true
     type: Hexagon::AdvancedCodeEditor::Cursor
     body: |
       return advanced_code_editor.get_cursor_ref();
