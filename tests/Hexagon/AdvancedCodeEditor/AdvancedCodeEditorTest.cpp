@@ -51,10 +51,18 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    lines = advanced_code_editor.get_lines();
    ASSERT_EQ(16, lines.size());
 
-   advanced_code_editor.cursor_move_to(4, 11);
+   advanced_code_editor.cursor_move_to(11, 4);
    ASSERT_EQ(true, advanced_code_editor.split_lines());
 
    lines = advanced_code_editor.get_lines();
    ASSERT_EQ(17, lines.size());
+
+   std::string expected_current_line = "and the few";
+   std::string actual_current_line = lines[4];
+   ASSERT_EQ(expected_current_line, actual_current_line);
+
+   std::string expected_next_line = " as many.";
+   std::string actual_next_line = lines[5];
+   ASSERT_EQ(expected_next_line, actual_next_line);
 }
 
