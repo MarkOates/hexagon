@@ -47,8 +47,8 @@ namespace Hexagon
       bool join_lines();
       bool split_lines();
       bool delete_line();
-      bool insert_lines(std::vector<std::string> lines_to_insert={});
       bool insert_string(std::string string="");
+      bool insert_lines(std::vector<std::string> lines_to_insert={});
       bool insert_three_spaces_at_start_of_line();
       bool cursor_move_to(int x=0, int y=0);
       void set_content(std::string content="");

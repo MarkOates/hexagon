@@ -107,16 +107,6 @@ functions:
       return advanced_code_editor.delete_line();
 
 
-  - name: insert_lines
-    type: bool
-    parameters:
-      - name: lines_to_insert
-        type: std::vector<std::string>
-        default_argument: '{}'
-    body: |
-      return advanced_code_editor.insert_lines(lines_to_insert);
-
-
   - name: insert_string
     type: bool
     parameters:
@@ -125,6 +115,16 @@ functions:
         default_argument: '""'
     body: |
       return advanced_code_editor.insert_string(string);
+
+
+  - name: insert_lines
+    type: bool
+    parameters:
+      - name: lines_to_insert
+        type: std::vector<std::string>
+        default_argument: '{}'
+    body: |
+      return advanced_code_editor.insert_lines(lines_to_insert);
 
 
   - name: insert_three_spaces_at_start_of_line

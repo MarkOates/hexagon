@@ -130,15 +130,15 @@ return advanced_code_editor.delete_line();
 
 }
 
-bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
-{
-return advanced_code_editor.insert_lines(lines_to_insert);
-
-}
-
 bool Stage::insert_string(std::string string)
 {
 return advanced_code_editor.insert_string(string);
+
+}
+
+bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
+{
+return advanced_code_editor.insert_lines(lines_to_insert);
 
 }
 
