@@ -80,6 +80,17 @@ functions:
       return true;
 
 
+  - name: cursor_set_height
+    type: bool
+    parameters:
+      - name: height
+        type: float
+        default_argument: 0.0f
+    body: |
+      cursor.set_height(height);
+      return true;
+
+
   - name: cursor_move_up
     type: bool
     body: |

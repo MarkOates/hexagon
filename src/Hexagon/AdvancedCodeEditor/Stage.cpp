@@ -165,8 +165,8 @@ Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
 text_mesh.set_font(obtain_text_font());
 text_mesh.initialize();
 
-cursor.set_width(text_mesh.get_cell_width());
-cursor.set_height(text_mesh.get_cell_height());
+advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
+advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
 
 initialized = true;
 return;

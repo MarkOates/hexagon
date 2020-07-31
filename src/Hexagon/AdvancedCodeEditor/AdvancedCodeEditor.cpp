@@ -91,6 +91,13 @@ return true;
 
 }
 
+bool AdvancedCodeEditor::cursor_set_height(float height)
+{
+cursor.set_height(height);
+return true;
+
+}
+
 bool AdvancedCodeEditor::cursor_move_up()
 {
 cursor.move_up();
