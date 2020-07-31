@@ -47,8 +47,6 @@ namespace Hexagon
       void initialize();
       bool set_to_edit_mode();
       bool set_to_insert_mode();
-      bool is_in_edit_mode();
-      bool is_in_insert_mode();
       bool cursor_move_up();
       bool cursor_move_down();
       bool cursor_move_left();
@@ -68,6 +66,8 @@ namespace Hexagon
       ALLEGRO_FONT* obtain_text_font();
       std::vector<std::string> get_lines();
       Hexagon::AdvancedCodeEditor::Cursor get_cursor();
+      bool is_in_edit_mode();
+      bool is_in_insert_mode();
       static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
       static KeyboardCommandMapper build_keyboard_command_mapping();
       void refresh_text_mesh();

@@ -115,18 +115,6 @@ return true;
 
 }
 
-bool Stage::is_in_edit_mode()
-{
-return mode == 0;
-
-}
-
-bool Stage::is_in_insert_mode()
-{
-return mode == 1;
-
-}
-
 bool Stage::cursor_move_up()
 {
 return advanced_code_editor.cursor_move_up();
@@ -291,6 +279,18 @@ return advanced_code_editor.get_lines();
 Hexagon::AdvancedCodeEditor::Cursor Stage::get_cursor()
 {
 return advanced_code_editor.get_cursor_ref();
+
+}
+
+bool Stage::is_in_edit_mode()
+{
+return mode == 0;
+
+}
+
+bool Stage::is_in_insert_mode()
+{
+return mode == 1;
 
 }
 

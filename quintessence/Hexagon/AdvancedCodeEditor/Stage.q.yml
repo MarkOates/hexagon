@@ -81,18 +81,6 @@ functions:
       return true;
 
 
-  - name: is_in_edit_mode
-    type: bool
-    body: |
-      return mode == 0;
-
-
-  - name: is_in_insert_mode
-    type: bool
-    body: |
-      return mode == 1;
-
-
   - name: cursor_move_up
     type: bool
     body: |
@@ -280,6 +268,18 @@ functions:
     type: Hexagon::AdvancedCodeEditor::Cursor
     body: |
       return advanced_code_editor.get_cursor_ref();
+
+
+  - name: is_in_edit_mode
+    type: bool
+    body: |
+      return mode == 0;
+
+
+  - name: is_in_insert_mode
+    type: bool
+    body: |
+      return mode == 1;
 
 
   - name: build_local_events_dictionary
