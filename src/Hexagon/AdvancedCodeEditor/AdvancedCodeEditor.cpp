@@ -49,10 +49,11 @@ return true;
 
 bool AdvancedCodeEditor::insert_string(std::string string)
 {
+if (!is_cursor_in_bounds()) return false;
+
 Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
 std::vector<std::string> &lines = get_lines_ref();
 
-if (!is_cursor_in_bounds()) return false;
 lines[cursor.get_y()].insert(cursor.get_x(), string);
 return true;
 
@@ -60,10 +61,11 @@ return true;
 
 bool AdvancedCodeEditor::delete_character()
 {
+if (!is_cursor_in_bounds()) return false;
+
 Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
 std::vector<std::string> &lines = get_lines_ref();
 
-if (!is_cursor_in_bounds()) return false;
 lines[cursor.get_y()].erase(cursor.get_x(), 1);
 return true;
 
@@ -71,11 +73,11 @@ return true;
 
 bool AdvancedCodeEditor::join_lines()
 {
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-std::vector<std::string> &lines = get_lines_ref();
-
 if (!is_cursor_in_bounds()) return false;
 if (is_cursor_on_last_line()) return false;
+
+Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+std::vector<std::string> &lines = get_lines_ref();
 
 lines[cursor.get_y()] += lines[cursor.get_y()+1];
 lines.erase(lines.begin() + cursor.get_y()+1);
@@ -98,6 +100,7 @@ return true;
 bool AdvancedCodeEditor::delete_line()
 {
 if (cursor.get_y() < 0 || cursor.get_y() >= lines.size()) return false;
+
 lines.erase(lines.begin()+cursor.get_y());
 return true;
 

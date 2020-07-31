@@ -35,10 +35,11 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
+      if (!is_cursor_in_bounds()) return false;
+
       Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
       std::vector<std::string> &lines = get_lines_ref();
 
-      if (!is_cursor_in_bounds()) return false;
       lines[cursor.get_y()].insert(cursor.get_x(), string);
       return true;
 
@@ -46,10 +47,11 @@ functions:
   - name: delete_character
     type: bool
     body: |
+      if (!is_cursor_in_bounds()) return false;
+
       Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
       std::vector<std::string> &lines = get_lines_ref();
 
-      if (!is_cursor_in_bounds()) return false;
       lines[cursor.get_y()].erase(cursor.get_x(), 1);
       return true;
 
@@ -57,11 +59,11 @@ functions:
   - name: join_lines
     type: bool
     body: |
-      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-      std::vector<std::string> &lines = get_lines_ref();
-
       if (!is_cursor_in_bounds()) return false;
       if (is_cursor_on_last_line()) return false;
+
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+      std::vector<std::string> &lines = get_lines_ref();
 
       lines[cursor.get_y()] += lines[cursor.get_y()+1];
       lines.erase(lines.begin() + cursor.get_y()+1);
@@ -84,6 +86,7 @@ functions:
     type: bool
     body: |
       if (cursor.get_y() < 0 || cursor.get_y() >= lines.size()) return false;
+
       lines.erase(lines.begin()+cursor.get_y());
       return true;
 

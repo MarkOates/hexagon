@@ -68,7 +68,8 @@ return advanced_code_editor.get_cursor_ref();
 
 bool Stage::delete_character()
 {
-return advanced_code_editor.delete_character();
+bool result = advanced_code_editor.delete_character();
+return result;
 
 }
 

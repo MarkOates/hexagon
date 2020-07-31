@@ -56,7 +56,8 @@ functions:
   - name: delete_character
     type: bool
     body: |
-      return advanced_code_editor.delete_character();
+      bool result = advanced_code_editor.delete_character();
+      return result;
 
 
   - name: join_lines
