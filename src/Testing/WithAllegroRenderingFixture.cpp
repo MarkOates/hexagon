@@ -40,6 +40,11 @@ return;
 
 void WithAllegroRenderingFixture::TearDown()
 {
+font_bin.clear();
+al_destroy_display(display);
+al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
+                         // this is a bug in Allegro
+al_uninstall_system();
 return;
 
 }
