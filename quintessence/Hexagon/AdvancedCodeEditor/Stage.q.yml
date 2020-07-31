@@ -16,10 +16,12 @@ properties:
   - name: num_columns
     type: int
     init_with: 0
+    setter: false
     constructor_arg: true
   - name: num_rows
     type: int
     init_with: 0
+    setter: false
     constructor_arg: true
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
