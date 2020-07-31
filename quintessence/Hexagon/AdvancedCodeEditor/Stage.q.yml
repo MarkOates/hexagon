@@ -202,7 +202,7 @@ functions:
         type: ActionData
         default_argument: "ActionData()"
     body: |
-      Hexagon::AdvancedCodeEditor::EventController event_controller(this);
+      Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
       event_controller.process_local_event(event_name, action_data);
       return;
     body_dependency_symbols:
@@ -217,7 +217,7 @@ functions:
         type: ALLEGRO_EVENT&
         default_argument: "get_a_default_empty_event_ref()"
     body: |
-      Hexagon::AdvancedCodeEditor::EventController event_controller;
+      Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
       event_controller.process_event(event);
       return;
     body_dependency_symbols:
@@ -230,6 +230,16 @@ functions:
     guards: [ font_bin ]
     body: |
       return font_bin->auto_get("Menlo-Regular.ttf -30");
+
+
+  - name: build_local_events_dictionary
+    static: true
+    type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
+    body: |
+      std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
+         { "cursor_move_up", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_up },
+      };
+      return local_events;
 
 
   - name: refresh_text_mesh
@@ -267,6 +277,8 @@ functions:
 dependencies:
 
 
+  - symbol: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
+    headers: [ map, string, functional, Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: placement3d

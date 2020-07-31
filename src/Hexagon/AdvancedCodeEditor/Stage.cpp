@@ -207,7 +207,7 @@ return;
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
-Hexagon::AdvancedCodeEditor::EventController event_controller(this);
+Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
 event_controller.process_local_event(event_name, action_data);
 return;
 
@@ -215,7 +215,7 @@ return;
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
-Hexagon::AdvancedCodeEditor::EventController event_controller;
+Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
 event_controller.process_event(event);
 return;
 
@@ -230,6 +230,15 @@ if (!(font_bin))
       throw std::runtime_error(error_message.str());
    }
 return font_bin->auto_get("Menlo-Regular.ttf -30");
+
+}
+
+std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> Stage::build_local_events_dictionary()
+{
+std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
+   { "cursor_move_up", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_up },
+};
+return local_events;
 
 }
 

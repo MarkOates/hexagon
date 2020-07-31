@@ -5,10 +5,13 @@
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
+#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/Elements/TextMesh.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <functional>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -55,6 +58,7 @@ namespace Hexagon
       virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
       virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
       ALLEGRO_FONT* obtain_text_font();
+      static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
       void refresh_text_mesh();
       };
    }
