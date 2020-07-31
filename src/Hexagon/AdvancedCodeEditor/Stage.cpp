@@ -248,6 +248,9 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
 {
 std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
    { "cursor_move_up", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_up },
+   { "cursor_move_down", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_down },
+   { "cursor_move_left", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_left },
+   { "cursor_move_right", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_right },
 };
 return local_events;
 
