@@ -69,7 +69,8 @@ namespace Hexagon
       bool is_in_edit_mode();
       bool is_in_insert_mode();
       static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
-      static KeyboardCommandMapper build_keyboard_command_mapping();
+      static KeyboardCommandMapper build_keyboard_command_mapping_for_edit_mode();
+      static KeyboardCommandMapper build_keyboard_command_mapping_for_insert_mode();
       void refresh_text_mesh();
       };
    }

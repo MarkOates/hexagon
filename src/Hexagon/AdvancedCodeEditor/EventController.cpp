@@ -90,15 +90,19 @@ case ALLEGRO_EVENT_KEY_CHAR:
    std::vector<std::string> mapped_events =
       keyboard_command_mapping.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
    for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
-   if (mapped_events.empty())
+
+   if (stage->is_in_insert_mode())
    {
-      char character = (char)(event.keyboard.unichar);
-      stage->get_input_buffer_ref() = " ";
-      stage->get_input_buffer_ref()[0] = character;
-      process_local_event("insert_string_from_input_buffer");
-      process_local_event("cursor_move_right");
+      if (mapped_events.empty())
+      {
+         char character = (char)(event.keyboard.unichar);
+         stage->get_input_buffer_ref() = " ";
+         stage->get_input_buffer_ref()[0] = character;
+         process_local_event("insert_string_from_input_buffer");
+         process_local_event("cursor_move_right");
+      }
+      return;
    }
-   return;
 }
 
 }
