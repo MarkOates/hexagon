@@ -33,6 +33,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , text_mesh({nullptr, num_columns, num_rows})
    , advanced_code_editor({})
    , input_buffer("")
+   , mode(0)
    , initialized(false)
 {
 }
@@ -97,6 +98,32 @@ advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
 
 initialized = true;
 return;
+
+}
+
+bool Stage::set_to_edit_mode()
+{
+mode = 0;
+return true;
+
+}
+
+bool Stage::set_to_insert_mode()
+{
+mode = 1;
+return true;
+
+}
+
+bool Stage::is_in_edit_mode()
+{
+return mode == 0;
+
+}
+
+bool Stage::is_in_insert_mode()
+{
+return mode == 1;
 
 }
 

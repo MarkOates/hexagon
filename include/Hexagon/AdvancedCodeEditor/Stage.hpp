@@ -30,6 +30,7 @@ namespace Hexagon
          Hexagon::Elements::TextMesh text_mesh;
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
          std::string input_buffer;
+         int mode;
          static ALLEGRO_EVENT a_default_empty_event;
          bool initialized;
 
@@ -44,6 +45,10 @@ namespace Hexagon
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void initialize();
+      bool set_to_edit_mode();
+      bool set_to_insert_mode();
+      bool is_in_edit_mode();
+      bool is_in_insert_mode();
       bool cursor_move_up();
       bool cursor_move_down();
       bool cursor_move_left();

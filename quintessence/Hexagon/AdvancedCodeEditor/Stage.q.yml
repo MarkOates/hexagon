@@ -36,6 +36,9 @@ properties:
     getter: true
     getter_ref: true
     setter: true
+  - name: mode
+    type: int
+    init_with: 0
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -62,6 +65,32 @@ functions:
 
       initialized = true;
       return;
+
+
+  - name: set_to_edit_mode
+    type: bool
+    body: |
+      mode = 0;
+      return true;
+
+
+  - name: set_to_insert_mode
+    type: bool
+    body: |
+      mode = 1;
+      return true;
+
+
+  - name: is_in_edit_mode
+    type: bool
+    body: |
+      return mode == 0;
+
+
+  - name: is_in_insert_mode
+    type: bool
+    body: |
+      return mode == 1;
 
 
   - name: cursor_move_up
