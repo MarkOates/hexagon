@@ -167,8 +167,6 @@ functions:
       advanced_code_editor.set_content(content);
       refresh_text_mesh();
       return;
-    body_dependency_symbols:
-      - Blast::StringSplitter
 
 
   - name: render
@@ -288,8 +286,6 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/Renderer.hpp ]
   - symbol: Hexagon::Elements::TextMesh
     headers: [ Hexagon/Elements/TextMesh.hpp ]
-  - symbol: Blast::StringSplitter
-    headers: [ Blast/StringSplitter.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::EventController

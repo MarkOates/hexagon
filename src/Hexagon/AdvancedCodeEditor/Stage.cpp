@@ -3,7 +3,6 @@
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
-#include <Blast/StringSplitter.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
