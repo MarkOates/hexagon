@@ -19,9 +19,16 @@ WithAllegroRenderingFixture::~WithAllegroRenderingFixture()
 }
 
 
-std::string WithAllegroRenderingFixture::run()
+void WithAllegroRenderingFixture::SetUp()
 {
-return "Hello World!";
+return;
+
+}
+
+void WithAllegroRenderingFixture::TearDown()
+{
+return;
+
 }
 } // namespace Testing
 

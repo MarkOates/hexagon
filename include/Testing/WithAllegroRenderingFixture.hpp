@@ -2,7 +2,6 @@
 
 
 #include <gtest/gtest.h>
-#include <string>
 
 
 namespace Testing
@@ -13,10 +12,11 @@ namespace Testing
 
    public:
       WithAllegroRenderingFixture();
-      ~WithAllegroRenderingFixture();
+      virtual ~WithAllegroRenderingFixture();
 
 
-   std::string run();
+   virtual void SetUp() override;
+   virtual void TearDown() override;
    };
 }
 

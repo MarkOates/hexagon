@@ -9,9 +9,20 @@ parent_classes:
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: SetUp
+    type: void
+    virtual: true
+    override: true
+    body: |
+      return;
+
+
+  - name: TearDown
+    type: void
+    virtual: true
+    override: true
+    body: |
+      return;
 
 
 dependencies:
