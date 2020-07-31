@@ -66,3 +66,25 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    ASSERT_EQ(expected_next_line, actual_next_line);
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   split_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
+{
+   std::vector<std::string> original_lines, lines;
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(FIXTURE_PASSAGE);
+
+   original_lines = advanced_code_editor.get_lines();
+
+   int line_numbers_to_test[] = { -1, (int)(original_lines.size()+10), -10, };
+
+   for (auto &line_number_to_test : line_numbers_to_test)
+   {
+      advanced_code_editor.cursor_move_to(0, line_number_to_test);
+
+      ASSERT_EQ(false, advanced_code_editor.join_lines());
+
+      lines = advanced_code_editor.get_lines();
+      ASSERT_EQ(lines, original_lines);
+   }
+}
+
