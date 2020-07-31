@@ -31,7 +31,6 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , font_bin(font_bin)
    , num_columns(num_columns)
    , num_rows(num_rows)
-   , __lines({})
    , text_mesh({nullptr, num_columns, num_rows})
    , initialized(false)
    , advanced_code_editor({})
@@ -41,12 +40,6 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
 
 Stage::~Stage()
 {
-}
-
-
-std::vector<std::string> Stage::get___lines()
-{
-   return __lines;
 }
 
 
@@ -122,29 +115,25 @@ return false;
 
 bool Stage::cursor_move_up()
 {
-advanced_code_editor.cursor_move_up();
-return true;
+return advanced_code_editor.cursor_move_up();
 
 }
 
 bool Stage::cursor_move_down()
 {
-advanced_code_editor.cursor_move_down();
-return true;
+return advanced_code_editor.cursor_move_down();
 
 }
 
 bool Stage::cursor_move_left()
 {
-advanced_code_editor.cursor_move_left();
-return true;
+return advanced_code_editor.cursor_move_left();
 
 }
 
 bool Stage::cursor_move_right()
 {
-advanced_code_editor.cursor_move_right();
-return true;
+return advanced_code_editor.cursor_move_right();
 
 }
 

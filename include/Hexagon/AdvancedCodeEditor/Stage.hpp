@@ -23,7 +23,6 @@ namespace Hexagon
          AllegroFlare::FontBin* font_bin;
          int num_columns;
          int num_rows;
-         std::vector<std::string> __lines;
          Hexagon::Elements::TextMesh text_mesh;
          static ALLEGRO_EVENT a_default_empty_event;
          bool initialized;
@@ -34,7 +33,6 @@ namespace Hexagon
          virtual ~Stage();
 
 
-         std::vector<std::string> get___lines();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
       std::vector<std::string> get_lines();
