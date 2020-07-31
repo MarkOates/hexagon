@@ -7,13 +7,13 @@
 
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 
-//#include <Testing/WithAllegroRenderingFixture.hpp>
-
 class Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture : public ::testing::Test
-{
-public:
-   Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture() {}
-};
+{};
+
+#include <Testing/WithAllegroRenderingFixture.hpp>
+
+class Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture
+{};
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, can_be_created_without_blowing_up)
 {
@@ -26,6 +26,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    std::string expected_error_message = "Renderer::render: error: guard \"text_mesh\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
+#include <Testing/WithAllegroRenderingFixture.hpp>
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_a_valid_cursor__raises_an_error)
 {
