@@ -68,22 +68,19 @@ functions:
   - name: split_lines
     type: bool
     body: |
-      // TODO
-      return false;
+      return advanced_code_editor.split_lines();
 
 
   - name: delete_line
     type: bool
     body: |
-      // TODO
-      return false;
+      return advanced_code_editor.delete_line();
 
 
   - name: insert_lines
     type: bool
     body: |
-      // TODO
-      return false;
+      return advanced_code_editor.insert_lines();
 
 
   - name: insert_string

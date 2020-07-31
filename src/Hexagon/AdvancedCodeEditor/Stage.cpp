@@ -81,22 +81,19 @@ return advanced_code_editor.join_lines();
 
 bool Stage::split_lines()
 {
-// TODO
-return false;
+return advanced_code_editor.split_lines();
 
 }
 
 bool Stage::delete_line()
 {
-// TODO
-return false;
+return advanced_code_editor.delete_line();
 
 }
 
 bool Stage::insert_lines()
 {
-// TODO
-return false;
+return advanced_code_editor.insert_lines();
 
 }
 
