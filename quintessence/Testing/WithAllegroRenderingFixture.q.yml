@@ -6,6 +6,17 @@ parent_classes:
     init_with: ''
 
 
+properties:
+
+
+  - name: display
+    type: ALLEGRO_DISPLAY*
+    init_with: nullptr
+  - name: font_bin
+    type: AllegroFlare::FontBin
+    init_with: '{}'
+
+
 functions:
 
 
@@ -14,7 +25,20 @@ functions:
     virtual: true
     override: true
     body: |
+      ASSERT_EQ(false, al_is_system_installed());
+      ASSERT_EQ(true, al_init());
+      al_init_primitives_addon();
+      al_init_font_addon();
+      al_init_ttf_addon();
+
+      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+
+      display = al_create_display(1280 * 2, 720 * 2);
+      al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
       return;
+    body_dependency_symbols:
+      - al_init_ttf_addon
+      - al_init_primitives_addon
 
 
   - name: TearDown
@@ -28,6 +52,14 @@ functions:
 dependencies:
 
 
+  - symbol: al_init_primitives_addon
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_init_ttf_addon
+    headers: [ allegro5/allegro_ttf.h ]
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ allegro5/allegro.h ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ::testing::Test
     headers: [ gtest/gtest.h ]
 
