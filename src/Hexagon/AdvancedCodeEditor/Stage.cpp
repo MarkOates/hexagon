@@ -251,6 +251,9 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    { "cursor_move_down", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_down },
    { "cursor_move_left", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_left },
    { "cursor_move_right", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_right },
+   { "delete_character", &Hexagon::AdvancedCodeEditor::Stage::delete_character },
+   { "split_lines", &Hexagon::AdvancedCodeEditor::Stage::split_lines },
+   { "join_lines", &Hexagon::AdvancedCodeEditor::Stage::join_lines },
 };
 return local_events;
 
