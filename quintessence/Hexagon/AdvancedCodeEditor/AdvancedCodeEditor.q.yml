@@ -69,6 +69,27 @@ functions:
       return true;
 
 
+  - name: split_lines
+    type: bool
+    body: |
+      // TODO
+      return false;
+
+
+  - name: delete_line
+    type: bool
+    body: |
+      // TODO
+      return false;
+
+
+  - name: insert_lines
+    type: bool
+    body: |
+      // TODO
+      return false;
+
+
   - name: cursor_set_width
     type: bool
     parameters:

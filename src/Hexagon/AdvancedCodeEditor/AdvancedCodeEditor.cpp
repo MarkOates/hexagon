@@ -84,6 +84,27 @@ return true;
 
 }
 
+bool AdvancedCodeEditor::split_lines()
+{
+// TODO
+return false;
+
+}
+
+bool AdvancedCodeEditor::delete_line()
+{
+// TODO
+return false;
+
+}
+
+bool AdvancedCodeEditor::insert_lines()
+{
+// TODO
+return false;
+
+}
+
 bool AdvancedCodeEditor::cursor_set_width(float width)
 {
 cursor.set_width(width);
