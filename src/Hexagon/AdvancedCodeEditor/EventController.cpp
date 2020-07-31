@@ -48,12 +48,9 @@ if (!(stage))
    }
 Hexagon::AdvancedCodeEditor::Stage &component = *stage;
 
-std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events_dictionary =
-   build_local_events_dictionary();
-
 std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>::iterator it =
-   local_events_dictionary.find(event_name);
-if (it == local_events_dictionary.end())
+   events_dictionary.find(event_name);
+if (it == events_dictionary.end())
 {
    std::stringstream error_message;
    error_message << "AdvancedCodeEditor::EventController::process_local_event: error: "
@@ -62,7 +59,7 @@ if (it == local_events_dictionary.end())
 }
 else
 {
-   local_events_dictionary[event_name](component);
+   events_dictionary[event_name](component);
 }
 
 return;
@@ -72,15 +69,6 @@ return;
 void EventController::process_event(ALLEGRO_EVENT& event)
 {
 return;
-
-}
-
-std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> EventController::build_local_events_dictionary()
-{
-std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
-   { "cursor_move_up", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_up },
-};
-return local_events;
 
 }
 } // namespace AdvancedCodeEditor
