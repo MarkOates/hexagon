@@ -133,8 +133,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, initial
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
    stage.initialize();
 
-   EXPECT_EQ(16, stage.get_cursor_ref().get_width());
-   EXPECT_EQ(30, stage.get_cursor_ref().get_height());
+   EXPECT_EQ(16, stage.get_cursor().get_width());
+   EXPECT_EQ(30, stage.get_cursor().get_height());
 }
 
 
@@ -297,12 +297,12 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    lines = stage.get_lines();
    ASSERT_TRUE(stage.cursor_move_to(0, lines.size()-1));
 
-   std::string &current_cursor_line = lines[stage.get_cursor_ref().get_y()];
+   std::string &current_cursor_line = lines[stage.get_cursor().get_y()];
    EXPECT_EQ("As he takes from you, I engraft you new.", current_cursor_line);
 
    ASSERT_EQ(false, stage.join_lines());
 
-   std::string &current_cursor_line_after_action = lines[stage.get_cursor_ref().get_y()];
+   std::string &current_cursor_line_after_action = lines[stage.get_cursor().get_y()];
    EXPECT_EQ("As he takes from you, I engraft you new.", current_cursor_line_after_action);
 }
 
@@ -349,10 +349,10 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
    lines = stage.get_lines();
 
-   std::string &actual_line_at_cursor = lines[stage.get_cursor_ref().get_y()];
+   std::string &actual_line_at_cursor = lines[stage.get_cursor().get_y()];
    ASSERT_EQ(expected_line_at_cursor, actual_line_at_cursor);
 
-   std::string &actual_line_below_cursor = lines[stage.get_cursor_ref().get_y()+1];
+   std::string &actual_line_below_cursor = lines[stage.get_cursor().get_y()+1];
    ASSERT_EQ(expected_line_below_cursor, actual_line_below_cursor);
 }
 

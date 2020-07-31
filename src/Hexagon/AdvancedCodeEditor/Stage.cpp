@@ -61,7 +61,7 @@ return advanced_code_editor.get_lines();
 
 }
 
-Hexagon::AdvancedCodeEditor::Cursor& Stage::get_cursor_ref()
+Hexagon::AdvancedCodeEditor::Cursor Stage::get_cursor()
 {
 return advanced_code_editor.get_cursor_ref();
 
