@@ -26,7 +26,6 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    std::string expected_error_message = "Renderer::render: error: guard \"text_mesh\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
-#include <Testing/WithAllegroRenderingFixture.hpp>
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_a_valid_cursor__raises_an_error)
 {
