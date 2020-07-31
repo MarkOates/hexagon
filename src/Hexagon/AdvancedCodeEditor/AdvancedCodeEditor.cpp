@@ -159,6 +159,32 @@ return true;
 
 }
 
+bool AdvancedCodeEditor::cursor_set_x(int x)
+{
+cursor.set_x(x);
+return true;
+
+}
+
+bool AdvancedCodeEditor::cursor_set_y(int y)
+{
+cursor.set_y(y);
+return true;
+
+}
+
+int AdvancedCodeEditor::cursor_get_x()
+{
+return cursor.get_x();
+
+}
+
+int AdvancedCodeEditor::cursor_get_y()
+{
+return cursor.get_y();
+
+}
+
 bool AdvancedCodeEditor::is_cursor_in_bounds()
 {
 if (cursor.get_y() >= lines.size()) return false;

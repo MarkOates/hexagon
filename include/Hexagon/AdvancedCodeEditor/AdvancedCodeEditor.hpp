@@ -38,6 +38,10 @@ namespace Hexagon
       bool cursor_move_left();
       bool cursor_move_right();
       bool cursor_move_to(int x=0, int y=0);
+      bool cursor_set_x(int x=0);
+      bool cursor_set_y(int y=0);
+      int cursor_get_x();
+      int cursor_get_y();
       bool is_cursor_in_bounds();
       bool is_cursor_on_last_line();
       };

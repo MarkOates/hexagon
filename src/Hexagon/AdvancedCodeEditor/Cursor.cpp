@@ -24,6 +24,18 @@ Cursor::~Cursor()
 }
 
 
+void Cursor::set_x(float x)
+{
+   this->x = x;
+}
+
+
+void Cursor::set_y(float y)
+{
+   this->y = y;
+}
+
+
 void Cursor::set_width(float width)
 {
    this->width = width;

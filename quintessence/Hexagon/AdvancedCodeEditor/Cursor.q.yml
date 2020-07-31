@@ -6,11 +6,13 @@ properties:
     init_with: 0
     constructor_arg: true
     getter: true
+    setter: true
   - name: y
     type: float
     init_with: 0
     constructor_arg: true
     getter: true
+    setter: true
   - name: width
     type: float
     init_with: 1

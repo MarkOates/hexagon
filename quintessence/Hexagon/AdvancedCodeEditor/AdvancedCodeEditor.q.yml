@@ -159,6 +159,40 @@ functions:
       return true;
 
 
+  - name: cursor_set_x
+    type: bool
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+    body: |
+      cursor.set_x(x);
+      return true;
+
+
+  - name: cursor_set_y
+    type: bool
+    parameters:
+      - name: y
+        type: int
+        default_argument: 0
+    body: |
+      cursor.set_y(y);
+      return true;
+
+
+  - name: cursor_get_x
+    type: int
+    body: |
+      return cursor.get_x();
+
+
+  - name: cursor_get_y
+    type: int
+    body: |
+      return cursor.get_y();
+
+
   - name: is_cursor_in_bounds
     private: true
     type: bool

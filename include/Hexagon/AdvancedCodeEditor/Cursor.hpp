@@ -19,6 +19,8 @@ namespace Hexagon
          Cursor(float x=0, float y=0, float width=1, float height=1);
          ~Cursor();
 
+         void set_x(float x);
+         void set_y(float y);
          void set_width(float width);
          void set_height(float height);
 
