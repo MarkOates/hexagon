@@ -233,18 +233,6 @@ return font_bin->auto_get("Menlo-Regular.ttf -30");
 
 }
 
-bool Stage::is_cursor_in_bounds()
-{
-return advanced_code_editor.is_cursor_in_bounds();
-
-}
-
-bool Stage::is_cursor_on_last_line()
-{
-return advanced_code_editor.is_cursor_on_last_line();
-
-}
-
 void Stage::refresh_text_mesh()
 {
 if (!(initialized))
