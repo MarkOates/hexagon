@@ -220,7 +220,11 @@ functions:
         type: ALLEGRO_EVENT&
         default_argument: "get_a_default_empty_event_ref()"
     body: |
-      Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
+      Hexagon::AdvancedCodeEditor::EventController event_controller(
+            this,
+            build_local_events_dictionary(),
+            build_keyboard_command_mapping()
+         );
       event_controller.process_event(event);
       return;
     body_dependency_symbols:
@@ -264,6 +268,15 @@ functions:
          { "insert_string_from_input_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
       };
       return local_events;
+
+
+  - name: build_keyboard_command_mapping
+    static: true
+    type: KeyboardCommandMapper
+    body: |
+      KeyboardCommandMapper result;
+      result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
+      return result;
 
 
   - name: refresh_text_mesh
@@ -321,6 +334,8 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Renderer
     headers: [ Hexagon/AdvancedCodeEditor/Renderer.hpp ]
+  - symbol: KeyboardCommandMapper
+    headers: [ AllegroFlare/KeyboardCommandMapper.hpp ]
   - symbol: Hexagon::Elements::TextMesh
     headers: [ Hexagon/Elements/TextMesh.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor

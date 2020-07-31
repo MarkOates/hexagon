@@ -233,7 +233,11 @@ return;
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
-Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
+Hexagon::AdvancedCodeEditor::EventController event_controller(
+      this,
+      build_local_events_dictionary(),
+      build_keyboard_command_mapping()
+   );
 event_controller.process_event(event);
 return;
 
@@ -276,6 +280,14 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    { "insert_string_from_input_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
 };
 return local_events;
+
+}
+
+KeyboardCommandMapper Stage::build_keyboard_command_mapping()
+{
+KeyboardCommandMapper result;
+result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
+return result;
 
 }
 

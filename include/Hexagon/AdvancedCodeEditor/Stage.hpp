@@ -2,6 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
@@ -63,6 +64,7 @@ namespace Hexagon
       std::vector<std::string> get_lines();
       Hexagon::AdvancedCodeEditor::Cursor get_cursor();
       static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
+      static KeyboardCommandMapper build_keyboard_command_mapping();
       void refresh_text_mesh();
       };
    }

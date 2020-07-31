@@ -73,7 +73,8 @@ functions:
          bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
          std::vector<std::string> mapped_events =
             keyboard_command_mapping.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
-         //if (mapped_events.empty())
+         for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
+         if (mapped_events.empty())
          {
             char character = (char)(event.keyboard.unichar);
             stage->get_input_buffer_ref() = " ";
