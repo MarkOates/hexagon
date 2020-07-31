@@ -339,7 +339,7 @@ result.set_mapping(ALLEGRO_KEY_DOWN, 0, { "cursor_move_down" });
 result.set_mapping(ALLEGRO_KEY_LEFT, 0, { "cursor_move_left" });
 result.set_mapping(ALLEGRO_KEY_RIGHT, 0, { "cursor_move_right" });
 result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
-result.set_mapping(ALLEGRO_KEY_OPENBRACE, 0, { "set_to_edit_mode" });
+result.set_mapping(ALLEGRO_KEY_OPENBRACE, KeyboardCommandMapper::CTRL, { "set_to_edit_mode" });
 return result;
 
 }
