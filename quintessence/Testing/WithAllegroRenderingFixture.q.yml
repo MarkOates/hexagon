@@ -1,0 +1,22 @@
+parent_classes:
+
+
+  - class: ::testing::Test
+    scope: public
+    init_with: ''
+
+
+functions:
+
+
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+
+
+dependencies:
+
+
+  - symbol: ::testing::Test
+    headers: [ gtest/gtest.h ]
+
