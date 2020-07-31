@@ -79,8 +79,12 @@ functions:
 
   - name: insert_lines
     type: bool
+    parameters:
+      - name: lines_to_insert
+        type: std::vector<std::string>
+        default_argument: '{}'
     body: |
-      return advanced_code_editor.insert_lines();
+      return advanced_code_editor.insert_lines(lines_to_insert);
 
 
   - name: insert_string

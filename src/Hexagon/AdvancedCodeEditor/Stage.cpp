@@ -91,9 +91,9 @@ return advanced_code_editor.delete_line();
 
 }
 
-bool Stage::insert_lines()
+bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
 {
-return advanced_code_editor.insert_lines();
+return advanced_code_editor.insert_lines(lines_to_insert);
 
 }
 
