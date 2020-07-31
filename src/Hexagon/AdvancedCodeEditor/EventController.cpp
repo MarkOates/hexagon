@@ -16,9 +16,10 @@ namespace AdvancedCodeEditor
 ALLEGRO_EVENT EventController::a_default_empty_event = {};
 
 
-EventController::EventController(Hexagon::AdvancedCodeEditor::Stage* stage, std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary)
+EventController::EventController(Hexagon::AdvancedCodeEditor::Stage* stage, std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary, KeyboardCommandMapper keyboard_command_mapping)
    : stage(stage)
    , events_dictionary(events_dictionary)
+   , keyboard_command_mapping(keyboard_command_mapping)
 {
 }
 
@@ -83,7 +84,11 @@ case ALLEGRO_EVENT_KEY_DOWN:
 case ALLEGRO_EVENT_KEY_UP:
    break;
 case ALLEGRO_EVENT_KEY_CHAR:
-   //std::vector<std::string> mapped_events = {};
+   bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+   bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+   bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+   std::vector<std::string> mapped_events =
+      keyboard_command_mapping.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
    //if (mapped_events.empty())
    {
       char character = (char)(event.keyboard.unichar);

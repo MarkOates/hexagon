@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <allegro5/allegro.h>
@@ -18,10 +19,11 @@ namespace Hexagon
       private:
          Hexagon::AdvancedCodeEditor::Stage* stage;
          std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary;
+         KeyboardCommandMapper keyboard_command_mapping;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         EventController(Hexagon::AdvancedCodeEditor::Stage* stage=nullptr, std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary={});
+         EventController(Hexagon::AdvancedCodeEditor::Stage* stage=nullptr, std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary={}, KeyboardCommandMapper keyboard_command_mapping={});
          ~EventController();
 
 

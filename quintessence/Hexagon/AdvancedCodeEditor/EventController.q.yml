@@ -10,6 +10,10 @@ properties:
     init_with: '{}'
     getter_ref: true
     constructor_arg: true
+  - name: keyboard_command_mapping
+    type: KeyboardCommandMapper
+    init_with: '{}'
+    constructor_arg: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -64,7 +68,11 @@ functions:
       case ALLEGRO_EVENT_KEY_UP:
          break;
       case ALLEGRO_EVENT_KEY_CHAR:
-         //std::vector<std::string> mapped_events = {};
+         bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+         bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+         bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+         std::vector<std::string> mapped_events =
+            keyboard_command_mapping.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
          //if (mapped_events.empty())
          {
             char character = (char)(event.keyboard.unichar);
@@ -82,6 +90,8 @@ dependencies:
 
   - symbol: Hexagon::AdvancedCodeEditor::Stage*
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
+  - symbol: KeyboardCommandMapper
+    headers: [ AllegroFlare/KeyboardCommandMapper.hpp ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
   - symbol: ALLEGRO_EVENT
