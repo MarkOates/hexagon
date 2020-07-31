@@ -160,8 +160,6 @@ if (!(font_bin))
    }
 if (initialized) return;
 
-Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
-
 text_mesh.set_font(obtain_text_font());
 text_mesh.initialize();
 
