@@ -28,6 +28,7 @@ namespace Hexagon
          int num_rows;
          Hexagon::Elements::TextMesh text_mesh;
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+         std::string input_buffer;
          static ALLEGRO_EVENT a_default_empty_event;
          bool initialized;
 
@@ -35,8 +36,11 @@ namespace Hexagon
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
          virtual ~Stage();
 
+         void set_input_buffer(std::string input_buffer);
 
+         std::string get_input_buffer();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
+         std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void initialize();
       bool cursor_move_up();
@@ -47,7 +51,7 @@ namespace Hexagon
       bool join_lines();
       bool split_lines();
       bool delete_line();
-      bool insert_string(std::string string="");
+      bool insert_string_from_input_buffer();
       bool insert_lines(std::vector<std::string> lines_to_insert={});
       bool insert_three_spaces_at_start_of_line();
       bool cursor_move_to(int x=0, int y=0);

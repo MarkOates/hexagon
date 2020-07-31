@@ -364,22 +364,23 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 }
 
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, insert_string__does_not_blow_up)
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   insert_string_from_input_buffer__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
-   stage.insert_string();
+   stage.insert_string_from_input_buffer();
 }
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   DISABLED_insert_string__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
+   DISABLED_insert_string_from_input_buffer__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
 {
    // TODO
 }
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   insert_string__inserts_the_string_to_the_content_and_returns_true)
+   insert_string_from_input_buffer__inserts_the_string_to_the_content_and_returns_true)
 {
    std::vector<std::string> lines;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
@@ -391,7 +392,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    lines = stage.get_lines();
    EXPECT_EQ("That this huge stage presenteth nought but shows", lines[4]);
 
-   ASSERT_EQ(true, stage.insert_string(", massive"));
+   stage.set_input_buffer(", massive");
+   ASSERT_EQ(true, stage.insert_string_from_input_buffer());
 
    lines = stage.get_lines();
    EXPECT_EQ("That this huge, massive stage presenteth nought but shows", lines[4]);

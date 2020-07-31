@@ -32,6 +32,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , num_rows(num_rows)
    , text_mesh({nullptr, num_columns, num_rows})
    , advanced_code_editor({})
+   , input_buffer("")
    , initialized(false)
 {
 }
@@ -42,9 +43,27 @@ Stage::~Stage()
 }
 
 
+void Stage::set_input_buffer(std::string input_buffer)
+{
+   this->input_buffer = input_buffer;
+}
+
+
+std::string Stage::get_input_buffer()
+{
+   return input_buffer;
+}
+
+
 Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &Stage::get_advanced_code_editor_ref()
 {
    return advanced_code_editor;
+}
+
+
+std::string &Stage::get_input_buffer_ref()
+{
+   return input_buffer;
 }
 
 
@@ -137,9 +156,9 @@ return result;
 
 }
 
-bool Stage::insert_string(std::string string)
+bool Stage::insert_string_from_input_buffer()
 {
-bool result = advanced_code_editor.insert_string(string);
+bool result = advanced_code_editor.insert_string(input_buffer);
 if (result == true) refresh_text_mesh();
 return result;
 
@@ -254,6 +273,7 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    { "delete_character", &Hexagon::AdvancedCodeEditor::Stage::delete_character },
    { "split_lines", &Hexagon::AdvancedCodeEditor::Stage::split_lines },
    { "join_lines", &Hexagon::AdvancedCodeEditor::Stage::join_lines },
+   { "insert_string_from_inuput_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
 };
 return local_events;
 

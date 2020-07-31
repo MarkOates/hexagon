@@ -30,6 +30,12 @@ properties:
     type: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
     init_with: '{}'
     getter_ref: true
+  - name: input_buffer
+    type: std::string
+    init_with: '""'
+    getter: true
+    getter_ref: true
+    setter: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -114,14 +120,10 @@ functions:
       return result;
 
 
-  - name: insert_string
+  - name: insert_string_from_input_buffer
     type: bool
-    parameters:
-      - name: string
-        type: std::string
-        default_argument: '""'
     body: |
-      bool result = advanced_code_editor.insert_string(string);
+      bool result = advanced_code_editor.insert_string(input_buffer);
       if (result == true) refresh_text_mesh();
       return result;
 
@@ -259,6 +261,7 @@ functions:
          { "delete_character", &Hexagon::AdvancedCodeEditor::Stage::delete_character },
          { "split_lines", &Hexagon::AdvancedCodeEditor::Stage::split_lines },
          { "join_lines", &Hexagon::AdvancedCodeEditor::Stage::join_lines },
+         { "insert_string_from_inuput_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
       };
       return local_events;
 
