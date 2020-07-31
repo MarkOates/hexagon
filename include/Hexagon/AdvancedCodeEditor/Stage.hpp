@@ -38,6 +38,7 @@ namespace Hexagon
 
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
+      void initialize();
       bool cursor_move_up();
       bool cursor_move_down();
       bool cursor_move_left();
@@ -50,7 +51,6 @@ namespace Hexagon
       bool insert_string(std::string string="");
       bool insert_three_spaces_at_start_of_line();
       bool cursor_move_to(int x=0, int y=0);
-      void initialize();
       void set_content(std::string content="");
       virtual void render() override;
       virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;

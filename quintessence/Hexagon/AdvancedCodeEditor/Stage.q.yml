@@ -43,6 +43,21 @@ properties:
 functions:
 
 
+  - name: initialize
+    guards: [ al_is_system_installed(), font_bin ]
+    body: |
+      if (initialized) return;
+
+      text_mesh.set_font(obtain_text_font());
+      text_mesh.initialize();
+
+      advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
+      advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
+
+      initialized = true;
+      return;
+
+
   - name: cursor_move_up
     type: bool
     body: |
@@ -131,21 +146,6 @@ functions:
     body: |
       advanced_code_editor.cursor_move_to(x, y);
       return true;
-
-
-  - name: initialize
-    guards: [ al_is_system_installed(), font_bin ]
-    body: |
-      if (initialized) return;
-
-      text_mesh.set_font(obtain_text_font());
-      text_mesh.initialize();
-
-      advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
-      advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
-
-      initialized = true;
-      return;
 
 
   - name: set_content

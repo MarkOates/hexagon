@@ -54,6 +54,33 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
+void Stage::initialize()
+{
+if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (initialized) return;
+
+text_mesh.set_font(obtain_text_font());
+text_mesh.initialize();
+
+advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
+advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
+
+initialized = true;
+return;
+
+}
+
 bool Stage::cursor_move_up()
 {
 return advanced_code_editor.cursor_move_up();
@@ -126,33 +153,6 @@ bool Stage::cursor_move_to(int x, int y)
 {
 advanced_code_editor.cursor_move_to(x, y);
 return true;
-
-}
-
-void Stage::initialize()
-{
-if (!(al_is_system_installed()))
-   {
-      std::stringstream error_message;
-      error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(font_bin))
-   {
-      std::stringstream error_message;
-      error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"font_bin\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (initialized) return;
-
-text_mesh.set_font(obtain_text_font());
-text_mesh.initialize();
-
-advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
-advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
-
-initialized = true;
-return;
 
 }
 
