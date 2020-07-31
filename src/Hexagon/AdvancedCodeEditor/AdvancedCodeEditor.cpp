@@ -84,6 +84,13 @@ return true;
 
 }
 
+bool AdvancedCodeEditor::cursor_set_width(float width)
+{
+cursor.set_width(width);
+return true;
+
+}
+
 bool AdvancedCodeEditor::cursor_move_up()
 {
 cursor.move_up();

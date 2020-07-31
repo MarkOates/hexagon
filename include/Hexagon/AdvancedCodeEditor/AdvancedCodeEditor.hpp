@@ -28,6 +28,7 @@ namespace Hexagon
       bool insert_string(std::string string="");
       bool delete_character();
       bool join_lines();
+      bool cursor_set_width(float width=0.0f);
       bool cursor_move_up();
       bool cursor_move_down();
       bool cursor_move_left();

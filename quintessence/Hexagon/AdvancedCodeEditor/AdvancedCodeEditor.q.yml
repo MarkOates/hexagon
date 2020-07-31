@@ -69,6 +69,17 @@ functions:
       return true;
 
 
+  - name: cursor_set_width
+    type: bool
+    parameters:
+      - name: width
+        type: float
+        default_argument: 0.0f
+    body: |
+      cursor.set_width(width);
+      return true;
+
+
   - name: cursor_move_up
     type: bool
     body: |
