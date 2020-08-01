@@ -2,7 +2,6 @@
 
 
 #include <allegro5/allegro.h>
-#include <string>
 
 
 namespace Hexagon
@@ -17,6 +16,7 @@ namespace Hexagon
          int cell_width;
          int cell_height;
          ALLEGRO_BITMAP* surface;
+         bool initialized;
 
       public:
          BitmapGridRenderSurface(int num_columns=0, int num_rows=0, int cell_width=1, int cell_height=1);
@@ -24,7 +24,8 @@ namespace Hexagon
 
 
          ALLEGRO_BITMAP* get_surface();
-      std::string run();
+         bool get_initialized();
+      void initialize();
       };
    }
 }

@@ -16,6 +16,7 @@ BitmapGridRenderSurface::BitmapGridRenderSurface(int num_columns, int num_rows, 
    , cell_width(cell_width)
    , cell_height(cell_height)
    , surface(nullptr)
+   , initialized(false)
 {
 }
 
@@ -31,9 +32,17 @@ ALLEGRO_BITMAP* BitmapGridRenderSurface::get_surface()
 }
 
 
-std::string BitmapGridRenderSurface::run()
+bool BitmapGridRenderSurface::get_initialized()
 {
-return "Hello World!";
+   return initialized;
+}
+
+
+void BitmapGridRenderSurface::initialize()
+{
+if (initialized) return;
+return;
+
 }
 } // namespace Elements
 } // namespace Hexagon
