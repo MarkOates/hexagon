@@ -7,6 +7,7 @@
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
+#include <Hexagon/Elements/FontedTextGrid.hpp>
 #include <Hexagon/Elements/TextMesh.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
@@ -28,6 +29,7 @@ namespace Hexagon
          int num_columns;
          int num_rows;
          Hexagon::Elements::TextMesh text_mesh;
+         Hexagon::Elements::FontedTextGrid fonted_text_grid;
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
          std::string input_buffer;
          int mode;

@@ -26,6 +26,9 @@ properties:
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{nullptr, num_columns, num_rows}'
+  - name: fonted_text_grid
+    type: Hexagon::Elements::FontedTextGrid
+    init_with: '{}'
   - name: advanced_code_editor
     type: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
     init_with: '{}'
@@ -407,6 +410,8 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/Renderer.hpp ]
   - symbol: KeyboardCommandMapper
     headers: [ AllegroFlare/KeyboardCommandMapper.hpp ]
+  - symbol: Hexagon::Elements::FontedTextGrid
+    headers: [ Hexagon/Elements/FontedTextGrid.hpp ]
   - symbol: Hexagon::Elements::TextMesh
     headers: [ Hexagon/Elements/TextMesh.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor
