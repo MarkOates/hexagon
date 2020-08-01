@@ -151,6 +151,13 @@ functions:
       return result;
 
 
+  - name: insert_three_spaces_at_start_of_line
+    type: bool
+    body: |
+      // TODO
+      return false;
+
+
   - name: insert_lines
     type: bool
     parameters:
@@ -161,13 +168,6 @@ functions:
       bool result = advanced_code_editor.insert_lines(lines_to_insert);
       if (result == true) refresh_text_mesh();
       return result;
-
-
-  - name: insert_three_spaces_at_start_of_line
-    type: bool
-    body: |
-      // TODO
-      return false;
 
 
   - name: cursor_move_to

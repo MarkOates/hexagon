@@ -185,18 +185,18 @@ return result;
 
 }
 
+bool Stage::insert_three_spaces_at_start_of_line()
+{
+// TODO
+return false;
+
+}
+
 bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
 {
 bool result = advanced_code_editor.insert_lines(lines_to_insert);
 if (result == true) refresh_text_mesh();
 return result;
-
-}
-
-bool Stage::insert_three_spaces_at_start_of_line()
-{
-// TODO
-return false;
 
 }
 
