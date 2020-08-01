@@ -106,6 +106,20 @@ return;
 
 }
 
+void FontedTextGrid::lock_for_update()
+{
+bitmap_grid_render_surface.lock_for_render();
+return;
+
+}
+
+void FontedTextGrid::unlock_for_update()
+{
+bitmap_grid_render_surface.unlock_for_render();
+return;
+
+}
+
 void FontedTextGrid::draw()
 {
 if (!(get_initialized()))

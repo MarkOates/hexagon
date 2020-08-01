@@ -35,11 +35,13 @@ TEST(Hexagon_Elements_FontedTextGridTest, fun)
    Hexagon::Elements::FontedTextGrid fonted_text_grid(font);
    fonted_text_grid.initialize();
 
+   fonted_text_grid.lock_for_update();
    fonted_text_grid.set_cell_to_character_and_color('H', 0, 0);
    fonted_text_grid.set_cell_to_character_and_color('E', 1, 0);
    fonted_text_grid.set_cell_to_character_and_color('L', 2, 0);
    fonted_text_grid.set_cell_to_character_and_color('L', 3, 0);
    fonted_text_grid.set_cell_to_character_and_color('O', 4, 0);
+   fonted_text_grid.unlock_for_update();
 
    fonted_text_grid.draw();
    al_flip_display();
@@ -74,6 +76,7 @@ TEST(Hexagon_Elements_FontedTextGridTest, set_cell_to_character_and_color__execu
    {
       timer.reset();
       timer.start();
+      fonted_text_grid.lock_for_update();
       for (unsigned i=0; i<passes; i++)
       {
          char ch = (rand() % 96) + 32;
@@ -82,6 +85,7 @@ TEST(Hexagon_Elements_FontedTextGridTest, set_cell_to_character_and_color__execu
 
          fonted_text_grid.set_cell_to_character_and_color(ch, x, y, ALLEGRO_COLOR{0, 1, 1, 1});
       }
+      fonted_text_grid.unlock_for_update();
       timer.pause();
       EXPECT_EQ(100, timer.get_elapsed_time_microseconds());
    }

@@ -75,6 +75,18 @@ functions:
       return;
 
 
+  - name: lock_for_update
+    body: |
+      bitmap_grid_render_surface.lock_for_render();
+      return;
+
+
+  - name: unlock_for_update
+    body: |
+      bitmap_grid_render_surface.unlock_for_render();
+      return;
+
+
   - name: draw
     guards: [ get_initialized() ]
     body: |

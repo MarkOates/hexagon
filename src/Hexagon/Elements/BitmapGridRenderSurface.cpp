@@ -25,6 +25,7 @@ BitmapGridRenderSurface::BitmapGridRenderSurface(int num_columns, int num_rows, 
    , surface(nullptr)
    , cell_sub_bitmaps({})
    , initialized(false)
+   , previous_render_state()
 {
 }
 
@@ -68,6 +69,21 @@ if (!((!get_initialized())))
       throw std::runtime_error(error_message.str());
    }
 this->cell_height = cell_height;
+return;
+
+}
+
+void BitmapGridRenderSurface::lock_for_render()
+{
+al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
+al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ZERO);
+return;
+
+}
+
+void BitmapGridRenderSurface::unlock_for_render()
+{
+al_restore_state(&previous_render_state);
 return;
 
 }
@@ -140,17 +156,12 @@ if (!sub_bitmap)
                  << "draw_to_cell"
                  << ": error: "
                  << "could not find sub_bitmap at (" << x << ", " << y << ")";
-   throw std::runtime_error(error_message.str());
+   //throw std::runtime_error(error_message.str());
 }
 
-ALLEGRO_STATE previous_render_state;
-al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
-
-al_set_target_bitmap(sub_bitmap);
-al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ZERO);
+//al_set_target_bitmap(sub_bitmap);
 al_draw_tinted_bitmap(bitmap_to_draw, tint, 0, 0, 0);
 
-al_restore_state(&previous_render_state);
 return;
 
 }

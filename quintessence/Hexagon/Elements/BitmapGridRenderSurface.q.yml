@@ -28,6 +28,9 @@ properties:
     type: bool
     init_with: false
     getter: true
+  - name: previous_render_state
+    type: ALLEGRO_STATE
+    init_with: ''
 
 
 functions:
@@ -54,6 +57,19 @@ functions:
     guards: [ (!get_initialized()) ]
     body: |
       this->cell_height = cell_height;
+      return;
+
+
+  - name: lock_for_render
+    body: |
+      al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
+      al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ZERO);
+      return;
+
+
+  - name: unlock_for_render
+    body: |
+      al_restore_state(&previous_render_state);
       return;
 
 
@@ -123,17 +139,12 @@ functions:
                        << "draw_to_cell"
                        << ": error: "
                        << "could not find sub_bitmap at (" << x << ", " << y << ")";
-         throw std::runtime_error(error_message.str());
+         //throw std::runtime_error(error_message.str());
       }
 
-      ALLEGRO_STATE previous_render_state;
-      al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
-
-      al_set_target_bitmap(sub_bitmap);
-      al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ZERO);
+      //al_set_target_bitmap(sub_bitmap);
       al_draw_tinted_bitmap(bitmap_to_draw, tint, 0, 0, 0);
 
-      al_restore_state(&previous_render_state);
       return;
 
 
@@ -169,6 +180,8 @@ dependencies:
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_STATE
     headers: [ allegro5/allegro.h ]
   - symbol: std::vector<ALLEGRO_BITMAP*>
     headers: [ vector, allegro5/allegro.h ]
