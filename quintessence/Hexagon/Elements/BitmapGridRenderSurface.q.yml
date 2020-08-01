@@ -32,6 +32,7 @@ functions:
 
   - name: initialize
     type: void
+    guards: [ al_is_system_installed() ]
     body: |
       if (initialized) return;
 

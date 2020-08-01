@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/Elements/BitmapGridRenderSurface.hpp>
-
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -40,6 +41,12 @@ bool BitmapGridRenderSurface::get_initialized()
 
 void BitmapGridRenderSurface::initialize()
 {
+if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 if (initialized) return;
 
 ALLEGRO_STATE previous_render_state;
