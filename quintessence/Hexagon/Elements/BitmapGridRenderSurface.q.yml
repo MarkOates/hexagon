@@ -76,7 +76,7 @@ functions:
   - name: draw_to_surface
     type: void
     parameters:
-      - name: bitmap
+      - name: bitmap_to_draw
         type: ALLEGRO_BITMAP*
         default_argument: nullptr
       - name: x
@@ -85,18 +85,31 @@ functions:
       - name: y
         type: int
         default_argument: 0
-    guards: [ bitmap ]
+    guards: [ get_initialized(), bitmap_to_draw ]
     body: |
+      ALLEGRO_BITMAP *sub_bitmap = find_sub_bitmap(x, y);
+      if (!sub_bitmap)
+      {
+         std::stringstream error_message;
+         error_message << "Elements::BitmapGridRenderSurface"
+                       << "::"
+                       << "draw_to_surface"
+                       << ": error: "
+                       << "could not find sub_bitmap at (" << x << ", " << y << ")";
+         throw std::runtime_error(error_message.str());
+      }
+
       ALLEGRO_STATE previous_render_state;
       al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
 
-      //al_set_target_bitmap();
+      al_set_target_bitmap(sub_bitmap);
+      al_draw_bitmap(bitmap_to_draw, 0, 0, 0);
 
       al_restore_state(&previous_render_state);
       return;
 
 
-  - name: get_sub_bitmap
+  - name: find_sub_bitmap
     type: ALLEGRO_BITMAP*
     private: true
     parameters:

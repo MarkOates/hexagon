@@ -87,25 +87,44 @@ return;
 
 }
 
-void BitmapGridRenderSurface::draw_to_surface(ALLEGRO_BITMAP* bitmap, int x, int y)
+void BitmapGridRenderSurface::draw_to_surface(ALLEGRO_BITMAP* bitmap_to_draw, int x, int y)
 {
-if (!(bitmap))
+if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "BitmapGridRenderSurface" << "::" << "draw_to_surface" << ": error: " << "guard \"bitmap\" not met";
+      error_message << "BitmapGridRenderSurface" << "::" << "draw_to_surface" << ": error: " << "guard \"get_initialized()\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (!(bitmap_to_draw))
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "draw_to_surface" << ": error: " << "guard \"bitmap_to_draw\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+ALLEGRO_BITMAP *sub_bitmap = find_sub_bitmap(x, y);
+if (!sub_bitmap)
+{
+   std::stringstream error_message;
+   error_message << "Elements::BitmapGridRenderSurface"
+                 << "::"
+                 << "draw_to_surface"
+                 << ": error: "
+                 << "could not find sub_bitmap at (" << x << ", " << y << ")";
+   throw std::runtime_error(error_message.str());
+}
+
 ALLEGRO_STATE previous_render_state;
 al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
 
-//al_set_target_bitmap();
+al_set_target_bitmap(sub_bitmap);
+al_draw_bitmap(bitmap_to_draw, 0, 0, 0);
 
 al_restore_state(&previous_render_state);
 return;
 
 }
 
-ALLEGRO_BITMAP* BitmapGridRenderSurface::get_sub_bitmap(int x, int y)
+ALLEGRO_BITMAP* BitmapGridRenderSurface::find_sub_bitmap(int x, int y)
 {
 if (x < 0) return nullptr;
 if (y < 0) return nullptr;
