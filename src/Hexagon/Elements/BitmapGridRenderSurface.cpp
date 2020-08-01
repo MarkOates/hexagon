@@ -159,7 +159,7 @@ if (!sub_bitmap)
    //throw std::runtime_error(error_message.str());
 }
 
-//al_set_target_bitmap(sub_bitmap);
+al_set_target_bitmap(sub_bitmap);
 al_draw_tinted_bitmap(bitmap_to_draw, tint, 0, 0, 0);
 
 return;
