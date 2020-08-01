@@ -181,6 +181,13 @@ mesh.render();
 return;
 
 }
+
+void TextMesh::render_only_select_cells(std::vector<std::pair<int, int>> cell_coordinates)
+{
+mesh.render_only_select_cells(cell_coordinates);
+return;
+
+}
 } // namespace Elements
 } // namespace Hexagon
 

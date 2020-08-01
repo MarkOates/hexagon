@@ -150,6 +150,17 @@ functions:
       return;
 
 
+  - name: render_only_select_cells
+    type: void
+    parameters:
+      - name: cell_coordinates
+        type: std::vector<std::pair<int, int>>
+        default_argument: '{}'
+    body: |
+      mesh.render_only_select_cells(cell_coordinates);
+      return;
+
+
 dependencies:
 
 
@@ -159,9 +170,12 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: std::map<char, std::tuple<float, float, float, float>>
     headers: [ map, tuple ]
+  - symbol: std::vector<std::pair<int, int>>
+    headers: [ vector, utility ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
   - symbol: Hexagon::Elements::BitmapGridMesh
     headers: [ Hexagon/Elements/BitmapGridMesh.hpp ]
   - symbol: Hexagon::Elements::FontCharacterMapGrid
     headers: [ Hexagon/Elements/FontCharacterMapGrid.hpp ]
+

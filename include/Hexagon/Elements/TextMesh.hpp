@@ -8,6 +8,8 @@
 #include <allegro5/allegro_font.h>
 #include <map>
 #include <tuple>
+#include <utility>
+#include <vector>
 
 
 namespace Hexagon
@@ -48,6 +50,7 @@ namespace Hexagon
       int calculate_width();
       int calculate_height();
       void render();
+      void render_only_select_cells(std::vector<std::pair<int, int>> cell_coordinates={});
       };
    }
 }
