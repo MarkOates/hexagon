@@ -147,20 +147,7 @@ if (!(bitmap_to_draw))
       error_message << "BitmapGridRenderSurface" << "::" << "draw_to_cell" << ": error: " << "guard \"bitmap_to_draw\" not met";
       throw std::runtime_error(error_message.str());
    }
-ALLEGRO_BITMAP *sub_bitmap = find_sub_bitmap(x, y);
-if (!sub_bitmap)
-{
-   std::stringstream error_message;
-   error_message << "Elements::BitmapGridRenderSurface"
-                 << "::"
-                 << "draw_to_cell"
-                 << ": error: "
-                 << "could not find sub_bitmap at (" << x << ", " << y << ")";
-   //throw std::runtime_error(error_message.str());
-}
-
-al_set_target_bitmap(sub_bitmap);
-al_draw_tinted_bitmap(bitmap_to_draw, tint, 0, 0, 0);
+al_draw_tinted_bitmap(bitmap_to_draw, tint, x*cell_width, y*cell_height, 0);
 
 return;
 
