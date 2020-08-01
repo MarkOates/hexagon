@@ -40,6 +40,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh);
    std::string expected_error_message = "Renderer::render_cursor: error: guard \"cursor\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+
+   al_destroy_font(font);
    al_destroy_bitmap(bitmap);
    al_uninstall_system();
 }
