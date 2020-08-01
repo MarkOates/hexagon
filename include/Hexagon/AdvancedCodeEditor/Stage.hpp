@@ -74,6 +74,7 @@ namespace Hexagon
       Hexagon::AdvancedCodeEditor::Cursor get_cursor();
       bool is_in_edit_mode();
       bool is_in_insert_mode();
+      void refresh_render_surfaces();
       void refresh_text_mesh();
       void refresh_fonted_text_grid();
       };

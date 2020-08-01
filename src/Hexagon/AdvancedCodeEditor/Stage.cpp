@@ -365,6 +365,14 @@ return mode == 1;
 
 }
 
+void Stage::refresh_render_surfaces()
+{
+refresh_text_mesh();
+refresh_fonted_text_grid();
+return;
+
+}
+
 void Stage::refresh_text_mesh()
 {
 if (!(initialized))

@@ -356,6 +356,14 @@ functions:
       return mode == 1;
 
 
+  - name: refresh_render_surfaces
+    type: void
+    body: |
+      refresh_text_mesh();
+      refresh_fonted_text_grid();
+      return;
+
+
   - name: refresh_text_mesh
     private: true
     guards: [ initialized ]
