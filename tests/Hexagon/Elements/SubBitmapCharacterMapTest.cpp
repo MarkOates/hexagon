@@ -17,18 +17,18 @@ TEST(Hexagon_Elements_SubBitmapCharacterMapTest, can_be_created_without_blowing_
 
 TEST(Hexagon_Elements_SubBitmapCharacterMapTest, initialize__without_allegro_initialized__raises_an_error)
 {
-   Hexagon::Elements::SubBitmapCharacterMap text_mesh;
+   Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map;
    std::string expected_error_message =
       "SubBitmapCharacterMap::initialize: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.initialize(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_WITH_MESSAGE(sub_bitmap_character_map.initialize(), std::runtime_error, expected_error_message);
 }
 
 TEST(Hexagon_Elements_SubBitmapCharacterMapTest, initialize__without_a_valid_font__raises_an_error)
 {
    al_init();
-   Hexagon::Elements::SubBitmapCharacterMap text_mesh;
+   Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map;
    std::string expected_error_message = "SubBitmapCharacterMap::initialize: error: guard \"font\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.initialize(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_WITH_MESSAGE(sub_bitmap_character_map.initialize(), std::runtime_error, expected_error_message);
    al_uninstall_system();
 }
 
