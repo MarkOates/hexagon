@@ -41,7 +41,6 @@ void FontedTextGrid::initialize()
 {
 // Setup dependencies
 
-//Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map(font);
 sub_bitmap_character_map.initialize();
 
 
