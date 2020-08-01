@@ -12,7 +12,7 @@
 
 TEST(Hexagon_Elements_SubBitmapCharacterMapTest, can_be_created_without_blowing_up)
 {
-   Hexagon::Elements::SubBitmapCharacterMap font_character_map_grid;
+   Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map;
 }
 
 TEST(Hexagon_Elements_SubBitmapCharacterMapTest, initialize__without_allegro_initialized__raises_an_error)
@@ -39,10 +39,10 @@ TEST(Hexagon_Elements_SubBitmapCharacterMapTest, create__with_valid_arguments__r
    al_clear_to_color(al_color_name("black"));
    ALLEGRO_FONT *font = al_create_builtin_font();
 
-   Hexagon::Elements::SubBitmapCharacterMap font_character_map_grid(font);
-   font_character_map_grid.initialize();
+   Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map(font);
+   sub_bitmap_character_map.initialize();
 
-   ALLEGRO_BITMAP *result = font_character_map_grid.get_surface();
+   ALLEGRO_BITMAP *result = sub_bitmap_character_map.get_surface();
    ASSERT_NE(nullptr, result);
 
    al_init_image_addon();
