@@ -12,11 +12,12 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar)
    : text_mesh(text_mesh)
    , cursor(cursor)
    , width(width)
    , height(height)
+   , cursor_is_bar(cursor_is_bar)
 {
 }
 

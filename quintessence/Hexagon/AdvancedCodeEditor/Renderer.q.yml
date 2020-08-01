@@ -17,6 +17,10 @@ properties:
     type: float
     init_with: 1
     constructor_arg: true
+  - name: cursor_is_bar
+    type: bool
+    init_with: false
+    constructor_arg: true
 
 
 functions:
