@@ -5,6 +5,10 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -41,6 +45,32 @@ bool BitmapGridRenderSurface::get_initialized()
    return initialized;
 }
 
+
+void BitmapGridRenderSurface::set_cell_width(int cell_width)
+{
+if (!((!get_initialized())))
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "set_cell_width" << ": error: " << "guard \"(!get_initialized())\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+this->cell_width = cell_width;
+return;
+
+}
+
+void BitmapGridRenderSurface::set_cell_height(int cell_height)
+{
+if (!((!get_initialized())))
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "set_cell_height" << ": error: " << "guard \"(!get_initialized())\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+this->cell_height = cell_height;
+return;
+
+}
 
 void BitmapGridRenderSurface::initialize()
 {

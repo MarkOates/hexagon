@@ -1,4 +1,94 @@
+properties:
+
+
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    constructor_arg: true
+    setter: true
+  - name: num_columns
+    type: int
+    init_with: 16
+    constructor_arg: true
+  - name: num_rows
+    type: int
+    init_with: 16
+    constructor_arg: true
+  - name: sub_bitmap_character_map
+    type: Hexagon::Elements::SubBitmapCharacterMap
+    init_with: '{}'
+  - name: bitmap_grid_render_surface
+    type: Hexagon::Elements::BitmapGridRenderSurface
+    init_with: 'num_columns, num_rows'
+  - name: initialized
+    type: bool
+    init_with: false
+
+
 functions:
+
+
   - name: run
     type: std::string
     body: return "Hello World!";
+
+
+  - name: initialize
+    body: |
+      //-> font
+      int num_columns = 123;
+      int num_rows = 74;
+
+
+      // Setup dependencies
+
+      //Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map(font);
+      sub_bitmap_character_map.initialize();
+
+
+      // Setup self
+
+      Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface(
+         num_columns,
+         num_rows,
+         sub_bitmap_character_map.get_grid_width(),
+         sub_bitmap_character_map.get_grid_height()
+      );
+      bitmap_grid_render_surface.initialize();
+
+      initialized = true;
+      return;
+
+
+      // Use
+
+      for (unsigned y=0; y<num_rows; y++)
+      {
+         for (unsigned x=0; x<num_columns; x++)
+         {
+            ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap('A');
+            bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f}, x, y);
+         }
+      }
+
+
+      // For drawing
+
+      ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
+      al_draw_bitmap(surface, 0, 0, 0);
+
+
+dependencies:
+
+
+  - symbol: Hexagon::Elements::BitmapGridRenderSurface
+    headers: [ Hexagon/Elements/BitmapGridRenderSurface.hpp ]
+  - symbol: Hexagon::Elements::SubBitmapCharacterMap
+    headers: [ Hexagon/Elements/SubBitmapCharacterMap.hpp ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro.h ]
+

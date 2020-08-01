@@ -33,6 +33,30 @@ properties:
 functions:
 
 
+  - name: set_cell_width
+    type: void
+    parameters:
+      - name: cell_width
+        type: int
+        default_argument: 1
+    guards: [ (!get_initialized()) ]
+    body: |
+      this->cell_width = cell_width;
+      return;
+
+
+  - name: set_cell_height
+    type: void
+    parameters:
+      - name: cell_height
+        type: int
+        default_argument: 1
+    guards: [ (!get_initialized()) ]
+    body: |
+      this->cell_height = cell_height;
+      return;
+
+
   - name: initialize
     type: void
     guards: [ al_is_system_installed() ]
