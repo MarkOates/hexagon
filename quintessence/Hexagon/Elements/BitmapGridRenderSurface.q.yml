@@ -42,8 +42,28 @@ functions:
       ALLEGRO_STATE previous_render_state;
       al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
 
-      if (surface) al_destroy_bitmap(surface);
-      if (!surface) surface = al_create_bitmap(num_columns * cell_width, num_rows * cell_height);
+      if (surface)
+      {
+         for (auto &cell_sub_bitmap : cell_sub_bitmaps) al_destroy_bitmap(cell_sub_bitmap);
+         al_destroy_bitmap(surface);
+         cell_sub_bitmaps.clear();
+         surface = nullptr;
+      }
+
+      if (!surface)
+      {
+         surface = al_create_bitmap(num_columns * cell_width, num_rows * cell_height);
+         cell_sub_bitmaps.resize(num_columns * num_rows);
+         for (unsigned y=0; y<num_rows; y++)
+         {
+            for (unsigned x=0; x<num_columns; x++)
+            {
+               ALLEGRO_BITMAP *cell_sub_bitmap =
+                 al_create_sub_bitmap(surface, x*cell_width, y*cell_height, cell_width, cell_height);
+               cell_sub_bitmaps[x + y*num_columns] = cell_sub_bitmap;
+            }
+         }
+      }
       al_set_target_bitmap(surface);
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
 
