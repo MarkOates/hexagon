@@ -11,12 +11,19 @@ namespace Elements
 
 
 BitmapGridRenderSurface::BitmapGridRenderSurface()
+   : surface(nullptr)
 {
 }
 
 
 BitmapGridRenderSurface::~BitmapGridRenderSurface()
 {
+}
+
+
+ALLEGRO_BITMAP* BitmapGridRenderSurface::get_surface()
+{
+   return surface;
 }
 
 
