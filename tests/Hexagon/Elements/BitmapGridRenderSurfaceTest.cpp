@@ -82,3 +82,29 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, draw_to_cell__will_render_the
    SUCCEED();
 }
 
+TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, fun)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(16*40, 8*40);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map(font);
+   sub_bitmap_character_map.initialize();
+
+   Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface(7, 9, 13, 29);
+   bitmap_grid_render_surface.initialize();
+
+   ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap('A');
+   bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f}, 0, 0);
+
+   ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
+
+   al_draw_bitmap(surface, 0, 0, 0);
+   al_flip_display();
+   sleep(3);
+
+   al_destroy_display(display);
+   al_uninstall_system();
+
+   SUCCEED();
+}
+
