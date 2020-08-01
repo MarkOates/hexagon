@@ -8,6 +8,8 @@
    catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
+#include <Hexagon/Elements/SubBitmapCharacterMap.hpp>
+
 TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, can_be_created_without_blowing_up)
 {
    Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface;
@@ -58,8 +60,15 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, draw_to_cell__will_render_the
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(16*40, 8*40);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map(font);
+   sub_bitmap_character_map.initialize();
+
    Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface(7, 9, 13, 29);
    bitmap_grid_render_surface.initialize();
+
+   ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap('A');
+   bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f}, 0, 0);
 
    ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
 
