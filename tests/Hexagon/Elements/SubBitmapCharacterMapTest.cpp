@@ -32,7 +32,7 @@ TEST(Hexagon_Elements_SubBitmapCharacterMapTest, initialize__without_a_valid_fon
    al_uninstall_system();
 }
 
-TEST(Hexagon_Elements_SubBitmapCharacterMapTest, create__with_valid_arguments__returns_a_bitmap)
+TEST(Hexagon_Elements_SubBitmapCharacterMapTest, create__with_valid_arguments__creates_the_bitmap_surface)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
@@ -49,8 +49,6 @@ TEST(Hexagon_Elements_SubBitmapCharacterMapTest, create__with_valid_arguments__r
    al_draw_bitmap(result, 0, 0, 0);
    al_flip_display();
    EXPECT_EQ(true, al_save_bitmap("/Users/markoates/Repos/hexagon/tmp/SubBitmapCharacterMapTest.png", result));
-
-   //sleep(2);
 
    al_destroy_font(font);
    al_destroy_display(display);

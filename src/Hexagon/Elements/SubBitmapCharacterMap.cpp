@@ -11,6 +11,12 @@ namespace Elements
 {
 
 
+int SubBitmapCharacterMap::NUM_ROWS = 16;
+
+
+int SubBitmapCharacterMap::NUM_COLUMNS = 16;
+
+
 SubBitmapCharacterMap::SubBitmapCharacterMap(ALLEGRO_FONT* font)
    : font(font)
    , grid_width(0)
@@ -76,8 +82,8 @@ if (surface) al_destroy_bitmap(surface);
 
 grid_width = al_get_text_width(font, "W"); // 'W' character as an estimate for reasonable large width
 grid_height = al_get_font_line_height(font);
-int num_rows = 16;
-int num_columns = 16;
+int num_rows = NUM_ROWS;
+int num_columns = NUM_COLUMNS;
 ALLEGRO_STATE previous_state;
 al_store_state(&previous_state, ALLEGRO_STATE_TARGET_BITMAP);
 
@@ -101,10 +107,32 @@ for (int y=0; y<=num_rows; y++)
       int hh = grid_height;
 
       ALLEGRO_BITMAP *cell_sub_bitmap = al_create_sub_bitmap(surface, xx, yy, ww, hh);
-      cell_sub_bitmaps[(char)(x + y*num_columns)] = cell_sub_bitmap;
+      cell_sub_bitmaps[char_number] = cell_sub_bitmap;
    }
 }
 al_restore_state(&previous_state);
+return;
+
+}
+
+ALLEGRO_BITMAP* SubBitmapCharacterMap::find_sub_bitmap(int x, int y)
+{
+if (x < 0) return nullptr;
+if (y < 0) return nullptr;
+if (x >= NUM_COLUMNS) return nullptr;
+if (y >= NUM_ROWS) return nullptr;
+return cell_sub_bitmaps[x + y*NUM_COLUMNS];
+
+}
+
+void SubBitmapCharacterMap::destroy()
+{
+for (auto &cell_sub_bitmap : cell_sub_bitmaps)
+{
+   if (cell_sub_bitmap.second) al_destroy_bitmap(cell_sub_bitmap.second);
+}
+cell_sub_bitmaps.clear();
+if (surface) al_destroy_bitmap(surface);
 return;
 
 }
