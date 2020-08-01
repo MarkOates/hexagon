@@ -52,16 +52,17 @@ text_mesh->render();
 
 float cursor_x = cursor->get_x() * text_mesh->get_cell_width();
 float cursor_y = cursor->get_y() * text_mesh->get_cell_height();
+ALLEGRO_COLOR cursor_color = ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f};
 
 if (cursor_is_bar)
 {
    // draw the cursor
-   al_draw_rectangle(
+   al_draw_line(
       cursor_x,
       cursor_y,
-      cursor_x+cursor->get_width(),
+      cursor_x,
       cursor_y+cursor->get_height(),
-      ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f},
+      cursor_color,
       2.0f
       );
 }
@@ -73,7 +74,7 @@ else
       cursor_y,
       cursor_x+cursor->get_width(),
       cursor_y+cursor->get_height(),
-      ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f},
+      cursor_color,
       2.0f
       );
 }

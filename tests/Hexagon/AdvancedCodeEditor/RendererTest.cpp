@@ -48,7 +48,6 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
    renderer.render();
 
    al_flip_display();
-   //sleep(3);
 
    SUCCEED();
 }
