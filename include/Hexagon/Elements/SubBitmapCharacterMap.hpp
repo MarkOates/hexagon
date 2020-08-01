@@ -4,7 +4,6 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <map>
-#include <tuple>
 
 
 namespace Hexagon
@@ -17,7 +16,7 @@ namespace Hexagon
          ALLEGRO_FONT* font;
          int grid_width;
          int grid_height;
-         std::map<char, std::tuple<float, float, float, float>> character_uv_mapping;
+         std::map<char, ALLEGRO_BITMAP*> cell_sub_bitmaps;
 
       public:
          SubBitmapCharacterMap(ALLEGRO_FONT* font=nullptr);
@@ -27,7 +26,7 @@ namespace Hexagon
 
          int get_grid_width();
          int get_grid_height();
-         std::map<char, std::tuple<float, float, float, float>> get_character_uv_mapping();
+         std::map<char, ALLEGRO_BITMAP*> get_cell_sub_bitmaps();
       ALLEGRO_BITMAP* create();
       };
    }

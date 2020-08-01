@@ -15,7 +15,7 @@ SubBitmapCharacterMap::SubBitmapCharacterMap(ALLEGRO_FONT* font)
    : font(font)
    , grid_width(0)
    , grid_height(0)
-   , character_uv_mapping({})
+   , cell_sub_bitmaps({})
 {
 }
 
@@ -43,9 +43,9 @@ int SubBitmapCharacterMap::get_grid_height()
 }
 
 
-std::map<char, std::tuple<float, float, float, float>> SubBitmapCharacterMap::get_character_uv_mapping()
+std::map<char, ALLEGRO_BITMAP*> SubBitmapCharacterMap::get_cell_sub_bitmaps()
 {
-   return character_uv_mapping;
+   return cell_sub_bitmaps;
 }
 
 
@@ -63,7 +63,8 @@ if (!(font))
       error_message << "SubBitmapCharacterMap" << "::" << "create" << ": error: " << "guard \"font\" not met";
       throw std::runtime_error(error_message.str());
    }
-character_uv_mapping.clear();
+for (auto &cell_sub_bitmap : cell_sub_bitmaps) al_destroy_bitmap(cell_sub_bitmap.second);
+cell_sub_bitmaps.clear();
 
 grid_width = al_get_text_width(font, "W"); // 'W' character as an estimate for reasonable large width
 grid_height = al_get_font_line_height(font);
@@ -76,7 +77,6 @@ ALLEGRO_BITMAP *result = al_create_bitmap(grid_width * num_columns, grid_height 
 al_set_target_bitmap(result);
 al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
 
-
 ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
 std::string text_to_draw = " ";
 const char* text_to_draw_cstr = text_to_draw.c_str();
@@ -87,11 +87,13 @@ for (int y=0; y<=num_rows; y++)
       char char_number = x + y * num_rows;
       text_to_draw[0] = x + y * num_rows;
       al_draw_text(font, text_color, x * grid_width, y * grid_height, ALLEGRO_ALIGN_LEFT, text_to_draw_cstr);
-      float u1 = x * grid_width;
-      float v1 = y * grid_height;
-      float u2 = u1 + grid_width;
-      float v2 = v1 + grid_height;
-      character_uv_mapping[char_number] = {u1, v1, u2, v2};
+      int xx = x * grid_width;
+      int yy = y * grid_height;
+      int ww = grid_width;
+      int hh = grid_height;
+
+      ALLEGRO_BITMAP *cell_sub_bitmap = al_create_sub_bitmap(result, xx, yy, ww, hh);
+      cell_sub_bitmaps[(char)(x + y*num_columns)] = cell_sub_bitmap;
    }
 }
 al_restore_state(&previous_state);
