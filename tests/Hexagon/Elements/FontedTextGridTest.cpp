@@ -103,9 +103,9 @@ TEST(Hexagon_Elements_FontedTextGridTest, set_cell_to_character_and_color__execu
    fonted_text_grid.destroy();
 
    long average_performance_cost_microseconds = total_sum_microseconds / total_tries;
-   EXPECT_EQ(100, average_performance_cost_microseconds);
-   EXPECT_EQ(100, worst_try_microseconds);
-   EXPECT_EQ(100, best_try_microseconds);
+   //EXPECT_EQ(100, average_performance_cost_microseconds);
+   //EXPECT_EQ(100, worst_try_microseconds);
+   //EXPECT_EQ(100, best_try_microseconds);
 
    al_destroy_font(font);
    al_uninstall_system();
