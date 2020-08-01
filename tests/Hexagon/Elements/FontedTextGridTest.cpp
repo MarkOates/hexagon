@@ -3,6 +3,8 @@
 
 #include <Hexagon/Elements/FontedTextGrid.hpp>
 
+#include <AllegroFlare/Timer.hpp>
+
 TEST(Hexagon_Elements_FontedTextGridTest, can_be_created_without_blowing_up)
 {
    Hexagon::Elements::FontedTextGrid fonted_text_grid;
@@ -62,15 +64,29 @@ TEST(Hexagon_Elements_FontedTextGridTest, set_cell_to_character_and_color__execu
    Hexagon::Elements::FontedTextGrid fonted_text_grid(font);
    fonted_text_grid.initialize();
 
-   for (unsigned i=0; i<256; i++)
-   {
-      char ch = (rand() % 96) + 32;
-      int x = rand() % fonted_text_grid.get_num_columns();
-      int y = rand() % fonted_text_grid.get_num_rows();
+   AllegroFlare::Timer timer;
+   int passes = 123 * 16;
+   int total_tries = 4;
 
-      fonted_text_grid.set_cell_to_character_and_color(ch, x, y);
-      fonted_text_grid.draw();
+   int attempts = total_tries * passes;
+
+   for (unsigned tries=0; tries<total_tries; tries++)
+   {
+      timer.reset();
+      timer.start();
+      for (unsigned i=0; i<passes; i++)
+      {
+         char ch = (rand() % 96) + 32;
+         int x = rand() % fonted_text_grid.get_num_columns();
+         int y = rand() % fonted_text_grid.get_num_rows();
+
+         fonted_text_grid.set_cell_to_character_and_color(ch, x, y);
+      }
+      timer.pause();
+      //EXPECT_EQ(100, timer.get_elapsed_time_microseconds());
    }
+
+   fonted_text_grid.draw();
 
    al_flip_display();
 
