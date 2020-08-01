@@ -62,3 +62,24 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
    SUCCEED();
 }
 
+TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
+   render__when_cursor_is_bar_is_set__renders_the_cursor_as_a_bar)
+{
+   ALLEGRO_FONT *font = get_any_font();
+   Hexagon::Elements::TextMesh text_mesh(font);
+   Hexagon::AdvancedCodeEditor::Cursor cursor;
+
+   text_mesh.initialize();
+
+   placement3d place = centered_placement(800, 600);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &cursor, place.size.x, place.size.y, true);
+
+   place.start_transform();
+   renderer.render();
+   place.restore_transform();
+
+   al_flip_display();
+
+   SUCCEED();
+}
+

@@ -60,6 +60,22 @@ functions:
       return font_bin.auto_get("consolas.ttf 32");
 
 
+  - name: centered_placement
+    type: placement3d
+    parameters:
+      - name: width
+        type: float
+        default_argument: 0.0f
+      - name: height
+        type: float
+        default_argument: 0.0f
+    guards: [ al_get_target_bitmap() ]
+    body: |
+      placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0f);
+      place.size = vec3d(width, height, 0);
+      return place;
+
+
 dependencies:
 
 
@@ -75,4 +91,6 @@ dependencies:
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ::testing::Test
     headers: [ gtest/gtest.h ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
 
