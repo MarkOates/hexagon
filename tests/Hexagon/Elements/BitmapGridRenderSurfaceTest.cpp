@@ -74,7 +74,7 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, draw_to_cell__will_render_the
 
    al_draw_bitmap(surface, 0, 0, 0);
    al_flip_display();
-   sleep(3);
+   //sleep(3);
 
    al_destroy_display(display);
    al_uninstall_system();
@@ -84,23 +84,41 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, draw_to_cell__will_render_the
 
 TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, fun)
 {
+   // setup
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(16*40, 8*40);
    ALLEGRO_FONT *font = al_create_builtin_font();
+
+
+   // parameters
+
+   //-> font
+   int num_columns = 123;
+   int num_rows = 74;
+
+
+   // Setup dependencies
+
    Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map(font);
    sub_bitmap_character_map.initialize();
 
+
+   // Setup self
+
    Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface(
-      7,
-      9,
+      num_columns,
+      num_rows,
       sub_bitmap_character_map.get_grid_width(),
       sub_bitmap_character_map.get_grid_height()
    );
    bitmap_grid_render_surface.initialize();
 
-   for (unsigned y=0; y<9; y++)
+
+   // Use
+
+   for (unsigned y=0; y<num_rows; y++)
    {
-      for (unsigned x=0; x<7; x++)
+      for (unsigned x=0; x<num_columns; x++)
       {
          ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap('A');
          bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f}, x, y);
@@ -109,9 +127,15 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, fun)
    ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap('A');
    bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f}, 0, 0);
 
-   ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
 
+   // For drawing
+
+   ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
    al_draw_bitmap(surface, 0, 0, 0);
+
+
+   // Shutdown
+
    al_flip_display();
    sleep(3);
 
