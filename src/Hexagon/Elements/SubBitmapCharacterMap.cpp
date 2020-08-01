@@ -115,12 +115,16 @@ return;
 
 }
 
-ALLEGRO_BITMAP* SubBitmapCharacterMap::find_sub_bitmap(int x, int y)
+ALLEGRO_BITMAP* SubBitmapCharacterMap::find_sub_bitmap(char character)
 {
+int x = character % NUM_COLUMNS;
+int y = character / NUM_COLUMNS;
+
 if (x < 0) return nullptr;
 if (y < 0) return nullptr;
 if (x >= NUM_COLUMNS) return nullptr;
 if (y >= NUM_ROWS) return nullptr;
+
 return cell_sub_bitmaps[x + y*NUM_COLUMNS];
 
 }

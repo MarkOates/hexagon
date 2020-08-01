@@ -32,7 +32,7 @@ namespace Hexagon
          ALLEGRO_BITMAP* get_surface();
          std::map<char, ALLEGRO_BITMAP*> get_cell_sub_bitmaps();
       void initialize();
-      ALLEGRO_BITMAP* find_sub_bitmap(int x=0, int y=0);
+      ALLEGRO_BITMAP* find_sub_bitmap(char character=0);
       void destroy();
       };
    }
