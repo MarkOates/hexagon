@@ -10,8 +10,12 @@ namespace Elements
 {
 
 
-BitmapGridRenderSurface::BitmapGridRenderSurface()
-   : surface(nullptr)
+BitmapGridRenderSurface::BitmapGridRenderSurface(int num_columns, int num_rows, int cell_width, int cell_height)
+   : num_columns(num_columns)
+   , num_rows(num_rows)
+   , cell_width(cell_width)
+   , cell_height(cell_height)
+   , surface(nullptr)
 {
 }
 

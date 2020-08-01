@@ -12,10 +12,14 @@ namespace Hexagon
       class BitmapGridRenderSurface
       {
       private:
+         int num_columns;
+         int num_rows;
+         int cell_width;
+         int cell_height;
          ALLEGRO_BITMAP* surface;
 
       public:
-         BitmapGridRenderSurface();
+         BitmapGridRenderSurface(int num_columns=0, int num_rows=0, int cell_width=1, int cell_height=1);
          ~BitmapGridRenderSurface();
 
 

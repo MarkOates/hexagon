@@ -1,6 +1,22 @@
 properties:
 
 
+  - name: num_columns
+    type: int
+    init_with: 0
+    constructor_arg: true
+  - name: num_rows
+    type: int
+    init_with: 0
+    constructor_arg: true
+  - name: cell_width
+    type: int
+    init_with: 1
+    constructor_arg: true
+  - name: cell_height
+    type: int
+    init_with: 1
+    constructor_arg: true
   - name: surface
     type: ALLEGRO_BITMAP*
     init_with: nullptr
