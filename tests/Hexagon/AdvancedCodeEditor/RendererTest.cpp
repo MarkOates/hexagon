@@ -35,9 +35,11 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    al_set_target_bitmap(bitmap);
    ALLEGRO_FONT *font = al_create_builtin_font();
    Hexagon::Elements::TextMesh text_mesh(font);
+   Hexagon::Elements::FontedTextGrid fonted_text_grid(font);
    text_mesh.initialize();
+   fonted_text_grid.initialize();
 
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &fonted_text_grid);
    std::string expected_error_message = "Renderer::render_cursor: error: guard \"cursor\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 
@@ -52,6 +54,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
    Hexagon::Elements::TextMesh text_mesh(font);
    Hexagon::Elements::FontedTextGrid fonted_text_grid(font);
    text_mesh.initialize();
+   fonted_text_grid.initialize();
+
    Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
 
    placement3d place = build_centered_placement(800, 600);
@@ -75,6 +79,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    Hexagon::Elements::TextMesh text_mesh(font, 200, 100);
    Hexagon::Elements::FontedTextGrid fonted_text_grid(font);
    text_mesh.initialize();
+   fonted_text_grid.initialize();
 
    Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
 

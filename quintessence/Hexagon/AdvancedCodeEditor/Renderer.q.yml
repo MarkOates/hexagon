@@ -31,7 +31,7 @@ functions:
 
 
   - name: render
-    guards: [ text_mesh ]
+    guards: [ text_mesh, fonted_text_grid ]
     type: void
     body: |
       // draw the window
@@ -42,6 +42,7 @@ functions:
 
       // draw the mesh
       text_mesh->render();
+      fonted_text_grid->draw();
 
       // draw the cursor
       render_cursor();
