@@ -34,17 +34,20 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, initialize__does_not_blow_up)
    SUCCEED();
 }
 
-TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, initialize__will_create_a_surface)
+TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, initialize__will_create_a_surface_with_the_expected_dimensions)
 {
    al_init();
 
-   Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface;
+   Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface(7, 9, 13, 29);
 
    ASSERT_EQ(nullptr, bitmap_grid_render_surface.get_surface());
 
    bitmap_grid_render_surface.initialize();
 
-   ASSERT_NE(nullptr, bitmap_grid_render_surface.get_surface());
+   ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
+   ASSERT_NE(nullptr, surface);
+   ASSERT_EQ(91, al_get_bitmap_width(surface));
+   ASSERT_EQ(261, al_get_bitmap_height(surface));
 
    al_uninstall_system();
 
