@@ -41,6 +41,25 @@ bool BitmapGridRenderSurface::get_initialized()
 void BitmapGridRenderSurface::initialize()
 {
 if (initialized) return;
+
+ALLEGRO_STATE previous_render_state;
+al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+
+if (surface) al_destroy_bitmap(surface);
+if (!surface) surface = al_create_bitmap(num_columns * cell_width, num_rows * cell_height);
+al_set_target_bitmap(surface);
+al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+
+al_restore_state(&previous_render_state);
+
+initialized = true;
+return;
+
+}
+
+void BitmapGridRenderSurface::destroy()
+{
+if (surface) al_destroy_bitmap(surface);
 return;
 
 }
