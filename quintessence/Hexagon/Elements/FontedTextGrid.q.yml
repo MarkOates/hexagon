@@ -29,11 +29,6 @@ properties:
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
-
-
   - name: initialize
     guards: [ (!get_initialized()) ]
     body: |

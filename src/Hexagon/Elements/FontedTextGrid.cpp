@@ -43,11 +43,6 @@ bool FontedTextGrid::get_initialized()
 }
 
 
-std::string FontedTextGrid::run()
-{
-return "Hello World!";
-}
-
 void FontedTextGrid::initialize()
 {
 if (!((!get_initialized())))
