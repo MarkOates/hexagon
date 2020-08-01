@@ -16,6 +16,8 @@ TEST(Hexagon_Elements_FontedTextGridTest, initialize__does_not_blow_up)
    Hexagon::Elements::FontedTextGrid fonted_text_grid(font);
    fonted_text_grid.initialize();
 
+   fonted_text_grid.destroy();
+
    al_destroy_font(font);
    al_uninstall_system();
 

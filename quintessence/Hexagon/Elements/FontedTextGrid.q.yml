@@ -42,6 +42,15 @@ functions:
       return;
 
 
+  - name: destroy
+    guards: [ get_initialized() ]
+    body: |
+      sub_bitmap_character_map.destroy();
+      bitmap_grid_render_surface.destroy();
+      initialized = false;
+      return;
+
+
   - name: set_cell_to_character_and_color
     parameters:
       - name: character

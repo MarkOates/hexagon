@@ -29,6 +29,7 @@ namespace Hexagon
 
          bool get_initialized();
       void initialize();
+      void destroy();
       void set_cell_to_character_and_color(char character=' ', int x=0, int y=0, ALLEGRO_COLOR tint=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
       void draw();
       };

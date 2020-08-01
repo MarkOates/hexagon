@@ -7,6 +7,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -58,6 +60,21 @@ bitmap_grid_render_surface.set_cell_height(al_get_font_line_height(font));
 bitmap_grid_render_surface.initialize();
 
 initialized = true;
+return;
+
+}
+
+void FontedTextGrid::destroy()
+{
+if (!(get_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "FontedTextGrid" << "::" << "destroy" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+sub_bitmap_character_map.destroy();
+bitmap_grid_render_surface.destroy();
+initialized = false;
 return;
 
 }
