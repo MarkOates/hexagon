@@ -34,3 +34,20 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, initialize__does_not_blow_up)
    SUCCEED();
 }
 
+TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, initialize__will_create_a_surface)
+{
+   al_init();
+
+   Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface;
+
+   ASSERT_EQ(nullptr, bitmap_grid_render_surface.get_surface());
+
+   bitmap_grid_render_surface.initialize();
+
+   ASSERT_NE(nullptr, bitmap_grid_render_surface.get_surface());
+
+   al_uninstall_system();
+
+   SUCCEED();
+}
+
