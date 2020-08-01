@@ -19,6 +19,7 @@ BitmapGridRenderSurface::BitmapGridRenderSurface(int num_columns, int num_rows, 
    , cell_width(cell_width)
    , cell_height(cell_height)
    , surface(nullptr)
+   , cell_sub_bitmaps({})
    , initialized(false)
 {
 }

@@ -21,6 +21,9 @@ properties:
     type: ALLEGRO_BITMAP*
     init_with: nullptr
     getter: true
+  - name: cell_sub_bitmaps
+    type: std::vector<ALLEGRO_BITMAP*>
+    init_with: '{}'
   - name: initialized
     type: bool
     init_with: false
@@ -86,4 +89,6 @@ dependencies:
 
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
+  - symbol: std::vector<ALLEGRO_BITMAP*>
+    headers: [ vector, allegro5/allegro.h ]
 

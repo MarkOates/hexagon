@@ -2,6 +2,7 @@
 
 
 #include <allegro5/allegro.h>
+#include <vector>
 
 
 namespace Hexagon
@@ -16,6 +17,7 @@ namespace Hexagon
          int cell_width;
          int cell_height;
          ALLEGRO_BITMAP* surface;
+         std::vector<ALLEGRO_BITMAP*> cell_sub_bitmaps;
          bool initialized;
 
       public:
