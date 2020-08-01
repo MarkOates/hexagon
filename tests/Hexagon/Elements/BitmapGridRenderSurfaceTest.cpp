@@ -90,9 +90,22 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, fun)
    Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map(font);
    sub_bitmap_character_map.initialize();
 
-   Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface(7, 9, 13, 29);
+   Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface(
+      7,
+      9,
+      sub_bitmap_character_map.get_grid_width(),
+      sub_bitmap_character_map.get_grid_height()
+   );
    bitmap_grid_render_surface.initialize();
 
+   for (unsigned y=0; y<9; y++)
+   {
+      for (unsigned x=0; x<7; x++)
+      {
+         ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap('A');
+         bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f}, x, y);
+      }
+   }
    ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap('A');
    bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f}, 0, 0);
 
