@@ -66,7 +66,7 @@ TEST(Hexagon_Elements_FontedTextGridTest, set_cell_to_character_and_color__execu
 
    AllegroFlare::Timer timer;
    int passes = 123 * 16;
-   int total_tries = 4;
+   int total_tries = 8;
 
    int attempts = total_tries * passes;
 
@@ -80,15 +80,16 @@ TEST(Hexagon_Elements_FontedTextGridTest, set_cell_to_character_and_color__execu
          int x = rand() % fonted_text_grid.get_num_columns();
          int y = rand() % fonted_text_grid.get_num_rows();
 
-         fonted_text_grid.set_cell_to_character_and_color(ch, x, y);
+         fonted_text_grid.set_cell_to_character_and_color(ch, x, y, ALLEGRO_COLOR{0, 1, 1, 1});
       }
       timer.pause();
-      //EXPECT_EQ(100, timer.get_elapsed_time_microseconds());
+      EXPECT_EQ(100, timer.get_elapsed_time_microseconds());
    }
 
    fonted_text_grid.draw();
 
    al_flip_display();
+   sleep(2);
 
    fonted_text_grid.destroy();
 

@@ -135,7 +135,7 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, fun)
    // Shutdown
 
    al_flip_display();
-   sleep(3);
+   //sleep(3);
 
    al_destroy_display(display);
    al_uninstall_system();

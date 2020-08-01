@@ -144,10 +144,10 @@ if (!sub_bitmap)
 }
 
 ALLEGRO_STATE previous_render_state;
-al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
 
 al_set_target_bitmap(sub_bitmap);
-al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ZERO);
 al_draw_tinted_bitmap(bitmap_to_draw, tint, 0, 0, 0);
 
 al_restore_state(&previous_render_state);
