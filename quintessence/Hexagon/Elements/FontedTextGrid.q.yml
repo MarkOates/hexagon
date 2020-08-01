@@ -16,7 +16,7 @@ properties:
     constructor_arg: true
   - name: sub_bitmap_character_map
     type: Hexagon::Elements::SubBitmapCharacterMap
-    init_with: '{font}'
+    init_with: '{}'
   - name: bitmap_grid_render_surface
     type: Hexagon::Elements::BitmapGridRenderSurface
     init_with: 'num_columns, num_rows'
@@ -32,6 +32,7 @@ functions:
   - name: initialize
     guards: [ (!get_initialized()) ]
     body: |
+      sub_bitmap_character_map.set_font(font);
       sub_bitmap_character_map.initialize();
 
       bitmap_grid_render_surface.set_cell_width(al_get_text_width(font, "W"));

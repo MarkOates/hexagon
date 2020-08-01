@@ -21,7 +21,7 @@ FontedTextGrid::FontedTextGrid(ALLEGRO_FONT* font, int num_columns, int num_rows
    : font(font)
    , num_columns(num_columns)
    , num_rows(num_rows)
-   , sub_bitmap_character_map({font})
+   , sub_bitmap_character_map({})
    , bitmap_grid_render_surface(num_columns, num_rows)
    , initialized(false)
 {
@@ -53,6 +53,7 @@ if (!((!get_initialized())))
       error_message << "FontedTextGrid" << "::" << "initialize" << ": error: " << "guard \"(!get_initialized())\" not met";
       throw std::runtime_error(error_message.str());
    }
+sub_bitmap_character_map.set_font(font);
 sub_bitmap_character_map.initialize();
 
 bitmap_grid_render_surface.set_cell_width(al_get_text_width(font, "W"));
