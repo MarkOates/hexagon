@@ -36,3 +36,20 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
 
+TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, render__does_not_blow_up)
+{
+   ALLEGRO_FONT *font = get_any_font();
+   Hexagon::Elements::TextMesh text_mesh(font);
+   Hexagon::AdvancedCodeEditor::Cursor cursor;
+
+   text_mesh.initialize();
+
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &cursor);
+   renderer.render();
+
+   al_flip_display();
+   //sleep(3);
+
+   SUCCEED();
+}
+

@@ -54,6 +54,12 @@ functions:
       return;
 
 
+  - name: get_any_font
+    type: ALLEGRO_FONT*
+    body: |
+      return font_bin.auto_get("consolas.ttf 32");
+
+
 dependencies:
 
 
@@ -63,6 +69,8 @@ dependencies:
     headers: [ allegro5/allegro_ttf.h ]
   - symbol: ALLEGRO_DISPLAY*
     headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
   - symbol: AllegroFlare::FontBin
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ::testing::Test

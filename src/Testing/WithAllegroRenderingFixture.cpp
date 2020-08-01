@@ -48,6 +48,12 @@ al_uninstall_system();
 return;
 
 }
+
+ALLEGRO_FONT* WithAllegroRenderingFixture::get_any_font()
+{
+return font_bin.auto_get("consolas.ttf 32");
+
+}
 } // namespace Testing
 
 
