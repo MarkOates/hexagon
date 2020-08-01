@@ -22,7 +22,7 @@ namespace Hexagon
          bool initialized;
 
       public:
-         FontedTextGrid(ALLEGRO_FONT* font=nullptr, int num_columns=16, int num_rows=16);
+         FontedTextGrid(ALLEGRO_FONT* font=nullptr, int num_columns=123, int num_rows=74);
          ~FontedTextGrid();
 
          void set_font(ALLEGRO_FONT* font);

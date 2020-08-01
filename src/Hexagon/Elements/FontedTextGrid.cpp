@@ -39,11 +39,6 @@ return "Hello World!";
 
 void FontedTextGrid::initialize()
 {
-//-> font
-int num_columns = 123;
-int num_rows = 74;
-
-
 // Setup dependencies
 
 //Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map(font);

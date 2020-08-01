@@ -8,11 +8,11 @@ properties:
     setter: true
   - name: num_columns
     type: int
-    init_with: 16
+    init_with: 123
     constructor_arg: true
   - name: num_rows
     type: int
-    init_with: 16
+    init_with: 74
     constructor_arg: true
   - name: sub_bitmap_character_map
     type: Hexagon::Elements::SubBitmapCharacterMap
@@ -35,11 +35,6 @@ functions:
 
   - name: initialize
     body: |
-      //-> font
-      int num_columns = 123;
-      int num_rows = 74;
-
-
       // Setup dependencies
 
       //Hexagon::Elements::SubBitmapCharacterMap sub_bitmap_character_map(font);
