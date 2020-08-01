@@ -3,6 +3,7 @@
 
 #include <Hexagon/Elements/BitmapGridRenderSurface.hpp>
 #include <Hexagon/Elements/SubBitmapCharacterMap.hpp>
+#include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <string>
 
@@ -30,7 +31,8 @@ namespace Hexagon
          bool get_initialized();
       std::string run();
       void initialize();
-      void set_cell_to_character_and_color();
+      void set_cell_to_character_and_color(char character=' ', int x=0, int y=0, ALLEGRO_COLOR tint=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+      void draw();
       };
    }
 }

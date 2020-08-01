@@ -8,9 +8,16 @@ TEST(Hexagon_Elements_FontedTextGridTest, can_be_created_without_blowing_up)
    Hexagon::Elements::FontedTextGrid fonted_text_grid;
 }
 
-TEST(Hexagon_Elements_FontedTextGridTest, run__returns_the_expected_response)
+TEST(Hexagon_Elements_FontedTextGridTest, initialize__does_not_blow_up)
 {
-   Hexagon::Elements::FontedTextGrid fonted_text_grid;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, fonted_text_grid.run());
+   al_init();
+   ALLEGRO_FONT *font = al_create_builtin_font();
+
+   Hexagon::Elements::FontedTextGrid fonted_text_grid(font);
+   fonted_text_grid.initialize();
+
+   al_destroy_font(font);
+   al_uninstall_system();
+
+   SUCCEED();
 }
