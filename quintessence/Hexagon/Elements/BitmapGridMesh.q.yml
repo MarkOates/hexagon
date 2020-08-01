@@ -199,6 +199,46 @@ functions:
       - ALLEGRO_BITMAP*
 
 
+  - name: render_only_select_cells
+    type: void
+    parameters:
+      - name: cell_coordinates
+        type: std::vector<std::pair<int, int>>
+        default_argument: '{}'
+    guards: [ al_is_system_installed(), bitmap ]
+    body: |
+      ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
+      int indices_per_cell = 6;
+      std::vector<int> indices(cell_coordinates.size() * indices_per_cell);
+
+      int i=0;
+      for (auto &cell_coordinate : cell_coordinates)
+      {
+         int start_index_for_this_cell =
+            (cell_coordinate.first + cell_coordinate.second * num_columns) * indices_per_cell;
+         indices[i+0] = start_index_for_this_cell + 0;
+         indices[i+1] = start_index_for_this_cell + 1;
+         indices[i+2] = start_index_for_this_cell + 2;
+         indices[i+3] = start_index_for_this_cell + 3;
+         indices[i+4] = start_index_for_this_cell + 4;
+         indices[i+5] = start_index_for_this_cell + 5;
+
+         i += indices_per_cell;
+      }
+
+      al_draw_indexed_prim(
+         &vertexes[0],
+         NULL,
+         tile_atlas_bitmap,
+         &indices[0],
+         indices.size(),
+         ALLEGRO_PRIM_TRIANGLE_LIST
+      );
+      return;
+    body_dependency_symbols:
+
+      - ALLEGRO_BITMAP*
+
   - name: calculate_width
     type: float
     body: return cell_width * num_columns;
@@ -238,6 +278,8 @@ dependencies:
     headers: [ vector, tuple, allegro5/allegro.h ]
   - symbol: std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>*
     headers: [ vector, tuple, allegro5/allegro.h ]
+  - symbol: std::vector<std::pair<int, int>>
+    headers: [ vector, utility ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
   - symbol: std::tuple<float, float, float, float>

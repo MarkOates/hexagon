@@ -4,6 +4,9 @@
 #include <allegro5/allegro.h>
 #include <stdexcept>
 #include <sstream>
+#include <allegro5/allegro.h>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -219,6 +222,51 @@ if (!(bitmap))
    }
 ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
 al_draw_prim(&vertexes[0], NULL, tile_atlas_bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
+return;
+
+}
+
+void BitmapGridMesh::render_only_select_cells(std::vector<std::pair<int, int>> cell_coordinates)
+{
+if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridMesh" << "::" << "render_only_select_cells" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(bitmap))
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridMesh" << "::" << "render_only_select_cells" << ": error: " << "guard \"bitmap\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
+int indices_per_cell = 6;
+std::vector<int> indices(cell_coordinates.size() * indices_per_cell);
+
+int i=0;
+for (auto &cell_coordinate : cell_coordinates)
+{
+   int start_index_for_this_cell =
+      (cell_coordinate.first + cell_coordinate.second * num_columns) * indices_per_cell;
+   indices[i+0] = start_index_for_this_cell + 0;
+   indices[i+1] = start_index_for_this_cell + 1;
+   indices[i+2] = start_index_for_this_cell + 2;
+   indices[i+3] = start_index_for_this_cell + 3;
+   indices[i+4] = start_index_for_this_cell + 4;
+   indices[i+5] = start_index_for_this_cell + 5;
+
+   i += indices_per_cell;
+}
+
+al_draw_indexed_prim(
+   &vertexes[0],
+   NULL,
+   tile_atlas_bitmap,
+   &indices[0],
+   indices.size(),
+   ALLEGRO_PRIM_TRIANGLE_LIST
+);
 return;
 
 }

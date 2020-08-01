@@ -246,3 +246,48 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
    //sleep(1);
 }
 
+TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
+   render_only_select_cells__will_ignore_cells_that_are_out_of_bounds)
+{
+   // TODO
+}
+
+TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
+   render_only_select_cells__will_only_render_cells_from_the_provided_list)
+{
+   placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   place.size = vec3d(8*40, 5*60, 0);
+
+   Hexagon::Elements::BitmapGridMesh bitmap_grid_mesh;
+   bitmap_grid_mesh.resize(18, 16, 32, 18);
+   bitmap_grid_mesh.set_bitmap(get_or_build_multi_colored_bitmap_fixture());
+
+   // fill with pink
+   for (unsigned y=0; y<bitmap_grid_mesh.get_num_rows(); y++)
+   {
+      for (unsigned x=0; x<bitmap_grid_mesh.get_num_columns(); x++)
+      {
+         bitmap_grid_mesh.set_cell_uv(x, y, {0, 0, 10, 10});
+      }
+   }
+
+   int last_row = bitmap_grid_mesh.get_num_rows() - 1;
+   int last_column = bitmap_grid_mesh.get_num_columns() - 1;
+
+   std::vector<std::pair<int, int>> cell_coordinates = {
+      { 0,           0 },
+      { 1,           1 },
+      { last_column, 0 },
+      { 0,           last_row },
+      { last_column, last_row },
+   };
+
+   place.start_transform();
+   bitmap_grid_mesh.render_only_select_cells(cell_coordinates);
+   place.restore_transform();
+
+   al_flip_display();
+
+   sleep(1);
+}
+
