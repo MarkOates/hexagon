@@ -227,7 +227,8 @@ Hexagon::AdvancedCodeEditor::Renderer renderer(
    &text_mesh,
    &advanced_code_editor.get_cursor_ref(),
    get_place().size.x,
-   get_place().size.y
+   get_place().size.y,
+   is_in_insert_mode()
 );
 
 get_place().start_transform();
