@@ -156,6 +156,13 @@ return true;
 
 }
 
+bool AdvancedCodeEditor::cursor_move_to_start_of_line()
+{
+cursor.set_x(0);
+return true;
+
+}
+
 bool AdvancedCodeEditor::cursor_move_to(int x, int y)
 {
 cursor.move_to(x, y);

@@ -139,6 +139,12 @@ return advanced_code_editor.cursor_move_right();
 
 }
 
+bool Stage::cursor_move_to_start_of_line()
+{
+return advanced_code_editor.cursor_move_to_start_of_line();
+
+}
+
 bool Stage::delete_character()
 {
 bool result = advanced_code_editor.delete_character();
@@ -314,6 +320,7 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    { "insert_string_from_input_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
    { "set_to_edit_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
    { "set_to_insert_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
+   { "cursor_move_to_start_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_start_of_line },
 };
 return local_events;
 
@@ -340,7 +347,7 @@ result.set_mapping(ALLEGRO_KEY_DOWN, 0, { "cursor_move_down" });
 result.set_mapping(ALLEGRO_KEY_LEFT, 0, { "cursor_move_left" });
 result.set_mapping(ALLEGRO_KEY_RIGHT, 0, { "cursor_move_right" });
 
-//result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "split_lines", "cursor_move_down" });
+result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "split_lines", "cursor_move_down", "cursor_move_to_start_of_line" });
 result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
 
 result.set_mapping(ALLEGRO_KEY_OPENBRACE, KeyboardCommandMapper::CTRL, { "set_to_edit_mode" });

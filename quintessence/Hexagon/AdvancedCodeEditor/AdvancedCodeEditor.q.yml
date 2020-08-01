@@ -155,6 +155,13 @@ functions:
       return true;
 
 
+  - name: cursor_move_to_start_of_line
+    type: bool
+    body: |
+      cursor.set_x(0);
+      return true;
+
+
   - name: cursor_move_to
     type: bool
     parameters:

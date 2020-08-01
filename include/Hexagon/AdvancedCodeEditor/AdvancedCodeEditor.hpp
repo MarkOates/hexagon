@@ -37,6 +37,7 @@ namespace Hexagon
       bool cursor_move_down();
       bool cursor_move_left();
       bool cursor_move_right();
+      bool cursor_move_to_start_of_line();
       bool cursor_move_to(int x=0, int y=0);
       bool cursor_set_x(int x=0);
       bool cursor_set_y(int y=0);
