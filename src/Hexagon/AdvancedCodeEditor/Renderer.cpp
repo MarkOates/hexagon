@@ -4,6 +4,8 @@
 #include <Hexagon/AdvancedCodeEditor/WindowRenderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -35,12 +37,6 @@ if (!(text_mesh))
       error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"text_mesh\" not met";
       throw std::runtime_error(error_message.str());
    }
-if (!(cursor))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"cursor\" not met";
-      throw std::runtime_error(error_message.str());
-   }
 // draw the window
 Hexagon::AdvancedCodeEditor::WindowRenderer(
    width,
@@ -50,6 +46,33 @@ Hexagon::AdvancedCodeEditor::WindowRenderer(
 // draw the mesh
 text_mesh->render();
 
+// draw the cursor
+render_cursor();
+
+return;
+
+}
+
+void Renderer::render_cursor()
+{
+if (!(text_mesh))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_cursor" << ": error: " << "guard \"text_mesh\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(cursor))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_cursor" << ": error: " << "guard \"cursor\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(al_is_primitives_addon_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_cursor" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 float cursor_x = cursor->get_x() * text_mesh->get_cell_width();
 float cursor_y = cursor->get_y() * text_mesh->get_cell_height();
 ALLEGRO_COLOR cursor_color = ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f};
@@ -78,7 +101,6 @@ else
       2.0f
       );
 }
-
 return;
 
 }

@@ -29,11 +29,19 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_a_valid_cursor__raises_an_error)
 {
-   Hexagon::Elements::TextMesh text_mesh;
+   al_init();
+   al_init_primitives_addon();
+   ALLEGRO_BITMAP *bitmap = al_create_bitmap(16*40, 9*40);
+   al_set_target_bitmap(bitmap);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   Hexagon::Elements::TextMesh text_mesh(font);
+   text_mesh.initialize();
 
    Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh);
-   std::string expected_error_message = "Renderer::render: error: guard \"cursor\" not met";
+   std::string expected_error_message = "Renderer::render_cursor: error: guard \"cursor\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+   al_destroy_bitmap(bitmap);
+   al_uninstall_system();
 }
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, render__does_not_blow_up)
