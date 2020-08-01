@@ -73,7 +73,7 @@ functions:
       return;
 
 
-  - name: draw_to_surface
+  - name: draw_to_cell
     type: void
     parameters:
       - name: bitmap_to_draw
@@ -96,7 +96,7 @@ functions:
          std::stringstream error_message;
          error_message << "Elements::BitmapGridRenderSurface"
                        << "::"
-                       << "draw_to_surface"
+                       << "draw_to_cell"
                        << ": error: "
                        << "could not find sub_bitmap at (" << x << ", " << y << ")";
          throw std::runtime_error(error_message.str());
