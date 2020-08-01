@@ -280,18 +280,20 @@ if (!(initialized))
       error_message << "Stage" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
+placement3d &place = get_place();
+
 Hexagon::AdvancedCodeEditor::Renderer renderer(
    &text_mesh,
    &advanced_code_editor.get_cursor_ref(),
-   get_place().size.x,
-   get_place().size.y,
+   place.size.x,
+   place.size.y,
    is_in_insert_mode()
 );
 
-//get_place().start_transform();
+//place.start_transform();
 renderer.render();
 //al_draw_text(obtain_text_font(), al_color_name("blue"), 20, 20, 0, is_in_insert_mode() ? "INSERT" : "EDIT");
-//get_place().restore_transform();
+//place.restore_transform();
 
 return;
 

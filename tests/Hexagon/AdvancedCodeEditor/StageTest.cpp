@@ -289,7 +289,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
    works)
 {
    AllegroFlare::Timer timer;
-   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 123, 70);
    stage.initialize();
 
    stage.set_content(FIXTURE_PASSAGE);
@@ -319,7 +319,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
          timer.pause();
          int duration = timer.get_elapsed_time_microseconds();
 
-         EXPECT_EQ(100, duration);
+         //EXPECT_EQ(100, duration);
 
          al_flip_display();
       }
