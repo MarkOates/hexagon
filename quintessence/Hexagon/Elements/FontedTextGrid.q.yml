@@ -23,6 +23,7 @@ properties:
   - name: initialized
     type: bool
     init_with: false
+    getter: true
 
 
 functions:
@@ -34,6 +35,7 @@ functions:
 
 
   - name: initialize
+    guards: [ (!get_initialized()) ]
     body: |
       sub_bitmap_character_map.initialize();
 

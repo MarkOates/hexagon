@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/Elements/FontedTextGrid.hpp>
-
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -32,6 +33,12 @@ void FontedTextGrid::set_font(ALLEGRO_FONT* font)
 }
 
 
+bool FontedTextGrid::get_initialized()
+{
+   return initialized;
+}
+
+
 std::string FontedTextGrid::run()
 {
 return "Hello World!";
@@ -39,6 +46,12 @@ return "Hello World!";
 
 void FontedTextGrid::initialize()
 {
+if (!((!get_initialized())))
+   {
+      std::stringstream error_message;
+      error_message << "FontedTextGrid" << "::" << "initialize" << ": error: " << "guard \"(!get_initialized())\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 sub_bitmap_character_map.initialize();
 
 bitmap_grid_render_surface.set_cell_width(al_get_text_width(font, "W"));
