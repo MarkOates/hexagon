@@ -98,8 +98,7 @@ if (!(bitmap))
 ALLEGRO_STATE previous_render_state;
 al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
 
-// TODO
-//al_set_target_bitmap(surface);
+//al_set_target_bitmap();
 
 al_restore_state(&previous_render_state);
 return;
@@ -108,6 +107,8 @@ return;
 
 void BitmapGridRenderSurface::destroy()
 {
+for (auto &cell_sub_bitmap : cell_sub_bitmaps) { if (cell_sub_bitmap) al_destroy_bitmap(cell_sub_bitmap); }
+cell_sub_bitmaps.clear();
 if (surface) al_destroy_bitmap(surface);
 return;
 
