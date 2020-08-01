@@ -214,8 +214,13 @@ functions:
       int i=0;
       for (auto &cell_coordinate : cell_coordinates)
       {
-         int start_index_for_this_cell =
-            (cell_coordinate.first + cell_coordinate.second * num_columns) * indices_per_cell;
+         int &x = cell_coordinate.first;
+         int &y = cell_coordinate.second;
+
+         if (y < 0 || y >= grid.size()) continue;
+         if (x < 0 || x >= grid[y].size()) continue;
+
+         int start_index_for_this_cell = (x + y * num_columns) * indices_per_cell;
          indices[i+0] = start_index_for_this_cell + 0;
          indices[i+1] = start_index_for_this_cell + 1;
          indices[i+2] = start_index_for_this_cell + 2;
