@@ -98,6 +98,7 @@ functions:
 
   - name: get_sub_bitmap
     type: ALLEGRO_BITMAP*
+    private: true
     parameters:
       - name: x
         type: int
