@@ -3,6 +3,10 @@
 #include <Hexagon/Elements/FontedTextGrid.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -65,6 +69,12 @@ return;
 
 void FontedTextGrid::set_cell_to_character_and_color(char character, int x, int y, ALLEGRO_COLOR tint)
 {
+if (!(get_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "FontedTextGrid" << "::" << "set_cell_to_character_and_color" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap(character);
 bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, tint, x, y);
 return;
@@ -73,6 +83,12 @@ return;
 
 void FontedTextGrid::draw()
 {
+if (!(get_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "FontedTextGrid" << "::" << "draw" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
 if (surface) al_draw_bitmap(surface, 0, 0, 0);
 return;

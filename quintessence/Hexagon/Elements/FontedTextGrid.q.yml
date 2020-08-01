@@ -61,6 +61,7 @@ functions:
       - name: tint
         type: ALLEGRO_COLOR
         default_argument: 'ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}'
+    guards: [ get_initialized() ]
     body: |
       ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap(character);
       bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, tint, x, y);
@@ -68,6 +69,7 @@ functions:
 
 
   - name: draw
+    guards: [ get_initialized() ]
     body: |
       ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
       if (surface) al_draw_bitmap(surface, 0, 0, 0);
