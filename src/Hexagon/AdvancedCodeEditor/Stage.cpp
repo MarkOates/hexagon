@@ -233,6 +233,7 @@ result.set_mapping(ALLEGRO_KEY_UP, 0, { "cursor_move_up" });
 result.set_mapping(ALLEGRO_KEY_DOWN, 0, { "cursor_move_down" });
 result.set_mapping(ALLEGRO_KEY_LEFT, 0, { "cursor_move_left" });
 result.set_mapping(ALLEGRO_KEY_RIGHT, 0, { "cursor_move_right" });
+result.set_mapping(ALLEGRO_KEY_0, 0, { "cursor_move_to_start_of_line" });
 
 result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "split_lines", "cursor_move_down", "cursor_move_to_start_of_line" });
 result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
@@ -287,10 +288,10 @@ Hexagon::AdvancedCodeEditor::Renderer renderer(
    is_in_insert_mode()
 );
 
-get_place().start_transform();
+//get_place().start_transform();
 renderer.render();
-al_draw_text(obtain_text_font(), al_color_name("blue"), 20, 20, 0, is_in_insert_mode() ? "INSERT" : "EDIT");
-get_place().restore_transform();
+//al_draw_text(obtain_text_font(), al_color_name("blue"), 20, 20, 0, is_in_insert_mode() ? "INSERT" : "EDIT");
+//get_place().restore_transform();
 
 return;
 

@@ -10,6 +10,7 @@
 
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <AllegroFlare/Timer.hpp>
 
 class Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture : public ::testing::Test
 {
@@ -287,6 +288,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
    works)
 {
+   AllegroFlare::Timer timer;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();
 
@@ -306,12 +308,19 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
       {
          abort_test = true;
       }
-      else
+      else if (this_event.type == ALLEGRO_EVENT_KEY_CHAR)
       {
          stage.process_event(this_event);
 
          al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
+         timer.reset();
+         timer.start();
          stage.render();
+         timer.pause();
+         int duration = timer.get_elapsed_time_microseconds();
+
+         EXPECT_EQ(100, duration);
+
          al_flip_display();
       }
    }
