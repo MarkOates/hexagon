@@ -61,13 +61,21 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
    placement3d place = build_centered_placement(800, 600);
    Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &fonted_text_grid, &cursor, place.size.x, place.size.y);
 
+   fonted_text_grid.lock_for_update();
+   fonted_text_grid.set_cell_to_character_and_color('H', 0, 0);
+   fonted_text_grid.set_cell_to_character_and_color('E', 1, 0);
+   fonted_text_grid.set_cell_to_character_and_color('L', 2, 0);
+   fonted_text_grid.set_cell_to_character_and_color('L', 3, 0);
+   fonted_text_grid.set_cell_to_character_and_color('O', 4, 0);
+   fonted_text_grid.unlock_for_update();
+
    place.start_transform();
    renderer.render();
    place.restore_transform();
 
    al_flip_display();
 
-   //sleep(1);
+   sleep(1);
 
    SUCCEED();
 }

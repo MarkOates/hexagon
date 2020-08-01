@@ -60,7 +60,7 @@ timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
 
 // draw the mesh
 timer.reset(); timer.start();
-text_mesh->render();
+//text_mesh->render();
 timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
 timer.reset(); timer.start();
 fonted_text_grid->draw();

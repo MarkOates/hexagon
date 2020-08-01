@@ -9,6 +9,10 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -75,7 +79,14 @@ return;
 
 void BitmapGridRenderSurface::lock_for_render()
 {
+if (!(get_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "lock_for_render" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
+al_set_target_bitmap(surface);
 al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ZERO);
 return;
 
@@ -83,6 +94,12 @@ return;
 
 void BitmapGridRenderSurface::unlock_for_render()
 {
+if (!(get_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "unlock_for_render" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 al_restore_state(&previous_render_state);
 return;
 

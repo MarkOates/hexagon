@@ -61,13 +61,16 @@ functions:
 
 
   - name: lock_for_render
+    guards: [ get_initialized() ]
     body: |
       al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
+      al_set_target_bitmap(surface);
       al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ZERO);
       return;
 
 
   - name: unlock_for_render
+    guards: [ get_initialized() ]
     body: |
       al_restore_state(&previous_render_state);
       return;

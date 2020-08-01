@@ -298,10 +298,10 @@ Hexagon::AdvancedCodeEditor::Renderer renderer(
    is_in_insert_mode()
 );
 
-//place.start_transform();
+place.start_transform();
 renderer.render();
 //al_draw_text(obtain_text_font(), al_color_name("blue"), 20, 20, 0, is_in_insert_mode() ? "INSERT" : "EDIT");
-//place.restore_transform();
+place.restore_transform();
 
 return;
 
@@ -372,7 +372,7 @@ void Stage::refresh_render_surfaces()
 AllegroFlare::Timer timer;
 
 timer.reset(); timer.start();
-refresh_text_mesh();
+//refresh_text_mesh();
 timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.reset(); timer.start();
 refresh_fonted_text_grid();
 timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.reset(); timer.start();
@@ -433,6 +433,7 @@ ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
 ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
 std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
+fonted_text_grid.lock_for_update();
 for (unsigned y=0; y<num_rows; y++)
 {
    for (unsigned x=0; x<num_columns; x++)
@@ -452,6 +453,7 @@ for (unsigned y=0; y<num_rows; y++)
       fonted_text_grid.set_cell_to_character_and_color(char_to_set, x, y, color_to_set);
    }
 }
+fonted_text_grid.unlock_for_update();
 return;
 
 }
