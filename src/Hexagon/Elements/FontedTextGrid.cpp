@@ -52,12 +52,8 @@ sub_bitmap_character_map.initialize();
 
 // Setup self
 
-Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface(
-   num_columns,
-   num_rows,
-   sub_bitmap_character_map.get_grid_width(),
-   sub_bitmap_character_map.get_grid_height()
-);
+bitmap_grid_render_surface.set_cell_width(al_get_text_width(font, "W"));
+bitmap_grid_render_surface.set_cell_height(al_get_font_line_height(font));
 bitmap_grid_render_surface.initialize();
 
 initialized = true;
