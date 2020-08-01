@@ -50,6 +50,17 @@ functions:
       return;
 
 
+  - name: draw_to_surface
+    type: void
+    parameters:
+      - name: bitmap
+        type: ALLEGRO_BITMAP*
+        default_argument: nullptr
+    guards: [ bitmap ]
+    body: |
+      return;
+
+
   - name: destroy
     type: void
     body: |

@@ -3,6 +3,8 @@
 #include <Hexagon/Elements/BitmapGridRenderSurface.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -60,6 +62,18 @@ al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
 al_restore_state(&previous_render_state);
 
 initialized = true;
+return;
+
+}
+
+void BitmapGridRenderSurface::draw_to_surface(ALLEGRO_BITMAP* bitmap)
+{
+if (!(bitmap))
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "draw_to_surface" << ": error: " << "guard \"bitmap\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 return;
 
 }
