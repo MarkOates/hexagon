@@ -39,12 +39,7 @@ return "Hello World!";
 
 void FontedTextGrid::initialize()
 {
-// Setup dependencies
-
 sub_bitmap_character_map.initialize();
-
-
-// Setup self
 
 bitmap_grid_render_surface.set_cell_width(al_get_text_width(font, "W"));
 bitmap_grid_render_surface.set_cell_height(al_get_font_line_height(font));
@@ -53,6 +48,10 @@ bitmap_grid_render_surface.initialize();
 initialized = true;
 return;
 
+}
+
+void FontedTextGrid::set_cell_to_character_and_color()
+{
 
 // Use
 

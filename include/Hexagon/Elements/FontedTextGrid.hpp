@@ -29,6 +29,7 @@ namespace Hexagon
 
       std::string run();
       void initialize();
+      void set_cell_to_character_and_color();
       };
    }
 }
