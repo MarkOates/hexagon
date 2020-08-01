@@ -24,7 +24,7 @@ namespace Testing
    virtual void SetUp() override;
    virtual void TearDown() override;
    ALLEGRO_FONT* get_any_font();
-   placement3d centered_placement(float width=0.0f, float height=0.0f);
+   placement3d build_centered_placement(float width=0.0f, float height=0.0f);
    };
 }
 

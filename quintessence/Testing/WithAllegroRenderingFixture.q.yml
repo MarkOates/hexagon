@@ -60,7 +60,7 @@ functions:
       return font_bin.auto_get("consolas.ttf 32");
 
 
-  - name: centered_placement
+  - name: build_centered_placement
     type: placement3d
     parameters:
       - name: width

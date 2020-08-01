@@ -71,7 +71,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
 
    text_mesh.initialize();
 
-   placement3d place = centered_placement(800, 600);
+   placement3d place = build_centered_placement(800, 600);
    Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &cursor, place.size.x, place.size.y, true);
 
    place.start_transform();
