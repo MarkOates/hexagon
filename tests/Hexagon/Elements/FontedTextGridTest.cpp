@@ -68,9 +68,12 @@ TEST(Hexagon_Elements_FontedTextGridTest, set_cell_to_character_and_color__execu
 
    AllegroFlare::Timer timer;
    int passes = 123 * 16;
-   int total_tries = 8;
+   int total_tries = 128;
 
    int attempts = total_tries * passes;
+   long total_sum_microseconds = 0;
+   long worst_try_microseconds = 0;
+   long best_try_microseconds = 99999;
 
    for (unsigned tries=0; tries<total_tries; tries++)
    {
@@ -87,15 +90,22 @@ TEST(Hexagon_Elements_FontedTextGridTest, set_cell_to_character_and_color__execu
       }
       fonted_text_grid.unlock_for_update();
       timer.pause();
-      EXPECT_EQ(100, timer.get_elapsed_time_microseconds());
+
+      long elapsed_time_microseconds = timer.get_elapsed_time_microseconds();
+      total_sum_microseconds += elapsed_time_microseconds;
+      if (elapsed_time_microseconds < best_try_microseconds) best_try_microseconds = elapsed_time_microseconds;
+      if (elapsed_time_microseconds > worst_try_microseconds) worst_try_microseconds = elapsed_time_microseconds;
+
+      fonted_text_grid.draw();
+      al_flip_display();
    }
 
-   fonted_text_grid.draw();
-
-   al_flip_display();
-   sleep(2);
-
    fonted_text_grid.destroy();
+
+   long average_performance_cost_microseconds = total_sum_microseconds / total_tries;
+   EXPECT_EQ(100, average_performance_cost_microseconds);
+   EXPECT_EQ(100, worst_try_microseconds);
+   EXPECT_EQ(100, best_try_microseconds);
 
    al_destroy_font(font);
    al_uninstall_system();
