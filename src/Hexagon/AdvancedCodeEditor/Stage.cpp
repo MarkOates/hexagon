@@ -192,6 +192,56 @@ return false;
 
 }
 
+std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> Stage::build_local_events_dictionary()
+{
+std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
+   { "cursor_move_up", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_up },
+   { "cursor_move_down", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_down },
+   { "cursor_move_left", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_left },
+   { "cursor_move_right", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_right },
+   { "delete_character", &Hexagon::AdvancedCodeEditor::Stage::delete_character },
+   { "split_lines", &Hexagon::AdvancedCodeEditor::Stage::split_lines },
+   { "join_lines", &Hexagon::AdvancedCodeEditor::Stage::join_lines },
+   { "delete_line", &Hexagon::AdvancedCodeEditor::Stage::delete_line },
+   { "insert_string_from_input_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
+   { "set_to_edit_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
+   { "set_to_insert_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
+   { "cursor_move_to_start_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_start_of_line },
+};
+return local_events;
+
+}
+
+KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
+{
+KeyboardCommandMapper result;
+result.set_mapping(ALLEGRO_KEY_K, 0, { "cursor_move_up" });
+result.set_mapping(ALLEGRO_KEY_J, 0, { "cursor_move_down" });
+result.set_mapping(ALLEGRO_KEY_H, 0, { "cursor_move_left" });
+result.set_mapping(ALLEGRO_KEY_L, 0, { "cursor_move_right" });
+result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });
+result.set_mapping(ALLEGRO_KEY_BACKSPACE, ALLEGRO_KEYMOD_SHIFT, { "delete_line" });
+result.set_mapping(ALLEGRO_KEY_I, 0, { "set_to_insert_mode" });
+return result;
+
+}
+
+KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_insert_mode()
+{
+KeyboardCommandMapper result;
+result.set_mapping(ALLEGRO_KEY_UP, 0, { "cursor_move_up" });
+result.set_mapping(ALLEGRO_KEY_DOWN, 0, { "cursor_move_down" });
+result.set_mapping(ALLEGRO_KEY_LEFT, 0, { "cursor_move_left" });
+result.set_mapping(ALLEGRO_KEY_RIGHT, 0, { "cursor_move_right" });
+
+result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "split_lines", "cursor_move_down", "cursor_move_to_start_of_line" });
+result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
+
+result.set_mapping(ALLEGRO_KEY_OPENBRACE, KeyboardCommandMapper::CTRL, { "set_to_edit_mode" });
+return result;
+
+}
+
 bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
 {
 bool result = advanced_code_editor.insert_lines(lines_to_insert);
@@ -303,56 +353,6 @@ return mode == 0;
 bool Stage::is_in_insert_mode()
 {
 return mode == 1;
-
-}
-
-std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> Stage::build_local_events_dictionary()
-{
-std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
-   { "cursor_move_up", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_up },
-   { "cursor_move_down", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_down },
-   { "cursor_move_left", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_left },
-   { "cursor_move_right", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_right },
-   { "delete_character", &Hexagon::AdvancedCodeEditor::Stage::delete_character },
-   { "split_lines", &Hexagon::AdvancedCodeEditor::Stage::split_lines },
-   { "join_lines", &Hexagon::AdvancedCodeEditor::Stage::join_lines },
-   { "delete_line", &Hexagon::AdvancedCodeEditor::Stage::delete_line },
-   { "insert_string_from_input_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
-   { "set_to_edit_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
-   { "set_to_insert_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
-   { "cursor_move_to_start_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_start_of_line },
-};
-return local_events;
-
-}
-
-KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
-{
-KeyboardCommandMapper result;
-result.set_mapping(ALLEGRO_KEY_K, 0, { "cursor_move_up" });
-result.set_mapping(ALLEGRO_KEY_J, 0, { "cursor_move_down" });
-result.set_mapping(ALLEGRO_KEY_H, 0, { "cursor_move_left" });
-result.set_mapping(ALLEGRO_KEY_L, 0, { "cursor_move_right" });
-result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });
-result.set_mapping(ALLEGRO_KEY_BACKSPACE, ALLEGRO_KEYMOD_SHIFT, { "delete_line" });
-result.set_mapping(ALLEGRO_KEY_I, 0, { "set_to_insert_mode" });
-return result;
-
-}
-
-KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_insert_mode()
-{
-KeyboardCommandMapper result;
-result.set_mapping(ALLEGRO_KEY_UP, 0, { "cursor_move_up" });
-result.set_mapping(ALLEGRO_KEY_DOWN, 0, { "cursor_move_down" });
-result.set_mapping(ALLEGRO_KEY_LEFT, 0, { "cursor_move_left" });
-result.set_mapping(ALLEGRO_KEY_RIGHT, 0, { "cursor_move_right" });
-
-result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "split_lines", "cursor_move_down", "cursor_move_to_start_of_line" });
-result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
-
-result.set_mapping(ALLEGRO_KEY_OPENBRACE, KeyboardCommandMapper::CTRL, { "set_to_edit_mode" });
-return result;
 
 }
 
