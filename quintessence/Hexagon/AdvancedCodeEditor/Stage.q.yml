@@ -121,7 +121,7 @@ functions:
     type: bool
     body: |
       bool result = advanced_code_editor.delete_character();
-      if (result == true) refresh_text_mesh();
+      if (result == true) refresh_render_surfaces();
       return result;
 
 
@@ -129,7 +129,7 @@ functions:
     type: bool
     body: |
       bool result = advanced_code_editor.join_lines();
-      if (result == true) refresh_text_mesh();
+      if (result == true) refresh_render_surfaces();
       return result;
 
 
@@ -137,7 +137,7 @@ functions:
     type: bool
     body: |
       bool result = advanced_code_editor.split_lines();
-      if (result == true) refresh_text_mesh();
+      if (result == true) refresh_render_surfaces();
       return result;
 
 
@@ -145,7 +145,7 @@ functions:
     type: bool
     body: |
       bool result = advanced_code_editor.delete_line();
-      if (result == true) refresh_text_mesh();
+      if (result == true) refresh_render_surfaces();
       return result;
 
 
@@ -153,7 +153,7 @@ functions:
     type: bool
     body: |
       bool result = advanced_code_editor.insert_string(input_buffer);
-      if (result == true) refresh_text_mesh();
+      if (result == true) refresh_render_surfaces();
       return result;
 
 
@@ -226,7 +226,7 @@ functions:
         default_argument: '{}'
     body: |
       bool result = advanced_code_editor.insert_lines(lines_to_insert);
-      if (result == true) refresh_text_mesh();
+      if (result == true) refresh_render_surfaces();
       return result;
 
 
@@ -252,7 +252,7 @@ functions:
     guards: [ initialized ]
     body: |
       bool result = advanced_code_editor.set_content(content);
-      if (result == true) refresh_text_mesh();
+      if (result == true) refresh_render_surfaces();
       return;
 
 
