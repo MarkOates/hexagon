@@ -54,3 +54,22 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, initialize__will_create_a_sur
    SUCCEED();
 }
 
+TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, draw_to_cell__will_render_the_bitmap_clipped_to_the_cell)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(16*40, 8*40);
+   Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface(7, 9, 13, 29);
+   bitmap_grid_render_surface.initialize();
+
+   ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
+
+   al_draw_bitmap(surface, 0, 0, 0);
+   al_flip_display();
+   sleep(3);
+
+   al_destroy_display(display);
+   al_uninstall_system();
+
+   SUCCEED();
+}
+
