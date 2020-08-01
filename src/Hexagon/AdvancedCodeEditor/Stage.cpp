@@ -372,9 +372,9 @@ void Stage::refresh_render_surfaces()
 AllegroFlare::Timer timer;
 
 timer.reset(); timer.start();
-//refresh_text_mesh();
+refresh_text_mesh();
 timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.reset(); timer.start();
-refresh_fonted_text_grid();
+//refresh_fonted_text_grid();
 timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.reset(); timer.start();
 std::cout << " -- ";
 

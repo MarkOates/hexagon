@@ -310,16 +310,22 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
       }
       else if (this_event.type == ALLEGRO_EVENT_KEY_CHAR)
       {
+         timer.reset();
+         timer.start();
          stage.process_event(this_event);
+         timer.pause();
+         int update_duration = timer.get_elapsed_time_microseconds();
+
+         //EXPECT_EQ(100, update_duration);
 
          al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
          timer.reset();
          timer.start();
          stage.render();
          timer.pause();
-         int duration = timer.get_elapsed_time_microseconds();
+         int render_duration = timer.get_elapsed_time_microseconds();
 
-         //EXPECT_EQ(100, duration);
+         //EXPECT_EQ(100, render_duration);
 
          al_flip_display();
       }
