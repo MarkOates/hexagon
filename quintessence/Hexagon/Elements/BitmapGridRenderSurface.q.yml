@@ -56,8 +56,21 @@ functions:
       - name: bitmap
         type: ALLEGRO_BITMAP*
         default_argument: nullptr
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
     guards: [ bitmap ]
     body: |
+      ALLEGRO_STATE previous_render_state;
+      al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+
+      // TODO
+      //al_set_target_bitmap(surface);
+
+      al_restore_state(&previous_render_state);
       return;
 
 

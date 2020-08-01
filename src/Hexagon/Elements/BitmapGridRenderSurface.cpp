@@ -66,7 +66,7 @@ return;
 
 }
 
-void BitmapGridRenderSurface::draw_to_surface(ALLEGRO_BITMAP* bitmap)
+void BitmapGridRenderSurface::draw_to_surface(ALLEGRO_BITMAP* bitmap, int x, int y)
 {
 if (!(bitmap))
    {
@@ -74,6 +74,13 @@ if (!(bitmap))
       error_message << "BitmapGridRenderSurface" << "::" << "draw_to_surface" << ": error: " << "guard \"bitmap\" not met";
       throw std::runtime_error(error_message.str());
    }
+ALLEGRO_STATE previous_render_state;
+al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+
+// TODO
+//al_set_target_bitmap(surface);
+
+al_restore_state(&previous_render_state);
 return;
 
 }
