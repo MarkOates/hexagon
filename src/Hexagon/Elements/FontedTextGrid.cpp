@@ -39,6 +39,18 @@ void FontedTextGrid::set_font(ALLEGRO_FONT* font)
 }
 
 
+int FontedTextGrid::get_num_columns()
+{
+   return num_columns;
+}
+
+
+int FontedTextGrid::get_num_rows()
+{
+   return num_rows;
+}
+
+
 bool FontedTextGrid::get_initialized()
 {
    return initialized;

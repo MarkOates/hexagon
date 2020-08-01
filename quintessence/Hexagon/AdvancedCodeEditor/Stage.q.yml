@@ -360,9 +360,18 @@ functions:
   - name: refresh_render_surfaces
     type: void
     body: |
+      AllegroFlare::Timer timer;
+
+      timer.reset(); timer.start();
       refresh_text_mesh();
+      timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.reset(); timer.start();
       refresh_fonted_text_grid();
+      timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.reset(); timer.start();
+      std::cout << " -- ";
+
       return;
+    body_dependency_symbols:
+      - AllegroFlare::Timer
 
 
   - name: refresh_text_mesh
@@ -440,6 +449,8 @@ dependencies:
     headers: [ allegro_flare/placement3d.h ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: AllegroFlare::Timer
+    headers: [ AllegroFlare/Timer.hpp ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_EVENT

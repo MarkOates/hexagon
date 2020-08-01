@@ -1,6 +1,8 @@
 
 
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
+#include <iostream>
+#include <AllegroFlare/Timer.hpp>
 #include <Hexagon/AdvancedCodeEditor/WindowRenderer.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -44,15 +46,26 @@ if (!(fonted_text_grid))
       error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"fonted_text_grid\" not met";
       throw std::runtime_error(error_message.str());
    }
+AllegroFlare::Timer timer;
+
+std::cout << " --->";
+
+timer.reset(); timer.start();
 // draw the window
 Hexagon::AdvancedCodeEditor::WindowRenderer(
    width,
    height
 ).render();
+timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
 
 // draw the mesh
+timer.reset(); timer.start();
 text_mesh->render();
+timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
+timer.reset(); timer.start();
 fonted_text_grid->draw();
+timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
+std::cout << "<--- ";
 
 // draw the cursor
 render_cursor();

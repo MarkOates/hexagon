@@ -34,21 +34,34 @@ functions:
     guards: [ text_mesh, fonted_text_grid ]
     type: void
     body: |
+      AllegroFlare::Timer timer;
+
+      std::cout << " --->";
+
+      timer.reset(); timer.start();
       // draw the window
       Hexagon::AdvancedCodeEditor::WindowRenderer(
          width,
          height
       ).render();
+      timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
 
       // draw the mesh
+      timer.reset(); timer.start();
       text_mesh->render();
+      timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
+      timer.reset(); timer.start();
       fonted_text_grid->draw();
+      timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
+      std::cout << "<--- ";
 
       // draw the cursor
       render_cursor();
 
       return;
     body_dependency_symbols:
+      - std::cout
+      - AllegroFlare::Timer
       - Hexagon::AdvancedCodeEditor::WindowRenderer
 
 
@@ -98,3 +111,6 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/WindowRenderer.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor*
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
+  - symbol: AllegroFlare::Timer
+    headers: [ AllegroFlare/Timer.hpp ]
+

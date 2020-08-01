@@ -10,10 +10,12 @@ properties:
     type: int
     init_with: 123
     constructor_arg: true
+    getter: true
   - name: num_rows
     type: int
     init_with: 74
     constructor_arg: true
+    getter: true
   - name: sub_bitmap_character_map
     type: Hexagon::Elements::SubBitmapCharacterMap
     init_with: '{}'

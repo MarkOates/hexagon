@@ -27,6 +27,8 @@ namespace Hexagon
 
          void set_font(ALLEGRO_FONT* font);
 
+         int get_num_columns();
+         int get_num_rows();
          bool get_initialized();
       void initialize();
       void destroy();
