@@ -50,11 +50,12 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
 {
    ALLEGRO_FONT *font = get_any_font();
    Hexagon::Elements::TextMesh text_mesh(font);
+   Hexagon::Elements::FontedTextGrid fonted_text_grid(font);
    text_mesh.initialize();
    Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
 
    placement3d place = build_centered_placement(800, 600);
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &cursor, place.size.x, place.size.y);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &fonted_text_grid, &cursor, place.size.x, place.size.y);
 
    place.start_transform();
    renderer.render();
@@ -72,12 +73,20 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
 {
    ALLEGRO_FONT *font = get_any_font();
    Hexagon::Elements::TextMesh text_mesh(font, 200, 100);
+   Hexagon::Elements::FontedTextGrid fonted_text_grid(font);
    text_mesh.initialize();
 
    Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
 
    placement3d place = build_centered_placement(800, 600);
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &cursor, place.size.x, place.size.y, true);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(
+      &text_mesh,
+      &fonted_text_grid,
+      &cursor,
+      place.size.x,
+      place.size.y,
+      true
+   );
 
    place.start_transform();
    renderer.render();

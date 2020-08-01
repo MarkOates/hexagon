@@ -5,6 +5,10 @@ properties:
     type: Hexagon::Elements::TextMesh*
     init_with: nullptr
     constructor_arg: true
+  - name: fonted_text_grid
+    type: Hexagon::Elements::FontedTextGrid*
+    init_with: '{}'
+    constructor_arg: true
   - name: cursor
     type: Hexagon::AdvancedCodeEditor::Cursor*
     init_with: nullptr
@@ -87,6 +91,8 @@ dependencies:
 
   - symbol: Hexagon::Elements::TextMesh*
     headers: [ Hexagon/Elements/TextMesh.hpp ]
+  - symbol: Hexagon::Elements::FontedTextGrid*
+    headers: [ Hexagon/Elements/FontedTextGrid.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::WindowRenderer
     headers: [ Hexagon/AdvancedCodeEditor/WindowRenderer.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor*

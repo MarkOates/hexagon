@@ -14,8 +14,9 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, Hexagon::Elements::FontedTextGrid* fonted_text_grid, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar)
    : text_mesh(text_mesh)
+   , fonted_text_grid(fonted_text_grid)
    , cursor(cursor)
    , width(width)
    , height(height)
