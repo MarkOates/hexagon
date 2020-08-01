@@ -28,7 +28,7 @@ namespace Hexagon
          ALLEGRO_BITMAP* get_surface();
          bool get_initialized();
       void initialize();
-      void draw_to_surface(ALLEGRO_BITMAP* bitmap_to_draw=nullptr, int x=0, int y=0);
+      void draw_to_surface(ALLEGRO_BITMAP* bitmap_to_draw=nullptr, ALLEGRO_COLOR tint=ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}, int x=0, int y=0);
       ALLEGRO_BITMAP* find_sub_bitmap(int x=0, int y=0);
       void destroy();
       };

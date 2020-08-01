@@ -87,7 +87,7 @@ return;
 
 }
 
-void BitmapGridRenderSurface::draw_to_surface(ALLEGRO_BITMAP* bitmap_to_draw, int x, int y)
+void BitmapGridRenderSurface::draw_to_surface(ALLEGRO_BITMAP* bitmap_to_draw, ALLEGRO_COLOR tint, int x, int y)
 {
 if (!(get_initialized()))
    {
@@ -117,7 +117,7 @@ ALLEGRO_STATE previous_render_state;
 al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
 
 al_set_target_bitmap(sub_bitmap);
-al_draw_bitmap(bitmap_to_draw, 0, 0, 0);
+al_draw_tinted_bitmap(bitmap_to_draw, tint, 0, 0, 0);
 
 al_restore_state(&previous_render_state);
 return;

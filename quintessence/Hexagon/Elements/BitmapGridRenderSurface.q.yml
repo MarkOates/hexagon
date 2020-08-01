@@ -79,6 +79,9 @@ functions:
       - name: bitmap_to_draw
         type: ALLEGRO_BITMAP*
         default_argument: nullptr
+      - name: tint
+        type: ALLEGRO_COLOR
+        default_argument: ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}
       - name: x
         type: int
         default_argument: 0
@@ -103,7 +106,7 @@ functions:
       al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
 
       al_set_target_bitmap(sub_bitmap);
-      al_draw_bitmap(bitmap_to_draw, 0, 0, 0);
+      al_draw_tinted_bitmap(bitmap_to_draw, tint, 0, 0, 0);
 
       al_restore_state(&previous_render_state);
       return;
@@ -140,6 +143,8 @@ dependencies:
 
 
   - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
   - symbol: std::vector<ALLEGRO_BITMAP*>
     headers: [ vector, allegro5/allegro.h ]
