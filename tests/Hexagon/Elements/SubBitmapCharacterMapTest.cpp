@@ -15,20 +15,20 @@ TEST(Hexagon_Elements_SubBitmapCharacterMapTest, can_be_created_without_blowing_
    Hexagon::Elements::SubBitmapCharacterMap font_character_map_grid;
 }
 
-TEST(Hexagon_Elements_SubBitmapCharacterMapTest, create__without_allegro_initialized__raises_an_error)
+TEST(Hexagon_Elements_SubBitmapCharacterMapTest, initialize__without_allegro_initialized__raises_an_error)
 {
    Hexagon::Elements::SubBitmapCharacterMap text_mesh;
    std::string expected_error_message =
-      "SubBitmapCharacterMap::create: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.create(), std::runtime_error, expected_error_message);
+      "SubBitmapCharacterMap::initialize: error: guard \"al_is_system_installed()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(text_mesh.initialize(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_Elements_SubBitmapCharacterMapTest, create__without_a_valid_font__raises_an_error)
+TEST(Hexagon_Elements_SubBitmapCharacterMapTest, initialize__without_a_valid_font__raises_an_error)
 {
    al_init();
    Hexagon::Elements::SubBitmapCharacterMap text_mesh;
-   std::string expected_error_message = "SubBitmapCharacterMap::create: error: guard \"font\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.create(), std::runtime_error, expected_error_message);
+   std::string expected_error_message = "SubBitmapCharacterMap::initialize: error: guard \"font\" not met";
+   ASSERT_THROW_WITH_MESSAGE(text_mesh.initialize(), std::runtime_error, expected_error_message);
    al_uninstall_system();
 }
 
@@ -40,8 +40,9 @@ TEST(Hexagon_Elements_SubBitmapCharacterMapTest, create__with_valid_arguments__r
    ALLEGRO_FONT *font = al_create_builtin_font();
 
    Hexagon::Elements::SubBitmapCharacterMap font_character_map_grid(font);
+   font_character_map_grid.initialize();
 
-   ALLEGRO_BITMAP *result = font_character_map_grid.create();
+   ALLEGRO_BITMAP *result = font_character_map_grid.get_surface();
    ASSERT_NE(nullptr, result);
 
    al_init_image_addon();

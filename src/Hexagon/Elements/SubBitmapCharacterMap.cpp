@@ -15,6 +15,7 @@ SubBitmapCharacterMap::SubBitmapCharacterMap(ALLEGRO_FONT* font)
    : font(font)
    , grid_width(0)
    , grid_height(0)
+   , surface(nullptr)
    , cell_sub_bitmaps({})
 {
 }
@@ -43,28 +44,35 @@ int SubBitmapCharacterMap::get_grid_height()
 }
 
 
+ALLEGRO_BITMAP* SubBitmapCharacterMap::get_surface()
+{
+   return surface;
+}
+
+
 std::map<char, ALLEGRO_BITMAP*> SubBitmapCharacterMap::get_cell_sub_bitmaps()
 {
    return cell_sub_bitmaps;
 }
 
 
-ALLEGRO_BITMAP* SubBitmapCharacterMap::create()
+void SubBitmapCharacterMap::initialize()
 {
 if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "SubBitmapCharacterMap" << "::" << "create" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      error_message << "SubBitmapCharacterMap" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
       throw std::runtime_error(error_message.str());
    }
 if (!(font))
    {
       std::stringstream error_message;
-      error_message << "SubBitmapCharacterMap" << "::" << "create" << ": error: " << "guard \"font\" not met";
+      error_message << "SubBitmapCharacterMap" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
       throw std::runtime_error(error_message.str());
    }
 for (auto &cell_sub_bitmap : cell_sub_bitmaps) al_destroy_bitmap(cell_sub_bitmap.second);
 cell_sub_bitmaps.clear();
+if (surface) al_destroy_bitmap(surface);
 
 grid_width = al_get_text_width(font, "W"); // 'W' character as an estimate for reasonable large width
 grid_height = al_get_font_line_height(font);
@@ -73,8 +81,8 @@ int num_columns = 16;
 ALLEGRO_STATE previous_state;
 al_store_state(&previous_state, ALLEGRO_STATE_TARGET_BITMAP);
 
-ALLEGRO_BITMAP *result = al_create_bitmap(grid_width * num_columns, grid_height * num_rows);
-al_set_target_bitmap(result);
+surface = al_create_bitmap(grid_width * num_columns, grid_height * num_rows);
+al_set_target_bitmap(surface);
 al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
 
 ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
@@ -92,12 +100,12 @@ for (int y=0; y<=num_rows; y++)
       int ww = grid_width;
       int hh = grid_height;
 
-      ALLEGRO_BITMAP *cell_sub_bitmap = al_create_sub_bitmap(result, xx, yy, ww, hh);
+      ALLEGRO_BITMAP *cell_sub_bitmap = al_create_sub_bitmap(surface, xx, yy, ww, hh);
       cell_sub_bitmaps[(char)(x + y*num_columns)] = cell_sub_bitmap;
    }
 }
 al_restore_state(&previous_state);
-return result;
+return;
 
 }
 } // namespace Elements

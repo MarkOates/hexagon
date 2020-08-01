@@ -16,6 +16,7 @@ namespace Hexagon
          ALLEGRO_FONT* font;
          int grid_width;
          int grid_height;
+         ALLEGRO_BITMAP* surface;
          std::map<char, ALLEGRO_BITMAP*> cell_sub_bitmaps;
 
       public:
@@ -26,8 +27,9 @@ namespace Hexagon
 
          int get_grid_width();
          int get_grid_height();
+         ALLEGRO_BITMAP* get_surface();
          std::map<char, ALLEGRO_BITMAP*> get_cell_sub_bitmaps();
-      ALLEGRO_BITMAP* create();
+      void initialize();
       };
    }
 }
