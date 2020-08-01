@@ -50,14 +50,19 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
 {
    ALLEGRO_FONT *font = get_any_font();
    Hexagon::Elements::TextMesh text_mesh(font);
-   Hexagon::AdvancedCodeEditor::Cursor cursor;
-
    text_mesh.initialize();
+   Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
 
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &cursor);
+   placement3d place = build_centered_placement(800, 600);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &cursor, place.size.x, place.size.y);
+
+   place.start_transform();
    renderer.render();
+   place.restore_transform();
 
    al_flip_display();
+
+   //sleep(1);
 
    SUCCEED();
 }
@@ -79,7 +84,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    place.restore_transform();
 
    al_flip_display();
-   sleep(4);
+
+   //sleep(1);
 
    SUCCEED();
 }
