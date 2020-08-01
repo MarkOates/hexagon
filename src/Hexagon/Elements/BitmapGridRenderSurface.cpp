@@ -105,6 +105,16 @@ return;
 
 }
 
+ALLEGRO_BITMAP* BitmapGridRenderSurface::get_sub_bitmap(int x, int y)
+{
+if (x < 0) return nullptr;
+if (y < 0) return nullptr;
+if (x >= num_columns) return nullptr;
+if (y >= num_rows) return nullptr;
+return cell_sub_bitmaps[x + y*num_columns];
+
+}
+
 void BitmapGridRenderSurface::destroy()
 {
 for (auto &cell_sub_bitmap : cell_sub_bitmaps) { if (cell_sub_bitmap) al_destroy_bitmap(cell_sub_bitmap); }

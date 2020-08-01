@@ -96,6 +96,23 @@ functions:
       return;
 
 
+  - name: get_sub_bitmap
+    type: ALLEGRO_BITMAP*
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
+    body: |
+      if (x < 0) return nullptr;
+      if (y < 0) return nullptr;
+      if (x >= num_columns) return nullptr;
+      if (y >= num_rows) return nullptr;
+      return cell_sub_bitmaps[x + y*num_columns];
+
+
   - name: destroy
     type: void
     body: |
