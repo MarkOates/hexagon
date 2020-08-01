@@ -236,8 +236,8 @@ functions:
       );
       return;
     body_dependency_symbols:
-
       - ALLEGRO_BITMAP*
+
 
   - name: calculate_width
     type: float
