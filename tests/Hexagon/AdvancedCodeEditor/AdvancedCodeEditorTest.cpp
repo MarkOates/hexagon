@@ -265,5 +265,25 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    ASSERT_THAT(expected_characters_from_current_line, IsSubsetOf(actual));
    ASSERT_THAT(expected_previous_cells_from_below_current_line, IsSubsetOf(actual));
    ASSERT_THAT(expected_current_cells_from_below_current_line, IsSubsetOf(actual));
+
+   std::vector<std::pair<int, int>> expected_cells;
+   expected_cells.insert(
+      expected_cells.end(),
+      expected_characters_from_current_line.begin(),
+      expected_characters_from_current_line.end()
+   );
+   expected_cells.insert(
+      expected_cells.end(),
+      expected_previous_cells_from_below_current_line.begin(),
+      expected_previous_cells_from_below_current_line.end()
+   );
+   expected_cells.insert(
+      expected_cells.end(),
+      expected_current_cells_from_below_current_line.begin(),
+      expected_current_cells_from_below_current_line.end()
+   );
+   std::sort(expected_cells.begin(), expected_cells.end());
+   expected_cells.erase(std::unique(expected_cells.begin(), expected_cells.end()), expected_cells.end());
+   ASSERT_THAT(expected_cells, UnorderedElementsAreArray(actual));
 }
 
