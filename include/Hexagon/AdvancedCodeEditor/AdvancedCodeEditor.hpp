@@ -27,9 +27,7 @@ namespace Hexagon
          std::vector<std::string> get_lines();
          std::vector<std::string> &get_lines_ref();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
-      void dirty_grid_clear();
       bool set_content(std::string content="");
-      std::vector<std::pair<int, int>> get_dirty_cells();
       bool insert_string(std::string string="");
       bool delete_character();
       bool join_lines();
@@ -50,6 +48,8 @@ namespace Hexagon
       int cursor_get_y();
       bool is_cursor_in_bounds();
       bool is_cursor_on_last_line();
+      void dirty_grid_clear();
+      std::vector<std::pair<int, int>> get_dirty_cells();
       };
    }
 }

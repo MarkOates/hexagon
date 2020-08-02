@@ -41,25 +41,12 @@ Hexagon::AdvancedCodeEditor::Cursor &AdvancedCodeEditor::get_cursor_ref()
 }
 
 
-void AdvancedCodeEditor::dirty_grid_clear()
-{
-dirty_grid.clear();
-return;
-
-}
-
 bool AdvancedCodeEditor::set_content(std::string content)
 {
 dirty_grid.mark_all_as_dirty(&lines);
 lines = Blast::StringSplitter(content, '\n').split();
 dirty_grid.mark_all_as_dirty(&lines);
 return true;
-
-}
-
-std::vector<std::pair<int, int>> AdvancedCodeEditor::get_dirty_cells()
-{
-return dirty_grid.build_vector();
 
 }
 
@@ -228,6 +215,19 @@ bool AdvancedCodeEditor::is_cursor_on_last_line()
 {
 if (lines.empty()) return false;
 return cursor.get_y() == (lines.size() - 1);
+
+}
+
+void AdvancedCodeEditor::dirty_grid_clear()
+{
+dirty_grid.clear();
+return;
+
+}
+
+std::vector<std::pair<int, int>> AdvancedCodeEditor::get_dirty_cells()
+{
+return dirty_grid.build_vector();
 
 }
 } // namespace AdvancedCodeEditor

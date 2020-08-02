@@ -18,13 +18,6 @@ properties:
 functions:
 
 
-  - name: dirty_grid_clear
-    type: void
-    body: |
-      dirty_grid.clear();
-      return;
-
-
   - name: set_content
     type: bool
     parameters:
@@ -38,12 +31,6 @@ functions:
       return true;
     body_dependency_symbols:
       - Blast::StringSplitter
-
-
-  - name: get_dirty_cells
-    type: std::vector<std::pair<int, int>>
-    body: |
-      return dirty_grid.build_vector();
 
 
   - name: insert_string
@@ -247,6 +234,19 @@ functions:
     body: |
       if (lines.empty()) return false;
       return cursor.get_y() == (lines.size() - 1);
+
+
+  - name: dirty_grid_clear
+    type: void
+    body: |
+      dirty_grid.clear();
+      return;
+
+
+  - name: get_dirty_cells
+    type: std::vector<std::pair<int, int>>
+    body: |
+      return dirty_grid.build_vector();
 
 
 dependencies:
