@@ -163,13 +163,12 @@ functions:
 
       int range_safe_y = std::min(std::max(0, cursor.get_y()), (int)lines.size());
 
-      // mark new inserted line cells starting from y point of insertion
-
       // the current_lines starting from y point of insertion
+
+      lines.insert(lines.begin() + range_safe_y, lines_to_insert.begin(), lines_to_insert.end());
 
       // the result lines starting from y point of insertion
 
-      lines.insert(lines.begin() + range_safe_y, lines_to_insert.begin(), lines_to_insert.end());
       return true;
     body_dependency_symbols:
       - std::max
