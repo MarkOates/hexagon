@@ -15,6 +15,7 @@
 #include <functional>
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 
@@ -35,6 +36,7 @@ namespace Hexagon
          int mode;
          static ALLEGRO_EVENT a_default_empty_event;
          bool initialized;
+         std::vector<std::pair<int, int>> cells_changed_since_last_render;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);

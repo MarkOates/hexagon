@@ -39,6 +39,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , input_buffer("")
    , mode(0)
    , initialized(false)
+   , cells_changed_since_last_render({})
 {
 }
 

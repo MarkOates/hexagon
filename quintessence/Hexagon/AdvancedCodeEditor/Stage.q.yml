@@ -50,6 +50,9 @@ properties:
   - name: initialized
     type: bool
     init_with: false
+  - name: cells_changed_since_last_render
+    type: std::vector<std::pair<int, int>>
+    init_with: '{}'
 
 
 functions:
@@ -443,6 +446,8 @@ functions:
 dependencies:
 
 
+  - symbol: std::vector<std::pair<int, int>>
+    headers: [ vector, utility ]
   - symbol: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
     headers: [ map, string, functional, Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: StageInterface
