@@ -58,10 +58,11 @@ functions:
 
       lines[cursor.get_y()].erase(cursor.get_x(), 1);
 
-      characters_changed_in_last_action.reserve(lines[cursor.get_y()].length());
+      int start_offset = cursor.get_x();
+      characters_changed_in_last_action.resize(lines[cursor.get_y()].length() + 2 - start_offset);
       for (int x=0; x<characters_changed_in_last_action.size(); x++)
       {
-         characters_changed_in_last_action[x] = std::pair<int, int>(x, cursor.get_y());
+         characters_changed_in_last_action[x] = std::pair<int, int>(x + start_offset, cursor.get_y());
       }
 
       return true;

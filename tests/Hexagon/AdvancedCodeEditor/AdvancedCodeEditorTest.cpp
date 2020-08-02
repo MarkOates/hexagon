@@ -128,3 +128,21 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    ASSERT_EQ(expected_current_line, actual_current_line);
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   delete_character__will_set_the_characters_changed_in_last_action_with_the_expected_values)
+{
+   std::vector<std::string> lines;
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(FIXTURE_PASSAGE);
+
+   advanced_code_editor.cursor_move_to(7, 2);
+   ASSERT_EQ(true, advanced_code_editor.delete_character());
+
+   std::vector<std::pair<int, int>> expected = {
+      { 7, 2 },  { 8, 2 },  { 9, 2 },  { 10, 2 }, { 11, 2 }, { 12, 2 }, { 13, 2 }, { 14, 2 }, { 15, 2 },
+      { 16, 2 }, { 17, 2 }, { 18, 2 }, { 19, 2 }, { 20, 2 },
+   };
+   std::vector<std::pair<int, int>> actual = advanced_code_editor.get_characters_changed_in_last_action();
+   ASSERT_EQ(expected, actual);
+}
+
