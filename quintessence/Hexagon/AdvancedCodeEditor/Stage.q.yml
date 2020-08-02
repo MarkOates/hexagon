@@ -76,6 +76,28 @@ functions:
       return;
 
 
+  - name: clear_cells_changed_since_last_render
+    type: void
+    body: |
+      cells_changed_since_last_render.clear();
+      return;
+
+
+  - name: append_cells_to_cells_changed_since_last_render
+    type: void
+    parameters:
+      - name: cells_to_append
+        type: std::vector<std::pair<int, int>>
+        default_argument: '{}'
+    body: |
+      cells_changed_since_last_render.insert(
+         cells_changed_since_last_render.end(),
+         cells_to_append.begin(),
+         cells_to_append.end()
+      );
+      return;
+
+
   - name: set_to_edit_mode
     type: bool
     body: |

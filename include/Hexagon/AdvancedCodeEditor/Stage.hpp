@@ -49,6 +49,8 @@ namespace Hexagon
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void initialize();
+      void clear_cells_changed_since_last_render();
+      void append_cells_to_cells_changed_since_last_render(std::vector<std::pair<int, int>> cells_to_append={});
       bool set_to_edit_mode();
       bool set_to_insert_mode();
       bool cursor_move_up();

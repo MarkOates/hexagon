@@ -109,6 +109,24 @@ return;
 
 }
 
+void Stage::clear_cells_changed_since_last_render()
+{
+cells_changed_since_last_render.clear();
+return;
+
+}
+
+void Stage::append_cells_to_cells_changed_since_last_render(std::vector<std::pair<int, int>> cells_to_append)
+{
+cells_changed_since_last_render.insert(
+   cells_changed_since_last_render.end(),
+   cells_to_append.begin(),
+   cells_to_append.end()
+);
+return;
+
+}
+
 bool Stage::set_to_edit_mode()
 {
 mode = 0;
