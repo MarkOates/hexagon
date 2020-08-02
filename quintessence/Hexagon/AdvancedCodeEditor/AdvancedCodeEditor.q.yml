@@ -10,6 +10,9 @@ properties:
     type: Hexagon::AdvancedCodeEditor::Cursor
     init_with: '{}'
     getter_ref: true
+  - name: dirty_grid
+    type: Hexagon::DirtyGrid
+    init_with: '{}'
   - name: characters_changed_in_last_action
     type: std::vector<std::pair<int, int>>
     init_with: '{}'
@@ -243,6 +246,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::DirtyGrid
+    headers: [ Hexagon/DirtyGrid.hpp ]
   - symbol: std::vector<std::string>&
     headers: [ vector, string ]
   - symbol: std::vector<std::pair<int, int>>

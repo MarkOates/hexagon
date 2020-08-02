@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
+#include <Hexagon/DirtyGrid.hpp>
 #include <string>
 #include <utility>
 #include <vector>
@@ -16,6 +17,7 @@ namespace Hexagon
       private:
          std::vector<std::string> lines;
          Hexagon::AdvancedCodeEditor::Cursor cursor;
+         Hexagon::DirtyGrid dirty_grid;
          std::vector<std::pair<int, int>> characters_changed_in_last_action;
 
       public:

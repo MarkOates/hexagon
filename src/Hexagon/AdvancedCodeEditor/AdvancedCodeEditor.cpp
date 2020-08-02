@@ -13,6 +13,7 @@ namespace AdvancedCodeEditor
 AdvancedCodeEditor::AdvancedCodeEditor()
    : lines({})
    , cursor({})
+   , dirty_grid({})
    , characters_changed_in_last_action({})
 {
 }
