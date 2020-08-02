@@ -206,4 +206,8 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    ASSERT_EQ(expected, actual);
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   join_lines__will_set_the_dirty_cells_with_the_expected_values)
+{
+}
 
