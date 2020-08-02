@@ -302,8 +302,11 @@ and it will spill.)END";
    advanced_code_editor.cursor_move_to(14, 1);
    advanced_code_editor.split_lines();
 
-   std::vector<std::pair<int, int>> expected = {};
+   std::vector<std::pair<int, int>> expected = {
+      { 14, 1 }, { 15, 1 }, { 16, 1 }, { 17, 1 }, { 18, 1 }, { 19, 1 }, { 20, 1 }, { 21, 1 }, { 22, 1 }, { 23, 1 },
+      { 24, 1 }, { 25, 1 },
+   };
    std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
-   ASSERT_EQ(expected, actual);
+   ASSERT_THAT(expected, IsSubsetOf(actual));
 }
 

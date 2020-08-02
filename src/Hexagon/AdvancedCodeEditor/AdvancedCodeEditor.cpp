@@ -117,6 +117,7 @@ bool AdvancedCodeEditor::split_lines()
 if (!is_cursor_in_bounds()) return false;
 
 // cells from the curent x, y, to the end of the line
+dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() - cursor.get_x());
 
 // everything below (before)
 
