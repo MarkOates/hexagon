@@ -413,11 +413,22 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    advanced_code_editor.delete_line();
 
    std::vector<std::pair<int, int>> expected_cells_from_before_change = {
+      { 0, 7 }, { 1, 7 }, { 2, 7 }, { 3, 7 }, { 4, 7 }, { 5, 7 }, { 6, 7 }, { 7, 7 }, { 8, 7 }, { 9, 7 }, { 10, 7 },
+      { 11, 7 }, { 12, 7 }, { 13, 7 }, { 14, 7 }, { 15, 7 }, { 16, 7 }, { 17, 7 }, { 18, 7 }, { 19, 7 }, { 20, 7 },
+      { 21, 7 }, { 22, 7 }, { 23, 7 }, { 24, 7 }, { 25, 7 }, { 26, 7 }, { 27, 7 }, { 28, 7 }, { 29, 7 }, { 30, 7 },
+
+      { 0, 9 }, { 1, 9 }, { 2, 9 }, { 3, 9 }, { 4, 9 }, { 5, 9 }, { 6, 9 }, { 7, 9 }, { 8, 9 }, { 9, 9 }, { 10, 9 },
+      { 11, 9 }, { 12, 9 }, { 13, 9 }, { 14, 9 }, { 15, 9 }, { 16, 9 }, { 17, 9 }, { 18, 9 }, { 19, 9 }, { 20, 9 },
+      { 21, 9 }, { 22, 9 }, { 23, 9 }, { 24, 9 }, { 25, 9 }, { 26, 9 }, { 27, 9 }, { 28, 9 },
+
+      { 0, 10 }, { 1, 10 }, { 2, 10 }, { 3, 10 }, { 4, 10 }, { 5, 10 }, { 6, 10 }, { 7, 10 }, { 8, 10 }, { 9, 10 },
+      { 10, 10 }, { 11, 10 }, { 12, 10 }, { 13, 10 }, { 14, 10 }, { 15, 10 }, { 16, 10 }, { 17, 10 }, { 18, 10 },
+      { 19, 10 }, { 20, 10 }, { 21, 10 }, { 22, 10 }, { 23, 10 }, { 24, 10 }, { 25, 10 },
    };
    std::vector<std::pair<int, int>> expected_cells_from_after_change = {
    };
    std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
-   //ASSERT_THAT(expected_cells_from_before_change, IsSubsetOf(actual));
+   ASSERT_THAT(expected_cells_from_before_change, IsSubsetOf(actual));
    //ASSERT_THAT(expected_cells_from_after_change, IsSubsetOf(actual));
 }
 
