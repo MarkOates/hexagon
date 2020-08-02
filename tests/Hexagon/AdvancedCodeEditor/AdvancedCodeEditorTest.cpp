@@ -310,3 +310,23 @@ and it will spill.)END";
    ASSERT_THAT(expected, IsSubsetOf(actual));
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   split_lines__will_set_the_dirty_cells_with_the_expected_cells_from_the_lines_below_the_cursor)
+{
+   std::string lines = R"END(        - 9 -
+Fill your bowl to the brim
+fam
+and it will spill.)END";
+
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(lines);
+   advanced_code_editor.dirty_grid_clear();
+
+   advanced_code_editor.cursor_move_to(14, 1);
+   advanced_code_editor.split_lines();
+
+   std::vector<std::pair<int, int>> expected_cells_from_before_change = { { 0, 2 }, { 1, 2 }, { 2, 2 } };
+   std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
+   ASSERT_THAT(expected_cells_from_before_change, IsSubsetOf(actual));
+}
+

@@ -109,7 +109,11 @@ functions:
       // cells from the curent x, y, to the end of the line
       dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() - cursor.get_x());
 
-      // everything below (before)
+      // all of the lines below the current line, before change
+      for (int row=(cursor.get_y()+1); row<lines.size(); row++)
+      {
+         dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
+      }
 
       lines.insert(lines.begin() + cursor.get_y() + 1, lines[cursor.get_y()].substr(cursor.get_x()));
       std::string &current_line = lines[cursor.get_y()];
