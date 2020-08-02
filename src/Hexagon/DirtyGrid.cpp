@@ -36,6 +36,12 @@ return dirty_cells.size();
 
 }
 
+int DirtyGrid::dirty_cells_empty()
+{
+return dirty_cells.empty();
+
+}
+
 void DirtyGrid::mark_as_dirty(int x, int y)
 {
 dirty_cells.insert(std::pair<int, int>{x, y});

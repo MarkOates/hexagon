@@ -295,6 +295,12 @@ std::vector<std::pair<int, int>> AdvancedCodeEditor::get_dirty_cells()
 return dirty_grid.build_vector();
 
 }
+
+bool AdvancedCodeEditor::any_dirty_cells()
+{
+return !dirty_grid.dirty_cells_empty();
+
+}
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

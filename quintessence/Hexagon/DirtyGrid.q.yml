@@ -16,6 +16,12 @@ functions:
       return dirty_cells.size();
 
 
+  - name: dirty_cells_empty
+    type: int
+    body: |
+      return dirty_cells.empty();
+
+
   - name: mark_as_dirty
     parameters:
       - name: x

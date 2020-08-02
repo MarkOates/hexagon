@@ -51,6 +51,7 @@ namespace Hexagon
       bool is_cursor_on_last_line();
       void dirty_grid_clear();
       std::vector<std::pair<int, int>> get_dirty_cells();
+      bool any_dirty_cells();
       };
    }
 }

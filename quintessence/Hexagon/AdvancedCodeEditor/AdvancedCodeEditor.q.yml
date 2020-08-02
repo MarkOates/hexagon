@@ -318,6 +318,12 @@ functions:
       return dirty_grid.build_vector();
 
 
+  - name: any_dirty_cells
+    type: bool
+    body: |
+      return !dirty_grid.dirty_cells_empty();
+
+
 dependencies:
 
 
