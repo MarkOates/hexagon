@@ -168,10 +168,18 @@ bool AdvancedCodeEditor::insert_lines(std::vector<std::string> lines_to_insert)
 int range_safe_y = std::min(std::max(0, cursor.get_y()), (int)lines.size());
 
 // the current_lines starting from y point of insertion
+for (int row=range_safe_y; row<lines.size(); row++)
+{
+   dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
+}
 
 lines.insert(lines.begin() + range_safe_y, lines_to_insert.begin(), lines_to_insert.end());
 
 // the result lines starting from y point of insertion
+for (int row=range_safe_y; row<lines.size(); row++)
+{
+   dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
+}
 
 return true;
 
