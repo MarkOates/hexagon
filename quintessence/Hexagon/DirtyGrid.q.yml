@@ -1,17 +1,39 @@
 properties:
 
 
+  - name: num_columns
+    type: int
+    init_with: 0
+    constructor_arg: true
+  - name: num_rows
+    type: int
+    init_with: 0
+    constructor_arg: true
   - name: dirty_cells
     type: std::vector<std::pair<int, int>>
     init_with: '{}'
+    getter_ref: true
+  - name: initialized
+    type: bool
+    init_with: false
+    getter: true
 
 
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: initialize
+    guards: [ (!initialized) ]
+    body: |
+      dirty_cells.reserve(num_columns * num_rows);
+      initialized = true;
+      return;
+
+
+  - name: dirty_cells_capacity
+    type: int
+    body: |
+      return dirty_cells.capacity();
 
 
 dependencies:
