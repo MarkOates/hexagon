@@ -84,7 +84,7 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
-   split_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
+   join_lines__on_a_line_number_that_is_out_of_bounds__does_nothing_and_returns_false)
 {
    std::vector<std::string> original_lines, lines;
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
