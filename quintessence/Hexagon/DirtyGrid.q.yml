@@ -1,44 +1,53 @@
 properties:
 
 
-  - name: num_columns
-    type: int
-    init_with: 0
-    constructor_arg: true
-  - name: num_rows
-    type: int
-    init_with: 0
-    constructor_arg: true
   - name: dirty_cells
-    type: std::vector<std::pair<int, int>>
+    type: std::set<std::pair<int, int>>
     init_with: '{}'
     getter_ref: true
-  - name: initialized
-    type: bool
-    init_with: false
-    getter: true
 
 
 functions:
 
 
-  - name: initialize
-    guards: [ (!initialized) ]
+  - name: mark_as_dirty
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
     body: |
-      dirty_cells.reserve(num_columns * num_rows);
-      initialized = true;
+      dirty_cells.insert(std::pair<int, int>{x, y});
       return;
 
 
-  - name: dirty_cells_capacity
-    type: int
+  - name: build_vector
+    type: std::vector<std::pair<int, int>>
     body: |
-      return dirty_cells.capacity();
+      std::vector<std::pair<int, int>> result;
+      result.reserve(dirty_cells.size());
+      for (auto it=dirty_cells.begin(); it!=dirty_cells.end(); )
+      {
+         result.push_back(std::move(dirty_cells.extract(it++).value()));
+      }
+      return result;
+    body_dependency_symbols:
+      - std::vector<std::pair<int, int>>
+
+
+  - name: clear
+    body: |
+      dirty_cells.clear();
+      return;
 
 
 dependencies:
 
 
+  - symbol: std::set<std::pair<int, int>>
+    headers: [ set, utility ]
   - symbol: std::vector<std::pair<int, int>>
     headers: [ vector, utility ]
 

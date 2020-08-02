@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <set>
 #include <utility>
 #include <vector>
 
@@ -10,20 +11,17 @@ namespace Hexagon
    class DirtyGrid
    {
    private:
-      int num_columns;
-      int num_rows;
-      std::vector<std::pair<int, int>> dirty_cells;
-      bool initialized;
+      std::set<std::pair<int, int>> dirty_cells;
 
    public:
-      DirtyGrid(int num_columns=0, int num_rows=0);
+      DirtyGrid();
       ~DirtyGrid();
 
 
-      bool get_initialized();
-      std::vector<std::pair<int, int>> &get_dirty_cells_ref();
-   void initialize();
-   int dirty_cells_capacity();
+      std::set<std::pair<int, int>> &get_dirty_cells_ref();
+   void mark_as_dirty(int x=0, int y=0);
+   std::vector<std::pair<int, int>> build_vector();
+   void clear();
    };
 }
 

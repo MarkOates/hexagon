@@ -1,19 +1,16 @@
 
 
 #include <Hexagon/DirtyGrid.hpp>
-#include <stdexcept>
-#include <sstream>
+#include <vector>
+#include <utility>
 
 
 namespace Hexagon
 {
 
 
-DirtyGrid::DirtyGrid(int num_columns, int num_rows)
-   : num_columns(num_columns)
-   , num_rows(num_rows)
-   , dirty_cells({})
-   , initialized(false)
+DirtyGrid::DirtyGrid()
+   : dirty_cells({})
 {
 }
 
@@ -23,35 +20,35 @@ DirtyGrid::~DirtyGrid()
 }
 
 
-bool DirtyGrid::get_initialized()
-{
-   return initialized;
-}
-
-
-std::vector<std::pair<int, int>> &DirtyGrid::get_dirty_cells_ref()
+std::set<std::pair<int, int>> &DirtyGrid::get_dirty_cells_ref()
 {
    return dirty_cells;
 }
 
 
-void DirtyGrid::initialize()
+void DirtyGrid::mark_as_dirty(int x, int y)
 {
-if (!((!initialized)))
-   {
-      std::stringstream error_message;
-      error_message << "DirtyGrid" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-dirty_cells.reserve(num_columns * num_rows);
-initialized = true;
+dirty_cells.insert(std::pair<int, int>{x, y});
 return;
 
 }
 
-int DirtyGrid::dirty_cells_capacity()
+std::vector<std::pair<int, int>> DirtyGrid::build_vector()
 {
-return dirty_cells.capacity();
+std::vector<std::pair<int, int>> result;
+result.reserve(dirty_cells.size());
+for (auto it=dirty_cells.begin(); it!=dirty_cells.end(); )
+{
+   result.push_back(std::move(dirty_cells.extract(it++).value()));
+}
+return result;
+
+}
+
+void DirtyGrid::clear()
+{
+dirty_cells.clear();
+return;
 
 }
 } // namespace Hexagon
