@@ -230,12 +230,21 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    advanced_code_editor.cursor_move_to(0, 7);
    advanced_code_editor.join_lines();
 
+   // ruby shell command to generate lists
+   // ruby -e "puts (0..31).to_a.collect { |i| \"{ #{i}, _ }\" }.join(', ')"
+
    std::vector<std::pair<int, int>> expected_characters_from_current_line = {
       {28, 7}, {29, 7}, {30, 7}, {31, 7}, {32, 7}, {33, 7}, {34, 7}, {35, 7}, {36, 7}, {37, 7}, {38, 7}, {39, 7},
       {40, 7}, {41, 7}, {42, 7}, {43, 7}, {44, 7}, {45, 7}, {46, 7}, {47, 7}, {48, 7}, {49, 7}, {50, 7}, {51, 7},
       {52, 7}, {53, 7}, {54, 7}, {55, 7}, {56, 7}, {57, 7}, {58, 7},
    };
+   std::vector<std::pair<int, int>> expected_lines_below_current_line = {
+      { 0, 8 }, { 1, 8 }, { 2, 8 }, { 3, 8 }, { 4, 8 }, { 5, 8 }, { 6, 8 }, { 7, 8 }, { 8, 8 }, { 9, 8 }, { 10, 8 },
+      { 11, 8 }, { 12, 8 }, { 13, 8 }, { 14, 8 }, { 15, 8 }, { 16, 8 }, { 17, 8 }, { 18, 8 }, { 19, 8 }, { 20, 8 },
+      { 21, 8 }, { 22, 8 }, { 23, 8 }, { 24, 8 }, { 25, 8 }, { 26, 8 }, { 27, 8 }, { 28, 8 }, { 29, 8 }, { 30, 8 },
+   };
    std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
    ASSERT_THAT(expected_characters_from_current_line, IsSubsetOf(actual));
+   ASSERT_THAT(expected_lines_below_current_line, IsSubsetOf(actual));
 }
 

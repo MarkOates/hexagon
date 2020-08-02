@@ -93,8 +93,20 @@ std::vector<std::string> &lines = get_lines_ref();
 // from a start position equal to the length of current line, with the length of line below
 dirty_grid.mark_row_as_dirty(cursor.get_y(), lines[cursor.get_y()].length(), lines[cursor.get_y()+1].length());
 
+// all of the lines below the current line, before change
+for (int row=(cursor.get_y()+1); row<lines.size(); row++)
+{
+   dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
+}
+
 lines[cursor.get_y()] += lines[cursor.get_y()+1];
 lines.erase(lines.begin() + cursor.get_y()+1);
+
+// all of the lines below the current line, after change
+for (int row=(cursor.get_y()+1); row<lines.size(); row++)
+{
+   //dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
+}
 
 return true;
 
