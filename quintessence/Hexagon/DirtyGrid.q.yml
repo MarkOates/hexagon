@@ -1,4 +1,22 @@
+properties:
+
+
+  - name: dirty_cells
+    type: std::vector<std::pair<int, int>>
+    init_with: '{}'
+
+
 functions:
+
+
   - name: run
     type: std::string
     body: return "Hello World!";
+
+
+dependencies:
+
+
+  - symbol: std::vector<std::pair<int, int>>
+    headers: [ vector, utility ]
+

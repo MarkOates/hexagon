@@ -2,6 +2,8 @@
 
 
 #include <string>
+#include <utility>
+#include <vector>
 
 
 namespace Hexagon
@@ -9,6 +11,7 @@ namespace Hexagon
    class DirtyGrid
    {
    private:
+      std::vector<std::pair<int, int>> dirty_cells;
 
    public:
       DirtyGrid();

@@ -9,6 +9,7 @@ namespace Hexagon
 
 
 DirtyGrid::DirtyGrid()
+   : dirty_cells({})
 {
 }
 
