@@ -17,6 +17,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -380,6 +382,43 @@ std::cout << " -- ";
 
 advanced_code_editor.dirty_grid_clear();
 
+return;
+
+}
+
+void Stage::refresh_dirty_cells_on_text_mesh()
+{
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "refresh_dirty_cells_on_text_mesh" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+char clear_char = '\0';
+ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+
+for (unsigned y=0; y<num_rows; y++)
+{
+   for (unsigned x=0; x<num_columns; x++)
+   {
+      char char_to_set = clear_char;
+      ALLEGRO_COLOR color_to_set = clear_color;
+
+      if (y < lines.size())
+      {
+         if (x < lines[y].size())
+         {
+            char_to_set = lines[y][x];
+            color_to_set = on_color;
+         }
+      }
+
+      text_mesh.set_cell_character(x, y, char_to_set);
+      text_mesh.set_cell_color(x, y, color_to_set);
+   }
+}
 return;
 
 }
