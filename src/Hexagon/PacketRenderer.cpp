@@ -117,8 +117,9 @@ return;
 ALLEGRO_COLOR PacketRenderer::generate_top_left_little_bar_color()
 {
 int packet_score = packet->calculate_score();
-if (packet_score <= 10) return ALLEGRO_COLOR{0.26, 0.3, 0.3, 1.0};
+if (packet_score <= 10) return ALLEGRO_COLOR{0.066, 0.394, 0.4023, 1.0};
 if (packet_score >= 100) return ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
+if (packet_score >= 50) return ALLEGRO_COLOR{0.957, 0.46, 0.05, 1.0};
 if (packet_score >= 20) return ALLEGRO_COLOR{1.0, 1.0, 0, 1.0};
 return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
 
