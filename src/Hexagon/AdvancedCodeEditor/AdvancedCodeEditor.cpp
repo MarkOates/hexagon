@@ -50,7 +50,9 @@ Hexagon::AdvancedCodeEditor::Cursor &AdvancedCodeEditor::get_cursor_ref()
 
 bool AdvancedCodeEditor::set_content(std::string content)
 {
+dirty_grid.mark_all_as_dirty(&lines);
 lines = Blast::StringSplitter(content, '\n').split();
+dirty_grid.mark_all_as_dirty(&lines);
 return true;
 
 }

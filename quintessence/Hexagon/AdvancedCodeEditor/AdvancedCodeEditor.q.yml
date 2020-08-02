@@ -29,7 +29,9 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
+      dirty_grid.mark_all_as_dirty(&lines);
       lines = Blast::StringSplitter(content, '\n').split();
+      dirty_grid.mark_all_as_dirty(&lines);
       return true;
     body_dependency_symbols:
       - Blast::StringSplitter

@@ -1,7 +1,10 @@
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
+
+using ::testing::UnorderedElementsAreArray;
 
 static std::string FIXTURE_PASSAGE = R"PASSAGE(       - 64 -
 Act without doing;
