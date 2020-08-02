@@ -3,6 +3,8 @@
 #include <Hexagon/DirtyGrid.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <vector>
 #include <utility>
 
@@ -31,6 +33,23 @@ std::set<std::pair<int, int>> DirtyGrid::get_dirty_cells()
 void DirtyGrid::mark_as_dirty(int x, int y)
 {
 dirty_cells.insert(std::pair<int, int>{x, y});
+return;
+
+}
+
+void DirtyGrid::mark_all_as_dirty(std::vector<std::string>* lines)
+{
+if (!(lines))
+   {
+      std::stringstream error_message;
+      error_message << "DirtyGrid" << "::" << "mark_all_as_dirty" << ": error: " << "guard \"lines\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+type: std::vector<std::string>& local_lines_ref = *lines;
+for (int l=0; l<local_lines_ref.size(); l++)
+{
+   mark_row_as_dirty(l, 0, local_lines_ref[l].length());
+}
 return;
 
 }

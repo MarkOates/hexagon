@@ -23,6 +23,21 @@ functions:
       return;
 
 
+  - name: mark_all_as_dirty
+    parameters:
+      - name: lines
+        type: std::vector<std::string>*
+        default_argument: '{}'
+    guards: [ lines ]
+    body: |
+      type: std::vector<std::string>& local_lines_ref = *lines;
+      for (int l=0; l<local_lines_ref.size(); l++)
+      {
+         mark_row_as_dirty(l, 0, local_lines_ref[l].length());
+      }
+      return;
+
+
   - name: mark_row_as_dirty
     parameters:
       - name: row
@@ -78,6 +93,8 @@ dependencies:
 
   - symbol: Hexagon::DirtyGrid*
     headers: []
+  - symbol: std::vector<std::string>*
+    headers: [ vector, string ]
   - symbol: std::set<std::pair<int, int>>
     headers: [ set, utility ]
   - symbol: std::vector<std::pair<int, int>>

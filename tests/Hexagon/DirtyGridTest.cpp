@@ -1,7 +1,10 @@
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include <Hexagon/DirtyGrid.hpp>
+
+using ::testing::UnorderedElementsAreArray;
 
 TEST(Hexagon_DirtyGridTest, can_be_created_without_blowing_up)
 {
@@ -63,5 +66,24 @@ TEST(Hexagon_DirtyGridTest, mark_row_as_dirty__will_mark_a_line_as_dirty_within_
    std::vector<std::pair<int, int>> actual_dirty_cells_as_vector = dirty_grid.build_vector();
 
    ASSERT_EQ(expected_dirty_cells_as_vector, actual_dirty_cells_as_vector);
+}
+
+TEST(Hexagon_DirtyGridTest, mark_all_as_dirty__will_set_all_the_lines_cells_as_dirty)
+{
+   Hexagon::DirtyGrid dirty_grid;
+   std::vector<std::string> lines = {
+     "Hi",
+     "",
+     "Sam!",
+   };
+
+   dirty_grid.mark_all_as_dirty(&lines);
+
+   std::vector<std::pair<int, int>> expected_dirty_cells_as_vector = {
+      {0, 0}, {1, 0}, {0, 2}, {1, 2}, {2, 2}, {3, 2},
+   };
+   std::vector<std::pair<int, int>> actual_dirty_cells_as_vector = dirty_grid.build_vector();
+
+   ASSERT_THAT(expected_dirty_cells_as_vector, UnorderedElementsAreArray(actual_dirty_cells_as_vector));
 }
 
