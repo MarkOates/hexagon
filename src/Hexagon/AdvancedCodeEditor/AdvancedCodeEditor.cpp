@@ -53,11 +53,13 @@ return true;
 bool AdvancedCodeEditor::insert_string(std::string string)
 {
 if (!is_cursor_in_bounds()) return false;
+// TODO: prevent insertion of newline '\n' characters
 
 Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
 std::vector<std::string> &lines = get_lines_ref();
 
 lines[cursor.get_y()].insert(cursor.get_x(), string);
+
 return true;
 
 }
