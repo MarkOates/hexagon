@@ -133,12 +133,23 @@ functions:
     body: |
       if (cursor.get_y() < 0 || cursor.get_y() >= lines.size()) return false;
 
-      // current line
+      // from the current line down, from 0 to the longer of itself and the length of the line below it
+      for (int row=cursor.get_y(); row<(lines.size() - 1); row++)
+      {
+         int longest_length = std::max(lines[row].length(), lines[row + 1].length());
+         dirty_grid.mark_row_as_dirty(row, 0, longest_length);
+      }
 
-      // from the next line down, from 0 to the longer of itself and the length of the line below it
+      // append the last line
+      if (!lines.empty())
+      {
+         dirty_grid.mark_row_as_dirty(lines.size()-1, 0, lines[lines.size()-1].length());
+      }
 
       lines.erase(lines.begin()+cursor.get_y());
       return true;
+    body_dependency_symbols:
+      - std::max
 
 
   - name: insert_lines

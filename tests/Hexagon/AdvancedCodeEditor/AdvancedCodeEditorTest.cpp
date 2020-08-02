@@ -402,3 +402,17 @@ and it will spill.)END";
    ASSERT_THAT(expected_cells, UnorderedElementsAreArray(actual));
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   delete_line__will_set_the_dirty_cells_with_only_the_expected_cells)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SIMPLE_PASSAGE);
+   advanced_code_editor.dirty_grid_clear();
+
+   advanced_code_editor.cursor_move_to(0, 7);
+   advanced_code_editor.delete_line();
+
+   // TODO
+}
+
+
