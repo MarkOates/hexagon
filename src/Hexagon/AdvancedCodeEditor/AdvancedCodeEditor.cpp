@@ -74,6 +74,13 @@ Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
 std::vector<std::string> &lines = get_lines_ref();
 
 lines[cursor.get_y()].erase(cursor.get_x(), 1);
+
+characters_changed_in_last_action.reserve(lines[cursor.get_y()].length());
+for (int x=0; x<characters_changed_in_last_action.size(); x++)
+{
+   characters_changed_in_last_action[x] = std::pair<int, int>(x, cursor.get_y());
+}
+
 return true;
 
 }
