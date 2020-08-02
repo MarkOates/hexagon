@@ -155,7 +155,7 @@ return advanced_code_editor.cursor_move_to_start_of_line();
 bool Stage::delete_character()
 {
 bool result = advanced_code_editor.delete_character();
-if (result == true) refresh_render_surfaces();
+if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return result;
 
 }
@@ -163,7 +163,7 @@ return result;
 bool Stage::join_lines()
 {
 bool result = advanced_code_editor.join_lines();
-if (result == true) refresh_render_surfaces();
+if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return result;
 
 }
@@ -171,7 +171,7 @@ return result;
 bool Stage::split_lines()
 {
 bool result = advanced_code_editor.split_lines();
-if (result == true) refresh_render_surfaces();
+if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return result;
 
 }
@@ -179,7 +179,7 @@ return result;
 bool Stage::delete_line()
 {
 bool result = advanced_code_editor.delete_line();
-if (result == true) refresh_render_surfaces();
+if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return result;
 
 }
@@ -187,7 +187,7 @@ return result;
 bool Stage::insert_string_from_input_buffer()
 {
 bool result = advanced_code_editor.insert_string(input_buffer);
-if (result == true) refresh_render_surfaces();
+if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return result;
 
 }
@@ -195,7 +195,7 @@ return result;
 bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
 {
 bool result = advanced_code_editor.insert_lines(lines_to_insert);
-if (result == true) refresh_render_surfaces();
+if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return result;
 
 }
@@ -209,7 +209,7 @@ if (!(initialized))
       throw std::runtime_error(error_message.str());
    }
 bool result = advanced_code_editor.set_content(content);
-if (result == true) refresh_render_surfaces();
+if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return;
 
 }
@@ -377,6 +377,8 @@ timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.
 //refresh_fonted_text_grid();
 timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.reset(); timer.start();
 std::cout << " -- ";
+
+advanced_code_editor.dirty_grid_clear();
 
 return;
 
