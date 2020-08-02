@@ -10,6 +10,12 @@ properties:
 functions:
 
 
+  - name: dirty_cells_count
+    type: int
+    body: |
+      return dirty_cells.size();
+
+
   - name: mark_as_dirty
     parameters:
       - name: x

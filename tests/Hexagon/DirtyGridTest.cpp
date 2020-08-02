@@ -87,3 +87,17 @@ TEST(Hexagon_DirtyGridTest, mark_all_as_dirty__will_set_all_the_lines_cells_as_d
    ASSERT_THAT(expected_dirty_cells_as_vector, UnorderedElementsAreArray(actual_dirty_cells_as_vector));
 }
 
+TEST(Hexagon_DirtyGridTest, dirty_cells_count__return_the_number_of_elements_in_the_dirty_cells)
+{
+   Hexagon::DirtyGrid dirty_grid;
+   std::vector<std::string> lines = {
+     "Some",
+     "test",
+     "lines",
+   };
+
+   dirty_grid.mark_all_as_dirty(&lines);
+
+   ASSERT_EQ(13, dirty_grid.dirty_cells_count());
+}
+

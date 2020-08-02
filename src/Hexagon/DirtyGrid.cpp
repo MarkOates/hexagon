@@ -30,6 +30,12 @@ std::set<std::pair<int, int>> DirtyGrid::get_dirty_cells()
 }
 
 
+int DirtyGrid::dirty_cells_count()
+{
+return dirty_cells.size();
+
+}
+
 void DirtyGrid::mark_as_dirty(int x, int y)
 {
 dirty_cells.insert(std::pair<int, int>{x, y});

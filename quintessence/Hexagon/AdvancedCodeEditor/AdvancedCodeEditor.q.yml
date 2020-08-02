@@ -22,6 +22,13 @@ properties:
 functions:
 
 
+  - name: dirty_grid_clear
+    type: void
+    body: |
+      dirty_grid.clear();
+      return;
+
+
   - name: set_content
     type: bool
     parameters:
@@ -35,6 +42,12 @@ functions:
       return true;
     body_dependency_symbols:
       - Blast::StringSplitter
+
+
+  - name: get_dirty_cells
+    type: std::vector<std::pair<int, int>>
+    body: |
+      return dirty_grid.build_vector();
 
 
   - name: insert_string
@@ -64,6 +77,9 @@ functions:
       lines[cursor.get_y()].erase(cursor.get_x(), 1);
 
       int start_offset = cursor.get_x();
+
+      dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() + 2 - start_offset);
+
       characters_changed_in_last_action.resize(lines[cursor.get_y()].length() + 2 - start_offset);
       for (int x=0; x<characters_changed_in_last_action.size(); x++)
       {

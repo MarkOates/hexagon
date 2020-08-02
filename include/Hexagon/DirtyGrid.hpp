@@ -20,6 +20,7 @@ namespace Hexagon
 
 
       std::set<std::pair<int, int>> get_dirty_cells();
+   int dirty_cells_count();
    void mark_as_dirty(int x=0, int y=0);
    void mark_all_as_dirty(std::vector<std::string>* lines={});
    void mark_row_as_dirty(int row=0, int start=0, int length=0);

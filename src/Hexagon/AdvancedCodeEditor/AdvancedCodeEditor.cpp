@@ -48,12 +48,25 @@ Hexagon::AdvancedCodeEditor::Cursor &AdvancedCodeEditor::get_cursor_ref()
 }
 
 
+void AdvancedCodeEditor::dirty_grid_clear()
+{
+dirty_grid.clear();
+return;
+
+}
+
 bool AdvancedCodeEditor::set_content(std::string content)
 {
 dirty_grid.mark_all_as_dirty(&lines);
 lines = Blast::StringSplitter(content, '\n').split();
 dirty_grid.mark_all_as_dirty(&lines);
 return true;
+
+}
+
+std::vector<std::pair<int, int>> AdvancedCodeEditor::get_dirty_cells()
+{
+return dirty_grid.build_vector();
 
 }
 
@@ -79,6 +92,9 @@ std::vector<std::string> &lines = get_lines_ref();
 lines[cursor.get_y()].erase(cursor.get_x(), 1);
 
 int start_offset = cursor.get_x();
+
+dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() + 2 - start_offset);
+
 characters_changed_in_last_action.resize(lines[cursor.get_y()].length() + 2 - start_offset);
 for (int x=0; x<characters_changed_in_last_action.size(); x++)
 {

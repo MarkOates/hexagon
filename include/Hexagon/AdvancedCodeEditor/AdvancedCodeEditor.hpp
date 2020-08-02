@@ -29,7 +29,9 @@ namespace Hexagon
          std::vector<std::pair<int, int>> get_characters_changed_in_last_action();
          std::vector<std::string> &get_lines_ref();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
+      void dirty_grid_clear();
       bool set_content(std::string content="");
+      std::vector<std::pair<int, int>> get_dirty_cells();
       bool insert_string(std::string string="");
       bool delete_character();
       bool join_lines();
