@@ -96,6 +96,7 @@ TEST(Hexagon_Elements_FontedTextGridTest, set_cell_to_character_and_color__execu
       if (elapsed_time_microseconds < best_try_microseconds) best_try_microseconds = elapsed_time_microseconds;
       if (elapsed_time_microseconds > worst_try_microseconds) worst_try_microseconds = elapsed_time_microseconds;
 
+      al_clear_to_color(ALLEGRO_COLOR{0.02, 0.02, 0.02, 0.02});
       fonted_text_grid.draw();
       al_flip_display();
    }
