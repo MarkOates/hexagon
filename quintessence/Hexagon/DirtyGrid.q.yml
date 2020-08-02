@@ -23,6 +23,25 @@ functions:
       return;
 
 
+  - name: mark_row_as_dirty
+    parameters:
+      - name: row
+        type: int
+        default_argument: 0
+      - name: start
+        type: int
+        default_argument: 0
+      - name: length
+        type: int
+        default_argument: 0
+    body: |
+      for (int x=start; x<(start + length); x++)
+      {
+         dirty_cells.insert(std::pair<int, int>{x, row});
+      }
+      return;
+
+
   - name: incorporate
     parameters:
       - name: other_dirty_grid

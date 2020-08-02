@@ -35,6 +35,16 @@ return;
 
 }
 
+void DirtyGrid::mark_row_as_dirty(int row, int start, int length)
+{
+for (int x=start; x<(start + length); x++)
+{
+   dirty_cells.insert(std::pair<int, int>{x, row});
+}
+return;
+
+}
+
 void DirtyGrid::incorporate(Hexagon::DirtyGrid* other_dirty_grid)
 {
 if (!(other_dirty_grid))

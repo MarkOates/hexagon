@@ -53,3 +53,15 @@ TEST(Hexagon_DirtyGridTest, incorporate__will_add_cells_from_another_dirty_grid)
    ASSERT_EQ(expected_dirty_cells_as_vector, actual_dirty_cells_as_vector);
 }
 
+TEST(Hexagon_DirtyGridTest, mark_row_as_dirty__will_mark_a_line_as_dirty_within_the_range)
+{
+   Hexagon::DirtyGrid dirty_grid;
+
+   dirty_grid.mark_row_as_dirty(4, 13, 5);
+
+   std::vector<std::pair<int, int>> expected_dirty_cells_as_vector = { {13, 4}, {14, 4}, {15, 4}, {16, 4}, {17, 4} };
+   std::vector<std::pair<int, int>> actual_dirty_cells_as_vector = dirty_grid.build_vector();
+
+   ASSERT_EQ(expected_dirty_cells_as_vector, actual_dirty_cells_as_vector);
+}
+
