@@ -146,6 +146,7 @@ functions:
     type: bool
     body: |
       bool result = advanced_code_editor.delete_character();
+      append_cells_to_cells_changed_since_last_render(advanced_code_editor.get_characters_changed_in_last_action());
       if (result == true) refresh_render_surfaces();
       return result;
 

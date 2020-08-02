@@ -10,6 +10,10 @@ properties:
     type: Hexagon::AdvancedCodeEditor::Cursor
     init_with: '{}'
     getter_ref: true
+  - name: characters_changed_in_last_action
+    type: std::vector<std::pair<int, int>>
+    init_with: '{}'
+    getter: true
 
 
 functions:
@@ -233,6 +237,8 @@ dependencies:
 
   - symbol: std::vector<std::string>&
     headers: [ vector, string ]
+  - symbol: std::vector<std::pair<int, int>>
+    headers: [ vector, utility ]
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor

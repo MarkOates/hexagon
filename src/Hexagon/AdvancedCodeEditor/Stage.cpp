@@ -174,6 +174,7 @@ return advanced_code_editor.cursor_move_to_start_of_line();
 bool Stage::delete_character()
 {
 bool result = advanced_code_editor.delete_character();
+append_cells_to_cells_changed_since_last_render(advanced_code_editor.get_characters_changed_in_last_action());
 if (result == true) refresh_render_surfaces();
 return result;
 

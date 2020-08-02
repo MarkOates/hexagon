@@ -3,6 +3,7 @@
 
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
 #include <string>
+#include <utility>
 #include <vector>
 
 
@@ -15,6 +16,7 @@ namespace Hexagon
       private:
          std::vector<std::string> lines;
          Hexagon::AdvancedCodeEditor::Cursor cursor;
+         std::vector<std::pair<int, int>> characters_changed_in_last_action;
 
       public:
          AdvancedCodeEditor();
@@ -22,6 +24,7 @@ namespace Hexagon
 
 
          std::vector<std::string> get_lines();
+         std::vector<std::pair<int, int>> get_characters_changed_in_last_action();
          std::vector<std::string> &get_lines_ref();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
       bool set_content(std::string content="");

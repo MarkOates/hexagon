@@ -13,6 +13,7 @@ namespace AdvancedCodeEditor
 AdvancedCodeEditor::AdvancedCodeEditor()
    : lines({})
    , cursor({})
+   , characters_changed_in_last_action({})
 {
 }
 
@@ -25,6 +26,12 @@ AdvancedCodeEditor::~AdvancedCodeEditor()
 std::vector<std::string> AdvancedCodeEditor::get_lines()
 {
    return lines;
+}
+
+
+std::vector<std::pair<int, int>> AdvancedCodeEditor::get_characters_changed_in_last_action()
+{
+   return characters_changed_in_last_action;
 }
 
 
