@@ -360,9 +360,6 @@ and it will spill.)END";
    advanced_code_editor.cursor_move_to(14, 1);
    advanced_code_editor.split_lines();
 
-
-
-
    std::vector<std::pair<int, int>> expected_cells_from_current_line = {
       { 14, 1 }, { 15, 1 }, { 16, 1 }, { 17, 1 }, { 18, 1 }, { 19, 1 }, { 20, 1 }, { 21, 1 }, { 22, 1 }, { 23, 1 },
       { 24, 1 }, { 25, 1 },
@@ -383,9 +380,25 @@ and it will spill.)END";
       { 11, 4 }, { 12, 4 }, { 13, 4 }, { 14, 4 }, { 15, 4 }, { 16, 4 }, { 17, 4 },
    };
 
-
-
+   std::vector<std::pair<int, int>> expected_cells;
+   expected_cells.insert(
+      expected_cells.end(),
+      expected_cells_from_current_line.begin(),
+      expected_cells_from_current_line.end()
+   );
+   expected_cells.insert(
+      expected_cells.end(),
+      expected_cells_from_before_change.begin(),
+      expected_cells_from_before_change.end()
+   );
+   expected_cells.insert(
+      expected_cells.end(),
+      expected_cells_from_after_change.begin(),
+      expected_cells_from_after_change.end()
+   );
+   std::sort(expected_cells.begin(), expected_cells.end());
+   expected_cells.erase(std::unique(expected_cells.begin(), expected_cells.end()), expected_cells.end());
    std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
-   ASSERT_THAT(expected_cells_from_current_line, IsSubsetOf(actual));
+   ASSERT_THAT(expected_cells, UnorderedElementsAreArray(actual));
 }
 
