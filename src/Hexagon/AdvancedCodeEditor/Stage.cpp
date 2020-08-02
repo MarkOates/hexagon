@@ -192,6 +192,28 @@ return result;
 
 }
 
+bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
+{
+bool result = advanced_code_editor.insert_lines(lines_to_insert);
+if (result == true) refresh_render_surfaces();
+return result;
+
+}
+
+void Stage::set_content(std::string content)
+{
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "set_content" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+bool result = advanced_code_editor.set_content(content);
+if (result == true) refresh_render_surfaces();
+return;
+
+}
+
 bool Stage::insert_three_spaces_at_start_of_line()
 {
 // TODO
@@ -250,32 +272,10 @@ return result;
 
 }
 
-bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
-{
-bool result = advanced_code_editor.insert_lines(lines_to_insert);
-if (result == true) refresh_render_surfaces();
-return result;
-
-}
-
 bool Stage::cursor_move_to(int x, int y)
 {
 advanced_code_editor.cursor_move_to(x, y);
 return true;
-
-}
-
-void Stage::set_content(std::string content)
-{
-if (!(initialized))
-   {
-      std::stringstream error_message;
-      error_message << "Stage" << "::" << "set_content" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-bool result = advanced_code_editor.set_content(content);
-if (result == true) refresh_render_surfaces();
-return;
 
 }
 

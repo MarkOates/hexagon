@@ -59,13 +59,13 @@ namespace Hexagon
       bool split_lines();
       bool delete_line();
       bool insert_string_from_input_buffer();
+      bool insert_lines(std::vector<std::string> lines_to_insert={});
+      void set_content(std::string content="");
       bool insert_three_spaces_at_start_of_line();
       static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
       static KeyboardCommandMapper build_keyboard_command_mapping_for_edit_mode();
       static KeyboardCommandMapper build_keyboard_command_mapping_for_insert_mode();
-      bool insert_lines(std::vector<std::string> lines_to_insert={});
       bool cursor_move_to(int x=0, int y=0);
-      void set_content(std::string content="");
       virtual void render() override;
       virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
       virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;

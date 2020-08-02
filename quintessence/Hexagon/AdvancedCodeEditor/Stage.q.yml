@@ -157,6 +157,30 @@ functions:
       return result;
 
 
+  - name: insert_lines
+    type: bool
+    parameters:
+      - name: lines_to_insert
+        type: std::vector<std::string>
+        default_argument: '{}'
+    body: |
+      bool result = advanced_code_editor.insert_lines(lines_to_insert);
+      if (result == true) refresh_render_surfaces();
+      return result;
+
+
+  - name: set_content
+    parameters:
+      - name: content
+        type: std::string
+        default_argument: '""'
+    guards: [ initialized ]
+    body: |
+      bool result = advanced_code_editor.set_content(content);
+      if (result == true) refresh_render_surfaces();
+      return;
+
+
   - name: insert_three_spaces_at_start_of_line
     type: bool
     body: |
@@ -218,18 +242,6 @@ functions:
       return result;
 
 
-  - name: insert_lines
-    type: bool
-    parameters:
-      - name: lines_to_insert
-        type: std::vector<std::string>
-        default_argument: '{}'
-    body: |
-      bool result = advanced_code_editor.insert_lines(lines_to_insert);
-      if (result == true) refresh_render_surfaces();
-      return result;
-
-
   - name: cursor_move_to
     type: bool
     parameters:
@@ -242,18 +254,6 @@ functions:
     body: |
       advanced_code_editor.cursor_move_to(x, y);
       return true;
-
-
-  - name: set_content
-    parameters:
-      - name: content
-        type: std::string
-        default_argument: '""'
-    guards: [ initialized ]
-    body: |
-      bool result = advanced_code_editor.set_content(content);
-      if (result == true) refresh_render_surfaces();
-      return;
 
 
   - name: render
