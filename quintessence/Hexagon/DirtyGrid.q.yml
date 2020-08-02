@@ -4,7 +4,7 @@ properties:
   - name: dirty_cells
     type: std::set<std::pair<int, int>>
     init_with: '{}'
-    getter_ref: true
+    getter: true
 
 
 functions:
