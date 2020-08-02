@@ -61,7 +61,7 @@ std::vector<std::string> &lines = get_lines_ref();
 
 lines[cursor.get_y()].insert(cursor.get_x(), string);
 
-dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() + 2 - cursor.get_x());
+dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() - cursor.get_x());
 
 return true;
 

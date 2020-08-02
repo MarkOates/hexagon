@@ -192,6 +192,18 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    insert_string__will_set_the_dirty_cells_with_the_expected_values)
 {
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(FIXTURE_PASSAGE);
+   advanced_code_editor.dirty_grid_clear();
+
+   advanced_code_editor.cursor_move_to(22, 3);
+   ASSERT_EQ(true, advanced_code_editor.insert_string("VERY "));
+
+   std::vector<std::pair<int, int>> expected = {
+      { 22, 3 }, { 23, 3 }, { 24, 3 }, { 25, 3 }, { 26, 3 }, { 27, 3 }, { 28, 3 }, { 29, 3 }, { 30, 3 }, { 31, 3 }
+   };
+   std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
+   ASSERT_EQ(expected, actual);
 }
 
 
