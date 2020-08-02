@@ -133,6 +133,10 @@ functions:
     body: |
       if (cursor.get_y() < 0 || cursor.get_y() >= lines.size()) return false;
 
+      // current line
+
+      // from the next line down, from 0 to the longer of itself and the length of the line below it
+
       lines.erase(lines.begin()+cursor.get_y());
       return true;
 
