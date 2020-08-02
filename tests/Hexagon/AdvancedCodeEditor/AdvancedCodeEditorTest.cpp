@@ -162,7 +162,6 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    dirty_grid_clear__will_clear_the_current_dirty_cells)
 {
-   std::vector<std::string> lines;
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
    advanced_code_editor.set_content(FIXTURE_PASSAGE);
 
@@ -174,7 +173,6 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    delete_character__will_set_the_dirty_cells_with_the_expected_values)
 {
-   std::vector<std::string> lines;
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
    advanced_code_editor.set_content(FIXTURE_PASSAGE);
 
