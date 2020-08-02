@@ -412,7 +412,13 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    advanced_code_editor.cursor_move_to(0, 7);
    advanced_code_editor.delete_line();
 
-   // TODO
+   std::vector<std::pair<int, int>> expected_cells_from_before_change = {
+   };
+   std::vector<std::pair<int, int>> expected_cells_from_after_change = {
+   };
+   std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
+   //ASSERT_THAT(expected_cells_from_before_change, IsSubsetOf(actual));
+   //ASSERT_THAT(expected_cells_from_after_change, IsSubsetOf(actual));
 }
 
 
