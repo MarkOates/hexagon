@@ -1,6 +1,8 @@
 
 
 #include <Hexagon/DirtyGrid.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <vector>
 #include <utility>
 
@@ -29,6 +31,19 @@ std::set<std::pair<int, int>> DirtyGrid::get_dirty_cells()
 void DirtyGrid::mark_as_dirty(int x, int y)
 {
 dirty_cells.insert(std::pair<int, int>{x, y});
+return;
+
+}
+
+void DirtyGrid::incorporate(Hexagon::DirtyGrid* other_dirty_grid)
+{
+if (!(other_dirty_grid))
+   {
+      std::stringstream error_message;
+      error_message << "DirtyGrid" << "::" << "incorporate" << ": error: " << "guard \"other_dirty_grid\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+dirty_cells.insert(other_dirty_grid->dirty_cells.begin(), other_dirty_grid->dirty_cells.end());
 return;
 
 }

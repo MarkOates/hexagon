@@ -23,6 +23,17 @@ functions:
       return;
 
 
+  - name: incorporate
+    parameters:
+      - name: other_dirty_grid
+        type: Hexagon::DirtyGrid*
+        default_argument: 'nullptr'
+    guards: [ other_dirty_grid ]
+    body: |
+      dirty_cells.insert(other_dirty_grid->dirty_cells.begin(), other_dirty_grid->dirty_cells.end());
+      return;
+
+
   - name: build_vector
     type: std::vector<std::pair<int, int>>
     body: |
@@ -46,6 +57,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::DirtyGrid*
+    headers: []
   - symbol: std::set<std::pair<int, int>>
     headers: [ set, utility ]
   - symbol: std::vector<std::pair<int, int>>

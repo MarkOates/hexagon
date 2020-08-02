@@ -30,7 +30,24 @@ TEST(Hexagon_DirtyGridTest, build_vector__will_return_a_vector_of_the_elements_i
    dirty_grid.mark_as_dirty(3, 5);
    dirty_grid.mark_as_dirty(7, 13);
 
-   std::vector<std::pair<int, int>> expected_dirty_cells_as_vector = { {3, 5}, { 7, 13} };
+   std::vector<std::pair<int, int>> expected_dirty_cells_as_vector = { {3, 5}, {7, 13} };
+   std::vector<std::pair<int, int>> actual_dirty_cells_as_vector = dirty_grid.build_vector();
+
+   ASSERT_EQ(expected_dirty_cells_as_vector, actual_dirty_cells_as_vector);
+}
+
+TEST(Hexagon_DirtyGridTest, incorporate__will_add_cells_from_another_dirty_grid)
+{
+   Hexagon::DirtyGrid dirty_grid;
+   Hexagon::DirtyGrid other_dirty_grid;
+
+   dirty_grid.mark_as_dirty(3, 5);
+   other_dirty_grid.mark_as_dirty(7, 13);
+   other_dirty_grid.mark_as_dirty(9, 27);
+
+   dirty_grid.incorporate(&other_dirty_grid);
+
+   std::vector<std::pair<int, int>> expected_dirty_cells_as_vector = { {3, 5}, {7, 13}, {9, 27} };
    std::vector<std::pair<int, int>> actual_dirty_cells_as_vector = dirty_grid.build_vector();
 
    ASSERT_EQ(expected_dirty_cells_as_vector, actual_dirty_cells_as_vector);
