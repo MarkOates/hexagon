@@ -18,6 +18,7 @@ namespace Hexagon
          std::vector<std::string> lines;
          Hexagon::AdvancedCodeEditor::Cursor cursor;
          Hexagon::DirtyGrid dirty_grid;
+         char SPLIT_LINE_DELIMITER_CHAR;
 
       public:
          AdvancedCodeEditor();

@@ -13,6 +13,9 @@ properties:
   - name: dirty_grid
     type: Hexagon::DirtyGrid
     init_with: '{}'
+  - name: SPLIT_LINE_DELIMITER_CHAR
+    type: char
+    init_with: "'\\n'"
 
 
 functions:
@@ -26,7 +29,7 @@ functions:
         default_argument: '""'
     body: |
       dirty_grid.mark_all_as_dirty(&lines);
-      lines = Blast::StringSplitter(content, '\n').split();
+      lines = Blast::StringSplitter(content, SPLIT_LINE_DELIMITER_CHAR).split();
       dirty_grid.mark_all_as_dirty(&lines);
       return true;
     body_dependency_symbols:

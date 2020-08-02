@@ -14,6 +14,7 @@ AdvancedCodeEditor::AdvancedCodeEditor()
    : lines({})
    , cursor({})
    , dirty_grid({})
+   , SPLIT_LINE_DELIMITER_CHAR('\n')
 {
 }
 
@@ -44,7 +45,7 @@ Hexagon::AdvancedCodeEditor::Cursor &AdvancedCodeEditor::get_cursor_ref()
 bool AdvancedCodeEditor::set_content(std::string content)
 {
 dirty_grid.mark_all_as_dirty(&lines);
-lines = Blast::StringSplitter(content, '\n').split();
+lines = Blast::StringSplitter(content, SPLIT_LINE_DELIMITER_CHAR).split();
 dirty_grid.mark_all_as_dirty(&lines);
 return true;
 
