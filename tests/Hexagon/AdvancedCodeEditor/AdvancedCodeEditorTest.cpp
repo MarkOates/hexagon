@@ -438,4 +438,28 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    ASSERT_THAT(expected_cells_from_before_change, UnorderedElementsAreArray(actual));
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   insert_lines__will_set_the_dirty_cells_with_only_the_expected_cells)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SIMPLE_PASSAGE);
+   advanced_code_editor.dirty_grid_clear();
+
+   std::vector<std::string> lines_to_insert = {
+      "These,"
+      "are"
+      "",
+      "the lines to",
+      "insert",
+   };
+
+   advanced_code_editor.cursor_move_to(0, 7);
+   advanced_code_editor.insert_lines();
+
+   std::vector<std::pair<int, int>> expected_cells_from_before_change = {
+      // TODO
+   };
+   std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
+   ASSERT_THAT(expected_cells_from_before_change, UnorderedElementsAreArray(actual));
+}
 
