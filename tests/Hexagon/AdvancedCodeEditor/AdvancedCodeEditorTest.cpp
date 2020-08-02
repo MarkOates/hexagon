@@ -5,6 +5,7 @@
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 
 using ::testing::UnorderedElementsAreArray;
+using ::testing::IsSupersetOf;
 
 static std::string FIXTURE_PASSAGE = R"PASSAGE(       - 64 -
 Act without doing;
@@ -229,13 +230,12 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    advanced_code_editor.cursor_move_to(0, 7);
    advanced_code_editor.join_lines();
 
-   std::vector<std::pair<int, int>> expected = {
-      // new characters on joined line
+   std::vector<std::pair<int, int>> expected_characters_from_current_line = {
       {28, 7}, {29, 7}, {30, 7}, {31, 7}, {32, 7}, {33, 7}, {34, 7}, {35, 7}, {36, 7}, {37, 7}, {38, 7}, {39, 7},
       {40, 7}, {41, 7}, {42, 7}, {43, 7}, {44, 7}, {45, 7}, {46, 7}, {47, 7}, {48, 7}, {49, 7}, {50, 7}, {51, 7},
       {52, 7}, {53, 7}, {54, 7}, {55, 7}, {56, 7}, {57, 7}, {58, 7},
    };
    std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
-   ASSERT_THAT(expected, UnorderedElementsAreArray(actual));
+   ASSERT_THAT(expected_characters_from_current_line, IsSupersetOf(actual));
 }
 
