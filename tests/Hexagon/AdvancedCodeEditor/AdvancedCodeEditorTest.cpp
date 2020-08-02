@@ -144,7 +144,7 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
-   delete_character__will_set_the_characters_changed_in_last_action_with_the_expected_values)
+   delete_character__will_set_the_dirty_cells_with_the_expected_values)
 {
    std::vector<std::string> lines;
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;

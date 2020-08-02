@@ -18,7 +18,6 @@ namespace Hexagon
          std::vector<std::string> lines;
          Hexagon::AdvancedCodeEditor::Cursor cursor;
          Hexagon::DirtyGrid dirty_grid;
-         std::vector<std::pair<int, int>> characters_changed_in_last_action;
 
       public:
          AdvancedCodeEditor();
@@ -26,7 +25,6 @@ namespace Hexagon
 
 
          std::vector<std::string> get_lines();
-         std::vector<std::pair<int, int>> get_characters_changed_in_last_action();
          std::vector<std::string> &get_lines_ref();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
       void dirty_grid_clear();

@@ -14,7 +14,6 @@ AdvancedCodeEditor::AdvancedCodeEditor()
    : lines({})
    , cursor({})
    , dirty_grid({})
-   , characters_changed_in_last_action({})
 {
 }
 
@@ -27,12 +26,6 @@ AdvancedCodeEditor::~AdvancedCodeEditor()
 std::vector<std::string> AdvancedCodeEditor::get_lines()
 {
    return lines;
-}
-
-
-std::vector<std::pair<int, int>> AdvancedCodeEditor::get_characters_changed_in_last_action()
-{
-   return characters_changed_in_last_action;
 }
 
 
@@ -92,14 +85,7 @@ std::vector<std::string> &lines = get_lines_ref();
 lines[cursor.get_y()].erase(cursor.get_x(), 1);
 
 int start_offset = cursor.get_x();
-
 dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() + 2 - start_offset);
-
-characters_changed_in_last_action.resize(lines[cursor.get_y()].length() + 2 - start_offset);
-for (int x=0; x<characters_changed_in_last_action.size(); x++)
-{
-   characters_changed_in_last_action[x] = std::pair<int, int>(x + start_offset, cursor.get_y());
-}
 
 return true;
 

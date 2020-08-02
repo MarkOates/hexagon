@@ -39,7 +39,6 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , input_buffer("")
    , mode(0)
    , initialized(false)
-   , cells_changed_since_last_render({})
 {
 }
 
@@ -109,24 +108,6 @@ return;
 
 }
 
-void Stage::clear_cells_changed_since_last_render()
-{
-cells_changed_since_last_render.clear();
-return;
-
-}
-
-void Stage::append_cells_to_cells_changed_since_last_render(std::vector<std::pair<int, int>> cells_to_append)
-{
-cells_changed_since_last_render.insert(
-   cells_changed_since_last_render.end(),
-   cells_to_append.begin(),
-   cells_to_append.end()
-);
-return;
-
-}
-
 bool Stage::set_to_edit_mode()
 {
 mode = 0;
@@ -174,7 +155,6 @@ return advanced_code_editor.cursor_move_to_start_of_line();
 bool Stage::delete_character()
 {
 bool result = advanced_code_editor.delete_character();
-append_cells_to_cells_changed_since_last_render(advanced_code_editor.get_characters_changed_in_last_action());
 if (result == true) refresh_render_surfaces();
 return result;
 

@@ -50,9 +50,6 @@ properties:
   - name: initialized
     type: bool
     init_with: false
-  - name: cells_changed_since_last_render
-    type: std::vector<std::pair<int, int>>
-    init_with: '{}'
 
 
 functions:
@@ -73,28 +70,6 @@ functions:
       advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
 
       initialized = true;
-      return;
-
-
-  - name: clear_cells_changed_since_last_render
-    type: void
-    body: |
-      cells_changed_since_last_render.clear();
-      return;
-
-
-  - name: append_cells_to_cells_changed_since_last_render
-    type: void
-    parameters:
-      - name: cells_to_append
-        type: std::vector<std::pair<int, int>>
-        default_argument: '{}'
-    body: |
-      cells_changed_since_last_render.insert(
-         cells_changed_since_last_render.end(),
-         cells_to_append.begin(),
-         cells_to_append.end()
-      );
       return;
 
 
@@ -146,7 +121,6 @@ functions:
     type: bool
     body: |
       bool result = advanced_code_editor.delete_character();
-      append_cells_to_cells_changed_since_last_render(advanced_code_editor.get_characters_changed_in_last_action());
       if (result == true) refresh_render_surfaces();
       return result;
 
