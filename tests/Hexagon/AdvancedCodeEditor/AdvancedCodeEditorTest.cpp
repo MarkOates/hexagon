@@ -287,3 +287,23 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    ASSERT_THAT(expected_cells, UnorderedElementsAreArray(actual));
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   split_lines__will_set_the_dirty_cells_with_the_expected_values)
+{
+   std::string lines = R"END(        - 9 -
+Fill your bowl to the brim
+
+and it will spill.)END";
+
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(lines);
+   advanced_code_editor.dirty_grid_clear();
+
+   advanced_code_editor.cursor_move_to(14, 1);
+   advanced_code_editor.split_lines();
+
+   std::vector<std::pair<int, int>> expected = {};
+   std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
+   ASSERT_EQ(expected, actual);
+}
+
