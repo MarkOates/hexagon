@@ -288,7 +288,7 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
-   split_lines__will_set_the_dirty_cells_with_the_expected_values)
+   split_lines__will_set_the_dirty_cells_with_the_expected_cells_from_the_current_line)
 {
    std::string lines = R"END(        - 9 -
 Fill your bowl to the brim
