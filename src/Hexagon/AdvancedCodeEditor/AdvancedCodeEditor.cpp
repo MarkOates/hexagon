@@ -105,7 +105,7 @@ lines.erase(lines.begin() + cursor.get_y()+1);
 // all of the lines below the current line, after change
 for (int row=(cursor.get_y()+1); row<lines.size(); row++)
 {
-   //dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
+   dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
 }
 
 return true;

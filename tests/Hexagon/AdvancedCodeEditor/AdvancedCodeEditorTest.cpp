@@ -252,8 +252,18 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
       { 10, 11 }, { 11, 11 }, { 12, 11 }, { 13, 11 }, { 14, 11 }, { 15, 11 }, { 16, 11 }, { 17, 11 }, { 18, 11 },
       { 19, 11 }, { 20, 11 }, { 21, 11 }, { 22, 11 }, { 23, 11 }, { 24, 11 }, { 25, 11 },
    };
+   std::vector<std::pair<int, int>> expected_current_cells_from_below_current_line = {
+      { 0, 9 }, { 1, 9 }, { 2, 9 }, { 3, 9 }, { 4, 9 }, { 5, 9 }, { 6, 9 }, { 7, 9 }, { 8, 9 }, { 9, 9 }, { 10, 9 },
+      { 11, 9 }, { 12, 9 }, { 13, 9 }, { 14, 9 }, { 15, 9 }, { 16, 9 }, { 17, 9 }, { 18, 9 }, { 19, 9 }, { 20, 9 },
+      { 21, 9 }, { 22, 9 }, { 23, 9 }, { 24, 9 }, { 25, 9 }, { 26, 9 }, { 27, 9 }, { 28, 9 },
+
+      { 0, 10 }, { 1, 10 }, { 2, 10 }, { 3, 10 }, { 4, 10 }, { 5, 10 }, { 6, 10 }, { 7, 10 }, { 8, 10 }, { 9, 10 },
+      { 10, 10 }, { 11, 10 }, { 12, 10 }, { 13, 10 }, { 14, 10 }, { 15, 10 }, { 16, 10 }, { 17, 10 }, { 18, 10 },
+      { 19, 10 }, { 20, 10 }, { 21, 10 }, { 22, 10 }, { 23, 10 }, { 24, 10 }, { 25, 10 },
+   };
    std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
    ASSERT_THAT(expected_characters_from_current_line, IsSubsetOf(actual));
    ASSERT_THAT(expected_previous_cells_from_below_current_line, IsSubsetOf(actual));
+   ASSERT_THAT(expected_current_cells_from_below_current_line, IsSubsetOf(actual));
 }
 
