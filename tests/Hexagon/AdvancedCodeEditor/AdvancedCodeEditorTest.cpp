@@ -60,6 +60,34 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, set_content__with_an_arg
    SUCCEED();
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, set_content__will_set_the_dirty_cells_with_the_expected_values)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content("Hi,\nworld!");
+
+   std::vector<std::pair<int, int>> expected = {
+      { 0, 0 }, { 1, 0 }, { 2, 0 }, { 0, 1 }, { 1, 1 }, { 2, 1 }, { 3, 1 }, { 4, 1 }, { 5, 1 },
+   };
+   std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
+   ASSERT_THAT(expected, UnorderedElementsAreArray(actual));
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   set_content__will_include_previous_content_cells_in_addition_to_the_newly_set_cells)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content("Hi,\nworld!");
+   advanced_code_editor.set_content("Hello,\n\nSam!");
+
+   std::vector<std::pair<int, int>> expected = {
+      { 0, 0 }, { 1, 0 }, { 2, 0 }, { 3, 0 }, { 4, 0 }, { 5, 0 },
+      { 0, 1 }, { 1, 1 }, { 2, 1 }, { 3, 1 }, { 4, 1 }, { 5, 1 },
+      { 0, 2 }, { 1, 2 }, { 2, 2 }, { 3, 2 },
+   };
+   std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
+   ASSERT_THAT(expected, UnorderedElementsAreArray(actual));
+}
+
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    split_lines__will_split_a_single_line_to_two_sliced_at_the_cursor)
 {
