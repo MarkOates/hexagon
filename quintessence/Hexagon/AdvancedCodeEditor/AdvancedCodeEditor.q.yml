@@ -80,6 +80,9 @@ functions:
       Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
       std::vector<std::string> &lines = get_lines_ref();
 
+      // from a start position equal to the length of current line, with the length of line below
+      dirty_grid.mark_row_as_dirty(cursor.get_y(), lines[cursor.get_y()].length(), lines[cursor.get_y()+1].length());
+
       lines[cursor.get_y()] += lines[cursor.get_y()+1];
       lines.erase(lines.begin() + cursor.get_y()+1);
 
@@ -113,6 +116,8 @@ functions:
         type: std::vector<std::string>
         default_argument: '{}'
     body: |
+      // TODO: prevent insertion of newline '\n' characters
+
       int range_safe_y = std::min(std::max(0, cursor.get_y()), (int)lines.size());
       lines.insert(lines.begin() + range_safe_y, lines_to_insert.begin(), lines_to_insert.end());
       return true;

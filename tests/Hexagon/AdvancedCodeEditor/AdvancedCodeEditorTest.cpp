@@ -41,6 +41,19 @@ To change your day of youth to sullied night,
 And all in war with Time for love of you,
 As he takes from you, I engraft you new.)END";
 
+const std::string SIMPLE_PASSAGE = R"END(        - 9 -
+Fill your bowl to the brim
+and it will spill.
+Keep sharpening your knife
+and it will blunt.
+Chase after money and security
+and your heart will never unclench.
+Care about people's approval
+and you will be their prisoner.
+
+Do your work, then step back.
+The only path to serenity.)END";
+
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, can_be_created_without_blowing_up)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
@@ -209,5 +222,20 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    join_lines__will_set_the_dirty_cells_with_the_expected_values)
 {
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SIMPLE_PASSAGE);
+   advanced_code_editor.dirty_grid_clear();
+
+   advanced_code_editor.cursor_move_to(0, 7);
+   advanced_code_editor.join_lines();
+
+   std::vector<std::pair<int, int>> expected = {
+      // new characters on joined line
+      {28, 7}, {29, 7}, {30, 7}, {31, 7}, {32, 7}, {33, 7}, {34, 7}, {35, 7}, {36, 7}, {37, 7}, {38, 7}, {39, 7},
+      {40, 7}, {41, 7}, {42, 7}, {43, 7}, {44, 7}, {45, 7}, {46, 7}, {47, 7}, {48, 7}, {49, 7}, {50, 7}, {51, 7},
+      {52, 7}, {53, 7}, {54, 7}, {55, 7}, {56, 7}, {57, 7}, {58, 7},
+   };
+   std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
+   ASSERT_THAT(expected, UnorderedElementsAreArray(actual));
 }
 
