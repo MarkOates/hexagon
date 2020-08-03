@@ -5,6 +5,10 @@ properties:
     type: Hexagon::Elements::TextMesh*
     init_with: nullptr
     constructor_arg: true
+  - name: surface_render
+    type: ALLEGRO_BITMAP*
+    init_with: nullptr
+    constructor_arg: true
   - name: fonted_text_grid
     type: Hexagon::Elements::FontedTextGrid*
     init_with: '{}'
@@ -48,10 +52,11 @@ functions:
 
       // draw the mesh
       timer.reset(); timer.start();
-      text_mesh->render();
+      //text_mesh->render();
       timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
       timer.reset(); timer.start();
       //fonted_text_grid->draw();
+      if (surface_render) al_draw_bitmap(surface_render, 0, 0, 0);
       timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
       std::cout << "<--- ";
 
@@ -61,6 +66,7 @@ functions:
       return;
     body_dependency_symbols:
       - std::cout
+      - al_draw_bitmap
       - AllegroFlare::Timer
       - Hexagon::AdvancedCodeEditor::WindowRenderer
 
@@ -105,6 +111,10 @@ dependencies:
 
   - symbol: Hexagon::Elements::TextMesh*
     headers: [ Hexagon/Elements/TextMesh.hpp ]
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
+  - symbol: al_draw_bitmap
+    headers: [ allegro5/allegro.h ]
   - symbol: Hexagon::Elements::FontedTextGrid*
     headers: [ Hexagon/Elements/FontedTextGrid.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::WindowRenderer

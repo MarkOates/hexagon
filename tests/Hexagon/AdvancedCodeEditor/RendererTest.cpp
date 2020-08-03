@@ -39,7 +39,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    text_mesh.initialize();
    fonted_text_grid.initialize();
 
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &fonted_text_grid);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, nullptr, &fonted_text_grid);
    std::string expected_error_message = "Renderer::render_cursor: error: guard \"cursor\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 
@@ -59,7 +59,14 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
    Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
 
    placement3d place = build_centered_placement(800, 600);
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, &fonted_text_grid, &cursor, place.size.x, place.size.y);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(
+      &text_mesh,
+      nullptr,
+      &fonted_text_grid,
+      &cursor,
+      place.size.x,
+      place.size.y
+   );
 
    fonted_text_grid.lock_for_update();
    fonted_text_grid.set_cell_to_character_and_color('H', 0, 0);
@@ -94,6 +101,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    placement3d place = build_centered_placement(800, 600);
    Hexagon::AdvancedCodeEditor::Renderer renderer(
       &text_mesh,
+      nullptr,
       &fonted_text_grid,
       &cursor,
       place.size.x,

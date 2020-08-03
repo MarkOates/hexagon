@@ -2,6 +2,7 @@
 
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 #include <iostream>
+#include <allegro5/allegro.h>
 #include <AllegroFlare/Timer.hpp>
 #include <Hexagon/AdvancedCodeEditor/WindowRenderer.hpp>
 #include <stdexcept>
@@ -16,8 +17,9 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, Hexagon::Elements::FontedTextGrid* fonted_text_grid, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::Elements::FontedTextGrid* fonted_text_grid, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar)
    : text_mesh(text_mesh)
+   , surface_render(surface_render)
    , fonted_text_grid(fonted_text_grid)
    , cursor(cursor)
    , width(width)
@@ -60,10 +62,11 @@ timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
 
 // draw the mesh
 timer.reset(); timer.start();
-text_mesh->render();
+//text_mesh->render();
 timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
 timer.reset(); timer.start();
 //fonted_text_grid->draw();
+if (surface_render) al_draw_bitmap(surface_render, 0, 0, 0);
 timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
 std::cout << "<--- ";
 
