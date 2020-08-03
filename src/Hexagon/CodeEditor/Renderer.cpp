@@ -419,9 +419,10 @@ void Renderer::render_raw()
    window.set_outer_line_thickness(1.0);
 
    window.set_corner_squares_color(base_font_color);
-   window.set_corner_squares_opacity(0.2);
-   window.set_corner_squares_width(60.0f);
+   window.set_corner_squares_opacity(0.1);
+   window.set_corner_squares_width(10.0f);
    window.set_corner_squares_height(10.0f);
+   window.set_corner_squares_resize_from_center(true);
    window.draw();
 
 
