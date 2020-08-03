@@ -11,6 +11,7 @@ namespace Elements
 
 
 QuoteRenderer::QuoteRenderer()
+   : quote({})
 {
 }
 
@@ -20,9 +21,10 @@ QuoteRenderer::~QuoteRenderer()
 }
 
 
-std::string QuoteRenderer::run()
+void QuoteRenderer::render()
 {
-return "Hello World!";
+return;
+
 }
 } // namespace Elements
 } // namespace Hexagon

@@ -11,13 +11,14 @@ namespace Hexagon
       class QuoteRenderer
       {
       private:
+         std::string quote;
 
       public:
          QuoteRenderer();
          ~QuoteRenderer();
 
 
-      std::string run();
+      void render();
       };
    }
 }

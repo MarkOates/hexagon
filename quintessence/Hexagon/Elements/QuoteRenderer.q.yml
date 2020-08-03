@@ -1,4 +1,13 @@
-functions:
-  - name: run
+properties:
+
+  - name: quote
     type: std::string
-    body: return "Hello World!";
+    init_with: '{}'
+
+functions:
+
+  - name: render
+    type: void
+    body: |
+      return;
+
