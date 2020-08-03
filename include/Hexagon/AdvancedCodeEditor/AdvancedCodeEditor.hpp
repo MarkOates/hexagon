@@ -52,6 +52,7 @@ namespace Hexagon
       void dirty_grid_clear();
       std::vector<std::pair<int, int>> get_dirty_cells();
       bool any_dirty_cells();
+      int dirty_cell_count();
       };
    }
 }

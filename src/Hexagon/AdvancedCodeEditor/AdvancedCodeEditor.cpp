@@ -301,6 +301,12 @@ bool AdvancedCodeEditor::any_dirty_cells()
 return !dirty_grid.dirty_cells_empty();
 
 }
+
+int AdvancedCodeEditor::dirty_cell_count()
+{
+return dirty_grid.dirty_cells_count();
+
+}
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

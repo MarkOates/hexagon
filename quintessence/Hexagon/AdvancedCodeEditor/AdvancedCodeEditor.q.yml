@@ -324,6 +324,12 @@ functions:
       return !dirty_grid.dirty_cells_empty();
 
 
+  - name: dirty_cell_count
+    type: int
+    body: |
+      return dirty_grid.dirty_cells_count();
+
+
 dependencies:
 
 
