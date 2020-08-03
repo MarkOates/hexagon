@@ -58,16 +58,12 @@ Hexagon::AdvancedCodeEditor::WindowRenderer(
    width,
    height
 ).render();
-timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
+timer.pause(); std::cout << " window render: " << timer.get_elapsed_time_microseconds() << std::endl;
 
-// draw the mesh
+// draw the surface render
 timer.reset(); timer.start();
-//text_mesh->render();
-timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
-timer.reset(); timer.start();
-//fonted_text_grid->draw();
 if (surface_render) al_draw_bitmap(surface_render, 0, 0, 0);
-timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " ";
+timer.pause(); std::cout << " surface_render render time: " << timer.get_elapsed_time_microseconds() << std::endl;
 std::cout << "<--- ";
 
 // draw the cursor
