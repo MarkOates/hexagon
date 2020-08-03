@@ -351,7 +351,6 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, delete_
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
    stage.initialize();
-
    stage.delete_character();
 }
 
