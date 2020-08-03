@@ -340,9 +340,18 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, delete_character__if_not_initialized__raises_an_error)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   std::string expected_error_message = "Stage::delete_character: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage.delete_character(), std::runtime_error, expected_error_message);
+}
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, delete_character__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   stage.initialize();
+
    stage.delete_character();
 }
 

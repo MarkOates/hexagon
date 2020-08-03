@@ -119,6 +119,7 @@ functions:
 
   - name: delete_character
     type: bool
+    guards: [ initialized ]
     body: |
       bool result = advanced_code_editor.delete_character();
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
@@ -362,12 +363,14 @@ functions:
     body: |
       AllegroFlare::Timer timer;
 
+      std::cout << "  <<<";
       timer.reset(); timer.start();
-      refresh_text_mesh();
+      refresh_dirty_cells_on_text_mesh();
+      //refresh_text_mesh();
       timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.reset(); timer.start();
       //refresh_fonted_text_grid();
       timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.reset(); timer.start();
-      std::cout << " -- ";
+      std::cout << ">>>  ";
 
       advanced_code_editor.dirty_grid_clear();
 
@@ -385,25 +388,30 @@ functions:
       ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
-      for (unsigned y=0; y<num_rows; y++)
+      int text_mesh_max_x = num_columns;
+      int text_mesh_max_y = num_rows;
+
+      for (auto &cell : advanced_code_editor.get_dirty_cells())
       {
-         for (unsigned x=0; x<num_columns; x++)
+         char char_to_set = clear_char;
+         ALLEGRO_COLOR color_to_set = clear_color;
+         int &x = cell.first;
+         int &y = cell.second;
+
+         if (y >= text_mesh_max_y) continue;
+         if (x >= text_mesh_max_x) continue;
+
+         if (y < lines.size())
          {
-            char char_to_set = clear_char;
-            ALLEGRO_COLOR color_to_set = clear_color;
-
-            if (y < lines.size())
+            if (x < lines[y].size())
             {
-               if (x < lines[y].size())
-               {
-                  char_to_set = lines[y][x];
-                  color_to_set = on_color;
-               }
+               char_to_set = lines[y][x];
+               color_to_set = on_color;
             }
-
-            text_mesh.set_cell_character(x, y, char_to_set);
-            text_mesh.set_cell_color(x, y, color_to_set);
          }
+
+         text_mesh.set_cell_character(x, y, char_to_set);
+         text_mesh.set_cell_color(x, y, color_to_set);
       }
       return;
 
