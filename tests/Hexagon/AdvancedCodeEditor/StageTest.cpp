@@ -293,13 +293,14 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
-   works)
+   DISABLED_works)
 {
    AllegroFlare::Timer timer;
-   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 123, 70);
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 123 / 2, 70 / 2);
    stage.initialize();
 
    stage.set_content(FIXTURE_PASSAGE);
+   stage.get_place().position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
 
    al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
    stage.render();
@@ -323,7 +324,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
          timer.pause();
          int update_duration = timer.get_elapsed_time_microseconds();
 
-         //EXPECT_EQ(100, update_duration);
+         EXPECT_EQ(100, update_duration);
 
          al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
          timer.reset();
@@ -332,7 +333,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
          timer.pause();
          int render_duration = timer.get_elapsed_time_microseconds();
 
-         //EXPECT_EQ(100, render_duration);
+         EXPECT_EQ(100, render_duration);
 
          al_flip_display();
       }

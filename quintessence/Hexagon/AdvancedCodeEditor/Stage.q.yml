@@ -83,6 +83,12 @@ functions:
       advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
       advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
 
+      get_place().size = vec3d(
+         num_columns * text_mesh.get_cell_width(),
+         num_rows * text_mesh.get_cell_height(),
+         0
+      );
+
       initialized = true;
       return;
 
