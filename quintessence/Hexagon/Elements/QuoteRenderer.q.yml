@@ -18,8 +18,9 @@ functions:
   - name: obtain_quote_font
     private: true
     type: ALLEGRO_FONT*
+    guards: [ font_bin ]
     body: |
-      return nullptr;
+      return font_bin->auto_get("Purista Medium.otf -32");
 
 dependencies:
 

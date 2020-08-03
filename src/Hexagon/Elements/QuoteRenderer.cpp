@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/Elements/QuoteRenderer.hpp>
-
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -30,7 +31,13 @@ return;
 
 ALLEGRO_FONT* QuoteRenderer::obtain_quote_font()
 {
-return nullptr;
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "QuoteRenderer" << "::" << "obtain_quote_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return font_bin->auto_get("Purista Medium.otf -32");
 
 }
 } // namespace Elements
