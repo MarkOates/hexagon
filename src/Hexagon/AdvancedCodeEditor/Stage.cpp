@@ -15,6 +15,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -236,6 +238,12 @@ return result;
 
 bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
 {
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "insert_lines" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 bool result = advanced_code_editor.insert_lines(lines_to_insert);
 if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return result;

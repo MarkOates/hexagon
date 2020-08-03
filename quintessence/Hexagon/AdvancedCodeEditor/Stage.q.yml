@@ -163,6 +163,7 @@ functions:
 
 
   - name: insert_lines
+    guards: [ initialized ]
     type: bool
     parameters:
       - name: lines_to_insert

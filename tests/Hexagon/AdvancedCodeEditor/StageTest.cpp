@@ -519,6 +519,15 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   insert_lines__if_not_initialized__raises_an_error)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   std::string expected_error_message = "Stage::insert_lines: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage.insert_lines(), std::runtime_error, expected_error_message);
+}
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    DISABLED_insert_string_from_input_buffer__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
 {
