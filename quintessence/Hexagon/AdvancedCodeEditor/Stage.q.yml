@@ -251,6 +251,7 @@ functions:
       result.set_mapping(ALLEGRO_KEY_J, 0, { "cursor_move_down" });
       result.set_mapping(ALLEGRO_KEY_H, 0, { "cursor_move_left" });
       result.set_mapping(ALLEGRO_KEY_L, 0, { "cursor_move_right" });
+      result.set_mapping(ALLEGRO_KEY_0, 0, { "cursor_move_to_start_of_line" });
       result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });
       result.set_mapping(ALLEGRO_KEY_BACKSPACE, ALLEGRO_KEYMOD_SHIFT, { "delete_line" });
       result.set_mapping(ALLEGRO_KEY_I, 0, { "set_to_insert_mode" });
@@ -266,7 +267,6 @@ functions:
       result.set_mapping(ALLEGRO_KEY_DOWN, 0, { "cursor_move_down" });
       result.set_mapping(ALLEGRO_KEY_LEFT, 0, { "cursor_move_left" });
       result.set_mapping(ALLEGRO_KEY_RIGHT, 0, { "cursor_move_right" });
-      result.set_mapping(ALLEGRO_KEY_0, 0, { "cursor_move_to_start_of_line" });
 
       result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "split_lines", "cursor_move_down", "cursor_move_to_start_of_line" });
       result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
