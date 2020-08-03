@@ -9,6 +9,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -131,6 +133,18 @@ if (!(get_initialized()))
 ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
 if (surface) al_draw_bitmap(surface, 0, 0, 0);
 return;
+
+}
+
+ALLEGRO_BITMAP* FontedTextGrid::__cheat_really_badly_and_get_the_bitmap_grid_render_surface()
+{
+if (!(get_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "FontedTextGrid" << "::" << "__cheat_really_badly_and_get_the_bitmap_grid_render_surface" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return bitmap_grid_render_surface.get_surface();
 
 }
 } // namespace Elements

@@ -95,6 +95,13 @@ functions:
       return;
 
 
+  - name: __cheat_really_badly_and_get_the_bitmap_grid_render_surface
+    type: ALLEGRO_BITMAP*
+    guards: [ get_initialized() ]
+    body: |
+      return bitmap_grid_render_surface.get_surface();
+
+
 dependencies:
 
 

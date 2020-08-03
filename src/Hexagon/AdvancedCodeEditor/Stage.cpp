@@ -526,6 +526,8 @@ if (!(initialized))
       error_message << "Stage" << "::" << "refresh_dirty_cells_on_fonted_text_grid" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
+text_mesh.render_only_select_cells(advanced_code_editor.get_dirty_cells());
+ALLEGRO_BITMAP *render_surface = fonted_text_grid.__cheat_really_badly_and_get_the_bitmap_grid_render_surface();
 return;
 
 }

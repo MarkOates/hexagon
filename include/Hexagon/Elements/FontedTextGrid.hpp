@@ -36,6 +36,7 @@ namespace Hexagon
       void lock_for_update();
       void unlock_for_update();
       void draw();
+      ALLEGRO_BITMAP* __cheat_really_badly_and_get_the_bitmap_grid_render_surface();
       };
    }
 }
