@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/FontBin.hpp>
 #include <allegro5/allegro_font.h>
 #include <string>
 
@@ -12,10 +13,11 @@ namespace Hexagon
       class QuoteRenderer
       {
       private:
+         AllegroFlare::FontBin* font_bin;
          std::string quote;
 
       public:
-         QuoteRenderer();
+         QuoteRenderer(AllegroFlare::FontBin* font_bin=nullptr);
          ~QuoteRenderer();
 
 

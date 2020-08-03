@@ -10,8 +10,9 @@ namespace Elements
 {
 
 
-QuoteRenderer::QuoteRenderer()
-   : quote({})
+QuoteRenderer::QuoteRenderer(AllegroFlare::FontBin* font_bin)
+   : font_bin(font_bin)
+   , quote({})
 {
 }
 

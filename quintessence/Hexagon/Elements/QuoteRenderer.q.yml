@@ -1,5 +1,9 @@
 properties:
 
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
   - name: quote
     type: std::string
     init_with: '{}'
@@ -19,6 +23,8 @@ functions:
 
 dependencies:
 
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
 
