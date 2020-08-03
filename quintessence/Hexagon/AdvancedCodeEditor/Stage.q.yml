@@ -454,6 +454,13 @@ functions:
       return;
 
 
+  - name: refresh_dirty_cells_on_fonted_text_grid
+    private: true
+    guards: [ initialized ]
+    body: |
+      return;
+
+
   - name: refresh_fonted_text_grid
     private: true
     guards: [ initialized ]
