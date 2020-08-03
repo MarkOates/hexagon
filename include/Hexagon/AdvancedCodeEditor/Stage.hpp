@@ -65,6 +65,7 @@ namespace Hexagon
       bool insert_lines(std::vector<std::string> lines_to_insert={});
       void set_content(std::string content="");
       bool insert_three_spaces_at_start_of_line();
+      bool insert_blank_line();
       static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
       static KeyboardCommandMapper build_keyboard_command_mapping_for_edit_mode();
       static KeyboardCommandMapper build_keyboard_command_mapping_for_insert_mode();

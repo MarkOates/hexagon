@@ -306,6 +306,12 @@ return false;
 
 }
 
+bool Stage::insert_blank_line()
+{
+return insert_lines({ {} });
+
+}
+
 std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> Stage::build_local_events_dictionary()
 {
 std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
@@ -321,6 +327,7 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    { "set_to_edit_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
    { "set_to_insert_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
    { "cursor_move_to_start_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_start_of_line },
+   { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
 };
 return local_events;
 
@@ -337,6 +344,12 @@ result.set_mapping(ALLEGRO_KEY_0, 0, { "cursor_move_to_start_of_line" });
 result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });
 result.set_mapping(ALLEGRO_KEY_BACKSPACE, ALLEGRO_KEYMOD_SHIFT, { "delete_line" });
 result.set_mapping(ALLEGRO_KEY_I, 0, { "set_to_insert_mode" });
+result.set_mapping(ALLEGRO_KEY_O, 0, {
+   "cursor_move_down",
+   "insert_blank_line",
+   "cursor_move_to_start_of_line",
+   "set_to_insert_mode",
+   });
 return result;
 
 }
