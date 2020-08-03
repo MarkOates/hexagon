@@ -69,6 +69,16 @@ functions:
       fonted_text_grid.set_font(obtain_text_font());
       fonted_text_grid.initialize();
 
+      surface_render = al_create_bitmap(
+         num_columns * text_mesh.get_cell_width(),
+         num_rows * text_mesh.get_cell_height()
+      );
+      ALLEGRO_STATE previous_render_state;
+      al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+      al_set_target_bitmap(surface_render);
+      al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+      al_restore_state(&previous_render_state);
+
       advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
       advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
 
