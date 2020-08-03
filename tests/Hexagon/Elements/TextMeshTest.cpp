@@ -217,3 +217,38 @@ TEST(Hexagon_Elements_TextMeshTest, set_font__when_assigned_before_initializatio
    al_uninstall_system();
 }
 
+TEST(Hexagon_Elements_TextMeshTest, render_only_select_cells__will_only_draw_the_passed_cells)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(1280, 720);
+   al_clear_to_color(al_color_name("black"));
+   ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
+
+   Hexagon::Elements::TextMesh text_mesh(nullptr, 30, 20);
+   text_mesh.set_font(a_valid_font);
+
+   text_mesh.initialize();
+
+   for (unsigned y=0; y<text_mesh.get_num_rows(); y++)
+   {
+      for (unsigned x=0; x<text_mesh.get_num_columns(); x++)
+      {
+         text_mesh.set_cell_color(x, y, al_color_name("blue"));
+         text_mesh.set_cell_character(x, y, '.');
+      }
+   }
+
+   std::vector<std::pair<int, int>> cells_to_render = {
+      { 0, 0 }, { 1, 1 }, { 3, 2 },
+      { 29, 0 }, { 29, 19 }
+   };
+
+   text_mesh.render_only_select_cells(cells_to_render);
+   al_flip_display();
+
+   sleep(1);
+
+   al_destroy_font(a_valid_font);
+   al_uninstall_system();
+}
+
