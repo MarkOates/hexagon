@@ -53,6 +53,7 @@ properties:
   - name: surface_render
     type: ALLEGRO_BITMAP*
     init_with: nullptr
+    getter: true
 
 
 functions:

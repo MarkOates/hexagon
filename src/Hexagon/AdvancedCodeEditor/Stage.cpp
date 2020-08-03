@@ -79,6 +79,12 @@ std::string Stage::get_input_buffer()
 }
 
 
+ALLEGRO_BITMAP* Stage::get_surface_render()
+{
+   return surface_render;
+}
+
+
 Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &Stage::get_advanced_code_editor_ref()
 {
    return advanced_code_editor;

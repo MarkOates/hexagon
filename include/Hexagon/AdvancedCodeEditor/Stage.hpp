@@ -44,6 +44,7 @@ namespace Hexagon
          void set_input_buffer(std::string input_buffer);
 
          std::string get_input_buffer();
+         ALLEGRO_BITMAP* get_surface_render();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
