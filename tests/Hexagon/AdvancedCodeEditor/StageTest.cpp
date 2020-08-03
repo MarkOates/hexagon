@@ -293,7 +293,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
-   works)
+   DISABLED_works)
 {
    AllegroFlare::Timer timer;
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 123 / 2, 70 / 2);
