@@ -85,9 +85,12 @@ functions:
     body: |
       std::vector<std::pair<int, int>> result;
       result.reserve(dirty_cells.size());
-      for (auto it=dirty_cells.begin(); it!=dirty_cells.end(); )
+      for (auto it=dirty_cells.begin(); it!=dirty_cells.end(); it++)
       {
-         result.push_back(std::move(dirty_cells.extract(it++).value()));
+         //result.push_back(std::move(dirty_cells.extract(it++).value())); // this line appears to destroy
+                                                                           // the original, hopefully the
+                                                                           // provided alternative is performant
+         result.push_back(*it);
       }
       return result;
     body_dependency_symbols:
