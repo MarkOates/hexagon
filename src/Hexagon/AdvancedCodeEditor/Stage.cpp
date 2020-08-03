@@ -33,6 +33,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -453,6 +455,18 @@ std::cout << ">>>  ";
 
 advanced_code_editor.dirty_grid_clear();
 
+return;
+
+}
+
+void Stage::refresh_surface_render()
+{
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "refresh_surface_render" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 return;
 
 }

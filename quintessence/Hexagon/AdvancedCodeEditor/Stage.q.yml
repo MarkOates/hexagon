@@ -404,6 +404,13 @@ functions:
       - AllegroFlare::Timer
 
 
+  - name: refresh_surface_render
+    private: true
+    guards: [ initialized ]
+    body: |
+      return;
+
+
   - name: refresh_dirty_cells_on_text_mesh
     private: true
     guards: [ initialized ]
