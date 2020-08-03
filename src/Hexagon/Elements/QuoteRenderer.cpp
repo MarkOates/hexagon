@@ -26,6 +26,12 @@ void QuoteRenderer::render()
 return;
 
 }
+
+ALLEGRO_FONT* QuoteRenderer::obtain_quote_font()
+{
+return nullptr;
+
+}
 } // namespace Elements
 } // namespace Hexagon
 

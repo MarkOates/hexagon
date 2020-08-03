@@ -11,3 +11,13 @@ functions:
     body: |
       return;
 
+  - name: obtain_quote_font
+    type: ALLEGRO_FONT*
+    body: |
+      return nullptr;
+
+dependencies:
+
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+
