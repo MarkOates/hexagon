@@ -447,6 +447,7 @@ AllegroFlare::Timer timer;
 std::cout << "  <<<";
 timer.reset(); timer.start();
 refresh_dirty_cells_on_text_mesh();
+refresh_dirty_cells_on_surface_render();
 //refresh_text_mesh();
 timer.pause(); std::cout << timer.get_elapsed_time_microseconds() << " "; timer.reset(); timer.start();
 //refresh_fonted_text_grid();
@@ -459,14 +460,22 @@ return;
 
 }
 
-void Stage::refresh_surface_render()
+void Stage::refresh_dirty_cells_on_surface_render()
 {
 if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "Stage" << "::" << "refresh_surface_render" << ": error: " << "guard \"initialized\" not met";
+      error_message << "Stage" << "::" << "refresh_dirty_cells_on_surface_render" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
+ALLEGRO_STATE previous_render_state;
+al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
+al_set_target_bitmap(surface_render);
+al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ZERO);
+
+text_mesh.render_only_select_cells(advanced_code_editor.get_dirty_cells());
+
+al_restore_state(&previous_render_state);
 return;
 
 }
