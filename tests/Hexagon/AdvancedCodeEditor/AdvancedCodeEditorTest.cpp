@@ -210,6 +210,16 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   insert_string__on_an_empty_line_with_the_x_cursor_at_0__will_insert_the_string)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(FIXTURE_PASSAGE);
+   advanced_code_editor.dirty_grid_clear();
+   advanced_code_editor.cursor_move_to(0, 9);
+   ASSERT_EQ(true, advanced_code_editor.insert_string("Some text to insert"));
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    insert_string__will_set_the_dirty_cells_with_the_expected_values)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
