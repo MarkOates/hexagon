@@ -216,7 +216,14 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    advanced_code_editor.set_content(FIXTURE_PASSAGE);
    advanced_code_editor.dirty_grid_clear();
    advanced_code_editor.cursor_move_to(0, 9);
-   ASSERT_EQ(true, advanced_code_editor.insert_string("Some text to insert"));
+
+   std::string string_to_insert = "Some text to insert";
+
+   ASSERT_EQ(true, advanced_code_editor.insert_string(string_to_insert));
+
+   std::vector<std::string> lines = advanced_code_editor.get_lines();
+
+   ASSERT_EQ(string_to_insert, lines[9]);
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
