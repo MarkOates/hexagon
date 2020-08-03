@@ -12,6 +12,7 @@ functions:
       return;
 
   - name: obtain_quote_font
+    private: true
     type: ALLEGRO_FONT*
     body: |
       return nullptr;
