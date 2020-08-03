@@ -55,6 +55,12 @@ and you will be their prisoner.
 Do your work, then step back.
 The only path to serenity.)END";
 
+const std::string PARABLE = R"END("What is this?"
+
+"This is the union
+of the before
+and the after.")END";
+
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, can_be_created_without_blowing_up)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
