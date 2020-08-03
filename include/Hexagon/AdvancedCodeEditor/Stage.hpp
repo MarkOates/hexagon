@@ -35,6 +35,7 @@ namespace Hexagon
          int mode;
          static ALLEGRO_EVENT a_default_empty_event;
          bool initialized;
+         ALLEGRO_BITMAP* surface_render;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
@@ -47,6 +48,7 @@ namespace Hexagon
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void initialize();
+      void destroy();
       bool set_to_edit_mode();
       bool set_to_insert_mode();
       bool cursor_move_up();

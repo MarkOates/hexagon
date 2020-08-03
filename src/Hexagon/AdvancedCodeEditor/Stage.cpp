@@ -55,6 +55,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , input_buffer("")
    , mode(0)
    , initialized(false)
+   , surface_render(nullptr)
 {
 }
 
@@ -120,6 +121,14 @@ advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
 advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
 
 initialized = true;
+return;
+
+}
+
+void Stage::destroy()
+{
+if (surface_render) al_destroy_bitmap(surface_render);
+initialized = false;
 return;
 
 }

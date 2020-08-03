@@ -50,6 +50,9 @@ properties:
   - name: initialized
     type: bool
     init_with: false
+  - name: surface_render
+    type: ALLEGRO_BITMAP*
+    init_with: nullptr
 
 
 functions:
@@ -70,6 +73,13 @@ functions:
       advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
 
       initialized = true;
+      return;
+
+
+  - name: destroy
+    body: |
+      if (surface_render) al_destroy_bitmap(surface_render);
+      initialized = false;
       return;
 
 
@@ -511,6 +521,8 @@ dependencies:
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: AllegroFlare::Timer
     headers: [ AllegroFlare/Timer.hpp ]
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_EVENT
