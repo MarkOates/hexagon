@@ -154,6 +154,7 @@ functions:
 
 
   - name: insert_string_from_input_buffer
+    guards: [ initialized ]
     type: bool
     body: |
       bool result = advanced_code_editor.insert_string(input_buffer);

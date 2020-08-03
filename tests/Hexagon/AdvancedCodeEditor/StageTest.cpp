@@ -501,10 +501,20 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, delete_line__if_no
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   insert_string_from_input_buffer__if_not_initialized__raises_an_error)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   std::string expected_error_message = "Stage::insert_string_from_input_buffer: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage.insert_string_from_input_buffer(), std::runtime_error, expected_error_message);
+}
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    insert_string_from_input_buffer__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   stage.initialize();
    stage.insert_string_from_input_buffer();
 }
 
@@ -542,4 +552,6 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 {
    // TODO
 }
+
+
 

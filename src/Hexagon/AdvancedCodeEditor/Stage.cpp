@@ -13,6 +13,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -220,6 +222,12 @@ return result;
 
 bool Stage::insert_string_from_input_buffer()
 {
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "insert_string_from_input_buffer" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 bool result = advanced_code_editor.insert_string(input_buffer);
 if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return result;
