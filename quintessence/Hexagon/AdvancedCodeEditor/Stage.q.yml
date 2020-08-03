@@ -145,6 +145,7 @@ functions:
 
 
   - name: delete_line
+    guards: [ initialized ]
     type: bool
     body: |
       bool result = advanced_code_editor.delete_line();
