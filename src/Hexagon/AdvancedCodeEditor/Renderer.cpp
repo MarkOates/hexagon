@@ -50,8 +50,6 @@ if (!(fonted_text_grid))
    }
 AllegroFlare::Timer timer;
 
-std::cout << " --->";
-
 timer.reset(); timer.start();
 // draw the window
 Hexagon::AdvancedCodeEditor::WindowRenderer(
@@ -64,7 +62,6 @@ timer.pause(); std::cout << " window render: " << timer.get_elapsed_time_microse
 timer.reset(); timer.start();
 if (surface_render) al_draw_bitmap(surface_render, 0, 0, 0);
 timer.pause(); std::cout << " surface_render render time: " << timer.get_elapsed_time_microseconds() << std::endl;
-std::cout << "<--- ";
 
 // draw the cursor
 render_cursor();
