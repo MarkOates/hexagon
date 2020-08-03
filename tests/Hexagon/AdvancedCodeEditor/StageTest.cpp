@@ -388,6 +388,14 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, join_lines__if_not_initialized__raises_an_error)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   std::string expected_error_message = "Stage::join_lines: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage.join_lines(), std::runtime_error, expected_error_message);
+}
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    join_lines__does_not_blow_up)
 {

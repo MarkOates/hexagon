@@ -128,6 +128,7 @@ functions:
 
   - name: join_lines
     type: bool
+    guards: [ initialized ]
     body: |
       bool result = advanced_code_editor.join_lines();
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
