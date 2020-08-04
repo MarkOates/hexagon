@@ -38,7 +38,7 @@ void Renderer::draw_individual_rectangle(float x1, float y1, float x2, float y2,
 float h_padding = 8.0f;
 float v_padding = 8.0f;
 ALLEGRO_COLOR border_color = al_map_rgba_f(0.2, 0.2, 0.2, 0.2);
-float border_line_thickness = 2.0f;
+float border_line_thickness = 1.0f;
 ALLEGRO_COLOR color = al_color_name("gray");
 al_draw_rectangle(x1, y1, x2, y2, border_color, border_line_thickness);
 

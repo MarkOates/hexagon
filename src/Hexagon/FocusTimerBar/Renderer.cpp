@@ -69,7 +69,7 @@ length = normal_length * width;
 float h_padding = 5.0f;
 float v_padding = 5.0f;
 float roundness = 0.0f;
-al_draw_rectangle(x - h_padding, y - v_padding, x + width + h_padding, y + v_padding, border_color, 2.0);
+al_draw_rectangle(x - h_padding, y - v_padding, x + width + h_padding, y + v_padding, border_color, 1.0);
 al_draw_line(x, y, x+length, y, color, 1.0f);
 //al_draw_line(10, 10, 600, 300, al_color_name("white"), 10.0f);
 return;
