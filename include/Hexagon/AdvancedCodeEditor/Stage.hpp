@@ -49,7 +49,7 @@ namespace Hexagon
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void initialize();
-      void destroy();
+      virtual void destroy() override;
       bool set_to_edit_mode();
       bool set_to_insert_mode();
       bool cursor_move_up();

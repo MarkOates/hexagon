@@ -124,3 +124,7 @@ bool StageInterface::infer_is_modal()
 
 
 
+void StageInterface::destroy() {}
+
+
+

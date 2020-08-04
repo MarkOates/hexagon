@@ -50,6 +50,7 @@ public:
    virtual void render() = 0;
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) = 0;
    virtual void process_event(ALLEGRO_EVENT &event) = 0;
+   virtual void destroy();
 };
 
 

@@ -94,6 +94,8 @@ functions:
 
 
   - name: destroy
+    virtual: true
+    override: true
     body: |
       if (surface_render) al_destroy_bitmap(surface_render);
       initialized = false;
