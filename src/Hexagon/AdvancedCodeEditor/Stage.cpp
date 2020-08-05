@@ -202,6 +202,12 @@ return advanced_code_editor.cursor_move_to_start_of_line();
 
 }
 
+bool Stage::cursor_move_to_end_of_line()
+{
+return advanced_code_editor.cursor_move_to_end_of_line();
+
+}
+
 bool Stage::cursor_jump_to_next_word()
 {
 return advanced_code_editor.cursor_jump_to_next_word();
@@ -340,6 +346,7 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    { "set_to_edit_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
    { "set_to_insert_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
    { "cursor_move_to_start_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_start_of_line },
+   { "cursor_move_to_end_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_end_of_line },
    { "cursor_jump_to_next_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_next_word },
    { "cursor_jump_to_previous_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_word },
    { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
