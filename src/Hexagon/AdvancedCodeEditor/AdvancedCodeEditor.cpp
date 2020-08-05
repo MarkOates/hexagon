@@ -245,14 +245,14 @@ return true;
 bool AdvancedCodeEditor::cursor_move_to_end_of_line()
 {
 // if not on a valid line
-if (cursor.get_y() < 0 || cursor.get_y() >= lines.size() || lines.empty())
+if (cursor.get_y() < 0 || cursor.get_y() >= lines.size())
 {
    cursor.set_x(0);
 }
 else
 {
    std::string &current_line = lines[cursor.get_y()];
-   cursor.set_x(current_line.size()-1);
+   cursor.set_x(std::max(0, (int)(current_line.size()-1)));
 }
 
 return true;

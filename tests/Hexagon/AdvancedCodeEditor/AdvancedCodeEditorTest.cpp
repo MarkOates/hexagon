@@ -182,6 +182,17 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   cursor_move_to_end_of_line__on_an_empty_line__will_move_the_cursor_horizontally_to_0)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SONNET_TEXT);
+
+   advanced_code_editor.cursor_move_to(3, 1);
+   ASSERT_EQ(true, advanced_code_editor.cursor_move_to_end_of_line());
+   EXPECT_EQ(0, advanced_code_editor.cursor_get_x());
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    cursor_move_to_end_of_line__when_the_cursor_is_vertically_out_of_bounds__will_move_the_cursor_horizontally_to_0)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
