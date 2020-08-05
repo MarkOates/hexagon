@@ -136,6 +136,33 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   cursor_jump_to_previous_word__will_move_the_cursor_to_the_first_character_of_the_previous_word_boundry)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SONNET_TEXT);
+
+   std::vector<int> expected_jump_points = { 5, 7, 16, 22, 28, 33 };
+
+   advanced_code_editor.cursor_move_to(0, 2);
+
+   for (unsigned i=0; i<expected_jump_points.size(); i++)
+   {
+      ASSERT_EQ(true, advanced_code_editor.cursor_jump_to_previous_word());
+      EXPECT_EQ(advanced_code_editor.cursor_get_x(), expected_jump_points[i]);
+   }
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   cursor_jump_to_previous_word__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+
+   advanced_code_editor.cursor_move_to(-5, -2);
+
+   ASSERT_EQ(false, advanced_code_editor.cursor_jump_to_previous_word());
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    split_lines__will_split_a_single_line_to_two_sliced_at_the_cursor)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
