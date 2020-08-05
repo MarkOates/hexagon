@@ -171,11 +171,51 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    advanced_code_editor.cursor_move_to(11, 4);
    ASSERT_EQ(true, advanced_code_editor.cursor_move_to_end_of_line());
    EXPECT_EQ(47, advanced_code_editor.cursor_get_x());
+
+   advanced_code_editor.cursor_move_up();
+   ASSERT_EQ(true, advanced_code_editor.cursor_move_to_end_of_line());
+   EXPECT_EQ(39, advanced_code_editor.cursor_get_x());
+
+   advanced_code_editor.cursor_move_up();
+   ASSERT_EQ(true, advanced_code_editor.cursor_move_to_end_of_line());
+   EXPECT_EQ(37, advanced_code_editor.cursor_get_x());
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
-   cursor_move_to_end_of_line__when_the_cursor_is_out_of_bounds__will_move_the_cursor_horizontally_to_0)
+   cursor_move_to_end_of_line__when_the_cursor_is_vertically_out_of_bounds__will_move_the_cursor_horizontally_to_0)
 {
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SONNET_TEXT);
+
+   std::vector<std::pair<int, int>> out_of_bounds_positions = {
+      { 2, -999 }, { 2, -1 }, { 5, 16 }, { 999, 999 },
+   };
+
+   for (auto &out_of_bounds_position : out_of_bounds_positions)
+   {
+      advanced_code_editor.cursor_move_to(out_of_bounds_position.first, out_of_bounds_position.second);
+      ASSERT_EQ(true, advanced_code_editor.cursor_move_to_end_of_line());
+      EXPECT_EQ(0, advanced_code_editor.cursor_get_x());
+   }
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   cursor_move_to_end_of_line__when_the_cursor_is_horizontally_out_of_bounds__will_move_the_cursor_to_the_end_of_line)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SONNET_TEXT);
+
+   advanced_code_editor.cursor_move_to(999, 6);
+   ASSERT_EQ(true, advanced_code_editor.cursor_move_to_end_of_line());
+   EXPECT_EQ(43, advanced_code_editor.cursor_get_x());
+
+   advanced_code_editor.cursor_move_to(-1, 7);
+   ASSERT_EQ(true, advanced_code_editor.cursor_move_to_end_of_line());
+   EXPECT_EQ(45, advanced_code_editor.cursor_get_x());
+
+   advanced_code_editor.cursor_move_to(-999, 8);
+   ASSERT_EQ(true, advanced_code_editor.cursor_move_to_end_of_line());
+   EXPECT_EQ(47, advanced_code_editor.cursor_get_x());
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,

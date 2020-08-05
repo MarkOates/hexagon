@@ -246,7 +246,7 @@ functions:
     type: bool
     body: |
       // if not on a valid line
-      if (cursor.get_y() < 0 || cursor.get_y() >= lines.size())
+      if (cursor.get_y() <= 1 || cursor.get_y() >= lines.size())
       {
          cursor.set_x(0);
       }
