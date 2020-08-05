@@ -240,6 +240,8 @@ return true;
 
 bool AdvancedCodeEditor::cursor_jump_to_next_word()
 {
+if (!is_cursor_in_bounds()) return false;
+
 // This regex from vimdoc.sourceforge.net/htmldoc/motion.html#word
 std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";
 std::string &current_line = lines[cursor.get_y()];

@@ -126,6 +126,16 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   cursor_jump_to_next_word__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+
+   advanced_code_editor.cursor_move_to(-5, -2);
+
+   ASSERT_EQ(false, advanced_code_editor.cursor_jump_to_next_word());
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    split_lines__will_split_a_single_line_to_two_sliced_at_the_cursor)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
