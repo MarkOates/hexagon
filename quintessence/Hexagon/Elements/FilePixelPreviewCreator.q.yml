@@ -1,3 +1,10 @@
+properties:
+
+  - name: filename
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
+
 functions:
   - name: run
     type: std::string

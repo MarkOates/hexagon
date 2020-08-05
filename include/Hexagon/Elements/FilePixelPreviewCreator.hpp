@@ -11,9 +11,10 @@ namespace Hexagon
       class FilePixelPreviewCreator
       {
       private:
+         std::string filename;
 
       public:
-         FilePixelPreviewCreator();
+         FilePixelPreviewCreator(std::string filename="");
          ~FilePixelPreviewCreator();
 
 
