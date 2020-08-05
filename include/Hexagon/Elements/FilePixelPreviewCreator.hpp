@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <allegro5/allegro.h>
 #include <string>
 #include <vector>
 
@@ -20,8 +21,8 @@ namespace Hexagon
          ~FilePixelPreviewCreator();
 
 
-      void create();
-      std::vector<std::string> file_contents();
+      ALLEGRO_BITMAP* create();
+      std::vector<std::string> get_file_contents();
       };
    }
 }

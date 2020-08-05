@@ -12,7 +12,7 @@ properties:
 functions:
 
   - name: create
-    type: void
+    type: ALLEGRO_BITMAP*
     guards: [ al_is_system_installed() ]
     body: |
       if (!Blast::FileExistenceChecker(filename).exists())
@@ -22,12 +22,17 @@ functions:
          throw std::runtime_error(error_message.str());
       }
 
-      return;
+      std::vector<std::string> lines = get_file_contents();
+      int height = lines.size();
+
+      ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
+
+      return bitmap;
     body_dependency_symbols:
       - al_is_system_installed
       - Blast::FileExistenceChecker
 
-  - name: file_contents
+  - name: get_file_contents
     private: true
     type: std::vector<std::string>
     body: |
@@ -40,6 +45,8 @@ functions:
 dependencies:
 
   - symbol: al_is_system_installed
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]

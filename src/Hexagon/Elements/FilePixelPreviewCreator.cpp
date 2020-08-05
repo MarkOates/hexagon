@@ -27,7 +27,7 @@ FilePixelPreviewCreator::~FilePixelPreviewCreator()
 }
 
 
-void FilePixelPreviewCreator::create()
+ALLEGRO_BITMAP* FilePixelPreviewCreator::create()
 {
 if (!(al_is_system_installed()))
    {
@@ -42,11 +42,16 @@ if (!Blast::FileExistenceChecker(filename).exists())
    throw std::runtime_error(error_message.str());
 }
 
-return;
+std::vector<std::string> lines = get_file_contents();
+int height = lines.size();
+
+ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
+
+return bitmap;
 
 }
 
-std::vector<std::string> FilePixelPreviewCreator::file_contents()
+std::vector<std::string> FilePixelPreviewCreator::get_file_contents()
 {
 std::string contents = php::file_get_contents(filename);
 return Blast::StringSplitter(contents, '\n').split();
