@@ -2,6 +2,7 @@
 
 #include <Hexagon/Elements/FilePixelPreviewCreator.hpp>
 #include <allegro5/allegro.h>
+#include <Blast/FileExistenceChecker.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -32,6 +33,13 @@ if (!(al_is_system_installed()))
       error_message << "FilePixelPreviewCreator" << "::" << "create" << ": error: " << "guard \"al_is_system_installed()\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (!Blast::FileExistenceChecker(filename).exists())
+{
+   std::stringstream error_message;
+   error_message << "FilePixelPreviewCreator::create: error: the file \"" << filename << "\" does not exist.";
+   throw std::runtime_error(error_message.str());
+}
+
 return;
 
 }

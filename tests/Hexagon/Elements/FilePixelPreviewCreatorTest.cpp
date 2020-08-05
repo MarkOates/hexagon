@@ -31,9 +31,11 @@ TEST_F(Hexagon_Elements_FilePixelPreviewCreatorTestWithEmptyFixture,
    ASSERT_THROW_WITH_MESSAGE(file_pixel_preview_creator.create(), std::runtime_error, expected_error_message);
 }
 
-TEST_F(Hexagon_Elements_FilePixelPreviewCreatorTestWithAllegroRenderingFixture, create__does_not_blow_up)
+TEST_F(Hexagon_Elements_FilePixelPreviewCreatorTestWithAllegroRenderingFixture,
+   create__for_a_file_that_does_not_exist__raises_an_exception)
 {
-   Hexagon::Elements::FilePixelPreviewCreator file_pixel_preview_creator;
-   file_pixel_preview_creator.create();
-   SUCCEED();
+   Hexagon::Elements::FilePixelPreviewCreator file_pixel_preview_creator("/a_file/that/does_not_exist");
+   std::string expected_error_message =
+      "FilePixelPreviewCreator::create: error: the file \"/a_file/that/does_not_exist\" does not exist.";
+   ASSERT_THROW_WITH_MESSAGE(file_pixel_preview_creator.create(), std::runtime_error, expected_error_message);
 }

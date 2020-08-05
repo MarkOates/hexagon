@@ -15,9 +15,17 @@ functions:
     type: void
     guards: [ al_is_system_installed() ]
     body: |
+      if (!Blast::FileExistenceChecker(filename).exists())
+      {
+         std::stringstream error_message;
+         error_message << "FilePixelPreviewCreator::create: error: the file \"" << filename << "\" does not exist.";
+         throw std::runtime_error(error_message.str());
+      }
+
       return;
     body_dependency_symbols:
       - al_is_system_installed
+      - Blast::FileExistenceChecker
 
   - name: file_contents
     private: true
@@ -29,3 +37,8 @@ dependencies:
 
   - symbol: al_is_system_installed
     headers: [ allegro5/allegro.h ]
+  - symbol: Blast::FileExistenceChecker
+    headers: [ Blast/FileExistenceChecker.hpp ]
+  - symbol: php::file_get_contents
+    headers: [ allegro_flare/useful_php.h ]
+
