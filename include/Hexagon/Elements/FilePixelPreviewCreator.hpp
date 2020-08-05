@@ -12,9 +12,10 @@ namespace Hexagon
       {
       private:
          std::string filename;
+         int width;
 
       public:
-         FilePixelPreviewCreator(std::string filename="");
+         FilePixelPreviewCreator(std::string filename="", int width=120);
          ~FilePixelPreviewCreator();
 
 

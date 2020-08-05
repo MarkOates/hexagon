@@ -4,6 +4,10 @@ properties:
     type: std::string
     init_with: '""'
     constructor_arg: true
+  - name: width
+    type: int
+    init_with: 120
+    constructor_arg: true
 
 functions:
 

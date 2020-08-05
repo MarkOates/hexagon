@@ -12,8 +12,9 @@ namespace Elements
 {
 
 
-FilePixelPreviewCreator::FilePixelPreviewCreator(std::string filename)
+FilePixelPreviewCreator::FilePixelPreviewCreator(std::string filename, int width)
    : filename(filename)
+   , width(width)
 {
 }
 
