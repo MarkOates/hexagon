@@ -4,6 +4,9 @@
 #include <Blast/StringSplitter.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexMatcher.hpp>
+#include <algorithm>
+#include <array>
+#include <array>
 
 
 namespace Hexagon
@@ -273,10 +276,11 @@ std::string &current_line = lines[cursor.get_y()];
 
 RegexMatcher regex_matcher(current_line, vim_equivelent_word_jump_regex);
 std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
+std::reverse(std::begin(match_positions), std::end(match_positions));
 
 for (auto &match_position : match_positions)
 {
-   if (match_position.first > cursor.get_x())
+   if (match_position.first < cursor.get_x())
    {
       cursor.set_x(match_position.first);
       return true;

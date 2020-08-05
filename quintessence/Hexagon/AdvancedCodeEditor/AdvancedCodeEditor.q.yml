@@ -279,10 +279,11 @@ functions:
 
       RegexMatcher regex_matcher(current_line, vim_equivelent_word_jump_regex);
       std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
+      std::reverse(std::begin(match_positions), std::end(match_positions));
 
       for (auto &match_position : match_positions)
       {
-         if (match_position.first > cursor.get_x())
+         if (match_position.first < cursor.get_x())
          {
             cursor.set_x(match_position.first);
             return true;
@@ -292,6 +293,9 @@ functions:
       return false;
     body_dependency_symbols:
       - RegexMatcher
+      - std::reverse
+      - std::begin
+      - std::end
 
 
   - name: cursor_move_to
@@ -402,4 +406,10 @@ dependencies:
     headers: [ Hexagon/RegexMatcher.hpp ]
   - symbol: std::max
     header: [ algorithm ]
+  - symbol: std::reverse
+    headers: [ algorithm ]
+  - symbol: std::begin
+    headers: [ array ]
+  - symbol: std::end
+    headers: [ array ]
 

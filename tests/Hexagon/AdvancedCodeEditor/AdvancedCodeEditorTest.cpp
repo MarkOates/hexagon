@@ -141,9 +141,9 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
    advanced_code_editor.set_content(SONNET_TEXT);
 
-   std::vector<int> expected_jump_points = { 5, 7, 16, 22, 28, 33 };
+   std::vector<int> expected_jump_points = { 43, 39, 32, 21, 15, 10, 5, 0 };
 
-   advanced_code_editor.cursor_move_to(0, 2);
+   advanced_code_editor.cursor_move_to(45, 4);
 
    for (unsigned i=0; i<expected_jump_points.size(); i++)
    {
