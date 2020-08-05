@@ -14,7 +14,9 @@ StageInterface::StageInterface(StageInterface::type_t type)
 
 
 StageInterface::~StageInterface()
-{}
+{
+   destroy();
+}
 
 
 
