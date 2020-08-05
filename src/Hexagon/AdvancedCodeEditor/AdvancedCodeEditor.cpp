@@ -245,7 +245,7 @@ return true;
 bool AdvancedCodeEditor::cursor_move_to_end_of_line()
 {
 // if not on a valid line
-if (cursor.get_y() <= 1 || cursor.get_y() >= lines.size())
+if (cursor.get_y() < 0 || cursor.get_y() >= lines.size() || lines.empty())
 {
    cursor.set_x(0);
 }
