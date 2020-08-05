@@ -6,6 +6,9 @@ properties:
     constructor_arg: true
 
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+
+  - name: create
+    type: void
+    body: |
+      return;
+

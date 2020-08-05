@@ -18,7 +18,7 @@ namespace Hexagon
          ~FilePixelPreviewCreator();
 
 
-      std::string run();
+      void create();
       };
    }
 }

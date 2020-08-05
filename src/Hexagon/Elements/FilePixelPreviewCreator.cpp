@@ -21,9 +21,10 @@ FilePixelPreviewCreator::~FilePixelPreviewCreator()
 }
 
 
-std::string FilePixelPreviewCreator::run()
+void FilePixelPreviewCreator::create()
 {
-return "Hello World!";
+return;
+
 }
 } // namespace Elements
 } // namespace Hexagon
