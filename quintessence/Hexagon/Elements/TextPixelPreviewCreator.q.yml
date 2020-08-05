@@ -28,6 +28,16 @@ functions:
       al_clear_to_color(background_color);
 
       al_lock_bitmap(bitmap, ALLEGRO_PIXEL_FORMAT_ANY, ALLEGRO_LOCK_WRITEONLY);
+
+      for (int y=0; y<text_lines.size(); y++)
+      {
+         std::string &line = text_lines[y];
+         for (int x=0; x<line.length(); x++)
+         {
+            al_put_pixel(x, y, foreground_color);
+         }
+      }
+
       al_unlock_bitmap(bitmap);
 
       al_restore_state(&previous_render_state);
