@@ -35,6 +35,12 @@ if (!(al_is_system_installed()))
 return;
 
 }
+
+std::vector<std::string> FilePixelPreviewCreator::file_contents()
+{
+return {};
+
+}
 } // namespace Elements
 } // namespace Hexagon
 

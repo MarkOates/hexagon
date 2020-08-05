@@ -2,6 +2,7 @@
 
 
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -20,6 +21,7 @@ namespace Hexagon
 
 
       void create();
+      std::vector<std::string> file_contents();
       };
    }
 }

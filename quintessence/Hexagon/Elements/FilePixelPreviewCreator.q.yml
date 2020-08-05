@@ -19,6 +19,12 @@ functions:
     body_dependency_symbols:
       - al_is_system_installed
 
+  - name: file_contents
+    private: true
+    type: std::vector<std::string>
+    body: |
+      return {};
+
 dependencies:
 
   - symbol: al_is_system_installed
