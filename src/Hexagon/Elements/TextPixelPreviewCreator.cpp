@@ -38,7 +38,7 @@ if (!(al_is_system_installed()))
 if (!Blast::FileExistenceChecker(filename).exists())
 {
    std::stringstream error_message;
-   error_message << "FilePixelPreviewCreator::create: error: the file "" << filename << "" does not exist.";
+   error_message << "TextPixelPreviewCreator::create: error: the file "" << filename << "" does not exist.";
    throw std::runtime_error(error_message.str());
 }
 
