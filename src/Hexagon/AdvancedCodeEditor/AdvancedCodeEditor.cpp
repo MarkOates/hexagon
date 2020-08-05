@@ -237,6 +237,12 @@ return true;
 
 }
 
+bool AdvancedCodeEditor::cursor_jump_to_next_word()
+{
+return true;
+
+}
+
 bool AdvancedCodeEditor::cursor_move_to(int x, int y)
 {
 cursor.move_to(x, y);

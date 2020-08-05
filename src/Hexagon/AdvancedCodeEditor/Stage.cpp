@@ -132,6 +132,7 @@ surface_render = al_create_bitmap(
 ALLEGRO_STATE previous_render_state;
 al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
 al_set_target_bitmap(surface_render);
+
 al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
 al_restore_state(&previous_render_state);
 

@@ -242,6 +242,13 @@ functions:
       return true;
 
 
+  - name: cursor_jump_to_next_word
+    type: bool
+    body: |
+      return true;
+
+
+
   - name: cursor_move_to
     type: bool
     parameters:
