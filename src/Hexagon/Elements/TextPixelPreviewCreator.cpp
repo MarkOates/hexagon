@@ -35,8 +35,21 @@ if (!(al_is_system_installed()))
       throw std::runtime_error(error_message.str());
    }
 int height = text_lines.size();
+ALLEGRO_COLOR foreground_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+ALLEGRO_COLOR background_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 1.0};
 
 ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
+
+ALLEGRO_STATE previous_render_state;
+al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+al_set_target_bitmap(bitmap);
+
+al_clear_to_color(background_color);
+
+al_lock_bitmap(bitmap, ALLEGRO_PIXEL_FORMAT_ANY, ALLEGRO_LOCK_WRITEONLY);
+al_unlock_bitmap(bitmap);
+
+al_restore_state(&previous_render_state);
 
 return bitmap;
 
