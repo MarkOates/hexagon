@@ -45,8 +45,9 @@ movement command operates from here (cursor position) to where the movement
 takes us.  When using an object the whole object is operated upon, no matter
 where on the object the cursor is.  For example, compare "dw" and "daw": "dw"
 deletes from the cursor position to the start of the next word, "daw" deletes
-the word under the cursor and the space after or before it.
-)PASSAGE";
+the word under the cursor and the space after or before it.)PASSAGE";
+
+#include <Blast/StringSplitter.hpp>
 
 class Hexagon_Elements_TextPixelPreviewCreatorTestWithEmptyFixture : public ::testing::Test
 {};
@@ -74,11 +75,12 @@ TEST_F(Hexagon_Elements_TextPixelPreviewCreatorTestWithEmptyFixture,
 TEST_F(Hexagon_Elements_TextPixelPreviewCreatorTestWithAllegroRenderingFixture,
    create__will_create_a_bitmap_matching_the_width_and_height_for_the_text)
 {
-   Hexagon::Elements::TextPixelPreviewCreator text_pixel_preview_creator;
+   std::vector<std::string> lines = Blast::StringSplitter(VIM_DOCUMENTATION_EXCERPT, '\n').split();
+   Hexagon::Elements::TextPixelPreviewCreator text_pixel_preview_creator(lines);
    ALLEGRO_BITMAP *text_pixel_preview = text_pixel_preview_creator.create();
 
-   //ASSERT_EQ(120, al_get_bitmap_width(text_pixel_preview));
-   //ASSERT_EQ(56, al_get_bitmap_height(text_pixel_preview));
+   ASSERT_EQ(120, al_get_bitmap_width(text_pixel_preview));
+   ASSERT_EQ(38, al_get_bitmap_height(text_pixel_preview));
 
    al_destroy_bitmap(text_pixel_preview);
 }
