@@ -14,8 +14,9 @@ namespace Elements
 {
 
 
-TextPixelPreviewCreator::TextPixelPreviewCreator(int width)
-   : width(width)
+TextPixelPreviewCreator::TextPixelPreviewCreator(std::vector<std::string> text_lines, int width)
+   : text_lines(text_lines)
+   , width(width)
 {
 }
 
@@ -33,8 +34,7 @@ if (!(al_is_system_installed()))
       error_message << "TextPixelPreviewCreator" << "::" << "create" << ": error: " << "guard \"al_is_system_installed()\" not met";
       throw std::runtime_error(error_message.str());
    }
-std::vector<std::string> lines = {};
-int height = lines.size();
+int height = text_lines.size();
 
 ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
 

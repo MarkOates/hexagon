@@ -2,6 +2,8 @@
 
 
 #include <allegro5/allegro.h>
+#include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -11,10 +13,11 @@ namespace Hexagon
       class TextPixelPreviewCreator
       {
       private:
+         std::vector<std::string> text_lines;
          int width;
 
       public:
-         TextPixelPreviewCreator(int width=120);
+         TextPixelPreviewCreator(std::vector<std::string> text_lines={}, int width=120);
          ~TextPixelPreviewCreator();
 
 

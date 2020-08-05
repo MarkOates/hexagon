@@ -1,5 +1,9 @@
 properties:
 
+  - name: text_lines
+    type: std::vector<std::string>
+    init_with: '{}'
+    constructor_arg: true
   - name: width
     type: int
     init_with: 120
@@ -11,8 +15,7 @@ functions:
     type: ALLEGRO_BITMAP*
     guards: [ al_is_system_installed() ]
     body: |
-      std::vector<std::string> lines = {};
-      int height = lines.size();
+      int height = text_lines.size();
 
       ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
 
