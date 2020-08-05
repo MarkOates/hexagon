@@ -242,6 +242,23 @@ return true;
 
 }
 
+bool AdvancedCodeEditor::cursor_move_to_end_of_line()
+{
+// if not on a valid line
+if (cursor.get_y() < 0 || cursor.get_y() >= lines.size())
+{
+   cursor.set_x(0);
+}
+else
+{
+   std::string &current_line = lines[cursor.get_y()];
+   cursor.set_x(current_line.size());
+}
+
+return true;
+
+}
+
 bool AdvancedCodeEditor::cursor_jump_to_next_word()
 {
 if (!is_cursor_in_bounds()) return false;
