@@ -8,8 +8,6 @@
 
 #include <Hexagon/Elements/TextPixelPreviewCreator.hpp>
 
-std::string FIXTURE_FILE = "/Users/markoates/Repos/hexagon/tests/Hexagon/Elements/TextPixelPreviewCreatorTest.cpp";
-
 class Hexagon_Elements_TextPixelPreviewCreatorTestWithEmptyFixture : public ::testing::Test
 {};
 
@@ -36,7 +34,7 @@ TEST_F(Hexagon_Elements_TextPixelPreviewCreatorTestWithEmptyFixture,
 TEST_F(Hexagon_Elements_TextPixelPreviewCreatorTestWithAllegroRenderingFixture,
    create__will_create_a_bitmap_matching_the_width_and_height_for_the_text)
 {
-   Hexagon::Elements::TextPixelPreviewCreator text_pixel_preview_creator(FIXTURE_FILE);
+   Hexagon::Elements::TextPixelPreviewCreator text_pixel_preview_creator;
    ALLEGRO_BITMAP *text_pixel_preview = text_pixel_preview_creator.create();
 
    //ASSERT_EQ(120, al_get_bitmap_width(text_pixel_preview));

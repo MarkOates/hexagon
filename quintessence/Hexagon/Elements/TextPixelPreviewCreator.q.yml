@@ -1,9 +1,5 @@
 properties:
 
-  - name: filename
-    type: std::string
-    init_with: '""'
-    constructor_arg: true
   - name: width
     type: int
     init_with: 120
@@ -15,14 +11,7 @@ functions:
     type: ALLEGRO_BITMAP*
     guards: [ al_is_system_installed() ]
     body: |
-      if (!Blast::FileExistenceChecker(filename).exists())
-      {
-         std::stringstream error_message;
-         error_message << "TextPixelPreviewCreator::create: error: the file "" << filename << "" does not exist.";
-         throw std::runtime_error(error_message.str());
-      }
-
-      std::vector<std::string> lines = get_file_contents();
+      std::vector<std::string> lines = {};
       int height = lines.size();
 
       ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
@@ -30,17 +19,7 @@ functions:
       return bitmap;
     body_dependency_symbols:
       - al_is_system_installed
-      - Blast::FileExistenceChecker
-
-  - name: get_file_contents
-    private: true
-    type: std::vector<std::string>
-    body: |
-      std::string contents = php::file_get_contents(filename);
-      return Blast::StringSplitter(contents, '\n').split();
-    body_dependency_symbols:
-      - php::file_get_contents
-      - Blast::StringSplitter
+      - std::vector<std::string>
 
 dependencies:
 
@@ -48,10 +27,6 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
-  - symbol: Blast::FileExistenceChecker
-    headers: [ Blast/FileExistenceChecker.hpp ]
-  - symbol: Blast::StringSplitter
-    headers: [ Blast/StringSplitter.hpp ]
-  - symbol: php::file_get_contents
-    headers: [ allegro_flare/useful_php.h ]
+  - symbol: std::vector<std::string>
+    headers: [ vector, string ]
 
