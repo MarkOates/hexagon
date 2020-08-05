@@ -147,6 +147,18 @@ functions:
       return advanced_code_editor.cursor_move_to_start_of_line();
 
 
+  - name: cursor_jump_to_next_word
+    type: bool
+    body: |
+      return advanced_code_editor.cursor_jump_to_next_word();
+
+
+  - name: cursor_jump_to_previous_word
+    type: bool
+    body: |
+      return advanced_code_editor.cursor_jump_to_previous_word();
+
+
   - name: delete_character
     type: bool
     guards: [ initialized ]

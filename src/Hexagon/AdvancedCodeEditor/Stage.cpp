@@ -202,6 +202,18 @@ return advanced_code_editor.cursor_move_to_start_of_line();
 
 }
 
+bool Stage::cursor_jump_to_next_word()
+{
+return advanced_code_editor.cursor_jump_to_next_word();
+
+}
+
+bool Stage::cursor_jump_to_previous_word()
+{
+return advanced_code_editor.cursor_jump_to_previous_word();
+
+}
+
 bool Stage::delete_character()
 {
 if (!(initialized))
