@@ -165,6 +165,12 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    cursor_move_to_end_of_line__will_move_the_cursor_to_the_last_character_on_the_line)
 {
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SONNET_TEXT);
+
+   advanced_code_editor.cursor_move_to(11, 4);
+   ASSERT_EQ(true, advanced_code_editor.cursor_move_to_end_of_line());
+   EXPECT_EQ(47, advanced_code_editor.cursor_get_x());
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,

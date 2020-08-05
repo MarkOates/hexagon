@@ -253,7 +253,7 @@ functions:
       else
       {
          std::string &current_line = lines[cursor.get_y()];
-         cursor.set_x(current_line.size());
+         cursor.set_x(current_line.size()-1);
       }
 
       return true;

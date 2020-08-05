@@ -252,7 +252,7 @@ if (cursor.get_y() < 0 || cursor.get_y() >= lines.size())
 else
 {
    std::string &current_line = lines[cursor.get_y()];
-   cursor.set_x(current_line.size());
+   cursor.set_x(current_line.size()-1);
 }
 
 return true;
