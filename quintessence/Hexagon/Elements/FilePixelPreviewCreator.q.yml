@@ -31,7 +31,11 @@ functions:
     private: true
     type: std::vector<std::string>
     body: |
-      return {};
+      std::string contents = php::file_get_contents(filename);
+      return Blast::StringSplitter(contents, '\n').split();
+    body_dependency_symbols:
+      - php::file_get_contents
+      - Blast::StringSplitter
 
 dependencies:
 
@@ -39,6 +43,8 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
+  - symbol: Blast::StringSplitter
+    headers: [ Blast/StringSplitter.hpp ]
   - symbol: php::file_get_contents
     headers: [ allegro_flare/useful_php.h ]
 

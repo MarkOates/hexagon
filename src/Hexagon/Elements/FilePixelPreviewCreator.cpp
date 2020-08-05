@@ -5,6 +5,8 @@
 #include <Blast/FileExistenceChecker.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <allegro_flare/useful_php.h>
+#include <Blast/StringSplitter.hpp>
 
 
 namespace Hexagon
@@ -46,7 +48,8 @@ return;
 
 std::vector<std::string> FilePixelPreviewCreator::file_contents()
 {
-return {};
+std::string contents = php::file_get_contents(filename);
+return Blast::StringSplitter(contents, '\n').split();
 
 }
 } // namespace Elements
