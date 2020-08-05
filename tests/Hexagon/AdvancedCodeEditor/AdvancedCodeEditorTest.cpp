@@ -109,6 +109,16 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   cursor_jump_to_next_word__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+
+   advanced_code_editor.cursor_move_to(-5, -2);
+
+   ASSERT_EQ(false, advanced_code_editor.cursor_jump_to_next_word());
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    cursor_jump_to_next_word__will_move_the_cursor_to_the_first_character_of_the_next_word_boundry)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
@@ -126,13 +136,13 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
-   cursor_jump_to_next_word__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
+   cursor_jump_to_previous_word__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
 
    advanced_code_editor.cursor_move_to(-5, -2);
 
-   ASSERT_EQ(false, advanced_code_editor.cursor_jump_to_next_word());
+   ASSERT_EQ(false, advanced_code_editor.cursor_jump_to_previous_word());
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
@@ -150,16 +160,6 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
       ASSERT_EQ(true, advanced_code_editor.cursor_jump_to_previous_word());
       EXPECT_EQ(advanced_code_editor.cursor_get_x(), expected_jump_points[i]);
    }
-}
-
-TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
-   cursor_jump_to_previous_word__when_the_cursor_is_out_of_bounds__does_nothing_and_returns_false)
-{
-   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
-
-   advanced_code_editor.cursor_move_to(-5, -2);
-
-   ASSERT_EQ(false, advanced_code_editor.cursor_jump_to_previous_word());
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
