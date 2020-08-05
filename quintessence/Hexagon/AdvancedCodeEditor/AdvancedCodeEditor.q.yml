@@ -245,8 +245,25 @@ functions:
   - name: cursor_jump_to_next_word
     type: bool
     body: |
-      return true;
+      // This regex from vimdoc.sourceforge.net/htmldoc/motion.html#word
+      std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";
+      std::string &current_line = lines[cursor.get_y()];
 
+      RegexMatcher regex_matcher(current_line, vim_equivelent_word_jump_regex);
+      std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
+
+      for (auto &match_position : match_positions)
+      {
+         if (match_position.first > cursor.get_x())
+         {
+            cursor.set_x(match_position.first);
+            return true;
+         }
+      }
+
+      return false;
+    body_dependency_symbols:
+      - RegexMatcher
 
 
   - name: cursor_move_to
@@ -353,6 +370,8 @@ dependencies:
     headers: [ Blast/StringSplitter.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
+  - symbol: RegexMatcher
+    headers: [ Hexagon/RegexMatcher.hpp ]
   - symbol: std::max
     header: [ algorithm ]
 

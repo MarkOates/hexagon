@@ -109,6 +109,11 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   cursor_jump_to_next_word__will_move_the_cursor_to_the_first_character_of_the_next_word_boundry)
+{
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    split_lines__will_split_a_single_line_to_two_sliced_at_the_cursor)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;

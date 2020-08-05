@@ -2,6 +2,7 @@
 
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 #include <Blast/StringSplitter.hpp>
+#include <Hexagon/RegexMatcher.hpp>
 
 
 namespace Hexagon
@@ -239,7 +240,23 @@ return true;
 
 bool AdvancedCodeEditor::cursor_jump_to_next_word()
 {
-return true;
+// This regex from vimdoc.sourceforge.net/htmldoc/motion.html#word
+std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";
+std::string &current_line = lines[cursor.get_y()];
+
+RegexMatcher regex_matcher(current_line, vim_equivelent_word_jump_regex);
+std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
+
+for (auto &match_position : match_positions)
+{
+   if (match_position.first > cursor.get_x())
+   {
+      cursor.set_x(match_position.first);
+      return true;
+   }
+}
+
+return false;
 
 }
 
