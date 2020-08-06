@@ -59,8 +59,7 @@ TEST_F(Hexagon_Shaders_FlatColorTest, can_be_created_without_blowing_up)
 TEST_F(Hexagon_Shaders_FlatColorTest, activate__before_being_initialized_raises_an_exception)
 {
    Hexagon::Shaders::FlatColor flat_color_shader;
-   std::string expected_error_message =
-      "FlatColor::activate: error: guard \"initialized\" not met";
+   std::string expected_error_message = "FlatColor::activate: error: guard \"initialized\" not met";
    ASSERT_THROW_WITH_MESSAGE(flat_color_shader.activate(), std::runtime_error, expected_error_message);
 }
 
@@ -125,7 +124,7 @@ TEST_F(Hexagon_Shaders_FlatColorTest, when_active__renders_the_image_with_the_fl
    ASSERT_EQ(color.b, actual_color.b);
    ASSERT_EQ(color.a, actual_color.a);
 
-   std::string tmp_path = "/Users/markoates/Repos/LabyrinthOfLore/tmp/";
+   std::string tmp_path = "/Users/markoates/Repos/hexagon/tmp/";
    std::string output_image_full_filename = tmp_path + "when_activated__renders_bitmaps_with_a_solid_tinted_overlay.png";
    ASSERT_EQ(true, al_save_bitmap(output_image_full_filename.c_str(), al_get_backbuffer(current_display)));
 }
