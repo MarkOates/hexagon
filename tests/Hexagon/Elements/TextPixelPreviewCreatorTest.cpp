@@ -8,6 +8,8 @@
 
 #include <Hexagon/Elements/TextPixelPreviewCreator.hpp>
 
+#include <allegro5/allegro_image.h>
+
 static std::string VIM_DOCUMENTATION_EXCERPT = R"PASSAGE(
 For illustration, here is a list of delete commands, grouped from small to big
 objects.  Note that for a single character and a whole line the existing vi
@@ -81,6 +83,14 @@ TEST_F(Hexagon_Elements_TextPixelPreviewCreatorTestWithAllegroRenderingFixture,
 
    ASSERT_EQ(120, al_get_bitmap_width(text_pixel_preview));
    ASSERT_EQ(38, al_get_bitmap_height(text_pixel_preview));
+
+   al_draw_scaled_bitmap(text_pixel_preview,
+         0, 0, 120, 38,
+         0, 0, 120*8, 38*8,
+         0
+      );
+   al_flip_display();
+   sleep(2);
 
    al_destroy_bitmap(text_pixel_preview);
 }

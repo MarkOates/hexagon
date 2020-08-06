@@ -16,8 +16,8 @@ functions:
     guards: [ al_is_system_installed() ]
     body: |
       int height = text_lines.size();
-      ALLEGRO_COLOR foreground_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
-      ALLEGRO_COLOR background_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 1.0};
+      ALLEGRO_COLOR foreground_color = al_map_rgba_f(1.0f, 1.0f, 1.0f, 1.0f);
+      ALLEGRO_COLOR background_color = al_map_rgba_f(0.0f, 0.0f, 0.0f, 1.0f);
 
       ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
 
@@ -25,16 +25,15 @@ functions:
       al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
       al_set_target_bitmap(bitmap);
 
-      al_clear_to_color(background_color);
-
       al_lock_bitmap(bitmap, ALLEGRO_PIXEL_FORMAT_ANY, ALLEGRO_LOCK_WRITEONLY);
 
       for (int y=0; y<text_lines.size(); y++)
       {
          std::string &line = text_lines[y];
-         for (int x=0; x<line.length(); x++)
+         for (int x=0; x<width; x++)
          {
-            al_put_pixel(x, y, foreground_color);
+            if (x > line.size() || line[x] == ' ') al_put_pixel(x, y, background_color);
+            else al_draw_pixel(x, y, foreground_color);
          }
       }
 
