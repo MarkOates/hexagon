@@ -6,11 +6,6 @@ properties:
     constructor_arg: true
     getter: true
     setter: true
-  - name: project_root
-    type: std::string
-    init_with: '""'
-    constructor_arg: true
-    getter: true
   - name: stages
     type: std::vector<StageInterface *>*
     constructor_arg: true

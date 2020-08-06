@@ -14,7 +14,6 @@ namespace Hexagon
    {
    private:
       std::string concept_name;
-      std::string project_root;
       std::vector<StageInterface *>* stages;
       std::vector<std::tuple<std::string, std::string, placement3d>> files;
       std::string daemus_command;
@@ -24,7 +23,7 @@ namespace Hexagon
       ALLEGRO_COLOR backfill_color;
 
    public:
-      Layout(std::string concept_name="- Untitled -", std::string project_root="", std::vector<StageInterface *>* stages=nullptr, std::vector<std::tuple<std::string, std::string, placement3d>> files={}, std::string daemus_command="", int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+      Layout(std::string concept_name="- Untitled -", std::vector<StageInterface *>* stages=nullptr, std::vector<std::tuple<std::string, std::string, placement3d>> files={}, std::string daemus_command="", int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
       ~Layout();
 
       void set_concept_name(std::string concept_name);
@@ -32,7 +31,6 @@ namespace Hexagon
       void set_files(std::vector<std::tuple<std::string, std::string, placement3d>> files);
 
       std::string get_concept_name();
-      std::string get_project_root();
       std::vector<StageInterface *>* get_stages();
       std::vector<std::tuple<std::string, std::string, placement3d>> get_files();
       std::string get_daemus_command();
