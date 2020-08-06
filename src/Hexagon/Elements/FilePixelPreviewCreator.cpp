@@ -3,6 +3,7 @@
 #include <Hexagon/Elements/FilePixelPreviewCreator.hpp>
 #include <allegro5/allegro.h>
 #include <Blast/FileExistenceChecker.hpp>
+#include <Hexagon/Elements/TextPixelPreviewCreator.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <allegro_flare/useful_php.h>
@@ -43,11 +44,10 @@ if (!Blast::FileExistenceChecker(filename).exists())
 }
 
 std::vector<std::string> lines = get_file_contents();
-int height = lines.size();
 
-ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
+Hexagon::Elements::TextPixelPreviewCreator text_pixel_preview_creator(lines);
 
-return bitmap;
+return text_pixel_preview_creator.create();
 
 }
 

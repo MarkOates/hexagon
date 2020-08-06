@@ -49,7 +49,7 @@ TEST_F(Hexagon_Elements_FilePixelPreviewCreatorTestWithAllegroRenderingFixture,
    ALLEGRO_BITMAP *file_pixel_preview = file_pixel_preview_creator.create();
 
    ASSERT_EQ(120, al_get_bitmap_width(file_pixel_preview));
-   ASSERT_EQ(56, al_get_bitmap_height(file_pixel_preview));
+   ASSERT_EQ(112, al_get_bitmap_height(file_pixel_preview));
 
    al_destroy_bitmap(file_pixel_preview);
 }

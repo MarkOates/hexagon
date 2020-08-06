@@ -23,14 +23,14 @@ functions:
       }
 
       std::vector<std::string> lines = get_file_contents();
-      int height = lines.size();
 
-      ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
+      Hexagon::Elements::TextPixelPreviewCreator text_pixel_preview_creator(lines);
 
-      return bitmap;
+      return text_pixel_preview_creator.create();
     body_dependency_symbols:
       - al_is_system_installed
       - Blast::FileExistenceChecker
+      - Hexagon::Elements::TextPixelPreviewCreator
 
   - name: get_file_contents
     private: true
@@ -54,4 +54,6 @@ dependencies:
     headers: [ Blast/StringSplitter.hpp ]
   - symbol: php::file_get_contents
     headers: [ allegro_flare/useful_php.h ]
+  - symbol: Hexagon::Elements::TextPixelPreviewCreator
+    headers: [ Hexagon/Elements/TextPixelPreviewCreator.hpp ]
 
