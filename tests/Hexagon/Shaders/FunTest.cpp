@@ -8,18 +8,18 @@
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 
-#include <Hexagon/Shaders/FlatColor.hpp>
+#include <Hexagon/Shaders/Fun.hpp>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_color.h>
 #include <allegro_flare/placement2d.h>
 
 
-class Hexagon_Shaders_FlatColorTest : public ::testing::Test
+class Hexagon_Shaders_FunTest : public ::testing::Test
 {
 protected:
    ALLEGRO_DISPLAY *display;
 
-   Hexagon_Shaders_FlatColorTest()
+   Hexagon_Shaders_FunTest()
       : display(nullptr)
    {
    }
@@ -49,41 +49,41 @@ protected:
 };
 
 
-TEST_F(Hexagon_Shaders_FlatColorTest, can_be_created_without_blowing_up)
+TEST_F(Hexagon_Shaders_FunTest, can_be_created_without_blowing_up)
 {
-   Hexagon::Shaders::FlatColor flat_color_shader;
+   Hexagon::Shaders::Fun flat_color_shader;
    SUCCEED();
 }
 
 
-TEST_F(Hexagon_Shaders_FlatColorTest, activate__before_being_initialized_raises_an_exception)
+TEST_F(Hexagon_Shaders_FunTest, activate__before_being_initialized_raises_an_exception)
 {
-   Hexagon::Shaders::FlatColor flat_color_shader;
-   std::string expected_error_message = "FlatColor::activate: error: guard \"initialized\" not met";
+   Hexagon::Shaders::Fun flat_color_shader;
+   std::string expected_error_message = "Fun::activate: error: guard \"initialized\" not met";
    ASSERT_THROW_WITH_MESSAGE(flat_color_shader.activate(), std::runtime_error, expected_error_message);
 }
 
 
-TEST_F(Hexagon_Shaders_FlatColorTest, initialize__works_without_blowing_up)
+TEST_F(Hexagon_Shaders_FunTest, initialize__works_without_blowing_up)
 {
-   Hexagon::Shaders::FlatColor flat_color_shader;
+   Hexagon::Shaders::Fun flat_color_shader;
    flat_color_shader.initialize();
    SUCCEED();
 }
 
 
-TEST_F(Hexagon_Shaders_FlatColorTest, activate__works_without_blowing_up)
+TEST_F(Hexagon_Shaders_FunTest, activate__works_without_blowing_up)
 {
-   Hexagon::Shaders::FlatColor flat_color_shader;
+   Hexagon::Shaders::Fun flat_color_shader;
 
    flat_color_shader.initialize();
    flat_color_shader.activate();
 }
 
 
-TEST_F(Hexagon_Shaders_FlatColorTest, when_active__renders_the_image_with_the_flat_color)
+TEST_F(Hexagon_Shaders_FunTest, when_active__renders_the_image_with_the_flat_color)
 {
-   Hexagon::Shaders::FlatColor flat_color_shader;
+   Hexagon::Shaders::Fun flat_color_shader;
 
    flat_color_shader.initialize();
    flat_color_shader.activate();
