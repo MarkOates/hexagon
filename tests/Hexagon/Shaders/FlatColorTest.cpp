@@ -60,7 +60,7 @@ TEST_F(Hexagon_Shaders_FlatColorTest, activate__before_being_initialized_raises_
 {
    Hexagon::Shaders::FlatColor flat_color_shader;
    std::string expected_error_message =
-      "[Shaders::FlatColor] Attempting to activate() shader before it has been initialized";
+      "FlatColor::activate: error: guard \"initialized\" not met";
    ASSERT_THROW_WITH_MESSAGE(flat_color_shader.activate(), std::runtime_error, expected_error_message);
 }
 

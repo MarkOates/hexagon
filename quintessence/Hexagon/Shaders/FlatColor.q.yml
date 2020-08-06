@@ -26,11 +26,8 @@ functions:
 
   - name: activate
     type: void
+    guards: [ initialized ]
     body: |
-      if (!initialized)
-      {
-         throw std::runtime_error("[Shaders::FlatColor] Attempting to activate() shader before it has been initialized");
-      }
       Hexagon::Shaders::Base::activate();
 
 

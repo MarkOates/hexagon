@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/Shaders/FlatColor.hpp>
-
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -31,10 +32,12 @@ initialized = true;
 
 void FlatColor::activate()
 {
-if (!initialized)
-{
-   throw std::runtime_error("[Shaders::FlatColor] Attempting to activate() shader before it has been initialized");
-}
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "FlatColor" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 Hexagon::Shaders::Base::activate();
 
 }
