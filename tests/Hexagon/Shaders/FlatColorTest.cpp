@@ -91,7 +91,7 @@ TEST_F(Hexagon_Shaders_FlatColorTest, when_active__renders_the_image_with_the_fl
    al_init_image_addon();
 
    ALLEGRO_BITMAP *test_image =
-      al_load_bitmap("/Users/markoates/Repos/LabyrinthOfLore/bin/programs/data/bitmaps/billboarding_tester_sprite.png");
+      al_load_bitmap("/Users/markoates/Repos/hexagon/tests/fixtures/data/bitmaps/billboarding_tester_sprite.png");
    ASSERT_NE(nullptr, test_image);
 
 
