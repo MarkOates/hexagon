@@ -127,6 +127,8 @@ TEST_F(Hexagon_Shaders_FunTest, when_active__renders_the_image_with_the_flat_col
 
    std::string tmp_path = "/Users/markoates/Repos/hexagon/tmp/";
    std::string output_image_full_filename = tmp_path + "when_activated__renders_bitmaps_with_a_solid_tinted_overlay.png";
-   ASSERT_EQ(true, al_save_bitmap(output_image_full_filename.c_str(), al_get_backbuffer(current_display)));
+
+   al_flip_display();
+   sleep(3);
 }
 
