@@ -74,9 +74,11 @@ TEST_F(Hexagon_Shaders_FunTest, initialize__works_without_blowing_up)
 TEST_F(Hexagon_Shaders_FunTest, activate__works_without_blowing_up)
 {
    Hexagon::Shaders::Fun flat_color_shader;
-
    flat_color_shader.initialize();
+
    flat_color_shader.activate();
+
+   SUCCEED();
 }
 
 
