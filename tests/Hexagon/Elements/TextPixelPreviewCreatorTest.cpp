@@ -84,8 +84,8 @@ TEST_F(Hexagon_Elements_TextPixelPreviewCreatorTestWithAllegroRenderingFixture,
    ASSERT_EQ(120, al_get_bitmap_width(text_pixel_preview));
    ASSERT_EQ(38, al_get_bitmap_height(text_pixel_preview));
 
-   //al_draw_scaled_bitmap(text_pixel_preview, 0, 0, 120, 38, 0, 0, 120*8, 38 * 8, 0);
-   //al_flip_display();
+   al_draw_scaled_bitmap(text_pixel_preview, 0, 0, 120, 38, 0, 0, 120*8, 38 * 8, 0);
+   al_flip_display();
    //sleep(2);
 
    al_destroy_bitmap(text_pixel_preview);
