@@ -21,8 +21,7 @@ protected:
 
    Hexagon_Shaders_FunTest()
       : display(nullptr)
-   {
-   }
+   {}
 
    virtual void SetUp() override
    {
