@@ -87,7 +87,9 @@ static const std::string source = R"DELIM(
      tmp.g = (tmp.g * inverse_tint_intensity + tint.g * tint_intensity) * tmp.a;
      tmp.b = (tmp.b * inverse_tint_intensity + tint.b * tint_intensity) * tmp.a;
      tmp.a = tmp.a;
-     gl_FragColor = tmp;
+
+     vec2 uv = varying_texcoord.xy / 1.0;
+     gl_FragColor = vec4(uv.x, uv.y, 0, 1.);
   }
 )DELIM";
 return source;
