@@ -59,7 +59,8 @@ TEST_F(Hexagon_Shaders_FlatColorTest, can_be_created_without_blowing_up)
 TEST_F(Hexagon_Shaders_FlatColorTest, activate__before_being_initialized_raises_an_exception)
 {
    Hexagon::Shaders::FlatColor flat_color_shader;
-   std::string expected_error_message = "[Shaders::FlatColor] Attempting to activate() shader before it has been initialized";
+   std::string expected_error_message =
+      "[Shaders::FlatColor] Attempting to activate() shader before it has been initialized";
    ASSERT_THROW_WITH_MESSAGE(flat_color_shader.activate(), std::runtime_error, expected_error_message);
 }
 
@@ -90,7 +91,8 @@ TEST_F(Hexagon_Shaders_FlatColorTest, when_active__renders_the_image_with_the_fl
 
    al_init_image_addon();
 
-   ALLEGRO_BITMAP *test_image = al_load_bitmap("/Users/markoates/Repos/LabyrinthOfLore/bin/programs/data/bitmaps/billboarding_tester_sprite.png");
+   ALLEGRO_BITMAP *test_image =
+      al_load_bitmap("/Users/markoates/Repos/LabyrinthOfLore/bin/programs/data/bitmaps/billboarding_tester_sprite.png");
    ASSERT_NE(nullptr, test_image);
 
 
@@ -111,9 +113,12 @@ TEST_F(Hexagon_Shaders_FlatColorTest, when_active__renders_the_image_with_the_fl
    al_draw_bitmap(test_image, 0, 0, 0);
    place.restore_transform();
 
-
    ALLEGRO_COLOR expected_color = color;
-   ALLEGRO_COLOR actual_color = al_get_pixel(al_get_backbuffer(current_display), al_get_display_width(current_display)/2, al_get_display_height(current_display)/2);
+   ALLEGRO_COLOR actual_color = al_get_pixel(
+         al_get_backbuffer(current_display),
+         al_get_display_width(current_display)/2,
+         al_get_display_height(current_display)/2
+      );
 
    ASSERT_EQ(color.r, actual_color.r);
    ASSERT_EQ(color.g, actual_color.g);
