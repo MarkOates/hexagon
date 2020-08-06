@@ -1,17 +1,29 @@
 parent_classes:
+
+
   - class: Hexagon::Shaders::Base
     scope: private
     init_with: "obtain_vertex_source(), obtain_fragment_source()"
+
+
 properties:
+
+
   - name: initialized
     type: bool
     init_with: false
+
+
 functions:
+
+
   - name: initialize
     type: void
     body: |
       if (!initialized) Hexagon::Shaders::Base::initialize();
       initialized = true;
+
+
   - name: activate
     type: void
     body: |
@@ -20,6 +32,8 @@ functions:
          throw std::runtime_error("[Shaders::FlatColor] Attempting to activate() shader before it has been initialized");
       }
       Hexagon::Shaders::Base::activate();
+
+
   - name: set_flat_color
     parameters:
       - name: flat_color
@@ -28,6 +42,8 @@ functions:
     body: |
       Shader:set_vec3("tint", flat_color.r, flat_color.g, flat_color.b);
       Shader::set_float("tint_intensity", 1.0);
+
+
   - name: obtain_vertex_source
     type: std::string
     static: true
@@ -49,6 +65,8 @@ functions:
         }
       )DELIM";
       return source;
+
+
   - name: obtain_fragment_source
     type: std::string
     static: true
@@ -73,8 +91,13 @@ functions:
         }
       )DELIM";
       return source;
+
+
 dependencies:
+
+
   - symbol: Hexagon::Shaders::Base
     headers: [ Hexagon/Shaders/Base.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
+
