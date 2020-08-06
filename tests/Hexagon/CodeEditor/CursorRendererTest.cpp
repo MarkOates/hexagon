@@ -43,7 +43,8 @@ TEST(Hexagon_CodeEditor_CursorRendererTest, render__will_not_blow_up)
    al_uninstall_system();
 }
 
-TEST(Hexagon_CodeEditor_CursorRendererTest, render__will_execute_in_under_the_expected_time)
+TEST(Hexagon_CodeEditor_CursorRendererTest,
+   DISABLED__render__will_execute_in_under_the_expected_time)
 {
    al_init();
    al_init_primitives_addon();
