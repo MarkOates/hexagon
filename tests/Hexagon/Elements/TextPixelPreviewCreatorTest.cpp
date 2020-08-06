@@ -11,7 +11,7 @@
 #include <allegro5/allegro_image.h>
 
 static std::string VIM_DOCUMENTATION_EXCERPT = R"PASSAGE(
-For illustration, here is a list of delete commands, grouped from small to big
+for illustration, here is a list of delete commands, grouped from small to big
 objects.  Note that for a single character and a whole line the existing vi
 movement commands are used.
 
@@ -82,11 +82,18 @@ TEST_F(Hexagon_Elements_TextPixelPreviewCreatorTestWithAllegroRenderingFixture,
    ALLEGRO_BITMAP *text_pixel_preview = text_pixel_preview_creator.create();
 
    ASSERT_EQ(120, al_get_bitmap_width(text_pixel_preview));
-   ASSERT_EQ(38, al_get_bitmap_height(text_pixel_preview));
+   //ASSERT_EQ(38, al_get_bitmap_height(text_pixel_preview));
 
-   al_draw_scaled_bitmap(text_pixel_preview, 0, 0, 120, 38, 0, 0, 120*8, 38 * 8, 0);
+   int bitmap_width = al_get_bitmap_width(text_pixel_preview);
+   int bitmap_height = al_get_bitmap_height(text_pixel_preview);
+
+   placement3d place = build_centered_placement(bitmap_width, bitmap_height);
+   place.scale = vec3d(9, 9, 9);
+   place.start_transform();
+   al_draw_bitmap(text_pixel_preview, 0, 0, 0);
+   place.restore_transform();
    al_flip_display();
-   //sleep(2);
+   sleep(2);
 
    al_destroy_bitmap(text_pixel_preview);
 }
