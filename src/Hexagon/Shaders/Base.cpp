@@ -10,7 +10,10 @@ namespace Shaders
 {
 
 
-Base::Base()
+Base::Base(std::string vertex_source_code, std::string fragment_source_code)
+   : AllegroFlare::Shader(vertex_source_code, fragment_source_code)
+   , vertex_source_code(vertex_source_code)
+   , fragment_source_code(fragment_source_code)
 {
 }
 
@@ -20,10 +23,6 @@ Base::~Base()
 }
 
 
-std::string Base::run()
-{
-return "Hello World!";
-}
 } // namespace Shaders
 } // namespace Hexagon
 

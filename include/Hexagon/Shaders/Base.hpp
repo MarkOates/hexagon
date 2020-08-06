@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/Shader.hpp>
 #include <string>
 
 
@@ -8,16 +9,17 @@ namespace Hexagon
 {
    namespace Shaders
    {
-      class Base
+      class Base : public AllegroFlare::Shader
       {
       private:
+         std::string vertex_source_code;
+         std::string fragment_source_code;
 
       public:
-         Base();
+         Base(std::string vertex_source_code="", std::string fragment_source_code="");
          ~Base();
 
 
-      std::string run();
       };
    }
 }
