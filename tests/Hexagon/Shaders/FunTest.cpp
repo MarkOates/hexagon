@@ -113,18 +113,6 @@ TEST_F(Hexagon_Shaders_FunTest, when_active__renders_the_image_with_the_flat_col
    al_draw_bitmap(test_image, 0, 0, 0);
    place.restore_transform();
 
-   ALLEGRO_COLOR expected_color = color;
-   ALLEGRO_COLOR actual_color = al_get_pixel(
-         al_get_backbuffer(current_display),
-         al_get_display_width(current_display)/2,
-         al_get_display_height(current_display)/2
-      );
-
-   ASSERT_EQ(color.r, actual_color.r);
-   ASSERT_EQ(color.g, actual_color.g);
-   ASSERT_EQ(color.b, actual_color.b);
-   ASSERT_EQ(color.a, actual_color.a);
-
    std::string tmp_path = "/Users/markoates/Repos/hexagon/tmp/";
    std::string output_image_full_filename = tmp_path + "when_activated__renders_bitmaps_with_a_solid_tinted_overlay.png";
 
