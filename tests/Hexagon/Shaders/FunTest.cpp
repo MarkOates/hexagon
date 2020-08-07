@@ -183,8 +183,23 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
    al_flip_display();
 
    ALLEGRO_EVENT e;
-   al_wait_for_event(event_queue, &e);
-   if (e.type == ALLEGRO_EVENT_KEY_DOWN && e.keyboard.keycode == ALLEGRO_KEY_F) FAIL();
-   else SUCCEED();
+   bool abort = false;
+   while (!abort)
+   {
+      al_wait_for_event(event_queue, &e);
+      switch(e.type)
+      {
+      case ALLEGRO_EVENT_KEY_DOWN:
+         if (e.keyboard.keycode == ALLEGRO_KEY_F)
+         {
+            FAIL();
+         }
+         else
+         {
+            abort = true;
+            SUCCEED();
+         }
+      }
+   }
 }
 
