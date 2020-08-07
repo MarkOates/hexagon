@@ -112,7 +112,7 @@ static const std::string source = R"DELIM(
   uniform float tint_intensity;
   uniform vec3 tint;
   varying vec4 varying_color;
-  varying vec2 varying_texcoord;
+  varying vec2 varying_texcoord; // 0 ... n number of pixels
   uniform int texture_width;
   uniform int texture_height;
   uniform float time;
@@ -126,10 +126,11 @@ static const std::string source = R"DELIM(
 
      uv *= 5.0;
      vec2 gv = fract(uv) - 0.5;
+     float width = .1;
 
      // https://www.youtube.com/watch?v=2R7h76GoIJM
 
-     float mask = abs(gv.x + gv.y); //smoothstep(-.01, .01, gv.x + gv.y);
+     float mask = smoothstep(.01, -.01, abs(gv.x + gv.y)-width);
 
      col += mask;
 
