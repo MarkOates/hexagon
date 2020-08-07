@@ -1,6 +1,8 @@
 
 
 #include <Hexagon/Search/ComponentElasticsearchIndexer.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <sstream>
 #include <Blast/Project/Component.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
@@ -47,8 +49,12 @@ return;
 
 std::string ComponentElasticsearchIndexer::generate_uid()
 {
-guard_nullptr_component(__FUNCTION__);
-
+if (!(component))
+   {
+      std::stringstream error_message;
+      error_message << "ComponentElasticsearchIndexer" << "::" << "generate_uid" << ": error: " << "guard \"component\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 std::string delimiter = ":";
 return component->get_project_root() + delimiter + component->get_name();
 

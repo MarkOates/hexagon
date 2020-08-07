@@ -34,8 +34,8 @@ TEST(Hexagon_Search_ComponentElasticsearchIndexerTest,
    generate_uid__with_a_nullptr_component_throws_an_error)
 {
    Hexagon::Search::ComponentElasticsearchIndexer indexer(nullptr, TEST_INDEX_NAME);
-   std::string expected_error_message = "[ComponentElasticsearchIndex error:] can not \"generate_uid\" " \
-                                        "on a nullptr component";
+   std::string expected_error_message =
+      "ComponentElasticsearchIndexer::generate_uid: error: guard \"component\" not met";
    ASSERT_THROW_WITH_MESSAGE(indexer.generate_uid(), std::runtime_error, expected_error_message);
 }
 
