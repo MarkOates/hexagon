@@ -112,9 +112,14 @@ functions:
         void main()
         {
            vec2 resolution = vec2(texture_width, texture_height);
-           vec2 uv = (varying_texcoord-.5*resolution) / resolution.y;
+           vec2 uv = (varying_texcoord*resolution.xy) / resolution.y;
 
-           vec3 col = vec3(0);
+           vec3 col = vec3(0.);
+
+           uv *= 5.0;
+           vec2 gv = fract(uv);
+
+           col.rg = gv;
 
            gl_FragColor = vec4(col, 1.);
         }
