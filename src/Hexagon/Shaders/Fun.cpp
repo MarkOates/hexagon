@@ -121,12 +121,12 @@ static const std::string source = R"DELIM(
      uv.x *= (float(texture_width)/float(texture_height));
 
      vec3 col = vec3(0.);
-     float c = Circle(uv, vec2(0.), .4, .05);
+     float mask = Circle(uv, vec2(0.), .4, .05);
 
-     c -= Circle(uv, vec2(-.13, .2), .07, .01);
-     c -= Circle(uv, vec2(.13, .2), .07, .01);
+     mask -= Circle(uv, vec2(-.13, .2), .07, .01);
+     mask -= Circle(uv, vec2(.13, .2), .07, .01);
 
-     col = vec3(1., 0., 1.) * c;
+     col = vec3(1., 0., 1.) * mask;
      gl_FragColor = vec4(col, 1.);
   }
 )DELIM";
