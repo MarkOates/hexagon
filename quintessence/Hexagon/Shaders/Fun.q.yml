@@ -66,13 +66,13 @@ functions:
       Shader::set_int("texture_height", height);
 
 
-  - name: set_texture_nyan_cat_texture
+  - name: set_nyan_cat_texture
     parameters:
       - name: nyan_cat_texture
         type: ALLEGRO_BITMAP*
         default_argument: nullptr
     body: |
-      Shader::set_sampler("nyan_cat_texture", nyan_cat_texture, 0);
+      Shader::set_sampler("nyan_cat_texture", nyan_cat_texture, 1);
 
 
   - name: set_time

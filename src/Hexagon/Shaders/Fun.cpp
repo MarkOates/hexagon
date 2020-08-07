@@ -75,9 +75,9 @@ Shader::set_int("texture_height", height);
 
 }
 
-void Fun::set_texture_nyan_cat_texture(ALLEGRO_BITMAP* nyan_cat_texture)
+void Fun::set_nyan_cat_texture(ALLEGRO_BITMAP* nyan_cat_texture)
 {
-Shader::set_sampler("nyan_cat_texture", nyan_cat_texture, 0);
+Shader::set_sampler("nyan_cat_texture", nyan_cat_texture, 1);
 
 }
 
