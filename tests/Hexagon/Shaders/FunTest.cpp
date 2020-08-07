@@ -10,7 +10,6 @@
 
 #include <Hexagon/Shaders/Fun.hpp>
 #include <AllegroFlare/FontBin.hpp>
-#include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_color.h>
@@ -142,8 +141,6 @@ TEST_F(Hexagon_Shaders_FunTest, when_active__renders_the_image_with_the_flat_col
 
    flat_color_shader.initialize();
    flat_color_shader.activate();
-
-   al_init_image_addon();
 
    ALLEGRO_BITMAP *test_image = al_create_bitmap(64, 64);
    ASSERT_NE(nullptr, test_image);
