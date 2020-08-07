@@ -147,7 +147,7 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
    flat_color_shader.initialize();
    flat_color_shader.activate();
 
-   ALLEGRO_BITMAP *test_image = al_create_bitmap(64, 64);
+   ALLEGRO_BITMAP *test_image = al_create_bitmap(16 * 50, 9 * 50);
    ASSERT_NE(nullptr, test_image);
 
    ALLEGRO_COLOR color = al_color_name("red");
@@ -162,7 +162,7 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
          al_get_display_height(current_display)/2,
          al_get_bitmap_width(test_image),
          al_get_bitmap_height(test_image));
-   place.scale = vec2d(4, 4);
+   //place.scale = vec2d(4, 4);
    place.start_transform();
    al_draw_bitmap(test_image, 0, 0, 0);
    place.restore_transform();
