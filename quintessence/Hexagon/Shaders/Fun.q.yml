@@ -120,7 +120,10 @@ functions:
            vec2 gv = fract(uv) - 0.5;
 
            // https://www.youtube.com/watch?v=2R7h76GoIJM
-           //col.rg = gv;
+
+           float mask = abs(gv.x + gv.y); //smoothstep(-.01, .01, gv.x + gv.y);
+
+           col += mask;
 
            if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
 
