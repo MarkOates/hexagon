@@ -2,7 +2,7 @@ parent_classes:
 
 
   - class: Hexagon::Shaders::Base
-    scope: public
+    scope: private
     init_with: "obtain_vertex_source(), obtain_fragment_source()"
 
 
@@ -29,6 +29,13 @@ functions:
     guards: [ initialized ]
     body: |
       Hexagon::Shaders::Base::activate();
+
+
+  - name: deactivate
+    type: void
+    guards: [ initialized ]
+    body: |
+      Hexagon::Shaders::Base::deactivate();
 
 
   - name: set_flat_color
@@ -122,7 +129,6 @@ functions:
            // https://www.youtube.com/watch?v=2R7h76GoIJM
 
            float mask = abs(gv.x + gv.y); //smoothstep(-.01, .01, gv.x + gv.y);
-           //float mask = smoothstep(-.01, .01, gv.x + gv.y);
 
            col += mask;
 

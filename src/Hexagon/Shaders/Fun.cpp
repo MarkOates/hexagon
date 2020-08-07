@@ -3,6 +3,8 @@
 #include <Hexagon/Shaders/Fun.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -39,6 +41,18 @@ if (!(initialized))
       throw std::runtime_error(error_message.str());
    }
 Hexagon::Shaders::Base::activate();
+
+}
+
+void Fun::deactivate()
+{
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Fun" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+Hexagon::Shaders::Base::deactivate();
 
 }
 
@@ -116,7 +130,6 @@ static const std::string source = R"DELIM(
      // https://www.youtube.com/watch?v=2R7h76GoIJM
 
      float mask = abs(gv.x + gv.y); //smoothstep(-.01, .01, gv.x + gv.y);
-     //float mask = smoothstep(-.01, .01, gv.x + gv.y);
 
      col += mask;
 
