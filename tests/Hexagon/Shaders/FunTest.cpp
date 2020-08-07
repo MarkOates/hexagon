@@ -57,12 +57,14 @@ public:
    ALLEGRO_DISPLAY* display;
    AllegroFlare::FontBin font_bin;
    ALLEGRO_EVENT_QUEUE *event_queue;
+   ALLEGRO_TIMER *primary_timer;
 
 public:
    Hexagon_Shaders_FunTest_WithEventQueueFixture()
       : display(nullptr)
       , font_bin()
       , event_queue(nullptr)
+      , primary_timer(nullptr)
    {}
 
    virtual void SetUp() override
@@ -76,6 +78,10 @@ public:
 
       event_queue = al_create_event_queue();
       al_register_event_source(event_queue, al_get_keyboard_event_source());
+
+      primary_timer = al_create_timer(1.0/60.0);
+      al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
+      al_start_timer(primary_timer);
 
       font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
 
@@ -91,8 +97,9 @@ public:
    virtual void TearDown() override
    {
       font_bin.clear();
-      al_destroy_display(display);
       al_destroy_event_queue(event_queue);
+      al_destroy_display(display);
+      al_destroy_timer(primary_timer);
       al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
       al_uninstall_system();
    }
