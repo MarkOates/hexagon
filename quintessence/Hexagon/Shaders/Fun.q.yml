@@ -130,12 +130,12 @@ functions:
            vec3 col = vec3(0.);
 
            //uv += time * .2;
-           uv *= 5.;
+           uv *= 3.;
            vec2 gv = fract(uv) - 0.5;
            vec2 id = floor(uv);
 
            float n = Hash21(id); // random number between 0 and 1
-           float width = .1;
+           float width = .2;
 
            // https://www.youtube.com/watch?v=2R7h76GoIJM
 
@@ -143,15 +143,20 @@ functions:
            float d = abs(abs(gv.x + gv.y)-.5);
 
            vec2 cUv = gv-sign(gv.x+gv.y+.001)*.5;
-           d = length(cUv)-.5;
-           float mask = smoothstep(.01, -.01, abs(d)-width);
+           d = length(cUv);
+           float mask = smoothstep(.01, -.01, abs(d - .5)-width);
 
            float angle = atan(cUv.x, cUv.y); // -pi to pi
            float checker = mod(id.x+id.y, 2.)*2.-1.;
            float flow = sin(time + checker * angle * 10.);
-           col += flow*mask;
+
+           float x = fract(angle/1.57);
+           float y = (d-(.5-width))/(2.*width);
+           y = abs(y-.5)*2.;
+           vec2 tUv = vec2(x, y);
+           col.rb +=  tUv*mask;
+           //col += y*mask;
            //col += n;
-           //col.rg += id * .3;
 
            //col += checker;
            //if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
