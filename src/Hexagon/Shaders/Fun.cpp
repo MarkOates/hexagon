@@ -131,17 +131,18 @@ static const std::string source = R"DELIM(
      vec3 col = vec3(0.);
 
      //uv += time * .2;
-     uv *= 10.;
+     uv *= 15.;
      vec2 gv = fract(uv) - 0.5;
      vec2 id = floor(uv);
 
      float n = Hash21(id); // random number between 0 and 1
-     float width = .1;
+     float width = .25;
 
      // https://www.youtube.com/watch?v=2R7h76GoIJM
 
      if (n<.5) gv.x *= -1.;
-     float mask = smoothstep(.01, -.01, abs(gv.x + gv.y)-width);
+     float d = abs(abs(gv.x + gv.y)-.5);
+     float mask = smoothstep(.01, -.01, d-width);
 
      col += mask;
      //col += n;
