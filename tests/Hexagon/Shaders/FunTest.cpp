@@ -172,15 +172,6 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
          al_get_display_height(current_display)/2,
          al_get_bitmap_width(test_image),
          al_get_bitmap_height(test_image));
-   //place.scale = vec2d(4, 4);
-   //place.start_transform();
-   //al_draw_bitmap(test_image, 0, 0, 0);
-   //place.restore_transform();
-
-   std::string tmp_path = "/Users/markoates/Repos/hexagon/tmp/";
-   std::string output_image_full_filename = tmp_path + "when_activated__renders_bitmaps_with_a_solid_tinted_overlay.png";
-
-   //al_flip_display();
 
    ALLEGRO_EVENT e, next_event;
    bool abort = false;
