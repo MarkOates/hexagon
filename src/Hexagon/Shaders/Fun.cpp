@@ -49,6 +49,12 @@ Shader::set_float("tint_intensity", 1.0);
 
 }
 
+void Fun::set_texture_width(int width)
+{
+Shader::set_int("texture_width", width);
+
+}
+
 std::string Fun::obtain_vertex_source()
 {
 static const std::string source = R"DELIM(
@@ -78,6 +84,9 @@ static const std::string source = R"DELIM(
   uniform vec3 tint;
   varying vec4 varying_color;
   varying vec2 varying_texcoord;
+  float texture_width;
+  float texture_height;
+  //float texelSize;
 
   void main()
   {
@@ -88,10 +97,15 @@ static const std::string source = R"DELIM(
      tmp.b = (tmp.b * inverse_tint_intensity + tint.b * tint_intensity) * tmp.a;
      tmp.a = tmp.a;
 
+     //ivec2 textureSize2d = textureSize(al_tex,0);
+
      vec2 uv = varying_texcoord.xy / 1.0;
      uv -= 0.5;
+     uv.x *= varying_texcoord.x/varying_texcoord.y;
      float d = length(uv);
      float c = d;
+
+     if (d < .3) c = 1.; else c = 0.;
 
      //gl_FragColor = vec4(uv.x, uv.y, 0, 1.);
      gl_FragColor = vec4(vec3(c), 1.);
