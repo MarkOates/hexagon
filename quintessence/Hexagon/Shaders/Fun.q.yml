@@ -119,6 +119,7 @@ functions:
            uv *= 5.0;
            vec2 gv = fract(uv) - 0.5;
 
+           // https://www.youtube.com/watch?v=2R7h76GoIJM
            //col.rg = gv;
 
            if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
