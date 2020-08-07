@@ -105,9 +105,10 @@ static const std::string source = R"DELIM(
 
   void main()
   {
-     vec2 uv = varying_texcoord / vec2(texture_width, texture_height);
+     vec2 resolution = vec2(texture_width, texture_height);
+     vec2 uv = (varying_texcoord-.5*resolution) / resolution.y;
 
-     vec3 col = 0.5 + 0.5*cos(float(time)+uv.xyx+vec3(0, 2, 4));
+     vec3 col = vec3(0);
 
      gl_FragColor = vec4(col, 1.);
   }
