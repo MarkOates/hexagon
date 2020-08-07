@@ -55,6 +55,12 @@ Shader::set_int("texture_width", width);
 
 }
 
+void Fun::set_texture_height(int height)
+{
+Shader::set_int("texture_height", height);
+
+}
+
 std::string Fun::obtain_vertex_source()
 {
 static const std::string source = R"DELIM(
@@ -64,6 +70,8 @@ static const std::string source = R"DELIM(
   uniform mat4 al_projview_matrix;
   varying vec4 varying_color;
   varying vec2 varying_texcoord;
+  uniform int texture_width;
+  uniform int texture_height;
 
   void main()
   {
@@ -84,8 +92,10 @@ static const std::string source = R"DELIM(
   uniform vec3 tint;
   varying vec4 varying_color;
   varying vec2 varying_texcoord;
-  float texture_width;
-  float texture_height;
+  uniform int texture_width;
+  uniform int texture_height;
+  //float texture_width;
+  //float texture_height;
   //float texelSize;
 
   void main()
@@ -101,7 +111,7 @@ static const std::string source = R"DELIM(
 
      vec2 uv = varying_texcoord.xy / 1.0;
      uv -= 0.5;
-     uv.x *= varying_texcoord.x/varying_texcoord.y;
+     uv.x *= (float(texture_width)/float(texture_height));
      float d = length(uv);
      float c = d;
 

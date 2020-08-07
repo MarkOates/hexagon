@@ -154,6 +154,7 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
 
    flat_color_shader.set_flat_color(color);
    flat_color_shader.set_texture_width(al_get_bitmap_width(test_image));
+   flat_color_shader.set_texture_height(al_get_bitmap_height(test_image));
 
    ALLEGRO_DISPLAY *current_display = al_get_current_display();
    ASSERT_NE(nullptr, current_display);
