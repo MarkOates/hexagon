@@ -116,9 +116,12 @@ functions:
            uv -= 0.5;
            uv.x *= (float(texture_width)/float(texture_height));
            float d = length(uv);
-           float c = d;
+           //float c = d;
+           float r = 0.3;
 
-           if (d < .3) c = 1.; else c = 0.;
+           float c = smoothstep(r, r-0.1, d);
+
+           //if (d < .3) c = 1.; else c = 0.;
 
            //gl_FragColor = vec4(uv.x, uv.y, 0, 1.);
            gl_FragColor = vec4(vec3(c), 1.);
