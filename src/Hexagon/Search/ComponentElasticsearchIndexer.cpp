@@ -37,20 +37,6 @@ std::string ComponentElasticsearchIndexer::get_index_name()
 }
 
 
-void ComponentElasticsearchIndexer::guard_nullptr_component(std::string function_name)
-{
-if (!component)
-{
-   std::stringstream error_message;
-   error_message << "[ComponentElasticsearchIndex error:] can not "
-                 << "\"" << function_name << "\""
-                 << " on a nullptr component";
-   throw std::runtime_error(error_message.str());
-}
-return;
-
-}
-
 std::string ComponentElasticsearchIndexer::generate_uid()
 {
 if (!(component))

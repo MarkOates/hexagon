@@ -21,7 +21,6 @@ namespace Hexagon
 
 
          std::string get_index_name();
-      void guard_nullptr_component(std::string function_name="unset_function_name");
       std::string generate_uid();
       std::string generate_index_shell_command();
       std::string import_or_update();
