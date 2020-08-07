@@ -173,22 +173,35 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
          al_get_bitmap_width(test_image),
          al_get_bitmap_height(test_image));
    //place.scale = vec2d(4, 4);
-   place.start_transform();
-   al_draw_bitmap(test_image, 0, 0, 0);
-   place.restore_transform();
+   //place.start_transform();
+   //al_draw_bitmap(test_image, 0, 0, 0);
+   //place.restore_transform();
 
    std::string tmp_path = "/Users/markoates/Repos/hexagon/tmp/";
    std::string output_image_full_filename = tmp_path + "when_activated__renders_bitmaps_with_a_solid_tinted_overlay.png";
 
-   al_flip_display();
+   //al_flip_display();
 
-   ALLEGRO_EVENT e;
+   ALLEGRO_EVENT e, next_event;
    bool abort = false;
    while (!abort)
    {
       al_wait_for_event(event_queue, &e);
       switch(e.type)
       {
+      case ALLEGRO_EVENT_TIMER:
+         flat_color_shader.set_time(al_get_time());
+
+         place.start_transform();
+         al_draw_bitmap(test_image, 0, 0, 0);
+         place.restore_transform();
+
+         al_flip_display();
+         while (al_peek_next_event(event_queue, &next_event)
+              && next_event.type == ALLEGRO_EVENT_TIMER
+              && next_event.timer.source == primary_timer)
+           al_drop_next_event(event_queue);
+         break;
       case ALLEGRO_EVENT_KEY_DOWN:
          if (e.keyboard.keycode == ALLEGRO_KEY_F)
          {
@@ -199,6 +212,7 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
             abort = true;
             SUCCEED();
          }
+         break;
       }
    }
 }
