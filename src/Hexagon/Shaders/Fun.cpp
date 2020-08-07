@@ -120,8 +120,10 @@ static const std::string source = R"DELIM(
      uv -= 0.5;
      uv.x *= (float(texture_width)/float(texture_height));
 
-     vec2 p = vec2(.2, -.1);
-     float c = Circle(uv, p, .4, .05);
+     float c = Circle(uv, vec2(0.), .4, .05);
+
+     c -= Circle(uv, vec2(-.13, .2), .07, .01);
+     c -= Circle(uv, vec2(.13, .2), .07, .01);
 
      gl_FragColor = vec4(vec3(c), 1.);
   }
