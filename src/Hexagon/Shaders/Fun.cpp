@@ -121,7 +121,7 @@ static const std::string source = R"DELIM(
      uv.x *= (float(texture_width)/float(texture_height));
 
      vec2 p = vec2(.2, -.1);
-     float c = Circle(uv, p, .4, .05); //smoothstep(r, r-0.1, d);
+     float c = Circle(uv, p, .4, .05);
 
      gl_FragColor = vec4(vec3(c), 1.);
   }
