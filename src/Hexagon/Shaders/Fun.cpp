@@ -98,6 +98,11 @@ static const std::string source = R"DELIM(
   //float texture_height;
   //float texelSize;
 
+  float Circle(vec2 uv, float r, float blur)
+  {
+     return 0.0;
+  }
+
   void main()
   {
      vec4 tmp = texture2D(al_tex, varying_texcoord);
