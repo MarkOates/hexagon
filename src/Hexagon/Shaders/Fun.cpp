@@ -111,7 +111,7 @@ static const std::string source = R"DELIM(
      vec3 col = vec3(0.);
 
      uv *= 5.0;
-     vec2 gv = fract(uv);
+     vec2 gv = fract(uv) - 0.5;
 
      col.rg = gv;
 
