@@ -61,9 +61,9 @@ Shader::set_int("texture_height", height);
 
 }
 
-void Fun::set_time(int time)
+void Fun::set_time(float time)
 {
-Shader::set_int("time", time);
+Shader::set_float("time", time);
 
 }
 
@@ -78,7 +78,7 @@ static const std::string source = R"DELIM(
   varying vec2 varying_texcoord;
   uniform int texture_width;
   uniform int texture_height;
-  uniform int time;
+  uniform float time;
 
   void main()
   {
@@ -101,7 +101,7 @@ static const std::string source = R"DELIM(
   varying vec2 varying_texcoord;
   uniform int texture_width;
   uniform int texture_height;
-  uniform int time;
+  uniform float time;
 
   void main()
   {

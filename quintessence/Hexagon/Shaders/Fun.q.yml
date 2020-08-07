@@ -62,10 +62,10 @@ functions:
   - name: set_time
     parameters:
       - name: time
-        type: int
+        type: float
         default_argument: 1
     body: |
-      Shader::set_int("time", time);
+      Shader::set_float("time", time);
 
 
   - name: obtain_vertex_source
@@ -82,7 +82,7 @@ functions:
         varying vec2 varying_texcoord;
         uniform int texture_width;
         uniform int texture_height;
-        uniform int time;
+        uniform float time;
 
         void main()
         {
@@ -107,7 +107,7 @@ functions:
         varying vec2 varying_texcoord;
         uniform int texture_width;
         uniform int texture_height;
-        uniform int time;
+        uniform float time;
 
         void main()
         {
