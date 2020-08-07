@@ -116,6 +116,7 @@ static const std::string source = R"DELIM(
      // https://www.youtube.com/watch?v=2R7h76GoIJM
 
      float mask = abs(gv.x + gv.y); //smoothstep(-.01, .01, gv.x + gv.y);
+     //float mask = smoothstep(-.01, .01, gv.x + gv.y);
 
      col += mask;
 

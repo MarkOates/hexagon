@@ -10,7 +10,7 @@ namespace Hexagon
 {
    namespace Shaders
    {
-      class Fun : private Hexagon::Shaders::Base
+      class Fun : public Hexagon::Shaders::Base
       {
       private:
          bool initialized;

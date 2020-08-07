@@ -15,6 +15,7 @@
 #include <allegro5/allegro_color.h>
 #include <allegro_flare/placement2d.h>
 #include <allegro_flare/placement3d.h>
+#include <AllegroFlare/Timer.hpp>
 
 
 class Hexagon_Shaders_FunTest : public ::testing::Test
@@ -56,6 +57,7 @@ class Hexagon_Shaders_FunTest_WithEventQueueFixture : public ::testing::Test
 public:
    ALLEGRO_DISPLAY* display;
    AllegroFlare::FontBin font_bin;
+   AllegroFlare::Timer timer;
    ALLEGRO_EVENT_QUEUE *event_queue;
    ALLEGRO_TIMER *primary_timer;
 
@@ -63,6 +65,7 @@ public:
    Hexagon_Shaders_FunTest_WithEventQueueFixture()
       : display(nullptr)
       , font_bin()
+      , timer()
       , event_queue(nullptr)
       , primary_timer(nullptr)
    {}
@@ -158,6 +161,7 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
    ASSERT_NE(nullptr, test_image);
 
    ALLEGRO_COLOR color = al_color_name("red");
+   ALLEGRO_FONT *font = al_create_builtin_font();
 
    flat_color_shader.set_flat_color(color);
    flat_color_shader.set_texture_width(al_get_bitmap_width(test_image));
@@ -181,11 +185,18 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
       switch(e.type)
       {
       case ALLEGRO_EVENT_TIMER:
-         flat_color_shader.set_time(al_get_time());
+         al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 0});
 
          place.start_transform();
+         flat_color_shader.activate();
+         timer.pause(); timer.reset(); timer.start();
+         flat_color_shader.set_time(al_get_time());
          al_draw_bitmap(test_image, 0, 0, 0);
+         timer.pause();
+         flat_color_shader.deactivate();
          place.restore_transform();
+
+         al_draw_textf(font, color, 10, 10, 0, "%d", timer.get_elapsed_time_microseconds());
 
          al_flip_display();
          while (al_peek_next_event(event_queue, &next_event)
