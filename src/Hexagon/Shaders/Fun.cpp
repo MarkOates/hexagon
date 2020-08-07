@@ -103,13 +103,6 @@ static const std::string source = R"DELIM(
   uniform int texture_height;
   uniform int time;
 
-  float Circle(vec2 uv, vec2 p, float r, float blur)
-  {
-     float d = length(uv-p);
-     float c = smoothstep(r, r-blur, d);
-     return c;
-  }
-
   void main()
   {
      vec2 uv = varying_texcoord / vec2(texture_width, texture_height);
