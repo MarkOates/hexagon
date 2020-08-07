@@ -140,7 +140,7 @@ TEST_F(Hexagon_Shaders_FunTest, activate__works_without_blowing_up)
 }
 
 
-TEST_F(Hexagon_Shaders_FunTest, when_active__renders_the_image_with_the_flat_color)
+TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_image_with_the_flat_color)
 {
    Hexagon::Shaders::Fun flat_color_shader;
 
@@ -171,6 +171,8 @@ TEST_F(Hexagon_Shaders_FunTest, when_active__renders_the_image_with_the_flat_col
    std::string output_image_full_filename = tmp_path + "when_activated__renders_bitmaps_with_a_solid_tinted_overlay.png";
 
    al_flip_display();
-   sleep(1);
+
+   ALLEGRO_EVENT e;
+   al_wait_for_event(event_queue, &e);
 }
 
