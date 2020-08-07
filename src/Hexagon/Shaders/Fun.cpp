@@ -100,7 +100,9 @@ static const std::string source = R"DELIM(
 
   float Circle(vec2 uv, float r, float blur)
   {
-     return 0.0;
+     float d = length(uv);
+     float c = smoothstep(r, r-blur, d);
+     return c;
   }
 
   void main()
@@ -121,7 +123,7 @@ static const std::string source = R"DELIM(
      //float c = d;
      float r = 0.3;
 
-     float c = smoothstep(r, r-0.1, d);
+     float c = Circle(uv, .4, .05); //smoothstep(r, r-0.1, d);
 
      //if (d < .3) c = 1.; else c = 0.;
 
