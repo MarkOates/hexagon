@@ -147,10 +147,13 @@ functions:
            float mask = smoothstep(.01, -.01, abs(d)-width);
 
            float angle = atan(cUv.x, cUv.y); // -pi to pi
-           col += sin(angle)*mask;
+           float checker = mod(id.x+id.y, 2.)*2.-1.;
+           float flow = sin(time + checker * angle * 10.);
+           col += flow*mask;
            //col += n;
            //col.rg += id * .3;
 
+           //col += checker;
            if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
 
            gl_FragColor = vec4(col, 1.);
