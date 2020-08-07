@@ -13,6 +13,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_color.h>
+#include <allegro5/allegro_image.h>
 #include <allegro_flare/placement2d.h>
 #include <allegro_flare/placement3d.h>
 #include <AllegroFlare/Timer.hpp>
@@ -60,6 +61,7 @@ public:
    AllegroFlare::Timer timer;
    ALLEGRO_EVENT_QUEUE *event_queue;
    ALLEGRO_TIMER *primary_timer;
+   ALLEGRO_BITMAP *texture;
 
 public:
    Hexagon_Shaders_FunTest_WithEventQueueFixture()
@@ -68,6 +70,7 @@ public:
       , timer()
       , event_queue(nullptr)
       , primary_timer(nullptr)
+      , texture(nullptr)
    {}
 
    virtual void SetUp() override
@@ -77,6 +80,7 @@ public:
       al_init_primitives_addon();
       al_init_font_addon();
       al_init_ttf_addon();
+      al_init_image_addon();
       al_install_keyboard();
 
       event_queue = al_create_event_queue();
@@ -87,6 +91,9 @@ public:
       al_start_timer(primary_timer);
 
       font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+
+      texture = al_load_bitmap("/Users/markoates/Repos/hexagon/tests/fixtures/data/bitmaps/cat_photo.jpg");
+      ASSERT_NE(nullptr, texture);
 
       al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
       ASSERT_EQ(ALLEGRO_OPENGL, al_get_new_display_flags() & ALLEGRO_OPENGL);
@@ -99,6 +106,7 @@ public:
 
    virtual void TearDown() override
    {
+      al_destroy_bitmap(texture);
       font_bin.clear();
       al_destroy_event_queue(event_queue);
       al_destroy_display(display);

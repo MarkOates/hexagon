@@ -75,6 +75,12 @@ Shader::set_int("texture_height", height);
 
 }
 
+void Fun::set_texture_nyan_cat_texture(ALLEGRO_BITMAP* nyan_cat_texture)
+{
+Shader::set_sampler("nyan_cat_texture", nyan_cat_texture, 0);
+
+}
+
 void Fun::set_time(float time)
 {
 Shader::set_float("time", time);
@@ -109,6 +115,7 @@ std::string Fun::obtain_fragment_source()
 {
 static const std::string source = R"DELIM(
   uniform sampler2D al_tex;
+  uniform sampler2D nyan_cat_texture;
   uniform float tint_intensity;
   uniform vec3 tint;
   varying vec4 varying_color;
@@ -155,7 +162,8 @@ static const std::string source = R"DELIM(
      float y = (d-(.5-width))/(2.*width);
      y = abs(y-.5)*2.;
      vec2 tUv = vec2(x, y);
-     col.rb +=  tUv*mask;
+     col +=  texture2D(nyan_cat_texture, tUv).rgb*mask;
+     //col.rb +=  tUv*mask;
      //col += y*mask;
      //col += n;
 
