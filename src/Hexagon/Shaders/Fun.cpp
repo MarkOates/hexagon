@@ -130,7 +130,7 @@ static const std::string source = R"DELIM(
 
      vec3 col = vec3(0.);
 
-     //uv += time * .2;
+     uv += time * .2;
      uv *= 5.;
      vec2 gv = fract(uv) - 0.5;
      vec2 id = floor(uv);
@@ -140,15 +140,17 @@ static const std::string source = R"DELIM(
 
      // https://www.youtube.com/watch?v=2R7h76GoIJM
 
-     //if (n<.5) gv.x *= -1.;
+     if (n<.5) gv.x *= -1.;
      float d = abs(abs(gv.x + gv.y)-.5);
-     float mask = smoothstep(.01, -.01, d-width);
+
+     d = length(gv-sign(gv.x+gv.y+.001)*.5)-.5;
+     float mask = smoothstep(.01, -.01, abs(d)-width);
 
      col += mask;
      //col += n;
      //col.rg += id * .3;
 
-     if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
+     //if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
 
      gl_FragColor = vec4(col, 1.);
   }
