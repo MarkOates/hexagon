@@ -113,7 +113,9 @@ static const std::string source = R"DELIM(
      uv *= 5.0;
      vec2 gv = fract(uv) - 0.5;
 
-     col.rg = gv;
+     //col.rg = gv;
+
+     if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
 
      gl_FragColor = vec4(col, 1.);
   }
