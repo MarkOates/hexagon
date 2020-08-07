@@ -113,7 +113,7 @@ TEST_F(Hexagon_Shaders_SmileyTest, can_be_created_without_blowing_up)
 }
 
 
-TEST_F(Hexagon_Shaders_SmileyTest, activate__before_being_initialized_raises_an_exception)
+TEST_F(Hexagon_Shaders_SmileyTest, activate__before_being_initialized_raises__an_exception)
 {
    Hexagon::Shaders::Smiley smiley_shader;
    std::string expected_error_message = "Smiley::activate: error: guard \"initialized\" not met";
