@@ -116,14 +116,14 @@ public:
 };
 
 
-TEST_F(Hexagon_Shaders_FunTest, can_be_created_without_blowing_up)
+TEST_F(Hexagon_Shaders_FunTest, DISABLED_can_be_created_without_blowing_up)
 {
    Hexagon::Shaders::Fun flat_color_shader;
    SUCCEED();
 }
 
 
-TEST_F(Hexagon_Shaders_FunTest, activate__before_being_initialized_raises_an_exception)
+TEST_F(Hexagon_Shaders_FunTest, DISABLED_activate__before_being_initialized_raises_an_exception)
 {
    Hexagon::Shaders::Fun flat_color_shader;
    std::string expected_error_message = "Fun::activate: error: guard \"initialized\" not met";
@@ -131,7 +131,7 @@ TEST_F(Hexagon_Shaders_FunTest, activate__before_being_initialized_raises_an_exc
 }
 
 
-TEST_F(Hexagon_Shaders_FunTest, initialize__works_without_blowing_up)
+TEST_F(Hexagon_Shaders_FunTest, DISABLED_initialize__works_without_blowing_up)
 {
    Hexagon::Shaders::Fun flat_color_shader;
    flat_color_shader.initialize();
@@ -139,7 +139,7 @@ TEST_F(Hexagon_Shaders_FunTest, initialize__works_without_blowing_up)
 }
 
 
-TEST_F(Hexagon_Shaders_FunTest, activate__works_without_blowing_up)
+TEST_F(Hexagon_Shaders_FunTest, DISABLED_activate__works_without_blowing_up)
 {
    Hexagon::Shaders::Fun flat_color_shader;
    flat_color_shader.initialize();
