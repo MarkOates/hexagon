@@ -89,6 +89,7 @@ static const std::string source = R"DELIM(
      tmp.a = tmp.a;
 
      vec2 uv = varying_texcoord.xy / 1.0;
+     uv -= 0.5;
      float d = length(uv);
      float c = d;
 
