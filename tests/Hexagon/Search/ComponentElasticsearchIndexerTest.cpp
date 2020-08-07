@@ -53,8 +53,8 @@ TEST(Hexagon_Search_ComponentElasticsearchIndexerTest,
    generate_index_shell_command__with_a_nullptr_component__throws_an_error)
 {
    Hexagon::Search::ComponentElasticsearchIndexer indexer(nullptr, TEST_INDEX_NAME);
-   std::string expected_error_message = "[ComponentElasticsearchIndex error:] can not "
-                                        "\"generate_index_shell_command\" on a nullptr component";
+   std::string expected_error_message =
+      "ComponentElasticsearchIndexer::generate_index_shell_command: error: guard \"component\" not met";
    ASSERT_THROW_WITH_MESSAGE(indexer.generate_index_shell_command(),
                              std::runtime_error,
                              expected_error_message);
@@ -78,8 +78,8 @@ TEST(Hexagon_Search_ComponentElasticsearchIndexerTest,
    import_or_update__with_a_nullptr_component__throws_an_error)
 {
    Hexagon::Search::ComponentElasticsearchIndexer indexer;
-   std::string expected_error_message = "[ComponentElasticsearchIndex error:] can not " \
-                                        "\"import_or_update\" on a nullptr component";
+   std::string expected_error_message =
+      "ComponentElasticsearchIndexer::import_or_update: error: guard \"component\" not met";
    ASSERT_THROW_WITH_MESSAGE(indexer.import_or_update(), std::runtime_error, expected_error_message);
 }
 

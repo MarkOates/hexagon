@@ -3,10 +3,14 @@
 #include <Hexagon/Search/ComponentElasticsearchIndexer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <sstream>
 #include <Blast/Project/Component.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <lib/nlohmann/json.hpp>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -62,8 +66,12 @@ return component->get_project_root() + delimiter + component->get_name();
 
 std::string ComponentElasticsearchIndexer::generate_index_shell_command()
 {
-guard_nullptr_component(__FUNCTION__);
-
+if (!(component))
+   {
+      std::stringstream error_message;
+      error_message << "ComponentElasticsearchIndexer" << "::" << "generate_index_shell_command" << ": error: " << "guard \"component\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 nlohmann::json document_as_json = {
   { "uid", generate_uid() },
   { "id", component->get_name() },
@@ -90,8 +98,12 @@ return index_shell_command.str();
 
 std::string ComponentElasticsearchIndexer::import_or_update()
 {
-guard_nullptr_component(__FUNCTION__);
-
+if (!(component))
+   {
+      std::stringstream error_message;
+      error_message << "ComponentElasticsearchIndexer" << "::" << "import_or_update" << ": error: " << "guard \"component\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 std::string index_shell_command = generate_index_shell_command();
 Blast::ShellCommandExecutorWithCallback executor(index_shell_command);
 

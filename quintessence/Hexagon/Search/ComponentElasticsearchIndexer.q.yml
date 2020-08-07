@@ -34,9 +34,8 @@ functions:
       return component->get_project_root() + delimiter + component->get_name();
   - name: generate_index_shell_command
     type: std::string
+    guards: [ component ]
     body: |
-      guard_nullptr_component(__FUNCTION__);
-
       nlohmann::json document_as_json = {
         { "uid", generate_uid() },
         { "id", component->get_name() },
@@ -60,9 +59,8 @@ functions:
       return index_shell_command.str();
   - name: import_or_update
     type: std::string
+    guards: [ component ]
     body: |
-      guard_nullptr_component(__FUNCTION__);
-
       std::string index_shell_command = generate_index_shell_command();
       Blast::ShellCommandExecutorWithCallback executor(index_shell_command);
 
