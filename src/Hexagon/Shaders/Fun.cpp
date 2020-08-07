@@ -126,7 +126,12 @@ static const std::string source = R"DELIM(
      mask -= Circle(uv, vec2(-.13, .2), .07, .01);
      mask -= Circle(uv, vec2(.13, .2), .07, .01);
 
-     col = vec3(1., 1., 0.) * mask;
+     float mouth = Circle(uv, vec2(0.), .3, .02);
+     mouth -= Circle(uv, vec2(0., 0.1), .3, .02);
+
+     col = vec3(mouth);
+     //col = vec3(1., 1., 0.) * mask;
+
      gl_FragColor = vec4(col, 1.);
   }
 )DELIM";
