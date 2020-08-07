@@ -91,10 +91,8 @@ TEST_F(Hexagon_Shaders_FunTest, when_active__renders_the_image_with_the_flat_col
 
    al_init_image_addon();
 
-   ALLEGRO_BITMAP *test_image =
-      al_load_bitmap("/Users/markoates/Repos/hexagon/tests/fixtures/data/bitmaps/billboarding_tester_sprite.png");
+   ALLEGRO_BITMAP *test_image = al_create_bitmap(64, 64);
    ASSERT_NE(nullptr, test_image);
-
 
    ALLEGRO_COLOR color = al_color_name("red");
 

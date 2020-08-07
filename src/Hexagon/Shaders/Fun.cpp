@@ -89,6 +89,7 @@ static const std::string source = R"DELIM(
      tmp.a = tmp.a;
 
      vec2 uv = varying_texcoord.xy / 1.0;
+     float d = length(uv);
      gl_FragColor = vec4(uv.x, uv.y, 0, 1.);
   }
 )DELIM";
