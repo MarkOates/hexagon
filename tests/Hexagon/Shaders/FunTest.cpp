@@ -176,5 +176,7 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
 
    ALLEGRO_EVENT e;
    al_wait_for_event(event_queue, &e);
+   if (e.type == ALLEGRO_EVENT_KEY_DOWN && e.keyboard.keycode == ALLEGRO_KEY_SPACE) SUCCEED();
+   else FAIL();
 }
 
