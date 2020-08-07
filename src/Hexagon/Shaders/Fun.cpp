@@ -117,6 +117,12 @@ static const std::string source = R"DELIM(
   uniform int texture_height;
   uniform float time;
 
+  float Hash21(vec2 p) {
+     p = fract(p*vec2(234.34, 435.345));
+     p += dot(p, p+34.23);
+     return fract(p.x*p.y);
+  }
+
   void main()
   {
      vec2 resolution = vec2(texture_width, texture_height);
@@ -128,6 +134,7 @@ static const std::string source = R"DELIM(
      vec2 gv = fract(uv) - 0.5;
      vec2 id = floor(uv);
 
+     float n = Hash21(id);
      float width = .1;
 
      // https://www.youtube.com/watch?v=2R7h76GoIJM
@@ -136,7 +143,8 @@ static const std::string source = R"DELIM(
      float mask = smoothstep(.01, -.01, abs(gv.x + gv.y)-width);
 
      //col += mask;
-     col.rg += id * .3;
+     col += n;
+     //col.rg += id * .3;
 
      if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
 
