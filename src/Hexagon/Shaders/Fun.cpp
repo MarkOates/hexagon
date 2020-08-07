@@ -98,9 +98,9 @@ static const std::string source = R"DELIM(
   //float texture_height;
   //float texelSize;
 
-  float Circle(vec2 uv, float r, float blur)
+  float Circle(vec2 uv, vec2 p, float r, float blur)
   {
-     float d = length(uv);
+     float d = length(uv-p);
      float c = smoothstep(r, r-blur, d);
      return c;
   }
@@ -120,7 +120,8 @@ static const std::string source = R"DELIM(
      uv -= 0.5;
      uv.x *= (float(texture_width)/float(texture_height));
 
-     float c = Circle(uv, .4, .05); //smoothstep(r, r-0.1, d);
+     vec2 p = vec2(.2, -.1);
+     float c = Circle(uv, p, .4, .05); //smoothstep(r, r-0.1, d);
 
      gl_FragColor = vec4(vec3(c), 1.);
   }
