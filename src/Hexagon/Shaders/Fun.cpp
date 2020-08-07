@@ -155,7 +155,7 @@ static const std::string source = R"DELIM(
      //col.rg += id * .3;
 
      //col += checker;
-     if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
+     //if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
 
      gl_FragColor = vec4(col, 1.);
   }
