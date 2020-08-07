@@ -94,9 +94,6 @@ static const std::string source = R"DELIM(
   varying vec2 varying_texcoord;
   uniform int texture_width;
   uniform int texture_height;
-  //float texture_width;
-  //float texture_height;
-  //float texelSize;
 
   float Circle(vec2 uv, vec2 p, float r, float blur)
   {
