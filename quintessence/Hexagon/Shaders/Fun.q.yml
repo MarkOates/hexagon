@@ -110,15 +110,6 @@ functions:
 
         void main()
         {
-           vec4 tmp = texture2D(al_tex, varying_texcoord);
-           float inverse_tint_intensity = 1.0 - tint_intensity;
-           tmp.r = (tmp.r * inverse_tint_intensity + tint.r * tint_intensity) * tmp.a;
-           tmp.g = (tmp.g * inverse_tint_intensity + tint.g * tint_intensity) * tmp.a;
-           tmp.b = (tmp.b * inverse_tint_intensity + tint.b * tint_intensity) * tmp.a;
-           tmp.a = tmp.a;
-
-           //ivec2 textureSize2d = textureSize(al_tex,0);
-
            vec2 uv = varying_texcoord.xy / 1.0;
            uv -= 0.5;
            uv.x *= (float(texture_width)/float(texture_height));
