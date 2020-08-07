@@ -90,7 +90,10 @@ static const std::string source = R"DELIM(
 
      vec2 uv = varying_texcoord.xy / 1.0;
      float d = length(uv);
-     gl_FragColor = vec4(uv.x, uv.y, 0, 1.);
+     float c = d;
+
+     //gl_FragColor = vec4(uv.x, uv.y, 0, 1.);
+     gl_FragColor = vec4(vec3(c), 1.);
   }
 )DELIM";
 return source;
