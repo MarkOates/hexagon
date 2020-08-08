@@ -18,6 +18,8 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_the_passed_files)
       { "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Logo.q.yml", "blast_quintessence", placement3d(0, 0, 0) },
    };
 
+   Hexagon::Layout layout(concept_name, files, daemus_command);
+
    Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, concept_name, files, daemus_command);
 
    layout_to_stage_creator.create();
@@ -35,6 +37,8 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_code_editor_stages_f
       { "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Logo.q.yml", "blast_quintessence", placement3d(0, 0, 0) },
       { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", placement3d(0, 0, 0) },
    };
+
+   Hexagon::Layout layout(concept_name, files, daemus_command);
 
    Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, concept_name, files, daemus_command);
 
@@ -59,6 +63,8 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_missing_file_stages_
       { "/Another/Path/To/A/NonExistentFile.cpp", "blast_test", placement3d(0, 0, 0) },
    };
 
+   Hexagon::Layout layout(concept_name, files, daemus_command);
+
    Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, concept_name, files, daemus_command);
 
    layout_to_stage_creator.create();
@@ -82,6 +88,8 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_position_the_stages_at_the_
       { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", placement3d(147, 1920, 640) },
       { "/A/Path/To/A/File/ThatDoesNotExist.cpp", "blast_quintessence", placement3d(69, 420, 89) },
    };
+
+   Hexagon::Layout layout(concept_name, files, daemus_command);
 
    Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, concept_name, files, daemus_command);
 
