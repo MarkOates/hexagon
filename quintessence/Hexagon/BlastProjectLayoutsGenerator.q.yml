@@ -11,7 +11,28 @@ functions:
 
 
   - name: generate
-    type: void
+    type: std::vector<Hexagon::Layout>
     body: |
-      return;
+      std::vector<Hexagon::Layout> result;
+
+      Blast::Project::ComponentLister component_lister(project_directory);
+      std::vector<std::string> component_names = component_lister.components();
+
+      for (auto &component_name : component_names)
+      {
+         result.push_back(Layout(component_name));
+      }
+
+      return result;
+    body_dependency_symbols:
+      - Blast::Project::ComponentLister
+
+
+dependencies:
+
+
+  - symbol: std::vector<Hexagon::Layout>
+    headers: [ vector, Hexagon/Layout.hpp ]
+  - symbol: Blast::Project::ComponentLister
+    headers: [ Blast/Project/ComponentLister.hpp ]
 

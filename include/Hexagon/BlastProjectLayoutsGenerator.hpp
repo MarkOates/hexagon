@@ -1,7 +1,9 @@
 #pragma once
 
 
+#include <Hexagon/Layout.hpp>
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -16,7 +18,7 @@ namespace Hexagon
       ~BlastProjectLayoutsGenerator();
 
 
-   void generate();
+   std::vector<Hexagon::Layout> generate();
    };
 }
 

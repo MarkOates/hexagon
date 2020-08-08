@@ -17,3 +17,13 @@ TEST(Hexagon_BlastProjectLayoutsGeneratorTest, generate__returns_the_expected_re
    SUCCEED();
 }
 
+TEST(Hexagon_BlastProjectLayoutsGeneratorTest, generate__creates_layouts_for_the_project_components)
+{
+   Hexagon::BlastProjectLayoutsGenerator blast_project_layouts_generator(FIXTURE_PROJECT_DIRECTORY);
+   std::vector<Hexagon::Layout> layouts = blast_project_layouts_generator.generate();
+
+   ASSERT_EQ(false, layouts.empty());
+
+   SUCCEED();
+}
+
