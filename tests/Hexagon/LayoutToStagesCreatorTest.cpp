@@ -10,8 +10,9 @@ TEST(Hexagon_LayoutToStagesCreatorTest, can_be_created_without_blowing_up)
 
 TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_the_passed_files)
 {
-   std::string concept_name = "Hexagon/Logo";
    std::vector<StageInterface *> stages;
+
+   std::string concept_name = "Hexagon/Logo";
    std::string daemus_command = "git diff";
    std::vector<std::tuple<std::string, std::string, placement3d>> files = {
       { "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Logo.q.yml", "blast_quintessence", placement3d(0, 0, 0) },
@@ -26,8 +27,9 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_the_passed_files)
 
 TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_code_editor_stages_for_the_passed_files)
 {
-   std::string concept_name = "Hexagon/Logo";
    std::vector<StageInterface *> stages;
+
+   std::string concept_name = "Hexagon/Logo";
    std::string daemus_command = "git diff";
    std::vector<std::tuple<std::string, std::string, placement3d>> files = {
       { "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Logo.q.yml", "blast_quintessence", placement3d(0, 0, 0) },
@@ -48,8 +50,9 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_code_editor_stages_f
 
 TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_missing_file_stages_for_files_that_do_not_exist)
 {
-   std::string concept_name = "- Missing Files -";
    std::vector<StageInterface *> stages;
+
+   std::string concept_name = "- Missing Files -";
    std::string daemus_command = "git diff";
    std::vector<std::tuple<std::string, std::string, placement3d>> files = {
       { "/A/Path/To/A/File/ThatDoesNotExist.cpp", "blast_quintessence", placement3d(0, 0, 0) },
@@ -70,8 +73,9 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_missing_file_stages_
 
 TEST(Hexagon_LayoutToStagesCreatorTest, create__will_position_the_stages_at_the_passed_placement)
 {
-   std::string concept_name = "- Mixed Files -";
    std::vector<StageInterface *> stages;
+
+   std::string concept_name = "- Mixed Files -";
    std::string daemus_command = "git diff";
 
    std::vector<std::tuple<std::string, std::string, placement3d>> files = {
