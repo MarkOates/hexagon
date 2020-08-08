@@ -61,7 +61,7 @@ functions:
       - name: place
         type: placement3d
         default_argument: '{}'
-    guards: [ stages ]
+    guards: [ stages, layout ]
     body: |
       bool file_exists = Blast::FileExistenceChecker(filename).exists();
 
@@ -94,7 +94,7 @@ functions:
 
   - name: create
     body: |
-      for (auto &file : files)
+      for (auto &file : layout->get_files())
       {
          std::string filename = std::get<0>(file);
          std::string file_type = std::get<1>(file);

@@ -94,6 +94,12 @@ if (!(stages))
       error_message << "LayoutToStagesCreator" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"stages\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (!(layout))
+   {
+      std::stringstream error_message;
+      error_message << "LayoutToStagesCreator" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"layout\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 bool file_exists = Blast::FileExistenceChecker(filename).exists();
 
 StageInterface *stage = nullptr;
@@ -122,7 +128,7 @@ return true;
 
 void LayoutToStagesCreator::create()
 {
-for (auto &file : files)
+for (auto &file : layout->get_files())
 {
    std::string filename = std::get<0>(file);
    std::string file_type = std::get<1>(file);
