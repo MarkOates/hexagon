@@ -28,6 +28,37 @@ functions:
       - Blast::Project::ComponentLister
 
 
+  - name: build_appropriate_layout_for_component
+    private: true
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '"UnnamedComponent"'
+    body: |
+      Blast::Project::Component component(component_name, project_directory);
+
+      if (component.has_only_source_and_header())
+      {
+         //return create_three_split_from_last_component_navigator_selection();
+      }
+      else if (component.has_quintessence() || component.has_test())
+      {
+         //return attempt_to_create_stage_from_last_component_navigator_selection();
+      }
+      else
+      {
+         std::cout << "cannot build_appropriate_layout_for_component "
+                   << "because the component \"" << component.get_name() << "\" "
+                   << "neither has a header/source combo nor a quintessence or test file."
+                   << std::endl;
+         return;
+      }
+      return;
+    body_dependency_symbols:
+      - Blast::Project::Component
+      - std::cout
+
+
 dependencies:
 
 
@@ -35,4 +66,6 @@ dependencies:
     headers: [ vector, Hexagon/Layout.hpp ]
   - symbol: Blast::Project::ComponentLister
     headers: [ Blast/Project/ComponentLister.hpp ]
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
 
