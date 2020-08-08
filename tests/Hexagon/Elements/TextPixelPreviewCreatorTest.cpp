@@ -93,7 +93,7 @@ TEST_F(Hexagon_Elements_TextPixelPreviewCreatorTestWithAllegroRenderingFixture,
    al_draw_bitmap(text_pixel_preview, 0, 0, 0);
    place.restore_transform();
    al_flip_display();
-   sleep(2);
+   //sleep(2);
 
    al_destroy_bitmap(text_pixel_preview);
 }

@@ -82,7 +82,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 
    SUCCEED();
 }

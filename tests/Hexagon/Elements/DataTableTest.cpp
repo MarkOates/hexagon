@@ -101,6 +101,6 @@ TEST_F(Hexagon_Elements_DataTableTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(2);
+   //sleep(2);
 }
 
