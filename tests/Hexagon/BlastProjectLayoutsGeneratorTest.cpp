@@ -23,13 +23,33 @@ TEST(Hexagon_BlastProjectLayoutsGeneratorTest, generate__creates_layouts_for_the
 
    std::vector<Hexagon::Layout> expected_layouts = {
       Hexagon::Layout("AnotherFixtureObject", {
-        { "asdf", "cpp_header", {} },
-        { "asdf", "cpp_source", {} },
-        { "asdf", "blast_test", {} },
+         {
+            "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject/include/AnotherFixtureObject.hpp",
+            "cpp_header",
+            {},
+         },
+         {
+            "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject/src/AnotherFixtureObject.cpp",
+            "cpp_source",
+            {},
+         },
+         {
+            "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject/tests/AnotherFixtureObjectTest.cpp",
+            "blast_test",
+            {},
+         },
       }),
       Hexagon::Layout("FixtureObjectThing", {
-        { "asdf", "blast_quintessence", {} },
-        { "asdf", "blast_test", {} },
+         {
+            "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject/quintessence/FixtureObjectThing.q.yml",
+            "blast_quintessence",
+            {},
+         },
+         {
+            "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject/tests/FixtureObjectThingTest.cpp",
+            "blast_test",
+            {},
+         },
       }),
    };
    std::vector<Hexagon::Layout> actual_layouts = blast_project_layouts_generator.generate();
@@ -53,7 +73,13 @@ TEST(Hexagon_BlastProjectLayoutsGeneratorTest, generate__creates_layouts_for_the
       for (auto &expected_layout_file : expected_layout_files)
       {
          std::tuple<std::string, std::string, placement3d> &actual_layout_file = actual_layout_files[j];
-         //EXPECT_EQ(std::get<0>(expected_layout_file), std::get<0>(actual_layout_file));
+
+         // has the expected filename
+         EXPECT_EQ(std::get<0>(expected_layout_file), std::get<0>(actual_layout_file));
+
+         // has the expected type
+         EXPECT_EQ(std::get<1>(expected_layout_file), std::get<1>(actual_layout_file));
+
          j++;
       }
 

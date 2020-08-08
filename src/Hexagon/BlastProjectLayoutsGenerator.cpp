@@ -58,17 +58,17 @@ if (component.has_only_source_and_header())
       component_name,
       {
          {
-            component_generate_header_filename(),
+            component_generate_header_filename(component_name),
             "cpp_header",
             {},
          },
          {
-            component_generate_source_filename(),
+            component_generate_source_filename(component_name),
             "cpp_source",
             {},
          },
          {
-            component_generate_test_filename(),
+            component_generate_test_filename(component_name),
             "blast_test",
             {},
          },
@@ -83,12 +83,12 @@ else if (component.has_quintessence() || component.has_test())
       component_name,
       {
          {
-            component_generate_header_filename(),
+            component_generate_quintessence_filename(component_name),
             "blast_quintessence",
             {},
          },
          {
-            component_generate_test_filename(),
+            component_generate_test_filename(component_name),
             "blast_test",
             {},
          },
