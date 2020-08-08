@@ -1,4 +1,191 @@
-functions:
-  - name: run
+properties:
+
+
+  - name: project_directory
     type: std::string
-    body: return "Hello World!";
+    init_with: '"Users/markoates/Repos/hexagon/"'
+    constructor_arg: true
+  - name: code_editor_width
+    type: int
+    init_with: 1215
+  - name: code_editor_height
+    type: int
+    init_with: 1350
+
+
+functions:
+
+
+  - name: generate
+    type: std::vector<Hexagon::Layout>
+    body: |
+      std::vector<Hexagon::Layout> result;
+
+      Blast::Project::ComponentLister component_lister(project_directory);
+      std::vector<std::string> component_names = component_lister.components();
+
+      for (auto &component_name : component_names)
+      {
+         result.push_back(build_appropriate_layout_for_component(component_name));
+      }
+
+      return result;
+    body_dependency_symbols:
+      - Blast::Project::ComponentLister
+
+
+  - name: build_appropriate_layout_for_component
+    private: true
+    type: Hexagon::Layout
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '"UnnamedComponent"'
+    body: |
+      Hexagon::Layout result;
+      Blast::Project::Component component(component_name, project_directory);
+
+      if (component.has_only_source_and_header())
+      {
+         // 3 expected files, synonymouse with
+         // attempt_to_create_three_split_layout_fr...();
+         result = Hexagon::Layout(
+            component_name,
+            {
+               {
+                  component_generate_header_filename(component_name),
+                  "cpp_header",
+                  placement3d{ -(float)code_editor_width, 0, 0 },
+               },
+               {
+                  component_generate_source_filename(component_name),
+                  "cpp_source",
+                  placement3d{ 0, 0, 0 },
+               },
+               {
+                  component_generate_test_filename(component_name),
+                  "blast_test",
+                  placement3d{ (float)code_editor_width, 0, 0 },
+               },
+            }
+         );
+      }
+      else if (component.has_quintessence() || component.has_test())
+      {
+         // 2 expected files, synonymous with
+         // attempt_to_create_stage_from_last_component_navigator_selection();
+         result = Hexagon::Layout(
+            component_name,
+            {
+               {
+                  component_generate_quintessence_filename(component_name),
+                  "blast_quintessence",
+                  placement3d{ -((float)code_editor_width * 0.5f), 0, 0 },
+               },
+               {
+                  component_generate_test_filename(component_name),
+                  "blast_test",
+                  placement3d{ ((float)code_editor_width * 0.5f), 0, 0 },
+               },
+            }
+         );
+
+         return result;
+      }
+      else
+      {
+         std::cout << "cannot build_appropriate_layout_for_component "
+                   << "because the component \"" << component.get_name() << "\" "
+                   << "neither has a header/source combo nor a quintessence or test file."
+                   << std::endl;
+         return {};
+      }
+
+      return result;
+    body_dependency_symbols:
+      - Blast::Project::Component
+      - std::cout
+
+
+  - name: component_generate_header_filename
+    type: std::string
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '"UnnamedComponent"'
+    body: |
+      Blast::ProjectComponentFilenameGenerator filename_generator(
+              component_name,
+              Blast::ProjectComponentFileTypes::HEADER_FILE);
+      return project_directory + filename_generator.generate_filename();
+    body_dependency_symbols:
+      - Blast::ProjectComponentFilenameGenerator
+      - Blast::ProjectComponentFileTypes
+
+
+  - name: component_generate_source_filename
+    type: std::string
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '"UnnamedComponent"'
+    body: |
+      auto generator = Blast::ProjectComponentFilenameGenerator(
+         component_name,
+         Blast::ProjectComponentFileTypes::SOURCE_FILE
+      );
+      return project_directory + generator.generate_filename();
+    body_dependency_symbols:
+      - Blast::ProjectComponentFilenameGenerator
+      - Blast::ProjectComponentFileTypes
+
+
+  - name: component_generate_test_filename
+    type: std::string
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '"UnnamedComponent"'
+    body: |
+      auto generator = Blast::ProjectComponentFilenameGenerator(
+         component_name,
+         Blast::ProjectComponentFileTypes::TEST_FILE
+      );
+      return project_directory + generator.generate_filename();
+    body_dependency_symbols:
+      - Blast::ProjectComponentFilenameGenerator
+      - Blast::ProjectComponentFileTypes
+
+
+  - name: component_generate_quintessence_filename
+    type: std::string
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '"UnnamedComponent"'
+    body: |
+      auto generator = Blast::ProjectComponentFilenameGenerator(
+         component_name,
+         Blast::ProjectComponentFileTypes::QUINTESSENCE_FILE
+      );
+      return project_directory + generator.generate_filename();
+    body_dependency_symbols:
+      - Blast::ProjectComponentFilenameGenerator
+      - Blast::ProjectComponentFileTypes
+
+dependencies:
+
+
+  - symbol: std::vector<Hexagon::Layout>
+    headers: [ vector, Hexagon/Layout.hpp ]
+  - symbol: Hexagon::Layout
+    headers: [ Hexagon/Layout.hpp ]
+  - symbol: Blast::Project::ComponentLister
+    headers: [ Blast/Project/ComponentLister.hpp ]
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
+  - symbol: Blast::ProjectComponentFilenameGenerator
+    headers: [ Blast/ProjectComponentFilenameGenerator.hpp ]
+  - symbol: Blast::ProjectComponentFileTypes
+    headers: [ Blast/ProjectComponentFileTypes.hpp ]
+
