@@ -55,6 +55,20 @@ int LayoutToStagesCreator::get_code_editor_width()
 }
 
 
+void LayoutToStagesCreator::create()
+{
+for (auto &file : layout->get_files())
+{
+   std::string filename = std::get<0>(file);
+   std::string file_type = std::get<1>(file);
+   placement3d place = std::get<2>(file);
+
+   place_and_load_code_editor(filename, file_type, place);
+}
+return;
+
+}
+
 bool LayoutToStagesCreator::place_and_load_code_editor(std::string filename, std::string file_category, placement3d place)
 {
 if (!(stages))
@@ -102,20 +116,6 @@ stage->set_place(place);
 stages->push_back(stage);
 
 return true;
-
-}
-
-void LayoutToStagesCreator::create()
-{
-for (auto &file : layout->get_files())
-{
-   std::string filename = std::get<0>(file);
-   std::string file_type = std::get<1>(file);
-   placement3d place = std::get<2>(file);
-
-   place_and_load_code_editor(filename, file_type, place);
-}
-return;
 
 }
 } // namespace Hexagon

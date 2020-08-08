@@ -32,8 +32,8 @@ namespace Hexagon
       std::vector<StageInterface *>* get_stages();
       int get_code_editor_height();
       int get_code_editor_width();
-   bool place_and_load_code_editor(std::string filename="", std::string file_category="undefined_file_category", placement3d place={});
    void create();
+   bool place_and_load_code_editor(std::string filename="", std::string file_category="undefined_file_category", placement3d place={});
    };
 }
 

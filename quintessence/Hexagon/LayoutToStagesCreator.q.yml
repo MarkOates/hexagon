@@ -1,5 +1,6 @@
 properties:
 
+
   - name: stages
     type: std::vector<StageInterface *>*
     constructor_arg: true
@@ -33,7 +34,22 @@ properties:
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
     constructor_arg: true
 
+
 functions:
+
+
+  - name: create
+    body: |
+      for (auto &file : layout->get_files())
+      {
+         std::string filename = std::get<0>(file);
+         std::string file_type = std::get<1>(file);
+         placement3d place = std::get<2>(file);
+
+         place_and_load_code_editor(filename, file_type, place);
+      }
+      return;
+
 
   - name: place_and_load_code_editor
     private: true
@@ -84,19 +100,9 @@ functions:
       - Blast::FileExistenceChecker
       - Hexagon::MissingFile::Stage
 
-  - name: create
-    body: |
-      for (auto &file : layout->get_files())
-      {
-         std::string filename = std::get<0>(file);
-         std::string file_type = std::get<1>(file);
-         placement3d place = std::get<2>(file);
-
-         place_and_load_code_editor(filename, file_type, place);
-      }
-      return;
 
 dependencies:
+
 
   - symbol: Hexagon::Layout*
     headers: [ Hexagon/Layout.hpp ]
