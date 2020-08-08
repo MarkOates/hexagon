@@ -12,7 +12,7 @@ namespace Hexagon
       std::string project_directory;
 
    public:
-      BlastProjectLayoutsGenerator(std::string project_directory={});
+      BlastProjectLayoutsGenerator(std::string project_directory="Users/markoates/Repos/hexagon/");
       ~BlastProjectLayoutsGenerator();
 
 

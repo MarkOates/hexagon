@@ -3,7 +3,7 @@ properties:
 
   - name: project_directory
     type: std::string
-    init_with: '{}'
+    init_with: '"Users/markoates/Repos/hexagon/"'
     constructor_arg: true
 
 
