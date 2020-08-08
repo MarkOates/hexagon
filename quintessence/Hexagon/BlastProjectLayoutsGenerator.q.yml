@@ -5,6 +5,12 @@ properties:
     type: std::string
     init_with: '"Users/markoates/Repos/hexagon/"'
     constructor_arg: true
+  - name: code_editor_width
+    type: int
+    init_with: 1215
+  - name: code_editor_height
+    type: int
+    init_with: 1350
 
 
 functions:
@@ -49,17 +55,17 @@ functions:
                {
                   component_generate_header_filename(component_name),
                   "cpp_header",
-                  placement3d{},
+                  placement3d{ -(float)code_editor_width, 0, 0 },
                },
                {
                   component_generate_source_filename(component_name),
                   "cpp_source",
-                  placement3d{},
+                  placement3d{ 0, 0, 0 },
                },
                {
                   component_generate_test_filename(component_name),
                   "blast_test",
-                  placement3d{},
+                  placement3d{ (float)code_editor_width, 0, 0 },
                },
             }
          );
@@ -74,15 +80,16 @@ functions:
                {
                   component_generate_quintessence_filename(component_name),
                   "blast_quintessence",
-                  placement3d{},
+                  placement3d{ -((float)code_editor_width * 0.5f), 0, 0 },
                },
                {
                   component_generate_test_filename(component_name),
                   "blast_test",
-                  placement3d{},
+                  placement3d{ ((float)code_editor_width * 0.5f), 0, 0 },
                },
             }
          );
+
          return result;
       }
       else

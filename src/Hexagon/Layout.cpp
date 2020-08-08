@@ -51,6 +51,12 @@ std::string Layout::get_daemus_command()
 }
 
 
+std::vector<std::tuple<std::string, std::string, placement3d>> &Layout::get_files_ref()
+{
+   return files;
+}
+
+
 } // namespace Hexagon
 
 

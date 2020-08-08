@@ -12,6 +12,8 @@ namespace Hexagon
    {
    private:
       std::string project_directory;
+      int code_editor_width;
+      int code_editor_height;
 
    public:
       BlastProjectLayoutsGenerator(std::string project_directory="Users/markoates/Repos/hexagon/");
