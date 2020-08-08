@@ -1,4 +1,17 @@
-functions:
-  - name: run
+properties:
+
+
+  - name: project_directory
     type: std::string
-    body: return "Hello World!";
+    init_with: '{}'
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: generate
+    type: void
+    body: |
+      return;
+

@@ -8,7 +8,8 @@ namespace Hexagon
 {
 
 
-BlastProjectLayoutsGenerator::BlastProjectLayoutsGenerator()
+BlastProjectLayoutsGenerator::BlastProjectLayoutsGenerator(std::string project_directory)
+   : project_directory(project_directory)
 {
 }
 
@@ -18,9 +19,10 @@ BlastProjectLayoutsGenerator::~BlastProjectLayoutsGenerator()
 }
 
 
-std::string BlastProjectLayoutsGenerator::run()
+void BlastProjectLayoutsGenerator::generate()
 {
-return "Hello World!";
+return;
+
 }
 } // namespace Hexagon
 

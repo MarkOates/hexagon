@@ -9,13 +9,14 @@ namespace Hexagon
    class BlastProjectLayoutsGenerator
    {
    private:
+      std::string project_directory;
 
    public:
-      BlastProjectLayoutsGenerator();
+      BlastProjectLayoutsGenerator(std::string project_directory={});
       ~BlastProjectLayoutsGenerator();
 
 
-   std::string run();
+   void generate();
    };
 }
 
