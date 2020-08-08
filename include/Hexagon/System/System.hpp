@@ -137,6 +137,7 @@ public:
    bool attempt_to_create_stage_from_last_file_navigator_selection();
    bool spawn_file_navigator_from_last_file_navigator_folder_selection();
    bool destroy_all_code_editor_stages();
+   bool create_stages_from_layout_of_last_component_navigator_selection();
    bool create_two_or_three_split_layout_from_last_component_navigator_selection();
    bool create_layout_from_last_project_navigator_selection();
    bool create_three_split_from_last_component_navigator_selection();

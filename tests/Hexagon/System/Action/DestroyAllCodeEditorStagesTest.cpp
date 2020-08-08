@@ -14,6 +14,15 @@ public:
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };
 
+class AdvancedCodeEditorTestStage : public StageInterface
+{
+public:
+   AdvancedCodeEditorTestStage() : StageInterface(StageInterface::ADVANCED_CODE_EDITOR) {}
+   virtual void render() override {}
+   virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
+   virtual void process_event(ALLEGRO_EVENT &event) override {}
+};
+
 class OneLineInputBoxTestStage : public StageInterface
 {
 public:
@@ -58,6 +67,7 @@ TEST(Hexagon_System_Action_DestroyAllCodeEditorStagesTest,
 {
    CodeEditorTestStage *code_editor1 = new CodeEditorTestStage();
    CodeEditorTestStage *code_editor2 = new CodeEditorTestStage();
+   AdvancedCodeEditorTestStage *advanced_code_editor = new AdvancedCodeEditorTestStage();
    OneLineInputBoxTestStage *one_line_input_box = new OneLineInputBoxTestStage();
    FileNavigatorTestStage *file_navigator = new FileNavigatorTestStage();
    MissingFileTestStage *missing_file = new MissingFileTestStage();
@@ -65,6 +75,7 @@ TEST(Hexagon_System_Action_DestroyAllCodeEditorStagesTest,
    std::vector<StageInterface *> stages = {
       code_editor1,
       one_line_input_box,
+      advanced_code_editor,
       code_editor2,
       missing_file,
       file_navigator,

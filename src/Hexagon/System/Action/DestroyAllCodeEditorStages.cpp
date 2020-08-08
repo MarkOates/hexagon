@@ -54,6 +54,7 @@ for (unsigned i=0; i<stages.size(); i++)
    if (
         stage->get_type() == StageInterface::CODE_EDITOR
         || stage->get_type() == StageInterface::MISSING_FILE
+        || stage->get_type() == StageInterface::ADVANCED_CODE_EDITOR
       )
    {
       Hexagon::CodeEditor::Stage *code_editor = static_cast<Hexagon::CodeEditor::Stage *>(stage);

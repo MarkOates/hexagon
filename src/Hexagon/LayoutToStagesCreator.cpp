@@ -96,7 +96,7 @@ StageInterface *stage = nullptr;
 if (file_exists)
 {
    Hexagon::AdvancedCodeEditor::Stage *code_editor_stage =
-      new Hexagon::AdvancedCodeEditor::Stage(font_bin, 30, 30);
+      new Hexagon::AdvancedCodeEditor::Stage(font_bin, 123, 70);
 
    code_editor_stage->initialize();
 
