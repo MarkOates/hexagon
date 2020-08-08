@@ -79,6 +79,12 @@ std::string Stage::get_input_buffer()
 }
 
 
+bool Stage::get_initialized()
+{
+   return initialized;
+}
+
+
 ALLEGRO_BITMAP* Stage::get_surface_render()
 {
    return surface_render;

@@ -178,6 +178,15 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, initial
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, initialize__sets_initialized_to_true)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   ASSERT_EQ(false, stage.get_initialized());
+   stage.initialize();
+   ASSERT_EQ(true, stage.get_initialized());
+}
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, initialize__sets_the_cursor_width_and_height)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);

@@ -5,6 +5,7 @@
 
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 
 TEST(Hexagon_LayoutToStagesCreatorTest, can_be_created_without_blowing_up)
 {
@@ -40,7 +41,7 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_the_passed_files)
    al_uninstall_system();
 }
 
-TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_code_editor_stages_for_the_passed_files)
+TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_advanced_code_editor_stages_for_the_passed_files)
 {
    al_init();
    al_init_font_addon();
@@ -75,6 +76,42 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_code_editor_stages_f
    al_uninstall_system();
 }
 
+TEST(Hexagon_LayoutToStagesCreatorTest, create__will_initialize_the_created_advanced_code_editor_stages)
+{
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+
+   std::vector<StageInterface *> stages;
+
+   std::string concept_name = "Hexagon/Logo";
+   std::string daemus_command = "git diff";
+   std::vector<std::tuple<std::string, std::string, placement3d>> files = {
+      { "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Logo.q.yml", "blast_quintessence", placement3d(0, 0, 0) },
+      { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", placement3d(0, 0, 0) },
+   };
+
+   Hexagon::Layout layout(concept_name, files, daemus_command);
+
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, &layout, &font_bin);
+
+   layout_to_stage_creator.create();
+
+   ASSERT_EQ(files.size(), stages.size());
+
+   for (auto &stage : stages)
+   {
+      Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =
+         static_cast<Hexagon::AdvancedCodeEditor::Stage *>(stage);
+      EXPECT_EQ(true, advanced_code_editor_stage->get_initialized());
+   }
+
+   font_bin.clear();
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+}
 TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_missing_file_stages_for_files_that_do_not_exist)
 {
    al_init();

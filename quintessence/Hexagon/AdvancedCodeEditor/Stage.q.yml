@@ -50,6 +50,7 @@ properties:
   - name: initialized
     type: bool
     init_with: false
+    getter: true
   - name: surface_render
     type: ALLEGRO_BITMAP*
     init_with: nullptr
