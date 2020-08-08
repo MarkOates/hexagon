@@ -109,6 +109,18 @@ functions:
       return;
 
 
+  - name: save_file
+    type: bool
+    body: |
+      std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+      ::save_file(lines, filename);
+      //Hexagon::SymlinkToucher symlink_toucher(filename); // this is only needed because of rerun
+      //symlink_toucher.touch_if_symlink();
+      return true;
+    body_dependency_symbols:
+      - ::save_file
+
+
   - name: set_to_edit_mode
     type: bool
     body: |
@@ -628,3 +640,6 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::EventController
     headers: [ Hexagon/AdvancedCodeEditor/EventController.hpp ]
+  - symbol: ::save_file
+    headers: [ Hexagon/util.hpp ]
+

@@ -3,6 +3,7 @@
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/util.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -174,6 +175,16 @@ void Stage::destroy()
 if (surface_render) al_destroy_bitmap(surface_render);
 initialized = false;
 return;
+
+}
+
+bool Stage::save_file()
+{
+std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+::save_file(lines, filename);
+//Hexagon::SymlinkToucher symlink_toucher(filename); // this is only needed because of rerun
+//symlink_toucher.touch_if_symlink();
+return true;
 
 }
 

@@ -54,6 +54,7 @@ namespace Hexagon
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void initialize();
       virtual void destroy() override;
+      bool save_file();
       bool set_to_edit_mode();
       bool set_to_insert_mode();
       bool cursor_move_up();
