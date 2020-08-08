@@ -10,6 +10,10 @@ properties:
     type: Hexagon::Layout*
     init_with: '{}'
     constructor_arg: true
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
   - name: code_editor_height
     type: int
     init_with: 1350
@@ -44,7 +48,7 @@ functions:
       - name: place
         type: placement3d
         default_argument: '{}'
-    guards: [ stages, layout ]
+    guards: [ stages, layout, font_bin ]
     body: |
       bool file_exists = Blast::FileExistenceChecker(filename).exists();
 
@@ -52,11 +56,15 @@ functions:
 
       if (file_exists)
       {
-         Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage({filename, file_category});
-         std::string file_contents = php::file_get_contents(filename);
-         code_editor_stage->get_code_editor_ref().set_initial_content(file_contents);
-         code_editor_stage->set_base_font_color(text_color);
-         code_editor_stage->set_backfill_color(backfill_color);
+         Hexagon::AdvancedCodeEditor::Stage *code_editor_stage =
+            new Hexagon::AdvancedCodeEditor::Stage(font_bin, 30, 30);
+
+         code_editor_stage->initialize();
+
+         //std::string file_contents = php::file_get_contents(filename);
+         //code_editor_stage->set_content(file_contents);
+         //code_editor_stage->set_base_font_color(text_color);
+         //code_editor_stage->set_backfill_color(backfill_color);
 
          stage = code_editor_stage;
       }
@@ -72,6 +80,7 @@ functions:
     body_dependency_symbols:
       - php::file_get_contents
       - Hexagon::CodeEditor::Stage
+      - Hexagon::AdvancedCodeEditor::Stage
       - Blast::FileExistenceChecker
       - Hexagon::MissingFile::Stage
 
@@ -103,6 +112,10 @@ dependencies:
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: php::file_get_contents
     headers: [ allegro_flare/useful_php.h ]
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Stage
+    headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: Hexagon::CodeEditor::Stage
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: Hexagon::MissingFile::Stage

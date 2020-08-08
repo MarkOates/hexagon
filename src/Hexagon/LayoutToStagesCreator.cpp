@@ -3,6 +3,7 @@
 #include <Hexagon/LayoutToStagesCreator.hpp>
 #include <allegro_flare/useful_php.h>
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <stdexcept>
@@ -13,9 +14,10 @@ namespace Hexagon
 {
 
 
-LayoutToStagesCreator::LayoutToStagesCreator(std::vector<StageInterface *>* stages, Hexagon::Layout* layout, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+LayoutToStagesCreator::LayoutToStagesCreator(std::vector<StageInterface *>* stages, Hexagon::Layout* layout, AllegroFlare::FontBin* font_bin, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : stages(stages)
    , layout(layout)
+   , font_bin(font_bin)
    , code_editor_height(code_editor_height)
    , code_editor_width(code_editor_width)
    , text_color(text_color)
@@ -67,17 +69,27 @@ if (!(layout))
       error_message << "LayoutToStagesCreator" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"layout\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "LayoutToStagesCreator" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 bool file_exists = Blast::FileExistenceChecker(filename).exists();
 
 StageInterface *stage = nullptr;
 
 if (file_exists)
 {
-   Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage({filename, file_category});
-   std::string file_contents = php::file_get_contents(filename);
-   code_editor_stage->get_code_editor_ref().set_initial_content(file_contents);
-   code_editor_stage->set_base_font_color(text_color);
-   code_editor_stage->set_backfill_color(backfill_color);
+   Hexagon::AdvancedCodeEditor::Stage *code_editor_stage =
+      new Hexagon::AdvancedCodeEditor::Stage(font_bin, 30, 30);
+
+   code_editor_stage->initialize();
+
+   //std::string file_contents = php::file_get_contents(filename);
+   //code_editor_stage->set_content(file_contents);
+   //code_editor_stage->set_base_font_color(text_color);
+   //code_editor_stage->set_backfill_color(backfill_color);
 
    stage = code_editor_stage;
 }

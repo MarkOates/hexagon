@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/Layout.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro_color.h>
@@ -16,13 +17,14 @@ namespace Hexagon
    private:
       std::vector<StageInterface *>* stages;
       Hexagon::Layout* layout;
+      AllegroFlare::FontBin* font_bin;
       int code_editor_height;
       int code_editor_width;
       ALLEGRO_COLOR text_color;
       ALLEGRO_COLOR backfill_color;
 
    public:
-      LayoutToStagesCreator(std::vector<StageInterface *>* stages=nullptr, Hexagon::Layout* layout={}, int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+      LayoutToStagesCreator(std::vector<StageInterface *>* stages=nullptr, Hexagon::Layout* layout={}, AllegroFlare::FontBin* font_bin=nullptr, int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
       ~LayoutToStagesCreator();
 
       void set_stages(std::vector<StageInterface *>* stages);
