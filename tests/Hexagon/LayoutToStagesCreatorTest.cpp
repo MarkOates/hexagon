@@ -76,7 +76,8 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_advanced_code_editor
    al_uninstall_system();
 }
 
-TEST(Hexagon_LayoutToStagesCreatorTest, create__will_initialize_the_created_advanced_code_editor_stages)
+TEST(Hexagon_LayoutToStagesCreatorTest,
+   create__will_initialize_the_created_advanced_code_editor_stages_and_set_the_expected_properties_on_it)
 {
    al_init();
    al_init_font_addon();
@@ -106,6 +107,7 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_initialize_the_created_adva
       Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =
          static_cast<Hexagon::AdvancedCodeEditor::Stage *>(stage);
       EXPECT_EQ(true, advanced_code_editor_stage->get_initialized());
+      EXPECT_EQ(false, advanced_code_editor_stage->get_lines().empty());
    }
 
    font_bin.clear();
