@@ -112,6 +112,7 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_initialize_the_created_adva
    al_shutdown_ttf_addon();
    al_uninstall_system();
 }
+
 TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_missing_file_stages_for_files_that_do_not_exist)
 {
    al_init();
@@ -159,7 +160,6 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_position_the_stages_at_the_
 
    std::string concept_name = "- Mixed Files -";
    std::string daemus_command = "git diff";
-
    std::vector<std::tuple<std::string, std::string, placement3d>> files = {
       { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", placement3d(147, 1920, 640) },
       { "/A/Path/To/A/File/ThatDoesNotExist.cpp", "blast_quintessence", placement3d(69, 420, 89) },

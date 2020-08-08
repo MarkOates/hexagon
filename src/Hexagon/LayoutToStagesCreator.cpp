@@ -100,8 +100,8 @@ if (file_exists)
 
    code_editor_stage->initialize();
 
-   //std::string file_contents = php::file_get_contents(filename);
-   //code_editor_stage->set_content(file_contents);
+   std::string file_contents = php::file_get_contents(filename);
+   code_editor_stage->set_content(file_contents);
    //code_editor_stage->set_base_font_color(text_color);
    //code_editor_stage->set_backfill_color(backfill_color);
 
