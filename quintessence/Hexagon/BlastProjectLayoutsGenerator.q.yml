@@ -110,6 +110,22 @@ functions:
       - Blast::ProjectComponentFileTypes
 
 
+  - name: component_generate_quintessence_filename
+    type: std::string
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '"UnnamedComponent"'
+    body: |
+      auto generator = Blast::ProjectComponentFilenameGenerator(
+         component_name,
+         Blast::ProjectComponentFileTypes::QUINTESSENCE_FILE
+      );
+      return project_directory + generator.generate_filename();
+    body_dependency_symbols:
+      - Blast::ProjectComponentFilenameGenerator
+      - Blast::ProjectComponentFileTypes
+
 dependencies:
 
 

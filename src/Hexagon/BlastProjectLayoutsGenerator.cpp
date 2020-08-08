@@ -10,6 +10,8 @@
 #include <Blast/ProjectComponentFileTypes.hpp>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <Blast/ProjectComponentFileTypes.hpp>
+#include <Blast/ProjectComponentFilenameGenerator.hpp>
+#include <Blast/ProjectComponentFileTypes.hpp>
 
 
 namespace Hexagon
@@ -91,6 +93,16 @@ std::string BlastProjectLayoutsGenerator::component_generate_test_filename(std::
 auto generator = Blast::ProjectComponentFilenameGenerator(
    component_name,
    Blast::ProjectComponentFileTypes::TEST_FILE
+);
+return project_directory + generator.generate_filename();
+
+}
+
+std::string BlastProjectLayoutsGenerator::component_generate_quintessence_filename(std::string component_name)
+{
+auto generator = Blast::ProjectComponentFilenameGenerator(
+   component_name,
+   Blast::ProjectComponentFileTypes::QUINTESSENCE_FILE
 );
 return project_directory + generator.generate_filename();
 

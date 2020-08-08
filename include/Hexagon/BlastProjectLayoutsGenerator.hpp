@@ -23,6 +23,7 @@ namespace Hexagon
    std::string component_generate_header_filename(std::string component_name="UnnamedComponent");
    std::string component_generate_source_filename(std::string component_name="UnnamedComponent");
    std::string component_generate_test_filename(std::string component_name="UnnamedComponent");
+   std::string component_generate_quintessence_filename(std::string component_name="UnnamedComponent");
    };
 }
 
