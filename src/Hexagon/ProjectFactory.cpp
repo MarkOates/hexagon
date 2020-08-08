@@ -28,14 +28,11 @@ return Hexagon::Project(project_name, layouts);
 
 Hexagon::Project ProjectFactory::partner_performance_dashboard()
 {
-type: std::vector<StageInterface *>* stages = nullptr;
-
 std::string project_name = "Partner Performance Dashboard";
 std::vector<std::tuple<std::string, Hexagon::Layout>> layouts = {
    { "",
       {
          "models/ES::StoreRepository",
-         stages,
          {
             {
                "/Users/markoates/dev_repos/partners/app/models/es/store_repository.rb",
