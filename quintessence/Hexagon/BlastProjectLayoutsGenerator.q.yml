@@ -49,17 +49,17 @@ functions:
                {
                   component_generate_header_filename(component_name),
                   "cpp_header",
-                  {},
+                  placement3d{},
                },
                {
                   component_generate_source_filename(component_name),
                   "cpp_source",
-                  {},
+                  placement3d{},
                },
                {
                   component_generate_test_filename(component_name),
                   "blast_test",
-                  {},
+                  placement3d{},
                },
             }
          );
@@ -74,12 +74,12 @@ functions:
                {
                   component_generate_quintessence_filename(component_name),
                   "blast_quintessence",
-                  {},
+                  placement3d{},
                },
                {
                   component_generate_test_filename(component_name),
                   "blast_test",
-                  {},
+                  placement3d{},
                },
             }
          );

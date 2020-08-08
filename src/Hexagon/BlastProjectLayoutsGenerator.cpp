@@ -60,17 +60,17 @@ if (component.has_only_source_and_header())
          {
             component_generate_header_filename(component_name),
             "cpp_header",
-            {},
+            placement3d{},
          },
          {
             component_generate_source_filename(component_name),
             "cpp_source",
-            {},
+            placement3d{},
          },
          {
             component_generate_test_filename(component_name),
             "blast_test",
-            {},
+            placement3d{},
          },
       }
    );
@@ -85,12 +85,12 @@ else if (component.has_quintessence() || component.has_test())
          {
             component_generate_quintessence_filename(component_name),
             "blast_quintessence",
-            {},
+            placement3d{},
          },
          {
             component_generate_test_filename(component_name),
             "blast_test",
-            {},
+            placement3d{},
          },
       }
    );
