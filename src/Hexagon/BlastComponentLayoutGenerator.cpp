@@ -17,11 +17,11 @@ namespace Hexagon
 {
 
 
-BlastComponentLayoutGenerator::BlastComponentLayoutGenerator(std::string project_directory, std::string component_name)
+BlastComponentLayoutGenerator::BlastComponentLayoutGenerator(std::string project_directory, std::string component_name, int code_editor_width, int code_editor_height)
    : project_directory(project_directory)
    , component_name(component_name)
-   , code_editor_width(1215)
-   , code_editor_height(1350)
+   , code_editor_width(code_editor_width)
+   , code_editor_height(code_editor_height)
 {
 }
 

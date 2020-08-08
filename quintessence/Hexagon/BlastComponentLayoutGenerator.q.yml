@@ -12,9 +12,11 @@ properties:
   - name: code_editor_width
     type: int
     init_with: 1215
+    constructor_arg: true
   - name: code_editor_height
     type: int
     init_with: 1350
+    constructor_arg: true
 
 
 functions:
