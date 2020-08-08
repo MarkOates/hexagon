@@ -29,6 +29,7 @@ namespace Hexagon
          int num_columns;
          int num_rows;
          Hexagon::Elements::TextMesh text_mesh;
+         std::string filename;
          Hexagon::Elements::FontedTextGrid fonted_text_grid;
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
          std::string input_buffer;
@@ -41,8 +42,10 @@ namespace Hexagon
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
          virtual ~Stage();
 
+         void set_filename(std::string filename);
          void set_input_buffer(std::string input_buffer);
 
+         std::string get_filename();
          std::string get_input_buffer();
          bool get_initialized();
          ALLEGRO_BITMAP* get_surface_render();

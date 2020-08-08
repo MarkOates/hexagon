@@ -26,6 +26,11 @@ properties:
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{nullptr, num_columns, num_rows}'
+  - name: filename
+    type: std::string
+    init_with: '"untitled.txt"'
+    getter: true
+    setter: true
   - name: fonted_text_grid
     type: Hexagon::Elements::FontedTextGrid
     init_with: '{}'

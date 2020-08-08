@@ -52,6 +52,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , num_columns(num_columns)
    , num_rows(num_rows)
    , text_mesh({nullptr, num_columns, num_rows})
+   , filename("untitled.txt")
    , fonted_text_grid({})
    , advanced_code_editor({})
    , input_buffer("")
@@ -67,9 +68,21 @@ Stage::~Stage()
 }
 
 
+void Stage::set_filename(std::string filename)
+{
+   this->filename = filename;
+}
+
+
 void Stage::set_input_buffer(std::string input_buffer)
 {
    this->input_buffer = input_buffer;
+}
+
+
+std::string Stage::get_filename()
+{
+   return filename;
 }
 
 
