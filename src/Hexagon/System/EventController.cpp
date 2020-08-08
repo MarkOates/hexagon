@@ -53,6 +53,10 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
       &::System::spawn_file_navigator_from_last_file_navigator_folder_selection,
    },
    {
+      ::System::CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION,
+      &::System::create_stages_from_layout_of_last_component_navigator_selection,
+   },
+   {
       ::System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION,
       &::System::create_three_split_from_last_component_navigator_selection,
    },
