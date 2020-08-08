@@ -36,3 +36,10 @@ TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__wi
    SUCCEED();
 }
 
+TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__will_draw_the_quote)
+{
+   Hexagon::Elements::QuoteRenderer quote_renderer(&font_bin);
+   quote_renderer.render();
+   SUCCEED();
+}
+

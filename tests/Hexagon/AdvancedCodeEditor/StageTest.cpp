@@ -296,12 +296,12 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
    works)
 {
    AllegroFlare::Timer timer;
-   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 123, 50);
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 123, 40);
    stage.initialize();
 
    stage.set_content(FIXTURE_PASSAGE);
    stage.get_place().position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
-   stage.get_place().scale = vec3d(0.8, 0.8, 0.8);
+   //stage.get_place().scale = vec3d(0.8, 0.8, 0.8);
 
    al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
    stage.render();
