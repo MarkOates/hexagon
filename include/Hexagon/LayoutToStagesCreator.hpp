@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/Layout.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro_flare/placement3d.h>
@@ -17,13 +18,14 @@ namespace Hexagon
       std::vector<StageInterface *>* stages;
       std::vector<std::tuple<std::string, std::string, placement3d>> files;
       std::string daemus_command;
+      Hexagon::Layout* layout;
       int code_editor_height;
       int code_editor_width;
       ALLEGRO_COLOR text_color;
       ALLEGRO_COLOR backfill_color;
 
    public:
-      LayoutToStagesCreator(std::string concept_name="- Untitled -", std::vector<StageInterface *>* stages=nullptr, std::vector<std::tuple<std::string, std::string, placement3d>> files={}, std::string daemus_command="", int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+      LayoutToStagesCreator(std::string concept_name="- Untitled -", std::vector<StageInterface *>* stages=nullptr, std::vector<std::tuple<std::string, std::string, placement3d>> files={}, std::string daemus_command="", Hexagon::Layout* layout={}, int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
       ~LayoutToStagesCreator();
 
       void set_concept_name(std::string concept_name);

@@ -13,11 +13,12 @@ namespace Hexagon
 {
 
 
-LayoutToStagesCreator::LayoutToStagesCreator(std::string concept_name, std::vector<StageInterface *>* stages, std::vector<std::tuple<std::string, std::string, placement3d>> files, std::string daemus_command, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+LayoutToStagesCreator::LayoutToStagesCreator(std::string concept_name, std::vector<StageInterface *>* stages, std::vector<std::tuple<std::string, std::string, placement3d>> files, std::string daemus_command, Hexagon::Layout* layout, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : concept_name(concept_name)
    , stages(stages)
    , files(files)
    , daemus_command(daemus_command)
+   , layout(layout)
    , code_editor_height(code_editor_height)
    , code_editor_width(code_editor_width)
    , text_color(text_color)

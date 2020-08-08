@@ -23,6 +23,10 @@ properties:
     init_with: '""'
     constructor_arg: true
     getter: true
+  - name: layout
+    type: Hexagon::Layout*
+    init_with: '{}'
+    constructor_arg: true
   - name: code_editor_height
     type: int
     init_with: 1350
@@ -102,6 +106,8 @@ functions:
 
 dependencies:
 
+  - symbol: Hexagon::Layout*
+    headers: [ Hexagon/Layout.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
   - symbol: std::vector<std::tuple<std::string, std::string, placement3d>>
