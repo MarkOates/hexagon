@@ -13,11 +13,8 @@ namespace Hexagon
 {
 
 
-LayoutToStagesCreator::LayoutToStagesCreator(std::vector<StageInterface *>* stages, std::string concept_name, std::vector<std::tuple<std::string, std::string, placement3d>> files, std::string daemus_command, Hexagon::Layout* layout, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+LayoutToStagesCreator::LayoutToStagesCreator(std::vector<StageInterface *>* stages, Hexagon::Layout* layout, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : stages(stages)
-   , concept_name(concept_name)
-   , files(files)
-   , daemus_command(daemus_command)
    , layout(layout)
    , code_editor_height(code_editor_height)
    , code_editor_width(code_editor_width)
@@ -38,39 +35,9 @@ void LayoutToStagesCreator::set_stages(std::vector<StageInterface *>* stages)
 }
 
 
-void LayoutToStagesCreator::set_concept_name(std::string concept_name)
-{
-   this->concept_name = concept_name;
-}
-
-
-void LayoutToStagesCreator::set_files(std::vector<std::tuple<std::string, std::string, placement3d>> files)
-{
-   this->files = files;
-}
-
-
 std::vector<StageInterface *>* LayoutToStagesCreator::get_stages()
 {
    return stages;
-}
-
-
-std::string LayoutToStagesCreator::get_concept_name()
-{
-   return concept_name;
-}
-
-
-std::vector<std::tuple<std::string, std::string, placement3d>> LayoutToStagesCreator::get_files()
-{
-   return files;
-}
-
-
-std::string LayoutToStagesCreator::get_daemus_command()
-{
-   return daemus_command;
 }
 
 

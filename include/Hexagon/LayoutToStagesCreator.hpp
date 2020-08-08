@@ -15,9 +15,6 @@ namespace Hexagon
    {
    private:
       std::vector<StageInterface *>* stages;
-      std::string concept_name;
-      std::vector<std::tuple<std::string, std::string, placement3d>> files;
-      std::string daemus_command;
       Hexagon::Layout* layout;
       int code_editor_height;
       int code_editor_width;
@@ -25,17 +22,12 @@ namespace Hexagon
       ALLEGRO_COLOR backfill_color;
 
    public:
-      LayoutToStagesCreator(std::vector<StageInterface *>* stages=nullptr, std::string concept_name="- Untitled -", std::vector<std::tuple<std::string, std::string, placement3d>> files={}, std::string daemus_command="", Hexagon::Layout* layout={}, int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+      LayoutToStagesCreator(std::vector<StageInterface *>* stages=nullptr, Hexagon::Layout* layout={}, int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
       ~LayoutToStagesCreator();
 
       void set_stages(std::vector<StageInterface *>* stages);
-      void set_concept_name(std::string concept_name);
-      void set_files(std::vector<std::tuple<std::string, std::string, placement3d>> files);
 
       std::vector<StageInterface *>* get_stages();
-      std::string get_concept_name();
-      std::vector<std::tuple<std::string, std::string, placement3d>> get_files();
-      std::string get_daemus_command();
       int get_code_editor_height();
       int get_code_editor_width();
    bool place_and_load_code_editor(std::string filename="", std::string file_category="undefined_file_category", placement3d place={});
