@@ -5,6 +5,10 @@ properties:
     type: std::string
     init_with: '"Users/markoates/Repos/hexagon/"'
     constructor_arg: true
+  - name: component_name
+    type: std::string
+    init_with: '"UnnamedComponent"'
+    constructor_arg: true
   - name: code_editor_width
     type: int
     init_with: 1215
@@ -17,30 +21,7 @@ functions:
 
 
   - name: generate
-    type: std::vector<Hexagon::Layout>
-    body: |
-      std::vector<Hexagon::Layout> result;
-
-      Blast::Project::ComponentLister component_lister(project_directory);
-      std::vector<std::string> component_names = component_lister.components();
-
-      for (auto &component_name : component_names)
-      {
-         result.push_back(build_appropriate_layout_for_component(component_name));
-      }
-
-      return result;
-    body_dependency_symbols:
-      - Blast::Project::ComponentLister
-
-
-  - name: build_appropriate_layout_for_component
-    private: true
     type: Hexagon::Layout
-    parameters:
-      - name: component_name
-        type: std::string
-        default_argument: '"UnnamedComponent"'
     body: |
       Hexagon::Layout result;
       Blast::Project::Component component(component_name, project_directory);
@@ -53,17 +34,17 @@ functions:
             component_name,
             {
                {
-                  component_generate_header_filename(component_name),
+                  component_generate_header_filename(),
                   "cpp_header",
                   placement3d{ -(float)code_editor_width, 0, 0 },
                },
                {
-                  component_generate_source_filename(component_name),
+                  component_generate_source_filename(),
                   "cpp_source",
                   placement3d{ 0, 0, 0 },
                },
                {
-                  component_generate_test_filename(component_name),
+                  component_generate_test_filename(),
                   "blast_test",
                   placement3d{ (float)code_editor_width, 0, 0 },
                },
@@ -78,12 +59,12 @@ functions:
             component_name,
             {
                {
-                  component_generate_quintessence_filename(component_name),
+                  component_generate_quintessence_filename(),
                   "blast_quintessence",
                   placement3d{ -((float)code_editor_width * 0.5f), 0, 0 },
                },
                {
-                  component_generate_test_filename(component_name),
+                  component_generate_test_filename(),
                   "blast_test",
                   placement3d{ ((float)code_editor_width * 0.5f), 0, 0 },
                },
@@ -109,10 +90,6 @@ functions:
 
   - name: component_generate_header_filename
     type: std::string
-    parameters:
-      - name: component_name
-        type: std::string
-        default_argument: '"UnnamedComponent"'
     body: |
       Blast::ProjectComponentFilenameGenerator filename_generator(
               component_name,
@@ -125,10 +102,6 @@ functions:
 
   - name: component_generate_source_filename
     type: std::string
-    parameters:
-      - name: component_name
-        type: std::string
-        default_argument: '"UnnamedComponent"'
     body: |
       auto generator = Blast::ProjectComponentFilenameGenerator(
          component_name,
@@ -142,10 +115,6 @@ functions:
 
   - name: component_generate_test_filename
     type: std::string
-    parameters:
-      - name: component_name
-        type: std::string
-        default_argument: '"UnnamedComponent"'
     body: |
       auto generator = Blast::ProjectComponentFilenameGenerator(
          component_name,
@@ -159,10 +128,6 @@ functions:
 
   - name: component_generate_quintessence_filename
     type: std::string
-    parameters:
-      - name: component_name
-        type: std::string
-        default_argument: '"UnnamedComponent"'
     body: |
       auto generator = Blast::ProjectComponentFilenameGenerator(
          component_name,

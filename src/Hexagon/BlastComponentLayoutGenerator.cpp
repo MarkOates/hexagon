@@ -1,7 +1,6 @@
 
 
 #include <Hexagon/BlastComponentLayoutGenerator.hpp>
-#include <Blast/Project/ComponentLister.hpp>
 #include <Blast/Project/Component.hpp>
 #include <iostream>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
@@ -18,8 +17,9 @@ namespace Hexagon
 {
 
 
-BlastComponentLayoutGenerator::BlastComponentLayoutGenerator(std::string project_directory)
+BlastComponentLayoutGenerator::BlastComponentLayoutGenerator(std::string project_directory, std::string component_name)
    : project_directory(project_directory)
+   , component_name(component_name)
    , code_editor_width(1215)
    , code_editor_height(1350)
 {
@@ -31,23 +31,7 @@ BlastComponentLayoutGenerator::~BlastComponentLayoutGenerator()
 }
 
 
-std::vector<Hexagon::Layout> BlastComponentLayoutGenerator::generate()
-{
-std::vector<Hexagon::Layout> result;
-
-Blast::Project::ComponentLister component_lister(project_directory);
-std::vector<std::string> component_names = component_lister.components();
-
-for (auto &component_name : component_names)
-{
-   result.push_back(build_appropriate_layout_for_component(component_name));
-}
-
-return result;
-
-}
-
-Hexagon::Layout BlastComponentLayoutGenerator::build_appropriate_layout_for_component(std::string component_name)
+Hexagon::Layout BlastComponentLayoutGenerator::generate()
 {
 Hexagon::Layout result;
 Blast::Project::Component component(component_name, project_directory);
@@ -60,17 +44,17 @@ if (component.has_only_source_and_header())
       component_name,
       {
          {
-            component_generate_header_filename(component_name),
+            component_generate_header_filename(),
             "cpp_header",
             placement3d{ -(float)code_editor_width, 0, 0 },
          },
          {
-            component_generate_source_filename(component_name),
+            component_generate_source_filename(),
             "cpp_source",
             placement3d{ 0, 0, 0 },
          },
          {
-            component_generate_test_filename(component_name),
+            component_generate_test_filename(),
             "blast_test",
             placement3d{ (float)code_editor_width, 0, 0 },
          },
@@ -85,12 +69,12 @@ else if (component.has_quintessence() || component.has_test())
       component_name,
       {
          {
-            component_generate_quintessence_filename(component_name),
+            component_generate_quintessence_filename(),
             "blast_quintessence",
             placement3d{ -((float)code_editor_width * 0.5f), 0, 0 },
          },
          {
-            component_generate_test_filename(component_name),
+            component_generate_test_filename(),
             "blast_test",
             placement3d{ ((float)code_editor_width * 0.5f), 0, 0 },
          },
@@ -112,7 +96,7 @@ return result;
 
 }
 
-std::string BlastComponentLayoutGenerator::component_generate_header_filename(std::string component_name)
+std::string BlastComponentLayoutGenerator::component_generate_header_filename()
 {
 Blast::ProjectComponentFilenameGenerator filename_generator(
         component_name,
@@ -121,7 +105,7 @@ return project_directory + filename_generator.generate_filename();
 
 }
 
-std::string BlastComponentLayoutGenerator::component_generate_source_filename(std::string component_name)
+std::string BlastComponentLayoutGenerator::component_generate_source_filename()
 {
 auto generator = Blast::ProjectComponentFilenameGenerator(
    component_name,
@@ -131,7 +115,7 @@ return project_directory + generator.generate_filename();
 
 }
 
-std::string BlastComponentLayoutGenerator::component_generate_test_filename(std::string component_name)
+std::string BlastComponentLayoutGenerator::component_generate_test_filename()
 {
 auto generator = Blast::ProjectComponentFilenameGenerator(
    component_name,
@@ -141,7 +125,7 @@ return project_directory + generator.generate_filename();
 
 }
 
-std::string BlastComponentLayoutGenerator::component_generate_quintessence_filename(std::string component_name)
+std::string BlastComponentLayoutGenerator::component_generate_quintessence_filename()
 {
 auto generator = Blast::ProjectComponentFilenameGenerator(
    component_name,

@@ -10,7 +10,7 @@ TEST(Hexagon_BlastProjectLayoutsGeneratorTest, can_be_created_without_blowing_up
    Hexagon::BlastProjectLayoutsGenerator blast_project_layouts_generator;
 }
 
-TEST(Hexagon_BlastProjectLayoutsGeneratorTest, generate__returns_the_expected_response)
+TEST(Hexagon_BlastProjectLayoutsGeneratorTest, generate__does_not_blow_up)
 {
    Hexagon::BlastProjectLayoutsGenerator blast_project_layouts_generator(FIXTURE_PROJECT_DIRECTORY);
    blast_project_layouts_generator.generate();

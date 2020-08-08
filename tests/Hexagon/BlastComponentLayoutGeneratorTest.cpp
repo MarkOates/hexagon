@@ -10,7 +10,7 @@ TEST(Hexagon_BlastComponentLayoutGeneratorTest, can_be_created_without_blowing_u
    Hexagon::BlastComponentLayoutGenerator blast_project_layouts_generator;
 }
 
-TEST(Hexagon_BlastComponentLayoutGeneratorTest, generate__returns_the_expected_response)
+TEST(Hexagon_BlastComponentLayoutGeneratorTest, generate__does_not_blow_up)
 {
    Hexagon::BlastComponentLayoutGenerator blast_project_layouts_generator(FIXTURE_PROJECT_DIRECTORY);
    blast_project_layouts_generator.generate();
@@ -19,10 +19,14 @@ TEST(Hexagon_BlastComponentLayoutGeneratorTest, generate__returns_the_expected_r
 
 TEST(Hexagon_BlastComponentLayoutGeneratorTest, generate__creates_layouts_for_the_project_components)
 {
-   Hexagon::BlastComponentLayoutGenerator blast_project_layouts_generator(FIXTURE_PROJECT_DIRECTORY);
+   Hexagon::BlastComponentLayoutGenerator blast_project_layouts_generator(
+      FIXTURE_PROJECT_DIRECTORY,
+      "AnotherFixtureObject"
+   );
 
-   std::vector<Hexagon::Layout> expected_layouts = {
-      Hexagon::Layout("AnotherFixtureObject", {
+   Hexagon::Layout expected_layout = {
+      "AnotherFixtureObject",
+      {
          {
             "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject/include/AnotherFixtureObject.hpp",
             "cpp_header",
@@ -38,29 +42,15 @@ TEST(Hexagon_BlastComponentLayoutGeneratorTest, generate__creates_layouts_for_th
             "blast_test",
             {},
          },
-      }),
-      Hexagon::Layout("FixtureObjectThing", {
-         {
-            "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject/quintessence/FixtureObjectThing.q.yml",
-            "blast_quintessence",
-            {},
-         },
-         {
-            "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject/tests/FixtureObjectThingTest.cpp",
-            "blast_test",
-            {},
-         },
-      }),
+      },
    };
-   std::vector<Hexagon::Layout> actual_layouts = blast_project_layouts_generator.generate();
+   Hexagon::Layout actual_layout = blast_project_layouts_generator.generate();
    std::vector<std::tuple<std::string, std::string, placement3d>> expected_layout_files, actual_layout_files;
 
-   ASSERT_EQ(expected_layouts.size(), actual_layouts.size());
-
    int i=0;
-   for (auto &expected_layout : expected_layouts)
-   {
-      Hexagon::Layout &actual_layout = actual_layouts[i];
+   //for (auto &expected_layout : expected_layouts)
+   //{
+      //Hexagon::Layout &actual_layout = actual_layouts[i];
 
       EXPECT_EQ(expected_layout.get_concept_name(), actual_layout.get_concept_name());
 
@@ -83,8 +73,8 @@ TEST(Hexagon_BlastComponentLayoutGeneratorTest, generate__creates_layouts_for_th
          j++;
       }
 
-      i++;
-   }
+      //i++;
+   //}
 
    SUCCEED();
 }
