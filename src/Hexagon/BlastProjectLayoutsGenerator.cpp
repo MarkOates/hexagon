@@ -47,15 +47,53 @@ return result;
 
 Hexagon::Layout BlastProjectLayoutsGenerator::build_appropriate_layout_for_component(std::string component_name)
 {
+Hexagon::Layout result;
 Blast::Project::Component component(component_name, project_directory);
 
 if (component.has_only_source_and_header())
 {
-   //return create_three_split_from_last_component_navigator_selection();
+   // 3 expected files, synonymouse with
+   // attempt_to_create_three_split_layout_fr...();
+   result = Hexagon::Layout(
+      component_name,
+      {
+         {
+            component_generate_header_filename(),
+            "cpp_header",
+            {},
+         },
+         {
+            component_generate_source_filename(),
+            "cpp_source",
+            {},
+         },
+         {
+            component_generate_test_filename(),
+            "blast_test",
+            {},
+         },
+      }
+   );
 }
 else if (component.has_quintessence() || component.has_test())
 {
-   //return attempt_to_create_stage_from_last_component_navigator_selection();
+   // 2 expected files, synonymous with
+   // attempt_to_create_stage_from_last_component_navigator_selection();
+   result = Hexagon::Layout(
+      component_name,
+      {
+         {
+            component_generate_header_filename(),
+            "blast_quintessence",
+            {},
+         },
+         {
+            component_generate_test_filename(),
+            "blast_test",
+            {},
+         },
+      }
+   );
 }
 else
 {
@@ -65,7 +103,8 @@ else
              << std::endl;
    return {};
 }
-return {};
+
+return result;
 
 }
 
