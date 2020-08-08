@@ -30,6 +30,7 @@ functions:
 
   - name: build_appropriate_layout_for_component
     private: true
+    type: Hexagon::Layout
     parameters:
       - name: component_name
         type: std::string
@@ -51,9 +52,9 @@ functions:
                    << "because the component \"" << component.get_name() << "\" "
                    << "neither has a header/source combo nor a quintessence or test file."
                    << std::endl;
-         return;
+         return {};
       }
-      return;
+      return {};
     body_dependency_symbols:
       - Blast::Project::Component
       - std::cout
@@ -64,6 +65,8 @@ dependencies:
 
   - symbol: std::vector<Hexagon::Layout>
     headers: [ vector, Hexagon/Layout.hpp ]
+  - symbol: Hexagon::Layout
+    headers: [ Hexagon/Layout.hpp ]
   - symbol: Blast::Project::ComponentLister
     headers: [ Blast/Project/ComponentLister.hpp ]
   - symbol: Blast::Project::Component

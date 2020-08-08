@@ -19,7 +19,7 @@ namespace Hexagon
 
 
    std::vector<Hexagon::Layout> generate();
-   void build_appropriate_layout_for_component(std::string component_name="UnnamedComponent");
+   Hexagon::Layout build_appropriate_layout_for_component(std::string component_name="UnnamedComponent");
    };
 }
 

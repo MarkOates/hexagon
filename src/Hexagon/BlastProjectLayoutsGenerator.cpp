@@ -37,7 +37,7 @@ return result;
 
 }
 
-void BlastProjectLayoutsGenerator::build_appropriate_layout_for_component(std::string component_name)
+Hexagon::Layout BlastProjectLayoutsGenerator::build_appropriate_layout_for_component(std::string component_name)
 {
 Blast::Project::Component component(component_name, project_directory);
 
@@ -55,9 +55,9 @@ else
              << "because the component \"" << component.get_name() << "\" "
              << "neither has a header/source combo nor a quintessence or test file."
              << std::endl;
-   return;
+   return {};
 }
-return;
+return {};
 
 }
 } // namespace Hexagon
