@@ -4,6 +4,12 @@
 #include <Blast/Project/ComponentLister.hpp>
 #include <Blast/Project/Component.hpp>
 #include <iostream>
+#include <Blast/ProjectComponentFilenameGenerator.hpp>
+#include <Blast/ProjectComponentFileTypes.hpp>
+#include <Blast/ProjectComponentFilenameGenerator.hpp>
+#include <Blast/ProjectComponentFileTypes.hpp>
+#include <Blast/ProjectComponentFilenameGenerator.hpp>
+#include <Blast/ProjectComponentFileTypes.hpp>
 
 
 namespace Hexagon
@@ -58,6 +64,35 @@ else
    return {};
 }
 return {};
+
+}
+
+std::string BlastProjectLayoutsGenerator::component_generate_header_filename(std::string component_name)
+{
+Blast::ProjectComponentFilenameGenerator filename_generator(
+        component_name,
+        Blast::ProjectComponentFileTypes::HEADER_FILE);
+return project_directory + filename_generator.generate_filename();
+
+}
+
+std::string BlastProjectLayoutsGenerator::component_generate_source_filename(std::string component_name)
+{
+auto generator = Blast::ProjectComponentFilenameGenerator(
+   component_name,
+   Blast::ProjectComponentFileTypes::SOURCE_FILE
+);
+return project_directory + generator.generate_filename();
+
+}
+
+std::string BlastProjectLayoutsGenerator::component_generate_test_filename(std::string component_name)
+{
+auto generator = Blast::ProjectComponentFilenameGenerator(
+   component_name,
+   Blast::ProjectComponentFileTypes::TEST_FILE
+);
+return project_directory + generator.generate_filename();
 
 }
 } // namespace Hexagon

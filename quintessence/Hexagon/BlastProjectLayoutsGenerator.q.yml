@@ -60,6 +60,56 @@ functions:
       - std::cout
 
 
+  - name: component_generate_header_filename
+    type: std::string
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '"UnnamedComponent"'
+    body: |
+      Blast::ProjectComponentFilenameGenerator filename_generator(
+              component_name,
+              Blast::ProjectComponentFileTypes::HEADER_FILE);
+      return project_directory + filename_generator.generate_filename();
+    body_dependency_symbols:
+      - Blast::ProjectComponentFilenameGenerator
+      - Blast::ProjectComponentFileTypes
+
+
+  - name: component_generate_source_filename
+    type: std::string
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '"UnnamedComponent"'
+    body: |
+      auto generator = Blast::ProjectComponentFilenameGenerator(
+         component_name,
+         Blast::ProjectComponentFileTypes::SOURCE_FILE
+      );
+      return project_directory + generator.generate_filename();
+    body_dependency_symbols:
+      - Blast::ProjectComponentFilenameGenerator
+      - Blast::ProjectComponentFileTypes
+
+
+  - name: component_generate_test_filename
+    type: std::string
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '"UnnamedComponent"'
+    body: |
+      auto generator = Blast::ProjectComponentFilenameGenerator(
+         component_name,
+         Blast::ProjectComponentFileTypes::TEST_FILE
+      );
+      return project_directory + generator.generate_filename();
+    body_dependency_symbols:
+      - Blast::ProjectComponentFilenameGenerator
+      - Blast::ProjectComponentFileTypes
+
+
 dependencies:
 
 
@@ -71,4 +121,8 @@ dependencies:
     headers: [ Blast/Project/ComponentLister.hpp ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
+  - symbol: Blast::ProjectComponentFilenameGenerator
+    headers: [ Blast/ProjectComponentFilenameGenerator.hpp ]
+  - symbol: Blast::ProjectComponentFileTypes
+    headers: [ Blast/ProjectComponentFileTypes.hpp ]
 
