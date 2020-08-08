@@ -519,6 +519,17 @@ bool System::toggle_command_mode_on()
 
    float camera_zoomed_out_position = get_default_camera_stepback() + 20;
    float camera_zoomed_in_position = get_default_camera_stepback();
+   //camera.rotation.x = 0.035;
+   float camera_x_rotation_in_zoomed_out_position = 0.035;
+
+   motion.canimate(&camera.rotation.x,
+                   camera.rotation.x,
+                   camera_x_rotation_in_zoomed_out_position,
+                   al_get_time(),
+                   al_get_time()+0.2,
+                   interpolator::fast_in,
+                   nullptr,
+                   nullptr);
    motion.canimate(&camera.stepback.z,
                    camera.stepback.z,
                    camera_zoomed_out_position,
@@ -539,6 +550,16 @@ bool System::toggle_command_mode_off()
 
    float camera_zoomed_out_position = get_default_camera_stepback() + 20;
    float camera_zoomed_in_position = get_default_camera_stepback();
+   camera.rotation.x = 0;
+
+   motion.canimate(&camera.rotation.x,
+                   camera.rotation.x,
+                   0.0f,
+                   al_get_time(),
+                   al_get_time()+0.2,
+                   interpolator::fast_in,
+                   nullptr,
+                   nullptr);
    motion.canimate(&camera.stepback.z,
                    camera.stepback.z,
                    camera_zoomed_in_position,
