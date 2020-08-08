@@ -22,18 +22,41 @@ TEST(Hexagon_BlastProjectLayoutsGeneratorTest, generate__creates_layouts_for_the
    Hexagon::BlastProjectLayoutsGenerator blast_project_layouts_generator(FIXTURE_PROJECT_DIRECTORY);
 
    std::vector<Hexagon::Layout> expected_layouts = {
-      Hexagon::Layout("AnotherFixtureObject"),
-      Hexagon::Layout("FixtureObjectThing"),
+      Hexagon::Layout("AnotherFixtureObject", {
+        { "asdf", "cpp_header", {} },
+        { "asdf", "cpp_source", {} },
+        { "asdf", "blast_test", {} },
+      }),
+      Hexagon::Layout("FixtureObjectThing", {
+        { "asdf", "blast_quintessence", {} },
+        { "asdf", "blast_test", {} },
+      }),
    };
    std::vector<Hexagon::Layout> actual_layouts = blast_project_layouts_generator.generate();
+   std::vector<std::tuple<std::string, std::string, placement3d>> expected_layout_files, actual_layout_files;
 
-   ASSERT_EQ(false, actual_layouts.empty());
+   ASSERT_EQ(expected_layouts.size(), actual_layouts.size());
 
    int i=0;
    for (auto &expected_layout : expected_layouts)
    {
       Hexagon::Layout &actual_layout = actual_layouts[i];
-      ASSERT_EQ(expected_layout.get_concept_name(), actual_layout.get_concept_name());
+
+      EXPECT_EQ(expected_layout.get_concept_name(), actual_layout.get_concept_name());
+
+      expected_layout_files = expected_layout.get_files();
+      actual_layout_files = actual_layout.get_files();
+
+      ASSERT_EQ(expected_layout_files.size(), actual_layout_files.size());
+
+      int j=0;
+      for (auto &expected_layout_file : expected_layout_files)
+      {
+         std::tuple<std::string, std::string, placement3d> &actual_layout_file = actual_layout_files[j];
+         //EXPECT_EQ(std::get<0>(expected_layout_file), std::get<0>(actual_layout_file));
+         j++;
+      }
+
       i++;
    }
 

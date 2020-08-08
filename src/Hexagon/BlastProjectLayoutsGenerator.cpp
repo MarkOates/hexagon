@@ -38,7 +38,7 @@ std::vector<std::string> component_names = component_lister.components();
 
 for (auto &component_name : component_names)
 {
-   result.push_back(Layout(component_name));
+   result.push_back(build_appropriate_layout_for_component(component_name));
 }
 
 return result;
@@ -94,6 +94,7 @@ else if (component.has_quintessence() || component.has_test())
          },
       }
    );
+   return result;
 }
 else
 {

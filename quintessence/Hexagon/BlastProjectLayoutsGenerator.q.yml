@@ -20,7 +20,7 @@ functions:
 
       for (auto &component_name : component_names)
       {
-         result.push_back(Layout(component_name));
+         result.push_back(build_appropriate_layout_for_component(component_name));
       }
 
       return result;
@@ -83,6 +83,7 @@ functions:
                },
             }
          );
+         return result;
       }
       else
       {
