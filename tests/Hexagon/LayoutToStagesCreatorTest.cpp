@@ -1,14 +1,14 @@
 
 #include <gtest/gtest.h>
 
-#include <Hexagon/Layout.hpp>
+#include <Hexagon/LayoutToStagesCreator.hpp>
 
-TEST(Hexagon_LayoutTest, can_be_created_without_blowing_up)
+TEST(Hexagon_LayoutToStagesCreatorTest, can_be_created_without_blowing_up)
 {
-   Hexagon::Layout layout;
+   Hexagon::LayoutToStagesCreator layout;
 }
 
-TEST(Hexagon_LayoutTest, create__will_create_the_passed_files)
+TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_the_passed_files)
 {
    std::string concept_name = "Hexagon/Logo";
    std::vector<StageInterface *> stages;
@@ -17,14 +17,14 @@ TEST(Hexagon_LayoutTest, create__will_create_the_passed_files)
       { "/Users/markoates/Repos/hexagon/quintessence/Hexagon/Logo.q.yml", "blast_quintessence", placement3d(0, 0, 0) },
    };
 
-   Hexagon::Layout layout(concept_name, &stages, files, daemus_command);
+   Hexagon::LayoutToStagesCreator layout(concept_name, &stages, files, daemus_command);
 
    layout.create();
 
    ASSERT_EQ(false, stages.empty());
 }
 
-TEST(Hexagon_LayoutTest, create__will_create_code_editor_stages_for_the_passed_files)
+TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_code_editor_stages_for_the_passed_files)
 {
    std::string concept_name = "Hexagon/Logo";
    std::vector<StageInterface *> stages;
@@ -34,7 +34,7 @@ TEST(Hexagon_LayoutTest, create__will_create_code_editor_stages_for_the_passed_f
       { "/Users/markoates/Repos/hexagon/tests/Hexagon/LogoTest.cpp", "blast_test", placement3d(0, 0, 0) },
    };
 
-   Hexagon::Layout layout(concept_name, &stages, files, daemus_command);
+   Hexagon::LayoutToStagesCreator layout(concept_name, &stages, files, daemus_command);
 
    layout.create();
 
@@ -46,7 +46,7 @@ TEST(Hexagon_LayoutTest, create__will_create_code_editor_stages_for_the_passed_f
    }
 }
 
-TEST(Hexagon_LayoutTest, create__will_create_missing_file_stages_for_files_that_do_not_exist)
+TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_missing_file_stages_for_files_that_do_not_exist)
 {
    std::string concept_name = "- Missing Files -";
    std::vector<StageInterface *> stages;
@@ -56,7 +56,7 @@ TEST(Hexagon_LayoutTest, create__will_create_missing_file_stages_for_files_that_
       { "/Another/Path/To/A/NonExistentFile.cpp", "blast_test", placement3d(0, 0, 0) },
    };
 
-   Hexagon::Layout layout(concept_name, &stages, files, daemus_command);
+   Hexagon::LayoutToStagesCreator layout(concept_name, &stages, files, daemus_command);
 
    layout.create();
 
@@ -68,7 +68,7 @@ TEST(Hexagon_LayoutTest, create__will_create_missing_file_stages_for_files_that_
    }
 }
 
-TEST(Hexagon_LayoutTest, create__will_position_the_stages_at_the_passed_placement)
+TEST(Hexagon_LayoutToStagesCreatorTest, create__will_position_the_stages_at_the_passed_placement)
 {
    std::string concept_name = "- Mixed Files -";
    std::vector<StageInterface *> stages;
@@ -79,7 +79,7 @@ TEST(Hexagon_LayoutTest, create__will_position_the_stages_at_the_passed_placemen
       { "/A/Path/To/A/File/ThatDoesNotExist.cpp", "blast_quintessence", placement3d(69, 420, 89) },
    };
 
-   Hexagon::Layout layout(concept_name, &stages, files, daemus_command);
+   Hexagon::LayoutToStagesCreator layout(concept_name, &stages, files, daemus_command);
 
    layout.create();
 
