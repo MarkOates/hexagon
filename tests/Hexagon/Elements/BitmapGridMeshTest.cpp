@@ -373,7 +373,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
       bitmap_grid_mesh.render();
       place.restore_transform();
 
-      ALLEGRO_COLOR actual_color = al_get_pixel(al_get_target_bitmap(), pixel_x, pixel_y);
+      ALLEGRO_COLOR actual_color = al_get_pixel(al_get_backbuffer(display), pixel_x, pixel_y);
       EXPECT_EQ_COLOR(expected_pixel_color, actual_color);
 
       al_flip_display();
