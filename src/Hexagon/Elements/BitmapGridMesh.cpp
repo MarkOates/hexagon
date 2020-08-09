@@ -25,7 +25,7 @@ BitmapGridMesh::BitmapGridMesh()
    , num_rows(0)
    , cell_width(1.0f)
    , cell_height(1.0f)
-   , clip_inclusive_y(0)
+   , clip_start_y(0)
    , clip_length_y(-1)
    , bitmap(nullptr)
 {
@@ -37,9 +37,9 @@ BitmapGridMesh::~BitmapGridMesh()
 }
 
 
-void BitmapGridMesh::set_clip_inclusive_y(int clip_inclusive_y)
+void BitmapGridMesh::set_clip_start_y(int clip_start_y)
 {
-   this->clip_inclusive_y = clip_inclusive_y;
+   this->clip_start_y = clip_start_y;
 }
 
 
@@ -91,9 +91,9 @@ float BitmapGridMesh::get_cell_height()
 }
 
 
-int BitmapGridMesh::get_clip_inclusive_y()
+int BitmapGridMesh::get_clip_start_y()
 {
-   return clip_inclusive_y;
+   return clip_start_y;
 }
 
 
@@ -251,7 +251,7 @@ if (clip_length_y == 0) return;
 ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
 int num_vertexes_in_line = num_columns * 6;
 
-int start_vertex = clip_inclusive_y * num_vertexes_in_line;
+int start_vertex = clip_start_y * num_vertexes_in_line;
 int one_past_the_last_vertex = (clip_length_y > 0) ? (clip_length_y * num_vertexes_in_line) : vertexes.size();
 
 al_draw_prim(

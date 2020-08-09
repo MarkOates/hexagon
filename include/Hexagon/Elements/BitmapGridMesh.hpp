@@ -22,7 +22,7 @@ namespace Hexagon
          int num_rows;
          float cell_width;
          float cell_height;
-         int clip_inclusive_y;
+         int clip_start_y;
          int clip_length_y;
          ALLEGRO_BITMAP* bitmap;
 
@@ -30,7 +30,7 @@ namespace Hexagon
          BitmapGridMesh();
          ~BitmapGridMesh();
 
-         void set_clip_inclusive_y(int clip_inclusive_y);
+         void set_clip_start_y(int clip_start_y);
          void set_clip_length_y(int clip_length_y);
          void set_bitmap(ALLEGRO_BITMAP* bitmap);
 
@@ -40,7 +40,7 @@ namespace Hexagon
          int get_num_rows();
          float get_cell_width();
          float get_cell_height();
-         int get_clip_inclusive_y();
+         int get_clip_start_y();
          int get_clip_length_y();
          ALLEGRO_BITMAP* get_bitmap();
          static std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &get_dummy_grid_ref();

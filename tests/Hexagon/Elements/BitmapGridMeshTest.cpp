@@ -375,7 +375,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
       int pixel_y = std::get<2>(coordinate_to_check);
       ALLEGRO_COLOR expected_pixel_color = std::get<3>(coordinate_to_check);
 
-      bitmap_grid_mesh.set_clip_inclusive_y(clip_y);
+      bitmap_grid_mesh.set_clip_start_y(clip_y);
 
       al_clear_to_color(al_color_name("black"));
       place.start_transform();
@@ -494,7 +494,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
       int pixel_y = std::get<3>(coordinate_to_check);
       ALLEGRO_COLOR expected_pixel_color = std::get<4>(coordinate_to_check);
 
-      bitmap_grid_mesh.set_clip_inclusive_y(clip_start_y);
+      bitmap_grid_mesh.set_clip_start_y(clip_start_y);
       bitmap_grid_mesh.set_clip_length_y(clip_length_y);
 
       al_clear_to_color(al_color_name("black"));
