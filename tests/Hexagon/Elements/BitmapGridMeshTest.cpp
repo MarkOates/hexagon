@@ -361,6 +361,10 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
          { 1, 406, 48 + 16, al_color_name("pink") },
          { 7, 406, 48 + 16*6, al_color_name("black") },
          { 7, 406, 48 + 16*7, al_color_name("pink") },
+
+         { (num_rows - 1), 870, 670, al_color_name("red") }, // bottom right
+         { (num_rows - 1), 870, 670 - 16, al_color_name("black") },
+         { num_rows, 870, 670, al_color_name("black") },
       };
 
    for (auto &coordinate_to_check : coordinates_to_check)
