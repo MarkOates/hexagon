@@ -415,10 +415,11 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
    bitmap_grid_mesh.set_cell_uv(0, 0, {10, 10, 20, 20});
    bitmap_grid_mesh.set_cell_uv(last_column, 0, {20, 10, 30, 20});
    bitmap_grid_mesh.set_cell_uv(0, last_row, {20, 10, 30, 20});
-   bitmap_grid_mesh.set_cell_uv(last_column, last_row, {20, 10, 30, 20});
+   bitmap_grid_mesh.set_cell_uv(last_column, last_row, {0, 10, 10, 20});
 
    std::vector<std::tuple<int, int, int, ALLEGRO_COLOR>> coordinates_to_check =
       {
+         { num_rows, 870, 670, al_color_name("yellow") }, // bottom right
       };
 
    for (auto &coordinate_to_check : coordinates_to_check)
