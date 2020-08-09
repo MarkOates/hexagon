@@ -482,17 +482,19 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
    placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
    place.size = vec3d(bitmap_grid_mesh.calculate_width(), bitmap_grid_mesh.calculate_height(), 0);
 
-   std::vector<std::tuple<int, int, int, ALLEGRO_COLOR>> coordinates_to_check =
+   std::vector<std::tuple<int, int, int, int, ALLEGRO_COLOR>> coordinates_to_check =
       {
       };
 
    for (auto &coordinate_to_check : coordinates_to_check)
    {
-      int clip_length_y = std::get<0>(coordinate_to_check);
-      int pixel_x = std::get<1>(coordinate_to_check);
-      int pixel_y = std::get<2>(coordinate_to_check);
-      ALLEGRO_COLOR expected_pixel_color = std::get<3>(coordinate_to_check);
+      int clip_start_y = std::get<0>(coordinate_to_check);
+      int clip_length_y = std::get<1>(coordinate_to_check);
+      int pixel_x = std::get<2>(coordinate_to_check);
+      int pixel_y = std::get<3>(coordinate_to_check);
+      ALLEGRO_COLOR expected_pixel_color = std::get<4>(coordinate_to_check);
 
+      bitmap_grid_mesh.set_clip_inclusive_y(clip_start_y);
       bitmap_grid_mesh.set_clip_length_y(clip_length_y);
 
       al_clear_to_color(al_color_name("black"));
