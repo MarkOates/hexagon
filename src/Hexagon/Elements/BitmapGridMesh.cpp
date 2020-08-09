@@ -256,14 +256,14 @@ int one_past_the_last_vertex =
    (clip_length_y > 0) ? ((clip_start_y + clip_length_y) * num_vertexes_in_line) : vertexes.size();
 
 int safe_start_vertex = std::max(0, start_vertex);
-//int safe_end_vertex = std::max(0, std::min(one_past_the_last_vertes - start_vertex, (vertexes.size() - start_vertex)));
+int safe_end_vertex = std::min(one_past_the_last_vertex, (int)vertexes.size());
 
 al_draw_prim(
    &vertexes[0],
    NULL,
    tile_atlas_bitmap,
    safe_start_vertex,
-   one_past_the_last_vertex,
+   safe_end_vertex,
    ALLEGRO_PRIM_TRIANGLE_LIST
 );
 
