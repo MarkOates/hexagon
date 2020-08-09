@@ -10,16 +10,17 @@
 
 #define FLOATING_POINT_ERROR_MARGIN (0.00001f)
 
-static void EXPECT_EQ_COLOR(ALLEGRO_COLOR expected, ALLEGRO_COLOR actual)
-{
-   EXPECT_NEAR(expected.r, actual.r, FLOATING_POINT_ERROR_MARGIN);
-   EXPECT_NEAR(expected.g, actual.g, FLOATING_POINT_ERROR_MARGIN);
-   EXPECT_NEAR(expected.b, actual.b, FLOATING_POINT_ERROR_MARGIN);
-   EXPECT_NEAR(expected.a, actual.a, FLOATING_POINT_ERROR_MARGIN);
-}
-
 #include<allegro_flare/placement3d.h> // for placement3d
 #include<allegro5/allegro_color.h> // for al_color_name
+
+static void EXPECT_EQ_COLOR(ALLEGRO_COLOR expected, ALLEGRO_COLOR actual)
+{
+   std::string color_name_for_expected = al_color_rgb_to_name(expected.r, expected.g, expected.b);
+   std::string color_name_for_actual = al_color_rgb_to_name(actual.r, actual.g, actual.b);
+
+   EXPECT_EQ(color_name_for_expected, color_name_for_actual);
+   EXPECT_NEAR(expected.a, actual.a, FLOATING_POINT_ERROR_MARGIN);
+}
 
 class Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture : public ::testing::Test
 {
@@ -363,7 +364,19 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
       int clip_y = std::get<0>(coordinate_to_check);
       int pixel_x = std::get<1>(coordinate_to_check);
       int pixel_y = std::get<2>(coordinate_to_check);
-      ALLEGRO_COLOR pixel_color = std::get<3>(coordinate_to_check);
+      ALLEGRO_COLOR expected_pixel_color = std::get<3>(coordinate_to_check);
+
+      bitmap_grid_mesh.set_clip_inclusive_y(clip_y);
+
+      al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 0});
+      place.start_transform();
+      bitmap_grid_mesh.render();
+      place.restore_transform();
+
+      ALLEGRO_COLOR actual_color = al_get_pixel(al_get_target_bitmap(), pixel_x, pixel_y);
+      EXPECT_EQ_COLOR(expected_pixel_color, actual_color);
+
+      al_flip_display();
    }
 
    for (int y=0; y<20; y++)
