@@ -353,6 +353,19 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
    bitmap_grid_mesh.set_cell_uv(0, last_row, {20, 10, 30, 20});
    bitmap_grid_mesh.set_cell_uv(last_column, last_row, {20, 10, 30, 20});
 
+   std::vector<std::tuple<int, int, int, ALLEGRO_COLOR>> coordinates_to_check =
+      {
+         { 0, 406, 48, al_color_name("green") },
+      };
+
+   for (auto &coordinate_to_check : coordinates_to_check)
+   {
+      int clip_y = std::get<0>(coordinate_to_check);
+      int pixel_x = std::get<1>(coordinate_to_check);
+      int pixel_y = std::get<2>(coordinate_to_check);
+      ALLEGRO_COLOR pixel_color = std::get<3>(coordinate_to_check);
+   }
+
    for (int y=0; y<20; y++)
    {
       bitmap_grid_mesh.set_clip_inclusive_y(y);
@@ -364,6 +377,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
       place.restore_transform();
 
       al_flip_display();
+
       usleep(50000);
    }
 }
