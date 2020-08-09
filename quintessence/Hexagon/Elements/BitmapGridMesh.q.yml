@@ -33,9 +33,13 @@ properties:
   - name: clip_inclusive_y
     type: int
     init_with: 0
+    getter: true
+    setter: true
   - name: clip_length_y
     type: int
     init_with: 0
+    getter: true
+    setter: true
   - name: bitmap
     type: ALLEGRO_BITMAP*
     init_with: nullptr
@@ -199,8 +203,11 @@ functions:
     guards: [ al_is_system_installed(), bitmap ]
     body: |
       ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
-      int start_vertex = 0;
+      int num_vertexes_in_line = num_columns * 6;
+
+      int start_vertex = clip_inclusive_y * num_vertexes_in_line;
       int one_past_the_last_vertex = vertexes.size();
+
       al_draw_prim(
          &vertexes[0],
          NULL,
@@ -209,6 +216,7 @@ functions:
          one_past_the_last_vertex,
          ALLEGRO_PRIM_TRIANGLE_LIST
       );
+
       return;
     body_dependency_symbols:
       - ALLEGRO_BITMAP*

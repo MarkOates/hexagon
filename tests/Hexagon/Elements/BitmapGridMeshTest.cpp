@@ -353,12 +353,18 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
    bitmap_grid_mesh.set_cell_uv(0, last_row, {20, 10, 30, 20});
    bitmap_grid_mesh.set_cell_uv(last_column, last_row, {20, 10, 30, 20});
 
-   place.start_transform();
-   bitmap_grid_mesh.render();
-   place.restore_transform();
+   for (int y=0; y<20; y++)
+   {
+      bitmap_grid_mesh.set_clip_inclusive_y(y);
 
-   al_flip_display();
+      al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 0});
 
-   sleep(1);
+      place.start_transform();
+      bitmap_grid_mesh.render();
+      place.restore_transform();
+
+      al_flip_display();
+      usleep(50000);
+   }
 }
 

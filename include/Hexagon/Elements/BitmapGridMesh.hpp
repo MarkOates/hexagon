@@ -30,6 +30,8 @@ namespace Hexagon
          BitmapGridMesh();
          ~BitmapGridMesh();
 
+         void set_clip_inclusive_y(int clip_inclusive_y);
+         void set_clip_length_y(int clip_length_y);
          void set_bitmap(ALLEGRO_BITMAP* bitmap);
 
          std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>& get_grid();
@@ -38,6 +40,8 @@ namespace Hexagon
          int get_num_rows();
          float get_cell_width();
          float get_cell_height();
+         int get_clip_inclusive_y();
+         int get_clip_length_y();
          ALLEGRO_BITMAP* get_bitmap();
          static std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &get_dummy_grid_ref();
       void set_cell_uv(int x=0, int y=0, std::tuple<float, float, float, float> uv_coords={0.0f, 0.0f, 1.0f, 1.0f});
