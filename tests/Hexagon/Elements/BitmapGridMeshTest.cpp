@@ -487,10 +487,16 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
          { 0, num_rows, 406, 48, al_color_name("green") }, // full clip
          { 0, num_rows, 870, 670, al_color_name("yellow") },
 
-         { 1, 3, 406, 48+16*0, al_color_name("black") },
+         { 1, 3, 406, 48+16*0, al_color_name("black") }, // just off edge
          { 1, 3, 406, 48+16*1, al_color_name("pink") },
          { 1, 3, 406, 48+16*3, al_color_name("pink") },
-         //{ 1, 3, 406, 48+16*4, al_color_name("black") },
+         { 1, 3, 406, 48+16*4, al_color_name("black") },
+
+         { 5, 7, 406, 48+16*4, al_color_name("black") }, // somewhere in the middle
+         { 5, 7, 406, 48+16*5, al_color_name("pink") },
+         { 5, 7, 406, 48+16*11, al_color_name("pink") },
+         { 5, 7, 406, 48+16*12, al_color_name("black") },
+
          //{ 5, 3, 870, 670, al_color_name("yellow") },
          // YOU WERE HERE - make sure the clip start+length works as expected
       };
@@ -516,7 +522,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
       al_flip_display();
 
-      sleep(1);
+      usleep(50000);
    }
 }
 
