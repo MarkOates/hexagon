@@ -568,8 +568,6 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
          { -5, 8, 406, 48+16*0, al_color_name("green") },
          { -5, 8, 406, 48+16*1, al_color_name("pink") },
          { -5, 8, 406, 48+16*3, al_color_name("black") },
-
-         // YOU WERE HERE - make sure the clip start+length works as expected
       };
 
    for (auto &coordinate_to_check : coordinates_to_check)
@@ -593,7 +591,68 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
       al_flip_display();
 
-      usleep(50000);
+      usleep(150000);
+   }
+}
+
+TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
+   render__with_clip_length_y_that_extends_beyond_the_outer_edge__will_not_crash)
+{
+   int num_columns = 30;
+   int num_rows = 40;
+   int cell_width = 16;
+   int cell_height = 16;
+
+   Hexagon::Elements::BitmapGridMesh bitmap_grid_mesh;
+   bitmap_grid_mesh.resize(num_columns, num_rows, cell_width, cell_height);
+   bitmap_grid_mesh.set_bitmap(get_or_build_multi_colored_bitmap_fixture());
+
+   // fill with pink
+   for (unsigned y=0; y<bitmap_grid_mesh.get_num_rows(); y++)
+   {
+      for (unsigned x=0; x<bitmap_grid_mesh.get_num_columns(); x++)
+      {
+         bitmap_grid_mesh.set_cell_uv(x, y, {0, 0, 10, 10});
+      }
+   }
+   int last_row = bitmap_grid_mesh.get_num_rows() - 1;
+   int last_column = bitmap_grid_mesh.get_num_columns() - 1;
+   bitmap_grid_mesh.set_cell_uv(0, 0, {10, 10, 20, 20});
+   bitmap_grid_mesh.set_cell_uv(last_column, 0, {20, 10, 30, 20});
+   bitmap_grid_mesh.set_cell_uv(0, last_row, {20, 10, 30, 20});
+   bitmap_grid_mesh.set_cell_uv(last_column, last_row, {0, 10, 10, 20});
+
+   placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   place.size = vec3d(bitmap_grid_mesh.calculate_width(), bitmap_grid_mesh.calculate_height(), 0);
+
+   std::vector<std::tuple<int, int, int, int, ALLEGRO_COLOR>> coordinates_to_check =
+      {
+         //{ 0, 999, 406, 48, al_color_name("green") },
+         //{ 0, 999, 870, 670, al_color_name("yellow") },
+      };
+
+   for (auto &coordinate_to_check : coordinates_to_check)
+   {
+      int clip_start_y = std::get<0>(coordinate_to_check);
+      int clip_length_y = std::get<1>(coordinate_to_check);
+      int pixel_x = std::get<2>(coordinate_to_check);
+      int pixel_y = std::get<3>(coordinate_to_check);
+      ALLEGRO_COLOR expected_pixel_color = std::get<4>(coordinate_to_check);
+
+      bitmap_grid_mesh.set_clip_start_y(clip_start_y);
+      bitmap_grid_mesh.set_clip_length_y(clip_length_y);
+
+      al_clear_to_color(al_color_name("black"));
+      place.start_transform();
+      bitmap_grid_mesh.render();
+      place.restore_transform();
+
+      ALLEGRO_COLOR actual_color = al_get_pixel(al_get_backbuffer(display), pixel_x, pixel_y);
+      EXPECT_EQ_COLOR(expected_pixel_color, actual_color);
+
+      al_flip_display();
+
+      //usleep(50000);
    }
 }
 
