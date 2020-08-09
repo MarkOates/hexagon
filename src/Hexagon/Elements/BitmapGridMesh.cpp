@@ -25,6 +25,8 @@ BitmapGridMesh::BitmapGridMesh()
    , num_rows(0)
    , cell_width(1.0f)
    , cell_height(1.0f)
+   , clip_inclusive_y(0)
+   , clip_length_y(0)
    , bitmap(nullptr)
 {
 }
@@ -221,7 +223,16 @@ if (!(bitmap))
       throw std::runtime_error(error_message.str());
    }
 ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
-al_draw_prim(&vertexes[0], NULL, tile_atlas_bitmap, 0, vertexes.size(), ALLEGRO_PRIM_TRIANGLE_LIST);
+int start_vertex = 0;
+int one_past_the_last_vertex = vertexes.size();
+al_draw_prim(
+   &vertexes[0],
+   NULL,
+   tile_atlas_bitmap,
+   start_vertex,
+   one_past_the_last_vertex,
+   ALLEGRO_PRIM_TRIANGLE_LIST
+);
 return;
 
 }

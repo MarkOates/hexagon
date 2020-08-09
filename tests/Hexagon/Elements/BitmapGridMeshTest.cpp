@@ -163,7 +163,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
 
    al_flip_display();
 
-   //sleep(1);
+   sleep(1);
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture, set_cell_color__sets_the_color_of_the_cell)
@@ -215,7 +215,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
 
    al_flip_display();
 
-   //sleep(1);
+   sleep(1);
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__uses_the_uv_cordinates_on_the_bitmap)
@@ -243,7 +243,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
 
    al_flip_display();
 
-   //sleep(1);
+   sleep(1);
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
@@ -282,7 +282,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   //sleep(1);
+   sleep(1);
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
@@ -321,6 +321,10 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   //sleep(1);
+   sleep(1);
+}
+
+TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__will_respect_the_clipping_values)
+{
 }
 

@@ -22,6 +22,8 @@ namespace Hexagon
          int num_rows;
          float cell_width;
          float cell_height;
+         int clip_inclusive_y;
+         int clip_length_y;
          ALLEGRO_BITMAP* bitmap;
 
       public:
