@@ -428,6 +428,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
 
          { 1, 870, 48, al_color_name("red") }, // at the edge
          { 1, 870, 48+16, al_color_name("black") },
+         { 0, 870, 48, al_color_name("black") },
       };
 
    for (auto &coordinate_to_check : coordinates_to_check)

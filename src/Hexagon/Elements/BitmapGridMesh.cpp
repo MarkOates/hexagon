@@ -26,7 +26,7 @@ BitmapGridMesh::BitmapGridMesh()
    , cell_width(1.0f)
    , cell_height(1.0f)
    , clip_inclusive_y(0)
-   , clip_length_y(0)
+   , clip_length_y(-1)
    , bitmap(nullptr)
 {
 }
@@ -246,6 +246,8 @@ if (!(bitmap))
       error_message << "BitmapGridMesh" << "::" << "render" << ": error: " << "guard \"bitmap\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (clip_length_y == 0) return;
+
 ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
 int num_vertexes_in_line = num_columns * 6;
 

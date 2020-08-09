@@ -37,7 +37,7 @@ properties:
     setter: true
   - name: clip_length_y
     type: int
-    init_with: 0
+    init_with: -1
     getter: true
     setter: true
   - name: bitmap
@@ -202,6 +202,8 @@ functions:
     type: void
     guards: [ al_is_system_installed(), bitmap ]
     body: |
+      if (clip_length_y == 0) return;
+
       ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
       int num_vertexes_in_line = num_columns * 6;
 
