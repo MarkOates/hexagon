@@ -163,7 +163,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture, set_cell_color__sets_the_color_of_the_cell)
@@ -215,7 +215,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__uses_the_uv_cordinates_on_the_bitmap)
@@ -243,7 +243,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
@@ -282,7 +282,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
@@ -321,10 +321,44 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__will_respect_the_clipping_values)
 {
+   int num_columns = 30;
+   int num_rows = 40;
+   int cell_width = 16;
+   int cell_height = 16;
+
+   Hexagon::Elements::BitmapGridMesh bitmap_grid_mesh;
+   bitmap_grid_mesh.resize(num_columns, num_rows, cell_width, cell_height);
+   bitmap_grid_mesh.set_bitmap(get_or_build_multi_colored_bitmap_fixture());
+
+   placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   place.size = vec3d(bitmap_grid_mesh.calculate_width(), bitmap_grid_mesh.calculate_height(), 0);
+
+   // fill with pink
+   for (unsigned y=0; y<bitmap_grid_mesh.get_num_rows(); y++)
+   {
+      for (unsigned x=0; x<bitmap_grid_mesh.get_num_columns(); x++)
+      {
+         bitmap_grid_mesh.set_cell_uv(x, y, {0, 0, 10, 10});
+      }
+   }
+   int last_row = bitmap_grid_mesh.get_num_rows() - 1;
+   int last_column = bitmap_grid_mesh.get_num_columns() - 1;
+   bitmap_grid_mesh.set_cell_uv(0, 0, {10, 10, 20, 20});
+   bitmap_grid_mesh.set_cell_uv(last_column, 0, {20, 10, 30, 20});
+   bitmap_grid_mesh.set_cell_uv(0, last_row, {20, 10, 30, 20});
+   bitmap_grid_mesh.set_cell_uv(last_column, last_row, {20, 10, 30, 20});
+
+   place.start_transform();
+   bitmap_grid_mesh.render();
+   place.restore_transform();
+
+   al_flip_display();
+
+   sleep(1);
 }
 
