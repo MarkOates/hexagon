@@ -53,7 +53,10 @@ content = __replace(content, "%", "%%");
 //content = __replace(content, "\\\"", "\\\"");
 
 command << "printf \"" << content << "\" | pbcopy" << std::endl;
-Blast::ShellCommandExecutorWithCallback executor(command.str());
+Blast::ShellCommandExecutorWithCallback executor(
+      command.str(),
+      Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+   );
 executor.execute();
 return true;
 
@@ -63,7 +66,10 @@ std::string PasteboardData::retrieve()
 {
 std::stringstream command;
 command << "pbpaste" << std::endl;
-Blast::ShellCommandExecutorWithCallback executor(command.str());
+Blast::ShellCommandExecutorWithCallback executor(
+      command.str(),
+      Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+   );
 std::string result = executor.execute();
 return result;
 
