@@ -246,7 +246,7 @@ TEST(Hexagon_Elements_TextMeshTest, render_only_select_cells__will_only_draw_the
    text_mesh.render_only_select_cells(cells_to_render);
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 
    al_destroy_font(a_valid_font);
    al_uninstall_system();
