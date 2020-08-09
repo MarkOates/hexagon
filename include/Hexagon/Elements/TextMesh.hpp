@@ -25,7 +25,7 @@ namespace Hexagon
          float cell_width;
          float cell_height;
          Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
-         Hexagon::Elements::BitmapGridMesh mesh;
+         Hexagon::Elements::BitmapGridMesh bitmap_grid_mesh;
          ALLEGRO_BITMAP* font_character_map_bitmap;
          std::map<char, std::tuple<float, float, float, float>> font_character_uv_mapping;
          bool initialized;
@@ -39,7 +39,7 @@ namespace Hexagon
          int get_num_rows();
          float get_cell_width();
          float get_cell_height();
-         Hexagon::Elements::BitmapGridMesh get_mesh();
+         Hexagon::Elements::BitmapGridMesh get_bitmap_grid_mesh();
          ALLEGRO_BITMAP* get_font_character_map_bitmap();
          bool get_initialized();
       void set_font(ALLEGRO_FONT* font=nullptr);

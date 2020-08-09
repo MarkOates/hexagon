@@ -26,7 +26,7 @@ properties:
   - name: font_character_map_grid
     type: Hexagon::Elements::FontCharacterMapGrid
     init_with: '{font}'
-  - name: mesh
+  - name: bitmap_grid_mesh
     type: Hexagon::Elements::BitmapGridMesh
     init_with: '{}'
     getter: true
@@ -74,10 +74,10 @@ functions:
       if (!font_character_map_bitmap) throw std::runtime_error("boobaz");
       if (!font_character_uv_mapping.size() == 256) throw std::runtime_error("foobar");
 
-      mesh.set_bitmap(font_character_map_bitmap);
+      bitmap_grid_mesh.set_bitmap(font_character_map_bitmap);
       cell_width = al_get_text_width(font, "W");
       cell_height = al_get_font_line_height(font);
-      mesh.resize(num_columns, num_rows, cell_width, cell_height);
+      bitmap_grid_mesh.resize(num_columns, num_rows, cell_width, cell_height);
 
       initialized = true;
       return;
@@ -108,7 +108,7 @@ functions:
         type: ALLEGRO_COLOR
         default_argument: '{0.0f, 0.0f, 0.0f, 0.0f}'
     body: |
-      mesh.set_cell_color(x, y, color);
+      bitmap_grid_mesh.set_cell_color(x, y, color);
       return;
 
 
@@ -126,27 +126,27 @@ functions:
     body: |
       // TODO: validate 'character' index exists in character_uv_mapping
       std::tuple<float, float, float, float> character_map = font_character_uv_mapping[character];
-      mesh.set_cell_uv(x, y, character_map);
+      bitmap_grid_mesh.set_cell_uv(x, y, character_map);
       return;
 
 
   - name: calculate_width
     type: int
     body: |
-      return mesh.calculate_width();
+      return bitmap_grid_mesh.calculate_width();
 
 
   - name: calculate_height
     type: int
     body: |
-      return mesh.calculate_height();
+      return bitmap_grid_mesh.calculate_height();
 
 
   - name: render
     type: void
     guards: [ initialized ]
     body: |
-      mesh.render();
+      bitmap_grid_mesh.render();
       return;
 
 
@@ -157,7 +157,7 @@ functions:
         type: std::vector<std::pair<int, int>>
         default_argument: '{}'
     body: |
-      mesh.render_only_select_cells(cell_coordinates);
+      bitmap_grid_mesh.render_only_select_cells(cell_coordinates);
       return;
 
 
