@@ -497,6 +497,10 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
          { 5, 7, 406, 48+16*11, al_color_name("pink") },
          { 5, 7, 406, 48+16*12, al_color_name("black") },
 
+         { num_rows-2, 2, 406, 670-16*2, al_color_name("black") }, // bottom edge
+         { num_rows-2, 2, 406, 670-16*1, al_color_name("pink") },
+         { num_rows-2, 2, 870, 670-16*0, al_color_name("yellow") },
+
          //{ 5, 3, 870, 670, al_color_name("yellow") },
          // YOU WERE HERE - make sure the clip start+length works as expected
       };
