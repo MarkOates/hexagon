@@ -382,20 +382,5 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
 
       al_flip_display();
    }
-
-   for (int y=0; y<20; y++)
-   {
-      bitmap_grid_mesh.set_clip_inclusive_y(y);
-
-      al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 0});
-
-      place.start_transform();
-      bitmap_grid_mesh.render();
-      place.restore_transform();
-
-      al_flip_display();
-
-      usleep(20000);
-   }
 }
 
