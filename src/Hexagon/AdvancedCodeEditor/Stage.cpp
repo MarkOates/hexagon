@@ -445,7 +445,6 @@ placement3d &place = get_place();
 Hexagon::AdvancedCodeEditor::Renderer renderer(
    &text_mesh,
    surface_render,
-   &fonted_text_grid,
    &advanced_code_editor.get_cursor_ref(),
    place.size.x,
    place.size.y,

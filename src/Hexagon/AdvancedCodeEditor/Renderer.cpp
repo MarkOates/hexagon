@@ -17,10 +17,9 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::Elements::FontedTextGrid* fonted_text_grid, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
-   , fonted_text_grid(fonted_text_grid)
    , cursor(cursor)
    , width(width)
    , height(height)
@@ -40,12 +39,6 @@ if (!(text_mesh))
    {
       std::stringstream error_message;
       error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"text_mesh\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(fonted_text_grid))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"fonted_text_grid\" not met";
       throw std::runtime_error(error_message.str());
    }
 AllegroFlare::Timer timer;
