@@ -12,6 +12,7 @@
 #include <allegro5/allegro_ttf.h>
 #include <AllegroFlare/Timer.hpp>
 #include <Blast/FileExistenceChecker.hpp>
+#include <Hexagon/util.hpp>
 
 class Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture : public ::testing::Test
 {
@@ -590,6 +591,27 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    ASSERT_EQ(true, stage.save_file());
 
    ASSERT_EQ(true, Blast::FileExistenceChecker(filename).exists());
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   save_file__will_save_the_current_content_to_the_file)
+{
+   std::string filename = std::tmpnam(nullptr);
+
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
+   stage.initialize();
+   stage.set_filename(filename);
+   stage.set_content(SONNET_TEXT);
+
+   ASSERT_EQ(true, stage.save_file());
+
+   std::vector<std::string> lines_read_from_created_file;
+   ASSERT_EQ(true, ::read_file(lines_read_from_created_file, filename));
+
+   std::vector<std::string> lines_from_stage = stage.get_lines();
+
+   ASSERT_EQ(lines_read_from_created_file, lines_from_stage);
 }
 
 
