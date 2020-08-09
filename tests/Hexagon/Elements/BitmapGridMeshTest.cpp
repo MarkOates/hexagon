@@ -359,7 +359,8 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
          { 0, 406, 48, al_color_name("green") }, // upper left corner
          { 1, 406, 48, al_color_name("black") },
          { 1, 406, 48 + 16, al_color_name("pink") },
-         { 7, 406, 48 + 16*6, al_color_name("black") },
+
+         { 7, 406, 48 + 16*6, al_color_name("black") }, // somewhere in the middle
          { 7, 406, 48 + 16*7, al_color_name("pink") },
 
          { (num_rows - 1), 870, 670, al_color_name("yellow") }, // bottom right
@@ -421,6 +422,9 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
       {
          { num_rows, 870, 670, al_color_name("yellow") }, // bottom right
          { num_rows-1, 870, 670, al_color_name("black") },
+
+         { num_rows-10, 870, 670-16*10, al_color_name("pink") }, // somewhere in the middle
+         { num_rows-10, 870, 670-16*9, al_color_name("black") },
       };
 
    for (auto &coordinate_to_check : coordinates_to_check)
