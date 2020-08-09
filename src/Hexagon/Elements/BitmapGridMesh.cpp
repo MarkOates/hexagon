@@ -250,7 +250,7 @@ ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
 int num_vertexes_in_line = num_columns * 6;
 
 int start_vertex = clip_inclusive_y * num_vertexes_in_line;
-int one_past_the_last_vertex = vertexes.size();
+int one_past_the_last_vertex = (clip_length_y <= 0) ? vertexes.size() : (clip_length_y * num_vertexes_in_line);
 
 al_draw_prim(
    &vertexes[0],
