@@ -399,9 +399,6 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
    bitmap_grid_mesh.resize(num_columns, num_rows, cell_width, cell_height);
    bitmap_grid_mesh.set_bitmap(get_or_build_multi_colored_bitmap_fixture());
 
-   placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
-   place.size = vec3d(bitmap_grid_mesh.calculate_width(), bitmap_grid_mesh.calculate_height(), 0);
-
    // fill with pink
    for (unsigned y=0; y<bitmap_grid_mesh.get_num_rows(); y++)
    {
@@ -416,6 +413,9 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
    bitmap_grid_mesh.set_cell_uv(last_column, 0, {20, 10, 30, 20});
    bitmap_grid_mesh.set_cell_uv(0, last_row, {20, 10, 30, 20});
    bitmap_grid_mesh.set_cell_uv(last_column, last_row, {0, 10, 10, 20});
+
+   placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   place.size = vec3d(bitmap_grid_mesh.calculate_width(), bitmap_grid_mesh.calculate_height(), 0);
 
    std::vector<std::tuple<int, int, int, ALLEGRO_COLOR>> coordinates_to_check =
       {
