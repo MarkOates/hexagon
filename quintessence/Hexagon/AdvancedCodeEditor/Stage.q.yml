@@ -31,9 +31,6 @@ properties:
     init_with: '"untitled.txt"'
     getter: true
     setter: true
-  - name: fonted_text_grid
-    type: Hexagon::Elements::FontedTextGrid
-    init_with: '{}'
   - name: advanced_code_editor
     type: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
     init_with: '{}'
@@ -72,9 +69,6 @@ functions:
 
       text_mesh.set_font(obtain_text_font());
       text_mesh.initialize();
-
-      fonted_text_grid.set_font(obtain_text_font());
-      fonted_text_grid.initialize();
 
       surface_render = al_create_bitmap(
          num_columns * text_mesh.get_cell_width(),
@@ -589,8 +583,6 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/Renderer.hpp ]
   - symbol: KeyboardCommandMapper
     headers: [ AllegroFlare/KeyboardCommandMapper.hpp ]
-  - symbol: Hexagon::Elements::FontedTextGrid
-    headers: [ Hexagon/Elements/FontedTextGrid.hpp ]
   - symbol: Hexagon::Elements::TextMesh
     headers: [ Hexagon/Elements/TextMesh.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor

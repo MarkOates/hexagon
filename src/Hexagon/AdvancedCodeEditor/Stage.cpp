@@ -50,7 +50,6 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , num_rows(num_rows)
    , text_mesh({nullptr, num_columns, num_rows})
    , filename("untitled.txt")
-   , fonted_text_grid({})
    , advanced_code_editor({})
    , input_buffer("")
    , mode(0)
@@ -137,9 +136,6 @@ if (initialized) return;
 
 text_mesh.set_font(obtain_text_font());
 text_mesh.initialize();
-
-fonted_text_grid.set_font(obtain_text_font());
-fonted_text_grid.initialize();
 
 surface_render = al_create_bitmap(
    num_columns * text_mesh.get_cell_width(),
