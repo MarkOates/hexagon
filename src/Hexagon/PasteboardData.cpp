@@ -55,6 +55,7 @@ content = __replace(content, "\\'", "\\\\'");
 //content = __replace(content, "\\", "\\\\");
 content = __replace(content, "\"", "\\\"");
 content = __replace(content, "$", "\\$");
+content = __replace(content, "%", "%%");
 command << "printf \"" << content << "\" | pbcopy" << std::endl;
 Blast::ShellCommandExecutorWithCallback executor(command.str());
 executor.execute();
