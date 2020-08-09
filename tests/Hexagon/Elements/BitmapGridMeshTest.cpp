@@ -420,7 +420,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
    std::vector<std::tuple<int, int, int, ALLEGRO_COLOR>> coordinates_to_check =
       {
          { num_rows, 870, 670, al_color_name("yellow") }, // bottom right
-         //{ num_rows-1, 870, 670, al_color_name("black") },
+         { num_rows-1, 870, 670, al_color_name("black") },
       };
 
    for (auto &coordinate_to_check : coordinates_to_check)
@@ -441,8 +441,6 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
       EXPECT_EQ_COLOR(expected_pixel_color, actual_color);
 
       al_flip_display();
-
-      sleep(2);
    }
 }
 
