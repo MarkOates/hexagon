@@ -484,6 +484,8 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
    std::vector<std::tuple<int, int, int, int, ALLEGRO_COLOR>> coordinates_to_check =
       {
+         { 0, num_rows, 406, 48, al_color_name("green") },
+         { 0, num_rows, 870, 670, al_color_name("yellow") },
       };
 
    for (auto &coordinate_to_check : coordinates_to_check)
