@@ -28,6 +28,10 @@ bool PasteboardData::store(std::string content)
 std::stringstream command;
 
 content = __replace(content, "\\\\", "\\\\\\\\");
+
+content = __replace(content, "\"", "\\\"");
+
+//content = __replace(content, "\\\\", "\\\\\\\\");
 content = __replace(content, "\\", "\\\\");
 
 content = __replace(content, "\\a", "\\\\a");
@@ -45,6 +49,8 @@ content = __replace(content, "\\'", "\\\\'");
 content = __replace(content, "\"", "\\\"");
 content = __replace(content, "$", "\\$");
 content = __replace(content, "%", "%%");
+
+//content = __replace(content, "\\\"", "\\\"");
 
 command << "printf \"" << content << "\" | pbcopy" << std::endl;
 Blast::ShellCommandExecutorWithCallback executor(command.str());
