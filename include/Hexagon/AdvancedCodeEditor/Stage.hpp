@@ -90,7 +90,6 @@ namespace Hexagon
       void refresh_dirty_cells_on_surface_render();
       void refresh_dirty_cells_on_text_mesh();
       void refresh_text_mesh();
-      void refresh_dirty_cells_on_fonted_text_grid();
       void refresh_fonted_text_grid();
       };
    }
