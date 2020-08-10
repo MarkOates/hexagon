@@ -668,5 +668,6 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
    render__with_a_negative_clip_length_y__will_use_the_whole_length_of_the_mesh)
 {
+   // TODO
 }
 
