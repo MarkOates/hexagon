@@ -248,6 +248,9 @@ if (!(bitmap))
    }
 if (clip_length_y == 0) return;
 
+int clip_length_y = std::max(0, this->clip_length_y);
+if (clip_start_y + clip_length_y < 0) return;
+
 ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
 int num_vertexes_in_line = num_columns * 6;
 
