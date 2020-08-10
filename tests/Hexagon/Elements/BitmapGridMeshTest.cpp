@@ -591,7 +591,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
       al_flip_display();
 
-      usleep(150000);
+      //usleep(150000);
    }
 }
 
@@ -632,6 +632,9 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
          { -100, 999, 406, 48, al_color_name("green") },
          { -100, 999, 870, 670, al_color_name("yellow") },
+
+         //{ -100, 20, 406, 48, al_color_name("black") },
+         //{ -100, 20, 406, 48, al_color_name("black") },
       };
 
    for (auto &coordinate_to_check : coordinates_to_check)
@@ -655,7 +658,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
       al_flip_display();
 
-      //usleep(50000);
+      usleep(50000);
    }
 }
 
