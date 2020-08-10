@@ -635,6 +635,9 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
          { -100, 20, 406, 48, al_color_name("black") }, // top left
          { -100, 20, 870, 670, al_color_name("black") }, // bottom right
+
+         { 999, 999, 406, 48, al_color_name("black") }, // top left
+         { 999, 999, 870, 670, al_color_name("black") }, // bottom right
       };
 
    for (auto &coordinate_to_check : coordinates_to_check)
