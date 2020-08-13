@@ -22,6 +22,8 @@ LayoutFromYAML::~LayoutFromYAML()
 
 Hexagon::Layout LayoutFromYAML::load()
 {
+// https://github.com/jbeder/yaml-cpp/wiki/Tutorial
+
 YAML::Node node = YAML::Load(source_yaml);
 
 std::string concept_name = node["name"].as<std::string>();
