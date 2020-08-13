@@ -1,7 +1,7 @@
 properties:
 
 
-  - name: yaml
+  - name: source_yaml
     type: std::string
     init_with: '"# empty"'
     constructor_arg: true
@@ -13,7 +13,12 @@ functions:
   - name: load
     type: Hexagon::Layout
     body: |
-      Hexagon::Layout result;
+      YAML::Node node = YAML::Load(source_yaml);
+
+      std::string concept_name = node["name"].as<std::string>();
+
+      Hexagon::Layout result(concept_name);
+
       return result;
     body_dependency_symbols:
       - YAML::Node

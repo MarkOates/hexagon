@@ -9,8 +9,8 @@ namespace Hexagon
 {
 
 
-LayoutFromYAML::LayoutFromYAML(std::string yaml)
-   : yaml(yaml)
+LayoutFromYAML::LayoutFromYAML(std::string source_yaml)
+   : source_yaml(source_yaml)
 {
 }
 
@@ -22,7 +22,12 @@ LayoutFromYAML::~LayoutFromYAML()
 
 Hexagon::Layout LayoutFromYAML::load()
 {
-Hexagon::Layout result;
+YAML::Node node = YAML::Load(source_yaml);
+
+std::string concept_name = node["name"].as<std::string>();
+
+Hexagon::Layout result(concept_name);
+
 return result;
 
 }
