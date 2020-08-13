@@ -217,7 +217,7 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
          ALLEGRO_COLOR backfill_color = build_backfill_color();
 
          // draw the actual line (truncated, possibly) here:
-         bool use_advanced_line_renderer = false;
+         bool use_advanced_line_renderer = true;
          if (use_advanced_line_renderer)
          {
             Hexagon::CodeEditor::Renderer::AdvancedLineRenderer advanced_line_renderer(
