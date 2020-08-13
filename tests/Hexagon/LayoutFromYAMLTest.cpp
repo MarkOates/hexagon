@@ -30,3 +30,14 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_concept_name)
    EXPECT_EQ(expected_layout.get_concept_name(), actual_layout.get_concept_name());
 }
 
+TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_files)
+{
+   std::string yaml_source = "name: AnExpected/ConceptName";
+   Hexagon::LayoutFromYAML layout_from_yaml(yaml_source);
+   Hexagon::Layout expected_layout("AnExpected/ConceptName");
+
+   Hexagon::Layout actual_layout = layout_from_yaml.load();
+
+   EXPECT_EQ(expected_layout.get_concept_name(), actual_layout.get_concept_name());
+}
+
