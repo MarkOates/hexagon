@@ -4,7 +4,6 @@
 #include <Hexagon/LayoutFromYAML.hpp>
 
 std::string YAML_SOURCE_FIXTURE = R"END(
-
 name: Component/NameFromFixture
 files:
   - filename: quintessence/Component/NameFromFixture.q.yml
@@ -12,7 +11,19 @@ files:
     placement: 0
 daemus:
   commands: []
+)END";
 
+std::string YAML_SOURCE_FIXTURE_WITH_MULTIPLE_FILES = R"END(
+name: Component/NameFromFixture
+files:
+  - filename: quintessence/Component/NameFromFixture.q.yml
+    file_type: quintessence
+    placement: 0
+  - filename: tests/Component/NameFromFixtureText.cpp
+    file_type: cpp_test
+    placement: 0
+daemus:
+  commands: []
 )END";
 
 TEST(Hexagon__LayoutFromYAMLTest, can_be_created_without_blowing_up)
@@ -43,6 +54,24 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_concept_name)
 }
 
 TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_files)
+{
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE);
+
+   Hexagon::Layout layout = layout_from_yaml.load();
+
+   std::vector<std::tuple<std::string, std::string, placement3d>> expected_files = {
+      {
+         "quintessence/Component/NameFromFixture.q.yml",
+         "quintessence",
+         placement3d{ 0 },
+      },
+   };
+   std::vector<std::tuple<std::string, std::string, placement3d>> actual_files = layout.get_files();
+
+   EXPECT_EQ(expected_files, actual_files);
+}
+
+TEST(Hexagon__LayoutFromYAMLTest, load__parses_multiple_files)
 {
    Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE);
 
