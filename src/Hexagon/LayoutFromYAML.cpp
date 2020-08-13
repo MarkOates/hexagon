@@ -48,7 +48,13 @@ for (std::size_t i=0;i<files_node.size();i++)
    result_files.push_back(file);
 }
 
-std::string daemus_command = ""; // node["daemus"].as<std::string>();
+
+// parse concept name
+std::string daemus_command;
+if (node["daemus_command"])
+{
+   node["daemus_command"].as<std::string>();
+}
 
 
 // build the object

@@ -11,6 +11,7 @@ files:
     placement: 0
 daemus:
   commands: []
+daemus_command: 'echo "hello"'
 )END";
 
 std::string YAML_SOURCE_FIXTURE_WITH_MULTIPLE_FILES = R"END(
@@ -22,8 +23,7 @@ files:
   - filename: tests/Component/NameFromFixtureTest.cpp
     file_type: cpp_test
     placement: 0
-daemus:
-  commands: []
+daemus_command: 'echo "hello"'
 )END";
 
 TEST(Hexagon__LayoutFromYAMLTest, can_be_created_without_blowing_up)
