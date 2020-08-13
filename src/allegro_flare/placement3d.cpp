@@ -156,17 +156,35 @@ placement3d& placement3d::operator+=(const placement3d& other)
 
 
 
-placement3d& placement3d::operator==(const placement3d& other)
+bool placement3d::operator==(const placement3d& other) const
 {
-   position == other.position;
-   size == other.size;
-   align == other.align;
-   scale == other.scale;
-   anchor == other.anchor;
-   rotation == other.rotation;
-   return *this;
+   return (
+   position == other.position
+   &&
+   size == other.size
+   &&
+   align == other.align
+   &&
+   scale == other.scale
+   &&
+   anchor == other.anchor
+   &&
+   rotation == other.rotation
+   );
 }
 
+
+
+//const placement3d& placement3d::operator==(const placement3d& other)
+//{
+   //position == other.position;
+   //size == other.size;
+   //align == other.align;
+   //scale == other.scale;
+   //anchor == other.anchor;
+   //rotation == other.rotation;
+   //return *this;
+//}
 
 
 

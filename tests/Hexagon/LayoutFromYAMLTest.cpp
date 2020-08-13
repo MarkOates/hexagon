@@ -48,9 +48,13 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_files)
 
    Hexagon::Layout layout = layout_from_yaml.load();
 
-   //std::vector<std::tuple<std::string, std::string, placement3d>> expected_files = ;
-   //std::vector<std::tuple<std::string, std::string, placement3d>> actual_files = {};
+   std::vector<std::tuple<std::string, std::string, placement3d>> expected_files = {};
+   std::vector<std::tuple<std::string, std::string, placement3d>> actual_files = {};
 
+   placement3d p1;
+   placement3d p2;
+
+   EXPECT_EQ(p1, p2);
    //EXPECT_EQ(expected_files, actual_files);
 }
 
