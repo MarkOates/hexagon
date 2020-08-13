@@ -39,6 +39,11 @@ YAML::Node files_node = node["files"];
 std::vector<std::tuple<std::string, std::string, placement3d>> result_files = {};
 for (std::size_t i=0;i<files_node.size();i++)
 {
+   YAML::Node file_node = files_node[i];
+   std::string filename = file_node["filename"].as<std::string>();
+   std::string file_type = file_node["file_type"].as<std::string>();
+   placement3d placement = { file_node["placement"].as<int>() };
+   //file_node
    std::cout << "AAAAAAAAAAAA" << std::endl;
 }
 
