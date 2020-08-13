@@ -2,6 +2,7 @@
 
 #include <Hexagon/LayoutFromYAML.hpp>
 #include <yaml-cpp/yaml.h>
+#include <Hexagon/Layout.hpp>
 
 
 namespace Hexagon
@@ -19,9 +20,10 @@ LayoutFromYAML::~LayoutFromYAML()
 }
 
 
-void LayoutFromYAML::load()
+Hexagon::Layout LayoutFromYAML::load()
 {
-return;
+Hexagon::Layout result;
+return result;
 
 }
 } // namespace Hexagon

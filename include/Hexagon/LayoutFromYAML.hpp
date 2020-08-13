@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/Layout.hpp>
 #include <string>
 
 
@@ -16,7 +17,7 @@ namespace Hexagon
       ~LayoutFromYAML();
 
 
-   void load();
+   Hexagon::Layout load();
    };
 }
 
