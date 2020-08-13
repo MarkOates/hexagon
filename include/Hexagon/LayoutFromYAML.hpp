@@ -1,8 +1,7 @@
 #pragma once
 
 
-#include <Hexagon/StageInterface.hpp>
-#include <vector>
+#include <string>
 
 
 namespace Hexagon
@@ -10,13 +9,14 @@ namespace Hexagon
    class LayoutFromYAML
    {
    private:
+      std::string yaml;
 
    public:
-      LayoutFromYAML();
+      LayoutFromYAML(std::string yaml="# empty");
       ~LayoutFromYAML();
 
 
-   std::vector<StageInterface *> load();
+   void load();
    };
 }
 

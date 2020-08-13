@@ -1,14 +1,15 @@
 
 
 #include <Hexagon/LayoutFromYAML.hpp>
-
+#include <yaml-cpp/yaml.h>
 
 
 namespace Hexagon
 {
 
 
-LayoutFromYAML::LayoutFromYAML()
+LayoutFromYAML::LayoutFromYAML(std::string yaml)
+   : yaml(yaml)
 {
 }
 
@@ -18,9 +19,10 @@ LayoutFromYAML::~LayoutFromYAML()
 }
 
 
-std::vector<StageInterface *> LayoutFromYAML::load()
+void LayoutFromYAML::load()
 {
-return {};
+return;
+
 }
 } // namespace Hexagon
 

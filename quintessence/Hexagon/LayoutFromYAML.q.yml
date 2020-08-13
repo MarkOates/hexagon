@@ -1,8 +1,26 @@
+properties:
+
+
+  - name: yaml
+    type: std::string
+    init_with: '"# empty"'
+    constructor_arg: true
+
+
 functions:
+
+
   - name: load
-    type: std::vector<StageInterface *>
-    body:
-      return {};
+    type: void
+    body: |
+      return;
+    body_dependency_symbols:
+      - YAML::Node
+
+
 dependencies:
-  - symbol: std::vector<StageInterface *>
-    headers: [ vector, Hexagon/StageInterface.hpp ]
+
+
+  - symbol: YAML::Node
+    headers: [ yaml-cpp/yaml.h ]
+

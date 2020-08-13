@@ -1,11 +1,10 @@
 
 #include <gtest/gtest.h>
 
-#include <Hexagon/StageInterface.hpp>
+#include <Hexagon/LayoutFromYAML.hpp>
 
-TEST(Hexagon__StageInterfaceTest, load__returns_the_expected_response)
+TEST(Hexagon__LayoutFromYAMLTest, can_be_created_without_blowing_up)
 {
-   //Hexagon::StageInterface program_runner;
-   //EXPECT_EQ(expected_string, program_runner.run());
+   Hexagon::LayoutFromYAML layout_from_yaml;
 }
 
