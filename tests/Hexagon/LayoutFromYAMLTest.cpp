@@ -19,7 +19,7 @@ files:
   - filename: quintessence/Component/NameFromFixture.q.yml
     file_type: quintessence
     placement: 0
-  - filename: tests/Component/NameFromFixtureText.cpp
+  - filename: tests/Component/NameFromFixtureTest.cpp
     file_type: cpp_test
     placement: 0
 daemus:
@@ -73,7 +73,7 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_files)
 
 TEST(Hexagon__LayoutFromYAMLTest, load__parses_multiple_files)
 {
-   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE);
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITH_MULTIPLE_FILES);
 
    Hexagon::Layout layout = layout_from_yaml.load();
 
@@ -81,6 +81,11 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_multiple_files)
       {
          "quintessence/Component/NameFromFixture.q.yml",
          "quintessence",
+         placement3d{ 0 },
+      },
+      {
+         "tests/Component/NameFromFixtureTest.cpp",
+         "cpp_test",
          placement3d{ 0 },
       },
    };
