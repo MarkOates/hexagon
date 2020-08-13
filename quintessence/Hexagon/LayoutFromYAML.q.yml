@@ -33,8 +33,9 @@ functions:
          std::string filename = file_node["filename"].as<std::string>();
          std::string file_type = file_node["file_type"].as<std::string>();
          placement3d placement = { file_node["placement"].as<int>() };
-         //file_node
-         std::cout << "AAAAAAAAAAAA" << std::endl;
+
+         std::tuple<std::string, std::string, placement3d> file = { filename, file_type, placement };
+         result_files.push_back(file);
       }
 
       std::string daemus_command = ""; // node["daemus"].as<std::string>();
