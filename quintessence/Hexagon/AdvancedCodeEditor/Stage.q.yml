@@ -53,6 +53,14 @@ properties:
     type: bool
     init_with: false
     getter: true
+  - name: offset_y
+    type: float
+    init_with: 0.0f
+    getter: true
+  - name: offset_y_updated_at
+    type: float
+    init_with: 0.0f
+    getter: true
   - name: surface_render
     type: ALLEGRO_BITMAP*
     init_with: nullptr

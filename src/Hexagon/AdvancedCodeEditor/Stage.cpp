@@ -54,6 +54,8 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , input_buffer("")
    , mode(0)
    , initialized(false)
+   , offset_y(0.0f)
+   , offset_y_updated_at(0.0f)
    , surface_render(nullptr)
 {
 }
@@ -91,6 +93,18 @@ std::string Stage::get_input_buffer()
 bool Stage::get_initialized()
 {
    return initialized;
+}
+
+
+float Stage::get_offset_y()
+{
+   return offset_y;
+}
+
+
+float Stage::get_offset_y_updated_at()
+{
+   return offset_y_updated_at;
 }
 
 

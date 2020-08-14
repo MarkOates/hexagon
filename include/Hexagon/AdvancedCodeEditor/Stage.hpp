@@ -34,6 +34,8 @@ namespace Hexagon
          int mode;
          static ALLEGRO_EVENT a_default_empty_event;
          bool initialized;
+         float offset_y;
+         float offset_y_updated_at;
          ALLEGRO_BITMAP* surface_render;
 
       public:
@@ -46,6 +48,8 @@ namespace Hexagon
          std::string get_filename();
          std::string get_input_buffer();
          bool get_initialized();
+         float get_offset_y();
+         float get_offset_y_updated_at();
          ALLEGRO_BITMAP* get_surface_render();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          std::string &get_input_buffer_ref();
