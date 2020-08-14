@@ -45,6 +45,6 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_valu
    ASSERT_EQ(1, expected_layouts.size());
 
    ASSERT_EQ("label", std::get<0>(actual_layouts[0]));
-   //ASSERT_EQ("foo", std::get<1>(actual_layouts[0]).get_concept_name());
+   ASSERT_EQ("Fancy/ConceptName", std::get<1>(actual_layouts[0]).get_concept_name());
 }
 
