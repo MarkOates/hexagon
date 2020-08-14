@@ -13,7 +13,12 @@ functions:
   - name: load
     type: Hexagon::Project
     body: |
+      YAML::Node node = YAML::Load(source_yaml);
+
       return {};
+    body_dependency_symbols:
+      - Hexagon::Project
+      - YAML::Node
 
 
 dependencies:
@@ -21,4 +26,6 @@ dependencies:
 
   - symbol: Hexagon::Project
     headers: [ Hexagon/Project.hpp ]
+  - symbol: YAML::Node
+    headers: [ yaml-cpp/yaml.h ]
 

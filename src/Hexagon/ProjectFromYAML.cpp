@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/ProjectFromYAML.hpp>
-
+#include <Hexagon/Project.hpp>
+#include <yaml-cpp/yaml.h>
 
 
 namespace Hexagon
@@ -21,6 +22,8 @@ ProjectFromYAML::~ProjectFromYAML()
 
 Hexagon::Project ProjectFromYAML::load()
 {
+YAML::Node node = YAML::Load(source_yaml);
+
 return {};
 
 }
