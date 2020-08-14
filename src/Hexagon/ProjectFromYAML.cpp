@@ -25,6 +25,10 @@ Hexagon::Project ProjectFromYAML::load()
 YAML::Node node = YAML::Load(source_yaml);
 Hexagon::Project result;
 
+std::vector<std::tuple<std::string, Hexagon::Layout>> layouts = {
+   { "label", Hexagon::Layout() },
+};
+
 return result;
 
 }

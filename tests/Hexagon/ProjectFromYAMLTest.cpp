@@ -3,13 +3,8 @@
 
 #include <Hexagon/ProjectFromYAML.hpp>
 
-//bool operator==(const Hexagon::Project &project_a, const Hexagon::Project &project_b)
-//{
-//   return true;
-//}
-
-
 std::string FULL_TEST_FIXTURE = R"END(
+project_name:
 )END";
 
 TEST(Hexagon_ProjectFromYAMLTest, can_be_created_without_blowing_up)
