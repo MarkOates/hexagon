@@ -126,52 +126,11 @@ functions:
         uniform int texture_height;
         uniform float time;
 
-        float Hash21(vec2 p) {
-           p = fract(p*vec2(234.34, 435.345));
-           p += dot(p, p+34.23);
-           return fract(p.x*p.y);
-        }
-
         void main()
         {
            vec2 resolution = vec2(texture_width, texture_height);
            vec2 uv = (varying_texcoord*resolution.xy) / resolution.y;
-
            vec3 col = vec3(0.);
-
-           //uv += time * .2;
-           uv *= 3.;
-           vec2 gv = fract(uv) - 0.5;
-           vec2 id = floor(uv);
-
-           float n = Hash21(id); // random number between 0 and 1
-           float width = .2;
-
-           // https://www.youtube.com/watch?v=2R7h76GoIJM
-
-           if (n<.5) gv.x *= -1.;
-           float d = abs(abs(gv.x + gv.y)-.5);
-
-           vec2 cUv = gv-sign(gv.x+gv.y+.001)*.5;
-           d = length(cUv);
-           float mask = smoothstep(.01, -.01, abs(d - .5)-width);
-
-           float angle = atan(cUv.x, cUv.y); // -pi to pi
-           float checker = mod(id.x+id.y, 2.)*2.-1.;
-           float flow = sin(time + checker * angle * 10.);
-
-           float x = fract(angle/1.57);
-           float y = (d-(.5-width))/(2.*width);
-           y = abs(y-.5)*2.;
-           vec2 tUv = vec2(x, y);
-           col +=  texture2D(nyan_cat_texture, tUv).rgb*mask;
-           //col.rb +=  tUv*mask;
-           //col += y*mask;
-           //col += n;
-
-           //col += checker;
-           //if (gv.x > .48 || gv.y > .48) col = vec3(1,0,0);
-
            gl_FragColor = vec4(col, 1.);
         }
       )DELIM";
