@@ -303,6 +303,8 @@ functions:
        }
 
        return;
+    body_dependency_symbols:
+      - Hexagon::Shaders::TiledHexagonMotionEffect
 
 
   - name: build_allegro_version_string
@@ -337,6 +339,8 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: Motion
     headers: [ allegro_flare/motion.h ]
+  - symbol: Hexagon::Shaders::TiledHexagonMotionEffect
+    headers: [ Hexagon/Shaders/TiledHexagonMotionEffect.hpp ]
   - symbol: System*
     headers: [ Hexagon/System/System.hpp ]
   - symbol: ALLEGRO_EVENT_SOURCE

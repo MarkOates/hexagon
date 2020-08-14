@@ -56,6 +56,7 @@
 #include <Hexagon/System/System.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/Shaders/TiledHexagonMotionEffect.hpp>
 #include <allegro5/allegro.h>
 #include <sstream>
 
