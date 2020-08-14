@@ -8,7 +8,7 @@
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 
-#include <Hexagon/Shaders/Fun.hpp>
+#include <Hexagon/Shaders/TexturedTruchet.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_ttf.h>
@@ -19,12 +19,12 @@
 #include <AllegroFlare/Timer.hpp>
 
 
-class Hexagon_Shaders_FunTest : public ::testing::Test
+class Hexagon_Shaders_TexturedTruchetTest : public ::testing::Test
 {
 protected:
    ALLEGRO_DISPLAY *display;
 
-   Hexagon_Shaders_FunTest()
+   Hexagon_Shaders_TexturedTruchetTest()
       : display(nullptr)
    {}
 
@@ -53,7 +53,7 @@ protected:
 };
 
 
-class Hexagon_Shaders_FunTest_WithEventQueueFixture : public ::testing::Test
+class Hexagon_Shaders_TexturedTruchetTest_WithEventQueueFixture : public ::testing::Test
 {
 public:
    ALLEGRO_DISPLAY* display;
@@ -64,7 +64,7 @@ public:
    ALLEGRO_BITMAP *texture;
 
 public:
-   Hexagon_Shaders_FunTest_WithEventQueueFixture()
+   Hexagon_Shaders_TexturedTruchetTest_WithEventQueueFixture()
       : display(nullptr)
       , font_bin()
       , timer()
@@ -124,32 +124,32 @@ public:
 };
 
 
-TEST_F(Hexagon_Shaders_FunTest, DISABLED_can_be_created_without_blowing_up)
+TEST_F(Hexagon_Shaders_TexturedTruchetTest, DISABLED_can_be_created_without_blowing_up)
 {
-   Hexagon::Shaders::Fun flat_color_shader;
+   Hexagon::Shaders::TexturedTruchet flat_color_shader;
    SUCCEED();
 }
 
 
-TEST_F(Hexagon_Shaders_FunTest, DISABLED_activate__before_being_initialized_raises_an_exception)
+TEST_F(Hexagon_Shaders_TexturedTruchetTest, DISABLED_activate__before_being_initialized_raises_an_exception)
 {
-   Hexagon::Shaders::Fun flat_color_shader;
-   std::string expected_error_message = "Fun::activate: error: guard \"initialized\" not met";
+   Hexagon::Shaders::TexturedTruchet flat_color_shader;
+   std::string expected_error_message = "TexturedTruchet::activate: error: guard \"initialized\" not met";
    ASSERT_THROW_WITH_MESSAGE(flat_color_shader.activate(), std::runtime_error, expected_error_message);
 }
 
 
-TEST_F(Hexagon_Shaders_FunTest, DISABLED_initialize__works_without_blowing_up)
+TEST_F(Hexagon_Shaders_TexturedTruchetTest, DISABLED_initialize__works_without_blowing_up)
 {
-   Hexagon::Shaders::Fun flat_color_shader;
+   Hexagon::Shaders::TexturedTruchet flat_color_shader;
    flat_color_shader.initialize();
    SUCCEED();
 }
 
 
-TEST_F(Hexagon_Shaders_FunTest, DISABLED_activate__works_without_blowing_up)
+TEST_F(Hexagon_Shaders_TexturedTruchetTest, DISABLED_activate__works_without_blowing_up)
 {
-   Hexagon::Shaders::Fun flat_color_shader;
+   Hexagon::Shaders::TexturedTruchet flat_color_shader;
    flat_color_shader.initialize();
 
    flat_color_shader.activate();
@@ -158,9 +158,9 @@ TEST_F(Hexagon_Shaders_FunTest, DISABLED_activate__works_without_blowing_up)
 }
 
 
-TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_image_with_the_flat_color)
+TEST_F(Hexagon_Shaders_TexturedTruchetTest_WithEventQueueFixture, when_active__renders_the_image_with_the_flat_color)
 {
-   Hexagon::Shaders::Fun flat_color_shader;
+   Hexagon::Shaders::TexturedTruchet flat_color_shader;
 
    flat_color_shader.initialize();
    flat_color_shader.activate();
