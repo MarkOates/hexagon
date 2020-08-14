@@ -142,7 +142,16 @@ static const std::string source = R"DELIM(
      vec3 col = vec3(0.);
 
 
-     vec2 gv = fract(uv*10.);
+     uv *= 5.;
+
+     vec2 a = fract(uv)-.5;
+     vec2 b = fract(uv-.5)-.5;
+
+     vec2 gv;
+     if (length(a) < length(b))
+        gv = a;
+     else
+        gv = b;
 
      col.rg = gv;
 
