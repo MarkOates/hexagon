@@ -34,10 +34,12 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_valu
    Hexagon::ProjectFromYAML project_from_yaml(FULL_TEST_FIXTURE);
    Hexagon::Project project = project_from_yaml.load();
 
-   std::vector<std::tuple<std::string, Hexagon::Layout>> expected_layouts = {};
+   std::vector<std::tuple<std::string, Hexagon::Layout>> expected_layouts = {
+      { "label", Hexagon::Layout() },
+   };
    std::vector<std::tuple<std::string, Hexagon::Layout>> actual_layouts = project.get_layouts();
 
    ASSERT_EQ(1, actual_layouts.size());
-   //ASSERT_EQ(1, expected_layouts.size());
+   ASSERT_EQ(1, expected_layouts.size());
 }
 
