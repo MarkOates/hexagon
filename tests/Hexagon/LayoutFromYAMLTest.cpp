@@ -8,7 +8,10 @@ name: Component/NameFromFixture
 files:
   - filename: quintessence/Component/NameFromFixture.q.yml
     file_type: quintessence
-    placement: 0
+    placement:
+      x: 0
+      y: 0
+      z: 0
 daemus_command: 'echo "hello"'
 )END";
 
@@ -17,10 +20,16 @@ name: Component/NameFromFixture
 files:
   - filename: quintessence/Component/NameFromFixture.q.yml
     file_type: quintessence
-    placement: 0
+    placement:
+      x: 0
+      y: 0
+      z: 0
   - filename: tests/Component/NameFromFixtureTest.cpp
     file_type: cpp_test
-    placement: 0
+    placement:
+      x: 0
+      y: 0
+      z: 0
 daemus_command: 'echo "hello"'
 )END";
 
