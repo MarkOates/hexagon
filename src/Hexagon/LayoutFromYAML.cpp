@@ -47,9 +47,9 @@ for (std::size_t i=0;i<files_node.size();i++)
    if (file_node["placement"])
    {
       YAML::Node placement_node = file_node["placement"];
-      float x = placement_node["x"].as<int>();
-      float y = placement_node["y"].as<int>();
-      float z = placement_node["z"].as<int>();
+      float x = placement_node["x"].as<float>();
+      float y = placement_node["y"].as<float>();
+      float z = placement_node["z"].as<float>();
 
       result_placement = { x, y, z };
    }
