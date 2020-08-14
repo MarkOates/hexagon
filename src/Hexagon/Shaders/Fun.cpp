@@ -133,6 +133,7 @@ static const std::string source = R"DELIM(
 
      uv = abs(uv);
      float c = dot(uv, normalize(vec2(1,1.73)));
+     c = max(c, uv.x);
      col += step(c, .2);
 
 
