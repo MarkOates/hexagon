@@ -163,7 +163,10 @@ static const std::string source = R"DELIM(
 
      uv *= 5.;
 
-     col.rg = HexCoords(uv).xy;
+     vec4 hc = HexCoords(uv);
+     float c = smoothstep(.05, .1, hc.y);
+
+     col += c;
 
 
      gl_FragColor = vec4(col, 1.);
