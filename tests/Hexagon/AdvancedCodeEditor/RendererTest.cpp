@@ -105,7 +105,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
-   render___respects_the_mesh_y_offset)
+   render___respects_the_mesh_y_offset__and_renders_the_cursor_by_the_offset_as_well)
 {
    ALLEGRO_FONT *font = get_any_font();
    Hexagon::Elements::TextMesh text_mesh(font, 30, 20);
@@ -121,17 +121,18 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    al_clear_to_color(al_color_name("orange"));
    al_restore_state(&previous_drawing_state);
 
-   Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, width, height);
+   Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
 
    placement3d place = build_centered_placement(width, height);
 
    float text_mesh_offset = 0.0f;
 
-   int num_seconds = 2;
+   int num_seconds = 1;
+   float start_text_mesh_y_offset = 140;
    for (unsigned i=0; i<(60 * num_seconds); i++)
    {
       al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
-      float text_mesh_y_offset = (float)i * 0.02f;
+      float text_mesh_y_offset = (float)i * -6.0f + start_text_mesh_y_offset;
 
       Hexagon::AdvancedCodeEditor::Renderer renderer(
          &text_mesh,
@@ -139,7 +140,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
          &cursor,
          place.size.x,
          place.size.y,
-         true,
+         false,
          text_mesh_y_offset
       );
 
