@@ -31,7 +31,11 @@ YAML::Node node = YAML::Load(source_yaml);
 
 
 // parse concept name
-std::string concept_name = node["name"].as<std::string>();
+std::string concept_name;
+if (node["name"])
+{
+   concept_name = node["name"].as<std::string>();
+}
 
 
 // parse files
