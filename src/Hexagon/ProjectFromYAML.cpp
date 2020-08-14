@@ -8,7 +8,8 @@ namespace Hexagon
 {
 
 
-ProjectFromYAML::ProjectFromYAML()
+ProjectFromYAML::ProjectFromYAML(std::string source_yaml)
+   : source_yaml(source_yaml)
 {
 }
 
@@ -18,9 +19,10 @@ ProjectFromYAML::~ProjectFromYAML()
 }
 
 
-std::string ProjectFromYAML::run()
+Hexagon::Project ProjectFromYAML::load()
 {
-return "Hello World!";
+return {};
+
 }
 } // namespace Hexagon
 

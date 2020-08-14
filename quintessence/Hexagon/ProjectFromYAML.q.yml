@@ -1,4 +1,24 @@
-functions:
-  - name: run
+properties:
+
+
+  - name: source_yaml
     type: std::string
-    body: return "Hello World!";
+    init_with: '"# empty"'
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: load
+    type: Hexagon::Project
+    body: |
+      return {};
+
+
+dependencies:
+
+
+  - symbol: Hexagon::Project
+    headers: [ Hexagon/Project.hpp ]
+

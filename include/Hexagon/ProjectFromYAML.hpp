@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/Project.hpp>
 #include <string>
 
 
@@ -9,13 +10,14 @@ namespace Hexagon
    class ProjectFromYAML
    {
    private:
+      std::string source_yaml;
 
    public:
-      ProjectFromYAML();
+      ProjectFromYAML(std::string source_yaml="# empty");
       ~ProjectFromYAML();
 
 
-   std::string run();
+   Hexagon::Project load();
    };
 }
 
