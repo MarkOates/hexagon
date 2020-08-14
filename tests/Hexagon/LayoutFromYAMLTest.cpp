@@ -11,6 +11,13 @@ files:
 daemus_command: 'echo "hello"'
 )END";
 
+std::string YAML_SOURCE_FIXTURE_WITHOUT_DAEMUS_COMMAND = R"END(
+name: Component/NameFromFixture
+files:
+  - filename: quintessence/Component/NameFromFixture.q.yml
+    file_type: quintessence
+)END";
+
 std::string YAML_SOURCE_FIXTURE_WITH_MULTIPLE_FILES = R"END(
 name: Component/NameFromFixture
 files:
@@ -108,6 +115,18 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_daemus_command)
    Hexagon::Layout actual_layout = layout_from_yaml.load();
 
    std::string expected_daemus_command = "echo \"hello\"";
+   std::string actual_daemus_command = actual_layout.get_daemus_command();
+
+   EXPECT_EQ(expected_daemus_command, actual_daemus_command);
+}
+
+TEST(Hexagon__LayoutFromYAMLTest, load__without_a_daemus_command__sets_to_an_empty_string)
+{
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITHOUT_DAEMUS_COMMAND);
+
+   Hexagon::Layout actual_layout = layout_from_yaml.load();
+
+   std::string expected_daemus_command = "";
    std::string actual_daemus_command = actual_layout.get_daemus_command();
 
    EXPECT_EQ(expected_daemus_command, actual_daemus_command);
