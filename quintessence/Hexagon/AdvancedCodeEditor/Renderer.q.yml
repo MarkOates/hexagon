@@ -25,6 +25,10 @@ properties:
     type: bool
     init_with: false
     constructor_arg: true
+  - name: text_mesh_y_offset
+    type: float
+    init_with: 0.0f
+    constructor_arg: true
 
 
 functions:
@@ -46,7 +50,7 @@ functions:
 
       // draw the surface render
       timer.reset(); timer.start();
-      if (surface_render) al_draw_bitmap(surface_render, 0, 0, 0);
+      if (surface_render) al_draw_bitmap(surface_render, 0, text_mesh_y_offset, 0);
       timer.pause(); std::cout << " surface_render render time: " << timer.get_elapsed_time_microseconds() << std::endl;
 
       // draw the cursor

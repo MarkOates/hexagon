@@ -19,9 +19,10 @@ namespace Hexagon
          float width;
          float height;
          bool cursor_is_bar;
+         float text_mesh_y_offset;
 
       public:
-         Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr, ALLEGRO_BITMAP* surface_render=nullptr, Hexagon::AdvancedCodeEditor::Cursor* cursor=nullptr, float width=1, float height=1, bool cursor_is_bar=false);
+         Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr, ALLEGRO_BITMAP* surface_render=nullptr, Hexagon::AdvancedCodeEditor::Cursor* cursor=nullptr, float width=1, float height=1, bool cursor_is_bar=false, float text_mesh_y_offset=0.0f);
          ~Renderer();
 
 

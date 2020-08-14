@@ -17,13 +17,14 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar, float text_mesh_y_offset)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
    , cursor(cursor)
    , width(width)
    , height(height)
    , cursor_is_bar(cursor_is_bar)
+   , text_mesh_y_offset(text_mesh_y_offset)
 {
 }
 
@@ -53,7 +54,7 @@ timer.pause(); std::cout << " window render: " << timer.get_elapsed_time_microse
 
 // draw the surface render
 timer.reset(); timer.start();
-if (surface_render) al_draw_bitmap(surface_render, 0, 0, 0);
+if (surface_render) al_draw_bitmap(surface_render, 0, text_mesh_y_offset, 0);
 timer.pause(); std::cout << " surface_render render time: " << timer.get_elapsed_time_microseconds() << std::endl;
 
 // draw the cursor
