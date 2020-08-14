@@ -14,3 +14,4 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_the_expected_response)
    project_from_yaml.load();
    SUCCEED();
 }
+
