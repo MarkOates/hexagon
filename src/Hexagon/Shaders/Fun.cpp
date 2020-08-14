@@ -132,6 +132,22 @@ static const std::string source = R"DELIM(
      return c;
   }
 
+  vec4 HexCoords(vec2 uv)
+  {
+     vec2 r = vec2(1, 1.73);
+     vec2 h = r*.5;
+     vec2 a = mod(uv, r)-h;
+     vec2 b = mod(uv-h, r)-h;
+
+     vec2 gv;
+     if (length(a) < length(b))
+        gv = a;
+     else
+        gv = b;
+
+     return vec4(gv.x, gv.y, 0, 0);
+  }
+
   void main()
   {
      // https://www.youtube.com/watch?v=VmrIDyYiJBA
@@ -144,18 +160,7 @@ static const std::string source = R"DELIM(
 
      uv *= 5.;
 
-     vec2 r = vec2(1, 1.73);
-     vec2 h = r*.5;
-     vec2 a = mod(uv, r)-h;
-     vec2 b = mod(uv-h, r)-h;
-
-     vec2 gv;
-     if (length(a) < length(b))
-        gv = a;
-     else
-        gv = b;
-
-     col.rg = gv;
+     col.rg = HexCoords(uv).xy;
 
 
      gl_FragColor = vec4(col, 1.);
