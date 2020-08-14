@@ -29,6 +29,8 @@ std::vector<std::tuple<std::string, Hexagon::Layout>> layouts = {
    { "label", Hexagon::Layout() },
 };
 
+result.set_layouts(layouts);
+
 return result;
 
 }

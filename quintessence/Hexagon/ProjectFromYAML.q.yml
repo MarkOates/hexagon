@@ -20,6 +20,8 @@ functions:
          { "label", Hexagon::Layout() },
       };
 
+      result.set_layouts(layouts);
+
       return result;
     body_dependency_symbols:
       - Hexagon::Project
