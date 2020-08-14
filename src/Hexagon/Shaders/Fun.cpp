@@ -131,8 +131,9 @@ static const std::string source = R"DELIM(
      vec3 col = vec3(0.);
 
 
+     uv = abs(uv);
      float c = uv.x;
-     col += c;
+     col += step(c, .2);
 
 
      gl_FragColor = vec4(col, 1.);
