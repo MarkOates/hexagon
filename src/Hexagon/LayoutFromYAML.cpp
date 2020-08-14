@@ -42,7 +42,12 @@ for (std::size_t i=0;i<files_node.size();i++)
    YAML::Node file_node = files_node[i];
    std::string filename = file_node["filename"].as<std::string>();
    std::string file_type = file_node["file_type"].as<std::string>();
-   placement3d placement = { file_node["placement"].as<int>() };
+   placement3d placement;
+
+   if (file_node["placement"])
+   {
+      placement = { file_node["placement"].as<int>() };
+   }
 
    std::tuple<std::string, std::string, placement3d> file = { filename, file_type, placement };
    result_files.push_back(file);
