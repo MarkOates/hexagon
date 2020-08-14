@@ -3,6 +3,12 @@
 
 #include <Hexagon/ProjectFromYAML.hpp>
 
+//bool operator==(const Hexagon::Project &project_a, const Hexagon::Project &project_b)
+//{
+//   return true;
+//}
+
+
 std::string FULL_TEST_FIXTURE = R"END(
 )END";
 
@@ -25,6 +31,6 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_valu
    Hexagon::Project expected_project;
    Hexagon::Project actual_project = project_from_yaml.load();
 
-   //EXPECT_EQ(expected_project, actual_project);
+   //ASSERT_EQ(expected_project, actual_project);
 }
 
