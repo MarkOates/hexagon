@@ -23,8 +23,9 @@ ProjectFromYAML::~ProjectFromYAML()
 Hexagon::Project ProjectFromYAML::load()
 {
 YAML::Node node = YAML::Load(source_yaml);
+Hexagon::Project result;
 
-return {};
+return result;
 
 }
 } // namespace Hexagon

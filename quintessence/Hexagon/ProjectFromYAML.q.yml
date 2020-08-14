@@ -14,8 +14,9 @@ functions:
     type: Hexagon::Project
     body: |
       YAML::Node node = YAML::Load(source_yaml);
+      Hexagon::Project result;
 
-      return {};
+      return result;
     body_dependency_symbols:
       - Hexagon::Project
       - YAML::Node
