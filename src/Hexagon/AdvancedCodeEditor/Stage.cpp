@@ -372,6 +372,7 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    { "cursor_jump_to_next_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_next_word },
    { "cursor_jump_to_previous_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_word },
    { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
+   { "save_file", &Hexagon::AdvancedCodeEditor::Stage::save_file },
 };
 return local_events;
 
@@ -390,6 +391,7 @@ result.set_mapping(ALLEGRO_KEY_W, 0, { "cursor_jump_to_next_word" });
 result.set_mapping(ALLEGRO_KEY_B, 0, { "cursor_jump_to_previous_word" });
 result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });
 result.set_mapping(ALLEGRO_KEY_BACKSPACE, ALLEGRO_KEYMOD_SHIFT, { "delete_line" });
+result.set_mapping(ALLEGRO_KEY_S, KeyboardCommandMapper::COMMAND, { "save_file" });
 result.set_mapping(ALLEGRO_KEY_I, 0, { "set_to_insert_mode" });
 result.set_mapping(ALLEGRO_KEY_O, 0, {
    "cursor_move_down",
@@ -413,6 +415,7 @@ result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "split_lines", "cursor_move_down", "c
 result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
 
 result.set_mapping(ALLEGRO_KEY_OPENBRACE, KeyboardCommandMapper::CTRL, { "set_to_edit_mode" });
+result.set_mapping(ALLEGRO_KEY_S, KeyboardCommandMapper::COMMAND, { "save_file" });
 return result;
 
 }
