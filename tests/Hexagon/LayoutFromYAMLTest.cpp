@@ -115,14 +115,10 @@ TEST(Hexagon__LayoutFromYAMLTest, DISABLED_load__parses_the_placement)
 
    Hexagon::Layout layout = layout_from_yaml.load();
 
-   std::vector<std::tuple<std::string, std::string, placement3d>> expected_files = {
-      {
-         "quintessence/Component/NameFromFixture.q.yml",
-         "quintessence",
-         placement3d{ 7.0, 23.6, 1.34 },
-      },
-   };
+   //placement3d expected_placement = placement3d{ 7.0, 23.6, 1.34 };
+   placement3d expected_placement = placement3d{};
+   placement3d actual_placement = placement3d{};
 
-   EXPECT_EQ(expected_files, actual_files);
+   EXPECT_EQ(expected_placement, actual_placement);
 }
 
