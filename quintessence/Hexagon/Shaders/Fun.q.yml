@@ -146,8 +146,10 @@ functions:
 
            uv *= 5.;
 
-           vec2 a = fract(uv)-.5;
-           vec2 b = fract(uv-.5)-.5;
+           vec2 r = vec2(1, 1.73);
+           vec2 h = r*.5;
+           vec2 a = mod(uv, r)-h;
+           vec2 b = mod(uv-h, r)-h;
 
            vec2 gv;
            if (length(a) < length(b))
