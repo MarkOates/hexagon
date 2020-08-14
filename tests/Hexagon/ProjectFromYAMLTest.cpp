@@ -32,11 +32,12 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_valu
 TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_values_for_layouts)
 {
    Hexagon::ProjectFromYAML project_from_yaml(FULL_TEST_FIXTURE);
-   project_from_yaml.load();
+   Hexagon::Project project = project_from_yaml.load();
 
    std::vector<std::tuple<std::string, Hexagon::Layout>> expected_layouts = {};
-   std::vector<std::tuple<std::string, Hexagon::Layout>> actual_layouts = {};
+   std::vector<std::tuple<std::string, Hexagon::Layout>> actual_layouts = project.get_layouts();
 
-   ASSERT_EQ(expected_layouts.size(), actual_layouts.size());
+   ASSERT_EQ(1, actual_layouts.size());
+   //ASSERT_EQ(1, expected_layouts.size());
 }
 
