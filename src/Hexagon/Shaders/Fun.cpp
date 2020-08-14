@@ -145,7 +145,8 @@ static const std::string source = R"DELIM(
      else
         gv = b;
 
-     return vec4(gv.x, gv.y, 0, 0);
+     vec2 id = uv-gv;
+     return vec4(gv.x, gv.y, id.x, id.y);
   }
 
   void main()
