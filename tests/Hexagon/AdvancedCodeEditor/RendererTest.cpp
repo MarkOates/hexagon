@@ -104,3 +104,54 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    SUCCEED();
 }
 
+TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
+   render___respects_the_mesh_y_offset)
+{
+   ALLEGRO_FONT *font = get_any_font();
+   Hexagon::Elements::TextMesh text_mesh(font, 30, 20);
+   text_mesh.initialize();
+
+   float width = text_mesh.calculate_width();
+   float height = text_mesh.calculate_height();
+
+   ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
+   ALLEGRO_STATE previous_drawing_state;
+   al_store_state(&previous_drawing_state, ALLEGRO_STATE_TARGET_BITMAP);
+   al_set_target_bitmap(bitmap);
+   al_clear_to_color(al_color_name("orange"));
+   al_restore_state(&previous_drawing_state);
+
+   Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, width, height);
+
+   placement3d place = build_centered_placement(width, height);
+
+   float text_mesh_offset = 0.0f;
+
+   int num_seconds = 2;
+   for (unsigned i=0; i<(60 * num_seconds); i++)
+   {
+      al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
+      float text_mesh_y_offset = (float)i * 0.02f;
+
+      Hexagon::AdvancedCodeEditor::Renderer renderer(
+         &text_mesh,
+         bitmap,
+         &cursor,
+         place.size.x,
+         place.size.y,
+         true,
+         text_mesh_y_offset
+      );
+
+      place.start_transform();
+      renderer.render();
+      place.restore_transform();
+
+      al_flip_display();
+   }
+
+   al_destroy_bitmap(bitmap);
+
+   SUCCEED();
+}
+
