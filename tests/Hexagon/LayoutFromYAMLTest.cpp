@@ -58,7 +58,7 @@ TEST(Hexagon__LayoutFromYAMLTest, can_be_created_without_blowing_up)
 
 TEST(Hexagon__LayoutFromYAMLTest, load__with_invalid_yaml_has_some_predictable_behavior)
 {
-   std::string invalid_source_yaml = "{# ke\ny{:"; //<-- this string causes the parser to crash - yikes!
+   std::string invalid_source_yaml = "{# ke\ny{:";
    Hexagon::LayoutFromYAML layout_from_yaml(invalid_source_yaml);
    std::string expected_error_message = "Hexagon::LayoutFromYAML::load() error: YAML::Load failed " \
                                         "to parse and threw the following error message: \"yaml-cpp: " \
