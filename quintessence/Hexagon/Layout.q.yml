@@ -2,7 +2,7 @@ properties:
 
   - name: concept_name
     type: std::string
-    init_with: '"- Untitled -"'
+    init_with: '""'
     constructor_arg: true
     getter: true
     setter: true
