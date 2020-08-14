@@ -40,7 +40,17 @@ else if (source_yaml.back() != '\n') source_yaml.append("\n");
 
 
 // create the root node
-YAML::Node node = YAML::Load(source_yaml);
+YAML::Node node;
+try
+{
+   node = YAML::Load(source_yaml);
+}
+catch (std::exception &e)
+{
+   std::stringstream error_message;
+   error_message << "foobar" << std::endl;
+   throw std::runtime_error(error_message.str());
+}
 
 
 // parse concept name
