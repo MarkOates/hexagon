@@ -48,7 +48,8 @@ try
 catch (std::exception &e)
 {
    std::stringstream error_message;
-   error_message << "foobar";
+   error_message << "Hexagon::LayoutFromYAML::load() error: YAML::Load failed to parse and threw ";
+   error_message << "the following error message: \"" << e.what() << "\"";
    throw std::runtime_error(error_message.str());
 }
 
