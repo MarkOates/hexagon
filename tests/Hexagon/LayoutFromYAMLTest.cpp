@@ -39,9 +39,9 @@ files:
   - filename: quintessence/Component/NameFromFixture.q.yml
     file_type: quintessence
     placement:
-      x: 0
-      y: 0
-      z: 0
+      x: 7.0
+      y: 23.6
+      z: 1.34
 daemus_command: 'echo "hello"'
 )END";
 
@@ -140,6 +140,6 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_placement)
    placement3d expected_placement = placement;
    placement3d actual_placement = std::get<2>(layout.get_files()[0]);
 
-   //EXPECT_EQ(expected_placement, actual_placement);
+   EXPECT_EQ(expected_placement, actual_placement);
 }
 
