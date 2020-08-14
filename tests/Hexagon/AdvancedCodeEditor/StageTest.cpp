@@ -318,6 +318,11 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
    stage.render();
    al_flip_display();
 
+   ALLEGRO_EVENT e;
+   e.type = ALLEGRO_EVENT_KEY_DOWN;
+   e.keyboard.keycode = ALLEGRO_KEY_ESCAPE;
+   EXPECT_EQ(true, al_emit_user_event(al_get_keyboard_event_source(), &e, nullptr));
+
    bool abort_test = false;
    while(!abort_test)
    {
