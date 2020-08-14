@@ -147,8 +147,10 @@ functions:
            else
               gv = b;
 
+           float x = 0.;
+           float y = 0.5-HexDist(gv);
            vec2 id = uv-gv;
-           return vec4(gv.x, gv.y, id.x, id.y);
+           return vec4(x, y, id.x, id.y);
         }
 
         void main()
