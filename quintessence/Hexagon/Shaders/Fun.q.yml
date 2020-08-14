@@ -144,11 +144,9 @@ functions:
            vec3 col = vec3(0.);
 
 
-           //uv = abs(uv);
-           //float c = dot(uv, normalize(vec2(1,1.73)));
-           //c = max(c, uv.x);
-           //col += step(HexDist(uv), .2);
-           col += sin(HexDist(uv) * 10. + time);
+           vec2 gv = fract(uv*10.);
+
+           col.rg = gv;
 
 
            gl_FragColor = vec4(col, 1.);
