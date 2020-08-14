@@ -33,6 +33,18 @@ files:
 daemus_command: 'echo "hello"'
 )END";
 
+std::string YAML_SOURCE_FIXTURE_WITH_PLACEMENT = R"END(
+name: Component/NameFromFixture
+files:
+  - filename: quintessence/Component/NameFromFixture.q.yml
+    file_type: quintessence
+    placement:
+      x: 0
+      y: 0
+      z: 0
+daemus_command: 'echo "hello"'
+)END";
+
 TEST(Hexagon__LayoutFromYAMLTest, can_be_created_without_blowing_up)
 {
    Hexagon::LayoutFromYAML layout_from_yaml;
@@ -120,7 +132,7 @@ TEST(Hexagon__LayoutFromYAMLTest, load__without_a_damus_command_sets_to_empty_st
 
 TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_placement)
 {
-   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE);
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITH_PLACEMENT);
    placement3d placement = placement3d{ 7.0, 23.6, 1.34 };
 
    Hexagon::Layout layout = layout_from_yaml.load();
