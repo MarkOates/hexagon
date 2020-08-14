@@ -48,7 +48,7 @@ try
 catch (std::exception &e)
 {
    std::stringstream error_message;
-   error_message << "foobar" << std::endl;
+   error_message << "foobar";
    throw std::runtime_error(error_message.str());
 }
 

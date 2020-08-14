@@ -1,6 +1,11 @@
 
 #include <gtest/gtest.h>
 
+#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
+   try { code; FAIL() << "Expected " # raised_exception_type; } \
+   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
+   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+
 #include <Hexagon/LayoutFromYAML.hpp>
 
 std::string YAML_SOURCE_FIXTURE = R"END(
@@ -55,8 +60,8 @@ TEST(Hexagon__LayoutFromYAMLTest, load__with_invalid_yaml_has_some_predictable_b
 {
    std::string invalid_source_yaml = "{# ke\ny{:"; //<-- this string causes the parser to crash - yikes!
    Hexagon::LayoutFromYAML layout_from_yaml(invalid_source_yaml);
-   //layout_from_yaml.load();
-   SUCCEED();
+   std::string expected_error_message = "foobar";
+   ASSERT_THROW_WITH_MESSAGE(layout_from_yaml.load(), std::runtime_error, expected_error_message);
 }
 
 TEST(Hexagon__LayoutFromYAMLTest, load__by_defaut_returns_an_empty_layout)
