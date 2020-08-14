@@ -10,14 +10,14 @@ namespace Hexagon
 {
    namespace Shaders
    {
-      class TexturedTrucuet : private Hexagon::Shaders::Base
+      class TexturedTruchet : private Hexagon::Shaders::Base
       {
       private:
          bool initialized;
 
       public:
-         TexturedTrucuet();
-         ~TexturedTrucuet();
+         TexturedTruchet();
+         ~TexturedTruchet();
 
 
       void initialize();

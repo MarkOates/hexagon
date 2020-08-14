@@ -1,6 +1,6 @@
 
 
-#include <Hexagon/Shaders/TexturedTrucuet.hpp>
+#include <Hexagon/Shaders/TexturedTruchet.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -13,81 +13,81 @@ namespace Shaders
 {
 
 
-TexturedTrucuet::TexturedTrucuet()
+TexturedTruchet::TexturedTruchet()
    : Hexagon::Shaders::Base(obtain_vertex_source(), obtain_fragment_source())
    , initialized(false)
 {
 }
 
 
-TexturedTrucuet::~TexturedTrucuet()
+TexturedTruchet::~TexturedTruchet()
 {
 }
 
 
-void TexturedTrucuet::initialize()
+void TexturedTruchet::initialize()
 {
 if (!initialized) Hexagon::Shaders::Base::initialize();
 initialized = true;
 
 }
 
-void TexturedTrucuet::activate()
+void TexturedTruchet::activate()
 {
 if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "TexturedTrucuet" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
+      error_message << "TexturedTruchet" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
 Hexagon::Shaders::Base::activate();
 
 }
 
-void TexturedTrucuet::deactivate()
+void TexturedTruchet::deactivate()
 {
 if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "TexturedTrucuet" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
+      error_message << "TexturedTruchet" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
 Hexagon::Shaders::Base::deactivate();
 
 }
 
-void TexturedTrucuet::set_flat_color(ALLEGRO_COLOR flat_color)
+void TexturedTruchet::set_flat_color(ALLEGRO_COLOR flat_color)
 {
 Shader:set_vec3("tint", flat_color.r, flat_color.g, flat_color.b);
 Shader::set_float("tint_intensity", 1.0);
 
 }
 
-void TexturedTrucuet::set_texture_width(int width)
+void TexturedTruchet::set_texture_width(int width)
 {
 Shader::set_int("texture_width", width);
 
 }
 
-void TexturedTrucuet::set_texture_height(int height)
+void TexturedTruchet::set_texture_height(int height)
 {
 Shader::set_int("texture_height", height);
 
 }
 
-void TexturedTrucuet::set_nyan_cat_texture(ALLEGRO_BITMAP* nyan_cat_texture)
+void TexturedTruchet::set_nyan_cat_texture(ALLEGRO_BITMAP* nyan_cat_texture)
 {
 Shader::set_sampler("nyan_cat_texture", nyan_cat_texture, 1);
 
 }
 
-void TexturedTrucuet::set_time(float time)
+void TexturedTruchet::set_time(float time)
 {
 Shader::set_float("time", time);
 
 }
 
-std::string TexturedTrucuet::obtain_vertex_source()
+std::string TexturedTruchet::obtain_vertex_source()
 {
 static const std::string source = R"DELIM(
   attribute vec4 al_pos;
@@ -111,7 +111,7 @@ return source;
 
 }
 
-std::string TexturedTrucuet::obtain_fragment_source()
+std::string TexturedTruchet::obtain_fragment_source()
 {
 static const std::string source = R"DELIM(
   uniform sampler2D al_tex;
