@@ -8,10 +8,6 @@ name: Component/NameFromFixture
 files:
   - filename: quintessence/Component/NameFromFixture.q.yml
     file_type: quintessence
-    placement:
-      x: 0
-      y: 0
-      z: 0
 daemus_command: 'echo "hello"'
 )END";
 
@@ -20,16 +16,8 @@ name: Component/NameFromFixture
 files:
   - filename: quintessence/Component/NameFromFixture.q.yml
     file_type: quintessence
-    placement:
-      x: 0
-      y: 0
-      z: 0
   - filename: tests/Component/NameFromFixtureTest.cpp
     file_type: cpp_test
-    placement:
-      x: 0
-      y: 0
-      z: 0
 daemus_command: 'echo "hello"'
 )END";
 
@@ -130,7 +118,7 @@ TEST(Hexagon__LayoutFromYAMLTest, load__without_a_damus_command_sets_to_empty_st
    // TODO
 }
 
-TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_placement)
+TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_file_placements)
 {
    Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITH_PLACEMENT);
    placement3d placement = placement3d{ 7.0, 23.6, 1.34 };
