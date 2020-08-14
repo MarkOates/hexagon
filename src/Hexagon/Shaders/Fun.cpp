@@ -145,7 +145,7 @@ static const std::string source = R"DELIM(
      else
         gv = b;
 
-     float x = 0.;
+     float x = atan(gv.x, gv.y);
      float y = 0.5-HexDist(gv);
      vec2 id = uv-gv;
      return vec4(x, y, id.x, id.y);
