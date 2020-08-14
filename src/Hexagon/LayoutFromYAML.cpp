@@ -49,16 +49,17 @@ for (std::size_t i=0;i<files_node.size();i++)
 }
 
 
-// parse concept name
+// parse daemus command
 std::string daemus_command;
 if (node["daemus_command"])
 {
-   node["daemus_command"].as<std::string>();
+   daemus_command = node["daemus_command"].as<std::string>();
 }
 
 
 // build the object
 Hexagon::Layout result(concept_name, result_files, daemus_command);
+
 
 return result;
 

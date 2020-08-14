@@ -9,8 +9,6 @@ files:
   - filename: quintessence/Component/NameFromFixture.q.yml
     file_type: quintessence
     placement: 0
-daemus:
-  commands: []
 daemus_command: 'echo "hello"'
 )END";
 
@@ -92,5 +90,22 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_multiple_files)
    std::vector<std::tuple<std::string, std::string, placement3d>> actual_files = layout.get_files();
 
    EXPECT_EQ(expected_files, actual_files);
+}
+
+TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_daemus_command)
+{
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE);
+
+   Hexagon::Layout actual_layout = layout_from_yaml.load();
+
+   std::string expected_daemus_command = "echo \"hello\"";
+   std::string actual_daemus_command = actual_layout.get_daemus_command();
+
+   EXPECT_EQ(expected_daemus_command, actual_daemus_command);
+}
+
+TEST(Hexagon__LayoutFromYAMLTest, load__without_a_damus_command_sets_to_empty_string)
+{
+   // TODO
 }
 
