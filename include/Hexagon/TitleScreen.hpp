@@ -18,6 +18,7 @@ namespace Hexagon
 
 
    void draw_hexagon_logo_and_wait_for_keypress();
+   void render_profiler_graph();
    std::string build_allegro_version_string();
    };
 }

@@ -108,6 +108,8 @@ while (!abort_program)
             display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
             allegro_version_string.c_str());
 
+         render_profiler_graph();
+
          profiler.emit("primary_timer logic ended");
          al_flip_display();
          profiler.emit("al_flip_display logic completed");
@@ -122,6 +124,13 @@ al_stop_timer(primary_timer);
 al_destroy_event_queue(primary_event_queue);
 al_destroy_timer(primary_timer);
 
+return;
+
+}
+
+void TitleScreen::render_profiler_graph()
+{
+//al_draw_text(20, 20)
 return;
 
 }

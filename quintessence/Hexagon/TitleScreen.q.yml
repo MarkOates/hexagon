@@ -75,6 +75,8 @@ functions:
                    display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
                    allegro_version_string.c_str());
 
+                render_profiler_graph();
+
                 profiler.emit("primary_timer logic ended");
                 al_flip_display();
                 profiler.emit("al_flip_display logic completed");
@@ -95,6 +97,12 @@ functions:
       - Hexagon::Logo
       - ALLEGRO_FONT*
       - Hexagon::Shaders::TiledHexagonMotionEffect
+
+
+  - name: render_profiler_graph
+    body: |
+      //al_draw_text(20, 20)
+      return;
 
 
   - name: build_allegro_version_string
