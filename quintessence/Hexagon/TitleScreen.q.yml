@@ -118,9 +118,18 @@ functions:
       std::vector<std::vector<std::string>> data2d = {};
       for (auto &event_bucket_name : event_bucket_names)
       {
-         std::string event_bucket_num_samples = "3";
+         int past_two_events_duration =
+            profiler->get_event_bucket_duration_between_last_two_samples(event_bucket_name);
+         std::string event_bucket_num_samples = std::to_string(past_two_events_duration);
          event_bucket_num_samples = std::to_string(profiler->get_event_bucket_num_samples(event_bucket_name));
-         data2d.push_back({ event_bucket_name, event_bucket_num_samples });
+
+         data2d.push_back(
+            {
+               event_bucket_name,
+               event_bucket_num_samples,
+               std::to_string(past_two_events_duration),
+            }
+         );
       }
       Hexagon::Elements::DataTable data_table(font, 300, line_height, data2d);
       data_table.render();
