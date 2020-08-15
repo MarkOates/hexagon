@@ -7,6 +7,7 @@
 #include <Hexagon/Shaders/TiledHexagonMotionEffect.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/Elements/DataTable.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <allegro5/allegro.h>
@@ -153,6 +154,9 @@ for (auto &event_bucket_name : event_bucket_names)
    al_draw_text(font, hexagon_red, 20, 20 + line_height * y_cursor, 0, event_bucket_name.c_str());
    y_cursor++;
 }
+std::vector<std::vector<std::string>> data2d = {};
+Hexagon::Elements::DataTable data_table(font, 100, line_height, data2d);
+data_table.render();
 return;
 
 }

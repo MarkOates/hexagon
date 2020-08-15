@@ -118,7 +118,12 @@ functions:
          al_draw_text(font, hexagon_red, 20, 20 + line_height * y_cursor, 0, event_bucket_name.c_str());
          y_cursor++;
       }
+      std::vector<std::vector<std::string>> data2d = {};
+      Hexagon::Elements::DataTable data_table(font, 100, line_height, data2d);
+      data_table.render();
       return;
+    body_dependency_symbols:
+      - Hexagon::Elements::DataTable
 
 
   - name: build_allegro_version_string
@@ -149,6 +154,8 @@ dependencies:
     headers: [ AllegroFlare/Profiler.hpp ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::Elements::DataTable
+    headers: [ Hexagon/Elements/DataTable.hpp ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
   - symbol: al_get_allegro_version

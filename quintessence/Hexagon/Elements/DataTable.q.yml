@@ -24,7 +24,7 @@ functions:
 
   - name: render
     private: true
-    guards: [ font, al_is_primitives_addon_initialized() ]
+    guards: [ al_is_system_installed(), font ]
     body: |
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 
@@ -49,7 +49,6 @@ functions:
 
       return;
     body_dependency_symbols:
-      - al_is_primitives_addon_initialized
       - std::vector<std::vector<std::string>>
       - al_draw_textf
       - ALLEGRO_COLOR
@@ -61,8 +60,6 @@ dependencies:
 
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
-  - symbol: al_is_primitives_addon_initialized
-    headers: [ allegro5/allegro_primitives.h ]
   - symbol: Hexagon::Elements::Window
     headers: [ Hexagon/Elements/Window.hpp ]
   - symbol: al_draw_textf
