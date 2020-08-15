@@ -48,12 +48,19 @@ if (!(al_get_target_bitmap()))
 float logo_radius = 64;
 int display_width = al_get_bitmap_width(al_get_target_bitmap());
 int display_height = al_get_bitmap_height(al_get_target_bitmap());
+Hexagon::Shaders::TiledHexagonMotionEffect shader;
+shader.initialize();
 
 std::string logo_font_identifier = "Expansiva_bold.otf 23";
 ALLEGRO_FONT *expansiva_font = font_bin->auto_get(logo_font_identifier);
 
 std::string detail_text_font_identifier = "Purista Medium.otf 16";
 ALLEGRO_FONT *purista_font = font_bin->auto_get(detail_text_font_identifier);
+
+//shader.activate();
+shader.set_texture_width(display_width);
+shader.set_texture_height(display_height);
+shader.set_time(1000);
 
 Hexagon::Logo logo(
   display_width/2,
@@ -68,6 +75,8 @@ std::string allegro_version_string = build_allegro_version_string();
 al_draw_text(purista_font, al_color_html("#bc2d48"),
    display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
    allegro_version_string.c_str());
+
+//shader.deactivate();
 
 al_flip_display();
 
