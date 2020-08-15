@@ -10,8 +10,10 @@ namespace Elements
 {
 
 
-DynamicGridMesh::DynamicGridMesh(ALLEGRO_BITMAP* texture)
+DynamicGridMesh::DynamicGridMesh(int cell_width, int cell_height, ALLEGRO_BITMAP* texture)
    : vertexes({})
+   , cell_width(cell_width)
+   , cell_height(cell_height)
    , texture(texture)
    , cells({})
 {
@@ -41,7 +43,7 @@ ALLEGRO_BITMAP* DynamicGridMesh::get_texture()
 }
 
 
-void DynamicGridMesh::create_cell(int x, int y, int u1, int v1, int u2, int v2, ALLEGRO_COLOR color)
+void DynamicGridMesh::create_or_set_cell(int x, int y, int u1, int v1, int u2, int v2, ALLEGRO_COLOR color)
 {
 int vertex_start = cells[std::tuple<int, int>(x, y)];
 
@@ -71,7 +73,7 @@ return;
 
 }
 
-void DynamicGridMesh::delete_cell()
+void DynamicGridMesh::delete_cell(int x, int y)
 {
 return;
 }

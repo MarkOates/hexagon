@@ -5,6 +5,14 @@ properties:
     type: std::vector<ALLEGRO_VERTEX>
     init_with: '{}'
     getter: true
+  - name: cell_width
+    type: int
+    init_with: 1
+    constructor_arg: true
+  - name: cell_height
+    type: int
+    init_with: 1
+    constructor_arg: true
   - name: texture
     type: ALLEGRO_BITMAP*
     init_with: nullptr
@@ -19,7 +27,7 @@ properties:
 functions:
 
 
-  - name: create_cell
+  - name: create_or_set_cell
     parameters:
       - name: x
         type: int
@@ -71,6 +79,13 @@ functions:
 
 
   - name: delete_cell
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
     body: return;
 
 
