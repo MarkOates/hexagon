@@ -62,21 +62,6 @@ ALLEGRO_FONT *purista_font = font_bin->auto_get(detail_text_font_identifier);
 shader.set_texture_width(display_width);
 shader.set_texture_height(display_height);
 shader.set_time(1000);
-
-Hexagon::Logo logo(
-  display_width/2,
-  display_height/2,
-  logo_radius,
-  expansiva_font,
-  hexagon_red,
-  2.25);
-logo.render();
-
-std::string allegro_version_string = build_allegro_version_string();
-al_draw_text(purista_font, hexagon_red,
-   display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
-   allegro_version_string.c_str());
-
 //shader.deactivate();
 
 al_install_keyboard();
@@ -114,9 +99,9 @@ while (!abort_program)
       al_draw_text(purista_font, hexagon_red,
          display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
          allegro_version_string.c_str());
-   }
 
-   al_flip_display();
+      al_flip_display();
+   }
 }
 
 al_stop_timer(primary_timer);
