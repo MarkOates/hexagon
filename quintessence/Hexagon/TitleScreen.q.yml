@@ -48,27 +48,34 @@ functions:
        {
           ALLEGRO_EVENT event;
           al_wait_for_event(primary_event_queue, &event);
-          if (event.type == ALLEGRO_EVENT_KEY_DOWN)
+          switch(event.type)
           {
-            abort_program = true;
-          }
-          else
-          {
-             Hexagon::Logo logo(
-               display_width/2,
-               display_height/2,
-               logo_radius,
-               expansiva_font,
-               hexagon_red,
-               2.25);
-             logo.render();
+          case ALLEGRO_EVENT_KEY_DOWN:
+             {
+               abort_program = true;
+             }
+             break;
+          case ALLEGRO_EVENT_TIMER:
+             {
+                Hexagon::Logo logo(
+                  display_width/2,
+                  display_height/2,
+                  logo_radius,
+                  expansiva_font,
+                  hexagon_red,
+                  2.25);
+                logo.render();
 
-             std::string allegro_version_string = build_allegro_version_string();
-             al_draw_text(purista_font, hexagon_red,
-                display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
-                allegro_version_string.c_str());
+                std::string allegro_version_string = build_allegro_version_string();
+                al_draw_text(purista_font, hexagon_red,
+                   display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
+                   allegro_version_string.c_str());
 
-             al_flip_display();
+                al_flip_display();
+             }
+             break;
+          default:
+             break;
           }
        }
 
