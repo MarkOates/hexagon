@@ -1,6 +1,7 @@
 
 
 #include <ApplicationController.hpp>
+#include <Hexagon/TitleScreen.hpp>
 #include <Hexagon/System/System.hpp>
 #include <iostream>
 #include <sstream>
@@ -150,7 +151,14 @@ return;
 void ApplicationController::run_program()
 {
 initialize();
-draw_hexagon_logo_and_wait_for_keypress(al_get_display_width(display), al_get_display_height(display));
+
+//draw_hexagon_logo_and_wait_for_keypress(al_get_display_width(display), al_get_display_height(display));
+AllegroFlare::FontBin font_bin;
+font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+Hexagon::TitleScreen title_screen(&font_bin);
+title_screen.draw_hexagon_logo_and_wait_for_keypress();
+font_bin.clear();
+
 run_event_loop();
 shutdown();
 

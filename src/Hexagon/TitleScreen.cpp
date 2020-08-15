@@ -117,8 +117,9 @@ while (!abort_program)
          render_profiler_graph(&profiler, purista_font);
 
          profiler.emit("primary_timer logic ended");
+         profiler.emit("al_flip_display logic started");
          al_flip_display();
-         profiler.emit("al_flip_display logic completed");
+         profiler.emit("al_flip_display logic ended");
       }
       break;
    default:

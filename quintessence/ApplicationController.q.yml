@@ -105,9 +105,18 @@ functions:
     type: void
     body: |
        initialize();
-       draw_hexagon_logo_and_wait_for_keypress(al_get_display_width(display), al_get_display_height(display));
+
+       //draw_hexagon_logo_and_wait_for_keypress(al_get_display_width(display), al_get_display_height(display));
+       AllegroFlare::FontBin font_bin;
+       font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+       Hexagon::TitleScreen title_screen(&font_bin);
+       title_screen.draw_hexagon_logo_and_wait_for_keypress();
+       font_bin.clear();
+
        run_event_loop();
        shutdown();
+    body_dependency_symbols:
+      - Hexagon::TitleScreen
 
 
   - name: run_event_loop
@@ -329,6 +338,8 @@ dependencies:
 
   - symbol: Hexagon::System::Config
     headers: [ Hexagon/System/System.hpp ]
+  - symbol: Hexagon::TitleScreen
+    headers: [ Hexagon/TitleScreen.hpp ]
   - symbol: al_get_allegro_version
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_DISPLAY*
