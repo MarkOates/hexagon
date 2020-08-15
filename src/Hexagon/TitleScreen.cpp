@@ -146,16 +146,16 @@ if (!(font))
       throw std::runtime_error(error_message.str());
    }
 std::list<std::string> event_bucket_names = profiler->get_event_bucket_names();
-int y_cursor = 0;
 int line_height = 20;
 ALLEGRO_COLOR hexagon_red = al_color_html("#bc2d48");
+std::vector<std::vector<std::string>> data2d = {};
 for (auto &event_bucket_name : event_bucket_names)
 {
-   al_draw_text(font, hexagon_red, 20, 20 + line_height * y_cursor, 0, event_bucket_name.c_str());
-   y_cursor++;
+   std::string event_bucket_num_samples = "3";
+   event_bucket_num_samples = std::to_string(profiler->get_event_bucket_num_samples(event_bucket_name));
+   data2d.push_back({ event_bucket_name, event_bucket_num_samples });
 }
-std::vector<std::vector<std::string>> data2d = {};
-Hexagon::Elements::DataTable data_table(font, 100, line_height, data2d);
+Hexagon::Elements::DataTable data_table(font, 300, line_height, data2d);
 data_table.render();
 return;
 
