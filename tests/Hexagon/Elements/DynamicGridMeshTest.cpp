@@ -28,7 +28,7 @@ public:
       ASSERT_EQ(false, al_is_system_installed());
       ASSERT_EQ(true, al_init());
       ASSERT_EQ(true, al_init_primitives_addon());
-      display = al_create_display(1280, 720);
+      display = al_create_display(16 * 256, 9 * 256);
    }
 
    virtual void TearDown() override
