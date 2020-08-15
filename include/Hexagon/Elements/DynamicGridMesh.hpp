@@ -1,8 +1,8 @@
 #pragma once
 
 
+#include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
-#include <string>
 #include <vector>
 
 
@@ -14,14 +14,19 @@ namespace Hexagon
       {
       private:
          std::vector<ALLEGRO_VERTEX> vertexes;
+         ALLEGRO_BITMAP* texture;
 
       public:
-         DynamicGridMesh();
+         DynamicGridMesh(ALLEGRO_BITMAP* texture=nullptr);
          ~DynamicGridMesh();
 
+         void set_texture(ALLEGRO_BITMAP* texture);
 
          std::vector<ALLEGRO_VERTEX> get_vertexes();
-      std::string run();
+         ALLEGRO_BITMAP* get_texture();
+      void set_or_create_cell();
+      void delete_cell();
+      void render();
       };
    }
 }

@@ -65,15 +65,11 @@ public:
    }
 };
 
-TEST(Hexagon_Elements_DynamicGridMeshTest, can_be_created_without_blowing_up)
+TEST_F(Hexagon_Elements_DynamicGridMeshTest_WithEmptyFixture, can_be_created_without_blowing_up)
 {
-   Hexagon::Elements::DynamicGridMesh dynamic_grid_mesh;
 }
 
-TEST(Hexagon_Elements_DynamicGridMeshTest, run__returns_the_expected_response)
+TEST_F(Hexagon_Elements_DynamicGridMeshTest_WithAllegroRenderingFixture, render__draws_the_mesh)
 {
-   Hexagon::Elements::DynamicGridMesh dynamic_grid_mesh;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, dynamic_grid_mesh.run());
 }
 

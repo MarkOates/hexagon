@@ -1,18 +1,48 @@
 properties:
 
+
   - name: vertexes
     type: std::vector<ALLEGRO_VERTEX>
     init_with: '{}'
     getter: true
+  - name: texture
+    type: ALLEGRO_BITMAP*
+    init_with: nullptr
+    getter: true
+    setter: true
+    constructor_arg: true
+
 
 functions:
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+
+  - name: set_or_create_cell
+    body: return;
+
+
+  - name: delete_cell
+    body: return;
+
+
+  - name: render
+    type: void
+    body: |
+      al_draw_prim(
+         &vertexes[0],
+         nullptr,
+         texture,
+         0,
+         vertexes.size(),
+         ALLEGRO_PRIM_TRIANGLE_LIST
+      );
+      return;
+
 
 dependencies:
 
+
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
   - symbol: std::vector<ALLEGRO_VERTEX>
     headers: [ vector, allegro5/allegro_primitives.h ]
 
