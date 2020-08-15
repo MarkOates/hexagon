@@ -13,6 +13,7 @@ namespace Elements
 DynamicGridMesh::DynamicGridMesh(ALLEGRO_BITMAP* texture)
    : vertexes({})
    , texture(texture)
+   , cells({})
 {
 }
 
@@ -40,9 +41,34 @@ ALLEGRO_BITMAP* DynamicGridMesh::get_texture()
 }
 
 
-void DynamicGridMesh::set_or_create_cell()
+void DynamicGridMesh::create_cell(int x, int y, int u1, int v1, int u2, int v2, ALLEGRO_COLOR color)
 {
+int vertex_start = cells[std::tuple<int, int>(x, y)];
+
+// set the UV coordinates for the vertexes in the cell
+vertexes[vertex_start+0].u = u1;
+vertexes[vertex_start+0].v = v1;
+vertexes[vertex_start+1].u = u1;
+vertexes[vertex_start+1].v = v2;
+vertexes[vertex_start+2].u = u2;
+vertexes[vertex_start+2].v = v2;
+vertexes[vertex_start+3].u = u2;
+vertexes[vertex_start+3].v = v2;
+vertexes[vertex_start+4].u = u2;
+vertexes[vertex_start+4].v = v1;
+vertexes[vertex_start+5].u = u1;
+vertexes[vertex_start+5].v = v1;
+
+// set the vertexes in the mesh
+vertexes[vertex_start+0].color = color;
+vertexes[vertex_start+1].color = color;
+vertexes[vertex_start+2].color = color;
+vertexes[vertex_start+3].color = color;
+vertexes[vertex_start+4].color = color;
+vertexes[vertex_start+5].color = color;
+
 return;
+
 }
 
 void DynamicGridMesh::delete_cell()

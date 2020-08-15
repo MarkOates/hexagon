@@ -11,13 +11,63 @@ properties:
     getter: true
     setter: true
     constructor_arg: true
+  - name: cells
+    type: std::map<std::tuple<int, int>, int>
+    init_with: '{}'
 
 
 functions:
 
 
-  - name: set_or_create_cell
-    body: return;
+  - name: create_cell
+    parameters:
+      - name: x
+        type: int
+        default_argument: 0
+      - name: y
+        type: int
+        default_argument: 0
+      - name: u1
+        type: int
+        default_argument: 0
+      - name: v1
+        type: int
+        default_argument: 0
+      - name: u2
+        type: int
+        default_argument: 0
+      - name: v2
+        type: int
+        default_argument: 0
+      - name: color
+        type: ALLEGRO_COLOR
+        default_argument: '{0.0f, 0.0f, 0.0f, 0.0f}'
+    body: |
+      int vertex_start = cells[std::tuple<int, int>(x, y)];
+
+      // set the UV coordinates for the vertexes in the cell
+      vertexes[vertex_start+0].u = u1;
+      vertexes[vertex_start+0].v = v1;
+      vertexes[vertex_start+1].u = u1;
+      vertexes[vertex_start+1].v = v2;
+      vertexes[vertex_start+2].u = u2;
+      vertexes[vertex_start+2].v = v2;
+      vertexes[vertex_start+3].u = u2;
+      vertexes[vertex_start+3].v = v2;
+      vertexes[vertex_start+4].u = u2;
+      vertexes[vertex_start+4].v = v1;
+      vertexes[vertex_start+5].u = u1;
+      vertexes[vertex_start+5].v = v1;
+
+      // set the vertexes in the mesh
+      vertexes[vertex_start+0].color = color;
+      vertexes[vertex_start+1].color = color;
+      vertexes[vertex_start+2].color = color;
+      vertexes[vertex_start+3].color = color;
+      vertexes[vertex_start+4].color = color;
+      vertexes[vertex_start+5].color = color;
+
+      return;
 
 
   - name: delete_cell
@@ -43,6 +93,10 @@ dependencies:
 
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
   - symbol: std::vector<ALLEGRO_VERTEX>
     headers: [ vector, allegro5/allegro_primitives.h ]
+  - symbol: std::map<std::tuple<int, int>, int>
+    headers: [ map, tuple ]
 
