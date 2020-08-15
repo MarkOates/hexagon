@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/TitleScreen.hpp>
+#include <AllegroFlare/Profiler.hpp>
 #include <Hexagon/Logo.hpp>
 #include <allegro5/allegro_font.h>
 #include <Hexagon/Shaders/TiledHexagonMotionEffect.hpp>
@@ -45,6 +46,8 @@ if (!(al_get_target_bitmap()))
       error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
       throw std::runtime_error(error_message.str());
    }
+AllegroFlare::Profiler profiler;
+
 float logo_radius = 64;
 int display_width = al_get_bitmap_width(al_get_target_bitmap());
 int display_height = al_get_bitmap_height(al_get_target_bitmap());

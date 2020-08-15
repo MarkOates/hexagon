@@ -13,6 +13,8 @@ functions:
   - name: draw_hexagon_logo_and_wait_for_keypress
     guards: [ al_is_system_installed(), font_bin, al_get_target_bitmap() ]
     body: |
+       AllegroFlare::Profiler profiler;
+
        float logo_radius = 64;
        int display_width = al_get_bitmap_width(al_get_target_bitmap());
        int display_height = al_get_bitmap_height(al_get_target_bitmap());
@@ -86,6 +88,7 @@ functions:
 
        return;
     body_dependency_symbols:
+      - AllegroFlare::Profiler
       - Hexagon::Logo
       - ALLEGRO_FONT*
       - Hexagon::Shaders::TiledHexagonMotionEffect
@@ -113,6 +116,8 @@ dependencies:
 
   - symbol: Hexagon::Logo
     headers: [ Hexagon/Logo.hpp ]
+  - symbol: AllegroFlare::Profiler
+    headers: [ AllegroFlare/Profiler.hpp ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ALLEGRO_FONT*
