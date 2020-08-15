@@ -11,17 +11,11 @@ functions:
 
 
   - name: draw_hexagon_logo_and_wait_for_keypress
-    type: void
-    parameters:
-      - name: display_width
-        type: int
-        default_argument: 1
-      - name: display_height
-        type: int
-        default_argument: 1
-    guards: [ font_bin ]
+    guards: [ al_is_system_installed(), font_bin, al_get_target_bitmap() ]
     body: |
        float logo_radius = 64;
+       int display_width = al_get_bitmap_width(al_get_target_bitmap());
+       int display_height = al_get_bitmap_height(al_get_target_bitmap());
 
        std::string logo_font_identifier = "Expansiva_bold.otf 23";
        ALLEGRO_FONT *expansiva_font = font_bin->auto_get(logo_font_identifier);

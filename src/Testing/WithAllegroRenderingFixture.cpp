@@ -24,6 +24,12 @@ WithAllegroRenderingFixture::~WithAllegroRenderingFixture()
 }
 
 
+ALLEGRO_DISPLAY* WithAllegroRenderingFixture::get_display()
+{
+   return display;
+}
+
+
 AllegroFlare::FontBin &WithAllegroRenderingFixture::get_font_bin_ref()
 {
    return font_bin;

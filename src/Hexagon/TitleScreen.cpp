@@ -25,15 +25,29 @@ TitleScreen::~TitleScreen()
 }
 
 
-void TitleScreen::draw_hexagon_logo_and_wait_for_keypress(int display_width, int display_height)
+void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
 {
+if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 if (!(font_bin))
    {
       std::stringstream error_message;
       error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (!(al_get_target_bitmap()))
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 float logo_radius = 64;
+int display_width = al_get_bitmap_width(al_get_target_bitmap());
+int display_height = al_get_bitmap_height(al_get_target_bitmap());
 
 std::string logo_font_identifier = "Expansiva_bold.otf 23";
 ALLEGRO_FONT *expansiva_font = font_bin->auto_get(logo_font_identifier);
