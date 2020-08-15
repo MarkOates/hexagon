@@ -21,6 +21,7 @@ namespace Testing
       virtual ~WithAllegroRenderingFixture();
 
 
+      AllegroFlare::FontBin &get_font_bin_ref();
    virtual void SetUp() override;
    virtual void TearDown() override;
    ALLEGRO_FONT* get_any_font();

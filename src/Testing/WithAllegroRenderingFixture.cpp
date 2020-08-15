@@ -24,6 +24,12 @@ WithAllegroRenderingFixture::~WithAllegroRenderingFixture()
 }
 
 
+AllegroFlare::FontBin &WithAllegroRenderingFixture::get_font_bin_ref()
+{
+   return font_bin;
+}
+
+
 void WithAllegroRenderingFixture::SetUp()
 {
 ASSERT_EQ(false, al_is_system_installed());
