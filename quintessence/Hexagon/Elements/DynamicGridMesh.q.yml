@@ -1,4 +1,18 @@
+properties:
+
+  - name: vertexes
+    type: std::vector<ALLEGRO_VERTEX>
+    init_with: '{}'
+    getter: true
+
 functions:
+
   - name: run
     type: std::string
     body: return "Hello World!";
+
+dependencies:
+
+  - symbol: std::vector<ALLEGRO_VERTEX>
+    headers: [ vector, allegro5/allegro_primitives.h ]
+

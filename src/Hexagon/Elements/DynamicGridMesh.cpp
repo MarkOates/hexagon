@@ -11,12 +11,19 @@ namespace Elements
 
 
 DynamicGridMesh::DynamicGridMesh()
+   : vertexes({})
 {
 }
 
 
 DynamicGridMesh::~DynamicGridMesh()
 {
+}
+
+
+std::vector<ALLEGRO_VERTEX> DynamicGridMesh::get_vertexes()
+{
+   return vertexes;
 }
 
 
