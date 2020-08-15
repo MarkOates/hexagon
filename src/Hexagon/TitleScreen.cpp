@@ -83,9 +83,9 @@ al_draw_text(purista_font, hexagon_red,
 
 al_install_keyboard();
 
-ALLEGRO_EVENT_QUEUE *wait_for_keypress_event_queue;
-wait_for_keypress_event_queue = al_create_event_queue();
-al_register_event_source(wait_for_keypress_event_queue, al_get_keyboard_event_source());
+ALLEGRO_EVENT_QUEUE *primary_event_queue;
+primary_event_queue = al_create_event_queue();
+al_register_event_source(primary_event_queue, al_get_keyboard_event_source());
 
 al_flip_display();
 
@@ -94,12 +94,12 @@ bool abort_program = false;
 while (!abort_program)
 {
    ALLEGRO_EVENT event;
-   al_wait_for_event(wait_for_keypress_event_queue, &event);
+   al_wait_for_event(primary_event_queue, &event);
    if (event.type == ALLEGRO_EVENT_KEY_DOWN) abort_program = true;
 }
 
 al_stop_timer(primary_timer);
-al_destroy_event_queue(wait_for_keypress_event_queue);
+al_destroy_event_queue(primary_event_queue);
 al_destroy_timer(primary_timer);
 
 return;
