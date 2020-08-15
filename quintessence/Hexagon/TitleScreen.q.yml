@@ -48,6 +48,7 @@ functions:
        {
           ALLEGRO_EVENT event;
           al_wait_for_event(primary_event_queue, &event);
+
           switch(event.type)
           {
           case ALLEGRO_EVENT_KEY_DOWN:
