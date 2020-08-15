@@ -93,6 +93,7 @@ while (!abort_program)
       break;
    case ALLEGRO_EVENT_TIMER:
       {
+         profiler.emit("primary_timer logic started");
          Hexagon::Logo logo(
            display_width/2,
            display_height/2,
@@ -107,7 +108,9 @@ while (!abort_program)
             display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
             allegro_version_string.c_str());
 
+         profiler.emit("primary_timer logic ended");
          al_flip_display();
+         profiler.emit("al_flip_display logic completed");
       }
       break;
    default:
