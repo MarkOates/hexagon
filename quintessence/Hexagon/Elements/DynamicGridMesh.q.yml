@@ -52,6 +52,29 @@ functions:
         default_argument: '{0.0f, 0.0f, 0.0f, 0.0f}'
     body: |
       int vertex_start = cells[std::tuple<int, int>(x, y)];
+      int &v = vertex_start;
+
+      // set the XY coordinates for the vertexes in the cell
+      //long tile_num = v / 6;
+
+      int x1 = x * cell_width; //(tile_num % num_columns);
+      int y1 = y * cell_height; //(tile_num / num_columns);
+      int x2 = x1 + cell_width;
+      int y2 = y1 + cell_height;
+
+      // set the x/y coordinates for the vertexes
+      vertexes[v+0].x = x1;
+      vertexes[v+0].y = y1;
+      vertexes[v+1].x = x1;
+      vertexes[v+1].y = y2;
+      vertexes[v+2].x = x2;
+      vertexes[v+2].y = y2;
+      vertexes[v+3].x = x2;
+      vertexes[v+3].y = y2;
+      vertexes[v+4].x = x2;
+      vertexes[v+4].y = y1;
+      vertexes[v+5].x = x1;
+      vertexes[v+5].y = y1;
 
       // set the UV coordinates for the vertexes in the cell
       vertexes[vertex_start+0].u = u1;
@@ -66,14 +89,6 @@ functions:
       vertexes[vertex_start+4].v = v1;
       vertexes[vertex_start+5].u = u1;
       vertexes[vertex_start+5].v = v1;
-
-      // set the vertexes in the mesh
-      vertexes[vertex_start+0].color = color;
-      vertexes[vertex_start+1].color = color;
-      vertexes[vertex_start+2].color = color;
-      vertexes[vertex_start+3].color = color;
-      vertexes[vertex_start+4].color = color;
-      vertexes[vertex_start+5].color = color;
 
       return;
 

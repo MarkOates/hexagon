@@ -71,5 +71,8 @@ TEST_F(Hexagon_Elements_DynamicGridMeshTest_WithEmptyFixture, can_be_created_wit
 
 TEST_F(Hexagon_Elements_DynamicGridMeshTest_WithAllegroRenderingFixture, render__draws_the_mesh)
 {
+   al_clear_to_color(al_color_name("pink"));
+   al_flip_display();
+   sleep(2);
 }
 
