@@ -75,7 +75,7 @@ functions:
                    display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
                    allegro_version_string.c_str());
 
-                render_profiler_graph();
+                render_profiler_graph(&profiler, purista_font);
 
                 profiler.emit("primary_timer logic ended");
                 al_flip_display();
@@ -100,8 +100,24 @@ functions:
 
 
   - name: render_profiler_graph
+    parameters:
+      - name: profiler
+        type: AllegroFlare::Profiler*
+        default_argument: nullptr
+      - name: font
+        type: ALLEGRO_FONT*
+        default_argument: nullptr
+    guards: [ profiler, font ]
     body: |
-      //al_draw_text(20, 20)
+      std::list<std::string> event_bucket_names = profiler->get_event_bucket_names();
+      int y_cursor = 0;
+      int line_height = 20;
+      ALLEGRO_COLOR hexagon_red = al_color_html("#bc2d48");
+      for (auto &event_bucket_name : event_bucket_names)
+      {
+         al_draw_text(font, hexagon_red, 20, 20 + line_height * y_cursor, 0, event_bucket_name.c_str());
+         y_cursor++;
+      }
       return;
 
 
@@ -128,6 +144,8 @@ dependencies:
   - symbol: Hexagon::Logo
     headers: [ Hexagon/Logo.hpp ]
   - symbol: AllegroFlare::Profiler
+    headers: [ AllegroFlare/Profiler.hpp ]
+  - symbol: AllegroFlare::Profiler*
     headers: [ AllegroFlare/Profiler.hpp ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]

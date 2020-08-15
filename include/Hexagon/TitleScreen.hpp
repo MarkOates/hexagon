@@ -2,6 +2,8 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
+#include <AllegroFlare/Profiler.hpp>
+#include <allegro5/allegro_font.h>
 #include <string>
 
 
@@ -18,7 +20,7 @@ namespace Hexagon
 
 
    void draw_hexagon_logo_and_wait_for_keypress();
-   void render_profiler_graph();
+   void render_profiler_graph(AllegroFlare::Profiler* profiler=nullptr, ALLEGRO_FONT* font=nullptr);
    std::string build_allegro_version_string();
    };
 }

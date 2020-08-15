@@ -7,6 +7,8 @@
 #include <Hexagon/Shaders/TiledHexagonMotionEffect.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <allegro5/allegro.h>
 #include <sstream>
 
@@ -108,7 +110,7 @@ while (!abort_program)
             display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
             allegro_version_string.c_str());
 
-         render_profiler_graph();
+         render_profiler_graph(&profiler, purista_font);
 
          profiler.emit("primary_timer logic ended");
          al_flip_display();
@@ -128,9 +130,29 @@ return;
 
 }
 
-void TitleScreen::render_profiler_graph()
+void TitleScreen::render_profiler_graph(AllegroFlare::Profiler* profiler, ALLEGRO_FONT* font)
 {
-//al_draw_text(20, 20)
+if (!(profiler))
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "render_profiler_graph" << ": error: " << "guard \"profiler\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "render_profiler_graph" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+std::list<std::string> event_bucket_names = profiler->get_event_bucket_names();
+int y_cursor = 0;
+int line_height = 20;
+ALLEGRO_COLOR hexagon_red = al_color_html("#bc2d48");
+for (auto &event_bucket_name : event_bucket_names)
+{
+   al_draw_text(font, hexagon_red, 20, 20 + line_height * y_cursor, 0, event_bucket_name.c_str());
+   y_cursor++;
+}
 return;
 
 }
