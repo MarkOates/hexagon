@@ -97,6 +97,9 @@ while (!abort_program)
    case ALLEGRO_EVENT_TIMER:
       {
          profiler.emit("primary_timer logic started");
+
+         al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 1});
+
          Hexagon::Logo logo(
            display_width/2,
            display_height/2,
