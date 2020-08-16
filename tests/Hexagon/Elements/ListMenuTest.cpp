@@ -55,3 +55,13 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__does_not_blo
    list_menu.render();
 }
 
+TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_items_in_the_list)
+{
+   Hexagon::Elements::ListMenu list_menu(&font_bin);
+
+   list_menu.render();
+
+   al_flip_display();
+   sleep(2);
+}
+
