@@ -16,8 +16,8 @@ namespace Hexagon
       {
       private:
          AllegroFlare::FontBin* font_bin;
-         int cursor;
          std::vector<std::tuple<std::string, std::string>> list_items;
+         int cursor;
 
       public:
          ListMenu(AllegroFlare::FontBin* font_bin=nullptr);

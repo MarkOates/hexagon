@@ -14,8 +14,8 @@ namespace Elements
 
 ListMenu::ListMenu(AllegroFlare::FontBin* font_bin)
    : font_bin(font_bin)
-   , cursor(0)
    , list_items({})
+   , cursor(0)
 {
 }
 

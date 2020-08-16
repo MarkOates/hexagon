@@ -5,12 +5,12 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
-  - name: cursor
-    type: int
-    init_with: 0
   - name: list_items
     type: std::vector<std::tuple<std::string, std::string>>
     init_with: '{}'
+  - name: cursor
+    type: int
+    init_with: 0
 
 
 functions:
