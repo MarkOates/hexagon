@@ -13,8 +13,9 @@ namespace Elements
 {
 
 
-ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::vector<std::tuple<std::string, std::string>> list_items)
+ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vector<std::tuple<std::string, std::string>> list_items)
    : font_bin(font_bin)
+   , title(title)
    , list_items(list_items)
    , cursor(0)
 {
@@ -54,7 +55,35 @@ const float SQRT_3 = 1.73205f;
 
 float cpx = 1000;  // cursor pointer x
 float cpy = 900;  // cursor pointer y
-std::vector<float> points = { cpx, cpy,  cpx+1, cpx+SQRT_3 };
+float s = 40;
+std::vector<float> points = { cpx, cpy };
+float change[2] = { 0, 0 };
+
+change[0] = 1;
+change[1] = -SQRT_3;
+points.push_back(points[points.size()-2] + change[0] * s);
+points.push_back(points[points.size()-2] + change[1] * s);
+
+change[0] = 0.3;
+change[1] = 0;
+points.push_back(points[points.size()-2] + change[0] * s);
+points.push_back(points[points.size()-2] + change[1] * s);
+
+change[0] = 0;
+change[1] = SQRT_3*2;
+points.push_back(points[points.size()-2] + change[0] * s);
+points.push_back(points[points.size()-2] + change[1] * s);
+
+change[0] = -0.3;
+change[1] = 0;
+points.push_back(points[points.size()-2] + change[0] * s);
+points.push_back(points[points.size()-2] + change[1] * s);
+
+change[0] = -1;
+change[1] = -SQRT_3;
+points.push_back(points[points.size()-2] + change[0] * s);
+points.push_back(points[points.size()-2] + change[1] * s);
+
 al_draw_ribbon(&points[0], sizeof(float) * 2, color, 2.0, (points.size()/2));
 
 // draw background

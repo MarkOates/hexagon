@@ -57,12 +57,16 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__does_not_blo
 
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_items_in_the_list)
 {
-   Hexagon::Elements::ListMenu list_menu(&font_bin, {
-     { "Hexagon", "/Users/markoates/Repos/hexagon/" },
-     { "Solitare", "/Users/markoates/Repos/Solitare/" },
-     { "Blast", "/Users/markoates/Repos/blast/" },
-     { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
-   });
+   Hexagon::Elements::ListMenu list_menu(
+      &font_bin,
+      "Projects",
+      {
+         { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+         { "Solitare", "/Users/markoates/Repos/Solitare/" },
+         { "Blast", "/Users/markoates/Repos/blast/" },
+         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      }
+   );
 
    al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
    list_menu.move_cursor_down();
@@ -74,12 +78,16 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
 
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, move_cursor_down__will_move_the_position_of_the_cursor)
 {
-   Hexagon::Elements::ListMenu list_menu(&font_bin, {
-     { "Hexagon", "/Users/markoates/Repos/hexagon/" },
-     { "Solitare", "/Users/markoates/Repos/Solitare/" },
-     { "Blast", "/Users/markoates/Repos/blast/" },
-     { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
-   });
+   Hexagon::Elements::ListMenu list_menu(
+      &font_bin,
+      "Projects",
+      {
+         { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+         { "Solitare", "/Users/markoates/Repos/Solitare/" },
+         { "Blast", "/Users/markoates/Repos/blast/" },
+         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      }
+   );
 
    int passes = 2;
    for (unsigned i=0; i<passes; i++)

@@ -16,11 +16,12 @@ namespace Hexagon
       {
       private:
          AllegroFlare::FontBin* font_bin;
+         std::string title;
          std::vector<std::tuple<std::string, std::string>> list_items;
          int cursor;
 
       public:
-         ListMenu(AllegroFlare::FontBin* font_bin=nullptr, std::vector<std::tuple<std::string, std::string>> list_items={});
+         ListMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="+", std::vector<std::tuple<std::string, std::string>> list_items={});
          ~ListMenu();
 
 
