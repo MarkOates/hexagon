@@ -57,7 +57,10 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__does_not_blo
 
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_items_in_the_list)
 {
-   Hexagon::Elements::ListMenu list_menu(&font_bin);
+   Hexagon::Elements::ListMenu list_menu(&font_bin, {
+     { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+     { "Solitare", "/Users/markoates/Repos/Solitare/" },
+   });
 
    list_menu.render();
 

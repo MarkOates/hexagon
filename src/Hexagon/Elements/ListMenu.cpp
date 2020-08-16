@@ -2,6 +2,7 @@
 
 #include <Hexagon/Elements/ListMenu.hpp>
 #include <allegro5/allegro_primitives.h>
+#include <algorithm>
 #include <stdexcept>
 #include <sstream>
 
@@ -46,13 +47,13 @@ ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
 ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
 float width = 200;
 float height = 300;
+int line_height = al_get_font_line_height(font) * 1.2;
 
 // draw background
 //al_draw_rectangle(0, 0, width, height);
 
 // draw text
 int y = 0;
-int y_stride = 20;
 for (auto &list_item : list_items)
 {
    bool cursor_on_this_list_item = cursor == y;
@@ -60,16 +61,19 @@ for (auto &list_item : list_items)
    if (cursor_on_this_list_item)
    {
       // draw selection box
-      al_draw_filled_rectangle(0, y * y_stride, width, y * y_stride + y_stride, color);
+      al_draw_filled_rectangle(0, y * line_height, width, y * line_height + line_height, color);
    }
+
+   std::string text_to_render = std::get<0>(list_item).c_str();
+   std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
 
    al_draw_text(
       font,
       cursor_on_this_list_item ? off_color : color,
       0,
-      0 + y * y_stride,
+      0 + y * line_height,
       0,
-      std::get<1>(list_item).c_str()
+      text_to_render.c_str()
    );
    y++;
 }
@@ -86,7 +90,7 @@ if (!(font_bin))
       error_message << "ListMenu" << "::" << "obtain_list_item_font" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
-return font_bin->auto_get("Exan-Regular.ttf -16");
+return font_bin->auto_get("Exan-Regular.ttf -46");
 
 }
 } // namespace Elements
