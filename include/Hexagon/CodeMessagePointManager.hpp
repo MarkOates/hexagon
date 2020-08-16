@@ -21,7 +21,7 @@ namespace Hexagon
    void append(CodeMessagePoint code_message_point={});
    void clear();
    void delete_row(int row=0);
-   void insert_row();
+   void shift_rows_down_at_and_after(int row=0);
    };
 }
 

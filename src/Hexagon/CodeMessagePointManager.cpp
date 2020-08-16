@@ -57,8 +57,13 @@ return;
 
 }
 
-void CodeMessagePointManager::insert_row()
+void CodeMessagePointManager::shift_rows_down_at_and_after(int row)
 {
+for (auto &code_message_point : code_message_points)
+{
+   if (code_message_point.get_y() >= row)
+      code_message_point.move_to(code_message_point.get_x(), code_message_point.get_y()+1);
+}
 return;
 
 }
