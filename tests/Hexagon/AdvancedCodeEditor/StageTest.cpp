@@ -633,10 +633,10 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
    stage.render();
 
-   for (int i=0; i<30; i++)
+   for (int i=0; i<50; i++)
    {
       al_clear_to_color(al_color_name("black"));
-      stage.first_row_offset_move_down();
+      stage.first_row_offset_move_up();
       stage.render();
       al_flip_display();
       usleep(18000*2);
