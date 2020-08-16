@@ -5,19 +5,89 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+  - name: cursor
+    type: int
+    init_with: 0
+  - name: list_items
+    type: std::vector<std::tuple<std::string, std::string>>
+    init_with: '{}'
 
 
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: move_cursor_up
+    type: bool
+    body: |
+      cursor--;
+      return true;
+
+
+  - name: move_cursor_down
+    type: bool
+    body: |
+      cursor++;
+      return true;
+
+
+  - name: render
+    type: void
+    boards: [ is_primitives_addon_initialized() ]
+    body: |
+      ALLEGRO_FONT *font = obtain_list_item_font();
+      ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
+      ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
+      float width = 200;
+      float height = 300;
+
+      // draw background
+      //al_draw_rectangle(0, 0, width, height);
+
+      // draw text
+      int y = 0;
+      int y_stride = 20;
+      for (auto &list_item : list_items)
+      {
+         bool cursor_on_this_list_item = cursor == y;
+
+         if (cursor_on_this_list_item)
+         {
+            // draw selection box
+            al_draw_filled_rectangle(0, y * y_stride, width, y * y_stride + y_stride, color);
+         }
+
+         al_draw_text(
+            font,
+            cursor_on_this_list_item ? off_color : color,
+            0,
+            0 + y * y_stride,
+            0,
+            std::get<1>(list_item).c_str()
+         );
+         y++;
+      }
+
+      return;
+    body_dependency_symbols:
+      - al_draw_filled_rectangle
+
+
+  - name: obtain_list_item_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+       return font_bin->auto_get("Exan-Regular.ttf -16");
 
 
 dependencies:
 
 
+  - symbol: al_draw_filled_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: std::vector<std::tuple<std::string, std::string>>
+    headers: [ vector, tuple, string ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
 
