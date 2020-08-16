@@ -508,6 +508,7 @@ if (draw_notifications)
    }
 }
 
+/*
 if (draw_save_count)
 {
    // bottom left of screen
@@ -536,6 +537,20 @@ if (draw_search_count)
       ALLEGRO_ALIGN_LEFT,
       search_count_text_to_draw.c_str()
    );
+}
+*/
+
+bool draw_packet_in_progress = true;
+if (draw_packet_in_progress)
+{
+   ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
+   Hexagon::Packet packet_in_progress(search_count, save_count);
+   float x = left_column_x;
+   float y = frame_height - 130;
+   placement3d place(x, y, 0.0);
+
+   Hexagon::PacketRenderer packet_renderer(&packet_in_progress, packet_text_font, place.size.x, place.size.y);
+   packet_renderer.render();
 }
 
 if (draw_packets)
