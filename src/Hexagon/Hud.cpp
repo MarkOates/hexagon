@@ -7,6 +7,7 @@
 #include <allegro5/allegro.h>
 #include <AllegroFlare/Color.hpp>
 #include <Hexagon/shared_globals.hpp>
+#include <algorithm>
 #include <allegro_flare/placement3d.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
@@ -565,7 +566,10 @@ if (draw_packets)
    std::vector<Hexagon::Packet> packets_to_render = packets;
    packets_to_render.push_back(packet_in_progress);
 
-   for (int i = (packets_to_render.size()-1); i>=0; i--)
+   // 9, because golf has 9-hole halves, also divisible by 2 or 3. Good number
+   int num_packets_to_render = std::min(9, (int)(packets_to_render.size() - 1));
+
+   for (int i=num_packets_to_render; i>=0; i--)
    {
       auto &packet = packets_to_render[i];
       place.start_transform();

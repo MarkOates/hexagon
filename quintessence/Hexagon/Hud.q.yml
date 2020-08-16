@@ -404,7 +404,10 @@ functions:
          std::vector<Hexagon::Packet> packets_to_render = packets;
          packets_to_render.push_back(packet_in_progress);
 
-         for (int i = (packets_to_render.size()-1); i>=0; i--)
+         // 9, because golf has 9-hole halves, also divisible by 2 or 3. Good number
+         int num_packets_to_render = std::min(9, (int)(packets_to_render.size() - 1));
+
+         for (int i=num_packets_to_render; i>=0; i--)
          {
             auto &packet = packets_to_render[i];
             place.start_transform();
@@ -450,6 +453,7 @@ functions:
       al_restore_state(&previous_target_bitmap_state);
       return;
     body_dependency_symbols:
+      - std::min
       - placement3d
       - al_get_font_ascent
       - ALLEGRO_COLOR
@@ -465,6 +469,8 @@ functions:
 dependencies:
 
 
+  - symbol: std::min
+    headers: [ algorithm ]
   - symbol: Hexagon::Powerbar::Powerbar
     headers: [ Hexagon/Powerbar/Powerbar.hpp ]
   - symbol: Hexagon::Powerbar::Renderer
