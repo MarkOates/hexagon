@@ -10,7 +10,8 @@ namespace Elements
 {
 
 
-ListMenu::ListMenu()
+ListMenu::ListMenu(AllegroFlare::FontBin* font_bin)
+   : font_bin(font_bin)
 {
 }
 

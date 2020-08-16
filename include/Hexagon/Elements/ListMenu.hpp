@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/FontBin.hpp>
 #include <string>
 
 
@@ -11,9 +12,10 @@ namespace Hexagon
       class ListMenu
       {
       private:
+         AllegroFlare::FontBin* font_bin;
 
       public:
-         ListMenu();
+         ListMenu(AllegroFlare::FontBin* font_bin=nullptr);
          ~ListMenu();
 
 
