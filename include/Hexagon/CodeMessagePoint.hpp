@@ -24,7 +24,14 @@ private:
    type_t type;
 
 public:
-   CodeMessagePoint(int x, int y, int length, int cursor_placement_offset, std::string message, CodeMessagePoint::type_t type);
+   CodeMessagePoint(
+      int x=0,
+      int y=0,
+      int length=0,
+      int cursor_placement_offset=0,
+      std::string message="",
+      CodeMessagePoint::type_t type=NONE
+   );
    ~CodeMessagePoint();
 
    int get_x();
