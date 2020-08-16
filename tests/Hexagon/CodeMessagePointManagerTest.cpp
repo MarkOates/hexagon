@@ -10,13 +10,12 @@ TEST(Hexagon_CodeMessagePointManagerTest, can_be_created_without_blowing_up)
 
 TEST(Hexagon_CodeMessagePointManagerTest, append__will_add_a_new_message_point_to_the_end)
 {
-   // TODO
    Hexagon::CodeMessagePointManager code_message_point_manager;
 
-   std::vector<CodeMessagePoint> expected_code_message_points = {};
-   std::vector<CodeMessagePoint> actual_code_message_points = {};
+   code_message_point_manager.append( { 3, 4 } );
 
-   //code_message_point_manager.
+   std::vector<CodeMessagePoint> expected_code_message_points = { { 3, 4 } };
+   std::vector<CodeMessagePoint> actual_code_message_points = code_message_point_manager.get_code_message_points();
 
    ASSERT_EQ(expected_code_message_points.size(), actual_code_message_points.size());
 }
