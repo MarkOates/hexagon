@@ -165,7 +165,7 @@ TEST_F(Hexagon_Shaders_FunTest_WithEventQueueFixture, when_active__renders_the_i
    flat_color_shader.initialize();
    flat_color_shader.activate();
 
-   ALLEGRO_BITMAP *test_image = al_create_bitmap(16 * 50, 9 * 50);
+   ALLEGRO_BITMAP *test_image = al_create_bitmap(al_get_display_width(display), al_get_display_height(display));
    ASSERT_NE(nullptr, test_image);
 
    ALLEGRO_COLOR color = al_color_name("red");

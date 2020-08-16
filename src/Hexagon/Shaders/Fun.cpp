@@ -161,7 +161,7 @@ static const std::string source = R"DELIM(
      vec3 col = vec3(0.);
 
 
-     uv *= 5.;
+     uv *= 1.;
 
      vec4 hc = HexCoords(uv);
      float c = smoothstep(.05, .06, hc.y*sin(hc.z*hc.w+time));
