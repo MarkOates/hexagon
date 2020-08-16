@@ -636,7 +636,7 @@ ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
 ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
 std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
-for (unsigned y=0; y<num_rows; y++)
+for (unsigned y=first_row_offset; y<num_rows; y++)
 {
    for (unsigned x=0; x<num_columns; x++)
    {
