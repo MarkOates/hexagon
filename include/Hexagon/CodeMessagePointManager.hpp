@@ -2,7 +2,6 @@
 
 
 #include <Hexagon/CodeMessagePoint.hpp>
-#include <string>
 #include <vector>
 
 
@@ -18,7 +17,10 @@ namespace Hexagon
       ~CodeMessagePointManager();
 
 
-   std::string run();
+   void add();
+   void clear();
+   void delete_row();
+   void insert_row();
    };
 }
 

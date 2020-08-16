@@ -19,9 +19,28 @@ CodeMessagePointManager::~CodeMessagePointManager()
 }
 
 
-std::string CodeMessagePointManager::run()
+void CodeMessagePointManager::add()
 {
-return "Hello World!";
+return;
+
+}
+
+void CodeMessagePointManager::clear()
+{
+return;
+
+}
+
+void CodeMessagePointManager::delete_row()
+{
+return;
+
+}
+
+void CodeMessagePointManager::insert_row()
+{
+return;
+
 }
 } // namespace Hexagon
 

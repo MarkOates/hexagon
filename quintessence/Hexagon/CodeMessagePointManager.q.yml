@@ -9,9 +9,24 @@ properties:
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: add
+    body: |
+      return;
+
+
+  - name: clear
+    body: |
+      return;
+
+
+  - name: delete_row
+    body: |
+      return;
+
+
+  - name: insert_row
+    body: |
+      return;
 
 
 dependencies:
