@@ -44,6 +44,8 @@ public:
    bool infer_at_point(int x, int y);
 
    void move_to(int new_x, int new_y);
+
+   const bool operator==(const CodeMessagePoint &other);
 };
 
 

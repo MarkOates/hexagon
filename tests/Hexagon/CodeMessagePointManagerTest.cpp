@@ -17,7 +17,7 @@ TEST(Hexagon_CodeMessagePointManagerTest, append__will_add_a_new_message_point_t
    std::vector<CodeMessagePoint> expected_code_message_points = { { 3, 4 } };
    std::vector<CodeMessagePoint> actual_code_message_points = code_message_point_manager.get_code_message_points();
 
-   ASSERT_EQ(expected_code_message_points.size(), actual_code_message_points.size());
+   ASSERT_EQ(expected_code_message_points, actual_code_message_points);
 }
 
 TEST(Hexagon_CodeMessagePointManagerTest, delete_row__will_remove_all_message_points_on_the_row)

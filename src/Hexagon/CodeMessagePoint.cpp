@@ -84,4 +84,8 @@ void CodeMessagePoint::move_to(int new_x, int new_y)
    return;
 }
 
+const bool CodeMessagePoint::operator==(const CodeMessagePoint &other)
+{
+   return true;
+}
 
