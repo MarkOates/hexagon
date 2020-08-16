@@ -81,12 +81,6 @@ void Stage::set_input_buffer(std::string input_buffer)
 }
 
 
-void Stage::set_first_row_offset(int first_row_offset)
-{
-   this->first_row_offset = first_row_offset;
-}
-
-
 std::string Stage::get_filename()
 {
    return filename;
@@ -268,6 +262,22 @@ return advanced_code_editor.cursor_jump_to_next_word();
 bool Stage::cursor_jump_to_previous_word()
 {
 return advanced_code_editor.cursor_jump_to_previous_word();
+
+}
+
+bool Stage::first_row_offset_move_up()
+{
+first_row_offset -= 1;
+refresh_text_mesh_respecting_first_row_offset();
+return true;
+
+}
+
+bool Stage::first_row_offset_move_down()
+{
+first_row_offset += 1;
+refresh_text_mesh_respecting_first_row_offset();
+return true;
 
 }
 

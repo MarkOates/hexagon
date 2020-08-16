@@ -45,7 +45,6 @@ namespace Hexagon
 
          void set_filename(std::string filename);
          void set_input_buffer(std::string input_buffer);
-         void set_first_row_offset(int first_row_offset);
 
          std::string get_filename();
          std::string get_input_buffer();
@@ -70,6 +69,8 @@ namespace Hexagon
       bool cursor_move_to_end_of_line();
       bool cursor_jump_to_next_word();
       bool cursor_jump_to_previous_word();
+      bool first_row_offset_move_up();
+      bool first_row_offset_move_down();
       bool delete_character();
       bool join_lines();
       bool split_lines();

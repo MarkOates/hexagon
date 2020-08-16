@@ -65,7 +65,6 @@ properties:
     type: int
     init_with: 0
     getter: true
-    setter: true
   - name: surface_render
     type: ALLEGRO_BITMAP*
     init_with: nullptr
@@ -188,6 +187,22 @@ functions:
     type: bool
     body: |
       return advanced_code_editor.cursor_jump_to_previous_word();
+
+
+  - name: first_row_offset_move_up
+    type: bool
+    body: |
+      first_row_offset -= 1;
+      refresh_text_mesh_respecting_first_row_offset();
+      return true;
+
+
+  - name: first_row_offset_move_down
+    type: bool
+    body: |
+      first_row_offset += 1;
+      refresh_text_mesh_respecting_first_row_offset();
+      return true;
 
 
   - name: delete_character
