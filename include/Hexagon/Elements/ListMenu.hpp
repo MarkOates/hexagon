@@ -20,7 +20,7 @@ namespace Hexagon
          int cursor;
 
       public:
-         ListMenu(AllegroFlare::FontBin* font_bin=nullptr);
+         ListMenu(AllegroFlare::FontBin* font_bin=nullptr, std::vector<std::tuple<std::string, std::string>> list_items={});
          ~ListMenu();
 
 

@@ -12,9 +12,9 @@ namespace Elements
 {
 
 
-ListMenu::ListMenu(AllegroFlare::FontBin* font_bin)
+ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::vector<std::tuple<std::string, std::string>> list_items)
    : font_bin(font_bin)
-   , list_items({})
+   , list_items(list_items)
    , cursor(0)
 {
 }

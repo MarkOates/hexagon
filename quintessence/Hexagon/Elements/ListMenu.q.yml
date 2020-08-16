@@ -8,6 +8,7 @@ properties:
   - name: list_items
     type: std::vector<std::tuple<std::string, std::string>>
     init_with: '{}'
+    constructor_arg: true
   - name: cursor
     type: int
     init_with: 0
