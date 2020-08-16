@@ -207,31 +207,6 @@ while(!shutdown_program)
 
    if (refresh)
    {
-      //clear_notifications();
-
-      //for (auto &stage : system.stages)
-      //{
-      //   StageInterface::type_t type = stage->get_type();
-      //   if (type == CodeEditor::Stage::ONE_LINE_INPUT_BOX || type == CodeEditor::Stage::CODE_EDITOR)
-      //   {
-      //      bool this_stage_content_is_modified = static_cast<CodeEditor::Stage *>(stage)->get_content_is_modified();
-      //      if (this_stage_content_is_modified) add_notification(NOTIFICATION_FILE_IS_UNSAVED);
-      //   }
-      //}
-
-      //if (!is_last_compiled_error_messages_empty())
-      //{
-      //   std::vector<std::string> error_message_lines = Blast::StringSplitter(get_last_compiled_error_messages(), '\n').split();
-      //   for (auto &error_message_line : error_message_lines)
-      //   {
-      //      add_notification(error_message_line);
-      //   }
-      //}
-
-      //system.hud.set_notifications2({ "[ - ]" });
-      //system.hud.set_notifications(notifications);
-
-      //al_clear_to_color(al_color_name("black"));
       ALLEGRO_COLOR backfill_color = config.get_backfill_color();
       al_clear_to_color(backfill_color);
 
