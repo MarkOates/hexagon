@@ -58,7 +58,7 @@ functions:
 
                 al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 1});
 
-                //shader.activate();
+                shader.activate();
                 shader.set_texture_width(display_width);
                 shader.set_texture_height(display_height);
                 shader.set_time(al_get_time());
@@ -77,8 +77,10 @@ functions:
                 al_draw_text(purista_font, hexagon_red,
                    display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
                    allegro_version_string.c_str());
+                //shader.deactivate();
 
                 render_profiler_graph(&profiler, purista_font);
+                shader.deactivate();
 
                 profiler.emit("primary_timer logic ended");
                 profiler.emit("al_flip_display logic started");
