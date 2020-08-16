@@ -60,6 +60,8 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
    Hexagon::Elements::ListMenu list_menu(&font_bin, {
      { "Hexagon", "/Users/markoates/Repos/hexagon/" },
      { "Solitare", "/Users/markoates/Repos/Solitare/" },
+     { "Blast", "/Users/markoates/Repos/blast/" },
+     { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
    });
 
    list_menu.render();
