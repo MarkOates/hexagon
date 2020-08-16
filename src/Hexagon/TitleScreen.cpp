@@ -108,6 +108,9 @@ while (!abort_program)
          shader.set_texture_height(al_get_bitmap_height(dummy_bitmap));
          shader.set_time(al_get_time());
 
+         al_draw_bitmap(dummy_bitmap, 0, 0, 0);
+         shader.deactivate();
+
          Hexagon::Logo logo(
            display_width/2,
            display_height/2,
@@ -121,14 +124,8 @@ while (!abort_program)
          al_draw_text(purista_font, hexagon_red,
             display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
             allegro_version_string.c_str());
-         //shader.deactivate();
 
          render_profiler_graph(&profiler, purista_font);
-
-         al_draw_bitmap(dummy_bitmap, 0, 0, 0);
-         //al_draw_filled_rectangle(0, 0, 600, 200, ALLEGRO_COLOR{1,1,1,1});
-
-         shader.deactivate();
 
          profiler.emit("primary_timer logic ended");
          profiler.emit("al_flip_display logic started");
