@@ -560,19 +560,23 @@ if (draw_packets)
    bool draw_packet_in_progress = true;
    if (draw_packet_in_progress)
    {
-      ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
-      Hexagon::Packet packet_in_progress(search_count, save_count);
-      float x = left_column_x;
-      float y = frame_height - 130;
-      placement3d place(x, y, 0.0);
+      //ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
+      //Hexagon::Packet packet_in_progress(search_count, save_count);
+      //float x = left_column_x;
+      //float y = frame_height - 130;
+      //placement3d place(x, y, 0.0);
 
-      Hexagon::PacketRenderer packet_renderer(&packet_in_progress, packet_text_font, place.size.x, place.size.y);
-      packet_renderer.render();
+      //Hexagon::PacketRenderer packet_renderer(&packet_in_progress, packet_text_font, place.size.x, place.size.y);
+      //packet_renderer.render();
    }
 
-   for (int i = (packets.size()-1); i>=0; i--)
+   Hexagon::Packet packet_in_progress(search_count, save_count);
+   std::vector<Hexagon::Packet> packets_to_render = packets;
+   packets_to_render.push_back(packet_in_progress);
+
+   for (int i = (packets_to_render.size()-1); i>=0; i--)
    {
-      auto &packet = packets[i];
+      auto &packet = packets_to_render[i];
       place.start_transform();
 
       Hexagon::PacketRenderer packet_renderer(&packet, packet_text_font, place.size.x, place.size.y);
