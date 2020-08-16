@@ -418,6 +418,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    { "cursor_move_to_end_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_end_of_line },
    { "cursor_jump_to_next_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_next_word },
    { "cursor_jump_to_previous_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_word },
+   { "first_row_offset_move_up", &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_move_up },
+   { "first_row_offset_move_down", &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_move_down },
    { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
    { "save_file", &Hexagon::AdvancedCodeEditor::Stage::save_file },
 };
@@ -436,6 +438,8 @@ result.set_mapping(ALLEGRO_KEY_0, 0, { "cursor_move_to_start_of_line" });
 result.set_mapping(ALLEGRO_KEY_4, ALLEGRO_KEYMOD_SHIFT, { "cursor_move_to_end_of_line" });
 result.set_mapping(ALLEGRO_KEY_W, 0, { "cursor_jump_to_next_word" });
 result.set_mapping(ALLEGRO_KEY_B, 0, { "cursor_jump_to_previous_word" });
+result.set_mapping(ALLEGRO_KEY_Y, KeyboardCommandMapper::CTRL, { "first_row_offset_move_up" });
+result.set_mapping(ALLEGRO_KEY_E, KeyboardCommandMapper::CTRL, { "first_row_offset_move_down" });
 result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });
 result.set_mapping(ALLEGRO_KEY_BACKSPACE, ALLEGRO_KEYMOD_SHIFT, { "delete_line" });
 result.set_mapping(ALLEGRO_KEY_S, KeyboardCommandMapper::COMMAND, { "save_file" });
