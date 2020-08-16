@@ -18,7 +18,7 @@ namespace Hexagon
 
 
       std::vector<CodeMessagePoint> get_code_message_points();
-   void append(CodeMessagePoint code_message_point={ 0, 0, 0, 0, "", CodeMessagePoint::NONE });
+   void append(CodeMessagePoint code_message_point={});
    void clear();
    void delete_row(int row=0);
    void insert_row();

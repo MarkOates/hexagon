@@ -14,7 +14,7 @@ functions:
     parameters:
       - name: code_message_point
         type: CodeMessagePoint
-        default_argument: '{ 0, 0, 0, 0, "", CodeMessagePoint::NONE }'
+        default_argument: '{}'
     body: |
       code_message_points.push_back(code_message_point);
       return;
