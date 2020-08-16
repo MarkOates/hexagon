@@ -19,8 +19,9 @@ CodeMessagePointManager::~CodeMessagePointManager()
 }
 
 
-void CodeMessagePointManager::add()
+void CodeMessagePointManager::append(CodeMessagePoint code_message_point)
 {
+code_message_points.push_back(code_message_point);
 return;
 
 }

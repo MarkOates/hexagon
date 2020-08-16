@@ -9,8 +9,13 @@ properties:
 functions:
 
 
-  - name: add
+  - name: append
+    parameters:
+      - name: code_message_point
+        type: CodeMessagePoint
+        default_argument: '{ 0, 0, 0, 0, "", CodeMessagePoint::NONE }'
     body: |
+      code_message_points.push_back(code_message_point);
       return;
 
 
@@ -33,6 +38,8 @@ functions:
 dependencies:
 
 
+  - symbol: CodeMessagePoint
+    headers: [ Hexagon/CodeMessagePoint.hpp ]
   - symbol: std::vector<CodeMessagePoint>
     headers: [ vector, Hexagon/CodeMessagePoint.hpp ]
 
