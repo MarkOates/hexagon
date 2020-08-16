@@ -543,7 +543,7 @@ if (draw_search_count)
 
 if (draw_packets)
 {
-   float x = left_column_x - 20;
+   float x = left_column_x - 5;
    float y = frame_height - 100;
    float width = 130;
    float height = 90;
