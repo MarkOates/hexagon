@@ -45,7 +45,7 @@ public:
 
    void move_to(int new_x, int new_y);
 
-   const bool operator==(const CodeMessagePoint &other);
+   bool operator==(const CodeMessagePoint &other) const;
 };
 
 

@@ -84,8 +84,17 @@ void CodeMessagePoint::move_to(int new_x, int new_y)
    return;
 }
 
-const bool CodeMessagePoint::operator==(const CodeMessagePoint &other)
+
+
+bool CodeMessagePoint::operator==(const CodeMessagePoint &other) const
 {
-   return true;
+   return (
+     this->x == other.x
+     && this->y == other.y
+     && this->length == other.length
+     && this->cursor_placement_offset == other.cursor_placement_offset
+     && this->message == other.message
+     && this->type  == other.type
+   );
 }
 
