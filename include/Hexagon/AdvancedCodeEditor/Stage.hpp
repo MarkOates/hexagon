@@ -71,6 +71,7 @@ namespace Hexagon
       bool cursor_jump_to_previous_word();
       bool first_row_offset_move_up();
       bool first_row_offset_move_down();
+      bool first_row_offset_jump_to(int new_offset=0);
       bool delete_character();
       bool join_lines();
       bool split_lines();

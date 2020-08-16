@@ -268,7 +268,7 @@ return advanced_code_editor.cursor_jump_to_previous_word();
 bool Stage::first_row_offset_move_up()
 {
 first_row_offset -= 1;
-refresh_text_mesh_respecting_first_row_offset();
+refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
 return true;
 
 }
@@ -276,7 +276,15 @@ return true;
 bool Stage::first_row_offset_move_down()
 {
 first_row_offset += 1;
-refresh_text_mesh_respecting_first_row_offset();
+refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
+return true;
+
+}
+
+bool Stage::first_row_offset_jump_to(int new_offset)
+{
+first_row_offset = new_offset;
+refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
 return true;
 
 }

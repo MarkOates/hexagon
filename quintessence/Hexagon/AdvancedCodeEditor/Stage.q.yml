@@ -193,7 +193,7 @@ functions:
     type: bool
     body: |
       first_row_offset -= 1;
-      refresh_text_mesh_respecting_first_row_offset();
+      refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
       return true;
 
 
@@ -201,7 +201,19 @@ functions:
     type: bool
     body: |
       first_row_offset += 1;
-      refresh_text_mesh_respecting_first_row_offset();
+      refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
+      return true;
+
+
+  - name: first_row_offset_jump_to
+    parameters:
+      - name: new_offset
+        type: int
+        default_argument: 0
+    type: bool
+    body: |
+      first_row_offset = new_offset;
+      refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
       return true;
 
 
