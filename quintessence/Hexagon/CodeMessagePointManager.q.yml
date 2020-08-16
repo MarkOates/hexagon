@@ -16,6 +16,7 @@ functions:
 
   - name: clear
     body: |
+      code_message_points.clear();
       return;
 
 

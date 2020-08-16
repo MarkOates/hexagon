@@ -27,6 +27,7 @@ return;
 
 void CodeMessagePointManager::clear()
 {
+code_message_points.clear();
 return;
 
 }
