@@ -94,7 +94,7 @@ namespace Hexagon
       bool is_in_edit_mode();
       bool is_in_insert_mode();
       void refresh_render_surfaces();
-      void refresh_dirty_cells_on_surface_render();
+      void refresh_dirty_cells_on_surface_render_respecting_first_row_offset();
       void refresh_dirty_cells_on_text_mesh();
       void refresh_text_mesh_respecting_first_row_offset();
       void refresh_text_mesh();

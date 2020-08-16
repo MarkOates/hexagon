@@ -503,8 +503,8 @@ functions:
                                << timer.get_elapsed_time_microseconds() << std::endl;
 
       timer.reset(); timer.start();
-      refresh_dirty_cells_on_surface_render();
-      timer.pause(); std::cout << " refresh_dirty_cells_on_surface_render: "
+      refresh_dirty_cells_on_surface_render_respecting_first_row_offset();
+      timer.pause(); std::cout << " refresh_dirty_cells_on_surface_render_respecting_first_row_offset: "
                                << timer.get_elapsed_time_microseconds() << std::endl;
 
       advanced_code_editor.dirty_grid_clear();
@@ -514,7 +514,7 @@ functions:
       - AllegroFlare::Timer
 
 
-  - name: refresh_dirty_cells_on_surface_render
+  - name: refresh_dirty_cells_on_surface_render_respecting_first_row_offset
     private: true
     guards: [ initialized ]
     body: |

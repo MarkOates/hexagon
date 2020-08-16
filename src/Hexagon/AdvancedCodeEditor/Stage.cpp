@@ -579,8 +579,8 @@ timer.pause(); std::cout << " refresh_dirty_cells_on_text_mesh: "
                          << timer.get_elapsed_time_microseconds() << std::endl;
 
 timer.reset(); timer.start();
-refresh_dirty_cells_on_surface_render();
-timer.pause(); std::cout << " refresh_dirty_cells_on_surface_render: "
+refresh_dirty_cells_on_surface_render_respecting_first_row_offset();
+timer.pause(); std::cout << " refresh_dirty_cells_on_surface_render_respecting_first_row_offset: "
                          << timer.get_elapsed_time_microseconds() << std::endl;
 
 advanced_code_editor.dirty_grid_clear();
@@ -589,12 +589,12 @@ return;
 
 }
 
-void Stage::refresh_dirty_cells_on_surface_render()
+void Stage::refresh_dirty_cells_on_surface_render_respecting_first_row_offset()
 {
 if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "Stage" << "::" << "refresh_dirty_cells_on_surface_render" << ": error: " << "guard \"initialized\" not met";
+      error_message << "Stage" << "::" << "refresh_dirty_cells_on_surface_render_respecting_first_row_offset" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
 ALLEGRO_STATE previous_render_state;
