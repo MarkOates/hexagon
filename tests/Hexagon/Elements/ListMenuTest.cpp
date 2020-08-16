@@ -49,8 +49,9 @@ public:
    }
 };
 
-TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, can_be_created_without_blowing_up)
+TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__does_not_blow_up)
 {
-   Hexagon::Elements::ListMenu list_menu;
+   Hexagon::Elements::ListMenu list_menu(&font_bin);
+   list_menu.render();
 }
 
