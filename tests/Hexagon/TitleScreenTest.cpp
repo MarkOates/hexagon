@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 
 #include <Hexagon/TitleScreen.hpp>
+#include <allegro5/allegro_primitives.h>
 
 class Hexagon_TitleScreenTest : public ::testing::Test
 {
@@ -19,6 +20,7 @@ protected:
       ASSERT_EQ(false, al_is_system_installed());
       ASSERT_EQ(true, al_init());
 
+      al_init_primitives_addon();
       al_init_font_addon();
       al_init_ttf_addon();
 

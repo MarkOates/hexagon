@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/TitleScreen.hpp>
+#include <allegro5/allegro_primitives.h>
 #include <AllegroFlare/Profiler.hpp>
 #include <Hexagon/Logo.hpp>
 #include <allegro5/allegro_font.h>
@@ -35,6 +36,12 @@ if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
       error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(al_is_primitives_addon_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
       throw std::runtime_error(error_message.str());
    }
 if (!(font_bin))
@@ -74,6 +81,8 @@ ALLEGRO_TIMER *primary_timer = al_create_timer(1.0/60);
 al_register_event_source(primary_event_queue, al_get_timer_event_source(primary_timer));
 al_start_timer(primary_timer);
 
+ALLEGRO_BITMAP *dummy_bitmap = al_create_bitmap(display_width, display_height);
+
 // wait for keypress
 bool abort_program = false;
 while (!abort_program)
@@ -95,10 +104,9 @@ while (!abort_program)
          al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 1});
 
          shader.activate();
-         shader.set_texture_width(display_width);
-         shader.set_texture_height(display_height);
+         shader.set_texture_width(al_get_bitmap_width(dummy_bitmap));
+         shader.set_texture_height(al_get_bitmap_height(dummy_bitmap));
          shader.set_time(al_get_time());
-         //shader.deactivate();
 
          Hexagon::Logo logo(
            display_width/2,
@@ -116,6 +124,10 @@ while (!abort_program)
          //shader.deactivate();
 
          render_profiler_graph(&profiler, purista_font);
+
+         al_draw_bitmap(dummy_bitmap, 0, 0, 0);
+         //al_draw_filled_rectangle(0, 0, 600, 200, ALLEGRO_COLOR{1,1,1,1});
+
          shader.deactivate();
 
          profiler.emit("primary_timer logic ended");
@@ -129,6 +141,7 @@ while (!abort_program)
    }
 }
 
+al_destroy_bitmap(dummy_bitmap);
 al_stop_timer(primary_timer);
 al_destroy_event_queue(primary_event_queue);
 al_destroy_timer(primary_timer);

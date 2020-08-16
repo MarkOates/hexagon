@@ -11,7 +11,7 @@ functions:
 
 
   - name: draw_hexagon_logo_and_wait_for_keypress
-    guards: [ al_is_system_installed(), font_bin, al_get_target_bitmap() ]
+    guards: [ al_is_system_installed(), al_is_primitives_addon_initialized(), font_bin, al_get_target_bitmap() ]
     body: |
        AllegroFlare::Profiler profiler;
 
@@ -38,6 +38,8 @@ functions:
        al_register_event_source(primary_event_queue, al_get_timer_event_source(primary_timer));
        al_start_timer(primary_timer);
 
+       ALLEGRO_BITMAP *dummy_bitmap = al_create_bitmap(display_width, display_height);
+
        // wait for keypress
        bool abort_program = false;
        while (!abort_program)
@@ -59,10 +61,9 @@ functions:
                 al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 1});
 
                 shader.activate();
-                shader.set_texture_width(display_width);
-                shader.set_texture_height(display_height);
+                shader.set_texture_width(al_get_bitmap_width(dummy_bitmap));
+                shader.set_texture_height(al_get_bitmap_height(dummy_bitmap));
                 shader.set_time(al_get_time());
-                //shader.deactivate();
 
                 Hexagon::Logo logo(
                   display_width/2,
@@ -80,6 +81,10 @@ functions:
                 //shader.deactivate();
 
                 render_profiler_graph(&profiler, purista_font);
+
+                al_draw_bitmap(dummy_bitmap, 0, 0, 0);
+                //al_draw_filled_rectangle(0, 0, 600, 200, ALLEGRO_COLOR{1,1,1,1});
+
                 shader.deactivate();
 
                 profiler.emit("primary_timer logic ended");
@@ -93,12 +98,14 @@ functions:
           }
        }
 
+       al_destroy_bitmap(dummy_bitmap);
        al_stop_timer(primary_timer);
        al_destroy_event_queue(primary_event_queue);
        al_destroy_timer(primary_timer);
 
        return;
     body_dependency_symbols:
+      - al_draw_filled_rectangle
       - AllegroFlare::Profiler
       - Hexagon::Logo
       - ALLEGRO_FONT*
@@ -161,6 +168,8 @@ functions:
 dependencies:
 
 
+  - symbol: al_draw_filled_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
   - symbol: Hexagon::Logo
     headers: [ Hexagon/Logo.hpp ]
   - symbol: AllegroFlare::Profiler
