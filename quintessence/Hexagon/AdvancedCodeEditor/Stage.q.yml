@@ -523,7 +523,15 @@ functions:
       al_set_target_bitmap(surface_render);
       al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ZERO);
 
-      text_mesh.render_only_select_cells(advanced_code_editor.get_dirty_cells());
+      std::vector<std::pair<int, int>> transposed_dirty_cells;
+      for (auto dirty_cell : advanced_code_editor.get_dirty_cells())
+      {
+         std::get<1>(dirty_cell) -= first_row_offset;
+         transposed_dirty_cells.push_back(dirty_cell);
+      }
+
+      text_mesh.render_only_select_cells(transposed_dirty_cells);
+         //advanced_code_editor.get_dirty_cells());
 
       al_restore_state(&previous_render_state);
       return;
