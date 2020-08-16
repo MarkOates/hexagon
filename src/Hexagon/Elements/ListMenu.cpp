@@ -50,8 +50,12 @@ float width = 600;
 int line_height = al_get_font_line_height(font) * 1.2;
 
 // draw the box and pointer
-std::vector<float> points = { 100, 100,  300, 900,  1000, 500 };
-al_draw_ribbon(&points[0], sizeof(float) * 2, color, 2.0, 3);
+const float SQRT_3 = 1.73205f;
+
+float cpx = 1000;  // cursor pointer x
+float cpy = 900;  // cursor pointer y
+std::vector<float> points = { cpx, cpy,  cpx+1, cpx+SQRT_3 };
+al_draw_ribbon(&points[0], sizeof(float) * 2, color, 2.0, (points.size()/2));
 
 // draw background
 //al_draw_rectangle(0, 0, width, height);

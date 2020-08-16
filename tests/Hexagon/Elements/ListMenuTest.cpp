@@ -68,6 +68,8 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
    list_menu.move_cursor_down();
    list_menu.render();
    al_flip_display();
+
+   sleep(2);
 }
 
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, move_cursor_down__will_move_the_position_of_the_cursor)
@@ -86,7 +88,7 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, move_cursor_down__wi
       list_menu.move_cursor_down();
       list_menu.render();
       al_flip_display();
-      sleep(1);
+      //sleep(1);
    }
 }
 
