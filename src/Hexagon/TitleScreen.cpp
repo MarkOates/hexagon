@@ -64,12 +64,6 @@ ALLEGRO_FONT *expansiva_font = font_bin->auto_get(logo_font_identifier);
 std::string detail_text_font_identifier = "Purista Medium.otf 16";
 ALLEGRO_FONT *purista_font = font_bin->auto_get(detail_text_font_identifier);
 
-//shader.activate();
-shader.set_texture_width(display_width);
-shader.set_texture_height(display_height);
-shader.set_time(1000);
-//shader.deactivate();
-
 al_install_keyboard();
 
 ALLEGRO_EVENT_QUEUE *primary_event_queue;
@@ -99,6 +93,12 @@ while (!abort_program)
          profiler.emit("primary_timer logic started");
 
          al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 1});
+
+         //shader.activate();
+         shader.set_texture_width(display_width);
+         shader.set_texture_height(display_height);
+         shader.set_time(al_get_time());
+         //shader.deactivate();
 
          Hexagon::Logo logo(
            display_width/2,
