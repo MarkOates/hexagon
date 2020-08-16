@@ -85,6 +85,7 @@ ALLEGRO_BITMAP *dummy_bitmap = al_create_bitmap(display_width, display_height);
 
 // wait for keypress
 bool abort_program = false;
+bool draw_motion_effect = true;
 while (!abort_program)
 {
    ALLEGRO_EVENT event;
@@ -94,7 +95,18 @@ while (!abort_program)
    {
    case ALLEGRO_EVENT_KEY_DOWN:
       {
-        abort_program = true;
+         switch (event.keyboard.keycode)
+         {
+         case ALLEGRO_KEY_M:
+            // disable shader
+            draw_motion_effect = false;
+
+            // open dialog box
+            break;
+         default:
+            abort_program = true;
+            break;
+         }
       }
       break;
    case ALLEGRO_EVENT_TIMER:
@@ -103,13 +115,17 @@ while (!abort_program)
 
          al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 1});
 
-         shader.activate();
-         shader.set_texture_width(al_get_bitmap_width(dummy_bitmap));
-         shader.set_texture_height(al_get_bitmap_height(dummy_bitmap));
-         shader.set_time(al_get_time());
+         if (draw_motion_effect)
+         {
+            shader.activate();
+            shader.set_texture_width(al_get_bitmap_width(dummy_bitmap));
+            shader.set_texture_height(al_get_bitmap_height(dummy_bitmap));
+            shader.set_time(al_get_time());
 
-         al_draw_bitmap(dummy_bitmap, 0, 0, 0);
-         shader.deactivate();
+            al_draw_bitmap(dummy_bitmap, 0, 0, 0);
+
+            shader.deactivate();
+         }
 
          Hexagon::Logo logo(
            display_width/2,
