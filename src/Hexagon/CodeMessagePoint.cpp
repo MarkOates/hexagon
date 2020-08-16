@@ -77,3 +77,11 @@ bool CodeMessagePoint::infer_at_point(int x, int y)
 
 
 
+void CodeMessagePoint::move_to(int new_x, int new_y)
+{
+   this->x = new_x;
+   this->y = new_y;
+   return;
+}
+
+

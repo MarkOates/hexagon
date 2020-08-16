@@ -33,8 +33,20 @@ return;
 
 }
 
-void CodeMessagePointManager::delete_row()
+void CodeMessagePointManager::delete_row(int row)
 {
+for (int i=0; i<code_message_points.size(); i++)
+{
+   if (code_message_points[i].get_y() == row)
+   {
+      code_message_points.erase(code_message_points.begin() + i);
+      i--;
+   }
+   else if (code_message_points[i].get_y() >= row)
+   {
+      code_message_points[i].move_to(code_message_points[i].get_x(), code_message_points[i].get_y()-1);
+   }
+}
 return;
 
 }

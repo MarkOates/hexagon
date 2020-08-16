@@ -19,7 +19,7 @@ namespace Hexagon
 
    void append(CodeMessagePoint code_message_point={ 0, 0, 0, 0, "", CodeMessagePoint::NONE });
    void clear();
-   void delete_row();
+   void delete_row(int row=0);
    void insert_row();
    };
 }

@@ -35,6 +35,8 @@ public:
    std::string get_message();
    CodeMessagePoint::type_t get_type();
    bool infer_at_point(int x, int y);
+
+   void move_to(int new_x, int new_y);
 };
 
 

@@ -26,7 +26,23 @@ functions:
 
 
   - name: delete_row
+    parameters:
+      - name: row
+        type: int
+        default_argument: 0
     body: |
+      for (int i=0; i<code_message_points.size(); i++)
+      {
+         if (code_message_points[i].get_y() == row)
+         {
+            code_message_points.erase(code_message_points.begin() + i);
+            i--;
+         }
+         else if (code_message_points[i].get_y() >= row)
+         {
+            code_message_points[i].move_to(code_message_points[i].get_x(), code_message_points[i].get_y()-1);
+         }
+      }
       return;
 
 
