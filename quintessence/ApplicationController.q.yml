@@ -155,7 +155,10 @@ functions:
           case ALLEGRO_EVENT_TIMER:
              motion.update(al_get_time());
              //refresh = true;
-             if (motion.get_num_active_animations() == 0) continue;
+             static int previous_num_active_animations = 0;
+             if (previous_num_active_animations == 0 && motion.get_num_active_animations() == 0)
+                refresh = false;
+             previous_num_active_animations = motion.get_num_active_animations();
              break;
           }
 
