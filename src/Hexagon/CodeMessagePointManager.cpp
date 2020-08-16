@@ -9,6 +9,7 @@ namespace Hexagon
 
 
 CodeMessagePointManager::CodeMessagePointManager()
+   : code_message_points({})
 {
 }
 

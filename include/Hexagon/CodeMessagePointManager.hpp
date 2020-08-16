@@ -1,7 +1,9 @@
 #pragma once
 
 
+#include <Hexagon/CodeMessagePoint.hpp>
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -9,6 +11,7 @@ namespace Hexagon
    class CodeMessagePointManager
    {
    private:
+      std::vector<CodeMessagePoint> code_message_points;
 
    public:
       CodeMessagePointManager();

@@ -1,4 +1,22 @@
+properties:
+
+
+  - name: code_message_points
+    type: std::vector<CodeMessagePoint>
+    init_with: '{}'
+
+
 functions:
+
+
   - name: run
     type: std::string
     body: return "Hello World!";
+
+
+dependencies:
+
+
+  - symbol: std::vector<CodeMessagePoint>
+    headers: [ vector, Hexagon/CodeMessagePoint.hpp ]
+
