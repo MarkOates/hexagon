@@ -68,7 +68,8 @@ shader.initialize();
 std::string logo_font_identifier = "Expansiva_bold.otf 23";
 ALLEGRO_FONT *expansiva_font = font_bin->auto_get(logo_font_identifier);
 
-std::string detail_text_font_identifier = "Purista Medium.otf 16";
+std::string detail_text_font_identifier = "Exan-Regular.ttf 16";
+//"Purista Medium.otf 16";
 ALLEGRO_FONT *purista_font = font_bin->auto_get(detail_text_font_identifier);
 
 al_install_keyboard();
@@ -211,7 +212,7 @@ int revision = (version >> 8) & 255;
 int release = version & 255;
 
 std::stringstream result;
-result << "Allegro v" << major << "." << minor << "." << revision << " r" << release;
+result << "Allegro v" << major << "-" << minor << "-" << revision << " r" << release;
 return result.str();
 
 }

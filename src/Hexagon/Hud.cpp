@@ -336,7 +336,7 @@ return fonts[global_font_str];
 
 ALLEGRO_FONT* Hud::obtain_packet_text_font()
 {
-return fonts["Purista Medium.otf -16"];
+return fonts["Exan-Regular.ttf -14"];
 
 }
 

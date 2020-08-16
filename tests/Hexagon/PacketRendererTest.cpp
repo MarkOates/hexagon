@@ -70,7 +70,7 @@ public:
    }
 };
 std::string Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture::FONT_PATH =
-   "/Users/markoates/Repos/hexagon/bin/programs/data/fonts/Purista Medium.otf";
+   "/Users/markoates/Repos/hexagon/bin/programs/data/fonts/Exan-Regular.ttf";
 
 
 TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture,
@@ -98,6 +98,6 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   //sleep(2);
+   sleep(2);
 }
 

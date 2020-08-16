@@ -190,7 +190,7 @@ functions:
   - name: obtain_packet_text_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Purista Medium.otf -16"];
+      return fonts["Exan-Regular.ttf -14"];
 
 
   - name: obtain_component_navigator_font
