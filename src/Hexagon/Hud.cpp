@@ -540,19 +540,6 @@ if (draw_search_count)
 }
 */
 
-bool draw_packet_in_progress = true;
-if (draw_packet_in_progress)
-{
-   ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
-   Hexagon::Packet packet_in_progress(search_count, save_count);
-   float x = left_column_x;
-   float y = frame_height - 130;
-   placement3d place(x, y, 0.0);
-
-   Hexagon::PacketRenderer packet_renderer(&packet_in_progress, packet_text_font, place.size.x, place.size.y);
-   packet_renderer.render();
-}
-
 if (draw_packets)
 {
    float x = left_column_x;
@@ -569,6 +556,19 @@ if (draw_packets)
    place.align.x = 0.0;
    place.align.y = 1.0;
    ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
+
+   bool draw_packet_in_progress = true;
+   if (draw_packet_in_progress)
+   {
+      ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
+      Hexagon::Packet packet_in_progress(search_count, save_count);
+      float x = left_column_x;
+      float y = frame_height - 130;
+      placement3d place(x, y, 0.0);
+
+      Hexagon::PacketRenderer packet_renderer(&packet_in_progress, packet_text_font, place.size.x, place.size.y);
+      packet_renderer.render();
+   }
 
    for (int i = (packets.size()-1); i>=0; i--)
    {

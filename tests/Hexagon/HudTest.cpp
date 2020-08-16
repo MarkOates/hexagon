@@ -148,8 +148,8 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    hud.initialize();
 
    std::vector<Hexagon::Packet> packets = {
-      Hexagon::Packet(1, 42),
-      Hexagon::Packet(2, 15),
+      Hexagon::Packet(1, 8),
+      Hexagon::Packet(2, 3),
       Hexagon::Packet(3, 27),
    };
    hud.set_packets(packets);
@@ -158,7 +158,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   //sleep(2);
+   sleep(2);
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
