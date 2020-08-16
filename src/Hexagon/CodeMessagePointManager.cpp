@@ -19,6 +19,12 @@ CodeMessagePointManager::~CodeMessagePointManager()
 }
 
 
+std::vector<CodeMessagePoint> CodeMessagePointManager::get_code_message_points()
+{
+   return code_message_points;
+}
+
+
 void CodeMessagePointManager::append(CodeMessagePoint code_message_point)
 {
 code_message_points.push_back(code_message_point);

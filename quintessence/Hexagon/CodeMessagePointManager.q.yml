@@ -4,6 +4,7 @@ properties:
   - name: code_message_points
     type: std::vector<CodeMessagePoint>
     init_with: '{}'
+    getter: true
 
 
 functions:

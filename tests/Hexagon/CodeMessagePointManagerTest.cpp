@@ -11,7 +11,14 @@ TEST(Hexagon_CodeMessagePointManagerTest, can_be_created_without_blowing_up)
 TEST(Hexagon_CodeMessagePointManagerTest, append__will_add_a_new_message_point_to_the_end)
 {
    // TODO
-   //Hexagon::CodeMessagePointManager code_message_point_manager;
+   Hexagon::CodeMessagePointManager code_message_point_manager;
+
+   std::vector<CodeMessagePoint> expected_code_message_points = {};
+   std::vector<CodeMessagePoint> actual_code_message_points = {};
+
+   //code_message_point_manager.
+
+   ASSERT_EQ(expected_code_message_points.size(), actual_code_message_points.size());
 }
 
 TEST(Hexagon_CodeMessagePointManagerTest, delete_row__will_remove_all_message_points_on_the_row)
