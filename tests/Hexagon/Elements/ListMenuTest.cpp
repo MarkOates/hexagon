@@ -11,13 +11,11 @@ class Hexagon_Elements_ListMenuTest_WithEventQueueFixture : public ::testing::Te
 public:
    ALLEGRO_DISPLAY* display;
    AllegroFlare::FontBin font_bin;
-   ALLEGRO_EVENT_QUEUE *event_queue;
 
 public:
    Hexagon_Elements_ListMenuTest_WithEventQueueFixture()
       : display(nullptr)
       , font_bin()
-      , event_queue(nullptr)
    {}
 
    virtual void SetUp() override
@@ -29,9 +27,6 @@ public:
       al_init_ttf_addon();
       al_install_keyboard();
 
-      event_queue = al_create_event_queue();
-      al_register_event_source(event_queue, al_get_keyboard_event_source());
-
       font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
 
       display = al_create_display(1280 * 2, 720 * 2);
@@ -42,7 +37,6 @@ public:
    {
       font_bin.clear();
       al_destroy_display(display);
-      al_destroy_event_queue(event_queue);
       al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
       al_uninstall_system();
    }
