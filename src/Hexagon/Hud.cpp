@@ -566,8 +566,8 @@ if (draw_packets)
    std::vector<Hexagon::Packet> packets_to_render = packets;
    packets_to_render.push_back(packet_in_progress);
 
-   // 9, because golf has 9-hole halves, also divisible by 2 or 3. Good number
-   int num_packets_to_render = std::min(9, (int)(packets_to_render.size() - 1));
+   // 9, because golf has 9-hole halves, also divisible by 2 or 3. Good number.  Also 1 extra for the in-progress
+   int num_packets_to_render = std::min(10, (int)(packets_to_render.size() - 1));
 
    for (int i=num_packets_to_render; i>=0; i--)
    {
