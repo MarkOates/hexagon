@@ -542,10 +542,10 @@ if (draw_search_count)
 
 if (draw_packets)
 {
-   float x = left_column_x;
+   float x = left_column_x - 10;
    float y = frame_height - 130;
-   float width = 140;
-   float height = 100;
+   float width = 130;
+   float height = 90;
    float spacing = 20;
 
    float y_increment = -(height + spacing);
@@ -557,18 +557,7 @@ if (draw_packets)
    place.align.y = 1.0;
    ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
 
-   bool draw_packet_in_progress = true;
-   if (draw_packet_in_progress)
-   {
-      //ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
-      //Hexagon::Packet packet_in_progress(search_count, save_count);
-      //float x = left_column_x;
-      //float y = frame_height - 130;
-      //placement3d place(x, y, 0.0);
-
-      //Hexagon::PacketRenderer packet_renderer(&packet_in_progress, packet_text_font, place.size.x, place.size.y);
-      //packet_renderer.render();
-   }
+   al_draw_text(packet_text_font, ALLEGRO_COLOR{1, 1, 1, 1}, x, y, 0, "PACKETS");
 
    Hexagon::Packet packet_in_progress(search_count, save_count);
    std::vector<Hexagon::Packet> packets_to_render = packets;
