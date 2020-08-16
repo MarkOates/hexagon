@@ -70,7 +70,7 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
       list_menu.move_cursor_down();
       list_menu.render();
       al_flip_display();
-      sleep(2);
+      sleep(1);
    }
 }
 
