@@ -21,15 +21,32 @@ TEST(Hexagon_CodeMessagePointManagerTest, append__will_add_a_new_message_point_t
    ASSERT_EQ(expected_code_message_points, actual_code_message_points);
 }
 
-TEST(Hexagon_CodeMessagePointManagerTest, delete_row__will_remove_all_message_points_on_the_row)
+TEST(Hexagon_CodeMessagePointManagerTest, delete_row__will_remove_all_message_points_on_the_row__and_shift_up_lower_rows)
 {
-   // TODO
-   //Hexagon::CodeMessagePointManager code_message_point_manager;
-}
+   Hexagon::CodeMessagePointManager code_message_point_manager;
+   std::vector<CodeMessagePoint> code_message_points = {
+      { 1,  3 },
+      { 15,  4 },
+      { 3,  5 }, { 8, 5 },
+      { 52, 6 }, { 12, 6 }, { 32, 6 }, { 19, 6 },
+      { 2, 9 },
+   };
 
-TEST(Hexagon_CodeMessagePointManagerTest, delete_row__will_shift_all_the_consequent_lines_up_by_a_row)
-{
-   // TODO
-   //Hexagon::CodeMessagePointManager code_message_point_manager;
+   // fill with the source data
+   for (auto &code_message_point : code_message_points)
+   {
+      code_message_point_manager.append(code_message_point);
+   }
+   code_message_point_manager.delete_row(5);
+
+   std::vector<CodeMessagePoint> expected_code_message_points = {
+      { 1,  3 },
+      { 15,  4 },
+      { 52, 5 }, { 12, 5 }, { 32, 5 }, { 19, 5 },
+      { 2, 8 },
+   };
+   std::vector<CodeMessagePoint> actual_code_message_points = code_message_point_manager.get_code_message_points();
+
+   ASSERT_EQ(expected_code_message_points, actual_code_message_points);
 }
 
