@@ -633,14 +633,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
    stage.render();
 
-   for (int i=-10; i<10; i++)
+   for (int i=0; i<30; i++)
    {
       al_clear_to_color(al_color_name("black"));
       stage.first_row_offset_move_down();
       stage.render();
       al_flip_display();
+      usleep(18000);
    }
-
-   sleep(1);
 }
 
