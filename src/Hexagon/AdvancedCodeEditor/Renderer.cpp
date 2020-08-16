@@ -54,7 +54,8 @@ timer.pause(); std::cout << " window render: " << timer.get_elapsed_time_microse
 
 // draw the surface render
 timer.reset(); timer.start();
-if (surface_render) al_draw_bitmap(surface_render, 0, text_mesh_y_offset, 0);
+//if (surface_render) al_draw_bitmap(surface_render, 0, text_mesh_y_offset, 0);
+text_mesh->render();
 timer.pause(); std::cout << " surface_render render time: " << timer.get_elapsed_time_microseconds() << std::endl;
 
 // draw the cursor

@@ -639,7 +639,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
       stage.first_row_offset_move_down();
       stage.render();
       al_flip_display();
-      usleep(18000);
+      usleep(18000*2);
    }
 }
 
