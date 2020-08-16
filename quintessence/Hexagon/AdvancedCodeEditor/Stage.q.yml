@@ -61,6 +61,10 @@ properties:
     type: float
     init_with: 0.0f
     getter: true
+  - name: first_row_offset
+    type: int
+    init_with: 0
+    getter: true
   - name: surface_render
     type: ALLEGRO_BITMAP*
     init_with: nullptr
@@ -526,6 +530,38 @@ functions:
 
          text_mesh.set_cell_character(x, y, char_to_set);
          text_mesh.set_cell_color(x, y, color_to_set);
+      }
+      return;
+
+
+  - name: refresh_text_mesh_respecting_first_row_offset
+    private: true
+    guards: [ initialized ]
+    body: |
+      char clear_char = '\0';
+      ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+      ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+      std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+
+      for (unsigned y=0; y<num_rows; y++)
+      {
+         for (unsigned x=0; x<num_columns; x++)
+         {
+            char char_to_set = clear_char;
+            ALLEGRO_COLOR color_to_set = clear_color;
+
+            if (y < lines.size())
+            {
+               if (x < lines[y].size())
+               {
+                  char_to_set = lines[y][x];
+                  color_to_set = on_color;
+               }
+            }
+
+            text_mesh.set_cell_character(x, y, char_to_set);
+            text_mesh.set_cell_color(x, y, color_to_set);
+         }
       }
       return;
 

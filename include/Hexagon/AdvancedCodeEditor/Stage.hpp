@@ -36,6 +36,7 @@ namespace Hexagon
          bool initialized;
          float offset_y;
          float offset_y_updated_at;
+         int first_row_offset;
          ALLEGRO_BITMAP* surface_render;
 
       public:
@@ -50,6 +51,7 @@ namespace Hexagon
          bool get_initialized();
          float get_offset_y();
          float get_offset_y_updated_at();
+         int get_first_row_offset();
          ALLEGRO_BITMAP* get_surface_render();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          std::string &get_input_buffer_ref();
@@ -91,6 +93,7 @@ namespace Hexagon
       void refresh_render_surfaces();
       void refresh_dirty_cells_on_surface_render();
       void refresh_dirty_cells_on_text_mesh();
+      void refresh_text_mesh_respecting_first_row_offset();
       void refresh_text_mesh();
       };
    }
