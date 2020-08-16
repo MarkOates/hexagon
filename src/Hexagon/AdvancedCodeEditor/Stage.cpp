@@ -81,6 +81,12 @@ void Stage::set_input_buffer(std::string input_buffer)
 }
 
 
+void Stage::set_first_row_offset(int first_row_offset)
+{
+   this->first_row_offset = first_row_offset;
+}
+
+
 std::string Stage::get_filename()
 {
    return filename;

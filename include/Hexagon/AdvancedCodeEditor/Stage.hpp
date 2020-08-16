@@ -45,6 +45,7 @@ namespace Hexagon
 
          void set_filename(std::string filename);
          void set_input_buffer(std::string input_buffer);
+         void set_first_row_offset(int first_row_offset);
 
          std::string get_filename();
          std::string get_input_buffer();

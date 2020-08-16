@@ -65,6 +65,7 @@ properties:
     type: int
     init_with: 0
     getter: true
+    setter: true
   - name: surface_render
     type: ALLEGRO_BITMAP*
     init_with: nullptr

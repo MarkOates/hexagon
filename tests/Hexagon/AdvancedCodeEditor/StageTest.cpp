@@ -619,4 +619,26 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    ASSERT_EQ(lines_read_from_created_file, lines_from_stage);
 }
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   render__will_respect_the_first_row_offset)
+{
+   std::string filename = std::tmpnam(nullptr);
+
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 50, 40);
+   stage.initialize();
+   stage.set_filename(filename);
+   stage.set_content(SONNET_TEXT);
+
+   stage.get_place().position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+
+   stage.render();
+
+   for (int i=-10; i<10; i++)
+   {
+      al_clear_to_color(al_color_name("black"));
+      stage.set_first_row_offset(i);
+      stage.render();
+      al_flip_display();
+   }
+}
 
