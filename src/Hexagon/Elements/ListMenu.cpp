@@ -82,6 +82,9 @@ for (auto &list_item : list_items)
    {
       // draw selection box
       al_draw_filled_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color);
+
+      // draw the cursor arrow
+      draw_cursor_pointer_arrow();
    }
 
    std::string text_to_render = std::get<0>(list_item).c_str();
