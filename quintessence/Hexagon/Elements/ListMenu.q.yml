@@ -120,7 +120,7 @@ functions:
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
-       return font_bin->auto_get("Exan-Regular.ttf -28");
+       return font_bin->auto_get("Exan-Regular.ttf -23");
 
 
   - name: draw_cursor_pointer_arrow
@@ -146,7 +146,7 @@ functions:
       points.push_back(points[points.size()-2] + change[0] * s);
       points.push_back(points[points.size()-2] + change[1] * s);
 
-      change[0] = 0.3;
+      change[0] = 0.275;
       change[1] = 0;
       points.push_back(points[points.size()-2] + change[0] * s);
       points.push_back(points[points.size()-2] + change[1] * s);
@@ -156,7 +156,7 @@ functions:
       points.push_back(points[points.size()-2] + change[0] * s);
       points.push_back(points[points.size()-2] + change[1] * s);
 
-      change[0] = -0.3;
+      change[0] = -0.275;
       change[1] = 0;
       points.push_back(points[points.size()-2] + change[0] * s);
       points.push_back(points[points.size()-2] + change[1] * s);

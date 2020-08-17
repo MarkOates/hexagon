@@ -126,7 +126,7 @@ if (!(font_bin))
       error_message << "ListMenu" << "::" << "obtain_list_item_font" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
-return font_bin->auto_get("Exan-Regular.ttf -28");
+return font_bin->auto_get("Exan-Regular.ttf -23");
 
 }
 
@@ -146,7 +146,7 @@ change[1] = -SQRT_3;
 points.push_back(points[points.size()-2] + change[0] * s);
 points.push_back(points[points.size()-2] + change[1] * s);
 
-change[0] = 0.3;
+change[0] = 0.275;
 change[1] = 0;
 points.push_back(points[points.size()-2] + change[0] * s);
 points.push_back(points[points.size()-2] + change[1] * s);
@@ -156,7 +156,7 @@ change[1] = SQRT_3*2;
 points.push_back(points[points.size()-2] + change[0] * s);
 points.push_back(points[points.size()-2] + change[1] * s);
 
-change[0] = -0.3;
+change[0] = -0.275;
 change[1] = 0;
 points.push_back(points[points.size()-2] + change[0] * s);
 points.push_back(points[points.size()-2] + change[1] * s);
