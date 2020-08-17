@@ -18,8 +18,6 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , title(title)
    , list_items(list_items)
    , cursor(0)
-   , x(0)
-   , y(0)
 {
 }
 

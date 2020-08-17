@@ -19,8 +19,6 @@ namespace Hexagon
          std::string title;
          std::vector<std::tuple<std::string, std::string>> list_items;
          int cursor;
-         int x;
-         int y;
 
       public:
          ListMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="+", std::vector<std::tuple<std::string, std::string>> list_items={});

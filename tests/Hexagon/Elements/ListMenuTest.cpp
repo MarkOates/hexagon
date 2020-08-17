@@ -68,12 +68,15 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
          { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       }
    );
+   placement3d place = centered_placement(0, 0);
 
    list_menu.move_cursor_down();
    list_menu.move_cursor_down();
 
    al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
+   place.start_transform();
    list_menu.render();
+   place.restore_transform();
    al_flip_display();
 
    sleep(2);

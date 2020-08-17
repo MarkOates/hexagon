@@ -16,12 +16,6 @@ properties:
   - name: cursor
     type: int
     init_with: 0
-  - name: x
-    type: int
-    init_with: 0
-  - name: y
-    type: int
-    init_with: 0
 
 
 functions:
