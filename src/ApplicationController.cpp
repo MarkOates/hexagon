@@ -155,6 +155,7 @@ initialize();
 AllegroFlare::FontBin font_bin;
 font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
 Hexagon::TitleScreen title_screen(&font_bin);
+title_screen.initialize();
 title_screen.draw_hexagon_logo_and_wait_for_keypress();
 font_bin.clear();
 
