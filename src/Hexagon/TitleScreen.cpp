@@ -201,6 +201,16 @@ while (!abort_program)
          profiler.emit("al_flip_display logic started");
          al_flip_display();
          profiler.emit("al_flip_display logic ended");
+
+         bool drop_backed_up_primary_timer_events = true;
+         if (drop_backed_up_primary_timer_events)
+         {
+            ALLEGRO_EVENT next_event;
+            while (al_peek_next_event(primary_event_queue, &next_event)
+                 && next_event.type == ALLEGRO_EVENT_TIMER
+                 && next_event.timer.source == primary_timer)
+              al_drop_next_event(primary_event_queue);
+         }
       }
       break;
    default:
