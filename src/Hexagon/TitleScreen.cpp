@@ -59,7 +59,7 @@ return;
 
 bool TitleScreen::main_menu_cursor_move_up()
 {
-return main_menu.move_cursor_down();
+return main_menu.move_cursor_up();
 
 }
 
@@ -150,16 +150,10 @@ while (!abort_program)
             // open dialog box
             break;
          case ALLEGRO_KEY_J:
-            // disable shader
-            draw_motion_effect = false;
-
-            // open dialog box
+            main_menu_cursor_move_down();
             break;
          case ALLEGRO_KEY_K:
-            // disable shader
-            draw_motion_effect = false;
-
-            // open dialog box
+            main_menu_cursor_move_up();
             break;
          default:
             abort_program = true;
