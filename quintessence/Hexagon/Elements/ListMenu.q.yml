@@ -60,6 +60,7 @@ functions:
       if (draw_title)
       {
          std::string text_to_render = title;
+         std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
          al_draw_text(
             font,
             color,
