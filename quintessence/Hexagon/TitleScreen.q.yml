@@ -20,12 +20,12 @@ functions:
   - name: initialize
     body: |
       main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
-         { "Hexagon", "/Users/markoates/Repos/hexagon" },
-         { "Blast", "/Users/markoates/Repos/blast" },
-         { "LightracerMax", "/Users/markoates/Repos/lightracer-max" },
-         { "NcursesArt", "/Users/markoates/Repos/ncurses_art" },
-         { "Solitare", "/Users/markoates/Repos/Solitare" },
-         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare" },
+         { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+         { "Blast", "/Users/markoates/Repos/blast/" },
+         { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
+         { "NcursesArt", "/Users/markoates/Repos/ncurses_art/" },
+         { "Solitare", "/Users/markoates/Repos/Solitare/" },
+         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       });
       initialized = true;
       return;
@@ -41,6 +41,12 @@ functions:
     type: bool
     body: |
        return main_menu.move_cursor_down();
+
+
+  - name: main_menu_get_current_list_item_identifier
+    type: std::string
+    body: |
+       return main_menu.get_current_list_item_identifier();
 
 
   - name: draw_hexagon_logo_and_wait_for_keypress
@@ -104,6 +110,10 @@ functions:
                    break;
                 case ALLEGRO_KEY_K:
                    main_menu_cursor_move_up();
+                   break;
+                case ALLEGRO_KEY_ENTER:
+                   append_project_path_to_config_file();
+                   abort_program = true;
                    break;
                 default:
                    abort_program = true;
@@ -251,9 +261,25 @@ functions:
       - std::stringstream
 
 
+  - name: append_project_path_to_config_file
+    body: |
+      std::string config_filename = "/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg";
+      std::string current_menu_selection_path_text = main_menu_get_current_list_item_identifier();
+
+      std::ofstream outfile;
+      outfile.open(config_filename, std::ios_base::app); // append instead of overwrite
+      outfile << std::endl << "default_navigator_directory = " << current_menu_selection_path_text;
+
+      return;
+    body_dependency_symbols:
+      - std::ofstream
+
+
 dependencies:
 
 
+  - symbol: std::ofstream
+    headers: [ fstream ]
   - symbol: al_draw_filled_rectangle
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: placement3d

@@ -17,6 +17,7 @@
 #include <sstream>
 #include <allegro5/allegro.h>
 #include <sstream>
+#include <fstream>
 
 
 namespace Hexagon
@@ -45,12 +46,12 @@ bool TitleScreen::get_initialized()
 void TitleScreen::initialize()
 {
 main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
-   { "Hexagon", "/Users/markoates/Repos/hexagon" },
-   { "Blast", "/Users/markoates/Repos/blast" },
-   { "LightracerMax", "/Users/markoates/Repos/lightracer-max" },
-   { "NcursesArt", "/Users/markoates/Repos/ncurses_art" },
-   { "Solitare", "/Users/markoates/Repos/Solitare" },
-   { "AllegroFlare", "/Users/markoates/Repos/allegro_flare" },
+   { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+   { "Blast", "/Users/markoates/Repos/blast/" },
+   { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
+   { "NcursesArt", "/Users/markoates/Repos/ncurses_art/" },
+   { "Solitare", "/Users/markoates/Repos/Solitare/" },
+   { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
 });
 initialized = true;
 return;
@@ -66,6 +67,12 @@ return main_menu.move_cursor_up();
 bool TitleScreen::main_menu_cursor_move_down()
 {
 return main_menu.move_cursor_down();
+
+}
+
+std::string TitleScreen::main_menu_get_current_list_item_identifier()
+{
+return main_menu.get_current_list_item_identifier();
 
 }
 
@@ -154,6 +161,10 @@ while (!abort_program)
             break;
          case ALLEGRO_KEY_K:
             main_menu_cursor_move_up();
+            break;
+         case ALLEGRO_KEY_ENTER:
+            append_project_path_to_config_file();
+            abort_program = true;
             break;
          default:
             abort_program = true;
@@ -296,6 +307,19 @@ int release = version & 255;
 std::stringstream result;
 result << "Allegro v" << major << "-" << minor << "-" << revision << " r" << release;
 return result.str();
+
+}
+
+void TitleScreen::append_project_path_to_config_file()
+{
+std::string config_filename = "/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg";
+std::string current_menu_selection_path_text = main_menu_get_current_list_item_identifier();
+
+std::ofstream outfile;
+outfile.open(config_filename, std::ios_base::app); // append instead of overwrite
+outfile << std::endl << "default_navigator_directory = " << current_menu_selection_path_text;
+
+return;
 
 }
 } // namespace Hexagon
