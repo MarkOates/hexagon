@@ -8,6 +8,9 @@
 #include <Hexagon/Shaders/TiledHexagonMotionEffect.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/Elements/ListMenu.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/Elements/DataTable.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -142,6 +145,8 @@ while (!abort_program)
             display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
             allegro_version_string.c_str());
 
+         draw_menu();
+
          render_profiler_graph(&profiler, purista_font);
 
          profiler.emit("primary_timer logic ended");
@@ -160,6 +165,22 @@ al_stop_timer(primary_timer);
 al_destroy_event_queue(primary_event_queue);
 al_destroy_timer(primary_timer);
 
+return;
+
+}
+
+void TitleScreen::draw_menu()
+{
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+Hexagon::Elements::ListMenu list_menu(font_bin, "Projects", {
+   { "Hexagon", "/Users/markoates/Repos/hexagon" },
+});
+list_menu.render();
 return;
 
 }

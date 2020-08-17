@@ -20,6 +20,7 @@ namespace Hexagon
 
 
    void draw_hexagon_logo_and_wait_for_keypress();
+   void draw_menu();
    void render_profiler_graph(AllegroFlare::Profiler* profiler=nullptr, ALLEGRO_FONT* font=nullptr);
    std::string build_allegro_version_string();
    };

@@ -99,6 +99,8 @@ functions:
                    display_width/2, display_height/2 + logo_radius * 2.0, ALLEGRO_ALIGN_CENTER,
                    allegro_version_string.c_str());
 
+                draw_menu();
+
                 render_profiler_graph(&profiler, purista_font);
 
                 profiler.emit("primary_timer logic ended");
@@ -124,6 +126,18 @@ functions:
       - Hexagon::Logo
       - ALLEGRO_FONT*
       - Hexagon::Shaders::TiledHexagonMotionEffect
+
+
+  - name: draw_menu
+    guards: [ font_bin ]
+    body: |
+      Hexagon::Elements::ListMenu list_menu(font_bin, "Projects", {
+         { "Hexagon", "/Users/markoates/Repos/hexagon" },
+      });
+      list_menu.render();
+      return;
+    body_dependency_symbols:
+      - Hexagon::Elements::ListMenu
 
 
   - name: render_profiler_graph
@@ -198,6 +212,8 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: al_get_allegro_version
     headers: [ allegro5/allegro.h ]
+  - symbol: Hexagon::Elements::ListMenu
+    headers: [ Hexagon/Elements/ListMenu.hpp ]
   - symbol: Hexagon::Shaders::TiledHexagonMotionEffect
     headers: [ Hexagon/Shaders/TiledHexagonMotionEffect.hpp ]
 
