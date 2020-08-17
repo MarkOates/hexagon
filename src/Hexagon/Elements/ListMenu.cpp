@@ -51,8 +51,6 @@ float width = 600;
 int line_height = al_get_font_line_height(font) * 1.2;
 int line_num = 0;
 
-draw_cursor_pointer_arrow();
-
 // draw background
 //al_draw_rectangle(0, 0, width, height);
 
