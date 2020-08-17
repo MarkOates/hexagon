@@ -140,7 +140,7 @@ functions:
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
-       return font_bin->auto_get("Exan-Regular.ttf -26");
+       return font_bin->auto_get("Exan-Regular.ttf -28");
 
 
 dependencies:
