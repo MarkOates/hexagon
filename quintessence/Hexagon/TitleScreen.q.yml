@@ -5,13 +5,38 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+  - name: main_menu
+    type: Hexagon::Elements::ListMenu
+    init_with: '{}'
+  - name: initialized
+    type: bool
+    init_with: false
+    getter: true
 
 
 functions:
 
 
+  - name: initialize
+    body: |
+      main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
+         { "Hexagon", "/Users/markoates/Repos/hexagon" },
+         { "Blast", "/Users/markoates/Repos/blast" },
+         { "LightracerMax", "/Users/markoates/Repos/lightracer-max" },
+         { "NcursesArt", "/Users/markoates/Repos/ncurses_art" },
+         { "Solitare", "/Users/markoates/Repos/Solitare" },
+         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare" },
+      });
+      return;
+
+
   - name: draw_hexagon_logo_and_wait_for_keypress
-    guards: [ al_is_system_installed(), al_is_primitives_addon_initialized(), font_bin, al_get_target_bitmap() ]
+    guards:
+      - al_is_system_installed()
+      - al_is_primitives_addon_initialized()
+      - font_bin
+      - al_get_target_bitmap()
+      - get_initialized()
     body: |
        AllegroFlare::Profiler profiler;
 
@@ -56,6 +81,18 @@ functions:
                 switch (event.keyboard.keycode)
                 {
                 case ALLEGRO_KEY_M:
+                   // disable shader
+                   draw_motion_effect = false;
+
+                   // open dialog box
+                   break;
+                case ALLEGRO_KEY_J:
+                   // disable shader
+                   draw_motion_effect = false;
+
+                   // open dialog box
+                   break;
+                case ALLEGRO_KEY_K:
                    // disable shader
                    draw_motion_effect = false;
 
@@ -134,17 +171,9 @@ functions:
       int display_width = al_get_bitmap_width(al_get_target_bitmap());
       int display_height = al_get_bitmap_height(al_get_target_bitmap());
 
-      Hexagon::Elements::ListMenu list_menu(font_bin, "Projects", {
-         { "Hexagon", "/Users/markoates/Repos/hexagon" },
-         { "Blast", "/Users/markoates/Repos/blast" },
-         { "LightracerMax", "/Users/markoates/Repos/lightracer-max" },
-         { "NcursesArt", "/Users/markoates/Repos/ncurses_art" },
-         { "Solitare", "/Users/markoates/Repos/Solitare" },
-         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare" },
-      });
       placement3d place(display_width/2 + 300, display_height/2, 0);
       place.start_transform();
-      list_menu.render();
+      main_menu.render();
       place.restore_transform();
       return;
     body_dependency_symbols:

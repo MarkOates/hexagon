@@ -25,6 +25,8 @@ namespace Hexagon
 
 TitleScreen::TitleScreen(AllegroFlare::FontBin* font_bin)
    : font_bin(font_bin)
+   , main_menu({})
+   , initialized(false)
 {
 }
 
@@ -33,6 +35,26 @@ TitleScreen::~TitleScreen()
 {
 }
 
+
+bool TitleScreen::get_initialized()
+{
+   return initialized;
+}
+
+
+void TitleScreen::initialize()
+{
+main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
+   { "Hexagon", "/Users/markoates/Repos/hexagon" },
+   { "Blast", "/Users/markoates/Repos/blast" },
+   { "LightracerMax", "/Users/markoates/Repos/lightracer-max" },
+   { "NcursesArt", "/Users/markoates/Repos/ncurses_art" },
+   { "Solitare", "/Users/markoates/Repos/Solitare" },
+   { "AllegroFlare", "/Users/markoates/Repos/allegro_flare" },
+});
+return;
+
+}
 
 void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
 {
@@ -58,6 +80,12 @@ if (!(al_get_target_bitmap()))
    {
       std::stringstream error_message;
       error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(get_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"get_initialized()\" not met";
       throw std::runtime_error(error_message.str());
    }
 AllegroFlare::Profiler profiler;
@@ -103,6 +131,18 @@ while (!abort_program)
          switch (event.keyboard.keycode)
          {
          case ALLEGRO_KEY_M:
+            // disable shader
+            draw_motion_effect = false;
+
+            // open dialog box
+            break;
+         case ALLEGRO_KEY_J:
+            // disable shader
+            draw_motion_effect = false;
+
+            // open dialog box
+            break;
+         case ALLEGRO_KEY_K:
             // disable shader
             draw_motion_effect = false;
 
@@ -181,17 +221,9 @@ if (!(font_bin))
 int display_width = al_get_bitmap_width(al_get_target_bitmap());
 int display_height = al_get_bitmap_height(al_get_target_bitmap());
 
-Hexagon::Elements::ListMenu list_menu(font_bin, "Projects", {
-   { "Hexagon", "/Users/markoates/Repos/hexagon" },
-   { "Blast", "/Users/markoates/Repos/blast" },
-   { "LightracerMax", "/Users/markoates/Repos/lightracer-max" },
-   { "NcursesArt", "/Users/markoates/Repos/ncurses_art" },
-   { "Solitare", "/Users/markoates/Repos/Solitare" },
-   { "AllegroFlare", "/Users/markoates/Repos/allegro_flare" },
-});
 placement3d place(display_width/2 + 300, display_height/2, 0);
 place.start_transform();
-list_menu.render();
+main_menu.render();
 place.restore_transform();
 return;
 
