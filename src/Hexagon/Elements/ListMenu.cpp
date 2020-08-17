@@ -107,9 +107,10 @@ if (draw_title)
 }
 
 // draw text
+int local_list_line_num = 0;
 for (auto &list_item : list_items)
 {
-   bool cursor_on_this_list_item = cursor == line_num;
+   bool cursor_on_this_list_item = (cursor == local_list_line_num);
 
    if (cursor_on_this_list_item)
    {
@@ -129,6 +130,7 @@ for (auto &list_item : list_items)
       0,
       text_to_render.c_str()
    );
+   local_list_line_num++;
    line_num++;
 }
 

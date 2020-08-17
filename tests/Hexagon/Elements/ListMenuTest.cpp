@@ -63,13 +63,16 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
       {
          { "Hexagon", "/Users/markoates/Repos/hexagon/" },
          { "Solitare", "/Users/markoates/Repos/Solitare/" },
+         { "A Project That Should Be Selected", "none" },
          { "Blast", "/Users/markoates/Repos/blast/" },
          { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       }
    );
 
-   al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
    list_menu.move_cursor_down();
+   list_menu.move_cursor_down();
+
+   al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
    list_menu.render();
    al_flip_display();
 
