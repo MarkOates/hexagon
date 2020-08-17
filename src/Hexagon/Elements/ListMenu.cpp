@@ -84,7 +84,7 @@ for (auto &list_item : list_items)
       al_draw_filled_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color);
 
       // draw the cursor arrow
-      draw_cursor_pointer_arrow();
+      draw_cursor_pointer_arrow(width, line_num * line_height);
    }
 
    std::string text_to_render = std::get<0>(list_item).c_str();
@@ -119,13 +119,13 @@ return font_bin->auto_get("Exan-Regular.ttf -28");
 
 }
 
-void ListMenu::draw_cursor_pointer_arrow()
+void ListMenu::draw_cursor_pointer_arrow(float cpx, float cpy)
 {
 // draw the box and pointer
 const float SQRT_3 = 1.73205f;
 
-float cpx = 1000;  // cursor pointer x
-float cpy = 900;  // cursor pointer y
+//float cpx = 1000;  // cursor pointer x
+//float cpy = 900;  // cursor pointer y
 float s = 40;
 std::vector<float> points = { cpx, cpy };
 float change[2] = { 0, 0 };

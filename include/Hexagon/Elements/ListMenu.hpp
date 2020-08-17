@@ -29,7 +29,7 @@ namespace Hexagon
       bool move_cursor_down();
       void render();
       ALLEGRO_FONT* obtain_list_item_font();
-      void draw_cursor_pointer_arrow();
+      void draw_cursor_pointer_arrow(float cpx=1000, float cpy=900);
       };
    }
 }

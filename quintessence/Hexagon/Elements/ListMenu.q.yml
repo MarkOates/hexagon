@@ -80,7 +80,7 @@ functions:
             al_draw_filled_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color);
 
             // draw the cursor arrow
-            draw_cursor_pointer_arrow();
+            draw_cursor_pointer_arrow(width, line_num * line_height);
          }
 
          std::string text_to_render = std::get<0>(list_item).c_str();
@@ -113,12 +113,19 @@ functions:
 
 
   - name: draw_cursor_pointer_arrow
+    parameters:
+      - name: cpx
+        type: float
+        default_argument: 1000
+      - name: cpy
+        type: float
+        default_argument: 900
     body: |
       // draw the box and pointer
       const float SQRT_3 = 1.73205f;
 
-      float cpx = 1000;  // cursor pointer x
-      float cpy = 900;  // cursor pointer y
+      //float cpx = 1000;  // cursor pointer x
+      //float cpy = 900;  // cursor pointer y
       float s = 40;
       std::vector<float> points = { cpx, cpy };
       float change[2] = { 0, 0 };
