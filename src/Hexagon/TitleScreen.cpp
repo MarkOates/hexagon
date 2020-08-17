@@ -57,6 +57,12 @@ return;
 
 }
 
+bool TitleScreen::main_menu_cursor_move_up()
+{
+return main_menu.move_cursor_down();
+
+}
+
 bool TitleScreen::main_menu_cursor_move_down()
 {
 return main_menu.move_cursor_down();

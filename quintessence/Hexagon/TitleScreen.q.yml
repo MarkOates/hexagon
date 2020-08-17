@@ -31,6 +31,12 @@ functions:
       return;
 
 
+  - name: main_menu_cursor_move_up
+    type: bool
+    body: |
+       return main_menu.move_cursor_down();
+
+
   - name: main_menu_cursor_move_down
     type: bool
     body: |
