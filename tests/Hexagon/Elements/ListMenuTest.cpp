@@ -74,9 +74,9 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
    list_menu.move_cursor_down();
 
    al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
-   place.start_transform();
+   //place.start_transform();
    list_menu.render();
-   place.restore_transform();
+   //place.restore_transform();
    al_flip_display();
 
    sleep(1);
