@@ -90,6 +90,22 @@ al_draw_ribbon(&points[0], sizeof(float) * 2, color, 2.0, (points.size()/2));
 // draw background
 //al_draw_rectangle(0, 0, width, height);
 
+// draw title
+bool draw_title = true;
+if (draw_title)
+{
+   std::string text_to_render = title;
+   al_draw_text(
+      font,
+      color,
+      0,
+      0 + line_num * line_height,
+      0,
+      text_to_render.c_str()
+   );
+   line_num++;
+}
+
 // draw text
 for (auto &list_item : list_items)
 {
