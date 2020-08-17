@@ -124,7 +124,7 @@ const float SQRT_3 = 1.73205f;
 
 //float cpx = 1000;  // cursor pointer x
 //float cpy = 900;  // cursor pointer y
-float s = 40;
+float s = 30;
 std::vector<float> points = { cpx, cpy };
 float change[2] = { 0, 0 };
 
