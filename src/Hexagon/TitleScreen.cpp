@@ -52,6 +52,7 @@ main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
    { "Solitare", "/Users/markoates/Repos/Solitare" },
    { "AllegroFlare", "/Users/markoates/Repos/allegro_flare" },
 });
+initialized = true;
 return;
 
 }

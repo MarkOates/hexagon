@@ -27,6 +27,7 @@ functions:
          { "Solitare", "/Users/markoates/Repos/Solitare" },
          { "AllegroFlare", "/Users/markoates/Repos/allegro_flare" },
       });
+      initialized = true;
       return;
 
 

@@ -50,6 +50,7 @@ protected:
 TEST_F(Hexagon_TitleScreenTest, can_be_created_without_blowing_up)
 {
    Hexagon::TitleScreen title_screen(&font_bin);
+   title_screen.initialize();
    title_screen.draw_hexagon_logo_and_wait_for_keypress();
 }
 
