@@ -57,6 +57,12 @@ return;
 
 }
 
+bool TitleScreen::main_menu_cursor_move_down()
+{
+return main_menu.move_cursor_down();
+
+}
+
 void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
 {
 if (!(al_is_system_installed()))

@@ -27,6 +27,7 @@ namespace Hexagon
 
       bool move_cursor_up();
       bool move_cursor_down();
+      std::string get_current_list_item_identifier();
       void render();
       ALLEGRO_FONT* obtain_list_item_font();
       void draw_cursor_pointer_arrow(float cpx=1000, float cpy=900);

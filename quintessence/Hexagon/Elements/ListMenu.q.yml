@@ -35,6 +35,13 @@ functions:
       return true;
 
 
+  - name: get_current_list_item_identifier
+    type: std::string
+    body: |
+      if (cursor < 0 || cursor >= list_items.size()) return "";
+      return std::get<1>(list_items[cursor]);
+
+
   - name: render
     type: void
     boards: [ is_primitives_addon_initialized() ]

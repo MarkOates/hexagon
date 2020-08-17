@@ -41,6 +41,13 @@ return true;
 
 }
 
+std::string ListMenu::get_current_list_item_identifier()
+{
+if (cursor < 0 || cursor >= list_items.size()) return "";
+return std::get<1>(list_items[cursor]);
+
+}
+
 void ListMenu::render()
 {
 ALLEGRO_FONT *font = obtain_list_item_font();
