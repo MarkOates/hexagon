@@ -8,6 +8,7 @@
 #include <Hexagon/Shaders/TiledHexagonMotionEffect.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <allegro_flare/placement3d.h>
 #include <Hexagon/Elements/ListMenu.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -177,10 +178,21 @@ if (!(font_bin))
       error_message << "TitleScreen" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
+int display_width = al_get_bitmap_width(al_get_target_bitmap());
+int display_height = al_get_bitmap_height(al_get_target_bitmap());
+
 Hexagon::Elements::ListMenu list_menu(font_bin, "Projects", {
    { "Hexagon", "/Users/markoates/Repos/hexagon" },
+   { "Blast", "/Users/markoates/Repos/blast" },
+   { "LightracerMax", "/Users/markoates/Repos/lightracer-max" },
+   { "NcursesArt", "/Users/markoates/Repos/ncurses_art" },
+   { "Solitare", "/Users/markoates/Repos/Solitare" },
+   { "AllegroFlare", "/Users/markoates/Repos/allegro_flare" },
 });
+placement3d place(display_width/2 + 300, display_height/2, 0);
+place.start_transform();
 list_menu.render();
+place.restore_transform();
 return;
 
 }
