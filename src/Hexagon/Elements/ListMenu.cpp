@@ -149,6 +149,48 @@ if (!(font_bin))
 return font_bin->auto_get("Exan-Regular.ttf -28");
 
 }
+
+void ListMenu::draw_cursor_pointer_arrow()
+{
+// draw the box and pointer
+const float SQRT_3 = 1.73205f;
+
+float cpx = 1000;  // cursor pointer x
+float cpy = 900;  // cursor pointer y
+float s = 40;
+std::vector<float> points = { cpx, cpy };
+float change[2] = { 0, 0 };
+
+change[0] = 1;
+change[1] = -SQRT_3;
+points.push_back(points[points.size()-2] + change[0] * s);
+points.push_back(points[points.size()-2] + change[1] * s);
+
+change[0] = 0.3;
+change[1] = 0;
+points.push_back(points[points.size()-2] + change[0] * s);
+points.push_back(points[points.size()-2] + change[1] * s);
+
+change[0] = 0;
+change[1] = SQRT_3*2;
+points.push_back(points[points.size()-2] + change[0] * s);
+points.push_back(points[points.size()-2] + change[1] * s);
+
+change[0] = -0.3;
+change[1] = 0;
+points.push_back(points[points.size()-2] + change[0] * s);
+points.push_back(points[points.size()-2] + change[1] * s);
+
+change[0] = -1;
+change[1] = -SQRT_3;
+points.push_back(points[points.size()-2] + change[0] * s);
+points.push_back(points[points.size()-2] + change[1] * s);
+
+ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
+al_draw_ribbon(&points[0], sizeof(float) * 2, color, 2.0, (points.size()/2));
+return;
+
+}
 } // namespace Elements
 } // namespace Hexagon
 
