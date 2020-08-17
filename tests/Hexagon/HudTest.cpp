@@ -97,7 +97,7 @@ TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
    draw_packets__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
-   ASSERT_EQ(true, hud.get_draw_packets());
+   ASSERT_EQ(false, hud.get_draw_packets());
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
