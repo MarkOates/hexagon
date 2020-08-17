@@ -54,6 +54,11 @@ int line_num = 0;
 // draw background
 //al_draw_rectangle(0, 0, width, height);
 
+// draw frame
+float height = line_height * (list_items.size() + 1);
+float padding_hack = 10.0f;
+al_draw_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, color, 2.0);
+
 // draw title
 bool draw_title = true;
 if (draw_title)
@@ -82,7 +87,7 @@ for (auto &list_item : list_items)
       al_draw_filled_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color);
 
       // draw the cursor arrow
-      draw_cursor_pointer_arrow(width, line_num * line_height + line_height * 0.5);
+      draw_cursor_pointer_arrow(width + padding_hack, line_num * line_height + line_height * 0.5);
    }
 
    std::string text_to_render = std::get<0>(list_item).c_str();
