@@ -117,6 +117,7 @@ functions:
 
 
   - name: obtain_list_item_font
+    private: true
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
@@ -124,6 +125,7 @@ functions:
 
 
   - name: draw_cursor_pointer_arrow
+    private: true
     parameters:
       - name: cpx
         type: float
