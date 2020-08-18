@@ -210,7 +210,7 @@ for (int i=0; i<lines.size(); i++)
 {
    char_count += lines[i].size();
 }
-return char_count;
+return char_count + (lines.size() - 1);
 
 }
 } // namespace OneLineInputBox

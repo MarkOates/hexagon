@@ -235,7 +235,7 @@ functions:
       {
          char_count += lines[i].size();
       }
-      return char_count;
+      return char_count + (lines.size() - 1);
 
 
 dependencies:
