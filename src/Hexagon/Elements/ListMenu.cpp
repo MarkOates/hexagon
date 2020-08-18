@@ -13,10 +13,11 @@ namespace Elements
 {
 
 
-ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vector<std::tuple<std::string, std::string>> list_items)
+ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vector<std::tuple<std::string, std::string>> list_items, ALLEGRO_COLOR color)
    : font_bin(font_bin)
    , title(title)
    , list_items(list_items)
+   , color(color)
    , cursor(0)
 {
 }
@@ -51,7 +52,7 @@ return std::get<1>(list_items[cursor]);
 void ListMenu::render()
 {
 ALLEGRO_FONT *font = obtain_list_item_font();
-ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
+//ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
 ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
 float width = 600;
 //float height = 300;

@@ -2,6 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
+#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <string>
 #include <tuple>
@@ -18,10 +19,11 @@ namespace Hexagon
          AllegroFlare::FontBin* font_bin;
          std::string title;
          std::vector<std::tuple<std::string, std::string>> list_items;
+         ALLEGRO_COLOR color;
          int cursor;
 
       public:
-         ListMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="+", std::vector<std::tuple<std::string, std::string>> list_items={});
+         ListMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="+", std::vector<std::tuple<std::string, std::string>> list_items={}, ALLEGRO_COLOR color=ALLEGRO_COLOR{1, 0, 0, 1});
          ~ListMenu();
 
 

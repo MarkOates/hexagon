@@ -13,6 +13,10 @@ properties:
     type: std::vector<std::tuple<std::string, std::string>>
     init_with: '{}'
     constructor_arg: true
+  - name: color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1, 0, 0, 1}
+    constructor_arg: true
   - name: cursor
     type: int
     init_with: 0
@@ -47,7 +51,7 @@ functions:
     boards: [ is_primitives_addon_initialized() ]
     body: |
       ALLEGRO_FONT *font = obtain_list_item_font();
-      ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
+      //ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
       ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
       float width = 600;
       //float height = 300;
@@ -182,6 +186,8 @@ dependencies:
     headers: [ vector, tuple, string ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
   - symbol: std::transform
