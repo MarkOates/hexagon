@@ -737,7 +737,13 @@ return;
 
 Hexagon::DirtyGrid Stage::build_dirty_grid_from_lines_respecting_offset()
 {
-return {};
+std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+Hexagon::DirtyGrid result;
+for (int i=first_row_offset; i<lines.size(); i++)
+{
+   result.mark_row_as_dirty(i, 0, lines[i].size());
+}
+return result;
 
 }
 } // namespace AdvancedCodeEditor
