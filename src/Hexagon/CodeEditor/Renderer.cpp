@@ -296,18 +296,21 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
          ss << (line_number+1);
          ALLEGRO_COLOR text_color = default_line_number_green_color;
          std::string string_to_display = ss.str();
+         float y = (line_number-first_line_number)*cell_height;
 
          if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
          if (cursor_is_on_this_line)
          {
             text_color = AllegroFlare::color::mix(text_color, cursor_color, 0.5);
+            ALLEGRO_COLOR hilight_bar_color = AllegroFlare::color::mix(ALLEGRO_COLOR{0, 0, 0, 0}, text_color, 0.25);
+            al_draw_filled_rectangle(0, y, frame_right_x, y+cell_height, hilight_bar_color);
             string_to_display = std::string(">") + string_to_display;
          }
 
          al_draw_text(font,
                       text_color,
                       frame_right_x,
-                      (line_number-first_line_number)*cell_height,
+                      y,
                       ALLEGRO_ALIGN_RIGHT,
                       string_to_display.c_str());
       }
