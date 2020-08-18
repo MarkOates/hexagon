@@ -186,6 +186,7 @@ else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
    //std::string top_left_text = "ESC: Close";
    std::string bottom_right_text = "commit and push";
    ALLEGRO_COLOR backfill_color = al_color_name("black");
+   int char_count = code_editor_char_count();
 
    Hexagon::OneLineInputBox::Renderer renderer(
       get_font(),
@@ -206,6 +207,7 @@ else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
 
    //renderer.set_top_left_text(top_left_text);
    renderer.set_bottom_right_text(bottom_right_text);
+   renderer.set_bottom_left_text(std::to_string(char_count));
 
    renderer.render();
 }
