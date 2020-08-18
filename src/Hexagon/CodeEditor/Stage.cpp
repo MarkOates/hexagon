@@ -153,13 +153,7 @@ if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
    std::string bottom_right_text = "search";
    ALLEGRO_COLOR backfill_color = al_color_name("black");
    std::vector<std::string> lines = code_editor.get_lines_ref();
-
-   int char_count = 0;
-   for (int i=0; i<lines.size(); i++)
-   {
-      char_count += lines[i].size();
-   }
-   char_count += (lines.size() - 1);
+   int char_count = code_editor_char_count();
 
    Hexagon::OneLineInputBox::Renderer renderer(
       get_font(),
@@ -278,6 +272,17 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 ::CodeEditor::EventController stage_event_controller(this);
 stage_event_controller.process_event(event);
 return;
+
+}
+
+int Stage::code_editor_char_count()
+{
+int char_count = 0;
+for (auto &line : code_editor.get_lines_ref())
+{
+   char_count += line.size();
+}
+return char_count + (code_editor.get_lines_ref().size() - 1);
 
 }
 } // namespace CodeEditor

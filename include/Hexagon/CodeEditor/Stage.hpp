@@ -51,6 +51,7 @@ namespace Hexagon
       virtual void render() override;
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());
+      int code_editor_char_count();
       };
    }
 }
