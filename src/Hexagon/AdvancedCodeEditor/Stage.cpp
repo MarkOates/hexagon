@@ -739,9 +739,13 @@ Hexagon::DirtyGrid Stage::build_dirty_grid_from_lines_respecting_offset()
 {
 std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 Hexagon::DirtyGrid result;
-for (int i=first_row_offset; i<lines.size(); i++)
+
+for (int row=0; row<num_rows; row++)
 {
-   result.mark_row_as_dirty(i, 0, lines[i].size());
+   int line_num_to_render = row + first_row_offset;
+   if (line_num_to_render < 0 || line_num_to_render >= lines.size()) continue;
+
+   result.mark_row_as_dirty(row, 0, lines[line_num_to_render].length());
 }
 return result;
 

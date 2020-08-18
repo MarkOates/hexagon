@@ -639,7 +639,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
       stage.first_row_offset_move_up();
       stage.render();
       al_flip_display();
-      usleep(18000*2);
+      //usleep(18000*2);
    }
 }
 
@@ -652,6 +652,19 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    stage.set_content(content);
 
    stage.first_row_offset_move_down();
+   Hexagon::DirtyGrid dirty_grid = stage.build_dirty_grid_from_lines_respecting_offset();
+   ASSERT_EQ(18, dirty_grid.build_vector().size());
+}
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   build_dirty_grid_from_lines_respecting_offset__respects_negative_values_for_offset)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 69, 420);
+   stage.initialize();
+   std::string content = "because\noffset\nhere.";
+   stage.set_content(content);
+
+   stage.first_row_offset_move_up();
    Hexagon::DirtyGrid dirty_grid = stage.build_dirty_grid_from_lines_respecting_offset();
    ASSERT_EQ(18, dirty_grid.build_vector().size());
 }
