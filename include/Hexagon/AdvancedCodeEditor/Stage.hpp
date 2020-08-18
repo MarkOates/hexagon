@@ -7,6 +7,7 @@
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
+#include <Hexagon/DirtyGrid.hpp>
 #include <Hexagon/Elements/TextMesh.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
@@ -98,6 +99,7 @@ namespace Hexagon
       void refresh_dirty_cells_on_text_mesh();
       void refresh_text_mesh_respecting_first_row_offset();
       void refresh_text_mesh();
+      Hexagon::DirtyGrid build_dirty_grid_from_lines_respecting_offset();
       };
    }
 }

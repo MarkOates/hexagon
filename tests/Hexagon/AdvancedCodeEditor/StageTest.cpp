@@ -643,3 +643,16 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    }
 }
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   build_dirty_grid_from_lines_respecting_offset__will_create_a_drity_grid_of_the_current_lines__respecting_offset)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 69, 420);
+   stage.initialize();
+   std::string content = "This line that will not appear,\nbecause\noffset\nhere.";
+   stage.set_content(content);
+
+   stage.first_row_offset_move_down();
+   Hexagon::DirtyGrid dirty_grid = stage.build_dirty_grid_from_lines_respecting_offset();
+   ASSERT_EQ(18, dirty_grid.build_vector().size());
+}
+

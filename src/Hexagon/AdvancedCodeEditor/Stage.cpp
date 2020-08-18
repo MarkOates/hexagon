@@ -734,6 +734,12 @@ for (unsigned y=0; y<num_rows; y++)
 return;
 
 }
+
+Hexagon::DirtyGrid Stage::build_dirty_grid_from_lines_respecting_offset()
+{
+return {};
+
+}
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

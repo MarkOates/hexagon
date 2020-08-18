@@ -640,6 +640,13 @@ functions:
       return;
 
 
+  - name: build_dirty_grid_from_lines_respecting_offset
+    private: true
+    type: Hexagon::DirtyGrid
+    body: |
+      return {};
+
+
 dependencies:
 
 
@@ -663,6 +670,8 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT&
     headers: [ allegro5/allegro.h ]
+  - symbol: Hexagon::DirtyGrid
+    headers: [ Hexagon/DirtyGrid.hpp ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
