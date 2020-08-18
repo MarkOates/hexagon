@@ -7,6 +7,8 @@
 
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 
+#include <cmath>
+
 class Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture : public ::testing::Test
 {};
 
@@ -132,7 +134,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    for (unsigned i=0; i<(60 * num_seconds); i++)
    {
       al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
-      float text_mesh_y_offset = (float)i * -6.0f + start_text_mesh_y_offset;
+      float text_mesh_y_offset = std::sin(al_get_time() * 5.0) * 200.0f;
 
       Hexagon::AdvancedCodeEditor::Renderer renderer(
          &text_mesh,
