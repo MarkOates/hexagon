@@ -19,3 +19,15 @@ TEST(Hexagon_OneLineInputBox_RendererTest, render__renders_the_box)
    //std::string expected_message = "foo";
    //renderer.render();
 }
+
+TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__returns_the_number_of_characters_in_the_input)
+{
+   Hexagon::OneLineInputBox::Renderer renderer(
+      nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
+      {
+         "This is the line",
+      }
+   );
+   ASSERT_EQ(16, renderer.get_lines_character_count());
+}
+

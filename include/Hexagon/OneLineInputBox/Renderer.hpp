@@ -46,6 +46,7 @@ namespace Hexagon
 
       void draw_selections(int cell_width=1, int cell_height=1, int first_line_number=0);
       void render();
+      int get_lines_character_count();
       };
    }
 }

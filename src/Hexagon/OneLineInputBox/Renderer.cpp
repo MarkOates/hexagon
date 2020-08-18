@@ -202,6 +202,17 @@ for (int i=0; i<lines.size(); i++)
 place.restore_transform();
 
 }
+
+int Renderer::get_lines_character_count()
+{
+int char_count = 0;
+for (int i=0; i<lines.size(); i++)
+{
+   char_count += lines[i].size();
+}
+return char_count;
+
+}
 } // namespace OneLineInputBox
 } // namespace Hexagon
 

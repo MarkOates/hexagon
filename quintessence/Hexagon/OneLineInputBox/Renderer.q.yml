@@ -227,6 +227,17 @@ functions:
       - placement3d
 
 
+  - name: get_lines_character_count
+    type: int
+    body: |
+      int char_count = 0;
+      for (int i=0; i<lines.size(); i++)
+      {
+         char_count += lines[i].size();
+      }
+      return char_count;
+
+
 dependencies:
   - symbol: std::vector<CodeRange>
     headers: [ vector, Hexagon/CodeRange.hpp ]
