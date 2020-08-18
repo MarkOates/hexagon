@@ -161,7 +161,7 @@ if (!bottom_right_text.empty())
 
 if (!bottom_left_text.empty())
 {
-   throw std::logic_error("OneLineInputBox/Render: error: function \"bottom_left_text\" not yet implemented");
+   //throw std::logic_error("OneLineInputBox/Render: error: function \"bottom_left_text\" not yet implemented");
 }
 
 float _cursor_y = cursor_y - first_line_number;
