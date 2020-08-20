@@ -14,7 +14,7 @@ namespace Elements
 
 QuoteRenderer::QuoteRenderer(AllegroFlare::FontBin* font_bin, std::string quote)
    : font_bin(font_bin)
-   , font({font_bin, "consolas.ttf"})
+   , font({font_bin, "consolas.ttf", -24})
    , quote(quote)
 {
 }
@@ -39,8 +39,6 @@ if (!(al_is_font_addon_initialized()))
       error_message << "QuoteRenderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
       throw std::runtime_error(error_message.str());
    }
-font.set_font_size(-60);
-
 float x = 0;
 float y = 0;
 ALLEGRO_FONT *al_font = font.al_font();

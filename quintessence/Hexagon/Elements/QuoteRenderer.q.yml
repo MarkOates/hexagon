@@ -6,7 +6,7 @@ properties:
     constructor_arg: true
   - name: font
     type: Hexagon::Font
-    init_with: '{font_bin, "consolas.ttf"}'
+    init_with: '{font_bin, "consolas.ttf", -24}'
   - name: quote
     type: std::string
     init_with: '{}'
@@ -18,8 +18,6 @@ functions:
     type: void
     guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
     body: |
-      font.set_font_size(-60);
-
       float x = 0;
       float y = 0;
       ALLEGRO_FONT *al_font = font.al_font();
