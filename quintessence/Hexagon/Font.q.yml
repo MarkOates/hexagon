@@ -16,9 +16,21 @@ properties:
     setter: true
 
 
+functions:
+
+
+  - name: al_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      return font_bin->auto_get(font_filename + std::to_string(font_size));
+
+
 dependencies:
 
 
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro.h ]
 

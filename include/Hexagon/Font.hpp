@@ -2,6 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
+#include <allegro5/allegro.h>
 #include <string>
 
 
@@ -23,6 +24,7 @@ namespace Hexagon
 
       std::string get_font_filename();
       int get_font_size();
+   ALLEGRO_FONT* al_font();
    };
 }
 
