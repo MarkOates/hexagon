@@ -4,14 +4,17 @@ properties:
   - name: font_bin
     type: AllegroFlare::FontBin*
     init_with: nullptr
+    constructor_arg: true
   - name: font_filename
     type: std::string
-    init_with: '"Consolas.ttf"'
+    init_with: '"Eurostile.ttf"'
+    constructor_arg: true
     getter: true
     setter: true
   - name: font_size
     type: int
     init_with: -16
+    constructor_arg: true
     getter: true
     setter: true
 
@@ -21,9 +24,9 @@ functions:
 
   - name: al_font
     type: ALLEGRO_FONT*
-    guards: [ font_bin ]
+    guards: [ al_is_system_installed(), al_is_ttf_addon_initialized(), font_bin ]
     body: |
-      return font_bin->auto_get(font_filename + std::to_string(font_size));
+      return font_bin->auto_get(font_filename + " " + std::to_string(font_size));
 
 
 dependencies:
