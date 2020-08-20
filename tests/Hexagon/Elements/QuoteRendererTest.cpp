@@ -7,6 +7,7 @@
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 #include <Hexagon/Elements/QuoteRenderer.hpp>
+#include <Blast/TaoTeChingQuoteGenerator.hpp>
 
 class Hexagon_Elements_QuoteRendererTestWithEmptyFixture : public ::testing::Test
 {};
@@ -32,6 +33,21 @@ TEST_F(Hexagon_Elements_QuoteRendererTestWithEmptyFixture, render__without_alleg
 TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__will_not_blow_up)
 {
    Hexagon::Elements::QuoteRenderer quote_renderer(&get_font_bin_ref(), "To all, be well.");
+   placement3d place = build_centered_placement(800, 600);
+
+   place.start_transform();
+   quote_renderer.render();
+   place.restore_transform();
+
+   al_flip_display();
+
+   //sleep(2);
+}
+
+TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__renders_nicely_with_longer_text)
+{
+   Blast::TaoTeChingQuoteGenerator quote_generator;
+   Hexagon::Elements::QuoteRenderer quote_renderer(&get_font_bin_ref(), quote_generator.pick_quote());
    placement3d place = build_centered_placement(800, 600);
 
    place.start_transform();
