@@ -9,6 +9,11 @@ properties:
     init_with: '"Consolas.ttf"'
     getter: true
     setter: true
+  - name: font_size
+    type: int
+    init_with: -16
+    getter: true
+    setter: true
 
 
 dependencies:

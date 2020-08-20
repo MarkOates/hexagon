@@ -14,3 +14,9 @@ TEST(Hexagon_FontTest, font_filename__has_a_getter_and_is_set_to_default_values)
    ASSERT_EQ("Consolas.ttf", font.get_font_filename());
 }
 
+TEST(Hexagon_FontTest, font_size__has_a_getter_and_is_set_to_default_values)
+{
+   Hexagon::Font font;
+   ASSERT_EQ(-16, font.get_font_size());
+}
+
