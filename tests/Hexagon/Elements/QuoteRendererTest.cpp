@@ -40,6 +40,6 @@ TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__wi
 
    al_flip_display();
 
-   //sleep(2);
+   sleep(2);
 }
 

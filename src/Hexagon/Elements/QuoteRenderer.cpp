@@ -14,7 +14,7 @@ namespace Elements
 
 QuoteRenderer::QuoteRenderer(AllegroFlare::FontBin* font_bin, std::string quote)
    : font_bin(font_bin)
-   , font({font_bin})
+   , font({font_bin, "consolas.ttf"})
    , quote(quote)
 {
 }

@@ -6,7 +6,7 @@ properties:
     constructor_arg: true
   - name: font
     type: Hexagon::Font
-    init_with: '{font_bin}'
+    init_with: '{font_bin, "consolas.ttf"}'
   - name: quote
     type: std::string
     init_with: '{}'
