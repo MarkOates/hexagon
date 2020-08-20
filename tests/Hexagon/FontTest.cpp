@@ -113,3 +113,38 @@ TEST(Hexagon_FontTest, increase_font_size__will_increase_the_size_of_the_font)
    al_uninstall_system();
 }
 
+TEST(Hexagon_FontTest, decrease_font_size__will_decrease_the_size_of_the_font)
+{
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+
+   Hexagon::Font font(&font_bin);
+
+   ALLEGRO_FONT* start_al_font = font.al_font();
+
+   ASSERT_NE(nullptr, start_al_font);
+   int start_font_width = al_get_text_width(start_al_font, "XYZ");
+   int start_font_height = al_get_font_line_height(start_al_font);
+
+   font.decrease_font_size();
+   font.decrease_font_size();
+   font.decrease_font_size();
+
+   ALLEGRO_FONT* end_al_font = font.al_font();
+
+   ASSERT_NE(nullptr, end_al_font);
+   int end_font_width = al_get_text_width(end_al_font, "XYZ");
+   int end_font_height = al_get_font_line_height(end_al_font);
+
+   EXPECT_GT(start_font_width, end_font_width);
+   EXPECT_GT(start_font_height, end_font_height);
+
+   font_bin.clear();
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+}
+
