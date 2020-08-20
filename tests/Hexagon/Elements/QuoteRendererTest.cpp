@@ -71,6 +71,6 @@ TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__re
 
    al_flip_display();
 
-   sleep(5);
+   //sleep(5);
 }
 
