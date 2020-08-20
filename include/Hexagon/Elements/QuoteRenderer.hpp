@@ -2,7 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
-#include <allegro5/allegro_font.h>
+#include <Hexagon/Font.hpp>
 #include <string>
 
 
@@ -14,15 +14,15 @@ namespace Hexagon
       {
       private:
          AllegroFlare::FontBin* font_bin;
+         Hexagon::Font font;
          std::string quote;
 
       public:
-         QuoteRenderer(AllegroFlare::FontBin* font_bin=nullptr);
+         QuoteRenderer(AllegroFlare::FontBin* font_bin=nullptr, std::string quote={});
          ~QuoteRenderer();
 
 
       void render();
-      ALLEGRO_FONT* obtain_quote_font();
       };
    }
 }

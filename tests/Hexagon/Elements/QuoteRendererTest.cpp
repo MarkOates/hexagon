@@ -31,8 +31,15 @@ TEST_F(Hexagon_Elements_QuoteRendererTestWithEmptyFixture, render__without_alleg
 
 TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__will_not_blow_up)
 {
-   Hexagon::Elements::QuoteRenderer quote_renderer;
+   Hexagon::Elements::QuoteRenderer quote_renderer(&get_font_bin_ref());
+   placement3d place = build_centered_placement(800, 600);
+
+   place.start_transform();
    quote_renderer.render();
-   SUCCEED();
+   place.restore_transform();
+
+   al_flip_display();
+
+   sleep(2);
 }
 

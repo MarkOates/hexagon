@@ -4,9 +4,13 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+  - name: font
+    type: Hexagon::Font
+    init_with: '{font_bin}'
   - name: quote
     type: std::string
     init_with: '{}'
+    constructor_arg: true
 
 functions:
 
@@ -14,19 +18,20 @@ functions:
     type: void
     guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
     body: |
+      font.set_font_size(-60);
+      al_draw_text(font.al_font(), ALLEGRO_COLOR{1, 1, 1, 1}, 0, 0, 0, "Hello QuoteRenderer");
       return;
-
-  - name: obtain_quote_font
-    private: true
-    type: ALLEGRO_FONT*
-    guards: [ font_bin ]
-    body: |
-      return font_bin->auto_get("Purista Medium.otf -32");
+    body_dependency_symbols:
+      - al_draw_text
 
 dependencies:
 
+  - symbol: al_draw_text
+    headers: [ allegro5/allegro.h ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::Font
+    headers: [ Hexagon/Font.hpp ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
 

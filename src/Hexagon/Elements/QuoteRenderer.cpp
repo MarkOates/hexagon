@@ -1,8 +1,7 @@
 
 
 #include <Hexagon/Elements/QuoteRenderer.hpp>
-#include <stdexcept>
-#include <sstream>
+#include <allegro5/allegro.h>
 #include <stdexcept>
 #include <sstream>
 
@@ -13,9 +12,10 @@ namespace Elements
 {
 
 
-QuoteRenderer::QuoteRenderer(AllegroFlare::FontBin* font_bin)
+QuoteRenderer::QuoteRenderer(AllegroFlare::FontBin* font_bin, std::string quote)
    : font_bin(font_bin)
-   , quote({})
+   , font({font_bin})
+   , quote(quote)
 {
 }
 
@@ -39,19 +39,9 @@ if (!(al_is_font_addon_initialized()))
       error_message << "QuoteRenderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
       throw std::runtime_error(error_message.str());
    }
+font.set_font_size(-60);
+al_draw_text(font.al_font(), ALLEGRO_COLOR{1, 1, 1, 1}, 0, 0, 0, "Hello QuoteRenderer");
 return;
-
-}
-
-ALLEGRO_FONT* QuoteRenderer::obtain_quote_font()
-{
-if (!(font_bin))
-   {
-      std::stringstream error_message;
-      error_message << "QuoteRenderer" << "::" << "obtain_quote_font" << ": error: " << "guard \"font_bin\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-return font_bin->auto_get("Purista Medium.otf -32");
 
 }
 } // namespace Elements
