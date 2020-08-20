@@ -51,6 +51,7 @@ TEST(Hexagon_FontTest, al_font__without_a_valid_font_bin__will_raise_an_exceptio
    Hexagon::Font font;
    std::string expected_error_message = "Font::al_font: error: guard \"font_bin\" not met";
    ASSERT_THROW_WITH_MESSAGE(font.al_font(), std::runtime_error, expected_error_message);
+   al_shutdown_ttf_addon();
    al_uninstall_system();
 }
 
@@ -73,6 +74,42 @@ TEST(Hexagon_FontTest, al_font__will_return_a_font)
    ASSERT_NE(nullptr, al_font);
 
    font_bin.clear();
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+}
+
+TEST(Hexagon_FontTest, increase_font_size__will_increase_the_size_of_the_font)
+{
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+
+   Hexagon::Font font(&font_bin);
+
+   ALLEGRO_FONT* start_al_font = font.al_font();
+
+   ASSERT_NE(nullptr, start_al_font);
+   int start_font_width = al_get_text_width(start_al_font, "XYZ");
+   int start_font_height = al_get_font_line_height(start_al_font);
+
+   font.increase_font_size();
+   font.increase_font_size();
+   font.increase_font_size();
+
+   ALLEGRO_FONT* end_al_font = font.al_font();
+
+   ASSERT_NE(nullptr, end_al_font);
+   int end_font_width = al_get_text_width(end_al_font, "XYZ");
+   int end_font_height = al_get_font_line_height(end_al_font);
+
+   EXPECT_LT(start_font_width, end_font_width);
+   EXPECT_LT(start_font_height, end_font_height);
+
+   font_bin.clear();
+   al_shutdown_ttf_addon();
    al_uninstall_system();
 }
 
