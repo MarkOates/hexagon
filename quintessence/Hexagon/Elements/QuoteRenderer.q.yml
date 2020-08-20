@@ -18,6 +18,26 @@ properties:
 
 functions:
 
+  - name: incrementer
+    static: true
+    type: bool
+    parameters:
+      - name: line_num
+        type: int
+        default_argument: 0
+      - name: line
+        type: const char*
+        default_argument: nullptr
+      - name: size
+        type: int
+        default_argument: 0
+      - name: extra
+        type: void*
+        default_argument: nullptr
+    body: |
+      (*static_cast<int*>(extra))++;
+      return true;
+
   - name: render
     type: void
     guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
@@ -41,8 +61,16 @@ functions:
          text.c_str()
       );
 
-      al_draw_text(al_font, color, 0, line_height * 4, 0, (std::string("- ") + speaker).c_str());
-      //al_draw_text(0, , 
+      int line_count = 0;
+      al_do_multiline_text(
+         al_font,
+         max_width,
+         text.c_str(),
+         &Hexagon::Elements::QuoteRenderer::incrementer,
+         static_cast<void*>(&line_count)
+      );
+
+      al_draw_text(al_font, color, 0, line_height * (line_count + 1), 0, (std::string("- ") + speaker).c_str());
 
       return;
     body_dependency_symbols:
@@ -51,6 +79,10 @@ functions:
 
 dependencies:
 
+  - symbol: const char*
+    headers: [ ]
+  - symbol: void*
+    headers: [ ]
   - symbol: al_draw_text
     headers: [ allegro5/allegro.h ]
   - symbol: AllegroFlare::FontBin*

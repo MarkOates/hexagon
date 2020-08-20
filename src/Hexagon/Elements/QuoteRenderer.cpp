@@ -26,6 +26,13 @@ QuoteRenderer::~QuoteRenderer()
 }
 
 
+bool QuoteRenderer::incrementer(int line_num, const char* line, int size, void* extra)
+{
+(*static_cast<int*>(extra))++;
+return true;
+
+}
+
 void QuoteRenderer::render()
 {
 if (!(al_is_system_installed()))
@@ -59,8 +66,16 @@ al_draw_multiline_text(
    text.c_str()
 );
 
-al_draw_text(al_font, color, 0, line_height * 4, 0, (std::string("- ") + speaker).c_str());
-//al_draw_text(0, , 
+int line_count = 0;
+al_do_multiline_text(
+   al_font,
+   max_width,
+   text.c_str(),
+   &Hexagon::Elements::QuoteRenderer::incrementer,
+   static_cast<void*>(&line_count)
+);
+
+al_draw_text(al_font, color, 0, line_height * (line_count + 1), 0, (std::string("- ") + speaker).c_str());
 
 return;
 

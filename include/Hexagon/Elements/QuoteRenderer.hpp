@@ -23,6 +23,7 @@ namespace Hexagon
          ~QuoteRenderer();
 
 
+      static bool incrementer(int line_num=0, const char* line=nullptr, int size=0, void* extra=nullptr);
       void render();
       };
    }
