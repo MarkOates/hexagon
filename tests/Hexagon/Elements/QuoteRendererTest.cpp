@@ -31,7 +31,7 @@ TEST_F(Hexagon_Elements_QuoteRendererTestWithEmptyFixture, render__without_alleg
 
 TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__will_not_blow_up)
 {
-   Hexagon::Elements::QuoteRenderer quote_renderer(&get_font_bin_ref());
+   Hexagon::Elements::QuoteRenderer quote_renderer(&get_font_bin_ref(), "To all, be well.");
    placement3d place = build_centered_placement(800, 600);
 
    place.start_transform();
@@ -40,6 +40,6 @@ TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__wi
 
    al_flip_display();
 
-   sleep(2);
+   //sleep(2);
 }
 

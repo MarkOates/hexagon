@@ -40,7 +40,26 @@ if (!(al_is_font_addon_initialized()))
       throw std::runtime_error(error_message.str());
    }
 font.set_font_size(-60);
-al_draw_text(font.al_font(), ALLEGRO_COLOR{1, 1, 1, 1}, 0, 0, 0, "Hello QuoteRenderer");
+
+float x = 0;
+float y = 0;
+ALLEGRO_FONT *al_font = font.al_font();
+ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 1, 1, 1};
+std::string text = quote;
+float max_width = 600;
+float line_height = al_get_font_line_height(al_font);
+
+al_draw_multiline_text(
+   al_font,
+   color,
+   x,
+   y,
+   max_width,
+   line_height,
+   0,
+   text.c_str()
+);
+
 return;
 
 }
