@@ -72,6 +72,7 @@ TEST(Hexagon_FontTest, al_font__will_return_a_font)
    ALLEGRO_FONT *al_font = font.al_font();
    ASSERT_NE(nullptr, al_font);
 
+   font_bin.clear();
    al_uninstall_system();
 }
 
