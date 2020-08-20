@@ -4,14 +4,11 @@ properties:
   - name: font_bin
     type: AllegroFlare::FontBin*
     init_with: nullptr
-
-
-functions:
-
-
-  - name: run
+  - name: font_filename
     type: std::string
-    body: return "Hello World!";
+    init_with: '"Consolas.ttf"'
+    getter: true
+    setter: true
 
 
 dependencies:

@@ -11,13 +11,15 @@ namespace Hexagon
    {
    private:
       AllegroFlare::FontBin* font_bin;
+      std::string font_filename;
 
    public:
       Font();
       ~Font();
 
+      void set_font_filename(std::string font_filename);
 
-   std::string run();
+      std::string get_font_filename();
    };
 }
 

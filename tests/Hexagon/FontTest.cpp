@@ -8,10 +8,9 @@ TEST(Hexagon_FontTest, can_be_created_without_blowing_up)
    Hexagon::Font font;
 }
 
-TEST(Hexagon_FontTest, run__returns_the_expected_response)
+TEST(Hexagon_FontTest, font_filename__has_a_getter_and_is_set_to_default_values)
 {
    Hexagon::Font font;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, font.run());
+   ASSERT_EQ("Consolas.ttf", font.get_font_filename());
 }
 
