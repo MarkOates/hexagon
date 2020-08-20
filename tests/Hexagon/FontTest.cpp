@@ -67,13 +67,11 @@ TEST(Hexagon_FontTest, al_font__will_return_a_font)
 
    AllegroFlare::FontBin font_bin;
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-   //font_bin.set_full_path("Users/markoates/Repos/hexagon/tests/fixtures/data/fonts");
 
    Hexagon::Font font(&font_bin);
    ALLEGRO_FONT *al_font = font.al_font();
    ASSERT_NE(nullptr, al_font);
 
-   font_bin.clear();
    al_uninstall_system();
 }
 
