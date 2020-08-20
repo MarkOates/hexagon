@@ -11,6 +11,10 @@ properties:
     type: std::string
     init_with: '{}'
     constructor_arg: true
+  - name: speaker
+    type: std::string
+    init_with: '{}'
+    constructor_arg: true
 
 functions:
 
@@ -37,9 +41,13 @@ functions:
          text.c_str()
       );
 
+      al_draw_text(al_font, color, 0, line_height * 4, 0, (std::string("- ") + speaker).c_str());
+      //al_draw_text(0, , 
+
       return;
     body_dependency_symbols:
       - al_draw_text
+
 
 dependencies:
 

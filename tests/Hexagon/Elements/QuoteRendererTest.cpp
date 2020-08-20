@@ -56,6 +56,21 @@ TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__re
 
    al_flip_display();
 
-   sleep(2);
+   //sleep(5);
+}
+
+TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__renders_the_speaker_line)
+{
+   Blast::TaoTeChingQuoteGenerator quote_generator;
+   Hexagon::Elements::QuoteRenderer quote_renderer(&get_font_bin_ref(), quote_generator.pick_quote(), "Tao Te Ching");
+   placement3d place = build_centered_placement(800, 600);
+
+   place.start_transform();
+   quote_renderer.render();
+   place.restore_transform();
+
+   al_flip_display();
+
+   sleep(5);
 }
 

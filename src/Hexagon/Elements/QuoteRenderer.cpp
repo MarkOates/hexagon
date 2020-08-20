@@ -12,10 +12,11 @@ namespace Elements
 {
 
 
-QuoteRenderer::QuoteRenderer(AllegroFlare::FontBin* font_bin, std::string quote)
+QuoteRenderer::QuoteRenderer(AllegroFlare::FontBin* font_bin, std::string quote, std::string speaker)
    : font_bin(font_bin)
    , font({font_bin, "consolas.ttf", -24})
    , quote(quote)
+   , speaker(speaker)
 {
 }
 
@@ -57,6 +58,9 @@ al_draw_multiline_text(
    0,
    text.c_str()
 );
+
+al_draw_text(al_font, color, 0, line_height * 4, 0, (std::string("- ") + speaker).c_str());
+//al_draw_text(0, , 
 
 return;
 
