@@ -791,8 +791,6 @@ bool System::spawn_regex_input_box_modal()
    //motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
    //motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
 
-   std::vector<std::string> file_contents;
-
    stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
 
    return true;
@@ -832,8 +830,6 @@ bool System::spawn_git_commit_message_input_box_modal()
    stage_place.scale.y = 1.5;
    //motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
    //motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
-
-   std::vector<std::string> file_contents;
 
    stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
 
