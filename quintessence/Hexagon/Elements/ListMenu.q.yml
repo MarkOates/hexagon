@@ -53,17 +53,18 @@ functions:
       ALLEGRO_FONT *font = obtain_list_item_font();
       //ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
       ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
+      ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.2};
       float width = 600;
       //float height = 300;
       int line_height = al_get_font_line_height(font) * 1.2;
       int line_num = 0;
-
-      // draw background
-      //al_draw_rectangle(0, 0, width, height);
-
-      // draw frame
       float height = line_height * (list_items.size() + 1);
       float padding_hack = 10.0f;
+
+      // draw backfill
+      al_draw_filled_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, backfill_color);
+
+      // draw frame
       al_draw_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, color, 2.0);
 
       // draw title
