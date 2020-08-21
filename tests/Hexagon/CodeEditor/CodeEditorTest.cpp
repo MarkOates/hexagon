@@ -60,12 +60,13 @@ TEST(Hexagon_CodeEditor_CodeEditorTest, lines__has_a_getter_ref_and_is_initializ
    ASSERT_EQ(0, lines.size());
 }
 
-TEST(Hexagon_CodeEditor_CodeEditorTest, set_content__with_empty_value_will_preserve_empty_lines)
+TEST(Hexagon_CodeEditor_CodeEditorTest,
+   set_content__with_empty_string_will_set_the_content_with_a_single_line_that_is_empty)
 {
    CodeEditor::CodeEditor stage;
    stage.set_content(std::string(""));
    std::vector<std::string> lines = stage.get_lines_ref();
-   ASSERT_EQ(0, lines.size());
+   ASSERT_EQ(1, lines.size());
 }
 
 TEST(Hexagon_CodeEditor_CodeEditorTest,

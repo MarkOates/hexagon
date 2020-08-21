@@ -153,7 +153,8 @@ bool CodeEditor::set_initial_content(std::vector<std::string> content)
 
 bool CodeEditor::set_content(std::string content)
 {
-   lines = Blast::StringSplitter(content, '\n').split();
+   if (!content.empty()) lines = Blast::StringSplitter(content, '\n').split();
+   else lines = std::vector<std::string>({ "" }); // one empty line
    mark_content_is_modified();
    return true;
 }

@@ -793,7 +793,7 @@ bool System::spawn_regex_input_box_modal()
 
    std::vector<std::string> file_contents;
 
-   stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{"", ""});
+   stage->get_code_editor_ref().set_initial_content("");
 
    return true;
 }
