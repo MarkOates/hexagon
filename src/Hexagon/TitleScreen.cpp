@@ -48,6 +48,7 @@ void TitleScreen::initialize()
 main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
    { "Hexagon", "/Users/markoates/Repos/hexagon/" },
    { "Blast", "/Users/markoates/Repos/blast/" },
+   { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
    { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
    { "NcursesArt", "/Users/markoates/Repos/ncurses_art/" },
    { "Solitare", "/Users/markoates/Repos/Solitare/" },

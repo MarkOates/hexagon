@@ -453,7 +453,7 @@ void Renderer::render_cursor_position_info()
    int line_length_character_limit = place.size.x / cell_width;
 
    // draw the current cursor percentage in file
-   cursor_position_info << " n%";
+   //cursor_position_info << " n%";
 
    // draw the current cursor position
    cursor_position_info << " x" << code_editor->get_cursor_x() << " y" << (code_editor->get_cursor_y()+1) << " ";
