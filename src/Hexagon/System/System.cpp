@@ -409,33 +409,9 @@ bool System::set_hud_title_to_focused_component_name()
    return true;
 }
 
-bool System::increment_save_count()
-{
-   save_count++;
-   return true;
-}
-
-bool System::clear_save_count()
-{
-   save_count = 0;
-   return true;
-}
-
 bool System::set_hud_save_count_to_save_count()
 {
    hud.set_save_count(save_count);
-   return true;
-}
-
-bool System::increment_search_count()
-{
-   search_count++;
-   return true;
-}
-
-bool System::clear_search_count()
-{
-   search_count = 0;
    return true;
 }
 
@@ -448,6 +424,30 @@ bool System::set_hud_search_count_to_search_count()
 bool System::set_hud_packets_to_packets()
 {
    hud.set_packets(packets);
+   return true;
+}
+
+bool System::increment_save_count()
+{
+   save_count++;
+   return true;
+}
+
+bool System::clear_save_count()
+{
+   save_count = 0;
+   return true;
+}
+
+bool System::increment_search_count()
+{
+   search_count++;
+   return true;
+}
+
+bool System::clear_search_count()
+{
+   search_count = 0;
    return true;
 }
 
