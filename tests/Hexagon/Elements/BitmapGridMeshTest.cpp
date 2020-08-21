@@ -661,7 +661,7 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture,
 
       al_flip_display();
 
-      usleep(50000);
+      //usleep(50000);
    }
 }
 
