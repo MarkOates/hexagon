@@ -53,6 +53,21 @@ TEST(Hexagon_CodeEditor_CodeEditorTest, search_regex_expression__has_a_getter_an
    ASSERT_EQ(expression1, stage.get_search_regex_expression());
 }
 
+TEST(Hexagon_CodeEditor_CodeEditorTest, lines__has_a_getter_ref_and_is_initialized_as_empty)
+{
+   CodeEditor::CodeEditor stage;
+   std::vector<std::string> lines = stage.get_lines_ref();
+   ASSERT_EQ(0, lines.size());
+}
+
+TEST(Hexagon_CodeEditor_CodeEditorTest, set_content__with_empty_value_will_preserve_empty_lines)
+{
+   CodeEditor::CodeEditor stage;
+   stage.set_content(std::string(""));
+   std::vector<std::string> lines = stage.get_lines_ref();
+   ASSERT_EQ(0, lines.size());
+}
+
 TEST(Hexagon_CodeEditor_CodeEditorTest,
    infer_cursor_is_on_line_that_exists__returns_true_when_the_cursor_is_within_the_range_of_number_of_lines)
 {
