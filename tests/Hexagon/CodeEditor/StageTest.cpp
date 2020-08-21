@@ -28,3 +28,23 @@ TEST(Hexagon_CodeEditor_StageTest, code_editor_char_count__with_empty_lines__inc
    ASSERT_EQ(2, stage.code_editor_char_count());
 }
 
+TEST(Hexagon_CodeEditor_StageTest, code_editor_char_count__returns_the_expected_char_count)
+{
+   Hexagon::CodeEditor::Stage stage;
+   stage.get_code_editor_ref().set_initial_content("Hello, char count!");
+   ASSERT_EQ(18, stage.code_editor_char_count());
+}
+
+TEST(Hexagon_CodeEditor_StageTest, code_editor_char_count__returns_the_expected_char_count_2)
+{
+   Hexagon::CodeEditor::Stage stage;
+   stage.get_code_editor_ref().set_initial_content(
+      std::vector<std::string>({
+         "Hello, char count!",
+         "You have",
+         "multiple lines",
+      })
+   );
+   ASSERT_EQ(42, stage.code_editor_char_count());
+}
+
