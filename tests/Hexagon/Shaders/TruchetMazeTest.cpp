@@ -177,6 +177,11 @@ TEST_F(Hexagon_Shaders_TruchetMazeTest_WithEventQueueFixture, when_active__rende
          al_get_bitmap_width(test_image),
          al_get_bitmap_height(test_image));
 
+   ALLEGRO_EVENT keyboard_key_event;
+   keyboard_key_event.type = ALLEGRO_EVENT_KEY_DOWN;
+   keyboard_key_event.keyboard.keycode = ALLEGRO_KEY_ESCAPE;
+   al_emit_user_event(al_get_keyboard_event_source(), &keyboard_key_event, nullptr);
+
    ALLEGRO_EVENT e, next_event;
    bool abort = false;
    while (!abort)
