@@ -79,7 +79,7 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
    place.restore_transform();
    al_flip_display();
 
-   sleep(2);
+   //sleep(2);
 }
 
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, move_cursor_down__will_move_the_position_of_the_cursor)
