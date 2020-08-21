@@ -174,6 +174,11 @@ TEST_F(Hexagon_Shaders_SmileyTest_WithEventQueueFixture, when_active__renders_th
 
    al_flip_display();
 
+   ALLEGRO_EVENT keyboard_key_event;
+   keyboard_key_event.type = ALLEGRO_EVENT_KEY_DOWN;
+   keyboard_key_event.keyboard.keycode = ALLEGRO_KEY_ESCAPE;
+   al_emit_user_event(al_get_keyboard_event_source(), &keyboard_key_event, nullptr);
+
    ALLEGRO_EVENT e;
    al_wait_for_event(event_queue, &e);
    if (e.type == ALLEGRO_EVENT_KEY_DOWN && e.keyboard.keycode == ALLEGRO_KEY_F) FAIL();
