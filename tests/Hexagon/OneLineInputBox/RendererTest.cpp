@@ -20,6 +20,30 @@ TEST(Hexagon_OneLineInputBox_RendererTest, render__renders_the_box)
    //renderer.render();
 }
 
+TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__correctly_counts_a_blank_line)
+{
+   Hexagon::OneLineInputBox::Renderer renderer(
+      nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
+      {
+         "",
+      }
+   );
+   ASSERT_EQ(0, renderer.get_lines_character_count());
+}
+
+TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__correctly_counts_multiple_blank_line)
+{
+   Hexagon::OneLineInputBox::Renderer renderer(
+      nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
+      {
+         "",
+         "",
+         "",
+      }
+   );
+   ASSERT_EQ(2, renderer.get_lines_character_count());
+}
+
 TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__returns_the_number_of_characters_in_the_input)
 {
    Hexagon::OneLineInputBox::Renderer renderer(
@@ -29,5 +53,18 @@ TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__returns_th
       }
    );
    ASSERT_EQ(16, renderer.get_lines_character_count());
+}
+
+TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__correctly_includes_multiple_lines)
+{
+   Hexagon::OneLineInputBox::Renderer renderer(
+      nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
+      {
+         "This is the line",
+         "",
+         "This is another line",
+      }
+   );
+   ASSERT_EQ(16 + 20 + 2, renderer.get_lines_character_count());
 }
 
