@@ -279,6 +279,7 @@ return;
 
 int Stage::code_editor_char_count()
 {
+if (code_editor.get_lines_ref().size() == 0) return 0;
 int char_count = 0;
 for (auto &line : code_editor.get_lines_ref())
 {
