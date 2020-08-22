@@ -47,7 +47,7 @@ protected:
    }
 };
 
-TEST_F(Hexagon_TitleScreenTest, can_be_created_without_blowing_up)
+TEST_F(Hexagon_TitleScreenTest, DISABLED__can_be_created_without_blowing_up)
 {
    Hexagon::TitleScreen title_screen(&font_bin);
    title_screen.initialize();
