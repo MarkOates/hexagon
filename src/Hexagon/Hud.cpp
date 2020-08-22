@@ -467,7 +467,9 @@ if (draw_stages && stages)
          //advanced_component_navigator_stage->set_cell_width(cell_width);
          //advanced_component_navigator_stage->set_cell_height(cell_height);
       }
-      else if (stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX)
+      else if (stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX
+         || stage->get_type() == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX
+      )
       {
          Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
          code_editor_stage->set_is_focused(true);

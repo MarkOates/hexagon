@@ -832,10 +832,12 @@ bool System::set_regex_input_box_modal_to_insert_mode()
 
 placement3d System::build_regex_input_box_initial_place()
 {
-   placement3d place(0.0, 0.0, 0.0);
-   place.position = camera.position;
+   int surface_width = al_get_display_width(display);
+   int surface_height = al_get_display_height(display);
+   placement3d place(surface_width*0.5f, surface_height*0.5f, 0.0);
+   //place.position = camera.position;
    place.size = vec3d(300, 25, 0.0);
-   place.scale = vec3d(1.4, 1.4, 1.0);
+   place.scale = vec3d(1.5, 1.5, 1.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
    return place;
 }
@@ -857,15 +859,15 @@ bool System::spawn_regex_input_box_modal()
       });
    stage->set_place(place);
    stage->set_render_on_hud(true);
-   stages.push_back(stage);
+   stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
 
-   placement3d& stage_place = stage->get_place();
-   stage_place.scale.x = 1.5;
-   stage_place.scale.y = 1.5;
+   //placement3d& stage_place = stage->get_place();
+   //stage_place.scale.x = 1.5;
+   //stage_place.scale.y = 1.5;
    //motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
    //motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
 
-   stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
+   stages.push_back(stage);
 
    return true;
 }
@@ -873,10 +875,12 @@ bool System::spawn_regex_input_box_modal()
 
 placement3d System::build_git_commit_message_input_box_initial_place()
 {
-   placement3d place(0.0, 0.0, 0.0);
-   place.position = camera.position;
+   int surface_width = al_get_display_width(display);
+   int surface_height = al_get_display_height(display);
+   placement3d place(surface_width*0.5f, surface_height*0.5f, 0.0);
+   //place.position = camera.position;
    place.size = vec3d(600, 25, 0.0);
-   place.scale = vec3d(1.4, 1.4, 1.0);
+   place.scale = vec3d(1.5, 1.5, 1.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
    return place;
 }
@@ -899,15 +903,15 @@ bool System::spawn_git_commit_message_input_box_modal()
       });
 
    stage->set_place(place);
+   stage->set_render_on_hud(true);
+   stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
    stages.push_back(stage);
 
-   placement3d& stage_place = stage->get_place();
-   stage_place.scale.x = 1.5;
-   stage_place.scale.y = 1.5;
+   //placement3d& stage_place = stage->get_place();
+   //stage_place.scale.x = 1.5;
+   //stage_place.scale.y = 1.5;
    //motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
    //motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
-
-   stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
 
    return true;
 }
