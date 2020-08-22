@@ -340,7 +340,9 @@ keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, fal
 if (system->is_current_stage_a_modal())
 {
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, {
-      ::System::SUBMIT_CURRENT_MODAL });
+      ::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION,
+      ::System::SUBMIT_CURRENT_MODAL
+   });
 }
 else
 {
