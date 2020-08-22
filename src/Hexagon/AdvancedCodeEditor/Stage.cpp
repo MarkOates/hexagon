@@ -342,7 +342,6 @@ if (!(initialized))
       throw std::runtime_error(error_message.str());
    }
 bool result = advanced_code_editor.delete_line();
-if (result) code_message_point_manager.delete_row(cursor_get_y());
 if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return result;
 

@@ -520,7 +520,56 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, delete_line__if_no
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
-   delete_line__will_remove_all_code_message_ponits_on_that_row)
+   delete_line__will_remove_all_existing_message_points_on_that_line)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   delete_line__will_move_up_all_existing_message_points_after_the_deleted_line)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   join_lines__will_remove_all_code_message_points_on_the_subsequent_line)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   join_lines__will_refresh_hilights_on_the_current_line)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   join_lines__will_move_up_all_existing_message_points_after_the_deleted_line)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   split_lines__will_refresh_all_code_message_points_on_the_current_line)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   split_lines__will_refresh_all_code_message_points_on_the_subsequent_line)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   split_lines__will_shift_down_all_code_message_points_after_initial_first_line)
 {
    // TODO
 }
