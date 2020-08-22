@@ -93,6 +93,14 @@ for (auto &selection : selections)
 
 }
 
+ALLEGRO_COLOR Renderer::get_primary_color()
+{
+//if (is_state_to_submitted_and_pending_destruction()) return
+return outline_and_text_color;
+//return;
+
+}
+
 void Renderer::render()
 {
 if (!(font))
@@ -106,6 +114,8 @@ place.start_transform();
 
 //ALLEGRO_COLOR backfill_color = hexagon_get_backfill_color();
 //backfill_color = color::color(backfill_color, hexagon_get_backfill_opacity());
+
+ALLEGRO_COLOR color = get_primary_color();
 
 float outer_roundness = 12;
 float inner_roundness = 6;
@@ -125,7 +135,7 @@ al_draw_rounded_rectangle(
    place.size.y+padding,
    inner_roundness,
    inner_roundness,
-   outline_and_text_color,
+   color,
    3.0);
 
 // draw_top_left_text
@@ -138,7 +148,7 @@ if (!top_left_text.empty())
    float y2 = y + line_height;
 
    al_draw_filled_rectangle(x, y, x2, y2, backfill_color);
-   al_draw_text(font, outline_and_text_color, x, y, ALLEGRO_ALIGN_LEFT, top_left_text.c_str());
+   al_draw_text(font, color, x, y, ALLEGRO_ALIGN_LEFT, top_left_text.c_str());
 }
 
 // draw_top_right_text
@@ -154,7 +164,7 @@ if (!top_right_text.empty())
    float y2 = y + line_height;
 
    al_draw_filled_rectangle(x1, y1, x2, y2, backfill_color);
-   al_draw_text(font, outline_and_text_color, x, y, ALLEGRO_ALIGN_RIGHT, top_right_text.c_str());
+   al_draw_text(font, color, x, y, ALLEGRO_ALIGN_RIGHT, top_right_text.c_str());
 }
 
 // draw_bottom_right_text
@@ -170,7 +180,7 @@ if (!bottom_right_text.empty())
    float y2 = y + line_height;
 
    al_draw_filled_rectangle(x1, y1, x2, y2, backfill_color);
-   al_draw_text(font, outline_and_text_color, x, y, ALLEGRO_ALIGN_RIGHT, bottom_right_text.c_str());
+   al_draw_text(font, color, x, y, ALLEGRO_ALIGN_RIGHT, bottom_right_text.c_str());
 }
 
 if (!bottom_left_text.empty())
@@ -185,7 +195,7 @@ if (!bottom_left_text.empty())
    float y2 = y + line_height;
 
    al_draw_filled_rectangle(x1, y1, x2, y2, backfill_color);
-   al_draw_text(font, outline_and_text_color, x1, y1, 0, bottom_left_text.c_str());
+   al_draw_text(font, color, x1, y1, 0, bottom_left_text.c_str());
 }
 
 float _cursor_y = cursor_y - first_line_number;
@@ -220,7 +230,7 @@ draw_selections(cell_width, cell_height, first_line_number);
 int line_height = al_get_font_line_height(font);
 for (int i=0; i<lines.size(); i++)
 {
-   al_draw_text(font, outline_and_text_color, 0, i*line_height, ALLEGRO_ALIGN_LEFT, lines[i].c_str());
+   al_draw_text(font, color, 0, i*line_height, ALLEGRO_ALIGN_LEFT, lines[i].c_str());
 }
 
 place.restore_transform();

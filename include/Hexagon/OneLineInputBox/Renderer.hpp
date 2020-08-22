@@ -48,6 +48,7 @@ namespace Hexagon
       void change_state_to_submitted_and_pending_destruction();
       bool is_state_to_submitted_and_pending_destruction();
       void draw_selections(int cell_width=1, int cell_height=1, int first_line_number=0);
+      ALLEGRO_COLOR get_primary_color();
       void render();
       int get_lines_character_count();
       };
