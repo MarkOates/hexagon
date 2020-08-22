@@ -570,18 +570,18 @@ void Stage::refresh_render_surfaces()
 {
 AllegroFlare::Timer timer;
 
-std::cout << "------------" << std::endl;
-std::cout << "-num dirty cells: " << advanced_code_editor.dirty_cell_count() << std::endl;
+//std::cout << "------------" << std::endl;
+//std::cout << "-num dirty cells: " << advanced_code_editor.dirty_cell_count() << std::endl;
 
 timer.reset(); timer.start();
 refresh_dirty_cells_on_text_mesh();
-timer.pause(); std::cout << " refresh_dirty_cells_on_text_mesh: "
-                         << timer.get_elapsed_time_microseconds() << std::endl;
+//timer.pause(); std::cout << " refresh_dirty_cells_on_text_mesh: "
+//                         << timer.get_elapsed_time_microseconds() << std::endl;
 
 timer.reset(); timer.start();
 refresh_dirty_cells_on_surface_render_respecting_first_row_offset();
-timer.pause(); std::cout << " refresh_dirty_cells_on_surface_render_respecting_first_row_offset: "
-                         << timer.get_elapsed_time_microseconds() << std::endl;
+//timer.pause(); std::cout << " refresh_dirty_cells_on_surface_render_respecting_first_row_offset: "
+//                         << timer.get_elapsed_time_microseconds() << std::endl;
 
 advanced_code_editor.dirty_grid_clear();
 
