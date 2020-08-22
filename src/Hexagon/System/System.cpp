@@ -522,7 +522,8 @@ bool System::toggle_command_mode_on()
    float camera_zoomed_out_position = get_default_camera_stepback() + 20;
    float camera_zoomed_in_position = get_default_camera_stepback();
    //camera.rotation.x = 0.035;
-   float camera_x_rotation_in_zoomed_out_position = 0.035;
+   //float camera_x_rotation_in_zoomed_out_position = 0.035;
+   float camera_x_rotation_in_zoomed_out_position = 0.0;
 
    motion.canimate(&camera.rotation.x,
                    camera.rotation.x,
