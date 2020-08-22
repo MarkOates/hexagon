@@ -36,6 +36,7 @@ Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, ALL
    , top_right_text(top_right_text)
    , bottom_left_text(bottom_left_text)
    , bottom_right_text(bottom_right_text)
+   , state("normal")
 {
 }
 
@@ -68,6 +69,19 @@ void Renderer::set_bottom_right_text(std::string bottom_right_text)
    this->bottom_right_text = bottom_right_text;
 }
 
+
+void Renderer::change_state_to_submitted_and_pending_destruction()
+{
+state = "submitted_and_pending_destruction";
+return;
+
+}
+
+bool Renderer::is_state_to_submitted_and_pending_destruction()
+{
+return state == "submitted_and_pending_destruction";
+
+}
 
 void Renderer::draw_selections(int cell_width, int cell_height, int first_line_number)
 {

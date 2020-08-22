@@ -77,9 +77,24 @@ properties:
     init_with: '""'
     constructor_arg: true
     setter: true
+  - name: state
+    type: std::string
+    init_with: '"normal"'
 
 
 functions:
+
+
+  - name: change_state_to_submitted_and_pending_destruction
+    body: |
+      state = "submitted_and_pending_destruction";
+      return;
+
+
+  - name: is_state_to_submitted_and_pending_destruction
+    type: bool
+    body: |
+      return state == "submitted_and_pending_destruction";
 
 
   - name: draw_selections
