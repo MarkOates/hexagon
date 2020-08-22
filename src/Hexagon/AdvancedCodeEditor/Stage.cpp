@@ -60,6 +60,8 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , offset_y_updated_at(0.0f)
    , first_row_offset(0)
    , surface_render(nullptr)
+   , current_search_regex("")
+   , code_message_point_manager({})
 {
 }
 

@@ -69,6 +69,12 @@ properties:
     type: ALLEGRO_BITMAP*
     init_with: nullptr
     getter: true
+  - name: current_search_regex
+    type: std::string
+    init_with: '""'
+  - name: code_message_point_manager
+    type: Hexagon::CodeMessagePointManager
+    init_with: '{}'
 
 
 functions:
@@ -698,4 +704,6 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/EventController.hpp ]
   - symbol: ::save_file
     headers: [ Hexagon/util.hpp ]
+  - symbol: Hexagon::CodeMessagePointManager
+    headers: [ vector, Hexagon/CodeMessagePointManager.hpp ]
 
