@@ -45,10 +45,6 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
       &::System::attempt_to_create_stage_from_last_file_navigator_selection,
    },
    {
-      ::System::SIGNAL_UI_REFRESH,
-      &::System::signal_ui_refresh,
-   },
-   {
       ::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION,
       &::System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction,
    },
@@ -344,6 +340,7 @@ keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, fal
 if (system->is_current_stage_a_modal())
 {
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, {
+      ::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION,
       ::System::SUBMIT_CURRENT_MODAL
    });
 }

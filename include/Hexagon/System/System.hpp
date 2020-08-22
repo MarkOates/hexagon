@@ -26,7 +26,6 @@ public:
    Hexagon::System::Config &config;
    Motion &motion;
 
-   bool ui_requires_refresh;
    int save_count;
    int search_count;
    bool files_changed;
@@ -86,8 +85,6 @@ public:
    void acknowledge_display_switch_in(ALLEGRO_DISPLAY *display);
 
    // actions
-   bool signal_ui_refresh();
-   bool turn_off_ui_refresh();
    bool mark_as_files_changed();
    bool set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction();
    bool mark_as_files_committed();
@@ -166,7 +163,6 @@ public:
    bool fx__play_focus_animation_on_frontmost_stage();
 
    // events
-   static const std::string SIGNAL_UI_REFRESH;
    static const std::string SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION;
    static const std::string OPEN_HEXAGON_CONFIG_FILE;
    static const std::string WRITE_FOCUSED_COMPONENT_NAME_TO_FILE;

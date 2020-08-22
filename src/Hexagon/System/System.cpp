@@ -375,21 +375,6 @@ void System::acknowledge_display_switch_in(ALLEGRO_DISPLAY *display)
 // actions
 
 
-bool System::signal_ui_refresh()
-{
-   this->ui_requires_refresh = true;
-   return true;
-}
-
-
-bool System::turn_off_ui_refresh()
-{
-   if (!this->ui_requires_refresh) throw std::runtime_error("System/System::turn_off_ui_refresh: error: already off");
-   this->ui_requires_refresh = false;
-   return true;
-}
-
-
 bool System::mark_as_files_changed()
 {
    this->files_changed = true;
@@ -1690,7 +1675,6 @@ void System::process_event(ALLEGRO_EVENT &event)
 }
 
 
-const std::string System::SIGNAL_UI_REFRESH = "SIGNAL_UI_REFRESH";
 const std::string System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION =
    "SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION";
 const std::string System::OPEN_HEXAGON_CONFIG_FILE = "OPEN_HEXAGON_CONFIG_FILE";
