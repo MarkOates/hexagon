@@ -520,6 +520,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, delete_line__if_no
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   delete_line__will_remove_all_code_message_ponits_on_that_row)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    insert_string_from_input_buffer__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;

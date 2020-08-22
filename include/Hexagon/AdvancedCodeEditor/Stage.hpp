@@ -95,6 +95,8 @@ namespace Hexagon
       ALLEGRO_FONT* obtain_text_font();
       std::vector<std::string> get_lines();
       Hexagon::AdvancedCodeEditor::Cursor get_cursor();
+      int cursor_get_x();
+      int cursor_get_y();
       bool is_in_edit_mode();
       bool is_in_insert_mode();
       void refresh_render_surfaces();

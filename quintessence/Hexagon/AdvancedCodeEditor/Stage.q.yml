@@ -255,6 +255,7 @@ functions:
     type: bool
     body: |
       bool result = advanced_code_editor.delete_line();
+      if (result) code_message_point_manager.delete_row(cursor_get_y());
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
       return result;
 
@@ -481,6 +482,20 @@ functions:
     type: Hexagon::AdvancedCodeEditor::Cursor
     body: |
       return advanced_code_editor.get_cursor_ref();
+
+
+  - name: cursor_get_x
+    private: true
+    type: int
+    body: |
+      return advanced_code_editor.get_cursor_ref().get_x();
+
+
+  - name: cursor_get_y
+    private: true
+    type: int
+    body: |
+      return advanced_code_editor.get_cursor_ref().get_y();
 
 
   - name: is_in_edit_mode

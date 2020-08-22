@@ -342,6 +342,7 @@ if (!(initialized))
       throw std::runtime_error(error_message.str());
    }
 bool result = advanced_code_editor.delete_line();
+if (result) code_message_point_manager.delete_row(cursor_get_y());
 if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 return result;
 
@@ -553,6 +554,18 @@ return advanced_code_editor.get_lines();
 Hexagon::AdvancedCodeEditor::Cursor Stage::get_cursor()
 {
 return advanced_code_editor.get_cursor_ref();
+
+}
+
+int Stage::cursor_get_x()
+{
+return advanced_code_editor.get_cursor_ref().get_x();
+
+}
+
+int Stage::cursor_get_y()
+{
+return advanced_code_editor.get_cursor_ref().get_y();
 
 }
 
