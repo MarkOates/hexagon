@@ -260,6 +260,7 @@ StageInterface *System::get_frontmost_stage()
    return stages.back();
 }
 
+
 Hexagon::CodeEditor::Stage *System::get_frontmost_code_editor_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -274,6 +275,7 @@ Hexagon::CodeEditor::Stage *System::get_frontmost_code_editor_stage()
    }
    return nullptr;
 }
+
 
 std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
 {
@@ -291,6 +293,7 @@ std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
    return result;
 }
 
+
 int System::get_number_of_code_editor_stages()
 {
    int result = 0;
@@ -301,7 +304,9 @@ int System::get_number_of_code_editor_stages()
    return result;
 }
 
+
 // inference
+
 
 bool System::is_current_stage_in_edit_mode()
 {
@@ -310,12 +315,14 @@ bool System::is_current_stage_in_edit_mode()
    return frontmost_stage->get_code_editor_ref().get_mode() == ::CodeEditor::CodeEditor::EDIT;
 }
 
+
 bool System::is_current_stage_a_modal()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return false;
    return frontmost_stage->infer_is_modal();
 }
+
 
 bool System::is_current_stage_a_regex_input_box()
 {
@@ -329,23 +336,28 @@ bool System::is_current_stage_a_regex_input_box()
    return frontmost_stage && (frontmost_stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX);
 }
 
+
 // internal messages
 void System::acknowledge_display_resize(ALLEGRO_DISPLAY *display)
 {
    hud.reinitialize();
 }
 
+
 void System::acknowledge_display_switch_out(ALLEGRO_DISPLAY *display)
 {
    hud.set_show_disabled_screen(true);
 }
+
 
 void System::acknowledge_display_switch_in(ALLEGRO_DISPLAY *display)
 {
    hud.set_show_disabled_screen(false);
 }
 
+
 // actions
+
 
 bool System::mark_as_files_changed()
 {
@@ -353,11 +365,13 @@ bool System::mark_as_files_changed()
    return true;
 }
 
+
 bool System::mark_as_files_committed()
 {
    this->files_committed = true;
    return true;
 }
+
 
 bool System::mark_as_in_sync_with_remote()
 {
@@ -365,11 +379,13 @@ bool System::mark_as_in_sync_with_remote()
    return true;
 }
 
+
 bool System::mark_as_files_unchanged()
 {
    this->files_changed = false;
    return true;
 }
+
 
 bool System::mark_as_files_uncommitted()
 {
@@ -377,11 +393,13 @@ bool System::mark_as_files_uncommitted()
    return true;
 }
 
+
 bool System::mark_as_not_in_sync_with_remote()
 {
    this->in_sync_with_remote = false;
    return true;
 }
+
 
 bool System::write_focused_component_name_to_file()
 {
@@ -403,11 +421,13 @@ bool System::write_focused_component_name_to_file()
    return true;
 }
 
+
 bool System::increment_save_count()
 {
    save_count++;
    return true;
 }
+
 
 bool System::clear_save_count()
 {
@@ -415,11 +435,13 @@ bool System::clear_save_count()
    return true;
 }
 
+
 bool System::increment_search_count()
 {
    search_count++;
    return true;
 }
+
 
 bool System::clear_search_count()
 {
@@ -427,11 +449,13 @@ bool System::clear_search_count()
    return true;
 }
 
+
 bool System::set_hud_title_to_focused_component_name()
 {
    hud.set_title_text(focused_component_name);
    return true;
 }
+
 
 bool System::set_hud_save_count_to_save_count()
 {
@@ -439,17 +463,20 @@ bool System::set_hud_save_count_to_save_count()
    return true;
 }
 
+
 bool System::set_hud_search_count_to_search_count()
 {
    hud.set_search_count(search_count);
    return true;
 }
 
+
 bool System::set_hud_packets_to_packets()
 {
    hud.set_packets(packets);
    return true;
 }
+
 
 bool System::set_focused_component_name_relative_names_from_focused_component_name()
 {
@@ -459,6 +486,7 @@ bool System::set_focused_component_name_relative_names_from_focused_component_na
    this->focused_component_name_relative_names  = lister.list_component_relative_names();
    return true;
 }
+
 
 bool System::set_focused_component_name_to_topmost_relative()
 {
@@ -474,6 +502,7 @@ bool System::set_focused_component_name_to_topmost_relative()
 
    return true;
 }
+
 
 bool System::fx__play_focus_animation_on_frontmost_stage()
 {
@@ -515,6 +544,7 @@ bool System::fx__play_focus_animation_on_frontmost_stage()
    return true;
 }
 
+
 bool System::toggle_command_mode_on()
 {
    if (command_mode) return true;
@@ -547,6 +577,7 @@ bool System::toggle_command_mode_on()
    return true;
 }
 
+
 bool System::toggle_command_mode_off()
 {
    if (!command_mode) return true;
@@ -576,6 +607,7 @@ bool System::toggle_command_mode_off()
    return true;
 }
 
+
 bool System::rotate_stage_right()
 {
    if (stages.empty())
@@ -588,6 +620,7 @@ bool System::rotate_stage_right()
    return true;
 }
 
+
 bool System::rotate_stage_left()
 {
    if (stages.empty())
@@ -599,6 +632,7 @@ bool System::rotate_stage_left()
    std::rotate(stages.rbegin(), stages.rbegin() + 1, stages.rend());
    return true;
 }
+
 
 bool System::rotate_relative_up()
 {
@@ -616,6 +650,7 @@ bool System::rotate_relative_up()
    return true;
 }
 
+
 bool System::rotate_relative_down()
 {
    if (focused_component_name_relative_names.empty())
@@ -630,6 +665,7 @@ bool System::rotate_relative_down()
       focused_component_name_relative_names.end());
    return true;
 }
+
 
 bool System::center_camera_on_frontmost_stage()
 {
@@ -650,6 +686,7 @@ bool System::center_camera_on_frontmost_stage()
 
    return true;
 }
+
 
 bool System::run_project_tests()
 {
@@ -686,6 +723,7 @@ bool System::run_project_tests()
    return true;
 }
 
+
 bool System::save_frontmost_code_editor_stage()
 {
    Hexagon::CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
@@ -705,15 +743,18 @@ bool System::save_frontmost_code_editor_stage()
    return true;
 }
 
+
 bool System::increase_font_size()
 {
    global_font_size -= 1;
 }
 
+
 bool System::decrease_font_size()
 {
    global_font_size += 1;
 }
+
 
 bool System::refresh_regex_hilights_on_frontmost_stage()
 {
@@ -728,6 +769,7 @@ bool System::refresh_regex_hilights_on_frontmost_stage()
    return true;
 }
 
+
 bool System::refresh_regex_hilights_on_all_code_editor_stages()
 {
    std::vector<Hexagon::CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
@@ -740,6 +782,7 @@ bool System::refresh_regex_hilights_on_all_code_editor_stages()
    return true;
 }
 
+
 bool System::refresh_git_modified_line_numbers_on_all_code_editor_stages()
 {
    std::vector<Hexagon::CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
@@ -750,6 +793,7 @@ bool System::refresh_git_modified_line_numbers_on_all_code_editor_stages()
    return true;
 }
 
+
 bool System::set_regex_input_box_modal_to_insert_mode()
 {
    // TODO: this function also handles git_commit_message modal, too
@@ -758,6 +802,7 @@ bool System::set_regex_input_box_modal_to_insert_mode()
    frontmost_stage->process_local_event(CodeEditor::EventController::SET_INSERT_MODE);
    return true;
 }
+
 
 placement3d System::build_regex_input_box_initial_place()
 {
@@ -768,6 +813,7 @@ placement3d System::build_regex_input_box_initial_place()
    place.rotation = vec3d(0.0, 0.0, 0.0);
    return place;
 }
+
 
 bool System::spawn_regex_input_box_modal()
 {
@@ -797,6 +843,7 @@ bool System::spawn_regex_input_box_modal()
    return true;
 }
 
+
 placement3d System::build_git_commit_message_input_box_initial_place()
 {
    placement3d place(0.0, 0.0, 0.0);
@@ -806,6 +853,7 @@ placement3d System::build_git_commit_message_input_box_initial_place()
    place.rotation = vec3d(0.0, 0.0, 0.0);
    return place;
 }
+
 
 bool System::spawn_git_commit_message_input_box_modal()
 {
@@ -837,6 +885,7 @@ bool System::spawn_git_commit_message_input_box_modal()
    return true;
 }
 
+
 bool System::spawn_component_navigator()
 {
    //placement3d component_navigator_initial_place = component_navigator_initial_place;
@@ -859,11 +908,13 @@ bool System::spawn_component_navigator()
    return true;
 }
 
+
 bool System::spawn_red_overlay()
 {
    Hexagon::FullScreenOverlay::Stage *red_overlay = new Hexagon::FullScreenOverlay::Stage;
    stages.push_back(red_overlay);
 }
+
 
 bool System::spawn_file_navigator()
 {
@@ -873,6 +924,7 @@ bool System::spawn_file_navigator()
    stages.push_back(file_navigator);
    return true;
 }
+
 
 bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
 {
@@ -887,6 +939,7 @@ bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
    placement3d& stage_place = file_navigator->get_place();
    return true;
 }
+
 
 bool System::spawn_rerun_output_watcher()
 {
@@ -903,17 +956,20 @@ bool System::spawn_rerun_output_watcher()
    return true;
 }
 
+
 bool System::add_file_is_unsaved_notification()
 {
    add_notification(NOTIFICATION_FILE_IS_UNSAVED);
    return true;
 }
 
+
 bool System::remove_file_is_unsaved_notification()
 {
    remove_notification(NOTIFICATION_FILE_IS_UNSAVED);
    return true;
 }
+
 
 bool System::clear_rerun_output_watchers()
 {
@@ -927,6 +983,7 @@ bool System::clear_rerun_output_watchers()
    }
    return true;
 }
+
 
 bool System::refresh_rerun_output_watchers()
 {
@@ -948,6 +1005,7 @@ bool System::refresh_rerun_output_watchers()
    }
    return true;
 }
+
 
 bool System::destroy_topmost_stage()
 {
@@ -1046,6 +1104,7 @@ bool System::execute_magic_command()
    return true;
 }
 
+
 bool System::jump_to_next_code_point_on_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -1053,6 +1112,7 @@ bool System::jump_to_next_code_point_on_stage()
    frontmost_stage->process_local_event(CodeEditor::EventController::JUMP_TO_NEXT_CODE_POINT);
    return true;
 }
+
 
 bool System::jump_to_next_or_nearest_code_point_on_stage()
 {
@@ -1062,11 +1122,13 @@ bool System::jump_to_next_or_nearest_code_point_on_stage()
    return true;
 }
 
+
 bool System::clear_last_compiled_error_messages()
 {
    ::clear_last_compiled_error_messages();
    return true;
 }
+
 
 bool System::enable_drawing_info_overlays_on_all_code_editor_stages()
 {
@@ -1078,6 +1140,7 @@ bool System::enable_drawing_info_overlays_on_all_code_editor_stages()
    return true;
 }
 
+
 bool System::disable_drawing_info_overlays_on_all_code_editor_stages()
 {
    std::vector<Hexagon::CodeEditor::Stage *> code_editor_stages = System::get_all_code_editor_stages();
@@ -1087,6 +1150,7 @@ bool System::disable_drawing_info_overlays_on_all_code_editor_stages()
    }
    return true;
 }
+
 
 bool System::check_git_sync_and_update_powerbar()
 {
@@ -1098,6 +1162,7 @@ bool System::check_git_sync_and_update_powerbar()
    return action.execute();
 }
 
+
 bool System::check_git_local_status_and_update_powerbar()
 {
    //std::string repo_name = "blast";
@@ -1107,6 +1172,7 @@ bool System::check_git_local_status_and_update_powerbar()
    Hexagon::System::Action::CheckGitLocalStatusAndUpdatePowerbar action(current_project_directory, powerbar);
    return action.execute();
 }
+
 
 bool System::run_make()
 {
@@ -1120,6 +1186,7 @@ bool System::run_make()
    return true;
 }
 
+
 bool System::offset_first_line_to_vertically_center_cursor_on_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -1127,6 +1194,7 @@ bool System::offset_first_line_to_vertically_center_cursor_on_stage()
    frontmost_stage->process_local_event(CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
    return true;
 }
+
 
 bool System::push_component_navigator_selection()
 {
@@ -1148,6 +1216,7 @@ bool System::push_component_navigator_selection()
    return true;
 }
 
+
 bool System::push_project_navigator_selection()
 {
    StageInterface *frontmost_stage_interface = get_frontmost_stage();
@@ -1168,6 +1237,7 @@ bool System::push_project_navigator_selection()
    return true;
 }
 
+
 bool System::push_file_navigator_selection()
 {
    StageInterface *frontmost_stage_interface = get_frontmost_stage();
@@ -1185,6 +1255,7 @@ bool System::push_file_navigator_selection()
    last_file_navigator_selection = current_file_navigator_selection;
    return true;
 }
+
 
 bool System::attempt_to_create_stage_from_last_file_navigator_selection()
 {
@@ -1251,11 +1322,13 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
    return true;
 }
 
+
 bool System::destroy_all_code_editor_stages()
 {
    Hexagon::System::Action::DestroyAllCodeEditorStages action(stages);
    return action.managed_execute();
 }
+
 
 bool System::create_stages_from_layout_of_last_component_navigator_selection()
 {
@@ -1285,6 +1358,7 @@ bool System::create_stages_from_layout_of_last_component_navigator_selection()
 
    return true;
 }
+
 
 bool System::create_two_or_three_split_layout_from_last_component_navigator_selection()
 {
@@ -1327,10 +1401,12 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
    }
 }
 
+
 bool System::create_layout_from_last_project_navigator_selection()
 {
    return true;
 }
+
 
 bool System::create_three_split_from_last_component_navigator_selection()
 {
@@ -1347,6 +1423,7 @@ bool System::create_three_split_from_last_component_navigator_selection()
    );
    return action.managed_execute();
 }
+
 
 bool System::create_rails_resource_layout()
 {
@@ -1383,6 +1460,7 @@ bool System::create_rails_resource_layout()
    return rails_resource_layout.execute();
 }
 
+
 bool System::attempt_to_create_stage_from_last_component_navigator_selection()
 {
    Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection action(
@@ -1397,6 +1475,7 @@ bool System::attempt_to_create_stage_from_last_component_navigator_selection()
       );
    return action.managed_execute();
 }
+
 
 bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents()
 {
@@ -1415,6 +1494,7 @@ bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp
 
    return true;
 }
+
 
 bool
 System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores()
@@ -1452,6 +1532,7 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
    return true;
 }
 
+
 bool System::push_to_git_remote()
 {
    std::string current_project_directory = get_default_navigator_directory();
@@ -1461,6 +1542,7 @@ bool System::push_to_git_remote()
 
    return true;
 }
+
 
 bool System::open_entire_family_of_last_component_navigator_selection()
 {
@@ -1473,6 +1555,7 @@ bool System::open_entire_family_of_last_component_navigator_selection()
    //
    return true;
 }
+
 
 bool System::submit_current_modal()
 {
@@ -1518,11 +1601,13 @@ bool System::submit_current_modal()
    return true;
 }
 
+
 bool System::escape_current_modal()
 {
    process_local_event(DESTROY_TOPMOST_STAGE);
    return true;
 }
+
 
 bool System::open_hexagon_config_file()
 {
