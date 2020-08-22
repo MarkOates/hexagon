@@ -952,7 +952,7 @@ bool System::spawn_file_navigator()
 
 bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
 {
-   //TODO: this function does not guard against a "last_file_navigator_selection" that could potentially not be a folder 
+   //TODO: this function does not guard against a "last_file_navigator_selection" that could potentially not be a folder
 
    Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(last_file_navigator_selection);
    file_navigator->process_local_event("refresh_list");
