@@ -95,9 +95,11 @@ for (auto &selection : selections)
 
 ALLEGRO_COLOR Renderer::get_primary_color()
 {
-//if (is_state_to_submitted_and_pending_destruction()) return
-return outline_and_text_color;
-//return;
+if (is_state_to_submitted_and_pending_destruction())
+{
+   return outline_and_text_color;
+}
+return ALLEGRO_COLOR{1, 1, 1, 1};
 
 }
 
