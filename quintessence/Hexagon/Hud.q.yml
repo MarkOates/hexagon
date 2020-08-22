@@ -7,14 +7,14 @@ properties:
   - name: dummy_font_bin
     type: AllegroFlare::FontBin
     static: true
-    init_with: "{}"
+    init_with: '{}'
   - name: screen_sub_bitmap
     type: ALLEGRO_BITMAP*
-    init_with: "nullptr"
+    init_with: nullptr
     setter: true
   - name: notifications
     type: std::vector<std::string>
-    init_with: "{}"
+    init_with: '{}'
     getter: true
     setter: true
   - name: notifications2
@@ -40,7 +40,7 @@ properties:
     constructor_arg: true
   - name: title_text
     type: std::string
-    init_with: "\"\""
+    init_with: '""'
     setter: true
     getter: true
     constructor_arg: true
