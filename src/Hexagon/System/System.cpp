@@ -1248,7 +1248,11 @@ bool System::push_project_navigator_selection()
    {
       std::stringstream error_message;
       std::string function_name = "push_project_navigator_selection";
-      error_message << "Could not " << function_name << ": Either the frontmost_stage_interface is a nullptr OR is not of type StageInterface::COMPONENT_NAVIGATOR." << std::endl;
+      error_message << "Could not "
+                    << function_name
+                    << ": Either the frontmost_stage_interface is a nullptr OR is not "
+                    << "of type StageInterface::COMPONENT_NAVIGATOR."
+                    << std::endl;
       throw std::runtime_error(error_message.str().c_str());
    }
    Hexagon::ProjectComponentNavigator::Stage *project_navigator =
