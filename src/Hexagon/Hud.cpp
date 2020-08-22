@@ -17,6 +17,7 @@
 #include <Hexagon/Powerbar/Renderer.hpp>
 #include <Hexagon/FocusTimerBar/Renderer.hpp>
 #include <Hexagon/PacketRenderer.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -445,7 +446,7 @@ ALLEGRO_STATE previous_target_bitmap_state;
 al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
 al_set_target_bitmap(screen_sub_bitmap);
 
-//ALLEGRO_FONT *font = obtain_global_font();
+ALLEGRO_FONT *font = obtain_global_font();
 ALLEGRO_FONT *component_navigator_font = obtain_component_navigator_font();
 
 bool draw_stages = true;
@@ -463,6 +464,15 @@ if (draw_stages && stages)
          advanced_component_navigator_stage->set_is_focused(true);
          //advanced_component_navigator_stage->set_display(display);
          advanced_component_navigator_stage->set_font(component_navigator_font);
+         //advanced_component_navigator_stage->set_cell_width(cell_width);
+         //advanced_component_navigator_stage->set_cell_height(cell_height);
+      }
+      else if (stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX)
+      {
+         Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+         code_editor_stage->set_is_focused(true);
+         //advanced_component_navigator_stage->set_display(display);
+         code_editor_stage->set_font(font);
          //advanced_component_navigator_stage->set_cell_width(cell_width);
          //advanced_component_navigator_stage->set_cell_height(cell_height);
       }

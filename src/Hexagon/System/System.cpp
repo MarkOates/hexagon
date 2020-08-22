@@ -856,6 +856,7 @@ bool System::spawn_regex_input_box_modal()
          StageInterface::ONE_LINE_INPUT_BOX
       });
    stage->set_place(place);
+   stage->set_render_on_hud(true);
    stages.push_back(stage);
 
    placement3d& stage_place = stage->get_place();
