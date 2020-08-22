@@ -456,10 +456,10 @@ void Renderer::render_cursor_position_info()
    //cursor_position_info << " n%";
 
    // draw the current cursor position
-   cursor_position_info << " x" << code_editor->get_cursor_x() << " y" << (code_editor->get_cursor_y()+1) << " ";
+   cursor_position_info << " x" << code_editor->get_cursor_x() << " y" << (code_editor->get_cursor_y()+1);
 
    // draw the width dimensions of the frame
-   cursor_position_info << line_length_character_limit << "^";
+   cursor_position_info << " w" << line_length_character_limit;
 
    // set colors
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
