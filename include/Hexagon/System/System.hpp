@@ -70,6 +70,7 @@ public:
    // retrieval
    StageInterface *get_frontmost_stage();
    Hexagon::CodeEditor::Stage *get_frontmost_code_editor_stage();
+   Hexagon::CodeEditor::Stage *get_frontmost_git_commit_message_input_box();
    std::vector<Hexagon::CodeEditor::Stage *> get_all_code_editor_stages();
    int get_number_of_code_editor_stages();
 
@@ -85,6 +86,7 @@ public:
 
    // actions
    bool mark_as_files_changed();
+   bool set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction();
    bool mark_as_files_committed();
    bool mark_as_in_sync_with_remote();
    bool mark_as_files_unchanged();
@@ -161,6 +163,7 @@ public:
    bool fx__play_focus_animation_on_frontmost_stage();
 
    // events
+   static const std::string SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION;
    static const std::string OPEN_HEXAGON_CONFIG_FILE;
    static const std::string WRITE_FOCUSED_COMPONENT_NAME_TO_FILE;
    static const std::string ADD_FILE_IS_UNSAVED_NOTIFICATION;

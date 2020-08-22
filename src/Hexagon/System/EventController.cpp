@@ -45,6 +45,10 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
       &::System::attempt_to_create_stage_from_last_file_navigator_selection,
    },
    {
+      ::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION,
+      &::System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction,
+   },
+   {
       ::System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION,
       &::System::attempt_to_create_stage_from_last_component_navigator_selection,
    },

@@ -277,6 +277,20 @@ Hexagon::CodeEditor::Stage *System::get_frontmost_code_editor_stage()
 }
 
 
+Hexagon::CodeEditor::Stage *System::get_frontmost_git_commit_message_input_box()
+{
+   StageInterface *frontmost_stage = get_frontmost_stage();
+   if (!frontmost_stage) return nullptr;
+
+   StageInterface::type_t type = frontmost_stage->get_type();
+   if (type == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX)
+   {
+      return static_cast<Hexagon::CodeEditor::Stage *>(get_frontmost_stage());
+   }
+   return nullptr;
+}
+
+
 std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
 {
    std::vector<Hexagon::CodeEditor::Stage *> result;
@@ -397,6 +411,16 @@ bool System::mark_as_files_uncommitted()
 bool System::mark_as_not_in_sync_with_remote()
 {
    this->in_sync_with_remote = false;
+   return true;
+}
+
+
+
+bool System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction()
+{
+   Hexagon::CodeEditor::Stage *stage = get_frontmost_git_commit_message_input_box();
+   if (!stage) return false;
+   stage->change_state_to_submitted_and_pending_destruction();
    return true;
 }
 
@@ -1574,6 +1598,7 @@ bool System::submit_current_modal()
       //process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
       break;
    case StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX:
+      process_local_event(SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION);
       process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE);
       process_local_event(DESTROY_TOPMOST_STAGE);
       process_local_event(COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES);
@@ -1644,6 +1669,8 @@ void System::process_event(ALLEGRO_EVENT &event)
 }
 
 
+const std::string System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION =
+   "SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION";
 const std::string System::OPEN_HEXAGON_CONFIG_FILE = "OPEN_HEXAGON_CONFIG_FILE";
 const std::string System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE = "WRITE_FOCUSED_COMPONENT_NAME_TO_FILE";
 const std::string System::ADD_FILE_IS_UNSAVED_NOTIFICATION = "ADD_FILE_IS_UNSAVED_NOTIFICATION";

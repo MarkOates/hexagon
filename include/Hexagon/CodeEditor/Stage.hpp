@@ -25,6 +25,7 @@ namespace Hexagon
          int cell_height;
          ALLEGRO_COLOR base_font_color;
          ALLEGRO_COLOR backfill_color;
+         std::string state;
 
       public:
          Stage(::CodeEditor::CodeEditor code_editor=::CodeEditor::CodeEditor{});
@@ -48,6 +49,8 @@ namespace Hexagon
          ALLEGRO_COLOR get_backfill_color();
          ::CodeEditor::CodeEditor &get_code_editor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
+      void change_state_to_submitted_and_pending_destruction();
+      bool is_state_to_submitted_and_pending_destruction();
       virtual void render() override;
       void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());

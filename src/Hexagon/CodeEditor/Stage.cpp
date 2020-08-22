@@ -30,6 +30,7 @@ Stage::Stage(::CodeEditor::CodeEditor code_editor)
    , cell_height(20)
    , base_font_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f})
    , backfill_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f})
+   , state("normal")
 {
 }
 
@@ -140,6 +141,19 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
    return a_default_empty_event;
 }
 
+
+void Stage::change_state_to_submitted_and_pending_destruction()
+{
+state = "submitted_and_pending_destruction";
+return;
+
+}
+
+bool Stage::is_state_to_submitted_and_pending_destruction()
+{
+return state == "submitted_and_pending_destruction";
+
+}
 
 void Stage::render()
 {

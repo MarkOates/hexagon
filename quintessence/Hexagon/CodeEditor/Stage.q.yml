@@ -55,9 +55,24 @@ properties:
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f}
     getter: true
     setter: true
+  - name: state
+    type: std::string
+    init_with: '"normal"'
 
 
 functions:
+
+
+  - name: change_state_to_submitted_and_pending_destruction
+    body: |
+      state = "submitted_and_pending_destruction";
+      return;
+
+
+  - name: is_state_to_submitted_and_pending_destruction
+    type: bool
+    body: |
+      return state == "submitted_and_pending_destruction";
 
 
   - name: render
