@@ -25,6 +25,11 @@ properties:
     type: float
     init_with: 0
     constructor_arg: true
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
+
 
 
 functions:
@@ -72,6 +77,8 @@ functions:
 dependencies:
 
 
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ 'allegro5/allegro_color.h' ]
   - symbol: ALLEGRO_FONT*

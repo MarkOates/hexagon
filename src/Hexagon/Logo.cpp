@@ -11,13 +11,14 @@ namespace Hexagon
 {
 
 
-Logo::Logo(float x, float y, float radius, ALLEGRO_FONT* font, ALLEGRO_COLOR color, float thickness)
+Logo::Logo(float x, float y, float radius, ALLEGRO_FONT* font, ALLEGRO_COLOR color, float thickness, AllegroFlare::FontBin* font_bin)
    : x(x)
    , y(y)
    , radius(radius)
    , font(font)
    , color(color)
    , thickness(thickness)
+   , font_bin(font_bin)
 {
 }
 
