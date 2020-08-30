@@ -97,6 +97,12 @@ return al_color_html("39c3c5");
 
 }
 
+float Renderer::build_line_height()
+{
+return cell_height * 1.1;
+
+}
+
 void Renderer::draw_search_text_box()
 {
 // draw the search_text
@@ -215,7 +221,7 @@ Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage
 // draw cursor box for focused line
 
 int line = 0;
-int line_height = cell_height * 1.1;
+int line_height = build_line_height();
 int pos_x = 0;
 int cursor_y = 0;
 if (component.get_cursor_position_static())
@@ -348,7 +354,7 @@ bool list_clipping_occurred_above = false;
 bool list_clipping_occurred_below = false;
 
 int cursor_y = 0;
-int line_height = cell_height * 1.1;
+int line_height = build_line_height();
 if (component.get_cursor_position_static())
 {
   cursor_y = - line_height * component.get_cursor_position();

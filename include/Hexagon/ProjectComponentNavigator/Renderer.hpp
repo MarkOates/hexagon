@@ -32,6 +32,7 @@ namespace Hexagon
       ALLEGRO_COLOR build_backfill_color();
       ALLEGRO_COLOR build_text_color();
       ALLEGRO_COLOR build_frame_color();
+      float build_line_height();
       void draw_search_text_box();
       void render();
       void render_window_raw();
