@@ -65,6 +65,16 @@ functions:
 
 
 
+  - name: build_frame_color
+    private: true
+    type: ALLEGRO_COLOR
+    guards: [ base_text_color ]
+    body: |
+      ALLEGRO_COLOR result_frame_color = color::color(*base_text_color, 0.8);
+      return result_frame_color;
+
+
+
   - name: draw_search_text_box
     private: true
     type: void
