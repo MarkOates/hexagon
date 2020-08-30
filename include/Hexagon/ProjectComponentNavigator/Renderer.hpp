@@ -4,6 +4,7 @@
 #include <Hexagon/ProjectComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
+#include <utility>
 
 
 namespace Hexagon
@@ -38,6 +39,7 @@ namespace Hexagon
       void render_window_raw();
       void render_cursor_box_raw();
       void render_window_title_raw();
+      std::pair<bool, bool> render_list_elements_raw();
       void render_raw();
       };
    }

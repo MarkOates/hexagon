@@ -320,45 +320,11 @@ return;
 
 }
 
-void Renderer::render_raw()
+std::pair<bool, bool> Renderer::render_list_elements_raw()
 {
-if (!(stage))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(font))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(base_text_color))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
-      throw std::runtime_error(error_message.str());
-   }
 Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
 Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
 placement3d &place = stage.get_place();
-ALLEGRO_COLOR backfill_color = build_backfill_color();
-float line_stroke_thickness = 2.5;
-
-
-render_window_raw();
-
-render_cursor_box_raw();
-
-render_window_title_raw();
-
-
-
-// draw the search_text
-
-draw_search_text_box();
-
 
 // draw list elements
 
@@ -404,9 +370,59 @@ for (auto &node : component.get_nodes())
 
   cursor_y += line_height;
 }
+return std::pair<bool, bool>(list_clipping_occurred_above, list_clipping_occurred_below);
+
+}
+
+void Renderer::render_raw()
+{
+if (!(stage))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(base_text_color))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
+Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
+placement3d &place = stage.get_place();
+ALLEGRO_COLOR backfill_color = build_backfill_color();
+float line_stroke_thickness = 2.5;
+
+
+render_window_raw();
+
+render_cursor_box_raw();
+
+render_window_title_raw();
+
+std::pair<bool, bool> clipping_result = render_list_elements_raw();
+
+
+bool list_clipping_occurred_above = clipping_result.first;
+bool list_clipping_occurred_below = clipping_result.second;
+
+
+// draw the search_text
+
+draw_search_text_box();
+
 
 
 // draw list clipping hint arrows
+
+
 
 float list_extension_indicator_radius = 30;
 if (list_clipping_occurred_above)
