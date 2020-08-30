@@ -31,6 +31,7 @@ namespace Hexagon
          ALLEGRO_COLOR* get_base_backfill_color();
          ALLEGRO_COLOR* get_base_text_color();
       ALLEGRO_COLOR build_backfill_color();
+      ALLEGRO_COLOR build_text_color();
       void draw_search_text_box();
       void foobar();
       void render();

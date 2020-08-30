@@ -5,6 +5,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <cmath>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/color.h>
@@ -64,6 +66,19 @@ if (!(base_backfill_color))
    }
 ALLEGRO_COLOR result_backfill_color = color::color(*base_backfill_color, 0.8);
 return result_backfill_color;
+
+}
+
+ALLEGRO_COLOR Renderer::build_text_color()
+{
+if (!(base_text_color))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "build_text_color" << ": error: " << "guard \"base_text_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+ALLEGRO_COLOR result_text_color = color::color(*base_text_color, 0.8);
+return result_text_color;
 
 }
 
