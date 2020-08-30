@@ -175,28 +175,9 @@ return;
 
 }
 
-void Renderer::render_raw()
+void Renderer::render_window_raw()
 {
-if (!(stage))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(font))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(base_text_color))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
-      throw std::runtime_error(error_message.str());
-   }
 Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
-Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
 placement3d &place = stage.get_place();
 
 float line_stroke_thickness = 2.5;
@@ -220,6 +201,39 @@ al_draw_filled_rounded_rectangle(
 al_draw_rounded_rectangle(- padding_x, - padding_y,
    place.size.x+padding_x, place.size.y+padding_y,
    roundness, roundness, build_frame_color(), line_stroke_thickness);
+
+return;
+
+}
+
+void Renderer::render_raw()
+{
+if (!(stage))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(base_text_color))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
+Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
+placement3d &place = stage.get_place();
+ALLEGRO_COLOR backfill_color = build_backfill_color();
+float line_stroke_thickness = 2.5;
+
+
+render_window_raw();
 
 
 // draw cursor box for focused line

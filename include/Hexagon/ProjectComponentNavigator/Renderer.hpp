@@ -34,6 +34,7 @@ namespace Hexagon
       ALLEGRO_COLOR build_frame_color();
       void draw_search_text_box();
       void render();
+      void render_window_raw();
       void render_raw();
       };
    }
