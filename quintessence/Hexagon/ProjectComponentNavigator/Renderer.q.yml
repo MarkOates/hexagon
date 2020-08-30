@@ -35,9 +35,6 @@ properties:
     init_with: nullptr
     constructor_arg: true
     getter: true
-  - name: frame_color
-    type: ALLEGRO_COLOR
-    init_with: 'al_color_html("39c3c5")'
 
 
 

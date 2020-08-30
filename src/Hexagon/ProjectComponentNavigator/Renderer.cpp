@@ -36,7 +36,6 @@ Renderer::Renderer(Hexagon::ProjectComponentNavigator::Stage* stage, bool is_foc
    , base_backfill_color(base_backfill_color)
    , backfill_opacity(backfill_opacity)
    , base_text_color(base_text_color)
-   , frame_color(al_color_html("39c3c5"))
 {
 }
 
