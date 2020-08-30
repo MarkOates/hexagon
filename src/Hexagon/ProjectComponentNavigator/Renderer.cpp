@@ -300,6 +300,26 @@ return;
 
 }
 
+void Renderer::render_window_title_raw()
+{
+Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
+Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
+ALLEGRO_COLOR backfill_color = build_backfill_color();
+
+// draw the project root (window title)
+
+ALLEGRO_COLOR node_root_font_color = build_frame_color();
+std::string node_root_val = component.get_project_root();
+float title_text_width = al_get_text_width(font, node_root_val.c_str());
+float title_text_height = al_get_font_line_height(font);
+float title_y = (title_text_height * -1.3) * 2;
+al_draw_filled_rectangle(0, title_y, title_text_width, title_y+title_text_height, backfill_color);
+al_draw_text(font, node_root_font_color, 0, title_y, 0, node_root_val.c_str());
+
+return;
+
+}
+
 void Renderer::render_raw()
 {
 if (!(stage))
@@ -331,16 +351,8 @@ render_window_raw();
 
 render_cursor_box_raw();
 
+render_window_title_raw();
 
-// draw the project root (window title)
-
-ALLEGRO_COLOR node_root_font_color = build_frame_color();
-std::string node_root_val = component.get_project_root();
-float title_text_width = al_get_text_width(font, node_root_val.c_str());
-float title_text_height = al_get_font_line_height(font);
-float title_y = (title_text_height * -1.3) * 2;
-al_draw_filled_rectangle(0, title_y, title_text_width, title_y+title_text_height, backfill_color);
-al_draw_text(font, node_root_font_color, 0, title_y, 0, node_root_val.c_str());
 
 
 // draw the search_text
