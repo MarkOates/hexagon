@@ -113,6 +113,7 @@ TEST_F(Hexagon_ProjectComponentNavigator_RendererWithFixtureTest, render__render
 {
    Hexagon::ProjectComponentNavigator::Renderer &renderer = get_renderer_fixture();
 
+   al_clear_to_color(al_color_name("gray"));
    renderer.render();
    al_flip_display();
 
@@ -131,6 +132,7 @@ TEST_F(Hexagon_ProjectComponentNavigator_RendererWithFixtureTest, render__render
 
    component.set_nodes({ Layout("Blast/Foobar"), Layout("Blast/BarBar") });
 
+   al_clear_to_color(al_color_name("gray"));
    renderer.render();
    al_flip_display();
 
@@ -153,6 +155,7 @@ TEST_F(Hexagon_ProjectComponentNavigator_RendererWithFixtureTest, render__render
    stage.process_local_event("move_cursor_down");
    stage.process_local_event("move_cursor_down");
 
+   al_clear_to_color(al_color_name("gray"));
    renderer.render();
    al_flip_display();
 
