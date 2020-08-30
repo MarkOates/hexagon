@@ -92,8 +92,9 @@ if (!(base_text_color))
       error_message << "Renderer" << "::" << "build_frame_color" << ": error: " << "guard \"base_text_color\" not met";
       throw std::runtime_error(error_message.str());
    }
-ALLEGRO_COLOR result_frame_color = color::color(*base_text_color, 0.8);
-return result_frame_color;
+return al_color_html("39c3c5");
+//ALLEGRO_COLOR result_frame_color = color::color(*base_text_color, 0.8);
+//return result_frame_color;
 
 }
 
@@ -106,7 +107,7 @@ Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage
 ALLEGRO_COLOR backfill_color = build_backfill_color();
 bool focus_is_search_bar = component.is_mode_typing_in_search_bar();
 
-ALLEGRO_COLOR search_text_font_color = focus_is_search_bar ? al_color_name("chartreuse") : frame_color;
+ALLEGRO_COLOR search_text_font_color = focus_is_search_bar ? al_color_name("chartreuse") : build_frame_color();
 std::string search_text_val = component.get_search_text();
 float search_text_width = al_get_text_width(font, search_text_val.c_str());
 float search_text_height = al_get_font_line_height(font);
@@ -206,7 +207,6 @@ float line_stroke_thickness = 2.5;
 float roundness = 0.0; //6.0;
 float padding_x = cell_width;
 float padding_y = cell_width;
-//ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
 ALLEGRO_COLOR backfill_color = build_backfill_color();
 
 al_draw_filled_rounded_rectangle(
@@ -220,7 +220,7 @@ al_draw_filled_rounded_rectangle(
 );
 al_draw_rounded_rectangle(- padding_x, - padding_y,
    place.size.x+padding_x, place.size.y+padding_y,
-   roundness, roundness, frame_color, line_stroke_thickness);
+   roundness, roundness, build_frame_color(), line_stroke_thickness);
 
 
 // draw cursor box for focused line
@@ -305,7 +305,7 @@ else
 
 // draw the project root (window title)
 
-ALLEGRO_COLOR node_root_font_color = frame_color;
+ALLEGRO_COLOR node_root_font_color = build_frame_color();
 std::string node_root_val = component.get_project_root();
 float title_text_width = al_get_text_width(font, node_root_val.c_str());
 float title_text_height = al_get_font_line_height(font);
@@ -368,7 +368,7 @@ if (list_clipping_occurred_above)
        list_extension_indicator_radius,
        list_extension_indicator_radius,
        {
-         { 9, 3, frame_color, line_stroke_thickness },
+         { 9, 3, build_frame_color(), line_stroke_thickness },
        }
      ).render();
 }
@@ -379,7 +379,7 @@ if (list_clipping_occurred_below)
        place.size.y - list_extension_indicator_radius,
        list_extension_indicator_radius,
        {
-         { 3, 9, frame_color, line_stroke_thickness },
+         { 3, 9, build_frame_color(), line_stroke_thickness },
        }
      ).render();
 }
