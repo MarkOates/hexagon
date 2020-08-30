@@ -52,8 +52,8 @@ namespace Hexagon
       void change_state_to_submitted_and_pending_destruction();
       bool is_state_to_submitted_and_pending_destruction();
       virtual void render() override;
-      void process_local_event(std::string event_name="", ActionData action_data=ActionData());
-      void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());
+      void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
+      void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
       int code_editor_char_count();
       };
    }
