@@ -153,12 +153,6 @@ return;
 
 }
 
-void Renderer::foobar()
-{
-return;
-
-}
-
 void Renderer::render()
 {
 if (!(stage))
