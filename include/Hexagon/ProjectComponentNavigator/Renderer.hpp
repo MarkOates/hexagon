@@ -40,6 +40,7 @@ namespace Hexagon
       void render_cursor_box_raw();
       void render_window_title_raw();
       std::pair<bool, bool> render_list_elements_raw();
+      void render_list_clipping_arrows_raw(bool list_clipping_occurred_above=false, bool list_clipping_occurred_below=false);
       void render_raw();
       };
    }

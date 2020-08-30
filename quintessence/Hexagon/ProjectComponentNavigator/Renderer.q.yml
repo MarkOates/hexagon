@@ -350,6 +350,47 @@ functions:
 
 
 
+  - name: render_list_clipping_arrows_raw
+    type: void
+    parameters:
+      - name: list_clipping_occurred_above
+        type: bool
+        default_argument: false
+      - name: list_clipping_occurred_below
+        type: bool
+        default_argument: false
+    body: |
+      Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
+      Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
+      placement3d &place = stage.get_place();
+      float line_stroke_thickness = 2.5;
+      float list_extension_indicator_radius = 30;
+      if (list_clipping_occurred_above)
+      {
+         Hexagon::Shapes::Hexagon::Renderer(
+             place.size.x - list_extension_indicator_radius,
+             list_extension_indicator_radius,
+             list_extension_indicator_radius,
+             {
+               { 9, 3, build_frame_color(), line_stroke_thickness },
+             }
+           ).render();
+      }
+      if (list_clipping_occurred_below)
+      {
+         Hexagon::Shapes::Hexagon::Renderer(
+             place.size.x - list_extension_indicator_radius,
+             place.size.y - list_extension_indicator_radius,
+             list_extension_indicator_radius,
+             {
+               { 3, 9, build_frame_color(), line_stroke_thickness },
+             }
+           ).render();
+      }
+      return;
+
+
+
   - name: render_raw
     type: void
     guards: [ stage, font, base_text_color ]
@@ -379,35 +420,9 @@ functions:
       draw_search_text_box();
 
 
-
       // draw list clipping hint arrows
 
-
-
-      float list_extension_indicator_radius = 30;
-      if (list_clipping_occurred_above)
-      {
-         Hexagon::Shapes::Hexagon::Renderer(
-             place.size.x - list_extension_indicator_radius,
-             list_extension_indicator_radius,
-             list_extension_indicator_radius,
-             {
-               { 9, 3, build_frame_color(), line_stroke_thickness },
-             }
-           ).render();
-      }
-      if (list_clipping_occurred_below)
-      {
-         Hexagon::Shapes::Hexagon::Renderer(
-             place.size.x - list_extension_indicator_radius,
-             place.size.y - list_extension_indicator_radius,
-             list_extension_indicator_radius,
-             {
-               { 3, 9, build_frame_color(), line_stroke_thickness },
-             }
-           ).render();
-      }
-
+      render_list_clipping_arrows_raw(list_clipping_occurred_above, list_clipping_occurred_below);
       return;
     body_dependency_symbols:
       - std::sin

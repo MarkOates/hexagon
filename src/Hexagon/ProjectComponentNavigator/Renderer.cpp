@@ -374,6 +374,39 @@ return std::pair<bool, bool>(list_clipping_occurred_above, list_clipping_occurre
 
 }
 
+void Renderer::render_list_clipping_arrows_raw(bool list_clipping_occurred_above, bool list_clipping_occurred_below)
+{
+Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
+Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
+placement3d &place = stage.get_place();
+float line_stroke_thickness = 2.5;
+float list_extension_indicator_radius = 30;
+if (list_clipping_occurred_above)
+{
+   Hexagon::Shapes::Hexagon::Renderer(
+       place.size.x - list_extension_indicator_radius,
+       list_extension_indicator_radius,
+       list_extension_indicator_radius,
+       {
+         { 9, 3, build_frame_color(), line_stroke_thickness },
+       }
+     ).render();
+}
+if (list_clipping_occurred_below)
+{
+   Hexagon::Shapes::Hexagon::Renderer(
+       place.size.x - list_extension_indicator_radius,
+       place.size.y - list_extension_indicator_radius,
+       list_extension_indicator_radius,
+       {
+         { 3, 9, build_frame_color(), line_stroke_thickness },
+       }
+     ).render();
+}
+return;
+
+}
+
 void Renderer::render_raw()
 {
 if (!(stage))
@@ -419,35 +452,9 @@ bool list_clipping_occurred_below = clipping_result.second;
 draw_search_text_box();
 
 
-
 // draw list clipping hint arrows
 
-
-
-float list_extension_indicator_radius = 30;
-if (list_clipping_occurred_above)
-{
-   Hexagon::Shapes::Hexagon::Renderer(
-       place.size.x - list_extension_indicator_radius,
-       list_extension_indicator_radius,
-       list_extension_indicator_radius,
-       {
-         { 9, 3, build_frame_color(), line_stroke_thickness },
-       }
-     ).render();
-}
-if (list_clipping_occurred_below)
-{
-   Hexagon::Shapes::Hexagon::Renderer(
-       place.size.x - list_extension_indicator_radius,
-       place.size.y - list_extension_indicator_radius,
-       list_extension_indicator_radius,
-       {
-         { 3, 9, build_frame_color(), line_stroke_thickness },
-       }
-     ).render();
-}
-
+render_list_clipping_arrows_raw(list_clipping_occurred_above, list_clipping_occurred_below);
 return;
 
 }
