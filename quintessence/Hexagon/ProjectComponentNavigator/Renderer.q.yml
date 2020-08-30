@@ -175,18 +175,11 @@ functions:
 
 
 
-  - name: render_raw
+  - name: render_cursor_box_raw
     type: void
-    guards: [ stage, font, base_text_color ]
     body: |
       Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
       Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
-      placement3d &place = stage.get_place();
-      ALLEGRO_COLOR backfill_color = build_backfill_color();
-      float line_stroke_thickness = 2.5;
-
-
-      render_window_raw();
 
 
       // draw cursor box for focused line
@@ -267,6 +260,24 @@ functions:
                                    selector_outline_color,
                                    3.0);
       }
+      return;
+
+
+
+  - name: render_raw
+    type: void
+    guards: [ stage, font, base_text_color ]
+    body: |
+      Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
+      Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
+      placement3d &place = stage.get_place();
+      ALLEGRO_COLOR backfill_color = build_backfill_color();
+      float line_stroke_thickness = 2.5;
+
+
+      render_window_raw();
+
+      render_cursor_box_raw();
 
 
       // draw the project root (window title)
@@ -289,6 +300,13 @@ functions:
 
       bool list_clipping_occurred_above = false;
       bool list_clipping_occurred_below = false;
+
+      int cursor_y = 0;
+      int line_height = cell_height * 1.1;
+      if (component.get_cursor_position_static())
+      {
+        cursor_y = - line_height * component.get_cursor_position();
+      }
 
       for (auto &node : component.get_nodes())
       {

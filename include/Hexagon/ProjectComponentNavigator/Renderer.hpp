@@ -35,6 +35,7 @@ namespace Hexagon
       void draw_search_text_box();
       void render();
       void render_window_raw();
+      void render_cursor_box_raw();
       void render_raw();
       };
    }

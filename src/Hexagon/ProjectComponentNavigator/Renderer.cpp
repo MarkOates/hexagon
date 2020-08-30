@@ -206,34 +206,10 @@ return;
 
 }
 
-void Renderer::render_raw()
+void Renderer::render_cursor_box_raw()
 {
-if (!(stage))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(font))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(base_text_color))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
-      throw std::runtime_error(error_message.str());
-   }
 Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
 Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
-placement3d &place = stage.get_place();
-ALLEGRO_COLOR backfill_color = build_backfill_color();
-float line_stroke_thickness = 2.5;
-
-
-render_window_raw();
 
 
 // draw cursor box for focused line
@@ -314,6 +290,40 @@ else
                              selector_outline_color,
                              3.0);
 }
+return;
+
+}
+
+void Renderer::render_raw()
+{
+if (!(stage))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(base_text_color))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
+Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
+placement3d &place = stage.get_place();
+ALLEGRO_COLOR backfill_color = build_backfill_color();
+float line_stroke_thickness = 2.5;
+
+
+render_window_raw();
+
+render_cursor_box_raw();
 
 
 // draw the project root (window title)
@@ -336,6 +346,13 @@ draw_search_text_box();
 
 bool list_clipping_occurred_above = false;
 bool list_clipping_occurred_below = false;
+
+int cursor_y = 0;
+int line_height = cell_height * 1.1;
+if (component.get_cursor_position_static())
+{
+  cursor_y = - line_height * component.get_cursor_position();
+}
 
 for (auto &node : component.get_nodes())
 {
