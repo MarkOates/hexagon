@@ -136,6 +136,8 @@ functions:
 
       al_draw_text(font, search_text_font_color, 0, search_text_y, 0, search_text_val.c_str());
       return;
+    body_dependency_symbols:
+      - std::sin
 
 
 
@@ -269,6 +271,8 @@ functions:
                                    3.0);
       }
       return;
+    body_dependency_symbols:
+      - std::sin
 
 
 
@@ -418,7 +422,6 @@ functions:
       render_list_clipping_arrows_raw(list_clipping_occurred_above, list_clipping_occurred_below);
       return;
     body_dependency_symbols:
-      - std::sin
       - placement3d
       - color::mix
       - al_color_name

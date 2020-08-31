@@ -7,6 +7,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <cmath>
 #include <stdexcept>
 #include <sstream>
 #include <cmath>
