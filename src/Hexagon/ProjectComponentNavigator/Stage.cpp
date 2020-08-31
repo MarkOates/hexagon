@@ -199,7 +199,7 @@ void Stage::render()
 float backfill_opacity = 0.8f;
 
 Hexagon::ProjectComponentNavigator::Renderer renderer(
-   this, is_focused, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
+   this, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
 );
 renderer.render();
 return;

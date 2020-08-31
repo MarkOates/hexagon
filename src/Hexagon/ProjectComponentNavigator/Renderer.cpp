@@ -28,9 +28,8 @@ namespace ProjectComponentNavigator
 {
 
 
-Renderer::Renderer(Hexagon::ProjectComponentNavigator::Stage* stage, bool is_focused, ALLEGRO_FONT* font, int cell_width, int cell_height, ALLEGRO_COLOR* base_backfill_color, float backfill_opacity, ALLEGRO_COLOR* base_text_color)
+Renderer::Renderer(Hexagon::ProjectComponentNavigator::Stage* stage, ALLEGRO_FONT* font, int cell_width, int cell_height, ALLEGRO_COLOR* base_backfill_color, float backfill_opacity, ALLEGRO_COLOR* base_text_color)
    : stage(stage)
-   , is_focused(is_focused)
    , font(font)
    , cell_width(cell_width)
    , cell_height(cell_height)

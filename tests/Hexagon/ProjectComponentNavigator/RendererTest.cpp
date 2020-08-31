@@ -49,7 +49,7 @@ protected:
       ALLEGRO_COLOR base_text_color = al_color_name("white");
       stage = new Hexagon::ProjectComponentNavigator::Stage();
       renderer = new Hexagon::ProjectComponentNavigator::Renderer(
-         stage, true, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
+         stage, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
       );
 
       placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);

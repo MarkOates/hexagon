@@ -15,7 +15,6 @@ namespace Hexagon
       {
       private:
          Hexagon::ProjectComponentNavigator::Stage* stage;
-         bool is_focused;
          ALLEGRO_FONT* font;
          int cell_width;
          int cell_height;
@@ -24,7 +23,7 @@ namespace Hexagon
          ALLEGRO_COLOR* base_text_color;
 
       public:
-         Renderer(Hexagon::ProjectComponentNavigator::Stage* stage=nullptr, bool is_focused=true, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20, ALLEGRO_COLOR* base_backfill_color=nullptr, float backfill_opacity=1.0f, ALLEGRO_COLOR* base_text_color=nullptr);
+         Renderer(Hexagon::ProjectComponentNavigator::Stage* stage=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20, ALLEGRO_COLOR* base_backfill_color=nullptr, float backfill_opacity=1.0f, ALLEGRO_COLOR* base_text_color=nullptr);
          ~Renderer();
 
 

@@ -5,10 +5,6 @@ properties:
     type: Hexagon::ProjectComponentNavigator::Stage*
     init_with: nullptr
     constructor_arg: true
-  - name: is_focused
-    type: bool
-    init_with: true
-    constructor_arg: true
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
