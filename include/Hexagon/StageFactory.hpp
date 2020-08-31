@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <string>
+#include <Hexagon/StageInterface.hpp>
 
 
 namespace Hexagon
@@ -15,7 +15,7 @@ namespace Hexagon
       ~StageFactory();
 
 
-   std::string run();
+   StageInterface* create();
    };
 }
 

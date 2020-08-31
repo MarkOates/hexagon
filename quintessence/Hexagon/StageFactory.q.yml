@@ -1,4 +1,15 @@
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+
+
+  - name: create
+    type: StageInterface*
+    body: |
+      return nullptr;
+
+
+dependencies:
+
+
+  - symbol: StageInterface*
+    headers: [ Hexagon/StageInterface.hpp ]
+

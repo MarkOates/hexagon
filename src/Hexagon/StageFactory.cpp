@@ -18,9 +18,10 @@ StageFactory::~StageFactory()
 }
 
 
-std::string StageFactory::run()
+StageInterface* StageFactory::create()
 {
-return "Hello World!";
+return nullptr;
+
 }
 } // namespace Hexagon
 
