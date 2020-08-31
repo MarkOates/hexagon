@@ -27,6 +27,16 @@ TEST(Hexagon_StageFactoryTest, get_current_display__when_allegro_is_not_initiali
    ASSERT_THROW_WITH_MESSAGE(stage_factory.get_current_display(), std::runtime_error, expected_error_message);
 }
 
+TEST(Hexagon_StageFactoryTest, get_current_display__without_a_current_display__raises_an_exception)
+{
+   al_init();
+   Hexagon::StageFactory stage_factory;
+   std::string expected_error_message = "StageFactory::get_current_display: error: guard " \
+                                        "\"al_get_current_display()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage_factory.get_current_display(), std::runtime_error, expected_error_message);
+   al_uninstall_system();
+}
+
 TEST(Hexagon_StageFactoryTest, get_current_display__returns_the_current_display)
 {
    al_init();
