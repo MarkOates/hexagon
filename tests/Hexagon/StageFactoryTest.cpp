@@ -50,3 +50,19 @@ TEST(Hexagon_StageFactoryTest, get_current_display__returns_the_current_display)
    al_uninstall_system();
 }
 
+TEST(Hexagon_StageFactoryTest, build_component_navigator_initial_place__returns_the_expected_position)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(800, 600);
+   Hexagon::StageFactory stage_factory;
+
+   vec3d expected_placement_position =
+     vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   placement3d actual_placement = stage_factory.build_component_navigator_initial_place();
+
+   ASSERT_EQ(expected_placement_position, actual_placement.position);
+
+   al_destroy_display(display);
+   al_uninstall_system();
+}
+
