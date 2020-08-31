@@ -31,6 +31,9 @@ properties:
     init_with: nullptr
     constructor_arg: true
     getter: true
+  - name: line_stroke_thickness
+    type: float
+    init_with: 2.5f
 
 
 
@@ -154,8 +157,6 @@ functions:
     body: |
       Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
       placement3d &place = stage.get_place();
-
-      float line_stroke_thickness = 2.5;
 
       // draw backfill and outline
 
@@ -363,7 +364,6 @@ functions:
       Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
       Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
       placement3d &place = stage.get_place();
-      float line_stroke_thickness = 2.5;
       float list_extension_indicator_radius = 30;
       if (list_clipping_occurred_above)
       {

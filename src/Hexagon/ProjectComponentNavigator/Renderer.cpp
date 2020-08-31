@@ -36,6 +36,7 @@ Renderer::Renderer(Hexagon::ProjectComponentNavigator::Stage* stage, ALLEGRO_FON
    , base_backfill_color(base_backfill_color)
    , backfill_opacity(backfill_opacity)
    , base_text_color(base_text_color)
+   , line_stroke_thickness(2.5f)
 {
 }
 
@@ -185,8 +186,6 @@ void Renderer::render_window_raw()
 {
 Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
 placement3d &place = stage.get_place();
-
-float line_stroke_thickness = 2.5;
 
 // draw backfill and outline
 
@@ -379,7 +378,6 @@ void Renderer::render_list_clipping_arrows_raw(bool list_clipping_occurred_above
 Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
 Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
 placement3d &place = stage.get_place();
-float line_stroke_thickness = 2.5;
 float list_extension_indicator_radius = 30;
 if (list_clipping_occurred_above)
 {

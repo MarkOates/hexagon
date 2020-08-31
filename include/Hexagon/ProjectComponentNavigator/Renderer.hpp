@@ -21,6 +21,7 @@ namespace Hexagon
          ALLEGRO_COLOR* base_backfill_color;
          float backfill_opacity;
          ALLEGRO_COLOR* base_text_color;
+         float line_stroke_thickness;
 
       public:
          Renderer(Hexagon::ProjectComponentNavigator::Stage* stage=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20, ALLEGRO_COLOR* base_backfill_color=nullptr, float backfill_opacity=1.0f, ALLEGRO_COLOR* base_text_color=nullptr);
