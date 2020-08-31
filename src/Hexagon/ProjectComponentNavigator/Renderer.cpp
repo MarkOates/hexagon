@@ -427,13 +427,6 @@ if (!(base_text_color))
       error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
       throw std::runtime_error(error_message.str());
    }
-Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
-Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
-placement3d &place = stage.get_place();
-ALLEGRO_COLOR backfill_color = build_backfill_color();
-float line_stroke_thickness = 2.5;
-
-
 render_window_raw();
 
 render_cursor_box_raw();
