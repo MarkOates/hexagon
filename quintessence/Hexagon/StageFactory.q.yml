@@ -1,6 +1,28 @@
 functions:
 
 
+  - name: get_current_display
+    type: ALLEGRO_DISPLAY*
+    guards: [ al_is_system_installed(), al_get_current_display() ]
+    body: |
+      return al_get_current_display();
+    body_dependency_symbols:
+      - al_get_current_display
+
+
+  - name: build_component_navigator_initial_place
+    type: placement3d
+    body: |
+      ALLEGRO_DISPLAY *display = get_current_display();
+      placement3d result;
+      result.position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+      result.size = vec3d(800, 700, 0);
+      result.align = vec3d(0.5, 0.5, 0.5);
+      result.scale = vec3d(1.0, 1.0, 1.0);
+      result.rotation = vec3d(0.0, 0.0, 0.0);
+      return result;
+
+
   - name: create
     type: StageInterface*
     body: |
@@ -12,4 +34,10 @@ dependencies:
 
   - symbol: StageInterface*
     headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ allegro5/allegro.h ]
+  - symbol: al_get_current_display
+    headers: [ allegro5/allegro.h ]
 
