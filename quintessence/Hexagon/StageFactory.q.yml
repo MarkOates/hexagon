@@ -1,7 +1,14 @@
 functions:
 
 
+  - name: create
+    type: StageInterface*
+    body: |
+      return nullptr;
+
+
   - name: get_current_display
+    private: true
     type: ALLEGRO_DISPLAY*
     guards: [ al_is_system_installed(), al_get_current_display() ]
     body: |
@@ -11,6 +18,7 @@ functions:
 
 
   - name: build_component_navigator_initial_place
+    private: true
     type: placement3d
     body: |
       ALLEGRO_DISPLAY *display = get_current_display();
@@ -21,12 +29,6 @@ functions:
       result.scale = vec3d(1.0, 1.0, 1.0);
       result.rotation = vec3d(0.0, 0.0, 0.0);
       return result;
-
-
-  - name: create
-    type: StageInterface*
-    body: |
-      return nullptr;
 
 
 dependencies:

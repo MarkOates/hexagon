@@ -20,6 +20,12 @@ StageFactory::~StageFactory()
 }
 
 
+StageInterface* StageFactory::create()
+{
+return nullptr;
+
+}
+
 ALLEGRO_DISPLAY* StageFactory::get_current_display()
 {
 if (!(al_is_system_installed()))
@@ -48,12 +54,6 @@ result.align = vec3d(0.5, 0.5, 0.5);
 result.scale = vec3d(1.0, 1.0, 1.0);
 result.rotation = vec3d(0.0, 0.0, 0.0);
 return result;
-
-}
-
-StageInterface* StageFactory::create()
-{
-return nullptr;
 
 }
 } // namespace Hexagon
