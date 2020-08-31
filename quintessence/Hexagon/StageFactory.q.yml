@@ -7,6 +7,15 @@ functions:
       return nullptr;
 
 
+  - name: create_advanced_component_navigator
+    type: StageInterface*
+    body: |
+      Hexagon::AdvancedComponentNavigator::Stage *result = new Hexagon::AdvancedComponentNavigator::Stage;
+      return result;
+    body_dependency_symbols:
+      - Hexagon::AdvancedComponentNavigator::Stage
+
+
   - name: get_current_display
     private: true
     type: ALLEGRO_DISPLAY*
@@ -34,6 +43,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::AdvancedComponentNavigator::Stage
+    headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
   - symbol: StageInterface*
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: placement3d

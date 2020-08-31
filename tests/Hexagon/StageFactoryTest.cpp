@@ -19,6 +19,18 @@ TEST(Hexagon_StageFactoryTest, create__returns_the_expected_response)
    EXPECT_EQ(nullptr, stage_factory.create());
 }
 
+TEST(Hexagon_StageFactoryTest, create_advanced_component_navigator__creates_an_advanced_component_navigator)
+{
+   Hexagon::StageFactory stage_factory;
+
+   StageInterface::type_t expected_type = StageInterface::COMPONENT_NAVIGATOR;
+   StageInterface *created_stage = stage_factory.create_advanced_component_navigator();
+   ASSERT_NE(nullptr, created_stage);
+   StageInterface::type_t actual_type = created_stage->get_type();
+
+   EXPECT_EQ(expected_type, actual_type);
+}
+
 TEST(Hexagon_StageFactoryTest, get_current_display__when_allegro_is_not_initialized__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;

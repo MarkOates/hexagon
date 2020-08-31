@@ -18,6 +18,7 @@ namespace Hexagon
 
 
    StageInterface* create();
+   StageInterface* create_advanced_component_navigator();
    ALLEGRO_DISPLAY* get_current_display();
    placement3d build_component_navigator_initial_place();
    };

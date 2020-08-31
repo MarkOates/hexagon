@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/StageFactory.hpp>
+#include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro.h>
 #include <stdexcept>
 #include <sstream>
@@ -23,6 +24,13 @@ StageFactory::~StageFactory()
 StageInterface* StageFactory::create()
 {
 return nullptr;
+
+}
+
+StageInterface* StageFactory::create_advanced_component_navigator()
+{
+Hexagon::AdvancedComponentNavigator::Stage *result = new Hexagon::AdvancedComponentNavigator::Stage;
+return result;
 
 }
 

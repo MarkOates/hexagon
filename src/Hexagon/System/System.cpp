@@ -86,6 +86,7 @@
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
 #include <Hexagon/BlastComponentLayoutGenerator.hpp>
 #include <Hexagon/LayoutToStagesCreator.hpp>
+#include <Hexagon/StageFactory.hpp>
 
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Blast/StringJoiner.hpp>
