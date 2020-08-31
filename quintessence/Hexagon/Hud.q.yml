@@ -115,7 +115,7 @@ properties:
     setter: true
   - name: draw_focus_timer_bar
     type: bool
-    init_with: false
+    init_with: true
     setter: true
     getter: true
     constructor_arg: true
