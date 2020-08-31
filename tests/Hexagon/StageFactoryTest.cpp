@@ -27,3 +27,16 @@ TEST(Hexagon_StageFactoryTest, get_current_display__when_allegro_is_not_initiali
    ASSERT_THROW_WITH_MESSAGE(stage_factory.get_current_display(), std::runtime_error, expected_error_message);
 }
 
+TEST(Hexagon_StageFactoryTest, get_current_display__returns_the_current_display)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(800, 600);
+
+   Hexagon::StageFactory stage_factory;
+   ALLEGRO_DISPLAY *expected_display = display;
+   ASSERT_EQ(display, stage_factory.get_current_display());
+
+   al_destroy_display(display);
+   al_uninstall_system();
+}
+
