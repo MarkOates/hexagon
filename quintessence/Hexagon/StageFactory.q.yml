@@ -10,6 +10,13 @@ properties:
 functions:
 
 
+  - name: obtain_default_navigator_directory
+    type: std::string
+    guards: [ config ]
+    body: |
+      return config->get_default_navigator_directory();
+
+
   - name: create
     type: StageInterface*
     body: |
@@ -19,7 +26,8 @@ functions:
   - name: create_advanced_component_navigator
     type: StageInterface*
     body: |
-      Hexagon::AdvancedComponentNavigator::Stage *result = new Hexagon::AdvancedComponentNavigator::Stage;
+      Hexagon::AdvancedComponentNavigator::Stage *result =
+         new Hexagon::AdvancedComponentNavigator::Stage(obtain_default_navigator_directory());
       result->process_local_event("refresh_list");
       result->set_render_on_hud(true);
       return result;

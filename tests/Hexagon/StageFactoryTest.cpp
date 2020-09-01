@@ -19,9 +19,24 @@ TEST(Hexagon_StageFactoryTest, create__returns_the_expected_response)
    EXPECT_EQ(nullptr, stage_factory.create());
 }
 
-TEST(Hexagon_StageFactoryTest, create_advanced_component_navigator__creates_an_advanced_component_navigator)
+TEST(Hexagon_StageFactoryTest, obtain_default_navigator_directory__without_a_config__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;
+   std::string expected_error_message = "StageFactory::obtain_default_navigator_directory: error: guard " \
+                                        "\"config\" not met";
+   ASSERT_THROW_WITH_MESSAGE(
+      stage_factory.create_advanced_component_navigator(),
+      std::runtime_error,
+      expected_error_message
+   );
+}
+
+TEST(Hexagon_StageFactoryTest, create_advanced_component_navigator__creates_an_advanced_component_navigator)
+{
+   al_init();
+   Hexagon::System::Config config;
+   config.initialize();
+   Hexagon::StageFactory stage_factory(&config);
 
    StageInterface::type_t expected_type = StageInterface::COMPONENT_NAVIGATOR;
    StageInterface *created_stage = stage_factory.create_advanced_component_navigator();
@@ -29,15 +44,20 @@ TEST(Hexagon_StageFactoryTest, create_advanced_component_navigator__creates_an_a
    StageInterface::type_t actual_type = created_stage->get_type();
 
    EXPECT_EQ(expected_type, actual_type);
+   al_uninstall_system();
 }
 
 TEST(Hexagon_StageFactoryTest,
    create_advanced_component_navigator__creates_an_advanced_component_navigator_with_the_expected_properties)
 {
-   Hexagon::StageFactory stage_factory;
+   al_init();
+   Hexagon::System::Config config;
+   config.initialize();
+   Hexagon::StageFactory stage_factory(&config);
    StageInterface *actual_stage = stage_factory.create_advanced_component_navigator();
 
    EXPECT_EQ(true, actual_stage->get_render_on_hud());
+   al_uninstall_system();
 }
 
 TEST(Hexagon_StageFactoryTest, get_current_display__when_allegro_is_not_initialized__raises_an_exception)

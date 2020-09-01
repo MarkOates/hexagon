@@ -5,6 +5,7 @@
 #include <Hexagon/System/Config.hpp>
 #include <allegro5/allegro.h>
 #include <allegro_flare/placement3d.h>
+#include <string>
 
 
 namespace Hexagon
@@ -19,6 +20,7 @@ namespace Hexagon
       ~StageFactory();
 
 
+   std::string obtain_default_navigator_directory();
    StageInterface* create();
    StageInterface* create_advanced_component_navigator();
    ALLEGRO_DISPLAY* get_current_display();

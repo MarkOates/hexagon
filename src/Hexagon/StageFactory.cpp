@@ -1,6 +1,8 @@
 
 
 #include <Hexagon/StageFactory.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro.h>
 #include <stdexcept>
@@ -22,6 +24,18 @@ StageFactory::~StageFactory()
 }
 
 
+std::string StageFactory::obtain_default_navigator_directory()
+{
+if (!(config))
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_default_navigator_directory" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return config->get_default_navigator_directory();
+
+}
+
 StageInterface* StageFactory::create()
 {
 return nullptr;
@@ -30,7 +44,8 @@ return nullptr;
 
 StageInterface* StageFactory::create_advanced_component_navigator()
 {
-Hexagon::AdvancedComponentNavigator::Stage *result = new Hexagon::AdvancedComponentNavigator::Stage;
+Hexagon::AdvancedComponentNavigator::Stage *result =
+   new Hexagon::AdvancedComponentNavigator::Stage(obtain_default_navigator_directory());
 result->process_local_event("refresh_list");
 result->set_render_on_hud(true);
 return result;
