@@ -4,6 +4,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -153,6 +155,12 @@ return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
 
 bool Config::is_dark_mode()
 {
+if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "Config" << "::" << "is_dark_mode" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 return config.get_or_default_bool("", DARK_MODE_KEY, false);
 
 }

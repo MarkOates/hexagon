@@ -62,6 +62,7 @@ Hexagon::AdvancedComponentNavigator::Stage *result =
    new Hexagon::AdvancedComponentNavigator::Stage(obtain_default_navigator_directory());
 result->process_local_event("refresh_list");
 result->set_render_on_hud(true);
+result->set_base_text_color(obtain_base_text_color());
 
 // TODO: add additional properties
 

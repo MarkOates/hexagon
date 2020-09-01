@@ -7,6 +7,7 @@
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 #include <Hexagon/StageFactory.hpp>
+#include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 
 TEST(Hexagon_StageFactoryTest, can_be_created_without_blowing_up)
 {
@@ -60,10 +61,15 @@ TEST(Hexagon_StageFactoryTest,
    al_init();
    Hexagon::System::Config config;
    config.initialize();
+   ALLEGRO_COLOR expected_base_text_color = config.get_base_text_color();
    Hexagon::StageFactory stage_factory(&config);
-   StageInterface *actual_stage = stage_factory.create_advanced_component_navigator();
+   StageInterface *created_stage = stage_factory.create_advanced_component_navigator();
+   Hexagon::AdvancedComponentNavigator::Stage *stage =
+      static_cast<Hexagon::AdvancedComponentNavigator::Stage*>(created_stage);
 
-   EXPECT_EQ(true, actual_stage->get_render_on_hud());
+   EXPECT_EQ(true, stage->get_render_on_hud());
+   EXPECT_EQ(expected_base_text_color.r, stage->get_base_text_color().r); // for now, just comparing red component
+
    al_uninstall_system();
 }
 
