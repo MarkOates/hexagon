@@ -5,6 +5,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro.h>
 #include <stdexcept>
@@ -50,6 +52,18 @@ return config->get_base_text_color();
 
 }
 
+ALLEGRO_COLOR StageFactory::obtain_base_backfill_color()
+{
+if (!(config))
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_base_backfill_color" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return config->get_backfill_color();
+
+}
+
 StageInterface* StageFactory::create()
 {
 return nullptr;
@@ -60,12 +74,12 @@ StageInterface* StageFactory::create_advanced_component_navigator()
 {
 Hexagon::AdvancedComponentNavigator::Stage *result =
    new Hexagon::AdvancedComponentNavigator::Stage(obtain_default_navigator_directory());
-result->process_local_event("refresh_list");
+
+result->process_local_event("refresh_list"); // TODO: find a test technique for this
 result->set_render_on_hud(true);
 result->set_base_text_color(obtain_base_text_color());
+result->set_base_backfill_color(obtain_base_backfill_color());
 result->set_place(build_component_navigator_initial_place());
-
-// TODO: add additional properties
 
 return result;
 

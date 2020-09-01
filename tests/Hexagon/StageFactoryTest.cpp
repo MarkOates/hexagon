@@ -60,8 +60,12 @@ TEST(Hexagon_StageFactoryTest,
    ALLEGRO_COLOR expected_base_text_color = config.get_base_text_color();
    ALLEGRO_COLOR actual_base_text_color = stage->get_base_text_color();
 
+   ALLEGRO_COLOR expected_base_backfill_color = config.get_backfill_color();
+   ALLEGRO_COLOR actual_base_backfill_color = stage->get_base_backfill_color();
+
    EXPECT_EQ(true, stage->get_render_on_hud());
    EXPECT_EQ(expected_base_text_color.r, actual_base_text_color.r); // for now, just comparing red component
+   EXPECT_EQ(expected_base_backfill_color.r, actual_base_backfill_color.r); // for now, just comparing red component
 
    al_destroy_display(display);
    al_uninstall_system();

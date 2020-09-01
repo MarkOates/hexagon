@@ -24,6 +24,13 @@ functions:
       return config->get_base_text_color();
 
 
+  - name: obtain_base_backfill_color
+    type: ALLEGRO_COLOR
+    guards: [ config ]
+    body: |
+      return config->get_backfill_color();
+
+
   - name: create
     type: StageInterface*
     body: |
@@ -35,12 +42,12 @@ functions:
     body: |
       Hexagon::AdvancedComponentNavigator::Stage *result =
          new Hexagon::AdvancedComponentNavigator::Stage(obtain_default_navigator_directory());
-      result->process_local_event("refresh_list");
+
+      result->process_local_event("refresh_list"); // TODO: find a test technique for this
       result->set_render_on_hud(true);
       result->set_base_text_color(obtain_base_text_color());
+      result->set_base_backfill_color(obtain_base_backfill_color());
       result->set_place(build_component_navigator_initial_place());
-
-      // TODO: add additional properties
 
       return result;
     body_dependency_symbols:
