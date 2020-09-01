@@ -39,37 +39,30 @@ TEST(Hexagon_StageFactoryTest, obtain_base_text_color__without_a_config__raises_
    ASSERT_THROW_WITH_MESSAGE(stage_factory.obtain_base_text_color(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_StageFactoryTest, create_advanced_component_navigator__creates_an_advanced_component_navigator)
-{
-   al_init();
-   Hexagon::System::Config config;
-   config.initialize();
-   Hexagon::StageFactory stage_factory(&config);
-
-   StageInterface::type_t expected_type = StageInterface::COMPONENT_NAVIGATOR;
-   StageInterface *created_stage = stage_factory.create_advanced_component_navigator();
-   ASSERT_NE(nullptr, created_stage);
-   StageInterface::type_t actual_type = created_stage->get_type();
-
-   EXPECT_EQ(expected_type, actual_type);
-   al_uninstall_system();
-}
-
 TEST(Hexagon_StageFactoryTest,
    create_advanced_component_navigator__creates_an_advanced_component_navigator_with_the_expected_properties)
 {
    al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
    Hexagon::System::Config config;
    config.initialize();
-   ALLEGRO_COLOR expected_base_text_color = config.get_base_text_color();
    Hexagon::StageFactory stage_factory(&config);
    StageInterface *created_stage = stage_factory.create_advanced_component_navigator();
    Hexagon::AdvancedComponentNavigator::Stage *stage =
       static_cast<Hexagon::AdvancedComponentNavigator::Stage*>(created_stage);
 
+   StageInterface::type_t expected_type = StageInterface::COMPONENT_NAVIGATOR;
+   ALLEGRO_COLOR expected_base_text_color = config.get_base_text_color();
+
+   StageInterface::type_t actual_type = created_stage->get_type();
+
+   ASSERT_NE(nullptr, created_stage);
+   ASSERT_EQ(expected_type, actual_type);
+
    EXPECT_EQ(true, stage->get_render_on_hud());
    EXPECT_EQ(expected_base_text_color.r, stage->get_base_text_color().r); // for now, just comparing red component
 
+   al_destroy_display(display);
    al_uninstall_system();
 }
 

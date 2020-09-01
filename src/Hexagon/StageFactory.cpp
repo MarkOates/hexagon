@@ -63,6 +63,7 @@ Hexagon::AdvancedComponentNavigator::Stage *result =
 result->process_local_event("refresh_list");
 result->set_render_on_hud(true);
 result->set_base_text_color(obtain_base_text_color());
+result->set_place(build_component_navigator_initial_place());
 
 // TODO: add additional properties
 
