@@ -21,6 +21,7 @@ namespace Hexagon
 
 
    std::string obtain_default_navigator_directory();
+   ALLEGRO_COLOR obtain_base_text_color();
    StageInterface* create();
    StageInterface* create_advanced_component_navigator();
    ALLEGRO_DISPLAY* get_current_display();

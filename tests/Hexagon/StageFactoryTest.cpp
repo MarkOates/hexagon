@@ -31,6 +31,13 @@ TEST(Hexagon_StageFactoryTest, obtain_default_navigator_directory__without_a_con
    );
 }
 
+TEST(Hexagon_StageFactoryTest, obtain_base_text_color__without_a_config__raises_an_exception)
+{
+   Hexagon::StageFactory stage_factory;
+   std::string expected_error_message = "StageFactory::obtain_base_text_color: error: guard \"config\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage_factory.obtain_base_text_color(), std::runtime_error, expected_error_message);
+}
+
 TEST(Hexagon_StageFactoryTest, create_advanced_component_navigator__creates_an_advanced_component_navigator)
 {
    al_init();

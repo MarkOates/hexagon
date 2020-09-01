@@ -3,6 +3,8 @@
 #include <Hexagon/StageFactory.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro.h>
 #include <stdexcept>
@@ -33,6 +35,18 @@ if (!(config))
       throw std::runtime_error(error_message.str());
    }
 return config->get_default_navigator_directory();
+
+}
+
+ALLEGRO_COLOR StageFactory::obtain_base_text_color()
+{
+if (!(config))
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_base_text_color" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return config->get_base_text_color();
 
 }
 
