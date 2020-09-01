@@ -31,6 +31,15 @@ TEST(Hexagon_StageFactoryTest, create_advanced_component_navigator__creates_an_a
    EXPECT_EQ(expected_type, actual_type);
 }
 
+TEST(Hexagon_StageFactoryTest,
+   create_advanced_component_navigator__creates_an_advanced_component_navigator_with_the_expected_properties)
+{
+   Hexagon::StageFactory stage_factory;
+   StageInterface *actual_stage = stage_factory.create_advanced_component_navigator();
+
+   EXPECT_EQ(true, actual_stage->get_render_on_hud());
+}
+
 TEST(Hexagon_StageFactoryTest, get_current_display__when_allegro_is_not_initialized__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;

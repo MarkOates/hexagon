@@ -30,6 +30,7 @@ return nullptr;
 StageInterface* StageFactory::create_advanced_component_navigator()
 {
 Hexagon::AdvancedComponentNavigator::Stage *result = new Hexagon::AdvancedComponentNavigator::Stage;
+result->set_render_on_hud(true);
 return result;
 
 }

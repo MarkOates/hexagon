@@ -11,6 +11,7 @@ functions:
     type: StageInterface*
     body: |
       Hexagon::AdvancedComponentNavigator::Stage *result = new Hexagon::AdvancedComponentNavigator::Stage;
+      result->set_render_on_hud(true);
       return result;
     body_dependency_symbols:
       - Hexagon::AdvancedComponentNavigator::Stage
