@@ -11,7 +11,8 @@ namespace Hexagon
 {
 
 
-StageFactory::StageFactory()
+StageFactory::StageFactory(Hexagon::System::Config* config)
+   : config(config)
 {
 }
 
@@ -30,6 +31,7 @@ return nullptr;
 StageInterface* StageFactory::create_advanced_component_navigator()
 {
 Hexagon::AdvancedComponentNavigator::Stage *result = new Hexagon::AdvancedComponentNavigator::Stage;
+result->process_local_event("refresh_list");
 result->set_render_on_hud(true);
 return result;
 

@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/StageInterface.hpp>
+#include <Hexagon/System/Config.hpp>
 #include <allegro5/allegro.h>
 #include <allegro_flare/placement3d.h>
 
@@ -11,9 +12,10 @@ namespace Hexagon
    class StageFactory
    {
    private:
+      Hexagon::System::Config* config;
 
    public:
-      StageFactory();
+      StageFactory(Hexagon::System::Config* config=nullptr);
       ~StageFactory();
 
 
