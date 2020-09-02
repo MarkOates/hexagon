@@ -947,8 +947,8 @@ bool System::spawn_component_navigator()
    component_navigator->set_base_text_color(config.get_base_text_color());
    stages.push_back(component_navigator);
 
-   motion.cmove_to(&camera.rotation.y, camera.rotation.y+0.02, 0.3, interpolator::tripple_fast_in);
-   motion.cmove_to(&camera.rotation.x, camera.rotation.x-0.01, 0.3, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.rotation.y, 0.08f, 0.5f, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.rotation.x, -0.04f, 0.5f, interpolator::tripple_fast_in);
 
    return true;
 }
