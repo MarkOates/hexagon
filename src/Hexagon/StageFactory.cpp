@@ -75,7 +75,11 @@ StageInterface* StageFactory::create_advanced_component_navigator()
 Hexagon::AdvancedComponentNavigator::Stage *result =
    new Hexagon::AdvancedComponentNavigator::Stage(obtain_default_navigator_directory());
 
-result->process_local_event("refresh_list"); // TODO: find a test technique for this
+result->process_local_event("refresh_list"); // TODO: find a test technique for this,
+                                             // I feel like this event should not be run real-time
+                                             // it's blocking and requests from the filesystem so
+                                             // this refresh should be part of an operation that
+                                             // happens after the creation, or something like that
 result->set_render_on_hud(true);
 result->set_base_text_color(obtain_base_text_color());
 result->set_base_backfill_color(obtain_base_backfill_color());
