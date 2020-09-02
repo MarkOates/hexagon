@@ -605,7 +605,7 @@ bool System::toggle_command_mode_on()
 }
 
 
-bool System::toggle_command_mode_off()
+bool System::reset_camera_to_center()
 {
    if (!command_mode) return true;
 
@@ -621,6 +621,14 @@ bool System::toggle_command_mode_off()
                    interpolator::fast_in,
                    nullptr,
                    nullptr);
+   motion.canimate(&camera.rotation.y,
+                   camera.rotation.y,
+                   0.0f,
+                   al_get_time(),
+                   al_get_time()+0.2,
+                   interpolator::fast_in,
+                   nullptr,
+                   nullptr);
    motion.canimate(&camera.stepback.z,
                    camera.stepback.z,
                    camera_zoomed_in_position,
@@ -629,9 +637,16 @@ bool System::toggle_command_mode_off()
                    interpolator::fast_in,
                    nullptr,
                    nullptr);
+
    command_mode = false;
    //std::rotate(stages.begin(), stages.begin() + 1, stages.end());
    return true;
+}
+
+
+bool System::toggle_command_mode_off()
+{
+   return reset_camera_to_center();
 }
 
 
@@ -931,6 +946,9 @@ bool System::spawn_component_navigator()
    component_navigator->set_base_backfill_color(config.get_backfill_color());
    component_navigator->set_base_text_color(config.get_base_text_color());
    stages.push_back(component_navigator);
+
+   motion.cmove_to(&camera.rotation.y, camera.rotation.y+0.02, 0.3, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.rotation.x, camera.rotation.x-0.01, 0.3, interpolator::tripple_fast_in);
 
    return true;
 }

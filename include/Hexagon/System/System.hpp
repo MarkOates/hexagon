@@ -105,6 +105,7 @@ public:
    bool set_focused_component_name_to_topmost_relative();
    bool toggle_command_mode_on();
    bool toggle_command_mode_off();
+   bool reset_camera_to_center();
    bool rotate_stage_right();
    bool rotate_stage_left();
    bool rotate_relative_up();
