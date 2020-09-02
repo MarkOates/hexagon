@@ -107,6 +107,8 @@ for (auto &stage : system->stages)
       advanced_component_navigator_stage->set_font(font);
       advanced_component_navigator_stage->set_cell_width(cell_width);
       advanced_component_navigator_stage->set_cell_height(cell_height);
+
+      // TODO: ^^^ set these values at factory time
    }
 
    if (stage->get_type() == StageInterface::MISSING_FILE)
