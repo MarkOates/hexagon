@@ -940,21 +940,8 @@ bool System::spawn_git_commit_message_input_box_modal()
 
 bool System::spawn_component_navigator()
 {
-   //placement3d component_navigator_initial_place = component_navigator_initial_place;
-
    Hexagon::StageFactory stage_factory(&config);
    StageInterface *stage = stage_factory.create_advanced_component_navigator();
-
-   /*
-   Hexagon::AdvancedComponentNavigator::Stage *component_navigator =
-      new Hexagon::AdvancedComponentNavigator::Stage(get_default_navigator_directory());
-
-   component_navigator->process_local_event("refresh_list");
-   component_navigator->set_place(build_component_navigator_initial_place());
-   component_navigator->set_render_on_hud(true);
-   component_navigator->set_base_backfill_color(config.get_backfill_color());
-   component_navigator->set_base_text_color(config.get_base_text_color());
-   */
 
    stages.push_back(stage);
 
