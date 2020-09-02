@@ -203,6 +203,7 @@ public:
    static const std::string REMOVE_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string TOGGLE_COMMAND_MODE_ON;
    static const std::string TOGGLE_COMMAND_MODE_OFF;
+   static const std::string RESET_CAMERA_TO_CENTER;
    static const std::string ROTATE_STAGE_LEFT;
    static const std::string ROTATE_STAGE_RIGHT;
    static const std::string ROTATE_RELATIVE_UP;

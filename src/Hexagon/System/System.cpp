@@ -722,9 +722,14 @@ bool System::center_camera_on_frontmost_stage()
    placement3d &place = frontmost_stage->get_place();
    vec3d target = place.position;
    //camera.position = target;
+
    motion.cmove_to(&camera.position.x, target.x, 0.2, interpolator::double_fast_in);
    motion.cmove_to(&camera.position.y, target.y, 0.2, interpolator::double_fast_in);
    motion.cmove_to(&camera.position.z, target.z, 0.2, interpolator::double_fast_in);
+
+   motion.cmove_to(&camera.rotation.x, 0.0f, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.rotation.y, 0.0f, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.rotation.z, 0.0f, 0.2, interpolator::double_fast_in);
 
    return true;
 }
@@ -1737,6 +1742,7 @@ const std::string System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_
    "SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS";
 const std::string System::TOGGLE_COMMAND_MODE_ON = "TOGGLE_COMMAND_MODE_ON";
 const std::string System::TOGGLE_COMMAND_MODE_OFF = "TOGGLE_COMMAND_MODE_OFF";
+const std::string System::RESET_CAMERA_TO_CENTER = "RESET_CAMERA_TO_CENTER";
 const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::ROTATE_RELATIVE_UP = "ROTATE_RELATIVE_UP";

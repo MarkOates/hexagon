@@ -173,6 +173,10 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
       &::System::toggle_command_mode_off,
    },
    {
+      ::System::RESET_CAMERA_TO_CENTER,
+      &::System::reset_camera_to_center,
+   },
+   {
       ::System::ROTATE_STAGE_LEFT,
       &::System::rotate_stage_left,
    },
