@@ -85,8 +85,6 @@ result->set_base_text_color(obtain_base_text_color());
 result->set_base_backfill_color(obtain_base_backfill_color());
 result->set_place(build_component_navigator_initial_place());
 
-// TODO: consider animation
-
 return result;
 
 }

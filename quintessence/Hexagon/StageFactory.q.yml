@@ -53,8 +53,6 @@ functions:
       result->set_base_backfill_color(obtain_base_backfill_color());
       result->set_place(build_component_navigator_initial_place());
 
-      // TODO: consider animation
-
       return result;
     body_dependency_symbols:
       - Hexagon::AdvancedComponentNavigator::Stage
