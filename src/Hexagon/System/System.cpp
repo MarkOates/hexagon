@@ -942,6 +942,10 @@ bool System::spawn_component_navigator()
 {
    //placement3d component_navigator_initial_place = component_navigator_initial_place;
 
+   Hexagon::StageFactory stage_factory(&config);
+   StageInterface *stage = stage_factory.create_advanced_component_navigator();
+
+   /*
    Hexagon::AdvancedComponentNavigator::Stage *component_navigator =
       new Hexagon::AdvancedComponentNavigator::Stage(get_default_navigator_directory());
 
@@ -950,7 +954,9 @@ bool System::spawn_component_navigator()
    component_navigator->set_render_on_hud(true);
    component_navigator->set_base_backfill_color(config.get_backfill_color());
    component_navigator->set_base_text_color(config.get_base_text_color());
-   stages.push_back(component_navigator);
+   */
+
+   stages.push_back(stage);
 
    motion.cmove_to(&camera.rotation.y, 0.08f, 0.5f, interpolator::tripple_fast_in);
    motion.cmove_to(&camera.rotation.x, -0.04f, 0.5f, interpolator::tripple_fast_in);
