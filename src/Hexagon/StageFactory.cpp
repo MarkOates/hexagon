@@ -92,7 +92,7 @@ if (!(font_bin))
       error_message << "StageFactory" << "::" << "obtain_component_navigator_font" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
-return font_bin->auto_get("Purista Medium.otf -22");
+return font_bin->auto_get("consolas.ttf -18");
 
 }
 

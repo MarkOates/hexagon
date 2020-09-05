@@ -118,8 +118,8 @@ TEST(Hexagon_StageFactoryTest,
    EXPECT_EQ(expected_base_text_color.r, actual_base_text_color.r); // for now, just comparing red component
    EXPECT_EQ(expected_base_backfill_color.r, actual_base_backfill_color.r); // for now, just comparing red component
    EXPECT_EQ(expected_place, actual_place);
-   EXPECT_EQ(5, stage->get_cell_width());
-   EXPECT_EQ(23, stage->get_cell_height());
+   EXPECT_EQ(10, stage->get_cell_width());
+   EXPECT_EQ(21, stage->get_cell_height());
 
    font_bin.clear();
    al_destroy_display(display);
