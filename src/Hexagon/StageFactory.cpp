@@ -85,6 +85,15 @@ result->set_base_text_color(obtain_base_text_color());
 result->set_base_backfill_color(obtain_base_backfill_color());
 result->set_place(build_component_navigator_initial_place());
 
+// properties previously assigned at render time:
+ALLEGRO_DISPLAY *display = get_current_display();
+result->set_display(display);
+//result->set_is_focused(is_focused);
+//result->set_display(display);
+//result->set_font(font);
+//result->set_cell_width(cell_width);
+//result->set_cell_height(cell_height);
+
 return result;
 
 }
