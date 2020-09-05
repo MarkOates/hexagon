@@ -11,6 +11,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_font.h>
@@ -93,6 +95,18 @@ if (!(font_bin))
       throw std::runtime_error(error_message.str());
    }
 return font_bin->auto_get("consolas.ttf -18");
+
+}
+
+ALLEGRO_FONT* StageFactory::obtain_git_commit_message_box_font()
+{
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_git_commit_message_box_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return font_bin->auto_get("Purista Medium.otf -22");
 
 }
 

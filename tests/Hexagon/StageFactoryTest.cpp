@@ -51,6 +51,37 @@ TEST(Hexagon_StageFactoryTest, obtain_component_navigator_font__returns_a_font)
    al_uninstall_system();
 }
 
+TEST(Hexagon_StageFactoryTest, obtain_git_commit_message_box_font__without_a_font_bin__raises_an_exception)
+{
+   Hexagon::StageFactory stage_factory;
+   std::string expected_error_message = "StageFactory::obtain_git_commit_message_box_font: error: guard " \
+                                        "\"font_bin\" not met";
+   ASSERT_THROW_WITH_MESSAGE(
+      stage_factory.obtain_git_commit_message_box_font(),
+      std::runtime_error,
+      expected_error_message
+   );
+}
+
+TEST(Hexagon_StageFactoryTest, obtain_git_commit_message_box_font__returns_a_font)
+{
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   Hexagon::StageFactory stage_factory(nullptr, &font_bin);
+
+   ALLEGRO_FONT *font = stage_factory.obtain_git_commit_message_box_font();
+
+   ASSERT_NE(nullptr, font);
+
+   font_bin.clear();
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+}
+
 TEST(Hexagon_StageFactoryTest, obtain_default_navigator_directory__without_a_config__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;

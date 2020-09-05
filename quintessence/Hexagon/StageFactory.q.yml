@@ -49,6 +49,13 @@ functions:
       return font_bin->auto_get("consolas.ttf -18");
 
 
+  - name: obtain_git_commit_message_box_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      return font_bin->auto_get("Purista Medium.otf -22");
+
+
   - name: create
     type: StageInterface*
     body: |
