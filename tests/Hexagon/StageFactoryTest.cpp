@@ -216,6 +216,11 @@ TEST(Hexagon_StageFactoryTest, create_file_navigator__creates_a_file_navigator_w
 
    EXPECT_EQ(true, stage->get_render_on_hud());
 
+   ALLEGRO_FONT *expected_font = stage_factory.obtain_file_navigator_font();
+   ALLEGRO_FONT *actual_font = stage->get_font();
+
+   EXPECT_EQ(expected_font, actual_font);
+
    font_bin.clear();
    al_destroy_display(display);
    al_shutdown_ttf_addon();
