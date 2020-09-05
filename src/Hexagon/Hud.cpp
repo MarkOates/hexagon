@@ -459,12 +459,7 @@ if (draw_stages && stages)
       // another for now...
       if (stage->get_type() == StageInterface::COMPONENT_NAVIGATOR)
       {
-         Hexagon::AdvancedComponentNavigator::Stage *advanced_component_navigator_stage =
-            static_cast<Hexagon::AdvancedComponentNavigator::Stage *>(stage);
-         //advanced_component_navigator_stage->set_display(display);
-         //advanced_component_navigator_stage->set_font(component_navigator_font);
-         //advanced_component_navigator_stage->set_cell_width(cell_width);
-         //advanced_component_navigator_stage->set_cell_height(cell_height);
+         // nothing
       }
       else if (stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX
          || stage->get_type() == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX
