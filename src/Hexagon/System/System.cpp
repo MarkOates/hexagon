@@ -742,7 +742,7 @@ bool System::rotate_stage_right_and_update_focused_state_on_changed_stages()
 }
 
 
-bool System::rotate_stage_left()
+bool System::rotate_stage_left_and_update_focused_state_on_changed_stages()
 {
    if (stages.empty())
    {
@@ -750,7 +750,9 @@ bool System::rotate_stage_left()
       return false;
    }
 
+   unset_focused_state_on_topmost_stage_if_not_already_unfocused(this);
    std::rotate(stages.rbegin(), stages.rbegin() + 1, stages.rend());
+   set_focused_state_on_topmost_stage_if_not_already_focused(this);
    return true;
 }
 

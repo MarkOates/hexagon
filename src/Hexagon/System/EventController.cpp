@@ -178,7 +178,7 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
    },
    {
       ::System::ROTATE_STAGE_LEFT,
-      &::System::rotate_stage_left,
+      &::System::rotate_stage_left_and_update_focused_state_on_changed_stages,
    },
    {
       ::System::ROTATE_STAGE_RIGHT,

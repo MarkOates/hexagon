@@ -107,7 +107,7 @@ public:
    bool toggle_command_mode_off();
    bool reset_camera_to_center();
    bool rotate_stage_right_and_update_focused_state_on_changed_stages();
-   bool rotate_stage_left();
+   bool rotate_stage_left_and_update_focused_state_on_changed_stages();
    bool rotate_relative_up();
    bool rotate_relative_down();
    bool center_camera_on_frontmost_stage();
