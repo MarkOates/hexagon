@@ -223,24 +223,31 @@ functions:
       }
 
       float _cursor_y = cursor_y - first_line_number;
-      float text_length_to_cursor_x = cursor_x * cell_width;
+      float text_length_to_cursor_x = 0; //cursor_x * cell_width;
       float character_width_at_cursor_x = cell_width;
       if (cursor_y < 0 || cursor_y >= lines.size()) {}
       else
       {
          int length_of_line = lines[cursor_y].size();
-         if (cursor_x <= length_of_line)
-         {
-            text_length_to_cursor_x = al_get_text_width(font, lines[cursor_y].substr(0, cursor_x).c_str());
-         }
+         text_length_to_cursor_x = al_get_text_width(
+            font,
+            lines[cursor_y].substr(0, std::min(length_of_line, cursor_x)).c_str()
+         );
+
          if (cursor_x < length_of_line)
          {
             std::string current_char_str_at_cursor_x = " ";
             current_char_str_at_cursor_x[0] = lines[cursor_y][cursor_x];
             character_width_at_cursor_x = al_get_text_width(font, current_char_str_at_cursor_x.c_str());
          }
-         float extra_x_length = al_get_text_width(font, "x") * std::max(0, (cursor_x - length_of_line - 1));
-         text_length_to_cursor_x += extra_x_length;
+         if (cursor_x > length_of_line)
+         {
+            float extra_x_length = 0;
+            // TODO: There appears to be a bug in here that is making the extension longer
+            int length_of_extension = cursor_x - length_of_line;
+            extra_x_length = al_get_text_width(font, "x") * length_of_extension;
+            text_length_to_cursor_x += extra_x_length;
+         }
       }
       //switch(mode)
       //{
