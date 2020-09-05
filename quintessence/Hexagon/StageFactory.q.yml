@@ -28,6 +28,13 @@ functions:
       return config->get_base_text_color();
 
 
+  - name: obtain_regex_temp_filename
+    type: std::string
+    guards: [ config ]
+    body: |
+      return config->get_regex_temp_filename();
+
+
   - name: obtain_base_backfill_color
     type: ALLEGRO_COLOR
     guards: [ config ]
@@ -46,6 +53,25 @@ functions:
     type: StageInterface*
     body: |
       return nullptr;
+
+
+  - name: create_git_commit_message_box
+    type: StageInterface*
+    body: |
+      Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(
+         {
+            obtain_regex_temp_filename(),
+            "git_commit_message_input_box",
+            ::CodeEditor::CodeEditor::INSERT,
+            StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX
+         });
+
+      stage->set_place(build_git_commit_message_input_box_initial_place());
+      stage->set_render_on_hud(true);
+      stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
+      return stage;
+    body_dependency_symbols:
+      - Hexagon::CodeEditor::Stage
 
 
   - name: create_advanced_component_navigator
@@ -111,9 +137,26 @@ functions:
       return result;
 
 
+  - name: build_git_commit_message_input_box_initial_place
+    private: true
+    type: placement3d
+    body: |
+      ALLEGRO_DISPLAY *display = get_current_display();
+      int surface_width = al_get_display_width(display);
+      int surface_height = al_get_display_height(display);
+      placement3d place(surface_width*0.5f, surface_height*0.5f, 0.0);
+      //place.position = camera.position;
+      place.size = vec3d(600, 25, 0.0);
+      place.scale = vec3d(1.5, 1.5, 1.0);
+      place.rotation = vec3d(0.0, 0.0, 0.0);
+      return place;
+
+
 dependencies:
 
 
+  - symbol: Hexagon::CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::Stage
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
   - symbol: StageInterface*
