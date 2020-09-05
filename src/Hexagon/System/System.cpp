@@ -79,6 +79,7 @@
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/ComponentNavigator/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+#include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/ProjectComponentNavigator/Stage.hpp>
 #include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/LayoutPlacements.hpp>
@@ -650,15 +651,43 @@ bool System::toggle_command_mode_off()
 }
 
 
-
 static bool unset_focused_state_on_topmost_stage_if_not_already_unfocused(System *system)
 {
    if (!system) throw std::runtime_error("Fooobaboab");
    StageInterface *stage = system->get_frontmost_stage();
    if (!stage) return false;
 
+   bool rendered_with_CodeEditor_Renderer = (stage->get_type()
+         == StageInterface::CODE_EDITOR
+         || stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX
+         || stage->get_type() == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX
+      );
+   if (rendered_with_CodeEditor_Renderer)
+   {
+      Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+      if (code_editor_stage->get_is_focused()) code_editor_stage->set_is_focused(false);
+   }
+   if (stage->get_type() == StageInterface::COMPONENT_NAVIGATOR)
+   {
+      Hexagon::AdvancedComponentNavigator::Stage *advanced_component_navigator_stage =
+         static_cast<Hexagon::AdvancedComponentNavigator::Stage *>(stage);
+      if (advanced_component_navigator_stage->get_is_focused())
+         advanced_component_navigator_stage->set_is_focused(false);
+   }
+   if (stage->get_type() == StageInterface::MISSING_FILE)
+   {
+      Hexagon::MissingFile::Stage* missing_file_stage = static_cast<Hexagon::MissingFile::Stage *>(stage);
+      if (missing_file_stage->get_is_focused()) missing_file_stage->set_is_focused(false);
+   }
+   if (stage->get_type() == StageInterface::FILE_NAVIGATOR)
+   {
+      Hexagon::FileNavigator::Stage *file_navigator_stage = static_cast<Hexagon::FileNavigator::Stage *>(stage);
+      if (file_navigator_stage->get_is_focused()) file_navigator_stage->set_is_focused(false);
+   }
+
    return true;
 }
+
 
 static bool set_focused_state_on_topmost_stage_if_not_already_focused(System *system)
 {
