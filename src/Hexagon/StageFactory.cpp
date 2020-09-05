@@ -7,6 +7,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro.h>
 #include <stdexcept>
@@ -17,8 +19,9 @@ namespace Hexagon
 {
 
 
-StageFactory::StageFactory(Hexagon::System::Config* config)
+StageFactory::StageFactory(Hexagon::System::Config* config, AllegroFlare::FontBin* font_bin)
    : config(config)
+   , font_bin(font_bin)
 {
 }
 
@@ -61,6 +64,18 @@ if (!(config))
       throw std::runtime_error(error_message.str());
    }
 return config->get_backfill_color();
+
+}
+
+ALLEGRO_FONT* StageFactory::obtain_component_navigator_font()
+{
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_component_navigator_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return font_bin->auto_get("Purista Medium.otf -22");
 
 }
 

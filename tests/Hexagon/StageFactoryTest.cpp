@@ -20,6 +20,18 @@ TEST(Hexagon_StageFactoryTest, create__returns_the_expected_response)
    EXPECT_EQ(nullptr, stage_factory.create());
 }
 
+TEST(Hexagon_StageFactoryTest, obtain_component_navigator_font__without_a_font_bin__raises_an_exception)
+{
+   Hexagon::StageFactory stage_factory;
+   std::string expected_error_message = "StageFactory::obtain_component_navigator_font: error: guard " \
+                                        "\"font_bin\" not met";
+   ASSERT_THROW_WITH_MESSAGE(
+      stage_factory.obtain_component_navigator_font(),
+      std::runtime_error,
+      expected_error_message
+   );
+}
+
 TEST(Hexagon_StageFactoryTest, obtain_default_navigator_directory__without_a_config__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;

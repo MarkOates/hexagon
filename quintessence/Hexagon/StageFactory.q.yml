@@ -5,6 +5,10 @@ properties:
     type: Hexagon::System::Config*
     init_with: nullptr
     constructor_arg: true
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
 
 
 functions:
@@ -29,6 +33,13 @@ functions:
     guards: [ config ]
     body: |
       return config->get_backfill_color();
+
+
+  - name: obtain_component_navigator_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      return font_bin->auto_get("Purista Medium.otf -22");
 
 
   - name: create
@@ -100,11 +111,15 @@ dependencies:
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: Hexagon::System::Config*
     headers: [ Hexagon/System/Config.hpp ]
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_DISPLAY*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro.h ]
   - symbol: al_get_current_display
     headers: [ allegro5/allegro.h ]
