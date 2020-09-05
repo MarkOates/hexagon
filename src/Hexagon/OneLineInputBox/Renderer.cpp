@@ -202,15 +202,29 @@ if (!bottom_left_text.empty())
 
 float _cursor_y = cursor_y - first_line_number;
 float text_length_to_cursor_x = cursor_x * cell_width;
+float character_width_at_cursor_x = cell_width;
+if (cursor_y < 0 || cursor_y >= lines.size()) {}
+else
+{
+   int length_of_line = lines[cursor_y].size();
+   if (cursor_x <= length_of_line)
+   {
+      text_length_to_cursor_x = al_get_text_width(font, lines[cursor_y].substr(0, cursor_x).c_str());
+      character_width_at_cursor_x = al_get_text_width(font, std::to_string(lines[cursor_y][cursor_x]).c_str());
+   }
+   float extra_x_length = al_get_text_width(font, "x") * std::max(0, (cursor_x - length_of_line));
+   text_length_to_cursor_x += extra_x_length;
+}
 //switch(mode)
 //{
 //case EDIT:
 if (in_edit_mode)
 {
+   float width_of_character_at_cursor_x = character_width_at_cursor_x;
    al_draw_filled_rectangle(
       text_length_to_cursor_x,
       _cursor_y*cell_height,
-      text_length_to_cursor_x + cell_width,
+      text_length_to_cursor_x + width_of_character_at_cursor_x,
       _cursor_y*cell_height + cell_height,
       al_color_name("gray"));
 }
