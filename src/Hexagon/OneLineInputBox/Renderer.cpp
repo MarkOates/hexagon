@@ -201,15 +201,16 @@ if (!bottom_left_text.empty())
 }
 
 float _cursor_y = cursor_y - first_line_number;
+float text_length_to_cursor_x = cursor_x * cell_width;
 //switch(mode)
 //{
 //case EDIT:
 if (in_edit_mode)
 {
    al_draw_filled_rectangle(
-      cursor_x*cell_width,
+      text_length_to_cursor_x,
       _cursor_y*cell_height,
-      cursor_x*cell_width + cell_width,
+      text_length_to_cursor_x + cell_width,
       _cursor_y*cell_height + cell_height,
       al_color_name("gray"));
 }
@@ -218,9 +219,9 @@ if (in_edit_mode)
 else
 {
    al_draw_line(
-      cursor_x*cell_width,
+      text_length_to_cursor_x,
       _cursor_y*cell_height,
-      cursor_x*cell_width,
+      text_length_to_cursor_x,
       _cursor_y*cell_height + cell_height,
       al_color_name("gray"),
       3);
