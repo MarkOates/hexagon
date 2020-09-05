@@ -995,7 +995,7 @@ bool System::spawn_git_commit_message_input_box_modal()
 
    stages.push_back(stage);
 
-   placement3d& stage_place = stage->get_place();
+   //placement3d& stage_place = stage->get_place();
    //stage_place.scale.x = 1.5;
    //stage_place.scale.y = 1.5;
    //motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
