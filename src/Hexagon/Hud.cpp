@@ -469,12 +469,7 @@ if (draw_stages && stages)
          throw std::runtime_error(error_message.str());
       }
 
-      // another for now...
-      if (stage->get_type() == StageInterface::COMPONENT_NAVIGATOR)
-      {
-         // nothing
-      }
-      else if (stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX
+      if (stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX
          || stage->get_type() == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX
       )
       {
