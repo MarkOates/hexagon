@@ -49,6 +49,13 @@ functions:
       return font_bin->auto_get("consolas.ttf -18");
 
 
+  - name: obtain_file_navigator_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      return font_bin->auto_get("consolas.ttf -18");
+
+
   - name: obtain_git_commit_message_box_font
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
@@ -65,11 +72,14 @@ functions:
   - name: create_file_navigator
     type: StageInterface*
     body: |
+      ALLEGRO_FONT *font = obtain_file_navigator_font();
       Hexagon::FileNavigator::Stage *file_navigator
          = new Hexagon::FileNavigator::Stage(obtain_default_navigator_directory());
       file_navigator->process_local_event("refresh_list"); // TODO: similar to another comment existing in this file
                                                            // at the time of this writing
       file_navigator->set_place(build_file_navigator_initial_place());
+      file_navigator->set_font(font);
+      file_navigator->set_render_on_hud(true);
 
       return file_navigator;
     body_dependency_symbols:

@@ -13,6 +13,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
@@ -99,6 +101,18 @@ return font_bin->auto_get("consolas.ttf -18");
 
 }
 
+ALLEGRO_FONT* StageFactory::obtain_file_navigator_font()
+{
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_file_navigator_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return font_bin->auto_get("consolas.ttf -18");
+
+}
+
 ALLEGRO_FONT* StageFactory::obtain_git_commit_message_box_font()
 {
 if (!(font_bin))
@@ -119,11 +133,14 @@ return nullptr;
 
 StageInterface* StageFactory::create_file_navigator()
 {
+ALLEGRO_FONT *font = obtain_file_navigator_font();
 Hexagon::FileNavigator::Stage *file_navigator
    = new Hexagon::FileNavigator::Stage(obtain_default_navigator_directory());
 file_navigator->process_local_event("refresh_list"); // TODO: similar to another comment existing in this file
                                                      // at the time of this writing
 file_navigator->set_place(build_file_navigator_initial_place());
+file_navigator->set_font(font);
+file_navigator->set_render_on_hud(true);
 
 return file_navigator;
 
