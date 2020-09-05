@@ -127,8 +127,10 @@ Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(
    });
 
 stage->set_place(build_git_commit_message_input_box_initial_place());
+stage->set_font(obtain_git_commit_message_box_font());
 stage->set_render_on_hud(true);
 stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
+
 return stage;
 
 }
