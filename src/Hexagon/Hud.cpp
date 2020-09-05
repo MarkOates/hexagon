@@ -515,7 +515,6 @@ if (draw_notifications)
    }
 }
 
-/*
 if (draw_save_count)
 {
    // bottom left of screen
@@ -545,7 +544,6 @@ if (draw_search_count)
       search_count_text_to_draw.c_str()
    );
 }
-*/
 
 if (draw_packets)
 {

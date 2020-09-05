@@ -352,7 +352,6 @@ functions:
          }
       }
 
-      /*
       if (draw_save_count)
       {
          // bottom left of screen
@@ -382,7 +381,6 @@ functions:
             search_count_text_to_draw.c_str()
          );
       }
-      */
 
       if (draw_packets)
       {
