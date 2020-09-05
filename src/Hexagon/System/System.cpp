@@ -1031,10 +1031,11 @@ bool System::spawn_red_overlay()
 
 bool System::spawn_file_navigator()
 {
-   Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(get_default_navigator_directory());
-   file_navigator->process_local_event("refresh_list");
-   file_navigator->set_place(build_file_navigator_initial_place());
-   stages.push_back(file_navigator);
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   StageInterface *stage = stage_factory.create_file_navigator();
+
+   stages.push_back(stage);
+
    return true;
 }
 
