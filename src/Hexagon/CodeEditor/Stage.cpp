@@ -207,6 +207,7 @@ else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
    //std::string top_left_text = "ESC: Close";
    std::string bottom_right_text = "commit and push";
    ALLEGRO_COLOR backfill_color = al_color_name("black");
+   std::vector<std::string> lines = code_editor.get_lines_ref();
    int char_count = code_editor_char_count();
 
    Hexagon::OneLineInputBox::Renderer renderer(
@@ -217,7 +218,7 @@ else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
       height,
       get_cell_width(),
       get_cell_height(),
-      code_editor.get_lines_ref(),
+      lines,
       code_editor.selections,
       code_editor.get_cursor_x(),
       code_editor.get_cursor_y(),
