@@ -32,6 +32,25 @@ TEST(Hexagon_StageFactoryTest, obtain_component_navigator_font__without_a_font_b
    );
 }
 
+TEST(Hexagon_StageFactoryTest, obtain_component_navigator_font__returns_a_font)
+{
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   Hexagon::StageFactory stage_factory(nullptr, &font_bin);
+
+   ALLEGRO_FONT *font = stage_factory.obtain_component_navigator_font();
+
+   ASSERT_NE(nullptr, font);
+
+   font_bin.clear();
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+}
+
 TEST(Hexagon_StageFactoryTest, obtain_default_navigator_directory__without_a_config__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;
