@@ -990,22 +990,19 @@ placement3d System::build_git_commit_message_input_box_initial_place()
 
 bool System::spawn_git_commit_message_input_box_modal()
 {
-   //TODO: this placement should be relative to the camera, or, the window should be
-   // placed on a non-transforming render surface, or rendered within the hud.
-   // for now, I'm going to have it spawn at the position of the camera
-   placement3d place = build_git_commit_message_input_box_initial_place();
-
-// TODO: extract this one line input box from CodeEditor
    Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *stage = stage_factory.create_git_commit_message_box();
 
    stages.push_back(stage);
 
-   //placement3d& stage_place = stage->get_place();
+   placement3d& stage_place = stage->get_place();
    //stage_place.scale.x = 1.5;
    //stage_place.scale.y = 1.5;
    //motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
    //motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+
+   motion.cmove_to(&camera.rotation.x, -0.08f, 0.5f, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.position.y, 100.0f, 0.5f, interpolator::tripple_fast_in);
 
    return true;
 }
