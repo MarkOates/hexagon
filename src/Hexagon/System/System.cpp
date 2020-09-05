@@ -1021,7 +1021,7 @@ bool System::spawn_git_commit_message_input_box_modal()
 
 bool System::spawn_component_navigator()
 {
-   Hexagon::StageFactory stage_factory(&config);
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *stage = stage_factory.create_advanced_component_navigator();
 
    stages.push_back(stage);
