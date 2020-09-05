@@ -11,6 +11,7 @@
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/ComponentNavigator/Stage.hpp>
+#include <Hexagon/Elements/Window.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -150,7 +151,17 @@ for (auto &stage : system->stages)
 
    stage->render();
 
+   if (is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
+   {
+      placement3d place = stage->get_place();
+      Hexagon::Elements::Window window;
 
+      window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+      window.set_outer_line_opacity(0.2);
+      window.set_outer_line_thickness(4.0);
+
+      window.draw();
+   }
 
    global::profiler.pause(profile_timer_element_label.str());
 }
