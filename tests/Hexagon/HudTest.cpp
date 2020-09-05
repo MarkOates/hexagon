@@ -202,13 +202,15 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    Hexagon::AdvancedComponentNavigator::Stage stage;
    stage.set_render_on_hud(true);
    stage.get_place() = build_centered_placement(800, 700);
+   stage.set_font(font_bin["Menlo-Regular.ttf -20"]);
    stage.process_local_event("refresh_list");
 
    std::vector<StageInterface *> stages = { &stage };
 
-   Hexagon::Hud hud(display, font_bin);
+   Hexagon::Hud hud(display, font_bin); // TODO: font_bin is required for construction, but never used
+                                        // in this use case.  Should probably be removed from the constructor
+                                        // or changed to an AllegroFlare::FontBin*
    hud.initialize();
-   hud.set_global_font_str("Menlo-Regular.ttf -20");
    hud.set_stages(&stages);
 
    hud.draw();
