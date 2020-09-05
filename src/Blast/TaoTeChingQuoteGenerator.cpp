@@ -26,7 +26,7 @@ std::string TaoTeChingQuoteGenerator::pick_quote()
 {
 if (quotes.empty()) return "";
 std::vector<std::string> result;
-std::sample(quotes.begin(), quotes.end()-1, std::back_inserter(result), 1, std::mt19937{std::random_device{}()});
+std::sample(quotes.begin(), quotes.end(), std::back_inserter(result), 1, std::mt19937{std::random_device{}()});
 return result[0];
 
 }
