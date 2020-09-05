@@ -449,12 +449,25 @@ al_set_target_bitmap(screen_sub_bitmap);
 ALLEGRO_FONT *font = obtain_global_font();
 ALLEGRO_FONT *component_navigator_font = obtain_component_navigator_font();
 
+std::vector<StageInterface::type_t> permitted_types = {
+   StageInterface::COMPONENT_NAVIGATOR,
+   StageInterface::ONE_LINE_INPUT_BOX,
+   StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX,
+};
+
 bool draw_stages = true;
 if (draw_stages && stages)
 {
    for (auto &stage : (*stages))
    {
       if (!stage->get_render_on_hud()) continue;
+      if (std::find(permitted_types.begin(), permitted_types.end(), stage->get_type()) == permitted_types.end())
+      {
+         std::stringstream error_message;
+         error_message << "Hexagon/Hud::draw: error: Cannot render a stage marked as render_on_hud "
+                       << "that is of type \"" << stage->get_type() << "\"";
+         throw std::runtime_error(error_message.str());
+      }
 
       // another for now...
       if (stage->get_type() == StageInterface::COMPONENT_NAVIGATOR)
@@ -471,13 +484,6 @@ if (draw_stages && stages)
          //advanced_component_navigator_stage->set_cell_width(cell_width);
          //advanced_component_navigator_stage->set_cell_height(cell_height);
       }
-      else
-      {
-         std::stringstream error_message;
-         error_message << "Hexagon/Hud::draw: error: Cannot render a stage marked as render_on_hud "
-                       << "that is of type \"" << stage->get_type() << "\"";
-         throw std::runtime_error(error_message.str());
-      };
 
       stage->render();
    }
