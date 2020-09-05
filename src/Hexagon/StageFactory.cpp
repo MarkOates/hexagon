@@ -13,6 +13,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_font.h>
@@ -116,6 +117,18 @@ return nullptr;
 
 }
 
+StageInterface* StageFactory::create_file_navigator()
+{
+Hexagon::FileNavigator::Stage *file_navigator
+   = new Hexagon::FileNavigator::Stage(obtain_default_navigator_directory());
+file_navigator->process_local_event("refresh_list"); // TODO: similar to another comment existing in this file
+                                                     // at the time of this writing
+file_navigator->set_place(build_file_navigator_initial_place());
+
+return file_navigator;
+
+}
+
 StageInterface* StageFactory::create_git_commit_message_box()
 {
 Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(
@@ -191,6 +204,19 @@ result.position = vec3d(al_get_display_width(display)/2, al_get_display_height(d
 result.size = vec3d(800, 700, 0);
 result.align = vec3d(0.5, 0.5, 0.5);
 result.scale = vec3d(1.0, 1.0, 1.0);
+result.rotation = vec3d(0.0, 0.0, 0.0);
+return result;
+
+}
+
+placement3d StageFactory::build_file_navigator_initial_place()
+{
+ALLEGRO_DISPLAY *display = get_current_display();
+placement3d result;
+result.position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+result.size = vec3d(500, 600, 0);
+result.align = vec3d(0.5, 0.5, 0);
+result.scale = vec3d(0.8, 0.8, 1.0);
 result.rotation = vec3d(0.0, 0.0, 0.0);
 return result;
 
