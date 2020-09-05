@@ -160,11 +160,6 @@ result->set_display(display);
 result->set_font(font);
 result->set_cell_width(cell_width);
 result->set_cell_height(cell_height);
-//result->set_is_focused(is_focused); // This should not be set here. Rather it is set at stage rotation time
-//result->set_display(display);
-//result->set_font(font);
-//result->set_cell_width(cell_width);
-//result->set_cell_height(cell_height);
 
 return result;
 
