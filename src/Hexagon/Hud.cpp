@@ -461,7 +461,6 @@ if (draw_stages && stages)
       {
          Hexagon::AdvancedComponentNavigator::Stage *advanced_component_navigator_stage =
             static_cast<Hexagon::AdvancedComponentNavigator::Stage *>(stage);
-         //advanced_component_navigator_stage->set_is_focused(true);
          //advanced_component_navigator_stage->set_display(display);
          advanced_component_navigator_stage->set_font(component_navigator_font);
          //advanced_component_navigator_stage->set_cell_width(cell_width);
@@ -472,7 +471,6 @@ if (draw_stages && stages)
       )
       {
          Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
-         //code_editor_stage->set_is_focused(true);
          //advanced_component_navigator_stage->set_display(display);
          code_editor_stage->set_font(font);
          //advanced_component_navigator_stage->set_cell_width(cell_width);
