@@ -996,17 +996,9 @@ bool System::spawn_git_commit_message_input_box_modal()
    placement3d place = build_git_commit_message_input_box_initial_place();
 
 // TODO: extract this one line input box from CodeEditor
-   Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(
-      {
-         REGEX_TEMP_FILENAME,
-         "git_commit_message_input_box",
-         ::CodeEditor::CodeEditor::INSERT,
-         StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX
-      });
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   StageInterface *stage = stage_factory.create_git_commit_message_box();
 
-   stage->set_place(place);
-   stage->set_render_on_hud(true);
-   stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
    stages.push_back(stage);
 
    //placement3d& stage_place = stage->get_place();
