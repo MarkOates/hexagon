@@ -1001,8 +1001,8 @@ bool System::spawn_git_commit_message_input_box_modal()
    //motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
    //motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
 
-   motion.cmove_to(&camera.rotation.x, -0.08f, 0.5f, interpolator::tripple_fast_in);
-   motion.cmove_to(&camera.position.y, 100.0f, 0.5f, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.rotation.x, -0.12f, 0.5f, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.position.y, 140.0f, 0.5f, interpolator::tripple_fast_in);
 
    return true;
 }
@@ -1016,7 +1016,7 @@ bool System::spawn_component_navigator()
    stages.push_back(stage);
 
    motion.cmove_to(&camera.rotation.y, 0.08f, 0.5f, interpolator::tripple_fast_in);
-   motion.cmove_to(&camera.rotation.x, -0.04f, 0.5f, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.rotation.x, -0.08f, 0.5f, interpolator::tripple_fast_in);
 
    return true;
 }
