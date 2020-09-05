@@ -102,7 +102,9 @@ result->set_place(build_component_navigator_initial_place());
 
 // properties previously assigned at render time:
 ALLEGRO_DISPLAY *display = get_current_display();
+ALLEGRO_FONT *font = obtain_component_navigator_font();
 result->set_display(display);
+result->set_font(font);
 //result->set_is_focused(is_focused); // This should not be set here. Rather it is set at stage rotation time
 //result->set_display(display);
 //result->set_font(font);

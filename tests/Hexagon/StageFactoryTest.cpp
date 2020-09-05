@@ -74,10 +74,15 @@ TEST(Hexagon_StageFactoryTest,
    create_advanced_component_navigator__creates_an_advanced_component_navigator_with_the_expected_properties)
 {
    al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::System::Config config;
    config.initialize();
-   Hexagon::StageFactory stage_factory(&config);
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *created_stage = stage_factory.create_advanced_component_navigator();
    Hexagon::AdvancedComponentNavigator::Stage *stage =
       static_cast<Hexagon::AdvancedComponentNavigator::Stage*>(created_stage);
@@ -102,7 +107,9 @@ TEST(Hexagon_StageFactoryTest,
    EXPECT_EQ(expected_base_backfill_color.r, actual_base_backfill_color.r); // for now, just comparing red component
    EXPECT_EQ(expected_place, actual_place);
 
+   font_bin.clear();
    al_destroy_display(display);
+   al_shutdown_ttf_addon();
    al_uninstall_system();
 }
 
