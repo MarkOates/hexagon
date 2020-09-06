@@ -69,14 +69,14 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    }
 }
 
-TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__with_a_valid_component_creates_the_expected_files)
 {
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/System/Action/CreateThreeSplitFromComponent";
    std::vector<StageInterface *> stages;
 
-   CreateThreeSplit create_three_split(project_path, component, stages);
+   CreateThreeSplit create_three_split(project_path, component, stages, &stage_factory);
 
    EXPECT_EQ(true, create_three_split.execute());
 
@@ -87,14 +87,14 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    }
 }
 
-TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__with_an_invalid_component_creates_missing_file_stages)
 {
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/AComponentThatDoesNotExist";
    std::vector<StageInterface *> stages;
 
-   CreateThreeSplit create_three_split(project_path, component, stages);
+   CreateThreeSplit create_three_split(project_path, component, stages, &stage_factory);
 
    EXPECT_EQ(true, create_three_split.execute());
 
@@ -105,14 +105,14 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    }
 }
 
-TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__with_an_invalid_component_sets_the_expected_filename_on_the_missing_file_stage)
 {
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/AComponentThatDoesNotExist";
    std::vector<StageInterface *> stages;
 
-   CreateThreeSplit create_three_split(project_path, component, stages);
+   CreateThreeSplit create_three_split(project_path, component, stages, &stage_factory);
 
    EXPECT_EQ(true, create_three_split.execute());
 
@@ -130,10 +130,9 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
              missing_test_file_stage.get_expected_filename());
 }
 
-TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__places_the_stages_in_the_expected_positions)
 {
-   Hexagon::StageFactory stage_factory;
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/System/Action/CreateThreeSplitFromComponent";
    std::vector<StageInterface *> stages;
