@@ -104,15 +104,6 @@ for (auto &stage : system->stages)
       missing_file_stage->set_cell_height(cell_height);
    }
 
-   if (stage->get_type() == StageInterface::FILE_NAVIGATOR)
-   {
-      Hexagon::FileNavigator::Stage *file_navigator_stage = static_cast<Hexagon::FileNavigator::Stage *>(stage);
-      file_navigator_stage->set_display(display);
-      file_navigator_stage->set_font(font);
-      file_navigator_stage->set_cell_width(cell_width);
-      file_navigator_stage->set_cell_height(cell_height);
-   }
-
    if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
    {
       Hexagon::RerunOutputWatcher::Stage *rerun_output_watcher_stage =
