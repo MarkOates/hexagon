@@ -146,11 +146,13 @@ return nullptr;
 
 }
 
-StageInterface* StageFactory::create_file_navigator()
+StageInterface* StageFactory::create_file_navigator(std::string directory)
 {
+std::string directory_to_start = directory.empty() ? obtain_default_navigator_directory() : directory;
+
 ALLEGRO_FONT *font = obtain_file_navigator_font();
 Hexagon::FileNavigator::Stage *file_navigator
-   = new Hexagon::FileNavigator::Stage(obtain_default_navigator_directory());
+   = new Hexagon::FileNavigator::Stage(directory_to_start);
 file_navigator->process_local_event("refresh_list"); // TODO: similar to another comment existing in this file
                                                      // at the time of this writing
 file_navigator->set_place(build_file_navigator_initial_place());
