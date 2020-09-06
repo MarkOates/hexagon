@@ -62,9 +62,6 @@ public:
 
    // util
    static std::vector<std::string> get_directory_listing_recursive(std::string directory);
-   placement3d build_file_navigator_initial_place();
-   placement3d build_git_commit_message_input_box_initial_place();
-   placement3d build_regex_input_box_initial_place();
 
    // retrieval
    StageInterface *get_frontmost_stage();

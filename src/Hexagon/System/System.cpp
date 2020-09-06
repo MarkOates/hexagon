@@ -192,17 +192,6 @@ float System::get_default_code_editor_stage_width()
    return 2430/2 + 20;
 }
 
-placement3d System::build_file_navigator_initial_place()
-{
-   placement3d result;
-   result.position = camera.position;
-   result.size = vec3d(500, 600, 30);
-   result.align = vec3d(0.5, 0.5, 0.5);
-   result.scale = vec3d(0.8, 0.8, 1.0);
-   result.rotation = vec3d(0.0, 0.0, 0.0);
-   return result;
-}
-
 std::string System::get_global_font_str()
 {
    std::stringstream result;
@@ -924,19 +913,6 @@ bool System::set_regex_input_box_modal_to_insert_mode()
 }
 
 
-placement3d System::build_regex_input_box_initial_place()
-{
-   int surface_width = al_get_display_width(display);
-   int surface_height = al_get_display_height(display);
-   placement3d place(surface_width*0.5f, surface_height*0.5f, 0.0);
-   //place.position = camera.position;
-   place.size = vec3d(300, 25, 0.0);
-   place.scale = vec3d(1.5, 1.5, 1.0);
-   place.rotation = vec3d(0.0, 0.0, 0.0);
-   return place;
-}
-
-
 bool System::spawn_regex_input_box_modal()
 {
    Hexagon::StageFactory stage_factory(&config, &font_bin);
@@ -948,19 +924,6 @@ bool System::spawn_regex_input_box_modal()
    motion.cmove_to(&camera.position.y, -70.0f, 0.5f, interpolator::tripple_fast_in);
 
    return true;
-}
-
-
-placement3d System::build_git_commit_message_input_box_initial_place()
-{
-   int surface_width = al_get_display_width(display);
-   int surface_height = al_get_display_height(display);
-   placement3d place(surface_width*0.5f, surface_height*0.5f, 0.0);
-   //place.position = camera.position;
-   place.size = vec3d(600, 25, 0.0);
-   place.scale = vec3d(1.5, 1.5, 1.0);
-   place.rotation = vec3d(0.0, 0.0, 0.0);
-   return place;
 }
 
 
