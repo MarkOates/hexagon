@@ -11,16 +11,49 @@ typedef Hexagon::System::Action::CreateThreeSplitFromComponent CreateThreeSplit;
 class Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture : public ::testing::Test
 {};
 
+static std::string TEST_FIXTURE_DIRECTORY_ROOT = "/Users/markoates/Repos/hexagon/tests/fixtures/";
+static const std::string TEST_FIXTURE_CONFIG_FILENAME = TEST_FIXTURE_DIRECTORY_ROOT + "hexagon.test.cfg";
+
+class Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture : public ::testing::Test
+{
+protected:
+   Hexagon::System::Config config;
+   AllegroFlare::FontBin font_bin;
+   Hexagon::StageFactory stage_factory;
+
+public:
+   Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture()
+     : config(TEST_FIXTURE_CONFIG_FILENAME)
+     , font_bin()
+     , stage_factory(&config, &font_bin)
+   {}
+
+   virtual void SetUp() override
+   {
+      al_init();
+      al_init_ttf_addon();
+
+      config.initialize();
+      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   }
+
+   virtual void TearDown() override
+   {
+      font_bin.clear();
+      al_shutdown_ttf_addon();
+      al_uninstall_system();
+   }
+};
+
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    can_be_created_without_blowing_up)
 {
    Hexagon::System::Action::CreateThreeSplitFromComponent create_three_split_from_component;
 }
 
-TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__creates_three_stages_split_across_the_width)
 {
-   Hexagon::StageFactory stage_factory;
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/Action";
    std::vector<StageInterface *> stages;
