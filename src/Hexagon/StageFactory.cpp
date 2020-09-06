@@ -15,6 +15,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
@@ -114,6 +116,18 @@ return font_bin->auto_get("consolas.ttf -18");
 
 }
 
+ALLEGRO_FONT* StageFactory::obtain_global_font()
+{
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_global_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return font_bin->auto_get("Menlo-Regular.ttf -20");
+
+}
+
 ALLEGRO_FONT* StageFactory::obtain_git_commit_message_box_font()
 {
 if (!(font_bin))
@@ -157,6 +171,7 @@ Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({
       StageInterface::ONE_LINE_INPUT_BOX
    });
 stage->set_place(build_regex_input_box_initial_place());
+stage->set_font(obtain_global_font());
 stage->set_render_on_hud(true);
 stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
 

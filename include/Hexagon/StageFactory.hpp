@@ -28,6 +28,7 @@ namespace Hexagon
    ALLEGRO_COLOR obtain_base_backfill_color();
    ALLEGRO_FONT* obtain_component_navigator_font();
    ALLEGRO_FONT* obtain_file_navigator_font();
+   ALLEGRO_FONT* obtain_global_font();
    ALLEGRO_FONT* obtain_git_commit_message_box_font();
    StageInterface* create();
    StageInterface* create_file_navigator();

@@ -56,6 +56,13 @@ functions:
       return font_bin->auto_get("consolas.ttf -18");
 
 
+  - name: obtain_global_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      return font_bin->auto_get("Menlo-Regular.ttf -20");
+
+
   - name: obtain_git_commit_message_box_font
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
@@ -97,6 +104,7 @@ functions:
             StageInterface::ONE_LINE_INPUT_BOX
          });
       stage->set_place(build_regex_input_box_initial_place());
+      stage->set_font(obtain_global_font());
       stage->set_render_on_hud(true);
       stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
 
