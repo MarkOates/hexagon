@@ -46,8 +46,6 @@ public:
    Hexagon::Hud hud;
    float default_camera_stepback;
 
-   //RerunOutputWatcher *rerun_output_watcher;
-
    System(ALLEGRO_DISPLAY *display=nullptr,
           Hexagon::System::Config &config = System::dummy_config,
           Motion &motion = System::dummy_motion);
