@@ -95,7 +95,6 @@ functions:
       return true;
     body_dependency_symbols:
       - php::file_get_contents
-      - Hexagon::CodeEditor::Stage
       - Hexagon::AdvancedCodeEditor::Stage
       - Blast::FileExistenceChecker
       - Hexagon::MissingFile::Stage
@@ -122,8 +121,6 @@ dependencies:
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Stage
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
-  - symbol: Hexagon::CodeEditor::Stage
-    headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: Hexagon::MissingFile::Stage
     headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Blast::FileExistenceChecker

@@ -2,7 +2,6 @@
 
 #include <Hexagon/LayoutToStagesCreator.hpp>
 #include <allegro_flare/useful_php.h>
-#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
