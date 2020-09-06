@@ -160,20 +160,6 @@ functions:
       - Hexagon::Elements::Window
 
 
-  - name: rendered_with_CodeEditor_Renderer
-    type: bool
-    parameters:
-      - name: stage
-        type: StageInterface*
-        default_argument: nullptr
-    guards: [ stage ]
-    body: |
-      if (stage->get_type() == StageInterface::CODE_EDITOR
-        || stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX
-        || stage->get_type() == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX) return true;
-      return false;
-
-
 dependencies:
 
 

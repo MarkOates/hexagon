@@ -14,8 +14,6 @@
 #include <Hexagon/Elements/Window.hpp>
 #include <stdexcept>
 #include <sstream>
-#include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -186,21 +184,6 @@ global::profiler.pause("all stages");
 system->hud.draw();
 
 return true;
-
-}
-
-bool Renderer::rendered_with_CodeEditor_Renderer(StageInterface* stage)
-{
-if (!(stage))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "rendered_with_CodeEditor_Renderer" << ": error: " << "guard \"stage\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (stage->get_type() == StageInterface::CODE_EDITOR
-  || stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX
-  || stage->get_type() == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX) return true;
-return false;
 
 }
 } // namespace System
