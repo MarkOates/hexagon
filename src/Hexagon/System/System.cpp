@@ -199,34 +199,6 @@ std::string System::get_global_font_str()
    return result.str();
 }
 
-// util
-std::vector<std::string> System::get_directory_listing_recursive(std::string directory)
-{
-   if (!al_is_system_installed()) al_init();
-
-   std::vector<std::string> results;
-   ALLEGRO_FS_ENTRY* dir = al_create_fs_entry(directory.c_str());
-
-   if(al_open_directory(dir))
-   {
-      ALLEGRO_FS_ENTRY* file;
-      while((file=al_read_directory(dir)))
-      {
-         results.push_back(al_get_fs_entry_name(file));
-         al_destroy_fs_entry(file);
-      }
-   }
-   else
-   {
-      std::cout << "could not open directory \"" << directory << "\"" << std::endl;
-   }
-
-   al_destroy_fs_entry(dir);
-
-   return results;
-}
-
-
 // retrieval
 
 StageInterface *System::get_frontmost_stage()

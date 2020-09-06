@@ -60,9 +60,6 @@ public:
    std::string get_default_navigator_directory();
    std::string get_global_font_str();
 
-   // util
-   static std::vector<std::string> get_directory_listing_recursive(std::string directory);
-
    // retrieval
    StageInterface *get_frontmost_stage();
    Hexagon::CodeEditor::Stage *get_frontmost_code_editor_stage();
