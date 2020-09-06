@@ -17,6 +17,10 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
@@ -141,8 +145,45 @@ return font_bin->auto_get("Purista Medium.otf -22");
 
 }
 
+int StageFactory::obtain_display_default_width()
+{
+if (!(config))
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_display_default_width" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return config->get_initial_display_width();
+
+}
+
+int StageFactory::obtain_display_default_height()
+{
+if (!(config))
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_display_default_height" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return config->get_initial_display_height();
+
+}
+
 StageInterface* StageFactory::create()
 {
+return nullptr;
+
+}
+
+StageInterface* StageFactory::create_rerun_output_watcher()
+{
+float golden_ratio = 0.61803f;
+float x_pos = golden_ratio * obtain_display_default_width() - obtain_display_default_width()/2;
+placement3d place(x_pos, -obtain_display_default_height()/2 + 30, 0);
+place.size = vec3d(0, 0, 0.0);
+place.align = vec3d(0, 0, 0);
+place.scale = vec3d(0.7, 0.7, 0.0);
+
 return nullptr;
 
 }

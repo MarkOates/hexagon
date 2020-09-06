@@ -70,9 +70,36 @@ functions:
       return font_bin->auto_get("Purista Medium.otf -22");
 
 
+  - name: obtain_display_default_width
+    type: int
+    guards: [ config ]
+    body: |
+      return config->get_initial_display_width();
+
+
+  - name: obtain_display_default_height
+    type: int
+    guards: [ config ]
+    body: |
+      return config->get_initial_display_height();
+
+
   - name: create
     type: StageInterface*
     body: |
+      return nullptr;
+
+
+  - name: create_rerun_output_watcher
+    type: StageInterface*
+    body: |
+      float golden_ratio = 0.61803f;
+      float x_pos = golden_ratio * obtain_display_default_width() - obtain_display_default_width()/2;
+      placement3d place(x_pos, -obtain_display_default_height()/2 + 30, 0);
+      place.size = vec3d(0, 0, 0.0);
+      place.align = vec3d(0, 0, 0);
+      place.scale = vec3d(0.7, 0.7, 0.0);
+
       return nullptr;
 
 
