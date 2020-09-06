@@ -947,27 +947,8 @@ placement3d System::build_regex_input_box_initial_place()
 
 bool System::spawn_regex_input_box_modal()
 {
-   //TODO: this placement should be relative to the camera, or, the window should be
-   // placed on a non-transforming render surface, or rendered within the hud.
-   // for now, I'm going to have it spawn at the position of the camera
-   placement3d place = build_regex_input_box_initial_place();
-
-   // TODO: extract this one line input box from CodeEditor
-   Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({
-         REGEX_TEMP_FILENAME,
-         "input_box",
-         ::CodeEditor::CodeEditor::INSERT,
-         StageInterface::ONE_LINE_INPUT_BOX
-      });
-   stage->set_place(place);
-   stage->set_render_on_hud(true);
-   stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
-
-   //placement3d& stage_place = stage->get_place();
-   //stage_place.scale.x = 1.5;
-   //stage_place.scale.y = 1.5;
-   //motion.canimate(&stage_place.scale.x, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
-   //motion.canimate(&stage_place.scale.y, 1.7, 1.5, al_get_time(), al_get_time()+0.3, interpolator::fast_in, nullptr, nullptr);
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   StageInterface *stage = stage_factory.create_regex_input_box_modal();
 
    stages.push_back(stage);
 
