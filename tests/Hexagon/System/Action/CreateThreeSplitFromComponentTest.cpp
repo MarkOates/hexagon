@@ -11,13 +11,13 @@ typedef Hexagon::System::Action::CreateThreeSplitFromComponent CreateThreeSplit;
 class Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture : public ::testing::Test
 {};
 
-TEST(Hexagon_System_Action_CreateThreeSplitFromComponentTest,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    can_be_created_without_blowing_up)
 {
    Hexagon::System::Action::CreateThreeSplitFromComponent create_three_split_from_component;
 }
 
-TEST(Hexagon_System_Action_CreateThreeSplitTest,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    execute__creates_three_stages_split_across_the_width)
 {
    Hexagon::StageFactory stage_factory;
@@ -36,7 +36,7 @@ TEST(Hexagon_System_Action_CreateThreeSplitTest,
    }
 }
 
-TEST(Hexagon_System_Action_CreateThreeSplitTest,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    execute__with_a_valid_component_creates_the_expected_files)
 {
    std::string project_path = "/Users/markoates/Repos/hexagon/";
@@ -54,7 +54,7 @@ TEST(Hexagon_System_Action_CreateThreeSplitTest,
    }
 }
 
-TEST(Hexagon_System_Action_CreateThreeSplitTest,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    execute__with_an_invalid_component_creates_missing_file_stages)
 {
    std::string project_path = "/Users/markoates/Repos/hexagon/";
@@ -72,7 +72,7 @@ TEST(Hexagon_System_Action_CreateThreeSplitTest,
    }
 }
 
-TEST(Hexagon_System_Action_CreateThreeSplitTest,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    execute__with_an_invalid_component_sets_the_expected_filename_on_the_missing_file_stage)
 {
    std::string project_path = "/Users/markoates/Repos/hexagon/";
@@ -97,7 +97,7 @@ TEST(Hexagon_System_Action_CreateThreeSplitTest,
              missing_test_file_stage.get_expected_filename());
 }
 
-TEST(Hexagon_System_Action_CreateThreeSplitTest,
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    execute__places_the_stages_in_the_expected_positions)
 {
    Hexagon::StageFactory stage_factory;
