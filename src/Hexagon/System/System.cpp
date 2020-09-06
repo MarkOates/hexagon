@@ -591,6 +591,14 @@ bool System::toggle_command_mode_on()
                    interpolator::fast_in,
                    nullptr,
                    nullptr);
+   motion.canimate(&camera.position.y,
+                   camera.position.y,
+                   0.0f,
+                   al_get_time(),
+                   al_get_time()+0.2,
+                   interpolator::fast_in,
+                   nullptr,
+                   nullptr);
    motion.canimate(&camera.stepback.z,
                    camera.stepback.z,
                    camera_zoomed_out_position,
