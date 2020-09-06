@@ -100,7 +100,12 @@ functions:
       place.align = vec3d(0, 0, 0);
       place.scale = vec3d(0.7, 0.7, 0.0);
 
-      return nullptr;
+      Hexagon::RerunOutputWatcher::Stage *rerun_output_watcher = new Hexagon::RerunOutputWatcher::Stage();
+      rerun_output_watcher->set_place(place);
+
+      return rerun_output_watcher;
+    body_dependency_symbols:
+       - Hexagon::RerunOutputWatcher::Stage
 
 
   - name: create_file_navigator
@@ -312,6 +317,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::RerunOutputWatcher::Stage
+    headers: [ Hexagon/RerunOutputWatcher/Stage.hpp ]
   - symbol: Hexagon::MissingFile::Stage
     headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Hexagon::FileNavigator::Stage

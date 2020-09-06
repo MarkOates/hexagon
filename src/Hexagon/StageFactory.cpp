@@ -21,6 +21,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
@@ -184,7 +185,10 @@ place.size = vec3d(0, 0, 0.0);
 place.align = vec3d(0, 0, 0);
 place.scale = vec3d(0.7, 0.7, 0.0);
 
-return nullptr;
+Hexagon::RerunOutputWatcher::Stage *rerun_output_watcher = new Hexagon::RerunOutputWatcher::Stage();
+rerun_output_watcher->set_place(place);
+
+return rerun_output_watcher;
 
 }
 

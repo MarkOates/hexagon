@@ -10,6 +10,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/RerunOutputWatcher/Stage.hpp>
 
 TEST(Hexagon_StageFactoryTest, can_be_created_without_blowing_up)
 {
@@ -220,6 +221,33 @@ TEST(Hexagon_StageFactoryTest, create_file_navigator__creates_a_file_navigator_w
    ALLEGRO_FONT *actual_font = stage->get_font();
 
    EXPECT_EQ(expected_font, actual_font);
+
+   font_bin.clear();
+   al_destroy_display(display);
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+}
+
+TEST(Hexagon_StageFactoryTest, create_rerun_output_watcher__creates_a_rerun_output_watcher_with_the_expected_properties)
+{
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   Hexagon::System::Config config;
+   config.initialize();
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   StageInterface *created_stage = stage_factory.create_rerun_output_watcher();
+   Hexagon::RerunOutputWatcher::Stage *stage = static_cast<Hexagon::RerunOutputWatcher::Stage*>(created_stage);
+
+   StageInterface::type_t expected_type = StageInterface::RERUN_OUTPUT_WATCHER;
+   StageInterface::type_t actual_type = created_stage->get_type();
+
+   ASSERT_NE(nullptr, created_stage);
+   ASSERT_EQ(expected_type, actual_type);
 
    font_bin.clear();
    al_destroy_display(display);
