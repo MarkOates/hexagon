@@ -4,6 +4,7 @@
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 
 #include <Hexagon/MissingFile/Stage.hpp>
+#include <Hexagon/StageFactory.hpp>
 
 typedef Hexagon::System::Action::CreateThreeSplitFromComponent CreateThreeSplit;
 
@@ -15,11 +16,12 @@ TEST(Hexagon_System_Action_CreateThreeSplitFromComponentTest, can_be_created_wit
 TEST(Hexagon_System_Action_CreateThreeSplitTest,
    execute__creates_three_stages_split_across_the_width)
 {
+   Hexagon::StageFactory stage_factory;
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/Action";
    std::vector<StageInterface *> stages;
    int code_editor_width = 234;
-   CreateThreeSplit create_three_split(project_path, component, stages, 200, 100, code_editor_width);
+   CreateThreeSplit create_three_split(project_path, component, stages, &stage_factory, 200, 100, code_editor_width);
    EXPECT_EQ(true, create_three_split.execute());
    ASSERT_EQ(3, stages.size());
 
@@ -94,13 +96,22 @@ TEST(Hexagon_System_Action_CreateThreeSplitTest,
 TEST(Hexagon_System_Action_CreateThreeSplitTest,
    execute__places_the_stages_in_the_expected_positions)
 {
+   Hexagon::StageFactory stage_factory;
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/System/Action/CreateThreeSplitFromComponent";
    std::vector<StageInterface *> stages;
    float display_width = 300;
    int code_editor_width = 234;
 
-   CreateThreeSplit create_three_split(project_path, component, stages, display_width, 100, code_editor_width);
+   CreateThreeSplit create_three_split(
+      project_path,
+      component,
+      stages,
+      &stage_factory,
+      display_width,
+      100,
+      code_editor_width
+   );
 
    EXPECT_EQ(true, create_three_split.execute());
 

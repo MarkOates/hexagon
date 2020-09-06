@@ -24,6 +24,10 @@ properties:
     init_with: "get_dummy_stages_ref()"
     getter: true
     setter: true
+  - name: stage_factory
+    type: Hexagon::StageFactory*
+    init_with: nullptr
+    constructor_arg: true
   - name: display_default_width
     type: int
     init_with: 2430
@@ -176,6 +180,8 @@ dependencies:
     headers: [ allegro_flare/useful_php.h ]
   - symbol: Blast::ProjectComponentFilenameGenerator
     headers: [ Blast/ProjectComponentFilenameGenerator.hpp ]
+  - symbol: Hexagon::StageFactory*
+    headers: [ Hexagon/StageFactory.hpp ]
   - symbol: Hexagon::MissingFile::Stage
     headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Blast::FileExistenceChecker
