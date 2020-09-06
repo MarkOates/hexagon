@@ -1379,11 +1379,13 @@ bool System::create_layout_from_last_project_navigator_selection()
 
 bool System::create_three_split_from_last_component_navigator_selection()
 {
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
    Blast::Project::Component component(last_component_navigator_selection, get_default_navigator_directory());
    Hexagon::System::Action::CreateThreeSplitFromComponent action(
       get_default_navigator_directory(),
       component,
       stages,
+      &stage_factory,
       get_display_default_width(),
       get_display_default_height(),
       get_default_code_editor_stage_width(),
