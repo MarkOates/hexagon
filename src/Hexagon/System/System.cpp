@@ -1020,15 +1020,11 @@ bool System::spawn_file_navigator()
 
 bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
 {
-   //TODO: this function does not guard against a "last_file_navigator_selection" that could potentially not be a folder
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   StageInterface *stage = stage_factory.create_file_navigator(last_file_navigator_selection);
 
-   Hexagon::FileNavigator::Stage *file_navigator = new Hexagon::FileNavigator::Stage(last_file_navigator_selection);
-   file_navigator->process_local_event("refresh_list");
-   file_navigator->set_place(build_file_navigator_initial_place());
+   stages.push_back(stage);
 
-   stages.push_back(file_navigator);
-
-   placement3d& stage_place = file_navigator->get_place();
    return true;
 }
 
