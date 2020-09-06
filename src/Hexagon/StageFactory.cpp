@@ -18,6 +18,7 @@
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
@@ -160,6 +161,12 @@ file_navigator->set_font(font);
 file_navigator->set_render_on_hud(true);
 
 return file_navigator;
+
+}
+
+StageInterface* StageFactory::create_missing_file(std::string filename)
+{
+return nullptr;
 
 }
 

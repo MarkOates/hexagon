@@ -32,6 +32,7 @@ namespace Hexagon
    ALLEGRO_FONT* obtain_git_commit_message_box_font();
    StageInterface* create();
    StageInterface* create_file_navigator(std::string directory="");
+   StageInterface* create_missing_file(std::string filename="");
    StageInterface* create_regex_input_box_modal();
    StageInterface* create_git_commit_message_box();
    StageInterface* create_advanced_component_navigator();

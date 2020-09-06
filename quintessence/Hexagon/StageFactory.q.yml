@@ -99,6 +99,18 @@ functions:
        - Hexagon::FileNavigator::Stage
 
 
+  - name: create_missing_file
+    type: StageInterface*
+    parameters:
+      - name: filename
+        type: std::string
+        default_argument: '""'
+    body: |
+      return nullptr;
+    body_dependency_symbols:
+       - Hexagon::MissingFile::Stage
+
+
   - name: create_regex_input_box_modal
     type: StageInterface*
     body: |
@@ -264,6 +276,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::MissingFile::Stage
+    headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Hexagon::FileNavigator::Stage
     headers: [ Hexagon/FileNavigator/Stage.hpp ]
   - symbol: Hexagon::CodeEditor::Stage
