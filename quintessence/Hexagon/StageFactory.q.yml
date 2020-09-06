@@ -114,6 +114,16 @@ functions:
       stage->set_render_on_hud(true);
       stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
 
+      // properties previously assigned at render time:
+      ALLEGRO_FONT *font = obtain_global_font();
+      ALLEGRO_DISPLAY *display = get_current_display();
+      int cell_width = al_get_text_width(font, " ");
+      int cell_height = al_get_font_line_height(font);
+
+      stage->set_display(display);
+      stage->set_cell_width(cell_width);
+      stage->set_cell_height(cell_height);
+
       return stage;
     body_dependency_symbols:
       - Hexagon::CodeEditor::Stage
