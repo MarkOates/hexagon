@@ -8,6 +8,9 @@
 
 typedef Hexagon::System::Action::CreateThreeSplitFromComponent CreateThreeSplit;
 
+class Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture : public ::testing::Test
+{};
+
 TEST(Hexagon_System_Action_CreateThreeSplitFromComponentTest, can_be_created_without_blowing_up)
 {
    Hexagon::System::Action::CreateThreeSplitFromComponent create_three_split_from_component;
