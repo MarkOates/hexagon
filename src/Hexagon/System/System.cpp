@@ -192,18 +192,6 @@ float System::get_default_code_editor_stage_width()
    return 2430/2 + 20;
 }
 
-placement3d System::build_component_navigator_initial_place()
-{
-   placement3d result;
-   result.position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
-   result.size = vec3d(800, 700, 0);
-   result.align = vec3d(0.5, 0.5, 0.5);
-   //result.scale = vec3d(0.8, 0.8, 1.0);
-   result.scale = vec3d(1.0, 1.0, 1.0);
-   result.rotation = vec3d(0.0, 0.0, 0.0);
-   return result;
-}
-
 placement3d System::build_file_navigator_initial_place()
 {
    placement3d result;
