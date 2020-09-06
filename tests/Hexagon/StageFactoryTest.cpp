@@ -274,3 +274,8 @@ TEST(Hexagon_StageFactoryTest, build_component_navigator_initial_place__returns_
    al_uninstall_system();
 }
 
+TEST(Hexagon_StageFactoryTest, build_regex_input_box_initial_place__returns_the_expected_position)
+{
+   // this is untested
+}
+

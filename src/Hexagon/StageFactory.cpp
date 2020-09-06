@@ -251,6 +251,19 @@ place.rotation = vec3d(0.0, 0.0, 0.0);
 return place;
 
 }
+
+placement3d StageFactory::build_regex_input_box_initial_place()
+{
+ALLEGRO_DISPLAY *display = get_current_display();
+int surface_width = al_get_display_width(display);
+int surface_height = al_get_display_height(display);
+placement3d place(surface_width*0.5f, surface_height*0.5f, 0.0);
+place.size = vec3d(300, 25, 0.0);
+place.scale = vec3d(1.5, 1.5, 1.0);
+place.rotation = vec3d(0.0, 0.0, 0.0);
+return place;
+
+}
 } // namespace Hexagon
 
 

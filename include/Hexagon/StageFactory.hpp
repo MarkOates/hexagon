@@ -37,6 +37,7 @@ namespace Hexagon
    placement3d build_component_navigator_initial_place();
    placement3d build_file_navigator_initial_place();
    placement3d build_git_commit_message_input_box_initial_place();
+   placement3d build_regex_input_box_initial_place();
    };
 }
 
