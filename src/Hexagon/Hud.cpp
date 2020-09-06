@@ -469,12 +469,6 @@ if (draw_stages && stages)
          throw std::runtime_error(error_message.str());
       }
 
-      if (stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX)
-      {
-         Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
-         code_editor_stage->set_font(font);
-      }
-
       stage->render();
    }
 }
