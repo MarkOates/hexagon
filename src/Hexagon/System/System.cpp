@@ -111,8 +111,6 @@ From me far off, with others all too near.
 
 
 
-//RerunOutputWatcher *rerun_output_watcher;
-
 System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion &motion)
    : display(display)
    , config(config)
