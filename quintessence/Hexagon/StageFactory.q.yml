@@ -46,7 +46,7 @@ functions:
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
-      return font_bin->auto_get("consolas.ttf -18");
+      return font_bin->auto_get("Menlo-Regular.ttf -18");
 
 
   - name: obtain_file_navigator_font
