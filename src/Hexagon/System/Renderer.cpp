@@ -90,6 +90,7 @@ for (auto &stage : system->stages)
    {
       Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
       code_editor_stage->set_display(display);
+      code_editor_stage->set_font(font);
       code_editor_stage->set_cell_width(cell_width);
       code_editor_stage->set_cell_height(cell_height);
    }
