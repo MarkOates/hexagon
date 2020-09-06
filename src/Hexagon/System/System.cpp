@@ -9,7 +9,6 @@
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
-//#include <Hexagon/ComponentNavigator/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/FullScreenOverlay/Stage.hpp>
 #include <Hexagon/RerunOutputWatcher/Stage.hpp>
@@ -77,7 +76,6 @@
 #include <Hexagon/Hud.hpp>
 #include <Hexagon/FileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
-#include <Hexagon/ComponentNavigator/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/ProjectComponentNavigator/Stage.hpp>
@@ -1143,10 +1141,8 @@ bool System::execute_magic_command()
 
 
    std::vector<std::string> filenames = {
-      "/Users/markoat.es/Repos/hexagon/quintessence/Hexagon/ComponentNavigator/List.q.yml",
       "/Users/markoates/Repos/hexagon/include/Hexagon/System/System.hpp",
       "/Users/markoates/Repos/hexagon/src/Hexagon/System/System.cpp",
-      "/Users/markoates/Repos/hexagon/quintessence/Hexagon/ComponentNavigator/List.q.yml",
    };
 
 

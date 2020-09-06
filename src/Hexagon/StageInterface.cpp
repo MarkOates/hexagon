@@ -48,9 +48,6 @@ std::string StageInterface::get_type_name()
       case FILE_NAVIGATOR:
          return "FileNavigator";
          break;
-      case OLD_COMPONENT_NAVIGATOR:
-         return "OldComponentNavigator";
-         break;
       case COMPONENT_NAVIGATOR:
          return "ComponentNavigator";
          break;
@@ -113,7 +110,6 @@ bool StageInterface::infer_is_modal()
    case ONE_LINE_INPUT_BOX:
    case GIT_COMMIT_MESSAGE_INPUT_BOX:
    case FILE_NAVIGATOR:
-   case OLD_COMPONENT_NAVIGATOR:
    case COMPONENT_NAVIGATOR:
    case PROJECT_COMPONENT_NAVIGATOR:
    case KEYBOARD_INPUTS_MODAL:

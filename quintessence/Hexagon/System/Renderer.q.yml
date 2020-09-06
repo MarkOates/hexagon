@@ -73,16 +73,6 @@ functions:
             rerun_output_watcher_stage->set_font(font);
          }
 
-         if (stage->get_type() == StageInterface::OLD_COMPONENT_NAVIGATOR)
-         {
-            Hexagon::ComponentNavigator::Stage *component_navigator_stage =
-               static_cast<Hexagon::ComponentNavigator::Stage *>(stage);
-            component_navigator_stage->set_font(font);
-            component_navigator_stage->set_cell_width(cell_width);
-            component_navigator_stage->set_cell_height(cell_height);
-         }
-
-
          stage->render();
 
          if (is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
@@ -116,7 +106,6 @@ functions:
       - Hexagon::MissingFile::Stage*
       - Hexagon::FileNavigator::Stage*
       - Hexagon::RerunOutputWatcher::Stage*
-      - Hexagon::ComponentNavigator::Stage*
       - Hexagon::Elements::Window
 
 
@@ -149,8 +138,6 @@ dependencies:
     headers: [ Hexagon/FileNavigator/Stage.hpp ]
   - symbol: Hexagon::RerunOutputWatcher::Stage*
     headers: [ Hexagon/RerunOutputWatcher/Stage.hpp ]
-  - symbol: Hexagon::ComponentNavigator::Stage*
-    headers: [ Hexagon/ComponentNavigator/Stage.hpp ]
   - symbol: Hexagon::Elements::Window
     headers: [ Hexagon/Elements/Window.hpp ]
 

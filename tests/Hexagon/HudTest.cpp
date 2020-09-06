@@ -19,7 +19,7 @@ class DummyUnrenderableStageType : public StageInterface
 {
 public:
    DummyUnrenderableStageType()
-     : StageInterface(StageInterface::OLD_COMPONENT_NAVIGATOR)
+     : StageInterface(StageInterface::NONE)
    {}
    virtual void render() override {}
    virtual void process_local_event(std::string event_name, ActionData action_data=ActionData()) override {}
@@ -158,7 +158,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(2);
+   //sleep(2);
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
@@ -234,7 +234,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    // terrible error message, please fix later :pray:
    std::string expected_error_message =
-      "Hexagon/Hud::draw: error: Cannot render a stage marked as render_on_hud that is of type \"6\"";
+      "Hexagon/Hud::draw: error: Cannot render a stage marked as render_on_hud that is of type \"0\"";
 
    ASSERT_THROW_WITH_MESSAGE(hud.draw(), std::runtime_error, expected_error_message);
 }
