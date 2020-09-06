@@ -538,7 +538,7 @@ if (draw_search_count)
 if (draw_packets)
 {
    float x = left_column_x - 5;
-   float y = frame_height - 100;
+   float y = frame_height - 60;
    float width = 130;
    float height = 90;
    float spacing = 20;
@@ -552,9 +552,9 @@ if (draw_packets)
    place.align.y = 1.0;
    ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
 
-   al_draw_text(packet_text_font, ALLEGRO_COLOR{1, 1, 1, 1}, x, y, 0, "PACKETS");
+   al_draw_text(packet_text_font, ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5}, x, y, 0, "PACKETS");
 
-   y -= 10;
+   place.position.y -= al_get_font_line_height(packet_text_font);
 
    Hexagon::Packet packet_in_progress(search_count, save_count);
    std::vector<Hexagon::Packet> packets_to_render = packets;

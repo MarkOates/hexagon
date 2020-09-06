@@ -153,12 +153,13 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
       Hexagon::Packet(3, 27),
    };
    hud.set_packets(packets);
+   hud.set_draw_packets(true);
 
    hud.draw();
 
    al_flip_display();
 
-   //sleep(2);
+   sleep(2);
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
