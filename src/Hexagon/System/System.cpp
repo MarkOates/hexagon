@@ -1310,25 +1310,6 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
          &stages);
 
       action.execute();
-
-      //std::vector<std::string> file_contents = {};
-      //if (!::read_file(file_contents, filename)) throw std::runtime_error("Could not open the selected file");
-
-      //int number_of_files = get_number_of_code_editor_stages();
-      //float one_third_screen_width = get_display_default_width() / 3;
-
-      //placement3d place(one_third_screen_width*number_of_files, 0, 0);
-      //place.size = vec3d(stage_width, get_display_default_height(), 0.0); //al_get_display_width(display), al_get_display_height(display), 0.0);
-      //place.align = vec3d(0.5, 0.5, 0.0);
-      //place.scale = vec3d(0.9, 0.9, 0.0);
-
-      //CodeEditor::Stage *stage = new CodeEditor::Stage(filename);// place);
-
-      //stage->set_place(place);
-      //stage->set_content(file_contents);
-      //stages.push_back(stage);
-
-      ////throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented to open a file");
    }
 
    return true;
