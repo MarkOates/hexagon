@@ -94,6 +94,7 @@ al_set_new_display_option(ALLEGRO_DEPTH_SIZE, 32, ALLEGRO_SUGGEST);
 al_set_new_display_flags(ALLEGRO_RESIZABLE);
 al_set_new_display_flags(ALLEGRO_NOFRAME);
 al_set_new_display_flags(ALLEGRO_NOFRAME | ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
+al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
 //al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 
 al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
