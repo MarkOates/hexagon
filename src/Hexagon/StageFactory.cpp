@@ -157,8 +157,17 @@ Hexagon::FileNavigator::Stage *file_navigator
 file_navigator->process_local_event("refresh_list"); // TODO: similar to another comment existing in this file
                                                      // at the time of this writing
 file_navigator->set_place(build_file_navigator_initial_place());
-file_navigator->set_font(font);
 file_navigator->set_render_on_hud(true);
+
+// properties previously assigned at render time:
+ALLEGRO_DISPLAY *display = get_current_display();
+int cell_width = al_get_text_width(font, " ");
+int cell_height = al_get_font_line_height(font);
+
+file_navigator->set_display(display);
+file_navigator->set_font(font);
+file_navigator->set_cell_width(cell_width);
+file_navigator->set_cell_height(cell_height);
 
 return file_navigator;
 
