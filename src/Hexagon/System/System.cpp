@@ -151,17 +151,6 @@ bool System::initialize()
    camera.stepback.z = get_default_camera_stepback();
 
    //process_local_event(EXECUTE_MAGIC_COMMAND);
-
-   //camera.stepback = 10;
-   //camera.zoom_pos -= 3.1;
-   //camera.position.x += 20;
-   //camera.position.y -= 10;
-   //camera.set45_isometric();
-   //ALLEGRO_FS_ENTRY *current_directory_fs_entry = al_create_fs_entry(al_get_current_directory());
-   //file_navigator.set_file_system_entries(get_directory_listing_recursive(al_get_current_directory()));
-   //process_local_event(SPAWN_RERUN_OUTPUT_WATCHER);
-   //process_local_event(SPAWN_COMPONENT_NAVIGATOR);
-   //process_local_event(REFRESH_RERUN_OUTPUT_WATCHERS);
 }
 
 std::string System::get_default_navigator_directory()
