@@ -103,13 +103,6 @@ for (auto &stage : system->stages)
       missing_file_stage->set_cell_height(cell_height);
    }
 
-   if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
-   {
-      Hexagon::RerunOutputWatcher::Stage *rerun_output_watcher_stage =
-         static_cast<Hexagon::RerunOutputWatcher::Stage *>(stage);
-      rerun_output_watcher_stage->set_font(font);
-   }
-
    stage->render();
 
    if (is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
