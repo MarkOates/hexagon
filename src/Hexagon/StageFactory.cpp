@@ -187,6 +187,7 @@ place.scale = vec3d(0.7, 0.7, 0.0);
 
 Hexagon::RerunOutputWatcher::Stage *rerun_output_watcher = new Hexagon::RerunOutputWatcher::Stage();
 rerun_output_watcher->set_place(place);
+rerun_output_watcher->set_font(obtain_global_font());
 
 return rerun_output_watcher;
 

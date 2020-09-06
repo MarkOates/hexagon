@@ -249,6 +249,11 @@ TEST(Hexagon_StageFactoryTest, create_rerun_output_watcher__creates_a_rerun_outp
    ASSERT_NE(nullptr, created_stage);
    ASSERT_EQ(expected_type, actual_type);
 
+   ALLEGRO_FONT *expected_font = stage_factory.obtain_global_font();
+   ALLEGRO_FONT *actual_font = stage->get_font();
+
+   EXPECT_EQ(expected_font, actual_font);
+
    font_bin.clear();
    al_destroy_display(display);
    al_shutdown_ttf_addon();
