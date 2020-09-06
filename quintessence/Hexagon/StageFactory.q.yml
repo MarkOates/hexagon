@@ -86,6 +86,25 @@ functions:
        - Hexagon::FileNavigator::Stage
 
 
+  - name: create_regex_input_box_modal
+    type: StageInterface*
+    body: |
+      // TODO: extract this one line input box from CodeEditor
+      Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({
+            obtain_regex_temp_filename(),
+            "input_box",
+            ::CodeEditor::CodeEditor::INSERT,
+            StageInterface::ONE_LINE_INPUT_BOX
+         });
+      stage->set_place(build_regex_input_box_initial_place());
+      stage->set_render_on_hud(true);
+      stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
+
+      return stage;
+    body_dependency_symbols:
+      - Hexagon::CodeEditor::Stage
+
+
   - name: create_git_commit_message_box
     type: StageInterface*
     body: |

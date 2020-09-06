@@ -17,6 +17,7 @@
 #include <sstream>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_font.h>
@@ -143,6 +144,23 @@ file_navigator->set_font(font);
 file_navigator->set_render_on_hud(true);
 
 return file_navigator;
+
+}
+
+StageInterface* StageFactory::create_regex_input_box_modal()
+{
+// TODO: extract this one line input box from CodeEditor
+Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({
+      obtain_regex_temp_filename(),
+      "input_box",
+      ::CodeEditor::CodeEditor::INSERT,
+      StageInterface::ONE_LINE_INPUT_BOX
+   });
+stage->set_place(build_regex_input_box_initial_place());
+stage->set_render_on_hud(true);
+stage->get_code_editor_ref().set_initial_content(std::vector<std::string>{ "" });
+
+return stage;
 
 }
 
