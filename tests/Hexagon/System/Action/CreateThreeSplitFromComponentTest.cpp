@@ -14,36 +14,10 @@ class Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture : 
 static std::string TEST_FIXTURE_DIRECTORY_ROOT = "/Users/markoates/Repos/hexagon/tests/fixtures/";
 static const std::string TEST_FIXTURE_CONFIG_FILENAME = TEST_FIXTURE_DIRECTORY_ROOT + "hexagon.test.cfg";
 
-class Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture : public ::testing::Test
-{
-protected:
-   Hexagon::System::Config config;
-   AllegroFlare::FontBin font_bin;
-   Hexagon::StageFactory stage_factory;
+#include <Testing/WithStageFactoryFixture.hpp>
 
-public:
-   Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture()
-     : config(TEST_FIXTURE_CONFIG_FILENAME)
-     , font_bin()
-     , stage_factory(&config, &font_bin)
-   {}
-
-   virtual void SetUp() override
-   {
-      al_init();
-      al_init_ttf_addon();
-
-      config.initialize();
-      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-   }
-
-   virtual void TearDown() override
-   {
-      font_bin.clear();
-      al_shutdown_ttf_addon();
-      al_uninstall_system();
-   }
-};
+class Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture : public Testing::WithStageFactoryFixture
+{};
 
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    can_be_created_without_blowing_up)
@@ -58,7 +32,15 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    std::string component = "Hexagon/Action";
    std::vector<StageInterface *> stages;
    int code_editor_width = 234;
-   CreateThreeSplit create_three_split(project_path, component, stages, &stage_factory, 200, 100, code_editor_width);
+   CreateThreeSplit create_three_split(
+      project_path,
+      component,
+      stages,
+      &get_stage_factory_ref(),
+      200,
+      100,
+      code_editor_width
+   );
    EXPECT_EQ(true, create_three_split.execute());
    ASSERT_EQ(3, stages.size());
 
@@ -76,7 +58,7 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    std::string component = "Hexagon/System/Action/CreateThreeSplitFromComponent";
    std::vector<StageInterface *> stages;
 
-   CreateThreeSplit create_three_split(project_path, component, stages, &stage_factory);
+   CreateThreeSplit create_three_split(project_path, component, stages, &get_stage_factory_ref());
 
    EXPECT_EQ(true, create_three_split.execute());
 
@@ -94,7 +76,7 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    std::string component = "Hexagon/AComponentThatDoesNotExist";
    std::vector<StageInterface *> stages;
 
-   CreateThreeSplit create_three_split(project_path, component, stages, &stage_factory);
+   CreateThreeSplit create_three_split(project_path, component, stages, &get_stage_factory_ref());
 
    EXPECT_EQ(true, create_three_split.execute());
 
@@ -112,7 +94,7 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    std::string component = "Hexagon/AComponentThatDoesNotExist";
    std::vector<StageInterface *> stages;
 
-   CreateThreeSplit create_three_split(project_path, component, stages, &stage_factory);
+   CreateThreeSplit create_three_split(project_path, component, stages, &get_stage_factory_ref());
 
    EXPECT_EQ(true, create_three_split.execute());
 
@@ -143,7 +125,7 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
       project_path,
       component,
       stages,
-      &stage_factory,
+      &get_stage_factory_ref(),
       display_width,
       100,
       code_editor_width
