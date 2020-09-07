@@ -9,6 +9,14 @@ typedef Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNav
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 
+class Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture : public ::testing::Test
+{};
+
+#include <Testing/WithStageFactoryFixture.hpp>
+
+class Hexagon_System_Action_CreateTwoSplitTestWithFixture : public Testing::WithStageFactoryFixture
+{};
+
 TEST(Hexagon_System_Action_AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelectionTest,
    can_be_created_without_blowing_up)
 {
