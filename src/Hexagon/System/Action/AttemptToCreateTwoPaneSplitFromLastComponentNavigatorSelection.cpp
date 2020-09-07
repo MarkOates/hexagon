@@ -112,7 +112,9 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
   {
      std::vector<std::string> file_contents = {};
      ::read_file(file_contents, test_filename);
-     stage = new CodeEditor::Stage({test_filename, "blast_test"});
+
+     stage = stage_factory->create_code_editor(test_filename, "blast_test");
+
      static_cast<CodeEditor::Stage *>(stage)->get_code_editor_ref().set_initial_content(file_contents);
                                                                  // ^^ feels a tad hacky
                                                                  // not sure code should be filled here
