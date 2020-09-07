@@ -101,7 +101,6 @@ functions:
       - php::file_get_contents
       - Hexagon::AdvancedCodeEditor::Stage
       - Blast::FileExistenceChecker
-      - Hexagon::MissingFile::Stage
 
 
 dependencies:
@@ -125,8 +124,6 @@ dependencies:
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Stage
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
-  - symbol: Hexagon::MissingFile::Stage
-    headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
   - symbol: ALLEGRO_COLOR
