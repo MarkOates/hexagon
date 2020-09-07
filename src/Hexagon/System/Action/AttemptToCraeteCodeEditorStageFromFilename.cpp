@@ -82,13 +82,15 @@ place.size = vec3d(get_stage_width(), get_display_default_height(), 0.0);
 place.align = vec3d(0.5, 0.5, 0.0);
 place.scale = vec3d(0.9, 0.9, 0.0);
 
-Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(::CodeEditor::CodeEditor{filename});// place);
+StageInterface *stage = stage_factory->create_code_editor(filename, "undefined");
+Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
 
-stage->set_place(place);
-stage->set_base_font_color(text_color);
-stage->set_backfill_color(backfill_color);
-stage->get_code_editor_ref().set_content(file_contents);
-stages->push_back(stage);
+code_editor_stage->set_place(place);
+code_editor_stage->set_base_font_color(text_color);
+code_editor_stage->set_backfill_color(backfill_color);
+code_editor_stage->get_code_editor_ref().set_content(file_contents);
+
+stages->push_back(code_editor_stage);
 
 return true;
 
