@@ -26,8 +26,8 @@ TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest, can_b
 TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest, execute__with_nullptr_stages__throws_an_error)
 {
    Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action;
-   std::string expected_error_message = "[Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename error:] " \
-                                        "cannot \"execute\" with nullptr stages";
+   std::string expected_error_message = "AttemptToCraeteCodeEditorStageFromFilename::execute: error: " \
+                                        "guard \"stages\" not met";
    ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
 }
 

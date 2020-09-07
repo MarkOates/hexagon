@@ -47,16 +47,8 @@ functions:
 
    - name: execute
      type: bool
+     guards: [ stages ]
      body: |
-      if (!stages)
-      {
-         std::stringstream error_message;
-
-         error_message << "[Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename error:] "
-                       << "cannot \"" << __FUNCTION__ << "\" with nullptr stages";
-         throw std::runtime_error(error_message.str());
-      }
-
        std::vector<std::string> file_contents = {};
        if (!::read_file(file_contents, filename))
        {
