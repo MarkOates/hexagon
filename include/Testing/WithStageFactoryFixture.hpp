@@ -21,6 +21,7 @@ namespace Testing
       virtual ~WithStageFactoryFixture();
 
 
+      AllegroFlare::FontBin &get_font_bin_ref();
       Hexagon::StageFactory &get_stage_factory_ref();
    virtual void SetUp() override;
    virtual void TearDown() override;

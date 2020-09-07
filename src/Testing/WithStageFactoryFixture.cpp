@@ -24,6 +24,12 @@ WithStageFactoryFixture::~WithStageFactoryFixture()
 }
 
 
+AllegroFlare::FontBin &WithStageFactoryFixture::get_font_bin_ref()
+{
+   return font_bin;
+}
+
+
 Hexagon::StageFactory &WithStageFactoryFixture::get_stage_factory_ref()
 {
    return stage_factory;

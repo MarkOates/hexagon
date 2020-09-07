@@ -20,14 +20,8 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture, can_be_created_without
    Hexagon::LayoutToStagesCreator layout_to_stage_creator;
 }
 
-TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture, create__will_create_the_passed_files)
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture, create__will_create_the_passed_files)
 {
-   al_init();
-   al_init_font_addon();
-   al_init_ttf_addon();
-   AllegroFlare::FontBin font_bin;
-   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-
    std::vector<StageInterface *> stages;
 
    std::string concept_name = "Hexagon/Logo";
@@ -38,15 +32,16 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture, create__will_create_th
 
    Hexagon::Layout layout(concept_name, files, daemus_command);
 
-   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, nullptr, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(
+      &stages,
+      &get_stage_factory_ref(),
+      &layout,
+      &get_font_bin_ref()
+   );
 
    layout_to_stage_creator.create();
 
    ASSERT_EQ(false, stages.empty());
-
-   font_bin.clear();
-   al_shutdown_ttf_addon();
-   al_uninstall_system();
 }
 
 TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,

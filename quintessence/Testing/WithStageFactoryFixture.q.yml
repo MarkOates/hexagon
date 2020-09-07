@@ -15,6 +15,7 @@ properties:
   - name: font_bin
     type: AllegroFlare::FontBin
     init_with: '{}'
+    getter_ref: true
   - name: stage_factory
     type: Hexagon::StageFactory
     init_with: '&config, &font_bin'
