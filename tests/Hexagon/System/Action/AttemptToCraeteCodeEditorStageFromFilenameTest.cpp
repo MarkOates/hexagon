@@ -11,6 +11,15 @@ static std::string TEST_FIXTURE_TEXT_FILE = TEST_FIXTURE_DIRECTORY_ROOT + "file_
 
 #include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
 
+class Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameWithEmptyFixture : public ::testing::Test
+{};
+
+#include <Testing/WithStageFactoryFixture.hpp>
+
+class Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithFixture
+   : public Testing::WithStageFactoryFixture
+{};
+
 #include <Blast/FileExistenceChecker.hpp>
 
 TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest, test_fixture_files_exist)
