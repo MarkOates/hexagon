@@ -115,7 +115,7 @@ if (file_exists)
 }
 else
 {
-   stage = new Hexagon::MissingFile::Stage(filename);
+   stage = stage_factory->create_missing_file(filename);
 }
 
 stage->set_place(place);
