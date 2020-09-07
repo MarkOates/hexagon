@@ -1518,19 +1518,6 @@ bool System::push_to_git_remote()
 }
 
 
-bool System::open_entire_family_of_last_component_navigator_selection()
-{
-   std::string component_to_open_family_from = last_component_navigator_selection;
-   Hexagon::System::Action::AttemptToCreateStagesForEntireFamilyOfComponent action(component_to_open_family_from);
-   return action.execute();
-   //Hexagon::System::Action::OPEN_ENTIRE_FAMILY_OF_LAST_COMPONENT_NAVIGATOR_SELECTION
-   //bool System::open_entire_family_of_last_component_navigator_selection()
-   //bool System::open_entire_family_of_last_component_navigator_selection()
-   //
-   return true;
-}
-
-
 bool System::submit_current_modal()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();

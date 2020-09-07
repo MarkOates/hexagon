@@ -140,7 +140,6 @@ public:
    bool set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
    bool commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores();
    bool push_to_git_remote();
-   bool open_entire_family_of_last_component_navigator_selection();
    bool execute_magic_command();
    bool submit_current_modal();
    bool escape_current_modal();
