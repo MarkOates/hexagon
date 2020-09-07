@@ -148,9 +148,19 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
-      Hexagon::MissingFile::Stage *stage = new Hexagon::MissingFile::Stage(filename);
-      stage->set_font(obtain_global_font());
-      return stage;
+      Hexagon::MissingFile::Stage *missing_file_stage = new Hexagon::MissingFile::Stage(filename);
+
+      ALLEGRO_FONT *font = obtain_global_font();
+      ALLEGRO_DISPLAY *display = get_current_display();
+      int cell_width = al_get_text_width(font, " ");
+      int cell_height = al_get_font_line_height(font);
+
+      missing_file_stage->set_display(display);
+      missing_file_stage->set_font(font);
+      missing_file_stage->set_cell_width(cell_width);
+      missing_file_stage->set_cell_height(cell_height);
+
+      return missing_file_stage;
     body_dependency_symbols:
        - StageInterface*
        - Hexagon::MissingFile::Stage
