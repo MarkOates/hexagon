@@ -87,7 +87,6 @@ functions:
       - al_clear_to_color
       - Hexagon::CodeEditor::Stage*
       - Hexagon::AdvancedComponentNavigator::Stage*
-      - Hexagon::MissingFile::Stage*
       - Hexagon::FileNavigator::Stage*
       - Hexagon::RerunOutputWatcher::Stage*
       - Hexagon::Elements::Window
@@ -116,8 +115,6 @@ dependencies:
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::Stage*
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
-  - symbol: Hexagon::MissingFile::Stage*
-    headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Hexagon::FileNavigator::Stage*
     headers: [ Hexagon/FileNavigator/Stage.hpp ]
   - symbol: Hexagon::RerunOutputWatcher::Stage*
