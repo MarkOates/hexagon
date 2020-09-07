@@ -19,7 +19,7 @@ namespace Action
 {
 
 
-AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFilename(std::string filename, int display_default_width, int display_default_height, int stage_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color, std::vector<StageInterface *>* stages)
+AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFilename(std::string filename, int display_default_width, int display_default_height, int stage_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color, std::vector<StageInterface *>* stages, Hexagon::StageFactory* stage_factory)
    : ::Action("System::Action::AttemptToCreateCodeEditorStageFromFilename", ActionData())
    , filename(filename)
    , display_default_width(display_default_width)
@@ -28,7 +28,7 @@ AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFi
    , text_color(text_color)
    , backfill_color(backfill_color)
    , stages(stages)
-   , stage_factory(nullptr)
+   , stage_factory(stage_factory)
 {
 }
 
@@ -62,6 +62,12 @@ if (!(stages))
    {
       std::stringstream error_message;
       error_message << "AttemptToCraeteCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stages\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(stage_factory))
+   {
+      std::stringstream error_message;
+      error_message << "AttemptToCraeteCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stage_factory\" not met";
       throw std::runtime_error(error_message.str());
    }
 std::vector<std::string> file_contents = {};

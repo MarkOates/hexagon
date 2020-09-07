@@ -44,6 +44,25 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithE
 }
 
 TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
+   execute__with_nullptr_stage_factory__throws_an_error)
+{
+   std::vector<StageInterface *> stages = {};
+   Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+      TEST_FIXTURE_TEXT_FILE,
+      300,
+      200,
+      100,
+      ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f},
+      ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f},
+      &stages,
+      nullptr
+   );
+   std::string expected_error_message = "AttemptToCraeteCodeEditorStageFromFilename::execute: error: " \
+                                        "guard \"stage_factory\" not met";
+   ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
+}
+
+TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
    execute__on_a_file_that_does_not_exist__throws_an_error)
 {
    std::vector<StageInterface *> stages = {};

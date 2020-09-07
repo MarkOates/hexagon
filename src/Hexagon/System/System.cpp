@@ -1274,6 +1274,7 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f};
       ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
 
+      Hexagon::StageFactory stage_factory(&config, &font_bin);
       Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
          filename,
          get_display_default_width(),
@@ -1281,7 +1282,9 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
          get_default_code_editor_stage_width(),
          text_color,
          backfill_color,
-         &stages);
+         &stages,
+         &stage_factory
+         );
 
       action.execute();
    }
@@ -1538,6 +1541,7 @@ bool System::open_hexagon_config_file()
    std::string config_filename = config.get_config_filename();
    if (!display) throw std::runtime_error("fooob arrra");
 
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
    Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
       config_filename,
       al_get_display_width(display),
@@ -1545,7 +1549,8 @@ bool System::open_hexagon_config_file()
       get_default_code_editor_stage_width(),
       config.get_base_text_color(),
       config.get_backfill_color(),
-      &stages
+      &stages,
+      &stage_factory
       );
 
    return action.managed_execute();

@@ -43,6 +43,7 @@ properties:
    - name: stage_factory
      type: Hexagon::StageFactory*
      init_with: nullptr
+     constructor_arg: true
 
 
 functions:
@@ -50,7 +51,7 @@ functions:
 
    - name: execute
      type: bool
-     guards: [ stages ]
+     guards: [ stages, stage_factory ]
      body: |
        std::vector<std::string> file_contents = {};
        if (!::read_file(file_contents, filename))
