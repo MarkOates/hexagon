@@ -106,6 +106,13 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
 TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    execute__if_files_are_missing_will_create_missing_file_stages)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/ComponentThatIsNotPresent";
@@ -118,11 +125,19 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    {
       EXPECT_EQ(StageInterface::MISSING_FILE, stage->get_type());
    }
+   al_destroy_display(display);
 }
 
 TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    execute__will_set_the_expected_filename_when_creating_missing_file_stages)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/ComponentThatIsNotPresent";
@@ -139,5 +154,6 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
              missing_quintessence_file_stage.get_expected_filename());
    EXPECT_EQ("/Users/markoates/Repos/hexagon/tests/Hexagon/ComponentThatIsNotPresentTest.cpp",
              missing_test_file_stage.get_expected_filename());
+   al_destroy_display(display);
 }
 
