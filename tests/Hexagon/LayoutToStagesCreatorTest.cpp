@@ -198,6 +198,13 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
 TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
    create__will_create_missing_file_stages_for_files_that_do_not_exist)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::vector<StageInterface *> stages;
 
    std::string concept_name = "- Missing Files -";
@@ -224,11 +231,19 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
    {
       EXPECT_EQ(StageInterface::MISSING_FILE, stage->get_type());
    }
+   al_destroy_display(display);
 }
 
 TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
    create__will_position_the_stages_at_the_passed_placement)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::vector<StageInterface *> stages;
 
    std::string concept_name = "- Mixed Files -";
@@ -263,5 +278,6 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
    EXPECT_EQ(expected_second_stage_placement.position, second_stage_placement.position);
    EXPECT_EQ(expected_second_stage_placement.rotation, second_stage_placement.rotation);
    EXPECT_EQ(expected_second_stage_placement.scale, second_stage_placement.scale);
+   al_destroy_display(display);
 }
 
