@@ -7,12 +7,20 @@
 #include <allegro5/allegro_ttf.h>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 
-TEST(Hexagon_LayoutToStagesCreatorTest, can_be_created_without_blowing_up)
+class Hexagon_LayoutToStagesCreatorTestWithEmptyFixture : public ::testing::Test
+{};
+
+#include <Testing/WithStageFactoryFixture.hpp>
+
+class Hexagon_LayoutToStagesCreatorTestWithFixture : public Testing::WithStageFactoryFixture
+{};
+
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture, can_be_created_without_blowing_up)
 {
    Hexagon::LayoutToStagesCreator layout_to_stage_creator;
 }
 
-TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_the_passed_files)
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture, create__will_create_the_passed_files)
 {
    al_init();
    al_init_font_addon();
@@ -41,7 +49,8 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_the_passed_files)
    al_uninstall_system();
 }
 
-TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_advanced_code_editor_stages_for_the_passed_files)
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
+   create__will_create_advanced_code_editor_stages_for_the_passed_files)
 {
    al_init();
    al_init_font_addon();
@@ -76,7 +85,7 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_advanced_code_editor
    al_uninstall_system();
 }
 
-TEST(Hexagon_LayoutToStagesCreatorTest,
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
    create__will_initialize_the_created_advanced_code_editor_stages_and_set_the_expected_properties_on_it)
 {
    al_init();
@@ -115,7 +124,8 @@ TEST(Hexagon_LayoutToStagesCreatorTest,
    al_uninstall_system();
 }
 
-TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_missing_file_stages_for_files_that_do_not_exist)
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
+   create__will_create_missing_file_stages_for_files_that_do_not_exist)
 {
    al_init();
    al_init_font_addon();
@@ -150,7 +160,8 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_missing_file_stages_
    al_uninstall_system();
 }
 
-TEST(Hexagon_LayoutToStagesCreatorTest, create__will_position_the_stages_at_the_passed_placement)
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
+   create__will_position_the_stages_at_the_passed_placement)
 {
    al_init();
    al_init_font_addon();
