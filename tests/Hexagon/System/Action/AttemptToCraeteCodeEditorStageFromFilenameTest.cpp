@@ -62,7 +62,7 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithE
    ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
 }
 
-TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithFixture,
    execute__on_a_file_that_does_not_exist__throws_an_error)
 {
    std::vector<StageInterface *> stages = {};
@@ -73,13 +73,15 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithE
       100,
       ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f},
       ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f},
-      &stages);
+      &stages,
+      &get_stage_factory_ref()
+   );
 
    std::string expected_error_message = "Could not open the selected file";
    ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
 }
 
-TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithFixture,
    execute__adds_a_new_code_editor_stage_to_stages)
 {
    std::vector<StageInterface *> stages = {};
@@ -90,7 +92,9 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithE
       100,
       ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f},
       ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f},
-      &stages);
+      &stages,
+      &get_stage_factory_ref()
+   );
 
    EXPECT_EQ(true, action.execute());
    EXPECT_EQ(1, stages.size());
