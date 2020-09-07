@@ -77,6 +77,13 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__with_a_valid_component_creates_the_expected_files)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/System/Action/CreateThreeSplitFromComponent";
    std::vector<StageInterface *> stages;
@@ -90,6 +97,7 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    {
       EXPECT_EQ(StageInterface::CODE_EDITOR, stage->get_type());
    }
+   al_destroy_display(display);
 }
 
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
@@ -154,6 +162,13 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__places_the_stages_in_the_expected_positions)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/System/Action/CreateThreeSplitFromComponent";
    std::vector<StageInterface *> stages;
@@ -177,4 +192,5 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    ASSERT_EQ(-234, stages[0]->get_place().position.x);
    ASSERT_EQ(0, stages[1]->get_place().position.x);
    ASSERT_EQ(234, stages[2]->get_place().position.x);
+   al_destroy_display(display);
 }

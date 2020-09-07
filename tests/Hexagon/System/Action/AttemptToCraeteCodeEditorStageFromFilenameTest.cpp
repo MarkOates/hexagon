@@ -84,6 +84,13 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithF
 TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithFixture,
    execute__adds_a_new_code_editor_stage_to_stages)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::vector<StageInterface *> stages = {};
    Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
       TEST_FIXTURE_TEXT_FILE,
@@ -104,5 +111,6 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithF
    StageInterface::type_t actual_stage_type = created_stage->get_type();
 
    EXPECT_EQ(expected_stage_type, actual_stage_type);
+   al_destroy_display(display);
 }
 

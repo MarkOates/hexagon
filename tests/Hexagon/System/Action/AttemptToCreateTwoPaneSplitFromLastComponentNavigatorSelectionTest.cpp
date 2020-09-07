@@ -26,6 +26,13 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
 TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    execute__creates_two_stages_with_the_expected_size)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/Elements/Frame";
@@ -50,12 +57,20 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
       EXPECT_EQ(code_editor_width, place.size.x);
    }
 
+   al_destroy_display(display);
    SUCCEED();
 }
 
 TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    execute__with_a_valid_component_creats_two_code_editor_stages)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/Elements/Frame";
@@ -68,11 +83,19 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    {
       EXPECT_EQ(StageInterface::CODE_EDITOR, stage->get_type());
    }
+   al_destroy_display(display);
 }
 
 TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    execute__with_a_valid_component_opens_the_quintessence_and_test_file)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/Elements/Frame";
@@ -95,6 +118,7 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    std::string actual_quintessence_filename =
       static_cast<Hexagon::CodeEditor::Stage*>(stages[1])->get_code_editor_ref().get_filename();
    EXPECT_EQ(expected_quintessence_filename, actual_quintessence_filename);
+   al_destroy_display(display);
 }
 
 TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
