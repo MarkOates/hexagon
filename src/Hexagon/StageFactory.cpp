@@ -245,6 +245,18 @@ StageInterface* StageFactory::create_code_editor(std::string filename, std::stri
 Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage(
    ::CodeEditor::CodeEditor{filename, file_category}
 );
+
+// properties previously assigned at render time:
+ALLEGRO_FONT *font = obtain_global_font();
+ALLEGRO_DISPLAY *display = get_current_display();
+int cell_width = al_get_text_width(font, " ");
+int cell_height = al_get_font_line_height(font);
+
+code_editor_stage->set_display(display);
+code_editor_stage->set_font(font);
+code_editor_stage->set_cell_width(cell_width);
+code_editor_stage->set_cell_height(cell_height);
+
 return code_editor_stage;
 
 }

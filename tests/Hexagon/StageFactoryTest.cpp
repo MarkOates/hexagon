@@ -153,6 +153,14 @@ TEST(Hexagon_StageFactoryTest,
    ASSERT_EQ(filename, code_editor->get_filename());
    ASSERT_EQ(file_category, code_editor->get_file_category());
 
+   ALLEGRO_FONT *expected_font = stage_factory.obtain_global_font();
+   ALLEGRO_FONT *actual_font = stage->get_font();
+
+   EXPECT_EQ(expected_font, actual_font);
+   EXPECT_EQ(10, stage->get_cell_width());
+   EXPECT_EQ(20, stage->get_cell_height());
+   EXPECT_EQ(display, stage->get_display());
+
    font_bin.clear();
    al_destroy_display(display);
    al_shutdown_ttf_addon();
