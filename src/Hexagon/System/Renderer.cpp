@@ -82,17 +82,6 @@ for (auto &stage : system->stages)
    bool is_focused = (system->get_frontmost_stage() == stage);
    ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
 
-
-   // for now, we're going to assign these values here so that render() can be argument-free
-   if (stage->get_type() == StageInterface::CODE_EDITOR)
-   {
-      Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
-      code_editor_stage->set_display(display);
-      code_editor_stage->set_font(font);
-      code_editor_stage->set_cell_width(cell_width);
-      code_editor_stage->set_cell_height(cell_height);
-   }
-
    stage->render();
 
    if (is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
