@@ -18,6 +18,7 @@ properties:
   - name: stage_factory
     type: Hexagon::StageFactory
     init_with: '&config, &font_bin'
+    getter_ref: true
 
 
 functions:
@@ -47,12 +48,6 @@ functions:
       al_uninstall_system();
       return;
     body_dependency_symbols: []
-
-
-  - name: get_stage_factory_ptr
-    type: Hexagon::StageFactory*
-    body: |
-      return &stage_factory;
 
 
 dependencies:

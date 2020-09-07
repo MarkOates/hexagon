@@ -22,6 +22,12 @@ WithStageFactoryFixture::~WithStageFactoryFixture()
 }
 
 
+Hexagon::StageFactory &WithStageFactoryFixture::get_stage_factory_ref()
+{
+   return stage_factory;
+}
+
+
 void WithStageFactoryFixture::SetUp()
 {
 al_init();
@@ -39,12 +45,6 @@ font_bin.clear();
 al_shutdown_ttf_addon();
 al_uninstall_system();
 return;
-
-}
-
-Hexagon::StageFactory* WithStageFactoryFixture::get_stage_factory_ptr()
-{
-return &stage_factory;
 
 }
 } // namespace Testing
