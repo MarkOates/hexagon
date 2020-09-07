@@ -2,9 +2,8 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_font.h>
-#include <allegro_flare/placement3d.h>
+#include <Hexagon/StageFactory.hpp>
+#include <Hexagon/System/Config.hpp>
 #include <gtest/gtest.h>
 
 
@@ -13,20 +12,17 @@ namespace Testing
    class WithStageFactoryFixture : public ::testing::Test
    {
    private:
-      ALLEGRO_DISPLAY* display;
+      Hexagon::System::Config config;
       AllegroFlare::FontBin font_bin;
+      Hexagon::StageFactory stage_factory;
 
    public:
       WithStageFactoryFixture();
       virtual ~WithStageFactoryFixture();
 
 
-      ALLEGRO_DISPLAY* get_display();
-      AllegroFlare::FontBin &get_font_bin_ref();
    virtual void SetUp() override;
    virtual void TearDown() override;
-   ALLEGRO_FONT* get_any_font();
-   placement3d build_centered_placement(float width=0.0f, float height=0.0f);
    };
 }
 

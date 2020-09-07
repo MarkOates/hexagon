@@ -9,14 +9,15 @@ parent_classes:
 properties:
 
 
-  - name: display
-    type: ALLEGRO_DISPLAY*
-    init_with: nullptr
-    getter: true
+  - name: config
+    type: Hexagon::System::Config
+    init_with: '"/Users/markoates/Repos/hexagon/tests/fixtures/hexagon.test.cfg"'
   - name: font_bin
     type: AllegroFlare::FontBin
     init_with: '{}'
-    getter_ref: true
+  - name: stage_factory
+    type: Hexagon::StageFactory
+    init_with: '&config, &font_bin'
 
 
 functions:
@@ -27,20 +28,8 @@ functions:
     virtual: true
     override: true
     body: |
-      ASSERT_EQ(false, al_is_system_installed());
-      ASSERT_EQ(true, al_init());
-      al_init_primitives_addon();
-      al_init_font_addon();
-      al_init_ttf_addon();
-
-      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-
-      display = al_create_display(1280 * 2, 720 * 2);
-      al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
       return;
-    body_dependency_symbols:
-      - al_init_ttf_addon
-      - al_init_primitives_addon
+    body_dependency_symbols: []
 
 
   - name: TearDown
@@ -48,50 +37,23 @@ functions:
     virtual: true
     override: true
     body: |
-      font_bin.clear();
-      al_destroy_display(display);
-      al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
-                               // this is a bug in Allegro
-      al_uninstall_system();
       return;
-
-
-  - name: get_any_font
-    type: ALLEGRO_FONT*
-    body: |
-      return font_bin.auto_get("consolas.ttf 32");
-
-
-  - name: build_centered_placement
-    type: placement3d
-    parameters:
-      - name: width
-        type: float
-        default_argument: 0.0f
-      - name: height
-        type: float
-        default_argument: 0.0f
-    guards: [ al_get_target_bitmap() ]
-    body: |
-      placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0f);
-      place.size = vec3d(width, height, 0);
-      return place;
+    body_dependency_symbols: []
 
 
 dependencies:
 
 
-  - symbol: al_init_primitives_addon
-    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_init
+    headers: [ allegro5/allegro.h ]
   - symbol: al_init_ttf_addon
     headers: [ allegro5/allegro_ttf.h ]
-  - symbol: ALLEGRO_DISPLAY*
-    headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_FONT*
-    headers: [ allegro5/allegro_font.h ]
+  - symbol: Hexagon::System::Config
+    headers: [ Hexagon/System/Config.hpp ]
   - symbol: AllegroFlare::FontBin
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::StageFactory
+    headers: [ Hexagon/StageFactory.hpp ]
   - symbol: ::testing::Test
     headers: [ gtest/gtest.h ]
-  - symbol: placement3d
-    headers: [ allegro_flare/placement3d.h ]
+
