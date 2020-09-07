@@ -68,7 +68,7 @@ functions:
       - name: place
         type: placement3d
         default_argument: '{}'
-    guards: [ stages, layout, font_bin, stage_factory ]
+    guards: [ stages, stage_factory, layout, font_bin ]
     body: |
       bool file_exists = Blast::FileExistenceChecker(filename).exists();
 
