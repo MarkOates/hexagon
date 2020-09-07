@@ -143,7 +143,9 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
   {
      std::vector<std::string> file_contents = {};
      ::read_file(file_contents, filename);
-     stage = new CodeEditor::Stage({filename, "blast_quintessence"});
+
+     stage = stage_factory->create_code_editor(filename, "blast_quintessence");
+
      static_cast<CodeEditor::Stage *>(stage)->get_code_editor_ref().set_initial_content(file_contents);
      static_cast<CodeEditor::Stage *>(stage)->set_base_font_color(text_color);
      static_cast<CodeEditor::Stage *>(stage)->set_backfill_color(backfill_color);
