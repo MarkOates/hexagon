@@ -42,7 +42,6 @@
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 #include <Hexagon/System/Action/CreateRailsResourceLayout.hpp>
 #include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
-#include <Hexagon/System/Action/AttemptToCreateStagesForEntireFamilyOfComponent.hpp>
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
 #include <Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.hpp>
 #include <Hexagon/System/Action/OpenConfigFile.hpp>
