@@ -1,7 +1,9 @@
 
 
 #include <Testing/WithStageFactoryFixture.hpp>
-
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 
 
 namespace Testing
@@ -31,6 +33,7 @@ Hexagon::StageFactory &WithStageFactoryFixture::get_stage_factory_ref()
 void WithStageFactoryFixture::SetUp()
 {
 al_init();
+al_init_font_addon();
 al_init_ttf_addon();
 
 config.initialize();

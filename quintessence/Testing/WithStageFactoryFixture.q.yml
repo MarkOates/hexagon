@@ -30,12 +30,16 @@ functions:
     override: true
     body: |
       al_init();
+      al_init_font_addon();
       al_init_ttf_addon();
 
       config.initialize();
       font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
       return;
-    body_dependency_symbols: []
+    body_dependency_symbols:
+      - al_init
+      - al_init_font_addon
+      - al_init_ttf_addon
 
 
   - name: TearDown
@@ -57,6 +61,8 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: al_init_ttf_addon
     headers: [ allegro5/allegro_ttf.h ]
+  - symbol: al_init_font_addon
+    headers: [ allegro5/allegro_font.h ]
   - symbol: Hexagon::System::Config
     headers: [ Hexagon/System/Config.hpp ]
   - symbol: AllegroFlare::FontBin
