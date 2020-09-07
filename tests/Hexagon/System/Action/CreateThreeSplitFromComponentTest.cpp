@@ -11,9 +11,6 @@ typedef Hexagon::System::Action::CreateThreeSplitFromComponent CreateThreeSplit;
 class Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture : public ::testing::Test
 {};
 
-static std::string TEST_FIXTURE_DIRECTORY_ROOT = "/Users/markoates/Repos/hexagon/tests/fixtures/";
-static const std::string TEST_FIXTURE_CONFIG_FILENAME = TEST_FIXTURE_DIRECTORY_ROOT + "hexagon.test.cfg";
-
 #include <Testing/WithStageFactoryFixture.hpp>
 
 class Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture : public Testing::WithStageFactoryFixture
