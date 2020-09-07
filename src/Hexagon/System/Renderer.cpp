@@ -94,15 +94,6 @@ for (auto &stage : system->stages)
       code_editor_stage->set_cell_height(cell_height);
    }
 
-   if (stage->get_type() == StageInterface::MISSING_FILE)
-   {
-      Hexagon::MissingFile::Stage* missing_file_stage = static_cast<Hexagon::MissingFile::Stage *>(stage);
-      missing_file_stage->set_display(display);
-      missing_file_stage->set_font(font);
-      missing_file_stage->set_cell_width(cell_width);
-      missing_file_stage->set_cell_height(cell_height);
-   }
-
    stage->render();
 
    if (is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
