@@ -44,15 +44,9 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture, create__will_create_the_pas
    ASSERT_EQ(false, stages.empty());
 }
 
-TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
    create__will_create_advanced_code_editor_stages_for_the_passed_files)
 {
-   al_init();
-   al_init_font_addon();
-   al_init_ttf_addon();
-   AllegroFlare::FontBin font_bin;
-   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-
    std::vector<StageInterface *> stages;
 
    std::string concept_name = "Hexagon/Logo";
@@ -64,7 +58,12 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
 
    Hexagon::Layout layout(concept_name, files, daemus_command);
 
-   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, nullptr, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(
+      &stages,
+      &get_stage_factory_ref(),
+      &layout,
+      &get_font_bin_ref()
+   );
 
    layout_to_stage_creator.create();
 
@@ -74,21 +73,11 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
    {
       EXPECT_EQ(StageInterface::ADVANCED_CODE_EDITOR, stage->get_type());
    }
-
-   font_bin.clear();
-   al_shutdown_ttf_addon();
-   al_uninstall_system();
 }
 
-TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
    create__will_initialize_the_created_advanced_code_editor_stages_and_set_the_expected_properties_on_it)
 {
-   al_init();
-   al_init_font_addon();
-   al_init_ttf_addon();
-   AllegroFlare::FontBin font_bin;
-   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-
    std::vector<StageInterface *> stages;
 
    std::string concept_name = "Hexagon/Logo";
@@ -100,7 +89,12 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
 
    Hexagon::Layout layout(concept_name, files, daemus_command);
 
-   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, nullptr, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(
+      &stages,
+      &get_stage_factory_ref(),
+      &layout,
+      &get_font_bin_ref()
+   );
 
    layout_to_stage_creator.create();
 
@@ -113,21 +107,11 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
       EXPECT_EQ(true, advanced_code_editor_stage->get_initialized());
       EXPECT_EQ(false, advanced_code_editor_stage->get_lines().empty());
    }
-
-   font_bin.clear();
-   al_shutdown_ttf_addon();
-   al_uninstall_system();
 }
 
-TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
    create__will_create_missing_file_stages_for_files_that_do_not_exist)
 {
-   al_init();
-   al_init_font_addon();
-   al_init_ttf_addon();
-   AllegroFlare::FontBin font_bin;
-   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-
    std::vector<StageInterface *> stages;
 
    std::string concept_name = "- Missing Files -";
@@ -139,7 +123,12 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
 
    Hexagon::Layout layout(concept_name, files, daemus_command);
 
-   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, nullptr, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(
+      &stages,
+      &get_stage_factory_ref(),
+      &layout,
+      &get_font_bin_ref()
+   );
 
    layout_to_stage_creator.create();
 
@@ -149,21 +138,11 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
    {
       EXPECT_EQ(StageInterface::MISSING_FILE, stage->get_type());
    }
-
-   font_bin.clear();
-   al_shutdown_ttf_addon();
-   al_uninstall_system();
 }
 
-TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
    create__will_position_the_stages_at_the_passed_placement)
 {
-   al_init();
-   al_init_font_addon();
-   al_init_ttf_addon();
-   AllegroFlare::FontBin font_bin;
-   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-
    std::vector<StageInterface *> stages;
 
    std::string concept_name = "- Mixed Files -";
@@ -175,7 +154,12 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
 
    Hexagon::Layout layout(concept_name, files, daemus_command);
 
-   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, nullptr, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(
+      &stages,
+      &get_stage_factory_ref(),
+      &layout,
+      &get_font_bin_ref()
+   );
 
    layout_to_stage_creator.create();
 
@@ -193,9 +177,5 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture,
    EXPECT_EQ(expected_second_stage_placement.position, second_stage_placement.position);
    EXPECT_EQ(expected_second_stage_placement.rotation, second_stage_placement.rotation);
    EXPECT_EQ(expected_second_stage_placement.scale, second_stage_placement.scale);
-
-   font_bin.clear();
-   al_shutdown_ttf_addon();
-   al_uninstall_system();
 }
 
