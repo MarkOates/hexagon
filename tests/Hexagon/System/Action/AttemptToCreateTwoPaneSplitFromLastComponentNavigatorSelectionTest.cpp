@@ -17,13 +17,14 @@ class Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture : public ::testin
 class Hexagon_System_Action_CreateTwoSplitTestWithFixture : public Testing::WithStageFactoryFixture
 {};
 
-TEST(Hexagon_System_Action_AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelectionTest,
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
    can_be_created_without_blowing_up)
 {
    CreateTwoSplit create_two_split_action;
 }
 
-TEST(Hexagon_System_Action_AttemptTo, execute__creates_two_stages_with_the_expected_size)
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+   execute__creates_two_stages_with_the_expected_size)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
@@ -44,7 +45,8 @@ TEST(Hexagon_System_Action_AttemptTo, execute__creates_two_stages_with_the_expec
    SUCCEED();
 }
 
-TEST(Hexagon_System_Action_AttemptTo, execute__with_a_valid_component_creats_two_code_editor_stages)
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+   execute__with_a_valid_component_creats_two_code_editor_stages)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
@@ -60,7 +62,8 @@ TEST(Hexagon_System_Action_AttemptTo, execute__with_a_valid_component_creats_two
    }
 }
 
-TEST(Hexagon_System_Action_AttemptTo, execute__with_a_valid_component_opens_the_quintessence_and_test_file)
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+   execute__with_a_valid_component_opens_the_quintessence_and_test_file)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
@@ -86,12 +89,14 @@ TEST(Hexagon_System_Action_AttemptTo, execute__with_a_valid_component_opens_the_
    EXPECT_EQ(expected_quintessence_filename, actual_quintessence_filename);
 }
 
-TEST(Hexagon_System_Action_AttemptTo, execute__positions_two_stages_at_expected_placements)
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+   execute__positions_two_stages_at_expected_placements)
 {
    //skip
 }
 
-TEST(Hexagon_System_Action_AttemptTo, execute__if_files_are_missing_will_create_missing_file_stages)
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+   execute__if_files_are_missing_will_create_missing_file_stages)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
@@ -107,7 +112,8 @@ TEST(Hexagon_System_Action_AttemptTo, execute__if_files_are_missing_will_create_
    }
 }
 
-TEST(Hexagon_System_Action_AttemptTo, execute__will_set_the_expected_filename_when_creating_missing_file_stages)
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+   execute__will_set_the_expected_filename_when_creating_missing_file_stages)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
