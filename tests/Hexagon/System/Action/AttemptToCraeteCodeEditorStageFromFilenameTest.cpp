@@ -22,19 +22,19 @@ class Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithFi
 
 #include <Blast/FileExistenceChecker.hpp>
 
-TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
+TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
    test_fixture_files_exist)
 {
    ASSERT_EQ(true, Blast::FileExistenceChecker(TEST_FIXTURE_TEXT_FILE).exists());
 }
 
-TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
+TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
    can_be_created_without_blowing_up)
 {
    Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename attempt_to_craete_code_editor_stage_from_filename;
 }
 
-TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
+TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
    execute__with_nullptr_stages__throws_an_error)
 {
    Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action;
@@ -43,7 +43,7 @@ TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
    ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
+TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
    execute__on_a_file_that_does_not_exist__throws_an_error)
 {
    std::vector<StageInterface *> stages = {};
@@ -60,7 +60,7 @@ TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
    ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
+TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
    execute__adds_a_new_code_editor_stage_to_stages)
 {
    std::vector<StageInterface *> stages = {};
