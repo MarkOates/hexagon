@@ -1317,8 +1317,9 @@ bool System::create_stages_from_layout_of_last_component_navigator_selection()
    std::cout << "      CREATING component_naem:" << component_name << std::endl;
 
    Hexagon::BlastComponentLayoutGenerator component_layout_generator(project_directory, component_name);
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
    Hexagon::Layout layout = component_layout_generator.generate();
-   Hexagon::LayoutToStagesCreator layout_to_stages_creator(&stages, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stages_creator(&stages, &stage_factory, &layout, &font_bin);
    layout_to_stages_creator.create();
 
    focused_component_name = last_component_navigator_selection;

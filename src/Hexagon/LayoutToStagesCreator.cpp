@@ -13,8 +13,9 @@ namespace Hexagon
 {
 
 
-LayoutToStagesCreator::LayoutToStagesCreator(std::vector<StageInterface *>* stages, Hexagon::Layout* layout, AllegroFlare::FontBin* font_bin, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+LayoutToStagesCreator::LayoutToStagesCreator(std::vector<StageInterface *>* stages, Hexagon::StageFactory* stage_factory, Hexagon::Layout* layout, AllegroFlare::FontBin* font_bin, int code_editor_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : stages(stages)
+   , stage_factory(stage_factory)
    , layout(layout)
    , font_bin(font_bin)
    , code_editor_height(code_editor_height)

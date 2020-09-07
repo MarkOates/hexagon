@@ -30,7 +30,7 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_the_passed_files)
 
    Hexagon::Layout layout(concept_name, files, daemus_command);
 
-   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, nullptr, &layout, &font_bin);
 
    layout_to_stage_creator.create();
 
@@ -60,7 +60,7 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_advanced_code_editor
 
    Hexagon::Layout layout(concept_name, files, daemus_command);
 
-   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, nullptr, &layout, &font_bin);
 
    layout_to_stage_creator.create();
 
@@ -96,7 +96,7 @@ TEST(Hexagon_LayoutToStagesCreatorTest,
 
    Hexagon::Layout layout(concept_name, files, daemus_command);
 
-   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, nullptr, &layout, &font_bin);
 
    layout_to_stage_creator.create();
 
@@ -134,7 +134,7 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_create_missing_file_stages_
 
    Hexagon::Layout layout(concept_name, files, daemus_command);
 
-   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, nullptr, &layout, &font_bin);
 
    layout_to_stage_creator.create();
 
@@ -169,7 +169,7 @@ TEST(Hexagon_LayoutToStagesCreatorTest, create__will_position_the_stages_at_the_
 
    Hexagon::Layout layout(concept_name, files, daemus_command);
 
-   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, &layout, &font_bin);
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(&stages, nullptr, &layout, &font_bin);
 
    layout_to_stage_creator.create();
 
