@@ -75,6 +75,7 @@ functions:
       - name: align_x
         type: float
         default_argument: "0.0"
+    guards: [ stage_factory ]
     body: |
       bool file_exists = Blast::FileExistenceChecker(filename).exists();
       float width = get_code_editor_width();

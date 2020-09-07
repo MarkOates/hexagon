@@ -5,6 +5,8 @@
 #include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <allegro_flare/useful_php.h>
 
@@ -72,6 +74,12 @@ std::vector<StageInterface *> &CreateThreeSplitFromComponent::get_dummy_stages_r
 
 bool CreateThreeSplitFromComponent::place_stage(std::string filename, std::string file_category, float x, float align_x)
 {
+if (!(stage_factory))
+   {
+      std::stringstream error_message;
+      error_message << "CreateThreeSplitFromComponent" << "::" << "place_stage" << ": error: " << "guard \"stage_factory\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 bool file_exists = Blast::FileExistenceChecker(filename).exists();
 float width = get_code_editor_width();
 placement3d place(x, 0, 0);
