@@ -89,6 +89,12 @@ if (!(font_bin))
       error_message << "LayoutToStagesCreator" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
+if (!(stage_factory))
+   {
+      std::stringstream error_message;
+      error_message << "LayoutToStagesCreator" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"stage_factory\" not met";
+      throw std::runtime_error(error_message.str());
+   }
 bool file_exists = Blast::FileExistenceChecker(filename).exists();
 
 StageInterface *stage = nullptr;

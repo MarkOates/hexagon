@@ -1,6 +1,11 @@
 
 #include <gtest/gtest.h>
 
+#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
+   try { code; FAIL() << "Expected " # raised_exception_type; } \
+   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
+   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+
 #include <Hexagon/LayoutToStagesCreator.hpp>
 
 #include <allegro5/allegro_font.h>
@@ -18,6 +23,25 @@ class Hexagon_LayoutToStagesCreatorTestWithFixture : public Testing::WithStageFa
 TEST_F(Hexagon_LayoutToStagesCreatorTestWithEmptyFixture, can_be_created_without_blowing_up)
 {
    Hexagon::LayoutToStagesCreator layout_to_stage_creator;
+}
+
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
+   place_and_load_code_editor__without_stages__raises_the_expected_error_message)
+{
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(
+      nullptr
+      //&get_stage_factory_ref(),
+      //&layout,
+      //&get_font_bin_ref()
+   );
+
+   std::string expected_error_message = "LayoutToStagesCreator::place_and_load_code_editor: error: " \
+                                        "guard \"stages\" not met";
+   ASSERT_THROW_WITH_MESSAGE(
+      layout_to_stage_creator.place_and_load_code_editor(),
+      std::runtime_error,
+      expected_error_message
+   );
 }
 
 TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture, create__will_create_the_passed_files)
