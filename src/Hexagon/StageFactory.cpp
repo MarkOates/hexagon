@@ -222,7 +222,8 @@ return file_navigator;
 
 StageInterface* StageFactory::create_missing_file(std::string filename)
 {
-StageInterface *stage = new Hexagon::MissingFile::Stage(filename);
+Hexagon::MissingFile::Stage *stage = new Hexagon::MissingFile::Stage(filename);
+stage->set_font(obtain_global_font());
 return stage;
 
 }

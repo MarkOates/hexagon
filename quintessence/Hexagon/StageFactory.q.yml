@@ -148,7 +148,8 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
-      StageInterface *stage = new Hexagon::MissingFile::Stage(filename);
+      Hexagon::MissingFile::Stage *stage = new Hexagon::MissingFile::Stage(filename);
+      stage->set_font(obtain_global_font());
       return stage;
     body_dependency_symbols:
        - StageInterface*
