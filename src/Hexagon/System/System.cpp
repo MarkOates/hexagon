@@ -1022,7 +1022,6 @@ bool System::destroy_topmost_stage()
 
 
 #include <Blast/FileExistenceChecker.hpp>
-#include <Hexagon/MissingFile/Stage.hpp>
 #include <allegro_flare/useful.h>
 bool System::execute_magic_command()
 {
@@ -1038,6 +1037,7 @@ bool System::execute_magic_command()
    };
 
 
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
    float width = 1200;
    float display_default_height = 900;
 
@@ -1072,7 +1072,7 @@ bool System::execute_magic_command()
         }
         else
         {
-            stage = new Hexagon::MissingFile::Stage;
+            stage = stage_factory.create_missing_file();
         }
 
         stage->set_place(place);
