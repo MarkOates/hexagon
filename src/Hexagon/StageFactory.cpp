@@ -240,9 +240,11 @@ return missing_file_stage;
 
 }
 
-StageInterface* StageFactory::create_code_editor(std::string filename)
+StageInterface* StageFactory::create_code_editor(std::string filename, std::string file_category)
 {
-Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage;
+Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage(
+   ::CodeEditor::CodeEditor{filename, file_category}
+);
 return code_editor_stage;
 
 }

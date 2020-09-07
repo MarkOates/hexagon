@@ -172,8 +172,13 @@ functions:
       - name: filename
         type: std::string
         default_argument: '""'
+      - name: file_category
+        type: std::string
+        default_argument: '"undefined"'
     body: |
-      Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage;
+      Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage(
+         ::CodeEditor::CodeEditor{filename, file_category}
+      );
       return code_editor_stage;
     body_dependency_symbols:
        - StageInterface*

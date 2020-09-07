@@ -136,8 +136,9 @@ TEST(Hexagon_StageFactoryTest,
    Hexagon::System::Config config;
    config.initialize();
    Hexagon::StageFactory stage_factory(&config, &font_bin);
-   StageInterface *created_stage = stage_factory.create_code_editor();
-   Hexagon::CodeEditor::Stage *stage = static_cast<Hexagon::CodeEditor::Stage*>(created_stage);
+   std::string filename = "foobar.txt";
+   std::string file_category = "whatever";
+   StageInterface *created_stage = stage_factory.create_code_editor(filename, file_category);
 
    ASSERT_NE(nullptr, created_stage);
 
@@ -145,6 +146,12 @@ TEST(Hexagon_StageFactoryTest,
    StageInterface::type_t actual_type = created_stage->get_type();
 
    ASSERT_EQ(expected_type, actual_type);
+
+   Hexagon::CodeEditor::Stage *stage = static_cast<Hexagon::CodeEditor::Stage*>(created_stage);
+   ::CodeEditor::CodeEditor *code_editor = &stage->get_code_editor_ref();
+
+   ASSERT_EQ(filename, code_editor->get_filename());
+   ASSERT_EQ(file_category, code_editor->get_file_category());
 
    font_bin.clear();
    al_destroy_display(display);
