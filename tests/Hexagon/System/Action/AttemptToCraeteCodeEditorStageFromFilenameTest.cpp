@@ -11,7 +11,7 @@ static std::string TEST_FIXTURE_TEXT_FILE = TEST_FIXTURE_DIRECTORY_ROOT + "file_
 
 #include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
 
-class Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameWithEmptyFixture : public ::testing::Test
+class Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture : public ::testing::Test
 {};
 
 #include <Testing/WithStageFactoryFixture.hpp>
