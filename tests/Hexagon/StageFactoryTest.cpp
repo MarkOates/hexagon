@@ -113,6 +113,10 @@ TEST(Hexagon_StageFactoryTest,
 
    EXPECT_EQ(expected_font, actual_font);
 
+   EXPECT_EQ(10, stage->get_cell_width());
+   EXPECT_EQ(20, stage->get_cell_height());
+   EXPECT_EQ(display, stage->get_display());
+
    font_bin.clear();
    al_destroy_display(display);
    al_shutdown_ttf_addon();
