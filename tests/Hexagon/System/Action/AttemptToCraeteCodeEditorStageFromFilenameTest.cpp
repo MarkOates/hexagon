@@ -22,17 +22,20 @@ class Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithFi
 
 #include <Blast/FileExistenceChecker.hpp>
 
-TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest, test_fixture_files_exist)
+TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
+   test_fixture_files_exist)
 {
    ASSERT_EQ(true, Blast::FileExistenceChecker(TEST_FIXTURE_TEXT_FILE).exists());
 }
 
-TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest, can_be_created_without_blowing_up)
+TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
+   can_be_created_without_blowing_up)
 {
    Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename attempt_to_craete_code_editor_stage_from_filename;
 }
 
-TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest, execute__with_nullptr_stages__throws_an_error)
+TEST(Hexagon_System_Action_AttemptToCraeteCodeEditorStageFromFilenameTest,
+   execute__with_nullptr_stages__throws_an_error)
 {
    Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action;
    std::string expected_error_message = "AttemptToCraeteCodeEditorStageFromFilename::execute: error: " \
