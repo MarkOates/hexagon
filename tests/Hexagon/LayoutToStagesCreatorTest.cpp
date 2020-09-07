@@ -65,6 +65,47 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
    );
 }
 
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
+   place_and_load_code_editor__without_a_layout__raises_the_expected_error_message)
+{
+   std::vector<StageInterface *> stages;
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(
+      &stages,
+      &get_stage_factory_ref(),
+      nullptr,
+      &get_font_bin_ref()
+   );
+
+   std::string expected_error_message = "LayoutToStagesCreator::place_and_load_code_editor: error: " \
+                                        "guard \"layout\" not met";
+   ASSERT_THROW_WITH_MESSAGE(
+      layout_to_stage_creator.place_and_load_code_editor(),
+      std::runtime_error,
+      expected_error_message
+   );
+}
+
+TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
+   place_and_load_code_editor__without_a_font_bin__raises_the_expected_error_message)
+{
+   std::vector<StageInterface *> stages;
+   Hexagon::Layout layout;
+   Hexagon::LayoutToStagesCreator layout_to_stage_creator(
+      &stages,
+      &get_stage_factory_ref(),
+      &layout,
+      nullptr
+   );
+
+   std::string expected_error_message = "LayoutToStagesCreator::place_and_load_code_editor: error: " \
+                                        "guard \"font_bin\" not met";
+   ASSERT_THROW_WITH_MESSAGE(
+      layout_to_stage_creator.place_and_load_code_editor(),
+      std::runtime_error,
+      expected_error_message
+   );
+}
+
 TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture, create__will_create_the_passed_files)
 {
    std::vector<StageInterface *> stages;
