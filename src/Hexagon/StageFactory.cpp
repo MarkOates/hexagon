@@ -25,6 +25,8 @@
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
+#include <Hexagon/StageInterface.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
@@ -235,6 +237,13 @@ missing_file_stage->set_cell_width(cell_width);
 missing_file_stage->set_cell_height(cell_height);
 
 return missing_file_stage;
+
+}
+
+StageInterface* StageFactory::create_code_editor(std::string filename)
+{
+Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage;
+return code_editor_stage;
 
 }
 

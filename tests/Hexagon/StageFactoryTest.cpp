@@ -124,6 +124,35 @@ TEST(Hexagon_StageFactoryTest,
 }
 
 TEST(Hexagon_StageFactoryTest,
+   create_code_editor__creates_a_code_editor_stage_with_the_expected_properties)
+{
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   Hexagon::System::Config config;
+   config.initialize();
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   StageInterface *created_stage = stage_factory.create_code_editor();
+   Hexagon::CodeEditor::Stage *stage = static_cast<Hexagon::CodeEditor::Stage*>(created_stage);
+
+   ASSERT_NE(nullptr, created_stage);
+
+   StageInterface::type_t expected_type = StageInterface::CODE_EDITOR;
+   StageInterface::type_t actual_type = created_stage->get_type();
+
+   ASSERT_EQ(expected_type, actual_type);
+
+   font_bin.clear();
+   al_destroy_display(display);
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+}
+
+TEST(Hexagon_StageFactoryTest,
    create_git_commit_message_box__creates_a_git_commit_message_box_with_the_expected_properties)
 {
    al_init();

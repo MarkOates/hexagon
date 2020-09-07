@@ -166,6 +166,20 @@ functions:
        - Hexagon::MissingFile::Stage
 
 
+  - name: create_code_editor
+    type: StageInterface*
+    parameters:
+      - name: filename
+        type: std::string
+        default_argument: '""'
+    body: |
+      Hexagon::CodeEditor::Stage *code_editor_stage = new Hexagon::CodeEditor::Stage;
+      return code_editor_stage;
+    body_dependency_symbols:
+       - StageInterface*
+       - Hexagon::CodeEditor::Stage
+
+
   - name: create_regex_input_box_modal
     type: StageInterface*
     body: |
