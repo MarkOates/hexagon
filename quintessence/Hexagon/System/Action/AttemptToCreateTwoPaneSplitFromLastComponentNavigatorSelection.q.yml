@@ -32,6 +32,10 @@ properties:
     init_with: 'get_dummy_stages_ref()'
     getter: true
     setter: true
+  - name: stage_factory
+    type: Hexagon::StageFactory*
+    init_with: nullptr
+    constructor_arg: true
   - name: dummy_stages
     type: std::vector<StageInterface *>
     init_with: '{}'
@@ -177,6 +181,8 @@ dependencies:
     headers: [ Hexagon/util.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
+  - symbol: Hexagon::StageFactory*
+    headers: [ Hexagon/StageFactory.hpp ]
   - symbol: CodeEditor::Stage
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: std::vector<StageInterface *>&

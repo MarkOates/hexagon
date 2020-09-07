@@ -1434,12 +1434,14 @@ bool System::create_rails_resource_layout()
 
 bool System::attempt_to_create_stage_from_last_component_navigator_selection()
 {
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
    Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection action(
          get_default_navigator_directory(),
          last_component_navigator_selection,
          get_display_default_width(),
          get_display_default_height(),
          stages,
+         &stage_factory,
          get_default_code_editor_stage_width(),
          config.get_base_text_color(),
          config.get_backfill_color()

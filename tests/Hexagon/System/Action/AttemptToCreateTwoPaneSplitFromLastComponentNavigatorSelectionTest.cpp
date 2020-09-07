@@ -23,7 +23,7 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
    CreateTwoSplit create_two_split_action;
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    execute__creates_two_stages_with_the_expected_size)
 {
    std::vector<StageInterface *> stages;
@@ -31,7 +31,15 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
    std::string component_name = "Hexagon/Elements/Frame";
    int code_editor_width = 234;
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, code_editor_width);
+   CreateTwoSplit create_two_split(
+      home_directory,
+      component_name,
+      2430,
+      1350,
+      stages,
+      &get_stage_factory_ref(),
+      code_editor_width
+   );
 
    create_two_split.execute();
    EXPECT_EQ(2, stages.size());
@@ -45,14 +53,14 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
    SUCCEED();
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    execute__with_a_valid_component_creats_two_code_editor_stages)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/Elements/Frame";
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages);
+   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
 
    create_two_split.execute();
    EXPECT_EQ(2, stages.size());
@@ -62,14 +70,14 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
    }
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    execute__with_a_valid_component_opens_the_quintessence_and_test_file)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/Elements/Frame";
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages);
+   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
 
    create_two_split.execute();
    EXPECT_EQ(2, stages.size());
@@ -95,14 +103,14 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
    //skip
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    execute__if_files_are_missing_will_create_missing_file_stages)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/ComponentThatIsNotPresent";
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages);
+   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
 
    create_two_split.execute();
    EXPECT_EQ(2, stages.size());
@@ -112,14 +120,14 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
    }
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    execute__will_set_the_expected_filename_when_creating_missing_file_stages)
 {
    std::vector<StageInterface *> stages;
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/ComponentThatIsNotPresent";
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages);
+   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
 
    create_two_split.execute();
    EXPECT_EQ(2, stages.size());
