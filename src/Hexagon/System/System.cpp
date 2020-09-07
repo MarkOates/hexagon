@@ -43,7 +43,6 @@
 #include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
 #include <Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.hpp>
-#include <Hexagon/System/Action/OpenConfigFile.hpp>
 #include <Hexagon/System/EventController.hpp>
 #include <Hexagon/Git/StageEverything.hpp>
 #include <Hexagon/Git/CommitStagedWithMessage.hpp>
