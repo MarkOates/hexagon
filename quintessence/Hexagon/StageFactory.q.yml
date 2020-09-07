@@ -148,8 +148,10 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
-      return nullptr;
+      StageInterface *stage = new Hexagon::MissingFile::Stage(filename);
+      return stage;
     body_dependency_symbols:
+       - StageInterface*
        - Hexagon::MissingFile::Stage
 
 

@@ -23,6 +23,7 @@
 #include <sstream>
 #include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/StageInterface.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
@@ -221,7 +222,8 @@ return file_navigator;
 
 StageInterface* StageFactory::create_missing_file(std::string filename)
 {
-return nullptr;
+StageInterface *stage = new Hexagon::MissingFile::Stage(filename);
+return stage;
 
 }
 
