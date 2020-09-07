@@ -111,7 +111,7 @@ functions:
         }
         else
         {
-            stage = new Hexagon::MissingFile::Stage(test_filename);
+            stage = stage_factory->create_missing_file(test_filename);
         }
 
         stage->set_place(place);
@@ -138,7 +138,7 @@ functions:
         }
         else
         {
-            stage = new Hexagon::MissingFile::Stage(filename);
+            stage = stage_factory->create_missing_file(filename);
         }
 
         stage->set_place(place);
@@ -148,7 +148,6 @@ functions:
       return true;
     body_dependency_symbols:
       - Blast::FileExistenceChecker
-      - Hexagon::MissingFile::Stage
       - NcursesArt::ProjectFilenameGenerator
       - std::stringstream
       - std::vector
@@ -173,8 +172,6 @@ dependencies:
     headers: [ Hexagon/Action.hpp ]
   - symbol: NcursesArt::ProjectFilenameGenerator
     headers: [ NcursesArt/ProjectFilenameGenerator.hpp ]
-  - symbol: Hexagon::MissingFile::Stage
-    headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
   - symbol: read_file

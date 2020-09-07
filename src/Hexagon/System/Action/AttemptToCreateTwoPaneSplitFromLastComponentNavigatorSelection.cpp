@@ -2,7 +2,6 @@
 
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Blast/FileExistenceChecker.hpp>
-#include <Hexagon/MissingFile/Stage.hpp>
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
 #include <sstream>
 #include <vector>
@@ -124,7 +123,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
   }
   else
   {
-      stage = new Hexagon::MissingFile::Stage(test_filename);
+      stage = stage_factory->create_missing_file(test_filename);
   }
 
   stage->set_place(place);
@@ -151,7 +150,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
   }
   else
   {
-      stage = new Hexagon::MissingFile::Stage(filename);
+      stage = stage_factory->create_missing_file(filename);
   }
 
   stage->set_place(place);
