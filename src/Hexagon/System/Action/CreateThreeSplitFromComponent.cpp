@@ -3,7 +3,6 @@
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 #include <allegro_flare/placement3d.h>
 #include <Blast/FileExistenceChecker.hpp>
-#include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <stdexcept>
 #include <sstream>

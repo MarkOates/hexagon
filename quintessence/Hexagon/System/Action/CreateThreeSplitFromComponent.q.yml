@@ -107,7 +107,6 @@ functions:
     body_dependency_symbols:
       - placement3d
       - Blast::FileExistenceChecker
-      - Hexagon::MissingFile::Stage
       - Hexagon::CodeEditor::Stage
 
 
@@ -183,7 +182,5 @@ dependencies:
     headers: [ Blast/ProjectComponentFilenameGenerator.hpp ]
   - symbol: Hexagon::StageFactory*
     headers: [ Hexagon/StageFactory.hpp ]
-  - symbol: Hexagon::MissingFile::Stage
-    headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
