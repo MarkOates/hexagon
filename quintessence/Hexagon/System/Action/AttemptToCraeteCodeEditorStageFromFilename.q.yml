@@ -1,8 +1,14 @@
 parent_classes:
+
+
   - class: ::Action
     scope: public
     init_with: "\"System::Action::AttemptToCreateCodeEditorStageFromFilename\", ActionData()"
+
+
 properties:
+
+
    - name: filename
      type: std::string
      init_with: "\"file.txt\""
@@ -34,7 +40,11 @@ properties:
      type: std::vector<StageInterface *>*
      init_with: nullptr
      constructor_arg: true
+
+
 functions:
+
+
    - name: execute
      type: bool
      body: |
@@ -79,7 +89,11 @@ functions:
        - placement3d
        - std::vector<std::string>
        - Hexagon::CodeEditor::Stage
+
+
 dependencies:
+
+
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
   - symbol: ::Action
@@ -94,3 +108,4 @@ dependencies:
     headers: [ vector, string ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
+
