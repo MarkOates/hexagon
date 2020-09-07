@@ -40,6 +40,9 @@ properties:
      type: std::vector<StageInterface *>*
      init_with: nullptr
      constructor_arg: true
+   - name: stage_factory
+     type: Hexagon::StageFactory*
+     init_with: nullptr
 
 
 functions:
@@ -95,4 +98,6 @@ dependencies:
     headers: [ vector, string ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
+  - symbol: Hexagon::StageFactory*
+    headers: [ Hexagon/StageFactory.hpp ]
 

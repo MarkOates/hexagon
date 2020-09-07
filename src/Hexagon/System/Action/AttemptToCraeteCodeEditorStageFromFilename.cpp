@@ -28,6 +28,7 @@ AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFi
    , text_color(text_color)
    , backfill_color(backfill_color)
    , stages(stages)
+   , stage_factory(nullptr)
 {
 }
 
