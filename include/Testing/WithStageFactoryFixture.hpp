@@ -23,6 +23,7 @@ namespace Testing
 
    virtual void SetUp() override;
    virtual void TearDown() override;
+   Hexagon::StageFactory* get_stage_factory_ptr();
    };
 }
 
