@@ -43,6 +43,13 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__creates_three_stages_split_across_the_width)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/Action";
    std::vector<StageInterface *> stages;
@@ -64,6 +71,7 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
       placement3d &place = stage->get_place();
       ASSERT_EQ(code_editor_width, place.size.x);
    }
+   al_destroy_display(display);
 }
 
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
@@ -87,6 +95,13 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__with_an_invalid_component_creates_missing_file_stages)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/AComponentThatDoesNotExist";
    std::vector<StageInterface *> stages;
@@ -100,11 +115,19 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    {
       EXPECT_EQ(StageInterface::MISSING_FILE, stage->get_type());
    }
+   al_destroy_display(display);
 }
 
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__with_an_invalid_component_sets_the_expected_filename_on_the_missing_file_stage)
 {
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
    std::string project_path = "/Users/markoates/Repos/hexagon/";
    std::string component = "Hexagon/AComponentThatDoesNotExist";
    std::vector<StageInterface *> stages;
@@ -125,6 +148,7 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
              missing_source_file_stage.get_expected_filename());
    EXPECT_EQ("/Users/markoates/Repos/hexagon/tests/Hexagon/AComponentThatDoesNotExistTest.cpp",
              missing_test_file_stage.get_expected_filename());
+   al_destroy_display(display);
 }
 
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
