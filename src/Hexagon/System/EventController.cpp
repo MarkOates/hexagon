@@ -69,10 +69,6 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
       &::System::create_two_or_three_split_layout_from_last_component_navigator_selection,
    },
    {
-      ::System::CREATE_RAILS_RESOURCE_LAYOUT,
-      &::System::create_rails_resource_layout,
-   },
-   {
       ::System::CLEAR_RERUN_OUTPUT_WATCHERS,
       &::System::clear_rerun_output_watchers,
    },
@@ -368,12 +364,6 @@ else
        });
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, true, false, false, true, {
       ::System::ROTATE_RELATIVE_UP,
-      ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
-      ::System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
-   keyboard_command_mapper.set_mapping(ALLEGRO_KEY_R, false, true, false, false, {
-      ::System::DESTROY_ALL_CODE_EDITOR_STAGES,
-      ::System::CREATE_RAILS_RESOURCE_LAYOUT,
-      ::System::ROTATE_STAGE_RIGHT,
       ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
       ::System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
    keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, true, false, false, true, {

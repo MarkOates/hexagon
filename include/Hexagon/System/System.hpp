@@ -135,7 +135,6 @@ public:
    bool create_two_or_three_split_layout_from_last_component_navigator_selection();
    bool create_layout_from_last_project_navigator_selection();
    bool create_three_split_from_last_component_navigator_selection();
-   bool create_rails_resource_layout();
    bool attempt_to_create_stage_from_last_component_navigator_selection();
    bool set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
    bool commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores();
@@ -165,7 +164,6 @@ public:
    static const std::string CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION;
    static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
-   static const std::string CREATE_RAILS_RESOURCE_LAYOUT;
    static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
    static const std::string SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE;
    static const std::string CENTER_CAMERA_ON_FRONTMOST_STAGE;
