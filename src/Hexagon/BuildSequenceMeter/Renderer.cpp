@@ -1,7 +1,11 @@
 
 
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
-
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_font.h>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -10,7 +14,8 @@ namespace BuildSequenceMeter
 {
 
 
-Renderer::Renderer()
+Renderer::Renderer(AllegroFlare::FontBin* font_bin)
+   : font_bin(font_bin)
 {
 }
 
@@ -20,9 +25,28 @@ Renderer::~Renderer()
 }
 
 
-std::string Renderer::run()
+void Renderer::render()
 {
-return "Hello World!";
+if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(al_is_ttf_addon_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_ttf_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return;
+
 }
 } // namespace BuildSequenceMeter
 } // namespace Hexagon

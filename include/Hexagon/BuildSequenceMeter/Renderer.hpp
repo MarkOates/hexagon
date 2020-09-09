@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <string>
+#include <AllegroFlare/FontBin.hpp>
 
 
 namespace Hexagon
@@ -11,13 +11,14 @@ namespace Hexagon
       class Renderer
       {
       private:
+         AllegroFlare::FontBin* font_bin;
 
       public:
-         Renderer();
+         Renderer(AllegroFlare::FontBin* font_bin=nullptr);
          ~Renderer();
 
 
-      std::string run();
+      void render();
       };
    }
 }
