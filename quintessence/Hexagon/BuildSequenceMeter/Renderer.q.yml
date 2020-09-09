@@ -12,13 +12,16 @@ functions:
 
   - name: render
     type: void
-    guards: [ al_is_system_installed(), al_is_ttf_addon_initialized(), font_bin ]
+    guards: [ al_is_system_installed(), al_is_primitives_addon_initialized(), al_is_ttf_addon_initialized(), font_bin ]
     body: |
+      al_draw_filled_rectangle(0, 0, 100, 100, ALLEGRO_COLOR{1, 1, 1, 1});
       return;
     body_dependency_symbols:
+      - al_draw_filled_rectangle
       - al_is_system_installed
       - al_is_ttf_addon_initialized
       - al_is_font_addon_initialized
+      - al_is_primitives_addon_initialized
 
 
 dependencies:
@@ -30,6 +33,10 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: al_is_font_addon_initialized
     headers: [ allegro5/allegro_font.h ]
+  - symbol: al_draw_filled_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_is_primitives_addon_initialized
+    headers: [ allegro5/allegro_primitives.h ]
   - symbol: al_is_ttf_addon_initialized
     headers: [ allegro5/allegro_ttf.h ]
 
