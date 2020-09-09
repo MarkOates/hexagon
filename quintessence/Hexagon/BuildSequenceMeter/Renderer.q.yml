@@ -12,6 +12,13 @@ functions:
 
   - name: render
     type: void
+    body: |
+      render_rectangle();
+      return;
+
+
+  - name: render_rectangle
+    type: void
     guards: [ al_is_system_installed(), al_is_primitives_addon_initialized(), al_is_ttf_addon_initialized(), font_bin ]
     body: |
       al_draw_filled_rectangle(0, 0, 100, 100, ALLEGRO_COLOR{1, 1, 1, 1});

@@ -27,7 +27,7 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
 {
    Hexagon::BuildSequenceMeter::Renderer renderer;
    std::string expected_error_message =
-      "Renderer::render: error: guard \"font_bin\" not met";
+      "Renderer::render_rectangle: error: guard \"font_bin\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
 
