@@ -13,7 +13,23 @@ functions:
   - name: render
     type: void
     body: |
+      // steps:
+      //   parsing_yaml
+      //   making_component_object_files
+      //   component_build_is_successful
+         //   check_missing_symbol_errors_in_program_files_build
+
+      //   make_focused_component_test
+      //   run_focused_component_test
+         //   check_missing_symbol_errors_in_program_files_build
+
+      //   build_program_files
+      //   build_is_successful
+
+      // missing step - defaults change in header file(s)
+
       render_rectangle();
+
       return;
 
 
