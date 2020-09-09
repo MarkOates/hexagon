@@ -34,7 +34,7 @@ return;
 
 }
 
-void Renderer::render_rectangle()
+void Renderer::render_rectangle(std::string status)
 {
 if (!(al_is_system_installed()))
    {
@@ -60,6 +60,12 @@ if (!(font_bin))
       error_message << "Renderer" << "::" << "render_rectangle" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
+// statuses:
+//   incomplete: nothing has run yet
+//   running: current step is being executed and will show results once processed
+//   failed: current step failed
+//   succeeded: current step succeeded
+
 al_draw_filled_rectangle(0, 0, 100, 100, ALLEGRO_COLOR{1, 1, 1, 1});
 return;
 

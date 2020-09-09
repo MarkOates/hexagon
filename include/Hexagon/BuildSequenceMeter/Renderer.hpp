@@ -2,6 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
+#include <string>
 
 
 namespace Hexagon
@@ -19,7 +20,7 @@ namespace Hexagon
 
 
       void render();
-      void render_rectangle();
+      void render_rectangle(std::string status="incomplete");
       };
    }
 }

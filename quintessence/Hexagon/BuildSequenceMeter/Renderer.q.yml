@@ -19,8 +19,18 @@ functions:
 
   - name: render_rectangle
     type: void
+    parameters:
+      - name: status
+        type: std::string
+        default_argument: '"incomplete"'
     guards: [ al_is_system_installed(), al_is_primitives_addon_initialized(), al_is_ttf_addon_initialized(), font_bin ]
     body: |
+      // statuses:
+      //   incomplete: nothing has run yet
+      //   running: current step is being executed and will show results once processed
+      //   failed: current step failed
+      //   succeeded: current step succeeded
+
       al_draw_filled_rectangle(0, 0, 100, 100, ALLEGRO_COLOR{1, 1, 1, 1});
       return;
     body_dependency_symbols:
