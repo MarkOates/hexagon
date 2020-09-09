@@ -26,15 +26,6 @@ Hexagon::Layout LayoutFromYAML::load()
 // https://github.com/jbeder/yaml-cpp/wiki/Tutorial
 
 
-// pre-sanitize
-//
-// Certain strings can cause parsing to stall.  So far, a string "{# ke\ny{:" has been identified
-// as causing this program halt, and can be resolved by ensuring a newline is present at the end.
-// This is not the right approach (the library should not stall in the first place) so hopefully
-// this is good enough to catch the edge case and not cause unexplained differences in parsing data
-// length.
-//
-// Here is an issue describing it: https://github.com/jbeder/yaml-cpp/issues/938
 if (source_yaml.empty()) return {};
 else if (source_yaml.back() != '\n') source_yaml.append("\n");
 
