@@ -24,7 +24,7 @@ ProjectFromYAML::~ProjectFromYAML()
 Hexagon::Project ProjectFromYAML::load()
 {
 YAML::Node node = YAML::Load(source_yaml);
-Hexagon::Project project;
+Hexagon::Project project(name);
 
 std::vector<std::tuple<std::string, Hexagon::Layout>> layouts = {
    { "label", Hexagon::Layout("Fancy/ConceptName") },

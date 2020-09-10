@@ -61,7 +61,7 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_valu
 {
    Hexagon::ProjectFromYAML project_from_yaml("UnnamedProject", FULL_TEST_FIXTURE);
 
-   Hexagon::Project expected_project;
+   Hexagon::Project expected_project("UnnamedProject");
    Hexagon::Project actual_project = project_from_yaml.load();
 
    ASSERT_EQ(expected_project.get_project_name(), actual_project.get_project_name());
