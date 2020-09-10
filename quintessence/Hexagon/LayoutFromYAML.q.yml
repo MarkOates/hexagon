@@ -1,10 +1,6 @@
 properties:
 
 
-  - name: source_yaml
-    type: std::string
-    init_with: '"# empty"'
-    constructor_arg: true
   - name: root_node
     type: YAML::Node
     init_with: '{}'
