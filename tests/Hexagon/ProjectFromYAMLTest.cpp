@@ -76,13 +76,17 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_valu
 
    std::vector<std::tuple<std::string, Hexagon::Layout>> expected_layouts = {
       { "label", Hexagon::Layout() },
+      { "label", Hexagon::Layout() },
    };
    std::vector<std::tuple<std::string, Hexagon::Layout>> actual_layouts = project.get_layouts();
 
-   ASSERT_EQ(1, actual_layouts.size());
-   ASSERT_EQ(1, expected_layouts.size());
+   ASSERT_EQ(2, actual_layouts.size());
+   ASSERT_EQ(2, expected_layouts.size());
 
-   ASSERT_EQ("label", std::get<0>(actual_layouts[0]));
-   ASSERT_EQ("Fancy/ConceptName", std::get<1>(actual_layouts[0]).get_concept_name());
+   EXPECT_EQ("Component/NameFromFixture", std::get<0>(actual_layouts[0]));
+   EXPECT_EQ("Component/NameFromFixture", std::get<1>(actual_layouts[0]).get_concept_name());
+
+   EXPECT_EQ("Component/Something/AnotherComponent", std::get<0>(actual_layouts[1]));
+   EXPECT_EQ("Component/Something/AnotherComponent", std::get<1>(actual_layouts[1]).get_concept_name());
 }
 
