@@ -20,7 +20,13 @@ functions:
       YAML::Node node = YAML::Load(source_yaml);
       Hexagon::Project project(name);
 
-      std::vector<std::tuple<std::string, Hexagon::Layout>> layouts = {
+      YAML::Node layouts_node = node["layouts"];
+      std::vector<std::tuple<std::string, Hexagon::Layout>> layouts;
+      for (std::size_t i=0;i<layouts_node.size();i++)
+      {
+      }
+
+      layouts = {
          { "label", Hexagon::Layout("Fancy/ConceptName") },
       };
 
@@ -28,6 +34,7 @@ functions:
 
       return project;
     body_dependency_symbols:
+      - Hexagon::LayoutFromYAML
       - Hexagon::Project
       - YAML::Node
 
@@ -35,6 +42,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::LayoutFromYAML
+    headers: [ Hexagon/LayoutFromYAML.hpp ]
   - symbol: Hexagon::Project
     headers: [ Hexagon/Project.hpp ]
   - symbol: YAML::Node

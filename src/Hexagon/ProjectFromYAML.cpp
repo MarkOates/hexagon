@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/ProjectFromYAML.hpp>
+#include <Hexagon/LayoutFromYAML.hpp>
 #include <Hexagon/Project.hpp>
 #include <yaml-cpp/yaml.h>
 
@@ -26,7 +27,13 @@ Hexagon::Project ProjectFromYAML::load()
 YAML::Node node = YAML::Load(source_yaml);
 Hexagon::Project project(name);
 
-std::vector<std::tuple<std::string, Hexagon::Layout>> layouts = {
+YAML::Node layouts_node = node["layouts"];
+std::vector<std::tuple<std::string, Hexagon::Layout>> layouts;
+for (std::size_t i=0;i<layouts_node.size();i++)
+{
+}
+
+layouts = {
    { "label", Hexagon::Layout("Fancy/ConceptName") },
 };
 
