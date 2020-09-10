@@ -10,9 +10,9 @@ namespace Hexagon
 {
 
 
-LayoutFromYAML::LayoutFromYAML(std::string source_yaml, YAML::Node yaml_node)
+LayoutFromYAML::LayoutFromYAML(std::string source_yaml, YAML::Node root_node)
    : source_yaml(source_yaml)
-   , yaml_node(yaml_node)
+   , root_node(root_node)
 {
 }
 
@@ -27,19 +27,16 @@ Hexagon::Layout LayoutFromYAML::load()
 // https://github.com/jbeder/yaml-cpp/wiki/Tutorial
 
 
-YAML::Node node = yaml_node;
-
-
 // parse concept name
 std::string concept_name;
-if (node["name"])
+if (root_node["name"])
 {
-   concept_name = node["name"].as<std::string>();
+   concept_name = root_node["name"].as<std::string>();
 }
 
 
 // parse files
-YAML::Node files_node = node["files"];
+YAML::Node files_node = root_node["files"];
 std::vector<std::tuple<std::string, std::string, placement3d>> result_files = {};
 for (std::size_t i=0;i<files_node.size();i++)
 {
@@ -65,9 +62,9 @@ for (std::size_t i=0;i<files_node.size();i++)
 
 // parse daemus command
 std::string daemus_command;
-if (node["daemus_command"])
+if (root_node["daemus_command"])
 {
-   daemus_command = node["daemus_command"].as<std::string>();
+   daemus_command = root_node["daemus_command"].as<std::string>();
 }
 
 
