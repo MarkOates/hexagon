@@ -59,7 +59,7 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_the_expected_response)
 
 TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_values)
 {
-   Hexagon::ProjectFromYAML project_from_yaml(FULL_TEST_FIXTURE);
+   Hexagon::ProjectFromYAML project_from_yaml("UnnamedProject", FULL_TEST_FIXTURE);
 
    Hexagon::Project expected_project;
    Hexagon::Project actual_project = project_from_yaml.load();
@@ -69,7 +69,7 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_valu
 
 TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_values_for_layouts)
 {
-   Hexagon::ProjectFromYAML project_from_yaml(FULL_TEST_FIXTURE);
+   Hexagon::ProjectFromYAML project_from_yaml("UnnamedProject", FULL_TEST_FIXTURE);
    Hexagon::Project project = project_from_yaml.load();
 
    std::vector<std::tuple<std::string, Hexagon::Layout>> expected_layouts = {

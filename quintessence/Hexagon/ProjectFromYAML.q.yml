@@ -1,6 +1,10 @@
 properties:
 
 
+  - name: name
+    type: std::string
+    init_with: '"Untitled"'
+    constructor_arg: true
   - name: source_yaml
     type: std::string
     init_with: '"# empty"'

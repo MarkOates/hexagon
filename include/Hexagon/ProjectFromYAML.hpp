@@ -10,10 +10,11 @@ namespace Hexagon
    class ProjectFromYAML
    {
    private:
+      std::string name;
       std::string source_yaml;
 
    public:
-      ProjectFromYAML(std::string source_yaml="# empty");
+      ProjectFromYAML(std::string name="Untitled", std::string source_yaml="# empty");
       ~ProjectFromYAML();
 
 

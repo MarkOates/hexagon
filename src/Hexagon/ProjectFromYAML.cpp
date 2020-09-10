@@ -9,8 +9,9 @@ namespace Hexagon
 {
 
 
-ProjectFromYAML::ProjectFromYAML(std::string source_yaml)
-   : source_yaml(source_yaml)
+ProjectFromYAML::ProjectFromYAML(std::string name, std::string source_yaml)
+   : name(name)
+   , source_yaml(source_yaml)
 {
 }
 
