@@ -85,8 +85,10 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_valu
 
    EXPECT_EQ(std::get<0>(expected_layouts[0]), std::get<0>(actual_layouts[0]));
    EXPECT_EQ(std::get<0>(expected_layouts[0]), std::get<1>(actual_layouts[0]).get_concept_name());
+   // TODO: assert on the layout... or not?  It's already comprehensively tested in LayoutFromYAML
 
    EXPECT_EQ(std::get<0>(expected_layouts[1]), std::get<0>(actual_layouts[1]));
    EXPECT_EQ(std::get<0>(expected_layouts[1]), std::get<1>(actual_layouts[1]).get_concept_name());
+   // TODO: assert on the layout... or not?  It's already comprehensively tested in LayoutFromYAML
 }
 
