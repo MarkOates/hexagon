@@ -31,6 +31,11 @@ YAML::Node layouts_node = node["layouts"];
 std::vector<std::tuple<std::string, Hexagon::Layout>> layouts;
 for (std::size_t i=0;i<layouts_node.size();i++)
 {
+   std::string layout_label = "label";
+   YAML::Node layout_node = layouts_node[i];
+   Hexagon::Layout layout = Hexagon::LayoutFromYAML(layout_node).load();
+
+   layouts.push_back({layout_label, layout});
 }
 
 layouts = {
