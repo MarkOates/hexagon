@@ -4,9 +4,45 @@
 #include <Hexagon/ProjectFromYAML.hpp>
 
 std::string FULL_TEST_FIXTURE = R"END(
-project_name:
-files:
-  - concept_name: FoobarConcept
+components:
+
+
+  - name: Component/NameFromFixture
+    files:
+      - filename: quintessence/Component/NameFromFixture.q.yml
+        file_type: quintessence
+        placement:
+          x: 7.0
+          y: 23.6
+          z: 1.34
+      - filename: tests/Component/NameFromFixtureTest.cpp
+        file_type: cpp_test
+        placement:
+          x: 100.0
+          y: 23.6
+          z: 1.34
+    daemus:
+      - command: 'echo "hello"'
+
+
+  - name: Component/Something/AnotherComponent
+    files:
+      - filename: quintessence/Component/Something/AnotherComponent.q.yml
+        file_type: quintessence
+        placement:
+          x: 7.0
+          y: 23.6
+          z: 1.34
+      - filename: tests/Component/Something/AnotherComponentTest.cpp
+        file_type: cpp_test
+        placement:
+          x: 100.0
+          y: 23.6
+          z: 1.34
+    daemus:
+      - command: 'echo "hello"'
+
+
 )END";
 
 TEST(Hexagon_ProjectFromYAMLTest, can_be_created_without_blowing_up)
