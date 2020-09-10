@@ -24,15 +24,15 @@ ProjectFromYAML::~ProjectFromYAML()
 Hexagon::Project ProjectFromYAML::load()
 {
 YAML::Node node = YAML::Load(source_yaml);
-Hexagon::Project result;
+Hexagon::Project project;
 
 std::vector<std::tuple<std::string, Hexagon::Layout>> layouts = {
    { "label", Hexagon::Layout("Fancy/ConceptName") },
 };
 
-result.set_layouts(layouts);
+project.set_layouts(layouts);
 
-return result;
+return project;
 
 }
 } // namespace Hexagon
