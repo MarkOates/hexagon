@@ -57,14 +57,16 @@ TEST(Hexagon_ProjectFromYAMLTest, load__returns_the_expected_response)
    SUCCEED();
 }
 
-TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_values)
+TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_name)
 {
-   Hexagon::ProjectFromYAML project_from_yaml("UnnamedProject", FULL_TEST_FIXTURE);
+   std::string project_name = "FoobarProject";
+   Hexagon::ProjectFromYAML project_from_yaml(project_name, FULL_TEST_FIXTURE);
+   Hexagon::Project project = project_from_yaml.load();
 
-   Hexagon::Project expected_project("UnnamedProject");
-   Hexagon::Project actual_project = project_from_yaml.load();
+   std::string expected_project_name = project_name;
+   std::string actual_project_name = project.get_project_name();
 
-   ASSERT_EQ(expected_project.get_project_name(), actual_project.get_project_name());
+   ASSERT_EQ(expected_project_name, actual_project_name);
 }
 
 TEST(Hexagon_ProjectFromYAMLTest, load__returns_a_project_with_the_expected_values_for_layouts)
