@@ -45,6 +45,8 @@ catch (std::exception &e)
    throw std::runtime_error(error_message.str());
 }
 
+node = yaml_node;
+
 
 // parse concept name
 std::string concept_name;
