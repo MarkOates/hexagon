@@ -57,16 +57,6 @@ TEST(Hexagon__LayoutFromYAMLTest, can_be_created_without_blowing_up)
    Hexagon::LayoutFromYAML layout_from_yaml;
 }
 
-TEST(Hexagon__LayoutFromYAMLTest, load__with_invalid_yaml_has_some_predictable_behavior)
-{
-   std::string invalid_source_yaml = "{# ke\ny{:";
-   Hexagon::LayoutFromYAML layout_from_yaml(invalid_source_yaml);
-   std::string expected_error_message = "Hexagon::LayoutFromYAML::load() error: YAML::Load failed " \
-                                        "to parse and threw the following error message: \"yaml-cpp: " \
-                                        "error at line 2, column 2: end of map flow not found\"";
-   ASSERT_THROW_WITH_MESSAGE(layout_from_yaml.load(), std::runtime_error, expected_error_message);
-}
-
 TEST(Hexagon__LayoutFromYAMLTest, load__by_defaut_returns_an_empty_layout)
 {
    Hexagon::LayoutFromYAML layout_from_yaml;
