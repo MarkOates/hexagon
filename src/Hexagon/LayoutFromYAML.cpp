@@ -27,25 +27,7 @@ Hexagon::Layout LayoutFromYAML::load()
 // https://github.com/jbeder/yaml-cpp/wiki/Tutorial
 
 
-if (source_yaml.empty()) return {};
-else if (source_yaml.back() != '\n') source_yaml.append("\n");
-
-
-// create the root node
-YAML::Node node;
-try
-{
-   node = YAML::Load(source_yaml);
-}
-catch (std::exception &e)
-{
-   std::stringstream error_message;
-   error_message << "Hexagon::LayoutFromYAML::load() error: YAML::Load failed to parse and threw ";
-   error_message << "the following error message: \"" << e.what() << "\"";
-   throw std::runtime_error(error_message.str());
-}
-
-node = yaml_node;
+YAML::Node node = yaml_node;
 
 
 // parse concept name
