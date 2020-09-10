@@ -71,7 +71,8 @@ TEST(Hexagon__LayoutFromYAMLTest, load__by_defaut_returns_an_empty_layout)
 TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_concept_name)
 {
    std::string yaml_source = "name: AnExpected/ConceptName";
-   Hexagon::LayoutFromYAML layout_from_yaml(yaml_source);
+   YAML::Node node = YAML::Load(yaml_source);
+   Hexagon::LayoutFromYAML layout_from_yaml(yaml_source, node);
    Hexagon::Layout expected_layout("AnExpected/ConceptName");
 
    Hexagon::Layout actual_layout = layout_from_yaml.load();
@@ -82,7 +83,7 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_concept_name)
 TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_files)
 {
    YAML::Node node = YAML::Load(YAML_SOURCE_FIXTURE);
-   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE);
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE, node);
 
    Hexagon::Layout layout = layout_from_yaml.load();
 
@@ -101,7 +102,7 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_files)
 TEST(Hexagon__LayoutFromYAMLTest, load__parses_multiple_files)
 {
    YAML::Node node = YAML::Load(YAML_SOURCE_FIXTURE_WITH_MULTIPLE_FILES);
-   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITH_MULTIPLE_FILES);
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITH_MULTIPLE_FILES, node);
 
    Hexagon::Layout layout = layout_from_yaml.load();
 
@@ -125,7 +126,7 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_multiple_files)
 TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_daemus_command)
 {
    YAML::Node node = YAML::Load(YAML_SOURCE_FIXTURE);
-   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE);
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE, node);
 
    Hexagon::Layout actual_layout = layout_from_yaml.load();
 
@@ -138,7 +139,7 @@ TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_daemus_command)
 TEST(Hexagon__LayoutFromYAMLTest, load__without_a_daemus_command__sets_to_an_empty_string)
 {
    YAML::Node node = YAML::Load(YAML_SOURCE_FIXTURE_WITHOUT_DAEMUS_COMMAND);
-   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITHOUT_DAEMUS_COMMAND);
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITHOUT_DAEMUS_COMMAND, node);
 
    Hexagon::Layout actual_layout = layout_from_yaml.load();
 
@@ -151,7 +152,7 @@ TEST(Hexagon__LayoutFromYAMLTest, load__without_a_daemus_command__sets_to_an_emp
 TEST(Hexagon__LayoutFromYAMLTest, load__without_a_concept_name__sets_to_an_empty_string)
 {
    YAML::Node node = YAML::Load(YAML_SOURCE_FIXTURE_WITHOUT_CONCEPT_NAME);
-   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITHOUT_CONCEPT_NAME);
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITHOUT_CONCEPT_NAME, node);
 
    Hexagon::Layout actual_layout = layout_from_yaml.load();
 
@@ -169,7 +170,7 @@ TEST(Hexagon__LayoutFromYAMLTest, load__without_a_damus_command_sets_to_empty_st
 TEST(Hexagon__LayoutFromYAMLTest, load__parses_the_file_placements)
 {
    YAML::Node node = YAML::Load(YAML_SOURCE_FIXTURE_WITH_PLACEMENT);
-   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITH_PLACEMENT);
+   Hexagon::LayoutFromYAML layout_from_yaml(YAML_SOURCE_FIXTURE_WITH_PLACEMENT, node);
    placement3d placement = placement3d{ 7.0, 23.6, 1.34 };
 
    Hexagon::Layout layout = layout_from_yaml.load();

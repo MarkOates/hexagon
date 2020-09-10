@@ -5,6 +5,10 @@ properties:
     type: std::string
     init_with: '"# empty"'
     constructor_arg: true
+  - name: yaml_node
+    type: YAML::Node
+    init_with: '{}'
+    constructor_arg: true
 
 
 functions:
