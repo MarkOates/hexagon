@@ -123,6 +123,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , last_component_navigator_selection("")
    , global_font_resource_filename("Menlo-Regular.ttf")
    , global_font_size(-20)
+   , target("")
    , command_mode(false)
    , focused_component_name("")
    , focused_component_name_relative_names()

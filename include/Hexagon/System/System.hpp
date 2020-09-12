@@ -37,6 +37,7 @@ public:
    std::string last_component_navigator_selection;
    std::string last_project_navigator_selection;
    std::string global_font_resource_filename;
+   std::string target;
    int global_font_size;
    bool command_mode;
    std::string focused_component_name;
