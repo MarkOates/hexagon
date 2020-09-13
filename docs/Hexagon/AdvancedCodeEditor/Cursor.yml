@@ -1,0 +1,12 @@
+constructor:
+
+methods:
+  move_up:
+    description: Moves the cursor up one by decrementing `y`.
+  move_down:
+    description: Moves the cursor down one by incrementing `y`.
+  move_to:
+    description: Moves the cursor to the `x` and `y` values.
+    params:
+      x: The `x` value to assign to the `x` property.
+      y: The `y` value to assign to the `y` property.
