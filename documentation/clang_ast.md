@@ -6,7 +6,7 @@ introduction: https://clang.llvm.org/docs/IntroductionToTheClangAST.html
 To dump the AST of a file to the terminal, you may use a command like this:
 
 ```
-clang -Xclang -ast-dump -fsyntax-only include/Hexagon/Logo.hpp -I../allegro_flare
+clang -Xclang -ast-dump -fsyntax-only include/Hexagon/Logo.hpp -I../allegro_flare/include
 ```
 
 Alternatively, any component of the above can be assembled programatically
