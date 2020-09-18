@@ -51,7 +51,7 @@ public:
           Hexagon::System::Config &config = System::dummy_config,
           Motion &motion = System::dummy_motion);
 
-   bool initialize();
+   void initialize();
    int get_display_default_width();
    int get_display_default_height();
    float get_default_camera_stepback();

@@ -122,19 +122,19 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , last_file_navigator_selection("")
    , last_component_navigator_selection("")
    , global_font_resource_filename("Menlo-Regular.ttf")
-   , global_font_size(-20)
    , target("")
+   , global_font_size(-20)
    , command_mode(false)
    , focused_component_name("")
    , focused_component_name_relative_names()
-   , font_bin()
    , packets()
+   , font_bin()
    , hud(display, font_bin)
    , default_camera_stepback(70 + 60)
 {
 }
 
-bool System::initialize()
+void System::initialize()
 {
    config.initialize(); // is this redundant?  Should this be initialized before being passed in?
 
@@ -508,7 +508,6 @@ bool System::toggle_command_mode_on()
    if (command_mode) return true;
 
    float camera_zoomed_out_position = get_default_camera_stepback() + 40;
-   float camera_zoomed_in_position = get_default_camera_stepback();
    //camera.rotation.x = 0.035;
    //float camera_x_rotation_in_zoomed_out_position = 0.035;
    float camera_x_rotation_in_zoomed_out_position = 0.0;
@@ -548,7 +547,6 @@ bool System::reset_camera_to_center()
 {
    if (!command_mode) return true;
 
-   float camera_zoomed_out_position = get_default_camera_stepback() + 40;
    float camera_zoomed_in_position = get_default_camera_stepback();
    //camera.rotation.x = 0;
 
@@ -813,12 +811,14 @@ bool System::save_frontmost_code_editor_stage()
 bool System::increase_font_size()
 {
    global_font_size -= 1;
+   return true;
 }
 
 
 bool System::decrease_font_size()
 {
    global_font_size += 1;
+   return true;
 }
 
 
@@ -918,6 +918,7 @@ bool System::spawn_red_overlay()
 {
    Hexagon::FullScreenOverlay::Stage *red_overlay = new Hexagon::FullScreenOverlay::Stage;
    stages.push_back(red_overlay);
+   return true;
 }
 
 
