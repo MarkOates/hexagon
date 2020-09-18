@@ -40,7 +40,7 @@ functions:
 
 
   - name: process_local_event
-    is_override: true
+    override: true
     parameters:
       - name: event_name
         type: std::string
@@ -52,7 +52,7 @@ functions:
 
 
   - name: process_event
-    is_override: true
+    override: true
     parameters:
       - name: event
         type: ALLEGRO_EVENT&
