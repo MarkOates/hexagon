@@ -68,6 +68,7 @@
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/KeyboardInputsModal/Stage.hpp>
 #include <Hexagon/EventControllerInterface.hpp>
+#include <Hexagon/StageCollectionHelper.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/Hud.hpp>
@@ -244,12 +245,8 @@ std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
 
 int System::get_number_of_code_editor_stages()
 {
-   int result = 0;
-   for (auto &stage : stages)
-   {
-      if (stage->get_type() == StageInterface::CODE_EDITOR) result++;
-   }
-   return result;
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+   return stage_collection_helper.count_code_editor_stages();
 }
 
 
