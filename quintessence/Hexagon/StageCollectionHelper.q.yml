@@ -17,6 +17,18 @@ functions:
       return *stages;
 
 
+  - name: count_code_editor_stages
+    type: int
+    guards: [ stages ]
+    body: |
+      int result = 0;
+      for (auto &stage : *stages)
+      {
+         if (stage->get_type() == StageInterface::CODE_EDITOR) result++;
+      }
+      return result;
+
+
 dependencies:
 
 

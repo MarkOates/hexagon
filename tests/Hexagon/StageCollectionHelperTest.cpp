@@ -33,3 +33,8 @@ TEST(Hexagon_StageCollectionHelperTest, all__returns_all_of_the_stages)
    EXPECT_EQ(expected_collection, actual_collection);
 }
 
+TEST(Hexagon_StageCollectionHelperTest, count_code_editor_stages__returns_the_number_of_code_editor_stages)
+{
+   // TODO
+}
+

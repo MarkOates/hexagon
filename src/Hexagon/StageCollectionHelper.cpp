@@ -3,6 +3,8 @@
 #include <Hexagon/StageCollectionHelper.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -29,6 +31,23 @@ if (!(stages))
       throw std::runtime_error(error_message.str());
    }
 return *stages;
+
+}
+
+int StageCollectionHelper::count_code_editor_stages()
+{
+if (!(stages))
+   {
+      std::stringstream error_message;
+      error_message << "StageCollectionHelper" << "::" << "count_code_editor_stages" << ": error: " << "guard \"stages\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+int result = 0;
+for (auto &stage : *stages)
+{
+   if (stage->get_type() == StageInterface::CODE_EDITOR) result++;
+}
+return result;
 
 }
 } // namespace Hexagon
