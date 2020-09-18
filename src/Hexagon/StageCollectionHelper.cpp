@@ -9,6 +9,7 @@ namespace Hexagon
 
 
 StageCollectionHelper::StageCollectionHelper()
+   : stages(nullptr)
 {
 }
 

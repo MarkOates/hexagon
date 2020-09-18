@@ -1,3 +1,11 @@
+properties:
+
+
+  - name: stages
+    type: std::vector<StageInterface *>*
+    init_with: nullptr
+
+
 functions:
 
 
@@ -5,4 +13,10 @@ functions:
     type: std::string
     body: return "Hello World!";
 
+
+dependencies:
+
+
+  - symbol: std::vector<StageInterface *>*
+    headers: [ vector, Hexagon/StageInterface.hpp ]
 

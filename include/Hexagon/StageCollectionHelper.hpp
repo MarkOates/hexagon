@@ -1,7 +1,9 @@
 #pragma once
 
 
+#include <Hexagon/StageInterface.hpp>
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -9,6 +11,7 @@ namespace Hexagon
    class StageCollectionHelper
    {
    private:
+      std::vector<StageInterface *>* stages;
 
    public:
       StageCollectionHelper();
