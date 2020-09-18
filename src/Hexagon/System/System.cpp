@@ -200,8 +200,8 @@ Hexagon::CodeEditor::Stage *System::get_frontmost_code_editor_stage()
 
    StageInterface::type_t type = frontmost_stage->get_type();
    if (type == StageInterface::ONE_LINE_INPUT_BOX
-    || type == StageInterface::CODE_EDITOR
-    || type == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX)
+      || type == StageInterface::CODE_EDITOR
+      || type == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX)
    {
       return static_cast<Hexagon::CodeEditor::Stage *>(get_frontmost_stage());
    }
