@@ -19,6 +19,7 @@ namespace Hexagon
 
    std::vector<StageInterface *> all();
    int count_code_editor_stages();
+   StageInterface* get_frontmost_stage();
    };
 }
 

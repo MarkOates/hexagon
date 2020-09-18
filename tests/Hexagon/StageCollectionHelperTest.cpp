@@ -38,3 +38,8 @@ TEST(Hexagon_StageCollectionHelperTest, count_code_editor_stages__returns_the_nu
    // TODO
 }
 
+TEST(Hexagon_StageCollectionHelperTest, get_frontmost_stage__returns_the_stage_at_the_back_of_the_collection)
+{
+   // TODO
+}
+

@@ -5,6 +5,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -48,6 +50,20 @@ for (auto &stage : *stages)
    if (stage->get_type() == StageInterface::CODE_EDITOR) result++;
 }
 return result;
+
+}
+
+StageInterface* StageCollectionHelper::get_frontmost_stage()
+{
+if (!(stages))
+   {
+      std::stringstream error_message;
+      error_message << "StageCollectionHelper" << "::" << "get_frontmost_stage" << ": error: " << "guard \"stages\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+std::vector<StageInterface *> stages = *(this->stages);
+if (stages.size() == 0) return nullptr;
+return stages.back();
 
 }
 } // namespace Hexagon

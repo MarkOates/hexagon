@@ -29,9 +29,20 @@ functions:
       return result;
 
 
+  - name: get_frontmost_stage
+    type: StageInterface*
+    guards: [ stages ]
+    body: |
+      std::vector<StageInterface *> stages = *(this->stages);
+      if (stages.size() == 0) return nullptr;
+      return stages.back();
+
+
 dependencies:
 
 
+  - symbol: StageInterface*
+    headers: [ Hexagon/StageInterface.hpp ]
   - symbol: std::vector<StageInterface *>*
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: std::vector<StageInterface *>
