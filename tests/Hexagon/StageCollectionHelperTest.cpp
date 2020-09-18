@@ -10,8 +10,12 @@ TEST(Hexagon_StageCollectionHelperTest, can_be_created_without_blowing_up)
 
 TEST(Hexagon_StageCollectionHelperTest, run__returns_the_expected_response)
 {
-   Hexagon::StageCollectionHelper stage_collection_helper;
-   std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, stage_collection_helper.run());
+   std::vector<StageInterface *> stages = {};
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+
+   std::vector<StageInterface *> expected_collection = {};
+   std::vector<StageInterface *> actual_collection = stage_collection_helper.all();
+
+   EXPECT_EQ(expected_collection, actual_collection);
 }
 

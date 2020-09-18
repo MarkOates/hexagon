@@ -4,19 +4,24 @@ properties:
   - name: stages
     type: std::vector<StageInterface *>*
     init_with: nullptr
+    constructor_arg: true
 
 
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: all
+    type: std::vector<StageInterface *>
+    guards: [ stages ]
+    body: |
+      return *stages;
 
 
 dependencies:
 
 
   - symbol: std::vector<StageInterface *>*
+    headers: [ vector, Hexagon/StageInterface.hpp ]
+  - symbol: std::vector<StageInterface *>
     headers: [ vector, Hexagon/StageInterface.hpp ]
 

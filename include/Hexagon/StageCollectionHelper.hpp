@@ -2,7 +2,6 @@
 
 
 #include <Hexagon/StageInterface.hpp>
-#include <string>
 #include <vector>
 
 
@@ -14,11 +13,11 @@ namespace Hexagon
       std::vector<StageInterface *>* stages;
 
    public:
-      StageCollectionHelper();
+      StageCollectionHelper(std::vector<StageInterface *>* stages=nullptr);
       ~StageCollectionHelper();
 
 
-   std::string run();
+   std::vector<StageInterface *> all();
    };
 }
 
