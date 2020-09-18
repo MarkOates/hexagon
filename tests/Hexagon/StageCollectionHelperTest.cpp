@@ -8,7 +8,7 @@ TEST(Hexagon_StageCollectionHelperTest, can_be_created_without_blowing_up)
    Hexagon::StageCollectionHelper stage_collection_helper;
 }
 
-TEST(Hexagon_StageCollectionHelperTest, run__returns_the_expected_response)
+TEST(Hexagon_StageCollectionHelperTest, all__returns_all_of_the_stages)
 {
    std::vector<StageInterface *> stages = {};
    Hexagon::StageCollectionHelper stage_collection_helper(&stages);
