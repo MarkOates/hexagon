@@ -189,8 +189,8 @@ std::string System::get_global_font_str()
 
 StageInterface *System::get_frontmost_stage()
 {
-   if (stages.size() == 0) return nullptr;
-   return stages.back();
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+   return stage_collection_helper.get_frontmost_stage();
 }
 
 
