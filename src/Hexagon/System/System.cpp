@@ -534,8 +534,6 @@ bool System::toggle_command_mode_on()
                    nullptr,
                    nullptr);
    command_mode = true;
-   //camera.rotation
-   //std::rotate(stages.begin(), stages.begin() + 1, stages.end());
    return true;
 }
 
@@ -573,7 +571,6 @@ bool System::reset_camera_to_center()
                    nullptr);
 
    command_mode = false;
-   //std::rotate(stages.begin(), stages.begin() + 1, stages.end());
    return true;
 }
 
