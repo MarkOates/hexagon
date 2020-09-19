@@ -5,6 +5,10 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <vector>
+#include <Hexagon/CodeEditor/Stage.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 
@@ -48,6 +52,27 @@ int result = 0;
 for (auto &stage : *stages)
 {
    if (stage->get_type() == StageInterface::CODE_EDITOR) result++;
+}
+return result;
+
+}
+
+std::vector<Hexagon::CodeEditor::Stage *> StageCollectionHelper::get_all_code_editor_stages_as_code_editor_stages()
+{
+if (!(stages))
+   {
+      std::stringstream error_message;
+      error_message << "StageCollectionHelper" << "::" << "get_all_code_editor_stages_as_code_editor_stages" << ": error: " << "guard \"stages\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+std::vector<Hexagon::CodeEditor::Stage *> result;
+for (auto &stage : (*stages))
+{
+   StageInterface::type_t type = stage->get_type();
+   if (type == StageInterface::CODE_EDITOR)
+   {
+      result.push_back(static_cast<Hexagon::CodeEditor::Stage *>(stage));
+   }
 }
 return result;
 
