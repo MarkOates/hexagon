@@ -90,25 +90,6 @@ functions:
       return nullptr;
 
 
-  - name: create_rerun_output_watcher
-    type: StageInterface*
-    body: |
-      float golden_ratio = 0.61803f;
-      float x_pos = golden_ratio * obtain_display_default_width() - obtain_display_default_width()/2;
-      placement3d place(x_pos, -obtain_display_default_height()/2 + 30, 0);
-      place.size = vec3d(0, 0, 0.0);
-      place.align = vec3d(0, 0, 0);
-      place.scale = vec3d(0.7, 0.7, 0.0);
-
-      Hexagon::RerunOutputWatcher::Stage *rerun_output_watcher = new Hexagon::RerunOutputWatcher::Stage();
-      rerun_output_watcher->set_place(place);
-      rerun_output_watcher->set_font(obtain_global_font());
-
-      return rerun_output_watcher;
-    body_dependency_symbols:
-       - Hexagon::RerunOutputWatcher::Stage
-
-
   - name: create_file_navigator
     type: StageInterface*
     parameters:
@@ -362,8 +343,6 @@ functions:
 dependencies:
 
 
-  - symbol: Hexagon::RerunOutputWatcher::Stage
-    headers: [ Hexagon/RerunOutputWatcher/Stage.hpp ]
   - symbol: Hexagon::MissingFile::Stage
     headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Hexagon::FileNavigator::Stage

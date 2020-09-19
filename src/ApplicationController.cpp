@@ -48,7 +48,6 @@
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/FileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
-#include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/LayoutPlacements.hpp>
 #include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
 #include <NcursesArt/ProjectFilenameGenerator.hpp>

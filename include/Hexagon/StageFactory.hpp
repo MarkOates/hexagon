@@ -33,7 +33,6 @@ namespace Hexagon
    int obtain_display_default_width();
    int obtain_display_default_height();
    StageInterface* create();
-   StageInterface* create_rerun_output_watcher();
    StageInterface* create_file_navigator(std::string directory="");
    StageInterface* create_missing_file(std::string filename="");
    StageInterface* create_code_editor(std::string filename="", std::string file_category="undefined");

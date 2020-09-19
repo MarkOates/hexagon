@@ -312,7 +312,6 @@ dependencies:
       - Hexagon/CodeEditor/CodeEditor.hpp
       - Hexagon/FileSystemNode.hpp
       - Hexagon/FileNavigator/Stage.hpp
-      - Hexagon/RerunOutputWatcher/Stage.hpp
       - Hexagon/LayoutPlacements.hpp
       - NcursesArt/ProjectComponentBasenameExtractor.hpp
       - NcursesArt/ProjectFilenameGenerator.hpp

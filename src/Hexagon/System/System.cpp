@@ -11,7 +11,6 @@
 #include <Hexagon/CodeEditor/EventController.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/FullScreenOverlay/Stage.hpp>
-#include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <allegro5/allegro.h>
 #include <Hexagon/shared_globals.hpp>
 
@@ -77,7 +76,6 @@
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/ProjectComponentNavigator/Stage.hpp>
-#include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/LayoutPlacements.hpp>
 #include <NcursesArt/ProjectComponentBasenameExtractor.hpp>
 #include <NcursesArt/ProjectFilenameGenerator.hpp>

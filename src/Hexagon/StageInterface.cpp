@@ -57,9 +57,6 @@ std::string StageInterface::get_type_name()
       case KEYBOARD_INPUTS_MODAL:
          return "KeyboardInputsModal";
          break;
-      case RERUN_OUTPUT_WATCHER:
-         return "RerunOutputWatcher";
-         break;
       case NEW_COMPONENT_MAKER:
          return "NewComponentMaker";
          break;

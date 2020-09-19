@@ -77,7 +77,6 @@ functions:
       - Hexagon::CodeEditor::Stage*
       - Hexagon::AdvancedComponentNavigator::Stage*
       - Hexagon::FileNavigator::Stage*
-      - Hexagon::RerunOutputWatcher::Stage*
       - Hexagon::Elements::Window
 
 
@@ -106,8 +105,6 @@ dependencies:
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
   - symbol: Hexagon::FileNavigator::Stage*
     headers: [ Hexagon/FileNavigator/Stage.hpp ]
-  - symbol: Hexagon::RerunOutputWatcher::Stage*
-    headers: [ Hexagon/RerunOutputWatcher/Stage.hpp ]
   - symbol: Hexagon::Elements::Window
     headers: [ Hexagon/Elements/Window.hpp ]
 

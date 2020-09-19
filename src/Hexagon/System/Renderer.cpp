@@ -8,7 +8,6 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
-#include <Hexagon/RerunOutputWatcher/Stage.hpp>
 #include <Hexagon/Elements/Window.hpp>
 #include <stdexcept>
 #include <sstream>
