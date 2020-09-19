@@ -928,17 +928,6 @@ bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
 }
 
 
-bool System::spawn_rerun_output_watcher()
-{
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
-   StageInterface *stage = stage_factory.create_rerun_output_watcher();
-
-   stages.push_back(stage);
-
-   return true;
-}
-
-
 bool System::add_file_is_unsaved_notification()
 {
    add_notification(NOTIFICATION_FILE_IS_UNSAVED);
@@ -949,42 +938,6 @@ bool System::add_file_is_unsaved_notification()
 bool System::remove_file_is_unsaved_notification()
 {
    remove_notification(NOTIFICATION_FILE_IS_UNSAVED);
-   return true;
-}
-
-
-bool System::clear_rerun_output_watchers()
-{
-   for (auto &stage : stages)
-   {
-      if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
-      {
-         Hexagon::RerunOutputWatcher::Stage *watcher = static_cast<Hexagon::RerunOutputWatcher::Stage *>(stage);
-         watcher->clear();
-      }
-   }
-   return true;
-}
-
-
-bool System::refresh_rerun_output_watchers()
-{
-   for (auto &stage : stages)
-   {
-      if (stage->get_type() == StageInterface::RERUN_OUTPUT_WATCHER)
-      {
-         Hexagon::RerunOutputWatcher::Stage *watcher = static_cast<Hexagon::RerunOutputWatcher::Stage *>(stage);
-
-         std::vector<std::string> file_contents = {};
-         if (!::read_file(file_contents, MAKE_COMMAND_FILENAME))
-         {
-            throw std::runtime_error("Could not open the make command file");
-         }
-
-         watcher->set_command(file_contents[0]);
-         watcher->refresh();
-      }
-   }
    return true;
 }
 

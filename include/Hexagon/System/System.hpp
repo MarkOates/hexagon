@@ -116,11 +116,8 @@ public:
    bool spawn_component_navigator();
    bool spawn_red_overlay();
    bool spawn_file_navigator();
-   bool spawn_rerun_output_watcher();
    bool add_file_is_unsaved_notification();
    bool remove_file_is_unsaved_notification();
-   bool clear_rerun_output_watchers();
-   bool refresh_rerun_output_watchers();
    bool destroy_topmost_stage();
    bool jump_to_next_code_point_on_stage();
    bool jump_to_next_or_nearest_code_point_on_stage();
