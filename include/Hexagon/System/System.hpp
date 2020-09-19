@@ -162,7 +162,6 @@ public:
    static const std::string CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION;
    static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
-   static const std::string CLEAR_RERUN_OUTPUT_WATCHERS;
    static const std::string SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE;
    static const std::string CENTER_CAMERA_ON_FRONTMOST_STAGE;
    static const std::string CLEAR_LAST_COMPILED_ERROR_MESSAGES;
@@ -184,7 +183,6 @@ public:
    static const std::string REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES;
-   static const std::string REFRESH_RERUN_OUTPUT_WATCHERS;
    static const std::string SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS;
    static const std::string REMOVE_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string TOGGLE_COMMAND_MODE_ON;
@@ -201,7 +199,6 @@ public:
    static const std::string SPAWN_FILE_NAVIGATOR;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
    static const std::string SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL;
-   static const std::string SPAWN_RERUN_OUTPUT_WATCHER;
    static const std::string SUBMIT_CURRENT_MODAL;
    static const std::string FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE;
    static const std::string CHECK_GIT_SYNC_AND_UPDATE_POWERBAR;
