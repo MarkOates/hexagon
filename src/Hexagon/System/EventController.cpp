@@ -69,10 +69,6 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
       &::System::create_two_or_three_split_layout_from_last_component_navigator_selection,
    },
    {
-      ::System::CLEAR_RERUN_OUTPUT_WATCHERS,
-      &::System::clear_rerun_output_watchers,
-   },
-   {
       ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
       &::System::center_camera_on_frontmost_stage,
    },
@@ -135,10 +131,6 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
    {
       ::System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS,
       &::System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents,
-   },
-   {
-      ::System::REFRESH_RERUN_OUTPUT_WATCHERS,
-      &::System::refresh_rerun_output_watchers,
    },
    {
       ::System::INCREASE_FONT_SIZE,
@@ -227,10 +219,6 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
    {
       ::System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL,
       &::System::spawn_git_commit_message_input_box_modal,
-   },
-   {
-      ::System::SPAWN_RERUN_OUTPUT_WATCHER,
-      &::System::spawn_rerun_output_watcher,
    },
    {
       ::System::SUBMIT_CURRENT_MODAL,
