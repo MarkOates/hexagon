@@ -228,18 +228,8 @@ Hexagon::CodeEditor::Stage *System::get_frontmost_git_commit_message_input_box()
 
 std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
 {
-   std::vector<Hexagon::CodeEditor::Stage *> result;
-
-   for (auto &stage : stages)
-   {
-      StageInterface::type_t type = stage->get_type();
-      if (type == StageInterface::CODE_EDITOR)
-      {
-         result.push_back(static_cast<Hexagon::CodeEditor::Stage *>(stage));
-      }
-   }
-
-   return result;
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+   return stage_collection_helper.get_all_code_editor_stages_as_code_editor_stages();
 }
 
 
