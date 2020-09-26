@@ -50,6 +50,12 @@ TEST(Hexagon_StageCollectionHelperTest,
    // TODO
 }
 
+TEST(Hexagon_StageCollectionHelperTest,
+   get_frontmost_code_editor_stage__returns_the_stage_at_the_back_of_the_collection)
+{
+   // TODO
+}
+
 TEST(Hexagon_StageCollectionHelperTest, get_frontmost_stage__returns_the_stage_at_the_back_of_the_collection)
 {
    // TODO

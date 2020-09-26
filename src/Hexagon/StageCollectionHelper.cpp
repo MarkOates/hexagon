@@ -78,6 +78,22 @@ return result;
 
 }
 
+Hexagon::CodeEditor::Stage* StageCollectionHelper::get_frontmost_code_editor_stage()
+{
+StageInterface *frontmost_stage = get_frontmost_stage();
+if (!frontmost_stage) return nullptr;
+
+StageInterface::type_t type = frontmost_stage->get_type();
+if (type == StageInterface::ONE_LINE_INPUT_BOX
+   || type == StageInterface::CODE_EDITOR
+   || type == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX)
+{
+   return static_cast<Hexagon::CodeEditor::Stage *>(get_frontmost_stage());
+}
+return nullptr;
+
+}
+
 StageInterface* StageCollectionHelper::get_frontmost_stage()
 {
 if (!(stages))
