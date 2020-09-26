@@ -160,14 +160,6 @@ functions:
             &::System::rotate_stage_right_and_update_focused_state_on_changed_stages,
          },
          {
-            ::System::ROTATE_RELATIVE_UP,
-            &::System::rotate_relative_up,
-         },
-         {
-            ::System::ROTATE_RELATIVE_DOWN,
-            &::System::rotate_relative_down,
-         },
-         {
             ::System::CLEAR_LAST_COMPILED_ERROR_MESSAGES,
             &::System::clear_last_compiled_error_messages,
          },
@@ -178,10 +170,6 @@ functions:
          {
             ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE,
             &::System::save_frontmost_code_editor_stage,
-         },
-         {
-            ::System::SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE,
-            &::System::set_focused_component_name_to_topmost_relative,
          },
          {
             ::System::SPAWN_COMPONENT_NAVIGATOR,
@@ -334,15 +322,6 @@ functions:
             ::System::OPEN_HEXAGON_CONFIG_FILE,
             ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
              });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, true, false, false, true, {
-            ::System::ROTATE_RELATIVE_UP,
-            ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
-            ::System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, true, false, false, true, {
-            ::System::DESTROY_ALL_CODE_EDITOR_STAGES,
-            ::System::ROTATE_RELATIVE_DOWN,
-            ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
-            ::System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, false, false, true, {
             ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE, });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, {
