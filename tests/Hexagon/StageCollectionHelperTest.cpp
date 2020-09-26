@@ -51,7 +51,13 @@ TEST(Hexagon_StageCollectionHelperTest,
 }
 
 TEST(Hexagon_StageCollectionHelperTest,
-   get_frontmost_code_editor_stage__returns_the_stage_at_the_back_of_the_collection)
+   get_frontmost_code_editor_stage__returns_the_frontmost_stage_if_it_is_a_code_editor_type)
+{
+   // TODO
+}
+
+TEST(Hexagon_StageCollectionHelperTest,
+   get_frontmost_git_commit_message_input_box__returns_the_frontmost_stage_if_it_is_a_git_commit_message_box)
 {
    // TODO
 }
