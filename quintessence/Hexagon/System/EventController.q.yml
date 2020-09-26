@@ -168,10 +168,6 @@ functions:
             &::System::rotate_relative_down,
          },
          {
-            ::System::RUN_MAKE,
-            &::System::run_make,
-         },
-         {
             ::System::CLEAR_LAST_COMPILED_ERROR_MESSAGES,
             &::System::clear_last_compiled_error_messages,
          },
@@ -352,10 +348,6 @@ functions:
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, {
             ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE,
             ::System::RUN_PROJECT_TESTS });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_M, false, false, false, true, {
-            ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE,
-            ::System::CLEAR_LAST_COMPILED_ERROR_MESSAGES,
-            ::System::RUN_MAKE });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, {
             ::System::SPAWN_FILE_NAVIGATOR });
          keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
