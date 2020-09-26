@@ -8,8 +8,6 @@
 
 #include <Hexagon/StageCollectionHelper.hpp>
 
-void foo() {};
-
 TEST(Hexagon_StageCollectionHelperTest, can_be_created_without_blowing_up)
 {
    Hexagon::StageCollectionHelper stage_collection_helper;

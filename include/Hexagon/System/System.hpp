@@ -41,7 +41,6 @@ public:
    int global_font_size;
    bool command_mode;
    std::string focused_component_name;
-   std::vector<std::string> focused_component_name_relative_names;
    std::vector<Hexagon::Packet> packets;
    AllegroFlare::FontBin font_bin;
    Hexagon::Hud hud;
@@ -93,15 +92,11 @@ public:
    bool set_hud_save_count_to_save_count();
    bool set_hud_search_count_to_search_count();
    bool set_hud_packets_to_packets();
-   bool set_focused_component_name_relative_names_from_focused_component_name();
-   bool set_focused_component_name_to_topmost_relative();
    bool toggle_command_mode_on();
    bool toggle_command_mode_off();
    bool reset_camera_to_center();
    bool rotate_stage_right_and_update_focused_state_on_changed_stages();
    bool rotate_stage_left_and_update_focused_state_on_changed_stages();
-   bool rotate_relative_up();
-   bool rotate_relative_down();
    bool center_camera_on_frontmost_stage();
    bool run_project_tests();
    bool save_frontmost_code_editor_stage();

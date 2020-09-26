@@ -125,7 +125,6 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , global_font_size(-20)
    , command_mode(false)
    , focused_component_name("")
-   , focused_component_name_relative_names()
    , packets()
    , font_bin()
    , hud(display, font_bin)
@@ -403,32 +402,6 @@ bool System::set_hud_packets_to_packets()
 }
 
 
-bool System::set_focused_component_name_relative_names_from_focused_component_name()
-{
-   //get_default_navigator_directory(),
-   Blast::Project::Component component(focused_component_name, get_default_navigator_directory());
-   Blast::Project::ComponentRelativeLister lister(&component);
-   this->focused_component_name_relative_names  = lister.list_component_relative_names();
-   return true;
-}
-
-
-bool System::set_focused_component_name_to_topmost_relative()
-{
-   if (this->focused_component_name_relative_names.empty())
-   {
-      std::cout << "Warning: attempting to set_focused_component_name_to_topmost_relative() "
-                << "but no focused_component_name_relative_names exists"
-                << std::endl;
-      return false;
-   }
-
-   focused_component_name = focused_component_name_relative_names.front();
-
-   return true;
-}
-
-
 bool System::fx__play_focus_animation_on_frontmost_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -653,39 +626,6 @@ bool System::rotate_stage_left_and_update_focused_state_on_changed_stages()
    unset_focused_state_on_topmost_stage_if_not_already_unfocused(this);
    std::rotate(stages.rbegin(), stages.rbegin() + 1, stages.rend());
    set_focused_state_on_topmost_stage_if_not_already_focused(this);
-   return true;
-}
-
-
-bool System::rotate_relative_up()
-{
-   if (focused_component_name_relative_names.empty())
-   {
-      std::cout << "Warning: attempting to " << __FUNCTION__ << " but no frontmost stage exists" << std::endl;
-      return false;
-   }
-
-   std::rotate(
-      focused_component_name_relative_names.rbegin(),
-      focused_component_name_relative_names.rbegin() + 1,
-      focused_component_name_relative_names.rend());
-
-   return true;
-}
-
-
-bool System::rotate_relative_down()
-{
-   if (focused_component_name_relative_names.empty())
-   {
-      std::cout << "Warning: attempting to " << __FUNCTION__ << " but no frontmost stage exists" << std::endl;
-      return false;
-   }
-
-   std::rotate(
-      focused_component_name_relative_names.begin(),
-      focused_component_name_relative_names.begin() + 1,
-      focused_component_name_relative_names.end());
    return true;
 }
 
@@ -1248,7 +1188,6 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
 
       set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
-      set_focused_component_name_relative_names_from_focused_component_name();
       return create_three_split_from_last_component_navigator_selection();
    }
    else if (component.has_quintessence() || component.has_test())
@@ -1257,7 +1196,6 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
 
       set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
-      set_focused_component_name_relative_names_from_focused_component_name();
       return attempt_to_create_stage_from_last_component_navigator_selection();
    }
    else
