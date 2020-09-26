@@ -238,13 +238,6 @@ bool System::is_current_stage_a_modal()
 }
 
 
-bool System::is_current_stage_a_regex_input_box()
-{
-   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
-   return stage_collection_helper.is_frontmost_stage_a_regex_input_box();
-}
-
-
 // internal messages
 void System::acknowledge_display_resize(ALLEGRO_DISPLAY *display)
 {

@@ -68,7 +68,6 @@ public:
    // inference
    bool is_current_stage_in_edit_mode();
    bool is_current_stage_a_modal();
-   bool is_current_stage_a_regex_input_box();
 
    // internal messages
    void acknowledge_display_resize(ALLEGRO_DISPLAY *display);
