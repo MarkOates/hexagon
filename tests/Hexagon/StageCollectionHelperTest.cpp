@@ -65,3 +65,15 @@ TEST(Hexagon_StageCollectionHelperTest, get_frontmost_stage__returns_the_stage_a
    // TODO
 }
 
+TEST(Hexagon_StageCollectionHelperTest,
+   is_frontmost_stage_a_regex_input_box__returns_true_if_the_frontmost_stage_is_a_regex_input_box)
+{
+   // TODO
+}
+
+TEST(Hexagon_StageCollectionHelperTest,
+   is_frontmost_stage_a_regex_input_box__returns_false_if_the_frontmost_stage_is_not_a_regex_input_box)
+{
+   // TODO
+}
+
