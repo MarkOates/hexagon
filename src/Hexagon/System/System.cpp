@@ -1163,15 +1163,8 @@ bool System::push_file_navigator_selection()
 
 bool System::attempt_to_create_stage_from_last_file_navigator_selection()
 {
-   //throw std::runtime_error("attempt_to_open_file_navigator_file not yet implemented");
-
    std::string filename = last_file_navigator_selection;
 
-   ///
-
-   //float stage_width = get_default_code_editor_stage_width();
-
-   // validate the selected path is a valid file
    ALLEGRO_FS_ENTRY *fs_entry = al_create_fs_entry(filename.c_str());
    if (!fs_entry)
    {
