@@ -1074,19 +1074,6 @@ bool System::check_git_local_status_and_update_powerbar()
 }
 
 
-bool System::run_make()
-{
-   CppCompiler::CompileRunner compile_runner(
-     get_default_navigator_directory(),
-     "foobar");
-   std::string compile_output = compile_runner.run();
-   std::cout << compile_output << std::endl;
-   set_last_compiled_error_messages(compile_output);
-   //CppCompiler::CompileOutputToCodeMessagePointSetter(compile_output, this);
-   return true;
-}
-
-
 bool System::offset_first_line_to_vertically_center_cursor_on_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
@@ -1529,7 +1516,6 @@ const std::string System::ROTATE_STAGE_LEFT = "ROTATE_STAGE_LEFT";
 const std::string System::ROTATE_STAGE_RIGHT = "ROTATE_STAGE_RIGHT";
 const std::string System::ROTATE_RELATIVE_UP = "ROTATE_RELATIVE_UP";
 const std::string System::ROTATE_RELATIVE_DOWN = "ROTATE_RELATIVE_DOWN";
-const std::string System::RUN_MAKE = "RUN_MAKE";
 const std::string System::CLEAR_LAST_COMPILED_ERROR_MESSAGES = "CLEAR_LAST_COMPILED_ERROR_MESSAGES";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 const std::string System::SAVE_FRONTMOST_CODE_EDITOR_STAGE = "SAVE_FRONTMOST_CODE_EDITOR_STAGE";

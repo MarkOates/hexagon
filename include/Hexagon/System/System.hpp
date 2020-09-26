@@ -121,7 +121,6 @@ public:
    bool destroy_topmost_stage();
    bool jump_to_next_code_point_on_stage();
    bool jump_to_next_or_nearest_code_point_on_stage();
-   bool run_make();
    bool offset_first_line_to_vertically_center_cursor_on_stage();
    bool push_component_navigator_selection();
    bool push_project_navigator_selection();
@@ -192,7 +191,6 @@ public:
    static const std::string ROTATE_STAGE_RIGHT;
    static const std::string ROTATE_RELATIVE_UP;
    static const std::string ROTATE_RELATIVE_DOWN;
-   static const std::string RUN_MAKE;
    static const std::string RUN_PROJECT_TESTS;
    static const std::string SAVE_FRONTMOST_CODE_EDITOR_STAGE;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;
