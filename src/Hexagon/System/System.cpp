@@ -240,14 +240,8 @@ bool System::is_current_stage_a_modal()
 
 bool System::is_current_stage_a_regex_input_box()
 {
-   StageInterface *frontmost_stage = get_frontmost_stage();
-   if (!frontmost_stage)
-   {
-      std::cout << "Warning: attempting to infer if is_current_stage_a_regex_input_box() but no "
-                << "frontmost stage exists" << std::endl;
-      return false;
-   }
-   return frontmost_stage && (frontmost_stage->get_type() == StageInterface::ONE_LINE_INPUT_BOX);
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+   return stage_collection_helper.is_frontmost_stage_a_regex_input_box();
 }
 
 
