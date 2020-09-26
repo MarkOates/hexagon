@@ -281,7 +281,7 @@ functions:
     body: |
       KeyboardCommandMapper keyboard_key_up_mapper;
       KeyboardCommandMapper keyboard_key_down_mapper;
-      KeyboardCommandMapper keyboard_command_mapper;
+      KeyboardCommandMapper keyboard_key_char_mapper;
 
       keyboard_key_down_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, false, {
         ::System::TOGGLE_COMMAND_MODE_ON,
@@ -294,52 +294,52 @@ functions:
 
 
       //                      set_mapping(al_keycode,         shift, ctrl,  alt,   command, std::vector<std::string>)
-      keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, {
+      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, {
          ::System::DESTROY_TOPMOST_STAGE });
 
       if (system->is_current_stage_a_modal())
       {
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, {
             ::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION,
             ::System::SUBMIT_CURRENT_MODAL
          });
       }
       else
       {
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_PLUS, false, false, false, false, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_PAD_PLUS, false, false, false, false, {
             ::System::INCREASE_FONT_SIZE });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, {
             ::System::DECREASE_FONT_SIZE });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, true, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_OPENBRACE, false, false, false, true, {
             ::System::ROTATE_STAGE_LEFT,
             ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
             ::System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, true, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_CLOSEBRACE, false, false, false, true, {
             ::System::ROTATE_STAGE_RIGHT,
             ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
             ::System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false, {
             ::System::OPEN_HEXAGON_CONFIG_FILE,
             ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
              });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_S, false, false, false, true, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_S, false, false, false, true, {
             ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE, });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, {
             ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE,
             ::System::RUN_PROJECT_TESTS });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, {
             ::System::SPAWN_FILE_NAVIGATOR });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
             ::System::SPAWN_COMPONENT_NAVIGATOR });
-         keyboard_command_mapper.set_mapping(ALLEGRO_KEY_8, true, true, false, false, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_8, true, true, false, false, {
             ::System::EXECUTE_MAGIC_COMMAND });
 
          if (system->is_current_stage_in_edit_mode())
          {
-            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, {
+            keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, {
               ::System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL,
                });
-            keyboard_command_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, true, false, false, {
+            keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, true, false, false, {
                ::System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL,
                });
          }
@@ -386,7 +386,7 @@ functions:
             bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
             //bool ctrl_or_command = ctrl || command;
             std::vector<std::string> mapped_events =
-              keyboard_command_mapper.get_mapping(
+              keyboard_key_char_mapper.get_mapping(
                 event.keyboard.keycode, shift, ctrl, alt, command);
             if (!mapped_events.empty()) event_caught = true;
             for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
