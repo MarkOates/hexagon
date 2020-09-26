@@ -201,17 +201,8 @@ Hexagon::CodeEditor::Stage *System::get_frontmost_code_editor_stage()
 
 Hexagon::CodeEditor::Stage *System::get_frontmost_git_commit_message_input_box()
 {
-   StageInterface *frontmost_stage = get_frontmost_stage();
-   if (!frontmost_stage) return nullptr;
-
-   StageInterface::type_t type = frontmost_stage->get_type();
-   if (type == StageInterface::ONE_LINE_INPUT_BOX
-    || type == StageInterface::CODE_EDITOR
-    || type == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX)
-   {
-      return static_cast<Hexagon::CodeEditor::Stage *>(get_frontmost_stage());
-   }
-   return nullptr;
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+   return stage_collection_helper.get_frontmost_git_commit_message_input_box();
 }
 
 
