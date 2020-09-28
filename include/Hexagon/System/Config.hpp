@@ -45,6 +45,7 @@ namespace Hexagon
       std::string get_make_command_filename();
       std::string get_focused_component_filename();
       std::string get_font_bin_path();
+      int get_default_camera_stepback();
       bool is_dark_mode();
       ALLEGRO_COLOR get_backfill_color();
       ALLEGRO_COLOR get_base_text_color();

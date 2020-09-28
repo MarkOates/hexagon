@@ -159,6 +159,12 @@ functions:
       return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
 
 
+  - name: get_default_camera_stepback
+    type: int
+    body: |
+     return 130;
+
+
   - name: is_dark_mode
     type: bool
     guards: [ initialized ]

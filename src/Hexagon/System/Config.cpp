@@ -153,6 +153,12 @@ return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
 
 }
 
+int Config::get_default_camera_stepback()
+{
+return 130;
+
+}
+
 bool Config::is_dark_mode()
 {
 if (!(initialized))

@@ -241,6 +241,13 @@ TEST(Hexagon_System_ConfigTest,
 }
 
 TEST(Hexagon_System_ConfigTest,
+   get_default_camera_stepback__returns_the_expected_value)
+{
+   Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
+   ASSERT_EQ(130, config.get_default_camera_stepback());
+}
+
+TEST(Hexagon_System_ConfigTest,
    get_backfill_color__when_in_dark_mode__returns_the_expected_color)
 {
    al_init();
