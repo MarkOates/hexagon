@@ -44,7 +44,6 @@ public:
    std::vector<Hexagon::Packet> packets;
    AllegroFlare::FontBin font_bin;
    Hexagon::Hud hud;
-   float default_camera_stepback;
 
    System(ALLEGRO_DISPLAY *display=nullptr,
           Hexagon::System::Config &config = System::dummy_config,

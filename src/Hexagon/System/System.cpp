@@ -128,7 +128,6 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , packets()
    , font_bin()
    , hud(display, font_bin)
-   , default_camera_stepback(70 + 60)
 {
 }
 

@@ -24,17 +24,6 @@ TEST(DISABLED_Hexagon_System_System, initialize__will_initialize_the_config)
    al_uninstall_system();
 }
 
-TEST(DISABLED_Hexagon_System_System, get_default_camera_stepback__returns_the_expected_value)
-{
-   al_init();
-   ALLEGRO_DISPLAY *display = al_create_display(800, 600);
-
-   System system(display);
-
-   EXPECT_EQ(60, system.get_default_camera_stepback());
-   al_uninstall_system();
-}
-
 TEST(DISABLED_Hexagon_System_System, get_default_code_editor_stage_width__returns_the_expected_value)
 {
    al_init();
