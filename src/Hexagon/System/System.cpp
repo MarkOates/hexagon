@@ -167,7 +167,7 @@ int System::get_display_default_height()
 
 float System::get_default_camera_stepback()
 {
-   return default_camera_stepback;
+   return config.get_default_camera_stepback();
 }
 
 float System::get_default_code_editor_stage_width()
