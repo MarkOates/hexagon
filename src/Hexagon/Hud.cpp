@@ -481,14 +481,16 @@ std::vector<Hexagon::Packet> packets_to_render = packets;
 packets_to_render.push_back(packet_in_progress);
 
 // 9, because golf has 9-hole halves, also divisible by 2 or 3. Good number.  Also 1 extra for the in-progress
-int max_num_packets_to_render = 9;
+int max_num_packets_to_render = 10;
 int num_packets_to_render = std::min(max_num_packets_to_render, (int)(packets_to_render.size() - 1));
 
 while (packets_to_render.size() > max_num_packets_to_render) packets_to_render.erase(packets_to_render.begin());
+std::reverse(packets_to_render.begin(), packets_to_render.end());
 
-for (int i=num_packets_to_render; i>=0; i--)
+//for (int i=num_packets_to_render; i>=0; i--)
+for (auto &packet : packets_to_render)
 {
-   auto &packet = packets_to_render[i];
+   //auto &packet = packets_to_render[i];
    place.start_transform();
 
    Hexagon::PacketRenderer packet_renderer(&packet, packet_text_font, place.size.x, place.size.y);

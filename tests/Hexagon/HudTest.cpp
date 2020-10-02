@@ -159,6 +159,36 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
+   //sleep(2);
+}
+
+TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+   render__when_there_are_more_than_9_plus_1_packets__will_render_the_most_recent_ones)
+{
+   Hexagon::Hud hud(display, font_bin);
+   hud.initialize();
+
+   std::vector<Hexagon::Packet> packets = {
+      Hexagon::Packet(1, 1), // should not be shown
+      Hexagon::Packet(2, 1), // should not be shown
+      Hexagon::Packet(3, 1),
+      Hexagon::Packet(4, 1),
+      Hexagon::Packet(5, 1),
+      Hexagon::Packet(6, 1),
+      Hexagon::Packet(7, 1),
+      Hexagon::Packet(8, 1),
+      Hexagon::Packet(9, 1),
+      Hexagon::Packet(10, 1),
+      Hexagon::Packet(11, 1),
+      // an additional packet is appended, one that is the "packet in progress"
+   };
+   hud.set_packets(packets);
+   hud.set_render_packets(true);
+
+   hud.draw();
+
+   al_flip_display();
+
    sleep(2);
 }
 
