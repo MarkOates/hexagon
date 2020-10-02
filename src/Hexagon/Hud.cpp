@@ -432,6 +432,15 @@ return;
 
 void Hud::draw_powerbar()
 {
+powerbar.set_files_are_committed(files_are_committed);
+powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);
+// these values are set externally in System/System via actions
+//powerbar.set_files_are_modified(files_are_modified);
+//powerbar.set_files_are_staged(files_are_staged);
+//powerbar.set_files_are_untracked(files_are_untracked);
+
+Hexagon::Powerbar::Renderer powerbar_renderer(display, &powerbar, obtain_powerbar_text_font(), backfill_color);
+powerbar_renderer.render();
 return;
 
 }
