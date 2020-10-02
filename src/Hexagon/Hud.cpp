@@ -608,11 +608,7 @@ if (render_packets) draw_packets();
 
 if (render_powerbar) draw_powerbar();
 
-if (render_focus_timer_bar)
-{
-   Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &focus_timer_bar);
-   focus_timer_bar_renderer.render();
-}
+if (render_focus_timer_bar) draw_focus_timer_bar();
 
 if (show_disabled_screen)
 {
