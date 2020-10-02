@@ -419,47 +419,7 @@ functions:
          );
       }
 
-      if (render_packets)
-      {
-         float x = left_column_x - 5;
-         float y = frame_height - 60;
-         float width = 130;
-         float height = 90;
-         float spacing = 20;
-
-         float y_increment = -(height + spacing);
-
-         placement3d place(x, y, 0.0);
-         place.size.x = width;
-         place.size.y = height;
-         place.align.x = 0.0;
-         place.align.y = 1.0;
-         ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
-
-         al_draw_text(packet_text_font, ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5}, x, y, 0, "PACKETS");
-
-         place.position.y -= al_get_font_line_height(packet_text_font);
-
-         Hexagon::Packet packet_in_progress(search_count, save_count);
-         std::vector<Hexagon::Packet> packets_to_render = packets;
-         packets_to_render.push_back(packet_in_progress);
-
-         // 9, because golf has 9-hole halves, also divisible by 2 or 3. Good number.  Also 1 extra for the in-progress
-         int num_packets_to_render = std::min(9, (int)(packets_to_render.size() - 1));
-
-         for (int i=num_packets_to_render; i>=0; i--)
-         {
-            auto &packet = packets_to_render[i];
-            place.start_transform();
-
-            Hexagon::PacketRenderer packet_renderer(&packet, packet_text_font, place.size.x, place.size.y);
-            packet_renderer.render();
-
-            place.restore_transform();
-
-            place.position.y += y_increment;
-         }
-      }
+      if (render_packets) draw_packets();
 
       if (draw_powerbar)
       {
