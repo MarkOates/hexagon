@@ -36,7 +36,7 @@ namespace Hexagon
       bool show_profiler;
       bool draw_save_count;
       int save_count;
-      bool draw_packets;
+      bool render_packets;
       std::vector<Hexagon::Packet> packets;
       bool draw_search_count;
       int search_count;
@@ -47,7 +47,7 @@ namespace Hexagon
       std::string global_font_str;
 
    public:
-      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool draw_powerbar=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=false, int save_count=0, bool draw_packets=false, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=false, int search_count=0, bool draw_focus_timer_bar=true, bool draw_notifications=true, float left_column_x=30);
+      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool draw_powerbar=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=false, int save_count=0, bool render_packets=false, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=false, int search_count=0, bool draw_focus_timer_bar=true, bool draw_notifications=true, float left_column_x=30);
       ~Hud();
 
       void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
@@ -62,7 +62,7 @@ namespace Hexagon
       void set_show_profiler(bool show_profiler);
       void set_draw_save_count(bool draw_save_count);
       void set_save_count(int save_count);
-      void set_draw_packets(bool draw_packets);
+      void set_render_packets(bool render_packets);
       void set_packets(std::vector<Hexagon::Packet> packets);
       void set_draw_search_count(bool draw_search_count);
       void set_search_count(int search_count);
@@ -80,7 +80,7 @@ namespace Hexagon
       bool get_show_profiler();
       bool get_draw_save_count();
       int get_save_count();
-      bool get_draw_packets();
+      bool get_render_packets();
       std::vector<Hexagon::Packet> get_packets();
       bool get_draw_search_count();
       int get_search_count();
@@ -101,6 +101,7 @@ namespace Hexagon
    void reinitialize();
    void draw_current_title_text();
    void draw_profile_timer_graph();
+   void draw_packets();
    void draw();
    };
 }

@@ -30,7 +30,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool draw_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool draw_focus_timer_bar, bool draw_notifications, float left_column_x)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool render_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool draw_focus_timer_bar, bool draw_notifications, float left_column_x)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -48,7 +48,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , show_profiler(show_profiler)
    , draw_save_count(draw_save_count)
    , save_count(save_count)
-   , draw_packets(draw_packets)
+   , render_packets(render_packets)
    , packets(packets)
    , draw_search_count(draw_search_count)
    , search_count(search_count)
@@ -138,9 +138,9 @@ void Hud::set_save_count(int save_count)
 }
 
 
-void Hud::set_draw_packets(bool draw_packets)
+void Hud::set_render_packets(bool render_packets)
 {
-   this->draw_packets = draw_packets;
+   this->render_packets = render_packets;
 }
 
 
@@ -240,9 +240,9 @@ int Hud::get_save_count()
 }
 
 
-bool Hud::get_draw_packets()
+bool Hud::get_render_packets()
 {
-   return draw_packets;
+   return render_packets;
 }
 
 
@@ -430,6 +430,12 @@ return;
 
 }
 
+void Hud::draw_packets()
+{
+return;
+
+}
+
 void Hud::draw()
 {
 if (!(initialized))
@@ -535,7 +541,7 @@ if (draw_search_count)
    );
 }
 
-if (draw_packets)
+if (render_packets)
 {
    float x = left_column_x - 5;
    float y = frame_height - 60;

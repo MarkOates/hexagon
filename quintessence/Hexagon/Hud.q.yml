@@ -89,7 +89,7 @@ properties:
     constructor_arg: true
     getter: true
     setter: true
-  - name: draw_packets
+  - name: render_packets
     type: bool
     init_with: false
     setter: true
@@ -271,6 +271,13 @@ functions:
       - global::profiler
 
 
+  - name: draw_packets
+    type: void
+    body: |
+      return;
+    body_dependency_symbols: []
+
+
   - name: draw
     type: void
     guards: [ initialized ]
@@ -372,7 +379,7 @@ functions:
          );
       }
 
-      if (draw_packets)
+      if (render_packets)
       {
          float x = left_column_x - 5;
          float y = frame_height - 60;
