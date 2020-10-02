@@ -484,6 +484,8 @@ packets_to_render.push_back(packet_in_progress);
 int max_num_packets_to_render = 9;
 int num_packets_to_render = std::min(max_num_packets_to_render, (int)(packets_to_render.size() - 1));
 
+while (packets_to_render.size() > max_num_packets_to_render) packets_to_render.erase(packets_to_render.begin());
+
 for (int i=num_packets_to_render; i>=0; i--)
 {
    auto &packet = packets_to_render[i];
