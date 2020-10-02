@@ -290,6 +290,8 @@ functions:
   - name: draw_focus_timer_bar
     type: void
     body: |
+      Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &focus_timer_bar);
+      focus_timer_bar_renderer.render();
       return;
     body_dependency_symbols: []
 

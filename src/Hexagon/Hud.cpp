@@ -447,6 +447,8 @@ return;
 
 void Hud::draw_focus_timer_bar()
 {
+Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &focus_timer_bar);
+focus_timer_bar_renderer.render();
 return;
 
 }
