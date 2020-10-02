@@ -287,6 +287,13 @@ functions:
     body_dependency_symbols: []
 
 
+  - name: draw_focus_timer_bar
+    type: void
+    body: |
+      return;
+    body_dependency_symbols: []
+
+
   - name: draw_packets
     type: void
     body: |

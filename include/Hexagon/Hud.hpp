@@ -102,6 +102,7 @@ namespace Hexagon
    void draw_current_title_text();
    void draw_profile_timer_graph();
    void draw_powerbar();
+   void draw_focus_timer_bar();
    void draw_packets();
    void draw();
    };

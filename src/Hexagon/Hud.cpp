@@ -445,6 +445,12 @@ return;
 
 }
 
+void Hud::draw_focus_timer_bar()
+{
+return;
+
+}
+
 void Hud::draw_packets()
 {
 int frame_height = al_get_bitmap_height(screen_sub_bitmap);
