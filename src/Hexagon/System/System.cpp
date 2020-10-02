@@ -867,67 +867,7 @@ bool System::destroy_topmost_stage()
 #include <allegro_flare/useful.h>
 bool System::execute_magic_command()
 {
-   focused_component_name = "- Untitled -";
-   set_hud_title_to_focused_component_name();
-
-   destroy_all_code_editor_stages();
-
-
-   std::vector<std::string> filenames = {
-      "/Users/markoates/Repos/hexagon/include/Hexagon/System/System.hpp",
-      "/Users/markoates/Repos/hexagon/src/Hexagon/System/System.cpp",
-   };
-
-
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
-   float width = 1200;
-   float display_default_height = 900;
-
-   int i;
-   for (i=0; i<filenames.size(); i++)
-   {
-      std::string filename = filenames[i];
-      bool file_present = true;
-      if (!Blast::FileExistenceChecker(filename).exists()) file_present = false;
-      //if (!file_contents.empty())
-      {
-        placement3d place(0, 0, 0);
-        place.size = vec3d(width, display_default_height, 0.0);
-
-        place.position = vec3d(width*i, 0.0, 0.0);
-        place.align = vec3d(0.5, 0.5, 0.0);
-        place.scale = vec3d(0.45, 0.45, 0.0);
-
-        StageInterface *stage = nullptr;
-
-        if (file_present)
-        {
-           std::vector<std::string> file_contents = {};
-           ::read_file(file_contents, filename);
-           std::string single_line = Blast::StringJoiner(file_contents, "\n").join();
-           stage = new Hexagon::AdvancedCodeEditor::Stage(&font_bin, 120, 70); //(::CodeEditor::CodeEditor{filename});
-           Hexagon::AdvancedCodeEditor::Stage *ace_stage = static_cast<Hexagon::AdvancedCodeEditor::Stage*>(stage);
-           ace_stage->initialize();
-           ace_stage->set_content(single_line);
-
-           //stage = ace_stage;
-        }
-        else
-        {
-            stage = stage_factory.create_missing_file();
-        }
-
-        stage->set_place(place);
-        stages.push_back(stage);
-      }
-   }
-
-   //
-
-   process_local_event(ROTATE_STAGE_RIGHT);
-   process_local_event(CENTER_CAMERA_ON_FRONTMOST_STAGE);
-
-   return true;
+   true;
 }
 
 
