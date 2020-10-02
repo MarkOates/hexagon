@@ -30,7 +30,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool draw_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool render_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool draw_focus_timer_bar, bool draw_notifications, float left_column_x)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool render_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool render_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool draw_focus_timer_bar, bool draw_notifications, float left_column_x)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -42,7 +42,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , title_text(title_text)
    , backfill_color(backfill_color)
    , show_disabled_screen(show_disabled_screen)
-   , draw_powerbar(draw_powerbar)
+   , render_powerbar(render_powerbar)
    , files_are_committed(files_are_committed)
    , commits_are_in_sync_with_remote(commits_are_in_sync_with_remote)
    , show_profiler(show_profiler)
@@ -102,9 +102,9 @@ void Hud::set_show_disabled_screen(bool show_disabled_screen)
 }
 
 
-void Hud::set_draw_powerbar(bool draw_powerbar)
+void Hud::set_render_powerbar(bool render_powerbar)
 {
-   this->draw_powerbar = draw_powerbar;
+   this->render_powerbar = render_powerbar;
 }
 
 
@@ -216,9 +216,9 @@ bool Hud::get_show_disabled_screen()
 }
 
 
-bool Hud::get_draw_powerbar()
+bool Hud::get_render_powerbar()
 {
-   return draw_powerbar;
+   return render_powerbar;
 }
 
 
@@ -430,6 +430,12 @@ return;
 
 }
 
+void Hud::draw_powerbar()
+{
+return;
+
+}
+
 void Hud::draw_packets()
 {
 int frame_height = al_get_bitmap_height(screen_sub_bitmap);
@@ -583,7 +589,7 @@ if (draw_search_count)
 
 if (render_packets) draw_packets();
 
-if (draw_powerbar)
+if (render_powerbar)
 {
    powerbar.set_files_are_committed(files_are_committed);
    powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);

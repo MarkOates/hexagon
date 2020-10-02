@@ -87,10 +87,10 @@ TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
-   draw_powerbar__has_a_getter_and_is_initialized_with_the_expected_default)
+   render_powerbar__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
-   ASSERT_EQ(false, hud.get_draw_powerbar());
+   ASSERT_EQ(false, hud.get_render_powerbar());
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
@@ -170,7 +170,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    Hexagon::Powerbar::Powerbar &powerbar = hud.get_powerbar_ref();
 
-   hud.set_draw_powerbar(true);
+   hud.set_render_powerbar(true);
    powerbar.set_files_are_modified(true);
    powerbar.set_files_are_staged(true);
    powerbar.set_files_are_untracked(true);

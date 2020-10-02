@@ -55,7 +55,7 @@ properties:
     setter: true
     getter: true
     constructor_arg: true
-  - name: draw_powerbar
+  - name: render_powerbar
     type: bool
     init_with: false
     setter: true
@@ -271,6 +271,13 @@ functions:
       - global::profiler
 
 
+  - name: draw_powerbar
+    type: void
+    body: |
+      return;
+    body_dependency_symbols: []
+
+
   - name: draw_packets
     type: void
     body: |
@@ -421,7 +428,7 @@ functions:
 
       if (render_packets) draw_packets();
 
-      if (draw_powerbar)
+      if (render_powerbar)
       {
          powerbar.set_files_are_committed(files_are_committed);
          powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);
