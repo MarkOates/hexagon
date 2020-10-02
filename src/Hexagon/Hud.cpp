@@ -30,7 +30,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool render_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool render_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool draw_focus_timer_bar, bool draw_notifications, float left_column_x)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool render_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool render_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool render_focus_timer_bar, bool draw_notifications, float left_column_x)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -52,7 +52,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , packets(packets)
    , draw_search_count(draw_search_count)
    , search_count(search_count)
-   , draw_focus_timer_bar(draw_focus_timer_bar)
+   , render_focus_timer_bar(render_focus_timer_bar)
    , draw_notifications(draw_notifications)
    , left_column_x(left_column_x)
    , stages(nullptr)
@@ -162,9 +162,9 @@ void Hud::set_search_count(int search_count)
 }
 
 
-void Hud::set_draw_focus_timer_bar(bool draw_focus_timer_bar)
+void Hud::set_render_focus_timer_bar(bool render_focus_timer_bar)
 {
-   this->draw_focus_timer_bar = draw_focus_timer_bar;
+   this->render_focus_timer_bar = render_focus_timer_bar;
 }
 
 
@@ -264,9 +264,9 @@ int Hud::get_search_count()
 }
 
 
-bool Hud::get_draw_focus_timer_bar()
+bool Hud::get_render_focus_timer_bar()
 {
-   return draw_focus_timer_bar;
+   return render_focus_timer_bar;
 }
 
 
@@ -600,7 +600,7 @@ if (render_packets) draw_packets();
 
 if (render_powerbar) draw_powerbar();
 
-if (draw_focus_timer_bar)
+if (render_focus_timer_bar)
 {
    Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &focus_timer_bar);
    focus_timer_bar_renderer.render();
