@@ -598,7 +598,8 @@ if (draw_search_count)
 
 if (render_packets) draw_packets();
 
-if (render_powerbar)
+if (render_powerbar) draw_powerbar();
+if (false)
 {
    powerbar.set_files_are_committed(files_are_committed);
    powerbar.set_commits_are_in_sync_with_remote(commits_are_in_sync_with_remote);
