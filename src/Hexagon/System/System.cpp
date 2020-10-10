@@ -683,16 +683,14 @@ bool System::save_frontmost_code_editor_stage()
    StageInterface *stage = get_frontmost_code_editor_stage();
    if (!stage) throw std::runtime_error("Cannot save_frontmost_code_editor_stage; current stage is not a stage stage");
 
+   bool save_was_successful = false;
+
    if (stage->get_type() == StageInterface::CODE_EDITOR)
    {
       Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
       code_editor_stage->get_code_editor_ref().save_file_and_touch_if_symlink();
       code_editor_stage->get_code_editor_ref().refresh_git_modified_line_numbers();
-      process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
-
-      increment_save_count();
-      set_hud_save_count_to_save_count();
-      check_git_local_status_and_update_powerbar();
+      save_was_successful = true;
    }
    else if (stage->get_type() == StageInterface::ADVANCED_CODE_EDITOR)
    {
@@ -700,14 +698,18 @@ bool System::save_frontmost_code_editor_stage()
          static_cast<Hexagon::AdvancedCodeEditor::Stage *>(stage);
       advanced_code_editor_stage->save_file();
       //stage->get_code_editor_ref().refresh_git_modified_line_numbers();
-      process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
+      save_was_successful = true;
+   }
 
+   if (save_was_successful)
+   {
+      process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
       increment_save_count();
       set_hud_save_count_to_save_count();
       check_git_local_status_and_update_powerbar();
    }
 
-   return true;
+   return save_was_successful;
 }
 
 
