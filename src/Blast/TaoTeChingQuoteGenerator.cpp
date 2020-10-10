@@ -58,13 +58,35 @@ return {
       "She is detached from all things; that is why she is one with them." \
       "Because she has let go of herself, she is perfectly fulfilled.",
    "Success is as dangerous as failure. Hope is as hollow as fear.",
-   "What does it mean that success is as dangerous as failure? Whether you go up the ladder or down it, your position is shaky.  When you stand with your two feet on the ground, you will always keep your balance.",
-   "What does it mean that hope is as hollow as fear? Hope and fear are both phantoms that arise from thinking of the self. When we don't see the self as self, what do we have to fear?",
-   "See the world as your self. Have faith in the way things are. Love the world as your self; then you can care for all things.",
-   "Empty your mind of all thoughts.  Let your heart be at peace. Watch the turmoil of beings, but contemplate their return.",
+   "What does it mean that success is as dangerous as failure?" \
+      "Whether you go up the ladder or down it, your position is shaky." \
+      "When you stand with your two feet on the ground, you will always keep your balance.",
+   "What does it mean that hope is as hollow as fear?" \
+      "Hope and fear are both phantoms that arise from thinking of the self." \
+      "When we don't see the self as self, what do we have to fear?",
+   "See the world as your self." \
+      "Have faith in the way things are." \
+      "Love the world as your self;" \
+      "then you can care for all things.",
+   "Empty your mind of all thoughts." \
+      "Let your heart be at peace." \
+      "Watch the turmoil of beings, but contemplate their return.",
    "Each separate being in the universe returns to the common source. Returning to the source is serenity.",
-   "If you don't realize the source, you stumble in confusion and sorrow. When you realize where you come from, you naturally become tolerant, disinterested, amused, kindhearted as a grandmother, dignified as a king. Immersed in the wonder of the Tao, you can deal with whatever life brings you, and when death comes, you are ready. The great Tao flows everywhere",
-   "All things are born from it, yet it doesn't create them. It pours itself into its work, yet it makes no claim. It nourishes infinite worlds, yet it doesn't hold on to them. Since it is merged with all things and hidden in their hearts, it can be called humble. Since all things vanish into it and it alone endures, it can be called great.  It isn't aware of its greatness; thus it is truly great.",
+   "If you don't realize the source," \
+      "you stumble in confusion and sorrow." \
+      "When you realize where you come from, you naturally become tolerant," \
+      "disinterested, amused, kindhearted as a grandmother, dignified as a king." \
+      "Immersed in the wonder of the Tao," \
+      "you can deal with whatever life brings you," \
+      "and when death comes," \
+      "you are ready." \
+      "The great Tao flows everywhere",
+   "All things are born from it, yet it doesn't create them." \
+      "It pours itself into its work, yet it makes no claim." \
+      "It nourishes infinite worlds, yet it doesn't hold on to them." \
+      "Since it is merged with all things and hidden in their hearts, it can be called humble." \
+      "Since all things vanish into it and it alone endures, it can be called great." \
+      "It isn't aware of its greatness; thus it is truly great.",
    "The Tao gives birth to One.  One gives birth to Two.  Two gives birth to Three.  Three gives birth to all things.",
    "All things have their backs to the female and stand facing the male. When male and female combine, all things achieve harmony.",
    "Ordinary men hate solitude. But the Master makes use of it, embracing his aloneness, realizing he is one with the whole universe.",
