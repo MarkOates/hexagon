@@ -55,6 +55,24 @@ TEST(Hexagon_System_System,
 }
 
 TEST(Hexagon_System_System,
+   create_stages_from_layout_of_last_component_navigator_selection__will_create_the_expected_layout)
+{
+   // TODO
+}
+
+TEST(Hexagon_System_System,
+   create_stages_from_layout_of_last_component_navigator_selection__will_set_the_focused_component_name)
+{
+   // TODO
+}
+
+TEST(Hexagon_System_System,
+   create_stages_from_layout_of_last_component_navigator_selection__will_set_the_hud_title)
+{
+   // TODO
+}
+
+TEST(Hexagon_System_System,
    enable_drawing_info_overlays_on_all_code_editor_stages)
 {
    std::vector<::CodeEditor::CodeEditor *> stages;

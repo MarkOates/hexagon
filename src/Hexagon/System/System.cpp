@@ -1110,6 +1110,7 @@ bool System::create_stages_from_layout_of_last_component_navigator_selection()
    Hexagon::StageFactory stage_factory(&config, &font_bin);
    Hexagon::Layout layout = component_layout_generator.generate();
    Hexagon::LayoutToStagesCreator layout_to_stages_creator(&stages, &stage_factory, &layout, &font_bin);
+
    layout_to_stages_creator.create();
 
    focused_component_name = last_component_navigator_selection;
