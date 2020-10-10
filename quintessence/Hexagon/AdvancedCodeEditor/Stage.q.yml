@@ -16,11 +16,13 @@ properties:
   - name: num_columns
     type: int
     init_with: 0
+    getter: true
     setter: false
     constructor_arg: true
   - name: num_rows
     type: int
     init_with: 0
+    getter: true
     setter: false
     constructor_arg: true
   - name: text_mesh

@@ -180,7 +180,7 @@ TEST(Hexagon_StageFactoryTest,
    Hexagon::System::Config config;
    config.initialize();
    Hexagon::StageFactory stage_factory(&config, &font_bin);
-   StageInterface *created_stage = stage_factory.create_advanced_code_editor();
+   StageInterface *created_stage = stage_factory.create_advanced_code_editor("foobar_filename.htm", 80, 35);
 
    ASSERT_NE(nullptr, created_stage);
 
@@ -190,6 +190,9 @@ TEST(Hexagon_StageFactoryTest,
    ASSERT_EQ(expected_type, actual_type);
 
    Hexagon::AdvancedCodeEditor::Stage *stage = static_cast<Hexagon::AdvancedCodeEditor::Stage*>(created_stage);
+   EXPECT_EQ(80, stage->get_num_columns());
+   EXPECT_EQ(35, stage->get_num_rows());
+   EXPECT_EQ("foobar_filename.htm", stage->get_filename());
 
    font_bin.clear();
    al_destroy_display(display);
@@ -365,7 +368,7 @@ TEST(Hexagon_StageFactoryTest, get_current_display__returns_the_current_display)
 
    Hexagon::StageFactory stage_factory;
    ALLEGRO_DISPLAY *expected_display = display;
-   ASSERT_EQ(display, stage_factory.get_current_display());
+   ASSERT_EQ(expected_display, stage_factory.get_current_display());
 
    al_destroy_display(display);
    al_uninstall_system();

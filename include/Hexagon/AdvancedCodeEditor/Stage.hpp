@@ -50,6 +50,8 @@ namespace Hexagon
          void set_filename(std::string filename);
          void set_input_buffer(std::string input_buffer);
 
+         int get_num_columns();
+         int get_num_rows();
          std::string get_filename();
          std::string get_input_buffer();
          bool get_initialized();

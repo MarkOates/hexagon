@@ -35,7 +35,7 @@ namespace Hexagon
    StageInterface* create();
    StageInterface* create_file_navigator(std::string directory="");
    StageInterface* create_missing_file(std::string filename="");
-   StageInterface* create_advanced_code_editor(std::string filename="", float width=1215, float height=1350);
+   StageInterface* create_advanced_code_editor(std::string filename="untitled.txt", int num_columns=123, int num_rows=70);
    StageInterface* create_code_editor(std::string filename="", std::string file_category="undefined");
    StageInterface* create_regex_input_box_modal();
    StageInterface* create_git_commit_message_box();

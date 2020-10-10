@@ -225,14 +225,15 @@ return missing_file_stage;
 
 }
 
-StageInterface* StageFactory::create_advanced_code_editor(std::string filename, float width, float height)
+StageInterface* StageFactory::create_advanced_code_editor(std::string filename, int num_columns, int num_rows)
 {
 Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =
-   new Hexagon::AdvancedCodeEditor::Stage(font_bin, 123, 70);
+   new Hexagon::AdvancedCodeEditor::Stage(font_bin, num_columns, num_rows);
 
 advanced_code_editor_stage->initialize();
 
 std::string file_contents = php::file_get_contents(filename);
+advanced_code_editor_stage->set_filename(filename);
 advanced_code_editor_stage->set_content(file_contents);
 //advanced_code_editor_stage->set_base_font_color(text_color);
 //advanced_code_editor_stage->set_backfill_color(backfill_color);

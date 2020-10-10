@@ -83,6 +83,18 @@ void Stage::set_input_buffer(std::string input_buffer)
 }
 
 
+int Stage::get_num_columns()
+{
+   return num_columns;
+}
+
+
+int Stage::get_num_rows()
+{
+   return num_rows;
+}
+
+
 std::string Stage::get_filename()
 {
    return filename;

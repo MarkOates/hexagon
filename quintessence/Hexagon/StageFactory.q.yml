@@ -152,20 +152,21 @@ functions:
     parameters:
       - name: filename
         type: std::string
-        default_argument: '""'
-      - name: width
-        type: float
-        default_argument: 1215
-      - name: height
-        type: float
-        default_argument: 1350
+        default_argument: '"untitled.txt"'
+      - name: num_columns
+        type: int
+        default_argument: 123
+      - name: num_rows
+        type: int
+        default_argument: 70
     body: |
       Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =
-         new Hexagon::AdvancedCodeEditor::Stage(font_bin, 123, 70);
+         new Hexagon::AdvancedCodeEditor::Stage(font_bin, num_columns, num_rows);
 
       advanced_code_editor_stage->initialize();
 
       std::string file_contents = php::file_get_contents(filename);
+      advanced_code_editor_stage->set_filename(filename);
       advanced_code_editor_stage->set_content(file_contents);
       //advanced_code_editor_stage->set_base_font_color(text_color);
       //advanced_code_editor_stage->set_backfill_color(backfill_color);
