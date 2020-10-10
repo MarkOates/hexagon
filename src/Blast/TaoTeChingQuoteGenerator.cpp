@@ -87,20 +87,44 @@ return {
       "Since it is merged with all things and hidden in their hearts, it can be called humble." \
       "Since all things vanish into it and it alone endures, it can be called great." \
       "It isn't aware of its greatness; thus it is truly great.",
-   "The Tao gives birth to One.  One gives birth to Two.  Two gives birth to Three.  Three gives birth to all things.",
-   "All things have their backs to the female and stand facing the male. When male and female combine, all things achieve harmony.",
-   "Ordinary men hate solitude. But the Master makes use of it, embracing his aloneness, realizing he is one with the whole universe.",
-   "Whoever is planted in the Tao will not be rooted up. Whoever embraces the Tao will not slip away. Her name will be held in honor from generation to generation.",
-   "Let the Tao be present in your life and you will become genuine.  Let it be present in your family and your family will flourish. Let it be present in your country and your country will be an example to all countries in the world. Let it be present in the universe and the universe will sing.",
+   "The Tao gives birth to One." \
+      "One gives birth to Two." \
+      "Two gives birth to Three." \
+      "Three gives birth to all things.",
+   "All things have their backs to the female and stand facing the male." \
+      "When male and female combine, all things achieve harmony.",
+   "Ordinary men hate solitude." \
+      "But the Master makes use of it, embracing his aloneness, realizing he is one with the whole universe.",
+   "Whoever is planted in the Tao will not be rooted up." \
+      "Whoever embraces the Tao will not slip away." \
+      "Her name will be held in honor from generation to generation.",
+   "Let the Tao be present in your life and you will become genuine." \
+      "Let it be present in your family and your family will flourish." \
+      "Let it be present in your country and your country will be an example to all countries in the world." \
+      "Let it be present in the universe and the universe will sing.",
    "How do I know this is true?  By looking inside myself.",
-   "If you want to be a great leader, you must learn to follow the Tao.  Stop trying to control. Let go of fixed plans and concepts, and the world will govern itself.",
-   "The more prohibitions you have, the less virtuous people will be.  The more weapons you have, the less secure people will be. The more subsidies you have, the less self-reliant people will be.",
-   "Therefore the Master says: I let go of the law, and people become honest.  I let go of economics, and people become prosperous. I let go of religion and people become serene.  I let go of all desire for the common good, and the good becomes common as grass.",
-   "If a country is governed with tolerance, the people are comfortable and honest.  If a country is governed with repression, the people are depressed and crafty.",
-   "When the will to power is in charge, the higher the ideals, the lower the results. Try to make people happy, and you lay the groundwork for misery. Try to make people moral, and you lay the groundwork for vice.",
-   "Thus the Master is content to serve as an example and not to impose her will. She is pointed, but doesn't pierce. Straightforward, but supple. Radiant, but easy on the eyes.",
-   "If you realize that all things change, there is nothing you will try to hold on to. If you aren't afraid of dying, there is nothing you can't achieve.",
-   "Trying to control the future is like trying to take the master carpenter's place. When you handle the master carpenter's tools, chances are that you'll cut your hand.",
+   "If you want to be a great leader, you must learn to follow the Tao." \
+      "Stop trying to control." \
+      "Let go of fixed plans and concepts, and the world will govern itself.",
+   "The more prohibitions you have, the less virtuous people will be." \
+      "The more weapons you have, the less secure people will be." \
+      "The more subsidies you have, the less self-reliant people will be.",
+   "Therefore the Master says: I let go of the law, and people become honest." \
+      "I let go of economics, and people become prosperous." \
+      "I let go of religion and people become serene." \
+      "I let go of all desire for the common good, and the good becomes common as grass.",
+   "If a country is governed with tolerance, the people are comfortable and honest." \
+      "If a country is governed with repression, the people are depressed and crafty.",
+   "When the will to power is in charge, the higher the ideals, the lower the results." \
+      "Try to make people happy, and you lay the groundwork for misery." \
+      "Try to make people moral, and you lay the groundwork for vice.",
+   "Thus the Master is content to serve as an example and not to impose her will." \
+      "She is pointed, but doesn't pierce." \
+      "Straightforward, but supple. Radiant, but easy on the eyes.",
+   "If you realize that all things change, there is nothing you will try to hold on to." \
+      "If you aren't afraid of dying, there is nothing you can't achieve.",
+   "Trying to control the future is like trying to take the master carpenter's place." \
+      "When you handle the master carpenter's tools, chances are that you'll cut your hand.",
    "Red is not red.\nBlue is not blue.\nHard is not hard.\nSoft is not soft.\nMale" \
       "is not male.\nFemale is not female.There is just this jazz.\n\n-Alan Watts",
 };
