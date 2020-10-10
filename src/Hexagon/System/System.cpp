@@ -956,7 +956,12 @@ bool System::push_component_navigator_selection()
    {
       std::stringstream error_message;
       std::string function_name = "push_component_navigator_selection";
-      error_message << "Could not " << function_name << ": Either the frontmost_stage_interface is a nullptr OR is not of type StageInterface::COMPONENT_NAVIGATOR." << std::endl;
+      error_message
+         << "Could not "
+         << function_name
+         << ": Either the frontmost_stage_interface is a nullptr OR is not of type " \
+            "StageInterface::COMPONENT_NAVIGATOR."
+         << std::endl;
       throw std::runtime_error(error_message.str().c_str());
    }
    Hexagon::AdvancedComponentNavigator::Stage *component_navigator =
@@ -1010,7 +1015,8 @@ bool System::push_file_navigator_selection()
       throw std::runtime_error(error_message.str().c_str());
    }
 
-   Hexagon::FileNavigator::Stage *file_navigator = static_cast<Hexagon::FileNavigator::Stage *>(frontmost_stage_interface);
+   Hexagon::FileNavigator::Stage *file_navigator =
+      static_cast<Hexagon::FileNavigator::Stage *>(frontmost_stage_interface);
    std::string current_file_navigator_selection = file_navigator->get_current_selection();
 
    last_file_navigator_selection = current_file_navigator_selection;
