@@ -227,19 +227,17 @@ return missing_file_stage;
 
 StageInterface* StageFactory::create_advanced_code_editor(std::string filename, float width, float height)
 {
-Hexagon::AdvancedCodeEditor::Stage *code_editor_stage =
+Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =
    new Hexagon::AdvancedCodeEditor::Stage(font_bin, 123, 70);
 
-code_editor_stage->initialize();
+advanced_code_editor_stage->initialize();
 
 std::string file_contents = php::file_get_contents(filename);
-code_editor_stage->set_content(file_contents);
-//code_editor_stage->set_base_font_color(text_color);
-//code_editor_stage->set_backfill_color(backfill_color);
+advanced_code_editor_stage->set_content(file_contents);
+//advanced_code_editor_stage->set_base_font_color(text_color);
+//advanced_code_editor_stage->set_backfill_color(backfill_color);
 
-//stage = code_editor_stage;
-
-return code_editor_stage;
+return advanced_code_editor_stage;
 
 }
 
