@@ -36,15 +36,27 @@ std::vector<std::string> TaoTeChingQuoteGenerator::default_quotes_list()
 return {
    "The tao that can be told is not the eternal Tao.  The name that can be named is not the eternal name.",
    "The unnamable is the eternally real.  Naming is the origin of all particular things.",
-   "Free from desire, you realize the mystery.  Caught in desire, you see only the manifestations.",
-   "Yet mystery and manifestations arise from the same source.  This source is called darkness.",
-   "Darkness within darkness. The gateway to all understanding.",
-   "The Tao is like a well: used but never used up. It is like the eternal void: filled with infinite possibilities.",
-   "It is hidden but always present. I don't know who gave birth to it. It is older than God.",
-   "The Tao doesn't take sides; it gives birth to both good and evil. The Master doesn't take sides; she welcomes both saints and sinners.",
-   "The Tao is like a bellows: it is empty yet infinitely capable. The more you use it, the more it produces; the more you talk of it, the less you understand. Hold on to the center.",
-   "The Tao is infinite, eternal. Why is it eternal? It was never born; thus it can never die. Why is it infinite? It has no desires for itself; thus it is present for all beings.",
-   "The Master stays behind; that is why she is ahead. She is detached from all things; that is why she is one with them. Because she has let go of herself, she is perfectly fulfilled.",
+   "Free from desire, you realize the mystery." \
+      "Caught in desire, you see only the manifestations.",
+   "Yet mystery and manifestations arise from the same source." \
+      "This source is called darkness.",
+   "Darkness within darkness." \
+      "The gateway to all understanding.",
+   "The Tao is like a well: used but never used up." \
+      "It is like the eternal void: filled with infinite possibilities.",
+   "It is hidden but always present." \
+      "I don't know who gave birth to it." \
+      "It is older than God.",
+   "The Tao doesn't take sides; it gives birth to both good and evil." \
+      "The Master doesn't take sides; she welcomes both saints and sinners.",
+   "The Tao is like a bellows: it is empty yet infinitely capable." \
+      "The more you use it, the more it produces; the more you talk of it, the less you understand." \
+      "Hold on to the center.",
+   "The Tao is infinite, eternal. Why is it eternal? It was never born; thus it can never die." \
+      "Why is it infinite? It has no desires for itself; thus it is present for all beings.",
+   "The Master stays behind; that is why she is ahead." \
+      "She is detached from all things; that is why she is one with them." \
+      "Because she has let go of herself, she is perfectly fulfilled.",
    "Success is as dangerous as failure. Hope is as hollow as fear.",
    "What does it mean that success is as dangerous as failure? Whether you go up the ladder or down it, your position is shaky.  When you stand with your two feet on the ground, you will always keep your balance.",
    "What does it mean that hope is as hollow as fear? Hope and fear are both phantoms that arise from thinking of the self. When we don't see the self as self, what do we have to fear?",
@@ -67,6 +79,8 @@ return {
    "Thus the Master is content to serve as an example and not to impose her will. She is pointed, but doesn't pierce. Straightforward, but supple. Radiant, but easy on the eyes.",
    "If you realize that all things change, there is nothing you will try to hold on to. If you aren't afraid of dying, there is nothing you can't achieve.",
    "Trying to control the future is like trying to take the master carpenter's place. When you handle the master carpenter's tools, chances are that you'll cut your hand.",
+   "Red is not red.\nBlue is not blue.\nHard is not hard.\nSoft is not soft.\nMale" \
+      "is not male.\nFemale is not female.There is just this jazz.\n\n-Alan Watts",
 };
 
 }
