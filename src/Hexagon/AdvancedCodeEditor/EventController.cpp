@@ -85,10 +85,11 @@ case ALLEGRO_EVENT_KEY_UP:
    break;
 case ALLEGRO_EVENT_KEY_CHAR:
    bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
-   bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL || event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+   bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+   bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
    bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
    std::vector<std::string> mapped_events =
-      keyboard_command_mapping.get_mapping(event.keyboard.keycode, shift, ctrl, alt);
+      keyboard_command_mapping.get_mapping(event.keyboard.keycode, shift, ctrl, alt, command);
    for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
 
    if (stage->is_in_insert_mode())
