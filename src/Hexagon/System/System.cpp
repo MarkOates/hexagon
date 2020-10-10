@@ -867,7 +867,7 @@ bool System::destroy_topmost_stage()
 #include <allegro_flare/useful.h>
 bool System::execute_magic_command()
 {
-   true;
+   return true;
 }
 
 
