@@ -6,7 +6,7 @@ properties:
     getter: true
   - name: focus_timer_duration_sec
     type: float
-    init_with: 1200.0f
+    init_with: (60.0f * 30)
     getter: true
 
 dependencies:

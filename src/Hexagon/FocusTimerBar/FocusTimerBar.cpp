@@ -12,7 +12,7 @@ namespace FocusTimerBar
 
 FocusTimerBar::FocusTimerBar()
    : focus_timer_started_at(0)
-   , focus_timer_duration_sec(1200.0f)
+   , focus_timer_duration_sec((60.0f * 30))
 {
 }
 

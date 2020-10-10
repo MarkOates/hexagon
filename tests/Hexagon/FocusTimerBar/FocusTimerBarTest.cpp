@@ -12,6 +12,6 @@ TEST(Hexagon_FocusTimerBarTest, has_the_expected_getters_with_the_expected_defau
 {
    Hexagon::FocusTimerBar::FocusTimerBar focus_timer_bar;
    ASSERT_EQ(0, focus_timer_bar.get_focus_timer_started_at());
-   ASSERT_EQ(1200.0f, focus_timer_bar.get_focus_timer_duration_sec());
+   ASSERT_EQ(1800.0f, focus_timer_bar.get_focus_timer_duration_sec());
 }
 
