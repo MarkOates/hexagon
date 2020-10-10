@@ -1122,6 +1122,8 @@ bool System::create_stages_from_layout_of_last_component_navigator_selection()
 
 bool System::create_two_or_three_split_layout_from_last_component_navigator_selection()
 {
+   return create_stages_from_layout_of_last_component_navigator_selection();
+
    if (last_component_navigator_selection.empty())
    {
       std::stringstream error_message;
