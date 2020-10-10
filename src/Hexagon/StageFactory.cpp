@@ -24,6 +24,9 @@
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
+#include <allegro_flare/useful_php.h>
+#include <Hexagon/StageInterface.hpp>
+#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
@@ -219,6 +222,24 @@ missing_file_stage->set_cell_width(cell_width);
 missing_file_stage->set_cell_height(cell_height);
 
 return missing_file_stage;
+
+}
+
+StageInterface* StageFactory::create_advanced_code_editor(std::string filename, float width, float height)
+{
+Hexagon::AdvancedCodeEditor::Stage *code_editor_stage =
+   new Hexagon::AdvancedCodeEditor::Stage(font_bin, 123, 70);
+
+code_editor_stage->initialize();
+
+std::string file_contents = php::file_get_contents(filename);
+code_editor_stage->set_content(file_contents);
+//code_editor_stage->set_base_font_color(text_color);
+//code_editor_stage->set_backfill_color(backfill_color);
+
+//stage = code_editor_stage;
+
+return code_editor_stage;
 
 }
 

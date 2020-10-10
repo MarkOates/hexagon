@@ -167,6 +167,11 @@ TEST(Hexagon_StageFactoryTest,
 }
 
 TEST(Hexagon_StageFactoryTest,
+   create_advanced_code_editor__creates_a_code_editor_stage_with_the_expected_properties)
+{
+}
+
+TEST(Hexagon_StageFactoryTest,
    create_git_commit_message_box__creates_a_git_commit_message_box_with_the_expected_properties)
 {
    al_init();
