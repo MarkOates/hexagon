@@ -90,13 +90,21 @@ StageInterface *stage = nullptr;
 
 if (file_exists)
 {
-   std::string file_contents = php::file_get_contents(filename);
-   Hexagon::CodeEditor::Stage *file_stage =
-      static_cast<Hexagon::CodeEditor::Stage*>(stage_factory->create_code_editor(filename, file_category));
-   file_stage->get_code_editor_ref().set_initial_content(file_contents);
-   file_stage->set_base_font_color(text_color);
-   file_stage->set_backfill_color(backfill_color);
-   stage = file_stage;
+   bool create_as_advanced_code_editor = false;
+   if (create_as_advanced_code_editor)
+   {
+      // unreached branch
+   }
+   else
+   {
+      std::string file_contents = php::file_get_contents(filename);
+      Hexagon::CodeEditor::Stage *file_stage =
+         static_cast<Hexagon::CodeEditor::Stage*>(stage_factory->create_code_editor(filename, file_category));
+      file_stage->get_code_editor_ref().set_initial_content(file_contents);
+      file_stage->set_base_font_color(text_color);
+      file_stage->set_backfill_color(backfill_color);
+      stage = file_stage;
+   }
 }
 else
 {
