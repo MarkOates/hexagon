@@ -113,6 +113,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , display(display)
    , config(config)
    , motion(motion)
+   , option__saving_focused_filename_to_file_is_disabled(false)
    , save_count(0)
    , search_count(0)
    , files_changed(false)
@@ -327,6 +328,14 @@ bool System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending
 
 bool System::write_focused_component_name_to_file()
 {
+   if (option__saving_focused_filename_to_file_is_disabled)
+   {
+      std::cout << "System::write_focused_component_name_to_file() is called but will not execute body logic "
+                << "because option__saving_focused_filename_to_file_is_disabled is true"
+                << std::endl;
+      return true;
+   }
+
    //std::string hard_coded_project_path = "/Users/markoates/Repos/hexagon/";
    //hard_coded_project_path + "bin/programs/data/tmp/focused_component.txt";
    std::string FOCUSED_COMPONENT_FILENAME = config.get_focused_component_filename();

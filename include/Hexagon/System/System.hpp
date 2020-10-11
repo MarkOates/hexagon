@@ -28,6 +28,7 @@ public:
    Hexagon::System::Config &config;
    Motion &motion;
 
+   bool option__saving_focused_filename_to_file_is_disabled;
    int save_count;
    int search_count;
    bool files_changed;
