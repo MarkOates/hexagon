@@ -106,7 +106,6 @@ if (file_exists)
 {
    if (create_as_advanced_code_editor)
    {
-      // unreached branch
       StageInterface* created_stage = stage_factory->create_advanced_code_editor(filename);
       Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =
          static_cast<Hexagon::AdvancedCodeEditor::Stage*>(created_stage);
