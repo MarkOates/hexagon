@@ -73,16 +73,8 @@ TEST(Hexagon_System_System,
 }
 
 TEST(Hexagon_System_System,
-   enable_drawing_info_overlays_on_all_code_editor_stages)
+   enable_drawing_info_overlays_on_all_code_editor_stages__sets_the_expected_property_on_all_the_expected_stages)
 {
-   std::vector<::CodeEditor::CodeEditor *> stages;
-
-   System system(nullptr);
-   system.initialize();
-   EXPECT_EQ(true, system.enable_drawing_info_overlays_on_all_code_editor_stages());
-
-   //TODO: check outcomes of this operation
-
-   al_uninstall_system();
+   // TODO
 }
 
