@@ -95,3 +95,14 @@ TEST(Hexagon_System_System,
    // TODO
 }
 
+TEST(Hexagon_System_System,
+   save_frontmost_code_editor_stage__will_save_the_stage__regardless_of_type)
+{
+   // TODO
+}
+
+TEST(Hexagon_System_System,
+   submit_current_modal__on_a_ONE_LINE_INPUT_BOX__will_save_the_frontmost_code_editor_stage)
+{
+}
+
