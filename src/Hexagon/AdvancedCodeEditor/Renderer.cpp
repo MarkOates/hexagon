@@ -46,10 +46,8 @@ AllegroFlare::Timer timer;
 
 timer.reset(); timer.start();
 // draw the window
-Hexagon::AdvancedCodeEditor::WindowRenderer(
-   width,
-   height
-).render();
+Hexagon::AdvancedCodeEditor::WindowRenderer window_renderer(width, height);
+window_renderer.render();
 //timer.pause(); std::cout << " window render: " << timer.get_elapsed_time_microseconds() << std::endl;
 
 // draw the surface render
