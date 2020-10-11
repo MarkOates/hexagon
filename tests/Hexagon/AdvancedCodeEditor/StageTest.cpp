@@ -734,3 +734,15 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    ASSERT_EQ(18, dirty_grid.build_vector().size());
 }
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   calculate_natural_width__returns_the_expected_width)
+{
+   // TODO
+}
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   calculate_natural_height__returns_the_expected_width)
+{
+   // TODO
+}
+

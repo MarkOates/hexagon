@@ -175,8 +175,8 @@ text_mesh.set_font(obtain_text_font());
 text_mesh.initialize();
 
 surface_render = al_create_bitmap(
-   num_columns * text_mesh.get_cell_width(),
-   num_rows * text_mesh.get_cell_height()
+   calculate_natural_width(),
+   calculate_natural_height(),
 );
 ALLEGRO_STATE previous_render_state;
 al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
@@ -189,8 +189,8 @@ advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
 advanced_code_editor.cursor_set_height(text_mesh.get_cell_height());
 
 get_place().size = vec3d(
-   num_columns * text_mesh.get_cell_width(),
-   num_rows * text_mesh.get_cell_height(),
+   calculate_natural_width(),
+   calculate_natural_height(),
    0
 );
 
@@ -589,6 +589,18 @@ return mode == 0;
 bool Stage::is_in_insert_mode()
 {
 return mode == 1;
+
+}
+
+int Stage::calculate_natural_width()
+{
+return num_columns * text_mesh.get_cell_width(),
+
+}
+
+int Stage::calculate_natural_height()
+{
+return num_rows * text_mesh.get_cell_height(),
 
 }
 
