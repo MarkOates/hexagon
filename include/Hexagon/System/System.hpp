@@ -22,6 +22,7 @@ private:
    static Hexagon::System::Config dummy_config;
    std::string last_component_navigator_selection;
    std::string default_navigator_directory;
+   std::string last_project_navigator_selection;
 
 public:
    ALLEGRO_DISPLAY *display;
@@ -38,7 +39,7 @@ public:
    Camera camera;
    std::string last_file_navigator_selection;
    //std::string last_component_navigator_selection;
-   std::string last_project_navigator_selection;
+   //std::string last_project_navigator_selection;
    std::string global_font_resource_filename;
    std::string target;
    int global_font_size;
@@ -60,6 +61,7 @@ public:
    std::string get_default_navigator_directory();
    std::string get_global_font_str();
 
+   void set_last_project_navigator_selection(std::string last_project_navigator_selection);
    void set_last_component_navigator_selection(std::string last_component_navigator_selection);
    void set_default_navigator_directory(std::string default_navigator_directory);
 

@@ -110,6 +110,7 @@ From me far off, with others all too near.
 System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion &motion)
    : last_component_navigator_selection("")
    , default_navigator_directory("")
+   , last_project_navigator_selection("")
    , display(display)
    , config(config)
    , motion(motion)
@@ -194,6 +195,11 @@ std::string System::get_global_font_str()
 void System::set_last_component_navigator_selection(std::string last_component_navigator_selection)
 {
    this->last_component_navigator_selection = last_component_navigator_selection;
+}
+
+void System::set_last_project_navigator_selection(std::string last_project_navigator_selection)
+{
+   this->last_project_navigator_selection = last_project_navigator_selection;
 }
 
 // retrieval
