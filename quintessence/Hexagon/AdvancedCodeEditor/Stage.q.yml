@@ -92,7 +92,7 @@ functions:
 
       surface_render = al_create_bitmap(
          calculate_natural_width(),
-         calculate_natural_height(),
+         calculate_natural_height()
       );
       ALLEGRO_STATE previous_render_state;
       al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
@@ -514,13 +514,13 @@ functions:
   - name: calculate_natural_width
     type: int
     body: |
-      return num_columns * text_mesh.get_cell_width(),
+      return num_columns * text_mesh.get_cell_width();
 
 
   - name: calculate_natural_height
     type: int
     body: |
-      return num_rows * text_mesh.get_cell_height(),
+      return num_rows * text_mesh.get_cell_height();
 
 
   - name: refresh_render_surfaces

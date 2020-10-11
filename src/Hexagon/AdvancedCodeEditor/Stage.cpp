@@ -176,7 +176,7 @@ text_mesh.initialize();
 
 surface_render = al_create_bitmap(
    calculate_natural_width(),
-   calculate_natural_height(),
+   calculate_natural_height()
 );
 ALLEGRO_STATE previous_render_state;
 al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
@@ -594,13 +594,13 @@ return mode == 1;
 
 int Stage::calculate_natural_width()
 {
-return num_columns * text_mesh.get_cell_width(),
+return num_columns * text_mesh.get_cell_width();
 
 }
 
 int Stage::calculate_natural_height()
 {
-return num_rows * text_mesh.get_cell_height(),
+return num_rows * text_mesh.get_cell_height();
 
 }
 
