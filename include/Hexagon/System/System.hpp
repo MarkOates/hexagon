@@ -20,6 +20,8 @@ class System
 private:
    static Motion dummy_motion;
    static Hexagon::System::Config dummy_config;
+   std::string last_component_navigator_selection;
+   std::string default_navigator_directory;
 
 public:
    ALLEGRO_DISPLAY *display;
@@ -34,7 +36,7 @@ public:
    std::vector<StageInterface *> stages;
    Camera camera;
    std::string last_file_navigator_selection;
-   std::string last_component_navigator_selection;
+   //std::string last_component_navigator_selection;
    std::string last_project_navigator_selection;
    std::string global_font_resource_filename;
    std::string target;
@@ -56,6 +58,9 @@ public:
    float get_default_code_editor_stage_width();
    std::string get_default_navigator_directory();
    std::string get_global_font_str();
+
+   void set_last_component_navigator_selection(std::string last_component_navigator_selection);
+   void set_default_navigator_directory(std::string default_navigator_directory);
 
    // retrieval
    StageInterface *get_frontmost_stage();

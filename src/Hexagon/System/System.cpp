@@ -108,7 +108,9 @@ From me far off, with others all too near.
 
 
 System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion &motion)
-   : display(display)
+   : last_component_navigator_selection("")
+   , default_navigator_directory("")
+   , display(display)
    , config(config)
    , motion(motion)
    , save_count(0)
@@ -119,7 +121,6 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , stages({})
    , camera(0, 0, 0)
    , last_file_navigator_selection("")
-   , last_component_navigator_selection("")
    , global_font_resource_filename("Menlo-Regular.ttf")
    , target("")
    , global_font_size(-20)
@@ -138,6 +139,8 @@ void System::initialize()
    std::string font_bin_path = config.get_font_bin_path();
    font_bin.set_full_path(font_bin_path);
 
+   set_default_navigator_directory(config.get_default_navigator_directory());
+
    hud.set_backfill_color(config.get_backfill_color());
    hud.set_stages(&stages);
    hud.set_global_font_str(get_global_font_str());
@@ -149,9 +152,15 @@ void System::initialize()
    //process_local_event(EXECUTE_MAGIC_COMMAND);
 }
 
+void System::set_default_navigator_directory(std::string default_navigator_directory)
+{
+   this->default_navigator_directory = default_navigator_directory;
+}
+
 std::string System::get_default_navigator_directory()
 {
-   return config.get_default_navigator_directory();
+   return default_navigator_directory;
+   //return config.get_default_navigator_directory();
 }
 
 int System::get_display_default_width()
@@ -179,6 +188,11 @@ std::string System::get_global_font_str()
    std::stringstream result;
    result << global_font_resource_filename << " " << global_font_size;
    return result.str();
+}
+
+void System::set_last_component_navigator_selection(std::string last_component_navigator_selection)
+{
+   this->last_component_navigator_selection = last_component_navigator_selection;
 }
 
 // retrieval
