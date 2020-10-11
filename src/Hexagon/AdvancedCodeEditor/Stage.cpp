@@ -552,7 +552,7 @@ if (!(font_bin))
       error_message << "Stage" << "::" << "obtain_text_font" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
-return font_bin->auto_get("Menlo-Regular.ttf -30");
+return font_bin->auto_get("Menlo-Regular.ttf -20");
 
 }
 

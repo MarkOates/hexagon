@@ -194,8 +194,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, initial
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 40);
    stage.initialize();
 
-   EXPECT_EQ(16, stage.get_cursor().get_width());
-   EXPECT_EQ(30, stage.get_cursor().get_height());
+   EXPECT_EQ(10, stage.get_cursor().get_width());
+   EXPECT_EQ(20, stage.get_cursor().get_height());
 }
 
 

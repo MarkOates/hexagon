@@ -468,7 +468,7 @@ functions:
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
-      return font_bin->auto_get("Menlo-Regular.ttf -30");
+      return font_bin->auto_get("Menlo-Regular.ttf -20");
 
 
   - name: get_lines
