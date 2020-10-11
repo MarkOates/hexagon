@@ -37,7 +37,7 @@ TEST(Hexagon_System_System, get_default_code_editor_stage_width__returns_the_exp
 }
 
 TEST(Hexagon_System_System,
-   create_two_or_three_split_layout_from_last_component_navigator_selection__will_set_the_hud_title)
+   DISABLED_create_two_or_three_split_layout_from_last_component_navigator_selection__will_set_the_hud_title)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
