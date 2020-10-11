@@ -101,6 +101,33 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
 }
 
 TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
+   execute__with_create_as_advanced_code_editor_on__with_a_valid_component_creates_the_expected_files)
+{
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
+                                                             // the factory uses al_get_display_width|height functions
+                                                             // which it should not do.  Rather, the dimensions of the
+                                                             // surface should be passed in if position is relative to
+                                                             // it.  That was a dirty hack for then, and the display
+                                                             // here is a second-order hack to get this test passing.
+                                                             // Eventually this should be fixed.
+   std::string project_path = "/Users/markoates/Repos/hexagon/";
+   std::string component = "Hexagon/System/Action/CreateThreeSplitFromComponent";
+   std::vector<StageInterface *> stages;
+
+   CreateThreeSplit create_three_split(project_path, component, stages, &get_stage_factory_ref());
+   create_three_split.set_create_as_advanced_code_editor(true);
+
+   EXPECT_EQ(true, create_three_split.execute());
+
+   ASSERT_EQ(3, stages.size());
+   for (auto &stage : stages)
+   {
+      EXPECT_EQ(StageInterface::ADVANCED_CODE_EDITOR, stage->get_type());
+   }
+   al_destroy_display(display);
+}
+
+TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithFixture,
    execute__with_an_invalid_component_creates_missing_file_stages)
 {
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because

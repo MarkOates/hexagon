@@ -3,6 +3,7 @@
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 #include <allegro_flare/placement3d.h>
 #include <Blast/FileExistenceChecker.hpp>
+#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -32,6 +33,7 @@ CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project
    , code_editor_width(code_editor_width)
    , text_color(text_color)
    , backfill_color(backfill_color)
+   , create_as_advanced_code_editor(false)
 {
 }
 
@@ -44,6 +46,12 @@ CreateThreeSplitFromComponent::~CreateThreeSplitFromComponent()
 void CreateThreeSplitFromComponent::set_stages(std::vector<StageInterface *>& stages)
 {
    this->stages = stages;
+}
+
+
+void CreateThreeSplitFromComponent::set_create_as_advanced_code_editor(bool create_as_advanced_code_editor)
+{
+   this->create_as_advanced_code_editor = create_as_advanced_code_editor;
 }
 
 
@@ -62,6 +70,12 @@ std::vector<StageInterface *>& CreateThreeSplitFromComponent::get_stages()
 int CreateThreeSplitFromComponent::get_code_editor_width()
 {
    return code_editor_width;
+}
+
+
+bool CreateThreeSplitFromComponent::get_create_as_advanced_code_editor()
+{
+   return create_as_advanced_code_editor;
 }
 
 
@@ -90,10 +104,13 @@ StageInterface *stage = nullptr;
 
 if (file_exists)
 {
-   bool create_as_advanced_code_editor = false;
    if (create_as_advanced_code_editor)
    {
       // unreached branch
+      StageInterface* created_stage = stage_factory->create_advanced_code_editor(filename);
+      Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =
+         static_cast<Hexagon::AdvancedCodeEditor::Stage*>(created_stage);
+      stage = advanced_code_editor_stage;
    }
    else
    {

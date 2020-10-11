@@ -54,6 +54,11 @@ properties:
     init_with: "{}"
     static: true
     getter_ref: true
+  - name: create_as_advanced_code_editor
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
 
 
 functions:
@@ -88,10 +93,13 @@ functions:
 
       if (file_exists)
       {
-         bool create_as_advanced_code_editor = false;
          if (create_as_advanced_code_editor)
          {
             // unreached branch
+            StageInterface* created_stage = stage_factory->create_advanced_code_editor(filename);
+            Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =
+               static_cast<Hexagon::AdvancedCodeEditor::Stage*>(created_stage);
+            stage = advanced_code_editor_stage;
          }
          else
          {
@@ -116,6 +124,7 @@ functions:
     body_dependency_symbols:
       - placement3d
       - Blast::FileExistenceChecker
+      - Hexagon::AdvancedCodeEditor::Stage
       - Hexagon::CodeEditor::Stage
 
 
@@ -177,6 +186,8 @@ dependencies:
     headers: [ Hexagon/Action.hpp ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Stage
+    headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: Hexagon::CodeEditor::Stage
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: std::vector<StageInterface *>&
