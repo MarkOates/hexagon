@@ -55,9 +55,26 @@ TEST(Hexagon_System_System,
 }
 
 TEST(Hexagon_System_System,
-   create_stages_from_layout_of_last_component_navigator_selection__will_create_the_expected_layout)
+   DISABLED_create_stages_from_layout_of_last_component_navigator_selection__will_create_the_expected_layout)
 {
-   // TODO
+   std::string project_directory = "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject";
+   std::string component_name = "FixtureObjectThing";
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(800, 600);
+   System system(display);
+
+   system.initialize();
+
+   system.option__saving_focused_filename_to_file_is_disabled = true;
+   system.set_default_navigator_directory(project_directory);
+   system.set_last_component_navigator_selection(component_name);
+
+   system.create_stages_from_layout_of_last_component_navigator_selection();
+   std::vector<Hexagon::CodeEditor::Stage *> stages = system.get_all_code_editor_stages();
+
+   ASSERT_EQ(2, stages.size());
+
+   al_uninstall_system();
 }
 
 TEST(Hexagon_System_System,
