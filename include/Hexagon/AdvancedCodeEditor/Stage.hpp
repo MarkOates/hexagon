@@ -78,8 +78,6 @@ namespace Hexagon
       bool first_row_offset_move_up();
       bool first_row_offset_move_down();
       bool first_row_offset_jump_to(int new_offset=0);
-      bool first_row_offset_jump_half_window_up();
-      bool first_row_offset_jump_half_window_down();
       bool delete_character();
       bool join_lines();
       bool split_lines();
