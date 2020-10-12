@@ -303,6 +303,24 @@ return true;
 
 }
 
+bool Stage::first_row_offset_jump_half_window_up()
+{
+int distance_to_travel = num_rows / 2;
+first_row_offset = first_row_offset - distance_to_travel;
+refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
+return true;
+
+}
+
+bool Stage::first_row_offset_jump_half_window_down()
+{
+int distance_to_travel = num_rows / 2;
+first_row_offset = first_row_offset + distance_to_travel;
+refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
+return true;
+
+}
+
 bool Stage::delete_character()
 {
 if (!(initialized))
