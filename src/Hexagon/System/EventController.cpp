@@ -349,7 +349,7 @@ else
    if (system->is_current_stage_in_edit_mode())
    {
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, {
-        ::System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL,
+         ::System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL,
          });
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, true, false, false, {
          ::System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL,
