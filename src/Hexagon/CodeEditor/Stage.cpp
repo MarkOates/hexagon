@@ -170,12 +170,6 @@ if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
    std::vector<std::string> lines = code_editor.get_lines_ref();
    int char_count = code_editor_char_count();
 
-
-   std::cout << "char count " << char_count << std::endl;
-   std::cout << "lines count" << code_editor.get_lines_ref().size() << std::endl;
-   std::cout << " --- " << std::endl;
-
-
    Hexagon::OneLineInputBox::Renderer renderer(
       get_font(),
       outline_and_text_color,
