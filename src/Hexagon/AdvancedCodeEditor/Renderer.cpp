@@ -107,8 +107,9 @@ float cell_height = text_mesh->get_cell_height();
 bool line_exists_in_git_modified_line_numbers = false;
 int num_rows_to_draw_line_numbers = text_mesh->get_num_rows();
 
-for (int line_number=first_line_number; line_number<=num_rows_to_draw_line_numbers; line_number++)
+for (int i=0; i<=num_rows_to_draw_line_numbers; i++)
 {
+   int line_number = first_line_number + i;
    if (line_number < 0) continue;
 
    ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(font_color, 0.2);
