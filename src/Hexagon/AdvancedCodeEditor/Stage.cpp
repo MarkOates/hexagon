@@ -321,15 +321,15 @@ return true;
 
 bool Stage::first_row_offset_jump_up_half_page()
 {
-//return advanced_code_editor.first_row_offset_jump_up_half_page();
-return true;
+int new_first_row_offset = first_row_offset - num_rows / 2;
+return first_row_offset_jump_to(new_first_row_offset);
 
 }
 
 bool Stage::first_row_offset_jump_down_half_page()
 {
-//return advanced_code_editor.first_row_offset_jump_down_half_page();
-return true;
+int new_first_row_offset = first_row_offset + num_rows / 2;
+return first_row_offset_jump_to(new_first_row_offset);
 
 }
 
