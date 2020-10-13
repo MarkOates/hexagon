@@ -7,6 +7,10 @@
 #include <Hexagon/AdvancedCodeEditor/WindowRenderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <AllegroFlare/Color.hpp>
+#include <allegro5/allegro_color.h>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 
@@ -17,7 +21,7 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
    , cursor(cursor)
@@ -26,12 +30,26 @@ Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surfa
    , cursor_is_bar(cursor_is_bar)
    , text_mesh_y_offset(text_mesh_y_offset)
    , first_row_offset(first_row_offset)
+   , draw_line_numbers(draw_line_numbers)
+   , font(font)
 {
 }
 
 
 Renderer::~Renderer()
 {
+}
+
+
+void Renderer::set_draw_line_numbers(bool draw_line_numbers)
+{
+   this->draw_line_numbers = draw_line_numbers;
+}
+
+
+void Renderer::set_font(ALLEGRO_FONT* font)
+{
+   this->font = font;
 }
 
 
@@ -59,9 +77,66 @@ text_mesh->render();
 //                         << timer.get_elapsed_time_microseconds() << std::endl;
 
 // draw the cursor
+if (draw_line_numbers) render_line_numbers();
 render_cursor();
 
 return;
+
+}
+
+bool Renderer::render_line_numbers()
+{
+if (!(text_mesh))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_line_numbers" << ": error: " << "guard \"text_mesh\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_line_numbers" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+int cell_width = text_mesh->get_cell_width();
+ALLEGRO_COLOR font_color = al_color_name("white");
+ALLEGRO_COLOR cursor_color = AllegroFlare::color::color(al_color_name("yellow"), 0.3);
+int first_line_number = first_row_offset;
+int _cursor_y = cursor->get_y();
+float cell_height = text_mesh->get_cell_height();
+bool line_exists_in_git_modified_line_numbers = false;
+int num_rows_to_draw_line_numbers = text_mesh->get_num_rows();
+
+for (int line_number=first_line_number; line_number<=num_rows_to_draw_line_numbers; line_number++)
+{
+   if (line_number < 0) continue;
+
+   ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(font_color, 0.2);
+   float frame_right_x = width - cell_width * 0.5;
+   bool cursor_is_on_this_line = _cursor_y == (line_number - first_line_number);
+   std::stringstream ss;
+   ss << (line_number+1);
+   ALLEGRO_COLOR text_color = default_line_number_green_color;
+   std::string string_to_display = ss.str();
+   float y = (line_number-first_line_number)*cell_height;
+
+   if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
+   if (cursor_is_on_this_line)
+   {
+      text_color = AllegroFlare::color::mix(text_color, cursor_color, 0.5);
+      ALLEGRO_COLOR hilight_bar_color = AllegroFlare::color::mix(ALLEGRO_COLOR{0, 0, 0, 0}, text_color, 0.25);
+      al_draw_filled_rectangle(0, y, frame_right_x, y+cell_height, hilight_bar_color);
+      string_to_display = std::string(">") + string_to_display;
+   }
+
+   al_draw_text(font,
+                text_color,
+                frame_right_x,
+                y,
+                ALLEGRO_ALIGN_RIGHT,
+                string_to_display.c_str());
+}
+return true;
 
 }
 

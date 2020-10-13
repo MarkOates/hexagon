@@ -33,6 +33,16 @@ properties:
     type: int
     init_with: 0
     constructor_arg: true
+  - name: draw_line_numbers
+    type: bool
+    init_with: false
+    setter: true
+    constructor_arg: true
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    setter: true
+    constructor_arg: true
 
 
 functions:
@@ -58,6 +68,7 @@ functions:
       //                         << timer.get_elapsed_time_microseconds() << std::endl;
 
       // draw the cursor
+      if (draw_line_numbers) render_line_numbers();
       render_cursor();
 
       return;
@@ -66,6 +77,54 @@ functions:
       - al_draw_bitmap
       - AllegroFlare::Timer
       - Hexagon::AdvancedCodeEditor::WindowRenderer
+
+
+  - name: render_line_numbers
+    type: bool
+    guards: [ text_mesh, font ]
+    body: |
+       int cell_width = text_mesh->get_cell_width();
+       ALLEGRO_COLOR font_color = al_color_name("white");
+       ALLEGRO_COLOR cursor_color = AllegroFlare::color::color(al_color_name("yellow"), 0.3);
+       int first_line_number = first_row_offset;
+       int _cursor_y = cursor->get_y();
+       float cell_height = text_mesh->get_cell_height();
+       bool line_exists_in_git_modified_line_numbers = false;
+       int num_rows_to_draw_line_numbers = text_mesh->get_num_rows();
+
+       for (int line_number=first_line_number; line_number<=num_rows_to_draw_line_numbers; line_number++)
+       {
+          if (line_number < 0) continue;
+
+          ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(font_color, 0.2);
+          float frame_right_x = width - cell_width * 0.5;
+          bool cursor_is_on_this_line = _cursor_y == (line_number - first_line_number);
+          std::stringstream ss;
+          ss << (line_number+1);
+          ALLEGRO_COLOR text_color = default_line_number_green_color;
+          std::string string_to_display = ss.str();
+          float y = (line_number-first_line_number)*cell_height;
+
+          if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
+          if (cursor_is_on_this_line)
+          {
+             text_color = AllegroFlare::color::mix(text_color, cursor_color, 0.5);
+             ALLEGRO_COLOR hilight_bar_color = AllegroFlare::color::mix(ALLEGRO_COLOR{0, 0, 0, 0}, text_color, 0.25);
+             al_draw_filled_rectangle(0, y, frame_right_x, y+cell_height, hilight_bar_color);
+             string_to_display = std::string(">") + string_to_display;
+          }
+
+          al_draw_text(font,
+                       text_color,
+                       frame_right_x,
+                       y,
+                       ALLEGRO_ALIGN_RIGHT,
+                       string_to_display.c_str());
+       }
+       return true;
+    body_dependency_symbols:
+      - AllegroFlare::color::color
+      - ALLEGRO_COLOR
 
 
   - name: render_cursor
@@ -108,6 +167,10 @@ dependencies:
 
   - symbol: Hexagon::Elements::TextMesh*
     headers: [ Hexagon/Elements/TextMesh.hpp ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
   - symbol: al_draw_bitmap
@@ -120,4 +183,6 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
   - symbol: AllegroFlare::Timer
     headers: [ AllegroFlare/Timer.hpp ]
+  - symbol: AllegroFlare::color::color
+    headers: [ AllegroFlare/Color.hpp ]
 

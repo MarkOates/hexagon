@@ -557,7 +557,9 @@ Hexagon::AdvancedCodeEditor::Renderer renderer(
    place.size.y,
    is_in_insert_mode(),
    0.0f,
-   first_row_offset
+   first_row_offset,
+   true, // draw line numbers
+   obtain_text_font()
 );
 
 place.start_transform();
