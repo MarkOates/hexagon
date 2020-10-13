@@ -17,7 +17,7 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar, float text_mesh_y_offset)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
    , cursor(cursor)
@@ -25,6 +25,7 @@ Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surfa
    , height(height)
    , cursor_is_bar(cursor_is_bar)
    , text_mesh_y_offset(text_mesh_y_offset)
+   , first_row_offset(first_row_offset)
 {
 }
 
@@ -85,7 +86,7 @@ if (!(al_is_primitives_addon_initialized()))
       throw std::runtime_error(error_message.str());
    }
 float cursor_x = cursor->get_x() * text_mesh->get_cell_width();
-float cursor_y = cursor->get_y() * text_mesh->get_cell_height() + text_mesh_y_offset;
+float cursor_y = (cursor->get_y() - first_row_offset) * text_mesh->get_cell_height() + text_mesh_y_offset;
 ALLEGRO_COLOR cursor_color = ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f};
 
 if (cursor_is_bar)

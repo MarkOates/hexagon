@@ -555,7 +555,9 @@ Hexagon::AdvancedCodeEditor::Renderer renderer(
    &advanced_code_editor.get_cursor_ref(),
    place.size.x,
    place.size.y,
-   is_in_insert_mode()
+   is_in_insert_mode(),
+   0.0f,
+   first_row_offset
 );
 
 place.start_transform();
