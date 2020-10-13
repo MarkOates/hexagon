@@ -99,26 +99,28 @@ functions:
 
           ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(font_color, 0.2);
           float frame_right_x = width - cell_width * 0.5;
-          bool cursor_is_on_this_line = _cursor_y == (line_number - first_line_number);
+          bool cursor_is_on_this_line = (_cursor_y == line_number);
           std::stringstream ss;
           ss << (line_number+1);
           ALLEGRO_COLOR text_color = default_line_number_green_color;
           std::string string_to_display = ss.str();
-          float y = (line_number-first_line_number)*cell_height;
+          float y = i * cell_height;
+          float that_y = y;
 
           if (line_exists_in_git_modified_line_numbers) text_color = al_color_name("orange");
           if (cursor_is_on_this_line)
           {
+             float this_y = y;
              text_color = AllegroFlare::color::mix(text_color, cursor_color, 0.5);
              ALLEGRO_COLOR hilight_bar_color = AllegroFlare::color::mix(ALLEGRO_COLOR{0, 0, 0, 0}, text_color, 0.25);
-             al_draw_filled_rectangle(0, y, frame_right_x, y+cell_height, hilight_bar_color);
+             al_draw_filled_rectangle(0, this_y, frame_right_x, this_y+cell_height, hilight_bar_color);
              string_to_display = std::string(">") + string_to_display;
           }
 
           al_draw_text(font,
                        text_color,
                        frame_right_x,
-                       y,
+                       that_y,
                        ALLEGRO_ALIGN_RIGHT,
                        string_to_display.c_str());
        }
