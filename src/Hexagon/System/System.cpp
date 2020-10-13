@@ -146,7 +146,8 @@ void System::initialize()
    hud.set_backfill_color(config.get_backfill_color());
    hud.set_stages(&stages);
    hud.set_global_font_str(get_global_font_str());
-   hud.set_render_packets(true);
+   hud.set_render_packets(false);
+   hud.set_render_focus_timer_bar(false);
    hud.initialize();
 
    camera.stepback.z = get_default_camera_stepback();
