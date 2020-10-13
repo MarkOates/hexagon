@@ -699,6 +699,18 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   first_row_offset_jump_up_half_page__will_move_the_first_row_offset_up_by_half_the_number_of_rows)
+{
+   // TODO
+}
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   first_row_offset_jump_down_half_page__will_move_the_first_row_offset_down_by_half_the_number_of_rows)
+{
+   // TODO
+}
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    render__will_respect_the_first_row_offset)
 {
    std::string filename = std::tmpnam(nullptr);
