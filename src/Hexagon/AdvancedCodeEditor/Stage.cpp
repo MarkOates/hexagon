@@ -311,6 +311,14 @@ return true;
 
 }
 
+bool Stage::first_row_offset_jump_to(int new_offset)
+{
+first_row_offset = new_offset;
+refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
+return true;
+
+}
+
 bool Stage::first_row_offset_jump_up_half_page()
 {
 //return advanced_code_editor.first_row_offset_jump_up_half_page();
@@ -321,14 +329,6 @@ return true;
 bool Stage::first_row_offset_jump_down_half_page()
 {
 //return advanced_code_editor.first_row_offset_jump_down_half_page();
-return true;
-
-}
-
-bool Stage::first_row_offset_jump_to(int new_offset)
-{
-first_row_offset = new_offset;
-refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
 return true;
 
 }
