@@ -79,6 +79,8 @@ namespace Hexagon
       bool cursor_jump_down_half_page();
       bool first_row_offset_move_up();
       bool first_row_offset_move_down();
+      bool first_row_offset_jump_up_half_page();
+      bool first_row_offset_jump_down_half_page();
       bool first_row_offset_jump_to(int new_offset=0);
       bool delete_character();
       bool join_lines();
