@@ -661,7 +661,8 @@ AllegroFlare::Timer timer;
 //std::cout << "-num dirty cells: " << advanced_code_editor.dirty_cell_count() << std::endl;
 
 timer.reset(); timer.start();
-refresh_dirty_cells_on_text_mesh();
+//refresh_dirty_cells_on_text_mesh();
+refresh_text_mesh_respecting_first_row_offset();
 //timer.pause(); std::cout << " refresh_dirty_cells_on_text_mesh: "
 //                         << timer.get_elapsed_time_microseconds() << std::endl;
 
