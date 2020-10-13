@@ -281,14 +281,16 @@ return advanced_code_editor.cursor_jump_to_previous_word();
 
 bool Stage::cursor_jump_up_half_page()
 {
-//return advanced_code_editor.cursor_jump_up_half_page();
+int new_y = advanced_code_editor.cursor_get_y() - num_rows / 2;
+advanced_code_editor.cursor_set_y(new_y);
 return true;
 
 }
 
 bool Stage::cursor_jump_down_half_page()
 {
-//return advanced_code_editor.cursor_jump_down_half_page();
+int new_y = advanced_code_editor.cursor_get_y() + num_rows / 2;
+advanced_code_editor.cursor_set_y(new_y);
 return true;
 
 }

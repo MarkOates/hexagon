@@ -499,6 +499,20 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   cursor_jump_up_half_page__will_move_the_cursor_up_half_the_number_of_rows_of_the_window)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   cursor_jump_down_half_page__will_move_the_cursor_down_half_the_number_of_rows_of_the_window)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    join_lines__refreshes_the_text_mesh)
 {
    // TODO

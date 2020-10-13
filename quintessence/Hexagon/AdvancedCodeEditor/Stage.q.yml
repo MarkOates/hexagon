@@ -200,14 +200,16 @@ functions:
   - name: cursor_jump_up_half_page
     type: bool
     body: |
-      //return advanced_code_editor.cursor_jump_up_half_page();
+      int new_y = advanced_code_editor.cursor_get_y() - num_rows / 2;
+      advanced_code_editor.cursor_set_y(new_y);
       return true;
 
 
   - name: cursor_jump_down_half_page
     type: bool
     body: |
-      //return advanced_code_editor.cursor_jump_down_half_page();
+      int new_y = advanced_code_editor.cursor_get_y() + num_rows / 2;
+      advanced_code_editor.cursor_set_y(new_y);
       return true;
 
 
