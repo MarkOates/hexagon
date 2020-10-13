@@ -279,6 +279,20 @@ return advanced_code_editor.cursor_jump_to_previous_word();
 
 }
 
+bool Stage::cursor_jump_up_half_page()
+{
+//return advanced_code_editor.cursor_jump_up_half_page();
+return true;
+
+}
+
+bool Stage::cursor_jump_down_half_page()
+{
+//return advanced_code_editor.cursor_jump_down_half_page();
+return true;
+
+}
+
 bool Stage::first_row_offset_move_up()
 {
 first_row_offset -= 1;
@@ -432,6 +446,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    { "cursor_move_to_end_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_end_of_line },
    { "cursor_jump_to_next_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_next_word },
    { "cursor_jump_to_previous_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_word },
+   { "cursor_jump_up_half_page", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_up_half_page },
+   { "cursor_jump_down_half_page", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_down_half_page },
    { "first_row_offset_move_up", &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_move_up },
    { "first_row_offset_move_down", &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_move_down },
    { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
