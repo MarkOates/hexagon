@@ -115,7 +115,7 @@ properties:
     setter: true
   - name: render_focus_timer_bar
     type: bool
-    init_with: true
+    init_with: false
     setter: true
     getter: true
     constructor_arg: true

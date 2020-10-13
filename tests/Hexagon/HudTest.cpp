@@ -104,7 +104,7 @@ TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
    render_focus_timer_bar__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
-   ASSERT_EQ(true, hud.get_render_focus_timer_bar());
+   ASSERT_EQ(false, hud.get_render_focus_timer_bar());
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
