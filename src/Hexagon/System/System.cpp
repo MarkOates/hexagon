@@ -154,10 +154,12 @@ void System::initialize()
    //process_local_event(EXECUTE_MAGIC_COMMAND);
 }
 
+
 void System::set_default_navigator_directory(std::string default_navigator_directory)
 {
    this->default_navigator_directory = default_navigator_directory;
 }
+
 
 std::string System::get_default_navigator_directory()
 {
@@ -165,25 +167,30 @@ std::string System::get_default_navigator_directory()
    //return config.get_default_navigator_directory();
 }
 
+
 int System::get_display_default_width()
 {
    return config.get_initial_display_width();
 }
+
 
 int System::get_display_default_height()
 {
    return config.get_initial_display_height();
 }
 
+
 float System::get_default_camera_stepback()
 {
    return config.get_default_camera_stepback();
 }
 
+
 float System::get_default_code_editor_stage_width()
 {
    return 2430/2 + 20;
 }
+
 
 std::string System::get_global_font_str()
 {
