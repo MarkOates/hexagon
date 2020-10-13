@@ -321,15 +321,17 @@ return true;
 
 bool Stage::first_row_offset_jump_up_half_page()
 {
-int new_first_row_offset = first_row_offset - num_rows / 2;
-return first_row_offset_jump_to(new_first_row_offset);
+first_row_offset = first_row_offset - num_rows / 2;
+refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
+return true;
 
 }
 
 bool Stage::first_row_offset_jump_down_half_page()
 {
-int new_first_row_offset = first_row_offset + num_rows / 2;
-return first_row_offset_jump_to(new_first_row_offset);
+first_row_offset = first_row_offset + num_rows / 2;
+refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
+return true;
 
 }
 
