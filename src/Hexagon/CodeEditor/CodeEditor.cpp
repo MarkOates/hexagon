@@ -30,7 +30,6 @@ namespace CodeEditor
 
 
 CodeEditor::CodeEditor(std::string filename, std::string file_category, mode_t mode, StageInterface::type_t type)
-   //: StageInterface(type)
    : content_is_modified(false)
    , save_count(0)
    , cursor_x(0)
@@ -41,7 +40,6 @@ CodeEditor::CodeEditor(std::string filename, std::string file_category, mode_t m
    , filename(filename)
    , file_category(file_category)
    , search_regex_expression("")
-   //, place(place)
    , first_line_number(0)
    , code_message_points_overlays()
    , currently_grabbing_visual_selection(false)

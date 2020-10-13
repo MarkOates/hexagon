@@ -61,6 +61,7 @@ namespace CodeEditor
          StageInterface::type_t type=StageInterface::CODE_EDITOR
          );
       ~CodeEditor();
+
       // accessors
 
       void set_cursor_x(int cursor_x);
@@ -134,8 +135,6 @@ namespace CodeEditor
 
       bool refresh_git_modified_line_numbers();
 
-      //std::vector<CodeMessagePoint> code_message_points;
-      //bool showing_code_message_points;
       std::vector<CodeMessagePointsOverlay> code_message_points_overlays;
 
       bool clear_code_message_points();
@@ -169,7 +168,6 @@ namespace CodeEditor
       bool set_current_selection_end_y(int y);
       bool yank_selected_text_to_clipboard();
       bool paste_selected_text_from_clipboard();
-      // complete
    };
 } // namespace CodeEditor
 
