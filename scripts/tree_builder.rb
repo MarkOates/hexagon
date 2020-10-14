@@ -1,22 +1,39 @@
+require 'json'
+
 class TreeBuilder
   def build
-    process_lines
+    #process_lines
+    puts JSON.pretty_generate(rollup)
   end
 
   def command_results
     @command_results ||= (`git grep "^  - name" | grep q\.yml`).split("\n")
   end
 
-  def process_lines
-    command_results.each do |command_result|
-      index = command_result.index(": ")
-      left = command_result[0...index]
-      right = command_result[(index + 11)..-1]
-      result = {
-        left: left,
-        right: right,
-      }
-      puts result
+  def rollup
+    @rollup ||= begin
+      result = {}
+      processed_lines.each do |processed_line|
+        #processed_line[:symbol]
+        (result[processed_line[:filename]] ||= []) << processed_line[:symbol]
+        #processed_line[:symbol]
+      end
+      result
+    end
+  end
+
+  def processed_lines
+    @processed_lines ||= begin
+      command_results.map do |command_result|
+        index = command_result.index(": ")
+        filename = command_result[0...index]
+        method = command_result[(index + 11)..-1]
+        result = {
+          filename: filename,
+          symbol: method,
+        }
+        #puts result
+      end
     end
   end
 end
