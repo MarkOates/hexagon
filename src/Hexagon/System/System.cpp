@@ -258,11 +258,13 @@ bool System::is_current_stage_in_edit_mode()
    {
       Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor =
         static_cast<Hexagon::AdvancedCodeEditor::Stage *>((void *)frontmost_stage);
+      if (advanced_code_editor->is_in_edit_mode()) return true; 
    }
    else
    {
       return frontmost_stage->get_code_editor_ref().get_mode() == ::CodeEditor::CodeEditor::EDIT;
    }
+   return false;
 }
 
 
