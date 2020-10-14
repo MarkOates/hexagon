@@ -33,7 +33,7 @@ AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateT
    , code_editor_width(code_editor_width)
    , text_color(text_color)
    , backfill_color(backfill_color)
-   , option__create_advanced_code_editor(false)
+   , create_as_advanced_code_editor(false)
 {
 }
 
@@ -49,9 +49,9 @@ void AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::set_stages(
 }
 
 
-void AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::set_option__create_advanced_code_editor(bool option__create_advanced_code_editor)
+void AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::set_create_as_advanced_code_editor(bool create_as_advanced_code_editor)
 {
-   this->option__create_advanced_code_editor = option__create_advanced_code_editor;
+   this->create_as_advanced_code_editor = create_as_advanced_code_editor;
 }
 
 
@@ -120,7 +120,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
      std::vector<std::string> file_contents = {};
      ::read_file(file_contents, test_filename);
 
-     if (option__create_advanced_code_editor)
+     if (create_as_advanced_code_editor)
      {
         stage = stage_factory->create_advanced_code_editor(test_filename);
      }
@@ -159,7 +159,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
      std::vector<std::string> file_contents = {};
      ::read_file(file_contents, filename);
 
-     if (option__create_advanced_code_editor)
+     if (create_as_advanced_code_editor)
      {
         stage = stage_factory->create_advanced_code_editor(filename);
      }

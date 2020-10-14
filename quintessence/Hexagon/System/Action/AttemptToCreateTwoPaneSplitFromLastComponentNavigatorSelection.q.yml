@@ -54,7 +54,7 @@ properties:
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
     constructor_arg: true
-  - name: option__create_advanced_code_editor
+  - name: create_as_advanced_code_editor
     type: bool
     init_with: false
     setter: true
@@ -105,7 +105,7 @@ functions:
            std::vector<std::string> file_contents = {};
            ::read_file(file_contents, test_filename);
 
-           if (option__create_advanced_code_editor)
+           if (create_as_advanced_code_editor)
            {
               stage = stage_factory->create_advanced_code_editor(test_filename);
            }
@@ -144,7 +144,7 @@ functions:
            std::vector<std::string> file_contents = {};
            ::read_file(file_contents, filename);
 
-           if (option__create_advanced_code_editor)
+           if (create_as_advanced_code_editor)
            {
               stage = stage_factory->create_advanced_code_editor(filename);
            }
