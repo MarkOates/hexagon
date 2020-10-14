@@ -77,6 +77,9 @@ properties:
   - name: code_message_point_manager
     type: Hexagon::CodeMessagePointManager
     init_with: '{}'
+  - name: selections
+    type: std::vector<CodeRange>
+    init_with: '{}'
 
 
 functions:
@@ -746,6 +749,8 @@ functions:
 dependencies:
 
 
+  - symbol: std::vector<CodeRange>
+    headers: [ vector, Hexagon/CodeRange.hpp ]
   - symbol: std::vector<std::pair<int, int>>
     headers: [ vector, utility ]
   - symbol: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>

@@ -8,6 +8,7 @@
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/CodeMessagePointManager.hpp>
+#include <Hexagon/CodeRange.hpp>
 #include <Hexagon/DirtyGrid.hpp>
 #include <Hexagon/Elements/TextMesh.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -42,6 +43,7 @@ namespace Hexagon
          ALLEGRO_BITMAP* surface_render;
          std::string current_search_regex;
          Hexagon::CodeMessagePointManager code_message_point_manager;
+         std::vector<CodeRange> selections;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);

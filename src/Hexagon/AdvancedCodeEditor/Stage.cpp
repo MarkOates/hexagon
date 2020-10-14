@@ -62,6 +62,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , surface_render(nullptr)
    , current_search_regex("")
    , code_message_point_manager({})
+   , selections({})
 {
 }
 
