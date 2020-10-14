@@ -67,6 +67,7 @@ namespace Hexagon
       void initialize();
       virtual void destroy() override;
       bool save_file();
+      bool save_file_and_touch_if_symlink();
       bool set_to_edit_mode();
       bool set_to_insert_mode();
       bool cursor_move_up();

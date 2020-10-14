@@ -4,6 +4,8 @@
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/util.hpp>
+#include <Hexagon/util.hpp>
+#include <Hexagon/SymlinkToucher.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -214,6 +216,16 @@ std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 ::save_file(lines, filename);
 //Hexagon::SymlinkToucher symlink_toucher(filename); // this is only needed because of rerun
 //symlink_toucher.touch_if_symlink();
+return true;
+
+}
+
+bool Stage::save_file_and_touch_if_symlink()
+{
+std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+::save_file(lines, filename);
+Hexagon::SymlinkToucher symlink_toucher(filename); // this is only needed because of rerun
+symlink_toucher.touch_if_symlink();
 return true;
 
 }

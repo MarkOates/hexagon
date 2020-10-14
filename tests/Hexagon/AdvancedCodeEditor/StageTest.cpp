@@ -699,6 +699,24 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   save_file_and_touch_if_symlink__will_create_the_file_from_the_filename_if_it_does_not_already_exist)
+{
+   // TODO
+}
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   save_file_and_touch_if_symlink__will_save_the_current_content_to_the_file)
+{
+   // TODO
+}
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   save_file_and_touch_if_symlink__will_touch_the_symlink_file_in_order_to_update_the_modified_file_timestamp)
+{
+   // TODO
+}
+ 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    first_row_offset_jump_up_half_page__will_move_the_first_row_offset_up_by_half_the_number_of_rows)
 {
    // TODO
