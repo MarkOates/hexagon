@@ -28,12 +28,14 @@ namespace Hexagon
             int code_editor_width;
             ALLEGRO_COLOR text_color;
             ALLEGRO_COLOR backfill_color;
+            bool option__create_advanced_code_editor;
 
          public:
             AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection(std::string project_path="/Users/markoates/Repos/hexagon/", std::string last_component_navigator_selection="", int display_default_width=2430, int display_default_height=1350, std::vector<StageInterface *>& stages=get_dummy_stages_ref(), Hexagon::StageFactory* stage_factory=nullptr, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
             virtual ~AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection();
 
             void set_stages(std::vector<StageInterface *>& stages);
+            void set_option__create_advanced_code_editor(bool option__create_advanced_code_editor);
 
             std::string get_project_path();
             std::vector<StageInterface *>& get_stages();
