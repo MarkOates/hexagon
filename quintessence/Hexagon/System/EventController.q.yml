@@ -168,7 +168,7 @@ functions:
             &::System::run_project_tests,
          },
          {
-            ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE,
+            ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK,
             &::System::save_frontmost_code_editor_stage_and_touch_if_symlink,
          },
          {
@@ -323,9 +323,9 @@ functions:
             ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
              });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_S, false, false, false, true, {
-            ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE, });
+            ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK, });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, {
-            ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE,
+            ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK,
             ::System::RUN_PROJECT_TESTS });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, {
             ::System::SPAWN_FILE_NAVIGATOR });

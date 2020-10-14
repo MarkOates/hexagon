@@ -193,7 +193,7 @@ public:
    static const std::string ROTATE_RELATIVE_UP;
    static const std::string ROTATE_RELATIVE_DOWN;
    static const std::string RUN_PROJECT_TESTS;
-   static const std::string SAVE_FRONTMOST_CODE_EDITOR_STAGE;
+   static const std::string SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;

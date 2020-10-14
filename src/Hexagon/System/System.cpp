@@ -1334,7 +1334,7 @@ bool System::submit_current_modal()
    switch (frontmost_stage->get_type())
    {
    case StageInterface::ONE_LINE_INPUT_BOX:
-      process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE);
+      process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK);
 
       process_local_event(DESTROY_TOPMOST_STAGE);
       process_local_event(SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS);
@@ -1344,7 +1344,7 @@ bool System::submit_current_modal()
       break;
    case StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX:
       //process_local_event(SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION);
-      process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE);
+      process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK);
       process_local_event(DESTROY_TOPMOST_STAGE);
       process_local_event(COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES);
       process_local_event(PUSH_TO_GIT_REMOTE);
@@ -1463,7 +1463,8 @@ const std::string System::ROTATE_RELATIVE_UP = "ROTATE_RELATIVE_UP";
 const std::string System::ROTATE_RELATIVE_DOWN = "ROTATE_RELATIVE_DOWN";
 const std::string System::CLEAR_LAST_COMPILED_ERROR_MESSAGES = "CLEAR_LAST_COMPILED_ERROR_MESSAGES";
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
-const std::string System::SAVE_FRONTMOST_CODE_EDITOR_STAGE = "SAVE_FRONTMOST_CODE_EDITOR_STAGE";
+const std::string System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK =
+   "SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK";
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
 const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
