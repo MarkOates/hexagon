@@ -257,7 +257,7 @@ bool System::is_current_stage_in_edit_mode()
    if (frontmost_stage->get_type() == StageInterface::ADVANCED_CODE_EDITOR)
    {
       Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor =
-        static_cast<Hexagon::AdvancedCodeEditor::Stage *>((void *)frontmost_stage); 
+        static_cast<Hexagon::AdvancedCodeEditor::Stage *>((void *)frontmost_stage);
    }
    else
    {
