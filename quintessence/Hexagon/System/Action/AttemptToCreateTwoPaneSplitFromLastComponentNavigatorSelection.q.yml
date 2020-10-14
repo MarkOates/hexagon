@@ -144,11 +144,18 @@ functions:
            std::vector<std::string> file_contents = {};
            ::read_file(file_contents, filename);
 
-           stage = stage_factory->create_code_editor(filename, "blast_quintessence");
+           if (option__create_advanced_code_editor)
+           {
+              stage = stage_factory->create_advanced_code_editor(filename);
+           }
+           else
+           {
+              stage = stage_factory->create_code_editor(filename, "blast_quintessence");
 
-           static_cast<CodeEditor::Stage *>(stage)->get_code_editor_ref().set_initial_content(file_contents);
-           static_cast<CodeEditor::Stage *>(stage)->set_base_font_color(text_color);
-           static_cast<CodeEditor::Stage *>(stage)->set_backfill_color(backfill_color);
+              static_cast<CodeEditor::Stage *>(stage)->get_code_editor_ref().set_initial_content(file_contents);
+              static_cast<CodeEditor::Stage *>(stage)->set_base_font_color(text_color);
+              static_cast<CodeEditor::Stage *>(stage)->set_backfill_color(backfill_color);
+           }
         }
         else
         {
