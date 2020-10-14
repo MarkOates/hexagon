@@ -736,7 +736,7 @@ bool System::save_frontmost_code_editor_stage()
    {
       Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =
          static_cast<Hexagon::AdvancedCodeEditor::Stage *>(stage);
-      advanced_code_editor_stage->save_file();
+      advanced_code_editor_stage->save_file_and_touch_if_symlink();
       //stage->get_code_editor_ref().refresh_git_modified_line_numbers();
       update_save_counts_and_hud_status = true;
    }
