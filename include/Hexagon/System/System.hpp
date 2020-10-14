@@ -105,7 +105,7 @@ public:
    bool rotate_stage_left_and_update_focused_state_on_changed_stages();
    bool center_camera_on_frontmost_stage();
    bool run_project_tests();
-   bool save_frontmost_code_editor_stage();
+   bool save_frontmost_code_editor_stage_and_touch_if_symlink();
    bool increase_font_size();
    bool decrease_font_size();
    bool refresh_regex_hilights_on_frontmost_stage();

@@ -182,7 +182,7 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
    },
    {
       ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE,
-      &::System::save_frontmost_code_editor_stage,
+      &::System::save_frontmost_code_editor_stage_and_touch_if_symlink,
    },
    {
       ::System::SPAWN_COMPONENT_NAVIGATOR,
