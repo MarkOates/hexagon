@@ -254,7 +254,15 @@ bool System::is_current_stage_in_edit_mode()
 {
    Hexagon::CodeEditor::Stage *frontmost_stage = get_frontmost_code_editor_stage();
    if (!frontmost_stage) return false;
-   return frontmost_stage->get_code_editor_ref().get_mode() == ::CodeEditor::CodeEditor::EDIT;
+   if (frontmost_stage->get_type() == StageInterface::ADVANCED_CODE_EDITOR)
+   {
+      Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor =
+        static_cast<Hexagon::AdvancedCodeEditor::Stage *>((void *)frontmost_stage); 
+   }
+   else
+   {
+      return frontmost_stage->get_code_editor_ref().get_mode() == ::CodeEditor::CodeEditor::EDIT;
+   }
 }
 
 
