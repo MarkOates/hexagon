@@ -214,8 +214,6 @@ bool Stage::save_file()
 {
 std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 ::save_file(lines, filename);
-//Hexagon::SymlinkToucher symlink_toucher(filename); // this is only needed because of rerun
-//symlink_toucher.touch_if_symlink();
 return true;
 
 }
