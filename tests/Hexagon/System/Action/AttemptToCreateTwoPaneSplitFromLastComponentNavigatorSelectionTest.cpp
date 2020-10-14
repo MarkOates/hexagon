@@ -87,7 +87,7 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
 }
 
 TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
-   execute__with_create_as_advanced_code_editor_set_to_true__creats_two_advanced_code_editor_stages)
+   execute__with_create_as_advanced_code_editor_set_to_true__creates_two_advanced_code_editor_stages)
 {
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
                                                              // the factory uses al_get_display_width|height functions
@@ -110,6 +110,12 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
       EXPECT_EQ(StageInterface::ADVANCED_CODE_EDITOR, stage->get_type());
    }
    al_destroy_display(display);
+}
+
+TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
+   execute__with_create_as_advanced_code_editor_set_to_true__creates_two_advanced_code_editor_stages_with_the_filename)
+{
+   // TODO
 }
 
 TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
