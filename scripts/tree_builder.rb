@@ -70,7 +70,7 @@ class TreeBuilder
           dependencies: {
             direct: [],
             collaborated: [],
-          }
+          },
           private_methods: [], # mostly not important, it represents a complex internal arrangement to resolve the implementation
           input_types: [],
           input_type_states: [ :requires_initialization ],
