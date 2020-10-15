@@ -1,4 +1,5 @@
 require 'json'
+require 'yaml'
 
 class TreeBuilder
   def build
@@ -33,7 +34,12 @@ class TreeBuilder
 
     result += "</body>"
     puts result
+
     #puts JSON.pretty_generate(rollup)
+  end
+
+  def puts_yamls
+    puts yamls
   end
 
   def command_results
@@ -42,6 +48,26 @@ class TreeBuilder
 
   def component_basename(filename:)
     basename = `~/Repos/ncurses-art/bin/programs/project_filename_generator -x#{filename} -B`
+  end
+
+  def yamls
+    result = {}
+    processed_lines.map do |processed_line|
+      #processed_line[:symbol]
+      filename = processed_line[:filename]
+      yaml = YAML.load(file_contents(filename: filename))
+      result[filename] = yaml
+      #(result[processed_line[:filename]] ||= []) << processed_line[:symbol]
+      #processed_line[:symbol]
+    end
+    result
+  end
+
+  def file_contents(filename:)
+    file = File.open(filename)
+    file_data = file.read
+    file.close
+    return file_data
   end
 
   def rollup
@@ -86,7 +112,8 @@ class TreeBuilder
 end
 
 tree_builder = TreeBuilder.new
-tree_builder.build
+#tree_builder.build
+tree_builder.puts_yamls
 
 
 
