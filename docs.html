@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+<h1>TOC</h1>
+<ul>
+  <li><a href="#quintessence/ApplicationController.q.yml">quintessence/ApplicationController.q.yml</a></li>
+  <li><a href="#quintessence/Blast/Daemus/Daemus.q.yml">quintessence/Blast/Daemus/Daemus.q.yml</a></li>
+  <li><a href="#quintessence/Blast/Daemus/NetworkMessageEventController.q.yml">quintessence/Blast/Daemus/NetworkMessageEventController.q.yml</a></li>
+  <li><a href="#quintessence/Blast/Daemus/ProgramRunner.q.yml">quintessence/Blast/Daemus/ProgramRunner.q.yml</a></li>
+  <li><a href="#quintessence/Blast/String/Trimmer.q.yml">quintessence/Blast/String/Trimmer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.q.yml">quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Cursor.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Cursor.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/EventController.q.yml">quintessence/Hexagon/AdvancedCodeEditor/EventController.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Renderer.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/WindowRenderer.q.yml">quintessence/Hexagon/AdvancedCodeEditor/WindowRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedComponentNavigator/EventController.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/EventController.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedComponentNavigator/Renderer.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedComponentNavigator/SearchBar.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/SearchBar.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BlastComponentLayoutGenerator.q.yml">quintessence/Hexagon/BlastComponentLayoutGenerator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml">quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml">quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeEditor/Cursor.q.yml">quintessence/Hexagon/CodeEditor/Cursor.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeEditor/CursorRenderer.q.yml">quintessence/Hexagon/CodeEditor/CursorRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeEditor/FileCategoryDecorator.q.yml">quintessence/Hexagon/CodeEditor/FileCategoryDecorator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeEditor/LineRenderBin.q.yml">quintessence/Hexagon/CodeEditor/LineRenderBin.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeEditor/Stage.q.yml">quintessence/Hexagon/CodeEditor/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeMessagePointManager.q.yml">quintessence/Hexagon/CodeMessagePointManager.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeRenderer.q.yml">quintessence/Hexagon/CodeRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml">quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/DirtyGrid.q.yml">quintessence/Hexagon/DirtyGrid.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml">quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/BitmapGridMesh.q.yml">quintessence/Hexagon/Elements/BitmapGridMesh.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/BitmapGridRenderSurface.q.yml">quintessence/Hexagon/Elements/BitmapGridRenderSurface.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/CheckTextureGenerator.q.yml">quintessence/Hexagon/Elements/CheckTextureGenerator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/ColorKit.q.yml">quintessence/Hexagon/Elements/ColorKit.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/CoolGrid.q.yml">quintessence/Hexagon/Elements/CoolGrid.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/DataTable.q.yml">quintessence/Hexagon/Elements/DataTable.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/DynamicGridMesh.q.yml">quintessence/Hexagon/Elements/DynamicGridMesh.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/FilePixelPreviewCreator.q.yml">quintessence/Hexagon/Elements/FilePixelPreviewCreator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/FlashingGrid.q.yml">quintessence/Hexagon/Elements/FlashingGrid.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/FontCharacterMapGrid.q.yml">quintessence/Hexagon/Elements/FontCharacterMapGrid.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/FontedTextGrid.q.yml">quintessence/Hexagon/Elements/FontedTextGrid.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/Frame.q.yml">quintessence/Hexagon/Elements/Frame.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/ListMenu.q.yml">quintessence/Hexagon/Elements/ListMenu.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/QuoteRenderer.q.yml">quintessence/Hexagon/Elements/QuoteRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/SingleBlockBarGraph.q.yml">quintessence/Hexagon/Elements/SingleBlockBarGraph.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/StageInfoOverlay.q.yml">quintessence/Hexagon/Elements/StageInfoOverlay.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/SubBitmapCharacterMap.q.yml">quintessence/Hexagon/Elements/SubBitmapCharacterMap.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/TextGrid.q.yml">quintessence/Hexagon/Elements/TextGrid.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/TextMesh.q.yml">quintessence/Hexagon/Elements/TextMesh.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/TextPixelPreviewCreator.q.yml">quintessence/Hexagon/Elements/TextPixelPreviewCreator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/Window.q.yml">quintessence/Hexagon/Elements/Window.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/FileNavigator/Stage.q.yml">quintessence/Hexagon/FileNavigator/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/FilesOpenedHistory.q.yml">quintessence/Hexagon/FilesOpenedHistory.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/FocusTimerBar/FocusTimerBar.q.yml">quintessence/Hexagon/FocusTimerBar/FocusTimerBar.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/FocusTimerBar/Renderer.q.yml">quintessence/Hexagon/FocusTimerBar/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Font.q.yml">quintessence/Hexagon/Font.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/FontSet.q.yml">quintessence/Hexagon/FontSet.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Forms/Fun.q.yml">quintessence/Hexagon/Forms/Fun.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/FullScreenOverlay/Stage.q.yml">quintessence/Hexagon/FullScreenOverlay/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Git/CommitStagedWithMessage.q.yml">quintessence/Hexagon/Git/CommitStagedWithMessage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Git/Modified.q.yml">quintessence/Hexagon/Git/Modified.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Git/Pusher.q.yml">quintessence/Hexagon/Git/Pusher.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Git/RemoteSyncChecker.q.yml">quintessence/Hexagon/Git/RemoteSyncChecker.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Git/StageEverything.q.yml">quintessence/Hexagon/Git/StageEverything.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Git/Staged.q.yml">quintessence/Hexagon/Git/Staged.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Git/Untracked.q.yml">quintessence/Hexagon/Git/Untracked.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Hud.q.yml">quintessence/Hexagon/Hud.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Joystick.q.yml">quintessence/Hexagon/Joystick.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Layout.q.yml">quintessence/Hexagon/Layout.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/LayoutFromYAML.q.yml">quintessence/Hexagon/LayoutFromYAML.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/LayoutPlacements.q.yml">quintessence/Hexagon/LayoutPlacements.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/LayoutToStagesCreator.q.yml">quintessence/Hexagon/LayoutToStagesCreator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Logo.q.yml">quintessence/Hexagon/Logo.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/MissingFile/Stage.q.yml">quintessence/Hexagon/MissingFile/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/NewComponentMaker/NewComponentMaker.q.yml">quintessence/Hexagon/NewComponentMaker/NewComponentMaker.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/NewComponentMaker/Stage.q.yml">quintessence/Hexagon/NewComponentMaker/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/OneLineInputBox/Renderer.q.yml">quintessence/Hexagon/OneLineInputBox/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Packet.q.yml">quintessence/Hexagon/Packet.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/PacketRenderer.q.yml">quintessence/Hexagon/PacketRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/PasteboardData.q.yml">quintessence/Hexagon/PasteboardData.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Powerbar/Powerbar.q.yml">quintessence/Hexagon/Powerbar/Powerbar.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Powerbar/Renderer.q.yml">quintessence/Hexagon/Powerbar/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Project.q.yml">quintessence/Hexagon/Project.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ProjectComponentNavigator/ComponentSearcher.q.yml">quintessence/Hexagon/ProjectComponentNavigator/ComponentSearcher.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ProjectComponentNavigator/EventController.q.yml">quintessence/Hexagon/ProjectComponentNavigator/EventController.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.q.yml">quintessence/Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ProjectComponentNavigator/Renderer.q.yml">quintessence/Hexagon/ProjectComponentNavigator/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ProjectComponentNavigator/SearchBar.q.yml">quintessence/Hexagon/ProjectComponentNavigator/SearchBar.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml">quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ProjectFactory.q.yml">quintessence/Hexagon/ProjectFactory.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ProjectFromYAML.q.yml">quintessence/Hexagon/ProjectFromYAML.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Rails/ComponentLister.q.yml">quintessence/Hexagon/Rails/ComponentLister.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/RailsMinitestTestResultToCodeMessagePointConverter.q.yml">quintessence/Hexagon/RailsMinitestTestResultToCodeMessagePointConverter.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/RailsTestOutputParser.q.yml">quintessence/Hexagon/RailsTestOutputParser.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/RegexStore.q.yml">quintessence/Hexagon/RegexStore.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/RendererInterface.q.yml">quintessence/Hexagon/RendererInterface.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Search/ComponentElasticsearchIndex.q.yml">quintessence/Hexagon/Search/ComponentElasticsearchIndex.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Search/ComponentElasticsearchIndexer.q.yml">quintessence/Hexagon/Search/ComponentElasticsearchIndexer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Search/Elasticsearch/HealthChecker.q.yml">quintessence/Hexagon/Search/Elasticsearch/HealthChecker.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shaders/Base.q.yml">quintessence/Hexagon/Shaders/Base.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shaders/FlatColor.q.yml">quintessence/Hexagon/Shaders/FlatColor.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shaders/Fun.q.yml">quintessence/Hexagon/Shaders/Fun.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shaders/Smiley.q.yml">quintessence/Hexagon/Shaders/Smiley.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shaders/TexturedTruchet.q.yml">quintessence/Hexagon/Shaders/TexturedTruchet.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shaders/TiledHexagonMotionEffect.q.yml">quintessence/Hexagon/Shaders/TiledHexagonMotionEffect.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shaders/TruchetMaze.q.yml">quintessence/Hexagon/Shaders/TruchetMaze.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shaders/TruchetVine.q.yml">quintessence/Hexagon/Shaders/TruchetVine.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shaders/TruchetVineSquiggle.q.yml">quintessence/Hexagon/Shaders/TruchetVineSquiggle.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shapes/Hexagon/Fill.q.yml">quintessence/Hexagon/Shapes/Hexagon/Fill.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shapes/Hexagon/Renderer.q.yml">quintessence/Hexagon/Shapes/Hexagon/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Shapes/Hexagon/Stroke.q.yml">quintessence/Hexagon/Shapes/Hexagon/Stroke.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/StageCollectionHelper.q.yml">quintessence/Hexagon/StageCollectionHelper.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/StageFactory.q.yml">quintessence/Hexagon/StageFactory.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/SymlinkToucher.q.yml">quintessence/Hexagon/SymlinkToucher.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.q.yml">quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.q.yml">quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.q.yml">quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent.q.yml">quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages.q.yml">quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/Config.q.yml">quintessence/Hexagon/System/Config.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/EventController.q.yml">quintessence/Hexagon/System/EventController.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/Renderer.q.yml">quintessence/Hexagon/System/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Testing/ComponentTestRunner.q.yml">quintessence/Hexagon/Testing/ComponentTestRunner.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Testing/GoogleTestRunOutputParser.q.yml">quintessence/Hexagon/Testing/GoogleTestRunOutputParser.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Testing/GoogleTestRunTestResult.q.yml">quintessence/Hexagon/Testing/GoogleTestRunTestResult.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/TitleScreen.q.yml">quintessence/Hexagon/TitleScreen.q.yml</a></li>
+  <li><a href="#quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml">quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml</a></li>
+  <li><a href="#quintessence/Testing/WithAllegroRenderingFixture.q.yml">quintessence/Testing/WithAllegroRenderingFixture.q.yml</a></li>
+  <li><a href="#quintessence/Testing/WithStageFactoryFixture.q.yml">quintessence/Testing/WithStageFactoryFixture.q.yml</a></li>
+  <li><a href="#quintessence/TreeBuilder.q.yml">quintessence/TreeBuilder.q.yml</a></li>
+  <li><a href="#tests/fixtures/FixtureProject/quintessence/FixtureObjectThing.q.yml">tests/fixtures/FixtureProject/quintessence/FixtureObjectThing.q.yml</a></li>
+</ul>
+<h1>Components</h1>
+<h4 id="quintessence/ApplicationController.q.yml">quintessence/ApplicationController.q.yml</h4>
+<ul>
+  <li>config</li>
+  <li>display</li>
+  <li>event_queue</li>
+  <li>primary_timer</li>
+  <li>motion</li>
+  <li>system</li>
+  <li>user_event_source</li>
+  <li>shutdown_program</li>
+  <li>initialize_allegro_config_display_event_queue_and_timer</li>
+  <li>initialize</li>
+  <li>shutdown</li>
+  <li>emit_user_event</li>
+  <li>run_program</li>
+  <li>run_event_loop</li>
+  <li>verify_presence_of_temp_files_and_assign_to_global_constants</li>
+</ul>
+<h4 id="quintessence/Blast/Daemus/Daemus.q.yml">quintessence/Blast/Daemus/Daemus.q.yml</h4>
+<ul>
+  <li>quintessence_build_executable</li>
+  <li>run_full_rebuild</li>
+  <li>run_simple_echo_command</li>
+  <li>run_simple_sleep_command</li>
+  <li>run_component_test</li>
+  <li>run_build_quintessence_file</li>
+  <li>execute_command</li>
+  <li>output_pid</li>
+</ul>
+<h4 id="quintessence/Blast/Daemus/NetworkMessageEventController.q.yml">quintessence/Blast/Daemus/NetworkMessageEventController.q.yml</h4>
+<ul>
+  <li>daemus</li>
+  <li>process_message</li>
+</ul>
+<h4 id="quintessence/Blast/Daemus/ProgramRunner.q.yml">quintessence/Blast/Daemus/ProgramRunner.q.yml</h4>
+<ul>
+  <li>execute_command</li>
+  <li>run</li>
+  <li>run_in_holding_pattern</li>
+  <li>run_once</li>
+  <li>run_with_rerun</li>
+</ul>
+<h4 id="quintessence/Blast/String/Trimmer.q.yml">quintessence/Blast/String/Trimmer.q.yml</h4>
+<ul>
+  <li>text</li>
+  <li>trim</li>
+  <li>ltrim</li>
+  <li>rtrim</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.q.yml">quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.q.yml</h4>
+<ul>
+  <li>lines</li>
+  <li>cursor</li>
+  <li>dirty_grid</li>
+  <li>SPLIT_LINE_DELIMITER_CHAR</li>
+  <li>set_content</li>
+  <li>insert_string</li>
+  <li>delete_character</li>
+  <li>join_lines</li>
+  <li>split_lines</li>
+  <li>delete_line</li>
+  <li>insert_lines</li>
+  <li>cursor_set_width</li>
+  <li>cursor_set_height</li>
+  <li>cursor_move_up</li>
+  <li>cursor_move_down</li>
+  <li>cursor_move_left</li>
+  <li>cursor_move_right</li>
+  <li>cursor_move_to_start_of_line</li>
+  <li>cursor_move_to_end_of_line</li>
+  <li>cursor_jump_to_next_word</li>
+  <li>cursor_jump_to_previous_word</li>
+  <li>cursor_move_to</li>
+  <li>cursor_set_x</li>
+  <li>cursor_set_y</li>
+  <li>cursor_get_x</li>
+  <li>cursor_get_y</li>
+  <li>is_cursor_in_bounds</li>
+  <li>is_cursor_on_last_line</li>
+  <li>dirty_grid_clear</li>
+  <li>get_dirty_cells</li>
+  <li>any_dirty_cells</li>
+  <li>dirty_cell_count</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedCodeEditor/Cursor.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Cursor.q.yml</h4>
+<ul>
+  <li>x</li>
+  <li>y</li>
+  <li>width</li>
+  <li>height</li>
+  <li>move_up</li>
+  <li>move_down</li>
+  <li>move_left</li>
+  <li>move_right</li>
+  <li>move_to</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedCodeEditor/EventController.q.yml">quintessence/Hexagon/AdvancedCodeEditor/EventController.q.yml</h4>
+<ul>
+  <li>stage</li>
+  <li>events_dictionary</li>
+  <li>keyboard_command_mapping</li>
+  <li>a_default_empty_event</li>
+  <li>process_local_event</li>
+  <li>process_event</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedCodeEditor/Renderer.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Renderer.q.yml</h4>
+<ul>
+  <li>text_mesh</li>
+  <li>surface_render</li>
+  <li>cursor</li>
+  <li>width</li>
+  <li>height</li>
+  <li>cursor_is_bar</li>
+  <li>text_mesh_y_offset</li>
+  <li>first_row_offset</li>
+  <li>draw_line_numbers</li>
+  <li>font</li>
+  <li>render</li>
+  <li>render_line_numbers</li>
+  <li>render_cursor</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml</h4>
+<ul>
+  <li>font_bin</li>
+  <li>num_columns</li>
+  <li>num_rows</li>
+  <li>text_mesh</li>
+  <li>filename</li>
+  <li>advanced_code_editor</li>
+  <li>input_buffer</li>
+  <li>mode</li>
+  <li>a_default_empty_event</li>
+  <li>initialized</li>
+  <li>offset_y</li>
+  <li>offset_y_updated_at</li>
+  <li>first_row_offset</li>
+  <li>surface_render</li>
+  <li>current_search_regex</li>
+  <li>code_message_point_manager</li>
+  <li>selections</li>
+  <li>initialize</li>
+  <li>destroy</li>
+  <li>save_file</li>
+  <li>save_file_and_touch_if_symlink</li>
+  <li>set_to_edit_mode</li>
+  <li>set_to_insert_mode</li>
+  <li>cursor_move_up</li>
+  <li>cursor_move_down</li>
+  <li>cursor_move_left</li>
+  <li>cursor_move_right</li>
+  <li>cursor_move_to_start_of_line</li>
+  <li>cursor_move_to_end_of_line</li>
+  <li>cursor_jump_to_next_word</li>
+  <li>cursor_jump_to_previous_word</li>
+  <li>cursor_jump_up_half_page</li>
+  <li>cursor_jump_down_half_page</li>
+  <li>first_row_offset_move_up</li>
+  <li>first_row_offset_move_down</li>
+  <li>first_row_offset_jump_to</li>
+  <li>first_row_offset_jump_up_half_page</li>
+  <li>first_row_offset_jump_down_half_page</li>
+  <li>delete_character</li>
+  <li>join_lines</li>
+  <li>split_lines</li>
+  <li>delete_line</li>
+  <li>insert_string_from_input_buffer</li>
+  <li>insert_lines</li>
+  <li>set_content</li>
+  <li>insert_three_spaces_at_start_of_line</li>
+  <li>insert_blank_line</li>
+  <li>build_local_events_dictionary</li>
+  <li>build_keyboard_command_mapping_for_edit_mode</li>
+  <li>build_keyboard_command_mapping_for_insert_mode</li>
+  <li>cursor_move_to</li>
+  <li>render</li>
+  <li>process_local_event</li>
+  <li>process_event</li>
+  <li>obtain_text_font</li>
+  <li>get_lines</li>
+  <li>get_cursor</li>
+  <li>cursor_get_x</li>
+  <li>cursor_get_y</li>
+  <li>is_in_edit_mode</li>
+  <li>is_in_insert_mode</li>
+  <li>calculate_natural_width</li>
+  <li>calculate_natural_height</li>
+  <li>refresh_render_surfaces</li>
+  <li>refresh_dirty_cells_on_surface_render_respecting_first_row_offset</li>
+  <li>refresh_dirty_cells_on_text_mesh</li>
+  <li>refresh_text_mesh_respecting_first_row_offset</li>
+  <li>refresh_text_mesh</li>
+  <li>build_dirty_grid_from_lines_respecting_offset</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedCodeEditor/WindowRenderer.q.yml">quintessence/Hexagon/AdvancedCodeEditor/WindowRenderer.q.yml</h4>
+<ul>
+  <li>width</li>
+  <li>height</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.q.yml</h4>
+<ul>
+  <li>project_root</li>
+  <li>cursor_position</li>
+  <li>cursor_position_static</li>
+  <li>nodes</li>
+  <li>mode</li>
+  <li>search_text</li>
+  <li>is_mode_navigating_list</li>
+  <li>is_mode_typing_in_search_bar</li>
+  <li>move_cursor_up</li>
+  <li>move_cursor_down</li>
+  <li>move_cursor_to_top</li>
+  <li>current_selection_is_valid</li>
+  <li>set_mode_to_navigating_list</li>
+  <li>set_mode_to_typing_in_search_bar</li>
+  <li>get_current_selection_label_or_empty_string</li>
+  <li>refresh_list</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher.q.yml</h4>
+<ul>
+  <li>project_root_directory</li>
+  <li>search_text</li>
+  <li>convert_to_names</li>
+  <li>convert_to_components</li>
+  <li>component_names</li>
+  <li>components_sorted_by_most_recent</li>
+  <li>components</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedComponentNavigator/EventController.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/EventController.q.yml</h4>
+<ul>
+  <li>component</li>
+  <li>event_dictionary</li>
+  <li>process_local_event</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedComponentNavigator/Renderer.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/Renderer.q.yml</h4>
+<ul>
+  <li>stage</li>
+  <li>is_focused</li>
+  <li>font</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>base_backfill_color</li>
+  <li>backfill_opacity</li>
+  <li>base_text_color</li>
+  <li>frame_color</li>
+  <li>build_backfill_color</li>
+  <li>draw_search_text_box</li>
+  <li>foobar</li>
+  <li>render</li>
+  <li>render_raw</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedComponentNavigator/SearchBar.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/SearchBar.q.yml</h4>
+<ul>
+  <li>run</li>
+</ul>
+<h4 id="quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml</h4>
+<ul>
+  <li>project_root</li>
+  <li>component</li>
+  <li>a_default_empty_event</li>
+  <li>is_focused</li>
+  <li>display</li>
+  <li>font</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>base_text_color</li>
+  <li>base_backfill_color</li>
+  <li>build_keyboard_command_mapping</li>
+  <li>build_local_events_dictionary</li>
+  <li>render</li>
+  <li>process_local_event</li>
+  <li>process_char_event</li>
+  <li>process_event</li>
+  <li>save_file</li>
+</ul>
+<h4 id="quintessence/Hexagon/BlastComponentLayoutGenerator.q.yml">quintessence/Hexagon/BlastComponentLayoutGenerator.q.yml</h4>
+<ul>
+  <li>project_directory</li>
+  <li>component_name</li>
+  <li>code_editor_width</li>
+  <li>code_editor_height</li>
+  <li>generate</li>
+  <li>component_generate_header_filename</li>
+  <li>component_generate_source_filename</li>
+  <li>component_generate_test_filename</li>
+  <li>component_generate_quintessence_filename</li>
+</ul>
+<h4 id="quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml">quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml</h4>
+<ul>
+  <li>project_directory</li>
+  <li>code_editor_width</li>
+  <li>code_editor_height</li>
+  <li>generate</li>
+  <li>build_appropriate_layout_for_component</li>
+  <li>component_generate_header_filename</li>
+  <li>component_generate_source_filename</li>
+  <li>component_generate_test_filename</li>
+  <li>component_generate_quintessence_filename</li>
+</ul>
+<h4 id="quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml">quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml</h4>
+<ul>
+  <li>font_bin</li>
+  <li>render</li>
+  <li>render_rectangle</li>
+</ul>
+<h4 id="quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>bitmap_width</li>
+  <li>num_caches_to_build</li>
+  <li>initialized</li>
+  <li>cache</li>
+  <li>source</li>
+  <li>initialize</li>
+  <li>destruct</li>
+  <li>size</li>
+  <li>exists</li>
+  <li>pull</li>
+</ul>
+<h4 id="quintessence/Hexagon/CodeEditor/Cursor.q.yml">quintessence/Hexagon/CodeEditor/Cursor.q.yml</h4>
+<ul>
+  <li>x</li>
+  <li>y</li>
+  <li>width</li>
+  <li>height</li>
+  <li>run</li>
+</ul>
+<h4 id="quintessence/Hexagon/CodeEditor/CursorRenderer.q.yml">quintessence/Hexagon/CodeEditor/CursorRenderer.q.yml</h4>
+<ul>
+  <li>color</li>
+  <li>x</li>
+  <li>y</li>
+  <li>width</li>
+  <li>height</li>
+  <li>mode</li>
+  <li>focus</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/CodeEditor/FileCategoryDecorator.q.yml">quintessence/Hexagon/CodeEditor/FileCategoryDecorator.q.yml</h4>
+<ul>
+  <li>file_category</li>
+  <li>label</li>
+</ul>
+<h4 id="quintessence/Hexagon/CodeEditor/LineRenderBin.q.yml">quintessence/Hexagon/CodeEditor/LineRenderBin.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>load_data</li>
+  <li>destroy_data</li>
+</ul>
+<h4 id="quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>font_color</li>
+  <li>backfill_color</li>
+  <li>x</li>
+  <li>y</li>
+  <li>full_line_text</li>
+  <li>max_num_columns</li>
+  <li>build_test_declaration_element_tokens</li>
+  <li>build_quintessence_yaml_name_element_tokens</li>
+  <li>build_quoted_string_tokens</li>
+  <li>build_comment_tokens</li>
+  <li>render_tokens</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>font_color</li>
+  <li>x</li>
+  <li>y</li>
+  <li>truncated_line</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/CodeEditor/Stage.q.yml">quintessence/Hexagon/CodeEditor/Stage.q.yml</h4>
+<ul>
+  <li>code_editor</li>
+  <li>a_default_empty_event</li>
+  <li>is_focused</li>
+  <li>display</li>
+  <li>font</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>base_font_color</li>
+  <li>backfill_color</li>
+  <li>state</li>
+  <li>change_state_to_submitted_and_pending_destruction</li>
+  <li>is_state_to_submitted_and_pending_destruction</li>
+  <li>render</li>
+  <li>process_local_event</li>
+  <li>process_event</li>
+  <li>code_editor_char_count</li>
+</ul>
+<h4 id="quintessence/Hexagon/CodeMessagePointManager.q.yml">quintessence/Hexagon/CodeMessagePointManager.q.yml</h4>
+<ul>
+  <li>code_message_points</li>
+  <li>append</li>
+  <li>clear</li>
+  <li>delete_row</li>
+  <li>shift_rows_down_at_and_after</li>
+</ul>
+<h4 id="quintessence/Hexagon/CodeRenderer.q.yml">quintessence/Hexagon/CodeRenderer.q.yml</h4>
+<ul>
+  <li>run</li>
+</ul>
+<h4 id="quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml">quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml</h4>
+<ul>
+  <li>component</li>
+  <li>create_bitmap_render</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/DirtyGrid.q.yml">quintessence/Hexagon/DirtyGrid.q.yml</h4>
+<ul>
+  <li>dirty_cells</li>
+  <li>dirty_cells_count</li>
+  <li>dirty_cells_empty</li>
+  <li>mark_as_dirty</li>
+  <li>mark_all_as_dirty</li>
+  <li>mark_row_as_dirty</li>
+  <li>incorporate</li>
+  <li>build_vector</li>
+  <li>clear</li>
+</ul>
+<h4 id="quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml">quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml</h4>
+<ul>
+  <li>window</li>
+  <li>construct_modified_window</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/BitmapGridMesh.q.yml">quintessence/Hexagon/Elements/BitmapGridMesh.q.yml</h4>
+<ul>
+  <li>grid</li>
+  <li>dummy_grid</li>
+  <li>vertexes</li>
+  <li>num_columns</li>
+  <li>num_rows</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>clip_start_y</li>
+  <li>clip_length_y</li>
+  <li>bitmap</li>
+  <li>set_cell_uv</li>
+  <li>set_cell_color</li>
+  <li>resize</li>
+  <li>render</li>
+  <li>render_only_select_cells</li>
+  <li>calculate_width</li>
+  <li>calculate_height</li>
+  <li>find_cell</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/BitmapGridRenderSurface.q.yml">quintessence/Hexagon/Elements/BitmapGridRenderSurface.q.yml</h4>
+<ul>
+  <li>num_columns</li>
+  <li>num_rows</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>surface</li>
+  <li>cell_sub_bitmaps</li>
+  <li>initialized</li>
+  <li>previous_render_state</li>
+  <li>set_cell_width</li>
+  <li>set_cell_height</li>
+  <li>lock_for_render</li>
+  <li>unlock_for_render</li>
+  <li>initialize</li>
+  <li>draw_to_cell</li>
+  <li>find_sub_bitmap</li>
+  <li>destroy</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/CheckTextureGenerator.q.yml">quintessence/Hexagon/Elements/CheckTextureGenerator.q.yml</h4>
+<ul>
+  <li>display</li>
+  <li>validate_al_init</li>
+  <li>validate_display</li>
+  <li>generate_grid_check</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/ColorKit.q.yml">quintessence/Hexagon/Elements/ColorKit.q.yml</h4>
+<ul>
+  <li>black</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/CoolGrid.q.yml">quintessence/Hexagon/Elements/CoolGrid.q.yml</h4>
+<ul>
+  <li>run</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/DataTable.q.yml">quintessence/Hexagon/Elements/DataTable.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>column_width</li>
+  <li>row_height</li>
+  <li>data2d</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/DynamicGridMesh.q.yml">quintessence/Hexagon/Elements/DynamicGridMesh.q.yml</h4>
+<ul>
+  <li>vertexes</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>texture</li>
+  <li>cells</li>
+  <li>create_or_set_cell</li>
+  <li>delete_cell</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/FilePixelPreviewCreator.q.yml">quintessence/Hexagon/Elements/FilePixelPreviewCreator.q.yml</h4>
+<ul>
+  <li>filename</li>
+  <li>width</li>
+  <li>create</li>
+  <li>get_file_contents</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/FlashingGrid.q.yml">quintessence/Hexagon/Elements/FlashingGrid.q.yml</h4>
+<ul>
+  <li>width</li>
+  <li>height</li>
+  <li>num_columns</li>
+  <li>num_rows</li>
+  <li>box_size</li>
+  <li>counter</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/FontCharacterMapGrid.q.yml">quintessence/Hexagon/Elements/FontCharacterMapGrid.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>grid_width</li>
+  <li>grid_height</li>
+  <li>character_uv_mapping</li>
+  <li>create</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/FontedTextGrid.q.yml">quintessence/Hexagon/Elements/FontedTextGrid.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>num_columns</li>
+  <li>num_rows</li>
+  <li>sub_bitmap_character_map</li>
+  <li>bitmap_grid_render_surface</li>
+  <li>initialized</li>
+  <li>initialize</li>
+  <li>destroy</li>
+  <li>set_cell_to_character_and_color</li>
+  <li>lock_for_update</li>
+  <li>unlock_for_update</li>
+  <li>draw</li>
+  <li>__cheat_really_badly_and_get_the_bitmap_grid_render_surface</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/Frame.q.yml">quintessence/Hexagon/Elements/Frame.q.yml</h4>
+<ul>
+  <li>dummy_font_bin</li>
+  <li>fonts</li>
+  <li>title_text</li>
+  <li>width</li>
+  <li>height</li>
+  <li>outline_color</li>
+  <li>line_thickness</li>
+  <li>build_default_frame_color</li>
+  <li>get_dummy_font_bin</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/ListMenu.q.yml">quintessence/Hexagon/Elements/ListMenu.q.yml</h4>
+<ul>
+  <li>font_bin</li>
+  <li>title</li>
+  <li>list_items</li>
+  <li>color</li>
+  <li>cursor</li>
+  <li>move_cursor_up</li>
+  <li>move_cursor_down</li>
+  <li>get_current_list_item_identifier</li>
+  <li>render</li>
+  <li>obtain_list_item_font</li>
+  <li>draw_cursor_pointer_arrow</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/QuoteRenderer.q.yml">quintessence/Hexagon/Elements/QuoteRenderer.q.yml</h4>
+<ul>
+  <li>font_bin</li>
+  <li>font</li>
+  <li>quote</li>
+  <li>speaker</li>
+  <li>incrementer</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/SingleBlockBarGraph.q.yml">quintessence/Hexagon/Elements/SingleBlockBarGraph.q.yml</h4>
+<ul>
+  <li>number_of_active_bars</li>
+  <li>number_of_bg_bars</li>
+  <li>bar_width</li>
+  <li>bar_height</li>
+  <li>bar_spacing</li>
+  <li>stroke_width</li>
+  <li>main_bar_color</li>
+  <li>bg_bar_color</li>
+  <li>stroke_color</li>
+  <li>draw</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/StageInfoOverlay.q.yml">quintessence/Hexagon/Elements/StageInfoOverlay.q.yml</h4>
+<ul>
+  <li>title_font</li>
+  <li>backfill_color</li>
+  <li>backfill_opacity</li>
+  <li>place</li>
+  <li>text</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/SubBitmapCharacterMap.q.yml">quintessence/Hexagon/Elements/SubBitmapCharacterMap.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>grid_width</li>
+  <li>grid_height</li>
+  <li>NUM_ROWS</li>
+  <li>NUM_COLUMNS</li>
+  <li>surface</li>
+  <li>cell_sub_bitmaps</li>
+  <li>initialize</li>
+  <li>find_sub_bitmap</li>
+  <li>destroy</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/TextGrid.q.yml">quintessence/Hexagon/Elements/TextGrid.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>cell_spacing_x</li>
+  <li>cell_spacing_y</li>
+  <li>grid</li>
+  <li>dummy_grid</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/TextMesh.q.yml">quintessence/Hexagon/Elements/TextMesh.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>num_columns</li>
+  <li>num_rows</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>font_character_map_grid</li>
+  <li>bitmap_grid_mesh</li>
+  <li>font_character_map_bitmap</li>
+  <li>font_character_uv_mapping</li>
+  <li>initialized</li>
+  <li>set_font</li>
+  <li>initialize</li>
+  <li>destruct</li>
+  <li>set_cell_color</li>
+  <li>set_cell_character</li>
+  <li>calculate_width</li>
+  <li>calculate_height</li>
+  <li>render</li>
+  <li>render_only_select_cells</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/TextPixelPreviewCreator.q.yml">quintessence/Hexagon/Elements/TextPixelPreviewCreator.q.yml</h4>
+<ul>
+  <li>text_lines</li>
+  <li>width</li>
+  <li>create</li>
+</ul>
+<h4 id="quintessence/Hexagon/Elements/Window.q.yml">quintessence/Hexagon/Elements/Window.q.yml</h4>
+<ul>
+  <li>width</li>
+  <li>height</li>
+  <li>box_opacity</li>
+  <li>cell_padding</li>
+  <li>box_fill_color</li>
+  <li>header_bar_color</li>
+  <li>bottom_line_color</li>
+  <li>outer_line_color</li>
+  <li>header_baseline_color</li>
+  <li>top_left_little_bar_color</li>
+  <li>corner_squares_color</li>
+  <li>header_bar_height</li>
+  <li>header_baseline_thickness</li>
+  <li>header_bar_opacity</li>
+  <li>header_baseline_opacity</li>
+  <li>top_left_little_bar_width</li>
+  <li>outer_line_thickness</li>
+  <li>outer_line_opacity</li>
+  <li>bottom_line_thickness</li>
+  <li>bottom_line_opacity</li>
+  <li>corner_squares_resize_from_center</li>
+  <li>corner_squares_width</li>
+  <li>corner_squares_height</li>
+  <li>corner_squares_opacity</li>
+  <li>corner_squares_are_circles</li>
+  <li>number_of_rows</li>
+  <li>number_of_columns</li>
+  <li>distance_of_rows</li>
+  <li>distance_of_columns</li>
+  <li>draw</li>
+  <li>draw_top_left_little_bar</li>
+  <li>draw_header_baseline</li>
+  <li>draw_bottom_line</li>
+  <li>draw_header_bar</li>
+  <li>draw_corner_circles</li>
+  <li>draw_corner_squares</li>
+</ul>
+<h4 id="quintessence/Hexagon/FileNavigator/Stage.q.yml">quintessence/Hexagon/FileNavigator/Stage.q.yml</h4>
+<ul>
+  <li>cursor_position_static</li>
+  <li>a_default_empty_event</li>
+  <li>selector_color</li>
+  <li>nodes</li>
+  <li>cursor_position</li>
+  <li>node_root</li>
+  <li>is_focused</li>
+  <li>display</li>
+  <li>font</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>move_cursor_down</li>
+  <li>current_selection_is_valid</li>
+  <li>get_current_selection_or_spaced_empty_string</li>
+  <li>get_current_selection</li>
+  <li>current_selection_is_folder</li>
+  <li>move_cursor_up</li>
+  <li>move_cursor_to_top</li>
+  <li>set_node_root_to_system_root_directory</li>
+  <li>set_node_root_to_repos_directory</li>
+  <li>set_node_root_to_user_directory</li>
+  <li>set_node_root_to_shopify_repos_directory</li>
+  <li>set_node_root_to_parent_directory</li>
+  <li>set_node_root_to_current_selection_if_folder</li>
+  <li>refresh_list</li>
+  <li>render</li>
+  <li>process_local_event</li>
+  <li>save_file</li>
+  <li>process_event</li>
+</ul>
+<h4 id="quintessence/Hexagon/FilesOpenedHistory.q.yml">quintessence/Hexagon/FilesOpenedHistory.q.yml</h4>
+<ul>
+  <li>files</li>
+  <li>run</li>
+</ul>
+<h4 id="quintessence/Hexagon/FocusTimerBar/FocusTimerBar.q.yml">quintessence/Hexagon/FocusTimerBar/FocusTimerBar.q.yml</h4>
+<ul>
+  <li>focus_timer_started_at</li>
+  <li>focus_timer_duration_sec</li>
+</ul>
+<h4 id="quintessence/Hexagon/FocusTimerBar/Renderer.q.yml">quintessence/Hexagon/FocusTimerBar/Renderer.q.yml</h4>
+<ul>
+  <li>display</li>
+  <li>focus_timer_bar</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Font.q.yml">quintessence/Hexagon/Font.q.yml</h4>
+<ul>
+  <li>font_bin</li>
+  <li>font_filename</li>
+  <li>font_size</li>
+  <li>increase_font_size</li>
+  <li>decrease_font_size</li>
+  <li>al_font</li>
+</ul>
+<h4 id="quintessence/Hexagon/FontSet.q.yml">quintessence/Hexagon/FontSet.q.yml</h4>
+<ul>
+  <li>dummy_font_bin</li>
+  <li>fonts</li>
+  <li>font_dictionary</li>
+  <li>get_dummy_font_bin</li>
+  <li>obtain_font</li>
+</ul>
+<h4 id="quintessence/Hexagon/Forms/Fun.q.yml">quintessence/Hexagon/Forms/Fun.q.yml</h4>
+<ul>
+  <li>buffer</li>
+  <li>draw</li>
+  <li>process_char_input</li>
+</ul>
+<h4 id="quintessence/Hexagon/FullScreenOverlay/Stage.q.yml">quintessence/Hexagon/FullScreenOverlay/Stage.q.yml</h4>
+<ul>
+  <li>initialized</li>
+  <li>a_default_empty_event</li>
+  <li>display</li>
+  <li>text_font</li>
+  <li>screen_sub_bitmap</li>
+  <li>initialize</li>
+  <li>draw_design</li>
+  <li>render</li>
+  <li>draw</li>
+  <li>process_local_event</li>
+  <li>process_event</li>
+  <li>run</li>
+</ul>
+<h4 id="quintessence/Hexagon/Git/CommitStagedWithMessage.q.yml">quintessence/Hexagon/Git/CommitStagedWithMessage.q.yml</h4>
+<ul>
+  <li>current_project_directory</li>
+  <li>message</li>
+  <li>build_sanitized_commit_message</li>
+  <li>build_shell_command</li>
+  <li>commit</li>
+</ul>
+<h4 id="quintessence/Hexagon/Git/Modified.q.yml">quintessence/Hexagon/Git/Modified.q.yml</h4>
+<ul>
+  <li>current_project_directory</li>
+  <li>get_shell_response</li>
+  <li>build_tracked_files_shell_command</li>
+</ul>
+<h4 id="quintessence/Hexagon/Git/Pusher.q.yml">quintessence/Hexagon/Git/Pusher.q.yml</h4>
+<ul>
+  <li>current_project_directory</li>
+  <li>get_push_shell_command</li>
+  <li>validate_result_or_throw_error_on_failure</li>
+  <li>push</li>
+</ul>
+<h4 id="quintessence/Hexagon/Git/RemoteSyncChecker.q.yml">quintessence/Hexagon/Git/RemoteSyncChecker.q.yml</h4>
+<ul>
+  <li>repo_name</li>
+  <li>repos_directory</li>
+  <li>is_in_sync_with_remote</li>
+</ul>
+<h4 id="quintessence/Hexagon/Git/StageEverything.q.yml">quintessence/Hexagon/Git/StageEverything.q.yml</h4>
+<ul>
+  <li>current_project_directory</li>
+  <li>stage_everything</li>
+</ul>
+<h4 id="quintessence/Hexagon/Git/Staged.q.yml">quintessence/Hexagon/Git/Staged.q.yml</h4>
+<ul>
+  <li>current_project_directory</li>
+  <li>get_shell_response</li>
+  <li>build_staged_files_shell_command</li>
+</ul>
+<h4 id="quintessence/Hexagon/Git/Untracked.q.yml">quintessence/Hexagon/Git/Untracked.q.yml</h4>
+<ul>
+  <li>current_project_directory</li>
+  <li>get_shell_response</li>
+  <li>build_tracked_files_shell_command</li>
+</ul>
+<h4 id="quintessence/Hexagon/Hud.q.yml">quintessence/Hexagon/Hud.q.yml</h4>
+<ul>
+  <li>initialized</li>
+  <li>dummy_font_bin</li>
+  <li>screen_sub_bitmap</li>
+  <li>notifications</li>
+  <li>notifications2</li>
+  <li>powerbar</li>
+  <li>focus_timer_bar</li>
+  <li>display</li>
+  <li>fonts</li>
+  <li>title_text</li>
+  <li>backfill_color</li>
+  <li>show_disabled_screen</li>
+  <li>render_powerbar</li>
+  <li>files_are_committed</li>
+  <li>commits_are_in_sync_with_remote</li>
+  <li>show_profiler</li>
+  <li>draw_save_count</li>
+  <li>save_count</li>
+  <li>render_packets</li>
+  <li>packets</li>
+  <li>draw_search_count</li>
+  <li>search_count</li>
+  <li>render_focus_timer_bar</li>
+  <li>draw_notifications</li>
+  <li>left_column_x</li>
+  <li>stages</li>
+  <li>global_font_str</li>
+  <li>get_dummy_font_bin</li>
+  <li>obtain_text_font</li>
+  <li>obtain_title_font</li>
+  <li>obtain_powerbar_text_font</li>
+  <li>obtain_score_text_font</li>
+  <li>obtain_global_font</li>
+  <li>obtain_packet_text_font</li>
+  <li>obtain_component_navigator_font</li>
+  <li>initialize</li>
+  <li>reinitialize</li>
+  <li>draw_current_title_text</li>
+  <li>draw_profile_timer_graph</li>
+  <li>draw_powerbar</li>
+  <li>draw_focus_timer_bar</li>
+  <li>draw_packets</li>
+  <li>draw</li>
+</ul>
+<h4 id="quintessence/Hexagon/Joystick.q.yml">quintessence/Hexagon/Joystick.q.yml</h4>
+<ul>
+  <li>run</li>
+</ul>
+<h4 id="quintessence/Hexagon/Layout.q.yml">quintessence/Hexagon/Layout.q.yml</h4>
+<ul>
+  <li>concept_name</li>
+  <li>files</li>
+  <li>daemus_command</li>
+</ul>
+<h4 id="quintessence/Hexagon/LayoutFromYAML.q.yml">quintessence/Hexagon/LayoutFromYAML.q.yml</h4>
+<ul>
+  <li>root_node</li>
+  <li>load</li>
+</ul>
+<h4 id="quintessence/Hexagon/LayoutPlacements.q.yml">quintessence/Hexagon/LayoutPlacements.q.yml</h4>
+<ul>
+  <li>placements</li>
+  <li>placement_for</li>
+</ul>
+<h4 id="quintessence/Hexagon/LayoutToStagesCreator.q.yml">quintessence/Hexagon/LayoutToStagesCreator.q.yml</h4>
+<ul>
+  <li>stages</li>
+  <li>stage_factory</li>
+  <li>layout</li>
+  <li>font_bin</li>
+  <li>code_editor_height</li>
+  <li>code_editor_width</li>
+  <li>text_color</li>
+  <li>backfill_color</li>
+  <li>create</li>
+  <li>place_and_load_code_editor</li>
+</ul>
+<h4 id="quintessence/Hexagon/Logo.q.yml">quintessence/Hexagon/Logo.q.yml</h4>
+<ul>
+  <li>x</li>
+  <li>y</li>
+  <li>radius</li>
+  <li>font</li>
+  <li>color</li>
+  <li>thickness</li>
+  <li>font_bin</li>
+  <li>default_color</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/MissingFile/Stage.q.yml">quintessence/Hexagon/MissingFile/Stage.q.yml</h4>
+<ul>
+  <li>expected_filename</li>
+  <li>text</li>
+  <li>a_default_empty_event</li>
+  <li>is_focused</li>
+  <li>display</li>
+  <li>font</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>render</li>
+  <li>process_local_event</li>
+  <li>process_event</li>
+</ul>
+<h4 id="quintessence/Hexagon/NewComponentMaker/NewComponentMaker.q.yml">quintessence/Hexagon/NewComponentMaker/NewComponentMaker.q.yml</h4>
+<ul>
+  <li>current_project_directory</li>
+  <li>component_name</li>
+  <li>shell_command_has_executed</li>
+  <li>last_executed_shell_response</li>
+  <li>path_to_executable</li>
+  <li>get_shell_response</li>
+  <li>get_shell_response_lines</li>
+  <li>build_shell_command</li>
+</ul>
+<h4 id="quintessence/Hexagon/NewComponentMaker/Stage.q.yml">quintessence/Hexagon/NewComponentMaker/Stage.q.yml</h4>
+<ul>
+  <li>current_project_directory</li>
+  <li>component_name</li>
+  <li>a_default_empty_event</li>
+  <li>render</li>
+  <li>process_local_event</li>
+  <li>process_event</li>
+</ul>
+<h4 id="quintessence/Hexagon/OneLineInputBox/Renderer.q.yml">quintessence/Hexagon/OneLineInputBox/Renderer.q.yml</h4>
+<ul>
+  <li>font</li>
+  <li>outline_and_text_color</li>
+  <li>backfill_color</li>
+  <li>width</li>
+  <li>height</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>lines</li>
+  <li>selections</li>
+  <li>cursor_x</li>
+  <li>cursor_y</li>
+  <li>place</li>
+  <li>first_line_number</li>
+  <li>in_edit_mode</li>
+  <li>top_left_text</li>
+  <li>top_right_text</li>
+  <li>bottom_left_text</li>
+  <li>bottom_right_text</li>
+  <li>state</li>
+  <li>change_state_to_submitted_and_pending_destruction</li>
+  <li>is_state_to_submitted_and_pending_destruction</li>
+  <li>draw_selections</li>
+  <li>get_primary_color</li>
+  <li>render</li>
+  <li>get_lines_character_count</li>
+</ul>
+<h4 id="quintessence/Hexagon/Packet.q.yml">quintessence/Hexagon/Packet.q.yml</h4>
+<ul>
+  <li>searches_count</li>
+  <li>saves_count</li>
+  <li>calculate_score</li>
+</ul>
+<h4 id="quintessence/Hexagon/PacketRenderer.q.yml">quintessence/Hexagon/PacketRenderer.q.yml</h4>
+<ul>
+  <li>packet</li>
+  <li>font</li>
+  <li>width</li>
+  <li>height</li>
+  <li>render</li>
+  <li>render_window</li>
+  <li>render_text</li>
+  <li>generate_top_left_little_bar_color</li>
+</ul>
+<h4 id="quintessence/Hexagon/PasteboardData.q.yml">quintessence/Hexagon/PasteboardData.q.yml</h4>
+<ul>
+  <li>store</li>
+  <li>retrieve</li>
+  <li>__replace</li>
+</ul>
+<h4 id="quintessence/Hexagon/Powerbar/Powerbar.q.yml">quintessence/Hexagon/Powerbar/Powerbar.q.yml</h4>
+<ul>
+  <li>files_are_modified</li>
+  <li>files_are_staged</li>
+  <li>files_are_untracked</li>
+  <li>files_are_committed</li>
+  <li>commits_are_in_sync_with_remote</li>
+  <li>focus_timer_started_at</li>
+  <li>focus_timer_duration_sec</li>
+</ul>
+<h4 id="quintessence/Hexagon/Powerbar/Renderer.q.yml">quintessence/Hexagon/Powerbar/Renderer.q.yml</h4>
+<ul>
+  <li>display</li>
+  <li>powerbar</li>
+  <li>font</li>
+  <li>backfill_color</li>
+  <li>width</li>
+  <li>draw_state_boxes</li>
+  <li>draw_individual_rectangle</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Project.q.yml">quintessence/Hexagon/Project.q.yml</h4>
+<ul>
+  <li>project_name</li>
+  <li>layouts</li>
+</ul>
+<h4 id="quintessence/Hexagon/ProjectComponentNavigator/ComponentSearcher.q.yml">quintessence/Hexagon/ProjectComponentNavigator/ComponentSearcher.q.yml</h4>
+<ul>
+  <li>project_root_directory</li>
+  <li>search_text</li>
+  <li>convert_to_names</li>
+  <li>convert_to_components</li>
+  <li>component_names</li>
+  <li>components_sorted_by_most_recent</li>
+  <li>components</li>
+</ul>
+<h4 id="quintessence/Hexagon/ProjectComponentNavigator/EventController.q.yml">quintessence/Hexagon/ProjectComponentNavigator/EventController.q.yml</h4>
+<ul>
+  <li>component</li>
+  <li>event_dictionary</li>
+  <li>process_local_event</li>
+</ul>
+<h4 id="quintessence/Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.q.yml">quintessence/Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.q.yml</h4>
+<ul>
+  <li>project_root</li>
+  <li>cursor_position</li>
+  <li>cursor_position_static</li>
+  <li>nodes</li>
+  <li>mode</li>
+  <li>search_text</li>
+  <li>is_mode_navigating_list</li>
+  <li>is_mode_typing_in_search_bar</li>
+  <li>move_cursor_up</li>
+  <li>move_cursor_down</li>
+  <li>move_cursor_to_top</li>
+  <li>current_selection_is_valid</li>
+  <li>set_mode_to_navigating_list</li>
+  <li>set_mode_to_typing_in_search_bar</li>
+  <li>get_current_selection_label_or_empty_string</li>
+  <li>refresh_list</li>
+</ul>
+<h4 id="quintessence/Hexagon/ProjectComponentNavigator/Renderer.q.yml">quintessence/Hexagon/ProjectComponentNavigator/Renderer.q.yml</h4>
+<ul>
+  <li>stage</li>
+  <li>font</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>base_backfill_color</li>
+  <li>backfill_opacity</li>
+  <li>base_text_color</li>
+  <li>line_stroke_thickness</li>
+  <li>build_backfill_color</li>
+  <li>build_text_color</li>
+  <li>build_frame_color</li>
+  <li>build_line_height</li>
+  <li>draw_search_text_box</li>
+  <li>render</li>
+  <li>render_window_raw</li>
+  <li>render_cursor_box_raw</li>
+  <li>render_window_title_raw</li>
+  <li>render_list_elements_raw</li>
+  <li>render_list_clipping_arrows_raw</li>
+  <li>render_raw</li>
+</ul>
+<h4 id="quintessence/Hexagon/ProjectComponentNavigator/SearchBar.q.yml">quintessence/Hexagon/ProjectComponentNavigator/SearchBar.q.yml</h4>
+<ul>
+  <li>run</li>
+</ul>
+<h4 id="quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml">quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml</h4>
+<ul>
+  <li>project_root</li>
+  <li>component</li>
+  <li>a_default_empty_event</li>
+  <li>is_focused</li>
+  <li>display</li>
+  <li>font</li>
+  <li>cell_width</li>
+  <li>cell_height</li>
+  <li>base_text_color</li>
+  <li>base_backfill_color</li>
+  <li>build_keyboard_command_mapping</li>
+  <li>build_local_events_dictionary</li>
+  <li>render</li>
+  <li>process_local_event</li>
+  <li>process_char_event</li>
+  <li>process_event</li>
+  <li>save_file</li>
+</ul>
+<h4 id="quintessence/Hexagon/ProjectFactory.q.yml">quintessence/Hexagon/ProjectFactory.q.yml</h4>
+<ul>
+  <li>hexagon</li>
+  <li>partner_performance_dashboard</li>
+</ul>
+<h4 id="quintessence/Hexagon/ProjectFromYAML.q.yml">quintessence/Hexagon/ProjectFromYAML.q.yml</h4>
+<ul>
+  <li>name</li>
+  <li>source_yaml</li>
+  <li>load</li>
+</ul>
+<h4 id="quintessence/Hexagon/Rails/ComponentLister.q.yml">quintessence/Hexagon/Rails/ComponentLister.q.yml</h4>
+<ul>
+  <li>project_root_directory</li>
+  <li>model_filenames</li>
+  <li>controller_filenames</li>
+  <li>test_filenames</li>
+  <li>get_recursive_list_of_files_in_folder</li>
+</ul>
+<h4 id="quintessence/Hexagon/RailsMinitestTestResultToCodeMessagePointConverter.q.yml">quintessence/Hexagon/RailsMinitestTestResultToCodeMessagePointConverter.q.yml</h4>
+<ul>
+  <li>rails_minitest_test_result</li>
+  <li>run</li>
+  <li>convert</li>
+</ul>
+<h4 id="quintessence/Hexagon/RailsTestOutputParser.q.yml">quintessence/Hexagon/RailsTestOutputParser.q.yml</h4>
+<ul>
+  <li>processed</li>
+  <li>source_test_output</li>
+  <li>test_result_lines</li>
+  <li>process</li>
+  <li>get_test_result_lines</li>
+</ul>
+<h4 id="quintessence/Hexagon/RegexStore.q.yml">quintessence/Hexagon/RegexStore.q.yml</h4>
+<ul>
+  <li>identifiers</li>
+  <li>double_quoted_strings_with_escapes</li>
+</ul>
+<h4 id="quintessence/Hexagon/RendererInterface.q.yml">quintessence/Hexagon/RendererInterface.q.yml</h4>
+<ul>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Search/ComponentElasticsearchIndex.q.yml">quintessence/Hexagon/Search/ComponentElasticsearchIndex.q.yml</h4>
+<ul>
+  <li>run</li>
+  <li>get_index_name</li>
+  <li>get_index_mapping</li>
+</ul>
+<h4 id="quintessence/Hexagon/Search/ComponentElasticsearchIndexer.q.yml">quintessence/Hexagon/Search/ComponentElasticsearchIndexer.q.yml</h4>
+<ul>
+  <li>component</li>
+  <li>index_name</li>
+  <li>generate_uid</li>
+  <li>generate_index_shell_command</li>
+  <li>import_or_update</li>
+</ul>
+<h4 id="quintessence/Hexagon/Search/Elasticsearch/HealthChecker.q.yml">quintessence/Hexagon/Search/Elasticsearch/HealthChecker.q.yml</h4>
+<ul>
+  <li>run</li>
+  <li>get_health_check_shell_command</li>
+  <li>is_up</li>
+  <li>request_health</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shaders/Base.q.yml">quintessence/Hexagon/Shaders/Base.q.yml</h4>
+<ul>
+  <li>vertex_source_code</li>
+  <li>fragment_source_code</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shaders/FlatColor.q.yml">quintessence/Hexagon/Shaders/FlatColor.q.yml</h4>
+<ul>
+  <li>initialized</li>
+  <li>initialize</li>
+  <li>activate</li>
+  <li>set_flat_color</li>
+  <li>obtain_vertex_source</li>
+  <li>obtain_fragment_source</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shaders/Fun.q.yml">quintessence/Hexagon/Shaders/Fun.q.yml</h4>
+<ul>
+  <li>initialized</li>
+  <li>initialize</li>
+  <li>activate</li>
+  <li>deactivate</li>
+  <li>set_flat_color</li>
+  <li>set_texture_width</li>
+  <li>set_texture_height</li>
+  <li>set_nyan_cat_texture</li>
+  <li>set_time</li>
+  <li>obtain_vertex_source</li>
+  <li>obtain_fragment_source</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shaders/Smiley.q.yml">quintessence/Hexagon/Shaders/Smiley.q.yml</h4>
+<ul>
+  <li>initialized</li>
+  <li>initialize</li>
+  <li>activate</li>
+  <li>set_flat_color</li>
+  <li>set_texture_width</li>
+  <li>set_texture_height</li>
+  <li>obtain_vertex_source</li>
+  <li>obtain_fragment_source</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shaders/TexturedTruchet.q.yml">quintessence/Hexagon/Shaders/TexturedTruchet.q.yml</h4>
+<ul>
+  <li>initialized</li>
+  <li>initialize</li>
+  <li>activate</li>
+  <li>deactivate</li>
+  <li>set_flat_color</li>
+  <li>set_texture_width</li>
+  <li>set_texture_height</li>
+  <li>set_nyan_cat_texture</li>
+  <li>set_time</li>
+  <li>obtain_vertex_source</li>
+  <li>obtain_fragment_source</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shaders/TiledHexagonMotionEffect.q.yml">quintessence/Hexagon/Shaders/TiledHexagonMotionEffect.q.yml</h4>
+<ul>
+  <li>initialized</li>
+  <li>initialize</li>
+  <li>activate</li>
+  <li>deactivate</li>
+  <li>set_flat_color</li>
+  <li>set_texture_width</li>
+  <li>set_texture_height</li>
+  <li>set_nyan_cat_texture</li>
+  <li>set_time</li>
+  <li>obtain_vertex_source</li>
+  <li>obtain_fragment_source</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shaders/TruchetMaze.q.yml">quintessence/Hexagon/Shaders/TruchetMaze.q.yml</h4>
+<ul>
+  <li>initialized</li>
+  <li>initialize</li>
+  <li>activate</li>
+  <li>deactivate</li>
+  <li>set_flat_color</li>
+  <li>set_texture_width</li>
+  <li>set_texture_height</li>
+  <li>set_time</li>
+  <li>obtain_vertex_source</li>
+  <li>obtain_fragment_source</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shaders/TruchetVine.q.yml">quintessence/Hexagon/Shaders/TruchetVine.q.yml</h4>
+<ul>
+  <li>initialized</li>
+  <li>initialize</li>
+  <li>activate</li>
+  <li>deactivate</li>
+  <li>set_flat_color</li>
+  <li>set_texture_width</li>
+  <li>set_texture_height</li>
+  <li>set_time</li>
+  <li>obtain_vertex_source</li>
+  <li>obtain_fragment_source</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shaders/TruchetVineSquiggle.q.yml">quintessence/Hexagon/Shaders/TruchetVineSquiggle.q.yml</h4>
+<ul>
+  <li>initialized</li>
+  <li>initialize</li>
+  <li>activate</li>
+  <li>deactivate</li>
+  <li>set_flat_color</li>
+  <li>set_texture_width</li>
+  <li>set_texture_height</li>
+  <li>set_time</li>
+  <li>obtain_vertex_source</li>
+  <li>obtain_fragment_source</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shapes/Hexagon/Fill.q.yml">quintessence/Hexagon/Shapes/Hexagon/Fill.q.yml</h4>
+<ul>
+  <li>run</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shapes/Hexagon/Renderer.q.yml">quintessence/Hexagon/Shapes/Hexagon/Renderer.q.yml</h4>
+<ul>
+  <li>x</li>
+  <li>y</li>
+  <li>radius</li>
+  <li>strokes</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Shapes/Hexagon/Stroke.q.yml">quintessence/Hexagon/Shapes/Hexagon/Stroke.q.yml</h4>
+<ul>
+  <li>start</li>
+  <li>end</li>
+  <li>color</li>
+  <li>thickness</li>
+  <li>default_color</li>
+</ul>
+<h4 id="quintessence/Hexagon/StageCollectionHelper.q.yml">quintessence/Hexagon/StageCollectionHelper.q.yml</h4>
+<ul>
+  <li>stages</li>
+  <li>all</li>
+  <li>count_code_editor_stages</li>
+  <li>get_all_code_editor_stages_as_code_editor_stages</li>
+  <li>get_frontmost_code_editor_stage</li>
+  <li>get_frontmost_git_commit_message_input_box</li>
+  <li>is_frontmost_stage_a_regex_input_box</li>
+  <li>get_frontmost_stage</li>
+</ul>
+<h4 id="quintessence/Hexagon/StageFactory.q.yml">quintessence/Hexagon/StageFactory.q.yml</h4>
+<ul>
+  <li>config</li>
+  <li>font_bin</li>
+  <li>obtain_default_navigator_directory</li>
+  <li>obtain_base_text_color</li>
+  <li>obtain_regex_temp_filename</li>
+  <li>obtain_base_backfill_color</li>
+  <li>obtain_component_navigator_font</li>
+  <li>obtain_file_navigator_font</li>
+  <li>obtain_global_font</li>
+  <li>obtain_git_commit_message_box_font</li>
+  <li>obtain_display_default_width</li>
+  <li>obtain_display_default_height</li>
+  <li>create</li>
+  <li>create_file_navigator</li>
+  <li>create_missing_file</li>
+  <li>create_advanced_code_editor</li>
+  <li>create_code_editor</li>
+  <li>create_regex_input_box_modal</li>
+  <li>create_git_commit_message_box</li>
+  <li>create_advanced_component_navigator</li>
+  <li>get_current_display</li>
+  <li>build_component_navigator_initial_place</li>
+  <li>build_file_navigator_initial_place</li>
+  <li>build_git_commit_message_input_box_initial_place</li>
+  <li>build_regex_input_box_initial_place</li>
+</ul>
+<h4 id="quintessence/Hexagon/SymlinkToucher.q.yml">quintessence/Hexagon/SymlinkToucher.q.yml</h4>
+<ul>
+  <li>filename</li>
+  <li>touch_if_symlink</li>
+</ul>
+<h4 id="quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.q.yml">quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.q.yml</h4>
+<ul>
+  <li>project_path</li>
+  <li>last_component_navigator_selection</li>
+  <li>display_default_width</li>
+  <li>display_default_height</li>
+  <li>stages</li>
+  <li>stage_factory</li>
+  <li>dummy_stages</li>
+  <li>code_editor_width</li>
+  <li>text_color</li>
+  <li>backfill_color</li>
+  <li>create_as_advanced_code_editor</li>
+  <li>run</li>
+  <li>execute</li>
+</ul>
+<h4 id="quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.q.yml">quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.q.yml</h4>
+<ul>
+  <li>current_project_directory</li>
+  <li>powerbar</li>
+  <li>execute</li>
+</ul>
+<h4 id="quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.q.yml">quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.q.yml</h4>
+<ul>
+  <li>repo_name</li>
+  <li>repos_directory</li>
+  <li>powerbar</li>
+  <li>execute</li>
+</ul>
+<h4 id="quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent.q.yml">quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent.q.yml</h4>
+<ul>
+  <li>project_path</li>
+  <li>component</li>
+  <li>stages</li>
+  <li>stage_factory</li>
+  <li>display_default_width</li>
+  <li>display_default_height</li>
+  <li>code_editor_width</li>
+  <li>text_color</li>
+  <li>backfill_color</li>
+  <li>dummy_stages</li>
+  <li>create_as_advanced_code_editor</li>
+  <li>place_stage</li>
+  <li>generate_header_filename</li>
+  <li>generate_source_filename</li>
+  <li>generate_test_filename</li>
+  <li>execute</li>
+</ul>
+<h4 id="quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages.q.yml">quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages.q.yml</h4>
+<ul>
+  <li>stages</li>
+  <li>dummy_stages</li>
+  <li>execute</li>
+</ul>
+<h4 id="quintessence/Hexagon/System/Config.q.yml">quintessence/Hexagon/System/Config.q.yml</h4>
+<ul>
+  <li>INITIAL_DISPLAY_WIDTH_KEY</li>
+  <li>INITIAL_DISPLAY_HEIGHT_KEY</li>
+  <li>DEFAULT_NAVIGATOR_DIRECTORY_KEY</li>
+  <li>REGEX_TEMP_FILENAME_KEY</li>
+  <li>CLIPBOARD_TEMP_FILENAME_KEY</li>
+  <li>FILE_NAVIGATOR_SELECTION_FILENAME_KEY</li>
+  <li>MAKE_COMMAND_FILENAME_KEY</li>
+  <li>FOCUSED_COMPONENT_FILENAME_KEY</li>
+  <li>FONT_BIN_PATH_KEY</li>
+  <li>DARK_MODE_KEY</li>
+  <li>config_filename</li>
+  <li>config</li>
+  <li>initialized</li>
+  <li>validate_initialized</li>
+  <li>initialize</li>
+  <li>get_initial_display_width</li>
+  <li>get_initial_display_height</li>
+  <li>get_default_navigator_directory</li>
+  <li>get_regex_temp_filename</li>
+  <li>get_clipboard_temp_filename</li>
+  <li>get_file_navigator_selection_filename</li>
+  <li>get_make_command_filename</li>
+  <li>get_focused_component_filename</li>
+  <li>get_font_bin_path</li>
+  <li>get_default_camera_stepback</li>
+  <li>is_dark_mode</li>
+  <li>get_backfill_color</li>
+  <li>get_base_text_color</li>
+  <li>get_backfill_opacity</li>
+  <li>resource_path</li>
+</ul>
+<h4 id="quintessence/Hexagon/System/EventController.q.yml">quintessence/Hexagon/System/EventController.q.yml</h4>
+<ul>
+  <li>system</li>
+  <li>function_mapping</li>
+  <li>dummy_ALLEGRO_EVENT</li>
+  <li>get_default_function_mapping</li>
+  <li>process_local_event</li>
+  <li>process_event</li>
+</ul>
+<h4 id="quintessence/Hexagon/System/Renderer.q.yml">quintessence/Hexagon/System/Renderer.q.yml</h4>
+<ul>
+  <li>system</li>
+  <li>display</li>
+  <li>backfill_color</li>
+  <li>render</li>
+</ul>
+<h4 id="quintessence/Hexagon/Testing/ComponentTestRunner.q.yml">quintessence/Hexagon/Testing/ComponentTestRunner.q.yml</h4>
+<ul>
+  <li>project_root</li>
+  <li>component_name</li>
+  <li>generate_make_run_test_command</li>
+  <li>run</li>
+</ul>
+<h4 id="quintessence/Hexagon/Testing/GoogleTestRunOutputParser.q.yml">quintessence/Hexagon/Testing/GoogleTestRunOutputParser.q.yml</h4>
+<ul>
+  <li>google_test_run_output</li>
+  <li>parsed_test_results</li>
+  <li>parse_error_messages</li>
+  <li>parse</li>
+  <li>extract_test_class_name_and_test_description</li>
+  <li>extract_ms</li>
+</ul>
+<h4 id="quintessence/Hexagon/Testing/GoogleTestRunTestResult.q.yml">quintessence/Hexagon/Testing/GoogleTestRunTestResult.q.yml</h4>
+<ul>
+  <li>test_class_name</li>
+  <li>test_description</li>
+  <li>result</li>
+  <li>duration_msec</li>
+  <li>failure_message</li>
+</ul>
+<h4 id="quintessence/Hexagon/TitleScreen.q.yml">quintessence/Hexagon/TitleScreen.q.yml</h4>
+<ul>
+  <li>font_bin</li>
+  <li>main_menu</li>
+  <li>initialized</li>
+  <li>initialize</li>
+  <li>main_menu_cursor_move_up</li>
+  <li>main_menu_cursor_move_down</li>
+  <li>main_menu_get_current_list_item_identifier</li>
+  <li>draw_hexagon_logo_and_wait_for_keypress</li>
+  <li>draw_menu</li>
+  <li>render_profiler_graph</li>
+  <li>build_allegro_version_string</li>
+  <li>append_project_path_to_config_file</li>
+</ul>
+<h4 id="quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml">quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml</h4>
+<ul>
+  <li>filename</li>
+  <li>identify_file_type</li>
+  <li>is_identifiable_component</li>
+  <li>identify_component_basename</li>
+  <li>extract_component</li>
+</ul>
+<h4 id="quintessence/Testing/WithAllegroRenderingFixture.q.yml">quintessence/Testing/WithAllegroRenderingFixture.q.yml</h4>
+<ul>
+  <li>display</li>
+  <li>font_bin</li>
+  <li>SetUp</li>
+  <li>TearDown</li>
+  <li>get_any_font</li>
+  <li>build_centered_placement</li>
+</ul>
+<h4 id="quintessence/Testing/WithStageFactoryFixture.q.yml">quintessence/Testing/WithStageFactoryFixture.q.yml</h4>
+<ul>
+  <li>config</li>
+  <li>font_bin</li>
+  <li>stage_factory</li>
+  <li>SetUp</li>
+  <li>TearDown</li>
+</ul>
+<h4 id="quintessence/TreeBuilder.q.yml">quintessence/TreeBuilder.q.yml</h4>
+<ul>
+  <li>build</li>
+</ul>
+<h4 id="tests/fixtures/FixtureProject/quintessence/FixtureObjectThing.q.yml">tests/fixtures/FixtureProject/quintessence/FixtureObjectThing.q.yml</h4>
+<ul>
+  <li>foobar</li>
+  <li>generate_two_foobars</li>
+</ul>
+</body>

@@ -154,6 +154,7 @@ functions:
 
   - name: render_window_raw
     type: void
+    private: true
     body: |
       Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
       placement3d &place = stage.get_place();
@@ -184,6 +185,7 @@ functions:
 
   - name: render_cursor_box_raw
     type: void
+    private: true
     body: |
       Hexagon::ProjectComponentNavigator::Stage &stage = *this->stage;
       Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &component = stage.get_component_ref();
@@ -353,6 +355,7 @@ functions:
 
   - name: render_list_clipping_arrows_raw
     type: void
+    private: true
     parameters:
       - name: list_clipping_occurred_above
         type: bool

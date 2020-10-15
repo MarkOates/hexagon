@@ -3,11 +3,45 @@ require 'json'
 class TreeBuilder
   def build
     #process_lines
-    puts JSON.pretty_generate(rollup)
+    entries = rollup
+    keys = entries.keys
+
+    result =  "<!DOCTYPE html>\n"
+    result += "<head>\n"
+    result += "</head>\n"
+    result += "<body>\n"
+
+
+    result += "<h1>TOC</h1>\n"
+    result += "<ul>\n"
+    keys.each do |key|
+      result += "  <li><a href=\"\##{key}\">#{key}</a></li>\n"
+    end
+    result += "</ul>\n"
+
+
+    result += "<h1>Components</h1>\n"
+    entries.each do |key, value|
+      result += "<h4 id=\"#{key}\">#{key}</h4>\n"
+      result += "<ul>\n"
+      value.each do |symbol|
+        result += "  <li>#{symbol}</li>\n"
+      end
+      result += "</ul>\n"
+    end
+
+
+    result += "</body>"
+    puts result
+    #puts JSON.pretty_generate(rollup)
   end
 
   def command_results
-    @command_results ||= (`git grep "^  - name" | grep q\.yml`).split("\n")
+    @command_results ||= (`git grep "^  - name" | grep quintessence | grep q\.yml`).split("\n")
+  end
+
+  def component_basename(filename:)
+    basename = `~/Repos/ncurses-art/bin/programs/project_filename_generator -x#{filename} -B`
   end
 
   def rollup
@@ -30,7 +64,20 @@ class TreeBuilder
         method = command_result[(index + 11)..-1]
         result = {
           filename: filename,
+          # basename: component_basename(filename: filename),
+          basename: '[not-set]',
           symbol: method,
+          dependencies: {
+            direct: [],
+            collaborated: [],
+          }
+          private_methods: [], # mostly not important, it represents a complex internal arrangement to resolve the implementation
+          input_types: [],
+          input_type_states: [ :requires_initialization ],
+          internal_dependencies: [],
+          external_dependencies: [],
+          private_parent: [],
+          private_static_data: [], # constants, methods that return values that will not change
         }
         #puts result
       end
