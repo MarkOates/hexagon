@@ -1,6 +1,6 @@
 properties:
 
-  - name: selections
+  - name: code_ranges
     type: std::vector<CodeRange>
     init_with: '{}'
     constructor_arg: true

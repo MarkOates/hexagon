@@ -13,5 +13,5 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, selection__is_a_constructor_arg_a
    std::vector<CodeRange> code_range = { CodeRange{4, 5, 10, 6} };
    Hexagon::AdvancedCodeEditor::Selection selection(code_range);
 
-   EXPECT_EQ(code_range, selection.get_selections());
+   EXPECT_EQ(code_range, selection.get_code_ranges());
 }

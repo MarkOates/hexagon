@@ -12,14 +12,14 @@ namespace Hexagon
       class Selection
       {
       private:
-         std::vector<CodeRange> selections;
+         std::vector<CodeRange> code_ranges;
 
       public:
-         Selection(std::vector<CodeRange> selections={});
+         Selection(std::vector<CodeRange> code_ranges={});
          ~Selection();
 
 
-         std::vector<CodeRange> get_selections();
+         std::vector<CodeRange> get_code_ranges();
       };
    }
 }

@@ -10,8 +10,8 @@ namespace AdvancedCodeEditor
 {
 
 
-Selection::Selection(std::vector<CodeRange> selections)
-   : selections(selections)
+Selection::Selection(std::vector<CodeRange> code_ranges)
+   : code_ranges(code_ranges)
 {
 }
 
@@ -21,9 +21,9 @@ Selection::~Selection()
 }
 
 
-std::vector<CodeRange> Selection::get_selections()
+std::vector<CodeRange> Selection::get_code_ranges()
 {
-   return selections;
+   return code_ranges;
 }
 
 
