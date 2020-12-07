@@ -1,0 +1,12 @@
+properties:
+
+  - name: selections
+    type: std::vector<CodeRange>
+    init_with: '{}'
+    constructor_arg: true
+    getter: true
+
+dependencies:
+
+  - symbol: std::vector<CodeRange>
+    headers: [ vector, Hexagon/CodeRange.hpp ]

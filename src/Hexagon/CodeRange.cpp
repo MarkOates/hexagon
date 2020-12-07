@@ -42,6 +42,7 @@ void CodeRange::set_cursor_end_y(int y) { cursor_end_y = y; }
 
 bool CodeRange::is_empty()
 {
+   // TODO: this equation does not mean it's empty, consider re-evaluating
    return cursor_end_y == cursor_anchor_y && cursor_end_x == cursor_anchor_x;
 }
 
@@ -74,6 +75,16 @@ bool CodeRange::in_range(int x, int y)
 }
 
 
+
+bool CodeRange::operator==(const CodeRange &other) const
+{
+   if (cursor_anchor_x != other.cursor_anchor_x) return false;
+   if (cursor_anchor_y != other.cursor_anchor_y) return false;
+   if (cursor_end_x != other.cursor_end_x) return false;
+   if (cursor_end_y != other.cursor_end_y) return false;
+   return true;
+}
+ 
 
 std::ostream &operator<<(std::ostream &out, CodeRange &code_range)
 {

@@ -25,6 +25,7 @@ public:
    bool is_empty();
    int infer_num_lines();
    bool in_range(int x, int y);
+   bool operator==(const CodeRange &other) const;
 };
 
 
