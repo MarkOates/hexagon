@@ -1,19 +1,31 @@
 properties:
+
+
   - name: filename
     constructor_arg: true
     type: std::string
     init_with: "\"\""
+
+
 functions:
+
+
   - name: identify_file_type
     type: std::string
     body: return extract_component().first;
+
+
   - name: is_identifiable_component
     type: bool
     body: |
       return (identify_file_type() != "not identifiable");
+
+
   - name: identify_component_basename
     type: std::string
     body: return extract_component().second;
+
+
   - name: extract_component
     type: std::pair<std::string, std::string>
     body: |
@@ -96,6 +108,10 @@ functions:
          std::string extracted = "";
          return std::make_pair("not identifiable", "");
       }
+
+
 dependencies:
+
+
   - symbol: std::pair<std::string, std::string>
     headers: [ 'string' ]
