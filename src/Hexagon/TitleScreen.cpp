@@ -207,7 +207,7 @@ while (!abort_program)
 
          draw_menu();
 
-         render_profiler_graph(&profiler, purista_font);
+         //render_profiler_graph(&profiler, purista_font);
 
          profiler.emit("primary_timer logic ended");
          profiler.emit("al_flip_display logic started");
