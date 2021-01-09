@@ -1,0 +1,9 @@
+OBJECTIVE: make a to-do list of important items to add/fix in hexagon
+
+* Formalize "tree structure" of blast components for better inference and building navigation
+  * look into the ruby script that generated the docs.html file 
+  * consider using FrozenRecord for Ruby to load 
+* Add search to new code editor
+* Add needed editing commands to new code editor
+* understand/activate hud elements
+  * is it the defaults in the header?  Will clearing the header require a deep rebuild?
