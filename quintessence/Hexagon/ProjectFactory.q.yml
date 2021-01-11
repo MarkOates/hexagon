@@ -9,6 +9,32 @@ functions:
       return Hexagon::Project(project_name, layouts);
 
 
+  - name: build_shopify_experts_conversations_system
+    type: Hexagon::Project
+    body: |
+      std::string shopify_experts_conversations_system_project_title = "Shopify Experts Conversation System";
+      std::string shopify_experts_conversations_system_project_filename =
+        "/Users/markoates/Repos/me/hexagon_projects/shopify_experts_conversations_system.yml";
+      if (!Blast::FileExistenceChecker(shopify_experts_conversations_system_project_filename).exists())
+      {
+         std::stringstream error_message;
+         error_message << "[Hexagon/ProjectFactoy]: error: expecting the file \""
+            << shopify_experts_conversations_system_project_filename
+            << "\" to exist for reading, but it does not exist.";
+         throw std::runtime_error(error_message.str());
+      }
+      std::string file_contents = php::file_get_contents(shopify_experts_conversations_system_project_filename);
+      Hexagon::ProjectFromYAML project_from_yaml(
+        shopify_experts_conversations_system_project_title,
+        file_contents
+      );
+      return project_from_yaml.load();
+    body_dependency_symbols:
+      - Hexagon::ProjectFromYAML
+      - Blast::FileExistenceChecker
+      - php::file_get_contents
+
+
   - name: partner_performance_dashboard
     type: Hexagon::Project
     body: |
@@ -41,4 +67,9 @@ dependencies:
 
   - symbol: Hexagon::Project
     headers: [ Hexagon/Project.hpp ]
-
+  - symbol: Hexagon::ProjectFromYAML
+    headers: [ Hexagon/ProjectFromYAML.hpp ]
+  - symbol: php::file_get_contents
+    headers: [ allegro_flare/useful_php.h ]
+  - symbol: Blast::FileExistenceChecker
+    headers: [ Blast/FileExistenceChecker.hpp ]
