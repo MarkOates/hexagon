@@ -109,7 +109,7 @@ From me far off, with others all too near.
 
 System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion &motion)
    : last_component_navigator_selection("")
-   , default_navigator_directory("")
+   , current_project_directory("")
    , last_project_navigator_selection("")
    , display(display)
    , config(config)
@@ -141,7 +141,7 @@ void System::initialize()
    std::string font_bin_path = config.get_font_bin_path();
    font_bin.set_full_path(font_bin_path);
 
-   set_default_navigator_directory(config.get_default_navigator_directory());
+   set_current_project_directory(config.get_default_navigator_directory());
 
    hud.set_backfill_color(config.get_backfill_color());
    hud.set_stages(&stages);
@@ -156,16 +156,16 @@ void System::initialize()
 }
 
 
-void System::set_default_navigator_directory(std::string default_navigator_directory)
+void System::set_current_project_directory(std::string current_project_directory)
 {
-   this->default_navigator_directory = default_navigator_directory;
+   this->current_project_directory = current_project_directory;
 }
 
 
-std::string System::get_default_navigator_directory()
+std::string System::get_current_project_directory()
 {
-   return default_navigator_directory;
-   //return config.get_default_navigator_directory();
+   return current_project_directory;
+   //return config.get_current_project_directory();
 }
 
 
@@ -999,8 +999,7 @@ bool System::check_git_local_status_and_update_powerbar()
    //std::string repo_name = "blast";
    //std::string repos_directory = "~/Repos";
    Hexagon::Powerbar::Powerbar* powerbar = &hud.get_powerbar_ref();
-   std::string current_project_directory = get_default_navigator_directory();
-   Hexagon::System::Action::CheckGitLocalStatusAndUpdatePowerbar action(current_project_directory, powerbar);
+   Hexagon::System::Action::CheckGitLocalStatusAndUpdatePowerbar action(get_current_project_directory(), powerbar);
    return action.execute();
 }
 
@@ -1150,7 +1149,7 @@ bool System::create_stages_from_layout_of_last_component_navigator_selection()
       return false;
    }
 
-   std::string project_directory = get_default_navigator_directory();
+   std::string project_directory = get_current_project_directory();
    std::string component_name = last_component_navigator_selection;
 
    std::cout << " ---- CREATING project_dir:" << project_directory << std::endl;
@@ -1182,7 +1181,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       return false;
    }
 
-   Blast::Project::Component component(last_component_navigator_selection, get_default_navigator_directory());
+   Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
 
    if (component.has_only_source_and_header())
    {
@@ -1220,9 +1219,9 @@ bool System::create_layout_from_last_project_navigator_selection()
 bool System::create_three_split_from_last_component_navigator_selection()
 {
    Hexagon::StageFactory stage_factory(&config, &font_bin);
-   Blast::Project::Component component(last_component_navigator_selection, get_default_navigator_directory());
+   Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
    Hexagon::System::Action::CreateThreeSplitFromComponent action(
-      get_default_navigator_directory(),
+      get_current_project_directory(),
       component,
       stages,
       &stage_factory,
@@ -1242,7 +1241,7 @@ bool System::attempt_to_create_stage_from_last_component_navigator_selection()
 {
    Hexagon::StageFactory stage_factory(&config, &font_bin);
    Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection action(
-         get_default_navigator_directory(),
+         get_current_project_directory(),
          last_component_navigator_selection,
          get_display_default_width(),
          get_display_default_height(),
@@ -1286,7 +1285,7 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
       throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
 
    std::string commit_message = regex_input_file_lines[0];
-   std::string current_project_directory = get_default_navigator_directory();
+   std::string current_project_directory = get_current_project_directory();
 
    Hexagon::Git::StageEverything stage_everything(current_project_directory);
    stage_everything.stage_everything();
@@ -1316,8 +1315,7 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
 
 bool System::push_to_git_remote()
 {
-   std::string current_project_directory = get_default_navigator_directory();
-   Hexagon::Git::Pusher git_pusher(current_project_directory);
+   Hexagon::Git::Pusher git_pusher(get_current_project_directory());
 
    git_pusher.push();
 

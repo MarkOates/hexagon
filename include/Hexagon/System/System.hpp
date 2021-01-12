@@ -21,7 +21,7 @@ private:
    static Motion dummy_motion;
    static Hexagon::System::Config dummy_config;
    std::string last_component_navigator_selection;
-   std::string default_navigator_directory;
+   std::string current_project_directory;
    std::string last_project_navigator_selection;
 
 public:
@@ -58,12 +58,12 @@ public:
    int get_display_default_height();
    float get_default_camera_stepback();
    float get_default_code_editor_stage_width();
-   std::string get_default_navigator_directory();
+   std::string get_current_project_directory();
    std::string get_global_font_str();
 
    void set_last_project_navigator_selection(std::string last_project_navigator_selection);
    void set_last_component_navigator_selection(std::string last_component_navigator_selection);
-   void set_default_navigator_directory(std::string default_navigator_directory);
+   void set_current_project_directory(std::string current_project_directory);
 
    // retrieval
    StageInterface *get_frontmost_stage();

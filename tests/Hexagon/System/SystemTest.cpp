@@ -66,7 +66,7 @@ TEST(Hexagon_System_System,
    system.initialize();
 
    system.option__saving_focused_filename_to_file_is_disabled = true;
-   system.set_default_navigator_directory(project_directory);
+   system.set_current_project_directory(project_directory);
    system.set_last_component_navigator_selection(component_name);
 
    system.create_stages_from_layout_of_last_component_navigator_selection();
