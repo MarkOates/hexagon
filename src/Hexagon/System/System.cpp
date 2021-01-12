@@ -340,7 +340,6 @@ bool System::mark_as_not_in_sync_with_remote()
 }
 
 
-
 bool System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction()
 {
    Hexagon::CodeEditor::Stage *stage = get_frontmost_git_commit_message_input_box();
@@ -1233,7 +1232,7 @@ bool System::create_three_split_from_last_component_navigator_selection()
       config.get_base_text_color(),
       config.get_backfill_color()
    );
-   action.set_create_as_advanced_code_editor(true);
+   //action.set_create_as_advanced_code_editor(true);
 
    return action.managed_execute();
 }
@@ -1253,7 +1252,7 @@ bool System::attempt_to_create_stage_from_last_component_navigator_selection()
          config.get_base_text_color(),
          config.get_backfill_color()
       );
-   action.set_create_as_advanced_code_editor(true);
+   //action.set_create_as_advanced_code_editor(true);
 
    return action.managed_execute();
 }
