@@ -23,6 +23,7 @@ private:
    std::string last_component_navigator_selection;
    std::string current_project_directory;
    std::string last_project_navigator_selection;
+   std::string focused_component_name;
 
 public:
    ALLEGRO_DISPLAY *display;
@@ -44,7 +45,6 @@ public:
    std::string target;
    int global_font_size;
    bool command_mode;
-   std::string focused_component_name;
    std::vector<Hexagon::Packet> packets;
    AllegroFlare::FontBin font_bin;
    Hexagon::Hud hud;
@@ -61,6 +61,7 @@ public:
    std::string get_current_project_directory();
    std::string get_global_font_str();
 
+   void set_focused_component_name(std::string focused_component_name);
    void set_last_project_navigator_selection(std::string last_project_navigator_selection);
    void set_last_component_navigator_selection(std::string last_component_navigator_selection);
    void set_current_project_directory(std::string current_project_directory);

@@ -111,6 +111,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    : last_component_navigator_selection("")
    , current_project_directory("")
    , last_project_navigator_selection("")
+   , focused_component_name("")
    , display(display)
    , config(config)
    , motion(motion)
@@ -127,7 +128,6 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , target("")
    , global_font_size(-20)
    , command_mode(false)
-   , focused_component_name("")
    , packets()
    , font_bin()
    , hud(display, font_bin)
@@ -200,15 +200,24 @@ std::string System::get_global_font_str()
    return result.str();
 }
 
+
+void System::set_focused_component_name(std::string focused_component_name)
+{
+   this->focused_component_name = focused_component_name;
+}
+
+
 void System::set_last_component_navigator_selection(std::string last_component_navigator_selection)
 {
    this->last_component_navigator_selection = last_component_navigator_selection;
 }
 
+
 void System::set_last_project_navigator_selection(std::string last_project_navigator_selection)
 {
    this->last_project_navigator_selection = last_project_navigator_selection;
 }
+
 
 // retrieval
 
@@ -932,6 +941,7 @@ bool System::destroy_topmost_stage()
 #include <allegro_flare/useful.h>
 bool System::execute_magic_command()
 {
+   destroy_all_code_editor_stages();
    return true;
 }
 
@@ -1162,7 +1172,7 @@ bool System::create_stages_from_layout_of_last_component_navigator_selection()
 
    layout_to_stages_creator.create();
 
-   focused_component_name = last_component_navigator_selection;
+   set_focused_component_name(last_component_navigator_selection);
    set_hud_title_to_focused_component_name();
    write_focused_component_name_to_file();
 
@@ -1185,7 +1195,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
 
    if (component.has_only_source_and_header())
    {
-      focused_component_name = last_component_navigator_selection;
+      set_focused_component_name(last_component_navigator_selection);
 
       set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
@@ -1193,7 +1203,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
    }
    else if (component.has_quintessence() || component.has_test())
    {
-      focused_component_name = last_component_navigator_selection;
+      set_focused_component_name(last_component_navigator_selection);
 
       set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
