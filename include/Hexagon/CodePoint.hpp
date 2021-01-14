@@ -9,7 +9,7 @@ private:
    int y;
 
 public:
-   CodePoint(int x, int y);
+   CodePoint(int x=0, int y=0);
    ~CodePoint();
 
    int get_x() const;
