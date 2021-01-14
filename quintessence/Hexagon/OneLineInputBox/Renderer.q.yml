@@ -112,12 +112,12 @@ functions:
       for (auto &selection : selections)
       {
          std::cout << " drawing selection " << selection << std::endl;
-         CodeRangeRenderer(lines, selection, first_line_number, cell_width, cell_height).render();
+         CodeSelectionBoxRenderer(lines, selection, first_line_number, cell_width, cell_height).render();
       }
     body_dependency_symbols:
       - std::cout
       - std::endl
-      - CodeRangeRenderer
+      - CodeSelectionBoxRenderer
 
 
   - name: get_primary_color
@@ -305,8 +305,8 @@ functions:
 dependencies:
   - symbol: std::vector<CodeRange>
     headers: [ vector, Hexagon/CodeRange.hpp ]
-  - symbol: CodeRangeRenderer
-    headers: [ Hexagon/CodeRangeRenderer.hpp ]
+  - symbol: CodeSelectionBoxRenderer
+    headers: [ Hexagon/CodeSelectionBoxRenderer.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
   - symbol: al_draw_filled_rectangle

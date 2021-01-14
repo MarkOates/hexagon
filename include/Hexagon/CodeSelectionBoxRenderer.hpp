@@ -8,7 +8,7 @@
 
 
 
-class CodeRangeRenderer
+class CodeSelectionBoxRenderer
 {
 private:
    const std::vector<std::string> &lines;
@@ -18,7 +18,7 @@ private:
    int cell_height;
 
 public:
-   CodeRangeRenderer(
+   CodeSelectionBoxRenderer(
       const std::vector<std::string> &lines,
       CodeRange &code_range,
       int first_line_number,

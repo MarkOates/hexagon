@@ -10,7 +10,7 @@
 #include <Hexagon/CodeEditor/Renderer/BasicLineRenderer.hpp>
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <Hexagon/Elements/Window.hpp>
-#include <Hexagon/CodeRangeRenderer.hpp>
+#include <Hexagon/CodeSelectionBoxRenderer.hpp>
 #include <Hexagon/shared_globals.hpp> // for hexagon_get_backfill_color() && profile_timer functions
 #include <AllegroFlare/Color.hpp>
 #include <sstream>
@@ -67,7 +67,7 @@ void Renderer::draw_selections(int cell_width, int cell_height)
    for (auto &selection : code_editor->selections)
    {
       //std::cout << " drawing selection " << selection << std::endl;
-      CodeRangeRenderer renderer(
+      CodeSelectionBoxRenderer renderer(
          code_editor->get_lines_ref(),
          selection,
          code_editor->get_first_line_number(),

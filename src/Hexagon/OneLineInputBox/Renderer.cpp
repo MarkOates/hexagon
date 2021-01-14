@@ -3,7 +3,7 @@
 #include <Hexagon/OneLineInputBox/Renderer.hpp>
 #include <iostream>
 #include <iostream>
-#include <Hexagon/CodeRangeRenderer.hpp>
+#include <Hexagon/CodeSelectionBoxRenderer.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/color.h>
 #include <allegro_flare/placement3d.h>
@@ -88,7 +88,7 @@ void Renderer::draw_selections(int cell_width, int cell_height, int first_line_n
 for (auto &selection : selections)
 {
    std::cout << " drawing selection " << selection << std::endl;
-   CodeRangeRenderer(lines, selection, first_line_number, cell_width, cell_height).render();
+   CodeSelectionBoxRenderer(lines, selection, first_line_number, cell_width, cell_height).render();
 }
 
 }

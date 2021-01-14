@@ -1,14 +1,14 @@
 
 
 
-#include <Hexagon/CodeRangeRenderer.hpp>
+#include <Hexagon/CodeSelectionBoxRenderer.hpp>
 
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 
 
 
-CodeRangeRenderer::CodeRangeRenderer(
+CodeSelectionBoxRenderer::CodeSelectionBoxRenderer(
       const std::vector<std::string> &lines,
       CodeRange &code_range,
       int first_line_number,
@@ -24,7 +24,7 @@ CodeRangeRenderer::CodeRangeRenderer(
 
 
 
-bool CodeRangeRenderer::verify_line_in_range(int line_num)
+bool CodeSelectionBoxRenderer::verify_line_in_range(int line_num)
 {
    if (line_num >= lines.size()) return false;
    if (line_num < 0) return false;
@@ -33,7 +33,7 @@ bool CodeRangeRenderer::verify_line_in_range(int line_num)
 
 
 
-int CodeRangeRenderer::get_line_length(int line_num)
+int CodeSelectionBoxRenderer::get_line_length(int line_num)
 {
    if (!verify_line_in_range(line_num)) return 0;
    return lines[line_num].length();
@@ -41,7 +41,7 @@ int CodeRangeRenderer::get_line_length(int line_num)
 
 
 
-void CodeRangeRenderer::render()
+void CodeSelectionBoxRenderer::render()
 {
    int num_lines = code_range.infer_num_lines();
    CodePoint start = code_range.infer_cursor_start();
