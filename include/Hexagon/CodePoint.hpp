@@ -24,7 +24,7 @@ public:
 
 
 
-bool operator<(const CodePoint &a, const CodePoint &other);
+bool operator<(const CodePoint &a, const CodePoint &b);
 std::ostream &operator<<(std::ostream &out, CodePoint &code_point);
 
 

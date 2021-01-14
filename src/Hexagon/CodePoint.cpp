@@ -33,11 +33,11 @@ void CodePoint::set_y(int y) { this->y = y; }
 
 
 
-bool operator<(const CodePoint &a, const CodePoint &other)
+bool operator<(const CodePoint &a, const CodePoint &b)
 {
-   if (a.get_y() < other.get_y()) return true;
-   if (a.get_y() > other.get_y()) return false;
-   if (a.get_y() == other.get_y()) return (a.get_x() < other.get_x());
+   if (a.get_y() < b.get_y()) return true;
+   if (a.get_y() > b.get_y()) return false;
+   if (a.get_y() == b.get_y()) return (a.get_x() < b.get_x());
    throw std::runtime_error("Codepoint operator<: unexpected codepath");
 }
 
