@@ -8,7 +8,13 @@
 
 
 
-CodeRangeRenderer::CodeRangeRenderer(const std::vector<std::string> &lines, CodeRange &code_range, int first_line_number, int cell_width, int cell_height)
+CodeRangeRenderer::CodeRangeRenderer(
+      const std::vector<std::string> &lines,
+      CodeRange &code_range,
+      int first_line_number,
+      int cell_width,
+      int cell_height
+   )
    : lines(lines)
    , code_range(code_range)
    , first_line_number(first_line_number)

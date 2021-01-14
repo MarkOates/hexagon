@@ -207,6 +207,11 @@ void System::set_focused_component_name(std::string focused_component_name)
 }
 
 
+void System::clear_focused_component_name()
+{
+   this->focused_component_name = "";
+}
+
 void System::set_last_component_navigator_selection(std::string last_component_navigator_selection)
 {
    this->last_component_navigator_selection = last_component_navigator_selection;
@@ -418,6 +423,13 @@ bool System::clear_search_count()
 bool System::set_hud_title_to_focused_component_name()
 {
    hud.set_title_text(focused_component_name);
+   return true;
+}
+
+
+bool System::clear_hud_title()
+{
+   hud.set_title_text("");
    return true;
 }
 
@@ -942,6 +954,11 @@ bool System::destroy_topmost_stage()
 bool System::execute_magic_command()
 {
    destroy_all_code_editor_stages();
+
+   clear_focused_component_name();
+   write_focused_component_name_to_file();
+   clear_hud_title();
+
    return true;
 }
 

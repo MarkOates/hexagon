@@ -62,6 +62,7 @@ public:
    std::string get_global_font_str();
 
    void set_focused_component_name(std::string focused_component_name);
+   void clear_focused_component_name();
    void set_last_project_navigator_selection(std::string last_project_navigator_selection);
    void set_last_component_navigator_selection(std::string last_component_navigator_selection);
    void set_current_project_directory(std::string current_project_directory);
@@ -96,6 +97,7 @@ public:
    bool increment_search_count();
    bool clear_search_count();
    bool set_hud_title_to_focused_component_name();
+   bool clear_hud_title();
    bool set_hud_save_count_to_save_count();
    bool set_hud_search_count_to_search_count();
    bool set_hud_packets_to_packets();
