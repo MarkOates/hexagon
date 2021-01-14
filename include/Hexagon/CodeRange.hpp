@@ -15,7 +15,7 @@ private:
    int cursor_end_y;
 
 public:
-   CodeRange(int cursor_anchor_x, int cursor_anchor_y, int cursor_end_x, int cursor_end_y);
+   CodeRange(int cursor_anchor_x=0, int cursor_anchor_y=0, int cursor_end_x=0, int cursor_end_y=0);
    ~CodeRange();
 
    CodePoint infer_cursor_start();
