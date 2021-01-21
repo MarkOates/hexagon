@@ -80,18 +80,21 @@ void ProgramRunner::cd_to_project_directory_and_run_with_rerun(std::string proje
 std::string actual_command_to_execute_in_project_directory = "make focus";
 
 std::string build_command = "rerun" \
-  " " \
-  "-c" \
-  " " \
-  "--background" \
-  " " \
-  "--ignore \"**/bin/programs/data/tmp/*\"" \
-  " " \
-  "-p \"**/*.{rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}\"" \
-  " " \
-  "\"(cd ";
+   " " \
+   "-c" \
+   " " \
+   "--background" \
+   " " \
+   "--ignore \"**/bin/programs/data/tmp/*\"" \
+   " " \
+   "-p \"**/*.{rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}\"" \
+   " " \
+   "\"(cd ";
 
 build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
+
+std::string build_command_wrapped = "(cd " + project_directory + " && " + build_command + ")";
+
 std::string output = execute_command(build_command);
 return;
 
