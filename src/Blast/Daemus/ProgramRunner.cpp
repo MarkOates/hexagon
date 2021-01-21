@@ -5,6 +5,8 @@
 #include <sstream>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/Config.hpp>
+#include <Hexagon/System/Config.hpp>
+#include <Hexagon/System/Config.hpp>
 
 
 namespace Blast
@@ -42,7 +44,7 @@ hexagon_config.initialize();
 
 std::string project_directory = hexagon_config.get_default_navigator_directory();
 
-run_with_rerun(project_directory);
+cd_to_project_directory_and_run_with_rerun(project_directory);
 return;
 
 }
@@ -70,6 +72,28 @@ result_command << "cd "
                << actual_command_to_execute_in_project_directory;
 
 std::string output = execute_command(result_command.str());
+
+}
+
+void ProgramRunner::cd_to_project_directory_and_run_with_rerun(std::string project_directory)
+{
+std::string actual_command_to_execute_in_project_directory = "make focus";
+
+std::string build_command = "rerun" \
+  " " \
+  "-c" \
+  " " \
+  "--background" \
+  " " \
+  "--ignore \"**/bin/programs/data/tmp/*\"" \
+  " " \
+  "-p \"**/*.{rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}\"" \
+  " " \
+  "\"(cd ";
+
+build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
+std::string output = execute_command(build_command);
+return;
 
 }
 
