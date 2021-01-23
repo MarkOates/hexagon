@@ -34,6 +34,14 @@ functions:
       return get_recursive_list_of_files_in_folder(fragment_folder_name, fragment_extension);
 
 
+  - name: spec_factory_filenames
+    type: std::vector<std::string>
+    body: |
+      std::string fragment_folder_name = "spec/factories";
+      std::string fragment_extension = "_factory.rb";
+      return get_recursive_list_of_files_in_folder(fragment_folder_name, fragment_extension);
+
+
   - name: spec_filenames
     type: std::vector<std::string>
     body: |

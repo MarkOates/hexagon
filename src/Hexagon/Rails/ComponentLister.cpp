@@ -47,6 +47,14 @@ return get_recursive_list_of_files_in_folder(fragment_folder_name, fragment_exte
 
 }
 
+std::vector<std::string> ComponentLister::spec_factory_filenames()
+{
+std::string fragment_folder_name = "spec/factories";
+std::string fragment_extension = "_factory.rb";
+return get_recursive_list_of_files_in_folder(fragment_folder_name, fragment_extension);
+
+}
+
 std::vector<std::string> ComponentLister::spec_filenames()
 {
 std::string fragment_folder_name = "spec";
