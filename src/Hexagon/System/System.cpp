@@ -165,7 +165,6 @@ void System::set_current_project_directory(std::string current_project_directory
 std::string System::get_current_project_directory()
 {
    return current_project_directory;
-   //return config.get_current_project_directory();
 }
 
 
@@ -1317,7 +1316,7 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
    Hexagon::Git::StageEverything stage_everything(current_project_directory);
    stage_everything.stage_everything();
 
-   Hexagon::Git::CommitStagedWithMessage commit_staged_with_message(current_project_directory, commit_message);
+   Hexagon::Git::CommitStagedWithMessage commit_staged_with_message(get_current_project_directory(), commit_message);
    commit_staged_with_message.commit();
 
    // append packet to packets
