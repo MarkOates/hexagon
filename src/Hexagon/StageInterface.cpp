@@ -63,6 +63,9 @@ std::string StageInterface::get_type_name()
       case MISSING_FILE:
          return "MissingFile";
          break;
+      case LITTLE_MENU:
+         return "LittleMenu";
+         break;
       default:
       {
          throw std::runtime_error("StageInterface::get_type_name() unrecognized type");
@@ -111,6 +114,7 @@ bool StageInterface::infer_is_modal()
    case PROJECT_COMPONENT_NAVIGATOR:
    case KEYBOARD_INPUTS_MODAL:
    case NEW_COMPONENT_MAKER:
+   case LITTLE_MENU:
       return true;
    default:
       return false;

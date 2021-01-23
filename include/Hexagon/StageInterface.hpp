@@ -25,6 +25,7 @@ public:
       KEYBOARD_INPUTS_MODAL,
       NEW_COMPONENT_MAKER,
       MISSING_FILE,
+      LITTLE_MENU,
    }; // these types should not be included within the base class
 
 private:
