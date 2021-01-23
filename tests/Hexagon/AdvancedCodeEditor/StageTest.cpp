@@ -715,7 +715,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 {
    // TODO
 }
- 
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    first_row_offset_jump_up_half_page__will_move_the_first_row_offset_up_by_half_the_number_of_rows)
 {
