@@ -32,6 +32,17 @@ TEST(Hexagon_Rails_ComponentListerTest, test_filenames__returns_the_expected_lis
    EXPECT_EQ(expected_test_filenames, component_lister.test_filenames());
 }
 
+TEST(Hexagon_Rails_ComponentListerTest, spec_filenames__returns_the_expected_list_of_filenames)
+{
+   Hexagon::Rails::ComponentLister component_lister(RAILS_FIXTURE_PROJECT_ROOT_DIRECTORY);
+   std::vector<std::string> expected_spec_filenames = {
+      "spec/models/truck_spec.rb",
+      "spec/models/driver_spec.rb",
+      "spec/controllers/trucks_controller_spec.rb",
+   };
+   EXPECT_EQ(expected_spec_filenames, component_lister.spec_filenames());
+}
+
 TEST(Hexagon_Rails_ComponentListerTest, controller_filenames__returns_the_expected_list_of_filenames)
 {
    Hexagon::Rails::ComponentLister component_lister(RAILS_FIXTURE_PROJECT_ROOT_DIRECTORY);
