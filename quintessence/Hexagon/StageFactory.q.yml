@@ -126,6 +126,7 @@ functions:
     type: StageInterface*
     body: |
       Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin);
+      little_menu->set_render_on_hud(true);
       return little_menu;
     body_dependency_symbols:
        - Hexagon::UI::LittleMenu

@@ -109,6 +109,8 @@ TEST(Hexagon_StageFactoryTest,
    ASSERT_NE(nullptr, created_stage);
    ASSERT_EQ(expected_type, actual_type);
 
+   EXPECT_EQ(true, stage->get_render_on_hud());
+
    font_bin.clear();
    al_destroy_display(display);
    al_shutdown_ttf_addon();

@@ -211,6 +211,7 @@ return file_navigator;
 StageInterface* StageFactory::create_little_menu()
 {
 Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin);
+little_menu->set_render_on_hud(true);
 return little_menu;
 
 }
