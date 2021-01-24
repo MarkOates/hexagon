@@ -212,6 +212,7 @@ StageInterface* StageFactory::create_little_menu()
 {
 Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin);
 little_menu->set_render_on_hud(true);
+little_menu->set_place(build_centered_on_hud_initial_place(400, 300));
 return little_menu;
 
 }
