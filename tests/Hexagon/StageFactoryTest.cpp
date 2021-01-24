@@ -422,6 +422,29 @@ TEST(Hexagon_StageFactoryTest, build_component_navigator_initial_place__returns_
    al_uninstall_system();
 }
 
+TEST(Hexagon_StageFactoryTest, build_centered_on_hud_initial_place__returns_the_expected_position)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(800, 600);
+   Hexagon::StageFactory stage_factory;
+
+   vec3d expected_placement_position =
+     vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   float expected_placement_width = 120;
+   float expected_placement_height = 160;
+   placement3d actual_placement = stage_factory.build_centered_on_hud_initial_place(
+      expected_placement_width,
+      expected_placement_height
+      );
+
+   ASSERT_EQ(expected_placement_position, actual_placement.position);
+   ASSERT_EQ(expected_placement_width, actual_placement.size.x);
+   ASSERT_EQ(expected_placement_height, actual_placement.size.y);
+
+   al_destroy_display(display);
+   al_uninstall_system();
+}
+
 TEST(Hexagon_StageFactoryTest, build_regex_input_box_initial_place__returns_the_expected_position)
 {
    // this is untested
