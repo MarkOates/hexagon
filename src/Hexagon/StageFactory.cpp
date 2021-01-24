@@ -222,14 +222,15 @@ StageInterface* StageFactory::create_drawing_box()
 {
 ALLEGRO_DISPLAY *display = get_current_display();
 
-int width = al_get_display_width(display) - 200;
-int height = al_get_display_height(display) -200;
+int width = al_get_display_width(display);
+int height = al_get_display_height(display);
 
 Hexagon::UI::DrawingBox *drawing_box = new Hexagon::UI::DrawingBox(font_bin, width, height);
 drawing_box->initialize();
 
 drawing_box->set_render_on_hud(true);
-drawing_box->set_place(build_centered_on_hud_initial_place(width, height));
+//drawing_box->set_place(build_centered_on_hud_initial_place(width, height));
+//drawing_box->set_place(build_centered_on_hud_initial_place(width, height));
 
 return drawing_box;
 
