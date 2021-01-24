@@ -16,7 +16,7 @@ ALLEGRO_EVENT LittleMenu::a_default_empty_event = {};
 LittleMenu::LittleMenu(AllegroFlare::FontBin* font_bin)
    : StageInterface(LITTLE_MENU)
    , font_bin(font_bin)
-   , menu({})
+   , menu(font_bin, "UnTitledMenu", {{"Foo", "foo"}, {"Bar", "bar"}})
 {
 }
 
