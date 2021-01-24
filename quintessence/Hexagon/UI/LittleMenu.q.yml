@@ -43,6 +43,20 @@ functions:
         type: ALLEGRO_EVENT&
         default_argument: "get_a_default_empty_event_ref()"
     body: |
+      switch(event.type)
+      {
+      case ALLEGRO_EVENT_KEY_CHAR:
+        switch(event.keyboard.keycode)
+        {
+          case ALLEGRO_KEY_J:
+            menu.move_cursor_down();
+            break;
+          case ALLEGRO_KEY_K:
+            menu.move_cursor_up();
+            break;
+        }
+        break;
+      }
       return;
 
 

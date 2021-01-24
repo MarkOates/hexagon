@@ -44,6 +44,20 @@ return;
 
 void LittleMenu::process_event(ALLEGRO_EVENT& event)
 {
+switch(event.type)
+{
+case ALLEGRO_EVENT_KEY_CHAR:
+  switch(event.keyboard.keycode)
+  {
+    case ALLEGRO_KEY_J:
+      menu.move_cursor_down();
+      break;
+    case ALLEGRO_KEY_K:
+      menu.move_cursor_up();
+      break;
+  }
+  break;
+}
 return;
 
 }
