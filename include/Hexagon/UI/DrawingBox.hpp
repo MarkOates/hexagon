@@ -24,6 +24,7 @@ namespace Hexagon
          static ALLEGRO_EVENT a_default_empty_event;
          ALLEGRO_BITMAP* surface;
          bool stroking;
+         bool erasing;
          int pointer_x;
          int pointer_y;
          std::map<std::string, std::function<bool(Hexagon::UI::DrawingBox&)>> events_dictionary;
@@ -34,6 +35,7 @@ namespace Hexagon
          ~DrawingBox();
 
          void set_stroking(bool stroking);
+         void set_erasing(bool erasing);
          void set_pointer_x(int pointer_x);
          void set_pointer_y(int pointer_y);
 
@@ -41,6 +43,7 @@ namespace Hexagon
          int get_width();
          int get_height();
          bool get_stroking();
+         bool get_erasing();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          std::map<std::string, std::function<bool(Hexagon::UI::DrawingBox&)>> &get_events_dictionary_ref();
       void initialize();

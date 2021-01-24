@@ -38,6 +38,7 @@ DrawingBox::DrawingBox(AllegroFlare::FontBin* font_bin, int width, int height, s
    , height(height)
    , surface(nullptr)
    , stroking(false)
+   , erasing(false)
    , pointer_x(0)
    , pointer_y(0)
    , events_dictionary(events_dictionary)
@@ -53,6 +54,12 @@ DrawingBox::~DrawingBox()
 void DrawingBox::set_stroking(bool stroking)
 {
    this->stroking = stroking;
+}
+
+
+void DrawingBox::set_erasing(bool erasing)
+{
+   this->erasing = erasing;
 }
 
 
@@ -89,6 +96,12 @@ int DrawingBox::get_height()
 bool DrawingBox::get_stroking()
 {
    return stroking;
+}
+
+
+bool DrawingBox::get_erasing()
+{
+   return erasing;
 }
 
 
@@ -150,7 +163,7 @@ window.draw();
 
 al_draw_bitmap(surface, 0, 0, 0);
 
-draw_crosshair();
+//draw_crosshair();
 
 place.restore_transform();
 
@@ -175,34 +188,69 @@ case ALLEGRO_EVENT_KEY_CHAR:
   }
   break;
 case ALLEGRO_EVENT_MOUSE_AXES:
-  if (get_stroking())
   {
      float mouse_position_x = event.mouse.x;
      float mouse_position_y = event.mouse.y;
      float distance_x = event.mouse.dx;
      float distance_y = event.mouse.dy;
+     float mouse_pressure = event.mouse.pressure;
 
+     if (get_stroking())
+     {
+        float thickness = 0.05f + mouse_pressure * 3.0f;
 
-     //ALLEGRO_COLOR stroke_color = al_color_name("aliceblue");
-     ALLEGRO_COLOR stroke_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+        //ALLEGRO_COLOR stroke_color = al_color_name("aliceblue");
+        ALLEGRO_COLOR stroke_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
 
-     ALLEGRO_STATE previous_render_state;
-     al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+        ALLEGRO_STATE previous_render_state;
+        al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
 
-     al_set_target_bitmap(surface);
-     al_draw_line(pointer_x, pointer_y, mouse_position_x, mouse_position_y, stroke_color, 2.0f);
+        al_set_target_bitmap(surface);
+        al_draw_line(pointer_x, pointer_y, mouse_position_x, mouse_position_y, stroke_color, thickness);
 
-     al_restore_state(&previous_render_state);
+        al_restore_state(&previous_render_state);
+     }
+     if (get_erasing())
+     {
+        float thickness = 0.05f + mouse_pressure * 12.0f;
+
+        //ALLEGRO_COLOR stroke_color = al_color_name("aliceblue");
+        ALLEGRO_COLOR erase_color = ALLEGRO_COLOR{0.1f, 0.1f, 0.1f, 1.0f};
+
+        ALLEGRO_STATE previous_render_state;
+        al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+
+        al_set_target_bitmap(surface);
+        al_draw_line(pointer_x, pointer_y, mouse_position_x, mouse_position_y, erase_color, thickness);
+
+        al_restore_state(&previous_render_state);
+     }
   }
 
   set_pointer_x(event.mouse.x);
   set_pointer_y(event.mouse.y);
   break;
 case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-  set_stroking(true);
+  switch(event.mouse.button)
+  {
+  case 1:
+     set_stroking(true);
+     break;
+  case 2:
+     set_erasing(true);
+     break;
+  }
   break;
 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
-  set_stroking(false);
+  switch(event.mouse.button)
+  {
+  case 1:
+     set_stroking(false);
+     break;
+  case 2:
+     set_erasing(false);
+     break;
+  }
   break;
 }
 return;
