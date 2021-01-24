@@ -154,13 +154,13 @@ switch(event.type)
 case ALLEGRO_EVENT_KEY_CHAR:
   break;
 case ALLEGRO_EVENT_MOUSE_AXES:
-  set_pointer_x(event.mouse.x);
-  set_pointer_y(event.mouse.y);
-
   if (get_stroking())
   {
+     float mouse_position_x = event.mouse.x;
+     float mouse_position_y = event.mouse.y;
      float distance_x = event.mouse.dx;
      float distance_y = event.mouse.dy;
+
 
      //ALLEGRO_COLOR stroke_color = al_color_name("aliceblue");
      ALLEGRO_COLOR stroke_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
@@ -169,13 +169,13 @@ case ALLEGRO_EVENT_MOUSE_AXES:
      al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
 
      al_set_target_bitmap(surface);
-     al_draw_line(pointer_x, pointer_y, pointer_x + distance_x, pointer_y + distance_y, stroke_color, 2.0f);
+     al_draw_line(pointer_x, pointer_y, mouse_position_x, mouse_position_y, stroke_color, 2.0f);
 
      al_restore_state(&previous_render_state);
-
-     set_pointer_x(event.mouse.x);
-     set_pointer_y(event.mouse.y);
   }
+
+  set_pointer_x(event.mouse.x);
+  set_pointer_y(event.mouse.y);
   break;
 case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
   set_stroking(true);
