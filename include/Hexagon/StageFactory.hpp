@@ -7,6 +7,8 @@
 #include <allegro5/allegro.h>
 #include <allegro_flare/placement3d.h>
 #include <string>
+#include <tuple>
+#include <vector>
 
 
 namespace Hexagon
@@ -35,6 +37,7 @@ namespace Hexagon
    StageInterface* create();
    StageInterface* create_file_navigator(std::string directory="");
    StageInterface* create_little_menu();
+   StageInterface* create_class_brief_menu(std::string title="Untitled Menu", std::vector<std::tuple<std::string, std::string>> items={{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}});
    StageInterface* create_drawing_box();
    StageInterface* create_missing_file(std::string filename="");
    StageInterface* create_advanced_code_editor(std::string filename="untitled.txt", int num_columns=123, int num_rows=70);

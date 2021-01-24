@@ -23,6 +23,7 @@
 #include <sstream>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
+#include <Hexagon/UI/LittleMenu.hpp>
 #include <Hexagon/UI/DrawingBox.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
@@ -212,6 +213,15 @@ return file_navigator;
 StageInterface* StageFactory::create_little_menu()
 {
 Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin);
+little_menu->set_render_on_hud(true);
+little_menu->set_place(build_centered_on_hud_initial_place(400, 300));
+return little_menu;
+
+}
+
+StageInterface* StageFactory::create_class_brief_menu(std::string title, std::vector<std::tuple<std::string, std::string>> items)
+{
+Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin, title, items);
 little_menu->set_render_on_hud(true);
 little_menu->set_place(build_centered_on_hud_initial_place(400, 300));
 return little_menu;

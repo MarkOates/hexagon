@@ -133,6 +133,24 @@ functions:
        - Hexagon::UI::LittleMenu
 
 
+  - name: create_class_brief_menu
+    type: StageInterface*
+    parameters:
+      - name: title
+        type: std::string
+        default_argument: '"Untitled Menu"'
+      - name: items
+        type: std::vector<std::tuple<std::string, std::string>>
+        default_argument: '{{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}}'
+    body: |
+      Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin, title, items);
+      little_menu->set_render_on_hud(true);
+      little_menu->set_place(build_centered_on_hud_initial_place(400, 300));
+      return little_menu;
+    body_dependency_symbols:
+       - Hexagon::UI::LittleMenu
+
+
   - name: create_drawing_box
     type: StageInterface*
     body: |
@@ -438,6 +456,8 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::Stage
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
+  - symbol: std::vector<std::tuple<std::string, std::string>>
+    headers: [ vector, tuple, string ]
   - symbol: Hexagon::UI::LittleMenu
     headers: [ Hexagon/UI/LittleMenu.hpp ]
   - symbol: Hexagon::UI::DrawingBox
