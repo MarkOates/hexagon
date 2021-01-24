@@ -21,7 +21,7 @@ ALLEGRO_EVENT DrawingBox::a_default_empty_event = {};
 
 
 DrawingBox::DrawingBox(AllegroFlare::FontBin* font_bin, int width, int height)
-   : StageInterface(LITTLE_MENU)
+   : StageInterface(DRAWING_BOX)
    , initialized(false)
    , font_bin(font_bin)
    , width(width)
@@ -63,6 +63,18 @@ bool DrawingBox::get_initialized()
 }
 
 
+int DrawingBox::get_width()
+{
+   return width;
+}
+
+
+int DrawingBox::get_height()
+{
+   return height;
+}
+
+
 bool DrawingBox::get_stroking()
 {
    return stroking;
@@ -89,6 +101,13 @@ if (!(al_is_system_installed()))
       error_message << "DrawingBox" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
       throw std::runtime_error(error_message.str());
    }
+surface = al_create_bitmap(get_width(), get_height());
+ALLEGRO_STATE previous_render_state;
+al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+al_set_target_bitmap(surface);
+al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+al_restore_state(&previous_render_state);
+initialized = true;
 return;
 
 }
@@ -103,11 +122,20 @@ if (!(get_initialized()))
    }
 placement3d &place = get_place();
 place.start_transform();
-Hexagon::Elements::Window window(width, height);
+
+Hexagon::Elements::Window window(get_width(), get_height());
+window.set_box_fill_color(ALLEGRO_COLOR{1.0f, 1.0f, 0.0f, 1.0f});
+window.set_box_opacity(0.1);
+window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+window.set_outer_line_opacity(0.2);
+window.set_outer_line_thickness(2.0);
+
 window.draw();
+
 al_draw_bitmap(surface, 0, 0, 0);
+
 draw_crosshair();
-#include <Hexagon/Elements/Window.hpp>
+
 place.restore_transform();
 return;
 
@@ -120,14 +148,31 @@ switch(event.type)
 case ALLEGRO_EVENT_KEY_CHAR:
   break;
 case ALLEGRO_EVENT_MOUSE_AXES:
+  set_pointer_x(event.mouse.x);
+  set_pointer_y(event.mouse.y);
+
   if (get_stroking())
   {
+     float distance_x = event.mouse.dx;
+     float distance_y = event.mouse.dy;
+
+     //ALLEGRO_COLOR stroke_color = al_color_name("aliceblue");
+     ALLEGRO_COLOR stroke_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+
+     ALLEGRO_STATE previous_render_state;
+     al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+
+     al_set_target_bitmap(surface);
+     al_draw_line(pointer_x, pointer_y, pointer_x + distance_x, pointer_y + distance_y, stroke_color, 2.0f);
+
+     al_restore_state(&previous_render_state);
+
+     set_pointer_x(event.mouse.x);
+     set_pointer_y(event.mouse.y);
   }
   break;
 case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
   set_stroking(true);
-  set_pointer_x(event.mouse.x);
-  set_pointer_y(event.mouse.y);
   break;
 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
   set_stroking(false);
@@ -153,12 +198,12 @@ if (!(al_is_primitives_addon_initialized()))
    }
 float x = pointer_x;
 float y = pointer_y;
-float size = 10;
+float size = 16;
 ALLEGRO_COLOR color = al_color_name("red");
 
 float half_size = size * 0.5;
-al_draw_line(x, y-half_size, x, y+half_size, color, 1.0);
-al_draw_line(x-half_size, y, x+half_size, y, color, 1.0);
+al_draw_line(x, y-half_size, x, y+half_size, color, 3.0);
+al_draw_line(x-half_size, y, x+half_size, y, color, 3.0);
 
 }
 

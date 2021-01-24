@@ -26,7 +26,7 @@ namespace Hexagon
          int pointer_y;
 
       public:
-         DrawingBox(AllegroFlare::FontBin* font_bin=nullptr, int width=800, int height=800);
+         DrawingBox(AllegroFlare::FontBin* font_bin=nullptr, int width=800, int height=600);
          ~DrawingBox();
 
          void set_stroking(bool stroking);
@@ -34,6 +34,8 @@ namespace Hexagon
          void set_pointer_y(int pointer_y);
 
          bool get_initialized();
+         int get_width();
+         int get_height();
          bool get_stroking();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void initialize();

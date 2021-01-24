@@ -133,6 +133,23 @@ functions:
        - Hexagon::UI::LittleMenu
 
 
+  - name: create_drawing_box
+    type: StageInterface*
+    body: |
+      int width = 800;
+      int height = 600;
+
+      Hexagon::UI::DrawingBox *drawing_box = new Hexagon::UI::DrawingBox(font_bin, width, height);
+      drawing_box->initialize();
+
+      drawing_box->set_render_on_hud(true);
+      drawing_box->set_place(build_centered_on_hud_initial_place(width, height));
+
+      return drawing_box;
+    body_dependency_symbols:
+       - Hexagon::UI::DrawingBox
+
+
   - name: create_missing_file
     type: StageInterface*
     parameters:
@@ -420,6 +437,8 @@ dependencies:
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
   - symbol: Hexagon::UI::LittleMenu
     headers: [ Hexagon/UI/LittleMenu.hpp ]
+  - symbol: Hexagon::UI::DrawingBox
+    headers: [ Hexagon/UI/DrawingBox.hpp ]
   - symbol: StageInterface*
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: Hexagon::System::Config*

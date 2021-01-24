@@ -12,6 +12,7 @@
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
+#include <Hexagon/UI/DrawingBox.hpp>
 
 TEST(Hexagon_StageFactoryTest, can_be_created_without_blowing_up)
 {

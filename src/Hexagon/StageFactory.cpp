@@ -23,6 +23,7 @@
 #include <sstream>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
+#include <Hexagon/UI/DrawingBox.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <allegro_flare/useful_php.h>
@@ -214,6 +215,21 @@ Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin);
 little_menu->set_render_on_hud(true);
 little_menu->set_place(build_centered_on_hud_initial_place(400, 300));
 return little_menu;
+
+}
+
+StageInterface* StageFactory::create_drawing_box()
+{
+int width = 800;
+int height = 600;
+
+Hexagon::UI::DrawingBox *drawing_box = new Hexagon::UI::DrawingBox(font_bin, width, height);
+drawing_box->initialize();
+
+drawing_box->set_render_on_hud(true);
+drawing_box->set_place(build_centered_on_hud_initial_place(width, height));
+
+return drawing_box;
 
 }
 

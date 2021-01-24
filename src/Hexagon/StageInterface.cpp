@@ -66,6 +66,9 @@ std::string StageInterface::get_type_name()
       case LITTLE_MENU:
          return "LittleMenu";
          break;
+      case DRAWING_BOX:
+         return "DrawingBox";
+         break;
       default:
       {
          throw std::runtime_error("StageInterface::get_type_name() unrecognized type");
@@ -115,6 +118,7 @@ bool StageInterface::infer_is_modal()
    case KEYBOARD_INPUTS_MODAL:
    case NEW_COMPONENT_MAKER:
    case LITTLE_MENU:
+   case DRAWING_BOX:
       return true;
    default:
       return false;

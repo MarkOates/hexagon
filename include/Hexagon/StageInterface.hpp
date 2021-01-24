@@ -26,6 +26,7 @@ public:
       NEW_COMPONENT_MAKER,
       MISSING_FILE,
       LITTLE_MENU,
+      DRAWING_BOX,
    }; // these types should not be included within the base class
 
 private:

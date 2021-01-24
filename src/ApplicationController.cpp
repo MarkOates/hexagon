@@ -172,6 +172,7 @@ if (!(system))
       error_message << "ApplicationController" << "::" << "run_event_loop" << ": error: " << "guard \"system\" not met";
       throw std::runtime_error(error_message.str());
    }
+bool mouse_event_occurred_and_requires_screen_refresh = false;
 while(!shutdown_program)
 {
    ALLEGRO_EVENT this_event;
@@ -206,6 +207,13 @@ while(!shutdown_program)
       if (previous_num_active_animations == 0 && motion.get_num_active_animations() == 0)
          refresh = false;
       previous_num_active_animations = motion.get_num_active_animations();
+      if (mouse_event_occurred_and_requires_screen_refresh) refresh = true;
+      break;
+   case ALLEGRO_EVENT_MOUSE_AXES:
+   case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
+   case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
+      refresh = false;
+      mouse_event_occurred_and_requires_screen_refresh = true;
       break;
    }
 
