@@ -34,6 +34,7 @@ namespace Hexagon
    int obtain_display_default_height();
    StageInterface* create();
    StageInterface* create_file_navigator(std::string directory="");
+   StageInterface* create_little_menu();
    StageInterface* create_missing_file(std::string filename="");
    StageInterface* create_advanced_code_editor(std::string filename="untitled.txt", int num_columns=123, int num_rows=70);
    StageInterface* create_code_editor(std::string filename="", std::string file_category="undefined");

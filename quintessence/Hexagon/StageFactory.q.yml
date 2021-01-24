@@ -122,6 +122,15 @@ functions:
        - Hexagon::FileNavigator::Stage
 
 
+  - name: create_little_menu
+    type: StageInterface*
+    body: |
+      Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin);
+      return little_menu;
+    body_dependency_symbols:
+       - Hexagon::UI::LittleMenu
+
+
   - name: create_missing_file
     type: StageInterface*
     parameters:
@@ -386,6 +395,8 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::Stage
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
+  - symbol: Hexagon::UI::LittleMenu
+    headers: [ Hexagon/UI/LittleMenu.hpp ]
   - symbol: StageInterface*
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: Hexagon::System::Config*

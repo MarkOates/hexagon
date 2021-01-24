@@ -22,6 +22,7 @@
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/UI/LittleMenu.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <allegro_flare/useful_php.h>
@@ -204,6 +205,13 @@ file_navigator->set_cell_width(cell_width);
 file_navigator->set_cell_height(cell_height);
 
 return file_navigator;
+
+}
+
+StageInterface* StageFactory::create_little_menu()
+{
+Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin);
+return little_menu;
 
 }
 

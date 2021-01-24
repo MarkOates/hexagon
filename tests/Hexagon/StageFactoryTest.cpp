@@ -1,4 +1,3 @@
-
 #include <gtest/gtest.h>
 
 #define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
@@ -11,6 +10,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/UI/LittleMenu.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 
 TEST(Hexagon_StageFactoryTest, can_be_created_without_blowing_up)
@@ -85,6 +85,36 @@ TEST(Hexagon_StageFactoryTest, obtain_git_commit_message_box_font__returns_a_fon
    al_shutdown_ttf_addon();
    al_uninstall_system();
 }
+
+TEST(Hexagon_StageFactoryTest,
+   create_little_menu__creates_a_little_menu_stage_with_the_expected_properties)
+{
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   Hexagon::System::Config config;
+   config.initialize();
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+
+   StageInterface *created_stage = stage_factory.create_little_menu();
+   Hexagon::UI::LittleMenu *stage = static_cast<Hexagon::UI::LittleMenu*>(created_stage);
+
+   StageInterface::type_t expected_type = StageInterface::LITTLE_MENU;
+   StageInterface::type_t actual_type = created_stage->get_type();
+
+   ASSERT_NE(nullptr, created_stage);
+   ASSERT_EQ(expected_type, actual_type);
+
+   font_bin.clear();
+   al_destroy_display(display);
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+}
+
 
 TEST(Hexagon_StageFactoryTest,
    create_missing_file__creates_a_missing_file_stage_with_the_expected_properties)
