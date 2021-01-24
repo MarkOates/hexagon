@@ -22,7 +22,7 @@ properties:
     init_with: 0
   - name: wrap_cursor_when_moving_cursor_outside_bounds
     type: bool
-    init_with: false
+    init_with: true
     getter: true
     setter: true
 
@@ -33,10 +33,12 @@ functions:
   - name: move_cursor_up
     type: bool
     body: |
+      if (list_items.empty()) return true;
+
       cursor--;
       if (get_wrap_cursor_when_moving_cursor_outside_bounds())
       {
-         true;
+         while (cursor < 0) cursor += list_items.size();
       }
       else
       {
@@ -48,10 +50,12 @@ functions:
   - name: move_cursor_down
     type: bool
     body: |
+      if (list_items.empty()) return true;
+
       cursor++;
       if (get_wrap_cursor_when_moving_cursor_outside_bounds())
       {
-         true;
+         while (cursor >= 0) cursor -= list_items.size();
       }
       else
       {

@@ -106,3 +106,31 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, move_cursor_down__wi
    }
 }
 
+TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,
+   move_cursor_up__with_wrap_cursor_when_moving_cursor_outsize_bounds__set_to_true__will_move_the_position_of_the_cursor)
+{
+   Hexagon::Elements::ListMenu list_menu(
+      &font_bin,
+      "Projects",
+      {
+         { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+         { "Solitare", "/Users/markoates/Repos/Solitare/" },
+         { "Blast", "/Users/markoates/Repos/blast/" },
+         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      }
+   );
+
+   int passes = 2;
+   for (unsigned i=0; i<passes; i++)
+   {
+      al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
+      list_menu.move_cursor_up();
+      list_menu.render();
+      //al_flip_display();
+      //sleep(1);
+   }
+
+   std::string current_list_item = list_menu.get_current_list_item_identifier();
+   EXPECT_EQ(current_list_item, "/Users/markoates/Repos/blast/");
+}
+
