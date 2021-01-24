@@ -236,6 +236,8 @@ while(!shutdown_program)
               && next_event.timer.source == primary_timer)
            al_drop_next_event(event_queue);
       }
+
+      mouse_event_occurred_and_requires_screen_refresh = false;
    }
 }
 return;
