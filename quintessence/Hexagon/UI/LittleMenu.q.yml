@@ -20,7 +20,7 @@ properties:
     getter_ref: true
   - name: menu
     type: Hexagon::Elements::ListMenu
-    init_with: 'font_bin, "UnTitledMenu", {{"Foo", "foo"}, {"Bar", "bar"}}'
+    init_with: 'font_bin, "UnTitledMenu", {{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}}'
 
 
 functions:

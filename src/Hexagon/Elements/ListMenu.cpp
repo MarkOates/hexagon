@@ -65,7 +65,7 @@ if (list_items.empty()) return true;
 cursor++;
 if (get_wrap_cursor_when_moving_cursor_outside_bounds())
 {
-   while (cursor >= 0) cursor -= list_items.size();
+   while (cursor >= list_items.size()) cursor -= list_items.size();
 }
 else
 {
