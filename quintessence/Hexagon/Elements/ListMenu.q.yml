@@ -29,6 +29,7 @@ functions:
     type: bool
     body: |
       cursor--;
+      if (cursor < 0) cursor = 0;
       return true;
 
 
@@ -36,6 +37,7 @@ functions:
     type: bool
     body: |
       cursor++;
+      if (cursor >= list_items.size()) cursor = std::max(0, (int)(list_items.size()) - 1);
       return true;
 
 

@@ -31,6 +31,7 @@ ListMenu::~ListMenu()
 bool ListMenu::move_cursor_up()
 {
 cursor--;
+if (cursor < 0) cursor = 0;
 return true;
 
 }
@@ -38,6 +39,7 @@ return true;
 bool ListMenu::move_cursor_down()
 {
 cursor++;
+if (cursor >= list_items.size()) cursor = std::max(0, (int)(list_items.size()) - 1);
 return true;
 
 }
