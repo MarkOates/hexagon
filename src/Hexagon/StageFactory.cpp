@@ -378,6 +378,19 @@ return al_get_current_display();
 
 }
 
+placement3d StageFactory::build_centered_on_hud_initial_place(float width, float height)
+{
+ALLEGRO_DISPLAY *display = get_current_display();
+placement3d result;
+result.position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+result.size = vec3d(width, height, 0);
+result.align = vec3d(0.5, 0.5, 0.5);
+result.scale = vec3d(1.0, 1.0, 1.0);
+result.rotation = vec3d(0.0, 0.0, 0.0);
+return result;
+
+}
+
 placement3d StageFactory::build_component_navigator_initial_place()
 {
 ALLEGRO_DISPLAY *display = get_current_display();
