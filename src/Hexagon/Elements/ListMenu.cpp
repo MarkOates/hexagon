@@ -19,6 +19,7 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , list_items(list_items)
    , color(color)
    , cursor(0)
+   , wrap_cursor_when_moving_cursor_outside_bounds(false)
 {
 }
 
@@ -28,10 +29,29 @@ ListMenu::~ListMenu()
 }
 
 
+void ListMenu::set_wrap_cursor_when_moving_cursor_outside_bounds(bool wrap_cursor_when_moving_cursor_outside_bounds)
+{
+   this->wrap_cursor_when_moving_cursor_outside_bounds = wrap_cursor_when_moving_cursor_outside_bounds;
+}
+
+
+bool ListMenu::get_wrap_cursor_when_moving_cursor_outside_bounds()
+{
+   return wrap_cursor_when_moving_cursor_outside_bounds;
+}
+
+
 bool ListMenu::move_cursor_up()
 {
 cursor--;
-if (cursor < 0) cursor = 0;
+if (get_wrap_cursor_when_moving_cursor_outside_bounds())
+{
+   true;
+}
+else
+{
+   if (cursor < 0) cursor = 0;
+}
 return true;
 
 }
@@ -39,7 +59,14 @@ return true;
 bool ListMenu::move_cursor_down()
 {
 cursor++;
-if (cursor >= list_items.size()) cursor = std::max(0, (int)(list_items.size()) - 1);
+if (get_wrap_cursor_when_moving_cursor_outside_bounds())
+{
+   true;
+}
+else
+{
+   if (cursor >= list_items.size()) cursor = std::max(0, (int)(list_items.size()) - 1);
+}
 return true;
 
 }

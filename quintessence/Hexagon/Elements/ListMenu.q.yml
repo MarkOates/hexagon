@@ -20,6 +20,11 @@ properties:
   - name: cursor
     type: int
     init_with: 0
+  - name: wrap_cursor_when_moving_cursor_outside_bounds
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
 
 
 functions:
@@ -29,7 +34,14 @@ functions:
     type: bool
     body: |
       cursor--;
-      if (cursor < 0) cursor = 0;
+      if (get_wrap_cursor_when_moving_cursor_outside_bounds())
+      {
+         true;
+      }
+      else
+      {
+         if (cursor < 0) cursor = 0;
+      }
       return true;
 
 
@@ -37,7 +49,14 @@ functions:
     type: bool
     body: |
       cursor++;
-      if (cursor >= list_items.size()) cursor = std::max(0, (int)(list_items.size()) - 1);
+      if (get_wrap_cursor_when_moving_cursor_outside_bounds())
+      {
+         true;
+      }
+      else
+      {
+         if (cursor >= list_items.size()) cursor = std::max(0, (int)(list_items.size()) - 1);
+      }
       return true;
 
 
