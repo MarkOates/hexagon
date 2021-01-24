@@ -6,6 +6,8 @@
 #include <Hexagon/Elements/Window.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <allegro5/allegro_primitives.h>
 #include <stdexcept>
 #include <sstream>
@@ -129,7 +131,6 @@ window.set_box_opacity(0.1);
 window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
 window.set_outer_line_opacity(0.2);
 window.set_outer_line_thickness(2.0);
-
 window.draw();
 
 al_draw_bitmap(surface, 0, 0, 0);
@@ -137,6 +138,11 @@ al_draw_bitmap(surface, 0, 0, 0);
 draw_crosshair();
 
 place.restore_transform();
+
+ALLEGRO_FONT *title_font = obtain_eurostile_title_font();
+std::string title_text = "DRAWING MODE";
+al_draw_text(title_font, al_color_name("white"), 100, 50, ALLEGRO_ALIGN_LEFT, title_text.c_str());
+
 return;
 
 }
@@ -185,6 +191,18 @@ return;
 void DrawingBox::process_local_event(std::string event_name, ActionData action_data)
 {
 return;
+
+}
+
+ALLEGRO_FONT* DrawingBox::obtain_eurostile_title_font()
+{
+if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "DrawingBox" << "::" << "obtain_eurostile_title_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf 42");
 
 }
 
