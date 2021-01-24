@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/Elements/ListMenu.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -15,11 +16,12 @@ namespace Hexagon
       class LittleMenu : public StageInterface
       {
       private:
+         AllegroFlare::FontBin* font_bin;
          static ALLEGRO_EVENT a_default_empty_event;
          Hexagon::Elements::ListMenu menu;
 
       public:
-         LittleMenu();
+         LittleMenu(AllegroFlare::FontBin* font_bin=nullptr);
          ~LittleMenu();
 
 

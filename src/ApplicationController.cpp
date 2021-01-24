@@ -84,6 +84,7 @@ if (!al_init_font_addon()) std::cerr << "al_init_font_addon() failed" << std::en
 if (!al_init_ttf_addon()) std::cerr << "al_init_ttf_addon() failed" << std::endl;
 if (!al_init_primitives_addon()) std::cerr << "al_init_primitives_addon() failed" << std::endl;
 if (!al_install_keyboard()) std::cerr << "al_install_keyboard() failed" << std::endl;
+if (!al_install_mouse()) std::cerr << "al_install_mouse() failed" << std::endl;
 
 config.initialize();
 
@@ -109,6 +110,7 @@ int display_height = al_get_display_height(display);
 
 event_queue = al_create_event_queue();
 al_register_event_source(event_queue, al_get_keyboard_event_source());
+al_register_event_source(event_queue, al_get_mouse_event_source());
 al_register_event_source(event_queue, al_get_display_event_source(display));
 
 primary_timer = al_create_timer(1.0/60.0);

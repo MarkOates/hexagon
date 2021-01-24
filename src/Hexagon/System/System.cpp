@@ -112,6 +112,9 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , current_project_directory("")
    , last_project_navigator_selection("")
    , focused_component_name("")
+   , mouse_x(0)
+   , mouse_y(0)
+   , drawing_mouse_cursor(false)
    , display(display)
    , config(config)
    , motion(motion)
@@ -146,8 +149,8 @@ void System::initialize()
    hud.set_backfill_color(config.get_backfill_color());
    hud.set_stages(&stages);
    hud.set_global_font_str(get_global_font_str());
-   hud.set_render_packets(false);
-   hud.set_render_focus_timer_bar(false);
+   hud.set_render_packets(true);
+   hud.set_render_focus_timer_bar(true);
    hud.initialize();
 
    camera.stepback.z = get_default_camera_stepback();
@@ -271,7 +274,7 @@ bool System::is_current_stage_in_edit_mode()
    {
       Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor =
         static_cast<Hexagon::AdvancedCodeEditor::Stage *>((void *)frontmost_stage);
-      if (advanced_code_editor->is_in_edit_mode()) return true; 
+      if (advanced_code_editor->is_in_edit_mode()) return true;
    }
    else
    {
@@ -286,6 +289,12 @@ bool System::is_current_stage_a_modal()
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return false;
    return frontmost_stage->infer_is_modal();
+}
+
+
+bool System::is_drawing_mouse_cursor()
+{
+   return drawing_mouse_cursor;
 }
 
 

@@ -24,6 +24,9 @@ private:
    std::string current_project_directory;
    std::string last_project_navigator_selection;
    std::string focused_component_name;
+   float mouse_x;
+   float mouse_y;
+   bool drawing_mouse_cursor;
 
 public:
    ALLEGRO_DISPLAY *display;
@@ -77,6 +80,7 @@ public:
    // inference
    bool is_current_stage_in_edit_mode();
    bool is_current_stage_a_modal();
+   bool is_drawing_mouse_cursor();
 
    // internal messages
    void acknowledge_display_resize(ALLEGRO_DISPLAY *display);

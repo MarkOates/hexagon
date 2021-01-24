@@ -404,6 +404,11 @@ case ALLEGRO_EVENT_KEY_CHAR:
       for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
    }
    break;
+case ALLEGRO_EVENT_MOUSE_AXES:
+   {
+      // TODO: add mouse events
+   }
+   break;
 }
 
 if (!event_caught)

@@ -13,8 +13,9 @@ namespace UI
 ALLEGRO_EVENT LittleMenu::a_default_empty_event = {};
 
 
-LittleMenu::LittleMenu()
+LittleMenu::LittleMenu(AllegroFlare::FontBin* font_bin)
    : StageInterface(LITTLE_MENU)
+   , font_bin(font_bin)
    , menu({})
 {
 }
@@ -33,6 +34,10 @@ ALLEGRO_EVENT &LittleMenu::get_a_default_empty_event_ref()
 
 void LittleMenu::render()
 {
+placement3d &place = get_place();
+place.start_transform();
+menu.render();
+place.restore_transform();
 return;
 
 }
