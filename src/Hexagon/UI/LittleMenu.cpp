@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/UI/LittleMenu.hpp>
-
+#include <iostream>
 
 
 namespace Hexagon
@@ -55,6 +55,9 @@ case ALLEGRO_EVENT_KEY_CHAR:
     case ALLEGRO_KEY_K:
       menu.move_cursor_up();
       break;
+    case ALLEGRO_KEY_ENTER:
+      emit_submission();
+      break;
   }
   break;
 }
@@ -65,6 +68,12 @@ return;
 void LittleMenu::process_local_event(std::string event_name, ActionData action_data)
 {
 return;
+
+}
+
+void LittleMenu::emit_submission()
+{
+std::cout << "Sumitting Modal with selection \"" << menu.get_current_list_item_identifier() << "\"" << std::endl;
 
 }
 } // namespace UI
