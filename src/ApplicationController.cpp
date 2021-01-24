@@ -11,6 +11,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_image.h>
 #include <allegro_flare/placement2d.h>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/useful_php.h>
@@ -83,6 +84,7 @@ if (!al_init()) std::cerr << "al_init() failed" << std::endl;
 if (!al_init_font_addon()) std::cerr << "al_init_font_addon() failed" << std::endl;
 if (!al_init_ttf_addon()) std::cerr << "al_init_ttf_addon() failed" << std::endl;
 if (!al_init_primitives_addon()) std::cerr << "al_init_primitives_addon() failed" << std::endl;
+if (!al_init_image_addon()) std::cerr << "al_init_image_addon() failed" << std::endl;
 if (!al_install_keyboard()) std::cerr << "al_install_keyboard() failed" << std::endl;
 if (!al_install_mouse()) std::cerr << "al_install_mouse() failed" << std::endl;
 
