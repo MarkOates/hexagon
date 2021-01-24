@@ -3,6 +3,7 @@ UI/DrawingBox:
 - smoother lines drawn on drawing surface
 - erasing
 - less latency on mouse drawing
+* save files
 
 
 Daemus:
