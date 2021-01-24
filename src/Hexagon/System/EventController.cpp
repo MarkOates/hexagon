@@ -46,7 +46,7 @@ std::map<std::string, std::function<bool(::System&)>> default_function_mapping =
    },
    {
       ::System::SPAWN_LITTLE_MENU,
-      &::System::spawn_little_menu,
+      &::System::spawn_class_brief_menu,
    },
    {
       ::System::SPAWN_DRAWING_BOX,

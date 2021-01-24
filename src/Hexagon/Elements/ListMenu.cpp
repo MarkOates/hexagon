@@ -20,6 +20,7 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , color(color)
    , cursor(0)
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
+   , upcase(false)
 {
 }
 
@@ -35,9 +36,21 @@ void ListMenu::set_wrap_cursor_when_moving_cursor_outside_bounds(bool wrap_curso
 }
 
 
+void ListMenu::set_upcase(bool upcase)
+{
+   this->upcase = upcase;
+}
+
+
 bool ListMenu::get_wrap_cursor_when_moving_cursor_outside_bounds()
 {
    return wrap_cursor_when_moving_cursor_outside_bounds;
+}
+
+
+bool ListMenu::get_upcase()
+{
+   return upcase;
 }
 
 
@@ -88,7 +101,7 @@ ALLEGRO_FONT *font = obtain_list_item_font();
 //ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
 ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
 ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.2};
-float width = 400;
+float width = 500;
 //float height = 300;
 int line_height = al_get_font_line_height(font) * 1.2;
 int line_num = 0;
@@ -106,7 +119,10 @@ bool draw_title = true;
 if (draw_title)
 {
    std::string text_to_render = title;
-   std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
+   if (get_upcase())
+   {
+      std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
+   }
    al_draw_text(
       font,
       color,
@@ -134,7 +150,10 @@ for (auto &list_item : list_items)
    }
 
    std::string text_to_render = std::get<0>(list_item).c_str();
-   std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
+   if (get_upcase())
+   {
+     std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
+   }
    text_to_render = std::string("   - ") + text_to_render;
 
    al_draw_text(
@@ -161,7 +180,8 @@ if (!(font_bin))
       error_message << "ListMenu" << "::" << "obtain_list_item_font" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
-return font_bin->auto_get("Exan-Regular.ttf -23");
+//return font_bin->auto_get("Exan-Regular.ttf -23");
+return font_bin->auto_get("Helvetica.ttf -23");
 
 }
 

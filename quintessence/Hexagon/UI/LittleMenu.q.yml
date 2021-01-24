@@ -71,6 +71,16 @@ functions:
       return;
 
 
+  - name: set_upcase
+    parameters:
+      - name: upcase
+        type: bool
+        default_argument: "false"
+    body: |
+      menu.set_upcase(upcase);
+      return;
+
+
   - name: process_local_event
     override: true
     parameters:

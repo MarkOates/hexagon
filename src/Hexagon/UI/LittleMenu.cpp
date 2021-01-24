@@ -67,6 +67,13 @@ return;
 
 }
 
+void LittleMenu::set_upcase(bool upcase)
+{
+menu.set_upcase(upcase);
+return;
+
+}
+
 void LittleMenu::process_local_event(std::string event_name, ActionData action_data)
 {
 return;

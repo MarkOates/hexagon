@@ -33,7 +33,7 @@ functions:
          },
          {
             ::System::SPAWN_LITTLE_MENU,
-            &::System::spawn_little_menu,
+            &::System::spawn_class_brief_menu,
          },
          {
             ::System::SPAWN_DRAWING_BOX,

@@ -865,6 +865,24 @@ bool System::spawn_little_menu()
 }
 
 
+bool System::spawn_class_brief_menu()
+{
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   std::vector<std::tuple<std::string, std::string>> menu_items{
+     { "mark_as_files_uncommitted", "32" },
+     { "mark_as_not_in_sync_with_remote", "63" },
+     { "write_focused_component_name_to_file", "64" },
+     { "increment_save_count", "654" },
+     { "clear_save_count", "160" },
+   };
+   StageInterface *stage = stage_factory.create_class_brief_menu(focused_component_name, menu_items);
+
+   stages.push_back(stage);
+
+   return true;
+}
+
+
 bool System::spawn_drawing_box()
 {
    Hexagon::StageFactory stage_factory(&config, &font_bin);

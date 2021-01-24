@@ -22,14 +22,17 @@ namespace Hexagon
          ALLEGRO_COLOR color;
          int cursor;
          bool wrap_cursor_when_moving_cursor_outside_bounds;
+         bool upcase;
 
       public:
          ListMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="+", std::vector<std::tuple<std::string, std::string>> list_items={}, ALLEGRO_COLOR color=ALLEGRO_COLOR{1, 0, 0, 1});
          ~ListMenu();
 
          void set_wrap_cursor_when_moving_cursor_outside_bounds(bool wrap_cursor_when_moving_cursor_outside_bounds);
+         void set_upcase(bool upcase);
 
          bool get_wrap_cursor_when_moving_cursor_outside_bounds();
+         bool get_upcase();
       bool move_cursor_up();
       bool move_cursor_down();
       std::string get_current_list_item_identifier();
