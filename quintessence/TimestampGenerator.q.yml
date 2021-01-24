@@ -1,0 +1,16 @@
+functions:
+
+  - name: get_current_time
+    type: std::string
+    body: |
+       std::time_t time_now = std::time(nullptr);
+       std::stringstream result;
+       result << std::ctime(&time_now);
+       return result.str();
+    body_dependency_symbols: [ X ]
+
+dependencies:
+
+  - symbol: X
+    headers: [ ctime, iostream, sstream ]
+
