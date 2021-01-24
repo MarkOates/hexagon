@@ -854,6 +854,17 @@ bool System::set_regex_input_box_modal_to_insert_mode()
 }
 
 
+bool System::spawn_little_menu()
+{
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   StageInterface *stage = stage_factory.create_little_menu();
+
+   stages.push_back(stage);
+
+   return true;
+}
+
+
 bool System::spawn_regex_input_box_modal()
 {
    Hexagon::StageFactory stage_factory(&config, &font_bin);
@@ -1508,6 +1519,7 @@ const std::string System::CHECK_GIT_SYNC_AND_UPDATE_POWERBAR = "CHECK_GIT_SYNC_A
 const std::string System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES =
    "COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES";
 const std::string System::PUSH_TO_GIT_REMOTE = "PUSH_TO_GIT_REMOTE";
+const std::string System::SPAWN_LITTLE_MENU = "SPAWN_LITTLE_MENU";
 const std::string System::CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION =
    "CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION";
 

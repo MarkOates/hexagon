@@ -119,6 +119,7 @@ public:
    bool refresh_regex_hilights_on_all_code_editor_stages();
    bool refresh_git_modified_line_numbers_on_all_code_editor_stages();
    bool set_regex_input_box_modal_to_insert_mode();
+   bool spawn_little_menu();
    bool spawn_regex_input_box_modal();
    bool spawn_git_commit_message_input_box_modal();
    bool spawn_component_navigator();
@@ -210,6 +211,7 @@ public:
    static const std::string CHECK_GIT_SYNC_AND_UPDATE_POWERBAR;
    static const std::string COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES;
    static const std::string PUSH_TO_GIT_REMOTE;
+   static const std::string SPAWN_LITTLE_MENU;
 
    void process_local_event(std::string event_name);
    void process_event(ALLEGRO_EVENT &event);
