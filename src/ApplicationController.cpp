@@ -175,6 +175,7 @@ if (!(system))
       throw std::runtime_error(error_message.str());
    }
 bool mouse_event_occurred_and_requires_screen_refresh = false;
+static int mouse_event_skip = 0;
 while(!shutdown_program)
 {
    ALLEGRO_EVENT this_event;
@@ -215,7 +216,12 @@ while(!shutdown_program)
    case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
    case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
       refresh = false;
-      mouse_event_occurred_and_requires_screen_refresh = true;
+      mouse_event_skip++;
+      if (mouse_event_skip >= 10)
+      {
+         mouse_event_skip = 0;
+         mouse_event_occurred_and_requires_screen_refresh = true;
+      }
       break;
    }
 
