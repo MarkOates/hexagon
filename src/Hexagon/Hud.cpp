@@ -525,6 +525,7 @@ std::vector<StageInterface::type_t> permitted_types = {
    StageInterface::ONE_LINE_INPUT_BOX,
    StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX,
    StageInterface::FILE_NAVIGATOR,
+   StageInterface::LITTLE_MENU,
 };
 
 bool draw_stages = true;
