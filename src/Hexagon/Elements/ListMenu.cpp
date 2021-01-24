@@ -180,8 +180,9 @@ if (!(font_bin))
       error_message << "ListMenu" << "::" << "obtain_list_item_font" << ": error: " << "guard \"font_bin\" not met";
       throw std::runtime_error(error_message.str());
    }
+return font_bin->auto_get("Jura-Medium.ttf -26");
 //return font_bin->auto_get("Exan-Regular.ttf -23");
-return font_bin->auto_get("Helvetica.ttf -23");
+//return font_bin->auto_get("Helvetica.ttf -23");
 
 }
 

@@ -162,8 +162,9 @@ functions:
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
+       return font_bin->auto_get("Jura-Medium.ttf -26");
        //return font_bin->auto_get("Exan-Regular.ttf -23");
-       return font_bin->auto_get("Helvetica.ttf -23");
+       //return font_bin->auto_get("Helvetica.ttf -23");
 
 
   - name: draw_cursor_pointer_arrow
