@@ -220,8 +220,10 @@ return little_menu;
 
 StageInterface* StageFactory::create_drawing_box()
 {
-int width = 800;
-int height = 600;
+ALLEGRO_DISPLAY *display = get_current_display();
+
+int width = al_get_display_width(display) - 200;
+int height = al_get_display_height(display) -200;
 
 Hexagon::UI::DrawingBox *drawing_box = new Hexagon::UI::DrawingBox(font_bin, width, height);
 drawing_box->initialize();
