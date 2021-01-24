@@ -18,9 +18,17 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+  - name: title
+    type: std::string
+    init_with: '"Untitled Menu"'
+    constructor_arg: true
+  - name: items
+    type: std::vector<std::tuple<std::string, std::string>>
+    init_with: '{{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}}'
+    constructor_arg: true
   - name: menu
     type: Hexagon::Elements::ListMenu
-    init_with: 'font_bin, "UnTitledMenu", {{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}}'
+    init_with: 'font_bin, title, items'
 
 
 functions:
@@ -95,6 +103,8 @@ dependencies:
     headers: [ Hexagon/Elements/ListMenu.hpp ]
   - symbol: ActionData
     headers: [ 'Hexagon/ActionData.hpp' ]
+  - symbol: std::vector<std::tuple<std::string, std::string>>
+    headers: [ vector, tuple, string ]
   - symbol: ALLEGRO_EVENT
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT&

@@ -7,6 +7,8 @@
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <string>
+#include <tuple>
+#include <vector>
 
 
 namespace Hexagon
@@ -18,10 +20,12 @@ namespace Hexagon
       private:
          AllegroFlare::FontBin* font_bin;
          static ALLEGRO_EVENT a_default_empty_event;
+         std::string title;
+         std::vector<std::tuple<std::string, std::string>> items;
          Hexagon::Elements::ListMenu menu;
 
       public:
-         LittleMenu(AllegroFlare::FontBin* font_bin=nullptr);
+         LittleMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="Untitled Menu", std::vector<std::tuple<std::string, std::string>> items={{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}});
          ~LittleMenu();
 
 

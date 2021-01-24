@@ -13,10 +13,12 @@ namespace UI
 ALLEGRO_EVENT LittleMenu::a_default_empty_event = {};
 
 
-LittleMenu::LittleMenu(AllegroFlare::FontBin* font_bin)
+LittleMenu::LittleMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vector<std::tuple<std::string, std::string>> items)
    : StageInterface(LITTLE_MENU)
    , font_bin(font_bin)
-   , menu(font_bin, "UnTitledMenu", {{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}})
+   , title(title)
+   , items(items)
+   , menu(font_bin, title, items)
 {
 }
 
