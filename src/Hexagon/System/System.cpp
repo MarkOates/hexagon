@@ -1306,7 +1306,7 @@ bool System::create_three_split_from_last_component_navigator_selection()
       config.get_base_text_color(),
       config.get_backfill_color()
    );
-   //action.set_create_as_advanced_code_editor(true);
+   action.set_create_as_advanced_code_editor(true);
 
    return action.managed_execute();
 }
@@ -1326,7 +1326,7 @@ bool System::attempt_to_create_stage_from_last_component_navigator_selection()
          config.get_base_text_color(),
          config.get_backfill_color()
       );
-   //action.set_create_as_advanced_code_editor(true);
+   action.set_create_as_advanced_code_editor(true);
 
    return action.managed_execute();
 }

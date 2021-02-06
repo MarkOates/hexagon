@@ -20,11 +20,6 @@ ComponentElasticsearchIndex::~ComponentElasticsearchIndex()
 }
 
 
-std::string ComponentElasticsearchIndex::run()
-{
-return "Hello World!";
-}
-
 std::string ComponentElasticsearchIndex::get_index_name()
 {
 return "components";

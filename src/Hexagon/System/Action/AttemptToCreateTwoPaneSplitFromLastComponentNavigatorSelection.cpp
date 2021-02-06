@@ -79,11 +79,6 @@ std::vector<StageInterface *> &AttemptToCreateTwoPaneSplitFromLastComponentNavig
 }
 
 
-std::string AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::run()
-{
-return "Hello World!";
-}
-
 bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::execute()
 {
 std::string component_name = last_component_navigator_selection;
@@ -120,6 +115,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
      std::vector<std::string> file_contents = {};
      ::read_file(file_contents, test_filename);
 
+     //bool create_as_advanced_code_editor = true;
      if (create_as_advanced_code_editor)
      {
         stage = stage_factory->create_advanced_code_editor(test_filename);
@@ -159,6 +155,7 @@ float width = get_code_editor_width(); //display_default_width/2 * width_scale_o
      std::vector<std::string> file_contents = {};
      ::read_file(file_contents, filename);
 
+     //bool create_as_advanced_code_editor = true;
      if (create_as_advanced_code_editor)
      {
         stage = stage_factory->create_advanced_code_editor(filename);
