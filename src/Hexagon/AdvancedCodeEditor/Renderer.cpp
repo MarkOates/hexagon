@@ -83,6 +83,7 @@ text_mesh->render();
 
 // draw the cursor
 if (draw_line_numbers) render_line_numbers();
+draw_selections();
 render_cursor();
 
 return;

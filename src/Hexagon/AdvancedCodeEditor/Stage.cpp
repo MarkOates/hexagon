@@ -561,6 +561,12 @@ if (!(initialized))
 placement3d &place = get_place();
 std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
+std::vector<Hexagon::AdvancedCodeEditor::Selection> selections = {
+   Hexagon::AdvancedCodeEditor::Selection{
+      std::vector<CodeRange>{ CodeRange{4, 5, 10, 6} },
+   },
+};
+
 Hexagon::AdvancedCodeEditor::Renderer renderer(
    &text_mesh,
    surface_render,

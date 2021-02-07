@@ -29,6 +29,29 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
 
+TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_valid_selections__raises_an_error)
+{
+   al_init();
+   al_init_primitives_addon();
+   ALLEGRO_BITMAP *bitmap = al_create_bitmap(16*40, 9*40);
+   al_set_target_bitmap(bitmap);
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   //std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
+   //std::vector<std::string> lines;
+   Hexagon::Elements::TextMesh text_mesh(font);
+   text_mesh.initialize();
+
+   Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
+
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, nullptr, &cursor);
+   std::string expected_error_message = "Renderer::draw_selections: error: guard \"selections\" not met";
+   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+
+   al_destroy_font(font);
+   al_destroy_bitmap(bitmap);
+   al_uninstall_system();
+}
+
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_a_valid_cursor__raises_an_error)
 {
    al_init();
@@ -36,10 +59,12 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    ALLEGRO_BITMAP *bitmap = al_create_bitmap(16*40, 9*40);
    al_set_target_bitmap(bitmap);
    ALLEGRO_FONT *font = al_create_builtin_font();
+   std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
+   std::vector<std::string> lines;
    Hexagon::Elements::TextMesh text_mesh(font);
    text_mesh.initialize();
 
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, nullptr);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, nullptr, nullptr, &selections, &lines);
    std::string expected_error_message = "Renderer::render_cursor: error: guard \"cursor\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 
