@@ -559,11 +559,14 @@ if (!(initialized))
       throw std::runtime_error(error_message.str());
    }
 placement3d &place = get_place();
+std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
 Hexagon::AdvancedCodeEditor::Renderer renderer(
    &text_mesh,
    surface_render,
    &advanced_code_editor.get_cursor_ref(),
+   &selections,
+   &lines,
    place.size.x,
    place.size.y,
    is_in_insert_mode(),

@@ -52,6 +52,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
 {
    ALLEGRO_FONT *font = get_any_font();
    Hexagon::Elements::TextMesh text_mesh(font);
+   std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
+   std::vector<std::string> lines;
    text_mesh.initialize();
 
    Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
@@ -61,6 +63,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
       &text_mesh,
       nullptr,
       &cursor,
+      &selections,
+      &lines,
       place.size.x,
       place.size.y
    );
@@ -81,6 +85,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
 {
    ALLEGRO_FONT *font = get_any_font();
    Hexagon::Elements::TextMesh text_mesh(font);
+   std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
+   std::vector<std::string> lines;
    text_mesh.initialize();
 
    Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
@@ -90,6 +96,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
       &text_mesh,
       nullptr,
       &cursor,
+      &selections,
+      &lines,
       place.size.x,
       place.size.y
    );
@@ -112,6 +120,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
 {
    ALLEGRO_FONT *font = get_any_font();
    Hexagon::Elements::TextMesh text_mesh(font, 200, 100);
+   std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
+   std::vector<std::string> lines;
    text_mesh.initialize();
 
    Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
@@ -121,6 +131,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
       &text_mesh,
       nullptr,
       &cursor,
+      &selections,
+      &lines,
       place.size.x,
       place.size.y
    );
@@ -141,6 +153,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
 {
    ALLEGRO_FONT *font = get_any_font();
    Hexagon::Elements::TextMesh text_mesh(font, 30, 20);
+   std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
+   std::vector<std::string> lines;
    text_mesh.initialize();
 
    float width = text_mesh.calculate_width();
@@ -170,6 +184,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
          &text_mesh,
          bitmap,
          &cursor,
+         &selections,
+         &lines,
          place.size.x,
          place.size.y,
          false,

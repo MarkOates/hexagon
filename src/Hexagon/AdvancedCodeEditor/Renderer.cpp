@@ -13,6 +13,9 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/CodeSelectionBoxRenderer.hpp>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -21,10 +24,12 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
    , cursor(cursor)
+   , selections(selections)
+   , lines(lines)
    , width(width)
    , height(height)
    , cursor_is_bar(cursor_is_bar)
@@ -192,6 +197,46 @@ else
       );
 }
 return;
+
+}
+
+void Renderer::draw_selections()
+{
+if (!(selections))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "draw_selections" << ": error: " << "guard \"selections\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+if (!(lines))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "draw_selections" << ": error: " << "guard \"lines\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+int cell_width = text_mesh->get_cell_width();
+int first_line_number = first_row_offset;
+float cell_height = text_mesh->get_cell_height();
+
+//if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
+
+//for (auto &selection : code_editor->selections)
+for (auto &selection : *selections)
+{
+   for (auto &code_range : selection.get_code_ranges())
+   {
+      //std::cout << " drawing selection " << selection << std::endl;
+      CodeSelectionBoxRenderer renderer(
+         //code_editor->get_lines_ref(),
+         *lines,
+         code_range,
+         //code_editor->get_first_line_number(),
+         first_line_number,
+         cell_width,
+         cell_height);
+      renderer.render();
+   }
+}
 
 }
 } // namespace AdvancedCodeEditor

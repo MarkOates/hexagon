@@ -13,6 +13,14 @@ properties:
     type: Hexagon::AdvancedCodeEditor::Cursor*
     init_with: nullptr
     constructor_arg: true
+  - name: selections
+    type: std::vector<Hexagon::AdvancedCodeEditor::Selection>*
+    init_with: '{}'
+    constructor_arg: true
+  - name: lines
+    type: std::vector<std::string>*
+    init_with: nullptr
+    constructor_arg: true
   - name: width
     type: float
     init_with: 1
@@ -165,11 +173,47 @@ functions:
       return;
 
 
+  - name: draw_selections
+    type: void
+    guards: [ selections, lines ]
+    body: |
+      int cell_width = text_mesh->get_cell_width();
+      int first_line_number = first_row_offset;
+      float cell_height = text_mesh->get_cell_height();
+
+      //if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
+
+      //for (auto &selection : code_editor->selections)
+      for (auto &selection : *selections)
+      {
+         for (auto &code_range : selection.get_code_ranges())
+         {
+            //std::cout << " drawing selection " << selection << std::endl;
+            CodeSelectionBoxRenderer renderer(
+               //code_editor->get_lines_ref(),
+               *lines,
+               code_range,
+               //code_editor->get_first_line_number(),
+               first_line_number,
+               cell_width,
+               cell_height);
+            renderer.render();
+         }
+      }
+    body_dependency_symbols:
+      - CodeSelectionBoxRenderer
+
+
+
 dependencies:
 
 
   - symbol: Hexagon::Elements::TextMesh*
     headers: [ Hexagon/Elements/TextMesh.hpp ]
+  - symbol: std::vector<Hexagon::AdvancedCodeEditor::Selection>*
+    headers: [ vector, Hexagon/AdvancedCodeEditor/Selection.hpp ]
+  - symbol: std::vector<std::string>*
+    headers: [ vector, string ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
   - symbol: ALLEGRO_FONT*
@@ -184,6 +228,8 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/WindowRenderer.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor*
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
+  - symbol: CodeSelectionBoxRenderer
+    headers: [ Hexagon/CodeSelectionBoxRenderer.hpp ]
   - symbol: AllegroFlare::Timer
     headers: [ AllegroFlare/Timer.hpp ]
   - symbol: AllegroFlare::color::color
