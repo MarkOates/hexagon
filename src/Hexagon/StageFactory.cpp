@@ -33,6 +33,7 @@
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/OneLineInputBox/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_font.h>
@@ -300,7 +301,13 @@ return code_editor_stage;
 StageInterface* StageFactory::create_regex_input_box_modal()
 {
 // TODO: extract this one line input box from CodeEditor
-Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({
+//Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({
+//      obtain_regex_temp_filename(),
+//      "input_box",
+//      ::CodeEditor::CodeEditor::INSERT,
+//      StageInterface::ONE_LINE_INPUT_BOX
+//   });
+Hexagon::OneLineInputBox::Stage *stage = new Hexagon::OneLineInputBox::Stage({
       obtain_regex_temp_filename(),
       "input_box",
       ::CodeEditor::CodeEditor::INSERT,

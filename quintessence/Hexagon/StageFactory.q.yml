@@ -257,7 +257,13 @@ functions:
     type: StageInterface*
     body: |
       // TODO: extract this one line input box from CodeEditor
-      Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({
+      //Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage({
+      //      obtain_regex_temp_filename(),
+      //      "input_box",
+      //      ::CodeEditor::CodeEditor::INSERT,
+      //      StageInterface::ONE_LINE_INPUT_BOX
+      //   });
+      Hexagon::OneLineInputBox::Stage *stage = new Hexagon::OneLineInputBox::Stage({
             obtain_regex_temp_filename(),
             "input_box",
             ::CodeEditor::CodeEditor::INSERT,
@@ -281,6 +287,7 @@ functions:
       return stage;
     body_dependency_symbols:
       - Hexagon::CodeEditor::Stage
+      - Hexagon::OneLineInputBox::Stage
 
 
   - name: create_git_commit_message_box
@@ -447,6 +454,8 @@ dependencies:
     headers: [ Hexagon/FileNavigator/Stage.hpp ]
   - symbol: Hexagon::CodeEditor::Stage
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: Hexagon::OneLineInputBox::Stage
+    headers: [ Hexagon/OneLineInputBox/Stage.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Stage
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::Stage

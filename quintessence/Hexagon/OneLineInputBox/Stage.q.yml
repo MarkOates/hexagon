@@ -78,125 +78,39 @@ functions:
   - name: render
     virtual: true
     override: true
+    guards: [ (code_editor.get_type() == ONE_LINE_INPUT_BOX) ]
     body: |
-      //place = this->place;
+      ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
+      float width = get_place().size.x;
+      float height = get_place().size.y;
+      //std::string top_left_text = "ESC: Close";
+      std::string bottom_right_text = "search";
+      ALLEGRO_COLOR backfill_color = al_color_name("black");
+      std::vector<std::string> lines = code_editor.get_lines_ref();
+      int char_count = code_editor_char_count();
 
-      if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
-      {
-         ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
-         float width = get_place().size.x;
-         float height = get_place().size.y;
-         //std::string top_left_text = "ESC: Close";
-         std::string bottom_right_text = "search";
-         ALLEGRO_COLOR backfill_color = al_color_name("black");
-         std::vector<std::string> lines = code_editor.get_lines_ref();
-         int char_count = code_editor_char_count();
+      Hexagon::OneLineInputBox::Renderer renderer(
+         get_font(),
+         outline_and_text_color,
+         backfill_color,
+         width,
+         height,
+         get_cell_width(),
+         get_cell_height(),
+         lines,
+         code_editor.selections,
+         code_editor.get_cursor_x(),
+         code_editor.get_cursor_y(),
+         get_place(),
+         code_editor.get_first_line_number(),
+         (code_editor.get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
+      );
 
-         Hexagon::OneLineInputBox::Renderer renderer(
-            get_font(),
-            outline_and_text_color,
-            backfill_color,
-            width,
-            height,
-            get_cell_width(),
-            get_cell_height(),
-            lines,
-            code_editor.selections,
-            code_editor.get_cursor_x(),
-            code_editor.get_cursor_y(),
-            get_place(),
-            code_editor.get_first_line_number(),
-            (code_editor.get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
-         );
+      //renderer.set_top_left_text(top_left_text);
+      renderer.set_bottom_right_text(bottom_right_text);
+      renderer.set_bottom_left_text(std::to_string(char_count));
 
-         //renderer.set_top_left_text(top_left_text);
-         renderer.set_bottom_right_text(bottom_right_text);
-         renderer.set_bottom_left_text(std::to_string(char_count));
-
-         renderer.render();
-      }
-      else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
-      {
-         ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
-         float width = get_place().size.x;
-         float height = get_place().size.y;
-         //std::string top_left_text = "ESC: Close";
-         std::string bottom_right_text = "commit and push";
-         ALLEGRO_COLOR backfill_color = al_color_name("black");
-         std::vector<std::string> lines = code_editor.get_lines_ref();
-         int char_count = code_editor_char_count();
-
-         Hexagon::OneLineInputBox::Renderer renderer(
-            get_font(),
-            outline_and_text_color,
-            backfill_color,
-            width,
-            height,
-            get_cell_width(),
-            get_cell_height(),
-            lines,
-            code_editor.selections,
-            code_editor.get_cursor_x(),
-            code_editor.get_cursor_y(),
-            get_place(),
-            code_editor.get_first_line_number(),
-            (code_editor.get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
-         );
-
-         //renderer.set_top_left_text(top_left_text);
-         renderer.set_bottom_right_text(bottom_right_text);
-         renderer.set_bottom_left_text(std::to_string(char_count));
-
-         renderer.render();
-      }
-      else
-      {
-         bool draw_line_numbers = true;
-         ALLEGRO_FONT *code_font = get_font();
-         ALLEGRO_FONT *overlay_font = get_font();
-         //ALLEGRO_COLOR base_font_color = al_color_name("white");
-         //ALLEGRO_COLOR backfill_color = al_color_name("black");
-         //ALLEGRO_COLOR base_font_color = al_color_name("white");
-         //ALLEGRO_COLOR backfill_color = al_color_name("black");
-         float backfill_opacity = 0.8f;
-
-         ::CodeEditor::Renderer renderer(
-            draw_line_numbers,
-            get_is_focused(),
-            &code_editor,
-            get_place(),
-            code_font,
-            get_display(),
-            get_cell_width(),
-            get_cell_height(),
-            base_font_color,
-            backfill_color,
-            backfill_opacity
-         );
-         renderer.render();
-
-         if (code_editor.get_draw_info_overlay())
-         {
-            placement3d &place = get_place();
-            std::string file_category_label
-               = Hexagon::CodeEditor::FileCategoryDecorator(code_editor.get_file_category()).label();
-            std::string text_to_render = file_category_label;
-            //ALLEGRO_COLOR backfill_color = al_color_name("black");
-            //float backfill_opacity = 0.8f;
-
-            place.start_transform();
-            Hexagon::Elements::StageInfoOverlay stage_info_overlay(
-               overlay_font,
-               &backfill_color,
-               backfill_opacity,
-               &place
-            );
-            //if (!is_focused) text_to_render = this.get_filename();
-            stage_info_overlay.set_text(text_to_render);
-            stage_info_overlay.render();
-            place.restore_transform();
-         }
-      }
+      renderer.render();
 
       return;
     body_dependency_symbols:
@@ -220,11 +134,12 @@ functions:
     guard: [ code_editor ]
     body: return;
       // these two lines disabled during copy from Hexagon/CodeEditor/Stage
-      //::CodeEditor::EventController stage_event_controller(this);
-      //stage_event_controller.process_local_event(event_name, action_data);
+      ::OneLineInputBox::EventController stage_event_controller(this);
+      stage_event_controller.process_local_event(event_name, action_data);
       return;
     body_dependency_symbols:
       - ::CodeEditor::EventController
+      - ::OneLineInputBox::EventController
 
 
   - name: process_event
@@ -236,11 +151,12 @@ functions:
     guard: [ code_editor ]
     body: |
       // these two lines disabled during copy from Hexagon/CodeEditor/Stage
-      //::CodeEditor::EventController stage_event_controller(this);
-      //stage_event_controller.process_event(event);
+      ::OneLineInputBox::EventController stage_event_controller(this);
+      stage_event_controller.process_event(event);
       return;
     body_dependency_symbols:
       - ::CodeEditor::EventController
+      - ::OneLineInputBox::EventController
 
 
   - name: code_editor_char_count
@@ -270,6 +186,8 @@ dependencies:
     headers: [ Hexagon/CodeEditor/EventController.hpp ]
   - symbol: Hexagon::OneLineInputBox::Renderer
     headers: [ Hexagon/OneLineInputBox/Renderer.hpp ]
+  - symbol: ::OneLineInputBox::EventController
+    headers: [ Hexagon/OneLineInputBox/EventController.hpp ]
   - symbol: Hexagon::Elements::StageInfoOverlay
     headers: [ Hexagon/Elements/StageInfoOverlay.hpp ]
   - symbol: CodeEditor::Renderer
