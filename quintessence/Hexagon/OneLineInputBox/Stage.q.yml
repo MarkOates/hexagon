@@ -1,0 +1,294 @@
+parent_classes:
+
+
+  - class: 'StageInterface'
+    scope: public
+    init_with: "code_editor.get_type()"
+
+
+properties:
+
+
+  - name: code_editor
+    type: ::CodeEditor::CodeEditor
+    init_with: '::CodeEditor::CodeEditor{}'
+    constructor_arg: true
+    getter: true
+    getter_ref: true
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
+  - name: is_focused
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
+  - name: display
+    type: ALLEGRO_DISPLAY*
+    init_with: nullptr
+    getter: true
+    setter: true
+  - name: font
+    type: ALLEGRO_FONT*
+    init_with: nullptr
+    getter: true
+    setter: true
+  - name: cell_width
+    type: int
+    init_with: 10
+    getter: true
+    setter: true
+  - name: cell_height
+    type: int
+    init_with: 20
+    getter: true
+    setter: true
+  - name: base_font_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
+    getter: true
+    setter: true
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f}
+    getter: true
+    setter: true
+  - name: state
+    type: std::string
+    init_with: '"normal"'
+
+
+functions:
+
+
+  - name: change_state_to_submitted_and_pending_destruction
+    body: |
+      state = "submitted_and_pending_destruction";
+      return;
+
+
+  - name: is_state_to_submitted_and_pending_destruction
+    type: bool
+    body: |
+      return state == "submitted_and_pending_destruction";
+
+
+  - name: render
+    virtual: true
+    override: true
+    body: |
+      //place = this->place;
+
+      if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
+      {
+         ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
+         float width = get_place().size.x;
+         float height = get_place().size.y;
+         //std::string top_left_text = "ESC: Close";
+         std::string bottom_right_text = "search";
+         ALLEGRO_COLOR backfill_color = al_color_name("black");
+         std::vector<std::string> lines = code_editor.get_lines_ref();
+         int char_count = code_editor_char_count();
+
+         Hexagon::OneLineInputBox::Renderer renderer(
+            get_font(),
+            outline_and_text_color,
+            backfill_color,
+            width,
+            height,
+            get_cell_width(),
+            get_cell_height(),
+            lines,
+            code_editor.selections,
+            code_editor.get_cursor_x(),
+            code_editor.get_cursor_y(),
+            get_place(),
+            code_editor.get_first_line_number(),
+            (code_editor.get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
+         );
+
+         //renderer.set_top_left_text(top_left_text);
+         renderer.set_bottom_right_text(bottom_right_text);
+         renderer.set_bottom_left_text(std::to_string(char_count));
+
+         renderer.render();
+      }
+      else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
+      {
+         ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
+         float width = get_place().size.x;
+         float height = get_place().size.y;
+         //std::string top_left_text = "ESC: Close";
+         std::string bottom_right_text = "commit and push";
+         ALLEGRO_COLOR backfill_color = al_color_name("black");
+         std::vector<std::string> lines = code_editor.get_lines_ref();
+         int char_count = code_editor_char_count();
+
+         Hexagon::OneLineInputBox::Renderer renderer(
+            get_font(),
+            outline_and_text_color,
+            backfill_color,
+            width,
+            height,
+            get_cell_width(),
+            get_cell_height(),
+            lines,
+            code_editor.selections,
+            code_editor.get_cursor_x(),
+            code_editor.get_cursor_y(),
+            get_place(),
+            code_editor.get_first_line_number(),
+            (code_editor.get_mode() == ::CodeEditor::CodeEditor::EDIT) // in_edit_mode
+         );
+
+         //renderer.set_top_left_text(top_left_text);
+         renderer.set_bottom_right_text(bottom_right_text);
+         renderer.set_bottom_left_text(std::to_string(char_count));
+
+         renderer.render();
+      }
+      else
+      {
+         bool draw_line_numbers = true;
+         ALLEGRO_FONT *code_font = get_font();
+         ALLEGRO_FONT *overlay_font = get_font();
+         //ALLEGRO_COLOR base_font_color = al_color_name("white");
+         //ALLEGRO_COLOR backfill_color = al_color_name("black");
+         //ALLEGRO_COLOR base_font_color = al_color_name("white");
+         //ALLEGRO_COLOR backfill_color = al_color_name("black");
+         float backfill_opacity = 0.8f;
+
+         ::CodeEditor::Renderer renderer(
+            draw_line_numbers,
+            get_is_focused(),
+            &code_editor,
+            get_place(),
+            code_font,
+            get_display(),
+            get_cell_width(),
+            get_cell_height(),
+            base_font_color,
+            backfill_color,
+            backfill_opacity
+         );
+         renderer.render();
+
+         if (code_editor.get_draw_info_overlay())
+         {
+            placement3d &place = get_place();
+            std::string file_category_label
+               = Hexagon::CodeEditor::FileCategoryDecorator(code_editor.get_file_category()).label();
+            std::string text_to_render = file_category_label;
+            //ALLEGRO_COLOR backfill_color = al_color_name("black");
+            //float backfill_opacity = 0.8f;
+
+            place.start_transform();
+            Hexagon::Elements::StageInfoOverlay stage_info_overlay(
+               overlay_font,
+               &backfill_color,
+               backfill_opacity,
+               &place
+            );
+            //if (!is_focused) text_to_render = this.get_filename();
+            stage_info_overlay.set_text(text_to_render);
+            stage_info_overlay.render();
+            place.restore_transform();
+         }
+      }
+
+      return;
+    body_dependency_symbols:
+      - std::cout
+      - al_color_name
+      - Hexagon::OneLineInputBox::Renderer
+      - CodeEditor::Renderer
+      - Hexagon::Elements::StageInfoOverlay
+      - Hexagon::CodeEditor::FileCategoryDecorator
+
+
+  - name: process_local_event
+    override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: '""'
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    guard: [ code_editor ]
+    body: return;
+      // these two lines disabled during copy from Hexagon/CodeEditor/Stage
+      //::CodeEditor::EventController stage_event_controller(this);
+      //stage_event_controller.process_local_event(event_name, action_data);
+      return;
+    body_dependency_symbols:
+      - ::CodeEditor::EventController
+
+
+  - name: process_event
+    override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    guard: [ code_editor ]
+    body: |
+      // these two lines disabled during copy from Hexagon/CodeEditor/Stage
+      //::CodeEditor::EventController stage_event_controller(this);
+      //stage_event_controller.process_event(event);
+      return;
+    body_dependency_symbols:
+      - ::CodeEditor::EventController
+
+
+  - name: code_editor_char_count
+    type: int
+    body: |
+      if (code_editor.get_lines_ref().size() == 0) return 0;
+      int char_count = 0;
+      for (auto &line : code_editor.get_lines_ref())
+      {
+         char_count += line.size();
+      }
+      return char_count + (code_editor.get_lines_ref().size() - 1);
+
+
+dependencies:
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_DISPLAY*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: ::CodeEditor::CodeEditor
+    headers: [ Hexagon/CodeEditor/CodeEditor.hpp ]
+  - symbol: ::CodeEditor::EventController
+    headers: [ Hexagon/CodeEditor/EventController.hpp ]
+  - symbol: Hexagon::OneLineInputBox::Renderer
+    headers: [ Hexagon/OneLineInputBox/Renderer.hpp ]
+  - symbol: Hexagon::Elements::StageInfoOverlay
+    headers: [ Hexagon/Elements/StageInfoOverlay.hpp ]
+  - symbol: CodeEditor::Renderer
+    headers: [ Hexagon/CodeEditor/Renderer.hpp ]
+  - symbol: al_color_html
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_color_name
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_draw_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_draw_text
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ActionData
+    headers: [ Hexagon/ActionData.hpp ]
+  - symbol: Hexagon::CodeEditor::FileCategoryDecorator
+    headers: [ Hexagon/CodeEditor/FileCategoryDecorator.hpp ]
+  - symbol: Hexagon::Elements::FontCharacterMapGrid
+    headers: [ Hexagon/Elements/FontCharacterMapGrid.hpp ]
