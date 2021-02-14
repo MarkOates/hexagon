@@ -23,8 +23,7 @@ namespace Hexagon
             Renderer(float x=0, float y=0, float radius=0, std::vector<Shapes::Hexagon::Stroke> strokes={ { 1, 1, al_color_name("green") } });
             ~Renderer();
 
-
-         void render();
+            void render();
          };
       }
    }

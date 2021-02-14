@@ -36,11 +36,10 @@ namespace Hexagon
 
          void set_draw_line_numbers(bool draw_line_numbers);
          void set_font(ALLEGRO_FONT* font);
-
-      void render();
-      bool render_line_numbers();
-      void render_cursor();
-      void draw_selections();
+         void render();
+         bool render_line_numbers();
+         void render_cursor();
+         void draw_selections();
       };
    }
 }

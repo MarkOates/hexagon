@@ -13,7 +13,6 @@ namespace IntegrationTests
       Integrations();
       ~Integrations();
 
-
    };
 }
 

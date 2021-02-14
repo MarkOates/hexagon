@@ -17,9 +17,8 @@ namespace Hexagon
       RailsMinitestTestResultToCodeMessagePointConverter(RailsMinitestTestResult rails_minitest_test_result={});
       ~RailsMinitestTestResultToCodeMessagePointConverter();
 
-
-   std::string run();
-   CodeMessagePoint convert();
+      std::string run();
+      CodeMessagePoint convert();
    };
 }
 

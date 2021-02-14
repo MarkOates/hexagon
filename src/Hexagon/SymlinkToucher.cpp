@@ -23,17 +23,16 @@ SymlinkToucher::~SymlinkToucher()
 
 void SymlinkToucher::touch_if_symlink()
 {
-bool file_exists = Blast::FileExistenceChecker(filename).exists();
-if (!file_exists) return;
+   bool file_exists = Blast::FileExistenceChecker(filename).exists();
+   if (!file_exists) return;
 
-bool is_symlink = Blast::Project::SymlinkChecker(filename).is_symlink();
-if (!is_symlink) return;
+   bool is_symlink = Blast::Project::SymlinkChecker(filename).is_symlink();
+   if (!is_symlink) return;
 
-std::string command = std::string("touch -h -c ") + filename;
-Blast::ShellCommandExecutorWithCallback executor(command);
-executor.execute();
-return;
-
+   std::string command = std::string("touch -h -c ") + filename;
+   Blast::ShellCommandExecutorWithCallback executor(command);
+   executor.execute();
+   return;
 }
 } // namespace Hexagon
 

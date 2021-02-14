@@ -34,8 +34,7 @@ namespace Hexagon
          void set_main_bar_color(ALLEGRO_COLOR main_bar_color);
          void set_bg_bar_color(ALLEGRO_COLOR bg_bar_color);
          void set_stroke_color(ALLEGRO_COLOR stroke_color);
-
-      void draw();
+         void draw();
       };
    }
 }

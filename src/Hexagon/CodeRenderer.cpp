@@ -20,7 +20,7 @@ CodeRenderer::~CodeRenderer()
 
 std::string CodeRenderer::run()
 {
-return "Hello World!";
+   return "Hello World!";
 }
 } // namespace Hexagon
 

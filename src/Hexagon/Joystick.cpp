@@ -20,7 +20,7 @@ Joystick::~Joystick()
 
 std::string Joystick::run()
 {
-return "Hello World!";
+   return "Hello World!";
 }
 } // namespace Hexagon
 

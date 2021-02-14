@@ -16,8 +16,7 @@ namespace Hexagon
          ColorKit();
          ~ColorKit();
 
-
-      ALLEGRO_COLOR black();
+         ALLEGRO_COLOR black();
       };
    }
 }

@@ -36,54 +36,49 @@ ALLEGRO_EVENT &LittleMenu::get_a_default_empty_event_ref()
 
 void LittleMenu::render()
 {
-placement3d &place = get_place();
-place.start_transform();
-menu.render();
-place.restore_transform();
-return;
-
+   placement3d &place = get_place();
+   place.start_transform();
+   menu.render();
+   place.restore_transform();
+   return;
 }
 
 void LittleMenu::process_event(ALLEGRO_EVENT& event)
 {
-switch(event.type)
-{
-case ALLEGRO_EVENT_KEY_CHAR:
-  switch(event.keyboard.keycode)
-  {
-    case ALLEGRO_KEY_J:
-      menu.move_cursor_down();
-      break;
-    case ALLEGRO_KEY_K:
-      menu.move_cursor_up();
-      break;
-    case ALLEGRO_KEY_ENTER:
-      emit_submission();
-      break;
-  }
-  break;
-}
-return;
-
+   switch(event.type)
+   {
+   case ALLEGRO_EVENT_KEY_CHAR:
+     switch(event.keyboard.keycode)
+     {
+       case ALLEGRO_KEY_J:
+         menu.move_cursor_down();
+         break;
+       case ALLEGRO_KEY_K:
+         menu.move_cursor_up();
+         break;
+       case ALLEGRO_KEY_ENTER:
+         emit_submission();
+         break;
+     }
+     break;
+   }
+   return;
 }
 
 void LittleMenu::set_upcase(bool upcase)
 {
-menu.set_upcase(upcase);
-return;
-
+   menu.set_upcase(upcase);
+   return;
 }
 
 void LittleMenu::process_local_event(std::string event_name, ActionData action_data)
 {
-return;
-
+   return;
 }
 
 void LittleMenu::emit_submission()
 {
-std::cout << "Sumitting Modal with selection \"" << menu.get_current_list_item_identifier() << "\"" << std::endl;
-
+   std::cout << "Sumitting Modal with selection \"" << menu.get_current_list_item_identifier() << "\"" << std::endl;
 }
 } // namespace UI
 } // namespace Hexagon

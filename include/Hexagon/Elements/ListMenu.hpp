@@ -30,15 +30,14 @@ namespace Hexagon
 
          void set_wrap_cursor_when_moving_cursor_outside_bounds(bool wrap_cursor_when_moving_cursor_outside_bounds);
          void set_upcase(bool upcase);
-
          bool get_wrap_cursor_when_moving_cursor_outside_bounds();
          bool get_upcase();
-      bool move_cursor_up();
-      bool move_cursor_down();
-      std::string get_current_list_item_identifier();
-      void render();
-      ALLEGRO_FONT* obtain_list_item_font();
-      void draw_cursor_pointer_arrow(float cpx=1000, float cpy=900);
+         bool move_cursor_up();
+         bool move_cursor_down();
+         std::string get_current_list_item_identifier();
+         void render();
+         ALLEGRO_FONT* obtain_list_item_font();
+         void draw_cursor_pointer_arrow(float cpx=1000, float cpy=900);
       };
    }
 }

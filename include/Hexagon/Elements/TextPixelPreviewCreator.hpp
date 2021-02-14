@@ -20,8 +20,7 @@ namespace Hexagon
          TextPixelPreviewCreator(std::vector<std::string> text_lines={}, int width=120);
          ~TextPixelPreviewCreator();
 
-
-      ALLEGRO_BITMAP* create();
+         ALLEGRO_BITMAP* create();
       };
    }
 }

@@ -20,13 +20,12 @@ namespace Testing
       WithAllegroRenderingFixture();
       virtual ~WithAllegroRenderingFixture();
 
-
       ALLEGRO_DISPLAY* get_display();
       AllegroFlare::FontBin &get_font_bin_ref();
-   virtual void SetUp() override;
-   virtual void TearDown() override;
-   ALLEGRO_FONT* get_any_font();
-   placement3d build_centered_placement(float width=0.0f, float height=0.0f);
+      virtual void SetUp() override;
+      virtual void TearDown() override;
+      ALLEGRO_FONT* get_any_font();
+      placement3d build_centered_placement(float width=0.0f, float height=0.0f);
    };
 }
 

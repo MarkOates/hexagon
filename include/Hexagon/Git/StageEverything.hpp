@@ -17,8 +17,7 @@ namespace Hexagon
          StageEverything(std::string current_project_directory="/Users/markoates/Repos/hexagon/");
          ~StageEverything();
 
-
-      bool stage_everything();
+         bool stage_everything();
       };
    }
 }

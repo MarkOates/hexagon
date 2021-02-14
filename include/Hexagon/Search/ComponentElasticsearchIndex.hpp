@@ -16,9 +16,8 @@ namespace Hexagon
          ComponentElasticsearchIndex();
          ~ComponentElasticsearchIndex();
 
-
-      std::string get_index_name();
-      std::string get_index_mapping();
+         std::string get_index_name();
+         std::string get_index_mapping();
       };
    }
 }

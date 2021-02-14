@@ -43,7 +43,6 @@ namespace Hexagon
          void set_cell_height(int cell_height);
          void set_base_text_color(ALLEGRO_COLOR base_text_color);
          void set_base_backfill_color(ALLEGRO_COLOR base_backfill_color);
-
          std::string get_project_root();
          bool get_is_focused();
          ALLEGRO_DISPLAY* get_display();
@@ -54,13 +53,13 @@ namespace Hexagon
          ALLEGRO_COLOR get_base_backfill_color();
          Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &get_component_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      KeyboardCommandMapper build_keyboard_command_mapping();
-      std::map<std::string, std::function<void(ProjectComponentNavigator&)>> build_local_events_dictionary();
-      virtual void render() override;
-      virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
-      void process_char_event(int keycode=0, int unichar=0, bool is_repeat=false);
-      virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
-      bool save_file();
+         KeyboardCommandMapper build_keyboard_command_mapping();
+         std::map<std::string, std::function<void(ProjectComponentNavigator&)>> build_local_events_dictionary();
+         virtual void render() override;
+         virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
+         void process_char_event(int keycode=0, int unichar=0, bool is_repeat=false);
+         virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
+         bool save_file();
       };
    }
 }

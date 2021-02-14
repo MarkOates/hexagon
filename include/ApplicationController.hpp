@@ -22,14 +22,13 @@ public:
    ApplicationController(Hexagon::System::Config config={"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"});
    ~ApplicationController();
 
-
-void initialize_allegro_config_display_event_queue_and_timer();
-void initialize();
-void shutdown();
-void emit_user_event(ALLEGRO_EVENT user_event={});
-void run_program();
-void run_event_loop();
-void verify_presence_of_temp_files_and_assign_to_global_constants();
+   void initialize_allegro_config_display_event_queue_and_timer();
+   void initialize();
+   void shutdown();
+   void emit_user_event(ALLEGRO_EVENT user_event={});
+   void run_program();
+   void run_event_loop();
+   void verify_presence_of_temp_files_and_assign_to_global_constants();
 };
 
 

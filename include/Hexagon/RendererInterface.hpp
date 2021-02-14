@@ -13,8 +13,7 @@ namespace Hexagon
       RendererInterface();
       virtual ~RendererInterface();
 
-
-   virtual void render() = 0;
+      virtual void render() = 0;
    };
 }
 

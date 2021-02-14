@@ -17,8 +17,7 @@ namespace Hexagon
          WindowSpawnMotionFX(Hexagon::Elements::Window window={});
          ~WindowSpawnMotionFX();
 
-
-      Hexagon::Elements::Window construct_modified_window();
+         Hexagon::Elements::Window construct_modified_window();
       };
    }
 }

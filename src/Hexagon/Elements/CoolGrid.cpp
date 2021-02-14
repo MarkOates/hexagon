@@ -22,7 +22,7 @@ CoolGrid::~CoolGrid()
 
 std::string CoolGrid::run()
 {
-return "Hello World!";
+   return "Hello World!";
 }
 } // namespace Elements
 } // namespace Hexagon

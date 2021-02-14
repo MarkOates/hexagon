@@ -89,49 +89,48 @@ void SingleBlockBarGraph::set_stroke_color(ALLEGRO_COLOR stroke_color)
 
 void SingleBlockBarGraph::draw()
 {
-if (!(al_is_system_installed()))
+   if (!(al_is_system_installed()))
+      {
+         std::stringstream error_message;
+         error_message << "SingleBlockBarGraph" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(al_is_primitives_addon_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "SingleBlockBarGraph" << "::" << "draw" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(al_get_target_bitmap()))
+      {
+         std::stringstream error_message;
+         error_message << "SingleBlockBarGraph" << "::" << "draw" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   float bar_hwidth = bar_width * 0.5f;
+   float bar_hheight = bar_height * 0.5f;
+   int bar_start_x = 0;
+   for (int i=number_of_active_bars; i<number_of_bg_bars; i++)
    {
-      std::stringstream error_message;
-      error_message << "SingleBlockBarGraph" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
+      float bar_x = bar_start_x + bar_spacing * i;
+      al_draw_filled_rectangle(-bar_hwidth + bar_x, -bar_hheight, bar_hwidth + bar_x, bar_hheight, bg_bar_color);
    }
-if (!(al_is_primitives_addon_initialized()))
+   for (int i=0; i<number_of_active_bars; i++)
    {
-      std::stringstream error_message;
-      error_message << "SingleBlockBarGraph" << "::" << "draw" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-      throw std::runtime_error(error_message.str());
+      float bar_x = bar_start_x + bar_spacing * i;
+      // draw filled box
+      al_draw_filled_rectangle(-bar_hwidth + bar_x, -bar_hheight, bar_hwidth + bar_x, bar_hheight, main_bar_color);
+      // draw outline stroke
+      al_draw_rectangle(
+         -bar_hwidth + bar_x,
+         -bar_hheight,
+         bar_hwidth + bar_x,
+         bar_hheight,
+         stroke_color,
+         stroke_width
+      );
    }
-if (!(al_get_target_bitmap()))
-   {
-      std::stringstream error_message;
-      error_message << "SingleBlockBarGraph" << "::" << "draw" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-float bar_hwidth = bar_width * 0.5f;
-float bar_hheight = bar_height * 0.5f;
-int bar_start_x = 0;
-for (int i=number_of_active_bars; i<number_of_bg_bars; i++)
-{
-   float bar_x = bar_start_x + bar_spacing * i;
-   al_draw_filled_rectangle(-bar_hwidth + bar_x, -bar_hheight, bar_hwidth + bar_x, bar_hheight, bg_bar_color);
-}
-for (int i=0; i<number_of_active_bars; i++)
-{
-   float bar_x = bar_start_x + bar_spacing * i;
-   // draw filled box
-   al_draw_filled_rectangle(-bar_hwidth + bar_x, -bar_hheight, bar_hwidth + bar_x, bar_hheight, main_bar_color);
-   // draw outline stroke
-   al_draw_rectangle(
-      -bar_hwidth + bar_x,
-      -bar_hheight,
-      bar_hwidth + bar_x,
-      bar_hheight,
-      stroke_color,
-      stroke_width
-   );
-}
-return;
-
+   return;
 }
 } // namespace Elements
 } // namespace Hexagon

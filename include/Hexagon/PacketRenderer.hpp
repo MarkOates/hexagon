@@ -20,11 +20,10 @@ namespace Hexagon
       PacketRenderer(Hexagon::Packet* packet=nullptr, ALLEGRO_FONT* font=nullptr, float width=1.0, float height=1.0);
       ~PacketRenderer();
 
-
-   void render();
-   void render_window();
-   void render_text();
-   ALLEGRO_COLOR generate_top_left_little_bar_color();
+      void render();
+      void render_window();
+      void render_text();
+      ALLEGRO_COLOR generate_top_left_little_bar_color();
    };
 }
 

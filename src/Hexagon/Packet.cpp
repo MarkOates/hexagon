@@ -34,9 +34,8 @@ int Packet::get_saves_count()
 
 int Packet::calculate_score()
 {
-// This current technique is naive. Please feel free to confidantly modify this scoring strategy in the future
-return searches_count + saves_count;
-
+   // This current technique is naive. Please feel free to confidantly modify this scoring strategy in the future
+   return searches_count + saves_count;
 }
 } // namespace Hexagon
 

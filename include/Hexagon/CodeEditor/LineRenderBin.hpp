@@ -20,9 +20,8 @@ namespace Hexagon
          LineRenderBin(ALLEGRO_FONT* font=nullptr);
          ~LineRenderBin();
 
-
-      ALLEGRO_BITMAP* load_data(std::string identifier="") override;
-      void destroy_data(ALLEGRO_BITMAP* resource=nullptr) override;
+         ALLEGRO_BITMAP* load_data(std::string identifier="") override;
+         void destroy_data(ALLEGRO_BITMAP* resource=nullptr) override;
       };
    }
 }

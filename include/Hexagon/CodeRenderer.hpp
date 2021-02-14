@@ -14,8 +14,7 @@ namespace Hexagon
       CodeRenderer();
       ~CodeRenderer();
 
-
-   std::string run();
+      std::string run();
    };
 }
 

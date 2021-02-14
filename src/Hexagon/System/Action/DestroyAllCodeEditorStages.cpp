@@ -47,24 +47,23 @@ std::vector<StageInterface *> &DestroyAllCodeEditorStages::get_dummy_stages_ref(
 
 bool DestroyAllCodeEditorStages::execute()
 {
-for (unsigned i=0; i<stages.size(); i++)
-{
-   auto &stage = stages[i];
-
-   if (
-        stage->get_type() == StageInterface::CODE_EDITOR
-        || stage->get_type() == StageInterface::MISSING_FILE
-        || stage->get_type() == StageInterface::ADVANCED_CODE_EDITOR
-      )
+   for (unsigned i=0; i<stages.size(); i++)
    {
-      Hexagon::CodeEditor::Stage *code_editor = static_cast<Hexagon::CodeEditor::Stage *>(stage);
-      delete code_editor;
-      stages.erase(stages.begin()+i);
-      i--;
-   }
-}
-return true;
+      auto &stage = stages[i];
 
+      if (
+           stage->get_type() == StageInterface::CODE_EDITOR
+           || stage->get_type() == StageInterface::MISSING_FILE
+           || stage->get_type() == StageInterface::ADVANCED_CODE_EDITOR
+         )
+      {
+         Hexagon::CodeEditor::Stage *code_editor = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+         delete code_editor;
+         stages.erase(stages.begin()+i);
+         i--;
+      }
+   }
+   return true;
 }
 } // namespace Action
 } // namespace System

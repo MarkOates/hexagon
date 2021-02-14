@@ -42,19 +42,18 @@ std::string CheckGitSyncAndUpdatePowerbar::get_repos_directory()
 
 bool CheckGitSyncAndUpdatePowerbar::execute()
 {
-if (!(powerbar))
-   {
-      std::stringstream error_message;
-      error_message << "CheckGitSyncAndUpdatePowerbar" << "::" << "execute" << ": error: " << "guard \"powerbar\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-Hexagon::Git::RemoteSyncChecker sync_checker(repo_name, repos_directory);
-bool is_in_sync_with_remote = sync_checker.is_in_sync_with_remote();
+   if (!(powerbar))
+      {
+         std::stringstream error_message;
+         error_message << "CheckGitSyncAndUpdatePowerbar" << "::" << "execute" << ": error: " << "guard \"powerbar\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   Hexagon::Git::RemoteSyncChecker sync_checker(repo_name, repos_directory);
+   bool is_in_sync_with_remote = sync_checker.is_in_sync_with_remote();
 
-powerbar->set_commits_are_in_sync_with_remote(is_in_sync_with_remote);
+   powerbar->set_commits_are_in_sync_with_remote(is_in_sync_with_remote);
 
-return true;
-
+   return true;
 }
 } // namespace Action
 } // namespace System

@@ -22,7 +22,7 @@ SearchBar::~SearchBar()
 
 std::string SearchBar::run()
 {
-return "Hello World!";
+   return "Hello World!";
 }
 } // namespace ProjectComponentNavigator
 } // namespace Hexagon

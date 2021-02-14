@@ -29,23 +29,22 @@ namespace Hexagon
          void set_nodes(std::vector<Blast::Project::Component> nodes);
          void set_mode(std::string mode);
          void set_search_text(std::string search_text);
-
          std::string get_project_root();
          int get_cursor_position();
          bool get_cursor_position_static();
          std::vector<Blast::Project::Component> get_nodes();
          std::string get_mode();
          std::string get_search_text();
-      bool is_mode_navigating_list();
-      bool is_mode_typing_in_search_bar();
-      void move_cursor_up();
-      void move_cursor_down();
-      void move_cursor_to_top();
-      bool current_selection_is_valid();
-      void set_mode_to_navigating_list();
-      void set_mode_to_typing_in_search_bar();
-      std::string get_current_selection_label_or_empty_string();
-      void refresh_list();
+         bool is_mode_navigating_list();
+         bool is_mode_typing_in_search_bar();
+         void move_cursor_up();
+         void move_cursor_down();
+         void move_cursor_to_top();
+         bool current_selection_is_valid();
+         void set_mode_to_navigating_list();
+         void set_mode_to_typing_in_search_bar();
+         std::string get_current_selection_label_or_empty_string();
+         void refresh_list();
       };
    }
 }

@@ -38,23 +38,21 @@ Hexagon::StageFactory &WithStageFactoryFixture::get_stage_factory_ref()
 
 void WithStageFactoryFixture::SetUp()
 {
-al_init();
-al_init_font_addon();
-al_init_ttf_addon();
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
 
-config.initialize();
-font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-return;
-
+   config.initialize();
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   return;
 }
 
 void WithStageFactoryFixture::TearDown()
 {
-font_bin.clear();
-al_shutdown_ttf_addon();
-al_uninstall_system();
-return;
-
+   font_bin.clear();
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+   return;
 }
 } // namespace Testing
 

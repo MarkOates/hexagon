@@ -145,111 +145,106 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 
 void Stage::change_state_to_submitted_and_pending_destruction()
 {
-state = "submitted_and_pending_destruction";
-return;
-
+   state = "submitted_and_pending_destruction";
+   return;
 }
 
 bool Stage::is_state_to_submitted_and_pending_destruction()
 {
-return state == "submitted_and_pending_destruction";
-
+   return state == "submitted_and_pending_destruction";
 }
 
 void Stage::render()
 {
-//place = this->place;
+   //place = this->place;
 
-if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
-{
-   std::stringstream error;
-   error << "Hexagon/CodeEditor/Stage: Unexpected ask to render ONE_LINE_INPUT_BOX type. "
-         << "Expecting to now be using Hexagon::OneLineInputBox::Stage type instead.";
-   throw std::runtime_error(error.str());
-}
-else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
-{
-   std::stringstream error;
-   error << "Hexagon/CodeEditor/Stage: Unexpected ask to render GIT_COMMIT_MESSAGE_INPUT_BOX type. "
-         << "Expecting to now be using Hexagon::OneLineInputBox::Stage type instead.";
-   throw std::runtime_error(error.str());
-}
-else
-{
-   bool draw_line_numbers = true;
-   ALLEGRO_FONT *code_font = get_font();
-   ALLEGRO_FONT *overlay_font = get_font();
-   //ALLEGRO_COLOR base_font_color = al_color_name("white");
-   //ALLEGRO_COLOR backfill_color = al_color_name("black");
-   //ALLEGRO_COLOR base_font_color = al_color_name("white");
-   //ALLEGRO_COLOR backfill_color = al_color_name("black");
-   float backfill_opacity = 0.8f;
-
-   ::CodeEditor::Renderer renderer(
-      draw_line_numbers,
-      get_is_focused(),
-      &code_editor,
-      get_place(),
-      code_font,
-      get_display(),
-      get_cell_width(),
-      get_cell_height(),
-      base_font_color,
-      backfill_color,
-      backfill_opacity
-   );
-   renderer.render();
-
-   if (code_editor.get_draw_info_overlay())
+   if (code_editor.get_type() == ONE_LINE_INPUT_BOX)
    {
-      placement3d &place = get_place();
-      std::string file_category_label
-         = Hexagon::CodeEditor::FileCategoryDecorator(code_editor.get_file_category()).label();
-      std::string text_to_render = file_category_label;
-      //ALLEGRO_COLOR backfill_color = al_color_name("black");
-      //float backfill_opacity = 0.8f;
-
-      place.start_transform();
-      Hexagon::Elements::StageInfoOverlay stage_info_overlay(
-         overlay_font,
-         &backfill_color,
-         backfill_opacity,
-         &place
-      );
-      //if (!is_focused) text_to_render = this.get_filename();
-      stage_info_overlay.set_text(text_to_render);
-      stage_info_overlay.render();
-      place.restore_transform();
+      std::stringstream error;
+      error << "Hexagon/CodeEditor/Stage: Unexpected ask to render ONE_LINE_INPUT_BOX type. "
+            << "Expecting to now be using Hexagon::OneLineInputBox::Stage type instead.";
+      throw std::runtime_error(error.str());
    }
-}
+   else if (code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)
+   {
+      std::stringstream error;
+      error << "Hexagon/CodeEditor/Stage: Unexpected ask to render GIT_COMMIT_MESSAGE_INPUT_BOX type. "
+            << "Expecting to now be using Hexagon::OneLineInputBox::Stage type instead.";
+      throw std::runtime_error(error.str());
+   }
+   else
+   {
+      bool draw_line_numbers = true;
+      ALLEGRO_FONT *code_font = get_font();
+      ALLEGRO_FONT *overlay_font = get_font();
+      //ALLEGRO_COLOR base_font_color = al_color_name("white");
+      //ALLEGRO_COLOR backfill_color = al_color_name("black");
+      //ALLEGRO_COLOR base_font_color = al_color_name("white");
+      //ALLEGRO_COLOR backfill_color = al_color_name("black");
+      float backfill_opacity = 0.8f;
 
-return;
+      ::CodeEditor::Renderer renderer(
+         draw_line_numbers,
+         get_is_focused(),
+         &code_editor,
+         get_place(),
+         code_font,
+         get_display(),
+         get_cell_width(),
+         get_cell_height(),
+         base_font_color,
+         backfill_color,
+         backfill_opacity
+      );
+      renderer.render();
 
+      if (code_editor.get_draw_info_overlay())
+      {
+         placement3d &place = get_place();
+         std::string file_category_label
+            = Hexagon::CodeEditor::FileCategoryDecorator(code_editor.get_file_category()).label();
+         std::string text_to_render = file_category_label;
+         //ALLEGRO_COLOR backfill_color = al_color_name("black");
+         //float backfill_opacity = 0.8f;
+
+         place.start_transform();
+         Hexagon::Elements::StageInfoOverlay stage_info_overlay(
+            overlay_font,
+            &backfill_color,
+            backfill_opacity,
+            &place
+         );
+         //if (!is_focused) text_to_render = this.get_filename();
+         stage_info_overlay.set_text(text_to_render);
+         stage_info_overlay.render();
+         place.restore_transform();
+      }
+   }
+
+   return;
 }
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
-return; ::CodeEditor::EventController stage_event_controller(this); stage_event_controller.process_local_event(event_name, action_data); return;
+   return; ::CodeEditor::EventController stage_event_controller(this); stage_event_controller.process_local_event(event_name, action_data); return;
 }
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
-::CodeEditor::EventController stage_event_controller(this);
-stage_event_controller.process_event(event);
-return;
-
+   ::CodeEditor::EventController stage_event_controller(this);
+   stage_event_controller.process_event(event);
+   return;
 }
 
 int Stage::code_editor_char_count()
 {
-if (code_editor.get_lines_ref().size() == 0) return 0;
-int char_count = 0;
-for (auto &line : code_editor.get_lines_ref())
-{
-   char_count += line.size();
-}
-return char_count + (code_editor.get_lines_ref().size() - 1);
-
+   if (code_editor.get_lines_ref().size() == 0) return 0;
+   int char_count = 0;
+   for (auto &line : code_editor.get_lines_ref())
+   {
+      char_count += line.size();
+   }
+   return char_count + (code_editor.get_lines_ref().size() - 1);
 }
 } // namespace CodeEditor
 } // namespace Hexagon

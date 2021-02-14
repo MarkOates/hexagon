@@ -18,9 +18,8 @@ namespace Hexagon
          Renderer(AllegroFlare::FontBin* font_bin=nullptr);
          ~Renderer();
 
-
-      void render();
-      void render_rectangle(std::string status="incomplete");
+         void render();
+         void render_rectangle(std::string status="incomplete");
       };
    }
 }

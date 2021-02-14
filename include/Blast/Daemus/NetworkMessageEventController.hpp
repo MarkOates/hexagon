@@ -18,8 +18,7 @@ namespace Blast
          NetworkMessageEventController();
          ~NetworkMessageEventController();
 
-
-      bool process_message(std::string message="");
+         bool process_message(std::string message="");
       };
    }
 }

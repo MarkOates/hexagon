@@ -22,8 +22,7 @@ namespace Hexagon
          EventController(Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator* component=nullptr, std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> event_dictionary={});
          ~EventController();
 
-
-      void process_local_event(std::string event_name="", ActionData action_data=ActionData());
+         void process_local_event(std::string event_name="", ActionData action_data=ActionData());
       };
    }
 }

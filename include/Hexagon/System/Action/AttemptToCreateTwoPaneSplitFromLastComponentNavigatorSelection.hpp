@@ -36,12 +36,11 @@ namespace Hexagon
 
             void set_stages(std::vector<StageInterface *>& stages);
             void set_create_as_advanced_code_editor(bool create_as_advanced_code_editor);
-
             std::string get_project_path();
             std::vector<StageInterface *>& get_stages();
             int get_code_editor_width();
             static std::vector<StageInterface *> &get_dummy_stages_ref();
-         virtual bool execute() override;
+            virtual bool execute() override;
          };
       }
    }

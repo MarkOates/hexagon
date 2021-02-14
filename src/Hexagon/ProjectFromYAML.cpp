@@ -24,24 +24,23 @@ ProjectFromYAML::~ProjectFromYAML()
 
 Hexagon::Project ProjectFromYAML::load()
 {
-YAML::Node node = YAML::Load(source_yaml);
-Hexagon::Project project(name);
+   YAML::Node node = YAML::Load(source_yaml);
+   Hexagon::Project project(name);
 
-YAML::Node layouts_node = node["components"];
-std::vector<std::tuple<std::string, Hexagon::Layout>> layouts;
-for (std::size_t i=0;i<layouts_node.size();i++)
-{
-   YAML::Node layout_node = layouts_node[i];
-   Hexagon::Layout layout = Hexagon::LayoutFromYAML(layout_node).load();
-   std::string layout_label = layout.get_concept_name();
+   YAML::Node layouts_node = node["components"];
+   std::vector<std::tuple<std::string, Hexagon::Layout>> layouts;
+   for (std::size_t i=0;i<layouts_node.size();i++)
+   {
+      YAML::Node layout_node = layouts_node[i];
+      Hexagon::Layout layout = Hexagon::LayoutFromYAML(layout_node).load();
+      std::string layout_label = layout.get_concept_name();
 
-   layouts.push_back({layout_label, layout});
-}
+      layouts.push_back({layout_label, layout});
+   }
 
-project.set_layouts(layouts);
+   project.set_layouts(layouts);
 
-return project;
-
+   return project;
 }
 } // namespace Hexagon
 

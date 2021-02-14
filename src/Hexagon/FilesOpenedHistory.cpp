@@ -27,7 +27,7 @@ std::vector<std::string> FilesOpenedHistory::get_files()
 
 std::string FilesOpenedHistory::run()
 {
-return "Hello World!";
+   return "Hello World!";
 }
 } // namespace Hexagon
 

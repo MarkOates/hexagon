@@ -71,7 +71,6 @@ namespace Hexagon
       void set_left_column_x(float left_column_x);
       void set_stages(std::vector<StageInterface *>* stages);
       void set_global_font_str(std::string global_font_str);
-
       std::vector<std::string> get_notifications();
       std::vector<std::string> get_notifications2();
       std::string get_title_text();
@@ -89,22 +88,22 @@ namespace Hexagon
       float get_left_column_x();
       Hexagon::Powerbar::Powerbar &get_powerbar_ref();
       Hexagon::FocusTimerBar::FocusTimerBar &get_focus_timer_bar_ref();
-   static AllegroFlare::FontBin& get_dummy_font_bin();
-   ALLEGRO_FONT* obtain_text_font();
-   ALLEGRO_FONT* obtain_title_font();
-   ALLEGRO_FONT* obtain_powerbar_text_font();
-   ALLEGRO_FONT* obtain_score_text_font();
-   ALLEGRO_FONT* obtain_global_font();
-   ALLEGRO_FONT* obtain_packet_text_font();
-   ALLEGRO_FONT* obtain_component_navigator_font();
-   void initialize();
-   void reinitialize();
-   void draw_current_title_text();
-   void draw_profile_timer_graph();
-   void draw_powerbar();
-   void draw_focus_timer_bar();
-   void draw_packets();
-   void draw();
+      static AllegroFlare::FontBin& get_dummy_font_bin();
+      ALLEGRO_FONT* obtain_text_font();
+      ALLEGRO_FONT* obtain_title_font();
+      ALLEGRO_FONT* obtain_powerbar_text_font();
+      ALLEGRO_FONT* obtain_score_text_font();
+      ALLEGRO_FONT* obtain_global_font();
+      ALLEGRO_FONT* obtain_packet_text_font();
+      ALLEGRO_FONT* obtain_component_navigator_font();
+      void initialize();
+      void reinitialize();
+      void draw_current_title_text();
+      void draw_profile_timer_graph();
+      void draw_powerbar();
+      void draw_focus_timer_bar();
+      void draw_packets();
+      void draw();
    };
 }
 

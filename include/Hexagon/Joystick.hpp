@@ -14,8 +14,7 @@ namespace Hexagon
       Joystick();
       ~Joystick();
 
-
-   std::string run();
+      std::string run();
    };
 }
 

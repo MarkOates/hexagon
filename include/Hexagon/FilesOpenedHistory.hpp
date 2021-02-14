@@ -16,9 +16,8 @@ namespace Hexagon
       FilesOpenedHistory(std::vector<std::string> files={});
       ~FilesOpenedHistory();
 
-
       std::vector<std::string> get_files();
-   std::string run();
+      std::string run();
    };
 }
 

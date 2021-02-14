@@ -17,8 +17,7 @@ namespace Hexagon
          FileCategoryDecorator(std::string file_category="undefined");
          ~FileCategoryDecorator();
 
-
-      std::string label();
+         std::string label();
       };
    }
 }

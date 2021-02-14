@@ -52,13 +52,12 @@ float Stroke::get_thickness()
 
 ALLEGRO_COLOR Stroke::default_color()
 {
-ALLEGRO_COLOR c;
-c.r = 188/255.0f;
-c.g = 45/255.0f;
-c.b = 72/255.0f;
-c.a = 1.0;
-return c;
-
+   ALLEGRO_COLOR c;
+   c.r = 188/255.0f;
+   c.g = 45/255.0f;
+   c.b = 72/255.0f;
+   c.a = 1.0;
+   return c;
 }
 } // namespace Hexagon
 } // namespace Shapes

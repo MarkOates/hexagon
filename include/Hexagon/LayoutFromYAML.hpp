@@ -16,8 +16,7 @@ namespace Hexagon
       LayoutFromYAML(YAML::Node root_node={});
       ~LayoutFromYAML();
 
-
-   Hexagon::Layout load();
+      Hexagon::Layout load();
    };
 }
 

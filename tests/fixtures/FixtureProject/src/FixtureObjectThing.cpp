@@ -25,7 +25,7 @@ std::string FixtureObjectThing::get_foobar()
 
 std::vector<std::string> FixtureObjectThing::generate_two_foobars()
 {
-return { get_foobar(), get_foobar() };
+   return { get_foobar(), get_foobar() };
 }
 
 

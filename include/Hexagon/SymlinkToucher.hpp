@@ -15,8 +15,7 @@ namespace Hexagon
       SymlinkToucher(std::string filename="file.txt");
       ~SymlinkToucher();
 
-
-   void touch_if_symlink();
+      void touch_if_symlink();
    };
 }
 

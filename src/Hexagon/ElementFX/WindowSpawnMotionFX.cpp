@@ -23,8 +23,7 @@ WindowSpawnMotionFX::~WindowSpawnMotionFX()
 
 Hexagon::Elements::Window WindowSpawnMotionFX::construct_modified_window()
 {
-return window;
-
+   return window;
 }
 } // namespace ElementFX
 } // namespace Hexagon

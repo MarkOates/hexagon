@@ -33,7 +33,6 @@ namespace Hexagon
          void set_font(ALLEGRO_FONT* font);
          void set_cell_width(int cell_width);
          void set_cell_height(int cell_height);
-
          std::string get_expected_filename();
          bool get_is_focused();
          ALLEGRO_DISPLAY* get_display();
@@ -41,9 +40,9 @@ namespace Hexagon
          int get_cell_width();
          int get_cell_height();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      virtual void render() override;
-      void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
-      void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
+         virtual void render() override;
+         void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
+         void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
       };
    }
 }

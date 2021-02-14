@@ -58,42 +58,41 @@ int AttemptToCraeteCodeEditorStageFromFilename::get_stage_width()
 
 bool AttemptToCraeteCodeEditorStageFromFilename::execute()
 {
-if (!(stages))
+   if (!(stages))
+      {
+         std::stringstream error_message;
+         error_message << "AttemptToCraeteCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stages\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(stage_factory))
+      {
+         std::stringstream error_message;
+         error_message << "AttemptToCraeteCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stage_factory\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   std::vector<std::string> file_contents = {};
+   if (!::read_file(file_contents, filename))
    {
-      std::stringstream error_message;
-      error_message << "AttemptToCraeteCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stages\" not met";
-      throw std::runtime_error(error_message.str());
+      //TODO: improve this error message
+      throw std::runtime_error("Could not open the selected file");
    }
-if (!(stage_factory))
-   {
-      std::stringstream error_message;
-      error_message << "AttemptToCraeteCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stage_factory\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-std::vector<std::string> file_contents = {};
-if (!::read_file(file_contents, filename))
-{
-   //TODO: improve this error message
-   throw std::runtime_error("Could not open the selected file");
-}
 
-placement3d place(0, 0, 0);
-place.size = vec3d(get_stage_width(), get_display_default_height(), 0.0);
-place.align = vec3d(0.5, 0.5, 0.0);
-place.scale = vec3d(0.9, 0.9, 0.0);
+   placement3d place(0, 0, 0);
+   place.size = vec3d(get_stage_width(), get_display_default_height(), 0.0);
+   place.align = vec3d(0.5, 0.5, 0.0);
+   place.scale = vec3d(0.9, 0.9, 0.0);
 
-StageInterface *stage = stage_factory->create_code_editor(filename, "undefined");
-Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+   StageInterface *stage = stage_factory->create_code_editor(filename, "undefined");
+   Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
 
-code_editor_stage->set_place(place);
-code_editor_stage->set_base_font_color(text_color);
-code_editor_stage->set_backfill_color(backfill_color);
-code_editor_stage->get_code_editor_ref().set_content(file_contents);
+   code_editor_stage->set_place(place);
+   code_editor_stage->set_base_font_color(text_color);
+   code_editor_stage->set_backfill_color(backfill_color);
+   code_editor_stage->get_code_editor_ref().set_content(file_contents);
 
-stages->push_back(code_editor_stage);
+   stages->push_back(code_editor_stage);
 
-return true;
-
+   return true;
 }
 } // namespace Action
 } // namespace System

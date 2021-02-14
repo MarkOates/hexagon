@@ -18,10 +18,9 @@ namespace Hexagon
          CommitStagedWithMessage(std::string current_project_directory="/Users/markoates/Repos/hexagon/", std::string message="auto commit");
          ~CommitStagedWithMessage();
 
-
-      std::string build_sanitized_commit_message();
-      std::string build_shell_command();
-      bool commit();
+         std::string build_sanitized_commit_message();
+         std::string build_shell_command();
+         bool commit();
       };
    }
 }

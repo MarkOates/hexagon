@@ -14,9 +14,8 @@ namespace Hexagon
       RegexStore();
       ~RegexStore();
 
-
-   static std::string identifiers();
-   static std::string double_quoted_strings_with_escapes();
+      static std::string identifiers();
+      static std::string double_quoted_strings_with_escapes();
    };
 }
 

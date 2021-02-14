@@ -74,7 +74,6 @@ namespace Hexagon
          void set_number_of_columns(int number_of_columns);
          void set_distance_of_rows(float distance_of_rows);
          void set_distance_of_columns(float distance_of_columns);
-
          float get_width();
          float get_height();
          float get_box_opacity();
@@ -104,13 +103,13 @@ namespace Hexagon
          int get_number_of_columns();
          float get_distance_of_rows();
          float get_distance_of_columns();
-      void draw();
-      void draw_top_left_little_bar();
-      void draw_header_baseline();
-      void draw_bottom_line();
-      void draw_header_bar();
-      void draw_corner_circles();
-      void draw_corner_squares();
+         void draw();
+         void draw_top_left_little_bar();
+         void draw_header_baseline();
+         void draw_bottom_line();
+         void draw_header_bar();
+         void draw_corner_circles();
+         void draw_corner_squares();
       };
    }
 }

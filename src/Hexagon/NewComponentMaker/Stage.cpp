@@ -40,21 +40,19 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 
 void Stage::render()
 {
-placement3d place = get_place();
-al_draw_rectangle(0, 0, place.size.x, place.size.y, ALLEGRO_COLOR{0.2f, 0.2f, 0.2f, 0.2f}, 4.0f);
-return;
-
+   placement3d place = get_place();
+   al_draw_rectangle(0, 0, place.size.x, place.size.y, ALLEGRO_COLOR{0.2f, 0.2f, 0.2f, 0.2f}, 4.0f);
+   return;
 }
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
-return;
+   return;
 }
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
-return;
-
+   return;
 }
 } // namespace NewComponentMaker
 } // namespace Hexagon

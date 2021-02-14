@@ -26,14 +26,13 @@ namespace Hexagon
          ~SubBitmapCharacterMap();
 
          void set_font(ALLEGRO_FONT* font);
-
          int get_grid_width();
          int get_grid_height();
          ALLEGRO_BITMAP* get_surface();
          std::map<char, ALLEGRO_BITMAP*> get_cell_sub_bitmaps();
-      void initialize();
-      ALLEGRO_BITMAP* find_sub_bitmap(char character=0);
-      void destroy();
+         void initialize();
+         ALLEGRO_BITMAP* find_sub_bitmap(char character=0);
+         void destroy();
       };
    }
 }

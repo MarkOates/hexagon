@@ -21,9 +21,8 @@ namespace Hexagon
          Renderer(::System* system=nullptr, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_COLOR* backfill_color=nullptr);
          ~Renderer();
 
-
          ALLEGRO_COLOR* get_backfill_color();
-      bool render();
+         bool render();
       };
    }
 }

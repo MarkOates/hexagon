@@ -26,9 +26,8 @@ namespace Hexagon
          TextGrid(ALLEGRO_FONT* font=nullptr, float cell_width=1.0f, float cell_height=1.0f, float cell_spacing_x=0.0f, float cell_spacing_y=0.0f, std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>& grid=get_dummy_grid_ref());
          ~TextGrid();
 
-
          static std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &get_dummy_grid_ref();
-      void render();
+         void render();
       };
    }
 }

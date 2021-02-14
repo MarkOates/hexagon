@@ -16,9 +16,8 @@ namespace Blast
       TaoTeChingQuoteGenerator(std::vector<std::string> quotes=TaoTeChingQuoteGenerator::default_quotes_list());
       ~TaoTeChingQuoteGenerator();
 
-
-   std::string pick_quote();
-   static std::vector<std::string> default_quotes_list();
+      std::string pick_quote();
+      static std::vector<std::string> default_quotes_list();
    };
 }
 

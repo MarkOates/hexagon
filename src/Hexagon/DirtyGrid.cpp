@@ -32,83 +32,75 @@ std::set<std::pair<int, int>> DirtyGrid::get_dirty_cells()
 
 int DirtyGrid::dirty_cells_count()
 {
-return dirty_cells.size();
-
+   return dirty_cells.size();
 }
 
 int DirtyGrid::dirty_cells_empty()
 {
-return dirty_cells.empty();
-
+   return dirty_cells.empty();
 }
 
 void DirtyGrid::mark_as_dirty(int x, int y)
 {
-dirty_cells.insert(std::pair<int, int>{x, y});
-return;
-
+   dirty_cells.insert(std::pair<int, int>{x, y});
+   return;
 }
 
 void DirtyGrid::mark_all_as_dirty(std::vector<std::string>* lines)
 {
-if (!(lines))
+   if (!(lines))
+      {
+         std::stringstream error_message;
+         error_message << "DirtyGrid" << "::" << "mark_all_as_dirty" << ": error: " << "guard \"lines\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   type: std::vector<std::string>& local_lines_ref = *lines;
+   for (int l=0; l<local_lines_ref.size(); l++)
    {
-      std::stringstream error_message;
-      error_message << "DirtyGrid" << "::" << "mark_all_as_dirty" << ": error: " << "guard \"lines\" not met";
-      throw std::runtime_error(error_message.str());
+      mark_row_as_dirty(l, 0, local_lines_ref[l].length());
    }
-type: std::vector<std::string>& local_lines_ref = *lines;
-for (int l=0; l<local_lines_ref.size(); l++)
-{
-   mark_row_as_dirty(l, 0, local_lines_ref[l].length());
-}
-return;
-
+   return;
 }
 
 void DirtyGrid::mark_row_as_dirty(int row, int start, int length)
 {
-for (int x=start; x<(start + length); x++)
-{
-   dirty_cells.insert(std::pair<int, int>{x, row});
-}
-return;
-
+   for (int x=start; x<(start + length); x++)
+   {
+      dirty_cells.insert(std::pair<int, int>{x, row});
+   }
+   return;
 }
 
 void DirtyGrid::incorporate(Hexagon::DirtyGrid* other_dirty_grid)
 {
-if (!(other_dirty_grid))
-   {
-      std::stringstream error_message;
-      error_message << "DirtyGrid" << "::" << "incorporate" << ": error: " << "guard \"other_dirty_grid\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-dirty_cells.insert(other_dirty_grid->dirty_cells.begin(), other_dirty_grid->dirty_cells.end());
-return;
-
+   if (!(other_dirty_grid))
+      {
+         std::stringstream error_message;
+         error_message << "DirtyGrid" << "::" << "incorporate" << ": error: " << "guard \"other_dirty_grid\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   dirty_cells.insert(other_dirty_grid->dirty_cells.begin(), other_dirty_grid->dirty_cells.end());
+   return;
 }
 
 std::vector<std::pair<int, int>> DirtyGrid::build_vector()
 {
-std::vector<std::pair<int, int>> result;
-result.reserve(dirty_cells.size());
-for (auto it=dirty_cells.begin(); it!=dirty_cells.end(); it++)
-{
-   //result.push_back(std::move(dirty_cells.extract(it++).value())); // this line appears to destroy
-                                                                     // the original, hopefully the
-                                                                     // provided alternative is performant
-   result.push_back(*it);
-}
-return result;
-
+   std::vector<std::pair<int, int>> result;
+   result.reserve(dirty_cells.size());
+   for (auto it=dirty_cells.begin(); it!=dirty_cells.end(); it++)
+   {
+      //result.push_back(std::move(dirty_cells.extract(it++).value())); // this line appears to destroy
+                                                                        // the original, hopefully the
+                                                                        // provided alternative is performant
+      result.push_back(*it);
+   }
+   return result;
 }
 
 void DirtyGrid::clear()
 {
-dirty_cells.clear();
-return;
-
+   dirty_cells.clear();
+   return;
 }
 } // namespace Hexagon
 

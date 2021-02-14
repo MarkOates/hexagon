@@ -23,10 +23,9 @@ namespace Hexagon
             virtual ~DestroyAllCodeEditorStages();
 
             void set_stages(std::vector<StageInterface *>& stages);
-
             std::vector<StageInterface *>& get_stages();
             static std::vector<StageInterface *> &get_dummy_stages_ref();
-         virtual bool execute() override;
+            virtual bool execute() override;
          };
       }
    }

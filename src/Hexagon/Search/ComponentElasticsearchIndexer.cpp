@@ -39,64 +39,61 @@ std::string ComponentElasticsearchIndexer::get_index_name()
 
 std::string ComponentElasticsearchIndexer::generate_uid()
 {
-if (!(component))
-   {
-      std::stringstream error_message;
-      error_message << "ComponentElasticsearchIndexer" << "::" << "generate_uid" << ": error: " << "guard \"component\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-std::string delimiter = ":";
-return component->get_project_root() + delimiter + component->get_name();
-
+   if (!(component))
+      {
+         std::stringstream error_message;
+         error_message << "ComponentElasticsearchIndexer" << "::" << "generate_uid" << ": error: " << "guard \"component\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   std::string delimiter = ":";
+   return component->get_project_root() + delimiter + component->get_name();
 }
 
 std::string ComponentElasticsearchIndexer::generate_index_shell_command()
 {
-if (!(component))
-   {
-      std::stringstream error_message;
-      error_message << "ComponentElasticsearchIndexer" << "::" << "generate_index_shell_command" << ": error: " << "guard \"component\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-nlohmann::json document_as_json = {
-  { "uid", generate_uid() },
-  { "id", component->get_name() },
-  { "project", component->get_project_root() },
-  { "name", component->get_name() },
-  { "content", component->get_name() }
-};
+   if (!(component))
+      {
+         std::stringstream error_message;
+         error_message << "ComponentElasticsearchIndexer" << "::" << "generate_index_shell_command" << ": error: " << "guard \"component\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   nlohmann::json document_as_json = {
+     { "uid", generate_uid() },
+     { "id", component->get_name() },
+     { "project", component->get_project_root() },
+     { "name", component->get_name() },
+     { "content", component->get_name() }
+   };
 
-std::string document_as_json_string = document_as_json.dump();
+   std::string document_as_json_string = document_as_json.dump();
 
-// TODO: we need to escape single quote strings inside document_as_json_string
+   // TODO: we need to escape single quote strings inside document_as_json_string
 
-std::stringstream index_shell_command;
-index_shell_command << "curl -XPOST \"http://localhost:9200/"
-                    << get_index_name()
-                    << "/_doc/\" "
-                    << "-H 'Content-Type: application/json' -d'"
-                    << document_as_json_string
-                    << "'";
+   std::stringstream index_shell_command;
+   index_shell_command << "curl -XPOST \"http://localhost:9200/"
+                       << get_index_name()
+                       << "/_doc/\" "
+                       << "-H 'Content-Type: application/json' -d'"
+                       << document_as_json_string
+                       << "'";
 
-return index_shell_command.str();
-
+   return index_shell_command.str();
 }
 
 std::string ComponentElasticsearchIndexer::import_or_update()
 {
-if (!(component))
-   {
-      std::stringstream error_message;
-      error_message << "ComponentElasticsearchIndexer" << "::" << "import_or_update" << ": error: " << "guard \"component\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-std::string index_shell_command = generate_index_shell_command();
-Blast::ShellCommandExecutorWithCallback executor(index_shell_command);
+   if (!(component))
+      {
+         std::stringstream error_message;
+         error_message << "ComponentElasticsearchIndexer" << "::" << "import_or_update" << ": error: " << "guard \"component\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   std::string index_shell_command = generate_index_shell_command();
+   Blast::ShellCommandExecutorWithCallback executor(index_shell_command);
 
-std::string response = executor.execute();
+   std::string response = executor.execute();
 
-return response;
-
+   return response;
 }
 } // namespace Search
 } // namespace Hexagon

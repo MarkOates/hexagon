@@ -16,8 +16,7 @@ namespace Hexagon
          CoolGrid();
          ~CoolGrid();
 
-
-      std::string run();
+         std::string run();
       };
    }
 }

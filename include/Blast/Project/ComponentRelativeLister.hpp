@@ -19,8 +19,7 @@ namespace Blast
          ComponentRelativeLister(Blast::Project::Component* component=nullptr);
          ~ComponentRelativeLister();
 
-
-      std::vector<std::string> list_component_relative_names();
+         std::vector<std::string> list_component_relative_names();
       };
    }
 }

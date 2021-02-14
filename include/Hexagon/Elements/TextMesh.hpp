@@ -34,7 +34,6 @@ namespace Hexagon
          TextMesh(ALLEGRO_FONT* font=nullptr, int num_columns=0, int num_rows=0);
          ~TextMesh();
 
-
          int get_num_columns();
          int get_num_rows();
          float get_cell_width();
@@ -42,15 +41,15 @@ namespace Hexagon
          Hexagon::Elements::BitmapGridMesh get_bitmap_grid_mesh();
          ALLEGRO_BITMAP* get_font_character_map_bitmap();
          bool get_initialized();
-      void set_font(ALLEGRO_FONT* font=nullptr);
-      void initialize();
-      void destruct();
-      void set_cell_color(int x=0, int y=0, ALLEGRO_COLOR color={0.0f, 0.0f, 0.0f, 0.0f});
-      void set_cell_character(int x=0, int y=0, char character='\0');
-      int calculate_width();
-      int calculate_height();
-      void render();
-      void render_only_select_cells(std::vector<std::pair<int, int>> cell_coordinates={});
+         void set_font(ALLEGRO_FONT* font=nullptr);
+         void initialize();
+         void destruct();
+         void set_cell_color(int x=0, int y=0, ALLEGRO_COLOR color={0.0f, 0.0f, 0.0f, 0.0f});
+         void set_cell_character(int x=0, int y=0, char character='\0');
+         int calculate_width();
+         int calculate_height();
+         void render();
+         void render_only_select_cells(std::vector<std::pair<int, int>> cell_coordinates={});
       };
    }
 }

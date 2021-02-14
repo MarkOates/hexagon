@@ -17,8 +17,7 @@ namespace Hexagon
       ProjectFromYAML(std::string name="Untitled", std::string source_yaml="# empty");
       ~ProjectFromYAML();
 
-
-   Hexagon::Project load();
+      Hexagon::Project load();
    };
 }
 

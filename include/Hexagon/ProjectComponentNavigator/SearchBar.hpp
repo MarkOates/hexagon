@@ -16,8 +16,7 @@ namespace Hexagon
          SearchBar();
          ~SearchBar();
 
-
-      std::string run();
+         std::string run();
       };
    }
 }

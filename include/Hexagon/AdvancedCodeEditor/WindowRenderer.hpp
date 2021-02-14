@@ -17,8 +17,7 @@ namespace Hexagon
          WindowRenderer(float width=1, float height=1);
          ~WindowRenderer();
 
-
-      void render();
+         void render();
       };
    }
 }

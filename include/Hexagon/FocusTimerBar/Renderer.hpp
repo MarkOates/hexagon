@@ -19,8 +19,7 @@ namespace Hexagon
          Renderer(ALLEGRO_DISPLAY* display=nullptr, Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar=nullptr);
          ~Renderer();
 
-
-      void render();
+         void render();
       };
    }
 }

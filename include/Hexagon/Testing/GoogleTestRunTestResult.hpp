@@ -26,7 +26,6 @@ namespace Hexagon
          void set_result(std::string result);
          void set_duration_msec(int duration_msec);
          void set_failure_message(std::string failure_message);
-
          std::string get_test_class_name();
          std::string get_test_description();
          std::string get_result();

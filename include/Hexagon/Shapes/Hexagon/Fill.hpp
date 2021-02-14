@@ -18,8 +18,7 @@ namespace Hexagon
             Fill();
             ~Fill();
 
-
-         std::string run();
+            std::string run();
          };
       }
    }

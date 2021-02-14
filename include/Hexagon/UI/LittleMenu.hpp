@@ -28,13 +28,12 @@ namespace Hexagon
          LittleMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="Untitled Menu", std::vector<std::tuple<std::string, std::string>> items={{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}});
          ~LittleMenu();
 
-
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      void render() override;
-      void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
-      void set_upcase(bool upcase=false);
-      void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
-      void emit_submission();
+         void render() override;
+         void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
+         void set_upcase(bool upcase=false);
+         void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
+         void emit_submission();
       };
    }
 }

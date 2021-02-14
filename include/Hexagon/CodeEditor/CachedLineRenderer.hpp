@@ -24,12 +24,11 @@ namespace Hexagon
          CachedLineRenderer(ALLEGRO_FONT* font=nullptr);
          ~CachedLineRenderer();
 
-
-      void initialize();
-      void destruct();
-      int size();
-      bool exists(int index=0);
-      ALLEGRO_BITMAP* pull(int index=0);
+         void initialize();
+         void destruct();
+         int size();
+         bool exists(int index=0);
+         ALLEGRO_BITMAP* pull(int index=0);
       };
    }
 }

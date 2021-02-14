@@ -22,11 +22,10 @@ namespace Hexagon
          NewComponentMaker(std::string current_project_directory="/Users/markoates/Repos/hexagon/", std::string component_name="");
          ~NewComponentMaker();
 
-
          std::string get_current_project_directory();
-      std::string get_shell_response();
-      std::vector<std::string> get_shell_response_lines();
-      std::string build_shell_command();
+         std::string get_shell_response();
+         std::vector<std::string> get_shell_response_lines();
+         std::string build_shell_command();
       };
    }
 }

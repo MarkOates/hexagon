@@ -23,9 +23,8 @@ namespace Hexagon
       Logo(float x=0, float y=0, float radius=0, ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR color=default_color(), float thickness=0, AllegroFlare::FontBin* font_bin=nullptr);
       ~Logo();
 
-
-   static ALLEGRO_COLOR default_color();
-   void render();
+      static ALLEGRO_COLOR default_color();
+      void render();
    };
 }
 

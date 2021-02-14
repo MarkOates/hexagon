@@ -81,112 +81,103 @@ bool TextMesh::get_initialized()
 
 void TextMesh::set_font(ALLEGRO_FONT* font)
 {
-if (!(!initialized))
-   {
-      std::stringstream error_message;
-      error_message << "TextMesh" << "::" << "set_font" << ": error: " << "guard \"!initialized\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-this->font = font;
-font_character_map_grid.set_font(font);
-return;
-
+   if (!(!initialized))
+      {
+         std::stringstream error_message;
+         error_message << "TextMesh" << "::" << "set_font" << ": error: " << "guard \"!initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   this->font = font;
+   font_character_map_grid.set_font(font);
+   return;
 }
 
 void TextMesh::initialize()
 {
-if (!(font))
-   {
-      std::stringstream error_message;
-      error_message << "TextMesh" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (initialized) return;
+   if (!(font))
+      {
+         std::stringstream error_message;
+         error_message << "TextMesh" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (initialized) return;
 
-if (font_character_map_bitmap) al_destroy_bitmap(font_character_map_bitmap);
-font_character_uv_mapping.clear();
-cell_width = 1;
-cell_height = 1;
-font_character_map_bitmap = font_character_map_grid.create();
-font_character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
+   if (font_character_map_bitmap) al_destroy_bitmap(font_character_map_bitmap);
+   font_character_uv_mapping.clear();
+   cell_width = 1;
+   cell_height = 1;
+   font_character_map_bitmap = font_character_map_grid.create();
+   font_character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
 
-if (!font_character_map_bitmap) throw std::runtime_error("boobaz");
-if (!font_character_uv_mapping.size() == 256) throw std::runtime_error("foobar");
+   if (!font_character_map_bitmap) throw std::runtime_error("boobaz");
+   if (!font_character_uv_mapping.size() == 256) throw std::runtime_error("foobar");
 
-bitmap_grid_mesh.set_bitmap(font_character_map_bitmap);
-cell_width = al_get_text_width(font, "W");
-cell_height = al_get_font_line_height(font);
-bitmap_grid_mesh.resize(num_columns, num_rows, cell_width, cell_height);
+   bitmap_grid_mesh.set_bitmap(font_character_map_bitmap);
+   cell_width = al_get_text_width(font, "W");
+   cell_height = al_get_font_line_height(font);
+   bitmap_grid_mesh.resize(num_columns, num_rows, cell_width, cell_height);
 
-initialized = true;
-return;
-
+   initialized = true;
+   return;
 }
 
 void TextMesh::destruct()
 {
-if (!(initialized))
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "TextMesh" << "::" << "destruct" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (font_character_map_bitmap)
    {
-      std::stringstream error_message;
-      error_message << "TextMesh" << "::" << "destruct" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
+      al_destroy_bitmap(font_character_map_bitmap);
+      font_character_map_bitmap = nullptr;
    }
-if (font_character_map_bitmap)
-{
-   al_destroy_bitmap(font_character_map_bitmap);
-   font_character_map_bitmap = nullptr;
-}
-initialized = false;
-return;
-
+   initialized = false;
+   return;
 }
 
 void TextMesh::set_cell_color(int x, int y, ALLEGRO_COLOR color)
 {
-bitmap_grid_mesh.set_cell_color(x, y, color);
-return;
-
+   bitmap_grid_mesh.set_cell_color(x, y, color);
+   return;
 }
 
 void TextMesh::set_cell_character(int x, int y, char character)
 {
-// TODO: validate 'character' index exists in character_uv_mapping
-std::tuple<float, float, float, float> character_map = font_character_uv_mapping[character];
-bitmap_grid_mesh.set_cell_uv(x, y, character_map);
-return;
-
+   // TODO: validate 'character' index exists in character_uv_mapping
+   std::tuple<float, float, float, float> character_map = font_character_uv_mapping[character];
+   bitmap_grid_mesh.set_cell_uv(x, y, character_map);
+   return;
 }
 
 int TextMesh::calculate_width()
 {
-return bitmap_grid_mesh.calculate_width();
-
+   return bitmap_grid_mesh.calculate_width();
 }
 
 int TextMesh::calculate_height()
 {
-return bitmap_grid_mesh.calculate_height();
-
+   return bitmap_grid_mesh.calculate_height();
 }
 
 void TextMesh::render()
 {
-if (!(initialized))
-   {
-      std::stringstream error_message;
-      error_message << "TextMesh" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-bitmap_grid_mesh.render();
-return;
-
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "TextMesh" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   bitmap_grid_mesh.render();
+   return;
 }
 
 void TextMesh::render_only_select_cells(std::vector<std::pair<int, int>> cell_coordinates)
 {
-bitmap_grid_mesh.render_only_select_cells(cell_coordinates);
-return;
-
+   bitmap_grid_mesh.render_only_select_cells(cell_coordinates);
+   return;
 }
 } // namespace Elements
 } // namespace Hexagon

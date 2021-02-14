@@ -40,17 +40,16 @@ std::map<std::string, placement3d> &LayoutPlacements::get_placements_ref()
 
 placement3d LayoutPlacements::placement_for(std::string label)
 {
-std::map<std::string, placement3d>::iterator it;
-it = placements.find(label);
-if (it == placements.end())
-{
-   std::stringstream error_message;
-   error_message << "Could not find a layout position labeled \"" << label << "\"." << std::endl;
-   throw std::runtime_error(error_message.str());
-}
-placement3d result = it->second;
-return result;
-
+   std::map<std::string, placement3d>::iterator it;
+   it = placements.find(label);
+   if (it == placements.end())
+   {
+      std::stringstream error_message;
+      error_message << "Could not find a layout position labeled \"" << label << "\"." << std::endl;
+      throw std::runtime_error(error_message.str());
+   }
+   placement3d result = it->second;
+   return result;
 }
 } // namespace Hexagon
 

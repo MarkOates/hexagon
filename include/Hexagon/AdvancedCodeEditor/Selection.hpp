@@ -18,7 +18,6 @@ namespace Hexagon
          Selection(std::vector<CodeRange> code_ranges={});
          ~Selection();
 
-
          std::vector<CodeRange> get_code_ranges();
       };
    }

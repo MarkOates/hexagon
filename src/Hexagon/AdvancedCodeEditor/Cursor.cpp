@@ -74,29 +74,28 @@ float Cursor::get_height()
 
 void Cursor::move_up()
 {
-y -= 1;
+   y -= 1;
 }
 
 void Cursor::move_down()
 {
-y += 1;
+   y += 1;
 }
 
 void Cursor::move_left()
 {
-x -= 1;
+   x -= 1;
 }
 
 void Cursor::move_right()
 {
-x += 1;
+   x += 1;
 }
 
 void Cursor::move_to(int x, int y)
 {
-this->x = x;
-this->y = y;
-
+   this->x = x;
+   this->y = y;
 }
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon

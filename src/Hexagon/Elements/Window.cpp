@@ -405,156 +405,149 @@ float Window::get_distance_of_columns()
 
 void Window::draw()
 {
-if (!(al_is_system_installed()))
-   {
-      std::stringstream error_message;
-      error_message << "Window" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(al_is_primitives_addon_initialized()))
-   {
-      std::stringstream error_message;
-      error_message << "Window" << "::" << "draw" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(al_get_target_bitmap()))
-   {
-      std::stringstream error_message;
-      error_message << "Window" << "::" << "draw" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-ALLEGRO_COLOR final_box_fill_color = color::color(box_fill_color, box_opacity);
-al_draw_filled_rectangle(
-   0+cell_padding,
-   0+cell_padding,
-   width-cell_padding,
-   height-cell_padding,
-   final_box_fill_color
-);
+   if (!(al_is_system_installed()))
+      {
+         std::stringstream error_message;
+         error_message << "Window" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(al_is_primitives_addon_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "Window" << "::" << "draw" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(al_get_target_bitmap()))
+      {
+         std::stringstream error_message;
+         error_message << "Window" << "::" << "draw" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   ALLEGRO_COLOR final_box_fill_color = color::color(box_fill_color, box_opacity);
+   al_draw_filled_rectangle(
+      0+cell_padding,
+      0+cell_padding,
+      width-cell_padding,
+      height-cell_padding,
+      final_box_fill_color
+   );
 
-ALLEGRO_COLOR final_outer_line_color = color::color(outer_line_color, outer_line_opacity);
-al_draw_rectangle(
-  0,
-  0,
-  width,
-  height,
-  final_outer_line_color,
-  outer_line_thickness
-);
+   ALLEGRO_COLOR final_outer_line_color = color::color(outer_line_color, outer_line_opacity);
+   al_draw_rectangle(
+     0,
+     0,
+     width,
+     height,
+     final_outer_line_color,
+     outer_line_thickness
+   );
 
-draw_header_bar();
-draw_header_baseline();
-draw_top_left_little_bar();
-draw_bottom_line();
-if (corner_squares_are_circles) draw_corner_circles();
-else draw_corner_squares();
+   draw_header_bar();
+   draw_header_baseline();
+   draw_top_left_little_bar();
+   draw_bottom_line();
+   if (corner_squares_are_circles) draw_corner_circles();
+   else draw_corner_squares();
 
-return;
-
+   return;
 }
 
 void Window::draw_top_left_little_bar()
 {
-al_draw_filled_rectangle(0, 0, top_left_little_bar_width, header_bar_height, top_left_little_bar_color);
-return;
-
+   al_draw_filled_rectangle(0, 0, top_left_little_bar_width, header_bar_height, top_left_little_bar_color);
+   return;
 }
 
 void Window::draw_header_baseline()
 {
-ALLEGRO_COLOR final_header_baseline_color = color::color(header_baseline_color, header_baseline_opacity);
-al_draw_filled_rectangle(
-   0,
-   header_bar_height,
-   width,
-   header_bar_height+header_baseline_thickness,
-   final_header_baseline_color
-);
-return;
-
+   ALLEGRO_COLOR final_header_baseline_color = color::color(header_baseline_color, header_baseline_opacity);
+   al_draw_filled_rectangle(
+      0,
+      header_bar_height,
+      width,
+      header_bar_height+header_baseline_thickness,
+      final_header_baseline_color
+   );
+   return;
 }
 
 void Window::draw_bottom_line()
 {
-ALLEGRO_COLOR final_bottom_line_color = color::color(bottom_line_color, bottom_line_opacity);
-float bottom_line_y = height + outer_line_thickness * 0.5f;
-al_draw_filled_rectangle(
-   -outer_line_thickness * 0.5,
-   bottom_line_y,
-   width + outer_line_thickness * 0.5,
-   bottom_line_y+bottom_line_thickness,
-   final_bottom_line_color
-);
-return;
-
+   ALLEGRO_COLOR final_bottom_line_color = color::color(bottom_line_color, bottom_line_opacity);
+   float bottom_line_y = height + outer_line_thickness * 0.5f;
+   al_draw_filled_rectangle(
+      -outer_line_thickness * 0.5,
+      bottom_line_y,
+      width + outer_line_thickness * 0.5,
+      bottom_line_y+bottom_line_thickness,
+      final_bottom_line_color
+   );
+   return;
 }
 
 void Window::draw_header_bar()
 {
-ALLEGRO_COLOR final_header_bar_color = color::color(header_bar_color, header_bar_opacity);
-al_draw_filled_rectangle(0, 0, width, header_bar_height, final_header_bar_color);
-return;
-
+   ALLEGRO_COLOR final_header_bar_color = color::color(header_bar_color, header_bar_opacity);
+   al_draw_filled_rectangle(0, 0, width, header_bar_height, final_header_bar_color);
+   return;
 }
 
 void Window::draw_corner_circles()
 {
-ALLEGRO_COLOR final_corner_squares_color = color::color(corner_squares_color, corner_squares_opacity);
-float x_offset = corner_squares_resize_from_center ? corner_squares_width * 0.5f : 0.0f;
-float y_offset = corner_squares_resize_from_center ? corner_squares_height * 0.5f : 0.0f;
+   ALLEGRO_COLOR final_corner_squares_color = color::color(corner_squares_color, corner_squares_opacity);
+   float x_offset = corner_squares_resize_from_center ? corner_squares_width * 0.5f : 0.0f;
+   float y_offset = corner_squares_resize_from_center ? corner_squares_height * 0.5f : 0.0f;
 
-// top left
-al_draw_filled_circle(0, 0, corner_squares_width * 0.5f, final_corner_squares_color);
-// top right
-al_draw_filled_circle(width, 0, corner_squares_width * 0.5f, final_corner_squares_color);
-// bottom left
-al_draw_filled_circle(0, height, corner_squares_width * 0.5f, final_corner_squares_color);
-// bottom right
-al_draw_filled_circle(width, height, corner_squares_width * 0.5f, final_corner_squares_color);
-return;
-
+   // top left
+   al_draw_filled_circle(0, 0, corner_squares_width * 0.5f, final_corner_squares_color);
+   // top right
+   al_draw_filled_circle(width, 0, corner_squares_width * 0.5f, final_corner_squares_color);
+   // bottom left
+   al_draw_filled_circle(0, height, corner_squares_width * 0.5f, final_corner_squares_color);
+   // bottom right
+   al_draw_filled_circle(width, height, corner_squares_width * 0.5f, final_corner_squares_color);
+   return;
 }
 
 void Window::draw_corner_squares()
 {
-ALLEGRO_COLOR final_corner_squares_color = color::color(corner_squares_color, corner_squares_opacity);
-float x_offset = corner_squares_resize_from_center ? corner_squares_width * 0.5f : 0.0f;
-float y_offset = corner_squares_resize_from_center ? corner_squares_height * 0.5f : 0.0f;
+   ALLEGRO_COLOR final_corner_squares_color = color::color(corner_squares_color, corner_squares_opacity);
+   float x_offset = corner_squares_resize_from_center ? corner_squares_width * 0.5f : 0.0f;
+   float y_offset = corner_squares_resize_from_center ? corner_squares_height * 0.5f : 0.0f;
 
-// top left
-al_draw_filled_rectangle(
-   0 - x_offset,
-   0 - y_offset,
-   corner_squares_width - x_offset,
-   corner_squares_height - y_offset,
-   final_corner_squares_color
-);
-// top right
-al_draw_filled_rectangle(
-   width - corner_squares_width + x_offset,
-   0 - y_offset,
-   width + x_offset,
-   corner_squares_height - y_offset,
-   final_corner_squares_color
-);
-// bottom left
-al_draw_filled_rectangle(
-   0 - x_offset,
-   height - corner_squares_height + y_offset,
-   corner_squares_width - x_offset,
-   height + y_offset,
-   final_corner_squares_color
-);
-// bottom right
-al_draw_filled_rectangle(
-   width - corner_squares_width + x_offset,
-   height - corner_squares_height + y_offset,
-   width + x_offset,
-   height + y_offset,
-   final_corner_squares_color
-);
-return;
-
+   // top left
+   al_draw_filled_rectangle(
+      0 - x_offset,
+      0 - y_offset,
+      corner_squares_width - x_offset,
+      corner_squares_height - y_offset,
+      final_corner_squares_color
+   );
+   // top right
+   al_draw_filled_rectangle(
+      width - corner_squares_width + x_offset,
+      0 - y_offset,
+      width + x_offset,
+      corner_squares_height - y_offset,
+      final_corner_squares_color
+   );
+   // bottom left
+   al_draw_filled_rectangle(
+      0 - x_offset,
+      height - corner_squares_height + y_offset,
+      corner_squares_width - x_offset,
+      height + y_offset,
+      final_corner_squares_color
+   );
+   // bottom right
+   al_draw_filled_rectangle(
+      width - corner_squares_width + x_offset,
+      height - corner_squares_height + y_offset,
+      width + x_offset,
+      height + y_offset,
+      final_corner_squares_color
+   );
+   return;
 }
 } // namespace Elements
 } // namespace Hexagon

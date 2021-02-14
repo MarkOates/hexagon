@@ -41,7 +41,6 @@ namespace Hexagon
          void set_font(ALLEGRO_FONT* font);
          void set_cell_width(int cell_width);
          void set_cell_height(int cell_height);
-
          ALLEGRO_COLOR get_selector_color();
          std::vector<std::pair<std::string, std::string>> get_nodes();
          int get_cursor_position();
@@ -52,24 +51,24 @@ namespace Hexagon
          int get_cell_width();
          int get_cell_height();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      void move_cursor_down();
-      bool current_selection_is_valid();
-      std::string get_current_selection_or_spaced_empty_string();
-      std::string get_current_selection();
-      bool current_selection_is_folder();
-      void move_cursor_up();
-      void move_cursor_to_top();
-      void set_node_root_to_system_root_directory();
-      void set_node_root_to_repos_directory();
-      void set_node_root_to_user_directory();
-      void set_node_root_to_shopify_repos_directory();
-      void set_node_root_to_parent_directory();
-      void set_node_root_to_current_selection_if_folder();
-      void refresh_list();
-      virtual void render() override;
-      void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
-      bool save_file();
-      void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
+         void move_cursor_down();
+         bool current_selection_is_valid();
+         std::string get_current_selection_or_spaced_empty_string();
+         std::string get_current_selection();
+         bool current_selection_is_folder();
+         void move_cursor_up();
+         void move_cursor_to_top();
+         void set_node_root_to_system_root_directory();
+         void set_node_root_to_repos_directory();
+         void set_node_root_to_user_directory();
+         void set_node_root_to_shopify_repos_directory();
+         void set_node_root_to_parent_directory();
+         void set_node_root_to_current_selection_if_folder();
+         void refresh_list();
+         virtual void render() override;
+         void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
+         bool save_file();
+         void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
       };
    }
 }

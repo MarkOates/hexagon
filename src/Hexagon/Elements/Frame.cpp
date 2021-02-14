@@ -81,35 +81,32 @@ float Frame::get_line_thickness()
 
 ALLEGRO_COLOR Frame::build_default_frame_color()
 {
-ALLEGRO_COLOR frame_color = AllegroFlare::color::color(
-   AllegroFlare::color::mix(
-       al_color_html("99ddc4"), al_color_name("white"),0.5
-     ), 0.85
-   );
-float frame_opacity = 0.6;
-frame_color.r *= frame_opacity;
-frame_color.g *= frame_opacity;
-frame_color.b *= frame_opacity;
-frame_color.a *= frame_opacity;
-return frame_color;
-
+   ALLEGRO_COLOR frame_color = AllegroFlare::color::color(
+      AllegroFlare::color::mix(
+          al_color_html("99ddc4"), al_color_name("white"),0.5
+        ), 0.85
+      );
+   float frame_opacity = 0.6;
+   frame_color.r *= frame_opacity;
+   frame_color.g *= frame_opacity;
+   frame_color.b *= frame_opacity;
+   frame_color.a *= frame_opacity;
+   return frame_color;
 }
 
 AllegroFlare::FontBin& Frame::get_dummy_font_bin()
 {
-return dummy_font_bin;
-
+   return dummy_font_bin;
 }
 
 void Frame::render()
 {
-//float line_thickness = 2.5;
-//ALLEGRO_COLOR color = al_color_name("gray");
-//ALLEGRO_FONT *large_title_font = fonts["eurostyle.ttf 30"];
-//al_draw_text(large_title_font, color, 0, 0, 0, title_text.c_str());
-al_draw_rectangle(0, 0, width, height, get_outline_color(), get_line_thickness());
-return;
-
+   //float line_thickness = 2.5;
+   //ALLEGRO_COLOR color = al_color_name("gray");
+   //ALLEGRO_FONT *large_title_font = fonts["eurostyle.ttf 30"];
+   //al_draw_text(large_title_font, color, 0, 0, 0, title_text.c_str());
+   al_draw_rectangle(0, 0, width, height, get_outline_color(), get_line_thickness());
+   return;
 }
 } // namespace Elements
 } // namespace Hexagon

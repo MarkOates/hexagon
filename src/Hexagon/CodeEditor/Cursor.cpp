@@ -26,7 +26,7 @@ Cursor::~Cursor()
 
 std::string Cursor::run()
 {
-return "Hello World!";
+   return "Hello World!";
 }
 } // namespace CodeEditor
 } // namespace Hexagon

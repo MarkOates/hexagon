@@ -65,167 +65,151 @@ std::string Config::get_config_filename()
 
 void Config::validate_initialized(std::string function_name)
 {
-if (!initialized)
-{
-   std::stringstream error_message;
-   error_message << "[Hexagon::System::Config error:] cannot call "
-                 << "\"" << function_name << "\". "
-                 << "This component must be initialized before this function can be used.";
-   throw std::runtime_error(error_message.str());
-}
-
+   if (!initialized)
+   {
+      std::stringstream error_message;
+      error_message << "[Hexagon::System::Config error:] cannot call "
+                    << "\"" << function_name << "\". "
+                    << "This component must be initialized before this function can be used.";
+      throw std::runtime_error(error_message.str());
+   }
 }
 
 void Config::initialize()
 {
-if (!(al_is_system_installed()))
-   {
-      std::stringstream error_message;
-      error_message << "Config" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (initialized) return;
-config.load();
-initialized = true;
-
+   if (!(al_is_system_installed()))
+      {
+         std::stringstream error_message;
+         error_message << "Config" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (initialized) return;
+   config.load();
+   initialized = true;
 }
 
 int Config::get_initial_display_width()
 {
-validate_initialized(__FUNCTION__);
-return config.get_or_default_int("", INITIAL_DISPLAY_WIDTH_KEY, 2430);
-
+   validate_initialized(__FUNCTION__);
+   return config.get_or_default_int("", INITIAL_DISPLAY_WIDTH_KEY, 2430);
 }
 
 int Config::get_initial_display_height()
 {
-validate_initialized(__FUNCTION__);
-return config.get_or_default_int("", INITIAL_DISPLAY_HEIGHT_KEY, 1350);
-
+   validate_initialized(__FUNCTION__);
+   return config.get_or_default_int("", INITIAL_DISPLAY_HEIGHT_KEY, 1350);
 }
 
 std::string Config::get_default_navigator_directory()
 {
-validate_initialized(__FUNCTION__);
-return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
-
+   validate_initialized(__FUNCTION__);
+   return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
 }
 
 std::string Config::get_regex_temp_filename()
 {
-std::string default_filename = resource_path({"data", "tmp"}, "regex.txt");
-return config.get_or_default_str("", REGEX_TEMP_FILENAME_KEY, default_filename);
-
+   std::string default_filename = resource_path({"data", "tmp"}, "regex.txt");
+   return config.get_or_default_str("", REGEX_TEMP_FILENAME_KEY, default_filename);
 }
 
 std::string Config::get_clipboard_temp_filename()
 {
-std::string default_filename = resource_path({"data", "tmp"}, "clipboard.txt");
-return config.get_or_default_str("", CLIPBOARD_TEMP_FILENAME_KEY, default_filename);
-
+   std::string default_filename = resource_path({"data", "tmp"}, "clipboard.txt");
+   return config.get_or_default_str("", CLIPBOARD_TEMP_FILENAME_KEY, default_filename);
 }
 
 std::string Config::get_file_navigator_selection_filename()
 {
-std::string default_filename = resource_path({"data", "tmp"}, "file_navigator_selection.txt");
-return config.get_or_default_str("", FILE_NAVIGATOR_SELECTION_FILENAME_KEY, default_filename);
-
+   std::string default_filename = resource_path({"data", "tmp"}, "file_navigator_selection.txt");
+   return config.get_or_default_str("", FILE_NAVIGATOR_SELECTION_FILENAME_KEY, default_filename);
 }
 
 std::string Config::get_make_command_filename()
 {
-std::string default_filename = resource_path({"data", "tmp"}, "make_command.txt");
-return config.get_or_default_str("", MAKE_COMMAND_FILENAME_KEY, default_filename);
-
+   std::string default_filename = resource_path({"data", "tmp"}, "make_command.txt");
+   return config.get_or_default_str("", MAKE_COMMAND_FILENAME_KEY, default_filename);
 }
 
 std::string Config::get_focused_component_filename()
 {
-std::string default_filename = "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/focused_component.txt";
-return config.get_or_default_str("", FOCUSED_COMPONENT_FILENAME_KEY, default_filename);
-
+   std::string default_filename = "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/focused_component.txt";
+   return config.get_or_default_str("", FOCUSED_COMPONENT_FILENAME_KEY, default_filename);
 }
 
 std::string Config::get_font_bin_path()
 {
-std::string default_font_bin_path = "/Users/markoates/Repos/hexagon/bin/programs/data/fonts";
-return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
-
+   std::string default_font_bin_path = "/Users/markoates/Repos/hexagon/bin/programs/data/fonts";
+   return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
 }
 
 int Config::get_default_camera_stepback()
 {
-return 130;
-
+   return 130;
 }
 
 bool Config::is_dark_mode()
 {
-if (!(initialized))
-   {
-      std::stringstream error_message;
-      error_message << "Config" << "::" << "is_dark_mode" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-return config.get_or_default_bool("", DARK_MODE_KEY, false);
-
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "Config" << "::" << "is_dark_mode" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return config.get_or_default_bool("", DARK_MODE_KEY, false);
 }
 
 ALLEGRO_COLOR Config::get_backfill_color()
 {
-if (is_dark_mode())
-{
-   return al_color_name("black");
-}
-else
-{
-   return al_color_name("white");
-   //return al_color_html("8f9996"); // deep rich gray
-   //return al_color_html("8a5b38"); // darker, more true deep brown from lamp
-   //return al_color_html("a67d5a"); // color of lamp light against wall
+   if (is_dark_mode())
+   {
+      return al_color_name("black");
+   }
+   else
+   {
+      return al_color_name("white");
+      //return al_color_html("8f9996"); // deep rich gray
+      //return al_color_html("8a5b38"); // darker, more true deep brown from lamp
+      //return al_color_html("a67d5a"); // color of lamp light against wall
 
+      //return al_color_html("d2dbd6"); // very nice light gray
+   }
    //return al_color_html("d2dbd6"); // very nice light gray
-}
-//return al_color_html("d2dbd6"); // very nice light gray
-//return al_color_html("8f9996"); // deep rich gray
+   //return al_color_html("8f9996"); // deep rich gray
 
-//return al_color_html("5b5c60");
-//return al_color_name("black");
-
+   //return al_color_html("5b5c60");
+   //return al_color_name("black");
 }
 
 ALLEGRO_COLOR Config::get_base_text_color()
 {
-if (is_dark_mode())
-{
-   return al_color_name("white");
-}
-else
-{
-   return al_color_name("black");
-}
-
+   if (is_dark_mode())
+   {
+      return al_color_name("white");
+   }
+   else
+   {
+      return al_color_name("black");
+   }
 }
 
 float Config::get_backfill_opacity()
 {
-return 0.8f;
+   return 0.8f;
 }
 
 std::string Config::resource_path(std::vector<std::string> components, std::string filename)
 {
-std::string result;
+   std::string result;
 
-ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
-for (auto &component : components) al_append_path_component(path, component.c_str());
+   ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+   for (auto &component : components) al_append_path_component(path, component.c_str());
 
-al_set_path_filename(path, filename.c_str());
-result = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
+   al_set_path_filename(path, filename.c_str());
+   result = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
 
-//std::cout << result << std::endl;
+   //std::cout << result << std::endl;
 
-return result;
-
+   return result;
 }
 } // namespace System
 } // namespace Hexagon

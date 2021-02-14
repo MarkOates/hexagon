@@ -11,8 +11,7 @@ public:
    TreeBuilder();
    ~TreeBuilder();
 
-
-void build();
+   void build();
 };
 
 

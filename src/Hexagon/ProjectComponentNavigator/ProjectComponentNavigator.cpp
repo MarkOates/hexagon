@@ -94,64 +94,54 @@ std::string ProjectComponentNavigator::get_search_text()
 
 bool ProjectComponentNavigator::is_mode_navigating_list()
 {
-return this->mode == "navigating_list";
-
+   return this->mode == "navigating_list";
 }
 
 bool ProjectComponentNavigator::is_mode_typing_in_search_bar()
 {
-return this->mode == "typing_in_search_bar";
-
+   return this->mode == "typing_in_search_bar";
 }
 
 void ProjectComponentNavigator::move_cursor_up()
 {
-cursor_position -= 1;
-
+   cursor_position -= 1;
 }
 
 void ProjectComponentNavigator::move_cursor_down()
 {
-cursor_position += 1;
-
+   cursor_position += 1;
 }
 
 void ProjectComponentNavigator::move_cursor_to_top()
 {
-cursor_position = 0;
-
+   cursor_position = 0;
 }
 
 bool ProjectComponentNavigator::current_selection_is_valid()
 {
-if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
-return true;
-
+   if (cursor_position < 0 || cursor_position >= nodes.size()) return false;
+   return true;
 }
 
 void ProjectComponentNavigator::set_mode_to_navigating_list()
 {
-this->mode = "navigating_list";
-
+   this->mode = "navigating_list";
 }
 
 void ProjectComponentNavigator::set_mode_to_typing_in_search_bar()
 {
-this->mode = "typing_in_search_bar";
-
+   this->mode = "typing_in_search_bar";
 }
 
 std::string ProjectComponentNavigator::get_current_selection_label_or_empty_string()
 {
-if (!current_selection_is_valid()) return "";
-return nodes[get_cursor_position()].get_concept_name();
-
+   if (!current_selection_is_valid()) return "";
+   return nodes[get_cursor_position()].get_concept_name();
 }
 
 void ProjectComponentNavigator::refresh_list()
 {
-return;
-
+   return;
 }
 } // namespace ProjectComponentNavigator
 } // namespace Hexagon

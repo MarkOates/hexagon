@@ -19,9 +19,8 @@ namespace Hexagon
       RailsTestOutputParser(std::string source_test_output="");
       ~RailsTestOutputParser();
 
-
-   void process();
-   std::vector<RailsMinitestTestResult>& get_test_result_lines();
+      void process();
+      std::vector<RailsMinitestTestResult>& get_test_result_lines();
    };
 }
 

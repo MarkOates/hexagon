@@ -22,12 +22,11 @@ namespace Hexagon
          GoogleTestRunOutputParser(std::string google_test_run_output="");
          ~GoogleTestRunOutputParser();
 
-
          std::vector<Hexagon::Testing::GoogleTestRunTestResult> get_parsed_test_results();
          std::vector<std::string> get_parse_error_messages();
-      bool parse();
-      std::pair<std::string, std::string> extract_test_class_name_and_test_description(std::string line="");
-      int extract_ms(std::string line="");
+         bool parse();
+         std::pair<std::string, std::string> extract_test_class_name_and_test_description(std::string line="");
+         int extract_ms(std::string line="");
       };
    }
 }

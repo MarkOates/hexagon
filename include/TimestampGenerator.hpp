@@ -12,8 +12,7 @@ public:
    TimestampGenerator();
    ~TimestampGenerator();
 
-
-std::string get_current_time();
+   std::string get_current_time();
 };
 
 

@@ -38,7 +38,6 @@ namespace Hexagon
          void set_cell_height(int cell_height);
          void set_base_font_color(ALLEGRO_COLOR base_font_color);
          void set_backfill_color(ALLEGRO_COLOR backfill_color);
-
          ::CodeEditor::CodeEditor get_code_editor();
          bool get_is_focused();
          ALLEGRO_DISPLAY* get_display();
@@ -49,12 +48,12 @@ namespace Hexagon
          ALLEGRO_COLOR get_backfill_color();
          ::CodeEditor::CodeEditor &get_code_editor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      void change_state_to_submitted_and_pending_destruction();
-      bool is_state_to_submitted_and_pending_destruction();
-      virtual void render() override;
-      void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
-      void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
-      int code_editor_char_count();
+         void change_state_to_submitted_and_pending_destruction();
+         bool is_state_to_submitted_and_pending_destruction();
+         virtual void render() override;
+         void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
+         void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
+         int code_editor_char_count();
       };
    }
 }

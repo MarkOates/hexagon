@@ -34,26 +34,24 @@ std::vector<std::pair<std::string, std::string>> TemplatedFile::get_insertion_va
 
 std::string TemplatedFile::__replace(std::string str, std::string from, std::string to)
 {
-size_t start_pos = 0;
-while((start_pos = str.find(from, start_pos)) != std::string::npos) {
-   str.replace(start_pos, from.length(), to);
-   start_pos += to.length();
-}
-return str;
-
+   size_t start_pos = 0;
+   while((start_pos = str.find(from, start_pos)) != std::string::npos) {
+      str.replace(start_pos, from.length(), to);
+      start_pos += to.length();
+   }
+   return str;
 }
 
 std::string TemplatedFile::generate_content()
 {
-std::string result = template_content;
+   std::string result = template_content;
 
-for (auto &insertion_variable : insertion_variables)
-{
-  result = __replace(result, insertion_variable.first, insertion_variable.second);
-}
+   for (auto &insertion_variable : insertion_variables)
+   {
+     result = __replace(result, insertion_variable.first, insertion_variable.second);
+   }
 
-return result;
-
+   return result;
 }
 } // namespace Blast
 

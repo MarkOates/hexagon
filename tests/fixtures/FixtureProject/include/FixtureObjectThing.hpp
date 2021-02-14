@@ -14,9 +14,8 @@ public:
    FixtureObjectThing(std::string foobar="boobaz");
    ~FixtureObjectThing();
 
-
    std::string get_foobar();
-std::vector<std::string> generate_two_foobars();
+   std::vector<std::string> generate_two_foobars();
 };
 
 

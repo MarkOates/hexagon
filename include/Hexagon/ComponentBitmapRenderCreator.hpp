@@ -17,9 +17,8 @@ namespace Hexagon
       ComponentBitmapRenderCreator(Blast::Project::Component* component=nullptr);
       ~ComponentBitmapRenderCreator();
 
-
-   ALLEGRO_BITMAP* create_bitmap_render();
-   std::string render();
+      ALLEGRO_BITMAP* create_bitmap_render();
+      std::string render();
    };
 }
 

@@ -18,10 +18,9 @@ namespace Blast
       ~TemplatedFile();
 
       void set_insertion_variables(std::vector<std::pair<std::string, std::string>> insertion_variables);
-
       std::vector<std::pair<std::string, std::string>> get_insertion_variables();
-   std::string __replace(std::string str="source string", std::string from="source", std::string to="result");
-   std::string generate_content();
+      std::string __replace(std::string str="source string", std::string from="source", std::string to="result");
+      std::string generate_content();
    };
 }
 

@@ -27,14 +27,13 @@ namespace Hexagon
 
          void set_text_font(ALLEGRO_FONT* text_font);
          void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
-
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      void initialize();
-      void draw_design();
-      virtual void render() override;
-      void draw();
-      void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
-      void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
+         void initialize();
+         void draw_design();
+         virtual void render() override;
+         void draw();
+         void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
+         void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
       };
    }
 }

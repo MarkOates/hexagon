@@ -22,8 +22,7 @@ namespace Hexagon
          ~FlashingGrid();
 
          void set_counter(int counter);
-
-      void render();
+         void render();
       };
    }
 }

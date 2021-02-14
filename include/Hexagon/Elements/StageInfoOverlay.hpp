@@ -26,13 +26,12 @@ namespace Hexagon
 
          void set_place(placement3d* place);
          void set_text(std::string text);
-
          ALLEGRO_FONT* get_title_font();
          ALLEGRO_COLOR* get_backfill_color();
          float get_backfill_opacity();
          placement3d* get_place();
          std::string get_text();
-      void render();
+         void render();
       };
    }
 }

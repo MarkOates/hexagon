@@ -26,9 +26,8 @@ namespace Hexagon
          Renderer(ALLEGRO_DISPLAY* display=nullptr, Hexagon::Powerbar::Powerbar* powerbar=nullptr, ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR backfill_color={0.0f,0.0f,0.0f,0.0f}, float width=1000.0f);
          ~Renderer();
 
-
-      void draw_individual_rectangle(float x1=0.0f, float y1=0.0f, float x2=0.0f, float y2=0.0f, std::string text="[-]");
-      void render();
+         void draw_individual_rectangle(float x1=0.0f, float y1=0.0f, float x2=0.0f, float y2=0.0f, std::string text="[-]");
+         void render();
       };
    }
 }

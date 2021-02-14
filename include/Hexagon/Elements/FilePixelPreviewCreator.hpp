@@ -20,9 +20,8 @@ namespace Hexagon
          FilePixelPreviewCreator(std::string filename="", int width=120);
          ~FilePixelPreviewCreator();
 
-
-      ALLEGRO_BITMAP* create();
-      std::vector<std::string> get_file_contents();
+         ALLEGRO_BITMAP* create();
+         std::vector<std::string> get_file_contents();
       };
    }
 }

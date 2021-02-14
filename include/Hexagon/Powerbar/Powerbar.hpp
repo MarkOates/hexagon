@@ -28,7 +28,6 @@ namespace Hexagon
          void set_files_are_untracked(bool files_are_untracked);
          void set_files_are_committed(bool files_are_committed);
          void set_commits_are_in_sync_with_remote(bool commits_are_in_sync_with_remote);
-
          bool get_files_are_modified();
          bool get_files_are_staged();
          bool get_files_are_untracked();

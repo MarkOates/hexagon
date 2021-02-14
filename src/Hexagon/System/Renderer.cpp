@@ -40,71 +40,70 @@ ALLEGRO_COLOR* Renderer::get_backfill_color()
 
 bool Renderer::render()
 {
-if (!(system))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"system\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(display))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"display\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-if (!(backfill_color))
-   {
-      std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
-      throw std::runtime_error(error_message.str());
-   }
-al_clear_to_color(*get_backfill_color());
-//al_clear_to_color(al_color_html("5b5c60"));
+   if (!(system))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"system\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(display))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"display\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(backfill_color))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   al_clear_to_color(*get_backfill_color());
+   //al_clear_to_color(al_color_html("5b5c60"));
 
-system->camera.setup_camera_perspective(al_get_backbuffer(display));
-al_clear_depth_buffer(1000);
+   system->camera.setup_camera_perspective(al_get_backbuffer(display));
+   al_clear_depth_buffer(1000);
 
-global::profiler.start("all stages");
+   global::profiler.start("all stages");
 
-ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
-int cell_width = al_get_text_width(font, " ");
-int cell_height = al_get_font_line_height(font);
-
-for (auto &stage : system->stages)
-{
-   if (stage->get_render_on_hud()) continue;
-
-   std::stringstream profile_timer_element_label;
-   profile_timer_element_label << "Stage [" << stage->get_type_name() << "]                    " << stage;
-   global::profiler.start(profile_timer_element_label.str());
-
-   bool is_focused = (system->get_frontmost_stage() == stage);
    ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
+   int cell_width = al_get_text_width(font, " ");
+   int cell_height = al_get_font_line_height(font);
 
-   stage->render();
-
-   if (is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
+   for (auto &stage : system->stages)
    {
-      placement3d place = stage->get_place();
-      Hexagon::Elements::Window window(place.size.x, place.size.y);
+      if (stage->get_render_on_hud()) continue;
 
-      window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
-      window.set_outer_line_opacity(0.2);
-      window.set_outer_line_thickness(4.0);
+      std::stringstream profile_timer_element_label;
+      profile_timer_element_label << "Stage [" << stage->get_type_name() << "]                    " << stage;
+      global::profiler.start(profile_timer_element_label.str());
 
-      place.start_transform();
-      window.draw();
-      place.restore_transform();
+      bool is_focused = (system->get_frontmost_stage() == stage);
+      ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
+
+      stage->render();
+
+      if (is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
+      {
+         placement3d place = stage->get_place();
+         Hexagon::Elements::Window window(place.size.x, place.size.y);
+
+         window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+         window.set_outer_line_opacity(0.2);
+         window.set_outer_line_thickness(4.0);
+
+         place.start_transform();
+         window.draw();
+         place.restore_transform();
+      }
+
+      global::profiler.pause(profile_timer_element_label.str());
    }
+   global::profiler.pause("all stages");
 
-   global::profiler.pause(profile_timer_element_label.str());
-}
-global::profiler.pause("all stages");
+   system->hud.draw();
 
-system->hud.draw();
-
-return true;
-
+   return true;
 }
 } // namespace System
 } // namespace Hexagon

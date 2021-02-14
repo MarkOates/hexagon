@@ -32,25 +32,24 @@ namespace Hexagon
          Config(std::string config_filename="/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg");
          ~Config();
 
-
          std::string get_config_filename();
-      void validate_initialized(std::string function_name="[unnamed_function]");
-      void initialize();
-      int get_initial_display_width();
-      int get_initial_display_height();
-      std::string get_default_navigator_directory();
-      std::string get_regex_temp_filename();
-      std::string get_clipboard_temp_filename();
-      std::string get_file_navigator_selection_filename();
-      std::string get_make_command_filename();
-      std::string get_focused_component_filename();
-      std::string get_font_bin_path();
-      int get_default_camera_stepback();
-      bool is_dark_mode();
-      ALLEGRO_COLOR get_backfill_color();
-      ALLEGRO_COLOR get_base_text_color();
-      float get_backfill_opacity();
-      std::string resource_path(std::vector<std::string> components={}, std::string filename={});
+         void validate_initialized(std::string function_name="[unnamed_function]");
+         void initialize();
+         int get_initial_display_width();
+         int get_initial_display_height();
+         std::string get_default_navigator_directory();
+         std::string get_regex_temp_filename();
+         std::string get_clipboard_temp_filename();
+         std::string get_file_navigator_selection_filename();
+         std::string get_make_command_filename();
+         std::string get_focused_component_filename();
+         std::string get_font_bin_path();
+         int get_default_camera_stepback();
+         bool is_dark_mode();
+         ALLEGRO_COLOR get_backfill_color();
+         ALLEGRO_COLOR get_base_text_color();
+         float get_backfill_opacity();
+         std::string resource_path(std::vector<std::string> components={}, std::string filename={});
       };
    }
 }

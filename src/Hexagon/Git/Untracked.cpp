@@ -31,26 +31,24 @@ std::string Untracked::get_current_project_directory()
 
 std::vector<std::string> Untracked::get_shell_response()
 {
-Blast::ShellCommandExecutorWithCallback executor(
-      build_tracked_files_shell_command(),
-      Blast::ShellCommandExecutorWithCallback::simple_silent_callback
-   );
-std::string command_output = executor.execute();
-return Blast::StringSplitter(command_output, '\n').split();
-
+   Blast::ShellCommandExecutorWithCallback executor(
+         build_tracked_files_shell_command(),
+         Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+      );
+   std::string command_output = executor.execute();
+   return Blast::StringSplitter(command_output, '\n').split();
 }
 
 std::string Untracked::build_tracked_files_shell_command()
 {
-std::stringstream shell_command;
-shell_command << "("
-              << "cd " << current_project_directory
-              << " && "
-              << "git ls-files --others --exclude-standard"
-              << ")";
+   std::stringstream shell_command;
+   shell_command << "("
+                 << "cd " << current_project_directory
+                 << " && "
+                 << "git ls-files --others --exclude-standard"
+                 << ")";
 
-return shell_command.str();
-
+   return shell_command.str();
 }
 } // namespace Git
 } // namespace Hexagon
