@@ -293,7 +293,7 @@ functions:
   - name: create_git_commit_message_box
     type: StageInterface*
     body: |
-      Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(
+      Hexagon::GitCommitMessageInputBox::Stage *stage = new Hexagon::GitCommitMessageInputBox::Stage(
          {
             obtain_regex_temp_filename(),
             "git_commit_message_input_box",
@@ -319,7 +319,7 @@ functions:
 
       return stage;
     body_dependency_symbols:
-      - Hexagon::CodeEditor::Stage
+      - Hexagon::GitCommitMessageInputBox::Stage
 
 
   - name: create_advanced_component_navigator
@@ -456,6 +456,8 @@ dependencies:
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: Hexagon::OneLineInputBox::Stage
     headers: [ Hexagon/OneLineInputBox/Stage.hpp ]
+  - symbol: Hexagon::GitCommitMessageInputBox::Stage
+    headers: [ Hexagon/GitCommitMessageInputBox/Stage.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Stage
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::Stage

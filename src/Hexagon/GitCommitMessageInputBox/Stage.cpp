@@ -161,17 +161,17 @@ return state == "submitted_and_pending_destruction";
 
 void Stage::render()
 {
-if (!((code_editor.get_type() == ONE_LINE_INPUT_BOX)))
+if (!((code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)))
    {
       std::stringstream error_message;
-      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"(code_editor.get_type() == ONE_LINE_INPUT_BOX)\" not met";
+      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"(code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)\" not met";
       throw std::runtime_error(error_message.str());
    }
-ALLEGRO_COLOR outline_and_text_color = al_color_name("dodgerblue");
+ALLEGRO_COLOR outline_and_text_color = al_color_name("salmon");
 float width = get_place().size.x;
 float height = get_place().size.y;
 //std::string top_left_text = "ESC: Close";
-std::string bottom_right_text = "search";
+std::string bottom_right_text = "commit and push";
 ALLEGRO_COLOR backfill_color = al_color_name("black");
 std::vector<std::string> lines = code_editor.get_lines_ref();
 int char_count = code_editor_char_count();
@@ -205,14 +205,14 @@ return;
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
-return; // these two lines disabled during copy from Hexagon/CodeEditor/Stage //::GitCommitMessageInputBox::EventController stage_event_controller(this); //stage_event_controller.process_local_event(event_name, action_data); return;
+return; // these two lines disabled during copy from Hexagon/CodeEditor/Stage ::GitCommitMessageInputBox::EventController stage_event_controller(this); stage_event_controller.process_local_event(event_name, action_data); return;
 }
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
 // these two lines disabled during copy from Hexagon/CodeEditor/Stage
-//::GitCommitMessageInputBox::EventController stage_event_controller(this);
-//stage_event_controller.process_event(event);
+::GitCommitMessageInputBox::EventController stage_event_controller(this);
+stage_event_controller.process_event(event);
 return;
 
 }

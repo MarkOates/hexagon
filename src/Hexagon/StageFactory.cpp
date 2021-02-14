@@ -34,7 +34,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/OneLineInputBox/Stage.hpp>
-#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_font.h>
@@ -334,7 +334,7 @@ return stage;
 
 StageInterface* StageFactory::create_git_commit_message_box()
 {
-Hexagon::CodeEditor::Stage *stage = new Hexagon::CodeEditor::Stage(
+Hexagon::GitCommitMessageInputBox::Stage *stage = new Hexagon::GitCommitMessageInputBox::Stage(
    {
       obtain_regex_temp_filename(),
       "git_commit_message_input_box",
