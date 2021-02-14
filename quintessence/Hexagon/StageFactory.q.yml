@@ -84,12 +84,6 @@ functions:
       return config->get_initial_display_height();
 
 
-  - name: create
-    type: StageInterface*
-    body: |
-      return nullptr;
-
-
   - name: create_file_navigator
     type: StageInterface*
     parameters:

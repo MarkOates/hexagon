@@ -178,12 +178,6 @@ return config->get_initial_display_height();
 
 }
 
-StageInterface* StageFactory::create()
-{
-return nullptr;
-
-}
-
 StageInterface* StageFactory::create_file_navigator(std::string directory)
 {
 std::string directory_to_start = directory.empty() ? obtain_default_navigator_directory() : directory;

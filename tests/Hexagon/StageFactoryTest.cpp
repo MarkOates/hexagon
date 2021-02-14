@@ -19,12 +19,6 @@ TEST(Hexagon_StageFactoryTest, can_be_created_without_blowing_up)
    Hexagon::StageFactory stage_factory;
 }
 
-TEST(Hexagon_StageFactoryTest, create__returns_the_expected_response)
-{
-   Hexagon::StageFactory stage_factory;
-   EXPECT_EQ(nullptr, stage_factory.create());
-}
-
 TEST(Hexagon_StageFactoryTest, obtain_component_navigator_font__without_a_font_bin__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;
