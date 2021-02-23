@@ -27,6 +27,7 @@ public:
       MISSING_FILE,
       LITTLE_MENU,
       DRAWING_BOX,
+      NOTIFICATION,
    }; // these types should not be included within the base class
 
 private:

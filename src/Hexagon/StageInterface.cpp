@@ -69,6 +69,9 @@ std::string StageInterface::get_type_name()
       case DRAWING_BOX:
          return "DrawingBox";
          break;
+      case NOTIFICATION:
+         return "Notification";
+         break;
       default:
       {
          throw std::runtime_error("StageInterface::get_type_name() unrecognized type");
