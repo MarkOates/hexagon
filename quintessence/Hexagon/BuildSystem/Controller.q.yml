@@ -1,0 +1,13 @@
+functions:
+
+
+  - name: create
+    type: std::string
+    body: |
+      // run a simple build command
+      //std::string build_command 
+      // collect the binary artifact
+      // copy the binary artifact to a destination
+      return "Hello World!";
+
+

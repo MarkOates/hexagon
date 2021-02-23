@@ -1,0 +1,21 @@
+properties:
+
+
+  - name: status
+    type: std::string
+    init_with: STATUS_UNDEFINED
+    getter: true
+  - name: STATUS_UNDEFINED
+    type: std::string
+    const: true
+    init_with: '"undefined"'
+    static: true
+
+
+functions:
+
+
+  - name: start
+    type: std::string
+    body: return "Hello World!";
+
