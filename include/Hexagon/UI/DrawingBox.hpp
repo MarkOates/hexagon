@@ -56,6 +56,7 @@ namespace Hexagon
          void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
          ALLEGRO_FONT* obtain_eurostile_title_font();
          ALLEGRO_FONT* obtain_info_font();
+         void draw_help_text();
          void draw_title_text();
          void draw_crosshair();
          void destroy() override;

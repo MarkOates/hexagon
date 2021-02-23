@@ -122,6 +122,7 @@ functions:
       place.restore_transform();
 
       draw_title_text();
+      draw_help_text();
 
       return;
     body_dependency_symbols:
@@ -261,7 +262,21 @@ functions:
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
-      return font_bin->auto_get("Purista Medium.otf 28");
+      return font_bin->auto_get("Purista Medium.otf 18");
+
+
+  - name: draw_help_text
+    private: true
+    type: void
+    body: |
+      ALLEGRO_FONT *title_font = obtain_info_font();
+      std::string help_text = "PLUS_PAD: save to desktop";
+      float x = get_width() - 50;
+      float y = get_height() - 50;
+      al_draw_text(title_font, al_color_name("gray"), x, y, ALLEGRO_ALIGN_RIGHT, help_text.c_str());
+    body_dependency_symbols:
+      - al_draw_text
+      - ALLEGRO_FONT
 
 
   - name: draw_title_text

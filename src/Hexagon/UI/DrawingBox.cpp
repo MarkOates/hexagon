@@ -13,6 +13,8 @@
 #include <sstream>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <stdexcept>
 #include <sstream>
@@ -182,6 +184,7 @@ void DrawingBox::render()
    place.restore_transform();
 
    draw_title_text();
+   draw_help_text();
 
    return;
 }
@@ -312,7 +315,16 @@ ALLEGRO_FONT* DrawingBox::obtain_info_font()
          error_message << "DrawingBox" << "::" << "obtain_info_font" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   return font_bin->auto_get("Purista Medium.otf 28");
+   return font_bin->auto_get("Purista Medium.otf 18");
+}
+
+void DrawingBox::draw_help_text()
+{
+   ALLEGRO_FONT *title_font = obtain_info_font();
+   std::string help_text = "PLUS_PAD: save to desktop";
+   float x = get_width() - 50;
+   float y = get_height() - 50;
+   al_draw_text(title_font, al_color_name("gray"), x, y, ALLEGRO_ALIGN_RIGHT, help_text.c_str());
 }
 
 void DrawingBox::draw_title_text()
