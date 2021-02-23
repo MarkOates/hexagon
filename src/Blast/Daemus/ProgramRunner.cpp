@@ -81,7 +81,7 @@ void ProgramRunner::cd_to_project_directory_and_run_with_rerun(std::string proje
       " " \
       "--background" \
       " " \
-      "--ignore \"**/bin/programs/data/tmp/*\"" \
+      "--ignore \"{**/bin/programs/data/tmp/*,**/documentation/*\"}" \
       " " \
       "-p \"**/*.{rb,js,tsx,coffee,css,scss,sass,erb,html,haml,ru,yml,slim,md,feature,c,h,cpp,hpp,txt,cfg}\"" \
       " " \
