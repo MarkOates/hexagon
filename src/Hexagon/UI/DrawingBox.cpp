@@ -11,6 +11,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <stdexcept>
 #include <sstream>
@@ -179,9 +181,7 @@ void DrawingBox::render()
 
    place.restore_transform();
 
-   ALLEGRO_FONT *title_font = obtain_eurostile_title_font();
-   std::string title_text = "DRAWING MODE";
-   al_draw_text(title_font, al_color_name("white"), 100, 50, ALLEGRO_ALIGN_LEFT, title_text.c_str());
+   draw_title_text();
 
    return;
 }
@@ -317,8 +317,9 @@ ALLEGRO_FONT* DrawingBox::obtain_info_font()
 
 void DrawingBox::draw_title_text()
 {
-   void;
-   //ALLEGRO_FONT *font 
+   ALLEGRO_FONT *title_font = obtain_eurostile_title_font();
+   std::string title_text = "DRAWING MODE";
+   al_draw_text(title_font, al_color_name("white"), 100, 50, ALLEGRO_ALIGN_LEFT, title_text.c_str());
 }
 
 void DrawingBox::draw_crosshair()
