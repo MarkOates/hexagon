@@ -1,0 +1,8 @@
+properties:
+
+  - name: body_text
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
+    getter: true
+

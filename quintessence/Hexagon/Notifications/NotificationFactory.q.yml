@@ -1,0 +1,20 @@
+functions:
+
+  - name: create_basic_notification
+    type: Hexagon::Notifications::Notification*
+    parameters:
+      - name: body_text
+        type: std::string
+        default_argument: '""'
+    body: |
+      Hexagon::Notifications::Notification *notification =
+         new Hexagon::Notifications::Notification(
+            body_text
+         );
+      return notification;
+
+dependencies:
+
+   - symbol: Hexagon::Notifications::Notification*
+     headers: [ Hexagon/Notifications/Notification.hpp ]
+
