@@ -9,6 +9,8 @@
 #include <AllegroFlare/Color.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <allegro5/allegro_primitives.h>
 #include <stdexcept>
 #include <sstream>
@@ -300,6 +302,23 @@ ALLEGRO_FONT* DrawingBox::obtain_eurostile_title_font()
          throw std::runtime_error(error_message.str());
       }
    return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf 42");
+}
+
+ALLEGRO_FONT* DrawingBox::obtain_info_font()
+{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "DrawingBox" << "::" << "obtain_info_font" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return font_bin->auto_get("Purista Medium.otf 28");
+}
+
+void DrawingBox::draw_title_text()
+{
+   void;
+   //ALLEGRO_FONT *font 
 }
 
 void DrawingBox::draw_crosshair()

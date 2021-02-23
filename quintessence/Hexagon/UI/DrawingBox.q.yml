@@ -259,6 +259,21 @@ functions:
       return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf 42");
 
 
+  - name: obtain_info_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      return font_bin->auto_get("Purista Medium.otf 28");
+
+
+  - name: draw_title_text
+    private: true
+    type: void
+    body: |
+      void;
+      //ALLEGRO_FONT *font 
+
+
   - name: draw_crosshair
     private: true
     type: void

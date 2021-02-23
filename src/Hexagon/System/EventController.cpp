@@ -323,7 +323,7 @@ void EventController::process_event(ALLEGRO_EVENT& event)
    }
    else
    {
-      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, false, false, false, {
+      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, false, {
          ::System::SPAWN_DRAWING_BOX });
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, false, false, false, {
          ::System::SPAWN_LITTLE_MENU });

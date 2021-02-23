@@ -55,6 +55,8 @@ namespace Hexagon
          void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
          void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
          ALLEGRO_FONT* obtain_eurostile_title_font();
+         ALLEGRO_FONT* obtain_info_font();
+         void draw_title_text();
          void draw_crosshair();
          void destroy() override;
          static std::map<std::string, std::function<bool(Hexagon::UI::DrawingBox&)>> build_default_function_mapping();
