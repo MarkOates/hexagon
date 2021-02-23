@@ -25,13 +25,13 @@ std::string Controller::create()
 {
    // run a simple build command
    std::string directory = "/Users/markoates/Repos/hexagon";
-   std::string build_command = "g++ -std=c++17 tests/fixtures/source_files/a_program.cpp";
+   std::string build_command = "g++ -std=c++17 tests/fixtures/source_files/a_program.cpp -o ./tmp/a_program";
 
-   std::stringstream shell_command;
-   shell_command << "(cd " << directory << " && " << build_command << " && echo )";
+   std::stringstream full_shell_command;
+   full_shell_command << "(cd " << directory << " && " << build_command << " && ./tmp/a_program)";
    Blast::ShellCommandExecutorWithCallback executor =
       Blast::ShellCommandExecutorWithCallback(
-         shell_command.str(),
+         full_shell_command.str(),
          Blast::ShellCommandExecutorWithCallback::simple_silent_callback
       );
 

@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-   std::string output_string = "This is some text to output.";
+   std::string output_string = "This is some text output by the fixture program.";
    std::cout << output_string << std::endl;
    return 0;
 }
