@@ -84,6 +84,20 @@ functions:
       return config->get_initial_display_height();
 
 
+  - name: create_notification
+    type: StageInterface*
+    parameters:
+      - name: body_text
+        type: std::string
+        default_argument: '""'
+    body: |
+      Hexagon::Notifications::Stage *stage = new Hexagon::Notifications::Stage(body_text);
+      stage->set_render_on_hud(true);
+      return stage;
+    body_dependency_symbols:
+      - Hexagon::Notifications::Stage
+
+
   - name: create_file_navigator
     type: StageInterface*
     parameters:
@@ -464,6 +478,8 @@ dependencies:
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
   - symbol: std::vector<std::tuple<std::string, std::string>>
     headers: [ vector, tuple, string ]
+  - symbol: Hexagon::Notifications::Stage
+    headers: [ Hexagon/Notifications/Stage.hpp ]
   - symbol: Hexagon::UI::LittleMenu
     headers: [ Hexagon/UI/LittleMenu.hpp ]
   - symbol: Hexagon::UI::DrawingBox

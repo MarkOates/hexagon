@@ -9,6 +9,16 @@ parent_classes:
 properties:
 
 
+  - name: body_text
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
+    getter: true
+    setter: true
+  - name: component
+    type: Hexagon::Notifications::Notification
+    init_with: 'body_text'
+    getter_ref: true
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -55,6 +65,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::Notifications::Notification
+    headers: [ Hexagon/Notifications/Notification.hpp ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: ALLEGRO_EVENT

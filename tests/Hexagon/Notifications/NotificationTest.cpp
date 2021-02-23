@@ -14,3 +14,4 @@ TEST(Hexagon_Notifications_NotificationTest, body_text__has_a_getter__and_is_ini
    std::string expected_string = "";
    EXPECT_EQ(expected_string, notification.get_body_text());
 }
+

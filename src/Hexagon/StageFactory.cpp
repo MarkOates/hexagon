@@ -21,6 +21,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/Notifications/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
@@ -167,6 +168,13 @@ int StageFactory::obtain_display_default_height()
          throw std::runtime_error(error_message.str());
       }
    return config->get_initial_display_height();
+}
+
+StageInterface* StageFactory::create_notification(std::string body_text)
+{
+   Hexagon::Notifications::Stage *stage = new Hexagon::Notifications::Stage(body_text);
+   stage->set_render_on_hud(true);
+   return stage;
 }
 
 StageInterface* StageFactory::create_file_navigator(std::string directory)

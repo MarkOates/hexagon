@@ -13,14 +13,34 @@ namespace Notifications
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage()
+Stage::Stage(std::string body_text)
    : StageInterface(StageInterface::NOTIFICATION)
+   , body_text(body_text)
+   , component(body_text)
 {
 }
 
 
 Stage::~Stage()
 {
+}
+
+
+void Stage::set_body_text(std::string body_text)
+{
+   this->body_text = body_text;
+}
+
+
+std::string Stage::get_body_text()
+{
+   return body_text;
+}
+
+
+Hexagon::Notifications::Notification &Stage::get_component_ref()
+{
+   return component;
 }
 
 

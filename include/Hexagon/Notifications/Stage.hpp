@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/ActionData.hpp>
+#include <Hexagon/Notifications/Notification.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <string>
@@ -14,12 +15,17 @@ namespace Hexagon
       class Stage : public StageInterface
       {
       private:
+         std::string body_text;
+         Hexagon::Notifications::Notification component;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         Stage();
+         Stage(std::string body_text="");
          virtual ~Stage();
 
+         void set_body_text(std::string body_text);
+         std::string get_body_text();
+         Hexagon::Notifications::Notification &get_component_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          virtual void render() override;
          virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;

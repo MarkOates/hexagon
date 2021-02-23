@@ -13,6 +13,7 @@
 #include <Hexagon/UI/LittleMenu.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/UI/DrawingBox.hpp>
+#include <Hexagon/Notifications/Stage.hpp>
 
 TEST(Hexagon_StageFactoryTest, can_be_created_without_blowing_up)
 {
@@ -80,6 +81,42 @@ TEST(Hexagon_StageFactoryTest, obtain_git_commit_message_box_font__returns_a_fon
    al_shutdown_ttf_addon();
    al_uninstall_system();
 }
+
+
+TEST(Hexagon_StageFactoryTest,
+   create_notification__creates_a_notificaiton_with_the_expected_properties)
+{
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   Hexagon::System::Config config;
+   config.initialize();
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+
+   std::string notification_body_text = "This is the notification text.";
+   StageInterface *created_stage = stage_factory.create_notification(notification_body_text);
+   Hexagon::Notifications::Stage *stage = static_cast<Hexagon::Notifications::Stage*>(created_stage);
+
+   ASSERT_NE(nullptr, created_stage);
+
+   StageInterface::type_t expected_type = StageInterface::NOTIFICATION;
+   StageInterface::type_t actual_type = created_stage->get_type();
+   Hexagon::Notifications::Notification &notification = stage->get_component_ref();
+
+   ASSERT_EQ(expected_type, actual_type);
+   EXPECT_EQ(true, stage->get_render_on_hud());
+   EXPECT_EQ(notification_body_text, notification.get_body_text());
+
+   font_bin.clear();
+   al_destroy_display(display);
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+}
+
 
 TEST(Hexagon_StageFactoryTest,
    create_little_menu__creates_a_little_menu_stage_with_the_expected_properties)
