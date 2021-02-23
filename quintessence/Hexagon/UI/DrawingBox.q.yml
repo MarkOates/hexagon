@@ -262,7 +262,7 @@ functions:
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
-      return font_bin->auto_get("Purista Medium.otf 18");
+      return font_bin->auto_get("Purista Medium.otf 14");
 
 
   - name: draw_help_text
@@ -270,13 +270,23 @@ functions:
     type: void
     body: |
       ALLEGRO_FONT *title_font = obtain_info_font();
-      std::string help_text = "PLUS_PAD: save to desktop";
+
+      std::vector<std::string> help_texts = {
+         "PAD_PLUS: save to desktop",
+         "PAD_1: default pen",
+         "PAD_7: draft pencil",
+      };
+      Blast::StringJoiner string_joiner(help_texts, " | ");
+
+      std::string help_text = string_joiner.join();
+
       float x = get_width() - 50;
       float y = get_height() - 50;
       al_draw_text(title_font, al_color_name("gray"), x, y, ALLEGRO_ALIGN_RIGHT, help_text.c_str());
     body_dependency_symbols:
       - al_draw_text
       - ALLEGRO_FONT
+      - Blast::StringJoiner
 
 
   - name: draw_title_text
@@ -388,6 +398,8 @@ dependencies:
     headers: [ Hexagon/Elements/ListMenu.hpp ]
   - symbol: ActionData
     headers: [ 'Hexagon/ActionData.hpp' ]
+  - symbol: Blast::StringJoiner
+    headers: [ Blast/StringJoiner.hpp ]
   - symbol: ALLEGRO_EVENT
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_COLOR
