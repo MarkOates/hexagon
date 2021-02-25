@@ -4,6 +4,7 @@
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
+#include <Blast/FileCreator.hpp>
 
 
 namespace Hexagon
@@ -126,6 +127,9 @@ void Stage::render()
 
    al_draw_text(font, color, width/2, height/3 + line_height*3, ALLEGRO_ALIGN_CENTER, expected_filename.c_str());
 
+   std::string create_message = "Press ENTER to create (requires reload)";
+   al_draw_text(font, color, width/2, height/3 + line_height*9, ALLEGRO_ALIGN_CENTER, create_message.c_str());
+
    place.restore_transform();
 }
 
@@ -136,6 +140,14 @@ void Stage::process_local_event(std::string event_name, ActionData action_data)
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
+   return;
+}
+
+void Stage::create_expected_file()
+{
+   std::string initial_file_contents = "// empty";
+   Blast::FileCreator file_creator(expected_filename, initial_file_contents);
+   file_creator.create_if_not_exists();
    return;
 }
 } // namespace MissingFile

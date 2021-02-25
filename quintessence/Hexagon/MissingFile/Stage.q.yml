@@ -75,6 +75,9 @@ functions:
 
       al_draw_text(font, color, width/2, height/3 + line_height*3, ALLEGRO_ALIGN_CENTER, expected_filename.c_str());
 
+      std::string create_message = "Press ENTER to create (requires reload)";
+      al_draw_text(font, color, width/2, height/3 + line_height*9, ALLEGRO_ALIGN_CENTER, create_message.c_str());
+
       place.restore_transform();
     body_dependency_symbols:
       - al_color_html
@@ -103,6 +106,17 @@ functions:
     body: return;
 
 
+  - name: create_expected_file
+    private: true
+    body: |
+      std::string initial_file_contents = "// empty";
+      Blast::FileCreator file_creator(expected_filename, initial_file_contents);
+      file_creator.create_if_not_exists();
+      return;
+    body_dependency_symbols:
+      - Blast::FileCreator
+
+
 dependencies:
 
 
@@ -112,6 +126,8 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: Blast::FileCreator
+    headers: [ Blast/FileCreator.hpp ]
   - symbol: al_color_html
     headers: [ allegro5/allegro_color.h ]
   - symbol: al_draw_rectangle
