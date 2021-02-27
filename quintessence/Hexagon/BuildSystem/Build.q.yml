@@ -1,6 +1,5 @@
 properties:
 
-
   - name: status
     type: std::string
     init_with: STATUS_UNDEFINED
@@ -11,9 +10,7 @@ properties:
     init_with: '"undefined"'
     static: true
 
-
 functions:
-
 
   - name: start
     type: std::string
