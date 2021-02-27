@@ -97,7 +97,7 @@ void ListMenu::render()
    ALLEGRO_FONT *font = obtain_list_item_font();
    //ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
    ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
-   ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.2};
+   ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.6};
    float width = 500;
    //float height = 300;
    int line_height = al_get_font_line_height(font) * 1.2;
