@@ -385,6 +385,7 @@ functions:
 
   - name: dirty_grid_clear
     type: void
+    private: true
     body: |
       dirty_grid.clear();
       return;
@@ -392,18 +393,21 @@ functions:
 
   - name: get_dirty_cells
     type: std::vector<std::pair<int, int>>
+    private: true
     body: |
       return dirty_grid.build_vector();
 
 
   - name: any_dirty_cells
     type: bool
+    private: true
     body: |
       return !dirty_grid.dirty_cells_empty();
 
 
   - name: dirty_cell_count
     type: int
+    private: true
     body: |
       return dirty_grid.dirty_cells_count();
 
