@@ -25,8 +25,8 @@ namespace Blast
          void run_simple_sleep_command();
          std::vector<Hexagon::Testing::GoogleTestRunTestResult> run_component_test(Blast::Project::Component component={});
          void run_build_quintessence_file(std::string project_directory="", std::string quintessence_filename="");
-         std::string execute_command(std::string command="", bool output_to_stdout=true);
          void output_pid();
+         std::string execute_command(std::string command="", bool output_to_stdout=true);
       };
    }
 }

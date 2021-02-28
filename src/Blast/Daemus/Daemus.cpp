@@ -7,10 +7,10 @@
 #include <Blast/DirectoryExistenceChecker.hpp>
 #include <Blast/FileExistenceChecker.hpp>
 #include <sstream>
-#include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <iostream>
 #include <iostream>
 #include <unistd.h>
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
 namespace Blast
@@ -128,6 +128,12 @@ void Daemus::run_build_quintessence_file(std::string project_directory, std::str
    return;
 }
 
+void Daemus::output_pid()
+{
+   std::cout << "pid: " << getpid() << std::endl;
+   return;
+}
+
 std::string Daemus::execute_command(std::string command, bool output_to_stdout)
 {
    Blast::ShellCommandExecutorWithCallback shell_command_executor(
@@ -136,12 +142,6 @@ std::string Daemus::execute_command(std::string command, bool output_to_stdout)
                        : Blast::ShellCommandExecutorWithCallback::simple_silent_callback
    );
    return shell_command_executor.execute();
-}
-
-void Daemus::output_pid()
-{
-   std::cout << "pid: " << getpid() << std::endl;
-   return;
 }
 } // namespace Daemus
 } // namespace Blast
