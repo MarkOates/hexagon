@@ -1,12 +1,12 @@
 
 
 #include <Blast/Daemus/ProgramRunner.hpp>
-#include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <sstream>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/Config.hpp>
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
 namespace Blast
@@ -24,16 +24,6 @@ ProgramRunner::~ProgramRunner()
 {
 }
 
-
-std::string ProgramRunner::execute_command(std::string command)
-{
-   Blast::ShellCommandExecutorWithCallback shell_command_executor(
-      command,
-      Blast::ShellCommandExecutorWithCallback::simple_cout_callback
-      //Blast::ShellCommandExecutorWithCallback::simple_silent_callback
-   );
-   return shell_command_executor.execute();
-}
 
 void ProgramRunner::run()
 {
@@ -114,6 +104,16 @@ void ProgramRunner::run_with_rerun(std::string project_directory)
    build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
    std::string output = execute_command(build_command);
    return;
+}
+
+std::string ProgramRunner::execute_command(std::string command)
+{
+   Blast::ShellCommandExecutorWithCallback shell_command_executor(
+      command,
+      Blast::ShellCommandExecutorWithCallback::simple_cout_callback
+      //Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+   );
+   return shell_command_executor.execute();
 }
 } // namespace Daemus
 } // namespace Blast

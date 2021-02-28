@@ -1,23 +1,6 @@
 functions:
 
 
-  - name: execute_command
-    type: std::string
-    parameters:
-      - name: command
-        type: std::string
-        default_argument: "\"\""
-    body: |
-      Blast::ShellCommandExecutorWithCallback shell_command_executor(
-         command,
-         Blast::ShellCommandExecutorWithCallback::simple_cout_callback
-         //Blast::ShellCommandExecutorWithCallback::simple_silent_callback
-      );
-      return shell_command_executor.execute();
-    body_dependency_symbols:
-      - Blast::ShellCommandExecutorWithCallback
-
-
   - name: run
     type: void
     body: |
@@ -122,6 +105,24 @@ functions:
     body_dependency_symbols:
       - Hexagon::System::Config
       - Hexagon::System::Config*
+
+
+  - name: execute_command
+    type: std::string
+    private: true
+    parameters:
+      - name: command
+        type: std::string
+        default_argument: "\"\""
+    body: |
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(
+         command,
+         Blast::ShellCommandExecutorWithCallback::simple_cout_callback
+         //Blast::ShellCommandExecutorWithCallback::simple_silent_callback
+      );
+      return shell_command_executor.execute();
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
 
 
 dependencies:
