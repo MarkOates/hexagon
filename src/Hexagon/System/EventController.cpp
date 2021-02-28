@@ -52,6 +52,10 @@ std::map<std::string, std::function<bool(::System&)>> EventController::get_defau
          &::System::spawn_drawing_box,
       },
       {
+         ::System::SEND_MESSAGE_TO_DAEMUS_TO_BUILD,
+         &::System::send_message_to_daemus_to_build,
+      },
+      {
          ::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION,
          &::System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction,
       },

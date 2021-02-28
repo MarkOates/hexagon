@@ -113,6 +113,7 @@ public:
    bool center_camera_on_frontmost_stage();
    bool run_project_tests();
    bool save_frontmost_code_editor_stage_and_touch_if_symlink();
+   bool send_message_to_daemus_to_build();
    bool increase_font_size();
    bool decrease_font_size();
    bool refresh_regex_hilights_on_frontmost_stage();
@@ -204,6 +205,7 @@ public:
    static const std::string ROTATE_RELATIVE_DOWN;
    static const std::string RUN_PROJECT_TESTS;
    static const std::string SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK;
+   static const std::string SEND_MESSAGE_TO_DAEMUS_TO_BUILD;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;

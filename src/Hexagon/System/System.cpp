@@ -791,6 +791,14 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
    return true;
 }
 
+#include <Hexagon/System/Action/SendMessageToDaemusToBuild.hpp>
+
+bool System::send_message_to_daemus_to_build()
+{
+   Hexagon::System::Action::SendMessageToDaemusToBuild action;
+   return action.execute();
+}
+
 
 bool System::increase_font_size()
 {
@@ -1537,6 +1545,7 @@ const std::string System::CLEAR_LAST_COMPILED_ERROR_MESSAGES = "CLEAR_LAST_COMPI
 const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 const std::string System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK =
    "SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK";
+const std::string System::SEND_MESSAGE_TO_DAEMUS_TO_BUILD = "SEND_MESSAGE_TO_DAEMUS_TO_BUILD";
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
 const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";

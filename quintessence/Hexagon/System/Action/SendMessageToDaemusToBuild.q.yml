@@ -1,0 +1,25 @@
+parent_classes:
+
+
+  - class: ::Action
+    scope: public
+    init_with: '"Hexagon::System::Action::SendMessageToDaemusToBuild", ActionData()'
+
+
+functions:
+
+
+  - name: execute
+    virtual: true
+    override: true
+    type: bool
+    body: |
+      return true;
+
+
+dependencies:
+
+
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]
+
