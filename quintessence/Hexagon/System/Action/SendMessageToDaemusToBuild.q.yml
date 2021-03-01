@@ -14,7 +14,10 @@ functions:
     override: true
     type: bool
     body: |
+      std::string file_name = "/Users/markoates/Repos/hexagon/tmp/daemus/build.txt";
       return true;
+    body_dependency_symbols:
+      - std::string
 
 
 dependencies:

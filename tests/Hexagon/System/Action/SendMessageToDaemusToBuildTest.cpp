@@ -12,5 +12,6 @@ TEST(Hexagon_System_Action_SendMessageToDaemusToBuildTest, execute__returns_the_
 {
    Hexagon::System::Action::SendMessageToDaemusToBuild send_message_to_daemus_to_build;
    std::string expected_string = "Hello World!";
-   EXPECT_EQ(expected_string, send_message_to_daemus_to_build.execute());
+   EXPECT_EQ(true, send_message_to_daemus_to_build.execute());
 }
+
