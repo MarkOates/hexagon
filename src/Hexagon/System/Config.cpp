@@ -6,6 +6,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -42,6 +44,9 @@ std::string Config::FONT_BIN_PATH_KEY = "font_bin_path";
 
 
 std::string Config::DARK_MODE_KEY = "dark_mode";
+
+
+std::string Config::HUD_RENDER_FOCUS_TIMER_BAR_KEY = "hud_render_focus_timer_bar";
 
 
 Config::Config(std::string config_filename)
@@ -156,6 +161,17 @@ bool Config::is_dark_mode()
          throw std::runtime_error(error_message.str());
       }
    return config.get_or_default_bool("", DARK_MODE_KEY, false);
+}
+
+bool Config::get_hud_render_focus_timer_bar()
+{
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "Config" << "::" << "get_hud_render_focus_timer_bar" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return config.get_or_default_bool("", HUD_RENDER_FOCUS_TIMER_BAR_KEY, false);
 }
 
 ALLEGRO_COLOR Config::get_backfill_color()

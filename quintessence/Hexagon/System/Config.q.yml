@@ -51,6 +51,11 @@ properties:
     static: true
     const: true
     init_with: '"dark_mode"'
+  - name: HUD_RENDER_FOCUS_TIMER_BAR_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: '"hud_render_focus_timer_bar"'
   - name: config_filename
     type: std::string
     constructor_arg: true
@@ -170,6 +175,13 @@ functions:
     guards: [ initialized ]
     body: |
       return config.get_or_default_bool("", DARK_MODE_KEY, false);
+
+
+  - name: get_hud_render_focus_timer_bar
+    type: bool
+    guards: [ initialized ]
+    body: |
+      return config.get_or_default_bool("", HUD_RENDER_FOCUS_TIMER_BAR_KEY, false);
 
 
   - name: get_backfill_color

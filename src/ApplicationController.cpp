@@ -97,7 +97,7 @@ void ApplicationController::initialize_allegro_config_display_event_queue_and_ti
    al_set_new_display_flags(ALLEGRO_NOFRAME);
    al_set_new_display_flags(ALLEGRO_NOFRAME | ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
    al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
-   //al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
+   al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    //al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
