@@ -1,11 +1,10 @@
 properties:
 
 
-  - name: title_font
-    type: ALLEGRO_FONT*
+  - name: font_bin
+    type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
-    getter: true
   - name: backfill_color
     type: ALLEGRO_COLOR*
     init_with: nullptr
@@ -33,11 +32,12 @@ functions:
 
   - name: render
     type: void
-    guards: [ backfill_color, title_font, place ]
+    guards: [ backfill_color, place ]
     body: |
       //if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
       //if (!place) throw std::runtime_error("[StageInfoOverlay::render() error]: place can not be a nullptr");
 
+      ALLEGRO_FONT *title_font = obtain_title_font();
       ALLEGRO_COLOR color_for_components = al_color_name("dodgerblue");
       ALLEGRO_COLOR primary_color = color_for_components; //al_color_name("orange");
 
@@ -71,6 +71,14 @@ functions:
       - al_draw_text
 
 
+  - name: obtain_title_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      // TODO: guard with font_bin->get_initialized()
+      return font_bin->auto_get("Eurostile.ttf 32");
+
+
 dependencies:
 
 
@@ -78,6 +86,8 @@ dependencies:
     headers: [ allegro5/allegro_color.h ]
   - symbol: color::mix
     headers: [ 'allegro_flare/color.h' ]
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: Hexagon::Elements::Frame
     headers: [ Hexagon/Elements/Frame.hpp ]
   - symbol: al_draw_filled_rectangle

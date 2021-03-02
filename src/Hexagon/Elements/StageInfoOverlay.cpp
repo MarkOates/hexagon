@@ -8,6 +8,8 @@
 #include <allegro5/allegro.h>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -16,8 +18,8 @@ namespace Elements
 {
 
 
-StageInfoOverlay::StageInfoOverlay(ALLEGRO_FONT* title_font, ALLEGRO_COLOR* backfill_color, float backfill_opacity, placement3d* place)
-   : title_font(title_font)
+StageInfoOverlay::StageInfoOverlay(AllegroFlare::FontBin* font_bin, ALLEGRO_COLOR* backfill_color, float backfill_opacity, placement3d* place)
+   : font_bin(font_bin)
    , backfill_color(backfill_color)
    , backfill_opacity(backfill_opacity)
    , place(place)
@@ -40,12 +42,6 @@ void StageInfoOverlay::set_place(placement3d* place)
 void StageInfoOverlay::set_text(std::string text)
 {
    this->text = text;
-}
-
-
-ALLEGRO_FONT* StageInfoOverlay::get_title_font()
-{
-   return title_font;
 }
 
 
@@ -81,12 +77,6 @@ void StageInfoOverlay::render()
          error_message << "StageInfoOverlay" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
          throw std::runtime_error(error_message.str());
       }
-   if (!(title_font))
-      {
-         std::stringstream error_message;
-         error_message << "StageInfoOverlay" << "::" << "render" << ": error: " << "guard \"title_font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
    if (!(place))
       {
          std::stringstream error_message;
@@ -96,6 +86,7 @@ void StageInfoOverlay::render()
    //if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
    //if (!place) throw std::runtime_error("[StageInfoOverlay::render() error]: place can not be a nullptr");
 
+   ALLEGRO_FONT *title_font = obtain_title_font();
    ALLEGRO_COLOR color_for_components = al_color_name("dodgerblue");
    ALLEGRO_COLOR primary_color = color_for_components; //al_color_name("orange");
 
@@ -121,6 +112,18 @@ void StageInfoOverlay::render()
    //text_box_frame.render();
    al_draw_text(title_font, color, place->size.x/2, place->size.y/2, ALLEGRO_ALIGN_CENTER, text.c_str());
    return;
+}
+
+ALLEGRO_FONT* StageInfoOverlay::obtain_title_font()
+{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "StageInfoOverlay" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   // TODO: guard with font_bin->get_initialized()
+   return font_bin->auto_get("Eurostile.ttf 32");
 }
 } // namespace Elements
 } // namespace Hexagon
