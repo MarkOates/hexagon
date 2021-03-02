@@ -14,10 +14,13 @@ functions:
     override: true
     type: bool
     body: |
-      std::string file_name = "/Users/markoates/Repos/hexagon/tmp/daemus/build.txt";
+      std::string filename = "/Users/markoates/Repos/hexagon/tmp/daemus/build.txt";
+      Blast::FileCreator file_creator(filename, "# some random irrelevant text");
+      file_creator.create_or_overwrite();
       return true;
     body_dependency_symbols:
       - std::string
+      - Blast::FileCreator
 
 
 dependencies:
@@ -25,4 +28,6 @@ dependencies:
 
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
+  - symbol: Blast::FileCreator
+    headers: [ Blast/FileCreator.hpp ]
 

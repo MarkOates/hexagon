@@ -17,6 +17,7 @@ namespace Blast
       ~FileCreator();
 
       void create_if_not_exists();
+      void create_or_overwrite();
    };
 }
 

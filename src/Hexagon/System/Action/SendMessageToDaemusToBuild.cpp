@@ -2,6 +2,7 @@
 
 #include <Hexagon/System/Action/SendMessageToDaemusToBuild.hpp>
 #include <string>
+#include <Blast/FileCreator.hpp>
 
 
 namespace Hexagon
@@ -25,7 +26,9 @@ SendMessageToDaemusToBuild::~SendMessageToDaemusToBuild()
 
 bool SendMessageToDaemusToBuild::execute()
 {
-   std::string file_name = "/Users/markoates/Repos/hexagon/tmp/daemus/build.txt";
+   std::string filename = "/Users/markoates/Repos/hexagon/tmp/daemus/build.txt";
+   Blast::FileCreator file_creator(filename, "# some random irrelevant text");
+   file_creator.create_or_overwrite();
    return true;
 }
 } // namespace Action
