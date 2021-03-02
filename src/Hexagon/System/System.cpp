@@ -924,9 +924,6 @@ bool System::spawn_git_commit_message_input_box_modal()
 
    stages.push_back(stage);
 
-   motion.cmove_to(&camera.rotation.x, -0.12f, 0.5f, interpolator::tripple_fast_in);
-   motion.cmove_to(&camera.position.y, 140.0f, 0.5f, interpolator::tripple_fast_in);
-
    return true;
 }
 
