@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -21,6 +22,7 @@ namespace Hexagon
          bool is_focused;
          ALLEGRO_DISPLAY* display;
          ALLEGRO_FONT* font;
+         AllegroFlare::FontBin* font_bin;
          int cell_width;
          int cell_height;
          ALLEGRO_COLOR base_font_color;
@@ -34,6 +36,7 @@ namespace Hexagon
          void set_is_focused(bool is_focused);
          void set_display(ALLEGRO_DISPLAY* display);
          void set_font(ALLEGRO_FONT* font);
+         void set_font_bin(AllegroFlare::FontBin* font_bin);
          void set_cell_width(int cell_width);
          void set_cell_height(int cell_height);
          void set_base_font_color(ALLEGRO_COLOR base_font_color);
@@ -42,6 +45,7 @@ namespace Hexagon
          bool get_is_focused();
          ALLEGRO_DISPLAY* get_display();
          ALLEGRO_FONT* get_font();
+         AllegroFlare::FontBin* get_font_bin();
          int get_cell_width();
          int get_cell_height();
          ALLEGRO_COLOR get_base_font_color();

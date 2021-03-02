@@ -27,6 +27,7 @@ Stage::Stage(::CodeEditor::CodeEditor code_editor)
    , is_focused(false)
    , display(nullptr)
    , font(nullptr)
+   , font_bin(nullptr)
    , cell_width(10)
    , cell_height(20)
    , base_font_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f})
@@ -56,6 +57,12 @@ void Stage::set_display(ALLEGRO_DISPLAY* display)
 void Stage::set_font(ALLEGRO_FONT* font)
 {
    this->font = font;
+}
+
+
+void Stage::set_font_bin(AllegroFlare::FontBin* font_bin)
+{
+   this->font_bin = font_bin;
 }
 
 
@@ -104,6 +111,12 @@ ALLEGRO_DISPLAY* Stage::get_display()
 ALLEGRO_FONT* Stage::get_font()
 {
    return font;
+}
+
+
+AllegroFlare::FontBin* Stage::get_font_bin()
+{
+   return font_bin;
 }
 
 
@@ -209,7 +222,7 @@ void Stage::render()
 
          place.start_transform();
          Hexagon::Elements::StageInfoOverlay stage_info_overlay(
-            overlay_font,
+            get_font_bin(),
             &backfill_color,
             backfill_opacity,
             &place

@@ -35,6 +35,11 @@ properties:
     init_with: nullptr
     getter: true
     setter: true
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    getter: true
+    setter: true
   - name: cell_width
     type: int
     init_with: 10
@@ -132,7 +137,7 @@ functions:
 
             place.start_transform();
             Hexagon::Elements::StageInfoOverlay stage_info_overlay(
-               overlay_font,
+               get_font_bin(),
                &backfill_color,
                backfill_opacity,
                &place
@@ -207,6 +212,8 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: ::CodeEditor::CodeEditor

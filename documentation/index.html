@@ -2448,6 +2448,10 @@ table td
   <td class="property">ALLEGRO_FONT*</td>
 </tr>
 <tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
   <td class="property">cell_width</td>
   <td class="property">int</td>
 </tr>
@@ -2497,6 +2501,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;StageInterface&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageInterface.hpp&quot;]}</td>
@@ -3511,8 +3518,8 @@ table td
     <h3 id="quintessence/Hexagon/Elements/StageInfoOverlay.q.yml">quintessence/Hexagon/Elements/StageInfoOverlay.q.yml</h3>
      <table>
 <tr>
-  <td class="property">title_font</td>
-  <td class="property">ALLEGRO_FONT*</td>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
 </tr>
 <tr>
   <td class="property">backfill_color</td>
@@ -3535,6 +3542,9 @@ table td
 <tr>
   <td class="method">render()</td>
 </tr>
+<tr>
+  <td class="method">obtain_title_font()</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -3542,6 +3552,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;color::mix&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/color.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::Frame&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/Frame.hpp&quot;]}</td>
