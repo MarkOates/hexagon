@@ -148,7 +148,7 @@ functions:
       - ::save_file
       - Hexagon::SymlinkToucher
 
-   
+
   - name: set_to_edit_mode
     type: bool
     body: |
