@@ -65,19 +65,22 @@ functions:
 
 
   - name: get_frontmost_git_commit_message_input_box
-    type: Hexagon::CodeEditor::Stage*
+    type: Hexagon::GitCommitMessageInputBox::Stage*
     body: |
       StageInterface *frontmost_stage = get_frontmost_stage();
       if (!frontmost_stage) return nullptr;
 
       StageInterface::type_t type = frontmost_stage->get_type();
-      if (type == StageInterface::ONE_LINE_INPUT_BOX
-       || type == StageInterface::CODE_EDITOR
-       || type == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX)
+      //if (type == StageInterface::ONE_LINE_INPUT_BOX
+      // || type == StageInterface::CODE_EDITOR
+      if (type == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX)
       {
-         return static_cast<Hexagon::CodeEditor::Stage *>(get_frontmost_stage());
+         return static_cast<Hexagon::GitCommitMessageInputBox::Stage *>(get_frontmost_stage());
+         //return static_cast<Hexagon::CodeEditor::Stage *>(get_frontmost_stage());
       }
       return nullptr;
+    body_dependency_symbols:
+      - Hexagon::GitCommitMessageInputBox::Stage*
 
 
   - name: is_frontmost_stage_a_regex_input_box
@@ -111,6 +114,8 @@ dependencies:
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: Hexagon::CodeEditor::Stage*
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: Hexagon::GitCommitMessageInputBox::Stage*
+    headers: [ Hexagon/GitCommitMessageInputBox/Stage.hpp ]
   - symbol: std::vector<Hexagon::CodeEditor::Stage *>
     headers: [ vector, Hexagon/CodeEditor/Stage.hpp ]
   - symbol: std::vector<StageInterface *>*

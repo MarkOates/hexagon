@@ -82,6 +82,8 @@
 #include <Hexagon/BlastComponentLayoutGenerator.hpp>
 #include <Hexagon/LayoutToStagesCreator.hpp>
 #include <Hexagon/StageFactory.hpp>
+#include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
+#include <Hexagon/OneLineInputBox/Stage.hpp>
 
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Blast/StringJoiner.hpp>
@@ -242,7 +244,7 @@ Hexagon::CodeEditor::Stage *System::get_frontmost_code_editor_stage()
 }
 
 
-Hexagon::CodeEditor::Stage *System::get_frontmost_git_commit_message_input_box()
+Hexagon::GitCommitMessageInputBox::Stage *System::get_frontmost_git_commit_message_input_box()
 {
    Hexagon::StageCollectionHelper stage_collection_helper(&stages);
    return stage_collection_helper.get_frontmost_git_commit_message_input_box();
@@ -365,7 +367,7 @@ bool System::mark_as_not_in_sync_with_remote()
 bool System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction()
 {
    std::cout << "AAA" << std::endl;
-   Hexagon::CodeEditor::Stage *stage = get_frontmost_git_commit_message_input_box();
+   Hexagon::GitCommitMessageInputBox::Stage *stage = get_frontmost_git_commit_message_input_box();
    std::cout << "BBB" << std::endl;
    if (!stage) return false;
    std::cout << "CCC" << std::endl;

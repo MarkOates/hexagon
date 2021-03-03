@@ -9,6 +9,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
 #include <iostream>
 #include <stdexcept>
 #include <sstream>
@@ -92,17 +93,18 @@ Hexagon::CodeEditor::Stage* StageCollectionHelper::get_frontmost_code_editor_sta
    return nullptr;
 }
 
-Hexagon::CodeEditor::Stage* StageCollectionHelper::get_frontmost_git_commit_message_input_box()
+Hexagon::GitCommitMessageInputBox::Stage* StageCollectionHelper::get_frontmost_git_commit_message_input_box()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return nullptr;
 
    StageInterface::type_t type = frontmost_stage->get_type();
-   if (type == StageInterface::ONE_LINE_INPUT_BOX
-    || type == StageInterface::CODE_EDITOR
-    || type == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX)
+   //if (type == StageInterface::ONE_LINE_INPUT_BOX
+   // || type == StageInterface::CODE_EDITOR
+   if (type == StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX)
    {
-      return static_cast<Hexagon::CodeEditor::Stage *>(get_frontmost_stage());
+      return static_cast<Hexagon::GitCommitMessageInputBox::Stage *>(get_frontmost_stage());
+      //return static_cast<Hexagon::CodeEditor::Stage *>(get_frontmost_stage());
    }
    return nullptr;
 }
