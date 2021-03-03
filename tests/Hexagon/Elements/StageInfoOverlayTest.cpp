@@ -29,7 +29,10 @@ TEST(Hexagon_Elements_StageInfoOverlayTest, render__without_a_valid_backfill_col
 TEST(Hexagon_Elements_StageInfoOverlayTest, render__without_a_valid_font_bin__throws_an_error)
 {
    ALLEGRO_COLOR backfill_color = al_color_name("black");
+   placement3d place;
    Hexagon::Elements::StageInfoOverlay stage_info_overlay(nullptr, &backfill_color);
+   stage_info_overlay.set_place(&place);
+
    std::string expected_error_message = "StageInfoOverlay::obtain_title_font: error: guard \"font_bin\" not met";
    ASSERT_THROW_WITH_MESSAGE(stage_info_overlay.render(), std::runtime_error, expected_error_message);
 }
