@@ -24,6 +24,7 @@ StageInfoOverlay::StageInfoOverlay(AllegroFlare::FontBin* font_bin, ALLEGRO_COLO
    , backfill_opacity(backfill_opacity)
    , place(place)
    , text("")
+   , upcase(false)
 {
 }
 
@@ -42,6 +43,12 @@ void StageInfoOverlay::set_place(placement3d* place)
 void StageInfoOverlay::set_text(std::string text)
 {
    this->text = text;
+}
+
+
+void StageInfoOverlay::set_upcase(bool upcase)
+{
+   this->upcase = upcase;
 }
 
 
@@ -66,6 +73,12 @@ placement3d* StageInfoOverlay::get_place()
 std::string StageInfoOverlay::get_text()
 {
    return text;
+}
+
+
+bool StageInfoOverlay::get_upcase()
+{
+   return upcase;
 }
 
 

@@ -25,6 +25,11 @@ properties:
     type: std::string
     getter: true
     setter: true
+  - name: upcase
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
 
 
 functions:
