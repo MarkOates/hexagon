@@ -56,6 +56,11 @@ properties:
     static: true
     const: true
     init_with: '"hud_render_focus_timer_bar"'
+  - name: FULLSCREEN_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: '"fullscreen"'
   - name: config_filename
     type: std::string
     constructor_arg: true
@@ -175,6 +180,13 @@ functions:
     guards: [ initialized ]
     body: |
       return config.get_or_default_bool("", DARK_MODE_KEY, false);
+
+
+  - name: is_fullscreen
+    type: bool
+    guards: [ initialized ]
+    body: |
+      return config.get_or_default_bool("", FULLSCREEN_KEY, false);
 
 
   - name: get_hud_render_focus_timer_bar

@@ -8,6 +8,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -47,6 +49,9 @@ std::string Config::DARK_MODE_KEY = "dark_mode";
 
 
 std::string Config::HUD_RENDER_FOCUS_TIMER_BAR_KEY = "hud_render_focus_timer_bar";
+
+
+std::string Config::FULLSCREEN_KEY = "fullscreen";
 
 
 Config::Config(std::string config_filename)
@@ -161,6 +166,17 @@ bool Config::is_dark_mode()
          throw std::runtime_error(error_message.str());
       }
    return config.get_or_default_bool("", DARK_MODE_KEY, false);
+}
+
+bool Config::is_fullscreen()
+{
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "Config" << "::" << "is_fullscreen" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return config.get_or_default_bool("", FULLSCREEN_KEY, false);
 }
 
 bool Config::get_hud_render_focus_timer_bar()

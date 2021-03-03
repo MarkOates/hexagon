@@ -240,6 +240,39 @@ TEST(Hexagon_System_ConfigTest,
    al_uninstall_system();
 }
 
+TEST(Hexagon_System_ConfigTest, is_fullscreen__before_initialization__raises_an_error)
+{
+   al_init();
+   Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
+   std::string expected_error_message = "Config::is_fullscreen: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(config.is_fullscreen(), std::runtime_error, expected_error_message);
+   al_uninstall_system();
+}
+
+TEST(Hexagon_System_ConfigTest,
+   is_fullscreen__returns_true_if_the_a_true_value_is_set_in_the_config)
+{
+   al_init();
+   Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
+   config.initialize();
+
+   ASSERT_EQ(true, config.is_fullscreen());
+
+   al_uninstall_system();
+}
+
+TEST(Hexagon_System_ConfigTest,
+   is_fullscreen__returns_false_by_default)
+{
+   al_init();
+   Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
+   config.initialize();
+
+   ASSERT_EQ(false, config.is_fullscreen());
+
+   al_uninstall_system();
+}
+
 TEST(Hexagon_System_ConfigTest, get_hud_render_focus_timer_bar__before_initialization__raises_an_error)
 {
    al_init();
