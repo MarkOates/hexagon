@@ -76,7 +76,8 @@ functions:
     guards: [ font_bin ]
     body: |
       // TODO: guard with font_bin->get_initialized()
-      return font_bin->auto_get("Eurostile.ttf 32");
+      //return font_bin->auto_get("Eurostile.ttf 32");
+      return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf 48");
 
 
 dependencies:

@@ -123,7 +123,8 @@ ALLEGRO_FONT* StageInfoOverlay::obtain_title_font()
          throw std::runtime_error(error_message.str());
       }
    // TODO: guard with font_bin->get_initialized()
-   return font_bin->auto_get("Eurostile.ttf 32");
+   //return font_bin->auto_get("Eurostile.ttf 32");
+   return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf 48");
 }
 } // namespace Elements
 } // namespace Hexagon
