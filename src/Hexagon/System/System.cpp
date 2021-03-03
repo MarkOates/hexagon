@@ -366,13 +366,9 @@ bool System::mark_as_not_in_sync_with_remote()
 
 bool System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction()
 {
-   std::cout << "AAA" << std::endl;
    Hexagon::GitCommitMessageInputBox::Stage *stage = get_frontmost_git_commit_message_input_box();
-   std::cout << "BBB" << std::endl;
    if (!stage) return false;
-   std::cout << "CCC" << std::endl;
    stage->change_state_to_submitted_and_pending_destruction();
-   std::cout << "DDD" << std::endl;
    return true;
 }
 

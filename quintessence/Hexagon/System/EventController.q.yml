@@ -251,14 +251,11 @@ functions:
       {
          try
          {
-            std::cout << "+ executing System::EventController::" << event_name << std::endl;
+            std::cout << "System::EventController::" << event_name << std::endl;
 
             // could use the iterator element found via the find() call above, rather than doing a new lookup
             std::function<bool(::System&)> function_to_be_called = event_function_mapping[event_name];
             bool function_returned_true_from_execution = function_to_be_called(*system);
-
-            std::cout << "  - execution successful System::EventController::" << event_name << std::endl;
-
             if (!function_returned_true_from_execution)
             {
                // TODO: add some throwing code here
