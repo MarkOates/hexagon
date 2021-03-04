@@ -6,6 +6,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro.h>
+#include <algorithm>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -24,7 +25,7 @@ StageInfoOverlay::StageInfoOverlay(AllegroFlare::FontBin* font_bin, ALLEGRO_COLO
    , backfill_opacity(backfill_opacity)
    , place(place)
    , text("")
-   , upcase(false)
+   , upcase(true)
 {
 }
 
@@ -107,8 +108,13 @@ void StageInfoOverlay::render()
    outer_frame.set_outline_color(primary_color);
    outer_frame.render();
 
+   std::string text_to_render = text;
+   if (get_upcase())
+   {
+      std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
+   }
    float line_height = al_get_font_line_height(title_font);
-   float text_width = al_get_text_width(title_font, text.c_str());
+   float text_width = al_get_text_width(title_font, text_to_render.c_str());
    //al_draw_filled_rectangle(0, 0, place->size.x, line_height*2, al_color_name("midnightblue"));
    ALLEGRO_COLOR color = primary_color;
    //al_draw_text(title_font, color, place->size.x/2, line_height/2, ALLEGRO_ALIGN_CENTER, text.c_str());
@@ -123,7 +129,7 @@ void StageInfoOverlay::render()
    al_draw_rectangle(x1, y1, x2, y2, primary_color, 3.0f);
    //text_box_frame.set_outline_color(primary_color);
    //text_box_frame.render();
-   al_draw_text(title_font, color, place->size.x/2, place->size.y/2, ALLEGRO_ALIGN_CENTER, text.c_str());
+   al_draw_text(title_font, color, place->size.x/2, place->size.y/2+4, ALLEGRO_ALIGN_CENTER, text_to_render.c_str());
    return;
 }
 
