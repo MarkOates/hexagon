@@ -134,7 +134,8 @@ ALLEGRO_FONT* StageFactory::obtain_global_font()
          error_message << "StageFactory" << "::" << "obtain_global_font" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   return font_bin->auto_get("Menlo-Regular.ttf -20");
+   //return font_bin->auto_get("Menlo-Regular.ttf -20");
+   return font_bin->auto_get("ocrb regular.ttf -20");
 }
 
 ALLEGRO_FONT* StageFactory::obtain_git_commit_message_box_font()
