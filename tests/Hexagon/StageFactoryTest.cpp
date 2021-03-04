@@ -177,7 +177,7 @@ TEST(Hexagon_StageFactoryTest,
 
    EXPECT_EQ(expected_font, actual_font);
 
-   EXPECT_EQ(14, stage->get_cell_width());
+   EXPECT_EQ(10, stage->get_cell_width());
    EXPECT_EQ(20, stage->get_cell_height());
    EXPECT_EQ(display, stage->get_display());
 
@@ -221,7 +221,7 @@ TEST(Hexagon_StageFactoryTest,
    ALLEGRO_FONT *actual_font = stage->get_font();
 
    EXPECT_EQ(expected_font, actual_font);
-   EXPECT_EQ(14, stage->get_cell_width());
+   EXPECT_EQ(10, stage->get_cell_width());
    EXPECT_EQ(20, stage->get_cell_height());
    EXPECT_EQ(display, stage->get_display());
 

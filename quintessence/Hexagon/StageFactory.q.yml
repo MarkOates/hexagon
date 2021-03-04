@@ -60,8 +60,7 @@ functions:
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
-      //return font_bin->auto_get("Menlo-Regular.ttf -20");
-      return font_bin->auto_get("ocrb regular.ttf -20");
+      return font_bin->auto_get("Menlo-Regular.ttf -20");
 
 
   - name: obtain_git_commit_message_box_font
