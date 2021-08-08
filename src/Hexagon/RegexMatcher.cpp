@@ -3,6 +3,7 @@
 
 #include <regex>
 #include <iostream>
+#include <sstream>
 
 
 RegexMatcher::RegexMatcher(std::string source_string, std::string regex_expression)
@@ -37,7 +38,12 @@ std::vector<std::pair<int, int>> RegexMatcher::get_match_info()
    }
    catch (std::regex_error& e)
    {
-      throw std::runtime_error("There was a syntax error in the regular expression");
+      std::stringstream error_message;
+      error_message << "There was a syntax error in the regular expression:"
+         << std::endl
+         << source_string
+         << std::endl;
+      throw std::runtime_error(error_message.str());
    }
 
    return results;
