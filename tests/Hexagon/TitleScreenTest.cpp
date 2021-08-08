@@ -57,7 +57,7 @@ TEST_F(Hexagon_TitleScreenTest, DISABLED__can_be_created_without_blowing_up)
 TEST_F(Hexagon_TitleScreenTest, build_allegro_version_string__will_create_the_expected_version)
 {
    Hexagon::TitleScreen title_screen;
-   std::string expected_version_string = "Allegro v5-2-7 r0";
+   std::string expected_version_string = "Allegro v5-2-8 r0";
    std::string actual_version_string = title_screen.build_allegro_version_string();
    ASSERT_EQ(expected_version_string, actual_version_string);
 }
