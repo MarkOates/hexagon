@@ -1,3 +1,16 @@
+properties:
+
+
+  - name: daemus_build_file_directory
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon/bin/programs/data/tmp"'
+    getter: true
+  - name: daemus_build_filename
+    type: std::string
+    init_with: '"daemus_build.txt"'
+    getter: true
+
+
 functions:
 
 
@@ -10,7 +23,8 @@ functions:
 
       std::string project_directory = hexagon_config.get_default_navigator_directory();
 
-      cd_to_project_directory_and_run_with_rerun(project_directory);
+      //cd_to_project_directory_and_run_with_rerun(project_directory);
+      watch_for_buildfile(project_directory);
       return;
 
 
@@ -74,6 +88,39 @@ functions:
       std::string output = execute_command(build_command);
       return;
     body_dependency_symbols:
+      - Hexagon::System::Config
+      - Hexagon::System::Config*
+
+
+  - name: watch_for_buildfile
+    type: void
+    parameters:
+      - name: project_directory
+        type: std::string
+        default_argument: '""'
+    body: |
+      std::string actual_command_to_execute_in_project_directory = "make focus";
+
+      std::cout << "watching for buildfile (\"" << get_daemus_build_filename() << "\")" << std::endl;
+      std::cout << "... in directory (\"" << get_daemus_build_file_directory() << "\")" << std::endl;
+
+      std::string build_command = "rerun" \
+        " " \
+        "-c" \
+        " " \
+        "--background" \
+        " " \
+        "--dir \"" + get_daemus_build_file_directory() + "\"" \
+        " " \
+        "-p \"" + get_daemus_build_filename() + "\"" \
+        " " \
+        "\"(cd ";
+
+      build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
+      std::string output = execute_command(build_command);
+      return;
+    body_dependency_symbols:
+      - std::cout
       - Hexagon::System::Config
       - Hexagon::System::Config*
 

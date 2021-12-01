@@ -4,6 +4,9 @@
 #include <sstream>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/Config.hpp>
+#include <iostream>
+#include <Hexagon/System/Config.hpp>
+#include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
@@ -16,12 +19,26 @@ namespace Daemus
 
 
 ProgramRunner::ProgramRunner()
+   : daemus_build_file_directory("/Users/markoates/Repos/hexagon/bin/programs/data/tmp")
+   , daemus_build_filename("daemus_build.txt")
 {
 }
 
 
 ProgramRunner::~ProgramRunner()
 {
+}
+
+
+std::string ProgramRunner::get_daemus_build_file_directory()
+{
+   return daemus_build_file_directory;
+}
+
+
+std::string ProgramRunner::get_daemus_build_filename()
+{
+   return daemus_build_filename;
 }
 
 
@@ -33,7 +50,8 @@ void ProgramRunner::run()
 
    std::string project_directory = hexagon_config.get_default_navigator_directory();
 
-   cd_to_project_directory_and_run_with_rerun(project_directory);
+   //cd_to_project_directory_and_run_with_rerun(project_directory);
+   watch_for_buildfile(project_directory);
    return;
 }
 
@@ -81,6 +99,30 @@ void ProgramRunner::cd_to_project_directory_and_run_with_rerun(std::string proje
 
    std::string build_command_wrapped = "(cd " + project_directory + " && " + build_command + ")";
 
+   std::string output = execute_command(build_command);
+   return;
+}
+
+void ProgramRunner::watch_for_buildfile(std::string project_directory)
+{
+   std::string actual_command_to_execute_in_project_directory = "make focus";
+
+   std::cout << "watching for buildfile (\"" << get_daemus_build_filename() << "\")" << std::endl;
+   std::cout << "... in directory (\"" << get_daemus_build_file_directory() << "\")" << std::endl;
+
+   std::string build_command = "rerun" \
+     " " \
+     "-c" \
+     " " \
+     "--background" \
+     " " \
+     "--dir \"" + get_daemus_build_file_directory() + "\"" \
+     " " \
+     "-p \"" + get_daemus_build_filename() + "\"" \
+     " " \
+     "\"(cd ";
+
+   build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
    std::string output = execute_command(build_command);
    return;
 }
