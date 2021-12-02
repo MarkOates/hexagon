@@ -30,6 +30,8 @@
 	<true/>
 	<key>LSRequiresCarbon</key>
 	<true/>
+	<key>NSHighResolutionCapable</key>
+	<false/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright 2019 Mark Oates</string>
 </dict>
