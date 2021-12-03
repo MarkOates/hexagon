@@ -39,6 +39,7 @@ namespace Hexagon
             std::string get_project_path();
             std::vector<StageInterface *>& get_stages();
             int get_code_editor_width();
+            bool get_create_as_advanced_code_editor();
             static std::vector<StageInterface *> &get_dummy_stages_ref();
             virtual bool execute() override;
          };

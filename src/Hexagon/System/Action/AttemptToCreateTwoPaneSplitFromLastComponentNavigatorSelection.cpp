@@ -73,6 +73,12 @@ int AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::get_code_edi
 }
 
 
+bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::get_create_as_advanced_code_editor()
+{
+   return create_as_advanced_code_editor;
+}
+
+
 std::vector<StageInterface *> &AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::get_dummy_stages_ref()
 {
    return dummy_stages;
@@ -115,8 +121,7 @@ bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::execute()
         std::vector<std::string> file_contents = {};
         ::read_file(file_contents, test_filename);
 
-        //bool create_as_advanced_code_editor = true;
-        if (create_as_advanced_code_editor)
+        if (get_create_as_advanced_code_editor())
         {
            stage = stage_factory->create_advanced_code_editor(test_filename);
         }
@@ -155,8 +160,7 @@ bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::execute()
         std::vector<std::string> file_contents = {};
         ::read_file(file_contents, filename);
 
-        //bool create_as_advanced_code_editor = true;
-        if (create_as_advanced_code_editor)
+        if (get_create_as_advanced_code_editor())
         {
            stage = stage_factory->create_advanced_code_editor(filename);
         }
