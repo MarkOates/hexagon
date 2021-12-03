@@ -1272,8 +1272,6 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       write_focused_component_name_to_file();
 
 
-      //return create_three_split_from_last_component_navigator_selection();
-
       Hexagon::StageFactory stage_factory(&config, &font_bin);
       Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
       Hexagon::System::Action::CreateThreeSplitFromComponent action(
@@ -1298,8 +1296,6 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
 
-
-      //return attempt_to_create_two_pane_split_from_last_component_navigator_selection();
 
       Hexagon::StageFactory stage_factory(&config, &font_bin);
       Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection action(
@@ -1331,56 +1327,6 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
 bool System::create_layout_from_last_project_navigator_selection()
 {
    return true;
-}
-
-
-bool System::create_three_split_from_last_component_navigator_selection()
-{
-   std::stringstream error_message;
-   error_message << "System::create_three_split_from_last_component_navigator_selection is not expected to be called";
-   throw std::runtime_error(error_message.str());
-
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
-   Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
-   Hexagon::System::Action::CreateThreeSplitFromComponent action(
-      get_current_project_directory(),
-      component,
-      stages,
-      &stage_factory,
-      get_display_default_width(),
-      get_display_default_height(),
-      get_default_code_editor_stage_width(),
-      config.get_base_text_color(),
-      config.get_backfill_color()
-   );
-   //action.set_create_as_advanced_code_editor(true);
-
-   return action.managed_execute();
-}
-
-
-bool System::attempt_to_create_two_pane_split_from_last_component_navigator_selection()
-{
-   std::stringstream error_message;
-   error_message << "System::attempt_to_create_two_pane_split_from_last_component_navigator_selection"
-                 << " is not expected to be called";
-   throw std::runtime_error(error_message.str());
-
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
-   Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection action(
-         get_current_project_directory(),
-         last_component_navigator_selection,
-         get_display_default_width(),
-         get_display_default_height(),
-         stages,
-         &stage_factory,
-         get_default_code_editor_stage_width(),
-         config.get_base_text_color(),
-         config.get_backfill_color()
-      );
-   //action.set_create_as_advanced_code_editor(true);
-
-   return action.managed_execute();
 }
 
 
@@ -1547,9 +1493,7 @@ const std::string System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE = "WRITE_FOCUSED_
 const std::string System::ADD_FILE_IS_UNSAVED_NOTIFICATION = "ADD_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
-//const std::string System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION = "SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION";
-//const std::string System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION =
    "CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION = "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
