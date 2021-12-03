@@ -50,8 +50,8 @@ void ProgramRunner::run()
 
    std::string project_directory = hexagon_config.get_default_navigator_directory();
 
-   //cd_to_project_directory_and_run_with_rerun(project_directory);
-   watch_for_buildfile(project_directory);
+   cd_to_project_directory_and_run_with_rerun(project_directory);
+   //watch_for_buildfile(project_directory);
    return;
 }
 
