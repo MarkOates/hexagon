@@ -1262,6 +1262,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       return false;
    }
 
+   bool create_as_advanced_code_editor = false;
    Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
 
    if (component.has_only_source_and_header())
@@ -1285,7 +1286,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
          config.get_base_text_color(),
          config.get_backfill_color()
       );
-      //action.set_create_as_advanced_code_editor(true);
+      action.set_create_as_advanced_code_editor(create_as_advanced_code_editor);
 
       return action.managed_execute();
    }
@@ -1309,7 +1310,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
             config.get_base_text_color(),
             config.get_backfill_color()
          );
-      //action.set_create_as_advanced_code_editor(true);
+      action.set_create_as_advanced_code_editor(create_as_advanced_code_editor);
 
       return action.managed_execute();
    }
