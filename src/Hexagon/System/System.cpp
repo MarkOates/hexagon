@@ -211,6 +211,12 @@ void System::set_focused_component_name(std::string focused_component_name)
 }
 
 
+std::string System::get_focused_component_name()
+{
+   return focused_component_name;
+}
+
+
 void System::clear_focused_component_name()
 {
    this->focused_component_name = "";
@@ -388,7 +394,7 @@ bool System::write_focused_component_name_to_file()
    std::string FOCUSED_COMPONENT_FILENAME = config.get_focused_component_filename();
 
 
-   std::string focused_component_to_write = focused_component_name;
+   std::string focused_component_to_write = get_focused_component_name();
 
    bool success = php::file_put_contents(FOCUSED_COMPONENT_FILENAME, focused_component_to_write);
    if (!success)
@@ -432,7 +438,7 @@ bool System::clear_search_count()
 
 bool System::set_hud_title_to_focused_component_name()
 {
-   hud.set_title_text(focused_component_name);
+   hud.set_title_text(get_focused_component_name());
    return true;
 }
 
@@ -875,7 +881,7 @@ bool System::spawn_class_brief_menu()
      { "increment_save_count", "654" },
      { "clear_save_count", "160" },
    };
-   StageInterface *stage = stage_factory.create_class_brief_menu(focused_component_name, menu_items);
+   StageInterface *stage = stage_factory.create_class_brief_menu(get_focused_component_name(), menu_items);
 
    stages.push_back(stage);
 

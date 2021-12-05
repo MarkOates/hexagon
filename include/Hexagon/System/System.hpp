@@ -67,6 +67,7 @@ public:
    std::string get_global_font_str();
 
    void set_focused_component_name(std::string focused_component_name);
+   std::string get_focused_component_name();
    void clear_focused_component_name();
    void set_last_project_navigator_selection(std::string last_project_navigator_selection);
    void set_last_component_navigator_selection(std::string last_component_navigator_selection);
