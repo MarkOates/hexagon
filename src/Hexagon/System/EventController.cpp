@@ -59,10 +59,6 @@ std::map<std::string, std::function<bool(::System&)>> EventController::get_defau
          ::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION,
          &::System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction,
       },
-      //{
-      //   ::System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION,
-      //   &::System::attempt_to_create_two_stage_split_from_last_component_navigator_selection,
-      //},
       {
          ::System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION,
          &::System::spawn_file_navigator_from_last_file_navigator_folder_selection,
@@ -71,10 +67,6 @@ std::map<std::string, std::function<bool(::System&)>> EventController::get_defau
          ::System::CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION,
          &::System::create_stages_from_layout_of_last_component_navigator_selection,
       },
-      //{
-      //   ::System::CREATE_THREE_SPLIT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION,
-      //   &::System::create_three_split_from_last_component_navigator_selection,
-      //},
       {
          ::System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION,
          &::System::create_two_or_three_split_layout_from_last_component_navigator_selection,
