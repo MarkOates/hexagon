@@ -318,7 +318,7 @@ void EventController::process_event(ALLEGRO_EVENT& event)
    keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, {
       ::System::DESTROY_TOPMOST_STAGE });
 
-   if (system->is_current_stage_a_modal()) // we should remove this principal
+   if (system->is_current_stage_a_modal()) // should remove this principal
    {
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_ENTER, false, false, false, false, {
          ::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION,
