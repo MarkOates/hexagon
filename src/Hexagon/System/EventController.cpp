@@ -411,7 +411,7 @@ void EventController::process_event(ALLEGRO_EVENT& event)
       break;
    case ALLEGRO_EVENT_MOUSE_AXES:
       {
-         std::cout << "axes " << event.mouse.x << ", " << event.mouse.y << std::endl;
+         //std::cout << "axes " << event.mouse.x << ", " << event.mouse.y << std::endl;
          // TODO: add mouse events
       }
       break;
