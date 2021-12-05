@@ -865,17 +865,6 @@ bool System::set_regex_input_box_modal_to_insert_mode()
 }
 
 
-bool System::spawn_little_menu()
-{
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
-   StageInterface *stage = stage_factory.create_little_menu();
-
-   stages.push_back(stage);
-
-   return true;
-}
-
-
 bool System::spawn_class_brief_menu()
 {
    Hexagon::StageFactory stage_factory(&config, &font_bin);

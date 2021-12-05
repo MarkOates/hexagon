@@ -122,7 +122,6 @@ public:
    bool refresh_regex_hilights_on_all_code_editor_stages();
    bool refresh_git_modified_line_numbers_on_all_code_editor_stages();
    bool set_regex_input_box_modal_to_insert_mode();
-   bool spawn_little_menu();
    bool spawn_class_brief_menu();
    bool spawn_drawing_box();
    bool spawn_regex_input_box_modal();
