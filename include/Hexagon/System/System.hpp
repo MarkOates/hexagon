@@ -213,7 +213,7 @@ public:
    static const std::string CHECK_GIT_SYNC_AND_UPDATE_POWERBAR;
    static const std::string COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES;
    static const std::string PUSH_TO_GIT_REMOTE;
-   static const std::string SPAWN_LITTLE_MENU;
+   static const std::string SPAWN_CLASS_BRIEF_MENU;
    static const std::string SPAWN_DRAWING_BOX;
 
    void process_local_event(std::string event_name);

@@ -44,7 +44,7 @@ std::map<std::string, std::function<bool(::System&)>> EventController::get_defau
          &::System::attempt_to_create_stage_from_last_file_navigator_selection,
       },
       {
-         ::System::SPAWN_LITTLE_MENU,
+         ::System::SPAWN_CLASS_BRIEF_MENU,
          &::System::spawn_class_brief_menu,
       },
       {
@@ -322,7 +322,7 @@ void EventController::process_event(ALLEGRO_EVENT& event)
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, false, {
          ::System::SPAWN_DRAWING_BOX });
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, true, false, false, {
-         ::System::SPAWN_LITTLE_MENU });
+         ::System::SPAWN_CLASS_BRIEF_MENU });
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_PAD_PLUS, false, false, false, false, {
          ::System::INCREASE_FONT_SIZE });
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_PAD_MINUS, false, false, false, false, {
