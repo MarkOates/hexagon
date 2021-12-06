@@ -939,6 +939,17 @@ bool System::spawn_component_navigator()
 }
 
 
+bool System::spawn_component_relations_navigator()
+{
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   StageInterface *stage = stage_factory.create_component_relations_navigator();
+
+   stages.push_back(stage);
+
+   return true;
+}
+
+
 bool System::spawn_red_overlay()
 {
    Hexagon::FullScreenOverlay::Stage *red_overlay = new Hexagon::FullScreenOverlay::Stage;
@@ -1530,6 +1541,7 @@ const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 const std::string System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK =
    "SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK";
 const std::string System::SEND_MESSAGE_TO_DAEMUS_TO_BUILD = "SEND_MESSAGE_TO_DAEMUS_TO_BUILD";
+const std::string System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR = "SPAWN_COMPONENT_RELATIONS_NAVIGATOR";
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
 const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
