@@ -192,6 +192,10 @@ std::map<std::string, std::function<bool(::System&)>> EventController::get_defau
          &::System::spawn_component_navigator,
       },
       {
+         ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR,
+         &::System::spawn_component_relations_navigator,
+      },
+      {
          ::System::EXECUTE_MAGIC_COMMAND,
          &::System::execute_magic_command,
       },
@@ -321,7 +325,7 @@ void EventController::process_event(ALLEGRO_EVENT& event)
    {
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, false, {
          ::System::SPAWN_DRAWING_BOX });
-      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, true, false, false, {
+      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, false, false, false, {
          ::System::SPAWN_CLASS_BRIEF_MENU });
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_PAD_PLUS, false, false, false, false, {
          ::System::INCREASE_FONT_SIZE });
@@ -348,7 +352,9 @@ void EventController::process_event(ALLEGRO_EVENT& event)
          ::System::SPAWN_FILE_NAVIGATOR });
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
          ::System::SPAWN_COMPONENT_NAVIGATOR });
-      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_8, true, true, false, false, {
+      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
+         ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR });
+      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, true, false, false, {
          ::System::EXECUTE_MAGIC_COMMAND });
 
       if (system->is_current_stage_in_edit_mode())
