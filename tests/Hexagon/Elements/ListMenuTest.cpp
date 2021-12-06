@@ -88,6 +88,35 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
    //sleep(2);
 }
 
+TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,
+   render__with_active_set_to_false__does_not_draw_the_border_or_arrow)
+{
+   Hexagon::Elements::ListMenu list_menu(
+      &font_bin,
+      "Projects",
+      {
+         { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+         { "Solitare", "/Users/markoates/Repos/Solitare/" },
+         { "A Project That Should Be Selected", "none" },
+         { "Blast", "/Users/markoates/Repos/blast/" },
+         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      }
+   );
+   placement3d place = centered_placement(0, 0);
+   list_menu.move_cursor_down();
+   list_menu.move_cursor_down();
+
+   list_menu.set_active(false);
+
+   al_clear_to_color(ALLEGRO_COLOR{0.1,0.1,0.1,1});
+   place.start_transform();
+   list_menu.render();
+   place.restore_transform();
+   al_flip_display();
+
+   sleep(2);
+}
+
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, move_cursor_down__will_move_the_position_of_the_cursor)
 {
    Hexagon::Elements::ListMenu list_menu(

@@ -35,6 +35,11 @@ properties:
     init_with: 300
     getter: true
     setter: true
+  - name: active
+    type: bool
+    init_with: true
+    getter: true
+    setter: true
 
 
 functions:
@@ -100,7 +105,10 @@ functions:
       al_draw_filled_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, backfill_color);
 
       // draw frame
-      al_draw_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, color, 2.0);
+      if (get_active())
+      {
+         al_draw_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, color, 2.0);
+      }
 
       // draw title
       bool draw_title = true;
@@ -131,10 +139,20 @@ functions:
          if (cursor_on_this_list_item)
          {
             // draw selection box
-            al_draw_filled_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color);
+            if (get_active())
+            {
+               al_draw_filled_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color);
+            }
+            else
+            {
+               al_draw_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color, 2.0);
+            }
 
             // draw the cursor arrow
-            draw_cursor_pointer_arrow(width + padding_hack, line_num * line_height + line_height * 0.5);
+            if (get_active())
+            {
+               draw_cursor_pointer_arrow(width + padding_hack, line_num * line_height + line_height * 0.5);
+            }
          }
 
          std::string text_to_render = std::get<0>(list_item).c_str();
@@ -146,7 +164,7 @@ functions:
 
          al_draw_text(
             font,
-            cursor_on_this_list_item ? off_color : color,
+            (cursor_on_this_list_item && get_active()) ? off_color : color,
             0,
             0 + line_num * line_height,
             0,

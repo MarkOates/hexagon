@@ -22,6 +22,7 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
    , upcase(false)
    , width(300)
+   , active(true)
 {
 }
 
@@ -49,6 +50,12 @@ void ListMenu::set_width(int width)
 }
 
 
+void ListMenu::set_active(bool active)
+{
+   this->active = active;
+}
+
+
 bool ListMenu::get_wrap_cursor_when_moving_cursor_outside_bounds()
 {
    return wrap_cursor_when_moving_cursor_outside_bounds;
@@ -64,6 +71,12 @@ bool ListMenu::get_upcase()
 int ListMenu::get_width()
 {
    return width;
+}
+
+
+bool ListMenu::get_active()
+{
+   return active;
 }
 
 
@@ -122,7 +135,10 @@ void ListMenu::render()
    al_draw_filled_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, backfill_color);
 
    // draw frame
-   al_draw_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, color, 2.0);
+   if (get_active())
+   {
+      al_draw_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, color, 2.0);
+   }
 
    // draw title
    bool draw_title = true;
@@ -153,10 +169,20 @@ void ListMenu::render()
       if (cursor_on_this_list_item)
       {
          // draw selection box
-         al_draw_filled_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color);
+         if (get_active())
+         {
+            al_draw_filled_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color);
+         }
+         else
+         {
+            al_draw_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color, 2.0);
+         }
 
          // draw the cursor arrow
-         draw_cursor_pointer_arrow(width + padding_hack, line_num * line_height + line_height * 0.5);
+         if (get_active())
+         {
+            draw_cursor_pointer_arrow(width + padding_hack, line_num * line_height + line_height * 0.5);
+         }
       }
 
       std::string text_to_render = std::get<0>(list_item).c_str();
@@ -168,7 +194,7 @@ void ListMenu::render()
 
       al_draw_text(
          font,
-         cursor_on_this_list_item ? off_color : color,
+         (cursor_on_this_list_item && get_active()) ? off_color : color,
          0,
          0 + line_num * line_height,
          0,
