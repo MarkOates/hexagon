@@ -237,6 +237,7 @@ StageInterface* StageFactory::create_component_relations_navigator()
          dependencies_menu_items
    );
 
+   component_relations_navigator->initialize();
    component_relations_navigator->set_render_on_hud(true);
    component_relations_navigator->set_upcase(false);
    component_relations_navigator->set_place(build_centered_on_hud_initial_place(400, 300));

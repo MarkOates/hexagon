@@ -51,6 +51,12 @@ properties:
   - name: initialized
     type: bool
     init_with: false
+  - name: currently_active_menu
+    type: Hexagon::Elements::ListMenu*
+    init_with: nullptr
+    getter: true
+    setter: true
+    private: true
 
 
 functions:
@@ -60,8 +66,11 @@ functions:
     guard: [ get_initialized() ]
     body: |
       dependents_menu.set_active(false);
-      relatives_menu.set_active(true);
+      relatives_menu.set_active(false);
       dependencies_menu.set_active(false);
+
+      relatives_menu.set_active(true);
+      set_currently_active_menu(&relatives_menu);
       return;
 
 
@@ -192,6 +201,8 @@ dependencies:
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: Hexagon::Elements::ListMenu
+    headers: [ Hexagon/Elements/ListMenu.hpp ]
+  - symbol: Hexagon::Elements::ListMenu*
     headers: [ Hexagon/Elements/ListMenu.hpp ]
   - symbol: ActionData
     headers: [ 'Hexagon/ActionData.hpp' ]

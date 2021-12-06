@@ -26,12 +26,25 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, std::vector<std::tuple<std::string
    , relatives_menu_place(0, 0, 0)
    , dependencies_menu_place(400, 0, 0)
    , initialized(false)
+   , currently_active_menu(nullptr)
 {
 }
 
 
 Stage::~Stage()
 {
+}
+
+
+void Stage::set_currently_active_menu(Hexagon::Elements::ListMenu* currently_active_menu)
+{
+   this->currently_active_menu = currently_active_menu;
+}
+
+
+Hexagon::Elements::ListMenu* Stage::get_currently_active_menu()
+{
+   return currently_active_menu;
 }
 
 
@@ -44,8 +57,11 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 void Stage::initialize()
 {
    dependents_menu.set_active(false);
-   relatives_menu.set_active(true);
+   relatives_menu.set_active(false);
    dependencies_menu.set_active(false);
+
+   relatives_menu.set_active(true);
+   set_currently_active_menu(&relatives_menu);
    return;
 }
 
