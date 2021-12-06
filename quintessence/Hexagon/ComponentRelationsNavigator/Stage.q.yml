@@ -51,11 +51,11 @@ properties:
   - name: initialized
     type: bool
     init_with: false
+    getter: true
   - name: currently_active_menu
     type: Hexagon::Elements::ListMenu*
     init_with: nullptr
     getter: true
-    setter: true
     private: true
 
 
@@ -63,19 +63,42 @@ functions:
 
 
   - name: initialize
-    guard: [ get_initialized() ]
+    guards: [ (!get_initialized()) ]
+    body: |
+      set_currently_active_menu(&relatives_menu);
+      initialized = true;
+      return;
+
+
+  - name: set_currently_active_menu
+    parameters:
+      - name: menu
+        type: Hexagon::Elements::ListMenu*
+        default_argument: nullptr
+    guards: [ menu ]
     body: |
       dependents_menu.set_active(false);
       relatives_menu.set_active(false);
       dependencies_menu.set_active(false);
 
-      relatives_menu.set_active(true);
-      set_currently_active_menu(&relatives_menu);
+      this->currently_active_menu = menu;
+      if (currently_active_menu) currently_active_menu->set_active(true);
+
       return;
 
 
+  - name: is_currently_active_menu
+    type: bool
+    parameters:
+      - name: currently_active_menu
+        type: Hexagon::Elements::ListMenu*
+        default_argument: nullptr
+    body: |
+      return (get_currently_active_menu() == currently_active_menu);
+
+
   - name: render
-    guard: [ get_initialized() ]
+    guards: [ get_initialized() ]
     override: true
     body: |
       placement3d &place = get_place();
@@ -110,19 +133,51 @@ functions:
 
 
   - name: move_cursor_left
+    guards: [ get_initialized() ]
     body: |
-      // not yet implemented
+      if (is_currently_active_menu(&dependents_menu))
+      {
+         set_currently_active_menu(&dependencies_menu);
+      }
+      else if (is_currently_active_menu(&relatives_menu))
+      {
+         set_currently_active_menu(&dependents_menu);
+      }
+      else if (is_currently_active_menu(&dependencies_menu))
+      {
+         set_currently_active_menu(&relatives_menu);
+      }
+      else
+      {
+         // throw an error
+      }
       return;
 
 
   - name: move_cursor_right
+    guards: [ get_initialized() ]
     body: |
-      // not yet implemented
+      if (is_currently_active_menu(&dependents_menu))
+      {
+         set_currently_active_menu(&relatives_menu);
+      }
+      else if (is_currently_active_menu(&relatives_menu))
+      {
+         set_currently_active_menu(&dependencies_menu);
+      }
+      else if (is_currently_active_menu(&dependencies_menu))
+      {
+         set_currently_active_menu(&dependents_menu);
+      }
+      else
+      {
+         // throw an error
+      }
       return;
 
 
   - name: process_event
-    guard: [ get_initialized() ]
+    guards: [ get_initialized() ]
     override: true
     parameters:
       - name: event
@@ -168,7 +223,7 @@ functions:
 
 
   - name: process_local_event
-    guard: [ get_initialized() ]
+    guards: [ get_initialized() ]
     override: true
     parameters:
       - name: event_name

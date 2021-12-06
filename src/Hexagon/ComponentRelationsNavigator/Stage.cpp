@@ -1,6 +1,20 @@
 
 
 #include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <iostream>
 
 
@@ -36,9 +50,9 @@ Stage::~Stage()
 }
 
 
-void Stage::set_currently_active_menu(Hexagon::Elements::ListMenu* currently_active_menu)
+bool Stage::get_initialized()
 {
-   this->currently_active_menu = currently_active_menu;
+   return initialized;
 }
 
 
@@ -56,17 +70,48 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 
 void Stage::initialize()
 {
+   if (!((!get_initialized())))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"(!get_initialized())\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   set_currently_active_menu(&relatives_menu);
+   initialized = true;
+   return;
+}
+
+void Stage::set_currently_active_menu(Hexagon::Elements::ListMenu* menu)
+{
+   if (!(menu))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "set_currently_active_menu" << ": error: " << "guard \"menu\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    dependents_menu.set_active(false);
    relatives_menu.set_active(false);
    dependencies_menu.set_active(false);
 
-   relatives_menu.set_active(true);
-   set_currently_active_menu(&relatives_menu);
+   this->currently_active_menu = menu;
+   if (currently_active_menu) currently_active_menu->set_active(true);
+
    return;
+}
+
+bool Stage::is_currently_active_menu(Hexagon::Elements::ListMenu* currently_active_menu)
+{
+   return (get_currently_active_menu() == currently_active_menu);
 }
 
 void Stage::render()
 {
+   if (!(get_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"get_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    placement3d &place = get_place();
    place.start_transform();
       dependents_menu_place.start_transform();
@@ -100,18 +145,66 @@ void Stage::move_cursor_down()
 
 void Stage::move_cursor_left()
 {
-   // not yet implemented
+   if (!(get_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "move_cursor_left" << ": error: " << "guard \"get_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (is_currently_active_menu(&dependents_menu))
+   {
+      set_currently_active_menu(&dependencies_menu);
+   }
+   else if (is_currently_active_menu(&relatives_menu))
+   {
+      set_currently_active_menu(&dependents_menu);
+   }
+   else if (is_currently_active_menu(&dependencies_menu))
+   {
+      set_currently_active_menu(&relatives_menu);
+   }
+   else
+   {
+      // throw an error
+   }
    return;
 }
 
 void Stage::move_cursor_right()
 {
-   // not yet implemented
+   if (!(get_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "move_cursor_right" << ": error: " << "guard \"get_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (is_currently_active_menu(&dependents_menu))
+   {
+      set_currently_active_menu(&relatives_menu);
+   }
+   else if (is_currently_active_menu(&relatives_menu))
+   {
+      set_currently_active_menu(&dependencies_menu);
+   }
+   else if (is_currently_active_menu(&dependencies_menu))
+   {
+      set_currently_active_menu(&dependents_menu);
+   }
+   else
+   {
+      // throw an error
+   }
    return;
 }
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
+   if (!(get_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "process_event" << ": error: " << "guard \"get_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    switch(event.type)
    {
    case ALLEGRO_EVENT_KEY_CHAR:
@@ -148,6 +241,12 @@ void Stage::set_upcase(bool upcase)
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
+   if (!(get_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "process_local_event" << ": error: " << "guard \"get_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    return;
 }
 

@@ -37,10 +37,12 @@ namespace Hexagon
          Stage(AllegroFlare::FontBin* font_bin=nullptr, std::vector<std::tuple<std::string, std::string>> dependents_menu_items={{"Foo", "foo"}, {"Bar", "bar"}}, std::vector<std::tuple<std::string, std::string>> relatives_menu_items={{"Baz", "baz"}, {"Buz", "buz"}}, std::vector<std::tuple<std::string, std::string>> dependencies_menu_items={{"Fiz", "fiz"}, {"Foz", "foz"}});
          ~Stage();
 
-         void set_currently_active_menu(Hexagon::Elements::ListMenu* currently_active_menu);
+         bool get_initialized();
          Hexagon::Elements::ListMenu* get_currently_active_menu();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          void initialize();
+         void set_currently_active_menu(Hexagon::Elements::ListMenu* menu=nullptr);
+         bool is_currently_active_menu(Hexagon::Elements::ListMenu* currently_active_menu=nullptr);
          void render() override;
          void move_cursor_up();
          void move_cursor_down();
