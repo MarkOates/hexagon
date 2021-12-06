@@ -1,0 +1,180 @@
+parent_classes:
+
+
+  - class: 'StageInterface'
+    scope: public
+    init_with: 'StageInterface::COMPONENT_RELATIONS_NAVIGATOR'
+
+
+properties:
+
+
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
+  - name: title
+    type: std::string
+    init_with: '"Untitled Menu"'
+    constructor_arg: true
+  - name: dependents_menu_items
+    type: std::vector<std::tuple<std::string, std::string>>
+    init_with: '{{"Foo", "foo"}, {"Bar", "bar"}}'
+    constructor_arg: true
+  - name: relatives_menu_items
+    type: std::vector<std::tuple<std::string, std::string>>
+    init_with: '{{"Baz", "baz"}, {"Buz", "buz"}}'
+    constructor_arg: true
+  - name: dependencies_menu_items
+    type: std::vector<std::tuple<std::string, std::string>>
+    init_with: '{{"Fiz", "fiz"}, {"Foz", "foz"}}'
+    constructor_arg: true
+  - name: dependents_menu
+    type: Hexagon::Elements::ListMenu
+    init_with: 'font_bin, title, dependents_menu_items'
+  - name: relatives_menu
+    type: Hexagon::Elements::ListMenu
+    init_with: 'font_bin, title, relatives_menu_items'
+  - name: dependencies_menu
+    type: Hexagon::Elements::ListMenu
+    init_with: 'font_bin, title, dependencies_menu_items'
+
+
+functions:
+
+
+  - name: render
+    override: true
+    body: |
+      placement3d &place = get_place();
+      place.start_transform();
+      dependents_menu.render();
+      relatives_menu.render();
+      dependencies_menu.render();
+      place.restore_transform();
+      return;
+
+
+  - name: move_cursor_up
+    body: |
+      dependents_menu.move_cursor_up();
+      relatives_menu.move_cursor_up();
+      dependencies_menu.move_cursor_up();
+      return;
+
+
+  - name: move_cursor_down
+    body: |
+      dependents_menu.move_cursor_down();
+      relatives_menu.move_cursor_down();
+      dependencies_menu.move_cursor_down();
+      return;
+
+
+  - name: move_cursor_left
+    body: |
+      // not yet implemented
+      return;
+
+
+  - name: move_cursor_right
+    body: |
+      // not yet implemented
+      return;
+
+
+  - name: process_event
+    override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: |
+      switch(event.type)
+      {
+      case ALLEGRO_EVENT_KEY_CHAR:
+        switch(event.keyboard.keycode)
+        {
+          case ALLEGRO_KEY_K:
+            move_cursor_up();
+            break;
+          case ALLEGRO_KEY_J:
+            move_cursor_down();
+            break;
+          case ALLEGRO_KEY_H:
+            move_cursor_left();
+            break;
+          case ALLEGRO_KEY_L:
+            move_cursor_right();
+            break;
+          case ALLEGRO_KEY_ENTER:
+            emit_submission();
+            break;
+        }
+        break;
+      }
+      return;
+
+
+  - name: set_upcase
+    parameters:
+      - name: upcase
+        type: bool
+        default_argument: "false"
+    body: |
+      dependents_menu.set_upcase(upcase);
+      relatives_menu.set_upcase(upcase);
+      dependencies_menu.set_upcase(upcase);
+      return;
+
+
+  - name: process_local_event
+    override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: "\"\""
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: |
+      return;
+
+
+  - name: emit_submission
+    private: true
+    body: |
+      std::cout << "DUMMY_MESSAGE: Sumitting ComponentRelationsNavigator/Stage with current selections (\""
+                << dependents_menu.get_current_list_item_identifier() << ", "
+                << relatives_menu.get_current_list_item_identifier() << ", "
+                << dependencies_menu.get_current_list_item_identifier() << ")"
+                << "\"" << std::endl;
+    body_dependency_symbols:
+      - std::cout
+
+
+dependencies:
+
+
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::Elements::ListMenu
+    headers: [ Hexagon/Elements/ListMenu.hpp ]
+  - symbol: ActionData
+    headers: [ 'Hexagon/ActionData.hpp' ]
+  - symbol: std::vector<std::tuple<std::string, std::string>>
+    headers: [ vector, tuple, string ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ allegro5/allegro.h ]
+
+
+
