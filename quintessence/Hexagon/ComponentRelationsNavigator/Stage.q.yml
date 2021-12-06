@@ -18,10 +18,6 @@ properties:
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
-  - name: title
-    type: std::string
-    init_with: '"Untitled Menu"'
-    constructor_arg: true
   - name: dependents_menu_items
     type: std::vector<std::tuple<std::string, std::string>>
     init_with: '{{"Foo", "foo"}, {"Bar", "bar"}}'
@@ -36,13 +32,13 @@ properties:
     constructor_arg: true
   - name: dependents_menu
     type: Hexagon::Elements::ListMenu
-    init_with: 'font_bin, title, dependents_menu_items'
+    init_with: 'font_bin, "Dependents", dependents_menu_items'
   - name: relatives_menu
     type: Hexagon::Elements::ListMenu
-    init_with: 'font_bin, title, relatives_menu_items'
+    init_with: 'font_bin, "Relatives", relatives_menu_items'
   - name: dependencies_menu
     type: Hexagon::Elements::ListMenu
-    init_with: 'font_bin, title, dependencies_menu_items'
+    init_with: 'font_bin, "Dependencies", dependencies_menu_items'
 
 
 functions:

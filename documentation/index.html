@@ -84,6 +84,7 @@ table td
   <li><a href="#quintessence/Hexagon/CodeMessagePointManager.q.yml">quintessence/Hexagon/CodeMessagePointManager.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeRenderer.q.yml">quintessence/Hexagon/CodeRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml">quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/DirtyGrid.q.yml">quintessence/Hexagon/DirtyGrid.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml">quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/BitmapGridMesh.q.yml">quintessence/Hexagon/Elements/BitmapGridMesh.q.yml</a></li>
@@ -2346,6 +2347,97 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_BITMAP*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
+  <td class="property">a_default_empty_event</td>
+  <td class="property">ALLEGRO_EVENT</td>
+</tr>
+<tr>
+  <td class="property">dependents_menu_items</td>
+  <td class="property">std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt;</td>
+</tr>
+<tr>
+  <td class="property">relatives_menu_items</td>
+  <td class="property">std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt;</td>
+</tr>
+<tr>
+  <td class="property">dependencies_menu_items</td>
+  <td class="property">std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt;</td>
+</tr>
+<tr>
+  <td class="property">dependents_menu</td>
+  <td class="property">Hexagon::Elements::ListMenu</td>
+</tr>
+<tr>
+  <td class="property">relatives_menu</td>
+  <td class="property">Hexagon::Elements::ListMenu</td>
+</tr>
+<tr>
+  <td class="property">dependencies_menu</td>
+  <td class="property">Hexagon::Elements::ListMenu</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="method">move_cursor_up()</td>
+</tr>
+<tr>
+  <td class="method">move_cursor_down()</td>
+</tr>
+<tr>
+  <td class="method">move_cursor_left()</td>
+</tr>
+<tr>
+  <td class="method">move_cursor_right()</td>
+</tr>
+<tr>
+  <td class="method">process_event(1)</td>
+</tr>
+<tr>
+  <td class="method">set_upcase(1)</td>
+</tr>
+<tr>
+  <td class="method">process_local_event(2)</td>
+</tr>
+<tr>
+  <td class="private_method">emit_submission()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;StageInterface&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageInterface.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::ListMenu&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/ListMenu.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ActionData&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ActionData.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;tuple&quot;, &quot;string&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT&amp;&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -7066,6 +7158,9 @@ table td
   <td class="method">create_class_brief_menu(2)</td>
 </tr>
 <tr>
+  <td class="method">create_component_relations_navigator()</td>
+</tr>
+<tr>
   <td class="method">create_drawing_box()</td>
 </tr>
 <tr>
@@ -7138,6 +7233,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::UI::LittleMenu&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/UI/LittleMenu.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ComponentRelationsNavigator::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ComponentRelationsNavigator/Stage.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::UI::DrawingBox&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/UI/DrawingBox.hpp&quot;]}</td>
@@ -8466,6 +8564,7 @@ table td
     "quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml",
     "quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml",
     "quintessence/Hexagon/CodeEditor/Stage.q.yml",
+    "quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml",
     "quintessence/Hexagon/FileNavigator/Stage.q.yml",
     "quintessence/Hexagon/FullScreenOverlay/Stage.q.yml",
     "quintessence/Hexagon/GitCommitMessageInputBox/Stage.q.yml",
@@ -8608,6 +8707,7 @@ table td
     "quintessence/Hexagon/AdvancedComponentNavigator/EventController.q.yml",
     "quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml",
     "quintessence/Hexagon/CodeEditor/Stage.q.yml",
+    "quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml",
     "quintessence/Hexagon/FileNavigator/Stage.q.yml",
     "quintessence/Hexagon/FullScreenOverlay/Stage.q.yml",
     "quintessence/Hexagon/GitCommitMessageInputBox/Stage.q.yml",
@@ -8625,6 +8725,7 @@ table td
     "quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml",
     "quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml",
     "quintessence/Hexagon/CodeEditor/Stage.q.yml",
+    "quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml",
     "quintessence/Hexagon/FileNavigator/Stage.q.yml",
     "quintessence/Hexagon/FullScreenOverlay/Stage.q.yml",
     "quintessence/Hexagon/GitCommitMessageInputBox/Stage.q.yml",
@@ -8803,6 +8904,7 @@ table td
     "quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml",
     "quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml",
     "quintessence/Hexagon/CodeEditor/Stage.q.yml",
+    "quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml",
     "quintessence/Hexagon/FileNavigator/Stage.q.yml",
     "quintessence/Hexagon/FullScreenOverlay/Stage.q.yml",
     "quintessence/Hexagon/GitCommitMessageInputBox/Stage.q.yml",
@@ -8833,6 +8935,7 @@ table td
     "quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml",
     "quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml",
     "quintessence/Hexagon/CodeEditor/Stage.q.yml",
+    "quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml",
     "quintessence/Hexagon/Elements/ListMenu.q.yml",
     "quintessence/Hexagon/Elements/QuoteRenderer.q.yml",
     "quintessence/Hexagon/Elements/StageInfoOverlay.q.yml",
@@ -9214,6 +9317,19 @@ table td
     "quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml",
     "quintessence/Hexagon/Search/ComponentElasticsearchIndexer.q.yml"
   ],
+  "Hexagon::Elements::ListMenu": [
+    "quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml",
+    "quintessence/Hexagon/TitleScreen.q.yml",
+    "quintessence/Hexagon/UI/DrawingBox.q.yml",
+    "quintessence/Hexagon/UI/LittleMenu.q.yml"
+  ],
+  "std::vector<std::tuple<std::string, std::string>>": [
+    "quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml",
+    "quintessence/Hexagon/Elements/ListMenu.q.yml",
+    "quintessence/Hexagon/PacketRenderer.q.yml",
+    "quintessence/Hexagon/StageFactory.q.yml",
+    "quintessence/Hexagon/UI/LittleMenu.q.yml"
+  ],
   "Hexagon::DirtyGrid*": [
     "quintessence/Hexagon/DirtyGrid.q.yml"
   ],
@@ -9292,12 +9408,6 @@ table td
     "quintessence/Hexagon/Elements/Frame.q.yml",
     "quintessence/Hexagon/Hud.q.yml",
     "quintessence/Hexagon/Powerbar/Renderer.q.yml"
-  ],
-  "std::vector<std::tuple<std::string, std::string>>": [
-    "quintessence/Hexagon/Elements/ListMenu.q.yml",
-    "quintessence/Hexagon/PacketRenderer.q.yml",
-    "quintessence/Hexagon/StageFactory.q.yml",
-    "quintessence/Hexagon/UI/LittleMenu.q.yml"
   ],
   "std::transform": [
     "quintessence/Hexagon/Elements/ListMenu.q.yml",
@@ -9597,6 +9707,9 @@ table td
   "Hexagon::UI::LittleMenu": [
     "quintessence/Hexagon/StageFactory.q.yml"
   ],
+  "Hexagon::ComponentRelationsNavigator::Stage": [
+    "quintessence/Hexagon/StageFactory.q.yml"
+  ],
   "Hexagon::UI::DrawingBox": [
     "quintessence/Hexagon/StageFactory.q.yml"
   ],
@@ -9687,11 +9800,6 @@ table td
   ],
   "Hexagon::Elements::DataTable": [
     "quintessence/Hexagon/TitleScreen.q.yml"
-  ],
-  "Hexagon::Elements::ListMenu": [
-    "quintessence/Hexagon/TitleScreen.q.yml",
-    "quintessence/Hexagon/UI/DrawingBox.q.yml",
-    "quintessence/Hexagon/UI/LittleMenu.q.yml"
   ],
   "Blast::StringJoiner": [
     "quintessence/Hexagon/UI/DrawingBox.q.yml"

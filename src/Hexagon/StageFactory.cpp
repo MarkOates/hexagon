@@ -25,6 +25,10 @@
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
+#include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
+#include <vector>
+#include <tuple>
+#include <string>
 #include <Hexagon/UI/DrawingBox.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
@@ -217,6 +221,27 @@ StageInterface* StageFactory::create_class_brief_menu(std::string title, std::ve
    //little_menu->set_upcase(false);
    little_menu->set_place(build_centered_on_hud_initial_place(400, 300));
    return little_menu;
+}
+
+StageInterface* StageFactory::create_component_relations_navigator()
+{
+   std::vector<std::tuple<std::string, std::string>> dependents_menu_items = {{"Foo", "foo"}, {"Bar", "bar"}};
+   std::vector<std::tuple<std::string, std::string>> relatives_menu_items = {{"Baz", "baz"}, {"Buz", "buz"}};
+   std::vector<std::tuple<std::string, std::string>> dependencies_menu_items = {{"Fiz", "fiz"}, {"Foz", "foz"}};
+
+   Hexagon::ComponentRelationsNavigator::Stage *component_relations_navigator =
+      new Hexagon::ComponentRelationsNavigator::Stage(
+         font_bin,
+         dependents_menu_items,
+         relatives_menu_items,
+         dependencies_menu_items
+   );
+
+   component_relations_navigator->set_render_on_hud(true);
+   component_relations_navigator->set_upcase(false);
+   component_relations_navigator->set_place(build_centered_on_hud_initial_place(400, 300));
+
+   return component_relations_navigator;
 }
 
 StageInterface* StageFactory::create_drawing_box()

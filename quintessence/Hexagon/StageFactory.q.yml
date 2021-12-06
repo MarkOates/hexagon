@@ -160,6 +160,31 @@ functions:
        - Hexagon::UI::LittleMenu
 
 
+  - name: create_component_relations_navigator
+    type: StageInterface*
+    body: |
+      std::vector<std::tuple<std::string, std::string>> dependents_menu_items = {{"Foo", "foo"}, {"Bar", "bar"}};
+      std::vector<std::tuple<std::string, std::string>> relatives_menu_items = {{"Baz", "baz"}, {"Buz", "buz"}};
+      std::vector<std::tuple<std::string, std::string>> dependencies_menu_items = {{"Fiz", "fiz"}, {"Foz", "foz"}};
+
+      Hexagon::ComponentRelationsNavigator::Stage *component_relations_navigator =
+         new Hexagon::ComponentRelationsNavigator::Stage(
+            font_bin,
+            dependents_menu_items,
+            relatives_menu_items,
+            dependencies_menu_items
+      );
+
+      component_relations_navigator->set_render_on_hud(true);
+      component_relations_navigator->set_upcase(false);
+      component_relations_navigator->set_place(build_centered_on_hud_initial_place(400, 300));
+
+      return component_relations_navigator;
+    body_dependency_symbols:
+       - Hexagon::ComponentRelationsNavigator::Stage
+       - std::vector<std::tuple<std::string, std::string>>
+
+
   - name: create_drawing_box
     type: StageInterface*
     body: |
@@ -483,6 +508,8 @@ dependencies:
     headers: [ Hexagon/Notifications/Stage.hpp ]
   - symbol: Hexagon::UI::LittleMenu
     headers: [ Hexagon/UI/LittleMenu.hpp ]
+  - symbol: Hexagon::ComponentRelationsNavigator::Stage
+    headers: [ Hexagon/ComponentRelationsNavigator/Stage.hpp ]
   - symbol: Hexagon::UI::DrawingBox
     headers: [ Hexagon/UI/DrawingBox.hpp ]
   - symbol: StageInterface*

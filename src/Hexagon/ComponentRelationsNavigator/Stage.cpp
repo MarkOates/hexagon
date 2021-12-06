@@ -13,16 +13,15 @@ namespace ComponentRelationsNavigator
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(AllegroFlare::FontBin* font_bin, std::string title, std::vector<std::tuple<std::string, std::string>> dependents_menu_items, std::vector<std::tuple<std::string, std::string>> relatives_menu_items, std::vector<std::tuple<std::string, std::string>> dependencies_menu_items)
+Stage::Stage(AllegroFlare::FontBin* font_bin, std::vector<std::tuple<std::string, std::string>> dependents_menu_items, std::vector<std::tuple<std::string, std::string>> relatives_menu_items, std::vector<std::tuple<std::string, std::string>> dependencies_menu_items)
    : StageInterface(StageInterface::COMPONENT_RELATIONS_NAVIGATOR)
    , font_bin(font_bin)
-   , title(title)
    , dependents_menu_items(dependents_menu_items)
    , relatives_menu_items(relatives_menu_items)
    , dependencies_menu_items(dependencies_menu_items)
-   , dependents_menu(font_bin, title, dependents_menu_items)
-   , relatives_menu(font_bin, title, relatives_menu_items)
-   , dependencies_menu(font_bin, title, dependencies_menu_items)
+   , dependents_menu(font_bin, "Dependents", dependents_menu_items)
+   , relatives_menu(font_bin, "Relatives", relatives_menu_items)
+   , dependencies_menu(font_bin, "Dependencies", dependencies_menu_items)
 {
 }
 

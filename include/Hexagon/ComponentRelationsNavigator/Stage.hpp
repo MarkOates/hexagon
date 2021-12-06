@@ -20,7 +20,6 @@ namespace Hexagon
       private:
          AllegroFlare::FontBin* font_bin;
          static ALLEGRO_EVENT a_default_empty_event;
-         std::string title;
          std::vector<std::tuple<std::string, std::string>> dependents_menu_items;
          std::vector<std::tuple<std::string, std::string>> relatives_menu_items;
          std::vector<std::tuple<std::string, std::string>> dependencies_menu_items;
@@ -29,7 +28,7 @@ namespace Hexagon
          Hexagon::Elements::ListMenu dependencies_menu;
 
       public:
-         Stage(AllegroFlare::FontBin* font_bin=nullptr, std::string title="Untitled Menu", std::vector<std::tuple<std::string, std::string>> dependents_menu_items={{"Foo", "foo"}, {"Bar", "bar"}}, std::vector<std::tuple<std::string, std::string>> relatives_menu_items={{"Baz", "baz"}, {"Buz", "buz"}}, std::vector<std::tuple<std::string, std::string>> dependencies_menu_items={{"Fiz", "fiz"}, {"Foz", "foz"}});
+         Stage(AllegroFlare::FontBin* font_bin=nullptr, std::vector<std::tuple<std::string, std::string>> dependents_menu_items={{"Foo", "foo"}, {"Bar", "bar"}}, std::vector<std::tuple<std::string, std::string>> relatives_menu_items={{"Baz", "baz"}, {"Buz", "buz"}}, std::vector<std::tuple<std::string, std::string>> dependencies_menu_items={{"Fiz", "fiz"}, {"Foz", "foz"}});
          ~Stage();
 
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
