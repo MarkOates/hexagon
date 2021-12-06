@@ -343,10 +343,9 @@ functions:
             ::System::SPAWN_FILE_NAVIGATOR });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
             ::System::SPAWN_COMPONENT_NAVIGATOR });
-         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, true, false, false, false, {
             ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR });
-         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, true, false, false, {
-            ::System::EXECUTE_MAGIC_COMMAND });
+            //::System::EXECUTE_MAGIC_COMMAND });
 
          if (system->is_current_stage_in_edit_mode())
          {
