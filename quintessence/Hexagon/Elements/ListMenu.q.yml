@@ -32,7 +32,7 @@ properties:
     setter: true
   - name: width
     type: int
-    init_with: 300
+    init_with: 600
     getter: true
     setter: true
   - name: active

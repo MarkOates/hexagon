@@ -21,7 +21,7 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , cursor(0)
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
    , upcase(false)
-   , width(300)
+   , width(600)
    , active(true)
 {
 }

@@ -36,9 +36,9 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, std::vector<std::tuple<std::string
    , dependents_menu(font_bin, "Dependents", dependents_menu_items)
    , relatives_menu(font_bin, "Relatives", relatives_menu_items)
    , dependencies_menu(font_bin, "Dependencies", dependencies_menu_items)
-   , dependents_menu_place(-400, 0, 0)
+   , dependents_menu_place(-700, 0, 0)
    , relatives_menu_place(0, 0, 0)
-   , dependencies_menu_place(400, 0, 0)
+   , dependencies_menu_place(700, 0, 0)
    , initialized(false)
    , currently_active_menu(nullptr)
 {

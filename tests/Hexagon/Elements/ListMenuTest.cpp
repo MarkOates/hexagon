@@ -58,7 +58,7 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__does_not_blo
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, width__has_with_the_expected_default_value)
 {
    Hexagon::Elements::ListMenu list_menu(&font_bin);
-   EXPECT_EQ(list_menu.get_width(), 300);
+   EXPECT_EQ(list_menu.get_width(), 600);
 }
 
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_items_in_the_list)
@@ -114,7 +114,7 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,
    place.restore_transform();
    al_flip_display();
 
-   sleep(2);
+   //sleep(2);
 }
 
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, move_cursor_down__will_move_the_position_of_the_cursor)
