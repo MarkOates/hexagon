@@ -118,17 +118,35 @@ functions:
 
   - name: move_cursor_up
     body: |
-      dependents_menu.move_cursor_up();
-      relatives_menu.move_cursor_up();
-      dependencies_menu.move_cursor_up();
+      if (is_currently_active_menu(&dependents_menu))
+      {
+         dependents_menu.move_cursor_up();
+      }
+      else if (is_currently_active_menu(&relatives_menu))
+      {
+         relatives_menu.move_cursor_up();
+      }
+      else if (is_currently_active_menu(&dependencies_menu))
+      {
+         dependencies_menu.move_cursor_up();
+      }
       return;
 
 
   - name: move_cursor_down
     body: |
-      dependents_menu.move_cursor_down();
-      relatives_menu.move_cursor_down();
-      dependencies_menu.move_cursor_down();
+      if (is_currently_active_menu(&dependents_menu))
+      {
+         dependents_menu.move_cursor_down();
+      }
+      else if (is_currently_active_menu(&relatives_menu))
+      {
+         relatives_menu.move_cursor_down();
+      }
+      else if (is_currently_active_menu(&dependencies_menu))
+      {
+         dependencies_menu.move_cursor_down();
+      }
       return;
 
 
