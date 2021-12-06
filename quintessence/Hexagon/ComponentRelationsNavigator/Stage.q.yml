@@ -39,7 +39,7 @@ properties:
   - name: dependencies_menu
     type: Hexagon::Elements::ListMenu
     init_with: 'font_bin, "Dependencies", dependencies_menu_items'
-  - name: dependendents_menu_place
+  - name: dependents_menu_place
     type: placement3d
     init_with: '-400, 0, 0'
   - name: relatives_menu_place
@@ -48,19 +48,32 @@ properties:
   - name: dependencies_menu_place
     type: placement3d
     init_with: '400, 0, 0'
+  - name: initialized
+    type: bool
+    init_with: false
 
 
 functions:
 
 
+  - name: initialize
+    guard: [ get_initialized() ]
+    body: |
+      dependents_menu.set_active(false);
+      relatives_menu.set_active(true);
+      dependencies_menu.set_active(false);
+      return;
+
+
   - name: render
+    guard: [ get_initialized() ]
     override: true
     body: |
       placement3d &place = get_place();
       place.start_transform();
-         dependendents_menu_place.start_transform();
+         dependents_menu_place.start_transform();
             dependents_menu.render();
-         dependendents_menu_place.restore_transform();
+         dependents_menu_place.restore_transform();
          relatives_menu_place.start_transform();
             relatives_menu.render();
          relatives_menu_place.restore_transform();
@@ -100,6 +113,7 @@ functions:
 
 
   - name: process_event
+    guard: [ get_initialized() ]
     override: true
     parameters:
       - name: event
@@ -145,6 +159,7 @@ functions:
 
 
   - name: process_local_event
+    guard: [ get_initialized() ]
     override: true
     parameters:
       - name: event_name

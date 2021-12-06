@@ -22,9 +22,10 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, std::vector<std::tuple<std::string
    , dependents_menu(font_bin, "Dependents", dependents_menu_items)
    , relatives_menu(font_bin, "Relatives", relatives_menu_items)
    , dependencies_menu(font_bin, "Dependencies", dependencies_menu_items)
-   , dependendents_menu_place(-400, 0, 0)
+   , dependents_menu_place(-400, 0, 0)
    , relatives_menu_place(0, 0, 0)
    , dependencies_menu_place(400, 0, 0)
+   , initialized(false)
 {
 }
 
@@ -40,13 +41,21 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
+void Stage::initialize()
+{
+   dependents_menu.set_active(false);
+   relatives_menu.set_active(true);
+   dependencies_menu.set_active(false);
+   return;
+}
+
 void Stage::render()
 {
    placement3d &place = get_place();
    place.start_transform();
-      dependendents_menu_place.start_transform();
+      dependents_menu_place.start_transform();
          dependents_menu.render();
-      dependendents_menu_place.restore_transform();
+      dependents_menu_place.restore_transform();
       relatives_menu_place.start_transform();
          relatives_menu.render();
       relatives_menu_place.restore_transform();
