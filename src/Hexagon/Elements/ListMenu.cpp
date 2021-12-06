@@ -21,6 +21,7 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , cursor(0)
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
    , upcase(false)
+   , width(300)
 {
 }
 
@@ -42,6 +43,12 @@ void ListMenu::set_upcase(bool upcase)
 }
 
 
+void ListMenu::set_width(int width)
+{
+   this->width = width;
+}
+
+
 bool ListMenu::get_wrap_cursor_when_moving_cursor_outside_bounds()
 {
    return wrap_cursor_when_moving_cursor_outside_bounds;
@@ -51,6 +58,12 @@ bool ListMenu::get_wrap_cursor_when_moving_cursor_outside_bounds()
 bool ListMenu::get_upcase()
 {
    return upcase;
+}
+
+
+int ListMenu::get_width()
+{
+   return width;
 }
 
 
@@ -98,7 +111,7 @@ void ListMenu::render()
    //ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
    ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
    ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.6};
-   float width = 500;
+   float width = get_width();
    //float height = 300;
    int line_height = al_get_font_line_height(font) * 1.2;
    int line_num = 0;

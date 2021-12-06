@@ -39,6 +39,15 @@ properties:
   - name: dependencies_menu
     type: Hexagon::Elements::ListMenu
     init_with: 'font_bin, "Dependencies", dependencies_menu_items'
+  - name: dependendents_menu_place
+    type: placement3d
+    init_with: '-400, 0, 0'
+  - name: relatives_menu_place
+    type: placement3d
+    init_with: '0, 0, 0'
+  - name: dependencies_menu_place
+    type: placement3d
+    init_with: '400, 0, 0'
 
 
 functions:
@@ -49,9 +58,15 @@ functions:
     body: |
       placement3d &place = get_place();
       place.start_transform();
-      dependents_menu.render();
-      relatives_menu.render();
-      dependencies_menu.render();
+         dependendents_menu_place.start_transform();
+            dependents_menu.render();
+         dependendents_menu_place.restore_transform();
+         relatives_menu_place.start_transform();
+            relatives_menu.render();
+         relatives_menu_place.restore_transform();
+         dependencies_menu_place.start_transform();
+            dependencies_menu.render();
+         dependencies_menu_place.restore_transform();
       place.restore_transform();
       return;
 
@@ -171,6 +186,8 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT&
     headers: [ allegro5/allegro.h ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
 
 
 

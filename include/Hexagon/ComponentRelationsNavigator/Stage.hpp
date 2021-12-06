@@ -6,6 +6,7 @@
 #include <Hexagon/Elements/ListMenu.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
+#include <allegro_flare/placement3d.h>
 #include <string>
 #include <tuple>
 #include <vector>
@@ -26,6 +27,9 @@ namespace Hexagon
          Hexagon::Elements::ListMenu dependents_menu;
          Hexagon::Elements::ListMenu relatives_menu;
          Hexagon::Elements::ListMenu dependencies_menu;
+         placement3d dependendents_menu_place;
+         placement3d relatives_menu_place;
+         placement3d dependencies_menu_place;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, std::vector<std::tuple<std::string, std::string>> dependents_menu_items={{"Foo", "foo"}, {"Bar", "bar"}}, std::vector<std::tuple<std::string, std::string>> relatives_menu_items={{"Baz", "baz"}, {"Buz", "buz"}}, std::vector<std::tuple<std::string, std::string>> dependencies_menu_items={{"Fiz", "fiz"}, {"Foz", "foz"}});

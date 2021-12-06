@@ -55,6 +55,12 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__does_not_blo
    list_menu.render();
 }
 
+TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, width__has_with_the_expected_default_value)
+{
+   Hexagon::Elements::ListMenu list_menu(&font_bin);
+   EXPECT_EQ(list_menu.get_width(), 300);
+}
+
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_items_in_the_list)
 {
    Hexagon::Elements::ListMenu list_menu(
