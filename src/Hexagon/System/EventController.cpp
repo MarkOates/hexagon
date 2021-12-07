@@ -323,6 +323,22 @@ void EventController::process_event(ALLEGRO_EVENT& event)
    }
    else
    {
+      if (system->has_no_stages() || system->is_current_stage_in_edit_mode())
+      {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, {
+            ::System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL,
+            });
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, true, false, false, {
+            ::System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL,
+            });
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, {
+            ::System::SPAWN_FILE_NAVIGATOR });
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
+            ::System::SPAWN_COMPONENT_NAVIGATOR });
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, false, false, false, {
+            ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR });
+      }
+
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, false, {
          ::System::SPAWN_DRAWING_BOX });
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, true, false, false, false, {
@@ -348,23 +364,6 @@ void EventController::process_event(ALLEGRO_EVENT& event)
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, {
          ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK,
          ::System::RUN_PROJECT_TESTS });
-      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, {
-         ::System::SPAWN_FILE_NAVIGATOR });
-      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
-         ::System::SPAWN_COMPONENT_NAVIGATOR });
-      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, false, false, false, {
-         ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR });
-         //::System::EXECUTE_MAGIC_COMMAND });
-
-      if (system->is_current_stage_in_edit_mode())
-      {
-         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, {
-            ::System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL,
-            });
-         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, true, false, false, {
-            ::System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL,
-            });
-      }
    }
 
 

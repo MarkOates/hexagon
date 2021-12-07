@@ -84,6 +84,7 @@ public:
    bool is_current_stage_in_edit_mode();
    bool is_current_stage_a_modal();
    bool is_drawing_mouse_cursor();
+   bool has_no_stages();
 
    // internal messages
    void acknowledge_display_resize(ALLEGRO_DISPLAY *display);

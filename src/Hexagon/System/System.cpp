@@ -306,6 +306,12 @@ bool System::is_drawing_mouse_cursor()
 }
 
 
+bool System::has_no_stages()
+{
+   return stages.empty();
+}
+
+
 // internal messages
 void System::acknowledge_display_resize(ALLEGRO_DISPLAY *display)
 {
