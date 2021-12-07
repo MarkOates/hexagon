@@ -3,6 +3,7 @@
 #include <Hexagon/Elements/ListMenu.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <algorithm>
+#include <allegro_flare/useful.h>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -219,6 +220,11 @@ void ListMenu::render()
       local_list_line_num++;
       line_num++;
    }
+
+   draw_crosshair(0, 0);
+   draw_crosshair(get_width(), 0);
+   draw_crosshair(0, height);
+   draw_crosshair(get_width(), height);
 
    return;
 }

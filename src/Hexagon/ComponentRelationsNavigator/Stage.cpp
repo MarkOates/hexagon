@@ -86,6 +86,15 @@ void Stage::initialize()
    dependents_menu.set_color(default_color);
    relatives_menu.set_color(default_color);
    dependencies_menu.set_color(default_color);
+
+   dependents_menu_place.size.x = 600; //dependents_menu.get_width();
+   relatives_menu_place.size.x = 600; //relatives_menu.get_width();
+   dependencies_menu_place.size.x = 600; //dependencies_menu.get_width();
+
+   dependents_menu_place.align.x = 0.5;
+   relatives_menu_place.align.x = 0.5;
+   dependencies_menu_place.align.x = 0.5;
+
    set_currently_active_menu(&relatives_menu);
    initialized = true;
    return;
