@@ -178,16 +178,10 @@ functions:
          line_num++;
       }
 
-      draw_crosshair(0, 0);
-      draw_crosshair(get_width(), 0);
-      draw_crosshair(0, height);
-      draw_crosshair(get_width(), height);
-
       return;
     body_dependency_symbols:
       - al_draw_filled_rectangle
       - std::transform
-      - draw_crosshair
 
 
   - name: obtain_list_item_font
@@ -276,7 +270,5 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: std::transform
     headers: [ algorithm ]
-  - symbol: draw_crosshair
-    headers: [ allegro_flare/useful.h ]
 
 
