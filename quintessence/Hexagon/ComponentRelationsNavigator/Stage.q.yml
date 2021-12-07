@@ -41,13 +41,13 @@ properties:
     init_with: 'font_bin, "Dependencies", dependencies_menu_items'
   - name: dependents_menu_place
     type: placement3d
-    init_with: '-700, 0, 0'
+    init_with: '-700, -200, 0'
   - name: relatives_menu_place
     type: placement3d
-    init_with: '0, 0, 0'
+    init_with: '0, -200, 0'
   - name: dependencies_menu_place
     type: placement3d
-    init_with: '700, 0, 0'
+    init_with: '700, -200, 0'
   - name: initialized
     type: bool
     init_with: false
