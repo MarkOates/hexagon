@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -32,6 +34,12 @@ ListMenu::~ListMenu()
 }
 
 
+void ListMenu::set_color(ALLEGRO_COLOR color)
+{
+   this->color = color;
+}
+
+
 void ListMenu::set_wrap_cursor_when_moving_cursor_outside_bounds(bool wrap_cursor_when_moving_cursor_outside_bounds)
 {
    this->wrap_cursor_when_moving_cursor_outside_bounds = wrap_cursor_when_moving_cursor_outside_bounds;
@@ -53,6 +61,12 @@ void ListMenu::set_width(int width)
 void ListMenu::set_active(bool active)
 {
    this->active = active;
+}
+
+
+ALLEGRO_COLOR ListMenu::get_color()
+{
+   return color;
 }
 
 
@@ -121,6 +135,7 @@ std::string ListMenu::get_current_list_item_identifier()
 void ListMenu::render()
 {
    ALLEGRO_FONT *font = obtain_list_item_font();
+   ALLEGRO_FONT *title_font = obtain_title_font();
    //ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
    ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
    ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.6};
@@ -129,6 +144,7 @@ void ListMenu::render()
    int line_height = al_get_font_line_height(font) * 1.2;
    int line_num = 0;
    float height = line_height * (list_items.size() + 1);
+   int title_font_line_height = al_get_font_line_height(title_font) * 1.2;
    float padding_hack = 10.0f;
 
    // draw backfill
@@ -150,10 +166,10 @@ void ListMenu::render()
          std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
       }
       al_draw_text(
-         font,
+         title_font,
          color,
          0,
-         0 + line_num * line_height,
+         0 + line_num * title_font_line_height,
          0,
          text_to_render.c_str()
       );
@@ -220,6 +236,21 @@ ALLEGRO_FONT* ListMenu::obtain_list_item_font()
    //return font_bin->auto_get("Helvetica.ttf -23");
 }
 
+ALLEGRO_FONT* ListMenu::obtain_title_font()
+{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "ListMenu" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -26");
+   //return font_bin->auto_get("Exan-Regular.ttf -23");
+   //return font_bin->auto_get("Exan-Regular.ttf -23");
+   //return font_bin->auto_get("Exan-Regular.ttf -23");
+   //return font_bin->auto_get("Helvetica.ttf -23");
+}
+
 void ListMenu::draw_cursor_pointer_arrow(float cpx, float cpy)
 {
    // draw the box and pointer
@@ -256,7 +287,7 @@ void ListMenu::draw_cursor_pointer_arrow(float cpx, float cpy)
    points.push_back(points[points.size()-2] + change[0] * s);
    points.push_back(points[points.size()-2] + change[1] * s);
 
-   ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
+   ALLEGRO_COLOR color = this->color; //ALLEGRO_COLOR{1, 0, 0, 1};
    al_draw_ribbon(&points[0], sizeof(float) * 2, color, 2.0, (points.size()/2));
    return;
 }

@@ -41,6 +41,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, std::vector<std::tuple<std::string
    , dependencies_menu_place(700, 0, 0)
    , initialized(false)
    , currently_active_menu(nullptr)
+   , default_color({0.973, 0.592, 0.078, 1.0})
 {
 }
 
@@ -62,6 +63,12 @@ Hexagon::Elements::ListMenu* Stage::get_currently_active_menu()
 }
 
 
+ALLEGRO_COLOR Stage::get_default_color()
+{
+   return default_color;
+}
+
+
 ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 {
    return a_default_empty_event;
@@ -76,6 +83,9 @@ void Stage::initialize()
          error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"(!get_initialized())\" not met";
          throw std::runtime_error(error_message.str());
       }
+   dependents_menu.set_color(default_color);
+   relatives_menu.set_color(default_color);
+   dependencies_menu.set_color(default_color);
    set_currently_active_menu(&relatives_menu);
    initialized = true;
    return;

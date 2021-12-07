@@ -30,10 +30,12 @@ namespace Hexagon
          ListMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="+", std::vector<std::tuple<std::string, std::string>> list_items={}, ALLEGRO_COLOR color=ALLEGRO_COLOR{1, 0, 0, 1});
          ~ListMenu();
 
+         void set_color(ALLEGRO_COLOR color);
          void set_wrap_cursor_when_moving_cursor_outside_bounds(bool wrap_cursor_when_moving_cursor_outside_bounds);
          void set_upcase(bool upcase);
          void set_width(int width);
          void set_active(bool active);
+         ALLEGRO_COLOR get_color();
          bool get_wrap_cursor_when_moving_cursor_outside_bounds();
          bool get_upcase();
          int get_width();
@@ -43,6 +45,7 @@ namespace Hexagon
          std::string get_current_list_item_identifier();
          void render();
          ALLEGRO_FONT* obtain_list_item_font();
+         ALLEGRO_FONT* obtain_title_font();
          void draw_cursor_pointer_arrow(float cpx=1000, float cpy=900);
       };
    }

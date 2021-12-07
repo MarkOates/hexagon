@@ -57,6 +57,10 @@ properties:
     init_with: nullptr
     getter: true
     private: true
+  - name: default_color
+    type: ALLEGRO_COLOR
+    init_with: '{0.973, 0.592, 0.078, 1.0}'
+    getter: true
 
 
 functions:
@@ -65,6 +69,9 @@ functions:
   - name: initialize
     guards: [ (!get_initialized()) ]
     body: |
+      dependents_menu.set_color(default_color);
+      relatives_menu.set_color(default_color);
+      dependencies_menu.set_color(default_color);
       set_currently_active_menu(&relatives_menu);
       initialized = true;
       return;
@@ -281,6 +288,8 @@ dependencies:
     headers: [ 'Hexagon/ActionData.hpp' ]
   - symbol: std::vector<std::tuple<std::string, std::string>>
     headers: [ vector, tuple, string ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT&

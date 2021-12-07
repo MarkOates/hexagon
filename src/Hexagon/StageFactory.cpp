@@ -237,6 +237,7 @@ StageInterface* StageFactory::create_component_relations_navigator()
       {"Hexagon/StageInterface", "buz"},
    };
 
+   ALLEGRO_COLOR component_relations_navigator_color = al_color_html("f89714");
    Hexagon::ComponentRelationsNavigator::Stage *component_relations_navigator =
       new Hexagon::ComponentRelationsNavigator::Stage(
          font_bin,

@@ -32,6 +32,7 @@ namespace Hexagon
          placement3d dependencies_menu_place;
          bool initialized;
          Hexagon::Elements::ListMenu* currently_active_menu;
+         ALLEGRO_COLOR default_color;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, std::vector<std::tuple<std::string, std::string>> dependents_menu_items={{"Foo", "foo"}, {"Bar", "bar"}}, std::vector<std::tuple<std::string, std::string>> relatives_menu_items={{"Baz", "baz"}, {"Buz", "buz"}}, std::vector<std::tuple<std::string, std::string>> dependencies_menu_items={{"Fiz", "fiz"}, {"Foz", "foz"}});
@@ -39,6 +40,7 @@ namespace Hexagon
 
          bool get_initialized();
          Hexagon::Elements::ListMenu* get_currently_active_menu();
+         ALLEGRO_COLOR get_default_color();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          void initialize();
          void set_currently_active_menu(Hexagon::Elements::ListMenu* menu=nullptr);
