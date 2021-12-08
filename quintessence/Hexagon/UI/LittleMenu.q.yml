@@ -29,12 +29,26 @@ properties:
   - name: menu
     type: Hexagon::Elements::ListMenu
     init_with: 'font_bin, title, items'
+  - name: initialized
+    type: bool
+    init_with: false
+    getter: true
 
 
 functions:
 
 
+  - name: initialize
+    guards: [ (!get_initialized()) ]
+    body: |
+      menu.set_title_upcase(false);
+      menu.set_menu_items_upcase(false);
+      initialized = true;
+      return;
+
+
   - name: render
+    guards: [ get_initialized() ]
     override: true
     body: |
       placement3d &place = get_place();
@@ -45,6 +59,7 @@ functions:
 
 
   - name: process_event
+    guards: [ get_initialized() ]
     override: true
     parameters:
       - name: event
@@ -71,18 +86,8 @@ functions:
       return;
 
 
-  - name: set_upcase
-    parameters:
-      - name: upcase
-        type: bool
-        default_argument: "false"
-    body: |
-      menu.set_title_upcase(upcase);
-      menu.set_menu_items_upcase(upcase);
-      return;
-
-
   - name: process_local_event
+    guards: [ get_initialized() ]
     override: true
     parameters:
       - name: event_name
@@ -96,6 +101,7 @@ functions:
 
 
   - name: emit_submission
+    guards: [ get_initialized() ]
     private: true
     body: |
       std::cout << "Sumitting Modal with selection \"" << menu.get_current_list_item_identifier() << "\"" << std::endl;

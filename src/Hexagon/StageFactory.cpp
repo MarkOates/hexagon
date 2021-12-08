@@ -217,8 +217,8 @@ StageInterface* StageFactory::create_little_menu()
 StageInterface* StageFactory::create_class_brief_menu(std::string title, std::vector<std::tuple<std::string, std::string>> items)
 {
    Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin, title, items);
+   little_menu->initialize();
    little_menu->set_render_on_hud(true);
-   //little_menu->set_upcase(false);
    little_menu->set_place(build_centered_on_hud_initial_place(400, 300));
    return little_menu;
 }
