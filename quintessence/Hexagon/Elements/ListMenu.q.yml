@@ -27,7 +27,12 @@ properties:
     init_with: true
     getter: true
     setter: true
-  - name: upcase
+  - name: title_upcase
+    type: bool
+    init_with: true
+    getter: true
+    setter: true
+  - name: menu_items_upcase
     type: bool
     init_with: false
     getter: true
@@ -119,7 +124,7 @@ functions:
       if (draw_title)
       {
          std::string text_to_render = title;
-         if (get_upcase())
+         if (get_title_upcase())
          {
             std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
          }
@@ -160,7 +165,7 @@ functions:
          }
 
          std::string text_to_render = std::get<0>(list_item).c_str();
-         if (get_upcase())
+         if (get_menu_items_upcase())
          {
            std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
          }

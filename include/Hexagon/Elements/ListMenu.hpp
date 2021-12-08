@@ -22,7 +22,8 @@ namespace Hexagon
          ALLEGRO_COLOR color;
          int cursor;
          bool wrap_cursor_when_moving_cursor_outside_bounds;
-         bool upcase;
+         bool title_upcase;
+         bool menu_items_upcase;
          int width;
          bool active;
 
@@ -32,12 +33,14 @@ namespace Hexagon
 
          void set_color(ALLEGRO_COLOR color);
          void set_wrap_cursor_when_moving_cursor_outside_bounds(bool wrap_cursor_when_moving_cursor_outside_bounds);
-         void set_upcase(bool upcase);
+         void set_title_upcase(bool title_upcase);
+         void set_menu_items_upcase(bool menu_items_upcase);
          void set_width(int width);
          void set_active(bool active);
          ALLEGRO_COLOR get_color();
          bool get_wrap_cursor_when_moving_cursor_outside_bounds();
-         bool get_upcase();
+         bool get_title_upcase();
+         bool get_menu_items_upcase();
          int get_width();
          bool get_active();
          bool move_cursor_up();

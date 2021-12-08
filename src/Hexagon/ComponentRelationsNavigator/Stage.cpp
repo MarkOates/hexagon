@@ -97,6 +97,15 @@ void Stage::initialize()
 
    set_currently_active_menu(&relatives_menu);
    initialized = true;
+
+   dependents_menu.set_title_upcase(true);
+   relatives_menu.set_title_upcase(true);
+   dependencies_menu.set_title_upcase(true);
+
+   dependents_menu.set_menu_items_upcase(false);
+   relatives_menu.set_menu_items_upcase(false);
+   dependencies_menu.set_menu_items_upcase(false);
+
    return;
 }
 
@@ -265,14 +274,6 @@ void Stage::process_event(ALLEGRO_EVENT& event)
      }
      break;
    }
-   return;
-}
-
-void Stage::set_upcase(bool upcase)
-{
-   dependents_menu.set_upcase(upcase);
-   relatives_menu.set_upcase(upcase);
-   dependencies_menu.set_upcase(upcase);
    return;
 }
 

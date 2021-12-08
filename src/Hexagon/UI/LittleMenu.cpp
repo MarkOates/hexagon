@@ -67,7 +67,8 @@ void LittleMenu::process_event(ALLEGRO_EVENT& event)
 
 void LittleMenu::set_upcase(bool upcase)
 {
-   menu.set_upcase(upcase);
+   menu.set_title_upcase(upcase);
+   menu.set_menu_items_upcase(upcase);
    return;
 }
 

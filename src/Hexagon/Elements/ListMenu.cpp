@@ -22,7 +22,8 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , color(color)
    , cursor(0)
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
-   , upcase(false)
+   , title_upcase(true)
+   , menu_items_upcase(false)
    , width(600)
    , active(true)
 {
@@ -46,9 +47,15 @@ void ListMenu::set_wrap_cursor_when_moving_cursor_outside_bounds(bool wrap_curso
 }
 
 
-void ListMenu::set_upcase(bool upcase)
+void ListMenu::set_title_upcase(bool title_upcase)
 {
-   this->upcase = upcase;
+   this->title_upcase = title_upcase;
+}
+
+
+void ListMenu::set_menu_items_upcase(bool menu_items_upcase)
+{
+   this->menu_items_upcase = menu_items_upcase;
 }
 
 
@@ -76,9 +83,15 @@ bool ListMenu::get_wrap_cursor_when_moving_cursor_outside_bounds()
 }
 
 
-bool ListMenu::get_upcase()
+bool ListMenu::get_title_upcase()
 {
-   return upcase;
+   return title_upcase;
+}
+
+
+bool ListMenu::get_menu_items_upcase()
+{
+   return menu_items_upcase;
 }
 
 
@@ -161,7 +174,7 @@ void ListMenu::render()
    if (draw_title)
    {
       std::string text_to_render = title;
-      if (get_upcase())
+      if (get_title_upcase())
       {
          std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
       }
@@ -202,7 +215,7 @@ void ListMenu::render()
       }
 
       std::string text_to_render = std::get<0>(list_item).c_str();
-      if (get_upcase())
+      if (get_menu_items_upcase())
       {
         std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
       }
