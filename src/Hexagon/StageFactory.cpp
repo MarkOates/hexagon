@@ -210,7 +210,7 @@ StageInterface* StageFactory::create_class_brief_menu(std::string title, std::ve
    Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin, title, items);
    little_menu->initialize();
    little_menu->set_render_on_hud(true);
-   little_menu->set_place(build_centered_on_hud_initial_place(400, 300));
+   little_menu->set_place(build_centered_on_hud_initial_place(0, 300));
    return little_menu;
 }
 
