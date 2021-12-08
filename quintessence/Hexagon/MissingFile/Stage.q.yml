@@ -9,6 +9,10 @@ parent_classes:
 properties:
 
 
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
   - name: expected_filename
     type: std::string
     init_with: '"[Expected filename not set]"'
@@ -55,6 +59,7 @@ functions:
   - name: render
     virtual: true
     override: true
+    guards: [ font_bin ]
     body: |
       placement3d place = get_place();
       place.start_transform();
@@ -83,6 +88,14 @@ functions:
       - al_color_html
       - al_draw_rectangle
       - al_draw_text
+
+
+  - name: obtain_text_font
+    private: true
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      return font_bin->auto_get("Menlo-Regular.ttf -20");
 
 
   - name: process_local_event
@@ -140,3 +153,7 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
+
+

@@ -263,7 +263,7 @@ StageInterface* StageFactory::create_drawing_box()
 
 StageInterface* StageFactory::create_missing_file(std::string filename)
 {
-   Hexagon::MissingFile::Stage *missing_file_stage = new Hexagon::MissingFile::Stage(filename);
+   Hexagon::MissingFile::Stage *missing_file_stage = new Hexagon::MissingFile::Stage(font_bin, filename);
 
    ALLEGRO_FONT *font = obtain_global_font();
    ALLEGRO_DISPLAY *display = get_current_display();

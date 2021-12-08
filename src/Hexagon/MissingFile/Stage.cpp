@@ -4,6 +4,10 @@
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Blast/FileCreator.hpp>
 
 
@@ -16,8 +20,9 @@ namespace MissingFile
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(std::string expected_filename)
+Stage::Stage(AllegroFlare::FontBin* font_bin, std::string expected_filename)
    : StageInterface(StageInterface::MISSING_FILE)
+   , font_bin(font_bin)
    , expected_filename(expected_filename)
    , text("MISSING FILE")
    , is_focused(true)
@@ -108,6 +113,12 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 
 void Stage::render()
 {
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    placement3d place = get_place();
    place.start_transform();
 
@@ -131,6 +142,17 @@ void Stage::render()
    al_draw_text(font, color, width/2, height/3 + line_height*9, ALLEGRO_ALIGN_CENTER, create_message.c_str());
 
    place.restore_transform();
+}
+
+ALLEGRO_FONT* Stage::obtain_text_font()
+{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "obtain_text_font" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return font_bin->auto_get("Menlo-Regular.ttf -20");
 }
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)

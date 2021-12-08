@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
@@ -15,6 +16,7 @@ namespace Hexagon
       class Stage : public StageInterface
       {
       private:
+         AllegroFlare::FontBin* font_bin;
          std::string expected_filename;
          std::string text;
          static ALLEGRO_EVENT a_default_empty_event;
@@ -25,7 +27,7 @@ namespace Hexagon
          int cell_height;
 
       public:
-         Stage(std::string expected_filename="[Expected filename not set]");
+         Stage(AllegroFlare::FontBin* font_bin=nullptr, std::string expected_filename="[Expected filename not set]");
          virtual ~Stage();
 
          void set_is_focused(bool is_focused);
@@ -41,6 +43,7 @@ namespace Hexagon
          int get_cell_height();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          virtual void render() override;
+         ALLEGRO_FONT* obtain_text_font();
          void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
          void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
          void create_expected_file();
