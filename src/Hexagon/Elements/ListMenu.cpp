@@ -26,6 +26,7 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , menu_items_upcase(false)
    , width(600)
    , active(true)
+   , padding(14.0f)
 {
 }
 
@@ -107,6 +108,12 @@ bool ListMenu::get_active()
 }
 
 
+float ListMenu::get_padding()
+{
+   return padding;
+}
+
+
 bool ListMenu::move_cursor_up()
 {
    if (list_items.empty()) return true;
@@ -172,7 +179,7 @@ void ListMenu::render()
       float outer_roundness = 16;
       float inner_roundness = 6;
       //float padding = 6;
-      float padding = 14;
+      float padding = get_padding();
       al_draw_filled_rounded_rectangle(
          0-padding*2,
          0-padding*2,
@@ -230,19 +237,35 @@ void ListMenu::render()
       if (cursor_on_this_list_item)
       {
          // draw selection box
-         if (get_active())
+         //if (get_active())
          {
-            al_draw_filled_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color);
+            al_draw_filled_rectangle(
+               0,
+               line_num * line_height,
+               width,
+               line_num * line_height + line_height,
+               get_active() ? color : al_color_html("4e2f1a")
+            );
          }
-         else
+         //if (!get_active())
+         if (false)
          {
-            al_draw_rectangle(0, line_num * line_height, width, line_num * line_height + line_height, color, 2.0);
+            ALLEGRO_COLOR inactive_hilighted_list_item_border_color = al_color_html("b45c05");
+            al_draw_rectangle(0,
+               line_num * line_height,
+               width,
+               line_num * line_height + line_height,
+               inactive_hilighted_list_item_border_color,
+               2.0
+            );
          }
 
          // draw the cursor arrow
          if (get_active())
          {
-            draw_cursor_pointer_arrow(width + padding_hack, line_num * line_height + line_height * 0.5);
+            float padding = get_padding();
+            //draw_cursor_pointer_arrow(width + padding_hack, line_num * line_height + line_height * 0.5);
+            draw_cursor_pointer_arrow(width + padding, line_num * line_height + line_height * 0.5);
          }
       }
 
