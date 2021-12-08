@@ -119,7 +119,7 @@ TEST(Hexagon_StageFactoryTest,
 
 
 TEST(Hexagon_StageFactoryTest,
-   create_little_menu__creates_a_little_menu_stage_with_the_expected_properties)
+   create_class_brief_menu__creates_a_class_brief_menu_stage_with_the_expected_properties)
 {
    al_init();
    al_init_font_addon();
@@ -132,7 +132,7 @@ TEST(Hexagon_StageFactoryTest,
    config.initialize();
    Hexagon::StageFactory stage_factory(&config, &font_bin);
 
-   StageInterface *created_stage = stage_factory.create_little_menu();
+   StageInterface *created_stage = stage_factory.create_class_brief_menu();
    Hexagon::UI::LittleMenu *stage = static_cast<Hexagon::UI::LittleMenu*>(created_stage);
 
    StageInterface::type_t expected_type = StageInterface::LITTLE_MENU;
