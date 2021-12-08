@@ -24,7 +24,6 @@
 #include <Hexagon/Notifications/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
-#include <Hexagon/UI/LittleMenu.hpp>
 #include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
 #include <vector>
 #include <tuple>
@@ -204,14 +203,6 @@ StageInterface* StageFactory::create_file_navigator(std::string directory)
    file_navigator->set_cell_height(cell_height);
 
    return file_navigator;
-}
-
-StageInterface* StageFactory::create_little_menu()
-{
-   Hexagon::UI::LittleMenu *little_menu = new Hexagon::UI::LittleMenu(font_bin);
-   little_menu->set_render_on_hud(true);
-   little_menu->set_place(build_centered_on_hud_initial_place(400, 300));
-   return little_menu;
 }
 
 StageInterface* StageFactory::create_class_brief_menu(std::string title, std::vector<std::tuple<std::string, std::string>> items)

@@ -35,7 +35,6 @@ namespace Hexagon
       int obtain_display_default_height();
       StageInterface* create_notification(std::string body_text="");
       StageInterface* create_file_navigator(std::string directory="");
-      StageInterface* create_little_menu();
       StageInterface* create_class_brief_menu(std::string title="Untitled Menu", std::vector<std::tuple<std::string, std::string>> items={{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}});
       StageInterface* create_component_relations_navigator();
       StageInterface* create_drawing_box();
