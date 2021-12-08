@@ -1,4 +1,37 @@
-functions:
-  - name: run
-    type: std::string
+properties:
+
+
+  - name: component
+    type: Blast::Project::Component
     body: return "Hello World!";
+
+
+functions:
+
+
+  - name: build_dependents
+    type: std::vector<Blast::Project::Component>
+    body: |
+      return {};
+
+
+  - name: build_relatives
+    type: std::vector<Blast::Project::Component>
+    body: |
+      return {};
+
+
+  - name: build_dependencies
+    type: std::vector<Blast::Project::Component>
+    body: |
+      return {};
+
+
+dependencies:
+
+
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
+  - symbol: std::vector<Blast::Project::Component>
+    headers: [ vector, Blast/Project/Component.hpp ]
+

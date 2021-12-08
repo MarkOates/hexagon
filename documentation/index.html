@@ -84,6 +84,7 @@ table td
   <li><a href="#quintessence/Hexagon/CodeMessagePointManager.q.yml">quintessence/Hexagon/CodeMessagePointManager.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeRenderer.q.yml">quintessence/Hexagon/CodeRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml">quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/DirtyGrid.q.yml">quintessence/Hexagon/DirtyGrid.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml">quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml</a></li>
@@ -2347,6 +2348,36 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_BITMAP*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">component</td>
+  <td class="property">Blast::Project::Component</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">build_dependents()</td>
+</tr>
+<tr>
+  <td class="method">build_relatives()</td>
+</tr>
+<tr>
+  <td class="method">build_dependencies()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::Project::Component&quot;, &quot;headers&quot;=&gt;[&quot;Blast/Project/Component.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Blast::Project::Component&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Blast/Project/Component.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -8678,6 +8709,7 @@ table td
     "quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml",
     "quintessence/Hexagon/BlastComponentLayoutGenerator.q.yml",
     "quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml",
+    "quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml",
     "quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml",
     "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent.q.yml",
     "quintessence/Hexagon/Testing/ComponentTestRunner.q.yml"
@@ -9045,6 +9077,7 @@ table td
     "quintessence/Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.q.yml",
     "quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher.q.yml",
     "quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml",
+    "quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml",
     "quintessence/Hexagon/ProjectComponentNavigator/ComponentSearcher.q.yml",
     "quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml"
   ],

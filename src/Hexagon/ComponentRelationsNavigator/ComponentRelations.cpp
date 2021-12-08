@@ -11,6 +11,7 @@ namespace ComponentRelationsNavigator
 
 
 ComponentRelations::ComponentRelations()
+   : component("")
 {
 }
 
@@ -20,9 +21,19 @@ ComponentRelations::~ComponentRelations()
 }
 
 
-std::string ComponentRelations::run()
+std::vector<Blast::Project::Component> ComponentRelations::build_dependents()
 {
-   return "Hello World!";
+   return {};
+}
+
+std::vector<Blast::Project::Component> ComponentRelations::build_relatives()
+{
+   return {};
+}
+
+std::vector<Blast::Project::Component> ComponentRelations::build_dependencies()
+{
+   return {};
 }
 } // namespace ComponentRelationsNavigator
 } // namespace Hexagon
