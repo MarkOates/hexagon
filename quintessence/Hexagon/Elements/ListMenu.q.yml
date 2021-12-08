@@ -119,10 +119,10 @@ functions:
       // draw frame
       if (get_active())
       {
-         float outer_roundness = 12;
+         float outer_roundness = 16;
          float inner_roundness = 6;
          //float padding = 6;
-         float padding = 9;
+         float padding = 14;
          al_draw_filled_rounded_rectangle(
             0-padding*2,
             0-padding*2,
