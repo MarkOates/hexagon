@@ -113,10 +113,42 @@ functions:
       // draw backfill
       al_draw_filled_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, backfill_color);
 
+      float place_size_x = width;
+      float place_size_y = height;
+
       // draw frame
       if (get_active())
       {
-         al_draw_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, color, 2.0);
+         float outer_roundness = 12;
+         float inner_roundness = 6;
+         //float padding = 6;
+         float padding = 9;
+         al_draw_filled_rounded_rectangle(
+            0-padding*2,
+            0-padding*2,
+            place_size_x+padding*2,
+            place_size_y+padding*2,
+            outer_roundness,
+            outer_roundness,
+            backfill_color);
+         al_draw_rounded_rectangle(
+            0-padding,
+            0-padding,
+            place_size_x+padding,
+            place_size_y+padding,
+            inner_roundness,
+            inner_roundness,
+            color,
+            5.0);
+
+         //al_draw_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, color, 2.0);
+         //al_draw_rectangle(
+         //   -padding_hack,
+         //   -padding_hack,
+         //   width+padding_hack,
+         //   height+padding_hack,
+         //   color,
+         //   2.0);
       }
 
       // draw title
