@@ -1,10 +1,10 @@
 
 
 #include <Hexagon/Elements/CheckTextureGenerator.hpp>
-#include <sstream>
-#include <sstream>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -24,37 +24,20 @@ CheckTextureGenerator::~CheckTextureGenerator()
 }
 
 
-void CheckTextureGenerator::validate_al_init(std::string function_name)
-{
-   if (!al_is_system_installed())
-   {
-      std::stringstream error_message;
-      error_message << "[Hexagon/Elements/CheckTextureGenerator error:] cannot \""
-                    << function_name
-                    << "\" before al_init()";
-      throw std::runtime_error(error_message.str());
-   }
-   return;
-}
-
-void CheckTextureGenerator::validate_display(std::string function_name)
-{
-   if (!display)
-   {
-      std::stringstream error_message;
-      error_message << "[Hexagon/Elements/CheckTextureGenerator error:] cannot \""
-                    << function_name
-                    << "\" with a nullptr display";
-      throw std::runtime_error(error_message.str());
-   }
-   return;
-}
-
 ALLEGRO_BITMAP* CheckTextureGenerator::generate_grid_check()
 {
-   validate_al_init(__FUNCTION__);
-   validate_display(__FUNCTION__);
-
+   if (!(al_is_system_installed()))
+      {
+         std::stringstream error_message;
+         error_message << "CheckTextureGenerator" << "::" << "generate_grid_check" << ": error: " << "guard \"al_is_system_installed()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(display))
+      {
+         std::stringstream error_message;
+         error_message << "CheckTextureGenerator" << "::" << "generate_grid_check" << ": error: " << "guard \"display\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    float width = 400;
    float height = 300;
 

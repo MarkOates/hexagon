@@ -23,8 +23,8 @@ TEST(Hexagon_Elements_CheckTextureGeneratorTest, generate_grid_check__without_al
    if (al_is_system_installed()) al_uninstall_system();
 
    Hexagon::Elements::CheckTextureGenerator check_textures;
-   std::string expected_error_message = "[Hexagon/Elements/CheckTextureGenerator error:] cannot " \
-                                        "\"generate_grid_check\" before al_init()";
+   std::string expected_error_message = "CheckTextureGenerator::generate_grid_check: error: " \
+                                        "guard \"al_is_system_installed()\" not met";
    ASSERT_THROW_WITH_MESSAGE(check_textures.generate_grid_check(), std::runtime_error, expected_error_message);
 }
 
@@ -35,8 +35,8 @@ TEST(Hexagon_Elements_CheckTextureGeneratorTest, generate_grid_check__with_a_nul
    //ALLEGRO_DISPLAY *display = al_create_display(800, 600);
 
    Hexagon::Elements::CheckTextureGenerator check_textures(nullptr);
-   std::string expected_error_message = "[Hexagon/Elements/CheckTextureGenerator error:] cannot " \
-                                        "\"generate_grid_check\" with a nullptr display";
+   std::string expected_error_message = "CheckTextureGenerator::generate_grid_check: error: " \
+                                        "guard \"display\" not met";
    ASSERT_THROW_WITH_MESSAGE(check_textures.generate_grid_check(), std::runtime_error, expected_error_message);
 
    al_uninstall_system();

@@ -1,51 +1,19 @@
 properties:
+
+
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
     constructor_arg: true
+
+
 functions:
-  - name: validate_al_init
-    type: void
-    parameters:
-      - name: function_name
-        type: std::string
-        default_argument: "\"[unmamed_function]\""
-    body: |
-      if (!al_is_system_installed())
-      {
-         std::stringstream error_message;
-         error_message << "[Hexagon/Elements/CheckTextureGenerator error:] cannot \""
-                       << function_name
-                       << "\" before al_init()";
-         throw std::runtime_error(error_message.str());
-      }
-      return;
-    body_dependency_symbols:
-      - std::stringstream
-  - name: validate_display
-    type: void
-    parameters:
-      - name: function_name
-        type: std::string
-        default_argument: "\"[unmamed_function]\""
-    body: |
-      if (!display)
-      {
-         std::stringstream error_message;
-         error_message << "[Hexagon/Elements/CheckTextureGenerator error:] cannot \""
-                       << function_name
-                       << "\" with a nullptr display";
-         throw std::runtime_error(error_message.str());
-      }
-      return;
-    body_dependency_symbols:
-      - std::stringstream
+
+
   - name: generate_grid_check
     type: ALLEGRO_BITMAP*
+    guards: [ al_is_system_installed(), display ]
     body: |
-      validate_al_init(__FUNCTION__);
-      validate_display(__FUNCTION__);
-
       float width = 400;
       float height = 300;
 
@@ -60,7 +28,11 @@ functions:
     body_dependency_symbols:
       - al_color_name
       - al_draw_rectangle
+
+
 dependencies:
+
+
   - symbol: al_color_name
     headers: [ allegro5/allegro_color.h ]
   - symbol: al_draw_rectangle
@@ -69,3 +41,5 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_DISPLAY*
     headers: [ allegro5/allegro.h ]
+
+
