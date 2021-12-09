@@ -108,6 +108,7 @@ table td
   <li><a href="#quintessence/Hexagon/Elements/TextGrid.q.yml">quintessence/Hexagon/Elements/TextGrid.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/TextMesh.q.yml">quintessence/Hexagon/Elements/TextMesh.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/TextPixelPreviewCreator.q.yml">quintessence/Hexagon/Elements/TextPixelPreviewCreator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/TexturedRectangle.q.yml">quintessence/Hexagon/Elements/TexturedRectangle.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/Window.q.yml">quintessence/Hexagon/Elements/Window.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/FileNavigator/Stage.q.yml">quintessence/Hexagon/FileNavigator/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/FilesOpenedHistory.q.yml">quintessence/Hexagon/FilesOpenedHistory.q.yml</a></li>
@@ -3743,6 +3744,46 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/Elements/TexturedRectangle.q.yml">quintessence/Hexagon/Elements/TexturedRectangle.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">x1</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">y1</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">x2</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">y2</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">texture</td>
+  <td class="property">ALLEGRO_BITMAP*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">draw()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;draw_textured_rectangle&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_BITMAP*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/Elements/Window.q.yml">quintessence/Hexagon/Elements/Window.q.yml</h3>
      <table>
 <tr>
@@ -5221,6 +5262,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::TexturedRectangle&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/TexturedRectangle.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -8959,6 +9003,7 @@ table td
     "quintessence/Hexagon/Elements/SubBitmapCharacterMap.q.yml",
     "quintessence/Hexagon/Elements/TextMesh.q.yml",
     "quintessence/Hexagon/Elements/TextPixelPreviewCreator.q.yml",
+    "quintessence/Hexagon/Elements/TexturedRectangle.q.yml",
     "quintessence/Hexagon/FullScreenOverlay/Stage.q.yml",
     "quintessence/Hexagon/Hud.q.yml",
     "quintessence/Hexagon/Shaders/Fun.q.yml",
@@ -9546,6 +9591,9 @@ table td
   "Hexagon::Elements::BitmapGridMesh": [
     "quintessence/Hexagon/Elements/TextMesh.q.yml"
   ],
+  "draw_textured_rectangle": [
+    "quintessence/Hexagon/Elements/TexturedRectangle.q.yml"
+  ],
   "std::vector<std::pair<std::string, std::string>>": [
     "quintessence/Hexagon/FileNavigator/Stage.q.yml"
   ],
@@ -9673,6 +9721,9 @@ table td
   "Blast::FileCreator": [
     "quintessence/Hexagon/MissingFile/Stage.q.yml",
     "quintessence/Hexagon/System/Action/SendMessageToDaemusToBuild.q.yml"
+  ],
+  "Hexagon::Elements::TexturedRectangle": [
+    "quintessence/Hexagon/MissingFile/Stage.q.yml"
   ],
   "Hexagon::Notifications::Notification*": [
     "quintessence/Hexagon/Notifications/NotificationFactory.q.yml"

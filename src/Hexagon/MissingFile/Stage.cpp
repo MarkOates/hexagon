@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/MissingFile/Stage.hpp>
+#include <Hexagon/Elements/TexturedRectangle.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
@@ -131,9 +132,19 @@ void Stage::render()
    ALLEGRO_COLOR color = al_color_html("d82133");
    float thickness = 2.5;
    al_draw_rectangle(
-     h_padding, h_padding,
-     width-h_padding, height-h_padding,
-     color, thickness);
+      h_padding, h_padding,
+      width-h_padding, height-h_padding,
+      color, thickness);
+   //ALLEGRO_BITMAP *texture = nullptr;// TODO
+   //Hexagon::Elements::TexturedRectangle red_lines_texture_background(
+   //   h_padding,
+   //   h_padding,
+   //   width-h_padding,
+   //   height-h_padding,
+   //   texture
+   //);
+   //red_lines_texture_background.draw();
+
    al_draw_text(font, color, width/2, height/3, ALLEGRO_ALIGN_CENTER, text.c_str());
 
    al_draw_text(font, color, width/2, height/3 + line_height*3, ALLEGRO_ALIGN_CENTER, expected_filename.c_str());
