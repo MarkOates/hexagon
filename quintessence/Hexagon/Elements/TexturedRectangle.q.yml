@@ -1,0 +1,54 @@
+properties:
+
+
+  - name: x1
+    type: float
+    init_with: 0
+    constructor_arg: true
+  - name: y1
+    type: float
+    init_with: 0
+    constructor_arg: true
+  - name: x2
+    type: float
+    init_with: 1
+    constructor_arg: true
+  - name: y2
+    type: float
+    init_with: 1
+    constructor_arg: true
+  - name: texture
+    type: ALLEGRO_BITMAP*
+    init_with: nullptr
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: draw
+    type: void
+    guards: [ al_is_system_installed(), texture ]
+    body: |
+      ALLEGRO_COLOR white_color = ALLEGRO_COLOR{1, 1, 1, 1};
+      draw_textured_rectangle(
+         x1,
+         y1,
+         x2,
+         y2,
+         texture,
+         white_color
+      );
+      return;
+    body_dependency_symbols:
+      - draw_textured_rectangle
+
+
+dependencies:
+
+  - symbol: draw_textured_rectangle
+    headers: [ allegro_flare/useful.h ]
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
+
+
