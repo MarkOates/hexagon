@@ -1,0 +1,1 @@
+../../../allegro_flare/include/AllegroFlare/BitmapBin.hpp
