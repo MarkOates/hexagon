@@ -217,15 +217,13 @@ StageInterface* StageFactory::create_class_brief_menu(std::string title, std::ve
 StageInterface* StageFactory::create_component_relations_navigator()
 {
    std::vector<std::tuple<std::string, std::string>> dependents_menu_items = {
-      {"Hexagon/StageInterface", "buz"},
+      {"--- not yet implemented ---", "buz"},
    };
    std::vector<std::tuple<std::string, std::string>> relatives_menu_items = {
-      {"Hexagon/Thing/Stage", "baz"},
-      {"Hexagon/Thing/Thing", "buz"},
-      {"Hexagon/Thing/Renderer", "buz"},
+      {"--- not yet implemented ---", "buz"},
    };
    std::vector<std::tuple<std::string, std::string>> dependencies_menu_items = {
-      {"Hexagon/StageInterface", "buz"},
+      {"--- not yet implemented ---", "buz"},
    };
 
    ALLEGRO_COLOR component_relations_navigator_color = al_color_html("f89714");
