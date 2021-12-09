@@ -274,7 +274,8 @@ void ListMenu::render()
       {
         std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
       }
-      text_to_render = std::string("   - ") + text_to_render;
+      bool show_bullets = false;
+      if (show_bullets) text_to_render = std::string("   - ") + text_to_render;
 
       al_draw_text(
          font,
