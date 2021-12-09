@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/ComponentRelationsNavigator/ComponentRelations.hpp>
-
+#include <Blast/Project/ComponentRelativeLister.hpp>
 
 
 namespace Hexagon
@@ -10,8 +10,8 @@ namespace ComponentRelationsNavigator
 {
 
 
-ComponentRelations::ComponentRelations()
-   : component("")
+ComponentRelations::ComponentRelations(Blast::Project::Component component)
+   : component(component)
 {
 }
 
@@ -21,17 +21,19 @@ ComponentRelations::~ComponentRelations()
 }
 
 
-std::vector<Blast::Project::Component> ComponentRelations::build_dependents()
+std::vector<std::string> ComponentRelations::build_dependents_list()
 {
    return {};
 }
 
-std::vector<Blast::Project::Component> ComponentRelations::build_relatives()
+std::vector<std::string> ComponentRelations::build_relatives_list()
 {
-   return {};
+   Blast::Project::ComponentRelativeLister relative_lister(&component);
+   std::vector<std::string> result_component_names = relative_lister.list_component_relative_names();
+   return result_component_names;
 }
 
-std::vector<Blast::Project::Component> ComponentRelations::build_dependencies()
+std::vector<std::string> ComponentRelations::build_dependencies_list()
 {
    return {};
 }

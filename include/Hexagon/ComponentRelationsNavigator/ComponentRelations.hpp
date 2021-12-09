@@ -2,6 +2,7 @@
 
 
 #include <Blast/Project/Component.hpp>
+#include <string>
 #include <vector>
 
 
@@ -15,12 +16,12 @@ namespace Hexagon
          Blast::Project::Component component;
 
       public:
-         ComponentRelations();
+         ComponentRelations(Blast::Project::Component component={});
          ~ComponentRelations();
 
-         std::vector<Blast::Project::Component> build_dependents();
-         std::vector<Blast::Project::Component> build_relatives();
-         std::vector<Blast::Project::Component> build_dependencies();
+         std::vector<std::string> build_dependents_list();
+         std::vector<std::string> build_relatives_list();
+         std::vector<std::string> build_dependencies_list();
       };
    }
 }

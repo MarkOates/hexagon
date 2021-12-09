@@ -2364,16 +2364,19 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">build_dependents()</td>
+  <td class="method">build_dependents_list()</td>
 </tr>
 <tr>
-  <td class="method">build_relatives()</td>
+  <td class="method">build_relatives_list()</td>
 </tr>
 <tr>
-  <td class="method">build_dependencies()</td>
+  <td class="method">build_dependencies_list()</td>
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::Project::ComponentRelativeLister&quot;, &quot;headers&quot;=&gt;[&quot;Blast/Project/ComponentRelativeLister.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::Project::Component&quot;, &quot;headers&quot;=&gt;[&quot;Blast/Project/Component.hpp&quot;]}</td>
 </tr>
@@ -7292,7 +7295,7 @@ table td
   <td class="method">create_class_brief_menu(2)</td>
 </tr>
 <tr>
-  <td class="method">create_component_relations_navigator()</td>
+  <td class="method">create_component_relations_navigator(2)</td>
 </tr>
 <tr>
   <td class="method">create_drawing_box()</td>
@@ -7339,6 +7342,9 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::file_get_contents&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
 </tr>
 <tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::Project::Component&quot;, &quot;headers&quot;=&gt;[&quot;Blast/Project/Component.hpp&quot;]}</td>
+</tr>
+<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MissingFile::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MissingFile/Stage.hpp&quot;]}</td>
 </tr>
 <tr>
@@ -7370,6 +7376,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ComponentRelationsNavigator::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ComponentRelationsNavigator/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ComponentRelationsNavigator::ComponentRelations&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ComponentRelationsNavigator/ComponentRelations.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::UI::DrawingBox&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/UI/DrawingBox.hpp&quot;]}</td>
@@ -8759,6 +8768,7 @@ table td
     "quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml",
     "quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml",
     "quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml",
+    "quintessence/Hexagon/StageFactory.q.yml",
     "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent.q.yml",
     "quintessence/Hexagon/Testing/ComponentTestRunner.q.yml"
   ],
@@ -9461,6 +9471,9 @@ table td
     "quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml",
     "quintessence/Hexagon/Search/ComponentElasticsearchIndexer.q.yml"
   ],
+  "Blast::Project::ComponentRelativeLister": [
+    "quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml"
+  ],
   "Hexagon::Elements::ListMenu": [
     "quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml",
     "quintessence/Hexagon/TitleScreen.q.yml",
@@ -9861,6 +9874,9 @@ table td
     "quintessence/Hexagon/StageFactory.q.yml"
   ],
   "Hexagon::ComponentRelationsNavigator::Stage": [
+    "quintessence/Hexagon/StageFactory.q.yml"
+  ],
+  "Hexagon::ComponentRelationsNavigator::ComponentRelations": [
     "quintessence/Hexagon/StageFactory.q.yml"
   ],
   "Hexagon::UI::DrawingBox": [

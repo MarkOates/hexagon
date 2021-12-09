@@ -3,26 +3,31 @@ properties:
 
   - name: component
     type: Blast::Project::Component
-    body: return "Hello World!";
+    init_with: '{}'
+    constructor_arg: true
 
 
 functions:
 
 
-  - name: build_dependents
-    type: std::vector<Blast::Project::Component>
+  - name: build_dependents_list
+    type: std::vector<std::string>
     body: |
       return {};
 
 
-  - name: build_relatives
-    type: std::vector<Blast::Project::Component>
+  - name: build_relatives_list
+    type: std::vector<std::string>
     body: |
-      return {};
+      Blast::Project::ComponentRelativeLister relative_lister(&component);
+      std::vector<std::string> result_component_names = relative_lister.list_component_relative_names();
+      return result_component_names;
+    body_dependency_symbols:
+      - Blast::Project::ComponentRelativeLister
 
 
-  - name: build_dependencies
-    type: std::vector<Blast::Project::Component>
+  - name: build_dependencies_list
+    type: std::vector<std::string>
     body: |
       return {};
 
@@ -30,6 +35,8 @@ functions:
 dependencies:
 
 
+  - symbol: Blast::Project::ComponentRelativeLister
+    headers: [ Blast/Project/ComponentRelativeLister.hpp ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
   - symbol: std::vector<Blast::Project::Component>

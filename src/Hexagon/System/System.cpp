@@ -948,7 +948,11 @@ bool System::spawn_component_navigator()
 bool System::spawn_component_relations_navigator()
 {
    Hexagon::StageFactory stage_factory(&config, &font_bin);
-   StageInterface *stage = stage_factory.create_component_relations_navigator();
+   // HERE
+   StageInterface *stage = stage_factory.create_component_relations_navigator(
+      get_focused_component_name(),
+      get_current_project_directory()
+   );
 
    stages.push_back(stage);
 

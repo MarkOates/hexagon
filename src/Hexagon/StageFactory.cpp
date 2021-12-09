@@ -25,6 +25,7 @@
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
 #include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
+#include <Hexagon/ComponentRelationsNavigator/ComponentRelations.hpp>
 #include <vector>
 #include <tuple>
 #include <string>
@@ -214,19 +215,25 @@ StageInterface* StageFactory::create_class_brief_menu(std::string title, std::ve
    return little_menu;
 }
 
-StageInterface* StageFactory::create_component_relations_navigator()
+StageInterface* StageFactory::create_component_relations_navigator(std::string focused_component_name, std::string current_project_directory)
 {
+   Blast::Project::Component self_component(focused_component_name, current_project_directory);
+
+   Hexagon::ComponentRelationsNavigator::ComponentRelations component_relations(self_component);
+
    std::vector<std::tuple<std::string, std::string>> dependents_menu_items = {
       {"--- not yet implemented ---", "buz"},
    };
-   std::vector<std::tuple<std::string, std::string>> relatives_menu_items = {
-      {"--- not yet implemented ---", "buz"},
-   };
+   std::vector<std::tuple<std::string, std::string>> relatives_menu_items = {};
    std::vector<std::tuple<std::string, std::string>> dependencies_menu_items = {
       {"--- not yet implemented ---", "buz"},
    };
 
-   ALLEGRO_COLOR component_relations_navigator_color = al_color_html("f89714");
+   for (auto &relatives_menu_item : component_relations.build_relatives_list())
+   {
+      relatives_menu_items.push_back({relatives_menu_item, relatives_menu_item});
+   }
+
    Hexagon::ComponentRelationsNavigator::Stage *component_relations_navigator =
       new Hexagon::ComponentRelationsNavigator::Stage(
          font_bin,

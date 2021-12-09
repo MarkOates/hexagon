@@ -36,7 +36,7 @@ namespace Hexagon
       StageInterface* create_notification(std::string body_text="");
       StageInterface* create_file_navigator(std::string directory="");
       StageInterface* create_class_brief_menu(std::string title="Untitled Menu", std::vector<std::tuple<std::string, std::string>> items={{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}});
-      StageInterface* create_component_relations_navigator();
+      StageInterface* create_component_relations_navigator(std::string focused_component_name="", std::string current_project_directory="");
       StageInterface* create_drawing_box();
       StageInterface* create_missing_file(std::string filename="");
       StageInterface* create_advanced_code_editor(std::string filename="untitled.txt", int num_columns=123, int num_rows=70);

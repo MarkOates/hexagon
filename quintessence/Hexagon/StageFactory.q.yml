@@ -150,19 +150,32 @@ functions:
 
 
   - name: create_component_relations_navigator
+    parameters:
+      - name: focused_component_name
+        type: std::string
+        default_argument: '""'
+      - name: current_project_directory
+        type: std::string
+        default_argument: '""'
     type: StageInterface*
     body: |
+      Blast::Project::Component self_component(focused_component_name, current_project_directory);
+
+      Hexagon::ComponentRelationsNavigator::ComponentRelations component_relations(self_component);
+
       std::vector<std::tuple<std::string, std::string>> dependents_menu_items = {
          {"--- not yet implemented ---", "buz"},
       };
-      std::vector<std::tuple<std::string, std::string>> relatives_menu_items = {
-         {"--- not yet implemented ---", "buz"},
-      };
+      std::vector<std::tuple<std::string, std::string>> relatives_menu_items = {};
       std::vector<std::tuple<std::string, std::string>> dependencies_menu_items = {
          {"--- not yet implemented ---", "buz"},
       };
 
-      ALLEGRO_COLOR component_relations_navigator_color = al_color_html("f89714");
+      for (auto &relatives_menu_item : component_relations.build_relatives_list())
+      {
+         relatives_menu_items.push_back({relatives_menu_item, relatives_menu_item});
+      }
+
       Hexagon::ComponentRelationsNavigator::Stage *component_relations_navigator =
          new Hexagon::ComponentRelationsNavigator::Stage(
             font_bin,
@@ -178,6 +191,7 @@ functions:
       return component_relations_navigator;
     body_dependency_symbols:
        - Hexagon::ComponentRelationsNavigator::Stage
+       - Hexagon::ComponentRelationsNavigator::ComponentRelations
        - std::vector<std::tuple<std::string, std::string>>
 
 
@@ -484,6 +498,8 @@ dependencies:
 
   - symbol: php::file_get_contents
     headers: [ allegro_flare/useful_php.h ]
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
   - symbol: Hexagon::MissingFile::Stage
     headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Hexagon::FileNavigator::Stage
@@ -506,6 +522,8 @@ dependencies:
     headers: [ Hexagon/UI/LittleMenu.hpp ]
   - symbol: Hexagon::ComponentRelationsNavigator::Stage
     headers: [ Hexagon/ComponentRelationsNavigator/Stage.hpp ]
+  - symbol: Hexagon::ComponentRelationsNavigator::ComponentRelations
+    headers: [ Hexagon/ComponentRelationsNavigator/ComponentRelations.hpp ]
   - symbol: Hexagon::UI::DrawingBox
     headers: [ Hexagon/UI/DrawingBox.hpp ]
   - symbol: StageInterface*
