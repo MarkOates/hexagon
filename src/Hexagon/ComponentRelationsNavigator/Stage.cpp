@@ -287,7 +287,35 @@ std::string Stage::get_current_selection_label_or_empty_string()
          error_message << "Stage" << "::" << "get_current_selection_label_or_empty_string" << ": error: " << "guard \"get_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
-   return "An/Active/Menu/Selection/Not/Yet/Implemented";
+   if (!(currently_active_menu))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "get_current_selection_label_or_empty_string" << ": error: " << "guard \"currently_active_menu\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   std::string result;
+
+   if (is_currently_active_menu(&dependents_menu))
+   {
+      result = dependents_menu.get_current_list_item_identifier();
+   }
+   else if (is_currently_active_menu(&relatives_menu))
+   {
+      result = relatives_menu.get_current_list_item_identifier();
+   }
+   else if (is_currently_active_menu(&dependencies_menu))
+   {
+      result = dependents_menu.get_current_list_item_identifier();
+   }
+   else
+   {
+      std::stringstream error_message;
+      error_message << "ComponentRelationsNavigator::Stage::get_current_selection_label_or_empty_string: error:"
+                    << "Expecting an active menu, one of [dependents_menu, relatives_menu, dependencies_menu], "
+                    << "but there is none.";
+      throw std::runtime_error(error_message.str());
+   }
+   return result;
 }
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)

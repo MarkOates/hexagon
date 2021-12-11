@@ -255,9 +255,31 @@ functions:
 
   - name: get_current_selection_label_or_empty_string
     type: std::string
-    guards: [ get_initialized() ]
+    guards: [ get_initialized(), currently_active_menu ]
     body: |
-      return "An/Active/Menu/Selection/Not/Yet/Implemented";
+      std::string result;
+
+      if (is_currently_active_menu(&dependents_menu))
+      {
+         result = dependents_menu.get_current_list_item_identifier();
+      }
+      else if (is_currently_active_menu(&relatives_menu))
+      {
+         result = relatives_menu.get_current_list_item_identifier();
+      }
+      else if (is_currently_active_menu(&dependencies_menu))
+      {
+         result = dependents_menu.get_current_list_item_identifier();
+      }
+      else
+      {
+         std::stringstream error_message;
+         error_message << "ComponentRelationsNavigator::Stage::get_current_selection_label_or_empty_string: error:"
+                       << "Expecting an active menu, one of [dependents_menu, relatives_menu, dependencies_menu], "
+                       << "but there is none.";
+         throw std::runtime_error(error_message.str());
+      }
+      return result;
 
 
   - name: process_local_event
