@@ -74,6 +74,7 @@
 #include <Hexagon/FileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+#include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/ProjectComponentNavigator/Stage.hpp>
 #include <Hexagon/LayoutPlacements.hpp>
@@ -1136,6 +1137,36 @@ bool System::push_component_navigator_selection()
 }
 
 
+bool System::push_component_relations_navigator_selection()
+{
+   StageInterface *frontmost_stage_interface = get_frontmost_stage();
+   if (!frontmost_stage_interface ||
+       !(frontmost_stage_interface->get_type() == StageInterface::COMPONENT_RELATIONS_NAVIGATOR))
+   {
+      std::stringstream error_message;
+      std::string function_name = "push_component_relations_navigator_selection";
+      error_message
+         << "Could not "
+         << function_name
+         << ": Either the frontmost_stage_interface is a nullptr OR is not of type " \
+            "StageInterface::COMPONENT_NAVIGATOR."
+         << std::endl;
+      throw std::runtime_error(error_message.str().c_str());
+   }
+   Hexagon::ComponentRelationsNavigator::Stage *component_relations_navigator =
+      static_cast<Hexagon::ComponentRelationsNavigator::Stage *>(frontmost_stage_interface);
+
+   std::string current_component_relations_navigator_selection =
+      component_relations_navigator->get_current_selection_label_or_empty_string();
+
+   // NOTE! this will be using the "last_component_navigator_selection" as the destination source variable.
+   // It seems like the variable name is incorrect.  It should be updated to reflect something more abstract
+   // like "last menu input selection" or something.
+   last_component_navigator_selection = current_component_relations_navigator_selection;
+   return true;
+}
+
+
 bool System::push_project_navigator_selection()
 {
    StageInterface *frontmost_stage_interface = get_frontmost_stage();
@@ -1452,10 +1483,10 @@ bool System::submit_current_modal()
       process_local_event(CENTER_CAMERA_ON_FRONTMOST_STAGE);
       break;
    case StageInterface::COMPONENT_RELATIONS_NAVIGATOR:
-      process_local_event(PUSH_COMPONENT_RELATIONS_SELECTION);
+      process_local_event(PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION);
       process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
       process_local_event(DESTROY_ALL_CODE_EDITOR_STAGES);
-      process_local_event(CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_RELATIONS_SELECTION);
+      process_local_event(CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
       process_local_event(ROTATE_STAGE_LEFT);
       process_local_event(CENTER_CAMERA_ON_FRONTMOST_STAGE);
       break;
@@ -1523,8 +1554,6 @@ const std::string System::CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_
    "CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION =
       "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
-const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_RELATIONS_SELECTION =
-   "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_RELATIONS_SELECTION";
 const std::string System::SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE = "SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE";
 const std::string System::CENTER_CAMERA_ON_FRONTMOST_STAGE = "CENTER_CAMERA_ON_FRONTMOST_STAGE";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
@@ -1543,7 +1572,7 @@ const std::string System::DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGE
    "DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES";
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
 const std::string System::PUSH_COMPONENT_NAVIGATOR_SELECTION = "PUSH_COMPONENT_NAVIGATOR_SELECTION";
-const std::string System::PUSH_COMPONENT_RELATIONS_SELECTION = "PUSH_RELATIONS_NAVIGATOR_SELECTION";
+const std::string System::PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION = "PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE = "REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES =
    "REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES";

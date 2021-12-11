@@ -104,6 +104,10 @@ functions:
             &::System::push_file_navigator_selection,
          },
          {
+            ::System::PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION,
+            &::System::push_component_relations_navigator_selection,
+         },
+         {
             ::System::PUSH_COMPONENT_NAVIGATOR_SELECTION,
             &::System::push_component_navigator_selection,
          },

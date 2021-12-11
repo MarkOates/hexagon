@@ -15,6 +15,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <iostream>
 
 
@@ -275,6 +277,17 @@ void Stage::process_event(ALLEGRO_EVENT& event)
      break;
    }
    return;
+}
+
+std::string Stage::get_current_selection_label_or_empty_string()
+{
+   if (!(get_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "get_current_selection_label_or_empty_string" << ": error: " << "guard \"get_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return "An/Active/Menu/Selection/Not/Yet/Implemented";
 }
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)

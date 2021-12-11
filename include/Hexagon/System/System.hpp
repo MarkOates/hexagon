@@ -139,6 +139,7 @@ public:
    bool jump_to_next_or_nearest_code_point_on_stage();
    bool offset_first_line_to_vertically_center_cursor_on_stage();
    bool push_component_navigator_selection();
+   bool push_component_relations_navigator_selection();
    bool push_project_navigator_selection();
    bool push_file_navigator_selection();
    bool attempt_to_create_stage_from_last_file_navigator_selection();
@@ -173,7 +174,6 @@ public:
    static const std::string CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION;
    static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
-   static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_RELATIONS_SELECTION;
    static const std::string SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE;
    static const std::string CENTER_CAMERA_ON_FRONTMOST_STAGE;
    static const std::string CLEAR_LAST_COMPILED_ERROR_MESSAGES;
@@ -192,7 +192,7 @@ public:
    static const std::string DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
    static const std::string PUSH_COMPONENT_NAVIGATOR_SELECTION;
-   static const std::string PUSH_COMPONENT_RELATIONS_SELECTION;
+   static const std::string PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES;

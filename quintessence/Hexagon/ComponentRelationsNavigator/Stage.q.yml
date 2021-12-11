@@ -253,6 +253,13 @@ functions:
       return;
 
 
+  - name: get_current_selection_label_or_empty_string
+    type: std::string
+    guards: [ get_initialized() ]
+    body: |
+      return "An/Active/Menu/Selection/Not/Yet/Implemented";
+
+
   - name: process_local_event
     guards: [ get_initialized() ]
     override: true
