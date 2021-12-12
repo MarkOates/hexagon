@@ -47,6 +47,7 @@ namespace Hexagon
          void refresh_list();
          void yank_selected_text_label();
          void yank_selected_text_as_component_name();
+         void yank_selected_text_as_include_directive();
       };
    }
 }

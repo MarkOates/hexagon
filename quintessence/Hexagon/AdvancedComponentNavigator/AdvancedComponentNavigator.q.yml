@@ -136,6 +136,17 @@ functions:
       - ClipboardData::store
 
 
+  - name: yank_selected_text_as_include_directive
+    type: void
+    guard: [ current_selection_is_valid() ]
+    body: |
+      std::string selected_text = get_current_selection_label_or_empty_string();
+      std::string filtered_text = "#include <" + selected_text + ".hpp>";
+      ClipboardData::store(filtered_text);
+    body_dependency_symbols:
+      - ClipboardData::store
+
+
 dependencies:
 
 
