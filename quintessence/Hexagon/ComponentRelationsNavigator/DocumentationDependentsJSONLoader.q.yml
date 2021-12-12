@@ -1,13 +1,32 @@
+properties:
+
+
+  - name: DEPENDENTS_JSON_FILENAME
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon/documentation/dependents.json"'
+    getter: true
+
+
 functions:
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+
+  - name: build_dependent_names_for_component_name
+    type: std::vector<std::string>
+    parameters:
+      - name: component_name
+        type: std::string
+        default_argument: '""'
+    body: |
+      nlohmann::json j;
+      return {};
     body_dependency_symbols:
       - JSON
 
+
 dependencies:
+
 
   - symbol: JSON
     headers: [ lib/nlohmann/json.hpp ]
+
 

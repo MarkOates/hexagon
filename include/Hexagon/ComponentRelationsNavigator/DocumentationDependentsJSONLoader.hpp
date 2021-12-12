@@ -2,6 +2,7 @@
 
 
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -11,12 +12,14 @@ namespace Hexagon
       class DocumentationDependentsJSONLoader
       {
       private:
+         std::string DEPENDENTS_JSON_FILENAME;
 
       public:
          DocumentationDependentsJSONLoader();
          ~DocumentationDependentsJSONLoader();
 
-         std::string run();
+         std::string get_DEPENDENTS_JSON_FILENAME();
+         std::vector<std::string> build_dependent_names_for_component_name(std::string component_name="");
       };
    }
 }

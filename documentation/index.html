@@ -85,6 +85,7 @@ table td
   <li><a href="#quintessence/Hexagon/CodeRenderer.q.yml">quintessence/Hexagon/CodeRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml">quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/DirtyGrid.q.yml">quintessence/Hexagon/DirtyGrid.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml">quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml</a></li>
@@ -2382,6 +2383,27 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Blast::Project::Component&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Blast/Project/Component.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">DEPENDENTS_JSON_FILENAME</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">build_dependent_names_for_component_name(1)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;JSON&quot;, &quot;headers&quot;=&gt;[&quot;lib/nlohmann/json.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9476,6 +9498,9 @@ table td
   ],
   "Blast::Project::ComponentRelativeLister": [
     "quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml"
+  ],
+  "JSON": [
+    "quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml"
   ],
   "Hexagon::Elements::ListMenu": [
     "quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml",
