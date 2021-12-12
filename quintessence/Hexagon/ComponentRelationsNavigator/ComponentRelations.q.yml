@@ -13,7 +13,10 @@ functions:
   - name: build_dependents_list
     type: std::vector<std::string>
     body: |
-      return {};
+      Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader dependents_relations_loader;
+      return dependents_relations_loader.build_dependent_names_for_component_name(component.get_name());
+    body_dependency_symbols:
+      - Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader
 
 
   - name: build_relatives_list
@@ -41,4 +44,7 @@ dependencies:
     headers: [ Blast/Project/Component.hpp ]
   - symbol: std::vector<Blast::Project::Component>
     headers: [ vector, Blast/Project/Component.hpp ]
+  - symbol: Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader
+    headers: [ Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.hpp ]
+
 

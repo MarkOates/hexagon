@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/ComponentRelationsNavigator/ComponentRelations.hpp>
+#include <Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.hpp>
 #include <Blast/Project/ComponentRelativeLister.hpp>
 
 
@@ -23,7 +24,8 @@ ComponentRelations::~ComponentRelations()
 
 std::vector<std::string> ComponentRelations::build_dependents_list()
 {
-   return {};
+   Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader dependents_relations_loader;
+   return dependents_relations_loader.build_dependent_names_for_component_name(component.get_name());
 }
 
 std::vector<std::string> ComponentRelations::build_relatives_list()

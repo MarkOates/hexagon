@@ -221,9 +221,7 @@ StageInterface* StageFactory::create_component_relations_navigator(std::string f
 
    Hexagon::ComponentRelationsNavigator::ComponentRelations component_relations(self_component);
 
-   std::vector<std::tuple<std::string, std::string>> dependents_menu_items = {
-      {"--- not yet implemented ---", "buz"},
-   };
+   std::vector<std::tuple<std::string, std::string>> dependents_menu_items = {};
    std::vector<std::tuple<std::string, std::string>> relatives_menu_items = {};
    std::vector<std::tuple<std::string, std::string>> dependencies_menu_items = {
       {"--- not yet implemented ---", "buz"},
@@ -232,6 +230,10 @@ StageInterface* StageFactory::create_component_relations_navigator(std::string f
    for (auto &relatives_menu_item : component_relations.build_relatives_list())
    {
       relatives_menu_items.push_back({relatives_menu_item, relatives_menu_item});
+   }
+   for (auto &dependents_menu_item : component_relations.build_dependents_list())
+   {
+      dependents_menu_items.push_back({dependents_menu_item, dependents_menu_item});
    }
 
    Hexagon::ComponentRelationsNavigator::Stage *component_relations_navigator =

@@ -23,23 +23,24 @@ TEST(Hexagon_ComponentRelationsNavigator_DocumentationDependentsJSONLoaderTest,
    Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader documentation_dependents_jsonloader;
    std::vector<std::string> expected_list =
       {
-        "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-        "quintessence/Hexagon/BuildSequenceMeter/Renderer",
-        "quintessence/Hexagon/CodeEditor/Stage",
-        "quintessence/Hexagon/ComponentRelationsNavigator/Stage",
-        "quintessence/Hexagon/Elements/ListMenu",
-        "quintessence/Hexagon/Elements/QuoteRenderer",
-        "quintessence/Hexagon/Elements/StageInfoOverlay",
-        "quintessence/Hexagon/Font",
-        "quintessence/Hexagon/LayoutToStagesCreator",
-        "quintessence/Hexagon/Logo",
-        "quintessence/Hexagon/MissingFile/Stage",
-        "quintessence/Hexagon/StageFactory",
-        "quintessence/Hexagon/TitleScreen",
-        "quintessence/Hexagon/UI/DrawingBox",
-        "quintessence/Hexagon/UI/LittleMenu",
+        "Hexagon/AdvancedCodeEditor/Stage",
+        "Hexagon/BuildSequenceMeter/Renderer",
+        "Hexagon/CodeEditor/Stage",
+        "Hexagon/ComponentRelationsNavigator/Stage",
+        "Hexagon/Elements/ListMenu",
+        "Hexagon/Elements/QuoteRenderer",
+        "Hexagon/Elements/StageInfoOverlay",
+        "Hexagon/Font",
+        "Hexagon/LayoutToStagesCreator",
+        "Hexagon/Logo",
+        "Hexagon/MissingFile/Stage",
+        "Hexagon/StageFactory",
+        "Hexagon/TitleScreen",
+        "Hexagon/UI/DrawingBox",
+        "Hexagon/UI/LittleMenu",
       };
 
-   EXPECT_EQ(expected_list, documentation_dependents_jsonloader.build_dependent_names_for_component_name());
+   std::string component_name = "AllegroFlare::FontBin*";
+   EXPECT_EQ(expected_list, documentation_dependents_jsonloader.build_dependent_names_for_component_name(component_name));
 }
 

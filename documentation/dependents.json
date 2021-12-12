@@ -1,1370 +1,1317 @@
 {
-  "Hexagon::System::Config": [
-    "quintessence/ApplicationController",
-    "quintessence/Blast/Daemus/ProgramRunner",
-    "quintessence/Testing/WithStageFactoryFixture"
+  "Hexagon/System/Config": [
+    "ApplicationController",
+    "Blast/Daemus/ProgramRunner",
+    "Blast/Daemus/ProgramRunner",
+    "Hexagon/Hud",
+    "Hexagon/StageFactory",
+    "Testing/WithStageFactoryFixture"
   ],
-  "Hexagon::TitleScreen": [
-    "quintessence/ApplicationController"
+  "Hexagon/TitleScreen": [
+    "ApplicationController"
   ],
   "al_get_allegro_version": [
-    "quintessence/ApplicationController",
-    "quintessence/Hexagon/TitleScreen"
+    "ApplicationController",
+    "Hexagon/TitleScreen"
   ],
-  "ALLEGRO_DISPLAY*": [
-    "quintessence/ApplicationController",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/Elements/CheckTextureGenerator",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/FocusTimerBar/Renderer",
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage",
-    "quintessence/Hexagon/Powerbar/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/System/Renderer",
-    "quintessence/Testing/WithAllegroRenderingFixture"
+  "ALLEGRO_DISPLAY": [
+    "ApplicationController",
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/Elements/CheckTextureGenerator",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/FocusTimerBar/Renderer",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/Hud",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Renderer",
+    "Testing/WithAllegroRenderingFixture"
   ],
-  "ALLEGRO_EVENT_QUEUE*": [
-    "quintessence/ApplicationController"
+  "ALLEGRO_EVENT_QUEUE": [
+    "ApplicationController"
   ],
-  "ALLEGRO_TIMER*": [
-    "quintessence/ApplicationController"
+  "ALLEGRO_TIMER": [
+    "ApplicationController"
   ],
   "Motion": [
-    "quintessence/ApplicationController"
+    "ApplicationController"
   ],
-  "Hexagon::Shaders::TiledHexagonMotionEffect": [
-    "quintessence/ApplicationController",
-    "quintessence/Hexagon/TitleScreen"
+  "Hexagon/Shaders/TiledHexagonMotionEffect": [
+    "ApplicationController",
+    "Hexagon/TitleScreen"
   ],
-  "System*": [
-    "quintessence/ApplicationController"
+  "System": [
+    "ApplicationController"
   ],
   "ALLEGRO_EVENT_SOURCE": [
-    "quintessence/ApplicationController"
+    "ApplicationController"
   ],
   "ALLEGRO_EVENT": [
-    "quintessence/ApplicationController",
-    "quintessence/Hexagon/AdvancedCodeEditor/EventController",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/ComponentRelationsNavigator/Stage",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/NewComponentMaker/Stage",
-    "quintessence/Hexagon/Notifications/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/UI/DrawingBox",
-    "quintessence/Hexagon/UI/LittleMenu"
+    "ApplicationController",
+    "Hexagon/AdvancedCodeEditor/EventController",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/Notifications/Stage",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/UI/DrawingBox",
+    "Hexagon/UI/LittleMenu"
   ],
   "all": [
-    "quintessence/ApplicationController",
-    "quintessence/Hexagon/CodeEditor/CachedLineRenderer"
+    "ApplicationController",
+    "Hexagon/CodeEditor/CachedLineRenderer"
   ],
   "getpid": [
-    "quintessence/Blast/Daemus/Daemus"
+    "Blast/Daemus/Daemus"
   ],
-  "Blast::ShellCommandExecutorWithCallback": [
-    "quintessence/Blast/Daemus/Daemus",
-    "quintessence/Blast/Daemus/ProgramRunner",
-    "quintessence/Hexagon/BuildSystem/Controller",
-    "quintessence/Hexagon/Git/CommitStagedWithMessage",
-    "quintessence/Hexagon/Git/Modified",
-    "quintessence/Hexagon/Git/Pusher",
-    "quintessence/Hexagon/Git/StageEverything",
-    "quintessence/Hexagon/Git/Staged",
-    "quintessence/Hexagon/Git/Untracked",
-    "quintessence/Hexagon/NewComponentMaker/NewComponentMaker",
-    "quintessence/Hexagon/NewComponentMaker/Stage",
-    "quintessence/Hexagon/PasteboardData",
-    "quintessence/Hexagon/Rails/ComponentLister",
-    "quintessence/Hexagon/Search/ComponentElasticsearchIndexer",
-    "quintessence/Hexagon/Search/Elasticsearch/HealthChecker",
-    "quintessence/Hexagon/SymlinkToucher",
-    "quintessence/Hexagon/Testing/ComponentTestRunner"
+  "Blast/ShellCommandExecutorWithCallback": [
+    "Blast/Daemus/Daemus",
+    "Blast/Daemus/ProgramRunner",
+    "Hexagon/BuildSystem/Controller",
+    "Hexagon/Git/CommitStagedWithMessage",
+    "Hexagon/Git/Modified",
+    "Hexagon/Git/Pusher",
+    "Hexagon/Git/StageEverything",
+    "Hexagon/Git/Staged",
+    "Hexagon/Git/Untracked",
+    "Hexagon/NewComponentMaker/NewComponentMaker",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/PasteboardData",
+    "Hexagon/Rails/ComponentLister",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/Search/Elasticsearch/HealthChecker",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/Testing/ComponentTestRunner"
   ],
-  "Blast::DirectoryExistenceChecker": [
-    "quintessence/Blast/Daemus/Daemus"
+  "Blast/DirectoryExistenceChecker": [
+    "Blast/Daemus/Daemus"
   ],
-  "Blast::FileExistenceChecker": [
-    "quintessence/Blast/Daemus/Daemus",
-    "quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
-    "quintessence/Hexagon/Elements/FilePixelPreviewCreator",
-    "quintessence/Hexagon/LayoutToStagesCreator",
-    "quintessence/Hexagon/ProjectFactory",
-    "quintessence/Hexagon/SymlinkToucher",
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent"
+  "Blast/FileExistenceChecker": [
+    "Blast/Daemus/Daemus",
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/ProjectFactory",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent"
   ],
-  "Blast::Project::Component": [
-    "quintessence/Blast/Daemus/Daemus",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/BlastComponentLayoutGenerator",
-    "quintessence/Hexagon/BlastProjectLayoutsGenerator",
-    "quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "quintessence/Hexagon/Testing/ComponentTestRunner"
+  "Blast/Project/Component": [
+    "Blast/Daemus/Daemus",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/BlastComponentLayoutGenerator",
+    "Hexagon/BlastProjectLayoutsGenerator",
+    "Hexagon/ComponentBitmapRenderCreator",
+    "Hexagon/ComponentRelationsNavigator/ComponentRelations",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/Testing/ComponentTestRunner"
   ],
-  "Hexagon::Testing::GoogleTestRunOutputParser": [
-    "quintessence/Blast/Daemus/Daemus"
+  "Hexagon/Testing/GoogleTestRunOutputParser": [
+    "Blast/Daemus/Daemus"
   ],
-  "std::vector<Hexagon::Testing::GoogleTestRunTestResult>": [
-    "quintessence/Blast/Daemus/Daemus",
-    "quintessence/Hexagon/Testing/GoogleTestRunOutputParser"
+  "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
+    "Blast/Daemus/Daemus",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
-  "Blast::Daemus::Daemus*": [
-    "quintessence/Blast/Daemus/NetworkMessageEventController"
+  "Blast/Daemus/Daemus": [
+    "Blast/Daemus/NetworkMessageEventController"
   ],
-  "Hexagon::System::Config*": [
-    "quintessence/Blast/Daemus/ProgramRunner",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/StageFactory"
+  "std/find_if": [
+    "Blast/String/Trimmer"
   ],
-  "std::find_if": [
-    "quintessence/Blast/String/Trimmer"
+  "Hexagon/DirtyGrid": [
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/DirtyGrid"
   ],
-  "Hexagon::DirtyGrid": [
-    "quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
+  "std/vector<std/string>&": [
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
   ],
-  "std::vector<std::string>&": [
-    "quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
+  "std/vector<std/pair<int, int>>": [
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/DirtyGrid",
+    "Hexagon/Elements/BitmapGridMesh",
+    "Hexagon/Elements/TextMesh"
   ],
-  "std::vector<std::pair<int, int>>": [
-    "quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-    "quintessence/Hexagon/DirtyGrid",
-    "quintessence/Hexagon/Elements/BitmapGridMesh",
-    "quintessence/Hexagon/Elements/TextMesh"
+  "Blast/StringSplitter": [
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/Git/Modified",
+    "Hexagon/Git/Staged",
+    "Hexagon/Git/Untracked",
+    "Hexagon/NewComponentMaker/NewComponentMaker",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/Rails/ComponentLister",
+    "Hexagon/RailsTestOutputParser",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
-  "Blast::StringSplitter": [
-    "quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
-    "quintessence/Hexagon/Elements/FilePixelPreviewCreator",
-    "quintessence/Hexagon/Git/Modified",
-    "quintessence/Hexagon/Git/Staged",
-    "quintessence/Hexagon/Git/Untracked",
-    "quintessence/Hexagon/NewComponentMaker/NewComponentMaker",
-    "quintessence/Hexagon/NewComponentMaker/Stage",
-    "quintessence/Hexagon/Rails/ComponentLister",
-    "quintessence/Hexagon/RailsTestOutputParser",
-    "quintessence/Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "Hexagon::AdvancedCodeEditor::Cursor": [
-    "quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
+  "Hexagon/AdvancedCodeEditor/Cursor": [
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "RegexMatcher": [
-    "quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
-    "quintessence/Hexagon/RailsTestOutputParser",
-    "quintessence/Hexagon/Search/Elasticsearch/HealthChecker",
-    "quintessence/Hexagon/Testing/GoogleTestRunOutputParser"
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
+    "Hexagon/RailsTestOutputParser",
+    "Hexagon/Search/Elasticsearch/HealthChecker",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
-  "std::max": [
-    "quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
+  "std/max": [
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
   ],
-  "std::reverse": [
-    "quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
+  "std/reverse": [
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
   ],
-  "std::begin": [
-    "quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
+  "std/begin": [
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
   ],
-  "std::end": [
-    "quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
+  "std/end": [
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
   ],
-  "Hexagon::AdvancedCodeEditor::Stage*": [
-    "quintessence/Hexagon/AdvancedCodeEditor/EventController"
+  "Hexagon/AdvancedCodeEditor/Stage": [
+    "Hexagon/AdvancedCodeEditor/EventController",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent"
   ],
   "KeyboardCommandMapper": [
-    "quintessence/Hexagon/AdvancedCodeEditor/EventController",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/System/EventController"
+    "Hexagon/AdvancedCodeEditor/EventController",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/System/EventController"
   ],
   "ActionData": [
-    "quintessence/Hexagon/AdvancedCodeEditor/EventController",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-    "quintessence/Hexagon/AdvancedComponentNavigator/EventController",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/ComponentRelationsNavigator/Stage",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/NewComponentMaker/Stage",
-    "quintessence/Hexagon/Notifications/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/EventController",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/UI/DrawingBox",
-    "quintessence/Hexagon/UI/LittleMenu"
+    "Hexagon/AdvancedCodeEditor/EventController",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/EventController",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/Notifications/Stage",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/ProjectComponentNavigator/EventController",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/UI/DrawingBox",
+    "Hexagon/UI/LittleMenu"
   ],
   "ALLEGRO_EVENT&": [
-    "quintessence/Hexagon/AdvancedCodeEditor/EventController",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/ComponentRelationsNavigator/Stage",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/NewComponentMaker/Stage",
-    "quintessence/Hexagon/Notifications/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/System/EventController",
-    "quintessence/Hexagon/UI/DrawingBox",
-    "quintessence/Hexagon/UI/LittleMenu"
+    "Hexagon/AdvancedCodeEditor/EventController",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/Notifications/Stage",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/System/EventController",
+    "Hexagon/UI/DrawingBox",
+    "Hexagon/UI/LittleMenu"
   ],
-  "std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>": [
-    "quintessence/Hexagon/AdvancedCodeEditor/EventController",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
+  "std/map<std/string, std/function<void(Hexagon/AdvancedCodeEditor/Stage&)>>": [
+    "Hexagon/AdvancedCodeEditor/EventController",
+    "Hexagon/AdvancedCodeEditor/Stage"
   ],
-  "Hexagon::Elements::TextMesh*": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer"
+  "Hexagon/Elements/TextMesh": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage"
   ],
-  "std::vector<Hexagon::AdvancedCodeEditor::Selection>*": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer"
+  "std/vector<Hexagon/AdvancedCodeEditor/Selection>": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage"
   ],
-  "std::vector<std::string>*": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer",
-    "quintessence/Hexagon/DirtyGrid"
+  "std/vector<std/string>": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/DirtyGrid",
+    "Hexagon/Elements/TextPixelPreviewCreator",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/ComponentSearcher",
+    "Hexagon/ProjectComponentNavigator/Stage"
   ],
   "ALLEGRO_COLOR": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/CodeEditor/CursorRenderer",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/ComponentRelationsNavigator/Stage",
-    "quintessence/Hexagon/Elements/BitmapGridMesh",
-    "quintessence/Hexagon/Elements/BitmapGridRenderSurface",
-    "quintessence/Hexagon/Elements/ColorKit",
-    "quintessence/Hexagon/Elements/DataTable",
-    "quintessence/Hexagon/Elements/DynamicGridMesh",
-    "quintessence/Hexagon/Elements/FontedTextGrid",
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/Elements/ListMenu",
-    "quintessence/Hexagon/Elements/SingleBlockBarGraph",
-    "quintessence/Hexagon/Elements/TextGrid",
-    "quintessence/Hexagon/Elements/TextMesh",
-    "quintessence/Hexagon/Elements/Window",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/Forms/Fun",
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/LayoutToStagesCreator",
-    "quintessence/Hexagon/Logo",
-    "quintessence/Hexagon/OneLineInputBox/Renderer",
-    "quintessence/Hexagon/OneLineInputBox/Stage",
-    "quintessence/Hexagon/PacketRenderer",
-    "quintessence/Hexagon/Powerbar/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/Shaders/FlatColor",
-    "quintessence/Hexagon/Shaders/Fun",
-    "quintessence/Hexagon/Shaders/Smiley",
-    "quintessence/Hexagon/Shaders/TexturedTruchet",
-    "quintessence/Hexagon/Shaders/TiledHexagonMotionEffect",
-    "quintessence/Hexagon/Shaders/TruchetMaze",
-    "quintessence/Hexagon/Shaders/TruchetVine",
-    "quintessence/Hexagon/Shaders/TruchetVineSquiggle",
-    "quintessence/Hexagon/Shapes/Hexagon/Renderer",
-    "quintessence/Hexagon/Shapes/Hexagon/Stroke",
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "quintessence/Hexagon/System/Config",
-    "quintessence/Hexagon/UI/DrawingBox"
-  ],
-  "ALLEGRO_FONT*": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/CodeEditor/CachedLineRenderer",
-    "quintessence/Hexagon/CodeEditor/LineRenderBin",
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
-    "quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/Elements/DataTable",
-    "quintessence/Hexagon/Elements/FontCharacterMapGrid",
-    "quintessence/Hexagon/Elements/FontedTextGrid",
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/Elements/ListMenu",
-    "quintessence/Hexagon/Elements/QuoteRenderer",
-    "quintessence/Hexagon/Elements/StageInfoOverlay",
-    "quintessence/Hexagon/Elements/SubBitmapCharacterMap",
-    "quintessence/Hexagon/Elements/TextGrid",
-    "quintessence/Hexagon/Elements/TextMesh",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/Font",
-    "quintessence/Hexagon/FontSet",
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/Logo",
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Renderer",
-    "quintessence/Hexagon/OneLineInputBox/Stage",
-    "quintessence/Hexagon/PacketRenderer",
-    "quintessence/Hexagon/Powerbar/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/Shapes/Hexagon/Renderer",
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/TitleScreen",
-    "quintessence/Hexagon/UI/DrawingBox",
-    "quintessence/Testing/WithAllegroRenderingFixture"
-  ],
-  "ALLEGRO_BITMAP*": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-    "quintessence/Hexagon/CodeEditor/CachedLineRenderer",
-    "quintessence/Hexagon/CodeEditor/LineRenderBin",
-    "quintessence/Hexagon/ComponentBitmapRenderCreator",
-    "quintessence/Hexagon/Elements/BitmapGridMesh",
-    "quintessence/Hexagon/Elements/BitmapGridRenderSurface",
-    "quintessence/Hexagon/Elements/CheckTextureGenerator",
-    "quintessence/Hexagon/Elements/DynamicGridMesh",
-    "quintessence/Hexagon/Elements/FilePixelPreviewCreator",
-    "quintessence/Hexagon/Elements/FontCharacterMapGrid",
-    "quintessence/Hexagon/Elements/FontedTextGrid",
-    "quintessence/Hexagon/Elements/SubBitmapCharacterMap",
-    "quintessence/Hexagon/Elements/TextMesh",
-    "quintessence/Hexagon/Elements/TextPixelPreviewCreator",
-    "quintessence/Hexagon/Elements/TexturedRectangle",
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/Shaders/Fun",
-    "quintessence/Hexagon/Shaders/TexturedTruchet",
-    "quintessence/Hexagon/Shaders/TiledHexagonMotionEffect",
-    "quintessence/Hexagon/UI/DrawingBox"
-  ],
-  "al_draw_bitmap": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer"
-  ],
-  "Hexagon::Elements::FontedTextGrid*": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer"
-  ],
-  "Hexagon::AdvancedCodeEditor::WindowRenderer": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer"
-  ],
-  "Hexagon::AdvancedCodeEditor::Cursor*": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer"
-  ],
-  "CodeSelectionBoxRenderer": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer",
-    "quintessence/Hexagon/OneLineInputBox/Renderer"
-  ],
-  "AllegroFlare::Timer": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer",
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "AllegroFlare::color::color": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Renderer",
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/UI/DrawingBox"
-  ],
-  "std::vector<CodeRange>": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Selection",
-    "quintessence/Hexagon/OneLineInputBox/Renderer"
-  ],
-  "Hexagon::SymlinkToucher": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "std::vector<Hexagon::AdvancedCodeEditor::Selection>": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "StageInterface": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/ComponentRelationsNavigator/Stage",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/NewComponentMaker/Stage",
-    "quintessence/Hexagon/Notifications/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/UI/DrawingBox",
-    "quintessence/Hexagon/UI/LittleMenu"
-  ],
-  "placement3d": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/ComponentRelationsNavigator/Stage",
-    "quintessence/Hexagon/Forms/Fun",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/LayoutPlacements",
-    "quintessence/Hexagon/LayoutToStagesCreator",
-    "quintessence/Hexagon/OneLineInputBox/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "quintessence/Hexagon/TitleScreen",
-    "quintessence/Testing/WithAllegroRenderingFixture"
-  ],
-  "AllegroFlare::FontBin*": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage",
-    "quintessence/Hexagon/BuildSequenceMeter/Renderer",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/ComponentRelationsNavigator/Stage",
-    "quintessence/Hexagon/Elements/ListMenu",
-    "quintessence/Hexagon/Elements/QuoteRenderer",
-    "quintessence/Hexagon/Elements/StageInfoOverlay",
-    "quintessence/Hexagon/Font",
-    "quintessence/Hexagon/LayoutToStagesCreator",
-    "quintessence/Hexagon/Logo",
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/TitleScreen",
-    "quintessence/Hexagon/UI/DrawingBox",
-    "quintessence/Hexagon/UI/LittleMenu"
-  ],
-  "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "Hexagon::AdvancedCodeEditor::Renderer": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "Hexagon::Elements::TextMesh": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "Hexagon::AdvancedCodeEditor::EventController": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  ":save_file": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "Hexagon::CodeMessagePointManager": [
-    "quintessence/Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "Hexagon::Elements::Window": [
-    "quintessence/Hexagon/AdvancedCodeEditor/WindowRenderer",
-    "quintessence/Hexagon/ElementFX/WindowSpawnMotionFX",
-    "quintessence/Hexagon/Elements/DataTable",
-    "quintessence/Hexagon/PacketRenderer",
-    "quintessence/Hexagon/System/Renderer",
-    "quintessence/Hexagon/UI/DrawingBox"
-  ],
-  "Hexagon::ElementFX::WindowSpawnMotionFX": [
-    "quintessence/Hexagon/AdvancedCodeEditor/WindowRenderer"
-  ],
-  "Hexagon::AdvancedComponentNavigator::ComponentSearcher": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage"
-  ],
-  "std::vector<Blast::Project::Component>": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
-    "quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations",
-    "quintessence/Hexagon/ProjectComponentNavigator/ComponentSearcher",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "std::vector<std::string>": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/Elements/TextPixelPreviewCreator",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/ComponentSearcher",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "Blast::Project::ComponentLister": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher",
-    "quintessence/Hexagon/BlastComponentLayoutGenerator",
-    "quintessence/Hexagon/BlastProjectLayoutsGenerator",
-    "quintessence/Hexagon/ProjectComponentNavigator/ComponentSearcher"
-  ],
-  "Blast::SimpleTextSearcher": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher",
-    "quintessence/Hexagon/ProjectComponentNavigator/ComponentSearcher"
-  ],
-  "std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/EventController",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage"
-  ],
-  "std::map<std::string, std::function>": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/EventController",
-    "quintessence/Hexagon/ProjectComponentNavigator/EventController"
-  ],
-  "Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator*": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/EventController"
-  ],
-  "Hexagon::AdvancedComponentNavigator::EventController": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/EventController",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage"
-  ],
-  "std::sin": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer"
-  ],
-  "Hexagon::AdvancedComponentNavigator::Stage*": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/System/Renderer"
-  ],
-  "ALLEGRO_COLOR*": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
-    "quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer",
-    "quintessence/Hexagon/Elements/StageInfoOverlay",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/System/Renderer"
-  ],
-  "color::mix": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/Elements/StageInfoOverlay",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "al_color_name": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/CodeEditor/CursorRenderer",
-    "quintessence/Hexagon/CodeEditor/LineRenderBin",
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
-    "quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/Elements/CheckTextureGenerator",
-    "quintessence/Hexagon/Elements/FlashingGrid",
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/Elements/StageInfoOverlay",
-    "quintessence/Hexagon/Elements/TextGrid",
-    "quintessence/Hexagon/Elements/Window",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/FocusTimerBar/Renderer",
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/OneLineInputBox/Stage",
-    "quintessence/Hexagon/Powerbar/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/System/Renderer"
-  ],
-  "al_draw_circle": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "FileSystemNode": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "Hexagon::Shapes::Hexagon::Renderer": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "Hexagon::Shapes::Hexagon::Stroke": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Renderer",
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage"
-  ],
-  "Hexagon::AdvancedComponentNavigator::Renderer": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage"
-  ],
-  "std::endl": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/PasteboardData",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/RailsTestOutputParser"
-  ],
-  "std::cerr": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "std::cout": [
-    "quintessence/Hexagon/AdvancedComponentNavigator/Stage",
-    "quintessence/Hexagon/FileNavigator/Stage",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage",
-    "quintessence/Hexagon/RailsTestOutputParser"
-  ],
-  "std::vector<Hexagon::Layout>": [
-    "quintessence/Hexagon/BlastComponentLayoutGenerator",
-    "quintessence/Hexagon/BlastProjectLayoutsGenerator",
-    "quintessence/Hexagon/ProjectComponentNavigator/ProjectComponentNavigator"
-  ],
-  "Hexagon::Layout": [
-    "quintessence/Hexagon/BlastComponentLayoutGenerator",
-    "quintessence/Hexagon/BlastProjectLayoutsGenerator",
-    "quintessence/Hexagon/LayoutFromYAML"
-  ],
-  "Blast::ProjectComponentFilenameGenerator": [
-    "quintessence/Hexagon/BlastComponentLayoutGenerator",
-    "quintessence/Hexagon/BlastProjectLayoutsGenerator",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent"
-  ],
-  "Blast::ProjectComponentFileTypes": [
-    "quintessence/Hexagon/BlastComponentLayoutGenerator",
-    "quintessence/Hexagon/BlastProjectLayoutsGenerator"
-  ],
-  "al_is_system_installed": [
-    "quintessence/Hexagon/BuildSequenceMeter/Renderer",
-    "quintessence/Hexagon/Elements/FilePixelPreviewCreator",
-    "quintessence/Hexagon/Elements/FlashingGrid",
-    "quintessence/Hexagon/Elements/SingleBlockBarGraph",
-    "quintessence/Hexagon/Elements/TextGrid",
-    "quintessence/Hexagon/Elements/TextPixelPreviewCreator",
-    "quintessence/Hexagon/Elements/Window",
-    "quintessence/Hexagon/Forms/Fun"
-  ],
-  "al_is_font_addon_initialized": [
-    "quintessence/Hexagon/BuildSequenceMeter/Renderer"
-  ],
-  "al_draw_filled_rectangle": [
-    "quintessence/Hexagon/BuildSequenceMeter/Renderer",
-    "quintessence/Hexagon/Elements/FlashingGrid",
-    "quintessence/Hexagon/Elements/ListMenu",
-    "quintessence/Hexagon/Elements/StageInfoOverlay",
-    "quintessence/Hexagon/Elements/TextGrid",
-    "quintessence/Hexagon/OneLineInputBox/Renderer",
-    "quintessence/Hexagon/TitleScreen"
-  ],
-  "al_is_primitives_addon_initialized": [
-    "quintessence/Hexagon/BuildSequenceMeter/Renderer",
-    "quintessence/Hexagon/Elements/SingleBlockBarGraph",
-    "quintessence/Hexagon/Elements/Window",
-    "quintessence/Hexagon/FocusTimerBar/Renderer",
-    "quintessence/Hexagon/Forms/Fun",
-    "quintessence/Hexagon/PacketRenderer",
-    "quintessence/Hexagon/UI/DrawingBox"
-  ],
-  "al_is_ttf_addon_initialized": [
-    "quintessence/Hexagon/BuildSequenceMeter/Renderer"
-  ],
-  "std::vector<Hexagon::BuildSystem::Build>": [
-    "quintessence/Hexagon/BuildSystem/BuildRepository"
-  ],
-  "Hexagon::BuildSystem::Build*": [
-    "quintessence/Hexagon/BuildSystem/BuildRepository"
-  ],
-  "std::vector<ALLEGRO_BITMAP*>": [
-    "quintessence/Hexagon/CodeEditor/CachedLineRenderer",
-    "quintessence/Hexagon/Elements/BitmapGridRenderSurface"
-  ],
-  ":CodeEditor::CodeEditor::mode_t": [
-    "quintessence/Hexagon/CodeEditor/CursorRenderer"
-  ],
-  ":CodeEditor::CodeEditor::EDIT": [
-    "quintessence/Hexagon/CodeEditor/CursorRenderer"
-  ],
-  ":CodeEditor::CodeEditor::INSERT": [
-    "quintessence/Hexagon/CodeEditor/CursorRenderer"
-  ],
-  "al_draw_rectangle": [
-    "quintessence/Hexagon/CodeEditor/CursorRenderer",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/Elements/CheckTextureGenerator",
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/Elements/Window",
-    "quintessence/Hexagon/FocusTimerBar/Renderer",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/NewComponentMaker/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage",
-    "quintessence/Hexagon/Powerbar/Renderer"
-  ],
-  "color::color": [
-    "quintessence/Hexagon/CodeEditor/CursorRenderer",
-    "quintessence/Hexagon/Elements/Window",
-    "quintessence/Hexagon/OneLineInputBox/Renderer"
-  ],
-  "std::map<std::string>": [
-    "quintessence/Hexagon/CodeEditor/FileCategoryDecorator"
-  ],
-  "AllegroFlare::Bin<std::string, ALLEGRO_BITMAP *>": [
-    "quintessence/Hexagon/CodeEditor/LineRenderBin"
-  ],
-  "Hexagon::CodeEditor::CachedLineRenderer": [
-    "quintessence/Hexagon/CodeEditor/LineRenderBin"
-  ],
-  "std::map<std::string, int>": [
-    "quintessence/Hexagon/CodeEditor/LineRenderBin"
-  ],
-  "al_draw_text": [
-    "quintessence/Hexagon/CodeEditor/LineRenderBin",
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
-    "quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer",
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/Elements/QuoteRenderer",
-    "quintessence/Hexagon/Elements/StageInfoOverlay",
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage",
-    "quintessence/Hexagon/UI/DrawingBox"
-  ],
-  "Hexagon::CodeEditor::Renderer::AdvancedLineRenderer": [
-    "quintessence/Hexagon/CodeEditor/LineRenderBin"
-  ],
-  "Hexagon::RendererInterface*": [
-    "quintessence/Hexagon/CodeEditor/LineRenderBin"
-  ],
-  "Hexagon::RegexStore": [
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer"
-  ],
-  "al_get_text_width": [
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "std::get": [
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer"
-  ],
-  "std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>>": [
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer"
-  ],
-  "ALLEGRO_ALIGN_LEFT": [
-    "quintessence/Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
-    "quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer"
-  ],
-  "Hexagon::RendererInterface": [
-    "quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer"
-  ],
-  ":CodeEditor::CodeEditor": [
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage"
-  ],
-  ":CodeEditor::EventController": [
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage"
-  ],
-  "Hexagon::OneLineInputBox::Renderer": [
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage"
-  ],
-  "Hexagon::Elements::StageInfoOverlay": [
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage"
-  ],
-  "CodeEditor::Renderer": [
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage"
-  ],
-  "al_color_html": [
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage"
-  ],
-  "Hexagon::CodeEditor::FileCategoryDecorator": [
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage"
-  ],
-  "Hexagon::Elements::FontCharacterMapGrid": [
-    "quintessence/Hexagon/CodeEditor/Stage",
-    "quintessence/Hexagon/Elements/TextMesh",
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage",
-    "quintessence/Hexagon/OneLineInputBox/Stage"
-  ],
-  "CodeMessagePoint": [
-    "quintessence/Hexagon/CodeMessagePointManager",
-    "quintessence/Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
-  ],
-  "std::vector<CodeMessagePoint>": [
-    "quintessence/Hexagon/CodeMessagePointManager"
-  ],
-  "Blast::Project::Component*": [
-    "quintessence/Hexagon/ComponentBitmapRenderCreator",
-    "quintessence/Hexagon/Search/ComponentElasticsearchIndexer"
-  ],
-  "Blast::Project::ComponentRelativeLister": [
-    "quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations"
-  ],
-  "JSON": [
-    "quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader"
-  ],
-  "php::file_get_contents": [
-    "quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
-    "quintessence/Hexagon/Elements/FilePixelPreviewCreator",
-    "quintessence/Hexagon/LayoutToStagesCreator",
-    "quintessence/Hexagon/ProjectFactory",
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent"
-  ],
-  "Hexagon::Elements::ListMenu": [
-    "quintessence/Hexagon/ComponentRelationsNavigator/Stage",
-    "quintessence/Hexagon/TitleScreen",
-    "quintessence/Hexagon/UI/DrawingBox",
-    "quintessence/Hexagon/UI/LittleMenu"
-  ],
-  "Hexagon::Elements::ListMenu*": [
-    "quintessence/Hexagon/ComponentRelationsNavigator/Stage"
-  ],
-  "std::vector<std::tuple<std::string, std::string>>": [
-    "quintessence/Hexagon/ComponentRelationsNavigator/Stage",
-    "quintessence/Hexagon/Elements/ListMenu",
-    "quintessence/Hexagon/PacketRenderer",
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/UI/LittleMenu"
-  ],
-  "Hexagon::DirtyGrid*": [
-    "quintessence/Hexagon/DirtyGrid"
-  ],
-  "std::set<std::pair<int, int>>": [
-    "quintessence/Hexagon/DirtyGrid"
-  ],
-  "std::vector<ALLEGRO_VERTEX>": [
-    "quintessence/Hexagon/Elements/BitmapGridMesh",
-    "quintessence/Hexagon/Elements/DynamicGridMesh"
-  ],
-  "std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>&": [
-    "quintessence/Hexagon/Elements/BitmapGridMesh",
-    "quintessence/Hexagon/Elements/TextGrid"
-  ],
-  "std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>": [
-    "quintessence/Hexagon/Elements/BitmapGridMesh",
-    "quintessence/Hexagon/Elements/TextGrid"
-  ],
-  "std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>*": [
-    "quintessence/Hexagon/Elements/BitmapGridMesh"
-  ],
-  "std::tuple<float, float, float, float>": [
-    "quintessence/Hexagon/Elements/BitmapGridMesh"
-  ],
-  "ALLEGRO_STATE": [
-    "quintessence/Hexagon/Elements/BitmapGridRenderSurface"
-  ],
-  "al_draw_textf": [
-    "quintessence/Hexagon/Elements/DataTable",
-    "quintessence/Hexagon/PacketRenderer"
-  ],
-  "al_get_font_line_height": [
-    "quintessence/Hexagon/Elements/DataTable",
-    "quintessence/Hexagon/PacketRenderer"
-  ],
-  "std::vector<std::vector<std::string>>": [
-    "quintessence/Hexagon/Elements/DataTable"
-  ],
-  "std::map<std::tuple<int, int>, int>": [
-    "quintessence/Hexagon/Elements/DynamicGridMesh"
-  ],
-  "Hexagon::Elements::TextPixelPreviewCreator": [
-    "quintessence/Hexagon/Elements/FilePixelPreviewCreator"
-  ],
-  "std::map<char, std::tuple<float, float, float, float>>": [
-    "quintessence/Hexagon/Elements/FontCharacterMapGrid",
-    "quintessence/Hexagon/Elements/SubBitmapCharacterMap",
-    "quintessence/Hexagon/Elements/TextMesh"
-  ],
-  "Hexagon::Elements::BitmapGridRenderSurface": [
-    "quintessence/Hexagon/Elements/FontedTextGrid"
-  ],
-  "Hexagon::Elements::SubBitmapCharacterMap": [
-    "quintessence/Hexagon/Elements/FontedTextGrid"
-  ],
-  "AllegroFlare::FontBin&": [
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/FontSet",
-    "quintessence/Hexagon/Hud"
-  ],
-  "AllegroFlare::FontBin": [
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/FontSet",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Testing/WithAllegroRenderingFixture",
-    "quintessence/Testing/WithStageFactoryFixture"
-  ],
-  "AllegroFlare::color::mix": [
-    "quintessence/Hexagon/Elements/Frame",
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/Powerbar/Renderer"
-  ],
-  "std::transform": [
-    "quintessence/Hexagon/Elements/ListMenu",
-    "quintessence/Hexagon/Elements/StageInfoOverlay"
-  ],
-  "const char*": [
-    "quintessence/Hexagon/Elements/QuoteRenderer"
-  ],
-  "void*": [
-    "quintessence/Hexagon/Elements/QuoteRenderer"
-  ],
-  "Hexagon::Font": [
-    "quintessence/Hexagon/Elements/QuoteRenderer"
-  ],
-  "al_get_target_bitmap": [
-    "quintessence/Hexagon/Elements/SingleBlockBarGraph",
-    "quintessence/Hexagon/Forms/Fun"
-  ],
-  "Hexagon::Elements::Frame": [
-    "quintessence/Hexagon/Elements/StageInfoOverlay"
-  ],
-  "placement3d*": [
-    "quintessence/Hexagon/Elements/StageInfoOverlay"
-  ],
-  "std::map<char, ALLEGRO_BITMAP*>": [
-    "quintessence/Hexagon/Elements/SubBitmapCharacterMap"
-  ],
-  "Hexagon::Elements::BitmapGridMesh": [
-    "quintessence/Hexagon/Elements/TextMesh"
-  ],
-  "draw_textured_rectangle": [
-    "quintessence/Hexagon/Elements/TexturedRectangle"
-  ],
-  "std::vector<std::pair<std::string, std::string>>": [
-    "quintessence/Hexagon/FileNavigator/Stage"
-  ],
-  "std::time_t": [
-    "quintessence/Hexagon/FocusTimerBar/FocusTimerBar",
-    "quintessence/Hexagon/FocusTimerBar/Renderer",
-    "quintessence/Hexagon/Powerbar/Powerbar"
-  ],
-  "Hexagon::FocusTimerBar::FocusTimerBar*": [
-    "quintessence/Hexagon/FocusTimerBar/Renderer"
-  ],
-  "std::fmod": [
-    "quintessence/Hexagon/FocusTimerBar/Renderer"
-  ],
-  "std::stringstream": [
-    "quintessence/Hexagon/FontSet",
-    "quintessence/Hexagon/LayoutPlacements",
-    "quintessence/Hexagon/PasteboardData",
-    "quintessence/Hexagon/Search/ComponentElasticsearchIndex",
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
-    "quintessence/Hexagon/System/Config"
-  ],
-  "std::map<std::string, std::string>": [
-    "quintessence/Hexagon/FontSet"
-  ],
-  "std::runtime_error": [
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/LayoutPlacements"
-  ],
-  "al_get_font_ascent": [
-    "quintessence/Hexagon/FullScreenOverlay/Stage",
-    "quintessence/Hexagon/Hud"
-  ],
-  "NcursesArt::GithubRepoStatusFetcher": [
-    "quintessence/Hexagon/Git/RemoteSyncChecker"
-  ],
-  ":GitCommitMessageInputBox::EventController": [
-    "quintessence/Hexagon/GitCommitMessageInputBox/Stage"
-  ],
-  "std::min": [
-    "quintessence/Hexagon/Hud"
-  ],
-  "Hexagon::Powerbar::Powerbar": [
-    "quintessence/Hexagon/Hud"
-  ],
-  "Hexagon::Powerbar::Renderer": [
-    "quintessence/Hexagon/Hud"
-  ],
-  "Hexagon::FocusTimerBar::FocusTimerBar": [
-    "quintessence/Hexagon/Hud"
-  ],
-  "Hexagon::FocusTimerBar::Renderer": [
-    "quintessence/Hexagon/Hud"
-  ],
-  "al_get_display_width": [
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/Powerbar/Renderer"
-  ],
-  "global::profiler": [
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/System/Renderer"
-  ],
-  "std::vector<Hexagon::Packet>": [
-    "quintessence/Hexagon/Hud"
-  ],
-  "Hexagon::PacketRenderer": [
-    "quintessence/Hexagon/Hud"
-  ],
-  "std::vector<StageInterface *>*": [
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/LayoutToStagesCreator",
-    "quintessence/Hexagon/StageCollectionHelper"
-  ],
-  "Hexagon::CodeEditor::Stage*": [
-    "quintessence/Hexagon/Hud",
-    "quintessence/Hexagon/StageCollectionHelper",
-    "quintessence/Hexagon/System/Renderer"
-  ],
-  "std::vector<std::tuple<std::string, std::string, placement3d>>": [
-    "quintessence/Hexagon/Layout",
-    "quintessence/Hexagon/LayoutToStagesCreator"
-  ],
-  "YAML::Node": [
-    "quintessence/Hexagon/LayoutFromYAML",
-    "quintessence/Hexagon/ProjectFromYAML"
-  ],
-  "std::map<std::string, placement3d>": [
-    "quintessence/Hexagon/LayoutPlacements"
-  ],
-  "Hexagon::Layout*": [
-    "quintessence/Hexagon/LayoutToStagesCreator"
-  ],
-  "std::vector<StageInterface *>": [
-    "quintessence/Hexagon/LayoutToStagesCreator",
-    "quintessence/Hexagon/StageCollectionHelper",
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages"
-  ],
-  "std::vector<StageInterface *>&": [
-    "quintessence/Hexagon/LayoutToStagesCreator",
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages"
-  ],
-  "Hexagon::AdvancedCodeEditor::Stage": [
-    "quintessence/Hexagon/LayoutToStagesCreator",
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent"
-  ],
-  "Hexagon::StageFactory*": [
-    "quintessence/Hexagon/LayoutToStagesCreator",
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "quintessence/Testing/WithStageFactoryFixture"
-  ],
-  "path2d": [
-    "quintessence/Hexagon/Logo"
-  ],
-  "sqrt": [
-    "quintessence/Hexagon/Logo",
-    "quintessence/Hexagon/Shapes/Hexagon/Renderer",
-    "quintessence/Hexagon/Shapes/Hexagon/Stroke"
-  ],
-  "Blast::FileCreator": [
-    "quintessence/Hexagon/MissingFile/Stage",
-    "quintessence/Hexagon/System/Action/SendMessageToDaemusToBuild"
-  ],
-  "Hexagon::Elements::TexturedRectangle": [
-    "quintessence/Hexagon/MissingFile/Stage"
-  ],
-  "Hexagon::Notifications::Notification*": [
-    "quintessence/Hexagon/Notifications/NotificationFactory"
-  ],
-  "Hexagon::Notifications::Notification": [
-    "quintessence/Hexagon/Notifications/Stage"
-  ],
-  "al_draw_filled_rounded_rectangle": [
-    "quintessence/Hexagon/OneLineInputBox/Renderer"
-  ],
-  ":OneLineInputBox::EventController": [
-    "quintessence/Hexagon/OneLineInputBox/Stage"
-  ],
-  "Hexagon::Packet*": [
-    "quintessence/Hexagon/PacketRenderer"
-  ],
-  "allegro_flare::placement3d": [
-    "quintessence/Hexagon/Powerbar/Renderer"
-  ],
-  "al_get_display_height": [
-    "quintessence/Hexagon/Powerbar/Renderer"
-  ],
-  "Hexagon::Powerbar::Powerbar*": [
-    "quintessence/Hexagon/Powerbar/Renderer",
-    "quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar",
-    "quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar"
-  ],
-  "std::vector<std::tuple<std::string, Hexagon::Layout>>": [
-    "quintessence/Hexagon/Project"
-  ],
-  "std::map<std::string, std::function<void(ProjectComponentNavigator&)>>": [
-    "quintessence/Hexagon/ProjectComponentNavigator/EventController",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "Hexagon::ProjectComponentNavigator::ProjectComponentNavigator*": [
-    "quintessence/Hexagon/ProjectComponentNavigator/EventController"
-  ],
-  "Hexagon::ProjectComponentNavigator::EventController": [
-    "quintessence/Hexagon/ProjectComponentNavigator/EventController",
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "std::pair<bool, bool>": [
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer"
-  ],
-  "Hexagon::ProjectComponentNavigator::Stage*": [
-    "quintessence/Hexagon/ProjectComponentNavigator/Renderer"
-  ],
-  "Hexagon::ProjectComponentNavigator::ProjectComponentNavigator": [
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "Hexagon::ProjectComponentNavigator::Renderer": [
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "Hexagon::ProjectComponentNavigator::ComponentSearcher": [
-    "quintessence/Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "Hexagon::Project": [
-    "quintessence/Hexagon/ProjectFactory",
-    "quintessence/Hexagon/ProjectFromYAML"
-  ],
-  "Hexagon::ProjectFromYAML": [
-    "quintessence/Hexagon/ProjectFactory"
-  ],
-  "Hexagon::LayoutFromYAML": [
-    "quintessence/Hexagon/ProjectFromYAML"
-  ],
-  "RailsMinitestTestResult": [
-    "quintessence/Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
-  ],
-  "CodeMessagePoint::type_t": [
-    "quintessence/Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
-  ],
-  "std::vector<RailsMinitestTestResult>&": [
-    "quintessence/Hexagon/RailsTestOutputParser"
-  ],
-  "std::vector<RailsMinitestTestResult>": [
-    "quintessence/Hexagon/RailsTestOutputParser"
-  ],
-  "nlohmann::json": [
-    "quintessence/Hexagon/Search/ComponentElasticsearchIndexer"
-  ],
-  "AllegroFlare::Shader": [
-    "quintessence/Hexagon/Shaders/Base"
-  ],
-  "Hexagon::Shaders::Base": [
-    "quintessence/Hexagon/Shaders/FlatColor",
-    "quintessence/Hexagon/Shaders/Fun",
-    "quintessence/Hexagon/Shaders/Smiley",
-    "quintessence/Hexagon/Shaders/TexturedTruchet",
-    "quintessence/Hexagon/Shaders/TiledHexagonMotionEffect",
-    "quintessence/Hexagon/Shaders/TruchetMaze",
-    "quintessence/Hexagon/Shaders/TruchetVine",
-    "quintessence/Hexagon/Shaders/TruchetVineSquiggle"
-  ],
-  "std::vector<Shapes::Hexagon::Stroke>": [
-    "quintessence/Hexagon/Shapes/Hexagon/Renderer"
-  ],
-  "vec2d": [
-    "quintessence/Hexagon/Shapes/Hexagon/Renderer",
-    "quintessence/Hexagon/Shapes/Hexagon/Stroke"
-  ],
-  "allegro_flare::path2d": [
-    "quintessence/Hexagon/Shapes/Hexagon/Renderer",
-    "quintessence/Hexagon/Shapes/Hexagon/Stroke"
-  ],
-  "StageInterface*": [
-    "quintessence/Hexagon/StageCollectionHelper",
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/System/Renderer"
-  ],
-  "Hexagon::GitCommitMessageInputBox::Stage*": [
-    "quintessence/Hexagon/StageCollectionHelper"
-  ],
-  "std::vector<Hexagon::CodeEditor::Stage *>": [
-    "quintessence/Hexagon/StageCollectionHelper"
-  ],
-  "Hexagon::MissingFile::Stage": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "Hexagon::FileNavigator::Stage": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "Hexagon::CodeEditor::Stage": [
-    "quintessence/Hexagon/StageFactory",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages"
-  ],
-  "Hexagon::OneLineInputBox::Stage": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "Hexagon::GitCommitMessageInputBox::Stage": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "Hexagon::AdvancedComponentNavigator::Stage": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "Hexagon::Notifications::Stage": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "Hexagon::UI::LittleMenu": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "Hexagon::ComponentRelationsNavigator::Stage": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "Hexagon::ComponentRelationsNavigator::ComponentRelations": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "Hexagon::UI::DrawingBox": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "al_get_current_display": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "al_font_line_height": [
-    "quintessence/Hexagon/StageFactory"
-  ],
-  "Blast::Project::SymlinkChecker": [
-    "quintessence/Hexagon/SymlinkToucher"
-  ],
-  "std::vector": [
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
-  ],
-  "std::string": [
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
-  ],
-  ":Action": [
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
-    "quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar",
-    "quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages",
-    "quintessence/Hexagon/System/Action/SendMessageToDaemusToBuild"
-  ],
-  "NcursesArt::ProjectFilenameGenerator": [
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
-  ],
-  "read_file": [
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
-  ],
-  "CodeEditor::Stage": [
-    "quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
-  ],
-  "Hexagon::Git::Modified": [
-    "quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar"
-  ],
-  "Hexagon::Git::Untracked": [
-    "quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar"
-  ],
-  "Hexagon::Git::Staged": [
-    "quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar"
-  ],
-  "Hexagon::Git::RemoteSyncChecker": [
-    "quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar"
-  ],
-  "AllegroFlare::Config": [
-    "quintessence/Hexagon/System/Config"
-  ],
-  "std::map<std::string, std::function<bool(::System&)>>": [
-    "quintessence/Hexagon/System/EventController"
-  ],
-  "add_notification": [
-    "quintessence/Hexagon/System/EventController"
-  ],
-  ":System*": [
-    "quintessence/Hexagon/System/EventController",
-    "quintessence/Hexagon/System/Renderer"
-  ],
-  "NOTIFICATION_FILE_IS_UNSAVED": [
-    "quintessence/Hexagon/System/Renderer"
-  ],
-  "al_clear_to_color": [
-    "quintessence/Hexagon/System/Renderer"
-  ],
-  "Hexagon::FileNavigator::Stage*": [
-    "quintessence/Hexagon/System/Renderer"
-  ],
-  "debugging": [
-    "quintessence/Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "std::pair<std::string, std::string>": [
-    "quintessence/Hexagon/Testing/GoogleTestRunOutputParser",
-    "quintessence/NcursesArt/ProjectComponentBasenameExtractor"
-  ],
-  "std::ofstream": [
-    "quintessence/Hexagon/TitleScreen"
-  ],
-  "Hexagon::Logo": [
-    "quintessence/Hexagon/TitleScreen"
-  ],
-  "AllegroFlare::Profiler": [
-    "quintessence/Hexagon/TitleScreen"
-  ],
-  "AllegroFlare::Profiler*": [
-    "quintessence/Hexagon/TitleScreen"
-  ],
-  "Hexagon::Elements::DataTable": [
-    "quintessence/Hexagon/TitleScreen"
-  ],
-  "Blast::StringJoiner": [
-    "quintessence/Hexagon/UI/DrawingBox"
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeEditor/CursorRenderer",
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
+    "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/Elements/BitmapGridMesh",
+    "Hexagon/Elements/BitmapGridRenderSurface",
+    "Hexagon/Elements/ColorKit",
+    "Hexagon/Elements/DataTable",
+    "Hexagon/Elements/DynamicGridMesh",
+    "Hexagon/Elements/FontedTextGrid",
+    "Hexagon/Elements/Frame",
+    "Hexagon/Elements/Frame",
+    "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/SingleBlockBarGraph",
+    "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Elements/TextGrid",
+    "Hexagon/Elements/TextMesh",
+    "Hexagon/Elements/Window",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/Forms/Fun",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/Hud",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/Logo",
+    "Hexagon/OneLineInputBox/Renderer",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/PacketRenderer",
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/Shaders/FlatColor",
+    "Hexagon/Shaders/Fun",
+    "Hexagon/Shaders/Smiley",
+    "Hexagon/Shaders/TexturedTruchet",
+    "Hexagon/Shaders/TiledHexagonMotionEffect",
+    "Hexagon/Shaders/TruchetMaze",
+    "Hexagon/Shaders/TruchetVine",
+    "Hexagon/Shaders/TruchetVineSquiggle",
+    "Hexagon/Shapes/Hexagon/Renderer",
+    "Hexagon/Shapes/Hexagon/Stroke",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Config",
+    "Hexagon/System/Renderer",
+    "Hexagon/UI/DrawingBox"
   ],
   "ALLEGRO_FONT": [
-    "quintessence/Hexagon/UI/DrawingBox"
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeEditor/CachedLineRenderer",
+    "Hexagon/CodeEditor/LineRenderBin",
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
+    "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/Elements/DataTable",
+    "Hexagon/Elements/FontCharacterMapGrid",
+    "Hexagon/Elements/FontedTextGrid",
+    "Hexagon/Elements/Frame",
+    "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/QuoteRenderer",
+    "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Elements/SubBitmapCharacterMap",
+    "Hexagon/Elements/TextGrid",
+    "Hexagon/Elements/TextMesh",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/Font",
+    "Hexagon/FontSet",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/Hud",
+    "Hexagon/Hud",
+    "Hexagon/Logo",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/OneLineInputBox/Renderer",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/PacketRenderer",
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/Shapes/Hexagon/Renderer",
+    "Hexagon/StageFactory",
+    "Hexagon/TitleScreen",
+    "Hexagon/UI/DrawingBox",
+    "Hexagon/UI/DrawingBox",
+    "Testing/WithAllegroRenderingFixture"
+  ],
+  "ALLEGRO_BITMAP": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/CodeEditor/CachedLineRenderer",
+    "Hexagon/CodeEditor/LineRenderBin",
+    "Hexagon/ComponentBitmapRenderCreator",
+    "Hexagon/Elements/BitmapGridMesh",
+    "Hexagon/Elements/BitmapGridRenderSurface",
+    "Hexagon/Elements/CheckTextureGenerator",
+    "Hexagon/Elements/DynamicGridMesh",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/Elements/FontCharacterMapGrid",
+    "Hexagon/Elements/FontedTextGrid",
+    "Hexagon/Elements/SubBitmapCharacterMap",
+    "Hexagon/Elements/TextMesh",
+    "Hexagon/Elements/TextPixelPreviewCreator",
+    "Hexagon/Elements/TexturedRectangle",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/Hud",
+    "Hexagon/Shaders/Fun",
+    "Hexagon/Shaders/TexturedTruchet",
+    "Hexagon/Shaders/TiledHexagonMotionEffect",
+    "Hexagon/UI/DrawingBox"
+  ],
+  "al_draw_bitmap": [
+    "Hexagon/AdvancedCodeEditor/Renderer"
+  ],
+  "Hexagon/Elements/FontedTextGrid": [
+    "Hexagon/AdvancedCodeEditor/Renderer"
+  ],
+  "Hexagon/AdvancedCodeEditor/WindowRenderer": [
+    "Hexagon/AdvancedCodeEditor/Renderer"
+  ],
+  "CodeSelectionBoxRenderer": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/OneLineInputBox/Renderer"
+  ],
+  "AllegroFlare/Timer": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "AllegroFlare/color/color": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
+    "Hexagon/Elements/Frame",
+    "Hexagon/UI/DrawingBox"
+  ],
+  "std/vector<CodeRange>": [
+    "Hexagon/AdvancedCodeEditor/Selection",
+    "Hexagon/OneLineInputBox/Renderer"
+  ],
+  "Hexagon/SymlinkToucher": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "StageInterface": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/Notifications/Stage",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Renderer",
+    "Hexagon/UI/DrawingBox",
+    "Hexagon/UI/LittleMenu"
+  ],
+  "placement3d": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Forms/Fun",
+    "Hexagon/Hud",
+    "Hexagon/LayoutPlacements",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/OneLineInputBox/Renderer",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/TitleScreen",
+    "Testing/WithAllegroRenderingFixture"
+  ],
+  "AllegroFlare/FontBin": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/Elements/Frame",
+    "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/QuoteRenderer",
+    "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Font",
+    "Hexagon/FontSet",
+    "Hexagon/Hud",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/Logo",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/StageFactory",
+    "Hexagon/TitleScreen",
+    "Hexagon/UI/DrawingBox",
+    "Hexagon/UI/LittleMenu",
+    "Testing/WithAllegroRenderingFixture",
+    "Testing/WithStageFactoryFixture"
+  ],
+  "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "Hexagon/AdvancedCodeEditor/Renderer": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "Hexagon/AdvancedCodeEditor/EventController": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  ":save_file": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "Hexagon/CodeMessagePointManager": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "Hexagon/Elements/Window": [
+    "Hexagon/AdvancedCodeEditor/WindowRenderer",
+    "Hexagon/ElementFX/WindowSpawnMotionFX",
+    "Hexagon/Elements/DataTable",
+    "Hexagon/PacketRenderer",
+    "Hexagon/System/Renderer",
+    "Hexagon/UI/DrawingBox"
+  ],
+  "Hexagon/ElementFX/WindowSpawnMotionFX": [
+    "Hexagon/AdvancedCodeEditor/WindowRenderer"
+  ],
+  "Hexagon/AdvancedComponentNavigator/ComponentSearcher": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
+    "Hexagon/AdvancedComponentNavigator/Stage"
+  ],
+  "std/vector<Blast/Project/Component>": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
+    "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/ComponentRelationsNavigator/ComponentRelations",
+    "Hexagon/ProjectComponentNavigator/ComponentSearcher",
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "Blast/Project/ComponentLister": [
+    "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
+    "Hexagon/BlastComponentLayoutGenerator",
+    "Hexagon/BlastProjectLayoutsGenerator",
+    "Hexagon/ProjectComponentNavigator/ComponentSearcher"
+  ],
+  "Blast/SimpleTextSearcher": [
+    "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
+    "Hexagon/ProjectComponentNavigator/ComponentSearcher"
+  ],
+  "std/map<std/string, std/function<void(AdvancedComponentNavigator&)>>": [
+    "Hexagon/AdvancedComponentNavigator/EventController",
+    "Hexagon/AdvancedComponentNavigator/Stage"
+  ],
+  "std/map<std/string, std/function>": [
+    "Hexagon/AdvancedComponentNavigator/EventController",
+    "Hexagon/ProjectComponentNavigator/EventController"
+  ],
+  "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator": [
+    "Hexagon/AdvancedComponentNavigator/EventController",
+    "Hexagon/AdvancedComponentNavigator/Stage"
+  ],
+  "Hexagon/AdvancedComponentNavigator/EventController": [
+    "Hexagon/AdvancedComponentNavigator/EventController",
+    "Hexagon/AdvancedComponentNavigator/Stage"
+  ],
+  "std/sin": [
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Renderer"
+  ],
+  "Hexagon/AdvancedComponentNavigator/Stage": [
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/Hud",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Renderer"
+  ],
+  "color/mix": [
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "al_color_name": [
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeEditor/CursorRenderer",
+    "Hexagon/CodeEditor/LineRenderBin",
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
+    "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/Elements/CheckTextureGenerator",
+    "Hexagon/Elements/FlashingGrid",
+    "Hexagon/Elements/Frame",
+    "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Elements/TextGrid",
+    "Hexagon/Elements/Window",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/FocusTimerBar/Renderer",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/Hud",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/System/Renderer"
+  ],
+  "al_draw_circle": [
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "FileSystemNode": [
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "Hexagon/Shapes/Hexagon/Renderer": [
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "Hexagon/Shapes/Hexagon/Stroke": [
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "Hexagon/AdvancedComponentNavigator/Renderer": [
+    "Hexagon/AdvancedComponentNavigator/Stage"
+  ],
+  "std/endl": [
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/PasteboardData",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/RailsTestOutputParser"
+  ],
+  "std/cerr": [
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "std/cout": [
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/RailsTestOutputParser"
+  ],
+  "std/vector<Hexagon/Layout>": [
+    "Hexagon/BlastComponentLayoutGenerator",
+    "Hexagon/BlastProjectLayoutsGenerator",
+    "Hexagon/ProjectComponentNavigator/ProjectComponentNavigator"
+  ],
+  "Hexagon/Layout": [
+    "Hexagon/BlastComponentLayoutGenerator",
+    "Hexagon/BlastProjectLayoutsGenerator",
+    "Hexagon/LayoutFromYAML",
+    "Hexagon/LayoutToStagesCreator"
+  ],
+  "Blast/ProjectComponentFilenameGenerator": [
+    "Hexagon/BlastComponentLayoutGenerator",
+    "Hexagon/BlastProjectLayoutsGenerator",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent"
+  ],
+  "Blast/ProjectComponentFileTypes": [
+    "Hexagon/BlastComponentLayoutGenerator",
+    "Hexagon/BlastProjectLayoutsGenerator"
+  ],
+  "al_is_system_installed": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/Elements/FlashingGrid",
+    "Hexagon/Elements/SingleBlockBarGraph",
+    "Hexagon/Elements/TextGrid",
+    "Hexagon/Elements/TextPixelPreviewCreator",
+    "Hexagon/Elements/Window",
+    "Hexagon/Forms/Fun"
+  ],
+  "al_is_font_addon_initialized": [
+    "Hexagon/BuildSequenceMeter/Renderer"
+  ],
+  "al_draw_filled_rectangle": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/Elements/FlashingGrid",
+    "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Elements/TextGrid",
+    "Hexagon/OneLineInputBox/Renderer",
+    "Hexagon/TitleScreen"
+  ],
+  "al_is_primitives_addon_initialized": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/Elements/SingleBlockBarGraph",
+    "Hexagon/Elements/Window",
+    "Hexagon/FocusTimerBar/Renderer",
+    "Hexagon/Forms/Fun",
+    "Hexagon/PacketRenderer",
+    "Hexagon/UI/DrawingBox"
+  ],
+  "al_is_ttf_addon_initialized": [
+    "Hexagon/BuildSequenceMeter/Renderer"
+  ],
+  "std/vector<Hexagon/BuildSystem/Build>": [
+    "Hexagon/BuildSystem/BuildRepository"
+  ],
+  "Hexagon/BuildSystem/Build": [
+    "Hexagon/BuildSystem/BuildRepository"
+  ],
+  "std/vector<ALLEGRO_BITMAP>": [
+    "Hexagon/CodeEditor/CachedLineRenderer",
+    "Hexagon/Elements/BitmapGridRenderSurface"
+  ],
+  ":CodeEditor/CodeEditor/mode_t": [
+    "Hexagon/CodeEditor/CursorRenderer"
+  ],
+  ":CodeEditor/CodeEditor/EDIT": [
+    "Hexagon/CodeEditor/CursorRenderer"
+  ],
+  ":CodeEditor/CodeEditor/INSERT": [
+    "Hexagon/CodeEditor/CursorRenderer"
+  ],
+  "al_draw_rectangle": [
+    "Hexagon/CodeEditor/CursorRenderer",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/Elements/CheckTextureGenerator",
+    "Hexagon/Elements/Frame",
+    "Hexagon/Elements/Window",
+    "Hexagon/FocusTimerBar/Renderer",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/Hud",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/Powerbar/Renderer"
+  ],
+  "color/color": [
+    "Hexagon/CodeEditor/CursorRenderer",
+    "Hexagon/Elements/Window",
+    "Hexagon/OneLineInputBox/Renderer"
+  ],
+  "std/map<std/string>": [
+    "Hexagon/CodeEditor/FileCategoryDecorator"
+  ],
+  "AllegroFlare/Bin<std/string, ALLEGRO_BITMAP >": [
+    "Hexagon/CodeEditor/LineRenderBin"
+  ],
+  "Hexagon/CodeEditor/CachedLineRenderer": [
+    "Hexagon/CodeEditor/LineRenderBin"
+  ],
+  "std/map<std/string, int>": [
+    "Hexagon/CodeEditor/LineRenderBin"
+  ],
+  "al_draw_text": [
+    "Hexagon/CodeEditor/LineRenderBin",
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
+    "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/Elements/Frame",
+    "Hexagon/Elements/QuoteRenderer",
+    "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/Hud",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/UI/DrawingBox"
+  ],
+  "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer": [
+    "Hexagon/CodeEditor/LineRenderBin"
+  ],
+  "Hexagon/RendererInterface": [
+    "Hexagon/CodeEditor/LineRenderBin",
+    "Hexagon/CodeEditor/Renderer/BasicLineRenderer"
+  ],
+  "Hexagon/RegexStore": [
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer"
+  ],
+  "al_get_text_width": [
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
+    "Hexagon/StageFactory"
+  ],
+  "std/get": [
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer"
+  ],
+  "std/vector<std/tuple<std/string, int, ALLEGRO_COLOR>>": [
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer"
+  ],
+  "ALLEGRO_ALIGN_LEFT": [
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
+    "Hexagon/CodeEditor/Renderer/BasicLineRenderer"
+  ],
+  ":CodeEditor/CodeEditor": [
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/OneLineInputBox/Stage"
+  ],
+  ":CodeEditor/EventController": [
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/OneLineInputBox/Stage"
+  ],
+  "Hexagon/OneLineInputBox/Renderer": [
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/OneLineInputBox/Stage"
+  ],
+  "Hexagon/Elements/StageInfoOverlay": [
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/OneLineInputBox/Stage"
+  ],
+  "CodeEditor/Renderer": [
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/OneLineInputBox/Stage"
+  ],
+  "al_color_html": [
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/Elements/Frame",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/OneLineInputBox/Stage"
+  ],
+  "Hexagon/CodeEditor/FileCategoryDecorator": [
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/OneLineInputBox/Stage"
+  ],
+  "Hexagon/Elements/FontCharacterMapGrid": [
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/Elements/TextMesh",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/OneLineInputBox/Stage"
+  ],
+  "CodeMessagePoint": [
+    "Hexagon/CodeMessagePointManager",
+    "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
+  ],
+  "std/vector<CodeMessagePoint>": [
+    "Hexagon/CodeMessagePointManager"
+  ],
+  "Blast/Project/ComponentRelativeLister": [
+    "Hexagon/ComponentRelationsNavigator/ComponentRelations"
+  ],
+  "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader": [
+    "Hexagon/ComponentRelationsNavigator/ComponentRelations"
+  ],
+  "JSON": [
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader"
+  ],
+  "php/file_get_contents": [
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/ProjectFactory",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent"
+  ],
+  "Hexagon/Elements/ListMenu": [
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/TitleScreen",
+    "Hexagon/UI/DrawingBox",
+    "Hexagon/UI/LittleMenu"
+  ],
+  "std/vector<std/tuple<std/string, std/string>>": [
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/Elements/ListMenu",
+    "Hexagon/PacketRenderer",
+    "Hexagon/StageFactory",
+    "Hexagon/UI/LittleMenu"
+  ],
+  "std/set<std/pair<int, int>>": [
+    "Hexagon/DirtyGrid"
+  ],
+  "std/vector<ALLEGRO_VERTEX>": [
+    "Hexagon/Elements/BitmapGridMesh",
+    "Hexagon/Elements/DynamicGridMesh"
+  ],
+  "std/vector<std/vector<std/tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>&": [
+    "Hexagon/Elements/BitmapGridMesh",
+    "Hexagon/Elements/TextGrid"
+  ],
+  "std/vector<std/vector<std/tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>": [
+    "Hexagon/Elements/BitmapGridMesh",
+    "Hexagon/Elements/TextGrid"
+  ],
+  "std/tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>": [
+    "Hexagon/Elements/BitmapGridMesh"
+  ],
+  "std/tuple<float, float, float, float>": [
+    "Hexagon/Elements/BitmapGridMesh"
+  ],
+  "ALLEGRO_STATE": [
+    "Hexagon/Elements/BitmapGridRenderSurface"
+  ],
+  "al_draw_textf": [
+    "Hexagon/Elements/DataTable",
+    "Hexagon/PacketRenderer"
+  ],
+  "al_get_font_line_height": [
+    "Hexagon/Elements/DataTable",
+    "Hexagon/PacketRenderer"
+  ],
+  "std/vector<std/vector<std/string>>": [
+    "Hexagon/Elements/DataTable"
+  ],
+  "std/map<std/tuple<int, int>, int>": [
+    "Hexagon/Elements/DynamicGridMesh"
+  ],
+  "Hexagon/Elements/TextPixelPreviewCreator": [
+    "Hexagon/Elements/FilePixelPreviewCreator"
+  ],
+  "std/map<char, std/tuple<float, float, float, float>>": [
+    "Hexagon/Elements/FontCharacterMapGrid",
+    "Hexagon/Elements/SubBitmapCharacterMap",
+    "Hexagon/Elements/TextMesh"
+  ],
+  "Hexagon/Elements/BitmapGridRenderSurface": [
+    "Hexagon/Elements/FontedTextGrid"
+  ],
+  "Hexagon/Elements/SubBitmapCharacterMap": [
+    "Hexagon/Elements/FontedTextGrid"
+  ],
+  "AllegroFlare/FontBin&": [
+    "Hexagon/Elements/Frame",
+    "Hexagon/FontSet",
+    "Hexagon/Hud"
+  ],
+  "AllegroFlare/color/mix": [
+    "Hexagon/Elements/Frame",
+    "Hexagon/Hud",
+    "Hexagon/Powerbar/Renderer"
+  ],
+  "std/transform": [
+    "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/StageInfoOverlay"
+  ],
+  "const char": [
+    "Hexagon/Elements/QuoteRenderer"
+  ],
+  "void": [
+    "Hexagon/Elements/QuoteRenderer"
+  ],
+  "Hexagon/Font": [
+    "Hexagon/Elements/QuoteRenderer"
+  ],
+  "al_get_target_bitmap": [
+    "Hexagon/Elements/SingleBlockBarGraph",
+    "Hexagon/Forms/Fun"
+  ],
+  "Hexagon/Elements/Frame": [
+    "Hexagon/Elements/StageInfoOverlay"
+  ],
+  "std/map<char, ALLEGRO_BITMAP>": [
+    "Hexagon/Elements/SubBitmapCharacterMap"
+  ],
+  "Hexagon/Elements/BitmapGridMesh": [
+    "Hexagon/Elements/TextMesh"
+  ],
+  "draw_textured_rectangle": [
+    "Hexagon/Elements/TexturedRectangle"
+  ],
+  "std/vector<std/pair<std/string, std/string>>": [
+    "Hexagon/FileNavigator/Stage"
+  ],
+  "std/time_t": [
+    "Hexagon/FocusTimerBar/FocusTimerBar",
+    "Hexagon/FocusTimerBar/Renderer",
+    "Hexagon/Powerbar/Powerbar"
+  ],
+  "Hexagon/FocusTimerBar/FocusTimerBar": [
+    "Hexagon/FocusTimerBar/Renderer",
+    "Hexagon/Hud"
+  ],
+  "std/fmod": [
+    "Hexagon/FocusTimerBar/Renderer"
+  ],
+  "std/stringstream": [
+    "Hexagon/FontSet",
+    "Hexagon/LayoutPlacements",
+    "Hexagon/PasteboardData",
+    "Hexagon/Search/ComponentElasticsearchIndex",
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
+    "Hexagon/System/Config"
+  ],
+  "std/map<std/string, std/string>": [
+    "Hexagon/FontSet"
+  ],
+  "std/runtime_error": [
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/LayoutPlacements"
+  ],
+  "al_get_font_ascent": [
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/Hud"
+  ],
+  "NcursesArt/GithubRepoStatusFetcher": [
+    "Hexagon/Git/RemoteSyncChecker"
+  ],
+  ":GitCommitMessageInputBox/EventController": [
+    "Hexagon/GitCommitMessageInputBox/Stage"
+  ],
+  "std/min": [
+    "Hexagon/Hud"
+  ],
+  "Hexagon/Powerbar/Powerbar": [
+    "Hexagon/Hud",
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar",
+    "Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar"
+  ],
+  "Hexagon/Powerbar/Renderer": [
+    "Hexagon/Hud"
+  ],
+  "Hexagon/FocusTimerBar/Renderer": [
+    "Hexagon/Hud"
+  ],
+  "al_get_display_width": [
+    "Hexagon/Hud",
+    "Hexagon/Powerbar/Renderer"
+  ],
+  "global/profiler": [
+    "Hexagon/Hud",
+    "Hexagon/System/Renderer"
+  ],
+  "std/vector<Hexagon/Packet>": [
+    "Hexagon/Hud"
+  ],
+  "Hexagon/PacketRenderer": [
+    "Hexagon/Hud"
+  ],
+  "std/vector<StageInterface >": [
+    "Hexagon/Hud",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/DestroyAllCodeEditorStages"
+  ],
+  "Hexagon/CodeEditor/Stage": [
+    "Hexagon/Hud",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/DestroyAllCodeEditorStages",
+    "Hexagon/System/Renderer"
+  ],
+  "std/vector<std/tuple<std/string, std/string, placement3d>>": [
+    "Hexagon/Layout",
+    "Hexagon/LayoutToStagesCreator"
+  ],
+  "YAML/Node": [
+    "Hexagon/LayoutFromYAML",
+    "Hexagon/ProjectFromYAML"
+  ],
+  "std/map<std/string, placement3d>": [
+    "Hexagon/LayoutPlacements"
+  ],
+  "std/vector<StageInterface >&": [
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/DestroyAllCodeEditorStages"
+  ],
+  "Hexagon/StageFactory": [
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Testing/WithStageFactoryFixture",
+    "Testing/WithStageFactoryFixture"
+  ],
+  "path2d": [
+    "Hexagon/Logo"
+  ],
+  "sqrt": [
+    "Hexagon/Logo",
+    "Hexagon/Shapes/Hexagon/Renderer",
+    "Hexagon/Shapes/Hexagon/Stroke"
+  ],
+  "Blast/FileCreator": [
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/System/Action/SendMessageToDaemusToBuild"
+  ],
+  "Hexagon/Elements/TexturedRectangle": [
+    "Hexagon/MissingFile/Stage"
+  ],
+  "Hexagon/Notifications/Notification": [
+    "Hexagon/Notifications/NotificationFactory",
+    "Hexagon/Notifications/Stage"
+  ],
+  "al_draw_filled_rounded_rectangle": [
+    "Hexagon/OneLineInputBox/Renderer"
+  ],
+  ":OneLineInputBox/EventController": [
+    "Hexagon/OneLineInputBox/Stage"
+  ],
+  "Hexagon/Packet": [
+    "Hexagon/PacketRenderer"
+  ],
+  "allegro_flare/placement3d": [
+    "Hexagon/Powerbar/Renderer"
+  ],
+  "al_get_display_height": [
+    "Hexagon/Powerbar/Renderer"
+  ],
+  "std/vector<std/tuple<std/string, Hexagon/Layout>>": [
+    "Hexagon/Project"
+  ],
+  "std/map<std/string, std/function<void(ProjectComponentNavigator&)>>": [
+    "Hexagon/ProjectComponentNavigator/EventController",
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "Hexagon/ProjectComponentNavigator/ProjectComponentNavigator": [
+    "Hexagon/ProjectComponentNavigator/EventController",
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "Hexagon/ProjectComponentNavigator/EventController": [
+    "Hexagon/ProjectComponentNavigator/EventController",
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "std/pair<bool, bool>": [
+    "Hexagon/ProjectComponentNavigator/Renderer"
+  ],
+  "Hexagon/ProjectComponentNavigator/Stage": [
+    "Hexagon/ProjectComponentNavigator/Renderer"
+  ],
+  "Hexagon/ProjectComponentNavigator/Renderer": [
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "Hexagon/ProjectComponentNavigator/ComponentSearcher": [
+    "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "Hexagon/Project": [
+    "Hexagon/ProjectFactory",
+    "Hexagon/ProjectFromYAML"
+  ],
+  "Hexagon/ProjectFromYAML": [
+    "Hexagon/ProjectFactory"
+  ],
+  "Hexagon/LayoutFromYAML": [
+    "Hexagon/ProjectFromYAML"
+  ],
+  "RailsMinitestTestResult": [
+    "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
+  ],
+  "CodeMessagePoint/type_t": [
+    "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
+  ],
+  "std/vector<RailsMinitestTestResult>&": [
+    "Hexagon/RailsTestOutputParser"
+  ],
+  "std/vector<RailsMinitestTestResult>": [
+    "Hexagon/RailsTestOutputParser"
+  ],
+  "nlohmann/json": [
+    "Hexagon/Search/ComponentElasticsearchIndexer"
+  ],
+  "AllegroFlare/Shader": [
+    "Hexagon/Shaders/Base"
+  ],
+  "Hexagon/Shaders/Base": [
+    "Hexagon/Shaders/FlatColor",
+    "Hexagon/Shaders/Fun",
+    "Hexagon/Shaders/Smiley",
+    "Hexagon/Shaders/TexturedTruchet",
+    "Hexagon/Shaders/TiledHexagonMotionEffect",
+    "Hexagon/Shaders/TruchetMaze",
+    "Hexagon/Shaders/TruchetVine",
+    "Hexagon/Shaders/TruchetVineSquiggle"
+  ],
+  "std/vector<Shapes/Hexagon/Stroke>": [
+    "Hexagon/Shapes/Hexagon/Renderer"
+  ],
+  "vec2d": [
+    "Hexagon/Shapes/Hexagon/Renderer",
+    "Hexagon/Shapes/Hexagon/Stroke"
+  ],
+  "allegro_flare/path2d": [
+    "Hexagon/Shapes/Hexagon/Renderer",
+    "Hexagon/Shapes/Hexagon/Stroke"
+  ],
+  "Hexagon/GitCommitMessageInputBox/Stage": [
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/StageFactory"
+  ],
+  "std/vector<Hexagon/CodeEditor/Stage >": [
+    "Hexagon/StageCollectionHelper"
+  ],
+  "Hexagon/MissingFile/Stage": [
+    "Hexagon/StageFactory"
+  ],
+  "Hexagon/FileNavigator/Stage": [
+    "Hexagon/StageFactory",
+    "Hexagon/System/Renderer"
+  ],
+  "Hexagon/OneLineInputBox/Stage": [
+    "Hexagon/StageFactory"
+  ],
+  "Hexagon/Notifications/Stage": [
+    "Hexagon/StageFactory"
+  ],
+  "Hexagon/UI/LittleMenu": [
+    "Hexagon/StageFactory"
+  ],
+  "Hexagon/ComponentRelationsNavigator/Stage": [
+    "Hexagon/StageFactory"
+  ],
+  "Hexagon/ComponentRelationsNavigator/ComponentRelations": [
+    "Hexagon/StageFactory"
+  ],
+  "Hexagon/UI/DrawingBox": [
+    "Hexagon/StageFactory"
+  ],
+  "al_get_current_display": [
+    "Hexagon/StageFactory"
+  ],
+  "al_font_line_height": [
+    "Hexagon/StageFactory"
+  ],
+  "Blast/Project/SymlinkChecker": [
+    "Hexagon/SymlinkToucher"
+  ],
+  "std/vector": [
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
+  ],
+  "std/string": [
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
+  ],
+  ":Action": [
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
+    "Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar",
+    "Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/DestroyAllCodeEditorStages",
+    "Hexagon/System/Action/SendMessageToDaemusToBuild"
+  ],
+  "NcursesArt/ProjectFilenameGenerator": [
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
+  ],
+  "read_file": [
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
+  ],
+  "CodeEditor/Stage": [
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
+  ],
+  "Hexagon/Git/Modified": [
+    "Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar"
+  ],
+  "Hexagon/Git/Untracked": [
+    "Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar"
+  ],
+  "Hexagon/Git/Staged": [
+    "Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar"
+  ],
+  "Hexagon/Git/RemoteSyncChecker": [
+    "Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar"
+  ],
+  "AllegroFlare/Config": [
+    "Hexagon/System/Config"
+  ],
+  "std/map<std/string, std/function<bool(/System&)>>": [
+    "Hexagon/System/EventController"
+  ],
+  "add_notification": [
+    "Hexagon/System/EventController"
+  ],
+  ":System": [
+    "Hexagon/System/EventController",
+    "Hexagon/System/Renderer"
+  ],
+  "NOTIFICATION_FILE_IS_UNSAVED": [
+    "Hexagon/System/Renderer"
+  ],
+  "al_clear_to_color": [
+    "Hexagon/System/Renderer"
+  ],
+  "debugging": [
+    "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "std/pair<std/string, std/string>": [
+    "Hexagon/Testing/GoogleTestRunOutputParser",
+    "NcursesArt/ProjectComponentBasenameExtractor"
+  ],
+  "std/ofstream": [
+    "Hexagon/TitleScreen"
+  ],
+  "Hexagon/Logo": [
+    "Hexagon/TitleScreen"
+  ],
+  "AllegroFlare/Profiler": [
+    "Hexagon/TitleScreen",
+    "Hexagon/TitleScreen"
+  ],
+  "Hexagon/Elements/DataTable": [
+    "Hexagon/TitleScreen"
+  ],
+  "Blast/StringJoiner": [
+    "Hexagon/UI/DrawingBox"
   ],
   "al_draw_line": [
-    "quintessence/Hexagon/UI/DrawingBox"
+    "Hexagon/UI/DrawingBox"
   ],
-  "std::map<std::string, std::function<bool(Hexagon::UI::DrawingBox&)>>": [
-    "quintessence/Hexagon/UI/DrawingBox"
+  "std/map<std/string, std/function<bool(Hexagon/UI/DrawingBox&)>>": [
+    "Hexagon/UI/DrawingBox"
   ],
   "random_string": [
-    "quintessence/Hexagon/UI/DrawingBox"
+    "Hexagon/UI/DrawingBox"
   ],
   "al_save_bitmap": [
-    "quintessence/Hexagon/UI/DrawingBox"
+    "Hexagon/UI/DrawingBox"
   ],
   "al_is_image_addon_initialized": [
-    "quintessence/Hexagon/UI/DrawingBox"
+    "Hexagon/UI/DrawingBox"
   ],
   "TimestampGenerator": [
-    "quintessence/Hexagon/UI/DrawingBox"
+    "Hexagon/UI/DrawingBox"
   ],
   "al_init_primitives_addon": [
-    "quintessence/Testing/WithAllegroRenderingFixture"
+    "Testing/WithAllegroRenderingFixture"
   ],
   "al_init_ttf_addon": [
-    "quintessence/Testing/WithAllegroRenderingFixture",
-    "quintessence/Testing/WithStageFactoryFixture"
+    "Testing/WithAllegroRenderingFixture",
+    "Testing/WithStageFactoryFixture"
   ],
-  ":testing::Test": [
-    "quintessence/Testing/WithAllegroRenderingFixture",
-    "quintessence/Testing/WithStageFactoryFixture"
+  ":testing/Test": [
+    "Testing/WithAllegroRenderingFixture",
+    "Testing/WithStageFactoryFixture"
   ],
   "al_init": [
-    "quintessence/Testing/WithStageFactoryFixture"
+    "Testing/WithStageFactoryFixture"
   ],
   "al_init_font_addon": [
-    "quintessence/Testing/WithStageFactoryFixture"
-  ],
-  "Hexagon::StageFactory": [
-    "quintessence/Testing/WithStageFactoryFixture"
+    "Testing/WithStageFactoryFixture"
   ],
   "X": [
-    "quintessence/TimestampGenerator"
+    "TimestampGenerator"
   ]
 }
