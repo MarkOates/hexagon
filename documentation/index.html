@@ -1207,6 +1207,9 @@ table td
 <tr>
   <td class="method">refresh_list()</td>
 </tr>
+<tr>
+  <td class="method">yank_selected_text_label()</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -1214,6 +1217,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Blast::Project::Component&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Blast/Project/Component.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ClipboardData::store&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ClipboardData.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -1459,6 +1465,18 @@ table td
 <tr>
   <td class="property">base_backfill_color</td>
   <td class="property">ALLEGRO_COLOR</td>
+</tr>
+<tr>
+  <td class="property">MOVE_CURSOR_UP</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">MOVE_CURSOR_DOWN</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">YANK_SELECTED_TEXT_LABEL</td>
+  <td class="property">std::string</td>
 </tr>
     </table>
      <table>
@@ -9201,6 +9219,9 @@ table td
     "Hexagon/ComponentRelationsNavigator/ComponentRelations",
     "Hexagon/ProjectComponentNavigator/ComponentSearcher",
     "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "ClipboardData/store": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
   ],
   "Blast/Project/ComponentLister": [
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",

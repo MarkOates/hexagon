@@ -113,12 +113,24 @@ functions:
 
 
 
-dependencies:
+  - name: yank_selected_text_label
+    type: void
+    guard: [ current_selection_is_valid() ]
+    body: |
+      std::string selected_text = get_current_selection_label_or_empty_string();
+      ClipboardData::store(selected_text);
+    body_dependency_symbols:
+      - ClipboardData::store
 
+
+dependencies:
 
 
   - symbol: Hexagon::AdvancedComponentNavigator::ComponentSearcher
     headers: [ 'Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp' ]
   - symbol: std::vector<Blast::Project::Component>
     headers: [ vector, Blast/Project/Component.hpp ]
+  - symbol: ClipboardData::store
+    headers: [ Hexagon/ClipboardData.hpp ]
+
 

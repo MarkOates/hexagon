@@ -27,6 +27,9 @@ Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_CO
    , cell_height(20)
    , base_text_color(base_text_color)
    , base_backfill_color(base_backfill_color)
+   , MOVE_CURSOR_UP("move_cursor_up")
+   , MOVE_CURSOR_DOWN("move_cursor_down")
+   , YANK_SELECTED_TEXT_LABEL("yank_selected_text_label")
 {
 }
 
@@ -155,8 +158,8 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping()
 
    KeyboardCommandMapper mapping;
 
-   static const std::string MOVE_CURSOR_UP = "move_cursor_up";
-   static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
+   //static const std::string MOVE_CURSOR_UP = "move_cursor_up";
+   //static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
    static const std::string MOVE_CURSOR_TO_TOP = "move_cursor_to_top";
    static const std::string SET_MODE_TO_NAVIGATING_LIST = "set_mode_to_navigating_list";
    static const std::string SET_MODE_TO_TYPING_IN_SEARCH_BAR = "set_mode_to_typing_in_search_bar";
@@ -168,8 +171,8 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping()
       mapping.set_mapping(ALLEGRO_KEY_K, NO_MODIFIER, { MOVE_CURSOR_UP });
       mapping.set_mapping(ALLEGRO_KEY_UP, NO_MODIFIER, { MOVE_CURSOR_UP });
       mapping.set_mapping(ALLEGRO_KEY_DOWN, NO_MODIFIER, { MOVE_CURSOR_DOWN });
-
       mapping.set_mapping(ALLEGRO_KEY_SLASH, NO_MODIFIER, { SET_MODE_TO_TYPING_IN_SEARCH_BAR });
+      mapping.set_mapping(ALLEGRO_KEY_Y, NO_MODIFIER, { YANK_SELECTED_TEXT_LABEL });
    }
    else if (component.is_mode_typing_in_search_bar())
    {
@@ -182,10 +185,11 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping()
 std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> Stage::build_local_events_dictionary()
 {
    std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> local_events = {
+      { MOVE_CURSOR_UP, &AdvancedComponentNavigator::move_cursor_up },
+      { MOVE_CURSOR_DOWN, &AdvancedComponentNavigator::move_cursor_down },
+      { YANK_SELECTED_TEXT_LABEL, &AdvancedComponentNavigator::yank_selected_text_label },
       { "refresh_list", &AdvancedComponentNavigator::refresh_list },
       { "move_cursor_to_top", &AdvancedComponentNavigator::move_cursor_to_top },
-      { "move_cursor_up", &AdvancedComponentNavigator::move_cursor_up },
-      { "move_cursor_down", &AdvancedComponentNavigator::move_cursor_down },
       { "set_mode_to_navigating_list", &AdvancedComponentNavigator::set_mode_to_navigating_list },
       { "set_mode_to_typing_in_search_bar", &AdvancedComponentNavigator::set_mode_to_typing_in_search_bar },
    };

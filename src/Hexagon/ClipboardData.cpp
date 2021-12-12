@@ -11,6 +11,14 @@
 
 
 
+bool ClipboardData::store(std::string line)
+{
+   std::vector<std::string> as_list = {line};
+   return ClipboardData::store(as_list);
+}
+
+
+
 bool ClipboardData::store(std::vector<std::string> &lines)
 {
    bool using_pasteboard = true;

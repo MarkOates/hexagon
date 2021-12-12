@@ -2,6 +2,7 @@
 
 #include <Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp>
 #include <Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp>
+#include <Hexagon/ClipboardData.hpp>
 
 
 namespace Hexagon
@@ -143,6 +144,12 @@ void AdvancedComponentNavigator::refresh_list()
 {
    Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(get_project_root(), search_text);
    nodes = searcher.components_sorted_by_most_recent();
+}
+
+void AdvancedComponentNavigator::yank_selected_text_label()
+{
+   std::string selected_text = get_current_selection_label_or_empty_string();
+   ClipboardData::store(selected_text);
 }
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon

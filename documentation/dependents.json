@@ -507,6 +507,9 @@
     "Hexagon/ProjectComponentNavigator/ComponentSearcher",
     "Hexagon/ProjectComponentNavigator/Stage"
   ],
+  "ClipboardData/store": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
+  ],
   "Blast/Project/ComponentLister": [
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
     "Hexagon/BlastComponentLayoutGenerator",

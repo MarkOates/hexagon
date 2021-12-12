@@ -27,10 +27,13 @@ TEST(Hexagon_ComponentRelationsNavigator_DocumentationDependentsJSONLoaderTest,
         "Hexagon/BuildSequenceMeter/Renderer",
         "Hexagon/CodeEditor/Stage",
         "Hexagon/ComponentRelationsNavigator/Stage",
+        "Hexagon/Elements/Frame",
         "Hexagon/Elements/ListMenu",
         "Hexagon/Elements/QuoteRenderer",
         "Hexagon/Elements/StageInfoOverlay",
         "Hexagon/Font",
+        "Hexagon/FontSet",
+        "Hexagon/Hud",
         "Hexagon/LayoutToStagesCreator",
         "Hexagon/Logo",
         "Hexagon/MissingFile/Stage",
@@ -38,9 +41,11 @@ TEST(Hexagon_ComponentRelationsNavigator_DocumentationDependentsJSONLoaderTest,
         "Hexagon/TitleScreen",
         "Hexagon/UI/DrawingBox",
         "Hexagon/UI/LittleMenu",
+        "Testing/WithAllegroRenderingFixture",
+        "Testing/WithStageFactoryFixture"
       };
 
-   std::string component_name = "AllegroFlare::FontBin*";
+   std::string component_name = "AllegroFlare/FontBin";
    EXPECT_EQ(expected_list, documentation_dependents_jsonloader.build_dependent_names_for_component_name(component_name));
 }
 

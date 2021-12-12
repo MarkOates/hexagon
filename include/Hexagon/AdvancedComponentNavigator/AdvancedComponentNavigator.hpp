@@ -45,6 +45,7 @@ namespace Hexagon
          void set_mode_to_typing_in_search_bar();
          std::string get_current_selection_label_or_empty_string();
          void refresh_list();
+         void yank_selected_text_label();
       };
    }
 }
