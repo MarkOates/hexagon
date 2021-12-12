@@ -2400,10 +2400,22 @@ table td
 <tr>
   <td class="method">build_dependent_names_for_component_name(1)</td>
 </tr>
+<tr>
+  <td class="private_method">dependents_json_file_contents()</td>
+</tr>
+<tr>
+  <td class="private_method">dependents_json_file_exists()</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;JSON&quot;, &quot;headers&quot;=&gt;[&quot;lib/nlohmann/json.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::file_get_contents&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::FileExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/FileExistenceChecker.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -8779,6 +8791,7 @@ table td
   ],
   "Blast::FileExistenceChecker": [
     "quintessence/Blast/Daemus/Daemus.q.yml",
+    "quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml",
     "quintessence/Hexagon/Elements/FilePixelPreviewCreator.q.yml",
     "quintessence/Hexagon/LayoutToStagesCreator.q.yml",
     "quintessence/Hexagon/ProjectFactory.q.yml",
@@ -9502,6 +9515,14 @@ table td
   "JSON": [
     "quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml"
   ],
+  "php::file_get_contents": [
+    "quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml",
+    "quintessence/Hexagon/Elements/FilePixelPreviewCreator.q.yml",
+    "quintessence/Hexagon/LayoutToStagesCreator.q.yml",
+    "quintessence/Hexagon/ProjectFactory.q.yml",
+    "quintessence/Hexagon/StageFactory.q.yml",
+    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent.q.yml"
+  ],
   "Hexagon::Elements::ListMenu": [
     "quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml",
     "quintessence/Hexagon/TitleScreen.q.yml",
@@ -9558,13 +9579,6 @@ table td
   ],
   "std::map<std::tuple<int, int>, int>": [
     "quintessence/Hexagon/Elements/DynamicGridMesh.q.yml"
-  ],
-  "php::file_get_contents": [
-    "quintessence/Hexagon/Elements/FilePixelPreviewCreator.q.yml",
-    "quintessence/Hexagon/LayoutToStagesCreator.q.yml",
-    "quintessence/Hexagon/ProjectFactory.q.yml",
-    "quintessence/Hexagon/StageFactory.q.yml",
-    "quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent.q.yml"
   ],
   "Hexagon::Elements::TextPixelPreviewCreator": [
     "quintessence/Hexagon/Elements/FilePixelPreviewCreator.q.yml"

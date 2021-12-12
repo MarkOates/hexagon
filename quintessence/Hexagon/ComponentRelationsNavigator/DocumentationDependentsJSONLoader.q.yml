@@ -17,10 +17,31 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
-      nlohmann::json j;
+      nlohmann::json j(dependents_json_file_contents());
+
       return {};
     body_dependency_symbols:
       - JSON
+
+
+  - name: dependents_json_file_contents
+    private: true
+    type: std::string
+    guards: [ dependents_json_file_exists() ]
+    body: |
+      return php::file_get_contents(get_DEPENDENTS_JSON_FILENAME());
+    body_dependency_symbols:
+      - Blast::FileExistenceChecker
+      - php::file_get_contents
+
+
+  - name: dependents_json_file_exists
+    private: true
+    type: bool
+    body: |
+      return Blast::FileExistenceChecker(get_DEPENDENTS_JSON_FILENAME()).exists();
+    body_dependency_symbols:
+      - Blast::FileExistenceChecker
 
 
 dependencies:
@@ -28,5 +49,9 @@ dependencies:
 
   - symbol: JSON
     headers: [ lib/nlohmann/json.hpp ]
+  - symbol: php::file_get_contents
+    headers: [ allegro_flare/useful_php.h ]
+  - symbol: Blast::FileExistenceChecker
+    headers: [ Blast/FileExistenceChecker.hpp ]
 
 
