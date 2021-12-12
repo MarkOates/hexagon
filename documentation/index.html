@@ -1210,8 +1210,14 @@ table td
 <tr>
   <td class="method">yank_selected_text_label()</td>
 </tr>
+<tr>
+  <td class="method">yank_selected_text_as_component_name()</td>
+</tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::str_replace&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedComponentNavigator::ComponentSearcher&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp&quot;]}</td>
 </tr>
@@ -1476,6 +1482,10 @@ table td
 </tr>
 <tr>
   <td class="property">YANK_SELECTED_TEXT_LABEL</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">YANK_SELECTED_TEXT_AS_COMPONENT_NAME</td>
   <td class="property">std::string</td>
 </tr>
     </table>
@@ -9207,6 +9217,9 @@ table td
   ],
   "Hexagon/ElementFX/WindowSpawnMotionFX": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer"
+  ],
+  "php/str_replace": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
   ],
   "Hexagon/AdvancedComponentNavigator/ComponentSearcher": [
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",

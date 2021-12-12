@@ -123,9 +123,24 @@ functions:
       - ClipboardData::store
 
 
+
+  - name: yank_selected_text_as_component_name
+    type: void
+    guard: [ current_selection_is_valid() ]
+    body: |
+      std::string selected_text = get_current_selection_label_or_empty_string();
+      std::string filtered_text = php::str_replace("/", "::", selected_text);
+      ClipboardData::store(filtered_text);
+    body_dependency_symbols:
+      - php::str_replace
+      - ClipboardData::store
+
+
 dependencies:
 
 
+  - symbol: php::str_replace
+    headers: [ allegro_flare/useful_php.h ]
   - symbol: Hexagon::AdvancedComponentNavigator::ComponentSearcher
     headers: [ 'Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp' ]
   - symbol: std::vector<Blast::Project::Component>

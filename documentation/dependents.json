@@ -495,6 +495,9 @@
   "Hexagon/ElementFX/WindowSpawnMotionFX": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer"
   ],
+  "php/str_replace": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
+  ],
   "Hexagon/AdvancedComponentNavigator/ComponentSearcher": [
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
     "Hexagon/AdvancedComponentNavigator/Stage"

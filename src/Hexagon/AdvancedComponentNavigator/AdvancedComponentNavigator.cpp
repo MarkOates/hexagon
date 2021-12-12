@@ -3,6 +3,8 @@
 #include <Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp>
 #include <Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp>
 #include <Hexagon/ClipboardData.hpp>
+#include <allegro_flare/useful_php.h>
+#include <Hexagon/ClipboardData.hpp>
 
 
 namespace Hexagon
@@ -150,6 +152,13 @@ void AdvancedComponentNavigator::yank_selected_text_label()
 {
    std::string selected_text = get_current_selection_label_or_empty_string();
    ClipboardData::store(selected_text);
+}
+
+void AdvancedComponentNavigator::yank_selected_text_as_component_name()
+{
+   std::string selected_text = get_current_selection_label_or_empty_string();
+   std::string filtered_text = php::str_replace("/", "::", selected_text);
+   ClipboardData::store(filtered_text);
 }
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon

@@ -46,6 +46,7 @@ namespace Hexagon
          std::string get_current_selection_label_or_empty_string();
          void refresh_list();
          void yank_selected_text_label();
+         void yank_selected_text_as_component_name();
       };
    }
 }
