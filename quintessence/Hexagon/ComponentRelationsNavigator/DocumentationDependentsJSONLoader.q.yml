@@ -1,0 +1,13 @@
+functions:
+
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+    body_dependency_symbols:
+      - JSON
+
+dependencies:
+
+  - symbol: JSON
+    headers: [ lib/nlohmann/json.hpp ]
+
