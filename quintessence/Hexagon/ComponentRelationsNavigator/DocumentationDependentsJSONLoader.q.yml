@@ -17,9 +17,18 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
-      nlohmann::json j(dependents_json_file_contents());
+      nlohmann::json json = nlohmann::json::parse(dependents_json_file_contents());
+      nlohmann::json json_elements_for_component_name = json["AllegroFlare::FontBin*"];
 
-      return {};
+      std::vector<std::string> result;
+      for (nlohmann::json::iterator it = json_elements_for_component_name.begin();
+           it != json_elements_for_component_name.end();
+           ++it)
+      {
+          result.push_back(*it);
+      }
+
+      return result;
     body_dependency_symbols:
       - JSON
 

@@ -34,9 +34,18 @@ std::string DocumentationDependentsJSONLoader::get_DEPENDENTS_JSON_FILENAME()
 
 std::vector<std::string> DocumentationDependentsJSONLoader::build_dependent_names_for_component_name(std::string component_name)
 {
-   nlohmann::json j(dependents_json_file_contents());
+   nlohmann::json json = nlohmann::json::parse(dependents_json_file_contents());
+   nlohmann::json json_elements_for_component_name = json["AllegroFlare::FontBin*"];
 
-   return {};
+   std::vector<std::string> result;
+   for (nlohmann::json::iterator it = json_elements_for_component_name.begin();
+        it != json_elements_for_component_name.end();
+        ++it)
+   {
+       result.push_back(*it);
+   }
+
+   return result;
 }
 
 std::string DocumentationDependentsJSONLoader::dependents_json_file_contents()
