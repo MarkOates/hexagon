@@ -95,6 +95,7 @@
     "Hexagon/Search/ComponentElasticsearchIndexer",
     "Hexagon/Search/Elasticsearch/HealthChecker",
     "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
     "Hexagon/Testing/ComponentTestRunner"
   ],
   "Blast/DirectoryExistenceChecker": [
@@ -1217,6 +1218,7 @@
     "Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
     "Hexagon/System/Action/SendMessageToDaemusToBuild"
   ],
   "NcursesArt/ProjectFilenameGenerator": [
