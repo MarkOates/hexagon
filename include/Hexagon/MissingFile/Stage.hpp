@@ -18,7 +18,7 @@ namespace Hexagon
       private:
          AllegroFlare::FontBin* font_bin;
          std::string expected_filename;
-         std::string text;
+         std::string title_text;
          static ALLEGRO_EVENT a_default_empty_event;
          bool is_focused;
          ALLEGRO_DISPLAY* display;

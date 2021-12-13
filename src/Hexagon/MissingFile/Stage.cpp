@@ -27,7 +27,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, std::string expected_filename)
    : StageInterface(StageInterface::MISSING_FILE)
    , font_bin(font_bin)
    , expected_filename(expected_filename)
-   , text("MISSING FILE")
+   , title_text("MISSING FILE")
    , is_focused(true)
    , display(nullptr)
    , font(nullptr)
@@ -128,15 +128,18 @@ void Stage::render()
    float padding = cell_width;
    float h_padding = (float)cell_width / 2;
    float line_height = al_get_font_line_height(font);
+   ALLEGRO_FONT *title_font = obtain_title_font();
 
    float width = place.size.x;
    float height = place.size.y;
    ALLEGRO_COLOR color = al_color_html("d82133");
    float thickness = 2.5;
+
    al_draw_rectangle(
       h_padding, h_padding,
       width-h_padding, height-h_padding,
       color, thickness);
+
    //ALLEGRO_BITMAP *texture = nullptr;// TODO
    //Hexagon::Elements::TexturedRectangle red_lines_texture_background(
    //   h_padding,
@@ -147,12 +150,12 @@ void Stage::render()
    //);
    //red_lines_texture_background.draw();
 
-   al_draw_text(font, color, width/2, height/3, ALLEGRO_ALIGN_CENTER, text.c_str());
+   al_draw_text(title_font, color, width/2, height/3, ALLEGRO_ALIGN_CENTER, title_text.c_str());
 
    al_draw_text(font, color, width/2, height/3 + line_height*3, ALLEGRO_ALIGN_CENTER, expected_filename.c_str());
 
-   std::string create_message = "Press ENTER to create (requires reload)";
-   al_draw_text(font, color, width/2, height/3 + line_height*9, ALLEGRO_ALIGN_CENTER, create_message.c_str());
+   //std::string create_message = "Press ENTER to create (requires reload)";
+   //al_draw_text(font, color, width/2, height/3 + line_height*9, ALLEGRO_ALIGN_CENTER, create_message.c_str());
 
    place.restore_transform();
 }
