@@ -9,6 +9,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Blast/FileCreator.hpp>
 
 
@@ -164,6 +166,17 @@ ALLEGRO_FONT* Stage::obtain_text_font()
          throw std::runtime_error(error_message.str());
       }
    return font_bin->auto_get("Menlo-Regular.ttf -20");
+}
+
+ALLEGRO_FONT* Stage::obtain_title_font()
+{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -42");
 }
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)

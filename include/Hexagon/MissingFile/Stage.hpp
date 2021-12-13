@@ -44,6 +44,7 @@ namespace Hexagon
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          virtual void render() override;
          ALLEGRO_FONT* obtain_text_font();
+         ALLEGRO_FONT* obtain_title_font();
          void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
          void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
          void create_expected_file();

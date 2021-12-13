@@ -109,6 +109,14 @@ functions:
       return font_bin->auto_get("Menlo-Regular.ttf -20");
 
 
+  - name: obtain_title_font
+    private: true
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -42");
+
+
   - name: process_local_event
     override: true
     parameters:
