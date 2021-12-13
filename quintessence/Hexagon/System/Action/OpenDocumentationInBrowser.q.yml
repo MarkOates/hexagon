@@ -1,0 +1,52 @@
+parent_classes:
+
+
+  - class: ::Action
+    scope: public
+    init_with: '"Hexagon::System::Action::OpenDocumentationInBrowser", ActionData()'
+
+
+properties:
+
+
+  - name: DEPENDENTS_JSON_FILENAME
+    static: true
+    const: true
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon/documentation/index.htm"'
+
+
+functions:
+
+
+  - name: execute
+    virtual: true
+    type: bool
+    body: |
+      std::string shell_command_to_open_browser = build_shell_command_to_open_browser();
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command_to_open_browser);
+      shell_command_executor.execute();
+      return true;
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
+
+
+  - name: build_shell_command_to_open_browser
+    type: std::string
+    body: |
+      std::stringstream result;
+      result << "open " << DEPENDENTS_JSON_FILENAME;
+      return result.str();
+    body_dependency_symbols:
+      - std::stringstream
+
+
+dependencies:
+
+
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+
+

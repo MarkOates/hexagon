@@ -42,6 +42,7 @@
 #include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
 #include <Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.hpp>
+#include <Hexagon/System/Action/OpenDocumentationInBrowser.hpp>
 #include <Hexagon/System/EventController.hpp>
 #include <Hexagon/Git/StageEverything.hpp>
 #include <Hexagon/Git/CommitStagedWithMessage.hpp>
@@ -1104,7 +1105,9 @@ bool System::check_git_local_status_and_update_powerbar()
 
 bool System::open_documentation_in_browser()
 {
-   return false;
+   Hexagon::System::Action::OpenDocumentationInBrowser action;
+   action.execute();
+   return true;
 }
 
 
@@ -1607,6 +1610,7 @@ const std::string System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL = "SPAWN_GIT_
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 const std::string System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE = "FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE";
 const std::string System::CHECK_GIT_SYNC_AND_UPDATE_POWERBAR = "CHECK_GIT_SYNC_AND_UPDATE_POWERBAR";
+const std::string System::OPEN_DOCUMENTATION_IN_BROWSER = "OPEN_DOCUMENTATION_IN_BROWSER";
 const std::string System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES =
    "COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES";
 const std::string System::PUSH_TO_GIT_REMOTE = "PUSH_TO_GIT_REMOTE";
