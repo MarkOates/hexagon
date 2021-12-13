@@ -1102,6 +1102,12 @@ bool System::check_git_local_status_and_update_powerbar()
 }
 
 
+bool System::spawn_documentation_in_new_browser_window()
+{
+   return false;
+}
+
+
 bool System::offset_first_line_to_vertically_center_cursor_on_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
