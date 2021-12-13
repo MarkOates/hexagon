@@ -160,7 +160,7 @@ public:
    bool disable_drawing_info_overlays_on_all_code_editor_stages();
    bool check_git_sync_and_update_powerbar();
    bool check_git_local_status_and_update_powerbar();
-   bool spawn_documentation_in_new_browser_window();
+   bool open_documentation_in_browser();
 
    // motion fx
    bool fx__play_focus_animation_on_frontmost_stage();

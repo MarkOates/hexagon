@@ -1102,7 +1102,7 @@ bool System::check_git_local_status_and_update_powerbar()
 }
 
 
-bool System::spawn_documentation_in_new_browser_window()
+bool System::open_documentation_in_browser()
 {
    return false;
 }
