@@ -333,7 +333,7 @@ void EventController::process_event(ALLEGRO_EVENT& event)
    }
    else
    {
-      if (system->has_no_stages() || system->is_current_stage_in_edit_mode())
+      if (system->has_no_stages() || (!system->is_current_stage_in_insert_mode()))
       {
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_SLASH, false, false, false, false, {
             ::System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL,
