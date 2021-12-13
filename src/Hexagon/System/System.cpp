@@ -306,7 +306,7 @@ bool System::is_current_stage_in_insert_mode()
    }
    else
    {
-      return frontmost_stage->get_code_editor_ref().get_mode() == ::CodeEditor::CodeEditor::EDIT;
+      return frontmost_stage->get_code_editor_ref().get_mode() == ::CodeEditor::CodeEditor::INSERT;
    }
    return false;
 }
