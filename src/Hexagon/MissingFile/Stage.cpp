@@ -179,7 +179,7 @@ ALLEGRO_FONT* Stage::obtain_title_font()
          error_message << "Stage" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -42");
+   return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -60");
 }
 
 void Stage::process_local_event(std::string event_name, ActionData action_data)
