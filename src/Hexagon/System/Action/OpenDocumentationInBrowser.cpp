@@ -13,7 +13,7 @@ namespace Action
 {
 
 
-std::string OpenDocumentationInBrowser::DEPENDENTS_JSON_FILENAME = "/Users/markoates/Repos/hexagon/documentation/index.htm";
+std::string OpenDocumentationInBrowser::DEPENDENTS_JSON_FILENAME = "/Users/markoates/Repos/Krampus21/documentation/index.htm";
 
 
 OpenDocumentationInBrowser::OpenDocumentationInBrowser()

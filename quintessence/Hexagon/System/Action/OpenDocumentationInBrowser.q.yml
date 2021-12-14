@@ -13,7 +13,7 @@ properties:
     static: true
     const: true
     type: std::string
-    init_with: '"/Users/markoates/Repos/hexagon/documentation/index.htm"'
+    init_with: '"/Users/markoates/Repos/Krampus21/documentation/index.htm"'
 
 
 functions:
