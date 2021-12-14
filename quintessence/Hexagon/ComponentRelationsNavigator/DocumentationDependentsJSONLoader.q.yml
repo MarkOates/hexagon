@@ -3,7 +3,7 @@ properties:
 
   - name: DEPENDENTS_JSON_FILENAME
     type: std::string
-    init_with: '"/Users/markoates/Repos/hexagon/documentation/dependents.json"'
+    init_with: '"/Users/markoates/Repos/Krampus21/documentation/dependents.json"'
     getter: true
 
 
