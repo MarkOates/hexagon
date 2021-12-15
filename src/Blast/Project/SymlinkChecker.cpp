@@ -31,7 +31,8 @@ SymlinkChecker::~SymlinkChecker()
 bool SymlinkChecker::is_symlink()
 {
    std::filesystem::path path(filename);
-   if (!std::filesystem::exists(path))
+   //if (!std::filesystem::exists(path))
+   if (std::filesystem::is_symlink(std::filesystem::status(path)))
    {
       std::stringstream error_message;
       error_message << "an error occurred when trying to read_symlink_target in "
