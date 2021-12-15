@@ -184,6 +184,7 @@ table td
   <li><a href="#quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.q.yml">quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent.q.yml">quintessence/Hexagon/System/Action/CreateThreeSplitFromComponent.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages.q.yml">quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/Action/OpenDocumentationInBrowser.q.yml">quintessence/Hexagon/System/Action/OpenDocumentationInBrowser.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Action/SendMessageToDaemusToBuild.q.yml">quintessence/Hexagon/System/Action/SendMessageToDaemusToBuild.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Config.q.yml">quintessence/Hexagon/System/Config.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/EventController.q.yml">quintessence/Hexagon/System/EventController.q.yml</a></li>
@@ -5256,7 +5257,7 @@ table td
   <td class="property">std::string</td>
 </tr>
 <tr>
-  <td class="property">text</td>
+  <td class="property">title_text</td>
   <td class="property">std::string</td>
 </tr>
 <tr>
@@ -5290,6 +5291,9 @@ table td
 </tr>
 <tr>
   <td class="private_method">obtain_text_font()</td>
+</tr>
+<tr>
+  <td class="private_method">obtain_title_font()</td>
 </tr>
 <tr>
   <td class="method">process_local_event(2)</td>
@@ -7829,6 +7833,33 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/System/Action/OpenDocumentationInBrowser.q.yml">quintessence/Hexagon/System/Action/OpenDocumentationInBrowser.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">DEPENDENTS_JSON_FILENAME</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">execute()</td>
+</tr>
+<tr>
+  <td class="method">build_shell_command_to_open_browser()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;:&quot;:Action&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Action.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/System/Action/SendMessageToDaemusToBuild.q.yml">quintessence/Hexagon/System/Action/SendMessageToDaemusToBuild.q.yml</h3>
      <table>
     </table>
@@ -8825,6 +8856,7 @@ table td
     "Hexagon/Search/ComponentElasticsearchIndexer",
     "Hexagon/Search/Elasticsearch/HealthChecker",
     "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
     "Hexagon/Testing/ComponentTestRunner"
   ],
   "Blast/DirectoryExistenceChecker": [
@@ -9947,6 +9979,7 @@ table td
     "Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
     "Hexagon/System/Action/SendMessageToDaemusToBuild"
   ],
   "NcursesArt/ProjectFilenameGenerator": [
