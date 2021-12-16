@@ -132,25 +132,32 @@ void ApplicationController::create_event_queue_and_register_event_sources()
 
 void ApplicationController::create_display()
 {
+   // display options
    al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
    al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
    al_set_new_display_option(ALLEGRO_DEPTH_SIZE, 32, ALLEGRO_SUGGEST);
+
+   // display flags
    al_set_new_display_flags(ALLEGRO_RESIZABLE);
    al_set_new_display_flags(ALLEGRO_NOFRAME);
    al_set_new_display_flags(ALLEGRO_NOFRAME | ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
    al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
    if (config.is_fullscreen()) al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 
+   // new bitmap flags
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    //al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
+
    display = al_create_display(
       config.get_initial_display_width(),
       config.get_initial_display_height());
    if (!display) std::cerr << "al_create_display() failed" << std::endl;
+
    al_set_window_title(display, "[ProjectName] - Hexagon");
 
-   int display_width = al_get_display_width(display);
-   int display_height = al_get_display_height(display);
+   //int display_width = al_get_display_width(display);
+   //int display_height = al_get_display_height(display);
+
    return;
 }
 
