@@ -96,6 +96,12 @@ functions:
        //al_uninstall_system();
 
 
+  - name: create_display
+    type: void
+    body: |
+      return;
+
+
   - name: emit_user_event
     type: void
     parameters:

@@ -140,6 +140,11 @@ void ApplicationController::shutdown()
    //al_uninstall_system();
 }
 
+void ApplicationController::create_display()
+{
+   return;
+}
+
 void ApplicationController::emit_user_event(ALLEGRO_EVENT user_event)
 {
    al_emit_user_event(&user_event_source, &user_event, NULL);
