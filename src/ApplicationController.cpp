@@ -158,6 +158,46 @@ void ApplicationController::create_display()
    //int display_width = al_get_display_width(display);
    //int display_height = al_get_display_height(display);
 
+   // TODO: This new feature is currently disabled, mostly because it should be handled by the camera.
+   // However, there are also other components (like the Hud) which need to setup a projection as well,
+   // they need to be accounted for.
+
+   //setup_orthographic_projection();
+
+   return;
+}
+
+void ApplicationController::setup_orthographic_projection()
+{
+   // set the orthographic display projection
+   // the display coordinate values used throughout the program will map to these values from here on
+   // (unless the projection is modified)
+
+   ALLEGRO_DISPLAY *al_display = display;
+   float left = 0;
+   float top = 0;
+   float right = 1920;
+   float bottom = 1080;
+   ALLEGRO_BITMAP *display_bitmap = al_get_backbuffer(al_display);
+   ALLEGRO_TRANSFORM trans;
+   al_identity_transform(&trans);
+   al_orthographic_transform(
+         &trans,
+         left,
+         top,
+         -1.0,
+         right,
+         bottom,
+         1.0
+      );
+
+   ALLEGRO_STATE previous_target_bitmap_state;
+   al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
+
+   al_set_target_bitmap(display_bitmap);
+   al_use_projection_transform(&trans);
+
+   al_restore_state(&previous_target_bitmap_state);
    return;
 }
 

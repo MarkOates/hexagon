@@ -27,6 +27,7 @@ public:
    void shutdown();
    void create_event_queue_and_register_event_sources();
    void create_display();
+   void setup_orthographic_projection();
    void emit_user_event(ALLEGRO_EVENT user_event={});
    void run_program();
    void run_event_loop();
