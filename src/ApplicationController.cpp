@@ -92,6 +92,8 @@ void ApplicationController::initialize_allegro_config_display_event_queue_and_ti
 
    create_display();
 
+   create_event_queue_and_register_event_sources();
+
    event_queue = al_create_event_queue();
    al_register_event_source(event_queue, al_get_keyboard_event_source());
    al_register_event_source(event_queue, al_get_mouse_event_source());
@@ -120,6 +122,11 @@ void ApplicationController::shutdown()
    al_destroy_display(display);
    //delete system;
    //al_uninstall_system();
+}
+
+void ApplicationController::create_event_queue_and_register_event_sources()
+{
+   return;
 }
 
 void ApplicationController::create_display()

@@ -46,6 +46,8 @@ functions:
 
        create_display();
 
+       create_event_queue_and_register_event_sources();
+
        event_queue = al_create_event_queue();
        al_register_event_source(event_queue, al_get_keyboard_event_source());
        al_register_event_source(event_queue, al_get_mouse_event_source());
@@ -76,6 +78,12 @@ functions:
        al_destroy_display(display);
        //delete system;
        //al_uninstall_system();
+
+
+  - name: create_event_queue_and_register_event_sources
+    body: |
+      return;
+
 
 
   - name: create_display
