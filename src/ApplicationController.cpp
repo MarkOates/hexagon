@@ -94,17 +94,7 @@ void ApplicationController::initialize_allegro_config_display_event_queue_and_ti
 
    create_event_queue_and_register_event_sources();
 
-   event_queue = al_create_event_queue();
-   al_register_event_source(event_queue, al_get_keyboard_event_source());
-   al_register_event_source(event_queue, al_get_mouse_event_source());
-   al_register_event_source(event_queue, al_get_display_event_source(display));
-
-   primary_timer = al_create_timer(1.0/60.0);
-   al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
-   al_start_timer(primary_timer);
-
-   al_init_user_event_source(&user_event_source);
-   al_register_event_source(event_queue, &user_event_source);
+   return;
 }
 
 void ApplicationController::initialize()
@@ -126,6 +116,17 @@ void ApplicationController::shutdown()
 
 void ApplicationController::create_event_queue_and_register_event_sources()
 {
+   event_queue = al_create_event_queue();
+   al_register_event_source(event_queue, al_get_keyboard_event_source());
+   al_register_event_source(event_queue, al_get_mouse_event_source());
+   al_register_event_source(event_queue, al_get_display_event_source(display));
+
+   primary_timer = al_create_timer(1.0/60.0);
+   al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
+   al_start_timer(primary_timer);
+
+   al_init_user_event_source(&user_event_source);
+   al_register_event_source(event_queue, &user_event_source);
    return;
 }
 
