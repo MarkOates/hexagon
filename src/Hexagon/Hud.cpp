@@ -359,6 +359,10 @@ void Hud::initialize()
       );
    set_screen_sub_bitmap(hud_screen_sub_bitmap);
 
+   //float hwidth = 1920/2;
+   //float hheight = 1080/2;
+   //set_orthographic_projection(hud_screen_sub_bitmap, -hwidth, -hheight, hwidth, hheight);
+
    initialized = true;
    return;
 }
