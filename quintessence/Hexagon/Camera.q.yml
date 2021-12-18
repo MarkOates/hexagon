@@ -19,14 +19,20 @@ properties:
   - name: position
     type: vec3d
     init_with: 'x, y, z'
+    getter: true
+    getter_ref: true
 
   - name: stepback
     type: vec3d
     init_with: '0, 0, 0'
+    getter: true
+    getter_ref: true
 
   - name: rotation
     type: vec3d
     init_with: '0, 0, 0'
+    getter: true
+    getter_ref: true
 
   - name: tilt
     type: float

@@ -8,6 +8,7 @@
 #include <AllegroFlare/FontBin.hpp>
 #include <string>
 #include <vector>
+#include <Hexagon/Camera.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
@@ -42,7 +43,7 @@ public:
    bool files_committed;
    bool in_sync_with_remote;
    std::vector<StageInterface *> stages;
-   Camera camera;
+   Hexagon::Camera camera;
    std::string last_file_navigator_selection;
    //std::string last_component_navigator_selection;
    //std::string last_project_navigator_selection;

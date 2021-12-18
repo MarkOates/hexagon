@@ -157,7 +157,7 @@ void System::initialize()
    hud.set_render_focus_timer_bar(config.get_hud_render_focus_timer_bar());
    hud.initialize();
 
-   camera.stepback.z = get_default_camera_stepback();
+   camera.get_stepback_ref().z = get_default_camera_stepback();
 
    //process_local_event(EXECUTE_MAGIC_COMMAND);
 }
@@ -548,24 +548,24 @@ bool System::toggle_command_mode_on()
    //float camera_x_rotation_in_zoomed_out_position = 0.035;
    float camera_x_rotation_in_zoomed_out_position = 0.0;
 
-   motion.canimate(&camera.rotation.x,
-                   camera.rotation.x,
+   motion.canimate(&camera.get_rotation_ref().x,
+                   camera.get_rotation().x,
                    camera_x_rotation_in_zoomed_out_position,
                    al_get_time(),
                    al_get_time()+0.2,
                    interpolator::fast_in,
                    nullptr,
                    nullptr);
-   motion.canimate(&camera.position.y,
-                   camera.position.y,
+   motion.canimate(&camera.get_position_ref().y,
+                   camera.get_position().y,
                    0.0f,
                    al_get_time(),
                    al_get_time()+0.2,
                    interpolator::fast_in,
                    nullptr,
                    nullptr);
-   motion.canimate(&camera.stepback.z,
-                   camera.stepback.z,
+   motion.canimate(&camera.get_stepback_ref().z,
+                   camera.get_stepback().z,
                    camera_zoomed_out_position,
                    al_get_time(),
                    al_get_time()+0.2,
@@ -584,24 +584,24 @@ bool System::reset_camera_to_center()
    float camera_zoomed_in_position = get_default_camera_stepback();
    //camera.rotation.x = 0;
 
-   motion.canimate(&camera.rotation.x,
-                   camera.rotation.x,
+   motion.canimate(&camera.get_rotation_ref().x,
+                   camera.get_rotation().x,
                    0.0f,
                    al_get_time(),
                    al_get_time()+0.2,
                    interpolator::fast_in,
                    nullptr,
                    nullptr);
-   motion.canimate(&camera.rotation.y,
-                   camera.rotation.y,
+   motion.canimate(&camera.get_rotation_ref().y,
+                   camera.get_rotation().y,
                    0.0f,
                    al_get_time(),
                    al_get_time()+0.2,
                    interpolator::fast_in,
                    nullptr,
                    nullptr);
-   motion.canimate(&camera.stepback.z,
-                   camera.stepback.z,
+   motion.canimate(&camera.get_stepback_ref().z,
+                   camera.get_stepback().z,
                    camera_zoomed_in_position,
                    al_get_time(),
                    al_get_time()+0.2,
@@ -740,13 +740,13 @@ bool System::center_camera_on_frontmost_stage()
    vec3d target = place.position;
    //camera.position = target;
 
-   motion.cmove_to(&camera.position.x, target.x, 0.2, interpolator::double_fast_in);
-   motion.cmove_to(&camera.position.y, target.y, 0.2, interpolator::double_fast_in);
-   motion.cmove_to(&camera.position.z, target.z, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.get_position_ref().x, target.x, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.get_position_ref().y, target.y, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.get_position_ref().z, target.z, 0.2, interpolator::double_fast_in);
 
-   motion.cmove_to(&camera.rotation.x, 0.0f, 0.2, interpolator::double_fast_in);
-   motion.cmove_to(&camera.rotation.y, 0.0f, 0.2, interpolator::double_fast_in);
-   motion.cmove_to(&camera.rotation.z, 0.0f, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().x, 0.0f, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().y, 0.0f, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().z, 0.0f, 0.2, interpolator::double_fast_in);
 
    return true;
 }
@@ -933,8 +933,8 @@ bool System::spawn_regex_input_box_modal()
 
    stages.push_back(stage);
 
-   motion.cmove_to(&camera.rotation.x, 0.08f, 0.5f, interpolator::tripple_fast_in);
-   motion.cmove_to(&camera.position.y, -70.0f, 0.5f, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().x, 0.08f, 0.5f, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_position_ref().y, -70.0f, 0.5f, interpolator::tripple_fast_in);
 
    return true;
 }
@@ -947,8 +947,8 @@ bool System::spawn_git_commit_message_input_box_modal()
 
    stages.push_back(stage);
 
-   motion.cmove_to(&camera.rotation.x, -0.12f, 0.5f, interpolator::tripple_fast_in);
-   motion.cmove_to(&camera.position.y, 140.0f, 0.5f, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().x, -0.12f, 0.5f, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_position_ref().y, 140.0f, 0.5f, interpolator::tripple_fast_in);
 
    return true;
 }

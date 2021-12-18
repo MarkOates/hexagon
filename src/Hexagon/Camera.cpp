@@ -28,6 +28,42 @@ Camera::~Camera()
 }
 
 
+vec3d Camera::get_position()
+{
+   return position;
+}
+
+
+vec3d Camera::get_stepback()
+{
+   return stepback;
+}
+
+
+vec3d Camera::get_rotation()
+{
+   return rotation;
+}
+
+
+vec3d &Camera::get_position_ref()
+{
+   return position;
+}
+
+
+vec3d &Camera::get_stepback_ref()
+{
+   return stepback;
+}
+
+
+vec3d &Camera::get_rotation_ref()
+{
+   return rotation;
+}
+
+
 void Camera::set45_isometric()
 {
    //stepback = vec3d(0, 400, 400);

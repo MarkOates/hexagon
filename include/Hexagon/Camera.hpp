@@ -25,6 +25,12 @@ namespace Hexagon
       Camera(float x=0, float y=0, float z=0);
       ~Camera();
 
+      vec3d get_position();
+      vec3d get_stepback();
+      vec3d get_rotation();
+      vec3d &get_position_ref();
+      vec3d &get_stepback_ref();
+      vec3d &get_rotation_ref();
       void set45_isometric();
       void setup_camera_perspective(ALLEGRO_BITMAP* bmp=nullptr);
    };
