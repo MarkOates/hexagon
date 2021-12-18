@@ -149,6 +149,28 @@ void _draw_numbered_vertical_ruler(ALLEGRO_FONT *font, float x, float y, float l
 }
 
 
+void _draw_numbered_horizontal_ruler(ALLEGRO_FONT *font, float x, float y, float length, float spacing)
+{
+   if (!font) throw std::runtime_error("_draw_numbered_vertical_ruler font cannot be nullptr");
+
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   float cross_line_length = 10.0f;
+   float hcross_line_length = cross_line_length * 0.5;
+   float thickness = 1.0f;
+   int flags = ALLEGRO_ALIGN_CENTER;
+   float line_height = al_get_font_line_height(font);
+
+   int start_num = 0;
+   int num = start_num;
+   for (unsigned cursor_x=0; cursor_x<=length; cursor_x+=spacing)
+   {
+      al_draw_text(font, color, x + cursor_x, y - line_height, flags, std::to_string(num).c_str());
+      num++;
+      //al_draw_line(cursor_x, -hcross_line_length, cursor_x, hcross_line_length, color, thickness);
+   }
+}
+
+
 class Hexagon_CameraTest_WithEmptyFixture : public ::testing::Test
 {
 public:
@@ -228,6 +250,7 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
    _draw_vertical_ruler(0, 0, 500, 20);
    _draw_numbered_vertical_ruler(obtain_font(), -20, 0, 500, 80);
    _draw_horizontal_ruler(0, 0, 500, 20);
+   _draw_numbered_horizontal_ruler(obtain_font(), 0, -20, 500, 80);
 
    al_flip_display();
 
