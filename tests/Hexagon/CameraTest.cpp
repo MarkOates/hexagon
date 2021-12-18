@@ -6,22 +6,28 @@
 #include <allegro5/allegro_primitives.h>
 
 
-void draw_grid(float width, float height, float spacing)
+void draw_grid(float x, float y, float width, float height, float spacing)
 {
    ALLEGRO_COLOR line_color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    float thickness = 1.0f;
 
-   for (unsigned y=0; y<=height; y+=spacing)
+   for (unsigned cursor_y=0; cursor_y<=height; cursor_y+=spacing)
    {
       // horizontal lines
-      al_draw_line(0, y, width, y, line_color, thickness);
+      al_draw_line(x, cursor_y, x + width, cursor_y, line_color, thickness);
    }
 
-   for (unsigned x=0; x<=width; x+=spacing)
+   for (unsigned cursor_x=0; cursor_x<=width; cursor_x+=spacing)
    {
       // vertical lines
-      al_draw_line(x, 0, x, height, line_color, thickness);
+      al_draw_line(cursor_x, y, cursor_x, y + height, line_color, thickness);
    }
+}
+
+
+void draw_grid(float width, float height, float spacing)
+{
+   draw_grid(0, 0, width, height, spacing);
 }
 
 
@@ -89,10 +95,10 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
 
    draw_grid(500, 500, 50);
    draw_grid(500, 500, 500);
-   draw_grid(500, 500, 100);
+   draw_grid(500, 500, 250);
 
    al_flip_display();
 
-   //sleep(2);
+   sleep(2);
 }
 
