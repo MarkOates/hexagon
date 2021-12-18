@@ -59,3 +59,10 @@ TEST_F(Hexagon_CameraTest_WithEmptyFixture, can_be_created_without_blowing_up)
    Hexagon::Camera camera;
 }
 
+TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective__can_be_created_without_blowing_up)
+{
+   ALLEGRO_BITMAP *bitmap = al_get_backbuffer(display);
+   Hexagon::Camera camera;
+   camera.setup_camera_perspective(bitmap);
+}
+
