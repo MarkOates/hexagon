@@ -4,6 +4,7 @@
 #include <Hexagon/Camera.hpp>
 
 #include <allegro5/allegro_primitives.h>
+#include <AllegroFlare/FontBin.hpp>
 
 
 void _draw_grid(float x, float y, float width, float height, float spacing)
@@ -135,12 +136,12 @@ class Hexagon_CameraTest_WithAllegroRenderingFixture : public ::testing::Test
 {
 public:
    ALLEGRO_DISPLAY* display;
-   //AllegroFlare::FontBin font_bin;
+   AllegroFlare::FontBin font_bin;
 
 public:
    Hexagon_CameraTest_WithAllegroRenderingFixture()
       : display(nullptr)
-      //, font_bin()
+      , font_bin()
    {}
 
    virtual void SetUp() override
@@ -153,13 +154,13 @@ public:
       //display = al_create_display(1280*2, 720*2);
       //display = al_create_display(1920 / 2 * 4, 1080 / 2 * 4);
       display = al_create_display(1920 * 2, 1080 * 2);
-      //font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
    }
 
    virtual void TearDown() override
    {
-      //font_bin.clear();
+      font_bin.clear();
       //al_shutdown_ttf_addon(); // this is required otherwise subsequent al_init_ttf_addon will not work
                                  // see https://www.allegro.cc/forums/thread/618183
       al_destroy_display(display);
@@ -196,7 +197,6 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
 
    _draw_vertical_ruler(0, 0, 500, 20);
    _draw_horizontal_ruler(0, 0, 500, 20);
-   _draw_rect_dot_grid(0, 0, 500, 500, 50, 4);
 
    al_flip_display();
 
