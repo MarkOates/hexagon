@@ -71,6 +71,21 @@ void _draw_vertical_ruler(float x, float y, float length, float spacing)
 }
 
 
+void _draw_horizontal_ruler(float x, float y, float length, float spacing)
+{
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   float cross_line_length = 10.0f;
+   float hcross_line_length = cross_line_length * 0.5;
+   float thickness = 1.0f;
+
+   al_draw_line(x, y, x + length, y, color, thickness);
+   for (unsigned cursor_x=0; cursor_x<=length; cursor_x+=spacing)
+   {
+      al_draw_line(cursor_x, -hcross_line_length, cursor_x, hcross_line_length, color, thickness);
+   }
+}
+
+
 class Hexagon_CameraTest_WithEmptyFixture : public ::testing::Test
 {
 public:
@@ -142,6 +157,7 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
    //_draw_crosshair_grid(-500, -500, 1000, 1000, 100);
 
    _draw_vertical_ruler(0, 0, 500, 20);
+   _draw_horizontal_ruler(0, 0, 500, 20);
 
    al_flip_display();
 
