@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include <lib/camera.h>
 #include <allegro5/allegro.h>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/motion.h>

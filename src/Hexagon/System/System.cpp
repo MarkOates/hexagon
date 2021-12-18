@@ -33,7 +33,6 @@
 #include <Blast/StringSplitter.hpp>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Blast/CommandLineFlaggedArgumentsParser.hpp>
-#include <lib/camera.h>
 #include <AllegroFlare/Config.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
