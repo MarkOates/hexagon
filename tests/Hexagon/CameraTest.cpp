@@ -39,7 +39,7 @@ void _draw_crosshair(float x, float y, ALLEGRO_COLOR color, float size, float th
 }
 
 
-void _draw_crosshair_grid(float width, float height, float spacing)
+void _draw_crosshair_grid(float x, float y, float width, float height, float spacing)
 {
    ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    float size = 20.0f;
@@ -50,11 +50,25 @@ void _draw_crosshair_grid(float width, float height, float spacing)
       for (unsigned cursor_x=0; cursor_x<=width; cursor_x+=spacing)
       {
          // horizontal lines
-         _draw_crosshair(cursor_x, cursor_y, color, size, thickness);
+         _draw_crosshair(x + cursor_x, y + cursor_y, color, size, thickness);
       }
    }
 }
 
+
+void _draw_vertical_ruler(float x, float y, float length, float spacing)
+{
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   float cross_line_length = 10.0f;
+   float hcross_line_length = cross_line_length * 0.5;
+   float thickness = 1.0f;
+
+   al_draw_line(x, y, x, y + length, color, thickness);
+   for (unsigned cursor_y=0; cursor_y<=length; cursor_y+=spacing)
+   {
+      al_draw_line(-hcross_line_length, cursor_y, hcross_line_length, cursor_y, color, thickness);
+   }
+}
 
 
 class Hexagon_CameraTest_WithEmptyFixture : public ::testing::Test
@@ -113,21 +127,25 @@ TEST_F(Hexagon_CameraTest_WithEmptyFixture, can_be_created_without_blowing_up)
    Hexagon::Camera camera;
 }
 
+
 TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective__can_be_created_without_blowing_up)
 {
    ALLEGRO_BITMAP *bitmap = al_get_backbuffer(display);
    Hexagon::Camera camera;
    camera.setup_camera_perspective(bitmap);
 
-   _draw_grid(500, 500, 50);
-   _draw_grid(500, 500, 500);
-   _draw_grid(500, 500, 250);
-   _draw_crosshair(0, 0, ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2}, 30.0, 2.0);
+   //_draw_grid(500, 500, 50);
+   //_draw_grid(500, 500, 500);
+   //_draw_grid(500, 500, 250);
+   //_draw_crosshair(0, 0, ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2}, 30.0, 2.0);
 
-   _draw_crosshair_grid(300, 300, 50);
+   //_draw_crosshair_grid(-500, -500, 1000, 1000, 100);
+
+   _draw_vertical_ruler(0, 0, 500, 20);
 
    al_flip_display();
 
    sleep(2);
 }
+
 
