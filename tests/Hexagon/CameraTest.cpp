@@ -5,6 +5,7 @@
 
 #include <allegro5/allegro_primitives.h>
 #include <AllegroFlare/FontBin.hpp>
+#include <string>
 
 
 void _draw_grid(float x, float y, float width, float height, float spacing)
@@ -125,6 +126,29 @@ void _draw_horizontal_ruler(float x, float y, float length, float spacing)
 }
 
 
+void _draw_numbered_vertical_ruler(ALLEGRO_FONT *font, float x, float y, float length, float spacing)
+{
+   if (!font) throw std::runtime_error("_draw_numbered_vertical_ruler font cannot be nullptr");
+
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   float cross_line_length = 10.0f;
+   float hcross_line_length = cross_line_length * 0.5;
+   float thickness = 1.0f;
+   int flags = ALLEGRO_ALIGN_RIGHT;
+   float h_line_height = al_get_font_line_height(font) * 0.5;
+
+   //al_draw_line(x, y, x, y + length, color, thickness);
+   int start_num = 0;
+   int num = start_num;
+   for (unsigned cursor_y=0; cursor_y<=length; cursor_y+=spacing)
+   {
+      al_draw_text(font, color, x, y + cursor_y - h_line_height, flags, std::to_string(num).c_str());
+      num++;
+      //al_draw_line(-hcross_line_length, cursor_y, hcross_line_length, cursor_y, color, thickness);
+   }
+}
+
+
 class Hexagon_CameraTest_WithEmptyFixture : public ::testing::Test
 {
 public:
@@ -149,12 +173,13 @@ public:
       ASSERT_EQ(false, al_is_system_installed());
       ASSERT_EQ(true, al_init());
       //ASSERT_EQ(true, al_init_primitives_addon());
-      //ASSERT_EQ(true, al_init_font_addon());
-      //ASSERT_EQ(true, al_init_ttf_addon());
+      ASSERT_EQ(true, al_init_font_addon());
+      ASSERT_EQ(true, al_init_ttf_addon());
       //display = al_create_display(1280*2, 720*2);
       //display = al_create_display(1920 / 2 * 4, 1080 / 2 * 4);
       display = al_create_display(1920 * 2, 1080 * 2);
-      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts/");
+
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
    }
 
@@ -165,6 +190,11 @@ public:
                                  // see https://www.allegro.cc/forums/thread/618183
       al_destroy_display(display);
       al_uninstall_system();
+   }
+
+   ALLEGRO_FONT *obtain_font()
+   {
+      return font_bin.auto_get("Purista Medium.otf -20");
    }
 
    //placement3d build_centered_placement(float width, float height)
@@ -196,6 +226,7 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
    //_draw_crosshair_grid(-500, -500, 1000, 1000, 100);
 
    _draw_vertical_ruler(0, 0, 500, 20);
+   _draw_numbered_vertical_ruler(obtain_font(), -20, 0, 500, 80);
    _draw_horizontal_ruler(0, 0, 500, 20);
 
    al_flip_display();
