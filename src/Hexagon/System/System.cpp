@@ -128,7 +128,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion
    , files_committed(true)
    , in_sync_with_remote(true)
    , stages({})
-   , camera(0, 0, 0)
+   , camera()
    , last_file_navigator_selection("")
    , global_font_resource_filename("Menlo-Regular.ttf")
    , target("")
