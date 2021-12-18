@@ -30,6 +30,8 @@ Camera::~Camera()
 
 void Camera::set45_isometric()
 {
+   //stepback = vec3d(0, 400, 400);
+   //rotation = vec3d(-TAU/8.0, TAU/16.0, 0);
    return;
 }
 
