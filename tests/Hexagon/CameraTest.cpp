@@ -6,7 +6,7 @@
 #include <allegro5/allegro_primitives.h>
 
 
-void draw_grid(float x, float y, float width, float height, float spacing)
+void _draw_grid(float x, float y, float width, float height, float spacing)
 {
    ALLEGRO_COLOR line_color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    float thickness = 1.0f;
@@ -25,10 +25,19 @@ void draw_grid(float x, float y, float width, float height, float spacing)
 }
 
 
-void draw_grid(float width, float height, float spacing)
+void _draw_grid(float width, float height, float spacing)
 {
-   draw_grid(0, 0, width, height, spacing);
+   _draw_grid(0, 0, width, height, spacing);
 }
+
+
+void _draw_crosshair(float x, float y, ALLEGRO_COLOR color, float size, float thickness)
+{
+   float half_size = size * 0.5;
+   al_draw_line(x, y-half_size, x, y+half_size, color, thickness);
+   al_draw_line(x-half_size, y, x+half_size, y, color, thickness);
+}
+
 
 
 class Hexagon_CameraTest_WithEmptyFixture : public ::testing::Test
@@ -93,9 +102,10 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
    Hexagon::Camera camera;
    camera.setup_camera_perspective(bitmap);
 
-   draw_grid(500, 500, 50);
-   draw_grid(500, 500, 500);
-   draw_grid(500, 500, 250);
+   _draw_grid(500, 500, 50);
+   _draw_grid(500, 500, 500);
+   _draw_grid(500, 500, 250);
+   _draw_crosshair(0, 0, ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2}, 30.0, 2.0);
 
    al_flip_display();
 
