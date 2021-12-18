@@ -31,7 +31,6 @@ namespace Hexagon
       vec3d &get_position_ref();
       vec3d &get_stepback_ref();
       vec3d &get_rotation_ref();
-      void set45_isometric();
       void setup_camera_perspective(ALLEGRO_BITMAP* bmp=nullptr);
    };
 }

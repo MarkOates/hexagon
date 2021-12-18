@@ -104,6 +104,7 @@ namespace Hexagon
       void draw_focus_timer_bar();
       void draw_packets();
       void draw();
+      void set_orthographic_projection(ALLEGRO_BITMAP* bitmap=nullptr, float left=0, float top=0, float right=1920, float bottom=1080);
    };
 }
 

@@ -482,6 +482,48 @@ functions:
       - Hexagon::AdvancedComponentNavigator::Stage*
 
 
+  - name: set_orthographic_projection
+    parameters:
+      - name: bitmap
+        type: ALLEGRO_BITMAP*
+        default_argument: nullptr
+      - name: left
+        type: float
+        default_argument: 0
+      - name: top
+        type: float
+        default_argument: 0
+      - name: right
+        type: float
+        default_argument: 1920
+      - name: bottom
+        type: float
+        default_argument: 1080
+    body: |
+      //ALLEGRO_BITMAP *display_bitmap = al_get_backbuffer(al_display);
+
+      ALLEGRO_TRANSFORM trans;
+      al_identity_transform(&trans);
+      al_orthographic_transform(
+            &trans,
+            left,
+            top,
+            -1.0,
+            right,
+            bottom,
+            1.0
+         );
+
+      ALLEGRO_STATE previous_target_bitmap_state;
+      al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
+
+      al_set_target_bitmap(bitmap);
+      al_use_projection_transform(&trans);
+
+      al_restore_state(&previous_target_bitmap_state);
+      return;
+
+
 dependencies:
 
 

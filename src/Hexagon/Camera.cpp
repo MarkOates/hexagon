@@ -64,13 +64,6 @@ vec3d &Camera::get_rotation_ref()
 }
 
 
-void Camera::set45_isometric()
-{
-   //stepback = vec3d(0, 400, 400);
-   //rotation = vec3d(-TAU/8.0, TAU/16.0, 0);
-   return;
-}
-
 void Camera::setup_camera_perspective(ALLEGRO_BITMAP* bmp)
 {
    vec3d stepback_with_stepback_baseline = stepback + vec3d(0, 0, 600);
