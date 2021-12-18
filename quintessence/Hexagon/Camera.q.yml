@@ -1,24 +1,9 @@
 properties:
 
 
-  - name: x
-    type: float
-    init_with: 0
-    constructor_arg: true
-
-  - name: y
-    type: float
-    init_with: 0
-    constructor_arg: true
-
-  - name: z
-    type: float
-    init_with: 0
-    constructor_arg: true
-
   - name: position
     type: vec3d
-    init_with: 'x, y, z'
+    init_with: '0, 0, 0'
     getter: true
     getter_ref: true
 

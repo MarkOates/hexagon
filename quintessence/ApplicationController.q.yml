@@ -364,7 +364,6 @@ dependencies:
       - Blast/StringSplitter.hpp
       - AllegroFlare/KeyboardCommandMapper.hpp
       - Blast/CommandLineFlaggedArgumentsParser.hpp
-      - lib/camera.h
       - AllegroFlare/Config.hpp
       - Hexagon/System/Action/DestroyAllCodeEditorStages.hpp
       - Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp

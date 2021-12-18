@@ -8,11 +8,8 @@ namespace Hexagon
 {
 
 
-Camera::Camera(float x, float y, float z)
-   : x(x)
-   , y(y)
-   , z(z)
-   , position(x, y, z)
+Camera::Camera()
+   : position(0, 0, 0)
    , stepback(0, 0, 0)
    , rotation(0, 0, 0)
    , tilt(0)
