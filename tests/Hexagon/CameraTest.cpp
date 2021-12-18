@@ -39,6 +39,23 @@ void _draw_crosshair(float x, float y, ALLEGRO_COLOR color, float size, float th
 }
 
 
+void _draw_crosshair_grid(float width, float height, float spacing)
+{
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   float size = 20.0f;
+   float thickness = 1.0f;
+
+   for (unsigned cursor_y=0; cursor_y<=height; cursor_y+=spacing)
+   {
+      for (unsigned cursor_x=0; cursor_x<=width; cursor_x+=spacing)
+      {
+         // horizontal lines
+         _draw_crosshair(cursor_x, cursor_y, color, size, thickness);
+      }
+   }
+}
+
+
 
 class Hexagon_CameraTest_WithEmptyFixture : public ::testing::Test
 {
@@ -106,6 +123,8 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
    _draw_grid(500, 500, 500);
    _draw_grid(500, 500, 250);
    _draw_crosshair(0, 0, ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2}, 30.0, 2.0);
+
+   _draw_crosshair_grid(300, 300, 50);
 
    al_flip_display();
 
