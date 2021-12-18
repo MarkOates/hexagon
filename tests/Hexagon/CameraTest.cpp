@@ -56,6 +56,21 @@ void _draw_crosshair_grid(float x, float y, float width, float height, float spa
 }
 
 
+void _draw_dot_grid(float x, float y, float width, float height, float spacing)
+{
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+
+   for (unsigned cursor_y=0; cursor_y<=height; cursor_y+=spacing)
+   {
+      for (unsigned cursor_x=0; cursor_x<=width; cursor_x+=spacing)
+      {
+         // horizontal lines
+         al_draw_pixel(x + cursor_x, y + cursor_y, color);
+      }
+   }
+}
+
+
 void _draw_vertical_ruler(float x, float y, float length, float spacing)
 {
    ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
@@ -158,6 +173,7 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
 
    _draw_vertical_ruler(0, 0, 500, 20);
    _draw_horizontal_ruler(0, 0, 500, 20);
+   _draw_dot_grid(0, 0, 500, 500, 50);
 
    al_flip_display();
 
