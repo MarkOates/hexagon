@@ -1,4 +1,73 @@
+properties:
+
+
+  - name: x
+    type: float
+    init_with: 0
+    constructor_arg: true
+
+  - name: y
+    type: float
+    init_with: 0
+    constructor_arg: true
+
+  - name: z
+    type: float
+    init_with: 0
+    constructor_arg: true
+
+  - name: position
+    type: vec3d
+    init_with: 'x, y, z'
+
+  - name: stepback
+    type: vec3d
+    init_with: '0, 0, 0'
+
+  - name: rotation
+    type: vec3d
+    init_with: '0, 0, 0'
+
+  - name: tilt
+    type: float
+    init_with: 0
+
+  - name: zoom_min
+    type: float
+    init_with: 10
+
+  - name: zoom_max
+    type: float
+    init_with: 4
+
+  - name: zoom_pos
+    type: float
+    init_with: 0.5
+
+
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+
+
+  - name: set45_isometric
+    body: |
+      return;
+
+
+  - name: setup_camera_perspective
+    parameters:
+      - name: bmp
+        type: ALLEGRO_BITMAP*
+        default_argument: nullptr
+    body: |
+      return;
+
+
+dependencies:
+
+
+  - symbol: vec3d
+    headers: [ allegro_flare/vec3d.h ]
+  - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
+
+

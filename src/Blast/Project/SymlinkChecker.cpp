@@ -31,7 +31,8 @@ SymlinkChecker::~SymlinkChecker()
 bool SymlinkChecker::is_symlink()
 {
    std::filesystem::path path(filename);
-   //if (!std::filesystem::exists(path))
+   if (!std::filesystem::exists(path)) return false;
+
    return std::filesystem::is_symlink(std::filesystem::symlink_status(path));
    //if (std::filesystem::is_symlink(std::filesystem::status(path)))
    {

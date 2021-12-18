@@ -361,6 +361,7 @@
   "ALLEGRO_BITMAP": [
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/Camera",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/LineRenderBin",
     "Hexagon/ComponentBitmapRenderCreator",
@@ -688,6 +689,9 @@
   ],
   "Hexagon/BuildSystem/Build": [
     "Hexagon/BuildSystem/BuildRepository"
+  ],
+  "vec3d": [
+    "Hexagon/Camera"
   ],
   "std/vector<ALLEGRO_BITMAP>": [
     "Hexagon/CodeEditor/CachedLineRenderer",

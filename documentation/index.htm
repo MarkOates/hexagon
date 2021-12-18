@@ -73,6 +73,7 @@ table td
   <li><a href="#quintessence/Hexagon/BuildSystem/Build.q.yml">quintessence/Hexagon/BuildSystem/Build.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/BuildRepository.q.yml">quintessence/Hexagon/BuildSystem/BuildRepository.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/Controller.q.yml">quintessence/Hexagon/BuildSystem/Controller.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Camera.q.yml">quintessence/Hexagon/Camera.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/Cursor.q.yml">quintessence/Hexagon/CodeEditor/Cursor.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/CursorRenderer.q.yml">quintessence/Hexagon/CodeEditor/CursorRenderer.q.yml</a></li>
@@ -1825,6 +1826,69 @@ table td
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Camera.q.yml">quintessence/Hexagon/Camera.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">x</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">y</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">z</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">position</td>
+  <td class="property">vec3d</td>
+</tr>
+<tr>
+  <td class="property">stepback</td>
+  <td class="property">vec3d</td>
+</tr>
+<tr>
+  <td class="property">rotation</td>
+  <td class="property">vec3d</td>
+</tr>
+<tr>
+  <td class="property">tilt</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">zoom_min</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">zoom_max</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">zoom_pos</td>
+  <td class="property">float</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">set45_isometric()</td>
+</tr>
+<tr>
+  <td class="method">setup_camera_perspective(1)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;vec3d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/vec3d.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_BITMAP*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9131,6 +9195,7 @@ table td
   "ALLEGRO_BITMAP": [
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/Camera",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/LineRenderBin",
     "Hexagon/ComponentBitmapRenderCreator",
@@ -9458,6 +9523,9 @@ table td
   ],
   "Hexagon/BuildSystem/Build": [
     "Hexagon/BuildSystem/BuildRepository"
+  ],
+  "vec3d": [
+    "Hexagon/Camera"
   ],
   "std/vector<ALLEGRO_BITMAP>": [
     "Hexagon/CodeEditor/CachedLineRenderer",
