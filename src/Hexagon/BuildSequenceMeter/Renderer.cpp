@@ -18,6 +18,7 @@ namespace BuildSequenceMeter
 
 Renderer::Renderer(AllegroFlare::FontBin* font_bin)
    : font_bin(font_bin)
+   , status("not_started")
 {
 }
 
@@ -45,6 +46,11 @@ void Renderer::render()
    // missing step - defaults change in header file(s)
 
    render_rectangle();
+
+   //build_not_started
+   //build_running
+   //build_completed_failed
+   //build_completed_successfully
 
    return;
 }

@@ -5,6 +5,9 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+  - name: status
+    type: std::string
+    init_with: '"not_started"'
 
 
 functions:
@@ -29,6 +32,11 @@ functions:
       // missing step - defaults change in header file(s)
 
       render_rectangle();
+
+      //build_not_started
+      //build_running
+      //build_completed_failed
+      //build_completed_successfully
 
       return;
 
