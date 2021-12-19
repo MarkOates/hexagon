@@ -130,7 +130,8 @@ ALLEGRO_FONT* StageFactory::obtain_component_navigator_font()
          error_message << "StageFactory" << "::" << "obtain_component_navigator_font" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   return font_bin->auto_get("Menlo-Regular.ttf -18");
+   //return font_bin->auto_get("Menlo-Regular.ttf -18");
+   return font_bin->auto_get("Purista Medium.otf -18");
 }
 
 ALLEGRO_FONT* StageFactory::obtain_file_navigator_font()
