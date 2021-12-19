@@ -73,3 +73,4 @@ dependencies:
   - symbol: al_is_ttf_addon_initialized
     headers: [ allegro5/allegro_ttf.h ]
 
+
