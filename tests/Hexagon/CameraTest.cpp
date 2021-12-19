@@ -205,6 +205,36 @@ void _draw_horizontal_pin_lines(float x, float y, float width, float height, flo
 }
 
 
+void _draw_diagonal_pin_lines(float x, float y, float width, float height, float spacing)
+{
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   float thickness = 1.0f;
+   //float x = 0;
+   //float y = 0;
+   //float width = 400;
+   //float height = 300;
+   //float spacing = 10;
+   float slope = 1.0f;
+   float length = 100.0f;
+
+   // horizontal set (lines drawn along the left)
+   int num_horizontal_passes = height / spacing;
+   for (unsigned i=0; i<=num_horizontal_passes; i++)
+   {
+      float offset = i * spacing;
+      al_draw_line(x, y+offset, x+width, y+offset+width*slope, color, thickness);
+   }
+
+   // vertial set (lines drawn along the top)
+   int num_vertical_passes = width / spacing;
+   for (unsigned i=1; i<=num_vertical_passes; i++)
+   {
+      float offset = i * spacing;
+      al_draw_line(x+offset, y, x+offset+height*slope, y+height, color, thickness);
+   }
+}
+
+
 class Hexagon_CameraTest_WithEmptyFixture : public ::testing::Test
 {
 public:
@@ -286,8 +316,9 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
    _draw_horizontal_ruler(0, 0, 500, 10);
    _draw_numbered_horizontal_ruler(obtain_font(), 0, -20, 500, 100);
 
-   _draw_horizontal_pin_lines(0, 0, 400, 300, 10);
-   _draw_vertical_pin_lines(0, 0, 400, 300, 10);
+   //_draw_horizontal_pin_lines(0, 0, 400, 300, 10);
+   //_draw_vertical_pin_lines(0, 0, 400, 300, 10);
+   _draw_diagonal_pin_lines(0, 0, 400, 300, 10);
 
    al_flip_display();
 
