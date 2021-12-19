@@ -208,6 +208,8 @@ void _draw_horizontal_pin_lines(float x, float y, float width, float height, flo
 
 void _draw_diagonal_pin_lines_in_box(float x, float y, float size, float spacing)
 {
+   // This approach is failing.  Need time to step away from the problem.
+
    ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    float thickness = 1.0f;
    float width = size;
@@ -215,11 +217,13 @@ void _draw_diagonal_pin_lines_in_box(float x, float y, float size, float spacing
 
    al_draw_rectangle(x, y, width, height, color, thickness * 2.0);
 
-   float aspect = width / height;
-   float inv_aspect = 1.0 / (width / height);
+   float aspect = height / width;
+   float inv_aspect = 1.0 / (aspect);
 
-   al_draw_line(spacing*0, spacing*0, width * aspect -spacing*0, height * inv_aspect -spacing*0, color, thickness);
+   al_draw_line(spacing*0, spacing*0, width * aspect -spacing*0, height * aspect -spacing*0, color, thickness);
 
+   //int step = 0;
+   //for (unsigned i=0; i<step; i+=step)
    //{
       //al_draw_line(spacing*0, 0, width, height-spacing*0, color, thickness);
       al_draw_line(spacing*1, 0, width, height-spacing*1, color, thickness);
