@@ -444,8 +444,7 @@ TEST(Hexagon_StageFactoryTest, build_component_navigator_initial_place__returns_
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
    Hexagon::StageFactory stage_factory;
 
-   vec3d expected_placement_position =
-     vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   vec3d expected_placement_position = vec3d(1920/2, 1080/2, 0);
    placement3d actual_placement = stage_factory.build_component_navigator_initial_place();
 
    ASSERT_EQ(expected_placement_position, actual_placement.position);
@@ -460,8 +459,7 @@ TEST(Hexagon_StageFactoryTest, build_centered_on_hud_initial_place__returns_the_
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
    Hexagon::StageFactory stage_factory;
 
-   vec3d expected_placement_position =
-     vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   vec3d expected_placement_position = vec3d(1920/2, 1080/2, 0);
    float expected_placement_width = 120;
    float expected_placement_height = 160;
    placement3d actual_placement = stage_factory.build_centered_on_hud_initial_place(

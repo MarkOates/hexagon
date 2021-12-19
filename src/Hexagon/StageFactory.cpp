@@ -55,12 +55,26 @@ namespace Hexagon
 StageFactory::StageFactory(Hexagon::System::Config* config, AllegroFlare::FontBin* font_bin)
    : config(config)
    , font_bin(font_bin)
+   , hud_render_surface_projection_width(1920)
+   , hud_render_surface_projection_height(1080)
 {
 }
 
 
 StageFactory::~StageFactory()
 {
+}
+
+
+float StageFactory::get_hud_render_surface_projection_width()
+{
+   return hud_render_surface_projection_width;
+}
+
+
+float StageFactory::get_hud_render_surface_projection_height()
+{
+   return hud_render_surface_projection_height;
 }
 
 
@@ -255,8 +269,10 @@ StageInterface* StageFactory::create_drawing_box()
 {
    ALLEGRO_DISPLAY *display = get_current_display();
 
-   int width = al_get_display_width(display);
-   int height = al_get_display_height(display);
+   //int width = al_get_display_width(display);
+   int width = get_hud_render_surface_projection_width();
+   //int height = al_get_display_height(display);
+   int height = get_hud_render_surface_projection_height();
 
    Hexagon::UI::DrawingBox *drawing_box = new Hexagon::UI::DrawingBox(font_bin, width, height);
    drawing_box->initialize();
@@ -433,8 +449,11 @@ ALLEGRO_DISPLAY* StageFactory::get_current_display()
 placement3d StageFactory::build_centered_on_hud_initial_place(float width, float height)
 {
    ALLEGRO_DISPLAY *display = get_current_display();
+   float surface_width = get_hud_render_surface_projection_width();
+   float surface_height = get_hud_render_surface_projection_height();
    placement3d result;
-   result.position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   //result.position = vec3d(get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   result.position = vec3d(surface_width/2, surface_height/2, 0);
    result.size = vec3d(width, height, 0);
    result.align = vec3d(0.5, 0.5, 0.5);
    result.scale = vec3d(1.0, 1.0, 1.0);
@@ -445,8 +464,12 @@ placement3d StageFactory::build_centered_on_hud_initial_place(float width, float
 placement3d StageFactory::build_component_navigator_initial_place()
 {
    ALLEGRO_DISPLAY *display = get_current_display();
+   float surface_width = get_hud_render_surface_projection_width();
+   float surface_height = get_hud_render_surface_projection_height();
    placement3d result;
-   result.position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   //result.position = vec3d(get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   result.position = vec3d(surface_width/2, surface_height/2, 0);
+   //placement3d result;
    result.size = vec3d(800, 700, 0);
    result.align = vec3d(0.5, 0.5, 0.5);
    result.scale = vec3d(1.0, 1.0, 1.0);
@@ -456,9 +479,12 @@ placement3d StageFactory::build_component_navigator_initial_place()
 
 placement3d StageFactory::build_file_navigator_initial_place()
 {
-   ALLEGRO_DISPLAY *display = get_current_display();
+   float surface_width = get_hud_render_surface_projection_width();
+   float surface_height = get_hud_render_surface_projection_height();
    placement3d result;
-   result.position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   //result.position = vec3d(get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   result.position = vec3d(surface_width/2, surface_height/2, 0);
+   ALLEGRO_DISPLAY *display = get_current_display();
    result.size = vec3d(500, 600, 0);
    result.align = vec3d(0.5, 0.5, 0);
    result.scale = vec3d(0.8, 0.8, 1.0);
@@ -468,9 +494,12 @@ placement3d StageFactory::build_file_navigator_initial_place()
 
 placement3d StageFactory::build_git_commit_message_input_box_initial_place()
 {
-   ALLEGRO_DISPLAY *display = get_current_display();
-   int surface_width = al_get_display_width(display);
-   int surface_height = al_get_display_height(display);
+   float surface_width = get_hud_render_surface_projection_width();
+   float surface_height = get_hud_render_surface_projection_height();
+
+   //ALLEGRO_DISPLAY *display = get_current_display();
+   //int surface_width = al_get_display_width(display);
+   //int surface_height = al_get_display_height(display);
    placement3d place(surface_width*0.5f, surface_height*0.5f, 0.0);
    place.size = vec3d(600, 25, 0.0);
    place.scale = vec3d(1.5, 1.5, 1.0);
@@ -480,9 +509,11 @@ placement3d StageFactory::build_git_commit_message_input_box_initial_place()
 
 placement3d StageFactory::build_regex_input_box_initial_place()
 {
-   ALLEGRO_DISPLAY *display = get_current_display();
-   int surface_width = al_get_display_width(display);
-   int surface_height = al_get_display_height(display);
+   float surface_width = get_hud_render_surface_projection_width();
+   float surface_height = get_hud_render_surface_projection_height();
+   //ALLEGRO_DISPLAY *display = get_current_display();
+   //int surface_width = al_get_display_width(display);
+   //int surface_height = al_get_display_height(display);
    placement3d place(surface_width*0.5f, surface_height*0.5f, 0.0);
    place.size = vec3d(400, 25, 0.0);
    place.scale = vec3d(1.5, 1.5, 1.0);

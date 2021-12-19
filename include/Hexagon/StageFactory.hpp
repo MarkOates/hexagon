@@ -18,11 +18,15 @@ namespace Hexagon
    private:
       Hexagon::System::Config* config;
       AllegroFlare::FontBin* font_bin;
+      float hud_render_surface_projection_width;
+      float hud_render_surface_projection_height;
 
    public:
       StageFactory(Hexagon::System::Config* config=nullptr, AllegroFlare::FontBin* font_bin=nullptr);
       ~StageFactory();
 
+      float get_hud_render_surface_projection_width();
+      float get_hud_render_surface_projection_height();
       std::string obtain_default_navigator_directory();
       ALLEGRO_COLOR obtain_base_text_color();
       std::string obtain_regex_temp_filename();
