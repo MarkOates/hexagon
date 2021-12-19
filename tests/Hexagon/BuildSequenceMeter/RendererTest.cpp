@@ -16,11 +16,13 @@ class Hexagon_BuildSequenceMeter_RendererTestWithEmptyFixture : public ::testing
 class Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture
 {};
 
+
 TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithEmptyFixture,
    can_be_created_without_blowing_up)
 {
    Hexagon::BuildSequenceMeter::Renderer renderer;
 }
+
 
 TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    render__without_a_font_bin__raises_an_error)
@@ -31,11 +33,13 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
 
+
 TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    render__without_allegro_initialized__raises_an_error)
 {
    // TODO
 }
+
 
 TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    render__will_not_blow_up)
@@ -46,4 +50,5 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    sleep(2);
    SUCCEED();
 }
+
 
