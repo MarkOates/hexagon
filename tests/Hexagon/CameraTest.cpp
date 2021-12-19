@@ -206,6 +206,34 @@ void _draw_horizontal_pin_lines(float x, float y, float width, float height, flo
 }
 
 
+void _draw_diagonal_pin_lines_in_box(float x, float y, float size, float spacing)
+{
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   float thickness = 1.0f;
+   float width = size;
+   float height = size;
+
+   al_draw_rectangle(x, y, width, height, color, thickness * 2.0);
+
+   float aspect = width / height;
+   float inv_aspect = 1.0 / (width / height);
+
+   al_draw_line(spacing*0, spacing*0, width * aspect -spacing*0, height * inv_aspect -spacing*0, color, thickness);
+
+   //{
+      //al_draw_line(spacing*0, 0, width, height-spacing*0, color, thickness);
+      al_draw_line(spacing*1, 0, width, height-spacing*1, color, thickness);
+      al_draw_line(spacing*2, 0, width, height-spacing*2, color, thickness);
+   //}
+
+   {
+      //al_draw_line(0, spacing*0, width-spacing*0, height, color, thickness);
+      al_draw_line(0, spacing*1, width-spacing*1, height, color, thickness);
+      al_draw_line(0, spacing*2, width-spacing*2, height, color, thickness);
+   }
+}
+
+
 void _draw_diagonal_pin_lines(float x, float y, float width, float height, float spacing)
 {
    ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
@@ -224,8 +252,8 @@ void _draw_diagonal_pin_lines(float x, float y, float width, float height, float
    {
       float offset = i * spacing;
       AllegroFlare::vec2d vec = AllegroFlare::vec2d(1, slope).normalized();
-      //al_draw_line(x, y+offset, x+width, y+offset+width*slope, color, thickness);
-      al_draw_line(x, y+offset, x+width*vec.y, y+offset+width*vec.x, color, thickness);
+      al_draw_line(x, y+offset, x+width, y+offset+width*slope, color, thickness);
+      //al_draw_line(x, y+offset, x+width*vec.x, y+offset+width*vec.y, color, thickness);
    }
 
    // vertial set (lines drawn along the top)
@@ -234,8 +262,8 @@ void _draw_diagonal_pin_lines(float x, float y, float width, float height, float
    {
       float offset = i * spacing;
       AllegroFlare::vec2d vec = AllegroFlare::vec2d(1, slope).normalized();
-      //al_draw_line(x+offset, y, x+offset+height*slope, y+height, color, thickness);
-      al_draw_line(x+offset, y, x+offset+height*vec.y, y+height*vec.x, color, thickness);
+      al_draw_line(x+offset, y, x+offset+height*slope, y+height, color, thickness);
+      //al_draw_line(x+offset, y, x+offset+height*vec.x, y+height*vec.y, color, thickness);
    }
 }
 
@@ -323,7 +351,8 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
 
    //_draw_horizontal_pin_lines(0, 0, 400, 300, 10);
    //_draw_vertical_pin_lines(0, 0, 400, 300, 10);
-   _draw_diagonal_pin_lines(0, 0, 400, 300, 10);
+   //_draw_diagonal_pin_lines(0, 0, 400, 300, 10);
+   _draw_diagonal_pin_lines_in_box(0, 0, 400, 10);
 
    al_flip_display();
 
