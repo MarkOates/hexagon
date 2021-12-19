@@ -17,7 +17,7 @@ namespace Hexagon
          std::string status;
 
       public:
-         Renderer(AllegroFlare::FontBin* font_bin=nullptr);
+         Renderer(AllegroFlare::FontBin* font_bin=nullptr, std::string status="not_started");
          ~Renderer();
 
          void render();

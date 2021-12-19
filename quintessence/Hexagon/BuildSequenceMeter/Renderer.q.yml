@@ -8,6 +8,7 @@ properties:
   - name: status
     type: std::string
     init_with: '"not_started"'
+    constructor_arg: true
 
 
 functions:

@@ -841,6 +841,7 @@
   "php/file_get_contents": [
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/Hud",
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/ProjectFactory",
     "Hexagon/StageFactory",

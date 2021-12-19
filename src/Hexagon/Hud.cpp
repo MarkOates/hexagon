@@ -482,8 +482,10 @@ void Hud::draw_build_sequence_meter()
    std::string BUILD_STATUS_SIGNALING_FILENAME =
       "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/build_signal.txt";
    std::string build_sequence_status = php::file_get_contents(BUILD_STATUS_SIGNALING_FILENAME);
-   Hexagon::BuildSequenceMeterr::Renderer build_sequence_meter_renderer(display, &focus_timer_bar);
+
+   Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(&fonts, build_sequence_status);
    build_sequence_meter_renderer.render();
+
    return;
 }
 

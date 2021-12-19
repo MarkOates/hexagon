@@ -19,9 +19,9 @@ namespace BuildSequenceMeter
 {
 
 
-Renderer::Renderer(AllegroFlare::FontBin* font_bin)
+Renderer::Renderer(AllegroFlare::FontBin* font_bin, std::string status)
    : font_bin(font_bin)
-   , status("not_started")
+   , status(status)
 {
 }
 
