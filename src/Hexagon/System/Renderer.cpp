@@ -59,16 +59,11 @@ bool Renderer::render()
          throw std::runtime_error(error_message.str());
       }
    al_clear_to_color(*get_backfill_color());
-   //al_clear_to_color(al_color_html("5b5c60"));
 
    system->camera.setup_camera_perspective(al_get_backbuffer(display));
    al_clear_depth_buffer(1000);
 
    global::profiler.start("all stages");
-
-   //ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
-   //int cell_width = al_get_text_width(font, " ");
-   //int cell_height = al_get_font_line_height(font);
 
    for (auto &stage : system->stages)
    {
@@ -79,7 +74,6 @@ bool Renderer::render()
       global::profiler.start(profile_timer_element_label.str());
 
       bool is_focused = (system->get_frontmost_stage() == stage);
-      //ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
 
       stage->render();
 
