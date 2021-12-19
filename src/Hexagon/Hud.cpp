@@ -6,6 +6,8 @@
 #include <allegro5/allegro_primitives.h>
 #include <AllegroFlare/Color.hpp>
 #include <Hexagon/shared_globals.hpp>
+#include <Hexagon/BuildSequenceMeter/Renderer.hpp>
+#include <allegro_flare/useful_php.h>
 #include <algorithm>
 #include <allegro_flare/placement3d.h>
 #include <allegro5/allegro_font.h>
@@ -472,6 +474,16 @@ void Hud::draw_focus_timer_bar()
 {
    Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &focus_timer_bar);
    focus_timer_bar_renderer.render();
+   return;
+}
+
+void Hud::draw_build_sequence_meter()
+{
+   std::string BUILD_STATUS_SIGNALING_FILENAME =
+      "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/build_signal.txt";
+   std::string build_sequence_status = php::file_get_contents(BUILD_STATUS_SIGNALING_FILENAME);
+   Hexagon::BuildSequenceMeterr::Renderer build_sequence_meter_renderer(display, &focus_timer_bar);
+   build_sequence_meter_renderer.render();
    return;
 }
 

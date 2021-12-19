@@ -266,6 +266,7 @@
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/CodeEditor/CursorRenderer",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
@@ -321,6 +322,7 @@
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/LineRenderBin",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
@@ -1035,6 +1037,9 @@
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
     "Hexagon/System/Renderer"
+  ],
+  "Hexagon/BuildSequenceMeter/Renderer": [
+    "Hexagon/Hud"
   ],
   "std/vector<std/tuple<std/string, std/string, placement3d>>": [
     "Hexagon/Layout",

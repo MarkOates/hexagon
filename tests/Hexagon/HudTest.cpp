@@ -190,7 +190,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(2);
+   //sleep(2);
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,

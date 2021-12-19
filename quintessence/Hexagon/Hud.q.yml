@@ -316,6 +316,20 @@ functions:
     body_dependency_symbols: []
 
 
+  - name: draw_build_sequence_meter
+    type: void
+    body: |
+      std::string BUILD_STATUS_SIGNALING_FILENAME =
+         "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/build_signal.txt";
+      std::string build_sequence_status = php::file_get_contents(BUILD_STATUS_SIGNALING_FILENAME);
+      Hexagon::BuildSequenceMeterr::Renderer build_sequence_meter_renderer(display, &focus_timer_bar);
+      build_sequence_meter_renderer.render();
+      return;
+    body_dependency_symbols:
+      - Hexagon::BuildSequenceMeter::Renderer
+      - php::file_get_contents
+
+
   - name: draw_packets
     type: void
     body: |
@@ -589,6 +603,8 @@ dependencies:
     headers: [ vector, Hexagon/Packet.hpp ]
   - symbol: Hexagon::PacketRenderer
     headers: [ Hexagon/PacketRenderer.hpp ]
+  - symbol: php::file_get_contents
+    headers: [ allegro_flare/useful_php.h ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
   - symbol: std::vector<StageInterface *>*
@@ -599,4 +615,7 @@ dependencies:
     headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
   - symbol: Hexagon::System::Config*
     headers: [ Hexagon/System/Config.hpp ]
+  - symbol: Hexagon::BuildSequenceMeter::Renderer
+    headers: [ Hexagon/BuildSequenceMeter/Renderer.hpp ]
+
 
