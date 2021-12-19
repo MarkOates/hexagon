@@ -63,6 +63,7 @@ public:
    int get_display_default_height();
    float get_default_camera_stepback();
    float get_default_code_editor_stage_width();
+   float get_default_code_editor_stage_height();
    std::string get_current_project_directory();
    std::string get_global_font_str();
 

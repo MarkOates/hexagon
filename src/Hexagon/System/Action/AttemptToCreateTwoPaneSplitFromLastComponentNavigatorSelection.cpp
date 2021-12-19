@@ -22,7 +22,7 @@ namespace Action
 std::vector<StageInterface *> AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::dummy_stages = {};
 
 
-AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection(std::string project_path, std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages, Hexagon::StageFactory* stage_factory, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection(std::string project_path, std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages, Hexagon::StageFactory* stage_factory, int code_editor_width, int code_editor_height, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : ::Action("System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection", ActionData())
    , project_path(project_path)
    , last_component_navigator_selection(last_component_navigator_selection)
@@ -31,6 +31,7 @@ AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::AttemptToCreateT
    , stages(stages)
    , stage_factory(stage_factory)
    , code_editor_width(code_editor_width)
+   , code_editor_height(code_editor_height)
    , text_color(text_color)
    , backfill_color(backfill_color)
    , create_as_advanced_code_editor(false)
@@ -73,6 +74,12 @@ int AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::get_code_edi
 }
 
 
+int AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::get_code_editor_height()
+{
+   return code_editor_height;
+}
+
+
 bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::get_create_as_advanced_code_editor()
 {
    return create_as_advanced_code_editor;
@@ -106,11 +113,12 @@ bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::execute()
 
    float width_scale_of_halfwidth = 1.0; //0.6180339;
    float width = get_code_editor_width(); //display_default_width/2 * width_scale_of_halfwidth;
+   float height = get_code_editor_height(); //display_default_width/2 * width_scale_of_halfwidth;
 
    //if (!test_file_contents.empty())
    {
      placement3d place(0, 0, 0);
-     place.size = vec3d(width, display_default_height, 0.0);
+     place.size = vec3d(width, height, 0.0);
      place.align = vec3d(0.0, 0.5, 0.0);
      place.scale = vec3d(1.0, 1.0, 0.0);
 
@@ -149,7 +157,7 @@ bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::execute()
    //if (!file_contents.empty())
    {
      placement3d place(0, 0, 0);
-     place.size = vec3d(width, display_default_height, 0.0);
+     place.size = vec3d(width, height, 0.0);
      place.align = vec3d(1.0, 0.5, 0.0);
      place.scale = vec3d(1.0, 1.0, 0.0);
 

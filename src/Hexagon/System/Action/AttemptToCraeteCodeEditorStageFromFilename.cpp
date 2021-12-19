@@ -19,12 +19,13 @@ namespace Action
 {
 
 
-AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFilename(std::string filename, int display_default_width, int display_default_height, int stage_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color, std::vector<StageInterface *>* stages, Hexagon::StageFactory* stage_factory)
+AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFilename(std::string filename, int display_default_width, int display_default_height, int stage_width, int stage_height, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color, std::vector<StageInterface *>* stages, Hexagon::StageFactory* stage_factory)
    : ::Action("System::Action::AttemptToCreateCodeEditorStageFromFilename", ActionData())
    , filename(filename)
    , display_default_width(display_default_width)
    , display_default_height(display_default_height)
    , stage_width(stage_width)
+   , stage_height(stage_height)
    , text_color(text_color)
    , backfill_color(backfill_color)
    , stages(stages)
@@ -56,6 +57,12 @@ int AttemptToCraeteCodeEditorStageFromFilename::get_stage_width()
 }
 
 
+int AttemptToCraeteCodeEditorStageFromFilename::get_stage_height()
+{
+   return stage_height;
+}
+
+
 bool AttemptToCraeteCodeEditorStageFromFilename::execute()
 {
    if (!(stages))
@@ -78,7 +85,7 @@ bool AttemptToCraeteCodeEditorStageFromFilename::execute()
    }
 
    placement3d place(0, 0, 0);
-   place.size = vec3d(get_stage_width(), get_display_default_height(), 0.0);
+   place.size = vec3d(get_stage_width(), get_stage_height(), 0.0);
    place.align = vec3d(0.5, 0.5, 0.0);
    place.scale = vec3d(0.9, 0.9, 0.0);
 

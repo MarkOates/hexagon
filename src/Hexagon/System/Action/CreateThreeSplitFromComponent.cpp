@@ -22,7 +22,7 @@ namespace Action
 std::vector<StageInterface *> CreateThreeSplitFromComponent::dummy_stages = {};
 
 
-CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project_path, Blast::Project::Component component, std::vector<StageInterface *>& stages, Hexagon::StageFactory* stage_factory, int display_default_width, int display_default_height, int code_editor_width, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project_path, Blast::Project::Component component, std::vector<StageInterface *>& stages, Hexagon::StageFactory* stage_factory, int display_default_width, int display_default_height, int code_editor_width, int code_editor_height, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : ::Action("System::Action::CreateThreeSplitFromComponent", ActionData())
    , project_path(project_path)
    , component(component)
@@ -31,6 +31,7 @@ CreateThreeSplitFromComponent::CreateThreeSplitFromComponent(std::string project
    , display_default_width(display_default_width)
    , display_default_height(display_default_height)
    , code_editor_width(code_editor_width)
+   , code_editor_height(code_editor_height)
    , text_color(text_color)
    , backfill_color(backfill_color)
    , create_as_advanced_code_editor(false)
@@ -73,6 +74,12 @@ int CreateThreeSplitFromComponent::get_code_editor_width()
 }
 
 
+int CreateThreeSplitFromComponent::get_code_editor_height()
+{
+   return code_editor_height;
+}
+
+
 bool CreateThreeSplitFromComponent::get_create_as_advanced_code_editor()
 {
    return create_as_advanced_code_editor;
@@ -95,8 +102,9 @@ bool CreateThreeSplitFromComponent::place_stage(std::string filename, std::strin
       }
    bool file_exists = Blast::FileExistenceChecker(filename).exists();
    float width = get_code_editor_width();
+   float height = get_code_editor_height();
    placement3d place(x, 0, 0);
-   place.size = vec3d(width, display_default_height, 0.0);
+   place.size = vec3d(width, height, 0.0);
    place.align = vec3d(align_x, 0.5, 0.0);
    place.scale = vec3d(1.0, 1.0, 0.0);
 

@@ -194,7 +194,13 @@ float System::get_default_camera_stepback()
 
 float System::get_default_code_editor_stage_width()
 {
-   return 2430/2 + 20;
+   return 1235; //2430/2 + 20;
+}
+
+
+float System::get_default_code_editor_stage_height()
+{
+   return 1380; //2430/2 + 20;
 }
 
 
@@ -1272,6 +1278,7 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
          get_display_default_width(),
          get_display_default_height(),
          get_default_code_editor_stage_width(),
+         get_default_code_editor_stage_height(),
          text_color,
          backfill_color,
          &stages,
@@ -1356,6 +1363,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
          get_display_default_width(),
          get_display_default_height(),
          get_default_code_editor_stage_width(),
+         get_default_code_editor_stage_height(),
          config.get_base_text_color(),
          config.get_backfill_color()
       );
@@ -1380,6 +1388,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
             stages,
             &stage_factory,
             get_default_code_editor_stage_width(),
+            get_default_code_editor_stage_height(),
             config.get_base_text_color(),
             config.get_backfill_color()
          );
@@ -1542,6 +1551,7 @@ bool System::open_hexagon_config_file()
       al_get_display_width(display),
       al_get_display_height(display),
       get_default_code_editor_stage_width(),
+      get_default_code_editor_stage_height(),
       config.get_base_text_color(),
       config.get_backfill_color(),
       &stages,
