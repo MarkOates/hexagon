@@ -222,6 +222,7 @@ functions:
       //float hwidth = 1920/2;
       //float hheight = 1080/2;
       //set_orthographic_projection(hud_screen_sub_bitmap, -hwidth, -hheight, hwidth, hheight);
+      //set_orthographic_projection(hud_screen_sub_bitmap, 0, 0, 1920, 1080);
 
       initialized = true;
       return;

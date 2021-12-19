@@ -51,8 +51,8 @@ public:
       ASSERT_EQ(true, al_init_primitives_addon());
       ASSERT_EQ(true, al_init_font_addon());
       ASSERT_EQ(true, al_init_ttf_addon());
-      display = al_create_display(1280*2, 720*2);
-      //display = al_create_display(1920 / 2 * 4, 1080 / 2 * 4);
+      //display = al_create_display(1280*2, 720*2);
+      display = al_create_display(1920 / 2 * 4, 1080 / 2 * 4);
       font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
    }
