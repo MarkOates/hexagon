@@ -2,6 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
+#include <allegro5/allegro.h>
 #include <string>
 
 
@@ -21,6 +22,7 @@ namespace Hexagon
 
          void render();
          void render_rectangle(std::string status="incomplete");
+         ALLEGRO_FONT* obtain_font();
       };
    }
 }

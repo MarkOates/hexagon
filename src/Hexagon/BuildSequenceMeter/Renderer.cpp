@@ -1,11 +1,14 @@
 
 
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
+#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 
@@ -45,7 +48,11 @@ void Renderer::render()
 
    // missing step - defaults change in header file(s)
 
-   render_rectangle();
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   ALLEGRO_FONT *font = obtain_font();
+   al_draw_text(font, color, 1920 - 30, 1080 * 0.5, ALLEGRO_ALIGN_RIGHT, status.c_str());
+
+   //render_rectangle();
 
    //build_not_started
    //build_running
@@ -89,6 +96,17 @@ void Renderer::render_rectangle(std::string status)
 
    al_draw_filled_rectangle(0, 0, 100, 100, ALLEGRO_COLOR{1, 1, 1, 1});
    return;
+}
+
+ALLEGRO_FONT* Renderer::obtain_font()
+{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "obtain_font" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return font_bin->auto_get("Purista Medium.otf -20");
 }
 } // namespace BuildSequenceMeter
 } // namespace Hexagon
