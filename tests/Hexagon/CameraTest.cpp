@@ -171,15 +171,15 @@ void _draw_numbered_horizontal_ruler(ALLEGRO_FONT *font, float x, float y, float
 }
 
 
-void _draw_vertical_pin_lines()
+void _draw_vertical_pin_lines(float x, float y, float width, float height, float spacing)
 {
    ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    float thickness = 1.0f;
-   float x = 0;
-   float y = 0;
-   float width = 400;
-   float height = 300;
-   float spacing = 10;
+   //float x = 0;
+   //float y = 0;
+   //float width = 400;
+   //float height = 300;
+   //float spacing = 10;
 
    for (unsigned i=0; i<=width; i+=spacing)
    {
@@ -188,15 +188,15 @@ void _draw_vertical_pin_lines()
 }
 
 
-void _draw_horizontal_pin_lines()
+void _draw_horizontal_pin_lines(float x, float y, float width, float height, float spacing)
 {
    ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    float thickness = 1.0f;
-   float x = 0;
-   float y = 0;
-   float width = 400;
-   float height = 300;
-   float spacing = 10;
+   //float x = 0;
+   //float y = 0;
+   //float width = 400;
+   //float height = 300;
+   //float spacing = 10;
 
    for (unsigned i=0; i<=height; i+=spacing)
    {
@@ -286,8 +286,8 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
    _draw_horizontal_ruler(0, 0, 500, 10);
    _draw_numbered_horizontal_ruler(obtain_font(), 0, -20, 500, 100);
 
-   _draw_horizontal_pin_lines();
-   _draw_vertical_pin_lines();
+   _draw_horizontal_pin_lines(0, 0, 400, 300, 10);
+   _draw_vertical_pin_lines(0, 0, 400, 300, 10);
 
    al_flip_display();
 
