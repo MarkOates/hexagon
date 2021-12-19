@@ -171,6 +171,40 @@ void _draw_numbered_horizontal_ruler(ALLEGRO_FONT *font, float x, float y, float
 }
 
 
+void _draw_vertical_pin_lines()
+{
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   float thickness = 1.0f;
+   float x = 0;
+   float y = 0;
+   float width = 400;
+   float height = 300;
+   float spacing = 10;
+
+   for (unsigned i=0; i<=width; i+=spacing)
+   {
+      al_draw_line(x+i, y, x+i, y+height, color, thickness);
+   }
+}
+
+
+void _draw_horizontal_pin_lines()
+{
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   float thickness = 1.0f;
+   float x = 0;
+   float y = 0;
+   float width = 400;
+   float height = 300;
+   float spacing = 10;
+
+   for (unsigned i=0; i<=height; i+=spacing)
+   {
+      al_draw_line(x, y+i, x+width, y+i, color, thickness);
+   }
+}
+
+
 class Hexagon_CameraTest_WithEmptyFixture : public ::testing::Test
 {
 public:
@@ -247,10 +281,13 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
 
    //_draw_crosshair_grid(-500, -500, 1000, 1000, 100);
 
-   _draw_vertical_ruler(0, 0, 500, 20);
-   _draw_numbered_vertical_ruler(obtain_font(), -20, 0, 500, 80);
-   _draw_horizontal_ruler(0, 0, 500, 20);
-   _draw_numbered_horizontal_ruler(obtain_font(), 0, -20, 500, 80);
+   _draw_vertical_ruler(0, 0, 500, 10);
+   _draw_numbered_vertical_ruler(obtain_font(), -20, 0, 500, 100);
+   _draw_horizontal_ruler(0, 0, 500, 10);
+   _draw_numbered_horizontal_ruler(obtain_font(), 0, -20, 500, 100);
+
+   _draw_horizontal_pin_lines();
+   _draw_vertical_pin_lines();
 
    al_flip_display();
 

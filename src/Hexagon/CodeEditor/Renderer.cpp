@@ -341,7 +341,11 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
             float null_space_y2 = -first_line_number * cell_height;
                          //(line_number-first_line_number)*cell_height,
             //ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
-            ////ALLEGRO_COLOR null_space_color = AllegroFlare::color::mix(al_color_name("firebrick"), al_color_name("black"), 0.5);;
+            ////ALLEGRO_COLOR null_space_color = AllegroFlare::color::mix(
+            //   al_color_name("firebrick"),
+            //   al_color_name("black"),
+            //   0.5
+            //);
             //ALLEGRO_COLOR null_space_color = AllegroFlare::color::color(epic_green_color, 0.03);
             al_draw_filled_rectangle(null_space_x1, null_space_y1, null_space_x2, null_space_y2, null_space_color);
          }
@@ -353,13 +357,25 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
          float null_space_x2 = place.size.x;
          float null_space_y2 = place.size.y;
          //ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
-         ////ALLEGRO_COLOR null_space_color = AllegroFlare::color::mix(al_color_name("firebrick"), al_color_name("black"), 0.5);;
+         ////ALLEGRO_COLOR null_space_color = AllegroFlare::color::mix(
+         //  al_color_name("firebrick"),
+         //  al_color_name("black"),
+         //  0.5
+         //);
          //ALLEGRO_COLOR null_space_color = AllegroFlare::color::color(epic_green_color, 0.03);
          al_draw_filled_rectangle(null_space_x1, null_space_y1, null_space_x2, null_space_y2, null_space_color);
       }
    }
 
-   Hexagon::CodeEditor::CursorRenderer cursor_renderer(cursor_color, cursor_x, _cursor_y, _cell_width, cell_height, mode, is_focused);
+   Hexagon::CodeEditor::CursorRenderer cursor_renderer(
+      cursor_color,
+      cursor_x,
+      _cursor_y,
+      _cell_width,
+      cell_height,
+      mode,
+      is_focused
+   );
    cursor_renderer.render();
 
 
