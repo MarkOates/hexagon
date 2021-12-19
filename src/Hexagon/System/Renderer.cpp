@@ -66,9 +66,9 @@ bool Renderer::render()
 
    global::profiler.start("all stages");
 
-   ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
-   int cell_width = al_get_text_width(font, " ");
-   int cell_height = al_get_font_line_height(font);
+   //ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
+   //int cell_width = al_get_text_width(font, " ");
+   //int cell_height = al_get_font_line_height(font);
 
    for (auto &stage : system->stages)
    {
@@ -79,7 +79,7 @@ bool Renderer::render()
       global::profiler.start(profile_timer_element_label.str());
 
       bool is_focused = (system->get_frontmost_stage() == stage);
-      ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
+      //ALLEGRO_FONT *font = system->font_bin[system->get_global_font_str()];
 
       stage->render();
 
