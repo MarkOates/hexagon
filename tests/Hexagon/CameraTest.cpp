@@ -6,6 +6,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <AllegroFlare/FontBin.hpp>
 #include <string>
+#include <AllegroFlare/Vec2D.hpp>
 
 
 void _draw_grid(float x, float y, float width, float height, float spacing)
@@ -222,7 +223,9 @@ void _draw_diagonal_pin_lines(float x, float y, float width, float height, float
    for (unsigned i=0; i<=num_horizontal_passes; i++)
    {
       float offset = i * spacing;
-      al_draw_line(x, y+offset, x+width, y+offset+width*slope, color, thickness);
+      AllegroFlare::vec2d vec = AllegroFlare::vec2d(1, slope).normalized();
+      //al_draw_line(x, y+offset, x+width, y+offset+width*slope, color, thickness);
+      al_draw_line(x, y+offset, x+width*vec.y, y+offset+width*vec.x, color, thickness);
    }
 
    // vertial set (lines drawn along the top)
@@ -230,7 +233,9 @@ void _draw_diagonal_pin_lines(float x, float y, float width, float height, float
    for (unsigned i=1; i<=num_vertical_passes; i++)
    {
       float offset = i * spacing;
-      al_draw_line(x+offset, y, x+offset+height*slope, y+height, color, thickness);
+      AllegroFlare::vec2d vec = AllegroFlare::vec2d(1, slope).normalized();
+      //al_draw_line(x+offset, y, x+offset+height*slope, y+height, color, thickness);
+      al_draw_line(x+offset, y, x+offset+height*vec.y, y+height*vec.x, color, thickness);
    }
 }
 
