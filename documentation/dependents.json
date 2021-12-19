@@ -464,6 +464,7 @@
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/PacketRenderer",
     "Hexagon/StageFactory",
     "Hexagon/TitleScreen",
     "Hexagon/UI/DrawingBox",

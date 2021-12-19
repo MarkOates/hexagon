@@ -512,7 +512,7 @@ void Hud::draw_packets()
    {
       place.start_transform();
 
-      Hexagon::PacketRenderer packet_renderer(&packet, packet_text_font, place.size.x, place.size.y);
+      Hexagon::PacketRenderer packet_renderer(&fonts, &packet, packet_text_font, place.size.x, place.size.y);
       packet_renderer.render();
 
       place.restore_transform();

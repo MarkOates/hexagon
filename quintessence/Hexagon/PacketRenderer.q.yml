@@ -1,6 +1,10 @@
 properties:
 
 
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
   - name: packet
     type: Hexagon::Packet*
     init_with: nullptr
@@ -23,7 +27,7 @@ functions:
 
 
   - name: render
-    guards: [ packet, font, al_is_primitives_addon_initialized() ]
+    guards: [ font_bin, packet, font, al_is_primitives_addon_initialized() ]
     body: |
       render_window();
       render_text();
@@ -126,4 +130,7 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: std::vector<std::tuple<std::string, std::string>>
     headers: [ vector, tuple, string ]
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
+
 

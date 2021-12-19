@@ -9,6 +9,8 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/placement3d.h>
 
+#define FONT_FIXTURES_FOLDER "/Users/markoates/Repos/hexagon/bin/programs/data/fonts"
+
 class Hexagon_Elements_PacketRendererTest_WithEmptyFixture : public ::testing::Test
 {
 public:
@@ -21,11 +23,13 @@ public:
    static std::string FONT_PATH;
    ALLEGRO_DISPLAY* display;
    ALLEGRO_FONT* font;
+   AllegroFlare::FontBin font_bin;
 
 public:
    Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture()
       : display(nullptr)
       , font(nullptr)
+      , font_bin()
    {}
 
    virtual void SetUp() override
@@ -37,12 +41,14 @@ public:
       ASSERT_EQ(true, al_init_primitives_addon());
       display = al_create_display(1280*2, 720*2);
       font = al_load_font(FONT_PATH.c_str(), -16, 0);
+      font_bin.set_full_path(FONT_FIXTURES_FOLDER);
       al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
    }
 
    virtual void TearDown() override
    {
       if (font) al_destroy_font(font);
+      font_bin.clear();
       al_shutdown_ttf_addon();
       al_destroy_display(display);
       al_uninstall_system();
@@ -80,6 +86,12 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture,
 }
 
 
+TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture, render__without_a_font_bin__raises_an_exception)
+{
+   //TODO
+}
+
+
 TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
    render__will_render_the_packet)
 {
@@ -91,7 +103,7 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
 
    place.start_transform();
 
-   Hexagon::PacketRenderer packet_renderer(&packet, font, place.size.x, place.size.y);
+   Hexagon::PacketRenderer packet_renderer(&font_bin, &packet, font, place.size.x, place.size.y);
    packet_renderer.render();
 
    place.restore_transform();

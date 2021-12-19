@@ -17,8 +17,9 @@ namespace Hexagon
 {
 
 
-PacketRenderer::PacketRenderer(Hexagon::Packet* packet, ALLEGRO_FONT* font, float width, float height)
-   : packet(packet)
+PacketRenderer::PacketRenderer(AllegroFlare::FontBin* font_bin, Hexagon::Packet* packet, ALLEGRO_FONT* font, float width, float height)
+   : font_bin(font_bin)
+   , packet(packet)
    , font(font)
    , width(width)
    , height(height)
@@ -33,6 +34,12 @@ PacketRenderer::~PacketRenderer()
 
 void PacketRenderer::render()
 {
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    if (!(packet))
       {
          std::stringstream error_message;
