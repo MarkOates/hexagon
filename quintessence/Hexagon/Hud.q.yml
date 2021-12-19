@@ -131,6 +131,16 @@ properties:
     getter: true
     setter: true
     constructor_arg: true
+  - name: surface_projection_width
+    type: float
+    init_with: 1920
+    getter: true
+    setter: true
+  - name: surface_projection_height
+    type: float
+    init_with: 1080
+    getter: true
+    setter: true
   - name: stages
     type: std::vector<StageInterface *>*
     init_with: nullptr
@@ -222,7 +232,13 @@ functions:
       //float hwidth = 1920/2;
       //float hheight = 1080/2;
       //set_orthographic_projection(hud_screen_sub_bitmap, -hwidth, -hheight, hwidth, hheight);
-      //set_orthographic_projection(hud_screen_sub_bitmap, 0, 0, 1920, 1080);
+      set_orthographic_projection(
+         hud_screen_sub_bitmap,
+         0,
+         0,
+         get_surface_projection_width(),
+         get_surface_projection_height()
+      );
 
       initialized = true;
       return;
@@ -251,7 +267,7 @@ functions:
     body: |
       ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
       ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
-      float display_center_x = al_get_display_width(display) / 2;
+      float display_center_x = get_surface_projection_width() / 2;
       int y_position = 20;
 
       al_draw_text(obtain_title_font(),
@@ -263,7 +279,6 @@ functions:
       return;
     body_dependency_symbols:
       - al_draw_rectangle
-      - al_get_display_width
       - AllegroFlare::color::mix
 
 
@@ -304,7 +319,7 @@ functions:
   - name: draw_packets
     type: void
     body: |
-      int frame_height = al_get_bitmap_height(screen_sub_bitmap);
+      int frame_height = get_surface_projection_height();
 
       float x = left_column_x - 5;
       float y = frame_height - 60;
@@ -355,8 +370,8 @@ functions:
     guards: [ initialized ]
     body: |
       int y_cursor = 0;
-      int frame_width = al_get_bitmap_width(screen_sub_bitmap);
-      int frame_height = al_get_bitmap_height(screen_sub_bitmap);
+      int frame_width = get_surface_projection_width();
+      int frame_height = get_surface_projection_height();
 
       ALLEGRO_STATE previous_target_bitmap_state;
       al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
@@ -464,8 +479,8 @@ functions:
       {
          al_draw_line(0,
                       0,
-                      al_get_display_width(display),
-                      al_get_display_height(display),
+                      get_surface_projection_width(),
+                      get_surface_projection_height(),
                       al_color_name("red"),
                       3.0);
       }

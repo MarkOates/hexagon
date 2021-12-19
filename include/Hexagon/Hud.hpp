@@ -43,6 +43,8 @@ namespace Hexagon
       bool render_focus_timer_bar;
       bool draw_notifications;
       float left_column_x;
+      float surface_projection_width;
+      float surface_projection_height;
       std::vector<StageInterface *>* stages;
       std::string global_font_str;
 
@@ -69,6 +71,8 @@ namespace Hexagon
       void set_render_focus_timer_bar(bool render_focus_timer_bar);
       void set_draw_notifications(bool draw_notifications);
       void set_left_column_x(float left_column_x);
+      void set_surface_projection_width(float surface_projection_width);
+      void set_surface_projection_height(float surface_projection_height);
       void set_stages(std::vector<StageInterface *>* stages);
       void set_global_font_str(std::string global_font_str);
       std::vector<std::string> get_notifications();
@@ -86,6 +90,8 @@ namespace Hexagon
       bool get_render_focus_timer_bar();
       bool get_draw_notifications();
       float get_left_column_x();
+      float get_surface_projection_width();
+      float get_surface_projection_height();
       Hexagon::Powerbar::Powerbar &get_powerbar_ref();
       Hexagon::FocusTimerBar::FocusTimerBar &get_focus_timer_bar_ref();
       static AllegroFlare::FontBin& get_dummy_font_bin();

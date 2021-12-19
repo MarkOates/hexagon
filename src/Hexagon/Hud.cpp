@@ -4,7 +4,6 @@
 #include <stdexcept>
 #include <sstream>
 #include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro.h>
 #include <AllegroFlare/Color.hpp>
 #include <Hexagon/shared_globals.hpp>
 #include <algorithm>
@@ -55,6 +54,8 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , render_focus_timer_bar(render_focus_timer_bar)
    , draw_notifications(draw_notifications)
    , left_column_x(left_column_x)
+   , surface_projection_width(1920)
+   , surface_projection_height(1080)
    , stages(nullptr)
    , global_font_str("unset-global_font_str")
 {
@@ -180,6 +181,18 @@ void Hud::set_left_column_x(float left_column_x)
 }
 
 
+void Hud::set_surface_projection_width(float surface_projection_width)
+{
+   this->surface_projection_width = surface_projection_width;
+}
+
+
+void Hud::set_surface_projection_height(float surface_projection_height)
+{
+   this->surface_projection_height = surface_projection_height;
+}
+
+
 void Hud::set_stages(std::vector<StageInterface *>* stages)
 {
    this->stages = stages;
@@ -282,6 +295,18 @@ float Hud::get_left_column_x()
 }
 
 
+float Hud::get_surface_projection_width()
+{
+   return surface_projection_width;
+}
+
+
+float Hud::get_surface_projection_height()
+{
+   return surface_projection_height;
+}
+
+
 Hexagon::Powerbar::Powerbar &Hud::get_powerbar_ref()
 {
    return powerbar;
@@ -362,7 +387,13 @@ void Hud::initialize()
    //float hwidth = 1920/2;
    //float hheight = 1080/2;
    //set_orthographic_projection(hud_screen_sub_bitmap, -hwidth, -hheight, hwidth, hheight);
-   //set_orthographic_projection(hud_screen_sub_bitmap, 0, 0, 1920, 1080);
+   set_orthographic_projection(
+      hud_screen_sub_bitmap,
+      0,
+      0,
+      get_surface_projection_width(),
+      get_surface_projection_height()
+   );
 
    initialized = true;
    return;
@@ -405,7 +436,7 @@ void Hud::draw_current_title_text()
 {
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
-   float display_center_x = al_get_display_width(display) / 2;
+   float display_center_x = get_surface_projection_width() / 2;
    int y_position = 20;
 
    al_draw_text(obtain_title_font(),
@@ -446,7 +477,7 @@ void Hud::draw_focus_timer_bar()
 
 void Hud::draw_packets()
 {
-   int frame_height = al_get_bitmap_height(screen_sub_bitmap);
+   int frame_height = get_surface_projection_height();
 
    float x = left_column_x - 5;
    float y = frame_height - 60;
@@ -500,8 +531,8 @@ void Hud::draw()
          throw std::runtime_error(error_message.str());
       }
    int y_cursor = 0;
-   int frame_width = al_get_bitmap_width(screen_sub_bitmap);
-   int frame_height = al_get_bitmap_height(screen_sub_bitmap);
+   int frame_width = get_surface_projection_width();
+   int frame_height = get_surface_projection_height();
 
    ALLEGRO_STATE previous_target_bitmap_state;
    al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
@@ -609,8 +640,8 @@ void Hud::draw()
    {
       al_draw_line(0,
                    0,
-                   al_get_display_width(display),
-                   al_get_display_height(display),
+                   get_surface_projection_width(),
+                   get_surface_projection_height(),
                    al_color_name("red"),
                    3.0);
    }
