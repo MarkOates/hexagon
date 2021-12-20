@@ -54,11 +54,12 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
 TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    render__will_draw_the_build_stages)
 {
+   placement2d place{1920 - 60, 1080 / 2, 90, 200};
    std::vector<std::pair<std::string, std::string>> build_stages = {
-     { "started", "not_started" },
-     { "generating_sources_files_from_quintessence", "not_started" },
-     { "building_component_object_files", "not_started" },
-     { "delete_focused_component_test_object_file_and_test_executable", "not_started" },
+     { "started", "finished" },
+     { "generating_sources_files_from_quintessence", "finished" },
+     { "building_component_object_files", "finished" },
+     { "delete_focused_component_test_object_file_and_test_executable", "running" },
      { "build_focused_component_test_object_file_and_test_executable", "not_started" },
      { "run_test_for_focused_component", "not_started" },
      { "make_all_programs", "not_started" },
@@ -66,9 +67,12 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
      { "signal_component_built_and_integrated", "not_started" },
      { "completed", "not_started" },
    };
+   Hexagon::BuildSequenceMeter::Renderer renderer(&get_font_bin_ref(), "not_started", build_stages, place);
 
-   Hexagon::BuildSequenceMeter::Renderer renderer(&get_font_bin_ref(), "not_started", build_stages);
+   place.start_transform();
    renderer.render();
+   place.restore_transform();
+
    al_flip_display();
    sleep(2);
    SUCCEED();

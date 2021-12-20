@@ -9,6 +9,9 @@
 #include <allegro5/allegro_primitives.h>
 #include <stdexcept>
 #include <sstream>
+#include <map>
+#include <string>
+#include <allegro5/allegro_color.h>
 #include <stdexcept>
 #include <sstream>
 
@@ -42,14 +45,15 @@ void Renderer::render()
    int num_stages = stages.size();
    float box_height = 40;
    float box_width = 90;
-   float box_spacing = 20;
+   float box_spacing = 40;
    float meter_height = box_height * num_stages + box_spacing * (num_stages - 1);
    float x = 1920;
 
    float cursor_y = 0;
-   for (unsigned i=0; i<stages.size(); i++)
+   for (auto &stage : stages)
    {
-      draw_rectangle(0, cursor_y, box_width, cursor_y+box_height);
+      std::string stage_status = stage.second;
+      draw_rectangle(0, cursor_y, box_width, cursor_y+box_height, stage_status);
       cursor_y += (box_height + box_spacing);
    }
 
@@ -88,8 +92,27 @@ void Renderer::draw_rectangle(float x, float y, float w, float h, std::string st
    //   failed: current step failed
    //   succeeded: current step succeeded
 
-   al_draw_rectangle(x, y, w, h, ALLEGRO_COLOR{1, 1, 1, 1}, 1.0);
+   al_draw_rectangle(x, y, w, h, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 1.0);
+
    return;
+}
+
+ALLEGRO_COLOR Renderer::build_color_from_status(std::string status)
+{
+   ALLEGRO_COLOR result;
+
+   std::map<std::string, ALLEGRO_COLOR> status_colors = {
+      { "finished", al_color_html("116568") },
+      { "running", al_color_html("eae049") },
+      { "not_started", ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2} },
+      { "passed", al_color_html("82e499") },
+      { "failed", al_color_html("b22222") },
+   };
+
+   std::map<std::string, ALLEGRO_COLOR>::iterator it = status_colors.find(status);
+   if (it == status_colors.end()) return al_color_html("333333");
+
+   return it->second;
 }
 
 ALLEGRO_FONT* Renderer::obtain_font()

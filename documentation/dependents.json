@@ -694,6 +694,9 @@
   "placement2d": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "std/map<std/string, ALLEGRO_COLOR>": [
+    "Hexagon/BuildSequenceMeter/Renderer"
+  ],
   "std/vector<Hexagon/BuildSystem/Build>": [
     "Hexagon/BuildSystem/BuildRepository"
   ],
