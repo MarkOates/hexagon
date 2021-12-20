@@ -22,7 +22,7 @@ namespace BuildSequenceMeter
 {
 
 
-Renderer::Renderer(AllegroFlare::FontBin* font_bin, std::string status, std::vector<std::pair<std::string, std::string>> stages, float meter_width, float meter_height)
+Renderer::Renderer(AllegroFlare::FontBin* font_bin, std::string status, std::vector<std::tuple<std::string, std::string, std::string>> stages, float meter_width, float meter_height)
    : font_bin(font_bin)
    , status(status)
    , stages(stages)
@@ -71,7 +71,8 @@ void Renderer::render()
    float cursor_y = meter_height - box_height;
    for (auto &stage : stages)
    {
-      std::string stage_status = stage.second;
+      std::string stage_status = std::get<2>(stage);
+      std::string stage_label = std::get<1>(stage);
       draw_rectangle(0, cursor_y, box_width, cursor_y+box_height, stage_status);
       cursor_y -= (box_height + box_spacing);
    }

@@ -18,13 +18,13 @@ namespace Hexagon
       private:
          AllegroFlare::FontBin* font_bin;
          std::string status;
-         std::vector<std::pair<std::string, std::string>> stages;
+         std::vector<std::tuple<std::string, std::string, std::string>> stages;
          float meter_width;
          float meter_height;
          bool draw_frame;
 
       public:
-         Renderer(AllegroFlare::FontBin* font_bin=nullptr, std::string status="not_started", std::vector<std::pair<std::string, std::string>> stages={}, float meter_width=90, float meter_height=690);
+         Renderer(AllegroFlare::FontBin* font_bin=nullptr, std::string status="not_started", std::vector<std::tuple<std::string, std::string, std::string>> stages={}, float meter_width=90, float meter_height=690);
          ~Renderer();
 
          void set_draw_frame(bool draw_frame);

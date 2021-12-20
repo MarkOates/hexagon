@@ -327,25 +327,25 @@ functions:
       placement2d place{1920 - 40, 1080 / 2, 70, 620};
       place.align = vec2d(1.0, 0.5);
 
-      std::vector<std::pair<std::string, std::string>> build_stages = {
-        { "started", "not_started" },
-        { "generating_sources_files_from_quintessence", "not_started" },
-        { "building_component_object_files", "not_started" },
-        { "delete_focused_component_test_object_file_and_test_executable", "not_started" },
-        { "build_focused_component_test_object_file_and_test_executable", "not_started" },
-        { "run_test_for_focused_component", "not_started" },
-        { "make_all_programs", "not_started" },
-        { "make_documentation", "not_started" },
-        { "signal_component_built_and_integrated", "not_started" },
-        { "completed", "not_started" },
+      std::vector<std::tuple<std::string, std::string, std::string>> build_stages = {
+        { "started", "SGNL", "not_started" },
+        { "generating_sources_files_from_quintessence", "QPRS", "not_started" },
+        { "building_component_object_files", "BLDO", "not_started" },
+        { "delete_focused_component_test_object_file_and_test_executable", "XTOB", "not_started" },
+        { "build_focused_component_test_object_file_and_test_executable", "BLDT", "not_started" },
+        { "run_test_for_focused_component", "TEST", "not_started" },
+        { "make_all_programs", "PROG", "not_started" },
+        { "make_documentation", "DOCS", "not_started" },
+        { "signal_component_built_and_integrated", "SIGF", "not_started" },
+        { "completed", "PASS", "not_started" },
       };
       for (auto &build_stage : build_stages)
       {
-         std::string this_stage_status = build_stage.first;
+         std::string this_stage_status = std::get<0>(build_stage);
          if (this_stage_status == build_sequence_status)
          {
-            if (build_sequence_status == "completed") build_stage.second = "finished";
-            else build_stage.second = "running";
+            if (build_sequence_status == "completed") std::get<2>(build_stage) = "finished";
+            else std::get<2>(build_stage) = "running";
          }
       }
       Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(
