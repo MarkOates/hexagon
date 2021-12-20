@@ -8,6 +8,7 @@
 #include <Hexagon/shared_globals.hpp>
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
 #include <allegro_flare/useful_php.h>
+#include <allegro_flare/placement2d.h>
 #include <algorithm>
 #include <allegro_flare/placement3d.h>
 #include <allegro5/allegro_font.h>
@@ -482,6 +483,9 @@ void Hud::draw_build_sequence_meter()
    std::string BUILD_STATUS_SIGNALING_FILENAME =
       "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/build_signal.txt";
    std::string build_sequence_status = php::file_get_contents(BUILD_STATUS_SIGNALING_FILENAME);
+   // TODO consider (do, actually, not consider) migrating this to placement3d
+   placement2d place{1920 - 60, 1080 / 2, 90, 200};
+   place.align = vec2d(1.0, 0.5);
 
    std::vector<std::pair<std::string, std::string>> build_stages = {
      { "started", "not_started" },
@@ -495,13 +499,15 @@ void Hud::draw_build_sequence_meter()
      { "signal_component_built_and_integrated", "not_started" },
      { "completed", "not_started" },
    };
-
    Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(
       &font_bin,
       build_sequence_status,
       build_stages
    );
+
+   place.start_transform();
    build_sequence_meter_renderer.render();
+   place.restore_transform();
 
    return;
 }

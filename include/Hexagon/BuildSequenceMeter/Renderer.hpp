@@ -4,7 +4,6 @@
 #include <AllegroFlare/FontBin.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
-#include <allegro_flare/placement2d.h>
 #include <string>
 #include <utility>
 #include <vector>
@@ -20,10 +19,11 @@ namespace Hexagon
          AllegroFlare::FontBin* font_bin;
          std::string status;
          std::vector<std::pair<std::string, std::string>> stages;
-         placement2d place;
+         float meter_width;
+         float meter_height;
 
       public:
-         Renderer(AllegroFlare::FontBin* font_bin=nullptr, std::string status="not_started", std::vector<std::pair<std::string, std::string>> stages={}, placement2d place={1920 - 60, 1080 / 2, 90, 200});
+         Renderer(AllegroFlare::FontBin* font_bin=nullptr, std::string status="not_started", std::vector<std::pair<std::string, std::string>> stages={}, float meter_width=90, float meter_height=690);
          ~Renderer();
 
          void render();

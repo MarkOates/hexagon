@@ -22,11 +22,12 @@ namespace BuildSequenceMeter
 {
 
 
-Renderer::Renderer(AllegroFlare::FontBin* font_bin, std::string status, std::vector<std::pair<std::string, std::string>> stages, placement2d place)
+Renderer::Renderer(AllegroFlare::FontBin* font_bin, std::string status, std::vector<std::pair<std::string, std::string>> stages, float meter_width, float meter_height)
    : font_bin(font_bin)
    , status(status)
    , stages(stages)
-   , place(place)
+   , meter_width(meter_width)
+   , meter_height(meter_height)
 {
 }
 
@@ -42,13 +43,15 @@ void Renderer::render()
    ALLEGRO_FONT *font = obtain_font();
    al_draw_text(font, color, 1920 - 30, 1080 * 0.5, ALLEGRO_ALIGN_RIGHT, status.c_str());
 
+   // draw_frame
+   al_draw_rectangle(0, 0, meter_width, meter_height, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 2.0);
+
+   if (stages.empty()) return;
+
    int num_stages = stages.size();
-   float box_height = 40; // <---
-   float box_width = 90;
-   float box_spacing = 40; // <---
-   float meter_width = box_width;
-   float meter_height = box_height * num_stages + box_spacing * (num_stages - 1); // <---
-   float x = 1920;
+   float box_height = meter_height / (num_stages * 2 - 1);
+   float box_width = meter_width;
+   float box_spacing = box_height;
 
    float cursor_y = meter_height - box_height;
    for (auto &stage : stages)
@@ -57,8 +60,6 @@ void Renderer::render()
       draw_rectangle(0, cursor_y, box_width, cursor_y+box_height, stage_status);
       cursor_y -= (box_height + box_spacing);
    }
-
-   al_draw_rectangle(0, 0, meter_width, meter_height, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 2.0);
 
    return;
 }

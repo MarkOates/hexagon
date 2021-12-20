@@ -691,9 +691,6 @@
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/FileNavigator/Stage"
   ],
-  "placement2d": [
-    "Hexagon/BuildSequenceMeter/Renderer"
-  ],
   "std/map<std/string, ALLEGRO_COLOR>": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
@@ -1026,6 +1023,9 @@
     "Hexagon/Hud"
   ],
   "Hexagon/PacketRenderer": [
+    "Hexagon/Hud"
+  ],
+  "placement2d": [
     "Hexagon/Hud"
   ],
   "std/vector<StageInterface >": [

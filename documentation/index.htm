@@ -1745,8 +1745,12 @@ table td
   <td class="property">std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;</td>
 </tr>
 <tr>
-  <td class="property">place</td>
-  <td class="property">placement2d</td>
+  <td class="property">meter_width</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">meter_height</td>
+  <td class="property">float</td>
 </tr>
     </table>
      <table>
@@ -1790,9 +1794,6 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;utility&quot;, &quot;string&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement2d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement2d.h&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::map&lt;std::string, ALLEGRO_COLOR&gt;&quot;, &quot;headers&quot;=&gt;[&quot;map&quot;, &quot;string&quot;, &quot;allegro5/allegro_color.h&quot;]}</td>
@@ -5097,6 +5098,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement3d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement3d.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement2d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement2d.h&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;StageInterface *&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/StageInterface.hpp&quot;]}</td>
@@ -9586,9 +9590,6 @@ table td
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/FileNavigator/Stage"
   ],
-  "placement2d": [
-    "Hexagon/BuildSequenceMeter/Renderer"
-  ],
   "std/map<std/string, ALLEGRO_COLOR>": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
@@ -9921,6 +9922,9 @@ table td
     "Hexagon/Hud"
   ],
   "Hexagon/PacketRenderer": [
+    "Hexagon/Hud"
+  ],
+  "placement2d": [
     "Hexagon/Hud"
   ],
   "std/vector<StageInterface >": [

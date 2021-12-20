@@ -7,6 +7,7 @@
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
+#include <allegro_flare/placement2d.h>
 
 class Hexagon_BuildSequenceMeter_RendererTestWithEmptyFixture : public ::testing::Test
 {};
@@ -54,7 +55,7 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
 TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    render__will_draw_the_build_stages)
 {
-   placement2d place{1920 - 60, 1080 / 2, 90, 200};
+   placement2d place{1920 - 60, 1080 / 2, 90, 690};
    std::vector<std::pair<std::string, std::string>> build_stages = {
      { "started", "finished" },
      { "generating_sources_files_from_quintessence", "finished" },
@@ -67,7 +68,13 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
      { "signal_component_built_and_integrated", "not_started" },
      { "completed", "not_started" },
    };
-   Hexagon::BuildSequenceMeter::Renderer renderer(&get_font_bin_ref(), "not_started", build_stages, place);
+   Hexagon::BuildSequenceMeter::Renderer renderer(
+      &get_font_bin_ref(),
+      "not_started",
+      build_stages,
+      place.size.x,
+      place.size.y
+   );
 
    place.start_transform();
    renderer.render();
