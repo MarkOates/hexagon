@@ -484,7 +484,7 @@ void Hud::draw_build_sequence_meter()
       "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/build_signal.txt";
    std::string build_sequence_status = php::file_get_contents(BUILD_STATUS_SIGNALING_FILENAME);
    // TODO consider (do, actually, not consider) migrating this to placement3d
-   placement2d place{1920 - 60, 1080 / 2, 90, 200};
+   placement2d place{1920 - 30, 1080 / 2, 90, 690};
    place.align = vec2d(1.0, 0.5);
 
    std::vector<std::pair<std::string, std::string>> build_stages = {
@@ -502,7 +502,9 @@ void Hud::draw_build_sequence_meter()
    Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(
       &font_bin,
       build_sequence_status,
-      build_stages
+      build_stages,
+      place.size.x,
+      place.size.y
    );
 
    place.start_transform();
