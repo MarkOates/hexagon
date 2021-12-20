@@ -80,7 +80,7 @@ void Renderer::render()
    return;
 }
 
-void Renderer::draw_rectangle(float x, float y, float w, float h, std::string status)
+void Renderer::draw_rectangle(float x, float y, float w, float h, std::string status, std::string label)
 {
    if (!(al_is_system_installed()))
       {
@@ -113,10 +113,35 @@ void Renderer::draw_rectangle(float x, float y, float w, float h, std::string st
    //   succeeded: current step succeeded
 
    ALLEGRO_COLOR color = build_color_from_status(status);
+   if (is_status_to_draw_label(status))
+   {
+      ALLEGRO_FONT *font = obtain_font();
+      if (!font)
+      {
+         // TODO
+      }
+      else
+      {
+         float actual_height = h - y;
+         al_draw_text(
+            obtain_font(),
+            color,
+            x + w * 0.5,
+            y + actual_height * 0.5 - al_get_font_line_height(font)*0.5 - 1,
+            ALLEGRO_ALIGN_CENTER,
+            label.c_str()
+         );
+      }
+   }
    al_draw_rectangle(x, y, w, h, color, 1.0);
    //al_draw_rectangle(x, y, w, h, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 1.0);
 
    return;
+}
+
+bool Renderer::is_status_to_draw_label(std::string status)
+{
+   return true;
 }
 
 ALLEGRO_COLOR Renderer::build_color_from_status(std::string status)

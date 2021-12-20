@@ -30,7 +30,8 @@ namespace Hexagon
          void set_draw_frame(bool draw_frame);
          bool get_draw_frame();
          void render();
-         void draw_rectangle(float x=0, float y=0, float w=1, float h=1, std::string status="incomplete");
+         void draw_rectangle(float x=0, float y=0, float w=1, float h=1, std::string status="incomplete", std::string label="-  -");
+         bool is_status_to_draw_label(std::string status="status_unset");
          ALLEGRO_COLOR build_color_from_status(std::string status="status_unset");
          ALLEGRO_FONT* obtain_font();
       };
