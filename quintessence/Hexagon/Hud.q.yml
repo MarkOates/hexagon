@@ -34,7 +34,7 @@ properties:
     type: ALLEGRO_DISPLAY*
     init_with: "nullptr"
     constructor_arg: true
-  - name: fonts
+  - name: font_bin
     type: AllegroFlare::FontBin&
     init_with: "get_dummy_font_bin()"
     constructor_arg: true
@@ -164,50 +164,50 @@ functions:
   - name: obtain_text_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Eurostile.ttf -27"];
-      //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+      return font_bin["Eurostile.ttf -27"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
   - name: obtain_title_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Purista Medium.otf -32"];
-      //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+      return font_bin["Purista Medium.otf -32"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
   - name: obtain_powerbar_text_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Purista Medium.otf -18"];
-      //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+      return font_bin["Purista Medium.otf -18"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
   - name: obtain_score_text_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Purista Medium.otf -22"];
-      //return fonts["Eurostile.ttf -22"];
-      //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+      return font_bin["Purista Medium.otf -22"];
+      //return font_bin["Eurostile.ttf -22"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
   - name: obtain_global_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts[global_font_str];
-      //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+      return font_bin[global_font_str];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
   - name: obtain_packet_text_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Exan-Regular.ttf -14"];
+      return font_bin["Exan-Regular.ttf -14"];
 
 
   - name: obtain_component_navigator_font
     type: ALLEGRO_FONT*
     body: |
-      return fonts["Purista Medium.otf -22"];
-      //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+      return font_bin["Purista Medium.otf -22"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
   - name: initialize
@@ -323,7 +323,7 @@ functions:
          "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/build_signal.txt";
       std::string build_sequence_status = php::file_get_contents(BUILD_STATUS_SIGNALING_FILENAME);
 
-      Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(&fonts, build_sequence_status);
+      Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(&font_bin, build_sequence_status);
       build_sequence_meter_renderer.render();
 
       return;
@@ -370,7 +370,7 @@ functions:
       {
          place.start_transform();
 
-         Hexagon::PacketRenderer packet_renderer(&fonts, &packet, packet_text_font, place.size.x, place.size.y);
+         Hexagon::PacketRenderer packet_renderer(&font_bin, &packet, packet_text_font, place.size.x, place.size.y);
          packet_renderer.render();
 
          place.restore_transform();

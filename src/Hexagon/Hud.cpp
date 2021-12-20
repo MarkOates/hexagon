@@ -31,7 +31,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool render_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool render_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool render_focus_timer_bar, bool draw_notifications, float left_column_x)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool render_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool render_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool render_focus_timer_bar, bool draw_notifications, float left_column_x)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -39,7 +39,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& fonts, std::string tit
    , powerbar({})
    , focus_timer_bar({})
    , display(display)
-   , fonts(fonts)
+   , font_bin(font_bin)
    , title_text(title_text)
    , backfill_color(backfill_color)
    , show_disabled_screen(show_disabled_screen)
@@ -328,44 +328,44 @@ AllegroFlare::FontBin& Hud::get_dummy_font_bin()
 
 ALLEGRO_FONT* Hud::obtain_text_font()
 {
-   return fonts["Eurostile.ttf -27"];
-   //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+   return font_bin["Eurostile.ttf -27"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
 
 ALLEGRO_FONT* Hud::obtain_title_font()
 {
-   return fonts["Purista Medium.otf -32"];
-   //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+   return font_bin["Purista Medium.otf -32"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
 
 ALLEGRO_FONT* Hud::obtain_powerbar_text_font()
 {
-   return fonts["Purista Medium.otf -18"];
-   //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+   return font_bin["Purista Medium.otf -18"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
 
 ALLEGRO_FONT* Hud::obtain_score_text_font()
 {
-   return fonts["Purista Medium.otf -22"];
-   //return fonts["Eurostile.ttf -22"];
-   //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+   return font_bin["Purista Medium.otf -22"];
+   //return font_bin["Eurostile.ttf -22"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
 
 ALLEGRO_FONT* Hud::obtain_global_font()
 {
-   return fonts[global_font_str];
-   //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+   return font_bin[global_font_str];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
 
 ALLEGRO_FONT* Hud::obtain_packet_text_font()
 {
-   return fonts["Exan-Regular.ttf -14"];
+   return font_bin["Exan-Regular.ttf -14"];
 }
 
 ALLEGRO_FONT* Hud::obtain_component_navigator_font()
 {
-   return fonts["Purista Medium.otf -22"];
-   //return fonts["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+   return font_bin["Purista Medium.otf -22"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
 
 void Hud::initialize()
@@ -483,7 +483,7 @@ void Hud::draw_build_sequence_meter()
       "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/build_signal.txt";
    std::string build_sequence_status = php::file_get_contents(BUILD_STATUS_SIGNALING_FILENAME);
 
-   Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(&fonts, build_sequence_status);
+   Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(&font_bin, build_sequence_status);
    build_sequence_meter_renderer.render();
 
    return;
@@ -526,7 +526,7 @@ void Hud::draw_packets()
    {
       place.start_transform();
 
-      Hexagon::PacketRenderer packet_renderer(&fonts, &packet, packet_text_font, place.size.x, place.size.y);
+      Hexagon::PacketRenderer packet_renderer(&font_bin, &packet, packet_text_font, place.size.x, place.size.y);
       packet_renderer.render();
 
       place.restore_transform();

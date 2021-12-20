@@ -26,7 +26,7 @@ namespace Hexagon
       Hexagon::Powerbar::Powerbar powerbar;
       Hexagon::FocusTimerBar::FocusTimerBar focus_timer_bar;
       ALLEGRO_DISPLAY* display;
-      AllegroFlare::FontBin& fonts;
+      AllegroFlare::FontBin& font_bin;
       std::string title_text;
       ALLEGRO_COLOR backfill_color;
       bool show_disabled_screen;
@@ -49,7 +49,7 @@ namespace Hexagon
       std::string global_font_str;
 
    public:
-      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& fonts=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool render_powerbar=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=false, int save_count=0, bool render_packets=false, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=false, int search_count=0, bool render_focus_timer_bar=false, bool draw_notifications=true, float left_column_x=30);
+      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& font_bin=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool render_powerbar=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=false, int save_count=0, bool render_packets=false, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=false, int search_count=0, bool render_focus_timer_bar=false, bool draw_notifications=true, float left_column_x=30);
       ~Hud();
 
       void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
