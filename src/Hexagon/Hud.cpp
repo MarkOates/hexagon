@@ -650,6 +650,8 @@ void Hud::draw()
 
    if (render_focus_timer_bar) draw_focus_timer_bar();
 
+   draw_build_sequence_meter();
+
    if (show_disabled_screen)
    {
       al_draw_line(0,
