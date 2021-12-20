@@ -329,7 +329,7 @@ functions:
 
       std::vector<std::tuple<std::string, std::string, std::string>> build_stages = {
         { "started", "SGNL", "not_started" },
-        { "generating_sources_files_from_quintessence", "QPRS", "not_started" },
+        { "generating_sources_files_from_quintessence", "PRSE", "not_started" },
         { "building_component_object_files", "BLDO", "not_started" },
         { "delete_focused_component_test_object_file_and_test_executable", "XTOB", "not_started" },
         { "build_focused_component_test_object_file_and_test_executable", "BLDT", "not_started" },

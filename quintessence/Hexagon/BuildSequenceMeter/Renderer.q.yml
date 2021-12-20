@@ -60,7 +60,7 @@ functions:
       {
          std::string stage_status = std::get<2>(stage);
          std::string stage_label = std::get<1>(stage);
-         draw_rectangle(0, cursor_y, box_width, cursor_y+box_height, stage_status);
+         draw_rectangle(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
          cursor_y -= (box_height + box_spacing);
       }
 
