@@ -26,6 +26,12 @@ properties:
     init_with: 690
     constructor_arg: true
 
+  - name: draw_frame
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
+
 
 functions:
 
@@ -37,7 +43,10 @@ functions:
       ALLEGRO_FONT *font = obtain_font();
 
       // draw_frame
-      al_draw_rectangle(0, 0, meter_width, meter_height, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 2.0);
+      if (get_draw_frame())
+      {
+         al_draw_rectangle(0, 0, meter_width, meter_height, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 2.0);
+      }
 
       if (stages.empty()) return;
 

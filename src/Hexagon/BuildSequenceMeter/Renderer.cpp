@@ -28,6 +28,7 @@ Renderer::Renderer(AllegroFlare::FontBin* font_bin, std::string status, std::vec
    , stages(stages)
    , meter_width(meter_width)
    , meter_height(meter_height)
+   , draw_frame(false)
 {
 }
 
@@ -37,13 +38,28 @@ Renderer::~Renderer()
 }
 
 
+void Renderer::set_draw_frame(bool draw_frame)
+{
+   this->draw_frame = draw_frame;
+}
+
+
+bool Renderer::get_draw_frame()
+{
+   return draw_frame;
+}
+
+
 void Renderer::render()
 {
    ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    ALLEGRO_FONT *font = obtain_font();
 
    // draw_frame
-   al_draw_rectangle(0, 0, meter_width, meter_height, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 2.0);
+   if (get_draw_frame())
+   {
+      al_draw_rectangle(0, 0, meter_width, meter_height, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 2.0);
+   }
 
    if (stages.empty()) return;
 
