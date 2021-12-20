@@ -323,7 +323,24 @@ functions:
          "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/build_signal.txt";
       std::string build_sequence_status = php::file_get_contents(BUILD_STATUS_SIGNALING_FILENAME);
 
-      Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(&font_bin, build_sequence_status);
+      std::vector<std::pair<std::string, std::string>> build_stages = {
+        { "started", "not_started" },
+        { "generating_sources_files_from_quintessence", "not_started" },
+        { "building_component_object_files", "not_started" },
+        { "delete_focused_component_test_object_file_and_test_executable", "not_started" },
+        { "build_focused_component_test_object_file_and_test_executable", "not_started" },
+        { "run_test_for_focused_component", "not_started" },
+        { "make_all_programs", "not_started" },
+        { "make_documentation", "not_started" },
+        { "signal_component_built_and_integrated", "not_started" },
+        { "completed", "not_started" },
+      };
+
+      Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(
+         &font_bin,
+         build_sequence_status,
+         build_stages
+      );
       build_sequence_meter_renderer.render();
 
       return;

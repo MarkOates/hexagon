@@ -687,6 +687,13 @@
   "al_is_ttf_addon_initialized": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "std/vector<std/pair<std/string, std/string>>": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/FileNavigator/Stage"
+  ],
+  "placement2d": [
+    "Hexagon/BuildSequenceMeter/Renderer"
+  ],
   "std/vector<Hexagon/BuildSystem/Build>": [
     "Hexagon/BuildSystem/BuildRepository"
   ],
@@ -951,9 +958,6 @@
   ],
   "draw_textured_rectangle": [
     "Hexagon/Elements/TexturedRectangle"
-  ],
-  "std/vector<std/pair<std/string, std/string>>": [
-    "Hexagon/FileNavigator/Stage"
   ],
   "std/time_t": [
     "Hexagon/FocusTimerBar/FocusTimerBar",

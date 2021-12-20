@@ -5,9 +5,20 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+
   - name: status
     type: std::string
     init_with: '"not_started"'
+    constructor_arg: true
+
+  - name: stages
+    type: std::vector<std::pair<std::string, std::string>>
+    init_with: '{}'
+    constructor_arg: true
+
+  - name: place
+    type: placement2d
+    init_with: '{1920 - 60, 1080 / 2, 90, 200}'
     constructor_arg: true
 
 
@@ -17,40 +28,44 @@ functions:
   - name: render
     type: void
     body: |
-      // steps:
-      //   parsing_yaml
-      //   making_component_object_files
-      //   component_build_is_successful
-         //   check_missing_symbol_errors_in_program_files_build
-
-      //   make_focused_component_test
-      //   run_focused_component_test
-         //   check_missing_symbol_errors_in_program_files_build
-
-      //   build_program_files
-      //   build_is_successful
-
-      // missing step - defaults change in header file(s)
-
       ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
       ALLEGRO_FONT *font = obtain_font();
       al_draw_text(font, color, 1920 - 30, 1080 * 0.5, ALLEGRO_ALIGN_RIGHT, status.c_str());
 
-      //render_rectangle();
+      int num_stages = stages.size();
+      float box_height = 40;
+      float box_width = 90;
+      float box_spacing = 20;
+      float meter_height = box_height * num_stages + box_spacing * (num_stages - 1);
+      float x = 1920;
 
-      //build_not_started
-      //build_running
-      //build_completed_failed
-      //build_completed_successfully
+      float cursor_y = 0;
+      for (unsigned i=0; i<stages.size(); i++)
+      {
+         draw_rectangle(0, cursor_y, box_width, cursor_y+box_height);
+         cursor_y += (box_height + box_spacing);
+      }
 
       return;
     body_dependency_symbols:
       - ALLEGRO_COLOR
 
 
-  - name: render_rectangle
+  - name: draw_rectangle
     type: void
     parameters:
+      - name: x
+        type: float
+        default_argument: 0
+      - name: y
+        type: float
+        default_argument: 0
+      - name: w
+        type: float
+        default_argument: 1
+      - name: h
+        type: float
+        default_argument: 1
       - name: status
         type: std::string
         default_argument: '"incomplete"'
@@ -62,7 +77,7 @@ functions:
       //   failed: current step failed
       //   succeeded: current step succeeded
 
-      al_draw_filled_rectangle(0, 0, 100, 100, ALLEGRO_COLOR{1, 1, 1, 1});
+      al_draw_rectangle(x, y, w, h, ALLEGRO_COLOR{1, 1, 1, 1}, 1.0);
       return;
     body_dependency_symbols:
       - al_draw_filled_rectangle
@@ -98,5 +113,10 @@ dependencies:
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: al_is_ttf_addon_initialized
     headers: [ allegro5/allegro_ttf.h ]
+  - symbol: std::vector<std::pair<std::string, std::string>>
+    headers: [ vector, utility, string ]
+  - symbol: placement2d
+    headers: [ allegro_flare/placement2d.h ]
+
 
 

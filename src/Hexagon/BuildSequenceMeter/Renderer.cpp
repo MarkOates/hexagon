@@ -19,9 +19,11 @@ namespace BuildSequenceMeter
 {
 
 
-Renderer::Renderer(AllegroFlare::FontBin* font_bin, std::string status)
+Renderer::Renderer(AllegroFlare::FontBin* font_bin, std::string status, std::vector<std::pair<std::string, std::string>> stages, placement2d place)
    : font_bin(font_bin)
    , status(status)
+   , stages(stages)
+   , place(place)
 {
 }
 
@@ -33,59 +35,51 @@ Renderer::~Renderer()
 
 void Renderer::render()
 {
-   // steps:
-   //   parsing_yaml
-   //   making_component_object_files
-   //   component_build_is_successful
-      //   check_missing_symbol_errors_in_program_files_build
-
-   //   make_focused_component_test
-   //   run_focused_component_test
-      //   check_missing_symbol_errors_in_program_files_build
-
-   //   build_program_files
-   //   build_is_successful
-
-   // missing step - defaults change in header file(s)
-
    ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    ALLEGRO_FONT *font = obtain_font();
    al_draw_text(font, color, 1920 - 30, 1080 * 0.5, ALLEGRO_ALIGN_RIGHT, status.c_str());
 
-   //render_rectangle();
+   int num_stages = stages.size();
+   float box_height = 40;
+   float box_width = 90;
+   float box_spacing = 20;
+   float meter_height = box_height * num_stages + box_spacing * (num_stages - 1);
+   float x = 1920;
 
-   //build_not_started
-   //build_running
-   //build_completed_failed
-   //build_completed_successfully
+   float cursor_y = 0;
+   for (unsigned i=0; i<stages.size(); i++)
+   {
+      draw_rectangle(0, cursor_y, box_width, cursor_y+box_height);
+      cursor_y += (box_height + box_spacing);
+   }
 
    return;
 }
 
-void Renderer::render_rectangle(std::string status)
+void Renderer::draw_rectangle(float x, float y, float w, float h, std::string status)
 {
    if (!(al_is_system_installed()))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_rectangle" << ": error: " << "guard \"al_is_system_installed()\" not met";
+         error_message << "Renderer" << "::" << "draw_rectangle" << ": error: " << "guard \"al_is_system_installed()\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(al_is_primitives_addon_initialized()))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_rectangle" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+         error_message << "Renderer" << "::" << "draw_rectangle" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(al_is_ttf_addon_initialized()))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_rectangle" << ": error: " << "guard \"al_is_ttf_addon_initialized()\" not met";
+         error_message << "Renderer" << "::" << "draw_rectangle" << ": error: " << "guard \"al_is_ttf_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(font_bin))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_rectangle" << ": error: " << "guard \"font_bin\" not met";
+         error_message << "Renderer" << "::" << "draw_rectangle" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
    // statuses:
@@ -94,7 +88,7 @@ void Renderer::render_rectangle(std::string status)
    //   failed: current step failed
    //   succeeded: current step succeeded
 
-   al_draw_filled_rectangle(0, 0, 100, 100, ALLEGRO_COLOR{1, 1, 1, 1});
+   al_draw_rectangle(x, y, w, h, ALLEGRO_COLOR{1, 1, 1, 1}, 1.0);
    return;
 }
 

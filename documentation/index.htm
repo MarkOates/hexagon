@@ -1740,13 +1740,21 @@ table td
   <td class="property">status</td>
   <td class="property">std::string</td>
 </tr>
+<tr>
+  <td class="property">stages</td>
+  <td class="property">std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;</td>
+</tr>
+<tr>
+  <td class="property">place</td>
+  <td class="property">placement2d</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">render_rectangle(1)</td>
+  <td class="method">draw_rectangle(5)</td>
 </tr>
 <tr>
   <td class="method">obtain_font()</td>
@@ -1776,6 +1784,12 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_is_ttf_addon_initialized&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_ttf.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;utility&quot;, &quot;string&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement2d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement2d.h&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9562,6 +9576,13 @@ table td
   "al_is_ttf_addon_initialized": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "std/vector<std/pair<std/string, std/string>>": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/FileNavigator/Stage"
+  ],
+  "placement2d": [
+    "Hexagon/BuildSequenceMeter/Renderer"
+  ],
   "std/vector<Hexagon/BuildSystem/Build>": [
     "Hexagon/BuildSystem/BuildRepository"
   ],
@@ -9826,9 +9847,6 @@ table td
   ],
   "draw_textured_rectangle": [
     "Hexagon/Elements/TexturedRectangle"
-  ],
-  "std/vector<std/pair<std/string, std/string>>": [
-    "Hexagon/FileNavigator/Stage"
   ],
   "std/time_t": [
     "Hexagon/FocusTimerBar/FocusTimerBar",
