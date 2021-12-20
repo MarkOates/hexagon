@@ -47,6 +47,29 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    Hexagon::BuildSequenceMeter::Renderer renderer(&get_font_bin_ref());
    renderer.render();
    al_flip_display();
+   SUCCEED();
+}
+
+
+TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
+   render__will_draw_the_build_stages)
+{
+   std::vector<std::pair<std::string, std::string>> build_stages = {
+     { "started", "not_started" },
+     { "generating_sources_files_from_quintessence", "not_started" },
+     { "building_component_object_files", "not_started" },
+     { "delete_focused_component_test_object_file_and_test_executable", "not_started" },
+     { "build_focused_component_test_object_file_and_test_executable", "not_started" },
+     { "run_test_for_focused_component", "not_started" },
+     { "make_all_programs", "not_started" },
+     { "make_documentation", "not_started" },
+     { "signal_component_built_and_integrated", "not_started" },
+     { "completed", "not_started" },
+   };
+
+   Hexagon::BuildSequenceMeter::Renderer renderer(&get_font_bin_ref(), "not_started", build_stages);
+   renderer.render();
+   al_flip_display();
    sleep(2);
    SUCCEED();
 }
