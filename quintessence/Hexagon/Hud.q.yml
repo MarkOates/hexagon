@@ -342,7 +342,11 @@ functions:
       for (auto &build_stage : build_stages)
       {
          std::string this_stage_status = build_stage.first;
-         if (this_stage_status == build_sequence_status) build_stage.second = "running";
+         if (this_stage_status == build_sequence_status)
+         {
+            if (build_sequence_status == "completed") build_stage.second = "finished";
+            else build_stage.second = "running";
+         }
       }
       Hexagon::BuildSequenceMeter::Renderer build_sequence_meter_renderer(
          &font_bin,
