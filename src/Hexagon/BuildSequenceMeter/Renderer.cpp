@@ -43,19 +43,22 @@ void Renderer::render()
    al_draw_text(font, color, 1920 - 30, 1080 * 0.5, ALLEGRO_ALIGN_RIGHT, status.c_str());
 
    int num_stages = stages.size();
-   float box_height = 40;
+   float box_height = 40; // <---
    float box_width = 90;
-   float box_spacing = 40;
-   float meter_height = box_height * num_stages + box_spacing * (num_stages - 1);
+   float box_spacing = 40; // <---
+   float meter_width = box_width;
+   float meter_height = box_height * num_stages + box_spacing * (num_stages - 1); // <---
    float x = 1920;
 
-   float cursor_y = 0;
+   float cursor_y = meter_height - box_height;
    for (auto &stage : stages)
    {
       std::string stage_status = stage.second;
       draw_rectangle(0, cursor_y, box_width, cursor_y+box_height, stage_status);
-      cursor_y += (box_height + box_spacing);
+      cursor_y -= (box_height + box_spacing);
    }
+
+   al_draw_rectangle(0, 0, meter_width, meter_height, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 2.0);
 
    return;
 }
@@ -92,7 +95,9 @@ void Renderer::draw_rectangle(float x, float y, float w, float h, std::string st
    //   failed: current step failed
    //   succeeded: current step succeeded
 
-   al_draw_rectangle(x, y, w, h, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 1.0);
+   ALLEGRO_COLOR color = build_color_from_status(status);
+   al_draw_rectangle(x, y, w, h, color, 1.0);
+   //al_draw_rectangle(x, y, w, h, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 1.0);
 
    return;
 }
