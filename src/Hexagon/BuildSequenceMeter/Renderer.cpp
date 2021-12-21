@@ -146,6 +146,7 @@ bool Renderer::is_status_to_draw_label(std::string status)
       "running",
       "failed",
       "succeeded",
+      "finished",
    };
    std::vector<std::string>::iterator find_iterator;
    find_iterator = std::find(states_that_will_render_label.begin(), states_that_will_render_label.end(), status);
