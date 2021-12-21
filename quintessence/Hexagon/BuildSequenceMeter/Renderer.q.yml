@@ -138,7 +138,17 @@ functions:
         type: std::string
         default_argument: '"status_unset"'
     body: |
-      return true;
+      std::vector<std::string> states_that_will_render_label = {
+         "running",
+         "failed",
+         "succeeded",
+      };
+      std::vector<std::string>::iterator find_iterator;
+      find_iterator = std::find(states_that_will_render_label.begin(), states_that_will_render_label.end(), status);
+      bool was_found = (find_iterator != states_that_will_render_label.end());
+      return was_found;
+    body_dependency_symbols:
+      - std::find
 
 
   - name: build_color_from_status
@@ -196,5 +206,7 @@ dependencies:
     headers: [ vector, utility, string ]
   - symbol: std::map<std::string, ALLEGRO_COLOR>
     headers: [ map, string, allegro5/allegro_color.h ]
+  - symbol: std::find
+    headers: [ algorithm ]
 
 

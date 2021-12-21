@@ -9,6 +9,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <stdexcept>
 #include <sstream>
+#include <algorithm>
 #include <map>
 #include <string>
 #include <allegro5/allegro_color.h>
@@ -141,7 +142,15 @@ void Renderer::draw_rectangle(float x, float y, float w, float h, std::string st
 
 bool Renderer::is_status_to_draw_label(std::string status)
 {
-   return true;
+   std::vector<std::string> states_that_will_render_label = {
+      "running",
+      "failed",
+      "succeeded",
+   };
+   std::vector<std::string>::iterator find_iterator;
+   find_iterator = std::find(states_that_will_render_label.begin(), states_that_will_render_label.end(), status);
+   bool was_found = (find_iterator != states_that_will_render_label.end());
+   return was_found;
 }
 
 ALLEGRO_COLOR Renderer::build_color_from_status(std::string status)

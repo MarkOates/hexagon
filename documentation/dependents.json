@@ -693,6 +693,9 @@
   "std/map<std/string, ALLEGRO_COLOR>": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "std/find": [
+    "Hexagon/BuildSequenceMeter/Renderer"
+  ],
   "std/vector<Hexagon/BuildSystem/Build>": [
     "Hexagon/BuildSystem/BuildRepository"
   ],
