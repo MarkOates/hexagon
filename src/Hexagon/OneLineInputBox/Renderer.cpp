@@ -17,9 +17,10 @@ namespace OneLineInputBox
 {
 
 
-Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_and_text_color, ALLEGRO_COLOR backfill_color, float width, float height, int cell_width, int cell_height, std::vector<std::string> lines, std::vector<CodeRange> selections, int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode, std::string top_left_text, std::string top_right_text, std::string bottom_left_text, std::string bottom_right_text)
+Renderer::Renderer(ALLEGRO_FONT* font, ALLEGRO_COLOR outline_color, ALLEGRO_COLOR user_input_text_color, ALLEGRO_COLOR backfill_color, float width, float height, int cell_width, int cell_height, std::vector<std::string> lines, std::vector<CodeRange> selections, int cursor_x, int cursor_y, placement3d place, int first_line_number, bool in_edit_mode, std::string top_left_text, std::string top_right_text, std::string bottom_left_text, std::string bottom_right_text)
    : font(font)
-   , outline_and_text_color(outline_and_text_color)
+   , outline_color(outline_color)
+   , user_input_text_color(user_input_text_color)
    , backfill_color(backfill_color)
    , width(width)
    , height(height)
@@ -96,7 +97,16 @@ ALLEGRO_COLOR Renderer::get_primary_color()
    {
       return ALLEGRO_COLOR{1, 1, 1, 1};
    }
-   else return outline_and_text_color;
+   else return outline_color;
+}
+
+ALLEGRO_COLOR Renderer::get_user_input_text_color()
+{
+   if (is_state_to_submitted_and_pending_destruction())
+   {
+      return ALLEGRO_COLOR{1, 1, 1, 1};
+   }
+   else return user_input_text_color;
 }
 
 void Renderer::render()
@@ -114,6 +124,7 @@ void Renderer::render()
    //backfill_color = color::color(backfill_color, hexagon_get_backfill_opacity());
 
    ALLEGRO_COLOR color = get_primary_color();
+   ALLEGRO_COLOR user_input_text_color = get_user_input_text_color();
 
    float outer_roundness = 12;
    float inner_roundness = 6;
@@ -255,7 +266,7 @@ void Renderer::render()
    int line_height = al_get_font_line_height(font);
    for (int i=0; i<lines.size(); i++)
    {
-      al_draw_text(font, color, 0, i*line_height, ALLEGRO_ALIGN_LEFT, lines[i].c_str());
+      al_draw_text(font, user_input_text_color, 0, i*line_height, ALLEGRO_ALIGN_LEFT, lines[i].c_str());
    }
 
    place.restore_transform();
