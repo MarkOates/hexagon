@@ -23,7 +23,7 @@ TEST(Hexagon_OneLineInputBox_RendererTest, render__renders_the_box)
 TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__correctly_counts_a_blank_line)
 {
    Hexagon::OneLineInputBox::Renderer renderer(
-      nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
+      nullptr, nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
       {
          "",
       }
@@ -34,7 +34,7 @@ TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__correctly_
 TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__correctly_counts_multiple_blank_line)
 {
    Hexagon::OneLineInputBox::Renderer renderer(
-      nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
+      nullptr, nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
       {
          "",
          "",
@@ -47,7 +47,7 @@ TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__correctly_
 TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__returns_the_number_of_characters_in_the_input)
 {
    Hexagon::OneLineInputBox::Renderer renderer(
-      nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
+      nullptr, nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
       {
          "This is the line",
       }
@@ -58,7 +58,7 @@ TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__returns_th
 TEST(Hexagon_OneLineInputBox_RendererTest, get_lines_character_count__correctly_includes_multiple_lines)
 {
    Hexagon::OneLineInputBox::Renderer renderer(
-      nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
+      nullptr, nullptr, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, ALLEGRO_COLOR{0, 0, 0, 0}, 0, 0, 0, 0,
       {
          "This is the line",
          "",
