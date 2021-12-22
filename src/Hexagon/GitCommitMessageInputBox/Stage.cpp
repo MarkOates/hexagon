@@ -165,8 +165,10 @@ void Stage::render()
          error_message << "Stage" << "::" << "render" << ": error: " << "guard \"(code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)\" not met";
          throw std::runtime_error(error_message.str());
       }
-   ALLEGRO_COLOR outline_and_text_color = al_color_html("f9ac1e");
-   ALLEGRO_COLOR user_input_text_color = al_color_html("ffd033");
+   //ALLEGRO_COLOR outline_color = al_color_html("f9ac1e");
+   //ALLEGRO_COLOR user_input_text_color = al_color_html("ffd033");
+   ALLEGRO_COLOR outline_color = al_color_name("red");
+   ALLEGRO_COLOR user_input_text_color = al_color_name("red");
    float width = get_place().size.x;
    float height = get_place().size.y;
    //std::string top_left_text = "ESC: Close";
@@ -177,7 +179,7 @@ void Stage::render()
 
    Hexagon::OneLineInputBox::Renderer renderer(
       get_font(),
-      outline_and_text_color,
+      outline_color,
       user_input_text_color,
       backfill_color,
       width,
