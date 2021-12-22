@@ -497,13 +497,14 @@ placement3d StageFactory::build_git_commit_message_input_box_initial_place()
 {
    float surface_width = get_hud_render_surface_projection_width();
    float surface_height = get_hud_render_surface_projection_height();
+   float height = al_get_font_line_height(obtain_git_commit_message_box_font());
 
    //ALLEGRO_DISPLAY *display = get_current_display();
    //int surface_width = al_get_display_width(display);
    //int surface_height = al_get_display_height(display);
-   placement3d place(surface_width*0.5f, surface_height*0.5f, 0.0);
+   placement3d place(surface_width*0.5f, surface_height*0.5f + 20, 0.0);
    place.size = vec3d(600, 25, 0.0);
-   place.scale = vec3d(1.5, 1.5, 1.0);
+   place.scale = vec3d(1.2, 1.2, 1.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
    return place;
 }
