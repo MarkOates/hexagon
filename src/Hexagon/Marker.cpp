@@ -9,6 +9,8 @@ namespace Hexagon
 
 
 Marker::Marker()
+   : filename("unset-filename-for-marker-target.txt")
+   , line_num(0)
 {
 }
 
@@ -18,10 +20,18 @@ Marker::~Marker()
 }
 
 
-std::string Marker::run()
+std::string Marker::get_filename()
 {
-   return "Hello World!";
+   return filename;
 }
+
+
+int Marker::get_line_num()
+{
+   return line_num;
+}
+
+
 } // namespace Hexagon
 
 

@@ -1,4 +1,14 @@
-functions:
-  - name: run
+properties:
+
+
+  - name: filename
     type: std::string
-    body: return "Hello World!";
+    init_with: '"unset-filename-for-marker-target.txt"'
+    getter: true
+
+  - name: line_num
+    type: int
+    init_with: 0
+    getter: true
+
+
