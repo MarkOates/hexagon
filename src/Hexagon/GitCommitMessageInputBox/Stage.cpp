@@ -178,6 +178,7 @@ void Stage::render()
    int char_count = code_editor_char_count();
 
    Hexagon::OneLineInputBox::Renderer renderer(
+      nullptr,
       get_font(),
       outline_color,
       user_input_text_color,
