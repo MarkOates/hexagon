@@ -503,7 +503,7 @@ placement3d StageFactory::build_git_commit_message_input_box_initial_place()
    //int surface_width = al_get_display_width(display);
    //int surface_height = al_get_display_height(display);
    placement3d place(surface_width*0.5f, surface_height*0.5f + 20, 0.0);
-   place.size = vec3d(600, 25, 0.0);
+   place.size = vec3d(680, height, 0.0);
    place.scale = vec3d(1.2, 1.2, 1.0);
    place.rotation = vec3d(0.0, 0.0, 0.0);
    return place;
