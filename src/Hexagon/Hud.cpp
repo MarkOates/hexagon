@@ -335,7 +335,7 @@ ALLEGRO_FONT* Hud::obtain_text_font()
 
 ALLEGRO_FONT* Hud::obtain_title_font()
 {
-   return font_bin["Purista Medium.otf -32"];
+   return font_bin["Purista Medium.otf -28"];
    //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
 
@@ -440,12 +440,14 @@ void Hud::draw_current_title_text()
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
    float display_center_x = get_surface_projection_width() / 2;
-   int y_position = 20;
+   ALLEGRO_FONT *title_font = obtain_title_font();
+   float title_font_line_height = al_get_font_line_height(title_font);
+   int y_position = 52;
 
-   al_draw_text(obtain_title_font(),
+   al_draw_text(title_font,
                 color,
                 display_center_x,
-                y_position + 18,
+                y_position - title_font_line_height,
                 ALLEGRO_ALIGN_CENTER,
                 title_text.c_str());
    return;
