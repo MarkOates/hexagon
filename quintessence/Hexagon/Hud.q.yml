@@ -4,147 +4,175 @@ properties:
   - name: initialized
     type: bool
     init_with: false
+
   - name: dummy_font_bin
     type: AllegroFlare::FontBin
     static: true
     init_with: '{}'
+
   - name: screen_sub_bitmap
     type: ALLEGRO_BITMAP*
     init_with: nullptr
     setter: true
+
   - name: notifications
     type: std::vector<std::string>
     init_with: '{}'
     getter: true
     setter: true
+
   - name: notifications2
     type: std::vector<std::string>
     init_with: "{}"
     getter: true
     setter: true
+
   - name: powerbar
     type: Hexagon::Powerbar::Powerbar
     init_with: "{}"
     getter_ref: true
+
   - name: focus_timer_bar
     type: Hexagon::FocusTimerBar::FocusTimerBar
     init_with: '{}'
     getter_ref: true
+
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: "nullptr"
     constructor_arg: true
+
   - name: font_bin
     type: AllegroFlare::FontBin&
     init_with: "get_dummy_font_bin()"
     constructor_arg: true
+
   - name: title_text
     type: std::string
     init_with: '""'
     setter: true
     getter: true
     constructor_arg: true
+
   - name: backfill_color
     type: ALLEGRO_COLOR
     init_with: "{0.0f, 0.0f, 0.0f, 0.0f}"
     constructor_arg: true
     setter: true
+
   - name: show_disabled_screen
     type: bool
     init_with: false
     setter: true
     getter: true
     constructor_arg: true
+
   - name: render_powerbar
     type: bool
     init_with: false
     setter: true
     getter: true
     constructor_arg: true
+
   - name: files_are_committed
     type: bool
     init_with: false
     constructor_arg: true
     setter: true
+
   - name: commits_are_in_sync_with_remote
     type: bool
     init_with: false
     constructor_arg: true
     setter: true
+
   - name: show_profiler
     type: bool
     init_with: false
     setter: true
     constructor_arg: true
     getter: true
+
   - name: draw_save_count
     type: bool
     init_with: false
     setter: true
     getter: true
     constructor_arg: true
+
   - name: save_count
     type: int
     init_with: 0
     constructor_arg: true
     getter: true
     setter: true
+
   - name: render_packets
     type: bool
     init_with: false
     setter: true
     getter: true
     constructor_arg: true
+
   - name: packets
     type: std::vector<Hexagon::Packet>
     init_with: '{}'
     constructor_arg: true
     getter: true
     setter: true
+
   - name: draw_search_count
     type: bool
     init_with: false
     setter: true
     getter: true
     constructor_arg: true
+
   - name: search_count
     type: int
     init_with: 0
     constructor_arg: true
     getter: true
     setter: true
+
   - name: render_focus_timer_bar
     type: bool
     init_with: false
     setter: true
     getter: true
     constructor_arg: true
+
   - name: draw_notifications
     type: bool
     init_with: true
     setter: true
     getter: true
     constructor_arg: true
+
   - name: left_column_x
     type: float
     init_with: 30
     getter: true
     setter: true
     constructor_arg: true
+
   - name: surface_projection_width
     type: float
     init_with: 1920
     getter: true
     setter: true
+
   - name: surface_projection_height
     type: float
     init_with: 1080
     getter: true
     setter: true
+
   - name: stages
     type: std::vector<StageInterface *>*
     init_with: nullptr
     setter: true
+
   - name: global_font_str
     type: std::string
     init_with: '"unset-global_font_str"'
