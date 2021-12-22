@@ -166,7 +166,7 @@ void Stage::render()
          throw std::runtime_error(error_message.str());
       }
    ALLEGRO_COLOR outline_and_text_color = al_color_html("f9ac1e");
-   ALLEGRO_COLOR user_input_text_color = al_color_html("fcc31c");
+   ALLEGRO_COLOR user_input_text_color = al_color_html("ffd033");
    float width = get_place().size.x;
    float height = get_place().size.y;
    //std::string top_left_text = "ESC: Close";
