@@ -1087,6 +1087,12 @@
     "Hexagon/Shapes/Hexagon/Renderer",
     "Hexagon/Shapes/Hexagon/Stroke"
   ],
+  "std/map<std/string, Hexagon/Marker>": [
+    "Hexagon/MarkerNavigator"
+  ],
+  "Hexagon/Marker": [
+    "Hexagon/MarkerNavigator"
+  ],
   "Blast/FileCreator": [
     "Hexagon/MissingFile/Stage",
     "Hexagon/System/Action/SendMessageToDaemusToBuild"

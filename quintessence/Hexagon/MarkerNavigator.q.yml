@@ -1,4 +1,58 @@
+properties:
+
+
+  - name: markers_index
+    type: std::map<std::string, Hexagon::Marker>
+    init_with: '{}'
+    getter: true
+
+
 functions:
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+
+
+  - name: load
+    body: |
+      // TODO
+      return;
+
+
+  - name: clear
+    body: |
+      markers_index.clear();
+      return;
+
+
+  - name: add_or_override
+    parameters:
+      - name: label
+        type: std::string
+        default_argument: '"[no-label-set]"'
+      - name: marker
+        type: Hexagon::Marker
+        default_argument: '{}'
+    body: |
+      markers_index[label] = marker;
+      return;
+
+
+  - name: marker_exists
+    type: bool
+    parameters:
+      - name: label
+        type: std::string
+        default_argument: '"[no-label-set]"'
+    type: bool
+    body: |
+      // TODO
+      return false;
+
+
+dependencies:
+
+
+  - symbol: std::map<std::string, Hexagon::Marker>
+    headers: [ map, string, Hexagon/Marker.hpp ]
+  - symbol: Hexagon::Marker
+    headers: [ Hexagon/Marker.hpp ]
+
+
