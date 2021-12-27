@@ -21,6 +21,7 @@ namespace Hexagon
          ~LineRenderBin();
 
          ALLEGRO_BITMAP* load_data(std::string identifier="") override;
+         bool validate() override;
          void destroy_data(ALLEGRO_BITMAP* resource=nullptr) override;
       };
    }

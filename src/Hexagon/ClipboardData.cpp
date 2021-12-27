@@ -11,6 +11,13 @@
 
 
 
+bool ClipboardData::clear()
+{
+   ClipboardData::store("");
+}
+
+
+
 bool ClipboardData::store(std::string line)
 {
    std::vector<std::string> as_list = {line};

@@ -3,6 +3,8 @@
 
 #include <Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp>
 
+#include <Hexagon/ClipboardData.hpp>
+
 
 TEST(Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest, can_be_created_without_blowing_up)
 {
@@ -33,6 +35,27 @@ TEST(DISABLED_Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest,
    Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator advanced_component_navigator;
    advanced_component_navigator.set_mode_to_typing_in_search_bar();
    ASSERT_EQ(false, advanced_component_navigator.is_mode_navigating_list());
+}
+
+
+TEST(Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest,
+   yank_selected_text_as_quintessence_dependency_lines__copies_the_expected_lines_to_the_clipboard)
+{
+   Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator advanced_component_navigator;
+   advanced_component_navigator.set_nodes(
+      { Blast::Project::Component("This/Is/An/Example/Component")});
+
+   ClipboardData::clear();
+   advanced_component_navigator.yank_selected_text_as_quintessence_dependency_lines();
+
+   std::vector<std::string> actual_clipboard_lines = ClipboardData::retrieve();
+   std::vector<std::string> expected_clipboard_lines = {
+      "  - symbol: This::Is::An::Example::Component",
+      "    headers: [ This/Is/An/Example/Component.hpp ]",
+   };
+   EXPECT_EQ(expected_clipboard_lines, actual_clipboard_lines);
+
+   ClipboardData::clear();
 }
 
 

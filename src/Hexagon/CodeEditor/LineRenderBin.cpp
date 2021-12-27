@@ -69,6 +69,11 @@ ALLEGRO_BITMAP* LineRenderBin::load_data(std::string identifier)
    return render;
 }
 
+bool LineRenderBin::validate()
+{
+   return true;
+}
+
 void LineRenderBin::destroy_data(ALLEGRO_BITMAP* resource)
 {
    al_destroy_bitmap(resource);

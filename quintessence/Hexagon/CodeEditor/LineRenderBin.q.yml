@@ -67,6 +67,12 @@ functions:
       - Hexagon::CodeEditor::Renderer::AdvancedLineRenderer
 
 
+  - name: validate
+    type: bool
+    override: true
+    body: return true;
+
+
   - name: destroy_data
     virtuall: true
     override: true

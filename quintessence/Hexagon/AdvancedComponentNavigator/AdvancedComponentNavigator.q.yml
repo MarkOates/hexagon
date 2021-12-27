@@ -147,6 +147,22 @@ functions:
       - ClipboardData::store
 
 
+  - name: yank_selected_text_as_quintessence_dependency_lines
+    type: void
+    guard: [ current_selection_is_valid() ]
+    body: |
+      std::string selected_text = get_current_selection_label_or_empty_string();
+      std::string symbol_text = selected_text;
+      symbol_text = php::str_replace("/", "::", symbol_text);
+      std::string headers_text = "    headers: [ " + selected_text + ".hpp ]";
+
+      std::string text_for_clipboard = "  - symbol: " + symbol_text + "\n" + headers_text;
+
+      ClipboardData::store(text_for_clipboard);
+    body_dependency_symbols:
+      - ClipboardData::store
+
+
 dependencies:
 
 

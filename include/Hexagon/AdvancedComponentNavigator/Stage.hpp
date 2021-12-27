@@ -35,6 +35,7 @@ namespace Hexagon
          std::string YANK_SELECTED_TEXT_LABEL;
          std::string YANK_SELECTED_TEXT_AS_COMPONENT_NAME;
          std::string YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE;
+         std::string YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES;
 
       public:
          Stage(std::string project_root="/Users/markoates/Repos/hexagon/", ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR base_backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});

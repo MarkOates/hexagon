@@ -6,6 +6,7 @@
 #include <allegro_flare/useful_php.h>
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/ClipboardData.hpp>
+#include <Hexagon/ClipboardData.hpp>
 
 
 namespace Hexagon
@@ -167,6 +168,18 @@ void AdvancedComponentNavigator::yank_selected_text_as_include_directive()
    std::string selected_text = get_current_selection_label_or_empty_string();
    std::string filtered_text = "#include <" + selected_text + ".hpp>";
    ClipboardData::store(filtered_text);
+}
+
+void AdvancedComponentNavigator::yank_selected_text_as_quintessence_dependency_lines()
+{
+   std::string selected_text = get_current_selection_label_or_empty_string();
+   std::string symbol_text = selected_text;
+   symbol_text = php::str_replace("/", "::", symbol_text);
+   std::string headers_text = "    headers: [ " + selected_text + ".hpp ]";
+
+   std::string text_for_clipboard = "  - symbol: " + symbol_text + "\n" + headers_text;
+
+   ClipboardData::store(text_for_clipboard);
 }
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon

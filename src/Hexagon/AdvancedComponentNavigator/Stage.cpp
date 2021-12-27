@@ -32,6 +32,7 @@ Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_CO
    , YANK_SELECTED_TEXT_LABEL("yank_selected_text_label")
    , YANK_SELECTED_TEXT_AS_COMPONENT_NAME("yank_selected_text_as_component_name")
    , YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE("yank_selected_text_as_include_directive")
+   , YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES("yank_selected_text_as_quintessence_dependency_lines")
 {
 }
 
@@ -177,6 +178,7 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping()
       mapping.set_mapping(ALLEGRO_KEY_Y, NO_MODIFIER, { YANK_SELECTED_TEXT_LABEL });
       mapping.set_mapping(ALLEGRO_KEY_C, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_COMPONENT_NAME });
       mapping.set_mapping(ALLEGRO_KEY_I, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE });
+      mapping.set_mapping(ALLEGRO_KEY_D, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES });
    }
    else if (component.is_mode_typing_in_search_bar())
    {
@@ -194,6 +196,8 @@ std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> Stage::b
       { YANK_SELECTED_TEXT_LABEL, &AdvancedComponentNavigator::yank_selected_text_label },
       { YANK_SELECTED_TEXT_AS_COMPONENT_NAME, &AdvancedComponentNavigator::yank_selected_text_as_component_name },
       { YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE, &AdvancedComponentNavigator::yank_selected_text_as_include_directive },
+      { YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES,
+        &AdvancedComponentNavigator::yank_selected_text_as_quintessence_dependency_lines },
       { "refresh_list", &AdvancedComponentNavigator::refresh_list },
       { "move_cursor_to_top", &AdvancedComponentNavigator::move_cursor_to_top },
       { "set_mode_to_navigating_list", &AdvancedComponentNavigator::set_mode_to_navigating_list },
