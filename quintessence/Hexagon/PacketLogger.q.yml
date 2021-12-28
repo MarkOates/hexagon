@@ -1,0 +1,104 @@
+properties:
+
+
+  - name: PACKET_LOG_FOLDER_LOCATION
+    type: std::string
+    init_with: '"/Users/markoates/Repos/me/programming_logs"'
+    getter: true
+    setter: true
+
+  - name: project_name
+    type: std::string
+    init_with: '"[project-name-not-set]"'
+    constructor_arg: true
+
+  - name: searches_count
+    type: int
+    init_with: -1
+    constructor_arg: true
+
+  - name: saves_count
+    type: int
+    init_with: -1
+    constructor_arg: true
+
+  - name: score
+    type: int
+    init_with: -1
+    constructor_arg: true
+
+  - name: datetime
+    type: std::string
+    init_with: 'generate_time_now_string()'
+    getter: true
+    setter: true
+
+
+functions:
+
+
+  - name: write_log_file
+    body: |
+      std::string filename = generate_log_filename();
+      std::string file_contents = generate_log_file_contents();
+      php::file_put_contents(filename, file_contents);
+      return;
+    body_dependency_symbols:
+      - php::file_put_contents
+
+
+  - name: generate_log_filename
+    type: std::string
+    body: |
+      std::string result = PACKET_LOG_FOLDER_LOCATION + "/" + datetime;
+      result += ".log.txt";
+      return result;
+
+
+  - name: generate_log_file_contents
+    type: std::string
+    body: |
+      std::stringstream result;
+
+      result << "project: " << project_name << std::endl;
+      result << "datetime: " << datetime << std::endl;
+      result << "searches: " << searches_count << std::endl;
+      result << "saves: " << saves_count << std::endl;
+      result << "score: " << score << std::endl;
+      result << "time_posted: " << generate_time_now_string() << std::endl;
+
+      return result.str();
+    body_dependency_symbols:
+      - std::stringstream
+      - time
+
+
+  - name: generate_time_now_string
+    static: true
+    type: std::string
+    body: |
+      auto end = std::chrono::system_clock::now();
+      std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+
+      std::stringstream time_message;
+      time_message << std::ctime(&end_time);
+      std::string trimmed_time_message = Blast::String::Trimmer(time_message.str()).trim();
+
+      return trimmed_time_message;
+    body_dependency_symbols:
+      - Blast::String::Trimmer
+
+
+dependencies:
+
+
+  - symbol: time
+    headers: [ chrono, ctime ]
+  - symbol: AllegroFlare::random_string
+    headers: [ AllegroFlare/Useful.hpp ]
+  - symbol: Blast::String::Trimmer
+    headers: [ Blast/String/Trimmer.hpp ]
+  - symbol: php::file_put_contents
+    headers: [ allegro_flare/useful_php.h ]
+
+
