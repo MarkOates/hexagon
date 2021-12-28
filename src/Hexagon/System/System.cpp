@@ -85,6 +85,7 @@
 #include <Hexagon/StageFactory.hpp>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
 #include <Hexagon/OneLineInputBox/Stage.hpp>
+#include <Hexagon/PacketLogger.hpp>
 
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Blast/StringJoiner.hpp>
@@ -1455,6 +1456,10 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
 
    // refresh hud packets
    set_hud_packets_to_packets();
+
+   // post the packet log file
+   int score = search_count + save_count;
+   Hexagon::PacketLogger(current_project_directory, search_count, save_count, score);
 
    // clear scores
    clear_search_count();
