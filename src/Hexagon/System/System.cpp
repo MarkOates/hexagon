@@ -1459,7 +1459,7 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
 
    // post the packet to a log file
    int score = search_count + save_count;
-   Hexagon::PacketLogger packet_logger(current_project_directory, search_count, save_count, score);
+   Hexagon::PacketLogger packet_logger(current_project_directory, commit_message, search_count, save_count, score);
    packet_logger.write_log_file();
 
    // clear scores

@@ -11,13 +11,14 @@ namespace Hexagon
    private:
       std::string PACKET_LOG_FOLDER_LOCATION;
       std::string project_name;
+      std::string commit_message;
       int searches_count;
       int saves_count;
       int score;
       std::string datetime;
 
    public:
-      PacketLogger(std::string project_name="[project-name-not-set]", int searches_count=-1, int saves_count=-1, int score=-1);
+      PacketLogger(std::string project_name="[project-name-not-set]", std::string commit_message="[commit-message-not-set]", int searches_count=-1, int saves_count=-1, int score=-1);
       ~PacketLogger();
 
       void set_PACKET_LOG_FOLDER_LOCATION(std::string PACKET_LOG_FOLDER_LOCATION);

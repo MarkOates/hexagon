@@ -12,6 +12,11 @@ properties:
     init_with: '"[project-name-not-set]"'
     constructor_arg: true
 
+  - name: commit_message
+    type: std::string
+    init_with: '"[commit-message-not-set]"'
+    constructor_arg: true
+
   - name: searches_count
     type: int
     init_with: -1
@@ -61,6 +66,7 @@ functions:
       std::stringstream result;
 
       result << "project: " << project_name << std::endl;
+      result << "commit_message: " << commit_message << std::endl;
       result << "datetime: " << datetime << std::endl;
       result << "searches: " << searches_count << std::endl;
       result << "saves: " << saves_count << std::endl;

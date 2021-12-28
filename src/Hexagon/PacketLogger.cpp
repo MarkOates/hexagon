@@ -12,9 +12,10 @@ namespace Hexagon
 {
 
 
-PacketLogger::PacketLogger(std::string project_name, int searches_count, int saves_count, int score)
+PacketLogger::PacketLogger(std::string project_name, std::string commit_message, int searches_count, int saves_count, int score)
    : PACKET_LOG_FOLDER_LOCATION("/Users/markoates/Repos/me/programming_logs")
    , project_name(project_name)
+   , commit_message(commit_message)
    , searches_count(searches_count)
    , saves_count(saves_count)
    , score(score)
@@ -72,6 +73,7 @@ std::string PacketLogger::generate_log_file_contents()
    std::stringstream result;
 
    result << "project: " << project_name << std::endl;
+   result << "commit_message: " << commit_message << std::endl;
    result << "datetime: " << datetime << std::endl;
    result << "searches: " << searches_count << std::endl;
    result << "saves: " << saves_count << std::endl;

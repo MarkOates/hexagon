@@ -12,7 +12,7 @@ TEST(Hexagon_PacketLoggerTest, can_be_created_without_blowing_up)
 
 TEST(Hexagon_PacketLoggerTest, DISABLED__generate_log_file_contents__returns_the_expected_response)
 {
-   Hexagon::PacketLogger packet_logger("blast", 123, 42, 87);
+   Hexagon::PacketLogger packet_logger("blast", "Updated monoplex", 123, 42, 87);
    std::string expected_file_contents = "foo";
    std::string actual_file_contents = packet_logger.generate_log_file_contents();
    EXPECT_EQ(expected_file_contents, actual_file_contents);
@@ -33,7 +33,7 @@ TEST(Hexagon_PacketLoggerTest, PACKET_LOG_FOLDER_LOCATION__has_the_expected_defa
 
 TEST(Hexagon_PacketLoggerTest, DISABLED__write_log_file__writes_the_log_file_to_the_destination)
 {
-   Hexagon::PacketLogger packet_logger("test-blast", 123, 42, 87);
+   Hexagon::PacketLogger packet_logger("test-blast", "Werked it", 123, 42, 87);
    std::string filename_to_create = packet_logger.generate_log_filename();
    Blast::FileExistenceChecker file_existence_checker(filename_to_create);
 
