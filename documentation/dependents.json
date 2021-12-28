@@ -1110,6 +1110,18 @@
   ":OneLineInputBox/EventController": [
     "Hexagon/OneLineInputBox/Stage"
   ],
+  "time": [
+    "Hexagon/PacketLogger"
+  ],
+  "AllegroFlare/random_string": [
+    "Hexagon/PacketLogger"
+  ],
+  "Blast/String/Trimmer": [
+    "Hexagon/PacketLogger"
+  ],
+  "php/file_put_contents": [
+    "Hexagon/PacketLogger"
+  ],
   "Hexagon/Packet": [
     "Hexagon/PacketRenderer"
   ],

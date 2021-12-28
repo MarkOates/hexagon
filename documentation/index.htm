@@ -146,6 +146,7 @@ table td
   <li><a href="#quintessence/Hexagon/OneLineInputBox/Renderer.q.yml">quintessence/Hexagon/OneLineInputBox/Renderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/OneLineInputBox/Stage.q.yml">quintessence/Hexagon/OneLineInputBox/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Packet.q.yml">quintessence/Hexagon/Packet.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/PacketLogger.q.yml">quintessence/Hexagon/PacketLogger.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/PacketRenderer.q.yml">quintessence/Hexagon/PacketRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/PasteboardData.q.yml">quintessence/Hexagon/PasteboardData.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Powerbar/Powerbar.q.yml">quintessence/Hexagon/Powerbar/Powerbar.q.yml</a></li>
@@ -6005,6 +6006,65 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/PacketLogger.q.yml">quintessence/Hexagon/PacketLogger.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">PACKET_LOG_FOLDER_LOCATION</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">project_name</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">searches_count</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">saves_count</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">score</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">datetime</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">write_log_file()</td>
+</tr>
+<tr>
+  <td class="method">generate_log_filename()</td>
+</tr>
+<tr>
+  <td class="method">generate_log_file_contents()</td>
+</tr>
+<tr>
+  <td class="method">generate_time_now_string()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;time&quot;, &quot;headers&quot;=&gt;[&quot;chrono&quot;, &quot;ctime&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::random_string&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Useful.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::String::Trimmer&quot;, &quot;headers&quot;=&gt;[&quot;Blast/String/Trimmer.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::file_put_contents&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/PacketRenderer.q.yml">quintessence/Hexagon/PacketRenderer.q.yml</h3>
      <table>
 <tr>
@@ -10096,6 +10156,18 @@ table td
   ],
   ":OneLineInputBox/EventController": [
     "Hexagon/OneLineInputBox/Stage"
+  ],
+  "time": [
+    "Hexagon/PacketLogger"
+  ],
+  "AllegroFlare/random_string": [
+    "Hexagon/PacketLogger"
+  ],
+  "Blast/String/Trimmer": [
+    "Hexagon/PacketLogger"
+  ],
+  "php/file_put_contents": [
+    "Hexagon/PacketLogger"
   ],
   "Hexagon/Packet": [
     "Hexagon/PacketRenderer"

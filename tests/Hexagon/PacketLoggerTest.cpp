@@ -23,7 +23,7 @@ TEST(Hexagon_PacketLoggerTest, DISABLED__generate_log_filename__creates_a_filena
    // TODO
 }
 
-TEST(Hexagon_PacketLoggerTest, write_log_file__writes_the_log_file_to_the_destination)
+TEST(Hexagon_PacketLoggerTest, DISABLED__write_log_file__writes_the_log_file_to_the_destination)
 {
    Hexagon::PacketLogger packet_logger("test-blast", 123, 42, 87);
    std::string filename_to_create = packet_logger.generate_log_filename();
