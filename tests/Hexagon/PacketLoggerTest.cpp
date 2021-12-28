@@ -23,6 +23,14 @@ TEST(Hexagon_PacketLoggerTest, DISABLED__generate_log_filename__creates_a_filena
    // TODO
 }
 
+TEST(Hexagon_PacketLoggerTest, PACKET_LOG_FOLDER_LOCATION__has_the_expected_default)
+{
+   Hexagon::PacketLogger packet_logger;
+   std::string expected_packet_log_folder_location = "/Users/markoates/Repos/me/programming_logs";
+   std::string actual_packet_log_folder_location = packet_logger.get_PACKET_LOG_FOLDER_LOCATION();
+   EXPECT_EQ(expected_packet_log_folder_location, actual_packet_log_folder_location);
+}
+
 TEST(Hexagon_PacketLoggerTest, DISABLED__write_log_file__writes_the_log_file_to_the_destination)
 {
    Hexagon::PacketLogger packet_logger("test-blast", 123, 42, 87);
