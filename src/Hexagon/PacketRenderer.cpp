@@ -139,7 +139,6 @@ ALLEGRO_COLOR PacketRenderer::generate_top_left_little_bar_color()
 
 ALLEGRO_FONT* PacketRenderer::obtain_table_text_font()
 {
-   //return font_bin->auto_get("Exan-Regular.ttf -28");
    return font_bin->auto_get("Purista Medium.otf -28");
 }
 } // namespace Hexagon
