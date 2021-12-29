@@ -127,6 +127,11 @@ ALLEGRO_COLOR PacketRenderer::generate_top_left_little_bar_color()
    if (packet_score >= 20) return ALLEGRO_COLOR{1.0, 1.0, 0, 1.0};
    return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
 }
+
+ALLEGRO_FONT* PacketRenderer::obtain_table_text_font()
+{
+   return font_bin->auto_get("Exan-Regular.ttf -16");
+}
 } // namespace Hexagon
 
 

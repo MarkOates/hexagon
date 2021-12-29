@@ -26,6 +26,7 @@ namespace Hexagon
       void render_window();
       void render_text();
       ALLEGRO_COLOR generate_top_left_little_bar_color();
+      ALLEGRO_FONT* obtain_table_text_font();
    };
 }
 

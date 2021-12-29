@@ -111,6 +111,12 @@ functions:
       return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
 
 
+  - name: obtain_table_text_font
+    type: ALLEGRO_FONT*
+    body: |
+      return font_bin->auto_get("Exan-Regular.ttf -16");
+
+
 dependencies:
 
 
