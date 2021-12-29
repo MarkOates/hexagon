@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/FontBin.hpp>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp>
@@ -20,6 +21,7 @@ namespace Hexagon
       class Stage : public StageInterface
       {
       private:
+         AllegroFlare::FontBin* font_bin;
          std::string project_root;
          Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator component;
          static ALLEGRO_EVENT a_default_empty_event;
@@ -41,6 +43,7 @@ namespace Hexagon
          Stage(std::string project_root="/Users/markoates/Repos/hexagon/", ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR base_backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
          virtual ~Stage();
 
+         void set_font_bin(AllegroFlare::FontBin* font_bin);
          void set_project_root(std::string project_root);
          void set_is_focused(bool is_focused);
          void set_display(ALLEGRO_DISPLAY* display);
@@ -49,6 +52,7 @@ namespace Hexagon
          void set_cell_height(int cell_height);
          void set_base_text_color(ALLEGRO_COLOR base_text_color);
          void set_base_backfill_color(ALLEGRO_COLOR base_backfill_color);
+         AllegroFlare::FontBin* get_font_bin();
          std::string get_project_root();
          bool get_is_focused();
          ALLEGRO_DISPLAY* get_display();

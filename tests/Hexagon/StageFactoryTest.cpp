@@ -297,11 +297,18 @@ TEST(Hexagon_StageFactoryTest,
    al_uninstall_system();
 }
 
-TEST(Hexagon_StageFactoryTest, obtain_default_navigator_directory__without_a_config__raises_an_exception)
+TEST(Hexagon_StageFactoryTest, DISABLED__create_advanced_component_navigator__without_a_config__raises_an_exception)
 {
-   Hexagon::StageFactory stage_factory;
-   std::string expected_error_message = "StageFactory::obtain_default_navigator_directory: error: guard " \
-                                        "\"config\" not met";
+   // TODO
+}
+
+TEST(Hexagon_StageFactoryTest, create_advanced_component_navigator__without_a_font_bin__raises_an_exception)
+{
+   //AllegroFlare::FontBin font_bin;
+   Hexagon::StageFactory stage_factory(nullptr, nullptr);//&font_bin);
+
+   std::string expected_error_message = "StageFactory::create_advanced_component_navigator: error: guard " \
+                                        "\"font_bin\" not met";
    ASSERT_THROW_WITH_MESSAGE(
       stage_factory.create_advanced_component_navigator(),
       std::runtime_error,

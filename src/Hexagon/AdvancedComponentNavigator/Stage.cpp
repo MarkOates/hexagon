@@ -3,6 +3,8 @@
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 
@@ -18,6 +20,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_COLOR base_backfill_color)
    : StageInterface(StageInterface::COMPONENT_NAVIGATOR)
+   , font_bin(nullptr)
    , project_root(project_root)
    , component(project_root)
    , is_focused(true)
@@ -39,6 +42,12 @@ Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_CO
 
 Stage::~Stage()
 {
+}
+
+
+void Stage::set_font_bin(AllegroFlare::FontBin* font_bin)
+{
+   this->font_bin = font_bin;
 }
 
 
@@ -87,6 +96,12 @@ void Stage::set_base_text_color(ALLEGRO_COLOR base_text_color)
 void Stage::set_base_backfill_color(ALLEGRO_COLOR base_backfill_color)
 {
    this->base_backfill_color = base_backfill_color;
+}
+
+
+AllegroFlare::FontBin* Stage::get_font_bin()
+{
+   return font_bin;
 }
 
 
@@ -208,10 +223,24 @@ std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> Stage::b
 
 void Stage::render()
 {
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    float backfill_opacity = 0.8f;
 
    Hexagon::AdvancedComponentNavigator::Renderer renderer(
-      this, is_focused, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
+      this,
+      font_bin,
+      is_focused,
+      font,
+      cell_width,
+      cell_height,
+      &base_backfill_color,
+      backfill_opacity,
+      &base_text_color
    );
    renderer.render();
    return;

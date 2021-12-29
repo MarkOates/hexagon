@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
@@ -14,6 +15,7 @@ namespace Hexagon
       {
       private:
          Hexagon::AdvancedComponentNavigator::Stage* stage;
+         AllegroFlare::FontBin* font_bin;
          bool is_focused;
          ALLEGRO_FONT* font;
          int cell_width;
@@ -24,7 +26,7 @@ namespace Hexagon
          ALLEGRO_COLOR frame_color;
 
       public:
-         Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage=nullptr, bool is_focused=true, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20, ALLEGRO_COLOR* base_backfill_color=nullptr, float backfill_opacity=1.0f, ALLEGRO_COLOR* base_text_color=nullptr);
+         Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage=nullptr, AllegroFlare::FontBin* font_bin=nullptr, bool is_focused=true, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20, ALLEGRO_COLOR* base_backfill_color=nullptr, float backfill_opacity=1.0f, ALLEGRO_COLOR* base_text_color=nullptr);
          ~Renderer();
 
          ALLEGRO_COLOR* get_base_backfill_color();

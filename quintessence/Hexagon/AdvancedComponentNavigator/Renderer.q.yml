@@ -5,6 +5,10 @@ properties:
     type: Hexagon::AdvancedComponentNavigator::Stage*
     init_with: nullptr
     constructor_arg: true
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
   - name: is_focused
     type: bool
     init_with: true
@@ -356,6 +360,10 @@ functions:
 
 
 dependencies:
+
+
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: std::sin
     headers: [ cmath ]
   - symbol: Hexagon::AdvancedComponentNavigator::Stage*
@@ -382,3 +390,5 @@ dependencies:
     headers: [ Hexagon/Shapes/Hexagon/Stroke.hpp ]
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
+
+

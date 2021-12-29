@@ -1342,6 +1342,10 @@ table td
   <td class="property">Hexagon::AdvancedComponentNavigator::Stage*</td>
 </tr>
 <tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
   <td class="property">is_focused</td>
   <td class="property">bool</td>
 </tr>
@@ -1392,6 +1396,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::sin&quot;, &quot;headers&quot;=&gt;[&quot;cmath&quot;]}</td>
 </tr>
@@ -1452,6 +1459,10 @@ table td
   <div class="component">
     <h3 id="quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/Stage.q.yml</h3>
      <table>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
 <tr>
   <td class="property">project_root</td>
   <td class="property">std::string</td>
@@ -1541,6 +1552,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp&quot;]}</td>
 </tr>
@@ -9510,6 +9524,8 @@ table td
   ],
   "AllegroFlare/FontBin": [
     "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",

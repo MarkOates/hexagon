@@ -235,6 +235,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    stage.set_render_on_hud(true);
    stage.get_place() = build_centered_placement(800, 700);
    stage.set_font(font_bin["Menlo-Regular.ttf -20"]);
+   stage.set_font_bin(&font_bin);
    stage.process_local_event("refresh_list");
 
    std::vector<StageInterface *> stages = { &stage };

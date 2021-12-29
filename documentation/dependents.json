@@ -453,6 +453,8 @@
   ],
   "AllegroFlare/FontBin": [
     "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",

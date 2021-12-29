@@ -9,6 +9,11 @@ parent_classes:
 properties:
 
 
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    getter: true
+    setter: true
   - name: project_root
     type: std::string
     init_with: '"/Users/markoates/Repos/hexagon/"'
@@ -156,11 +161,20 @@ functions:
   - name: render
     virtual: true
     override: true
+    guards: [ font_bin ]
     body: |
       float backfill_opacity = 0.8f;
 
       Hexagon::AdvancedComponentNavigator::Renderer renderer(
-         this, is_focused, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
+         this,
+         font_bin,
+         is_focused,
+         font,
+         cell_width,
+         cell_height,
+         &base_backfill_color,
+         backfill_opacity,
+         &base_text_color
       );
       renderer.render();
       return;
@@ -232,7 +246,6 @@ functions:
       return;
 
 
-
   - name: process_event
     virtual: true
     override: true
@@ -282,6 +295,8 @@ functions:
 dependencies:
 
 
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator
     headers: [ Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp ]
   - symbol:  std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>

@@ -43,6 +43,8 @@
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_font.h>
+#include <stdexcept>
+#include <sstream>
 #include <allegro5/allegro.h>
 #include <stdexcept>
 #include <sstream>
@@ -403,6 +405,12 @@ StageInterface* StageFactory::create_git_commit_message_box()
 
 StageInterface* StageFactory::create_advanced_component_navigator()
 {
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "StageFactory" << "::" << "create_advanced_component_navigator" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    Hexagon::AdvancedComponentNavigator::Stage *result =
       new Hexagon::AdvancedComponentNavigator::Stage(obtain_default_navigator_directory());
 
@@ -411,6 +419,7 @@ StageInterface* StageFactory::create_advanced_component_navigator()
                                                 // it's blocking and requests from the filesystem so
                                                 // this refresh should be part of an operation that
                                                 // happens after the creation, or something like that
+   result->set_font_bin(font_bin);
    result->set_render_on_hud(true);
    result->set_base_text_color(obtain_base_text_color());
    result->set_base_backfill_color(obtain_base_backfill_color());

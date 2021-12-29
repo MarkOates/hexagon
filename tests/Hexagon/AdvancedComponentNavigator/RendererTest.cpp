@@ -18,12 +18,14 @@ class Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest : public ::test
 {
 protected:
    ALLEGRO_DISPLAY *display;
+   AllegroFlare::FontBin font_bin;
    Hexagon::AdvancedComponentNavigator::Stage *stage;
    ALLEGRO_FONT *font;
    Hexagon::AdvancedComponentNavigator::Renderer *renderer;
 
    Hexagon_AdvancedComponentNavigator_RendererWithFixtureTest()
       : display(nullptr)
+      , font_bin()
       , stage(nullptr)
       , font(nullptr)
       , renderer(nullptr)
@@ -44,12 +46,13 @@ protected:
       font = al_create_builtin_font();
       int cell_width = al_get_text_width(font, "X");
       int cell_height = al_get_font_line_height(font);
+      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/data/fonts");
       ALLEGRO_COLOR base_backfill_color = al_color_name("black");
       float backfill_opacity = 0.8f;
       ALLEGRO_COLOR base_text_color = al_color_name("white");
       stage = new Hexagon::AdvancedComponentNavigator::Stage();
       renderer = new Hexagon::AdvancedComponentNavigator::Renderer(
-         stage, true, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
+         stage, &font_bin, true, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
       );
 
       placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
