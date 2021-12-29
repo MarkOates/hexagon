@@ -1125,6 +1125,9 @@
   "Hexagon/Packet": [
     "Hexagon/PacketRenderer"
   ],
+  "allegro_flare/placement2d": [
+    "Hexagon/PacketRenderer"
+  ],
   "allegro_flare/placement3d": [
     "Hexagon/Powerbar/Renderer"
   ],

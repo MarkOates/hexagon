@@ -2,6 +2,7 @@
 
 #include <Hexagon/PacketRenderer.hpp>
 #include <allegro5/allegro_primitives.h>
+#include <allegro_flare/placement2d.h>
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/Elements/Window.hpp>
@@ -58,8 +59,15 @@ void PacketRenderer::render()
          error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
+
    render_window();
+
+   placement2d text_scaler(0, 0, 0, 0);
+   float text_scale = 2.0;
+   text_scaler.scale.x = text_scaler.scale.y = 1.0 / text_scale;
+   text_scaler.start_transform();
    render_text();
+   text_scaler.restore_transform();
    return;
 }
 
@@ -87,6 +95,7 @@ void PacketRenderer::render_window()
 
 void PacketRenderer::render_text()
 {
+   float text_scale = 2.0;
    ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 
    std::vector<std::tuple<std::string, std::string>> table = {
@@ -95,10 +104,11 @@ void PacketRenderer::render_text()
       { "SCORE",    std::to_string(packet->calculate_score()) },
    };
 
+   ALLEGRO_FONT *font = obtain_table_text_font();
    int line_number = 0;
-   float row1_x = 22;
-   float row2_x = 105;
-   float first_row_y = 20;
+   float row1_x = 22 * text_scale;
+   float row2_x = 105 * text_scale;
+   float first_row_y = 20 * text_scale;
    int line_height = al_get_font_line_height(font) * 1.2;
    for (auto &row : table)
    {
@@ -130,7 +140,7 @@ ALLEGRO_COLOR PacketRenderer::generate_top_left_little_bar_color()
 
 ALLEGRO_FONT* PacketRenderer::obtain_table_text_font()
 {
-   return font_bin->auto_get("Exan-Regular.ttf -16");
+   return font_bin->auto_get("Exan-Regular.ttf -28");
 }
 } // namespace Hexagon
 
