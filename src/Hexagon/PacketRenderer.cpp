@@ -59,7 +59,6 @@ void PacketRenderer::render()
          error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
-
    render_window();
 
    placement2d text_scaler(0, 0, 0, 0);
@@ -140,7 +139,8 @@ ALLEGRO_COLOR PacketRenderer::generate_top_left_little_bar_color()
 
 ALLEGRO_FONT* PacketRenderer::obtain_table_text_font()
 {
-   return font_bin->auto_get("Exan-Regular.ttf -28");
+   //return font_bin->auto_get("Exan-Regular.ttf -28");
+   return font_bin->auto_get("Purista Medium.otf -28");
 }
 } // namespace Hexagon
 
