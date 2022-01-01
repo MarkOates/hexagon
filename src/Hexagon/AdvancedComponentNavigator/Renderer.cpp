@@ -279,13 +279,13 @@ void Renderer::render_raw()
    // draw the project root (window title)
 
    ALLEGRO_COLOR node_root_font_color = frame_color;
-   ALLEGRO_FONT* window_title_font = obtain_window_title_font();
+   ALLEGRO_FONT* title_text_font = obtain_title_text_font();
    std::string node_root_val = component.get_project_root();
-   float title_text_width = al_get_text_width(font, node_root_val.c_str());
-   float title_text_height = al_get_font_line_height(font);
-   float title_y = (title_text_height * -1.3) * 2;
-   al_draw_filled_rectangle(0, title_y, title_text_width, title_y+title_text_height, backfill_color);
-   al_draw_text(font, node_root_font_color, 0, title_y, 0, node_root_val.c_str());
+   float title_text_font_width = al_get_text_width(title_text_font, node_root_val.c_str());
+   float title_text_font_height = al_get_font_line_height(title_text_font);
+   float title_y = (title_text_font_height * -1.3) * 2;
+   al_draw_filled_rectangle(0, title_y, title_text_font_width, title_y+title_text_font_height, backfill_color);
+   al_draw_text(title_text_font, node_root_font_color, 0, title_y, 0, node_root_val.c_str());
 
 
    // draw the search_text
@@ -379,9 +379,10 @@ void Renderer::render_raw()
    return;
 }
 
-ALLEGRO_FONT* Renderer::obtain_window_title_font()
+ALLEGRO_FONT* Renderer::obtain_title_text_font()
 {
-   return font_bin->auto_get("Eurostile.ttf -30");
+   //return font_bin->auto_get("Eurostile.ttf -18");
+   return font_bin->auto_get("Purista Medium.otf -22");
 }
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon
