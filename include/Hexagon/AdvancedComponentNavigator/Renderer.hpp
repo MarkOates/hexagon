@@ -36,6 +36,7 @@ namespace Hexagon
          void foobar();
          void render();
          void render_raw();
+         ALLEGRO_FONT* obtain_window_title_font();
       };
    }
 }

@@ -279,6 +279,7 @@ void Renderer::render_raw()
    // draw the project root (window title)
 
    ALLEGRO_COLOR node_root_font_color = frame_color;
+   ALLEGRO_FONT* window_title_font = obtain_window_title_font();
    std::string node_root_val = component.get_project_root();
    float title_text_width = al_get_text_width(font, node_root_val.c_str());
    float title_text_height = al_get_font_line_height(font);
@@ -376,6 +377,11 @@ void Renderer::render_raw()
    }
 
    return;
+}
+
+ALLEGRO_FONT* Renderer::obtain_window_title_font()
+{
+   return font_bin->auto_get("Eurostile.ttf -30");
 }
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon

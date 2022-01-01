@@ -37,6 +37,8 @@ protected:
       ASSERT_EQ(false, al_is_system_installed());
       ASSERT_EQ(true, al_init());
 
+      al_init_font_addon();
+      al_init_ttf_addon();
       al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
       ASSERT_EQ(ALLEGRO_OPENGL, al_get_new_display_flags() & ALLEGRO_OPENGL);
       ASSERT_EQ(ALLEGRO_PROGRAMMABLE_PIPELINE, al_get_new_display_flags() & ALLEGRO_PROGRAMMABLE_PIPELINE);
@@ -67,6 +69,7 @@ protected:
 
    virtual void TearDown() override
    {
+      font_bin.clear();
       al_destroy_font(font);
       delete stage;
       delete renderer;
