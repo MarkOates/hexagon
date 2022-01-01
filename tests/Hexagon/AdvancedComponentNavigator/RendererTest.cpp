@@ -46,7 +46,9 @@ protected:
       font = al_create_builtin_font();
       int cell_width = al_get_text_width(font, "X");
       int cell_height = al_get_font_line_height(font);
-      font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/data/fonts");
+      std::string TEST_FIXTURE_FONT_FOLDER = "/Users/markoates/Repos/hexagon/tests/fixtures/data/fonts";
+
+      font_bin.set_full_path(TEST_FIXTURE_FONT_FOLDER);
       ALLEGRO_COLOR base_backfill_color = al_color_name("black");
       float backfill_opacity = 0.8f;
       ALLEGRO_COLOR base_text_color = al_color_name("white");
