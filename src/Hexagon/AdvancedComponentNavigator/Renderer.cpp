@@ -284,8 +284,25 @@ void Renderer::render_raw()
    float title_text_font_width = al_get_text_width(title_text_font, node_root_val.c_str());
    float title_text_font_height = al_get_font_line_height(title_text_font);
    float title_y = (title_text_font_height * -1.3) * 2;
-   al_draw_filled_rectangle(0, title_y, title_text_font_width, title_y+title_text_font_height, backfill_color);
-   al_draw_text(title_text_font, node_root_font_color, 0, title_y, 0, node_root_val.c_str());
+
+   al_draw_filled_rectangle(
+      0 - padding_x,
+      title_y - padding_x,
+      place.size.x + padding_x,
+      //title_text_font_width,
+      title_y + title_text_font_height + padding_y,
+      node_root_font_color
+      //backfill_color
+   );
+   al_draw_text(
+      title_text_font,
+      //node_root_font_color,
+      backfill_color,
+      0,
+      title_y,
+      0,
+      node_root_val.c_str()
+   );
 
 
    // draw the search_text
