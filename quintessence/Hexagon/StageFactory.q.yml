@@ -5,14 +5,17 @@ properties:
     type: Hexagon::System::Config*
     init_with: nullptr
     constructor_arg: true
+
   - name: font_bin
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+
   - name: hud_render_surface_projection_width
     type: float
     init_with: 1920
     getter: true
+
   - name: hud_render_surface_projection_height
     type: float
     init_with: 1080
