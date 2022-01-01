@@ -5,48 +5,55 @@ properties:
     type: Hexagon::AdvancedComponentNavigator::Stage*
     init_with: nullptr
     constructor_arg: true
+
   - name: font_bin
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+
   - name: is_focused
     type: bool
     init_with: true
     constructor_arg: true
+
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
     constructor_arg: true
+
   - name: cell_width
     type: int
     init_with: 10
     constructor_arg: true
+
   - name: cell_height
     type: int
     init_with: 20
     constructor_arg: true
+
   - name: base_backfill_color
     type: ALLEGRO_COLOR*
     init_with: nullptr
     constructor_arg: true
     getter: true
+
   - name: backfill_opacity
     type: float
     init_with: 1.0f
     constructor_arg: true
+
   - name: base_text_color
     type: ALLEGRO_COLOR*
     init_with: nullptr
     constructor_arg: true
     getter: true
+
   - name: frame_color
     type: ALLEGRO_COLOR
     init_with: 'al_color_html("39c3c5")'
 
 
-
 functions:
-
 
 
   - name: build_backfill_color
@@ -56,7 +63,6 @@ functions:
     body: |
       ALLEGRO_COLOR result_backfill_color = color::color(*base_backfill_color, 0.8);
       return result_backfill_color;
-
 
 
   - name: draw_search_text_box
@@ -122,7 +128,6 @@ functions:
       return;
 
 
-
   - name: render
     type: void
     guards: [ stage, font ]
@@ -132,7 +137,6 @@ functions:
       render_raw();
       place.restore_transform();
       return;
-
 
 
   - name: render_raw
@@ -356,7 +360,6 @@ functions:
       - FileSystemNode
       - Hexagon::Shapes::Hexagon::Renderer
       - Hexagon::Shapes::Hexagon::Stroke
-
 
 
 dependencies:
