@@ -96,6 +96,13 @@ ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
      font_color = AllegroFlare::color::mix(font_color, base_font_color, 0.8);
    }
 
+   if (get_draw_represents_symlink())
+   {
+     // make it a little opaque
+     font_color = AllegroFlare::color::mix(font_color, al_color_name("dodgerblue"), 0.15);
+     font_color = AllegroFlare::color::color(font_color, 0.95);
+   }
+
    return font_color;
 }
 
