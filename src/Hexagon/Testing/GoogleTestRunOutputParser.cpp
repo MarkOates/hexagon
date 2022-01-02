@@ -43,6 +43,7 @@ bool GoogleTestRunOutputParser::parse()
    parse_error_messages.empty();
    bool test_suite_is_starting_line_was_found = false;
    bool test_suite_is_starting_line_was_detected_multiple_times = false;
+   std::string captured_test_output_body = "";
 
    Blast::StringSplitter splitter(google_test_run_output, '\n');
    std::vector<std::string> lines = splitter.split();
@@ -59,13 +60,16 @@ bool GoogleTestRunOutputParser::parse()
             //"[==========] Running 5 tests from 2 test suites."
          RegexMatcher matcher(line, test_suite_starts_regex);
          std::vector<std::pair<int, int>> matcher_results = matcher.get_match_info();
-         if (!matcher_results.empty())
+         bool match_was_found = !matcher_results.empty();
+         if (match_was_found)
          {
             if (test_suite_is_starting_line_was_found)
             {
                test_suite_is_starting_line_was_detected_multiple_times = true;
             }
             test_suite_is_starting_line_was_found = true;
+
+            continue;
          }
       }
 
@@ -95,6 +99,8 @@ bool GoogleTestRunOutputParser::parse()
 
             parsed_test_results.push_back(google_test_run_test_result);
             current_test_case = &parsed_test_results.back();
+
+            continue;
          }
       }
 
@@ -119,6 +125,8 @@ bool GoogleTestRunOutputParser::parse()
 
             // end parsing for this test cases
             current_test_case = nullptr;
+
+            continue;
          }
       }
 
@@ -143,6 +151,28 @@ bool GoogleTestRunOutputParser::parse()
 
             // end parsing for this test cases
             current_test_case = nullptr;
+
+            continue;
+         }
+      }
+
+      // if it's not any of the known detected lines,
+      // and there is a current test case in RUN,
+      // capture the line as body output
+      {
+         if (current_test_case)
+         {
+            std::string output_body = current_test_case->get_output_body();
+            if (output_body.empty())
+            {
+               // if it's empty, set it
+               current_test_case->set_output_body(line);
+            }
+            else
+            {
+               // otherwise if there's already content in it, append the line
+               current_test_case->set_output_body(current_test_case->get_output_body() + "\n" + line);
+            }
          }
       }
    }

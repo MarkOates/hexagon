@@ -209,19 +209,8 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
 }
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest,
-   parse__correctly_extracts_the_raw_output_of_a_test_that_contained_output)
+   parse__correctly_extracts_the_raw_output_body_of_a_test_that_contained_output)
 {
-   // TODO
-}
-
-TEST(Hexagon_Testing_GoogleTestRunOutputParserTest,
-   parse__correctly_extracts_the_expected_and_actual_message_on_a_failed_test)
-{
-   // TODO
-   // extract out expected and actual from:
-   //   Expected: (5) != (results.size()), actual: 5 vs 5
-   // NOTE there could be other formats for output
-
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(FAILING_TEST_RUN_OUTPUT);
    ASSERT_EQ(true, google_test_run_output_parser.parse());
    std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
@@ -229,9 +218,34 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest,
 
    Hexagon::Testing::GoogleTestRunTestResult &second_test_result = results[1];
 
-   std::string expected_output_body = "needs-to-be-parsed";
+   std::string expected_output_body = "tests/Hexagon/Testing/GoogleTestRunOutputParserTest.cpp:42: Failure"
+                                      "\n"
+                                      "Expected: (5) != (results.size()), actual: 5 vs 5";
    std::string actual_output_body = second_test_result.get_output_body();
 
-   //EXPECT_EQ(expected_output_body, actual_output_body);
+   EXPECT_EQ(expected_output_body, actual_output_body);
+}
+
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest,
+   DISABLED__parse__correctly_extracts_the_expected_and_actual_message_on_a_failed_test)
+{
+   // TODO
+
+   // extract out expected and actual from:
+   //   Expected: (5) != (results.size()), actual: 5 vs 5
+
+   // NOTE there could be other formats for output, for example:
+
+   //tests/Hexagon/Testing/GoogleTestRunOutputParserTest.cpp:235: Failure
+   //Expected equality of these values:
+   //  expected_output_body
+   //    Which is: "needs-to-be-parsed"
+   //  actual_output_body
+   //    Which is: "tests/Hexagon/Testing/GoogleTestRunOutputParserTest.cpp:42: Failure\nExpected: (5) != (results.size()), actual: 5 vs 5"
+   //With diff:
+   //@@ -1,1 +1,2 @@
+   //-needs-to-be-parsed
+   //+tests/Hexagon/Testing/GoogleTestRunOutputParserTest.cpp:42: Failure
+   //+Expected: (5) != (results.size()), actual: 5 vs 5
 }
 
