@@ -187,6 +187,7 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly_set_duration_and_result_on_failure)
 {
+   // TODO: split this into multiple tests
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(FAILING_TEST_RUN_OUTPUT);
    ASSERT_EQ(true, google_test_run_output_parser.parse());
    std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
@@ -219,6 +220,18 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest,
    // TODO
    // extract out expected and actual from:
    //   Expected: (5) != (results.size()), actual: 5 vs 5
-   // there could be other formats for output
+   // NOTE there could be other formats for output
+
+   Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(FAILING_TEST_RUN_OUTPUT);
+   ASSERT_EQ(true, google_test_run_output_parser.parse());
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> results =
+      google_test_run_output_parser.get_parsed_test_results();
+
+   Hexagon::Testing::GoogleTestRunTestResult &second_test_result = results[1];
+
+   std::string expected_output_body = "needs-to-be-parsed";
+   std::string actual_output_body = second_test_result.get_output_body();
+
+   //EXPECT_EQ(expected_output_body, actual_output_body);
 }
 

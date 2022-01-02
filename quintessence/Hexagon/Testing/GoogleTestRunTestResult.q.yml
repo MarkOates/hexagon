@@ -29,6 +29,13 @@ properties:
     getter: true
     setter: true
 
+  - name: output_body
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
+    getter: true
+    setter: true
+
   - name: failure_message
     type: std::string
     init_with: '""'

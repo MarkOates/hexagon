@@ -72,12 +72,14 @@ bool GoogleTestRunOutputParser::parse()
       // check for "test case run starts" line
       {
          std::string test_run_starts_regex =
+            // an example:
             "\\[ RUN      \\] [A-Za-z0-9_]+\\.[A-Za-z0-9_]+";
-            //an example:
+            // a concrete example:
             //"[ RUN      ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters";
          RegexMatcher matcher(line, test_run_starts_regex);
          std::vector<std::pair<int, int>> matcher_results = matcher.get_match_info();
-         if (!matcher_results.empty())
+         bool match_was_found = !matcher_results.empty();
+         if (match_was_found)
          {
             std::pair<std::string, std::string> tokens = extract_test_class_name_and_test_description(line);
             std::string test_class_name = tokens.first;
@@ -87,6 +89,7 @@ bool GoogleTestRunOutputParser::parse()
                test_description,
                "identified",
                -1,
+               "",
                ""
             );
 
@@ -98,12 +101,14 @@ bool GoogleTestRunOutputParser::parse()
       // check for "test passes" line
       {
          std::string test_run_passes_regex =
+            // an example:
             "\\[       OK \\] [A-Za-z0-9_]+\\.[A-Za-z0-9_]+ \\([0-9]+ ms\\)";
-            //an example:
-            //"[ RUN      ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters";
+            // a concrete eample:
+            //"[       OK ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters (13 ms)";
          RegexMatcher matcher(line, test_run_passes_regex);
          std::vector<std::pair<int, int>> matcher_results = matcher.get_match_info();
-         if (!matcher_results.empty())
+         bool match_was_found = !matcher_results.empty();
+         if (match_was_found)
          {
             if (!current_test_case) throw std::runtime_error("asdfasdf \"current_test_case\" expected");
             std::string result_to_set = "ok";
@@ -111,18 +116,23 @@ bool GoogleTestRunOutputParser::parse()
 
             current_test_case->set_result(result_to_set);
             current_test_case->set_duration_msec(duration_msec_to_set);
+
+            // end parsing for this test cases
+            current_test_case = nullptr;
          }
       }
 
       // check for "test fails" line
       {
          std::string test_run_passes_regex =
+            // an example:
             "\\[  FAILED  \\] [A-Za-z0-9_]+\\.[A-Za-z0-9_]+ \\([0-9]+ ms\\)";
-            //an example:
-            //"[ RUN      ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters";
+            // a concrete example:
+            //"[ FAILED   ] Hexagon_Elements_StageInforOverlayTest.text__has_getters_and_setters (23 ms)";
          RegexMatcher matcher(line, test_run_passes_regex);
          std::vector<std::pair<int, int>> matcher_results = matcher.get_match_info();
-         if (!matcher_results.empty())
+         bool match_was_found = !matcher_results.empty();
+         if (match_was_found)
          {
             if (!current_test_case) throw std::runtime_error("asdfasdfasdfasdf \"current_test_case\" expected");
             std::string result_to_set = "failed";
@@ -130,6 +140,9 @@ bool GoogleTestRunOutputParser::parse()
 
             current_test_case->set_result(result_to_set);
             current_test_case->set_duration_msec(duration_msec_to_set);
+
+            // end parsing for this test cases
+            current_test_case = nullptr;
          }
       }
    }
