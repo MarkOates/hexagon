@@ -42,6 +42,7 @@ Renderer::Renderer(
    , draw_extra_spaces_at_end_of_line(true)
    , draw_null_space(true)
    , draw_backfill(true)
+   , draw_represents_symlink(false)
    , is_focused(is_focused)
    , code_editor(code_editor)
    , place(place)
@@ -388,6 +389,18 @@ void Renderer::render_code_lines(placement3d &place, ALLEGRO_COLOR frame_color)
 
 
 
+void Renderer::set_draw_represents_symlink(bool draw_represents_symlink)
+{
+   this->draw_represents_symlink = draw_represents_symlink;
+}
+
+
+bool Renderer::get_draw_represents_symlink()
+{
+   return this->draw_represents_symlink;
+}
+
+
 void Renderer::render_raw()
 {
    if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
@@ -444,6 +457,11 @@ void Renderer::render_raw()
    window.set_corner_squares_resize_from_center(true);
    window.draw();
 
+   if (get_draw_represents_symlink())
+   {
+      float inner_padding = place.size.x * 0.333;
+      al_draw_line(inner_padding, -2, place.size.x-inner_padding, -2, al_color_name("dodgerblue"), 1.0);
+   }
 
 
    // render the code lines, cursor, and acutal code markings and information

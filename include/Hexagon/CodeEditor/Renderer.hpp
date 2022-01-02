@@ -19,6 +19,7 @@ namespace CodeEditor
       bool draw_extra_spaces_at_end_of_line;
       bool draw_null_space;
       bool draw_backfill;
+      bool draw_represents_symlink;
       ALLEGRO_DISPLAY *display;
       ::CodeEditor::CodeEditor *code_editor;
       placement3d place;
@@ -51,6 +52,8 @@ namespace CodeEditor
       ~Renderer();
 
       virtual void render() override;
+      void set_draw_represents_symlink(bool draw_represents_symlink=false);
+      bool get_draw_represents_symlink();
 
    public: // not really, but listed as public so they can be tested
       ALLEGRO_COLOR build_font_color(ALLEGRO_COLOR frame_color);
