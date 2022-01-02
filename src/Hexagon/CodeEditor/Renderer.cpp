@@ -100,7 +100,7 @@ ALLEGRO_COLOR Renderer::build_font_color(ALLEGRO_COLOR frame_color)
    {
      // make it a little opaque
      font_color = AllegroFlare::color::mix(font_color, al_color_name("dodgerblue"), 0.15);
-     font_color = AllegroFlare::color::color(font_color, 0.95);
+     font_color = AllegroFlare::color::color(font_color, 0.85);
    }
 
    return font_color;
@@ -467,12 +467,28 @@ void Renderer::render_raw()
    if (get_draw_represents_symlink())
    {
       float inner_padding = place.size.x * 0.333;
-      float inset = 3;
+      float inset = 6;
+      float thickness = 2;
       ALLEGRO_COLOR frame_color = al_color_name("dodgerblue");
+      frame_color = AllegroFlare::color::mix(frame_color, al_color_name("white"), 0.5);
       // top line
-      al_draw_line(inner_padding, inset, place.size.x-inner_padding, inset, frame_color, 1.0);
+      al_draw_line(
+         inner_padding,
+         inset,
+         place.size.x-inner_padding,
+         inset,
+         frame_color,
+         thickness
+      );
       // bottom line
-      al_draw_line(inner_padding, place.size.y-inset, place.size.x-inner_padding, place.size.y-inset, frame_color, 1.0);
+      al_draw_line(
+         inner_padding,
+         place.size.y-inset,
+         place.size.x-inner_padding,
+         place.size.y-inset,
+         frame_color,
+         thickness
+      );
    }
 
 
