@@ -28,6 +28,7 @@ namespace Hexagon
          ALLEGRO_COLOR base_font_color;
          ALLEGRO_COLOR backfill_color;
          std::string state;
+         bool represents_a_symlink;
 
       public:
          Stage(::CodeEditor::CodeEditor code_editor=::CodeEditor::CodeEditor{});
@@ -41,6 +42,7 @@ namespace Hexagon
          void set_cell_height(int cell_height);
          void set_base_font_color(ALLEGRO_COLOR base_font_color);
          void set_backfill_color(ALLEGRO_COLOR backfill_color);
+         void set_represents_a_symlink(bool represents_a_symlink);
          ::CodeEditor::CodeEditor get_code_editor();
          bool get_is_focused();
          ALLEGRO_DISPLAY* get_display();
@@ -50,6 +52,7 @@ namespace Hexagon
          int get_cell_height();
          ALLEGRO_COLOR get_base_font_color();
          ALLEGRO_COLOR get_backfill_color();
+         bool get_represents_a_symlink();
          ::CodeEditor::CodeEditor &get_code_editor_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          void change_state_to_submitted_and_pending_destruction();

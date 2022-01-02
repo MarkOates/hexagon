@@ -307,6 +307,9 @@ functions:
       int cell_width = al_get_text_width(font, " ");
       int cell_height = al_get_font_line_height(font);
 
+      bool is_symlink = Blast::Project::SymlinkChecker(filename).is_symlink();
+
+      code_editor_stage->set_represents_a_symlink(is_symlink);
       code_editor_stage->set_display(display);
       code_editor_stage->set_font(font);
       code_editor_stage->set_font_bin(font_bin);
@@ -317,6 +320,7 @@ functions:
     body_dependency_symbols:
        - StageInterface*
        - Hexagon::CodeEditor::Stage
+       - Blast::Project::SymlinkChecker
 
 
   - name: create_regex_input_box_modal
@@ -530,6 +534,8 @@ functions:
 dependencies:
 
 
+  - symbol: Blast::Project::SymlinkChecker
+    headers: [ Blast/Project/SymlinkChecker.hpp ]
   - symbol: php::file_get_contents
     headers: [ allegro_flare/useful_php.h ]
   - symbol: Blast::Project::Component

@@ -37,6 +37,7 @@
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <Blast/Project/SymlinkChecker.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/OneLineInputBox/Stage.hpp>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
@@ -332,6 +333,9 @@ StageInterface* StageFactory::create_code_editor(std::string filename, std::stri
    int cell_width = al_get_text_width(font, " ");
    int cell_height = al_get_font_line_height(font);
 
+   bool is_symlink = Blast::Project::SymlinkChecker(filename).is_symlink();
+
+   code_editor_stage->set_represents_a_symlink(is_symlink);
    code_editor_stage->set_display(display);
    code_editor_stage->set_font(font);
    code_editor_stage->set_font_bin(font_bin);

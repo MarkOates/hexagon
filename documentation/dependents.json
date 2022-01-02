@@ -1219,6 +1219,10 @@
   "std/vector<Hexagon/CodeEditor/Stage >": [
     "Hexagon/StageCollectionHelper"
   ],
+  "Blast/Project/SymlinkChecker": [
+    "Hexagon/StageFactory",
+    "Hexagon/SymlinkToucher"
+  ],
   "Hexagon/MissingFile/Stage": [
     "Hexagon/StageFactory"
   ],
@@ -1249,9 +1253,6 @@
   ],
   "al_font_line_height": [
     "Hexagon/StageFactory"
-  ],
-  "Blast/Project/SymlinkChecker": [
-    "Hexagon/SymlinkToucher"
   ],
   "std/vector": [
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"

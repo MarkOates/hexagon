@@ -63,6 +63,11 @@ properties:
   - name: state
     type: std::string
     init_with: '"normal"'
+  - name: represents_a_symlink
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
 
 
 functions:
@@ -124,6 +129,7 @@ functions:
             backfill_color,
             backfill_opacity
          );
+         if (get_represents_a_symlink()) renderer.set_draw_represents_symlink(true);
          renderer.render();
 
          if (code_editor.get_draw_info_overlay())

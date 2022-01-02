@@ -33,6 +33,7 @@ Stage::Stage(::CodeEditor::CodeEditor code_editor)
    , base_font_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f})
    , backfill_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f})
    , state("normal")
+   , represents_a_symlink(false)
 {
 }
 
@@ -90,6 +91,12 @@ void Stage::set_backfill_color(ALLEGRO_COLOR backfill_color)
 }
 
 
+void Stage::set_represents_a_symlink(bool represents_a_symlink)
+{
+   this->represents_a_symlink = represents_a_symlink;
+}
+
+
 ::CodeEditor::CodeEditor Stage::get_code_editor()
 {
    return code_editor;
@@ -141,6 +148,12 @@ ALLEGRO_COLOR Stage::get_base_font_color()
 ALLEGRO_COLOR Stage::get_backfill_color()
 {
    return backfill_color;
+}
+
+
+bool Stage::get_represents_a_symlink()
+{
+   return represents_a_symlink;
 }
 
 
@@ -209,6 +222,7 @@ void Stage::render()
          backfill_color,
          backfill_opacity
       );
+      if (get_represents_a_symlink()) renderer.set_draw_represents_symlink(true);
       renderer.render();
 
       if (code_editor.get_draw_info_overlay())
