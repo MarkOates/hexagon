@@ -460,12 +460,12 @@ void Renderer::render_raw()
    if (get_draw_represents_symlink())
    {
       float inner_padding = place.size.x * 0.333;
-      float inset = 2;
+      float inset = 3;
       ALLEGRO_COLOR frame_color = al_color_name("dodgerblue");
       // top line
       al_draw_line(inner_padding, inset, place.size.x-inner_padding, inset, frame_color, 1.0);
       // bottom line
-      al_draw_line(inner_padding, -inset, place.size.x-inner_padding, -inset, frame_color, 1.0);
+      al_draw_line(inner_padding, place.size.y-inset, place.size.x-inner_padding, place.size.y-inset, frame_color, 1.0);
    }
 
 
