@@ -61,6 +61,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string 
    , surface_projection_height(1080)
    , stages(nullptr)
    , global_font_str("unset-global_font_str")
+   , current_component_is_symlinked_thus_has_different_title_color(false)
 {
 }
 
@@ -208,6 +209,12 @@ void Hud::set_global_font_str(std::string global_font_str)
 }
 
 
+void Hud::set_current_component_is_symlinked_thus_has_different_title_color(bool current_component_is_symlinked_thus_has_different_title_color)
+{
+   this->current_component_is_symlinked_thus_has_different_title_color = current_component_is_symlinked_thus_has_different_title_color;
+}
+
+
 std::vector<std::string> Hud::get_notifications()
 {
    return notifications;
@@ -307,6 +314,12 @@ float Hud::get_surface_projection_width()
 float Hud::get_surface_projection_height()
 {
    return surface_projection_height;
+}
+
+
+bool Hud::get_current_component_is_symlinked_thus_has_different_title_color()
+{
+   return current_component_is_symlinked_thus_has_different_title_color;
 }
 
 
@@ -439,6 +452,11 @@ void Hud::draw_current_title_text()
 {
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
+   if (get_current_component_is_symlinked_thus_has_different_title_color())
+   {
+      ALLEGRO_COLOR is_symlink_mix_color = al_color_name("orange");
+      color = AllegroFlare::color::mix(color, is_symlink_mix_color, 0.5);
+   }
    float display_center_x = get_surface_projection_width() / 2;
    ALLEGRO_FONT *title_font = obtain_title_font();
    float title_font_line_height = al_get_font_line_height(title_font);

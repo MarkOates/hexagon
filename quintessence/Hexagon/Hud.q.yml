@@ -178,6 +178,12 @@ properties:
     init_with: '"unset-global_font_str"'
     setter: true
 
+  - name: current_component_is_symlinked_thus_has_different_title_color
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
+
 
 functions:
 
@@ -295,6 +301,11 @@ functions:
     body: |
       ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
       ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
+      if (get_current_component_is_symlinked_thus_has_different_title_color())
+      {
+         ALLEGRO_COLOR is_symlink_mix_color = al_color_name("orange");
+         color = AllegroFlare::color::mix(color, is_symlink_mix_color, 0.5);
+      }
       float display_center_x = get_surface_projection_width() / 2;
       ALLEGRO_FONT *title_font = obtain_title_font();
       float title_font_line_height = al_get_font_line_height(title_font);

@@ -47,6 +47,7 @@ namespace Hexagon
       float surface_projection_height;
       std::vector<StageInterface *>* stages;
       std::string global_font_str;
+      bool current_component_is_symlinked_thus_has_different_title_color;
 
    public:
       Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& font_bin=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool render_powerbar=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=false, int save_count=0, bool render_packets=false, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=false, int search_count=0, bool render_focus_timer_bar=false, bool draw_notifications=true, float left_column_x=30);
@@ -75,6 +76,7 @@ namespace Hexagon
       void set_surface_projection_height(float surface_projection_height);
       void set_stages(std::vector<StageInterface *>* stages);
       void set_global_font_str(std::string global_font_str);
+      void set_current_component_is_symlinked_thus_has_different_title_color(bool current_component_is_symlinked_thus_has_different_title_color);
       std::vector<std::string> get_notifications();
       std::vector<std::string> get_notifications2();
       std::string get_title_text();
@@ -92,6 +94,7 @@ namespace Hexagon
       float get_left_column_x();
       float get_surface_projection_width();
       float get_surface_projection_height();
+      bool get_current_component_is_symlinked_thus_has_different_title_color();
       Hexagon::Powerbar::Powerbar &get_powerbar_ref();
       Hexagon::FocusTimerBar::FocusTimerBar &get_focus_timer_bar_ref();
       static AllegroFlare::FontBin& get_dummy_font_bin();

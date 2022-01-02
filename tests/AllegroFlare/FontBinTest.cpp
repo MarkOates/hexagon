@@ -1,0 +1,1 @@
+../../../allegro_flare/tests/AllegroFlare/FontBinTest.cpp
