@@ -61,7 +61,6 @@ Expected: (5) != (results.size()), actual: 5 vs 5
 )TEST_FIXTURE";
 
 
-
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, can_be_created_without_blowing_up)
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser;
@@ -206,5 +205,20 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__returns_the_correctly
    int actual_duration_msec = second_test_result.get_duration_msec();
 
    EXPECT_EQ(expected_duration_msec, actual_duration_msec);
+}
+
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest,
+   parse__correctly_extracts_the_raw_output_of_a_test_that_contained_output)
+{
+   // TODO
+}
+
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest,
+   parse__correctly_extracts_the_expected_and_actual_message_on_a_failed_test)
+{
+   // TODO
+   // extract out expected and actual from:
+   //   Expected: (5) != (results.size()), actual: 5 vs 5
+   // there could be other formats for output
 }
 

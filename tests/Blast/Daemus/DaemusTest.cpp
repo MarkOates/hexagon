@@ -55,6 +55,26 @@ TEST(Blast_Daemus_DaemusTest, run_component_test__returns_test_results)
    EXPECT_EQ(false, test_results.empty());
 }
 
+TEST(Blast_Daemus_DaemusTest, run_component_test__returns_the_expected_data_in_the_returned_results)
+{
+   // TODO: make this test more comprehensive
+
+   Blast::Project::Component component("Blast/String/Trimmer", "/Users/markoates/Repos/hexagon/");
+   Blast::Daemus::Daemus daemus;
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> actual_test_results = daemus.run_component_test(component);
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> expected_test_results = {
+      Hexagon::Testing::GoogleTestRunTestResult(
+         "Blast_String_TrimmerTest",
+         "can_be_created_without_arguments",
+         "ok"
+      )
+   };
+
+   EXPECT_EQ(expected_test_results[0].get_test_class_name(), actual_test_results[0].get_test_class_name());
+   EXPECT_EQ(expected_test_results[0].get_test_description(), actual_test_results[0].get_test_description());
+   EXPECT_EQ(expected_test_results[0].get_result(), actual_test_results[0].get_result());
+}
+
 TEST(Blast_Daemus_DaemusTest,
    run_component_test__when_the_component_project_directory_is_not_present__raises_an_error)
 {
