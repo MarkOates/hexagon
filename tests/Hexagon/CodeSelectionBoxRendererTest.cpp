@@ -32,36 +32,24 @@ TEST_F(Hexagon_CodeSelectionBoxRendererTest, can_be_created_without_blowing_up)
    Hexagon::CodeSelectionBoxRenderer renderer;
 }
 
-TEST_F(Hexagon_CodeSelectionBoxRendererTest, the_expected_functions__without_initializing__raise_the_expected_errors)
+TEST_F(Hexagon_CodeSelectionBoxRendererTest, the_expected_functions__without_lines__throws_an_error)
 {
    // TODO
-   std::vector<std::string> lines = {};
-   CodeRange range = { 0, 0, 0, 0 };
-   Hexagon::CodeSelectionBoxRenderer renderer(&lines, &range, 0, 10, 32);
+}
+
+TEST_F(Hexagon_CodeSelectionBoxRendererTest, the_expected_functions__without_code_range__throws_an_error)
+{
+   // TODO
 }
 
 TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__renders_as_expected_on_a_single_line)
 {
    // TODO
-   std::vector<std::string> lines = {};
-   CodeRange range = { 0, 0, 0, 0 };
-   Hexagon::CodeSelectionBoxRenderer renderer(&lines, &range, 0, 10, 32);
 }
 
-TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__renders_the_expected_cursor_when_range_is_empty)
+TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__renders_as_expected_over_multiple_lines)
 {
    // TODO
-   std::vector<std::string> lines = {};
-   CodeRange range = { 0, 0, 0, 0 };
-   Hexagon::CodeSelectionBoxRenderer renderer(&lines, &range, 0, 10, 32);
-}
-
-TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__renders_red__if_the_cursor_extends_over_void_range)
-{
-   // TODO
-   std::vector<std::string> lines = {};
-   CodeRange range = { 0, 0, 0, 0 };
-   Hexagon::CodeSelectionBoxRenderer renderer(&lines, &range, 0, 10, 32);
 }
 
 
