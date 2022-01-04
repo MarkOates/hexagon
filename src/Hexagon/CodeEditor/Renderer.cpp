@@ -68,9 +68,9 @@ void Renderer::draw_selections(int cell_width, int cell_height)
    for (auto &selection : code_editor->selections)
    {
       //std::cout << " drawing selection " << selection << std::endl;
-      CodeSelectionBoxRenderer renderer(
-         code_editor->get_lines_ref(),
-         selection,
+      Hexagon::CodeSelectionBoxRenderer renderer(
+         &code_editor->get_lines_ref_nconst(),
+         &selection,
          code_editor->get_first_line_number(),
          cell_width,
          cell_height);

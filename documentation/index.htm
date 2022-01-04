@@ -84,6 +84,7 @@ table td
   <li><a href="#quintessence/Hexagon/CodeEditor/Stage.q.yml">quintessence/Hexagon/CodeEditor/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeMessagePointManager.q.yml">quintessence/Hexagon/CodeMessagePointManager.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeRenderer.q.yml">quintessence/Hexagon/CodeRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeSelectionBoxRenderer.q.yml">quintessence/Hexagon/CodeSelectionBoxRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml">quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml</a></li>
@@ -803,7 +804,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::Cursor*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/Cursor.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;CodeSelectionBoxRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeSelectionBoxRenderer.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeSelectionBoxRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeSelectionBoxRenderer.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::Timer&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Timer.hpp&quot;]}</td>
@@ -2499,6 +2500,52 @@ table td
 </tr>
     </table>
      <table>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/CodeSelectionBoxRenderer.q.yml">quintessence/Hexagon/CodeSelectionBoxRenderer.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">lines</td>
+  <td class="property">std::vector&lt;std::string&gt;*</td>
+</tr>
+<tr>
+  <td class="property">code_range</td>
+  <td class="property">CodeRange*</td>
+</tr>
+<tr>
+  <td class="property">first_line_number</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">cell_width</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">cell_height</td>
+  <td class="property">int</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">verify_line_in_range(1)</td>
+</tr>
+<tr>
+  <td class="method">get_line_length(1)</td>
+</tr>
+<tr>
+  <td class="method">render()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;CodeRange*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeRange.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::string&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -5858,7 +5905,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeRange&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeRange.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;CodeSelectionBoxRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeSelectionBoxRenderer.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeSelectionBoxRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeSelectionBoxRenderer.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement3d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement3d.h&quot;]}</td>
@@ -9347,6 +9394,7 @@ table td
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeSelectionBoxRenderer",
     "Hexagon/DirtyGrid",
     "Hexagon/Elements/TextPixelPreviewCreator",
     "Hexagon/FileNavigator/Stage",
@@ -9486,7 +9534,7 @@ table td
   "Hexagon/AdvancedCodeEditor/WindowRenderer": [
     "Hexagon/AdvancedCodeEditor/Renderer"
   ],
-  "CodeSelectionBoxRenderer": [
+  "Hexagon/CodeSelectionBoxRenderer": [
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/OneLineInputBox/Renderer"
   ],
@@ -9932,6 +9980,9 @@ table td
   ],
   "std/vector<CodeMessagePoint>": [
     "Hexagon/CodeMessagePointManager"
+  ],
+  "CodeRange": [
+    "Hexagon/CodeSelectionBoxRenderer"
   ],
   "Blast/Project/ComponentRelativeLister": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"

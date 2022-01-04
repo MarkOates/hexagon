@@ -83,6 +83,8 @@ namespace CodeEditor
       int num_columns();
       int get_save_count();
       std::vector<std::string> const &get_lines_ref();
+      std::vector<std::string> &get_lines_ref_nconst(); // this should eventually be the default, with the prior
+                                                        // being the exception
       std::string &current_line_ref();
       std::string &next_line_ref();
       std::string get_current_mode_string();

@@ -255,6 +255,7 @@
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeSelectionBoxRenderer",
     "Hexagon/DirtyGrid",
     "Hexagon/Elements/TextPixelPreviewCreator",
     "Hexagon/FileNavigator/Stage",
@@ -394,7 +395,7 @@
   "Hexagon/AdvancedCodeEditor/WindowRenderer": [
     "Hexagon/AdvancedCodeEditor/Renderer"
   ],
-  "CodeSelectionBoxRenderer": [
+  "Hexagon/CodeSelectionBoxRenderer": [
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/OneLineInputBox/Renderer"
   ],
@@ -840,6 +841,9 @@
   ],
   "std/vector<CodeMessagePoint>": [
     "Hexagon/CodeMessagePointManager"
+  ],
+  "CodeRange": [
+    "Hexagon/CodeSelectionBoxRenderer"
   ],
   "Blast/Project/ComponentRelativeLister": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"

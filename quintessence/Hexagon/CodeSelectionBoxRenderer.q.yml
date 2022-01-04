@@ -1,0 +1,66 @@
+properties:
+
+
+  - name: lines
+    type: std::vector<std::string>*
+    init_with: nullptr
+    constructor_arg: true
+
+  - name: code_range
+    type: CodeRange*
+    init_with: nullptr
+    constructor_arg: true
+
+  - name: first_line_number
+    type: int
+    init_with: 0
+    constructor_arg: true
+
+  - name: cell_width
+    type: int
+    init_with: 0
+    constructor_arg: true
+
+  - name: cell_height
+    type: int
+    init_with: 0
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: verify_line_in_range
+    type: bool
+    parameters:
+      - name: line_num
+        type: int
+        default_argument: 0
+    body: |
+      return true;
+
+
+  - name: get_line_length
+    type: int
+    parameters:
+      - name: line_num
+        type: int
+        default_argument: 0
+    body: |
+      return 0;
+
+
+  - name: render
+    body: |
+      return;
+
+
+dependencies:
+
+
+  - symbol: CodeRange*
+    headers: [ Hexagon/CodeRange.hpp ]
+  - symbol: std::vector<std::string>*
+    headers: [ vector, string ]
+
+

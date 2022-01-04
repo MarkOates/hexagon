@@ -201,10 +201,10 @@ functions:
          for (auto &code_range : selection.get_code_ranges())
          {
             //std::cout << " drawing selection " << selection << std::endl;
-            CodeSelectionBoxRenderer renderer(
+            Hexagon::CodeSelectionBoxRenderer renderer(
                //code_editor->get_lines_ref(),
-               *lines,
-               code_range,
+               lines,
+               &code_range,
                //code_editor->get_first_line_number(),
                first_line_number,
                cell_width,
@@ -213,7 +213,7 @@ functions:
          }
       }
     body_dependency_symbols:
-      - CodeSelectionBoxRenderer
+      - Hexagon::CodeSelectionBoxRenderer
 
 
 
@@ -240,7 +240,7 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/WindowRenderer.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Cursor*
     headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
-  - symbol: CodeSelectionBoxRenderer
+  - symbol: Hexagon::CodeSelectionBoxRenderer
     headers: [ Hexagon/CodeSelectionBoxRenderer.hpp ]
   - symbol: AllegroFlare::Timer
     headers: [ AllegroFlare/Timer.hpp ]

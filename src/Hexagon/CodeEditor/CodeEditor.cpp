@@ -241,6 +241,13 @@ std::vector<std::string> const &CodeEditor::get_lines_ref()
 
 
 
+std::vector<std::string> &CodeEditor::get_lines_ref_nconst()
+{
+   return lines;
+}
+
+
+
 std::string &CodeEditor::current_line_ref()
 {
    return lines[cursor_y];

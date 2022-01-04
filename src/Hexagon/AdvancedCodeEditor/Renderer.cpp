@@ -224,10 +224,10 @@ void Renderer::draw_selections()
       for (auto &code_range : selection.get_code_ranges())
       {
          //std::cout << " drawing selection " << selection << std::endl;
-         CodeSelectionBoxRenderer renderer(
+         Hexagon::CodeSelectionBoxRenderer renderer(
             //code_editor->get_lines_ref(),
-            *lines,
-            code_range,
+            lines,
+            &code_range,
             //code_editor->get_first_line_number(),
             first_line_number,
             cell_width,

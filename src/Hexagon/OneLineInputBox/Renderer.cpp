@@ -88,7 +88,7 @@ void Renderer::draw_selections(int cell_width, int cell_height, int first_line_n
    for (auto &selection : selections)
    {
       std::cout << " drawing selection " << selection << std::endl;
-      CodeSelectionBoxRenderer(lines, selection, first_line_number, cell_width, cell_height).render();
+      Hexagon::CodeSelectionBoxRenderer(&lines, &selection, first_line_number, cell_width, cell_height).render();
    }
 }
 
