@@ -529,7 +529,7 @@ void Stage::render()
 
    std::vector<Hexagon::AdvancedCodeEditor::Selection> selections = {
       Hexagon::AdvancedCodeEditor::Selection{
-         std::vector<CodeRange>{ CodeRange{4, 5, 10, 6} },
+         //std::vector<CodeRange>{ CodeRange{4, 5, 10, 6} },
       },
    };
 
