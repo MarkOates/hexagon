@@ -5,15 +5,18 @@ properties:
     type: Hexagon::AdvancedCodeEditor::Stage*
     init_with: nullptr
     constructor_arg: true
+
   - name: events_dictionary
     type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
     init_with: '{}'
     getter_ref: true
     constructor_arg: true
+
   - name: keyboard_command_mapping
     type: KeyboardCommandMapper
     init_with: '{}'
     constructor_arg: true
+
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
