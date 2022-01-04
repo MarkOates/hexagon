@@ -13,70 +13,86 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+
   - name: num_columns
     type: int
     init_with: 0
     getter: true
     setter: false
     constructor_arg: true
+
   - name: num_rows
     type: int
     init_with: 0
     getter: true
     setter: false
     constructor_arg: true
+
   - name: text_mesh
     type: Hexagon::Elements::TextMesh
     init_with: '{nullptr, num_columns, num_rows}'
+
   - name: filename
     type: std::string
     init_with: '"untitled.txt"'
     getter: true
     setter: true
+
   - name: advanced_code_editor
     type: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
     init_with: '{}'
     getter_ref: true
+
   - name: input_buffer
     type: std::string
     init_with: '""'
     getter: true
     getter_ref: true
     setter: true
+
   - name: mode
     type: int
     init_with: 0
+
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+
   - name: initialized
     type: bool
     init_with: false
     getter: true
+
   - name: offset_y
     type: float
     init_with: 0.0f
     getter: true
+
   - name: offset_y_updated_at
     type: float
     init_with: 0.0f
     getter: true
+
   - name: first_row_offset
     type: int
     init_with: 0
     getter: true
+
   - name: surface_render
     type: ALLEGRO_BITMAP*
     init_with: nullptr
     getter: true
+
   - name: current_search_regex
     type: std::string
     init_with: '""'
+
   - name: code_message_point_manager
     type: Hexagon::CodeMessagePointManager
     init_with: '{}'
+
   - name: selections
     type: std::vector<Hexagon::AdvancedCodeEditor::Selection>
     init_with: '{}'
