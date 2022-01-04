@@ -27,7 +27,7 @@ CodePoint CodeRange::infer_cursor_start()
 
 CodePoint CodeRange::infer_cursor_end()
 {
-   return std::max(CodePoint(cursor_anchor_y, cursor_anchor_y), CodePoint(cursor_end_x, cursor_end_y));
+   return std::max(CodePoint(cursor_anchor_x, cursor_anchor_y), CodePoint(cursor_end_x, cursor_end_y));
 }
 
 

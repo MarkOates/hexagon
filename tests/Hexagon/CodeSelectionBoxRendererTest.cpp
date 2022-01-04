@@ -9,6 +9,8 @@ class Hexagon_CodeSelectionBoxRendererTest : public ::testing::Test {};
 class Hexagon_CodeSelectionBoxRendererTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture {};
 
 
+#include <Blast/StringSplitter.hpp>
+
 const std::string sonnet = R"END(Is it thy will thy image should keep open
 My heavy eyelids to the weary night?
 Dost thou desire my slumbers should be broken,
@@ -42,7 +44,18 @@ TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__without_code_range__throws_
    // TODO
 }
 
-TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__renders_as_expected_on_a_single_line)
+TEST_F(Hexagon_CodeSelectionBoxRendererTestWithAllegroRenderingFixture, render__renders_as_expected_on_a_single_line)
+{
+   std::vector<std::string> lines = Blast::StringSplitter(sonnet).split();
+   CodeRange code_range = { 0, 1, 10, 1 };
+   Hexagon::CodeSelectionBoxRenderer renderer(&lines, &code_range, 0, 30, 50);
+   renderer.render();
+   al_flip_display();
+   sleep(1);
+}
+
+TEST_F(Hexagon_CodeSelectionBoxRendererTestWithAllegroRenderingFixture,
+   render__renders_as_expected_on_a_single_line_while_respecting_the_first_line_number)
 {
    // TODO
 }

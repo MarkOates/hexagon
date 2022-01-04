@@ -46,7 +46,7 @@ void CodeSelectionBoxRenderer::render()
    selection_color.b *= 0.4;
    selection_color.a *= 0.4;
 
-   if (num_lines == 0) return;
+   if (num_lines == 0) return; // this shouldn't happen, TODO: though perhaps with a negative selection
    if (num_lines == 1)
    {
       // draw beginning-to-end on single line
@@ -59,7 +59,7 @@ void CodeSelectionBoxRenderer::render()
       al_draw_filled_rectangle(
          start.get_x() * cell_width,
          this_line_y * cell_height,
-         start.get_x() * cell_width,
+         end.get_x() * cell_width,
          (this_line_y + 1) * cell_height,
          selection_color
       );
