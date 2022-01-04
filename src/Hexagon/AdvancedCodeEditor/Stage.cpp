@@ -325,6 +325,11 @@ bool Stage::first_row_offset_jump_down_half_page()
    return true;
 }
 
+bool Stage::jump_to_next_code_point()
+{
+   return true;
+}
+
 bool Stage::delete_character()
 {
    if (!(initialized))

@@ -287,6 +287,12 @@ functions:
       return true;
 
 
+  - name: jump_to_next_code_point
+    type: bool
+    body: |
+      return true;
+
+
   - name: delete_character
     type: bool
     guards: [ initialized ]
