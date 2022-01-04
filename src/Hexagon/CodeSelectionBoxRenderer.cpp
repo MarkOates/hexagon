@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
-
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -32,6 +33,14 @@ bool CodeSelectionBoxRenderer::verify_line_in_range(int line_num)
 
 int CodeSelectionBoxRenderer::get_line_length(int line_num)
 {
+   if (!(lines))
+      {
+         std::stringstream error_message;
+         error_message << "CodeSelectionBoxRenderer" << "::" << "get_line_length" << ": error: " << "guard \"lines\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!verify_line_in_range(line_num)) return 0;
+   return (*lines)[line_num].length();
    return 0;
 }
 

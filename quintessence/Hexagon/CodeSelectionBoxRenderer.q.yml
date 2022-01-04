@@ -49,7 +49,10 @@ functions:
       - name: line_num
         type: int
         default_argument: 0
+    guards: [ lines ]
     body: |
+      if (!verify_line_in_range(line_num)) return 0;
+      return (*lines)[line_num].length();
       return 0;
 
 
