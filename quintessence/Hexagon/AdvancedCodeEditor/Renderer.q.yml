@@ -5,47 +5,58 @@ properties:
     type: Hexagon::Elements::TextMesh*
     init_with: nullptr
     constructor_arg: true
+
   - name: surface_render
     type: ALLEGRO_BITMAP*
     init_with: nullptr
     constructor_arg: true
+
   - name: cursor
     type: Hexagon::AdvancedCodeEditor::Cursor*
     init_with: nullptr
     constructor_arg: true
+
   - name: selections
     type: std::vector<Hexagon::AdvancedCodeEditor::Selection>*
     init_with: '{}'
     constructor_arg: true
+
   - name: lines
     type: std::vector<std::string>*
     init_with: nullptr
     constructor_arg: true
+
   - name: width
     type: float
     init_with: 1
     constructor_arg: true
+
   - name: height
     type: float
     init_with: 1
     constructor_arg: true
+
   - name: cursor_is_bar
     type: bool
     init_with: false
     constructor_arg: true
+
   - name: text_mesh_y_offset
     type: float
     init_with: 0.0f
     constructor_arg: true
+
   - name: first_row_offset
     type: int
     init_with: 0
     constructor_arg: true
+
   - name: draw_line_numbers
     type: bool
     init_with: false
     setter: true
     constructor_arg: true
+
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
