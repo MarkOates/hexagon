@@ -3,6 +3,11 @@
 
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
 
+#include <Testing/WithAllegroRenderingFixture.hpp>
+
+class Hexagon_CodeSelectionBoxRendererTest : public ::testing::Test {};
+class Hexagon_CodeSelectionBoxRendererTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture {};
+
 
 const std::string sonnet = R"END(Is it thy will thy image should keep open
 My heavy eyelids to the weary night?
@@ -22,36 +27,38 @@ From me far off, with others all too near.
 - William Shakespere)END";
 
 
-TEST(Hexagon_CodeSelectionBoxRendererTest, can_be_created_without_blowing_up)
+TEST_F(Hexagon_CodeSelectionBoxRendererTest, can_be_created_without_blowing_up)
 {
+   Hexagon::CodeSelectionBoxRenderer renderer;
+}
+
+TEST_F(Hexagon_CodeSelectionBoxRendererTest, the_expected_functions__without_initializing__raise_the_expected_errors)
+{
+   // TODO
    std::vector<std::string> lines = {};
    CodeRange range = { 0, 0, 0, 0 };
    Hexagon::CodeSelectionBoxRenderer renderer(&lines, &range, 0, 10, 32);
 }
 
-TEST(Hexagon_CodeSelectionBoxRendererTest, the_expected_functions__without_initializing__raise_the_expected_errors)
+TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__renders_as_expected_on_a_single_line)
 {
+   // TODO
    std::vector<std::string> lines = {};
    CodeRange range = { 0, 0, 0, 0 };
    Hexagon::CodeSelectionBoxRenderer renderer(&lines, &range, 0, 10, 32);
 }
 
-TEST(Hexagon_CodeSelectionBoxRendererTest, render__renders_as_expected_on_a_single_line)
+TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__renders_the_expected_cursor_when_range_is_empty)
 {
+   // TODO
    std::vector<std::string> lines = {};
    CodeRange range = { 0, 0, 0, 0 };
    Hexagon::CodeSelectionBoxRenderer renderer(&lines, &range, 0, 10, 32);
 }
 
-TEST(Hexagon_CodeSelectionBoxRendererTest, render__renders_the_expected_cursor_when_range_is_empty)
+TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__renders_red__if_the_cursor_extends_over_void_range)
 {
-   std::vector<std::string> lines = {};
-   CodeRange range = { 0, 0, 0, 0 };
-   Hexagon::CodeSelectionBoxRenderer renderer(&lines, &range, 0, 10, 32);
-}
-
-TEST(Hexagon_CodeSelectionBoxRendererTest, render__renders_red__if_the_cursor_extends_over_void_range)
-{
+   // TODO
    std::vector<std::string> lines = {};
    CodeRange range = { 0, 0, 0, 0 };
    Hexagon::CodeSelectionBoxRenderer renderer(&lines, &range, 0, 10, 32);
