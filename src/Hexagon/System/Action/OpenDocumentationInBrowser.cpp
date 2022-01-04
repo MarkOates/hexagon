@@ -13,7 +13,7 @@ namespace Action
 {
 
 
-std::string OpenDocumentationInBrowser::DEPENDENTS_JSON_FILENAME = "/Users/markoates/Repos/Krampus21/documentation/index.htm";
+std::string OpenDocumentationInBrowser::DOCUMENTATION_FILENAME = "/Users/markoates/Repos/hexagon/documentation/index.htm";
 
 
 OpenDocumentationInBrowser::OpenDocumentationInBrowser()
@@ -38,7 +38,7 @@ bool OpenDocumentationInBrowser::execute()
 std::string OpenDocumentationInBrowser::build_shell_command_to_open_browser()
 {
    std::stringstream result;
-   result << "open " << DEPENDENTS_JSON_FILENAME;
+   result << "open " << DOCUMENTATION_FILENAME;
    return result.str();
 }
 } // namespace Action

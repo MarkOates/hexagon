@@ -9,11 +9,11 @@ parent_classes:
 properties:
 
 
-  - name: DEPENDENTS_JSON_FILENAME
+  - name: DOCUMENTATION_FILENAME
     static: true
     const: true
     type: std::string
-    init_with: '"/Users/markoates/Repos/Krampus21/documentation/index.htm"'
+    init_with: '"/Users/markoates/Repos/hexagon/documentation/index.htm"'
 
 
 functions:
@@ -35,7 +35,7 @@ functions:
     type: std::string
     body: |
       std::stringstream result;
-      result << "open " << DEPENDENTS_JSON_FILENAME;
+      result << "open " << DOCUMENTATION_FILENAME;
       return result.str();
     body_dependency_symbols:
       - std::stringstream

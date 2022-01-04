@@ -14,7 +14,7 @@ namespace Hexagon
          class OpenDocumentationInBrowser : public ::Action
          {
          private:
-            static std::string DEPENDENTS_JSON_FILENAME;
+            static std::string DOCUMENTATION_FILENAME;
 
          public:
             OpenDocumentationInBrowser();
