@@ -25,6 +25,8 @@ CodeSelectionBoxRenderer::~CodeSelectionBoxRenderer()
 
 bool CodeSelectionBoxRenderer::verify_line_in_range(int line_num)
 {
+   if (line_num >= lines->size()) return false;
+   if (line_num < 0) return false;
    return true;
 }
 
