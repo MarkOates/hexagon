@@ -21,9 +21,9 @@ namespace Hexagon
       CodeSelectionBoxRenderer(std::vector<std::string>* lines=nullptr, CodeRange* code_range=nullptr, int first_line_number=0, int cell_width=0, int cell_height=0);
       ~CodeSelectionBoxRenderer();
 
+      void render();
       bool verify_line_in_range(int line_num=0);
       int get_line_length(int line_num=0);
-      void render();
    };
 }
 

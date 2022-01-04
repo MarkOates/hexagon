@@ -32,12 +32,12 @@ TEST_F(Hexagon_CodeSelectionBoxRendererTest, can_be_created_without_blowing_up)
    Hexagon::CodeSelectionBoxRenderer renderer;
 }
 
-TEST_F(Hexagon_CodeSelectionBoxRendererTest, the_expected_functions__without_lines__throws_an_error)
+TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__without_lines__throws_an_error)
 {
    // TODO
 }
 
-TEST_F(Hexagon_CodeSelectionBoxRendererTest, the_expected_functions__without_code_range__throws_an_error)
+TEST_F(Hexagon_CodeSelectionBoxRendererTest, render__without_code_range__throws_an_error)
 {
    // TODO
 }

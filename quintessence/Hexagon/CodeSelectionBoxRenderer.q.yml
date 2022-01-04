@@ -30,32 +30,6 @@ properties:
 functions:
 
 
-  - name: verify_line_in_range
-    type: bool
-    parameters:
-      - name: line_num
-        type: int
-        default_argument: 0
-    guard: [ lines ]
-    body: |
-      if (line_num >= lines->size()) return false;
-      if (line_num < 0) return false;
-      return true;
-
-
-  - name: get_line_length
-    type: int
-    parameters:
-      - name: line_num
-        type: int
-        default_argument: 0
-    guards: [ lines ]
-    body: |
-      if (!verify_line_in_range(line_num)) return 0;
-      return (*lines)[line_num].length();
-      return 0;
-
-
   - name: render
     guards: [ code_range ]
     body: |
@@ -131,6 +105,34 @@ functions:
     body_dependency_symbols:
       - ALLEGRO_COLOR
       - al_draw_filled_rectangle
+
+
+  - name: verify_line_in_range
+    type: bool
+    private: true
+    parameters:
+      - name: line_num
+        type: int
+        default_argument: 0
+    guard: [ lines ]
+    body: |
+      if (line_num >= lines->size()) return false;
+      if (line_num < 0) return false;
+      return true;
+
+
+  - name: get_line_length
+    type: int
+    private: true
+    parameters:
+      - name: line_num
+        type: int
+        default_argument: 0
+    guards: [ lines ]
+    body: |
+      if (!verify_line_in_range(line_num)) return 0;
+      return (*lines)[line_num].length();
+      return 0;
 
 
 dependencies:
