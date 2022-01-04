@@ -57,8 +57,80 @@ functions:
 
 
   - name: render
+    guards: [ code_range ]
     body: |
+      int num_lines = code_range->infer_num_lines();
+      CodePoint start = code_range->infer_cursor_start();
+      CodePoint end = code_range->infer_cursor_end();
+
+      ALLEGRO_COLOR selection_color = al_color_name("orange");
+      selection_color.r *= 0.4;
+      selection_color.g *= 0.4;
+      selection_color.b *= 0.4;
+      selection_color.a *= 0.4;
+
+      if (num_lines == 0) return;
+      if (num_lines == 1)
+      {
+         // draw beginning-to-end on single line
+         //CodePoint start = code_range->infer_cursor_start();
+         //CodePoint end = code_range->infer_cursor_end();
+
+         int this_actual_line_y = start.get_y();
+         int this_line_y = (this_actual_line_y - first_line_number);
+
+         al_draw_filled_rectangle(
+            start.get_x() * cell_width,
+            this_line_y * cell_height,
+            start.get_x() * cell_width,
+            (this_line_y + 1) * cell_height,
+            selection_color
+         );
+      }
+      if (num_lines >= 2)
+      {
+         // draw first line
+         //CodePoint start = code_range.infer_cursor_start();
+         //CodePoint end = code_range.infer_cursor_end();
+
+         int this_actual_line_y = start.get_y();
+         int this_line_y = this_actual_line_y - first_line_number;
+
+         al_draw_filled_rectangle(
+            start.get_x() * cell_width,
+            this_line_y * cell_height,
+            get_line_length(this_actual_line_y) * cell_width,
+            (this_line_y + 1) * cell_height,
+            selection_color
+         );
+
+         if (num_lines > 2)
+         {
+            // draw intermediate lines
+            //CodePoint start = code_range.infer_cursor_start();
+            //CodePoint end = code_range.infer_cursor_end();
+
+            for (int i = (start.get_y()+1); i < end.get_y(); i++)
+            {
+               this_line_y = (i - first_line_number);
+               al_draw_filled_rectangle(0, this_line_y * cell_height, get_line_length(i) * cell_width, (this_line_y + 1) * cell_height, selection_color);
+            }
+         }
+
+         // draw last line
+
+         //CodePoint start = code_range.infer_cursor_start();
+         //CodePoint end = code_range.infer_cursor_end();
+
+         this_actual_line_y = end.get_y();
+         this_line_y = (this_actual_line_y - first_line_number);
+         al_draw_filled_rectangle(0, (this_line_y * cell_height), end.get_x() * cell_width, (this_line_y+1) * cell_height, selection_color);
+      }
+
       return;
+    body_dependency_symbols:
+      - ALLEGRO_COLOR
+      - al_draw_filled_rectangle
 
 
 dependencies:
@@ -68,5 +140,9 @@ dependencies:
     headers: [ Hexagon/CodeRange.hpp ]
   - symbol: std::vector<std::string>*
     headers: [ vector, string ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
+  - symbol: al_draw_filled_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
 
 

@@ -272,6 +272,7 @@
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
     "Hexagon/CodeEditor/Stage",
+    "Hexagon/CodeSelectionBoxRenderer",
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/Elements/BitmapGridMesh",
     "Hexagon/Elements/BitmapGridRenderSurface",
@@ -672,6 +673,7 @@
   ],
   "al_draw_filled_rectangle": [
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/CodeSelectionBoxRenderer",
     "Hexagon/Elements/FlashingGrid",
     "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/StageInfoOverlay",
