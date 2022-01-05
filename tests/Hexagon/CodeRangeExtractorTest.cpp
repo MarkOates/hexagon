@@ -28,7 +28,7 @@ TEST(Hexagon_CodeRangeExtractorTest, can_be_created_without_blowing_up)
 }
 
 TEST(Hexagon_CodeRangeExtractorTest,
-   DISABLED__extract__given_a_range_that_is_within_the_bounds_of_a_line__extracts_the_expected_string)
+   extract__given_a_range_that_is_within_the_bounds_of_a_line__extracts_the_expected_string)
 {
    CodeRange code_range{ 6, 0, 14, 0 };
    std::vector<std::string> lines = Blast::StringSplitter(sonnet, '\n').split();
