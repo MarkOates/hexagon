@@ -16,7 +16,7 @@
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
 #include <stdexcept>
 #include <sstream>
-#include <Hexagon/CodeMessagePointRenderer.hpp>
+#include <Hexagon/CodeMessagePointsOverlay.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -271,22 +271,11 @@ void Renderer::draw_code_message_points()
    int cell_width = text_mesh->get_cell_width();
    int first_line_number = first_row_offset;
    float cell_height = text_mesh->get_cell_height();
+   ALLEGRO_COLOR color = al_color_name("green");
 
-   //for (auto &code_message_point : (*code_message_points))
-   {
-      std::cout << " drawing code_message_point " << std::endl;
-      CodeMessagePoint code_message_point{5, 0, 10};
+   CodeMessagePointsOverlay code_message_points_overlay(color, *code_message_points);
+   code_message_points_overlay.render(font, first_line_number, cell_height, cursor->get_x(), cursor->get_y());
 
-      CodeMessagePointRenderer code_message_point_renderer(
-         code_message_point,
-         font,
-         first_line_number,
-         cell_height,
-         cell_width,
-         cursor->get_x(),
-         cursor->get_y()
-      );
-   }
    return;
 }
 } // namespace AdvancedCodeEditor

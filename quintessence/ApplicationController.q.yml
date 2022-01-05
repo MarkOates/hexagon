@@ -383,8 +383,6 @@ dependencies:
       - Hexagon/RailsMinitestTestRunner.hpp
       - Hexagon/CppCompiler/CompileRunner.hpp
       - Hexagon/FullScreenOverlay/Stage.hpp
-      - Hexagon/CodeMessagePoint.hpp
-      - Hexagon/CodeMessagePointsOverlay.hpp
       - Hexagon/StageInterface.hpp
       - Hexagon/KeyboardInputsModal/Stage.hpp
       - Hexagon/EventControllerInterface.hpp

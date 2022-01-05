@@ -402,7 +402,7 @@
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/OneLineInputBox/Renderer"
   ],
-  "CodeMessagePointRenderer": [
+  "CodeMessagePointsOverlay": [
     "Hexagon/AdvancedCodeEditor/Renderer"
   ],
   "AllegroFlare/Timer": [

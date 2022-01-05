@@ -38,8 +38,6 @@
 #include <Hexagon/RailsMinitestTestRunner.hpp>
 #include <Hexagon/CppCompiler/CompileRunner.hpp>
 #include <Hexagon/FullScreenOverlay/Stage.hpp>
-#include <Hexagon/CodeMessagePoint.hpp>
-#include <Hexagon/CodeMessagePointsOverlay.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/KeyboardInputsModal/Stage.hpp>
 #include <Hexagon/EventControllerInterface.hpp>
