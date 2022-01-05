@@ -496,6 +496,10 @@
   "Hexagon/CodeMessagePointManager": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
+  "std/vector<CodeMessagePoint>": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/CodeMessagePointManager"
+  ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",
     "Hexagon/ElementFX/WindowSpawnMotionFX",
@@ -842,9 +846,6 @@
   "CodeMessagePoint": [
     "Hexagon/CodeMessagePointManager",
     "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
-  ],
-  "std/vector<CodeMessagePoint>": [
-    "Hexagon/CodeMessagePointManager"
   ],
   "CodeRange": [
     "Hexagon/CodeRangeExtractor",

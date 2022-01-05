@@ -915,6 +915,9 @@ table td
   <td class="method">destroy()</td>
 </tr>
 <tr>
+  <td class="method">set_code_message_points(1)</td>
+</tr>
+<tr>
   <td class="method">save_file()</td>
 </tr>
 <tr>
@@ -1137,6 +1140,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeMessagePointManager&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeMessagePointManager.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeMessagePoint&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeMessagePoint.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9686,6 +9692,10 @@ table td
   "Hexagon/CodeMessagePointManager": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
+  "std/vector<CodeMessagePoint>": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/CodeMessagePointManager"
+  ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",
     "Hexagon/ElementFX/WindowSpawnMotionFX",
@@ -10032,9 +10042,6 @@ table td
   "CodeMessagePoint": [
     "Hexagon/CodeMessagePointManager",
     "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
-  ],
-  "std/vector<CodeMessagePoint>": [
-    "Hexagon/CodeMessagePointManager"
   ],
   "CodeRange": [
     "Hexagon/CodeRangeExtractor",

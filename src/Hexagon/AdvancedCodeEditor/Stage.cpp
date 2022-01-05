@@ -208,6 +208,13 @@ void Stage::destroy()
    return;
 }
 
+void Stage::set_code_message_points(std::vector<CodeMessagePoint> code_message_points)
+{
+   int foo;
+   code_message_point_manager.set_code_message_points(code_message_points);
+   return;
+}
+
 bool Stage::save_file()
 {
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
@@ -494,7 +501,7 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
       });
    result.set_mapping(ALLEGRO_KEY_B, 0, { "cursor_jump_to_previous_word" });
    result.set_mapping(ALLEGRO_KEY_N, 0, { "cursor_jump_to_next_code_message_point" });
-   result.set_mapping(ALLEGRO_KEY_P, 0, { "cursor_jump_to_previous_code_messsage_point" });
+   result.set_mapping(ALLEGRO_KEY_P, 0, { "cursor_jump_to_previous_code_message_point" });
    result.set_mapping(ALLEGRO_KEY_Y, KeyboardCommandMapper::CTRL, { "first_row_offset_move_up" });
    result.set_mapping(ALLEGRO_KEY_E, KeyboardCommandMapper::CTRL, { "first_row_offset_move_down" });
    result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });

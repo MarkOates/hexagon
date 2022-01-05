@@ -8,6 +8,7 @@
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Selection.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
+#include <Hexagon/CodeMessagePoint.hpp>
 #include <Hexagon/CodeMessagePointManager.hpp>
 #include <Hexagon/DirtyGrid.hpp>
 #include <Hexagon/Elements/TextMesh.hpp>
@@ -65,6 +66,7 @@ namespace Hexagon
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          void initialize();
          virtual void destroy() override;
+         void set_code_message_points(std::vector<CodeMessagePoint> code_message_points={});
          bool save_file();
          bool save_file_and_touch_if_symlink();
          bool set_to_edit_mode();
