@@ -29,29 +29,6 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
 
-TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_valid_selections__raises_an_error)
-{
-   al_init();
-   al_init_primitives_addon();
-   ALLEGRO_BITMAP *bitmap = al_create_bitmap(16*40, 9*40);
-   al_set_target_bitmap(bitmap);
-   ALLEGRO_FONT *font = al_create_builtin_font();
-   //std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
-   //std::vector<std::string> lines;
-   Hexagon::Elements::TextMesh text_mesh(font);
-   text_mesh.initialize();
-
-   Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
-
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, nullptr, &cursor);
-   std::string expected_error_message = "Renderer::draw_selections: error: guard \"selections\" not met";
-   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
-
-   al_destroy_font(font);
-   al_destroy_bitmap(bitmap);
-   al_uninstall_system();
-}
-
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_a_valid_cursor__raises_an_error)
 {
    al_init();
@@ -64,7 +41,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    Hexagon::Elements::TextMesh text_mesh(font);
    text_mesh.initialize();
 
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, nullptr, nullptr, &selections, &lines);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, nullptr, nullptr, &selections, nullptr, &lines);
    std::string expected_error_message = "Renderer::render_cursor: error: guard \"cursor\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 
@@ -89,6 +66,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
       nullptr,
       &cursor,
       &selections,
+      nullptr,
       &lines,
       place.size.x,
       place.size.y
@@ -122,6 +100,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
       nullptr,
       &cursor,
       &selections,
+      nullptr,
       &lines,
       place.size.x,
       place.size.y
@@ -135,7 +114,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
 
    al_flip_display();
 
-   sleep(1);
+   //sleep(1);
 
    SUCCEED();
 }
@@ -157,6 +136,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
       nullptr,
       &cursor,
       &selections,
+      nullptr,
       &lines,
       place.size.x,
       place.size.y
@@ -210,6 +190,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
          bitmap,
          &cursor,
          &selections,
+         nullptr,
          &lines,
          place.size.x,
          place.size.y,
@@ -229,7 +210,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    SUCCEED();
 }
 
-TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, render___renders_the_selections)
+TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, DISABLED__render___renders_the_selections)
 {
    ALLEGRO_FONT *font = get_any_font();
    Hexagon::Elements::TextMesh text_mesh(font, 30, 20);
@@ -273,12 +254,72 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
          bitmap,
          &cursor,
          &selections,
+         nullptr,
          &lines,
          place.size.x,
          place.size.y,
          false,
          text_mesh_y_offset
       );
+
+      place.start_transform();
+      renderer.render();
+      place.restore_transform();
+
+      al_flip_display();
+   }
+
+   al_destroy_bitmap(bitmap);
+
+   SUCCEED();
+}
+
+TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, render___renders_the_code_message_points)
+{
+   ALLEGRO_FONT *font = get_any_font();
+   Hexagon::Elements::TextMesh text_mesh(font, 30, 20);
+   std::vector<CodeMessagePoint> code_message_points = {
+      CodeMessagePoint{5, 0, 10},
+   };
+   std::vector<std::string> lines;
+   text_mesh.initialize();
+
+   float width = text_mesh.calculate_width();
+   float height = text_mesh.calculate_height();
+
+   ALLEGRO_BITMAP *bitmap = al_create_bitmap(width, height);
+   ALLEGRO_STATE previous_drawing_state;
+   al_store_state(&previous_drawing_state, ALLEGRO_STATE_TARGET_BITMAP);
+   al_set_target_bitmap(bitmap);
+   al_clear_to_color(al_color_name("orange"));
+   al_restore_state(&previous_drawing_state);
+
+   Hexagon::AdvancedCodeEditor::Cursor cursor(0, 0, text_mesh.get_cell_width(), text_mesh.get_cell_height());
+
+   placement3d place = build_centered_placement(width, height);
+
+   float text_mesh_offset = 0.0f;
+
+   int num_seconds = 1;
+   float start_text_mesh_y_offset = 140;
+   for (unsigned i=0; i<(60 * num_seconds); i++)
+   {
+      al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
+      float text_mesh_y_offset = std::sin(al_get_time() * 5.0) * 200.0f;
+
+      Hexagon::AdvancedCodeEditor::Renderer renderer(
+         &text_mesh,
+         bitmap,
+         &cursor,
+         nullptr,
+         &code_message_points,
+         &lines,
+         place.size.x,
+         place.size.y,
+         false,
+         text_mesh_y_offset
+      );
+      renderer.set_font(font);
 
       place.start_transform();
       renderer.render();

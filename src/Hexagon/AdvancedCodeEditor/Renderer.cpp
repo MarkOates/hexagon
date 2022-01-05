@@ -16,6 +16,9 @@
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/CodeMessagePointRenderer.hpp>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -24,11 +27,12 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
    , cursor(cursor)
    , selections(selections)
+   , code_message_points(code_message_points)
    , lines(lines)
    , width(width)
    , height(height)
@@ -83,7 +87,8 @@ void Renderer::render()
 
    // draw the cursor
    if (draw_line_numbers) render_line_numbers();
-   draw_selections();
+   if (selections) draw_selections();
+   if (code_message_points) draw_code_message_points();
    render_cursor();
 
    return;
@@ -235,6 +240,54 @@ void Renderer::draw_selections()
          renderer.render();
       }
    }
+}
+
+void Renderer::draw_code_message_points()
+{
+   if (!(code_message_points))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_code_message_points" << ": error: " << "guard \"code_message_points\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(cursor))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_code_message_points" << ": error: " << "guard \"cursor\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(lines))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_code_message_points" << ": error: " << "guard \"lines\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(font))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_code_message_points" << ": error: " << "guard \"font\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   int cell_width = text_mesh->get_cell_width();
+   int first_line_number = first_row_offset;
+   float cell_height = text_mesh->get_cell_height();
+
+   //for (auto &code_message_point : (*code_message_points))
+   {
+      std::cout << " drawing code_message_point " << std::endl;
+      CodeMessagePoint code_message_point{5, 0, 10};
+
+      CodeMessagePointRenderer code_message_point_renderer(
+         code_message_point,
+         font,
+         first_line_number,
+         cell_height,
+         cell_width,
+         cursor->get_x(),
+         cursor->get_y()
+      );
+   }
+   return;
 }
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon

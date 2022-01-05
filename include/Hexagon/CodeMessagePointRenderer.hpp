@@ -21,7 +21,15 @@ private:
    int cursor_y;
 
 public:
-   CodeMessagePointRenderer(CodeMessagePoint code_message_point, ALLEGRO_FONT *font, int current_line_number_offset, int line_height, int character_width, int cursor_x, int cursor_y);
+   CodeMessagePointRenderer(
+      CodeMessagePoint code_message_point,
+      ALLEGRO_FONT *font,
+      int current_line_number_offset,
+      int line_height,
+      int character_width,
+      int cursor_x,
+      int cursor_y
+   );
 
    void render();
 };

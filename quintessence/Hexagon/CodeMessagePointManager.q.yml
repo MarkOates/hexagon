@@ -5,6 +5,7 @@ properties:
     type: std::vector<CodeMessagePoint>
     init_with: '{}'
     getter: true
+    getter_ref: true
 
 
 functions:

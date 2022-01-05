@@ -402,6 +402,9 @@
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/OneLineInputBox/Renderer"
   ],
+  "CodeMessagePointRenderer": [
+    "Hexagon/AdvancedCodeEditor/Renderer"
+  ],
   "AllegroFlare/Timer": [
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage"
@@ -411,6 +414,11 @@
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/Elements/Frame",
     "Hexagon/UI/DrawingBox"
+  ],
+  "std/vector<CodeMessagePoint>": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/CodeMessagePointManager"
   ],
   "std/vector<CodeRange>": [
     "Hexagon/AdvancedCodeEditor/Selection",
@@ -495,10 +503,6 @@
   ],
   "Hexagon/CodeMessagePointManager": [
     "Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "std/vector<CodeMessagePoint>": [
-    "Hexagon/AdvancedCodeEditor/Stage",
-    "Hexagon/CodeMessagePointManager"
   ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",

@@ -560,6 +560,7 @@ void Stage::render()
       surface_render,
       &advanced_code_editor.get_cursor_ref(),
       &selections,
+      &code_message_point_manager.get_code_message_points_ref(),
       &lines,
       place.size.x,
       place.size.y,

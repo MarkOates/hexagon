@@ -727,6 +727,10 @@ table td
   <td class="property">std::vector&lt;Hexagon::AdvancedCodeEditor::Selection&gt;*</td>
 </tr>
 <tr>
+  <td class="property">code_message_points</td>
+  <td class="property">std::vector&lt;CodeMessagePoint&gt;*</td>
+</tr>
+<tr>
   <td class="property">lines</td>
   <td class="property">std::vector&lt;std::string&gt;*</td>
 </tr>
@@ -772,6 +776,9 @@ table td
 <tr>
   <td class="method">draw_selections()</td>
 </tr>
+<tr>
+  <td class="method">draw_code_message_points()</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -808,10 +815,16 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeSelectionBoxRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeSelectionBoxRenderer.hpp&quot;]}</td>
 </tr>
 <tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;CodeMessagePointRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeMessagePointRenderer.hpp&quot;]}</td>
+</tr>
+<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::Timer&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Timer.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::color::color&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Color.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeMessagePoint&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeMessagePoint.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9598,6 +9611,9 @@ table td
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/OneLineInputBox/Renderer"
   ],
+  "CodeMessagePointRenderer": [
+    "Hexagon/AdvancedCodeEditor/Renderer"
+  ],
   "AllegroFlare/Timer": [
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage"
@@ -9607,6 +9623,11 @@ table td
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/Elements/Frame",
     "Hexagon/UI/DrawingBox"
+  ],
+  "std/vector<CodeMessagePoint>": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/CodeMessagePointManager"
   ],
   "std/vector<CodeRange>": [
     "Hexagon/AdvancedCodeEditor/Selection",
@@ -9691,10 +9712,6 @@ table td
   ],
   "Hexagon/CodeMessagePointManager": [
     "Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "std/vector<CodeMessagePoint>": [
-    "Hexagon/AdvancedCodeEditor/Stage",
-    "Hexagon/CodeMessagePointManager"
   ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",
