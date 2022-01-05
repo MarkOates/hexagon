@@ -21,6 +21,19 @@ TEST(Hexagon_CodeMessagePointManagerTest, append__will_add_a_new_message_point_t
    ASSERT_EQ(expected_code_message_points, actual_code_message_points);
 }
 
+TEST(Hexagon_CodeMessagePointManagerTest,
+   set_code_message_points__will_assign_the_new_code_message_points)
+{
+   Hexagon::CodeMessagePointManager code_message_point_manager;
+
+   code_message_point_manager.set_code_message_points( {{ 3, 4 }, { 7, 32 }} );
+
+   std::vector<CodeMessagePoint> expected_code_message_points = { { 3, 4 }, { 7, 32 } };
+   std::vector<CodeMessagePoint> actual_code_message_points = code_message_point_manager.get_code_message_points();
+
+   ASSERT_EQ(expected_code_message_points, actual_code_message_points);
+}
+
 TEST(Hexagon_CodeMessagePointManagerTest, delete_row__will_remove_all_message_points_on_the_row__and_shift_up_lower_rows)
 {
    Hexagon::CodeMessagePointManager code_message_point_manager;

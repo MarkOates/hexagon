@@ -20,6 +20,16 @@ functions:
       return;
 
 
+  - name: set_code_message_points
+    parameters:
+      - name: code_message_points
+        type: std::vector<CodeMessagePoint>
+        default_argument: '{}'
+    body: |
+      this->code_message_points = code_message_points;
+      return;
+
+
   - name: clear
     body: |
       code_message_points.clear();

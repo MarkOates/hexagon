@@ -325,7 +325,12 @@ bool Stage::first_row_offset_jump_down_half_page()
    return true;
 }
 
-bool Stage::jump_to_next_code_point()
+bool Stage::cursor_jump_to_next_code_message_point()
+{
+   return true;
+}
+
+bool Stage::cursor_jump_to_previous_code_message_point()
 {
    return true;
 }
@@ -452,6 +457,10 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "cursor_jump_to_previous_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_word },
       { "cursor_jump_up_half_page", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_up_half_page },
       { "cursor_jump_down_half_page", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_down_half_page },
+      { "cursor_jump_to_next_code_message_point",
+         &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_next_code_message_point },
+      { "cursor_jump_to_previous_code_message_point",
+         &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_code_message_point },
       { "first_row_offset_move_up", &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_move_up },
       { "first_row_offset_move_down", &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_move_down },
       { "first_row_offset_jump_up_half_page",
@@ -484,6 +493,8 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
       "first_row_offset_jump_down_half_page",
       });
    result.set_mapping(ALLEGRO_KEY_B, 0, { "cursor_jump_to_previous_word" });
+   result.set_mapping(ALLEGRO_KEY_N, 0, { "cursor_jump_to_next_code_message_point" });
+   result.set_mapping(ALLEGRO_KEY_P, 0, { "cursor_jump_to_previous_code_messsage_point" });
    result.set_mapping(ALLEGRO_KEY_Y, KeyboardCommandMapper::CTRL, { "first_row_offset_move_up" });
    result.set_mapping(ALLEGRO_KEY_E, KeyboardCommandMapper::CTRL, { "first_row_offset_move_down" });
    result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });

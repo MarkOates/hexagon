@@ -84,7 +84,7 @@ bool CodeRange::operator==(const CodeRange &other) const
    if (cursor_end_y != other.cursor_end_y) return false;
    return true;
 }
- 
+
 
 std::ostream &operator<<(std::ostream &out, CodeRange &code_range)
 {

@@ -31,6 +31,12 @@ void CodeMessagePointManager::append(CodeMessagePoint code_message_point)
    return;
 }
 
+void CodeMessagePointManager::set_code_message_points(std::vector<CodeMessagePoint> code_message_points)
+{
+   this->code_message_points = code_message_points;
+   return;
+}
+
 void CodeMessagePointManager::clear()
 {
    code_message_points.clear();
