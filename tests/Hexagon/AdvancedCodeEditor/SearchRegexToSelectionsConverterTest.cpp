@@ -18,6 +18,6 @@ TEST(Hexagon_AdvancedCodeEditor_SearchRegexToSelectionsConverterTest,
    std::vector<CodeRange> expected = converter.convert();
    std::vector<CodeRange> actual = {};
  
-   EXPECT_EQ(expected.size(), actual.size());
+   EXPECT_EQ(expected, actual);
 }
 
