@@ -1,0 +1,32 @@
+properties:
+
+
+  - name: search_regex_string
+    type: std::string
+    init_with: '""'
+    constructor_arg: true
+
+  - name: lines
+    type: std::vector<std::string>
+    init_with: '{}'   
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: convert
+    type: std::vector<Hexagon::AdvancedCodeEditor::Selection>
+    body: |
+      std::vector<Hexagon::AdvancedCodeEditor::Selection> result;
+      return result;
+
+
+dependencies:
+
+
+  - symbol: std::vector<Hexagon::AdvancedCodeEditor::Selection>
+    headers: [ vector, Hexagon/AdvancedCodeEditor/Selection.hpp ]
+
+
+
