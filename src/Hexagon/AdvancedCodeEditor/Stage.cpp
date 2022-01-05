@@ -210,7 +210,6 @@ void Stage::destroy()
 
 void Stage::set_code_message_points(std::vector<CodeMessagePoint> code_message_points)
 {
-   int foo;
    code_message_point_manager.set_code_message_points(code_message_points);
    return;
 }

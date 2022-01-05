@@ -148,7 +148,6 @@ functions:
         type: std::vector<CodeMessagePoint>
         default_argument: '{}'
     body: |
-      int foo;
       code_message_point_manager.set_code_message_points(code_message_points);
       return;
 
