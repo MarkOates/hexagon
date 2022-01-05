@@ -7,18 +7,21 @@ properties:
     constructor_arg: true
     getter: true
     setter: true
+
   - name: y
     type: int
     init_with: 0
     constructor_arg: true
     getter: true
     setter: true
+
   - name: width
     type: float
     init_with: 1
     constructor_arg: true
     getter: true
     setter: true
+
   - name: height
     type: float
     init_with: 1
@@ -32,12 +35,20 @@ functions:
 
   - name: move_up
     body: y -= 1;
+
+
   - name: move_down
     body: y += 1;
+
+
   - name: move_left
     body: x -= 1;
+
+
   - name: move_right
     body: x += 1;
+
+
   - name: move_to
     parameters:
       - name: x
