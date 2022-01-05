@@ -791,16 +791,17 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   cursor_jump_to_next_code_message_point__will_move_the_cursor_to_the_next_code_message_point)
+   DISABLED__cursor_jump_to_next_code_message_point__will_move_the_cursor_to_the_next_code_message_point)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
    stage.initialize();
    stage.get_place().position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
-
    std::vector<CodeMessagePoint> code_message_points = { { 3, 3, 9 } };
-
    stage.set_content(FIXTURE_PASSAGE);
    stage.set_code_message_points(code_message_points);
+
+   // TODO
+   stage.cursor_jump_to_next_code_message_point();
 
    stage.render();
    al_flip_display();
