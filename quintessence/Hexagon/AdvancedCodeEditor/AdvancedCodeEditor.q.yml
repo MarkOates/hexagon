@@ -6,13 +6,16 @@ properties:
     init_with: '{}'
     getter: true
     getter_ref: true
+
   - name: cursor
     type: Hexagon::AdvancedCodeEditor::Cursor
     init_with: '{}'
     getter_ref: true
+
   - name: dirty_grid
     type: Hexagon::DirtyGrid
     init_with: '{}'
+
   - name: SPLIT_LINE_DELIMITER_CHAR
     type: char
     init_with: "'\\n'"

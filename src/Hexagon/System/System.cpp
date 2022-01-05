@@ -1343,7 +1343,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       return false;
    }
 
-   bool create_as_advanced_code_editor = false;
+   bool create_as_advanced_code_editor = true;
    Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
 
    if (component.has_only_source_and_header())
