@@ -1,7 +1,9 @@
 
 
 #include <Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp>
-
+#include <vector>
+#include <Hexagon/CodeRange.hpp>
+#include <Hexagon/RegexMatcher.hpp>
 
 
 namespace Hexagon
@@ -22,9 +24,16 @@ SearchRegexToSelectionsConverter::~SearchRegexToSelectionsConverter()
 }
 
 
-std::vector<Hexagon::AdvancedCodeEditor::Selection> SearchRegexToSelectionsConverter::convert()
+std::vector<CodeRange> SearchRegexToSelectionsConverter::convert()
 {
-   std::vector<Hexagon::AdvancedCodeEditor::Selection> result;
+   std::vector<CodeRange> result;
+
+   for (auto &line : lines)
+   {
+      RegexMatcher regex_matcher(search_regex_string, line); 
+      std::vector<std::pair<int, int>> match_results = regex_matcher.get_match_info();
+   }         
+
    return result;
 }
 } // namespace AdvancedCodeEditor

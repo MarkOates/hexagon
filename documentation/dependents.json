@@ -171,6 +171,7 @@
   ],
   "RegexMatcher": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/RailsTestOutputParser",
     "Hexagon/Search/Elasticsearch/HealthChecker",
@@ -421,6 +422,7 @@
     "Hexagon/CodeMessagePointManager"
   ],
   "std/vector<CodeRange>": [
+    "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter",
     "Hexagon/AdvancedCodeEditor/Selection",
     "Hexagon/OneLineInputBox/Renderer"
   ],

@@ -16,17 +16,28 @@ functions:
 
 
   - name: convert
-    type: std::vector<Hexagon::AdvancedCodeEditor::Selection>
+    type: std::vector<CodeRange>
     body: |
-      std::vector<Hexagon::AdvancedCodeEditor::Selection> result;
+      std::vector<CodeRange> result;
+
+      for (auto &line : lines)
+      {
+         RegexMatcher regex_matcher(search_regex_string, line); 
+         std::vector<std::pair<int, int>> match_results = regex_matcher.get_match_info();
+      }         
+
       return result;
+    body_dependency_symbols:
+      - std::vector<CodeRange>
+      - RegexMatcher
 
 
 dependencies:
 
 
-  - symbol: std::vector<Hexagon::AdvancedCodeEditor::Selection>
-    headers: [ vector, Hexagon/AdvancedCodeEditor/Selection.hpp ]
-
+  - symbol: std::vector<CodeRange>
+    headers: [ vector, Hexagon/CodeRange.hpp ]
+  - symbol: RegexMatcher
+    headers: [ Hexagon/RegexMatcher.hpp ]
 
 

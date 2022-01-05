@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <Hexagon/AdvancedCodeEditor/Selection.hpp>
+#include <Hexagon/CodeRange.hpp>
 #include <string>
 #include <vector>
 
@@ -20,7 +20,7 @@ namespace Hexagon
          SearchRegexToSelectionsConverter(std::string search_regex_string="", std::vector<std::string> lines={});
          ~SearchRegexToSelectionsConverter();
 
-         std::vector<Hexagon::AdvancedCodeEditor::Selection> convert();
+         std::vector<CodeRange> convert();
       };
    }
 }

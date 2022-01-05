@@ -58,6 +58,7 @@ table td
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Cursor.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Cursor.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/EventController.q.yml">quintessence/Hexagon/AdvancedCodeEditor/EventController.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Renderer.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.q.yml">quintessence/Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Selection.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Selection.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/WindowRenderer.q.yml">quintessence/Hexagon/AdvancedCodeEditor/WindowRenderer.q.yml</a></li>
@@ -825,6 +826,34 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeMessagePoint&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeMessagePoint.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.q.yml">quintessence/Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">search_regex_string</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">lines</td>
+  <td class="property">std::vector&lt;std::string&gt;</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">convert()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeRange&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeRange.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;RegexMatcher&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/RegexMatcher.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9380,6 +9409,7 @@ table td
   ],
   "RegexMatcher": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/RailsTestOutputParser",
     "Hexagon/Search/Elasticsearch/HealthChecker",
@@ -9630,6 +9660,7 @@ table td
     "Hexagon/CodeMessagePointManager"
   ],
   "std/vector<CodeRange>": [
+    "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter",
     "Hexagon/AdvancedCodeEditor/Selection",
     "Hexagon/OneLineInputBox/Renderer"
   ],
