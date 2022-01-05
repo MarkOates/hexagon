@@ -618,8 +618,6 @@ functions:
         type: float
         default_argument: 1080
     body: |
-      //ALLEGRO_BITMAP *display_bitmap = al_get_backbuffer(al_display);
-
       ALLEGRO_TRANSFORM trans;
       al_identity_transform(&trans);
       al_orthographic_transform(

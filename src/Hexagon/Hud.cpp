@@ -727,8 +727,6 @@ void Hud::draw()
 
 void Hud::set_orthographic_projection(ALLEGRO_BITMAP* bitmap, float left, float top, float right, float bottom)
 {
-   //ALLEGRO_BITMAP *display_bitmap = al_get_backbuffer(al_display);
-
    ALLEGRO_TRANSFORM trans;
    al_identity_transform(&trans);
    al_orthographic_transform(
