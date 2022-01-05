@@ -1,26 +1,26 @@
 #pragma once
 
 
-
 #include <Hexagon/CodeRange.hpp>
 #include <string>
 #include <vector>
 
 
-
-class CodeRangeExtractor
+namespace Hexagon
 {
-private:
-   const std::vector<std::string> &lines;
-   CodeRange &code_range;
+   class CodeRangeExtractor
+   {
+   private:
+      std::vector<std::string>* lines;
+      CodeRange* code_range;
 
-public:
-   CodeRangeExtractor(const std::vector<std::string> &lines, CodeRange &code_range);
-   ~CodeRangeExtractor();
+   public:
+      CodeRangeExtractor(std::vector<std::string>* lines=nullptr, CodeRange* code_range=nullptr);
+      ~CodeRangeExtractor();
 
-   std::vector<std::string> extract();
-};
-
+      std::vector<std::string> extract();
+   };
+}
 
 
 

@@ -83,6 +83,7 @@ table td
   <li><a href="#quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/Renderer/BasicLineRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/Stage.q.yml">quintessence/Hexagon/CodeEditor/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeMessagePointManager.q.yml">quintessence/Hexagon/CodeMessagePointManager.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/CodeRangeExtractor.q.yml">quintessence/Hexagon/CodeRangeExtractor.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeRenderer.q.yml">quintessence/Hexagon/CodeRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeSelectionBoxRenderer.q.yml">quintessence/Hexagon/CodeSelectionBoxRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml">quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml</a></li>
@@ -312,7 +313,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;all&quot;, &quot;headers&quot;=&gt;[&quot;iostream&quot;, &quot;sstream&quot;, &quot;algorithm&quot;, &quot;allegro5/allegro.h&quot;, &quot;allegro5/allegro_ttf.h&quot;, &quot;allegro5/allegro_font.h&quot;, &quot;allegro5/allegro_color.h&quot;, &quot;allegro5/allegro_primitives.h&quot;, &quot;allegro5/allegro_image.h&quot;, &quot;allegro_flare/placement2d.h&quot;, &quot;allegro_flare/placement3d.h&quot;, &quot;allegro_flare/useful_php.h&quot;, &quot;allegro_flare/render_cache.h&quot;, &quot;Blast/StringSplitter.hpp&quot;, &quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;, &quot;Blast/CommandLineFlaggedArgumentsParser.hpp&quot;, &quot;AllegroFlare/Config.hpp&quot;, &quot;Hexagon/System/Action/DestroyAllCodeEditorStages.hpp&quot;, &quot;Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp&quot;, &quot;Hexagon/System/Action/CreateThreeSplitFromComponent.hpp&quot;, &quot;Hexagon/Logo.hpp&quot;, &quot;Hexagon/RegexMatcher.hpp&quot;, &quot;Hexagon/shared_globals.hpp&quot;, &quot;Hexagon/util.hpp&quot;, &quot;Hexagon/ClipboardData.hpp&quot;, &quot;Hexagon/ActionData.hpp&quot;, &quot;Hexagon/Action.hpp&quot;, &quot;Hexagon/ActionQueueRecording.hpp&quot;, &quot;Hexagon/CodePoint.hpp&quot;, &quot;Hexagon/CodeRange.hpp&quot;, &quot;Hexagon/RailsMinitestTestResult.hpp&quot;, &quot;Hexagon/RailsTestOutputParser.hpp&quot;, &quot;Hexagon/RailsMinitestTestRunner.hpp&quot;, &quot;Hexagon/CppCompiler/CompileRunner.hpp&quot;, &quot;Hexagon/FullScreenOverlay/Stage.hpp&quot;, &quot;Hexagon/CodeRangeExtractor.hpp&quot;, &quot;Hexagon/CodeMessagePoint.hpp&quot;, &quot;Hexagon/CodeMessagePointsOverlay.hpp&quot;, &quot;Hexagon/StageInterface.hpp&quot;, &quot;Hexagon/KeyboardInputsModal/Stage.hpp&quot;, &quot;Hexagon/EventControllerInterface.hpp&quot;, &quot;Hexagon/CodeEditor/EventController.hpp&quot;, &quot;Hexagon/CodeEditor/CodeEditor.hpp&quot;, &quot;Hexagon/FileSystemNode.hpp&quot;, &quot;Hexagon/FileNavigator/Stage.hpp&quot;, &quot;Hexagon/LayoutPlacements.hpp&quot;, &quot;NcursesArt/ProjectComponentBasenameExtractor.hpp&quot;, &quot;NcursesArt/ProjectFilenameGenerator.hpp&quot;, &quot;Hexagon/System/Renderer.hpp&quot;, &quot;Hexagon/System/System.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;all&quot;, &quot;headers&quot;=&gt;[&quot;iostream&quot;, &quot;sstream&quot;, &quot;algorithm&quot;, &quot;allegro5/allegro.h&quot;, &quot;allegro5/allegro_ttf.h&quot;, &quot;allegro5/allegro_font.h&quot;, &quot;allegro5/allegro_color.h&quot;, &quot;allegro5/allegro_primitives.h&quot;, &quot;allegro5/allegro_image.h&quot;, &quot;allegro_flare/placement2d.h&quot;, &quot;allegro_flare/placement3d.h&quot;, &quot;allegro_flare/useful_php.h&quot;, &quot;allegro_flare/render_cache.h&quot;, &quot;Blast/StringSplitter.hpp&quot;, &quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;, &quot;Blast/CommandLineFlaggedArgumentsParser.hpp&quot;, &quot;AllegroFlare/Config.hpp&quot;, &quot;Hexagon/System/Action/DestroyAllCodeEditorStages.hpp&quot;, &quot;Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp&quot;, &quot;Hexagon/System/Action/CreateThreeSplitFromComponent.hpp&quot;, &quot;Hexagon/Logo.hpp&quot;, &quot;Hexagon/RegexMatcher.hpp&quot;, &quot;Hexagon/shared_globals.hpp&quot;, &quot;Hexagon/util.hpp&quot;, &quot;Hexagon/ClipboardData.hpp&quot;, &quot;Hexagon/ActionData.hpp&quot;, &quot;Hexagon/Action.hpp&quot;, &quot;Hexagon/ActionQueueRecording.hpp&quot;, &quot;Hexagon/CodePoint.hpp&quot;, &quot;Hexagon/CodeRange.hpp&quot;, &quot;Hexagon/RailsMinitestTestResult.hpp&quot;, &quot;Hexagon/RailsTestOutputParser.hpp&quot;, &quot;Hexagon/RailsMinitestTestRunner.hpp&quot;, &quot;Hexagon/CppCompiler/CompileRunner.hpp&quot;, &quot;Hexagon/FullScreenOverlay/Stage.hpp&quot;, &quot;Hexagon/CodeMessagePoint.hpp&quot;, &quot;Hexagon/CodeMessagePointsOverlay.hpp&quot;, &quot;Hexagon/StageInterface.hpp&quot;, &quot;Hexagon/KeyboardInputsModal/Stage.hpp&quot;, &quot;Hexagon/EventControllerInterface.hpp&quot;, &quot;Hexagon/CodeEditor/EventController.hpp&quot;, &quot;Hexagon/CodeEditor/CodeEditor.hpp&quot;, &quot;Hexagon/FileSystemNode.hpp&quot;, &quot;Hexagon/FileNavigator/Stage.hpp&quot;, &quot;Hexagon/LayoutPlacements.hpp&quot;, &quot;NcursesArt/ProjectComponentBasenameExtractor.hpp&quot;, &quot;NcursesArt/ProjectFilenameGenerator.hpp&quot;, &quot;Hexagon/System/Renderer.hpp&quot;, &quot;Hexagon/System/System.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -2485,6 +2486,40 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeMessagePoint&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeMessagePoint.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/CodeRangeExtractor.q.yml">quintessence/Hexagon/CodeRangeExtractor.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">lines</td>
+  <td class="property">std::vector&lt;std::string&gt;*</td>
+</tr>
+<tr>
+  <td class="property">code_range</td>
+  <td class="property">CodeRange*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">extract()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;CodeRange*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeRange.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::string&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::min&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::max&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9326,7 +9361,8 @@ table td
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "std/max": [
-    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/CodeRangeExtractor"
   ],
   "std/reverse": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
@@ -9404,6 +9440,7 @@ table td
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeRangeExtractor",
     "Hexagon/CodeSelectionBoxRenderer",
     "Hexagon/DirtyGrid",
     "Hexagon/Elements/TextPixelPreviewCreator",
@@ -9994,7 +10031,12 @@ table td
     "Hexagon/CodeMessagePointManager"
   ],
   "CodeRange": [
+    "Hexagon/CodeRangeExtractor",
     "Hexagon/CodeSelectionBoxRenderer"
+  ],
+  "std/min": [
+    "Hexagon/CodeRangeExtractor",
+    "Hexagon/Hud"
   ],
   "Blast/Project/ComponentRelativeLister": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"
@@ -10158,9 +10200,6 @@ table td
   ],
   ":GitCommitMessageInputBox/EventController": [
     "Hexagon/GitCommitMessageInputBox/Stage"
-  ],
-  "std/min": [
-    "Hexagon/Hud"
   ],
   "Hexagon/Powerbar/Powerbar": [
     "Hexagon/Hud",

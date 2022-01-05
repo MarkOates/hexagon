@@ -944,7 +944,12 @@ bool CodeEditor::yank_selected_text_to_clipboard()
    {
       throw std::runtime_error(">BOOM< cannot yank selected text; No text selection is currently active");
    }
-   std::vector<std::string> extracted_selection = CodeRangeExtractor(get_lines_ref(), selections.back()).extract();
+
+   CodeRange selection = selections.back();
+   std::vector<std::string> extracted_selection = Hexagon::CodeRangeExtractor(
+      &get_lines_ref_nconst(),
+      &selection
+   ).extract();
    ClipboardData::store(extracted_selection);
    return true;
 }

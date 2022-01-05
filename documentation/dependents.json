@@ -177,7 +177,8 @@
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "std/max": [
-    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
+    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/CodeRangeExtractor"
   ],
   "std/reverse": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
@@ -255,6 +256,7 @@
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeRangeExtractor",
     "Hexagon/CodeSelectionBoxRenderer",
     "Hexagon/DirtyGrid",
     "Hexagon/Elements/TextPixelPreviewCreator",
@@ -845,7 +847,12 @@
     "Hexagon/CodeMessagePointManager"
   ],
   "CodeRange": [
+    "Hexagon/CodeRangeExtractor",
     "Hexagon/CodeSelectionBoxRenderer"
+  ],
+  "std/min": [
+    "Hexagon/CodeRangeExtractor",
+    "Hexagon/Hud"
   ],
   "Blast/Project/ComponentRelativeLister": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"
@@ -1009,9 +1016,6 @@
   ],
   ":GitCommitMessageInputBox/EventController": [
     "Hexagon/GitCommitMessageInputBox/Stage"
-  ],
-  "std/min": [
-    "Hexagon/Hud"
   ],
   "Hexagon/Powerbar/Powerbar": [
     "Hexagon/Hud",
