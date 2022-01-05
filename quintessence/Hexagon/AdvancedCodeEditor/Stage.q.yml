@@ -454,7 +454,7 @@ functions:
          });
       result.set_mapping(ALLEGRO_KEY_B, 0, { "cursor_jump_to_previous_word" });
       result.set_mapping(ALLEGRO_KEY_N, 0, { "cursor_jump_to_next_code_message_point" });
-      result.set_mapping(ALLEGRO_KEY_P, 0, { "cursor_jump_to_previous_code_message_point" });
+      result.set_mapping(ALLEGRO_KEY_N, ALLEGRO_KEYMOD_SHIFT, { "cursor_jump_to_previous_code_message_point" });
       result.set_mapping(ALLEGRO_KEY_Y, KeyboardCommandMapper::CTRL, { "first_row_offset_move_up" });
       result.set_mapping(ALLEGRO_KEY_E, KeyboardCommandMapper::CTRL, { "first_row_offset_move_down" });
       result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });
