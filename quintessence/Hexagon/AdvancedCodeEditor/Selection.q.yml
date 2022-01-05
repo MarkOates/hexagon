@@ -6,6 +6,13 @@ properties:
     constructor_arg: true
     getter: true
 
+functions:
+
+  - name: clear
+    body: |
+      code_ranges.clear();
+      return;
+   
 dependencies:
 
   - symbol: std::vector<CodeRange>

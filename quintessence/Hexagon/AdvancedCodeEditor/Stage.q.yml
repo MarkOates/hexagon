@@ -97,6 +97,10 @@ properties:
     type: std::vector<Hexagon::AdvancedCodeEditor::Selection>
     init_with: '{}'
 
+  - name: search_regex_selections
+    type: Hexagon::AdvancedCodeEditor::Selection
+    init_with: 'Hexagon::AdvancedCodeEditor::Selection{}'
+
 
 functions:
 
@@ -140,6 +144,24 @@ functions:
       if (surface_render) al_destroy_bitmap(surface_render);
       initialized = false;
       return;
+
+
+  - name: refresh_search_regex_selections
+    type: bool
+    body: |
+      if (current_search_regex.empty())
+      {
+         search_regex_selections.clear();
+      }
+      else
+      {
+         Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter converter(
+            current_search_regex, get_lines());
+         search_regex_selections = converter.convert();
+      }
+      return true;
+    body_dependency_symbols:
+      - Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter   
 
 
   - name: set_code_message_points
@@ -818,6 +840,10 @@ dependencies:
     headers: [ Hexagon/SymlinkToucher.hpp ]
   - symbol: std::vector<Hexagon::AdvancedCodeEditor::Selection>
     headers: [ vector, Hexagon/AdvancedCodeEditor/Selection.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter
+    headers: [ Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Selection
+    headers: [ Hexagon/AdvancedCodeEditor/Selection.hpp ]
   - symbol: std::vector<std::pair<int, int>>
     headers: [ vector, utility ]
   - symbol: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>

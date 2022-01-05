@@ -429,6 +429,12 @@
   "Hexagon/SymlinkToucher": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
+  "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "Hexagon/AdvancedCodeEditor/Selection": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
   "StageInterface": [
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Stage",

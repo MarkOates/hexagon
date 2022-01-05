@@ -27,6 +27,11 @@ std::vector<CodeRange> Selection::get_code_ranges()
 }
 
 
+void Selection::clear()
+{
+   code_ranges.clear();
+   return;
+}
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

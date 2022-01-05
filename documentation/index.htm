@@ -868,6 +868,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="method">clear()</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -948,6 +951,10 @@ table td
   <td class="property">selections</td>
   <td class="property">std::vector&lt;Hexagon::AdvancedCodeEditor::Selection&gt;</td>
 </tr>
+<tr>
+  <td class="property">search_regex_selections</td>
+  <td class="property">Hexagon::AdvancedCodeEditor::Selection</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -955,6 +962,9 @@ table td
 </tr>
 <tr>
   <td class="method">destroy()</td>
+</tr>
+<tr>
+  <td class="method">refresh_search_regex_selections()</td>
 </tr>
 <tr>
   <td class="method">set_code_message_points(1)</td>
@@ -1122,6 +1132,12 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::AdvancedCodeEditor::Selection&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/AdvancedCodeEditor/Selection.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::Selection&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/Selection.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::pair&lt;int, int&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;utility&quot;]}</td>
@@ -9665,6 +9681,12 @@ table td
     "Hexagon/OneLineInputBox/Renderer"
   ],
   "Hexagon/SymlinkToucher": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "Hexagon/AdvancedCodeEditor/Selection": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "StageInterface": [

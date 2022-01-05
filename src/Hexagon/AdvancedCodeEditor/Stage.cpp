@@ -3,6 +3,7 @@
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp>
 #include <Hexagon/util.hpp>
 #include <Hexagon/util.hpp>
 #include <Hexagon/SymlinkToucher.hpp>
@@ -65,6 +66,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , current_search_regex("")
    , code_message_point_manager({})
    , selections({})
+   , search_regex_selections(Hexagon::AdvancedCodeEditor::Selection{})
 {
 }
 
@@ -206,6 +208,21 @@ void Stage::destroy()
    if (surface_render) al_destroy_bitmap(surface_render);
    initialized = false;
    return;
+}
+
+bool Stage::refresh_search_regex_selections()
+{
+   if (current_search_regex.empty())
+   {
+      search_regex_selections.clear();
+   }
+   else
+   {
+      Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter converter(
+         current_search_regex, get_lines());
+      search_regex_selections = converter.convert();
+   }
+   return true;
 }
 
 void Stage::set_code_message_points(std::vector<CodeMessagePoint> code_message_points)

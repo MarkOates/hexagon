@@ -45,6 +45,7 @@ namespace Hexagon
          std::string current_search_regex;
          Hexagon::CodeMessagePointManager code_message_point_manager;
          std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
+         Hexagon::AdvancedCodeEditor::Selection search_regex_selections;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
@@ -66,6 +67,7 @@ namespace Hexagon
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          void initialize();
          virtual void destroy() override;
+         bool refresh_search_regex_selections();
          void set_code_message_points(std::vector<CodeMessagePoint> code_message_points={});
          bool save_file();
          bool save_file_and_touch_if_symlink();
