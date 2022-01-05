@@ -44,9 +44,6 @@ void Renderer::render()
          error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
-   //fload surface_width = al_get_display_width(display);
-   //fload surface_height = al_get_display_height(display);
-
    float width = surface_width * 0.6;
    float height = 30;
    float x = surface_width / 2 - width / 2;
