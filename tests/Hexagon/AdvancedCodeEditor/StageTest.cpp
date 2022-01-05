@@ -304,7 +304,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
-   interactive_test_works)
+   DISABLED__interactive_test_works)
 {
    AllegroFlare::Timer timer;
    std::string filename = std::tmpnam(nullptr);
@@ -729,7 +729,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
-   render__will_respect_the_first_row_offset)
+   DISABLED__render__will_respect_the_first_row_offset)
 {
    std::string filename = std::tmpnam(nullptr);
 
@@ -788,5 +788,11 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    calculate_natural_height__returns_the_expected_width)
 {
    // TODO
+}
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   cursor_jump_to_next_code_message_point__will_move_the_cursor_to_the_next_code_message_point)
+{
+   
 }
 
