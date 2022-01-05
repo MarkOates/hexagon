@@ -2,7 +2,6 @@
 
 
 #include <Hexagon/FocusTimerBar/FocusTimerBar.hpp>
-#include <allegro5/allegro.h>
 
 
 namespace Hexagon
@@ -12,11 +11,12 @@ namespace Hexagon
       class Renderer
       {
       private:
-         ALLEGRO_DISPLAY* display;
+         float surface_width;
+         float surface_height;
          Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar;
 
       public:
-         Renderer(ALLEGRO_DISPLAY* display=nullptr, Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar=nullptr);
+         Renderer(float surface_width=(1920/2), float surface_height=(1080/2), Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar=nullptr);
          ~Renderer();
 
          void render();

@@ -17,8 +17,9 @@ namespace FocusTimerBar
 {
 
 
-Renderer::Renderer(ALLEGRO_DISPLAY* display, Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar)
-   : display(display)
+Renderer::Renderer(float surface_width, float surface_height, Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar)
+   : surface_width(surface_width)
+   , surface_height(surface_height)
    , focus_timer_bar(focus_timer_bar)
 {
 }
@@ -31,12 +32,6 @@ Renderer::~Renderer()
 
 void Renderer::render()
 {
-   if (!(display))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"display\" not met";
-         throw std::runtime_error(error_message.str());
-      }
    if (!(focus_timer_bar))
       {
          std::stringstream error_message;
@@ -49,10 +44,13 @@ void Renderer::render()
          error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
-   float width = al_get_display_width(display) * 0.6;
+   //fload surface_width = al_get_display_width(display);
+   //fload surface_height = al_get_display_height(display);
+
+   float width = surface_width * 0.6;
    float height = 30;
-   float x = al_get_display_width(display) / 2 - width / 2;
-   float y = al_get_display_height(display) - height * 1;
+   float x = surface_width / 2 - width / 2;
+   float y = surface_height - height * 1;
    float time_length = 0.64f;
    float length = time_length * width;
    ALLEGRO_COLOR color = al_color_name("gray");

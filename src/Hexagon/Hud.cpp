@@ -493,7 +493,11 @@ void Hud::draw_powerbar()
 
 void Hud::draw_focus_timer_bar()
 {
-   Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(display, &focus_timer_bar);
+   Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(
+      get_surface_projection_width(),
+      get_surface_projection_height(),
+      &focus_timer_bar
+   );
    focus_timer_bar_renderer.render();
    return;
 }
