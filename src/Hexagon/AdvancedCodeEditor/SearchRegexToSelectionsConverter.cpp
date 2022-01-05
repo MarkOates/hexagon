@@ -4,6 +4,7 @@
 #include <vector>
 #include <Hexagon/CodeRange.hpp>
 #include <Hexagon/RegexMatcher.hpp>
+#include <iostream>
 
 
 namespace Hexagon
@@ -28,10 +29,18 @@ std::vector<CodeRange> SearchRegexToSelectionsConverter::convert()
 {
    std::vector<CodeRange> result;
 
-   for (auto &line : lines)
+   for (int line_num=0; line_num<lines.size(); line_num++)
    {
-      RegexMatcher regex_matcher(search_regex_string, line); 
-      std::vector<std::pair<int, int>> match_results = regex_matcher.get_match_info();
+      std::string& line = lines[line_num];
+
+      RegexMatcher regex_matcher(line, search_regex_string); 
+      std::vector<std::pair<int, int>> matches = regex_matcher.get_match_info();
+      for (std::pair<int, int> &match : matches)
+      {
+         int position = match.first;
+         int length = match.second;
+         result.push_back(CodeRange{position, line_num, position+length, line_num});
+      }
    }         
 
    return result;
