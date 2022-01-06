@@ -1445,6 +1445,7 @@ bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp
 
    std::string regex_expression = regex_input_file_lines[0];
 
+   // TODO NEXT - account for advanced code editor stage here
    std::vector<Hexagon::CodeEditor::Stage *> stages = get_all_code_editor_stages();
    for (auto &stage : stages)
    {
