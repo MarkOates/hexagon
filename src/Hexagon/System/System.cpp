@@ -857,14 +857,18 @@ bool System::decrease_font_size()
 
 bool System::refresh_regex_hilights_on_frontmost_stage()
 {
-   Hexagon::CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
+   StageInterface *stage = get_frontmost_stage();
    if (!stage)
    {
       std::stringstream error_message;
       error_message << "Cannot refresh_regex_hilights_on_frontmost_stage; there is no frontmost code editor stage";
       throw std::runtime_error(error_message.str());
    }
-   stage->get_code_editor_ref().refresh_regex_message_points();
+   if (stage->get_type() == StageInterface::CODE_EDITOR)
+   {
+      Hexagon::CodeEditor::Stage *ce_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+      ce_stage->get_code_editor_ref().refresh_regex_message_points();
+   }
    return true;
 }
 

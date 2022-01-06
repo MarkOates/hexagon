@@ -193,6 +193,7 @@
   "Hexagon/AdvancedCodeEditor/Stage": [
     "Hexagon/AdvancedCodeEditor/EventController",
     "Hexagon/LayoutToStagesCreator",
+    "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateThreeSplitFromComponent"
   ],
@@ -1241,6 +1242,9 @@
     "Hexagon/StageFactory"
   ],
   "std/vector<Hexagon/CodeEditor/Stage >": [
+    "Hexagon/StageCollectionHelper"
+  ],
+  "std/vector<Hexagon/AdvancedCodeEditor/Stage >": [
     "Hexagon/StageCollectionHelper"
   ],
   "Blast/Project/SymlinkChecker": [

@@ -43,6 +43,12 @@ TEST(Hexagon_StageCollectionHelperTest,
 }
 
 TEST(Hexagon_StageCollectionHelperTest,
+   get_all_advanced_code_editor_stages__returns_all_the_advanced_code_editor_stages)
+{
+   // TODO
+}
+
+TEST(Hexagon_StageCollectionHelperTest,
    get_all_code_editor_stages_as_code_editor_stages__preserves_the_initial_order_of_the_stages)
 {
    // TODO

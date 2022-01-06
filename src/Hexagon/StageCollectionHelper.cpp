@@ -9,6 +9,8 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
 #include <iostream>
 #include <stdexcept>
@@ -72,6 +74,26 @@ std::vector<Hexagon::CodeEditor::Stage *> StageCollectionHelper::get_all_code_ed
       if (type == StageInterface::CODE_EDITOR)
       {
          result.push_back(static_cast<Hexagon::CodeEditor::Stage *>(stage));
+      }
+   }
+   return result;
+}
+
+std::vector<Hexagon::AdvancedCodeEditor::Stage *> StageCollectionHelper::get_all_advanced_code_editor_stages()
+{
+   if (!(stages))
+      {
+         std::stringstream error_message;
+         error_message << "StageCollectionHelper" << "::" << "get_all_advanced_code_editor_stages" << ": error: " << "guard \"stages\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   std::vector<Hexagon::AdvancedCodeEditor::Stage *> result;
+   for (auto &stage : (*stages))
+   {
+      StageInterface::type_t type = stage->get_type();
+      if (type == StageInterface::ADVANCED_CODE_EDITOR)
+      {
+         result.push_back(static_cast<Hexagon::AdvancedCodeEditor::Stage *>(stage));
       }
    }
    return result;

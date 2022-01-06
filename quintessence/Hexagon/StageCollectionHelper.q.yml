@@ -47,6 +47,22 @@ functions:
       - std::vector<Hexagon::CodeEditor::Stage *>
 
 
+  - name: get_all_advanced_code_editor_stages
+    type: std::vector<Hexagon::AdvancedCodeEditor::Stage *>
+    guards: [ stages ]
+    body: |
+      std::vector<Hexagon::AdvancedCodeEditor::Stage *> result;
+      for (auto &stage : (*stages))
+      {
+         StageInterface::type_t type = stage->get_type();
+         if (type == StageInterface::ADVANCED_CODE_EDITOR)
+         {
+            result.push_back(static_cast<Hexagon::AdvancedCodeEditor::Stage *>(stage));
+         }
+      }
+      return result;
+  
+
   - name: get_frontmost_code_editor_stage
     type: Hexagon::CodeEditor::Stage*
     body: |
@@ -114,10 +130,14 @@ dependencies:
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: Hexagon::CodeEditor::Stage*
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Stage*
+    headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: Hexagon::GitCommitMessageInputBox::Stage*
     headers: [ Hexagon/GitCommitMessageInputBox/Stage.hpp ]
   - symbol: std::vector<Hexagon::CodeEditor::Stage *>
     headers: [ vector, Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: std::vector<Hexagon::AdvancedCodeEditor::Stage *>
+    headers: [ vector, Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: std::vector<StageInterface *>*
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: std::vector<StageInterface *>

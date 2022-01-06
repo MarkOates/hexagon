@@ -7766,6 +7766,9 @@ table td
   <td class="method">get_all_code_editor_stages_as_code_editor_stages()</td>
 </tr>
 <tr>
+  <td class="method">get_all_advanced_code_editor_stages()</td>
+</tr>
+<tr>
   <td class="method">get_frontmost_code_editor_stage()</td>
 </tr>
 <tr>
@@ -7786,10 +7789,16 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeEditor::Stage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeEditor/Stage.hpp&quot;]}</td>
 </tr>
 <tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::Stage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::GitCommitMessageInputBox::Stage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/GitCommitMessageInputBox/Stage.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::CodeEditor::Stage *&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeEditor/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::AdvancedCodeEditor::Stage *&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/AdvancedCodeEditor/Stage.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;StageInterface *&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/StageInterface.hpp&quot;]}</td>
@@ -9457,6 +9466,7 @@ table td
   "Hexagon/AdvancedCodeEditor/Stage": [
     "Hexagon/AdvancedCodeEditor/EventController",
     "Hexagon/LayoutToStagesCreator",
+    "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateThreeSplitFromComponent"
   ],
@@ -10505,6 +10515,9 @@ table td
     "Hexagon/StageFactory"
   ],
   "std/vector<Hexagon/CodeEditor/Stage >": [
+    "Hexagon/StageCollectionHelper"
+  ],
+  "std/vector<Hexagon/AdvancedCodeEditor/Stage >": [
     "Hexagon/StageCollectionHelper"
   ],
   "Blast/Project/SymlinkChecker": [
