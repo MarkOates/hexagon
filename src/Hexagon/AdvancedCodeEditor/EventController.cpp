@@ -93,7 +93,7 @@ void EventController::process_event(ALLEGRO_EVENT& event)
 
       if (stage->is_in_insert_mode())
       {
-         if (mapped_events.empty())
+         if (mapped_events.empty()) // TODO: I'm not sure what the purpose of this section is
          {
             char character = (char)(event.keyboard.unichar);
             stage->get_input_buffer_ref() = " ";
