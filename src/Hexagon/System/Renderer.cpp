@@ -73,11 +73,11 @@ bool Renderer::render()
       profile_timer_element_label << "Stage [" << stage->get_type_name() << "]                    " << stage;
       global::profiler.start(profile_timer_element_label.str());
 
-      bool is_focused = (system->get_frontmost_stage() == stage);
+      bool infer_is_focused = (system->get_frontmost_stage() == stage);
 
       stage->render();
 
-      if (is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
+      if (infer_is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
       {
          placement3d place = stage->get_place();
          Hexagon::Elements::Window window(place.size.x, place.size.y);
