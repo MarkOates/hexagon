@@ -1451,6 +1451,11 @@ bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp
    {
       stage->get_code_editor_ref().set_search_regex_expression(regex_expression);
    }
+   std::vector<Hexagon::AdvancedCodeEditor::Stage *> ac_stages = get_all_advanced_code_editor_stages();
+   for (auto &ac_stage : ac_stages)
+   {
+      ac_stage->set_current_search_regex(regex_expression);
+   }
 
    return true;
 }
