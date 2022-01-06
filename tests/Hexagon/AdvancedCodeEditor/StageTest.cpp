@@ -9,6 +9,7 @@
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 
 #include <allegro5/allegro_font.h>
+
 #include <allegro5/allegro_ttf.h>
 #include <AllegroFlare/Timer.hpp>
 #include <Blast/FileExistenceChecker.hpp>

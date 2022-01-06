@@ -62,6 +62,7 @@ void EventController::process_local_event(std::string event_name, ActionData act
    }
    else
    {
+      std::cout << "AdvancedCodeEditor::" << event_name << std::endl;
       events_dictionary[event_name](component);
    }
 
