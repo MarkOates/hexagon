@@ -179,7 +179,8 @@ void Renderer::render_cursor()
       }
    float cursor_x = cursor->get_x() * text_mesh->get_cell_width();
    float cursor_y = (cursor->get_y() - first_row_offset) * text_mesh->get_cell_height() + text_mesh_y_offset;
-   ALLEGRO_COLOR cursor_color = ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f};
+   ALLEGRO_COLOR cursor_color = ALLEGRO_COLOR{0.0f, 1.0f, 0.2f, 1.0f};
+   ALLEGRO_COLOR h_cursor_color = ALLEGRO_COLOR{0.0f, 0.5f, 0.1f, 0.5f};
 
    if (cursor_is_bar)
    {
@@ -201,6 +202,16 @@ void Renderer::render_cursor()
          cursor_y,
          cursor_x+cursor->get_width(),
          cursor_y+cursor->get_height(),
+         cursor_color,
+         2.0f
+         );
+      al_draw_rounded_rectangle(
+         cursor_x - 2,
+         cursor_y - 2,
+         cursor_x + cursor->get_width() + 2,
+         cursor_y + cursor->get_height() + 2,
+         2.0,
+         2.0, 
          cursor_color,
          2.0f
          );
