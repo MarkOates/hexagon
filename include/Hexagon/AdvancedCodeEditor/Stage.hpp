@@ -91,8 +91,8 @@ namespace Hexagon
          bool first_row_offset_jump_down_half_page();
          bool cursor_jump_to_next_code_message_point();
          bool cursor_jump_to_previous_code_message_point();
-         bool jump_to_next_search_regex_selection();
-         bool jump_to_previous_search_regex_selection();
+         bool cursor_jump_to_next_search_regex_selection();
+         bool cursor_jump_to_previous_search_regex_selection();
          bool delete_character();
          bool join_lines();
          bool split_lines();

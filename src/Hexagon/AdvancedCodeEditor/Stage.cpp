@@ -364,16 +364,21 @@ bool Stage::cursor_jump_to_previous_code_message_point()
    return true;
 }
 
-bool Stage::jump_to_next_search_regex_selection()
+bool Stage::cursor_jump_to_next_search_regex_selection()
 {
-   // TODO
-   // find match position > cursor position (not >=)
+   // TODO finish this function, map to action, and test
+   CodePoint next_position = search_regex_selections.find_next_from(cursor_get_x(), cursor_get_y());
+   cursor_move_to(next_position.get_x(), next_position.get_y());
+   first_row_offset_jump_to(cursor_get_y() - 20); // TODO get a constant offset other than 20
    return true;
 }
 
-bool Stage::jump_to_previous_search_regex_selection()
+bool Stage::cursor_jump_to_previous_search_regex_selection()
 {
-   // TODO
+   // TODO finish this function, map to action, and test
+   CodePoint previous_position = search_regex_selections.find_previous_from(cursor_get_x(), cursor_get_y());
+   cursor_move_to(previous_position.get_x(), previous_position.get_y());
+   first_row_offset_jump_to(cursor_get_y() - 20); // TODO get a constant offset other than 20
    return true;
 }
 
