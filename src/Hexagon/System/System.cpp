@@ -896,7 +896,7 @@ bool System::refresh_regex_hilights_on_all_code_editor_stages()
       get_all_advanced_code_editor_stages();
    for (auto &advanced_code_editor_stage : all_advanced_code_editor_stages)
    {
-      // TODO NEXT
+      advanced_code_editor_stage->refresh_search_regex_selections();
    }
    increment_search_count();
    set_hud_search_count_to_search_count();
