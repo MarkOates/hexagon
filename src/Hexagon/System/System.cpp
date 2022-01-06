@@ -268,9 +268,15 @@ Hexagon::GitCommitMessageInputBox::Stage *System::get_frontmost_git_commit_messa
 std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
 {
    Hexagon::StageCollectionHelper stage_collection_helper(&stages);
-   return stage_collection_helper.get_all_code_editor_stages_as_code_editor_stages();
+   return stage_collection_helper.get_all_code_editor_stages_as_code_editor_stages(); // TODO <- rename this method
 }
 
+
+std::vector<Hexagon::AdvancedCodeEditor::Stage *> System::get_all_advanced_code_editor_stages()
+{
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+   return stage_collection_helper.get_all_advanced_code_editor_stages();
+}
 
 int System::get_number_of_code_editor_stages()
 {
@@ -857,6 +863,8 @@ bool System::decrease_font_size()
 
 bool System::refresh_regex_hilights_on_frontmost_stage()
 {
+   // TODO determine if this method is even used; Remove if not
+
    StageInterface *stage = get_frontmost_stage();
    if (!stage)
    {
@@ -869,6 +877,10 @@ bool System::refresh_regex_hilights_on_frontmost_stage()
       Hexagon::CodeEditor::Stage *ce_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
       ce_stage->get_code_editor_ref().refresh_regex_message_points();
    }
+   if (stage->get_type() == StageInterface::ADVANCED_CODE_EDITOR)
+   {
+      // TODO
+   }
    return true;
 }
 
@@ -879,6 +891,12 @@ bool System::refresh_regex_hilights_on_all_code_editor_stages()
    for (auto &code_editor_stage : all_code_editor_stages)
    {
       code_editor_stage->get_code_editor_ref().refresh_regex_message_points();
+   }
+   std::vector<Hexagon::AdvancedCodeEditor::Stage *> all_advanced_code_editor_stages =
+      get_all_advanced_code_editor_stages();
+   for (auto &advanced_code_editor_stage : all_advanced_code_editor_stages)
+   {
+      // TODO NEXT
    }
    increment_search_count();
    set_hud_search_count_to_search_count();

@@ -10,6 +10,7 @@
 #include <Hexagon/Camera.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
 #include <Hexagon/OneLineInputBox/Stage.hpp>
 #include <Hexagon/System/Config.hpp>
@@ -79,6 +80,7 @@ public:
    Hexagon::CodeEditor::Stage *get_frontmost_code_editor_stage();
    Hexagon::GitCommitMessageInputBox::Stage *get_frontmost_git_commit_message_input_box();
    std::vector<Hexagon::CodeEditor::Stage *> get_all_code_editor_stages();
+   std::vector<Hexagon::AdvancedCodeEditor::Stage *> get_all_advanced_code_editor_stages();
    int get_number_of_code_editor_stages();
 
    // inference
