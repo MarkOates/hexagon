@@ -67,31 +67,37 @@ bool Renderer::render()
 
    for (auto &stage : system->stages)
    {
-      if (stage->get_render_on_hud()) continue;
-
-      std::stringstream profile_timer_element_label;
-      profile_timer_element_label << "Stage [" << stage->get_type_name() << "]                    " << stage;
-      global::profiler.start(profile_timer_element_label.str());
-
-      bool infer_is_focused = (system->get_frontmost_stage() == stage);
-
-      stage->render();
-
-      if (infer_is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
+      if (stage->get_render_on_hud())
       {
-         placement3d place = stage->get_place();
-         Hexagon::Elements::Window window(place.size.x, place.size.y);
-
-         window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
-         window.set_outer_line_opacity(0.2);
-         window.set_outer_line_thickness(4.0);
-
-         place.start_transform();
-         window.draw();
-         place.restore_transform();
+         continue; // NOTE: this will prevent any hud-rendered items from displaying
+                   // the implicitly rendered frame, or "window" in this case
       }
+      else
+      {
+         std::stringstream profile_timer_element_label;
+         profile_timer_element_label << "Stage [" << stage->get_type_name() << "]                    " << stage;
+         global::profiler.start(profile_timer_element_label.str());
 
-      global::profiler.pause(profile_timer_element_label.str());
+         bool infer_is_focused = (system->get_frontmost_stage() == stage);
+
+         stage->render();
+
+         if (infer_is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
+         {
+            placement3d place = stage->get_place();
+            Hexagon::Elements::Window window(place.size.x, place.size.y);
+
+            window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
+            window.set_outer_line_opacity(0.2);
+            window.set_outer_line_thickness(4.0);
+
+            place.start_transform();
+            window.draw();
+            place.restore_transform();
+         }
+
+         global::profiler.pause(profile_timer_element_label.str());
+      }
    }
    global::profiler.pause("all stages");
 
