@@ -16,6 +16,9 @@
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/CodeSelectionBoxRenderer.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/CodeMessagePointsOverlay.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -89,6 +92,7 @@ void Renderer::render()
    // draw the cursor
    if (draw_line_numbers) render_line_numbers();
    if (selections) draw_selections();
+   if (search_regex_selections) draw_search_regex_selections();
    if (code_message_points) draw_code_message_points();
    render_cursor();
 
@@ -228,6 +232,45 @@ void Renderer::draw_selections()
    for (auto &selection : *selections)
    {
       for (auto &code_range : selection.get_code_ranges())
+      {
+         //std::cout << " drawing selection " << selection << std::endl;
+         Hexagon::CodeSelectionBoxRenderer renderer(
+            //code_editor->get_lines_ref(),
+            lines,
+            &code_range,
+            //code_editor->get_first_line_number(),
+            first_line_number,
+            cell_width,
+            cell_height);
+         renderer.render();
+      }
+   }
+}
+
+void Renderer::draw_search_regex_selections()
+{
+   if (!(search_regex_selections))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_search_regex_selections" << ": error: " << "guard \"search_regex_selections\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(lines))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_search_regex_selections" << ": error: " << "guard \"lines\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   int cell_width = text_mesh->get_cell_width();
+   int first_line_number = first_row_offset;
+   float cell_height = text_mesh->get_cell_height();
+
+   //if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
+
+   //for (auto &selection : code_editor->selections)
+   //for (auto &selection : *search_regex_selections)
+   {
+      for (auto &code_range : (*search_regex_selections).get_code_ranges())
       {
          //std::cout << " drawing selection " << selection << std::endl;
          Hexagon::CodeSelectionBoxRenderer renderer(

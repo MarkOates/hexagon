@@ -43,6 +43,7 @@ namespace Hexagon
          bool render_line_numbers();
          void render_cursor();
          void draw_selections();
+         void draw_search_regex_selections();
          void draw_code_message_points();
       };
    }
