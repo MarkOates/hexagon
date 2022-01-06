@@ -74,6 +74,8 @@ public:
    void set_last_project_navigator_selection(std::string last_project_navigator_selection);
    void set_last_component_navigator_selection(std::string last_component_navigator_selection);
    void set_current_project_directory(std::string current_project_directory);
+   bool unset_focused_state_on_topmost_stage_if_not_already_unfocused(); // TODO make private
+   bool set_focused_state_on_topmost_stage_if_not_already_focused(); // TODO make private
 
    // retrieval
    StageInterface *get_frontmost_stage();

@@ -632,8 +632,10 @@ bool System::toggle_command_mode_off()
 }
 
 
-static bool unset_focused_state_on_topmost_stage_if_not_already_unfocused(System *system)
+bool System::unset_focused_state_on_topmost_stage_if_not_already_unfocused()
 {
+   System *system = this;
+
    if (!system) throw std::runtime_error("Fooobaboab");
    StageInterface *stage = system->get_frontmost_stage();
    if (!stage) return false;
@@ -670,8 +672,10 @@ static bool unset_focused_state_on_topmost_stage_if_not_already_unfocused(System
 }
 
 
-static bool set_focused_state_on_topmost_stage_if_not_already_focused(System *system)
+bool System::set_focused_state_on_topmost_stage_if_not_already_focused()
 {
+   System *system = this;
+
    if (!system) throw std::runtime_error("Foxxjixjxixxab");
    StageInterface *stage = system->get_frontmost_stage();
    if (!stage) return false;
@@ -716,9 +720,9 @@ bool System::rotate_stage_right_and_update_focused_state_on_changed_stages()
       return false;
    }
 
-   unset_focused_state_on_topmost_stage_if_not_already_unfocused(this);
+   unset_focused_state_on_topmost_stage_if_not_already_unfocused();
    std::rotate(stages.begin(), stages.begin() + 1, stages.end());
-   set_focused_state_on_topmost_stage_if_not_already_focused(this);
+   set_focused_state_on_topmost_stage_if_not_already_focused();
    return true;
 }
 
@@ -731,9 +735,9 @@ bool System::rotate_stage_left_and_update_focused_state_on_changed_stages()
       return false;
    }
 
-   unset_focused_state_on_topmost_stage_if_not_already_unfocused(this);
+   unset_focused_state_on_topmost_stage_if_not_already_unfocused();
    std::rotate(stages.rbegin(), stages.rbegin() + 1, stages.rend());
-   set_focused_state_on_topmost_stage_if_not_already_focused(this);
+   set_focused_state_on_topmost_stage_if_not_already_focused();
    return true;
 }
 
