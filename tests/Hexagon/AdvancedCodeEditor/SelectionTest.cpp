@@ -15,3 +15,35 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, selection__is_a_constructor_arg_a
 
    EXPECT_EQ(code_range, selection.get_code_ranges());
 }
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__finds_the_next_selection)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__when_at_a_selection_start__finds_the_next_selection)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__when_beyond_the_last_selection__does_nothing)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__finds_the_previous_selection)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__when_at_a_selection_start__finds_the_previous_selection)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__when_before_the_first_selection__does_nothing)
+{
+   // TODO
+}
+
+
