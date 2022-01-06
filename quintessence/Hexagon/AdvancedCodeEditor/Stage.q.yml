@@ -332,6 +332,21 @@ functions:
       return true;
 
 
+  - name: jump_to_next_search_regex_selection
+    type: bool
+    body: |
+      // TODO
+      // find match position > cursor position (not >=)
+      return true;
+
+
+  - name: jump_to_previous_search_regex_selection
+    type: bool
+    body: |
+      // TODO
+      return true;
+
+
   - name: delete_character
     type: bool
     guards: [ initialized ]

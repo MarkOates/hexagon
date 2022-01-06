@@ -364,6 +364,19 @@ bool Stage::cursor_jump_to_previous_code_message_point()
    return true;
 }
 
+bool Stage::jump_to_next_search_regex_selection()
+{
+   // TODO
+   // find match position > cursor position (not >=)
+   return true;
+}
+
+bool Stage::jump_to_previous_search_regex_selection()
+{
+   // TODO
+   return true;
+}
+
 bool Stage::delete_character()
 {
    if (!(initialized))
