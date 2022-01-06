@@ -304,7 +304,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
-   DISABLED__interactive_test_works)
+   interactive_test_works)
 {
    AllegroFlare::Timer timer;
    std::string filename = std::tmpnam(nullptr);
@@ -316,6 +316,9 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
    stage.get_place().position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
    //stage.get_place().scale = vec3d(0.8, 0.8, 0.8);
 
+   stage.set_current_search_regex("of");
+   stage.refresh_search_regex_selections();
+   
    al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
    stage.render();
    al_flip_display();

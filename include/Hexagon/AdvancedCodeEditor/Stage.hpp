@@ -53,6 +53,7 @@ namespace Hexagon
 
          void set_filename(std::string filename);
          void set_input_buffer(std::string input_buffer);
+         void set_current_search_regex(std::string current_search_regex);
          int get_num_columns();
          int get_num_rows();
          std::string get_filename();

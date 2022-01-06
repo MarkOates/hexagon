@@ -253,6 +253,10 @@
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
+  "Hexagon/AdvancedCodeEditor/Selection": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
   "std/vector<std/string>": [
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
@@ -430,9 +434,6 @@
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter": [
-    "Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "Hexagon/AdvancedCodeEditor/Selection": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "StageInterface": [

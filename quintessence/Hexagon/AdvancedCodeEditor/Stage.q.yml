@@ -88,11 +88,12 @@ properties:
   - name: current_search_regex
     type: std::string
     init_with: '""'
+    setter: true
 
   - name: code_message_point_manager
     type: Hexagon::CodeMessagePointManager
     init_with: '{}'
-
+  
   - name: selections
     type: std::vector<Hexagon::AdvancedCodeEditor::Selection>
     init_with: '{}'
@@ -542,6 +543,7 @@ functions:
          surface_render,
          &advanced_code_editor.get_cursor_ref(),
          &selections,
+         &search_regex_selections,
          &code_message_point_manager.get_code_message_points_ref(),
          &lines,
          place.size.x,

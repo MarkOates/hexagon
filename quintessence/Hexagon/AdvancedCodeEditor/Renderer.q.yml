@@ -18,12 +18,17 @@ properties:
 
   - name: selections
     type: std::vector<Hexagon::AdvancedCodeEditor::Selection>*
-    init_with: '{}'
+    init_with: nullptr
+    constructor_arg: true
+
+  - name: search_regex_selections
+    type: Hexagon::AdvancedCodeEditor::Selection*
+    init_with: nullptr
     constructor_arg: true
 
   - name: code_message_points
     type: std::vector<CodeMessagePoint>*
-    init_with: '{}'
+    init_with: nullptr
     constructor_arg: true
 
   - name: lines
@@ -246,6 +251,8 @@ dependencies:
     headers: [ Hexagon/Elements/TextMesh.hpp ]
   - symbol: std::vector<Hexagon::AdvancedCodeEditor::Selection>*
     headers: [ vector, Hexagon/AdvancedCodeEditor/Selection.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Selection*
+    headers: [ Hexagon/AdvancedCodeEditor/Selection.hpp ]
   - symbol: std::vector<std::string>*
     headers: [ vector, string ]
   - symbol: ALLEGRO_COLOR

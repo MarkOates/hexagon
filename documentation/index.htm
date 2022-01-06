@@ -728,6 +728,10 @@ table td
   <td class="property">std::vector&lt;Hexagon::AdvancedCodeEditor::Selection&gt;*</td>
 </tr>
 <tr>
+  <td class="property">search_regex_selections</td>
+  <td class="property">Hexagon::AdvancedCodeEditor::Selection*</td>
+</tr>
+<tr>
   <td class="property">code_message_points</td>
   <td class="property">std::vector&lt;CodeMessagePoint&gt;*</td>
 </tr>
@@ -787,6 +791,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::AdvancedCodeEditor::Selection&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/AdvancedCodeEditor/Selection.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::Selection*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/Selection.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::string&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
@@ -9507,6 +9514,10 @@ table td
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
+  "Hexagon/AdvancedCodeEditor/Selection": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
   "std/vector<std/string>": [
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
@@ -9684,9 +9695,6 @@ table td
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter": [
-    "Hexagon/AdvancedCodeEditor/Stage"
-  ],
-  "Hexagon/AdvancedCodeEditor/Selection": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "StageInterface": [

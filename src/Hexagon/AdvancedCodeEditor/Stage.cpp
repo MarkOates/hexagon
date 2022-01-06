@@ -88,6 +88,12 @@ void Stage::set_input_buffer(std::string input_buffer)
 }
 
 
+void Stage::set_current_search_regex(std::string current_search_regex)
+{
+   this->current_search_regex = current_search_regex;
+}
+
+
 int Stage::get_num_columns()
 {
    return num_columns;
@@ -577,6 +583,7 @@ void Stage::render()
       surface_render,
       &advanced_code_editor.get_cursor_ref(),
       &selections,
+      &search_regex_selections,
       &code_message_point_manager.get_code_message_points_ref(),
       &lines,
       place.size.x,

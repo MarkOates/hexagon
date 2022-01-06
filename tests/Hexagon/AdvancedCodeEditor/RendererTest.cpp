@@ -41,7 +41,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    Hexagon::Elements::TextMesh text_mesh(font);
    text_mesh.initialize();
 
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, nullptr, nullptr, &selections, nullptr, &lines);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, nullptr, nullptr, &selections, nullptr, nullptr, &lines);
    std::string expected_error_message = "Renderer::render_cursor: error: guard \"cursor\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 
@@ -66,6 +66,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
       nullptr,
       &cursor,
       &selections,
+      nullptr,
       nullptr,
       &lines,
       place.size.x,
@@ -100,6 +101,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
       nullptr,
       &cursor,
       &selections,
+      nullptr,
       nullptr,
       &lines,
       place.size.x,
@@ -136,6 +138,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
       nullptr,
       &cursor,
       &selections,
+      nullptr,
       nullptr,
       &lines,
       place.size.x,
@@ -190,6 +193,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
          bitmap,
          &cursor,
          &selections,
+         nullptr,
          nullptr,
          &lines,
          place.size.x,
@@ -255,6 +259,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, DISAB
          &cursor,
          &selections,
          nullptr,
+         nullptr,
          &lines,
          place.size.x,
          place.size.y,
@@ -311,6 +316,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
          &text_mesh,
          bitmap,
          &cursor,
+         nullptr,
          nullptr,
          &code_message_points,
          &lines,

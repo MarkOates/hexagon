@@ -22,6 +22,7 @@ namespace Hexagon
          ALLEGRO_BITMAP* surface_render;
          Hexagon::AdvancedCodeEditor::Cursor* cursor;
          std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections;
+         Hexagon::AdvancedCodeEditor::Selection* search_regex_selections;
          std::vector<CodeMessagePoint>* code_message_points;
          std::vector<std::string>* lines;
          float width;
@@ -33,7 +34,7 @@ namespace Hexagon
          ALLEGRO_FONT* font;
 
       public:
-         Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr, ALLEGRO_BITMAP* surface_render=nullptr, Hexagon::AdvancedCodeEditor::Cursor* cursor=nullptr, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections={}, std::vector<CodeMessagePoint>* code_message_points={}, std::vector<std::string>* lines=nullptr, float width=1, float height=1, bool cursor_is_bar=false, float text_mesh_y_offset=0.0f, int first_row_offset=0, bool draw_line_numbers=false, ALLEGRO_FONT* font=nullptr);
+         Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr, ALLEGRO_BITMAP* surface_render=nullptr, Hexagon::AdvancedCodeEditor::Cursor* cursor=nullptr, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections=nullptr, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections=nullptr, std::vector<CodeMessagePoint>* code_message_points=nullptr, std::vector<std::string>* lines=nullptr, float width=1, float height=1, bool cursor_is_bar=false, float text_mesh_y_offset=0.0f, int first_row_offset=0, bool draw_line_numbers=false, ALLEGRO_FONT* font=nullptr);
          ~Renderer();
 
          void set_draw_line_numbers(bool draw_line_numbers);

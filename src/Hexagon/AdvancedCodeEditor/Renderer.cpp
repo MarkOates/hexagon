@@ -27,11 +27,12 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
    , cursor(cursor)
    , selections(selections)
+   , search_regex_selections(search_regex_selections)
    , code_message_points(code_message_points)
    , lines(lines)
    , width(width)
