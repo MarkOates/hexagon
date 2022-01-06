@@ -881,10 +881,19 @@ table td
 <tr>
   <td class="method">clear()</td>
 </tr>
+<tr>
+  <td class="method">find_next_from(2)</td>
+</tr>
+<tr>
+  <td class="method">find_previous_from(2)</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeRange&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeRange.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;CodePoint&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodePoint.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9712,6 +9721,9 @@ table td
     "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter",
     "Hexagon/AdvancedCodeEditor/Selection",
     "Hexagon/OneLineInputBox/Renderer"
+  ],
+  "CodePoint": [
+    "Hexagon/AdvancedCodeEditor/Selection"
   ],
   "Hexagon/SymlinkToucher": [
     "Hexagon/AdvancedCodeEditor/Stage"

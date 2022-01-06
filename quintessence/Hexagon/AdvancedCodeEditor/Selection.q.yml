@@ -1,19 +1,57 @@
 properties:
 
+
   - name: code_ranges
     type: std::vector<CodeRange>
     init_with: '{}'
     constructor_arg: true
     getter: true
 
+
 functions:
+
 
   - name: clear
     body: |
       code_ranges.clear();
       return;
+
+
+  - name: find_next_from
+    type: CodePoint
+    parameters:
+      - name: position_x
+        type: int
+        default_argument: 0
+      - name: position_y
+        type: int
+        default_argument: 0
+    body: |
+      CodePoint result(position_x, position_y);
+      // TODO
+      return result;
+
+   
+  - name: find_previous_from
+    type: CodePoint 
+    parameters:
+      - name: position_x
+        type: int
+        default_argument: 0
+      - name: position_y
+        type: int
+        default_argument: 0
+    body: |
+      CodePoint result(position_x, position_y);
+      // TODO
+      return result;
+
    
 dependencies:
 
+
   - symbol: std::vector<CodeRange>
     headers: [ vector, Hexagon/CodeRange.hpp ]
+  - symbol: CodePoint
+    headers: [ Hexagon/CodePoint.hpp ]
+

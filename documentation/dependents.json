@@ -431,6 +431,9 @@
     "Hexagon/AdvancedCodeEditor/Selection",
     "Hexagon/OneLineInputBox/Renderer"
   ],
+  "CodePoint": [
+    "Hexagon/AdvancedCodeEditor/Selection"
+  ],
   "Hexagon/SymlinkToucher": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
