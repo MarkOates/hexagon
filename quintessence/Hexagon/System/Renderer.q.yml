@@ -49,16 +49,7 @@ functions:
 
             if (infer_is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
             {
-               placement3d place = stage->get_place();
-               Hexagon::Elements::Window window(place.size.x, place.size.y);
-
-               window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
-               window.set_outer_line_opacity(0.2);
-               window.set_outer_line_thickness(4.0);
-
-               place.start_transform();
-               window.draw();
-               place.restore_transform();
+               draw_focused_frame(stage);
             }
 
             global::profiler.pause(profile_timer_element_label.str());
@@ -79,6 +70,27 @@ functions:
       - Hexagon::FileNavigator::Stage*
       - Hexagon::Elements::Window
 
+
+  - name: draw_focused_frame
+    guards: [ stage ]
+    parameters:
+      - name: stage
+        type: StageInterface*
+        default_argument: nullptr
+    body: |
+      placement3d place = stage->get_place();
+      Hexagon::Elements::Window window(place.size.x, place.size.y);
+
+      window.set_outer_line_color(ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f});
+      window.set_outer_line_opacity(0.7);
+      window.set_outer_line_thickness(4.0);
+
+      place.start_transform();
+      window.draw();
+      place.restore_transform();
+
+      return;
+  
 
 dependencies:
 

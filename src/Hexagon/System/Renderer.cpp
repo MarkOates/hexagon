@@ -11,6 +11,8 @@
 #include <Hexagon/Elements/Window.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -84,16 +86,7 @@ bool Renderer::render()
 
          if (infer_is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
          {
-            placement3d place = stage->get_place();
-            Hexagon::Elements::Window window(place.size.x, place.size.y);
-
-            window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
-            window.set_outer_line_opacity(0.2);
-            window.set_outer_line_thickness(4.0);
-
-            place.start_transform();
-            window.draw();
-            place.restore_transform();
+            draw_focused_frame(stage);
          }
 
          global::profiler.pause(profile_timer_element_label.str());
@@ -104,6 +97,28 @@ bool Renderer::render()
    system->hud.draw();
 
    return true;
+}
+
+void Renderer::draw_focused_frame(StageInterface* stage)
+{
+   if (!(stage))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_focused_frame" << ": error: " << "guard \"stage\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   placement3d place = stage->get_place();
+   Hexagon::Elements::Window window(place.size.x, place.size.y);
+
+   window.set_outer_line_color(ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f});
+   window.set_outer_line_opacity(0.7);
+   window.set_outer_line_thickness(4.0);
+
+   place.start_transform();
+   window.draw();
+   place.restore_transform();
+
+   return;
 }
 } // namespace System
 } // namespace Hexagon
