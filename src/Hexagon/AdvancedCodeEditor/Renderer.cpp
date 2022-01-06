@@ -212,7 +212,7 @@ void Renderer::render_cursor()
          cursor_y + cursor->get_height() + 2,
          2.0,
          2.0, 
-         cursor_color,
+         h_cursor_color,
          2.0f
          );
    }

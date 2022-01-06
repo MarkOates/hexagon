@@ -5,6 +5,7 @@ properties:
     type: float
     init_with: 1
     constructor_arg: true
+
   - name: height
     type: float
     init_with: 1
