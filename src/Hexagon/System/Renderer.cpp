@@ -108,10 +108,10 @@ void Renderer::draw_focused_frame(StageInterface* stage)
          throw std::runtime_error(error_message.str());
       }
    placement3d place = stage->get_place();
-   Hexagon::Elements::Window window(place.size.x, place.size.y);
+   Hexagon::Elements::Window window(-2, -2, place.size.x + 2, place.size.y + 2);
 
    window.set_outer_line_color(ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f});
-   window.set_outer_line_opacity(0.7);
+   window.set_outer_line_opacity(0.5);
    window.set_outer_line_thickness(4.0);
 
    place.start_transform();
