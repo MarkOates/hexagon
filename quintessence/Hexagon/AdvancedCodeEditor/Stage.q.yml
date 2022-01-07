@@ -522,6 +522,11 @@ functions:
          "cursor_move_right",
          "set_to_insert_mode",
          });
+      result.set_mapping(ALLEGRO_KEY_A, ALLEGRO_KEYMOD_SHIFT, {
+         "cursor_move_to_end_of_line",
+         "cursor_move_right",
+         "set_to_insert_mode",
+         });
       result.set_mapping(ALLEGRO_KEY_O, 0, {
          "cursor_move_down",
          "insert_blank_line",
