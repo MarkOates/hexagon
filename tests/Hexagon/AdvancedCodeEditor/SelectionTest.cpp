@@ -10,18 +10,35 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, can_be_created_without_blowing_up
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, selection__is_a_constructor_arg_and_has_a_getter)
 {
-   std::vector<CodeRange> code_range = { CodeRange{4, 5, 10, 6} };
-   Hexagon::AdvancedCodeEditor::Selection selection(code_range);
+   std::vector<CodeRange> code_ranges = { CodeRange{4, 5, 10, 6} };
+   Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
 
-   EXPECT_EQ(code_range, selection.get_code_ranges());
+   EXPECT_EQ(code_ranges, selection.get_code_ranges());
+}
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
+   find_next_from__with_no_code_ranges__returns_the_cursor_location_that_was_passed_location)
+{
+   std::vector<CodeRange> empty_code_ranges = {};
+   Hexagon::AdvancedCodeEditor::Selection selection(empty_code_ranges);
+   ASSERT_EQ(CodePoint(32, 87), selection.find_next_from(32, 87));
 }
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__finds_the_next_selection)
 {
-   // TODO
+   std::vector<CodeRange> code_ranges = {
+      CodeRange{2, 0, 3, 0},
+      CodeRange{3, 8, 4, 8},
+      CodeRange{9, 19, 10, 19},
+   };
+   Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
+
+   //ASSERT_EQ(CodePoint(2, 0), selection.find_next_from(0, 0)); // on the same line
+   //ASSERT_EQ(CodePoint(3, 8), selection.find_next_from(4, 0)); // on a subsequent line
 }
 
-TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__when_at_a_selection_start__finds_the_next_selection)
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
+   find_next_from__when_at_an_existing_selections_start__finds_the_next_selection)
 {
    // TODO
 }

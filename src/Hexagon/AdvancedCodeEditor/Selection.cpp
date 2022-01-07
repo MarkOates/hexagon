@@ -36,6 +36,13 @@ void Selection::clear()
 CodePoint Selection::find_next_from(int position_x, int position_y)
 {
    CodePoint result(position_x, position_y);
+
+   for (auto &code_range : code_ranges)
+   {
+      CodePoint code_point = code_range.infer_cursor_start();
+      // TODO
+   }
+
    // TODO
    return result;
 }
