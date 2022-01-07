@@ -429,7 +429,7 @@ functions:
         default_argument: '""'
     guards: [ initialized ]
     body: |
-      bool result = advanced_code_editor.set_content(content);
+      advanced_code_editor.set_content(content);
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
       return;
 

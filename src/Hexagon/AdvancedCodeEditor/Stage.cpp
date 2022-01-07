@@ -478,7 +478,7 @@ void Stage::set_content(std::string content)
          error_message << "Stage" << "::" << "set_content" << ": error: " << "guard \"initialized\" not met";
          throw std::runtime_error(error_message.str());
       }
-   bool result = advanced_code_editor.set_content(content);
+   advanced_code_editor.set_content(content);
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    return;
 }
