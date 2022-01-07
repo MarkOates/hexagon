@@ -416,6 +416,12 @@ TEST(Hexagon_StageFactoryTest, create_file_navigator__creates_a_file_navigator_w
    al_uninstall_system();
 }
 
+TEST(Hexagon_StageFactoryText,
+   create_component_relations_navigator__creates_a_component_relations_navigator_with_the_expected_properties)
+{
+   // TODO
+}
+
 TEST(Hexagon_StageFactoryTest, get_current_display__when_allegro_is_not_initialized__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;
