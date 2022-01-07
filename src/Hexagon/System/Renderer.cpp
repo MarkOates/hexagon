@@ -110,7 +110,8 @@ void Renderer::draw_focused_frame(StageInterface* stage)
    placement3d place = stage->get_place();
    Hexagon::Elements::Window window(place.size.x, place.size.y);
 
-   window.set_outer_line_color(ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f});
+   //window.set_outer_line_color(ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f});
+   window.set_outer_line_color(ALLEGRO_COLOR{0.3f, 0.3f, 0.3f, 0.3f});
    window.set_outer_line_opacity(0.5);
    window.set_outer_line_thickness(4.0);
 
