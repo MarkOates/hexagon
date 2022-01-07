@@ -13,50 +13,63 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+
   - name: dependents_menu_items
     type: std::vector<std::tuple<std::string, std::string>>
     init_with: '{{"Foo", "foo"}, {"Bar", "bar"}}'
     constructor_arg: true
+
   - name: relatives_menu_items
     type: std::vector<std::tuple<std::string, std::string>>
     init_with: '{{"Baz", "baz"}, {"Buz", "buz"}}'
     constructor_arg: true
+
   - name: dependencies_menu_items
     type: std::vector<std::tuple<std::string, std::string>>
     init_with: '{{"Fiz", "fiz"}, {"Foz", "foz"}}'
     constructor_arg: true
+
   - name: dependents_menu
     type: Hexagon::Elements::ListMenu
     init_with: 'font_bin, "Dependents", dependents_menu_items'
+
   - name: relatives_menu
     type: Hexagon::Elements::ListMenu
     init_with: 'font_bin, "Relatives", relatives_menu_items'
+
   - name: dependencies_menu
     type: Hexagon::Elements::ListMenu
     init_with: 'font_bin, "Dependencies", dependencies_menu_items'
+
   - name: dependents_menu_place
     type: placement3d
     init_with: '-700, -200, 0'
+
   - name: relatives_menu_place
     type: placement3d
     init_with: '0, -200, 0'
+
   - name: dependencies_menu_place
     type: placement3d
     init_with: '700, -200, 0'
+
   - name: initialized
     type: bool
     init_with: false
     getter: true
+
   - name: currently_active_menu
     type: Hexagon::Elements::ListMenu*
     init_with: nullptr
     getter: true
     private: true
+
   - name: default_color
     type: ALLEGRO_COLOR
     init_with: '{0.973, 0.592, 0.078, 1.0}'
