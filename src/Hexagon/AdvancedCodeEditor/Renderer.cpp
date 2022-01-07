@@ -30,7 +30,7 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font, bool content_is_modified)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
    , cursor(cursor)
@@ -45,6 +45,7 @@ Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surfa
    , first_row_offset(first_row_offset)
    , draw_line_numbers(draw_line_numbers)
    , font(font)
+   , content_is_modified(content_is_modified)
 {
 }
 
@@ -63,6 +64,12 @@ void Renderer::set_draw_line_numbers(bool draw_line_numbers)
 void Renderer::set_font(ALLEGRO_FONT* font)
 {
    this->font = font;
+}
+
+
+void Renderer::set_content_is_modified(bool content_is_modified)
+{
+   this->content_is_modified = content_is_modified;
 }
 
 

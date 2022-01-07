@@ -73,6 +73,12 @@ properties:
     setter: true
     constructor_arg: true
 
+  - name: content_is_modified
+    type: bool
+    init_with: false
+    setter: true
+    constructor_arg: true
+
 
 functions:
 
