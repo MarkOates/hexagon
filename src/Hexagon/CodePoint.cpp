@@ -42,7 +42,6 @@ bool operator<(const CodePoint &a, const CodePoint &b)
 }
 
 
-
 bool operator==(const CodePoint &a, const CodePoint &b)
 {
    if (a.get_x() != b.get_x()) return false;
