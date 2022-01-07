@@ -547,6 +547,10 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
    result.set_mapping(ALLEGRO_KEY_BACKSPACE, ALLEGRO_KEYMOD_SHIFT, { "delete_line" });
    result.set_mapping(ALLEGRO_KEY_S, KeyboardCommandMapper::COMMAND, { "save_file" });
    result.set_mapping(ALLEGRO_KEY_I, 0, { "set_to_insert_mode" });
+   result.set_mapping(ALLEGRO_KEY_I, ALLEGRO_KEYMOD_SHIFT, {
+      "cursor_move_to_start_of_line",
+      "set_to_insert_mode",
+      });
    result.set_mapping(ALLEGRO_KEY_O, 0, {
       "cursor_move_down",
       "insert_blank_line",
