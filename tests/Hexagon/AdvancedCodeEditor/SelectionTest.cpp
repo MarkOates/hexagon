@@ -21,7 +21,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
 {
    std::vector<CodeRange> empty_code_ranges = {};
    Hexagon::AdvancedCodeEditor::Selection selection(empty_code_ranges);
-   ASSERT_EQ(CodePoint(32, 87), selection.find_next_from(32, 87));
+   EXPECT_EQ(CodePoint(32, 87), selection.find_next_from(32, 87));
 }
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__finds_the_next_selection)
@@ -33,8 +33,8 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__finds_the_next_se
    };
    Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
 
-   ASSERT_EQ(CodePoint(2, 0), selection.find_next_from(0, 0)); // on the same line
-   ASSERT_EQ(CodePoint(3, 8), selection.find_next_from(4, 0)); // on a subsequent line
+   EXPECT_EQ(CodePoint(2, 0), selection.find_next_from(0, 0)); // on the same line
+   EXPECT_EQ(CodePoint(3, 8), selection.find_next_from(4, 0)); // on a subsequent line
 }
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
@@ -47,8 +47,8 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    };
    Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
 
-   ASSERT_EQ(CodePoint(3, 8), selection.find_next_from(2, 0)); // on the same line
-   ASSERT_EQ(CodePoint(9, 19), selection.find_next_from(3, 8)); // on a subsequent line
+   EXPECT_EQ(CodePoint(3, 8), selection.find_next_from(2, 0)); // on the same line
+   EXPECT_EQ(CodePoint(9, 19), selection.find_next_from(3, 8)); // on a subsequent line
 }
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__when_beyond_the_last_selection__does_nothing)
@@ -60,7 +60,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__when_beyond_the_l
    };
    Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
 
-   ASSERT_EQ(CodePoint(10, 19), selection.find_next_from(10, 19)); // on the same line
+   EXPECT_EQ(CodePoint(10, 19), selection.find_next_from(10, 19)); // on the same line
 }
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
@@ -68,7 +68,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
 {
    std::vector<CodeRange> empty_code_ranges = {};
    Hexagon::AdvancedCodeEditor::Selection selection(empty_code_ranges);
-   ASSERT_EQ(CodePoint(32, 87), selection.find_previous_from(32, 87));
+   EXPECT_EQ(CodePoint(32, 87), selection.find_previous_from(32, 87));
 }
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__finds_the_previous_selection)
@@ -80,8 +80,8 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__finds_the_pre
    };
    Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
 
-   ASSERT_EQ(CodePoint(2, 0), selection.find_previous_from(4, 0)); // on the same line
-   ASSERT_EQ(CodePoint(2, 0), selection.find_previous_from(4, 7)); // on a subsequent line
+   EXPECT_EQ(CodePoint(2, 0), selection.find_previous_from(4, 0)); // on the same line
+   EXPECT_EQ(CodePoint(2, 0), selection.find_previous_from(4, 7)); // on a subsequent line
 }
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
@@ -94,8 +94,8 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    };
    Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
 
-   ASSERT_EQ(CodePoint(2, 0), selection.find_previous_from(3, 8)); // on the same line
-   ASSERT_EQ(CodePoint(3, 8), selection.find_previous_from(9, 19)); // on a subsequent line
+   EXPECT_EQ(CodePoint(2, 0), selection.find_previous_from(3, 8)); // on the same line
+   EXPECT_EQ(CodePoint(3, 8), selection.find_previous_from(9, 19)); // on a subsequent line
 }
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__when_before_the_first_selection__does_nothing)
@@ -107,8 +107,8 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__when_before_t
    };
    Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
 
-   ASSERT_EQ(CodePoint(1, 0), selection.find_previous_from(1, 0)); // on the previoud line
-   ASSERT_EQ(CodePoint(1, 1), selection.find_previous_from(1, 1)); // on the same line
+   EXPECT_EQ(CodePoint(1, 0), selection.find_previous_from(1, 0)); // on the previoud line
+   EXPECT_EQ(CodePoint(1, 1), selection.find_previous_from(1, 1)); // on the same line
 }
 
 
