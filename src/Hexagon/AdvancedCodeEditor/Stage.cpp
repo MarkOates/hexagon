@@ -558,6 +558,10 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
       "cursor_move_to_first_non_whitespace_character",
       "set_to_insert_mode",
       });
+   result.set_mapping(ALLEGRO_KEY_S, 0, {
+      "delete_character",
+      "set_to_insert_mode",
+      });
    result.set_mapping(ALLEGRO_KEY_O, 0, {
       "cursor_move_down",
       "insert_blank_line",
