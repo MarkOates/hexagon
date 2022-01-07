@@ -79,6 +79,7 @@ namespace Hexagon
          bool cursor_move_left();
          bool cursor_move_right();
          bool cursor_move_to_start_of_line();
+         bool cursor_move_to_first_non_whitespace_character();
          bool cursor_move_to_end_of_line();
          bool cursor_jump_to_next_word();
          bool cursor_jump_to_previous_word();

@@ -290,6 +290,11 @@ bool Stage::cursor_move_to_start_of_line()
    return advanced_code_editor.cursor_move_to_start_of_line();
 }
 
+bool Stage::cursor_move_to_first_non_whitespace_character()
+{
+   return advanced_code_editor.cursor_move_to_first_non_whitespace_character();
+}
+
 bool Stage::cursor_move_to_end_of_line()
 {
    return advanced_code_editor.cursor_move_to_end_of_line();
@@ -498,6 +503,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "set_to_insert_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
       { "cursor_move_to_start_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_start_of_line },
       { "cursor_move_to_end_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_end_of_line },
+      { "cursor_move_to_first_non_whitespace_character",
+         &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_first_non_whitespace_character },
       { "cursor_jump_to_next_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_next_word },
       { "cursor_jump_to_previous_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_word },
       { "cursor_jump_up_half_page", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_up_half_page },
@@ -548,7 +555,7 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
    result.set_mapping(ALLEGRO_KEY_S, KeyboardCommandMapper::COMMAND, { "save_file" });
    result.set_mapping(ALLEGRO_KEY_I, 0, { "set_to_insert_mode" });
    result.set_mapping(ALLEGRO_KEY_I, ALLEGRO_KEYMOD_SHIFT, {
-      "cursor_move_to_start_of_line",
+      "cursor_move_to_first_non_whitespace_character",
       "set_to_insert_mode",
       });
    result.set_mapping(ALLEGRO_KEY_O, 0, {
