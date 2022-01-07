@@ -29,7 +29,7 @@ functions:
     body: |
       CodePoint anchor_code_point(position_x, position_y);
       
-      // get ANY code point that is bigger than from_code_point to be the first "most_viable_code_point"
+      // get ANY code point that is bigger than anchor_code_point to be the first "most_viable_code_point"
       CodePoint most_viable_code_point(position_x, position_y);
       for (auto &code_range : code_ranges)
       {
@@ -63,9 +63,30 @@ functions:
         type: int
         default_argument: 0
     body: |
-      CodePoint result(position_x, position_y);
-      // TODO
-      return result;
+      CodePoint anchor_code_point(position_x, position_y);
+      
+      // get ANY code point that is smaller than anchor_code_point to be the first "most_viable_code_point"
+      CodePoint most_viable_code_point(position_x, position_y);
+      for (auto &code_range : code_ranges)
+      {
+         CodePoint code_point = code_range.infer_cursor_start();
+         if (code_point < most_viable_code_point)
+         {
+            most_viable_code_point = code_point;
+            break;
+         }
+      }
+
+      for (auto &code_range : code_ranges)
+      {
+         CodePoint code_point = code_range.infer_cursor_start();
+         if (code_point < anchor_code_point && most_viable_code_point < code_point)
+         {
+            most_viable_code_point = code_point;
+         }
+      }
+
+      return most_viable_code_point;
 
    
 dependencies:
