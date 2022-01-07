@@ -241,6 +241,7 @@ bool Stage::save_file()
 {
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
    ::save_file(lines, filename);
+   advanced_code_editor.unmark_content_is_modified();
    return true;
 }
 
@@ -250,6 +251,7 @@ bool Stage::save_file_and_touch_if_symlink()
    ::save_file(lines, filename);
    Hexagon::SymlinkToucher symlink_toucher(filename); // this is only needed because of rerun
    symlink_toucher.touch_if_symlink();
+   advanced_code_editor.unmark_content_is_modified();
    return true;
 }
 
@@ -479,6 +481,7 @@ void Stage::set_content(std::string content)
          throw std::runtime_error(error_message.str());
       }
    advanced_code_editor.set_content(content);
+   advanced_code_editor.unmark_content_is_modified();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    return;
 }

@@ -180,6 +180,7 @@ functions:
     body: |
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
       ::save_file(lines, filename);
+      advanced_code_editor.unmark_content_is_modified();
       return true;
     body_dependency_symbols:
       - ::save_file
@@ -192,6 +193,7 @@ functions:
       ::save_file(lines, filename);
       Hexagon::SymlinkToucher symlink_toucher(filename); // this is only needed because of rerun
       symlink_toucher.touch_if_symlink();
+      advanced_code_editor.unmark_content_is_modified();
       return true;
     body_dependency_symbols:
       - ::save_file
@@ -430,6 +432,7 @@ functions:
     guards: [ initialized ]
     body: |
       advanced_code_editor.set_content(content);
+      advanced_code_editor.unmark_content_is_modified();
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
       return;
 

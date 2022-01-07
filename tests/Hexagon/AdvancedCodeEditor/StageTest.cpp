@@ -250,6 +250,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   DISABLED_set_content__will_unmark_the_content_as_modified__if_it_was_previously_modified)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    DISABLED_append_cells_to_cells_changed_since_last_render__if_taller_than_the_height__clips_the_filled_text_mesh)
 {
    // TODO
@@ -716,6 +723,12 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    save_file_and_touch_if_symlink__will_touch_the_symlink_file_in_order_to_update_the_modified_file_timestamp)
+{
+   // TODO
+}
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   save_file__and__save_file_and_touch_if_symlink__will_mark_content_as_unmodified)
 {
    // TODO
 }
