@@ -1,1 +1,0 @@
-../../../../blast/tests/Blast/Project/ComponentTest.cpp
