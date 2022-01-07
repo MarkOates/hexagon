@@ -30,6 +30,7 @@ functions:
 
 
   - name: mark_content_is_modified
+    private: true
     body: |
       content_is_modified = true;
       return;
