@@ -313,7 +313,7 @@ functions:
   - name: first_row_offset_jump_up_half_page
     type: bool
     body: |
-      first_row_offset = first_row_offset - num_rows / 2;
+      first_row_offset = first_row_offset - calculate_half_num_rows();
       refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
       return true;
 
@@ -321,7 +321,7 @@ functions:
   - name: first_row_offset_jump_down_half_page
     type: bool
     body: |
-      first_row_offset = first_row_offset + num_rows / 2;
+      first_row_offset = first_row_offset + calculate_half_num_rows();
       refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
       return true;
 
@@ -702,6 +702,12 @@ functions:
     type: int
     body: |
       return num_columns * text_mesh.get_cell_width();
+
+
+  - name: calculate_half_num_rows
+    type: int
+    body: |
+      return num_rows / 2;
 
 
   - name: calculate_natural_height

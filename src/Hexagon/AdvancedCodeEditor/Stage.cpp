@@ -347,14 +347,14 @@ bool Stage::first_row_offset_jump_to(int new_offset)
 
 bool Stage::first_row_offset_jump_up_half_page()
 {
-   first_row_offset = first_row_offset - num_rows / 2;
+   first_row_offset = first_row_offset - calculate_half_num_rows();
    refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    return true;
 }
 
 bool Stage::first_row_offset_jump_down_half_page()
 {
-   first_row_offset = first_row_offset + num_rows / 2;
+   first_row_offset = first_row_offset + calculate_half_num_rows();
    refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    return true;
 }
@@ -710,6 +710,11 @@ bool Stage::is_in_insert_mode()
 int Stage::calculate_natural_width()
 {
    return num_columns * text_mesh.get_cell_width();
+}
+
+int Stage::calculate_half_num_rows()
+{
+   return num_rows / 2;
 }
 
 int Stage::calculate_natural_height()
