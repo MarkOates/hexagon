@@ -71,6 +71,7 @@ bool AdvancedCodeEditor::set_content(std::string content)
    dirty_grid.mark_all_as_dirty(&lines);
    lines = Blast::StringSplitter(content, SPLIT_LINE_DELIMITER_CHAR).split();
    dirty_grid.mark_all_as_dirty(&lines);
+   mark_content_is_modified();
    return true;
 }
 
@@ -88,6 +89,7 @@ bool AdvancedCodeEditor::insert_string(std::string string)
    lines[cursor.get_y()].insert(cursor.get_x(), string);
 
    dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() - cursor.get_x());
+   mark_content_is_modified();
 
    return true;
 }
@@ -102,6 +104,7 @@ bool AdvancedCodeEditor::delete_character()
    lines[cursor.get_y()].erase(cursor.get_x(), 1);
 
    dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() + 2 - cursor.get_x());
+   mark_content_is_modified();
 
    return true;
 }
@@ -132,6 +135,8 @@ bool AdvancedCodeEditor::join_lines()
       dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
    }
 
+   mark_content_is_modified();
+
    return true;
 }
 
@@ -158,6 +163,8 @@ bool AdvancedCodeEditor::split_lines()
       dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
    }
 
+   mark_content_is_modified();
+
    return true;
 }
 
@@ -179,6 +186,8 @@ bool AdvancedCodeEditor::delete_line()
    }
 
    lines.erase(lines.begin()+cursor.get_y());
+   mark_content_is_modified();
+
    return true;
 }
 
@@ -201,6 +210,8 @@ bool AdvancedCodeEditor::insert_lines(std::vector<std::string> lines_to_insert)
    {
       dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
    }
+
+   mark_content_is_modified();
 
    return true;
 }

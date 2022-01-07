@@ -353,6 +353,24 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   insert_string__when_no_modification_happens__will_not_mark_the_content_as_modified)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   insert_string__will_mark_the_content_as_modified)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   DISABLED__TODO_add_tests_for_mutating_functions_to_ensure_content_is_modified_flag_is_set)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    insert_string__will_set_the_dirty_cells_with_the_expected_values)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
