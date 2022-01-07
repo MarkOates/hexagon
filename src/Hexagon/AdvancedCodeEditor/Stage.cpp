@@ -562,6 +562,10 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
       "delete_character",
       "set_to_insert_mode",
       });
+   result.set_mapping(ALLEGRO_KEY_A, 0, {
+      "cursor_move_right",
+      "set_to_insert_mode",
+      });
    result.set_mapping(ALLEGRO_KEY_O, 0, {
       "cursor_move_down",
       "insert_blank_line",
