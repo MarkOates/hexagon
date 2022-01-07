@@ -366,7 +366,6 @@ bool Stage::cursor_jump_to_previous_code_message_point()
 
 bool Stage::cursor_jump_to_next_search_regex_selection()
 {
-   // TODO finish this function, map to action, and test
    CodePoint next_position = search_regex_selections.find_next_from(cursor_get_x(), cursor_get_y());
    cursor_move_to(next_position.get_x(), next_position.get_y());
    first_row_offset_jump_to(cursor_get_y() - 20); // TODO get a constant offset other than 20
@@ -375,7 +374,6 @@ bool Stage::cursor_jump_to_next_search_regex_selection()
 
 bool Stage::cursor_jump_to_previous_search_regex_selection()
 {
-   // TODO finish this function, map to action, and test
    CodePoint previous_position = search_regex_selections.find_previous_from(cursor_get_x(), cursor_get_y());
    cursor_move_to(previous_position.get_x(), previous_position.get_y());
    first_row_offset_jump_to(cursor_get_y() - 20); // TODO get a constant offset other than 20
@@ -504,10 +502,10 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "cursor_jump_to_previous_word", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_word },
       { "cursor_jump_up_half_page", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_up_half_page },
       { "cursor_jump_down_half_page", &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_down_half_page },
-      { "cursor_jump_to_next_code_message_point",
-         &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_next_code_message_point },
-      { "cursor_jump_to_previous_code_message_point",
-         &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_code_message_point },
+      { "cursor_jump_to_next_search_regex_selection",
+         &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_next_search_regex_selection },
+      { "cursor_jump_to_previous_search_regex_selection",
+         &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_search_regex_selection },
       { "first_row_offset_move_up", &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_move_up },
       { "first_row_offset_move_down", &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_move_down },
       { "first_row_offset_jump_up_half_page",
@@ -541,8 +539,8 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
       "first_row_offset_jump_down_half_page",
       });
    result.set_mapping(ALLEGRO_KEY_B, 0, { "cursor_jump_to_previous_word" });
-   result.set_mapping(ALLEGRO_KEY_N, 0, { "cursor_jump_to_next_code_message_point" });
-   result.set_mapping(ALLEGRO_KEY_N, ALLEGRO_KEYMOD_SHIFT, { "cursor_jump_to_previous_code_message_point" });
+   result.set_mapping(ALLEGRO_KEY_N, 0, { "cursor_jump_to_next_search_regex_selection" });
+   result.set_mapping(ALLEGRO_KEY_N, ALLEGRO_KEYMOD_SHIFT, { "cursor_jump_to_previous_search_regex_selection" });
    result.set_mapping(ALLEGRO_KEY_Y, KeyboardCommandMapper::CTRL, { "first_row_offset_move_up" });
    result.set_mapping(ALLEGRO_KEY_E, KeyboardCommandMapper::CTRL, { "first_row_offset_move_down" });
    result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });
