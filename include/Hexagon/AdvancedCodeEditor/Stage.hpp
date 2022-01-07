@@ -90,6 +90,7 @@ namespace Hexagon
          bool first_row_offset_jump_to(int new_offset=0);
          bool first_row_offset_jump_up_half_page();
          bool first_row_offset_jump_down_half_page();
+         bool first_row_offset_adjust_so_cursor_is_vertically_centered();
          bool cursor_jump_to_next_code_message_point();
          bool cursor_jump_to_previous_code_message_point();
          bool cursor_jump_to_next_search_regex_selection();

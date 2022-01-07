@@ -733,6 +733,12 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   first_row_offset_adjust_so_cursor_is_vertically_centered__will_move_the_first_row_offset_to_center_the_cursor)
+{
+   // TODO
+}
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    DISABLED__render__will_respect_the_first_row_offset)
 {
    std::string filename = std::tmpnam(nullptr);

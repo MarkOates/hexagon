@@ -359,6 +359,13 @@ bool Stage::first_row_offset_jump_down_half_page()
    return true;
 }
 
+bool Stage::first_row_offset_adjust_so_cursor_is_vertically_centered()
+{
+   first_row_offset = cursor_get_y() - calculate_half_num_rows();
+   refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
+   return true;
+}
+
 bool Stage::cursor_jump_to_next_code_message_point()
 {
    return true;
@@ -519,6 +526,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
          &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_jump_up_half_page },
       { "first_row_offset_jump_down_half_page",
          &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_jump_down_half_page },
+      { "first_row_offset_adjust_so_cursor_is_vertically_centered",
+         &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_adjust_so_cursor_is_vertically_centered },
       { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
       { "save_file", &Hexagon::AdvancedCodeEditor::Stage::save_file },
    };
@@ -554,6 +563,9 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
    result.set_mapping(ALLEGRO_KEY_BACKSPACE, ALLEGRO_KEYMOD_SHIFT, { "delete_line" });
    result.set_mapping(ALLEGRO_KEY_S, KeyboardCommandMapper::COMMAND, { "save_file" });
    result.set_mapping(ALLEGRO_KEY_I, 0, { "set_to_insert_mode" });
+   result.set_mapping(ALLEGRO_KEY_Z, 0, {
+      "first_row_offset_adjust_so_cursor_is_vertically_centered",
+      });
    result.set_mapping(ALLEGRO_KEY_I, ALLEGRO_KEYMOD_SHIFT, {
       "cursor_move_to_first_non_whitespace_character",
       "set_to_insert_mode",
