@@ -645,7 +645,8 @@ void Stage::render()
       0.0f,
       first_row_offset,
       true, // draw line numbers
-      obtain_text_font()
+      obtain_text_font(),
+      advanced_code_editor.get_content_is_modified()
    );
 
    place.start_transform();
