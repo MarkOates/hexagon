@@ -89,6 +89,12 @@ void Renderer::render()
    //window_renderer.render();
    //timer.pause(); std::cout << " window render: " << timer.get_elapsed_time_microseconds() << std::endl;
 
+   if (content_is_modified)
+   {
+      ALLEGRO_COLOR content_is_modified_background_color = ALLEGRO_COLOR{0.05, 0.025, 0.0, 0.05};
+      al_draw_filled_rectangle(0, 0, width, height, content_is_modified_background_color);
+   }
+
    // draw the surface render
    timer.reset(); timer.start();
    //if (surface_render) al_draw_bitmap(surface_render, 0, text_mesh_y_offset, 0);
