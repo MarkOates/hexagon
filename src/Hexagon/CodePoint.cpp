@@ -43,6 +43,15 @@ bool operator<(const CodePoint &a, const CodePoint &b)
 
 
 
+bool operator==(const CodePoint &a, const CodePoint &b)
+{
+   if (a.get_x() != b.get_x()) return false;
+   if (a.get_y() != b.get_y()) return false;
+   return true;
+}
+
+
+
 std::ostream &operator<<(std::ostream &out, CodePoint &code_point)
 {
    out << "(" << code_point.get_x() << ", " << code_point.get_y() << ")" << std::endl;
