@@ -37,7 +37,7 @@ CodePoint Selection::find_next_from(int position_x, int position_y)
 {
    CodePoint anchor_code_point(position_x, position_y);
 
-   // get ANY code point that is bigger than from_code_point
+   // get ANY code point that is bigger than from_code_point to be the first "most_viable_code_point"
    CodePoint most_viable_code_point(position_x, position_y);
    for (auto &code_range : code_ranges)
    {

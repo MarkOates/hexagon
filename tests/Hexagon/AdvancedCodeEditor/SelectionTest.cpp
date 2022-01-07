@@ -53,7 +53,14 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__when_beyond_the_last_selection__does_nothing)
 {
-   // TODO
+   std::vector<CodeRange> code_ranges = {
+      CodeRange{2, 0, 3, 0},
+      CodeRange{3, 8, 4, 8},
+      CodeRange{9, 19, 10, 19},
+   };
+   Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
+
+   ASSERT_EQ(CodePoint(10, 19), selection.find_next_from(10, 19)); // on the same line
 }
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__finds_the_previous_selection)
