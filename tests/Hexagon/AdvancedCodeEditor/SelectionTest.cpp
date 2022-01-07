@@ -100,7 +100,15 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__when_before_the_first_selection__does_nothing)
 {
-   // TODO
+   std::vector<CodeRange> code_ranges = {
+      CodeRange{2, 1, 3, 1},
+      CodeRange{3, 8, 4, 8},
+      CodeRange{9, 19, 10, 19},
+   };
+   Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
+
+   ASSERT_EQ(CodePoint(1, 0), selection.find_previous_from(1, 0)); // on the previoud line
+   ASSERT_EQ(CodePoint(1, 1), selection.find_previous_from(1, 1)); // on the same line
 }
 
 
