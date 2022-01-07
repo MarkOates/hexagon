@@ -229,6 +229,11 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    EXPECT_EQ(47, advanced_code_editor.cursor_get_x());
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, cursor_move_to_first_non_whitespace_character)
+{
+   // TODO
+}
+
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    split_lines__will_split_a_single_line_to_two_sliced_at_the_cursor)
 {

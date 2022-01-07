@@ -264,6 +264,28 @@ functions:
       - std::max
 
 
+  - name: cursor_move_to_first_non_whitespace_character
+    type: bool
+    body: |
+       cursor.set_x(0);
+       if (cursor.get_y() < 0) return false;
+       if (cursor.get_y() >= get_lines_ref().size()) return false;
+
+       std::string &current_line = lines[cursor.get_y()];
+       std::size_t first_non_whitespace_position = current_line.find_first_not_of(" \t\n\r");
+       if (first_non_whitespace_position == std::string::npos)
+       {
+          cursor_move_to_end_of_line();
+       }
+       else
+       {
+          cursor.set_x(first_non_whitespace_position);
+       }
+       return true;
+    body_dependency_symbols:
+      - std::max
+
+
   - name: cursor_jump_to_next_word
     type: bool
     body: |
