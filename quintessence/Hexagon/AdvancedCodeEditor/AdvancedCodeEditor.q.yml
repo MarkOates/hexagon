@@ -20,8 +20,25 @@ properties:
     type: char
     init_with: "'\\n'"
 
+  - name: content_is_modified
+    type: bool
+    init_with: false
+    getter: true
+
 
 functions:
+
+
+  - name: mark_content_is_modified
+    body: |
+      content_is_modified = true;
+      return;
+
+
+  - name: unmark_content_is_modified
+    body: |
+      content_is_modified = false;
+      return;
 
 
   - name: set_content

@@ -20,6 +20,7 @@ AdvancedCodeEditor::AdvancedCodeEditor()
    , cursor({})
    , dirty_grid({})
    , SPLIT_LINE_DELIMITER_CHAR('\n')
+   , content_is_modified(false)
 {
 }
 
@@ -35,6 +36,12 @@ std::vector<std::string> AdvancedCodeEditor::get_lines()
 }
 
 
+bool AdvancedCodeEditor::get_content_is_modified()
+{
+   return content_is_modified;
+}
+
+
 std::vector<std::string> &AdvancedCodeEditor::get_lines_ref()
 {
    return lines;
@@ -46,6 +53,18 @@ Hexagon::AdvancedCodeEditor::Cursor &AdvancedCodeEditor::get_cursor_ref()
    return cursor;
 }
 
+
+void AdvancedCodeEditor::mark_content_is_modified()
+{
+   content_is_modified = true;
+   return;
+}
+
+void AdvancedCodeEditor::unmark_content_is_modified()
+{
+   content_is_modified = false;
+   return;
+}
 
 bool AdvancedCodeEditor::set_content(std::string content)
 {

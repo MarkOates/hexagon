@@ -19,14 +19,18 @@ namespace Hexagon
          Hexagon::AdvancedCodeEditor::Cursor cursor;
          Hexagon::DirtyGrid dirty_grid;
          char SPLIT_LINE_DELIMITER_CHAR;
+         bool content_is_modified;
 
       public:
          AdvancedCodeEditor();
          ~AdvancedCodeEditor();
 
          std::vector<std::string> get_lines();
+         bool get_content_is_modified();
          std::vector<std::string> &get_lines_ref();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
+         void mark_content_is_modified();
+         void unmark_content_is_modified();
          bool set_content(std::string content="");
          bool insert_string(std::string string="");
          bool delete_character();
