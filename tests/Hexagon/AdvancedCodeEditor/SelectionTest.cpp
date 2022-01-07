@@ -63,6 +63,14 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__when_beyond_the_l
    ASSERT_EQ(CodePoint(10, 19), selection.find_next_from(10, 19)); // on the same line
 }
 
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
+   find_previous_from__with_no_code_ranges__returns_the_cursor_location_that_was_passed_location)
+{
+   std::vector<CodeRange> empty_code_ranges = {};
+   Hexagon::AdvancedCodeEditor::Selection selection(empty_code_ranges);
+   ASSERT_EQ(CodePoint(32, 87), selection.find_previous_from(32, 87));
+}
+
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__finds_the_previous_selection)
 {
    std::vector<CodeRange> code_ranges = {
