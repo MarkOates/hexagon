@@ -33,8 +33,8 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__finds_the_next_se
    };
    Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
 
-   //ASSERT_EQ(CodePoint(2, 0), selection.find_next_from(0, 0)); // on the same line
-   //ASSERT_EQ(CodePoint(3, 8), selection.find_next_from(4, 0)); // on a subsequent line
+   ASSERT_EQ(CodePoint(2, 0), selection.find_next_from(0, 0)); // on the same line
+   ASSERT_EQ(CodePoint(3, 8), selection.find_next_from(4, 0)); // on a subsequent line
 }
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
