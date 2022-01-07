@@ -361,7 +361,7 @@ bool Stage::first_row_offset_jump_down_half_page()
 
 bool Stage::first_row_offset_adjust_so_cursor_is_vertically_centered()
 {
-   first_row_offset = cursor_get_y() - calculate_half_num_rows();
+   first_row_offset = cursor_get_y() - calculate_one_third_num_rows();
    refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    return true;
 }
@@ -727,6 +727,11 @@ int Stage::calculate_natural_width()
 int Stage::calculate_half_num_rows()
 {
    return num_rows / 2;
+}
+
+int Stage::calculate_one_third_num_rows()
+{
+   return num_rows / 3;
 }
 
 int Stage::calculate_natural_height()

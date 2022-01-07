@@ -329,7 +329,7 @@ functions:
   - name: first_row_offset_adjust_so_cursor_is_vertically_centered
     type: bool
     body: |
-      first_row_offset = cursor_get_y() - calculate_half_num_rows();
+      first_row_offset = cursor_get_y() - calculate_one_third_num_rows();
       refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
       return true;
 
@@ -721,6 +721,12 @@ functions:
     type: int
     body: |
       return num_rows / 2;
+
+
+  - name: calculate_one_third_num_rows
+    type: int
+    body: |
+      return num_rows / 3;
 
 
   - name: calculate_natural_height

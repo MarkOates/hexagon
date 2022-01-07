@@ -120,6 +120,7 @@ namespace Hexagon
          bool is_in_insert_mode();
          int calculate_natural_width();
          int calculate_half_num_rows();
+         int calculate_one_third_num_rows();
          int calculate_natural_height();
          void refresh_render_surfaces();
          void refresh_dirty_cells_on_surface_render_respecting_first_row_offset();
