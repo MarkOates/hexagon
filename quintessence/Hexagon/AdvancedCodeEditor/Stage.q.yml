@@ -309,6 +309,7 @@ functions:
     body: |
       int new_y = advanced_code_editor.cursor_get_y() + num_rows / 2;
       bool result = advanced_code_editor.cursor_set_y(new_y);
+      refresh_current_visual_selection_end_to_current_cursor_position();
       return result;
 
 
@@ -591,6 +592,8 @@ functions:
             &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_jump_down_half_page },
          { "first_row_offset_adjust_so_cursor_is_vertically_centered",
             &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_adjust_so_cursor_is_vertically_centered },
+         { "toggle_currently_grabbing_visual_selection",
+           &Hexagon::AdvancedCodeEditor::Stage::toggle_currently_grabbing_visual_selection },
          { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
          { "insert_three_spaces_at_start_of_line",
             &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
@@ -659,6 +662,7 @@ functions:
       result.set_mapping(ALLEGRO_KEY_FULLSTOP, ALLEGRO_KEYMOD_SHIFT, {
          "insert_three_spaces_at_start_of_line",
          });
+      result.set_mapping(ALLEGRO_KEY_V, 0, { "toggle_currently_grabbing_visual_selection" });
       return result;
 
 
