@@ -509,6 +509,24 @@ bool Stage::insert_blank_line()
    return insert_lines({ {} });
 }
 
+bool Stage::create_visual_selection_at_current_cursor_location()
+{
+   visual_selections.push_back(CodeRange(cursor_get_x(), cursor_get_y(), cursor_get_x()+1, cursor_get_y()));
+   return true;
+}
+
+bool Stage::destroy_current_visual_selection()
+{
+   visual_selections.clear();
+   return true;
+}
+
+bool Stage::toggle_currently_grabbing_visual_selection()
+{
+   // TODO
+   return true;
+}
+
 std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> Stage::build_local_events_dictionary()
 {
    std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {

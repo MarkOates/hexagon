@@ -468,6 +468,27 @@ functions:
       return insert_lines({ {} });
 
 
+  - name: create_visual_selection_at_current_cursor_location
+    type: bool
+    body: |
+      visual_selections.push_back(CodeRange(cursor_get_x(), cursor_get_y(), cursor_get_x()+1, cursor_get_y()));
+      return true;
+
+
+  - name: destroy_current_visual_selection
+    type: bool
+    body: |
+      visual_selections.clear();
+      return true;
+
+
+  - name: toggle_currently_grabbing_visual_selection
+    type: bool
+    body: |
+      // TODO
+      return true;
+
+
   - name: build_local_events_dictionary
     static: true
     type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>

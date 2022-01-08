@@ -107,6 +107,9 @@ namespace Hexagon
          void set_content(std::string content="");
          bool insert_three_spaces_at_start_of_line();
          bool insert_blank_line();
+         bool create_visual_selection_at_current_cursor_location();
+         bool destroy_current_visual_selection();
+         bool toggle_currently_grabbing_visual_selection();
          static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
          static KeyboardCommandMapper build_keyboard_command_mapping_for_edit_mode();
          static KeyboardCommandMapper build_keyboard_command_mapping_for_insert_mode();
