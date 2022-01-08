@@ -26,6 +26,11 @@ properties:
     init_with: 0
     constructor_arg: true
 
+  - name: color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0*0.4, 0.65*0.4, 0.0*0.4, 1.0*0.4}
+    constructor_arg: true
+
 
 functions:
 

@@ -13,12 +13,13 @@ namespace Hexagon
 {
 
 
-CodeSelectionBoxRenderer::CodeSelectionBoxRenderer(std::vector<std::string>* lines, CodeRange* code_range, int first_line_number, int cell_width, int cell_height)
+CodeSelectionBoxRenderer::CodeSelectionBoxRenderer(std::vector<std::string>* lines, CodeRange* code_range, int first_line_number, int cell_width, int cell_height, ALLEGRO_COLOR color)
    : lines(lines)
    , code_range(code_range)
    , first_line_number(first_line_number)
    , cell_width(cell_width)
    , cell_height(cell_height)
+   , color(color)
 {
 }
 
