@@ -266,66 +266,86 @@ bool Stage::set_to_edit_mode()
 bool Stage::set_to_insert_mode()
 {
    mode = 1;
+   if (currently_grabbing_visual_selection) toggle_currently_grabbing_visual_selection();
    return true;
 }
 
 bool Stage::cursor_move_up()
 {
-   return advanced_code_editor.cursor_move_up();
+   bool result = advanced_code_editor.cursor_move_up();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
 }
 
 bool Stage::cursor_move_down()
 {
-   return advanced_code_editor.cursor_move_down();
+   bool result = advanced_code_editor.cursor_move_down();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
 }
 
 bool Stage::cursor_move_left()
 {
-   return advanced_code_editor.cursor_move_left();
+   bool result = advanced_code_editor.cursor_move_left();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
 }
 
 bool Stage::cursor_move_right()
 {
-   return advanced_code_editor.cursor_move_right();
+   bool result = advanced_code_editor.cursor_move_right();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
 }
 
 bool Stage::cursor_move_to_start_of_line()
 {
-   return advanced_code_editor.cursor_move_to_start_of_line();
+   bool result = advanced_code_editor.cursor_move_to_start_of_line();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
 }
 
 bool Stage::cursor_move_to_first_non_whitespace_character()
 {
-   return advanced_code_editor.cursor_move_to_first_non_whitespace_character();
+   bool result = advanced_code_editor.cursor_move_to_first_non_whitespace_character();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
 }
 
 bool Stage::cursor_move_to_end_of_line()
 {
-   return advanced_code_editor.cursor_move_to_end_of_line();
+   bool result = advanced_code_editor.cursor_move_to_end_of_line();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
 }
 
 bool Stage::cursor_jump_to_next_word()
 {
-   return advanced_code_editor.cursor_jump_to_next_word();
+   bool result = advanced_code_editor.cursor_jump_to_next_word();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
 }
 
 bool Stage::cursor_jump_to_previous_word()
 {
-   return advanced_code_editor.cursor_jump_to_previous_word();
+   bool result = advanced_code_editor.cursor_jump_to_previous_word();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
 }
 
 bool Stage::cursor_jump_up_half_page()
 {
    int new_y = advanced_code_editor.cursor_get_y() - num_rows / 2;
-   advanced_code_editor.cursor_set_y(new_y);
-   return true;
+   bool result = advanced_code_editor.cursor_set_y(new_y);
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
 }
 
 bool Stage::cursor_jump_down_half_page()
 {
    int new_y = advanced_code_editor.cursor_get_y() + num_rows / 2;
-   advanced_code_editor.cursor_set_y(new_y);
-   return true;
+   bool result = advanced_code_editor.cursor_set_y(new_y);
+   return result;
 }
 
 bool Stage::first_row_offset_move_up()
@@ -385,6 +405,7 @@ bool Stage::cursor_jump_to_next_search_regex_selection()
    CodePoint next_position = search_regex_selections.find_next_from(cursor_get_x(), cursor_get_y());
    cursor_move_to(next_position.get_x(), next_position.get_y());
    first_row_offset_jump_to(cursor_get_y() - 20); // TODO get a constant offset other than 20
+   refresh_current_visual_selection_end_to_current_cursor_position();
    return true;
 }
 
@@ -393,6 +414,7 @@ bool Stage::cursor_jump_to_previous_search_regex_selection()
    CodePoint previous_position = search_regex_selections.find_previous_from(cursor_get_x(), cursor_get_y());
    cursor_move_to(previous_position.get_x(), previous_position.get_y());
    first_row_offset_jump_to(cursor_get_y() - 20); // TODO get a constant offset other than 20
+   refresh_current_visual_selection_end_to_current_cursor_position();
    return true;
 }
 
@@ -406,6 +428,7 @@ bool Stage::delete_character()
       }
    bool result = advanced_code_editor.delete_character();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   refresh_current_visual_selection_end_to_current_cursor_position(); // TODO: only do if result == true
    return result;
 }
 
@@ -419,6 +442,7 @@ bool Stage::join_lines()
       }
    bool result = advanced_code_editor.join_lines();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   refresh_current_visual_selection_end_to_current_cursor_position();
    return result;
 }
 
@@ -432,6 +456,7 @@ bool Stage::split_lines()
       }
    bool result = advanced_code_editor.split_lines();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   refresh_current_visual_selection_end_to_current_cursor_position();
    return result;
 }
 
@@ -445,6 +470,7 @@ bool Stage::delete_line()
       }
    bool result = advanced_code_editor.delete_line();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   refresh_current_visual_selection_end_to_current_cursor_position();
    return result;
 }
 
@@ -458,6 +484,7 @@ bool Stage::insert_string_from_input_buffer()
       }
    bool result = advanced_code_editor.insert_string(input_buffer);
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   refresh_current_visual_selection_end_to_current_cursor_position();
    return result;
 }
 
@@ -471,6 +498,7 @@ bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
       }
    bool result = advanced_code_editor.insert_lines(lines_to_insert);
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   refresh_current_visual_selection_end_to_current_cursor_position();
    return result;
 }
 
@@ -485,6 +513,7 @@ void Stage::set_content(std::string content)
    advanced_code_editor.set_content(content);
    advanced_code_editor.unmark_content_is_modified();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   if (currently_grabbing_visual_selection) toggle_currently_grabbing_visual_selection();
    return;
 }
 
@@ -500,6 +529,8 @@ bool Stage::insert_three_spaces_at_start_of_line()
    advanced_code_editor.cursor_set_x(previous_cursor_x+3);
 
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+
+   refresh_current_visual_selection_end_to_current_cursor_position();
 
    return true;
 }
@@ -540,6 +571,14 @@ bool Stage::set_current_visual_selection_end_y(int y_pos)
 {
    if (visual_selections.empty()) return false;
    visual_selections.back().set_cursor_end_y(y_pos);
+   return true;
+}
+
+bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
+{
+   if (visual_selections.empty()) return false;
+   visual_selections.back().set_cursor_end_x(cursor_get_x());
+   visual_selections.back().set_cursor_end_y(cursor_get_y());
    return true;
 }
 
