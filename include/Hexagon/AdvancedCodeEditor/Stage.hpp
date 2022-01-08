@@ -114,6 +114,7 @@ namespace Hexagon
          bool set_current_visual_selection_end_y(int y_pos=0);
          bool refresh_current_visual_selection_end_to_current_cursor_position();
          bool yank_selected_text_to_clipboard();
+         bool paste_selected_text_from_clipboard();
          static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
          static KeyboardCommandMapper build_keyboard_command_mapping_for_edit_mode();
          static KeyboardCommandMapper build_keyboard_command_mapping_for_insert_mode();

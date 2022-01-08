@@ -23,6 +23,7 @@
 #include <sstream>
 #include <Hexagon/CodeRangeExtractor.hpp>
 #include <Hexagon/ClipboardData.hpp>
+#include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -595,6 +596,13 @@ bool Stage::yank_selected_text_to_clipboard()
       &visual_selection
    ).extract();
    ClipboardData::store(extracted_selection);
+   return true;
+}
+
+bool Stage::paste_selected_text_from_clipboard()
+{
+   std::vector<std::string> retrieved_clipboard_data = ClipboardData::retrieve();
+   insert_lines(retrieved_clipboard_data);
    return true;
 }
 

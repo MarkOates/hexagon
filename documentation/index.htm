@@ -1147,6 +1147,9 @@ table td
   <td class="method">yank_selected_text_to_clipboard()</td>
 </tr>
 <tr>
+  <td class="method">paste_selected_text_from_clipboard()</td>
+</tr>
+<tr>
   <td class="method">build_local_events_dictionary()</td>
 </tr>
 <tr>
@@ -1225,6 +1228,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ClipboardData::store&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ClipboardData.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ClipboardData::retrieve&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ClipboardData.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeRange&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeRange.hpp&quot;]}</td>
@@ -9810,6 +9816,9 @@ table td
   "ClipboardData/store": [
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
+  ],
+  "ClipboardData/retrieve": [
+    "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "Hexagon/SymlinkToucher": [
     "Hexagon/AdvancedCodeEditor/Stage"

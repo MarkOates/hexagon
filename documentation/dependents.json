@@ -443,6 +443,9 @@
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
   ],
+  "ClipboardData/retrieve": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
   "Hexagon/SymlinkToucher": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],

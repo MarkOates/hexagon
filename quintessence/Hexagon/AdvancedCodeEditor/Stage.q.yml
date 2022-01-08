@@ -573,6 +573,16 @@ functions:
       - ClipboardData::store
 
 
+  - name: paste_selected_text_from_clipboard
+    type: bool
+    body: |
+      std::vector<std::string> retrieved_clipboard_data = ClipboardData::retrieve();
+      insert_lines(retrieved_clipboard_data);
+      return true;
+    body_dependency_symbols:
+      - ClipboardData::retrieve
+
+
   - name: build_local_events_dictionary
     static: true
     type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
@@ -1049,6 +1059,8 @@ dependencies:
   - symbol: Hexagon::CodeRangeExtractor
     headers: [ Hexagon/CodeRangeExtractor.hpp ]
   - symbol: ClipboardData::store
+    headers: [ Hexagon/ClipboardData.hpp ]
+  - symbol: ClipboardData::retrieve
     headers: [ Hexagon/ClipboardData.hpp ]
   - symbol: std::vector<CodeRange>
     headers: [ vector, Hexagon/CodeRange.hpp ]
