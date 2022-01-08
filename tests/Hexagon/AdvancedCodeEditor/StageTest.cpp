@@ -610,6 +610,30 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   insert_blank_line__will_insert_a_blank_line_at_the_cursor)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   DISABLED_insert_three_spaces_at_start_of_line__TODO
+{
+   // TODO
+   // will insert three spaces at the beginning
+   // will position the cursor over by three spaces
+   // will do nothing if outsize the bounds of existing lines
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   DISABLED_insert_three_spaces_at_start_of_line__will_mark_content_as_modified
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    insert_string_from_input_buffer__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;

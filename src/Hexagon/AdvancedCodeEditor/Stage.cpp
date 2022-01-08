@@ -488,8 +488,18 @@ void Stage::set_content(std::string content)
 
 bool Stage::insert_three_spaces_at_start_of_line()
 {
-   // TODO
-   return false;
+   if (cursor_get_y() < 0) return false;
+   if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
+
+   int previous_cursor_x = cursor_get_x();
+
+   advanced_code_editor.cursor_set_x(0);
+   advanced_code_editor.insert_string("   ");
+   advanced_code_editor.cursor_set_x(previous_cursor_x+3);
+
+   if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+
+   return true;
 }
 
 bool Stage::insert_blank_line()
