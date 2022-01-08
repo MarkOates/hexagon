@@ -6,7 +6,7 @@
 
 
 
-class CodeRange
+class CodeRange // TODO: move into Hexagon:: namespace
 {
 private:
    int cursor_anchor_x;
@@ -20,7 +20,7 @@ public:
 
    CodePoint infer_cursor_start();
    CodePoint infer_cursor_end();
-   void set_cursor_end_x(int x);
+   void set_cursor_end_x(int x); // TODO: remove "cursor" in all method names
    void set_cursor_end_y(int y);
    bool is_empty();
    int infer_num_lines();

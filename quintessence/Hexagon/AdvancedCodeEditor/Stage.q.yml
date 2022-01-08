@@ -491,6 +491,30 @@ functions:
       return true;
 
 
+  - name: set_current_visual_selection_end_x
+    type: bool
+    parameters:
+      - name: x_pos
+        type: int
+        default_argument: 0
+    body: |
+      if (visual_selections.empty()) return false;
+      visual_selections.back().set_cursor_end_x(x_pos);
+      return true;
+
+
+  - name: set_current_visual_selection_end_y
+    type: bool
+    parameters:
+      - name: y_pos
+        type: int
+        default_argument: 0
+    body: |
+      if (visual_selections.empty()) return false;
+      visual_selections.back().set_cursor_end_y(y_pos);
+      return true;
+
+
   - name: build_local_events_dictionary
     static: true
     type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>

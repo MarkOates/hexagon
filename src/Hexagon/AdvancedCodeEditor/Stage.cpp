@@ -529,6 +529,20 @@ bool Stage::toggle_currently_grabbing_visual_selection()
    return true;
 }
 
+bool Stage::set_current_visual_selection_end_x(int x_pos)
+{
+   if (visual_selections.empty()) return false;
+   visual_selections.back().set_cursor_end_x(x_pos);
+   return true;
+}
+
+bool Stage::set_current_visual_selection_end_y(int y_pos)
+{
+   if (visual_selections.empty()) return false;
+   visual_selections.back().set_cursor_end_y(y_pos);
+   return true;
+}
+
 std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> Stage::build_local_events_dictionary()
 {
    std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
