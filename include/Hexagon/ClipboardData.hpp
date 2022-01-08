@@ -7,7 +7,7 @@
 
 
 
-class ClipboardData
+class ClipboardData  // TODO: move to Hexagon:: namespace
 {
 public:
    static bool clear();

@@ -1144,6 +1144,9 @@ table td
   <td class="method">refresh_current_visual_selection_end_to_current_cursor_position()</td>
 </tr>
 <tr>
+  <td class="method">yank_selected_text_to_clipboard()</td>
+</tr>
+<tr>
   <td class="method">build_local_events_dictionary()</td>
 </tr>
 <tr>
@@ -1217,6 +1220,12 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeRangeExtractor&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeRangeExtractor.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ClipboardData::store&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ClipboardData.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeRange&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeRange.hpp&quot;]}</td>
 </tr>
@@ -9795,6 +9804,13 @@ table td
   "CodePoint": [
     "Hexagon/AdvancedCodeEditor/Selection"
   ],
+  "Hexagon/CodeRangeExtractor": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "ClipboardData/store": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
+  ],
   "Hexagon/SymlinkToucher": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
@@ -9903,9 +9919,6 @@ table td
     "Hexagon/ComponentRelationsNavigator/ComponentRelations",
     "Hexagon/ProjectComponentNavigator/ComponentSearcher",
     "Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "ClipboardData/store": [
-    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
   ],
   "Blast/Project/ComponentLister": [
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",

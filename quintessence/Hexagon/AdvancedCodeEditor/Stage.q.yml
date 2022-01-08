@@ -556,6 +556,23 @@ functions:
       return true;
 
 
+  - name: yank_selected_text_to_clipboard
+    type: bool
+    body: |
+      if (visual_selections.empty()) return false;
+ 
+      CodeRange visual_selection = visual_selections.back();
+      std::vector<std::string> extracted_selection = Hexagon::CodeRangeExtractor(
+         &advanced_code_editor.get_lines_ref(),
+         &visual_selection
+      ).extract();
+      ClipboardData::store(extracted_selection);
+      return true;
+    body_dependency_symbols:
+      - Hexagon::CodeRangeExtractor
+      - ClipboardData::store
+
+
   - name: build_local_events_dictionary
     static: true
     type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
@@ -598,6 +615,8 @@ functions:
          { "insert_three_spaces_at_start_of_line",
             &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
          { "save_file", &Hexagon::AdvancedCodeEditor::Stage::save_file },
+         { "yank_selected_text_to_clipboard",
+           &Hexagon::AdvancedCodeEditor::Stage::yank_selected_text_to_clipboard },
       };
       return local_events;
 
@@ -663,6 +682,7 @@ functions:
          "insert_three_spaces_at_start_of_line",
          });
       result.set_mapping(ALLEGRO_KEY_V, 0, { "toggle_currently_grabbing_visual_selection" });
+      result.set_mapping(ALLEGRO_KEY_Y, 0, { "yank_selected_text_to_clipboard" });
       return result;
 
 
@@ -1026,6 +1046,10 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::CodeRangeExtractor
+    headers: [ Hexagon/CodeRangeExtractor.hpp ]
+  - symbol: ClipboardData::store
+    headers: [ Hexagon/ClipboardData.hpp ]
   - symbol: std::vector<CodeRange>
     headers: [ vector, Hexagon/CodeRange.hpp ]
   - symbol: Hexagon::SymlinkToucher

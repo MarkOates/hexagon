@@ -436,6 +436,13 @@
   "CodePoint": [
     "Hexagon/AdvancedCodeEditor/Selection"
   ],
+  "Hexagon/CodeRangeExtractor": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "ClipboardData/store": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
+  ],
   "Hexagon/SymlinkToucher": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
@@ -544,9 +551,6 @@
     "Hexagon/ComponentRelationsNavigator/ComponentRelations",
     "Hexagon/ProjectComponentNavigator/ComponentSearcher",
     "Hexagon/ProjectComponentNavigator/Stage"
-  ],
-  "ClipboardData/store": [
-    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
   ],
   "Blast/Project/ComponentLister": [
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",

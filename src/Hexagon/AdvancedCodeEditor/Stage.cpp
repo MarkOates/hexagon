@@ -21,6 +21,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/CodeRangeExtractor.hpp>
+#include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -583,6 +585,19 @@ bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
    return true;
 }
 
+bool Stage::yank_selected_text_to_clipboard()
+{
+   if (visual_selections.empty()) return false;
+
+   CodeRange visual_selection = visual_selections.back();
+   std::vector<std::string> extracted_selection = Hexagon::CodeRangeExtractor(
+      &advanced_code_editor.get_lines_ref(),
+      &visual_selection
+   ).extract();
+   ClipboardData::store(extracted_selection);
+   return true;
+}
+
 std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> Stage::build_local_events_dictionary()
 {
    std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
@@ -623,6 +638,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "insert_three_spaces_at_start_of_line",
          &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
       { "save_file", &Hexagon::AdvancedCodeEditor::Stage::save_file },
+      { "yank_selected_text_to_clipboard",
+        &Hexagon::AdvancedCodeEditor::Stage::yank_selected_text_to_clipboard },
    };
    return local_events;
 }
@@ -686,6 +703,7 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
       "insert_three_spaces_at_start_of_line",
       });
    result.set_mapping(ALLEGRO_KEY_V, 0, { "toggle_currently_grabbing_visual_selection" });
+   result.set_mapping(ALLEGRO_KEY_Y, 0, { "yank_selected_text_to_clipboard" });
    return result;
 }
 
