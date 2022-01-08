@@ -13,13 +13,13 @@ namespace Hexagon
 {
 
 
-CodeSelectionBoxRenderer::CodeSelectionBoxRenderer(std::vector<std::string>* lines, CodeRange* code_range, int first_line_number, int cell_width, int cell_height, ALLEGRO_COLOR color)
+CodeSelectionBoxRenderer::CodeSelectionBoxRenderer(std::vector<std::string>* lines, CodeRange* code_range, int first_line_number, int cell_width, int cell_height, ALLEGRO_COLOR selection_color)
    : lines(lines)
    , code_range(code_range)
    , first_line_number(first_line_number)
    , cell_width(cell_width)
    , cell_height(cell_height)
-   , color(color)
+   , selection_color(selection_color)
 {
 }
 
@@ -41,11 +41,11 @@ void CodeSelectionBoxRenderer::render()
    CodePoint start = code_range->infer_cursor_start();
    CodePoint end = code_range->infer_cursor_end();
 
-   ALLEGRO_COLOR selection_color = al_color_name("orange");
-   selection_color.r *= 0.4;
-   selection_color.g *= 0.4;
-   selection_color.b *= 0.4;
-   selection_color.a *= 0.4;
+   //ALLEGRO_COLOR selection_color = al_color_name("orange");
+   //selection_color.r *= 0.4;
+   //selection_color.g *= 0.4;
+   //selection_color.b *= 0.4;
+   //selection_color.a *= 0.4;
 
    if (num_lines == 0) return; // this shouldn't happen, TODO: though perhaps with a negative selection
    if (num_lines == 1)

@@ -26,7 +26,7 @@ properties:
     init_with: 0
     constructor_arg: true
 
-  - name: color
+  - name: selection_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{1.0*0.4, 0.65*0.4, 0.0*0.4, 1.0*0.4}
     constructor_arg: true
@@ -42,11 +42,11 @@ functions:
       CodePoint start = code_range->infer_cursor_start();
       CodePoint end = code_range->infer_cursor_end();
 
-      ALLEGRO_COLOR selection_color = al_color_name("orange");
-      selection_color.r *= 0.4;
-      selection_color.g *= 0.4;
-      selection_color.b *= 0.4;
-      selection_color.a *= 0.4;
+      //ALLEGRO_COLOR selection_color = al_color_name("orange");
+      //selection_color.r *= 0.4;
+      //selection_color.g *= 0.4;
+      //selection_color.b *= 0.4;
+      //selection_color.a *= 0.4;
 
       if (num_lines == 0) return; // this shouldn't happen, TODO: though perhaps with a negative selection
       if (num_lines == 1)

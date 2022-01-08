@@ -17,10 +17,10 @@ namespace Hexagon
       int first_line_number;
       int cell_width;
       int cell_height;
-      ALLEGRO_COLOR color;
+      ALLEGRO_COLOR selection_color;
 
    public:
-      CodeSelectionBoxRenderer(std::vector<std::string>* lines=nullptr, CodeRange* code_range=nullptr, int first_line_number=0, int cell_width=0, int cell_height=0, ALLEGRO_COLOR color=ALLEGRO_COLOR{1.0*0.4, 0.65*0.4, 0.0*0.4, 1.0*0.4});
+      CodeSelectionBoxRenderer(std::vector<std::string>* lines=nullptr, CodeRange* code_range=nullptr, int first_line_number=0, int cell_width=0, int cell_height=0, ALLEGRO_COLOR selection_color=ALLEGRO_COLOR{1.0*0.4, 0.65*0.4, 0.0*0.4, 1.0*0.4});
       ~CodeSelectionBoxRenderer();
 
       void render();
