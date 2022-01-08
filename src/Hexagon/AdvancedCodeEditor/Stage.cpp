@@ -542,6 +542,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "first_row_offset_adjust_so_cursor_is_vertically_centered",
          &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_adjust_so_cursor_is_vertically_centered },
       { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
+      { "insert_three_spaces_at_start_of_line",
+         &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
       { "save_file", &Hexagon::AdvancedCodeEditor::Stage::save_file },
    };
    return local_events;
