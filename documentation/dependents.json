@@ -429,6 +429,7 @@
   "std/vector<CodeRange>": [
     "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter",
     "Hexagon/AdvancedCodeEditor/Selection",
+    "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/OneLineInputBox/Renderer"
   ],
   "CodePoint": [

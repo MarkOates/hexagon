@@ -10,6 +10,7 @@
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/CodeMessagePoint.hpp>
 #include <Hexagon/CodeMessagePointManager.hpp>
+#include <Hexagon/CodeRange.hpp>
 #include <Hexagon/DirtyGrid.hpp>
 #include <Hexagon/Elements/TextMesh.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -44,6 +45,8 @@ namespace Hexagon
          ALLEGRO_BITMAP* surface_render;
          std::string current_search_regex;
          Hexagon::CodeMessagePointManager code_message_point_manager;
+         std::vector<CodeRange> visual_selections;
+         bool currently_grabbing_visual_selection;
          std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
          Hexagon::AdvancedCodeEditor::Selection search_regex_selections;
 

@@ -93,6 +93,14 @@ properties:
   - name: code_message_point_manager
     type: Hexagon::CodeMessagePointManager
     init_with: '{}'
+
+  - name: visual_selections
+    type: std::vector<CodeRange>
+    init_with: '{}'
+
+  - name: currently_grabbing_visual_selection
+    type: bool
+    init_with: false
   
   - name: selections
     type: std::vector<Hexagon::AdvancedCodeEditor::Selection>
@@ -926,6 +934,8 @@ functions:
 dependencies:
 
 
+  - symbol: std::vector<CodeRange>
+    headers: [ vector, Hexagon/CodeRange.hpp ]
   - symbol: Hexagon::SymlinkToucher
     headers: [ Hexagon/SymlinkToucher.hpp ]
   - symbol: std::vector<Hexagon::AdvancedCodeEditor::Selection>

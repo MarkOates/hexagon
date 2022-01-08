@@ -65,6 +65,8 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , surface_render(nullptr)
    , current_search_regex("")
    , code_message_point_manager({})
+   , visual_selections({})
+   , currently_grabbing_visual_selection(false)
    , selections({})
    , search_regex_selections(Hexagon::AdvancedCodeEditor::Selection{})
 {

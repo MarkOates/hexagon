@@ -617,7 +617,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
-   DISABLED_insert_three_spaces_at_start_of_line__TODO
+   DISABLED_insert_three_spaces_at_start_of_line__TODO)
 {
    // TODO
    // will insert three spaces at the beginning
@@ -627,7 +627,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
-   DISABLED_insert_three_spaces_at_start_of_line__will_mark_content_as_modified
+   DISABLED_insert_three_spaces_at_start_of_line__will_mark_content_as_modified)
 {
    // TODO
 }

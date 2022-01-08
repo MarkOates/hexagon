@@ -984,6 +984,14 @@ table td
   <td class="property">Hexagon::CodeMessagePointManager</td>
 </tr>
 <tr>
+  <td class="property">visual_selections</td>
+  <td class="property">std::vector&lt;CodeRange&gt;</td>
+</tr>
+<tr>
+  <td class="property">currently_grabbing_visual_selection</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
   <td class="property">selections</td>
   <td class="property">std::vector&lt;Hexagon::AdvancedCodeEditor::Selection&gt;</td>
 </tr>
@@ -1181,6 +1189,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeRange&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeRange.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::SymlinkToucher&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/SymlinkToucher.hpp&quot;]}</td>
 </tr>
@@ -9749,6 +9760,7 @@ table td
   "std/vector<CodeRange>": [
     "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter",
     "Hexagon/AdvancedCodeEditor/Selection",
+    "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/OneLineInputBox/Renderer"
   ],
   "CodePoint": [
