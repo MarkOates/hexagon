@@ -88,6 +88,7 @@ void EventController::process_local_event(std::string event_name, ActionData act
 
       if (caught)
       {
+         // TODO make this error message output in red
          std::cout << ">>BOOM<< an unexpected exception was thrown, cannot execute \""
                    << event_name
                    << "\". The exception was thrown with the following information returned:"
