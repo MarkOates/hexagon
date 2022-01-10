@@ -67,6 +67,8 @@ void EventController::process_local_event(std::string event_name, ActionData act
       bool caught = false;
       std::string caught_name = "";
       std::string caught_what = "";
+      // NOTE: some exceptions have additional information. For example, "future_error" has "code" memeber
+      // https://en.cppreference.com/w/cpp/thread/future_error
 
       try
       {
