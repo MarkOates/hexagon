@@ -332,6 +332,7 @@ void Renderer::draw_search_regex_selections()
    int cell_width = text_mesh->get_cell_width();
    int first_line_number = first_row_offset;
    float cell_height = text_mesh->get_cell_height();
+   ALLEGRO_COLOR selection_color = ALLEGRO_COLOR{0.12*0.4, 0.56*0.4, 1.0*0.4, 1.0*0.4};
 
    //if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
 
@@ -348,7 +349,8 @@ void Renderer::draw_search_regex_selections()
             //code_editor->get_first_line_number(),
             first_line_number,
             cell_width,
-            cell_height);
+            cell_height,
+            selection_color);
          renderer.render();
       }
    }

@@ -530,7 +530,7 @@ functions:
         type: int
         default_argument: 0
     body: |
-      if (visual_selections.empty()) return false;
+      if (visual_selections.empty()) return true;
       visual_selections.back().set_cursor_end_x(x_pos);
       return true;
 
@@ -542,7 +542,7 @@ functions:
         type: int
         default_argument: 0
     body: |
-      if (visual_selections.empty()) return false;
+      if (visual_selections.empty()) return true;
       visual_selections.back().set_cursor_end_y(y_pos);
       return true;
 
@@ -559,7 +559,11 @@ functions:
   - name: yank_selected_text_to_clipboard
     type: bool
     body: |
-      if (visual_selections.empty()) return false;
+      if (visual_selections.empty())
+      {
+         throw std::runtime_error("aosoadsofaodfaofd");
+         return false;
+      }
  
       CodeRange visual_selection = visual_selections.back();
       std::vector<std::string> extracted_selection = Hexagon::CodeRangeExtractor(

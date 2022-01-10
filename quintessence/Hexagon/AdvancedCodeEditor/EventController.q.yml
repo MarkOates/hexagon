@@ -52,10 +52,83 @@ functions:
       else
       {
          std::cout << "AdvancedCodeEditor::" << event_name << std::endl;
-         events_dictionary[event_name](component);
+
+         bool caught = false;
+         std::string caught_name = "";
+         std::string caught_what = "";
+
+         try
+         {
+            events_dictionary[event_name](component);
+         }
+         // TODO complete list of possible exceptions to catch at https://en.cppreference.com/w/cpp/error/exception
+         catch (const std::logic_error &exception)
+         {
+            caught = true;
+            caught_name = "std::logic_error";
+            caught_what = exception.what();
+         }
+         catch (const std::exception &exception)
+         {
+            caught = true;
+            caught_name = "std::exception";
+            caught_what = exception.what();
+         }
+
+         if (caught)
+         {
+            std::cout << ">>BOOM<< an unexpected exception was thrown, cannot execute \""
+                      << event_name
+                      << "\". The exception was thrown with the following information returned:"
+                      << std::endl << "   exception_type: " << caught_name
+                      << std::endl << "   exception_what: " << caught_what
+                      << std::endl;
+         }
       }
 
       return;
+
+
+
+
+
+
+
+
+         //try
+         //{
+         //   std::cout << "System::EventController::" << event_name << std::endl;
+
+         //   // could use the iterator element found via the find() call above, rather than doing a new lookup
+         //   std::function<bool(::System&)> function_to_be_called = event_function_mapping[event_name];
+         //   bool function_returned_true_from_execution = function_to_be_called(*system);
+         //   if (!function_returned_true_from_execution)
+         //   {
+         //      // TODO: add some throwing code here
+         //   }
+         //   return;
+         //}
+         //catch (const std::exception &exception)
+         //{
+         //   std::cout << ">BOOM< cannot execute \""
+         //             << event_name
+         //             << "\".  The following exception occurred: "
+         //             << exception.what()
+         //             << std::endl;
+
+         //   std::stringstream error_message;
+         //   error_message << "An exception was thrown: \"" << exception.what() << "\"";
+         //   add_notification(error_message.str());
+         //}
+
+
+
+
+
+
+
+
+
 
 
   - name: process_event

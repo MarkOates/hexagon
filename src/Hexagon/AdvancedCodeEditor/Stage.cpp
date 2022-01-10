@@ -566,14 +566,14 @@ bool Stage::toggle_currently_grabbing_visual_selection()
 
 bool Stage::set_current_visual_selection_end_x(int x_pos)
 {
-   if (visual_selections.empty()) return false;
+   if (visual_selections.empty()) return true;
    visual_selections.back().set_cursor_end_x(x_pos);
    return true;
 }
 
 bool Stage::set_current_visual_selection_end_y(int y_pos)
 {
-   if (visual_selections.empty()) return false;
+   if (visual_selections.empty()) return true;
    visual_selections.back().set_cursor_end_y(y_pos);
    return true;
 }
@@ -588,7 +588,11 @@ bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
 
 bool Stage::yank_selected_text_to_clipboard()
 {
-   if (visual_selections.empty()) return false;
+   if (visual_selections.empty())
+   {
+      throw std::runtime_error("aosoadsofaodfaofd");
+      return false;
+   }
 
    CodeRange visual_selection = visual_selections.back();
    std::vector<std::string> extracted_selection = Hexagon::CodeRangeExtractor(

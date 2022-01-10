@@ -51,7 +51,19 @@ std::vector<std::string> CodeRangeExtractor::extract()
    std::vector<std::string> result_full_lines(lines->begin() + start_y, lines->begin() + end_y);
    std::vector<std::string> result = result_full_lines;
 
-   if (result.size() == 1) result[0] = result[0].substr(0, end_x).substr(start_x);
+   std::cout << "CodeRangeExtractor: extraction passed, doing substr" << std::endl;
+
+   if (result.size() == 1)
+   {
+      std::cout << "------- CodeRangeExtractor: x at (" << start_x << ", " << end_x << ")" << std::endl;
+      std::cout << "A#############" << result[0] << "##############" << std::endl;
+      std::cout << "B#############" << result[0].substr(0, end_x) << "##############" << std::endl;
+      std::cout << "C#############" << result[0].substr(0, end_x).substr(start_x) << "##############" << std::endl;
+      result[0] = result[0].substr(0, end_x).substr(start_x);
+      //return;
+   }
+
+   std::cout << "CodeRangeExtractor: doing substrd completed" << std::endl;
 
    return result;
 }
