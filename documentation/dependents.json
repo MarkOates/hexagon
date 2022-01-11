@@ -620,7 +620,6 @@
     "Hexagon/BlastProjectLayoutsGenerator",
     "Hexagon/ComponentBitmapRenderCreator",
     "Hexagon/ComponentRelationsNavigator/ComponentRelations",
-    "Hexagon/Daemus/Daemus",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/Search/ComponentElasticsearchIndexer",
@@ -700,7 +699,6 @@
   ],
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/Controller",
-    "Hexagon/Daemus/Daemus",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Git/CommitStagedWithMessage",
     "Hexagon/Git/Modified",
@@ -879,7 +877,6 @@
   ],
   "Blast/FileExistenceChecker": [
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
-    "Hexagon/Daemus/Daemus",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/LayoutToStagesCreator",
@@ -925,25 +922,23 @@
     "Hexagon/Daemus/Daemus",
     "Hexagon/Daemus/Stage"
   ],
+  "Hexagon/Daemus/ProgramRunner": [
+    "Hexagon/Daemus/NetworkMessageEventController"
+  ],
   "getpid": [
-    "Hexagon/Daemus/Daemus",
     "Hexagon/Daemus/ProgramRunner"
   ],
   "Blast/DirectoryExistenceChecker": [
-    "Hexagon/Daemus/Daemus",
     "Hexagon/Daemus/ProgramRunner"
   ],
   "Hexagon/Testing/GoogleTestRunOutputParser": [
-    "Hexagon/Daemus/Daemus",
     "Hexagon/Daemus/ProgramRunner"
   ],
   "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
-    "Hexagon/Daemus/Daemus",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "Hexagon/Daemus/Daemus": [
-    "Hexagon/Daemus/NetworkMessageEventController",
     "Hexagon/Daemus/Stage"
   ],
   "std/set<std/pair<int, int>>": [

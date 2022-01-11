@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <Hexagon/Daemus/Daemus.hpp>
+#include <Hexagon/Daemus/ProgramRunner.hpp>
 #include <string>
 
 
@@ -12,7 +12,7 @@ namespace Hexagon
       class NetworkMessageEventController
       {
       private:
-         Hexagon::Daemus::Daemus* daemus;
+         Hexagon::Daemus::ProgramRunner* program_runner;
 
       public:
          NetworkMessageEventController();

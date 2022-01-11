@@ -1,8 +1,8 @@
 properties:
 
 
-  - name: daemus
-    type: Hexagon::Daemus::Daemus*
+  - name: program_runner
+    type: Hexagon::Daemus::ProgramRunner*
     init_with: nullptr
 
 
@@ -17,14 +17,14 @@ functions:
         default_argument: "\"\""
     body: |
       bool message_captured = false;
-      if (message == "TO_DAEMUS: OUTPUT_PID") { daemus->output_pid(); message_captured = true; }
+      if (message == "TO_DAEMUS: OUTPUT_PID") { program_runner->output_pid(); message_captured = true; }
       return message_captured;
 
 
 dependencies:
 
 
-  - symbol: Hexagon::Daemus::Daemus*
-    headers: [ Hexagon/Daemus/Daemus.hpp ]
+  - symbol: Hexagon::Daemus::ProgramRunner*
+    headers: [ Hexagon/Daemus/ProgramRunner.hpp ]
 
 
