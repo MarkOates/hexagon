@@ -88,6 +88,7 @@ table td
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Daemus/BuildFactory.q.yml">quintessence/Hexagon/Daemus/BuildFactory.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Daemus/Builds/Base.q.yml">quintessence/Hexagon/Daemus/Builds/Base.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Daemus/Builds/ExtrapolateQuintessence.q.yml">quintessence/Hexagon/Daemus/Builds/ExtrapolateQuintessence.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Daemus/Daemus.q.yml">quintessence/Hexagon/Daemus/Daemus.q.yml</a></li>
@@ -2879,6 +2880,20 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/Daemus/BuildFactory.q.yml">quintessence/Hexagon/Daemus/BuildFactory.q.yml</h3>
+     <table>
+    </table>
+     <table>
+<tr>
+  <td class="method">run()</td>
+</tr>
+    </table>
+     <table>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/Daemus/Builds/Base.q.yml">quintessence/Hexagon/Daemus/Builds/Base.q.yml</h3>
      <table>
 <tr>
@@ -2935,6 +2950,9 @@ table td
     </table>
      <table>
 <tr>
+  <td class="method">create_extrapolate_quintessence_build()</td>
+</tr>
+<tr>
   <td class="method">run_full_rebuild()</td>
 </tr>
 <tr>
@@ -2957,6 +2975,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Daemus::Builds::ExtrapolateQuintessence*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Daemus/Builds/ExtrapolateQuintessence.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Daemus::Builds::Base*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Daemus/Builds/Base.hpp&quot;]}</td>
 </tr>
@@ -10366,6 +10387,9 @@ table td
   ],
   "Hexagon/Daemus/Builds/Base": [
     "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
+    "Hexagon/Daemus/Daemus"
+  ],
+  "Hexagon/Daemus/Builds/ExtrapolateQuintessence": [
     "Hexagon/Daemus/Daemus"
   ],
   "std/vector<Hexagon/Daemus/Builds/Base>": [

@@ -20,6 +20,13 @@ properties:
 functions:
 
 
+  - name: create_extrapolate_quintessence_build
+    type: Hexagon::Daemus::Builds::ExtrapolateQuintessence*
+    body: |
+      Hexagon::Daemus::Builds::ExtrapolateQuintessence* result = new Hexagon::Daemus::Builds::ExtrapolateQuintessence();
+      return result;
+
+
   - name: run_full_rebuild
     type: void
     body: |
@@ -171,6 +178,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::Daemus::Builds::ExtrapolateQuintessence*
+    headers: [ Hexagon/Daemus/Builds/ExtrapolateQuintessence.hpp ]
   - symbol: Hexagon::Daemus::Builds::Base*
     headers: [ Hexagon/Daemus/Builds/Base.hpp ]
   - symbol: std::vector<Hexagon::Daemus::Builds::Base*>

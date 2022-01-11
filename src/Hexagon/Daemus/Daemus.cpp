@@ -44,6 +44,12 @@ std::vector<Hexagon::Daemus::Builds::Base*> &Daemus::get_builds_ref()
 }
 
 
+Hexagon::Daemus::Builds::ExtrapolateQuintessence* Daemus::create_extrapolate_quintessence_build()
+{
+   Hexagon::Daemus::Builds::ExtrapolateQuintessence* result = new Hexagon::Daemus::Builds::ExtrapolateQuintessence();
+   return result;
+}
+
 void Daemus::run_full_rebuild()
 {
    std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";

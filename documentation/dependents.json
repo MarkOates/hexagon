@@ -904,6 +904,9 @@
     "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
     "Hexagon/Daemus/Daemus"
   ],
+  "Hexagon/Daemus/Builds/ExtrapolateQuintessence": [
+    "Hexagon/Daemus/Daemus"
+  ],
   "std/vector<Hexagon/Daemus/Builds/Base>": [
     "Hexagon/Daemus/Daemus",
     "Hexagon/Daemus/Stage"

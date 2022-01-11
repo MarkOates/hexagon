@@ -3,6 +3,7 @@
 
 #include <Blast/Project/Component.hpp>
 #include <Hexagon/Daemus/Builds/Base.hpp>
+#include <Hexagon/Daemus/Builds/ExtrapolateQuintessence.hpp>
 #include <Hexagon/Testing/GoogleTestRunTestResult.hpp>
 #include <string>
 #include <vector>
@@ -25,6 +26,7 @@ namespace Hexagon
 
          Hexagon::Daemus::Builds::Base* get_current_build();
          std::vector<Hexagon::Daemus::Builds::Base*> &get_builds_ref();
+         Hexagon::Daemus::Builds::ExtrapolateQuintessence* create_extrapolate_quintessence_build();
          void run_full_rebuild();
          void run_simple_echo_command();
          void run_simple_sleep_command();
