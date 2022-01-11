@@ -2918,15 +2918,43 @@ table td
   <div class="component">
     <h3 id="quintessence/Hexagon/Daemus/Builds/ExtrapolateQuintessence.q.yml">quintessence/Hexagon/Daemus/Builds/ExtrapolateQuintessence.q.yml</h3>
      <table>
+<tr>
+  <td class="property">BUILDS_PENDING_FOLDER_LOCATION</td>
+  <td class="property">std::string</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="method">initiate()</td>
 </tr>
+<tr>
+  <td class="method">write_build_file()</td>
+</tr>
+<tr>
+  <td class="method">poll_for_progress()</td>
+</tr>
+<tr>
+  <td class="method">generate_build_file_contents()</td>
+</tr>
+<tr>
+  <td class="private_method">generate_build_filename()</td>
+</tr>
+<tr>
+  <td class="private_method">generate_time_now_string()</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Daemus::Builds::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Daemus/Builds/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;time&quot;, &quot;headers&quot;=&gt;[&quot;chrono&quot;, &quot;ctime&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::String::Trimmer&quot;, &quot;headers&quot;=&gt;[&quot;Blast/String/Trimmer.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::file_put_contents&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -10389,6 +10417,18 @@ table td
     "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
     "Hexagon/Daemus/Daemus"
   ],
+  "time": [
+    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
+    "Hexagon/PacketLogger"
+  ],
+  "Blast/String/Trimmer": [
+    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
+    "Hexagon/PacketLogger"
+  ],
+  "php/file_put_contents": [
+    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
+    "Hexagon/PacketLogger"
+  ],
   "Hexagon/Daemus/Builds/ExtrapolateQuintessence": [
     "Hexagon/Daemus/Daemus"
   ],
@@ -10649,16 +10689,7 @@ table td
   ":OneLineInputBox/EventController": [
     "Hexagon/OneLineInputBox/Stage"
   ],
-  "time": [
-    "Hexagon/PacketLogger"
-  ],
   "AllegroFlare/random_string": [
-    "Hexagon/PacketLogger"
-  ],
-  "Blast/String/Trimmer": [
-    "Hexagon/PacketLogger"
-  ],
-  "php/file_put_contents": [
     "Hexagon/PacketLogger"
   ],
   "Hexagon/Packet": [

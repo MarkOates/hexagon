@@ -904,6 +904,18 @@
     "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
     "Hexagon/Daemus/Daemus"
   ],
+  "time": [
+    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
+    "Hexagon/PacketLogger"
+  ],
+  "Blast/String/Trimmer": [
+    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
+    "Hexagon/PacketLogger"
+  ],
+  "php/file_put_contents": [
+    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
+    "Hexagon/PacketLogger"
+  ],
   "Hexagon/Daemus/Builds/ExtrapolateQuintessence": [
     "Hexagon/Daemus/Daemus"
   ],
@@ -1164,16 +1176,7 @@
   ":OneLineInputBox/EventController": [
     "Hexagon/OneLineInputBox/Stage"
   ],
-  "time": [
-    "Hexagon/PacketLogger"
-  ],
   "AllegroFlare/random_string": [
-    "Hexagon/PacketLogger"
-  ],
-  "Blast/String/Trimmer": [
-    "Hexagon/PacketLogger"
-  ],
-  "php/file_put_contents": [
     "Hexagon/PacketLogger"
   ],
   "Hexagon/Packet": [

@@ -6,6 +6,16 @@ parent_classes:
     init_with: '"ExtrapolateQuintessence"'
 
 
+properties:
+
+
+  - name: BUILDS_PENDING_FOLDER_LOCATION
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon/bin/programs/data/builds/pending"'
+    getter: true
+    setter: true
+
+
 functions:
 
 
@@ -17,10 +27,68 @@ functions:
       return;
 
 
+  - name: write_build_file
+    body: |
+      std::string filename = generate_build_filename();
+      std::string file_contents = generate_build_file_contents();
+      php::file_put_contents(filename, file_contents);
+      return;
+    body_dependency_symbols:
+      - php::file_put_contents
+
+
+  - name: poll_for_progress
+    body: |
+      // TODO
+      return;
+
+
+  - name: generate_build_file_contents
+    type: std::string
+    body: |
+      return "build_contents";
+
+
+  - name: generate_build_filename
+    private: true
+    type: std::string
+    body: |
+      std::string datetime = generate_time_now_string();
+      std::string result = BUILDS_PENDING_FOLDER_LOCATION + "/" + datetime;
+      result += ".build.txt";
+      return result;
+
+
+  - name: generate_time_now_string
+    private: true
+    static: true
+    type: std::string
+    body: |
+      auto end = std::chrono::system_clock::now();
+      std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+
+      std::stringstream time_message;
+      time_message << std::ctime(&end_time);
+      std::string trimmed_time_message = Blast::String::Trimmer(time_message.str()).trim();
+
+      return trimmed_time_message;
+    body_dependency_symbols:
+      - std::stringstream
+      - Blast::String::Trimmer
+      - time
+
+
 dependencies:
 
 
   - symbol: Hexagon::Daemus::Builds::Base
     headers: [ Hexagon/Daemus/Builds/Base.hpp ]
+  - symbol: time
+    headers: [ chrono, ctime ]
+  - symbol: Blast::String::Trimmer
+    headers: [ Blast/String/Trimmer.hpp ]
+  - symbol: php::file_put_contents
+    headers: [ allegro_flare/useful_php.h ]
+
 
 
