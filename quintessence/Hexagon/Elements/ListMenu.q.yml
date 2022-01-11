@@ -5,48 +5,58 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+
   - name: title
     type: std::string
     init_with: '"+"'
     constructor_arg: true
+
   - name: list_items
     type: std::vector<std::tuple<std::string, std::string>>
     init_with: '{}'
     constructor_arg: true
+
   - name: color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{1, 0, 0, 1}
     constructor_arg: true
     getter: true
     setter: true
+
   - name: cursor
     type: int
     init_with: 0
+
   - name: wrap_cursor_when_moving_cursor_outside_bounds
     type: bool
     init_with: true
     getter: true
     setter: true
+
   - name: title_upcase
     type: bool
     init_with: true
     getter: true
     setter: true
+
   - name: menu_items_upcase
     type: bool
     init_with: false
     getter: true
     setter: true
+
   - name: width
     type: int
     init_with: 600
     getter: true
     setter: true
+
   - name: active
     type: bool
     init_with: true
     getter: true
     setter: true
+
   - name: padding
     type: float
     init_with: 14.0f

@@ -16,7 +16,7 @@ namespace ComponentRelationsNavigator
 
 
 DocumentationDependentsJSONLoader::DocumentationDependentsJSONLoader()
-   : DEPENDENTS_JSON_FILENAME("/Users/markoates/Repos/Krampus21/documentation/dependents.json")
+   : DEPENDENTS_JSON_FILENAME("/Users/markoates/Repos/hexagon/documentation/dependents.json")
 {
 }
 

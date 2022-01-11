@@ -12,7 +12,7 @@ TEST(Hexagon_ComponentRelationsNavigator_DocumentationDependentsJSONLoaderTest,
    get_DEPENDENTS_JSON_FILENAME__has_the_expected_default)
 {
    Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader documentation_dependents_jsonloader;
-   std::string expected_string = "/Users/markoates/Repos/Krampus21/documentation/dependents.json";
+   std::string expected_string = "/Users/markoates/Repos/hexagon/documentation/dependents.json";
 
    EXPECT_EQ(expected_string, documentation_dependents_jsonloader.get_DEPENDENTS_JSON_FILENAME());
 }
