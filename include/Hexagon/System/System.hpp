@@ -22,7 +22,7 @@ namespace Hexagon::System
 class System
 {
 private:
-   static Motion dummy_motion;
+   //static Motion dummy_motion;
    static Hexagon::System::Config dummy_config;
    std::string last_component_navigator_selection;
    std::string current_project_directory;
@@ -34,7 +34,7 @@ private:
 
    ALLEGRO_DISPLAY *display;
    Hexagon::System::Config &config;
-   Motion &motion;
+   Motion motion;
 
    bool option__saving_focused_filename_to_file_is_disabled;
    int save_count;
@@ -57,9 +57,7 @@ private:
 
 public:
 
-   System(ALLEGRO_DISPLAY *display=nullptr,
-          Hexagon::System::Config &config = System::dummy_config,
-          Motion &motion = System::dummy_motion);
+   System(ALLEGRO_DISPLAY *display=nullptr, Hexagon::System::Config &config = System::dummy_config);
 
    void initialize();
    int get_display_default_width();
@@ -73,6 +71,7 @@ public:
    Hexagon::Camera &get_camera_ref();
    std::vector<StageInterface *> &get_stages_ref();
    Hexagon::Hud &get_hud_ref();
+   Motion &get_motion_ref();
 
    void set_focused_component_name(std::string focused_component_name);
    std::string get_focused_component_name();

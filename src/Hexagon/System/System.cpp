@@ -114,7 +114,7 @@ namespace Hexagon::System
 {
 
 
-System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion &motion)
+System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config)
    : last_component_navigator_selection("")
    , current_project_directory("")
    , last_project_navigator_selection("")
@@ -444,6 +444,11 @@ Hexagon::Hud &System::get_hud_ref()
 }
 
 
+Motion &System::get_motion_ref()
+{
+   return motion;
+}
+
 
 bool System::write_focused_component_name_to_file()
 {
@@ -539,6 +544,11 @@ bool System::set_hud_packets_to_packets()
 
 bool System::fx__play_focus_animation_on_frontmost_stage()
 {
+   //if (!motion)
+   //{
+   //   return false;
+   //}
+
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage)
    {
@@ -580,6 +590,8 @@ bool System::fx__play_focus_animation_on_frontmost_stage()
 
 bool System::toggle_command_mode_on()
 {
+   //if (!motion) return false;
+
    if (command_mode) return true;
 
    //float camera_zoomed_out_position = get_default_camera_stepback() + 40;
@@ -619,6 +631,8 @@ bool System::toggle_command_mode_on()
 
 bool System::reset_camera_to_center()
 {
+   //if (!motion) return false;
+
    if (!command_mode) return true;
 
    float camera_zoomed_in_position = get_default_camera_stepback();
@@ -772,6 +786,8 @@ bool System::rotate_stage_left_and_update_focused_state_on_changed_stages()
 
 bool System::center_camera_on_frontmost_stage()
 {
+   //if (!motion) throw std::runtime_error(">BOOM< invalid motion: center_camera... need motion");
+
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage)
    {
@@ -992,8 +1008,11 @@ bool System::spawn_regex_input_box_modal()
 
    stages.push_back(stage);
 
-   motion.cmove_to(&camera.get_rotation_ref().x, 0.08f, 0.5f, interpolator::tripple_fast_in);
-   motion.cmove_to(&camera.get_position_ref().y, -70.0f, 0.5f, interpolator::tripple_fast_in);
+   //if (motion)
+   {
+      motion.cmove_to(&camera.get_rotation_ref().x, 0.08f, 0.5f, interpolator::tripple_fast_in);
+      motion.cmove_to(&camera.get_position_ref().y, -70.0f, 0.5f, interpolator::tripple_fast_in);
+   }
 
    return true;
 }
@@ -1006,8 +1025,11 @@ bool System::spawn_git_commit_message_input_box_modal()
 
    stages.push_back(stage);
 
-   motion.cmove_to(&camera.get_rotation_ref().x, -0.12f, 0.5f, interpolator::tripple_fast_in);
-   motion.cmove_to(&camera.get_position_ref().y, 140.0f, 0.5f, interpolator::tripple_fast_in);
+   //if (motion)
+   {
+      motion.cmove_to(&camera.get_rotation_ref().x, -0.12f, 0.5f, interpolator::tripple_fast_in);
+      motion.cmove_to(&camera.get_position_ref().y, 140.0f, 0.5f, interpolator::tripple_fast_in);
+   }
 
    return true;
 }
@@ -1642,7 +1664,7 @@ void System::process_event(ALLEGRO_EVENT *event)
 }
 
 
-Motion System::dummy_motion;
+//Motion System::dummy_motion;
 ::Hexagon::System::Config System::dummy_config;
 
 

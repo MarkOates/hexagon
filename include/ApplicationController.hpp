@@ -3,7 +3,6 @@
 
 #include <Hexagon/System/System.hpp>
 #include <allegro5/allegro.h>
-#include <allegro_flare/motion.h>
 
 
 class ApplicationController
@@ -13,7 +12,6 @@ private:
    ALLEGRO_DISPLAY* display;
    ALLEGRO_EVENT_QUEUE* event_queue;
    ALLEGRO_TIMER* primary_timer;
-   Motion motion;
    Hexagon::System::System* system;
    ALLEGRO_EVENT_SOURCE user_event_source;
    bool shutdown_program;

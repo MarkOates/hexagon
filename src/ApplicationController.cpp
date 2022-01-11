@@ -60,7 +60,6 @@ ApplicationController::ApplicationController(Hexagon::System::Config config)
    , display(nullptr)
    , event_queue(nullptr)
    , primary_timer(nullptr)
-   , motion()
    , system(nullptr)
    , user_event_source()
    , shutdown_program(false)
@@ -97,7 +96,7 @@ void ApplicationController::initialize()
    initialize_allegro_config_display_event_queue_and_timer();
    verify_presence_of_temp_files_and_assign_to_global_constants();
 
-   system = new Hexagon::System::System(display, config, motion);
+   system = new Hexagon::System::System(display, config);
    system->initialize();
 }
 
@@ -255,12 +254,12 @@ void ApplicationController::run_event_loop()
          system->acknowledge_display_switch_in(display);
          break;
       case ALLEGRO_EVENT_TIMER:
-         motion.update(al_get_time());
+         system->get_motion_ref().update(al_get_time());
          //refresh = true;
          static int previous_num_active_animations = 0;
-         if (previous_num_active_animations == 0 && motion.get_num_active_animations() == 0)
+         if (previous_num_active_animations == 0 && system->get_motion_ref().get_num_active_animations() == 0)
             refresh = false;
-         previous_num_active_animations = motion.get_num_active_animations();
+         previous_num_active_animations = system->get_motion_ref().get_num_active_animations();
          if (mouse_event_occurred_and_requires_screen_refresh) refresh = true;
          break;
       case ALLEGRO_EVENT_MOUSE_AXES:
