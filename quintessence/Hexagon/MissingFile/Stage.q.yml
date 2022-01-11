@@ -13,39 +13,47 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+
   - name: expected_filename
     type: std::string
     init_with: '"[Expected filename not set]"'
     constructor_arg: true
     getter: true
+
   - name: title_text
     type: std::string
     init_with: '"MISSING FILE"'
+
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+
   - name: is_focused
     type: bool
     init_with: true
     getter: true
     setter: true
+
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
     getter: true
     setter: true
+
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
     getter: true
     setter: true
+
   - name: cell_width
     type: int
     init_with: 10
     getter: true
     setter: true
+
   - name: cell_height
     type: int
     init_with: 20
