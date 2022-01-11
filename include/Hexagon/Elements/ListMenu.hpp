@@ -20,6 +20,7 @@ namespace Hexagon
          std::string title;
          std::vector<std::tuple<std::string, std::string>> list_items;
          ALLEGRO_COLOR color;
+         ALLEGRO_COLOR inactive_color;
          int cursor;
          bool wrap_cursor_when_moving_cursor_outside_bounds;
          bool title_upcase;
@@ -33,12 +34,14 @@ namespace Hexagon
          ~ListMenu();
 
          void set_color(ALLEGRO_COLOR color);
+         void set_inactive_color(ALLEGRO_COLOR inactive_color);
          void set_wrap_cursor_when_moving_cursor_outside_bounds(bool wrap_cursor_when_moving_cursor_outside_bounds);
          void set_title_upcase(bool title_upcase);
          void set_menu_items_upcase(bool menu_items_upcase);
          void set_width(int width);
          void set_active(bool active);
          ALLEGRO_COLOR get_color();
+         ALLEGRO_COLOR get_inactive_color();
          bool get_wrap_cursor_when_moving_cursor_outside_bounds();
          bool get_title_upcase();
          bool get_menu_items_upcase();
