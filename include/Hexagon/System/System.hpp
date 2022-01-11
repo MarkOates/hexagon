@@ -10,7 +10,6 @@
 #include <Hexagon/Camera.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
-#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/Hud.hpp>
 #include <Hexagon/Packet.hpp>
@@ -82,7 +81,6 @@ public:
    StageInterface *get_frontmost_stage();
    Hexagon::CodeEditor::Stage *get_frontmost_code_editor_stage();
    std::vector<Hexagon::CodeEditor::Stage *> get_all_code_editor_stages();
-   std::vector<Hexagon::AdvancedCodeEditor::Stage *> get_all_advanced_code_editor_stages();
    int get_number_of_code_editor_stages();
 
    // inference

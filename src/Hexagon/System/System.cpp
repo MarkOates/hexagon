@@ -255,12 +255,6 @@ std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
 }
 
 
-std::vector<Hexagon::AdvancedCodeEditor::Stage *> System::get_all_advanced_code_editor_stages()
-{
-   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
-   return stage_collection_helper.get_all_advanced_code_editor_stages();
-}
-
 int System::get_number_of_code_editor_stages()
 {
    Hexagon::StageCollectionHelper stage_collection_helper(&stages);
@@ -921,8 +915,12 @@ bool System::refresh_regex_hilights_on_all_code_editor_stages()
    {
       code_editor_stage->get_code_editor_ref().refresh_regex_message_points();
    }
+
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+
    std::vector<::Hexagon::AdvancedCodeEditor::Stage *> all_advanced_code_editor_stages =
-      get_all_advanced_code_editor_stages();
+      stage_collection_helper.get_all_advanced_code_editor_stages();
+
    for (auto &advanced_code_editor_stage : all_advanced_code_editor_stages)
    {
       advanced_code_editor_stage->refresh_search_regex_selections();
@@ -1480,15 +1478,20 @@ bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp
 
    std::string regex_expression = regex_input_file_lines[0];
 
-   std::vector<::Hexagon::CodeEditor::Stage *> stages = get_all_code_editor_stages();
-   for (auto &stage : stages)
+   std::vector<::Hexagon::CodeEditor::Stage *> code_editor_stages = get_all_code_editor_stages();
+   for (auto &code_editor_stage : code_editor_stages)
    {
-      stage->get_code_editor_ref().set_search_regex_expression(regex_expression);
+      code_editor_stage->get_code_editor_ref().set_search_regex_expression(regex_expression);
    }
-   std::vector<::Hexagon::AdvancedCodeEditor::Stage *> ac_stages = get_all_advanced_code_editor_stages();
-   for (auto &ac_stage : ac_stages)
+
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+
+   std::vector<::Hexagon::AdvancedCodeEditor::Stage *> advanced_code_editor_stages =
+      stage_collection_helper.get_all_advanced_code_editor_stages();
+
+   for (auto &advanced_code_editor_stage : advanced_code_editor_stages)
    {
-      ac_stage->set_current_search_regex(regex_expression);
+      advanced_code_editor_stage->set_current_search_regex(regex_expression);
    }
 
    return true;
