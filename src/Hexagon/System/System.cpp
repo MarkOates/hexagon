@@ -248,13 +248,6 @@ Hexagon::CodeEditor::Stage *System::get_frontmost_code_editor_stage()
 }
 
 
-Hexagon::GitCommitMessageInputBox::Stage *System::get_frontmost_git_commit_message_input_box()
-{
-   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
-   return stage_collection_helper.get_frontmost_git_commit_message_input_box();
-}
-
-
 std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
 {
    Hexagon::StageCollectionHelper stage_collection_helper(&stages);
@@ -400,7 +393,9 @@ bool System::mark_as_not_in_sync_with_remote()
 
 bool System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction()
 {
-   Hexagon::GitCommitMessageInputBox::Stage *stage = get_frontmost_git_commit_message_input_box();
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+   Hexagon::GitCommitMessageInputBox::Stage *stage = stage_collection_helper.get_frontmost_git_commit_message_input_box();
+
    if (!stage) return false;
    stage->change_state_to_submitted_and_pending_destruction();
    return true;
