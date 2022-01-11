@@ -22,7 +22,6 @@ namespace Hexagon::System
 class System
 {
 private:
-   //static Motion dummy_motion;
    static Hexagon::System::Config dummy_config;
    std::string last_component_navigator_selection;
    std::string current_project_directory;
@@ -45,8 +44,6 @@ private:
    std::vector<StageInterface *> stages;
    Hexagon::Camera camera;
    std::string last_file_navigator_selection;
-   //std::string last_component_navigator_selection;
-   //std::string last_project_navigator_selection;
    std::string global_font_resource_filename;
    std::string target;
    int global_font_size;
