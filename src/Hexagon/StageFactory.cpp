@@ -272,6 +272,7 @@ StageInterface* StageFactory::create_component_relations_navigator(std::string f
    component_relations_navigator->initialize();
    component_relations_navigator->set_render_on_hud(true);
    placement3d place = build_centered_on_hud_initial_place(0, 0);
+   place.position.y -= 100;
    place.scale.x = place.scale.y = 0.75;
    component_relations_navigator->set_place(place);
 
