@@ -169,6 +169,9 @@ functions:
       - name: current_project_directory
         type: std::string
         default_argument: '""'
+      - name: simplify_relatives_names
+        type: bool
+        default_argument: true
     type: StageInterface*
     body: |
       Blast::Project::Component self_component(focused_component_name, current_project_directory);
@@ -183,7 +186,13 @@ functions:
 
       for (auto &relatives_menu_item : component_relations.build_relatives_list())
       {
-         relatives_menu_items.push_back({relatives_menu_item, relatives_menu_item});
+         std::string relatives_menu_item_label = relatives_menu_item;
+         if (simplify_relatives_names)
+         {
+            relatives_menu_item_label = Blast::StringSplitter(relatives_menu_item, '/').split().back();
+         }
+
+         relatives_menu_items.push_back({relatives_menu_item_label, relatives_menu_item});
       }
       for (auto &dependents_menu_item : component_relations.build_dependents_list())
       {
@@ -207,6 +216,7 @@ functions:
       return component_relations_navigator;
     body_dependency_symbols:
        - Hexagon::ComponentRelationsNavigator::Stage
+       - Blast::StringSplitter
        - Hexagon::ComponentRelationsNavigator::ComponentRelations
        - std::vector<std::tuple<std::string, std::string>>
 
@@ -536,6 +546,8 @@ functions:
 dependencies:
 
 
+  - symbol: Blast::StringSplitter
+    headers: [ Blast/StringSplitter.hpp ]
   - symbol: Blast::Project::SymlinkChecker
     headers: [ Blast/Project/SymlinkChecker.hpp ]
   - symbol: php::file_get_contents

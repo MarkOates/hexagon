@@ -162,6 +162,7 @@
     "Hexagon/NewComponentMaker/Stage",
     "Hexagon/Rails/ComponentLister",
     "Hexagon/RailsTestOutputParser",
+    "Hexagon/StageFactory",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "Hexagon/AdvancedCodeEditor/Cursor": [

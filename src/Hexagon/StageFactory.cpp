@@ -25,6 +25,7 @@
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
 #include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
+#include <Blast/StringSplitter.hpp>
 #include <Hexagon/ComponentRelationsNavigator/ComponentRelations.hpp>
 #include <vector>
 #include <tuple>
@@ -233,7 +234,7 @@ StageInterface* StageFactory::create_class_brief_menu(std::string title, std::ve
    return little_menu;
 }
 
-StageInterface* StageFactory::create_component_relations_navigator(std::string focused_component_name, std::string current_project_directory)
+StageInterface* StageFactory::create_component_relations_navigator(std::string focused_component_name, std::string current_project_directory, bool simplify_relatives_names)
 {
    Blast::Project::Component self_component(focused_component_name, current_project_directory);
 
@@ -247,7 +248,13 @@ StageInterface* StageFactory::create_component_relations_navigator(std::string f
 
    for (auto &relatives_menu_item : component_relations.build_relatives_list())
    {
-      relatives_menu_items.push_back({relatives_menu_item, relatives_menu_item});
+      std::string relatives_menu_item_label = relatives_menu_item;
+      if (simplify_relatives_names)
+      {
+         relatives_menu_item_label = Blast::StringSplitter(relatives_menu_item, '/').split().back();
+      }
+
+      relatives_menu_items.push_back({relatives_menu_item_label, relatives_menu_item});
    }
    for (auto &dependents_menu_item : component_relations.build_dependents_list())
    {
