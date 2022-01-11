@@ -1,6 +1,6 @@
 
 
-#include <Blast/Daemus/Daemus.hpp>
+#include <Hexagon/Daemus/Daemus.hpp>
 #include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
 #include <vector>
 #include <Hexagon/Testing/GoogleTestRunTestResult.hpp>
@@ -13,7 +13,7 @@
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
-namespace Blast
+namespace Hexagon
 {
 namespace Daemus
 {
@@ -144,6 +144,6 @@ std::string Daemus::execute_command(std::string command, bool output_to_stdout)
    return shell_command_executor.execute();
 }
 } // namespace Daemus
-} // namespace Blast
+} // namespace Hexagon
 
 

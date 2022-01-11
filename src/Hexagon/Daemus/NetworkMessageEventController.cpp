@@ -1,10 +1,10 @@
 
 
-#include <Blast/Daemus/NetworkMessageEventController.hpp>
+#include <Hexagon/Daemus/NetworkMessageEventController.hpp>
 
 
 
-namespace Blast
+namespace Hexagon
 {
 namespace Daemus
 {
@@ -28,6 +28,6 @@ bool NetworkMessageEventController::process_message(std::string message)
    return message_captured;
 }
 } // namespace Daemus
-} // namespace Blast
+} // namespace Hexagon
 
 

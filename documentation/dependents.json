@@ -1,8 +1,6 @@
 {
   "Hexagon/System/Config": [
     "ApplicationController",
-    "Blast/Daemus/ProgramRunner",
-    "Blast/Daemus/ProgramRunner",
     "Hexagon/Hud",
     "Hexagon/StageFactory",
     "Testing/WithStageFactoryFixture"
@@ -77,65 +75,6 @@
   "all": [
     "ApplicationController",
     "Hexagon/CodeEditor/CachedLineRenderer"
-  ],
-  "getpid": [
-    "Blast/Daemus/Daemus"
-  ],
-  "Blast/ShellCommandExecutorWithCallback": [
-    "Blast/Daemus/Daemus",
-    "Blast/Daemus/ProgramRunner",
-    "Hexagon/BuildSystem/Controller",
-    "Hexagon/Git/CommitStagedWithMessage",
-    "Hexagon/Git/Modified",
-    "Hexagon/Git/Pusher",
-    "Hexagon/Git/StageEverything",
-    "Hexagon/Git/Staged",
-    "Hexagon/Git/Untracked",
-    "Hexagon/NewComponentMaker/NewComponentMaker",
-    "Hexagon/NewComponentMaker/Stage",
-    "Hexagon/PasteboardData",
-    "Hexagon/Rails/ComponentLister",
-    "Hexagon/Search/ComponentElasticsearchIndexer",
-    "Hexagon/Search/Elasticsearch/HealthChecker",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/OpenDocumentationInBrowser",
-    "Hexagon/Testing/ComponentTestRunner"
-  ],
-  "Blast/DirectoryExistenceChecker": [
-    "Blast/Daemus/Daemus"
-  ],
-  "Blast/FileExistenceChecker": [
-    "Blast/Daemus/Daemus",
-    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
-    "Hexagon/Elements/FilePixelPreviewCreator",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/ProjectFactory",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent"
-  ],
-  "Blast/Project/Component": [
-    "Blast/Daemus/Daemus",
-    "Hexagon/AdvancedComponentNavigator/Stage",
-    "Hexagon/BlastComponentLayoutGenerator",
-    "Hexagon/BlastProjectLayoutsGenerator",
-    "Hexagon/ComponentBitmapRenderCreator",
-    "Hexagon/ComponentRelationsNavigator/ComponentRelations",
-    "Hexagon/ProjectComponentNavigator/Stage",
-    "Hexagon/Search/ComponentElasticsearchIndexer",
-    "Hexagon/StageFactory",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "Hexagon/Testing/ComponentTestRunner"
-  ],
-  "Hexagon/Testing/GoogleTestRunOutputParser": [
-    "Blast/Daemus/Daemus"
-  ],
-  "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
-    "Blast/Daemus/Daemus",
-    "Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "Blast/Daemus/Daemus": [
-    "Blast/Daemus/NetworkMessageEventController"
   ],
   "std/find_if": [
     "Blast/String/Trimmer"
@@ -673,6 +612,18 @@
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/RailsTestOutputParser"
   ],
+  "Blast/Project/Component": [
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/BlastComponentLayoutGenerator",
+    "Hexagon/BlastProjectLayoutsGenerator",
+    "Hexagon/ComponentBitmapRenderCreator",
+    "Hexagon/ComponentRelationsNavigator/ComponentRelations",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/Testing/ComponentTestRunner"
+  ],
   "std/vector<Hexagon/Layout>": [
     "Hexagon/BlastComponentLayoutGenerator",
     "Hexagon/BlastProjectLayoutsGenerator",
@@ -742,6 +693,24 @@
   ],
   "Hexagon/BuildSystem/Build": [
     "Hexagon/BuildSystem/BuildRepository"
+  ],
+  "Blast/ShellCommandExecutorWithCallback": [
+    "Hexagon/BuildSystem/Controller",
+    "Hexagon/Git/CommitStagedWithMessage",
+    "Hexagon/Git/Modified",
+    "Hexagon/Git/Pusher",
+    "Hexagon/Git/StageEverything",
+    "Hexagon/Git/Staged",
+    "Hexagon/Git/Untracked",
+    "Hexagon/NewComponentMaker/NewComponentMaker",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/PasteboardData",
+    "Hexagon/Rails/ComponentLister",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/Search/Elasticsearch/HealthChecker",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/Testing/ComponentTestRunner"
   ],
   "vec3d": [
     "Hexagon/Camera"
@@ -900,6 +869,15 @@
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/ProjectFactory",
     "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent"
+  ],
+  "Blast/FileExistenceChecker": [
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/ProjectFactory",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CreateThreeSplitFromComponent"
   ],
   "Hexagon/Elements/ListMenu": [
@@ -1349,6 +1327,9 @@
     "Hexagon/System/Renderer"
   ],
   "debugging": [
+    "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "std/pair<std/string, std/string>": [

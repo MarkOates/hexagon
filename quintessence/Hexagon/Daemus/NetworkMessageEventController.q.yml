@@ -2,7 +2,7 @@ properties:
 
 
   - name: daemus
-    type: Blast::Daemus::Daemus*
+    type: Hexagon::Daemus::Daemus*
     init_with: nullptr
 
 
@@ -24,7 +24,7 @@ functions:
 dependencies:
 
 
-  - symbol: Blast::Daemus::Daemus*
-    headers: [ Blast/Daemus/Daemus.hpp ]
+  - symbol: Hexagon::Daemus::Daemus*
+    headers: [ Hexagon/Daemus/Daemus.hpp ]
 
 

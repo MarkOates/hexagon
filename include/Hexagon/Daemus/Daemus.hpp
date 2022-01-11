@@ -7,7 +7,7 @@
 #include <vector>
 
 
-namespace Blast
+namespace Hexagon
 {
    namespace Daemus
    {

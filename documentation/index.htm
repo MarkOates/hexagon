@@ -50,9 +50,6 @@ table td
 <h1>TOC</h1>
 <ul>
   <li><a href="#quintessence/ApplicationController.q.yml">quintessence/ApplicationController.q.yml</a></li>
-  <li><a href="#quintessence/Blast/Daemus/Daemus.q.yml">quintessence/Blast/Daemus/Daemus.q.yml</a></li>
-  <li><a href="#quintessence/Blast/Daemus/NetworkMessageEventController.q.yml">quintessence/Blast/Daemus/NetworkMessageEventController.q.yml</a></li>
-  <li><a href="#quintessence/Blast/Daemus/ProgramRunner.q.yml">quintessence/Blast/Daemus/ProgramRunner.q.yml</a></li>
   <li><a href="#quintessence/Blast/String/Trimmer.q.yml">quintessence/Blast/String/Trimmer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.q.yml">quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Cursor.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Cursor.q.yml</a></li>
@@ -311,133 +308,6 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;all&quot;, &quot;headers&quot;=&gt;[&quot;iostream&quot;, &quot;sstream&quot;, &quot;algorithm&quot;, &quot;allegro5/allegro.h&quot;, &quot;allegro5/allegro_ttf.h&quot;, &quot;allegro5/allegro_font.h&quot;, &quot;allegro5/allegro_color.h&quot;, &quot;allegro5/allegro_primitives.h&quot;, &quot;allegro5/allegro_image.h&quot;, &quot;allegro_flare/placement2d.h&quot;, &quot;allegro_flare/placement3d.h&quot;, &quot;allegro_flare/useful_php.h&quot;, &quot;allegro_flare/render_cache.h&quot;, &quot;Blast/StringSplitter.hpp&quot;, &quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;, &quot;AllegroFlare/Config.hpp&quot;, &quot;Hexagon/System/Action/DestroyAllCodeEditorStages.hpp&quot;, &quot;Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp&quot;, &quot;Hexagon/System/Action/CreateThreeSplitFromComponent.hpp&quot;, &quot;Hexagon/Logo.hpp&quot;, &quot;Hexagon/RegexMatcher.hpp&quot;, &quot;Hexagon/shared_globals.hpp&quot;, &quot;Hexagon/util.hpp&quot;, &quot;Hexagon/ClipboardData.hpp&quot;, &quot;Hexagon/ActionData.hpp&quot;, &quot;Hexagon/Action.hpp&quot;, &quot;Hexagon/ActionQueueRecording.hpp&quot;, &quot;Hexagon/CodePoint.hpp&quot;, &quot;Hexagon/CodeRange.hpp&quot;, &quot;Hexagon/RailsMinitestTestResult.hpp&quot;, &quot;Hexagon/RailsTestOutputParser.hpp&quot;, &quot;Hexagon/RailsMinitestTestRunner.hpp&quot;, &quot;Hexagon/CppCompiler/CompileRunner.hpp&quot;, &quot;Hexagon/FullScreenOverlay/Stage.hpp&quot;, &quot;Hexagon/StageInterface.hpp&quot;, &quot;Hexagon/KeyboardInputsModal/Stage.hpp&quot;, &quot;Hexagon/EventControllerInterface.hpp&quot;, &quot;Hexagon/CodeEditor/EventController.hpp&quot;, &quot;Hexagon/CodeEditor/CodeEditor.hpp&quot;, &quot;Hexagon/FileSystemNode.hpp&quot;, &quot;Hexagon/FileNavigator/Stage.hpp&quot;, &quot;Hexagon/LayoutPlacements.hpp&quot;, &quot;NcursesArt/ProjectComponentBasenameExtractor.hpp&quot;, &quot;NcursesArt/ProjectFilenameGenerator.hpp&quot;, &quot;Hexagon/System/Renderer.hpp&quot;, &quot;Hexagon/System/System.hpp&quot;]}</td>
-</tr>
-    </table>
-  </div>
-</ul>
-<ul>
-  <div class="component">
-    <h3 id="quintessence/Blast/Daemus/Daemus.q.yml">quintessence/Blast/Daemus/Daemus.q.yml</h3>
-     <table>
-<tr>
-  <td class="property">quintessence_build_executable</td>
-  <td class="property">std::string</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="method">run_full_rebuild()</td>
-</tr>
-<tr>
-  <td class="method">run_simple_echo_command()</td>
-</tr>
-<tr>
-  <td class="method">run_simple_sleep_command()</td>
-</tr>
-<tr>
-  <td class="method">run_component_test(1)</td>
-</tr>
-<tr>
-  <td class="method">run_build_quintessence_file(2)</td>
-</tr>
-<tr>
-  <td class="method">output_pid()</td>
-</tr>
-<tr>
-  <td class="private_method">execute_command(2)</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;getpid&quot;, &quot;headers&quot;=&gt;[&quot;unistd.h&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::DirectoryExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/DirectoryExistenceChecker.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::FileExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/FileExistenceChecker.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::Project::Component&quot;, &quot;headers&quot;=&gt;[&quot;Blast/Project/Component.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Testing::GoogleTestRunOutputParser&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Testing/GoogleTestRunOutputParser.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::Testing::GoogleTestRunTestResult&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/Testing/GoogleTestRunTestResult.hpp&quot;]}</td>
-</tr>
-    </table>
-  </div>
-</ul>
-<ul>
-  <div class="component">
-    <h3 id="quintessence/Blast/Daemus/NetworkMessageEventController.q.yml">quintessence/Blast/Daemus/NetworkMessageEventController.q.yml</h3>
-     <table>
-<tr>
-  <td class="property">daemus</td>
-  <td class="property">Blast::Daemus::Daemus*</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="method">process_message(1)</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::Daemus::Daemus*&quot;, &quot;headers&quot;=&gt;[&quot;Blast/Daemus/Daemus.hpp&quot;]}</td>
-</tr>
-    </table>
-  </div>
-</ul>
-<ul>
-  <div class="component">
-    <h3 id="quintessence/Blast/Daemus/ProgramRunner.q.yml">quintessence/Blast/Daemus/ProgramRunner.q.yml</h3>
-     <table>
-<tr>
-  <td class="property">daemus_build_file_directory</td>
-  <td class="property">std::string</td>
-</tr>
-<tr>
-  <td class="property">daemus_build_filename</td>
-  <td class="property">std::string</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="method">run()</td>
-</tr>
-<tr>
-  <td class="method">run_in_holding_pattern()</td>
-</tr>
-<tr>
-  <td class="method">run_once(1)</td>
-</tr>
-<tr>
-  <td class="method">cd_to_project_directory_and_run_with_rerun(1)</td>
-</tr>
-<tr>
-  <td class="method">watch_for_buildfile(1)</td>
-</tr>
-<tr>
-  <td class="method">run_with_rerun(1)</td>
-</tr>
-<tr>
-  <td class="private_method">execute_command(1)</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::Config&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/Config.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::Config*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/Config.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9382,8 +9252,6 @@ table td
 {
   "Hexagon/System/Config": [
     "ApplicationController",
-    "Blast/Daemus/ProgramRunner",
-    "Blast/Daemus/ProgramRunner",
     "Hexagon/Hud",
     "Hexagon/StageFactory",
     "Testing/WithStageFactoryFixture"
@@ -9458,65 +9326,6 @@ table td
   "all": [
     "ApplicationController",
     "Hexagon/CodeEditor/CachedLineRenderer"
-  ],
-  "getpid": [
-    "Blast/Daemus/Daemus"
-  ],
-  "Blast/ShellCommandExecutorWithCallback": [
-    "Blast/Daemus/Daemus",
-    "Blast/Daemus/ProgramRunner",
-    "Hexagon/BuildSystem/Controller",
-    "Hexagon/Git/CommitStagedWithMessage",
-    "Hexagon/Git/Modified",
-    "Hexagon/Git/Pusher",
-    "Hexagon/Git/StageEverything",
-    "Hexagon/Git/Staged",
-    "Hexagon/Git/Untracked",
-    "Hexagon/NewComponentMaker/NewComponentMaker",
-    "Hexagon/NewComponentMaker/Stage",
-    "Hexagon/PasteboardData",
-    "Hexagon/Rails/ComponentLister",
-    "Hexagon/Search/ComponentElasticsearchIndexer",
-    "Hexagon/Search/Elasticsearch/HealthChecker",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/OpenDocumentationInBrowser",
-    "Hexagon/Testing/ComponentTestRunner"
-  ],
-  "Blast/DirectoryExistenceChecker": [
-    "Blast/Daemus/Daemus"
-  ],
-  "Blast/FileExistenceChecker": [
-    "Blast/Daemus/Daemus",
-    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
-    "Hexagon/Elements/FilePixelPreviewCreator",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/ProjectFactory",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent"
-  ],
-  "Blast/Project/Component": [
-    "Blast/Daemus/Daemus",
-    "Hexagon/AdvancedComponentNavigator/Stage",
-    "Hexagon/BlastComponentLayoutGenerator",
-    "Hexagon/BlastProjectLayoutsGenerator",
-    "Hexagon/ComponentBitmapRenderCreator",
-    "Hexagon/ComponentRelationsNavigator/ComponentRelations",
-    "Hexagon/ProjectComponentNavigator/Stage",
-    "Hexagon/Search/ComponentElasticsearchIndexer",
-    "Hexagon/StageFactory",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "Hexagon/Testing/ComponentTestRunner"
-  ],
-  "Hexagon/Testing/GoogleTestRunOutputParser": [
-    "Blast/Daemus/Daemus"
-  ],
-  "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
-    "Blast/Daemus/Daemus",
-    "Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "Blast/Daemus/Daemus": [
-    "Blast/Daemus/NetworkMessageEventController"
   ],
   "std/find_if": [
     "Blast/String/Trimmer"
@@ -10054,6 +9863,18 @@ table td
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/RailsTestOutputParser"
   ],
+  "Blast/Project/Component": [
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/BlastComponentLayoutGenerator",
+    "Hexagon/BlastProjectLayoutsGenerator",
+    "Hexagon/ComponentBitmapRenderCreator",
+    "Hexagon/ComponentRelationsNavigator/ComponentRelations",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/Testing/ComponentTestRunner"
+  ],
   "std/vector<Hexagon/Layout>": [
     "Hexagon/BlastComponentLayoutGenerator",
     "Hexagon/BlastProjectLayoutsGenerator",
@@ -10123,6 +9944,24 @@ table td
   ],
   "Hexagon/BuildSystem/Build": [
     "Hexagon/BuildSystem/BuildRepository"
+  ],
+  "Blast/ShellCommandExecutorWithCallback": [
+    "Hexagon/BuildSystem/Controller",
+    "Hexagon/Git/CommitStagedWithMessage",
+    "Hexagon/Git/Modified",
+    "Hexagon/Git/Pusher",
+    "Hexagon/Git/StageEverything",
+    "Hexagon/Git/Staged",
+    "Hexagon/Git/Untracked",
+    "Hexagon/NewComponentMaker/NewComponentMaker",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/PasteboardData",
+    "Hexagon/Rails/ComponentLister",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/Search/Elasticsearch/HealthChecker",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/Testing/ComponentTestRunner"
   ],
   "vec3d": [
     "Hexagon/Camera"
@@ -10281,6 +10120,15 @@ table td
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/ProjectFactory",
     "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent"
+  ],
+  "Blast/FileExistenceChecker": [
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/ProjectFactory",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CreateThreeSplitFromComponent"
   ],
   "Hexagon/Elements/ListMenu": [
@@ -10730,6 +10578,9 @@ table td
     "Hexagon/System/Renderer"
   ],
   "debugging": [
+    "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "std/pair<std/string, std/string>": [

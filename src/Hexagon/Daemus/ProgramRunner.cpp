@@ -1,6 +1,6 @@
 
 
-#include <Blast/Daemus/ProgramRunner.hpp>
+#include <Hexagon/Daemus/ProgramRunner.hpp>
 #include <sstream>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/Config.hpp>
@@ -12,7 +12,7 @@
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
-namespace Blast
+namespace Hexagon
 {
 namespace Daemus
 {
@@ -158,6 +158,6 @@ std::string ProgramRunner::execute_command(std::string command)
    return shell_command_executor.execute();
 }
 } // namespace Daemus
-} // namespace Blast
+} // namespace Hexagon
 
 

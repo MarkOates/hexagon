@@ -1,18 +1,18 @@
 #pragma once
 
 
-#include <Blast/Daemus/Daemus.hpp>
+#include <Hexagon/Daemus/Daemus.hpp>
 #include <string>
 
 
-namespace Blast
+namespace Hexagon
 {
    namespace Daemus
    {
       class NetworkMessageEventController
       {
       private:
-         Blast::Daemus::Daemus* daemus;
+         Hexagon::Daemus::Daemus* daemus;
 
       public:
          NetworkMessageEventController();
