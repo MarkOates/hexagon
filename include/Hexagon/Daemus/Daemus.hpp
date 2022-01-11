@@ -23,6 +23,8 @@ namespace Hexagon
          Daemus(std::string quintessence_build_executable="/Users/markoates/Repos/blast/bin/programs/quintessence_from_yaml");
          ~Daemus();
 
+         Hexagon::Daemus::Builds::Base* get_current_build();
+         std::vector<Hexagon::Daemus::Builds::Base*> &get_builds_ref();
          void run_full_rebuild();
          void run_simple_echo_command();
          void run_simple_sleep_command();

@@ -18,6 +18,7 @@ namespace Hexagon
          ~Stage();
 
          void render();
+         void render_builds_list();
       };
    }
 }

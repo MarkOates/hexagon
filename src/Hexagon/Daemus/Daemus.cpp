@@ -32,6 +32,18 @@ Daemus::~Daemus()
 }
 
 
+Hexagon::Daemus::Builds::Base* Daemus::get_current_build()
+{
+   return current_build;
+}
+
+
+std::vector<Hexagon::Daemus::Builds::Base*> &Daemus::get_builds_ref()
+{
+   return builds;
+}
+
+
 void Daemus::run_full_rebuild()
 {
    std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";

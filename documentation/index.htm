@@ -88,7 +88,6 @@ table td
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml</a></li>
-  <li><a href="#quintessence/Hexagon/Daemus/Build.q.yml">quintessence/Hexagon/Daemus/Build.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Daemus/Builds/Base.q.yml">quintessence/Hexagon/Daemus/Builds/Base.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Daemus/Builds/ExtrapolateQuintessence.q.yml">quintessence/Hexagon/Daemus/Builds/ExtrapolateQuintessence.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Daemus/Daemus.q.yml">quintessence/Hexagon/Daemus/Daemus.q.yml</a></li>
@@ -2880,30 +2879,20 @@ table td
 </ul>
 <ul>
   <div class="component">
-    <h3 id="quintessence/Hexagon/Daemus/Build.q.yml">quintessence/Hexagon/Daemus/Build.q.yml</h3>
-     <table>
-    </table>
-     <table>
-<tr>
-  <td class="method">run()</td>
-</tr>
-    </table>
-     <table>
-    </table>
-  </div>
-</ul>
-<ul>
-  <div class="component">
     <h3 id="quintessence/Hexagon/Daemus/Builds/Base.q.yml">quintessence/Hexagon/Daemus/Builds/Base.q.yml</h3>
      <table>
 <tr>
   <td class="property">type</td>
   <td class="property">std::string</td>
 </tr>
+<tr>
+  <td class="property">status</td>
+  <td class="property">std::string</td>
+</tr>
     </table>
      <table>
 <tr>
-  <td class="method">run()</td>
+  <td class="method">initiate()</td>
 </tr>
     </table>
      <table>
@@ -2917,7 +2906,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">run()</td>
+  <td class="method">initiate()</td>
 </tr>
     </table>
      <table>
@@ -3081,8 +3070,14 @@ table td
 <tr>
   <td class="method">render()</td>
 </tr>
+<tr>
+  <td class="method">render_builds_list()</td>
+</tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::Daemus::Builds::Base*&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/Daemus/Builds/Base.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Daemus::Daemus&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Daemus/Daemus.hpp&quot;]}</td>
 </tr>
@@ -10374,7 +10369,8 @@ table td
     "Hexagon/Daemus/Daemus"
   ],
   "std/vector<Hexagon/Daemus/Builds/Base>": [
-    "Hexagon/Daemus/Daemus"
+    "Hexagon/Daemus/Daemus",
+    "Hexagon/Daemus/Stage"
   ],
   "getpid": [
     "Hexagon/Daemus/Daemus"

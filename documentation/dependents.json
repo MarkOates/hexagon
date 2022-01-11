@@ -905,7 +905,8 @@
     "Hexagon/Daemus/Daemus"
   ],
   "std/vector<Hexagon/Daemus/Builds/Base>": [
-    "Hexagon/Daemus/Daemus"
+    "Hexagon/Daemus/Daemus",
+    "Hexagon/Daemus/Stage"
   ],
   "getpid": [
     "Hexagon/Daemus/Daemus"

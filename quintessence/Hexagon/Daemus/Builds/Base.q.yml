@@ -7,10 +7,18 @@ properties:
     constructor_arg: true
     getter: true
 
+  - name: status
+    type: std::string
+    init_with: '"uninitialized"'
+    getter: true
+
 
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: initiate
+    type: void
+    virtual: true
+    body: |
+      return;
+

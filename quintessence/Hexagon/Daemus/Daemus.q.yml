@@ -9,10 +9,12 @@ properties:
   - name: current_build
     type: Hexagon::Daemus::Builds::Base*
     init_with: nullptr
+    getter: true
 
   - name: builds
     type: std::vector<Hexagon::Daemus::Builds::Base*>
     init_with: '{}'
+    getter_ref: true
 
 
 functions:

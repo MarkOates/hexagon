@@ -9,9 +9,12 @@ parent_classes:
 functions:
 
 
-  - name: run
-    type: std::string
-    body: return "Hello World!";
+  - name: initiate
+    virtual: true
+    override: true
+    body: |
+      // TODO: write a bulid_file (or otherwise send whatever message) that the rerun terminal daemus is watching for
+      return;
 
 
 dependencies:

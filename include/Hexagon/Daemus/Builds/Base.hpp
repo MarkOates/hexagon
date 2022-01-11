@@ -14,13 +14,15 @@ namespace Hexagon
          {
          private:
             std::string type;
+            std::string status;
 
          public:
             Base(std::string type="Base");
-            ~Base();
+            virtual ~Base();
 
             std::string get_type();
-            std::string run();
+            std::string get_status();
+            virtual void initiate();
          };
       }
    }

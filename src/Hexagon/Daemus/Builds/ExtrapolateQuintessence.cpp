@@ -23,9 +23,10 @@ ExtrapolateQuintessence::~ExtrapolateQuintessence()
 }
 
 
-std::string ExtrapolateQuintessence::run()
+void ExtrapolateQuintessence::initiate()
 {
-   return "Hello World!";
+   // TODO: write a bulid_file (or otherwise send whatever message) that the rerun terminal daemus is watching for
+   return;
 }
 } // namespace Builds
 } // namespace Daemus

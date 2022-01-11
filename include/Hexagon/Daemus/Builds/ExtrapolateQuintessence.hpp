@@ -2,7 +2,6 @@
 
 
 #include <Hexagon/Daemus/Builds/Base.hpp>
-#include <string>
 
 
 namespace Hexagon
@@ -17,9 +16,9 @@ namespace Hexagon
 
          public:
             ExtrapolateQuintessence();
-            ~ExtrapolateQuintessence();
+            virtual ~ExtrapolateQuintessence();
 
-            std::string run();
+            virtual void initiate() override;
          };
       }
    }

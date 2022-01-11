@@ -14,6 +14,7 @@ namespace Builds
 
 Base::Base(std::string type)
    : type(type)
+   , status("uninitialized")
 {
 }
 
@@ -29,9 +30,15 @@ std::string Base::get_type()
 }
 
 
-std::string Base::run()
+std::string Base::get_status()
 {
-   return "Hello World!";
+   return status;
+}
+
+
+void Base::initiate()
+{
+   return;
 }
 } // namespace Builds
 } // namespace Daemus
