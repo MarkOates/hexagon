@@ -27,21 +27,6 @@ functions:
       return result;
 
 
-  - name: run_full_rebuild
-    type: void
-    body: |
-      std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
-      execute_command(full_rebuild_command);
-
-
-  - name: run_simple_echo_command
-    body: execute_command("printf \"hello\"");
-
-
-  - name: run_simple_sleep_command
-    body: execute_command("echo \"sleeping\"; sleep 0.5; echo \"done\"");
-
-
   - name: run_component_test
     type: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
     parameters:

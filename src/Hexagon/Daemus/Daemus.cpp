@@ -50,22 +50,6 @@ Hexagon::Daemus::Builds::ExtrapolateQuintessence* Daemus::create_extrapolate_qui
    return result;
 }
 
-void Daemus::run_full_rebuild()
-{
-   std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
-   execute_command(full_rebuild_command);
-}
-
-void Daemus::run_simple_echo_command()
-{
-   execute_command("printf \"hello\"");
-}
-
-void Daemus::run_simple_sleep_command()
-{
-   execute_command("echo \"sleeping\"; sleep 0.5; echo \"done\"");
-}
-
 std::vector<Hexagon::Testing::GoogleTestRunTestResult> Daemus::run_component_test(Blast::Project::Component component)
 {
    std::string name = component.get_name();

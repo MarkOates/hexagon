@@ -13,30 +13,6 @@ TEST(Hexagon_Daemus_DaemusTest, can_be_created_without_blowing_up)
    Hexagon::Daemus::Daemus daemus;
 }
 
-TEST(Hexagon_Daemus_DaemusTest, run_simple_echo_command__will_run_the_command)
-{
-   Hexagon::Daemus::Daemus daemus;
-
-   testing::internal::CaptureStdout();
-   daemus.run_simple_echo_command();
-   std::string captured_cout_output = testing::internal::GetCapturedStdout();
-
-   std::string expected_captured_cout_output = "hello";
-   EXPECT_EQ(expected_captured_cout_output, captured_cout_output);
-}
-
-TEST(Hexagon_Daemus_DaemusTest, run_simple_sleep_command__will_run_the_command)
-{
-   Hexagon::Daemus::Daemus daemus;
-
-   testing::internal::CaptureStdout();
-   daemus.run_simple_sleep_command();
-   std::string captured_cout_output = testing::internal::GetCapturedStdout();
-
-   std::string expected_captured_cout_output = "sleeping\ndone\n";
-   EXPECT_EQ(expected_captured_cout_output, captured_cout_output);
-}
-
 TEST(Hexagon_Daemus_DaemusTest, run_component_test__runs_the_test_executable_for_the_component)
    // TODO not a very complete test
 {

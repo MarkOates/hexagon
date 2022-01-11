@@ -2981,15 +2981,6 @@ table td
   <td class="method">create_extrapolate_quintessence_build()</td>
 </tr>
 <tr>
-  <td class="method">run_full_rebuild()</td>
-</tr>
-<tr>
-  <td class="method">run_simple_echo_command()</td>
-</tr>
-<tr>
-  <td class="method">run_simple_sleep_command()</td>
-</tr>
-<tr>
   <td class="method">run_component_test(1)</td>
 </tr>
 <tr>
@@ -3062,6 +3053,10 @@ table td
     <h3 id="quintessence/Hexagon/Daemus/ProgramRunner.q.yml">quintessence/Hexagon/Daemus/ProgramRunner.q.yml</h3>
      <table>
 <tr>
+  <td class="property">quintessence_build_executable</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
   <td class="property">daemus_build_file_directory</td>
   <td class="property">std::string</td>
 </tr>
@@ -3075,7 +3070,16 @@ table td
   <td class="method">run()</td>
 </tr>
 <tr>
+  <td class="method">run_full_rebuild()</td>
+</tr>
+<tr>
   <td class="method">run_in_holding_pattern()</td>
+</tr>
+<tr>
+  <td class="method">run_simple_echo_command()</td>
+</tr>
+<tr>
+  <td class="method">run_simple_sleep_command()</td>
 </tr>
 <tr>
   <td class="method">run_once(1)</td>
@@ -3092,8 +3096,38 @@ table td
 <tr>
   <td class="private_method">execute_command(1)</td>
 </tr>
+<tr>
+  <td class="method">run_component_test(1)</td>
+</tr>
+<tr>
+  <td class="method">run_build_quintessence_file(2)</td>
+</tr>
+<tr>
+  <td class="method">output_pid()</td>
+</tr>
+<tr>
+  <td class="private_method">__execute_command(2)</td>
+</tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::Project::Component&quot;, &quot;headers&quot;=&gt;[&quot;Blast/Project/Component.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;getpid&quot;, &quot;headers&quot;=&gt;[&quot;unistd.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::FileExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/FileExistenceChecker.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::DirectoryExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/DirectoryExistenceChecker.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Testing::GoogleTestRunOutputParser&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Testing/GoogleTestRunOutputParser.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::Testing::GoogleTestRunTestResult&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/Testing/GoogleTestRunTestResult.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
 </tr>
@@ -10134,6 +10168,7 @@ table td
     "Hexagon/ComponentBitmapRenderCreator",
     "Hexagon/ComponentRelationsNavigator/ComponentRelations",
     "Hexagon/Daemus/Daemus",
+    "Hexagon/Daemus/ProgramRunner",
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/Search/ComponentElasticsearchIndexer",
     "Hexagon/StageFactory",
@@ -10392,6 +10427,7 @@ table td
   "Blast/FileExistenceChecker": [
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Daemus/Daemus",
+    "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/ProjectFactory",
@@ -10437,16 +10473,20 @@ table td
     "Hexagon/Daemus/Stage"
   ],
   "getpid": [
-    "Hexagon/Daemus/Daemus"
+    "Hexagon/Daemus/Daemus",
+    "Hexagon/Daemus/ProgramRunner"
   ],
   "Blast/DirectoryExistenceChecker": [
-    "Hexagon/Daemus/Daemus"
+    "Hexagon/Daemus/Daemus",
+    "Hexagon/Daemus/ProgramRunner"
   ],
   "Hexagon/Testing/GoogleTestRunOutputParser": [
-    "Hexagon/Daemus/Daemus"
+    "Hexagon/Daemus/Daemus",
+    "Hexagon/Daemus/ProgramRunner"
   ],
   "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
     "Hexagon/Daemus/Daemus",
+    "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "Hexagon/Daemus/Daemus": [
