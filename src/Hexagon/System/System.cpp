@@ -153,7 +153,6 @@ void System::initialize()
    hud.set_stages(&stages);
    hud.set_global_font_str(get_global_font_str());
    hud.set_render_packets(true);
-   std::cout << "hud_render_focus_timer_bar = " << config.get_hud_render_focus_timer_bar() << std::endl;
    hud.set_render_focus_timer_bar(config.get_hud_render_focus_timer_bar());
    hud.initialize();
 
