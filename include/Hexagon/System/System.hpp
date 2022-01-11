@@ -33,7 +33,6 @@ private:
    float mouse_y;
    bool drawing_mouse_cursor;
 
-public:
    ALLEGRO_DISPLAY *display;
    Hexagon::System::Config &config;
    Motion &motion;
@@ -57,6 +56,8 @@ public:
    AllegroFlare::FontBin font_bin;
    Hexagon::Hud hud;
 
+public:
+
    System(ALLEGRO_DISPLAY *display=nullptr,
           Hexagon::System::Config &config = System::dummy_config,
           Motion &motion = System::dummy_motion);
@@ -69,6 +70,10 @@ public:
    float get_default_code_editor_stage_height();
    std::string get_current_project_directory();
    std::string get_global_font_str();
+   void set_option__saving_focused_filename_to_file_is_disabled(bool option=false);
+   Hexagon::Camera &get_camera_ref();
+   std::vector<StageInterface *> &get_stages_ref();
+   Hexagon::Hud &get_hud_ref();
 
    void set_focused_component_name(std::string focused_component_name);
    std::string get_focused_component_name();

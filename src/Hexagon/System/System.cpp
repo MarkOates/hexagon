@@ -420,6 +420,31 @@ bool System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending
 }
 
 
+void System::set_option__saving_focused_filename_to_file_is_disabled(bool option)
+{
+   this->option__saving_focused_filename_to_file_is_disabled = option;
+}
+
+
+Hexagon::Camera &System::get_camera_ref()
+{
+   return camera;
+}
+
+
+std::vector<StageInterface *> &System::get_stages_ref()
+{
+   return stages;
+}
+
+
+Hexagon::Hud &System::get_hud_ref()
+{
+   return hud;
+}
+
+
+
 bool System::write_focused_component_name_to_file()
 {
    if (option__saving_focused_filename_to_file_is_disabled)

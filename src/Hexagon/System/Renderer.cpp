@@ -62,12 +62,12 @@ bool Renderer::render()
       }
    al_clear_to_color(*get_backfill_color());
 
-   system->camera.setup_camera_perspective(al_get_backbuffer(display));
+   system->get_camera_ref().setup_camera_perspective(al_get_backbuffer(display));
    al_clear_depth_buffer(1000);
 
    global::profiler.start("all stages");
 
-   for (auto &stage : system->stages)
+   for (auto &stage : system->get_stages_ref())
    {
       if (stage->get_render_on_hud())
       {
@@ -94,7 +94,7 @@ bool Renderer::render()
    }
    global::profiler.pause("all stages");
 
-   system->hud.draw();
+   system->get_hud_ref().draw();
 
    return true;
 }
