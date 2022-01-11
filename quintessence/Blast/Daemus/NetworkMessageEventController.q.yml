@@ -1,8 +1,14 @@
 properties:
+
+
   - name: daemus
     type: Blast::Daemus::Daemus*
     init_with: nullptr
+
+
 functions:
+
+
   - name: process_message
     type: bool
     parameters:
@@ -11,10 +17,14 @@ functions:
         default_argument: "\"\""
     body: |
       bool message_captured = false;
-
       if (message == "TO_DAEMUS: OUTPUT_PID") { daemus->output_pid(); message_captured = true; }
-
       return message_captured;
+
+
 dependencies:
+
+
   - symbol: Blast::Daemus::Daemus*
     headers: [ Blast/Daemus/Daemus.hpp ]
+
+
