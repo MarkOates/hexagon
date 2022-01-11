@@ -1,0 +1,23 @@
+parent_classes:
+
+
+  - class: 'Hexagon::Daemus::Builds::Base'
+    scope: public
+    init_with: '"ExtrapolateQuintessence"'
+
+
+functions:
+
+
+  - name: run
+    type: std::string
+    body: return "Hello World!";
+
+
+dependencies:
+
+
+  - symbol: Hexagon::Daemus::Builds::Base
+    headers: [ Hexagon/Daemus/Builds/Base.hpp ]
+
+

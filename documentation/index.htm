@@ -88,6 +88,13 @@ table td
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Daemus/Build.q.yml">quintessence/Hexagon/Daemus/Build.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Daemus/Builds/Base.q.yml">quintessence/Hexagon/Daemus/Builds/Base.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Daemus/Builds/ExtrapolateQuintessence.q.yml">quintessence/Hexagon/Daemus/Builds/ExtrapolateQuintessence.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Daemus/Daemus.q.yml">quintessence/Hexagon/Daemus/Daemus.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Daemus/NetworkMessageEventController.q.yml">quintessence/Hexagon/Daemus/NetworkMessageEventController.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Daemus/ProgramRunner.q.yml">quintessence/Hexagon/Daemus/ProgramRunner.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Daemus/Stage.q.yml">quintessence/Hexagon/Daemus/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/DirtyGrid.q.yml">quintessence/Hexagon/DirtyGrid.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml">quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/BitmapGridMesh.q.yml">quintessence/Hexagon/Elements/BitmapGridMesh.q.yml</a></li>
@@ -2867,6 +2874,217 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement3d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement3d.h&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Daemus/Build.q.yml">quintessence/Hexagon/Daemus/Build.q.yml</h3>
+     <table>
+    </table>
+     <table>
+<tr>
+  <td class="method">run()</td>
+</tr>
+    </table>
+     <table>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Daemus/Builds/Base.q.yml">quintessence/Hexagon/Daemus/Builds/Base.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">type</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">run()</td>
+</tr>
+    </table>
+     <table>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Daemus/Builds/ExtrapolateQuintessence.q.yml">quintessence/Hexagon/Daemus/Builds/ExtrapolateQuintessence.q.yml</h3>
+     <table>
+    </table>
+     <table>
+<tr>
+  <td class="method">run()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Daemus::Builds::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Daemus/Builds/Base.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Daemus/Daemus.q.yml">quintessence/Hexagon/Daemus/Daemus.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">quintessence_build_executable</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">current_build</td>
+  <td class="property">Hexagon::Daemus::Builds::Base*</td>
+</tr>
+<tr>
+  <td class="property">builds</td>
+  <td class="property">std::vector&lt;Hexagon::Daemus::Builds::Base*&gt;</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">run_full_rebuild()</td>
+</tr>
+<tr>
+  <td class="method">run_simple_echo_command()</td>
+</tr>
+<tr>
+  <td class="method">run_simple_sleep_command()</td>
+</tr>
+<tr>
+  <td class="method">run_component_test(1)</td>
+</tr>
+<tr>
+  <td class="method">run_build_quintessence_file(2)</td>
+</tr>
+<tr>
+  <td class="method">output_pid()</td>
+</tr>
+<tr>
+  <td class="private_method">execute_command(2)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Daemus::Builds::Base*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Daemus/Builds/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::Daemus::Builds::Base*&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/Daemus/Builds/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;getpid&quot;, &quot;headers&quot;=&gt;[&quot;unistd.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::DirectoryExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/DirectoryExistenceChecker.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::FileExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/FileExistenceChecker.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::Project::Component&quot;, &quot;headers&quot;=&gt;[&quot;Blast/Project/Component.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Testing::GoogleTestRunOutputParser&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Testing/GoogleTestRunOutputParser.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::Testing::GoogleTestRunTestResult&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/Testing/GoogleTestRunTestResult.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Daemus/NetworkMessageEventController.q.yml">quintessence/Hexagon/Daemus/NetworkMessageEventController.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">daemus</td>
+  <td class="property">Hexagon::Daemus::Daemus*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">process_message(1)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Daemus::Daemus*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Daemus/Daemus.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Daemus/ProgramRunner.q.yml">quintessence/Hexagon/Daemus/ProgramRunner.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">daemus_build_file_directory</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">daemus_build_filename</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">run()</td>
+</tr>
+<tr>
+  <td class="method">run_in_holding_pattern()</td>
+</tr>
+<tr>
+  <td class="method">run_once(1)</td>
+</tr>
+<tr>
+  <td class="method">cd_to_project_directory_and_run_with_rerun(1)</td>
+</tr>
+<tr>
+  <td class="method">watch_for_buildfile(1)</td>
+</tr>
+<tr>
+  <td class="method">run_with_rerun(1)</td>
+</tr>
+<tr>
+  <td class="private_method">execute_command(1)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::Config&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/Config.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::Config*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/Config.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Daemus/Stage.q.yml">quintessence/Hexagon/Daemus/Stage.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">daemus</td>
+  <td class="property">Hexagon::Daemus::Daemus</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">render()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Daemus::Daemus&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Daemus/Daemus.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9252,6 +9470,8 @@ table td
 {
   "Hexagon/System/Config": [
     "ApplicationController",
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Hud",
     "Hexagon/StageFactory",
     "Testing/WithStageFactoryFixture"
@@ -9869,6 +10089,7 @@ table td
     "Hexagon/BlastProjectLayoutsGenerator",
     "Hexagon/ComponentBitmapRenderCreator",
     "Hexagon/ComponentRelationsNavigator/ComponentRelations",
+    "Hexagon/Daemus/Daemus",
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/Search/ComponentElasticsearchIndexer",
     "Hexagon/StageFactory",
@@ -9947,6 +10168,8 @@ table td
   ],
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/Controller",
+    "Hexagon/Daemus/Daemus",
+    "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Git/CommitStagedWithMessage",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Pusher",
@@ -10124,6 +10347,7 @@ table td
   ],
   "Blast/FileExistenceChecker": [
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Daemus/Daemus",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/ProjectFactory",
@@ -10144,6 +10368,30 @@ table td
     "Hexagon/PacketRenderer",
     "Hexagon/StageFactory",
     "Hexagon/UI/LittleMenu"
+  ],
+  "Hexagon/Daemus/Builds/Base": [
+    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
+    "Hexagon/Daemus/Daemus"
+  ],
+  "std/vector<Hexagon/Daemus/Builds/Base>": [
+    "Hexagon/Daemus/Daemus"
+  ],
+  "getpid": [
+    "Hexagon/Daemus/Daemus"
+  ],
+  "Blast/DirectoryExistenceChecker": [
+    "Hexagon/Daemus/Daemus"
+  ],
+  "Hexagon/Testing/GoogleTestRunOutputParser": [
+    "Hexagon/Daemus/Daemus"
+  ],
+  "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
+    "Hexagon/Daemus/Daemus",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "Hexagon/Daemus/Daemus": [
+    "Hexagon/Daemus/NetworkMessageEventController",
+    "Hexagon/Daemus/Stage"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"
@@ -10578,9 +10826,6 @@ table td
     "Hexagon/System/Renderer"
   ],
   "debugging": [
-    "Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "std/pair<std/string, std/string>": [

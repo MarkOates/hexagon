@@ -2,6 +2,7 @@
 
 
 #include <Blast/Project/Component.hpp>
+#include <Hexagon/Daemus/Builds/Base.hpp>
 #include <Hexagon/Testing/GoogleTestRunTestResult.hpp>
 #include <string>
 #include <vector>
@@ -15,6 +16,8 @@ namespace Hexagon
       {
       private:
          std::string quintessence_build_executable;
+         Hexagon::Daemus::Builds::Base* current_build;
+         std::vector<Hexagon::Daemus::Builds::Base*> builds;
 
       public:
          Daemus(std::string quintessence_build_executable="/Users/markoates/Repos/blast/bin/programs/quintessence_from_yaml");

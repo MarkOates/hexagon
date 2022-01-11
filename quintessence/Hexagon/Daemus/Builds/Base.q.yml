@@ -1,0 +1,16 @@
+properties:
+
+
+  - name: type
+    type: std::string
+    init_with: '"Base"'
+    constructor_arg: true
+    getter: true
+
+
+functions:
+
+
+  - name: run
+    type: std::string
+    body: return "Hello World!";

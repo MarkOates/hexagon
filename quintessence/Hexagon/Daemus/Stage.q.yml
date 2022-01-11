@@ -1,0 +1,24 @@
+properties:
+
+
+  - name: daemus
+    type: Hexagon::Daemus::Daemus
+    init_with: ''
+
+
+functions:
+
+
+  - name: render
+    type: void
+    body: |
+      return;
+
+
+dependencies:
+
+
+  - symbol: Hexagon::Daemus::Daemus
+    headers: [ Hexagon/Daemus/Daemus.hpp ]
+    
+

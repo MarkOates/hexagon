@@ -6,6 +6,14 @@ properties:
     init_with: '"/Users/markoates/Repos/blast/bin/programs/quintessence_from_yaml"'
     constructor_arg: true
 
+  - name: current_build
+    type: Hexagon::Daemus::Builds::Base*
+    init_with: nullptr
+
+  - name: builds
+    type: std::vector<Hexagon::Daemus::Builds::Base*>
+    init_with: '{}'
+
 
 functions:
 
@@ -161,6 +169,10 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::Daemus::Builds::Base*
+    headers: [ Hexagon/Daemus/Builds/Base.hpp ]
+  - symbol: std::vector<Hexagon::Daemus::Builds::Base*>
+    headers: [ vector, Hexagon/Daemus/Builds/Base.hpp ]
   - symbol: getpid
     headers: [ unistd.h ]
   - symbol: Blast::ShellCommandExecutorWithCallback

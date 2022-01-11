@@ -21,6 +21,8 @@ namespace Daemus
 
 Daemus::Daemus(std::string quintessence_build_executable)
    : quintessence_build_executable(quintessence_build_executable)
+   , current_build(nullptr)
+   , builds({})
 {
 }
 

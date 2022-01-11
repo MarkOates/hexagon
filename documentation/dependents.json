@@ -1,6 +1,8 @@
 {
   "Hexagon/System/Config": [
     "ApplicationController",
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Hud",
     "Hexagon/StageFactory",
     "Testing/WithStageFactoryFixture"
@@ -618,6 +620,7 @@
     "Hexagon/BlastProjectLayoutsGenerator",
     "Hexagon/ComponentBitmapRenderCreator",
     "Hexagon/ComponentRelationsNavigator/ComponentRelations",
+    "Hexagon/Daemus/Daemus",
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/Search/ComponentElasticsearchIndexer",
     "Hexagon/StageFactory",
@@ -696,6 +699,8 @@
   ],
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/Controller",
+    "Hexagon/Daemus/Daemus",
+    "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Git/CommitStagedWithMessage",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Pusher",
@@ -873,6 +878,7 @@
   ],
   "Blast/FileExistenceChecker": [
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Daemus/Daemus",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/ProjectFactory",
@@ -893,6 +899,30 @@
     "Hexagon/PacketRenderer",
     "Hexagon/StageFactory",
     "Hexagon/UI/LittleMenu"
+  ],
+  "Hexagon/Daemus/Builds/Base": [
+    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
+    "Hexagon/Daemus/Daemus"
+  ],
+  "std/vector<Hexagon/Daemus/Builds/Base>": [
+    "Hexagon/Daemus/Daemus"
+  ],
+  "getpid": [
+    "Hexagon/Daemus/Daemus"
+  ],
+  "Blast/DirectoryExistenceChecker": [
+    "Hexagon/Daemus/Daemus"
+  ],
+  "Hexagon/Testing/GoogleTestRunOutputParser": [
+    "Hexagon/Daemus/Daemus"
+  ],
+  "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
+    "Hexagon/Daemus/Daemus",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "Hexagon/Daemus/Daemus": [
+    "Hexagon/Daemus/NetworkMessageEventController",
+    "Hexagon/Daemus/Stage"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"
@@ -1327,9 +1357,6 @@
     "Hexagon/System/Renderer"
   ],
   "debugging": [
-    "Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "std/pair<std/string, std/string>": [
