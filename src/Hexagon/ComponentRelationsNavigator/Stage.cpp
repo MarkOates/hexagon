@@ -44,7 +44,6 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, std::vector<std::tuple<std::string
    , initialized(false)
    , currently_active_menu(nullptr)
    , default_color({0.973, 0.592, 0.078, 1.0})
-   , default_inactive_color({0.31, 0.18, 0.1, 1.0})
 {
 }
 
@@ -72,12 +71,6 @@ ALLEGRO_COLOR Stage::get_default_color()
 }
 
 
-ALLEGRO_COLOR Stage::get_default_inactive_color()
-{
-   return default_inactive_color;
-}
-
-
 ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 {
    return a_default_empty_event;
@@ -98,6 +91,7 @@ void Stage::initialize()
    relatives_menu.set_color(default_color);
    dependencies_menu.set_color(default_color);
 
+   // default inactive color used to be ALLEGRO_COLOR{0.31, 0.18, 0.1, 1.0};
    //dependents_menu.set_inactive_color(default_inactive_color);
    //relatives_menu.set_inactive_color(default_inactive_color);
    //dependencies_menu.set_inactive_color(default_inactive_color);
