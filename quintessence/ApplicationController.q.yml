@@ -363,7 +363,6 @@ dependencies:
       - allegro_flare/render_cache.h
       - Blast/StringSplitter.hpp
       - AllegroFlare/KeyboardCommandMapper.hpp
-      - Blast/CommandLineFlaggedArgumentsParser.hpp
       - AllegroFlare/Config.hpp
       - Hexagon/System/Action/DestroyAllCodeEditorStages.hpp
       - Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp
