@@ -6,6 +6,10 @@ properties:
     init_with: '{}'
     constructor_arg: true
 
+  - name: simplify_relatives_list
+    type: bool
+    init_with: true
+
 
 functions:
 

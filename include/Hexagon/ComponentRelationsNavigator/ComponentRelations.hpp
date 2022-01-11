@@ -14,6 +14,7 @@ namespace Hexagon
       {
       private:
          Blast::Project::Component component;
+         bool simplify_relatives_list;
 
       public:
          ComponentRelations(Blast::Project::Component component={});

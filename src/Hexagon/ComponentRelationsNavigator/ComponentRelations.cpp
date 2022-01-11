@@ -13,6 +13,7 @@ namespace ComponentRelationsNavigator
 
 ComponentRelations::ComponentRelations(Blast::Project::Component component)
    : component(component)
+   , simplify_relatives_list(true)
 {
 }
 
