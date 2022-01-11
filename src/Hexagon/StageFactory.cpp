@@ -251,7 +251,18 @@ StageInterface* StageFactory::create_component_relations_navigator(std::string f
       std::string relatives_menu_item_label = relatives_menu_item;
       if (simplify_relatives_names)
       {
-         relatives_menu_item_label = Blast::StringSplitter(relatives_menu_item, '/').split().back();
+         std::vector<std::string> relatives_menu_item_label_fragments =
+            Blast::StringSplitter(relatives_menu_item, '/').split();
+         if (relatives_menu_item_label_fragments.size() >= 2)
+         {
+            relatives_menu_item_label =
+               relatives_menu_item_label_fragments[relatives_menu_item_label_fragments.size()-2]
+               + "/" + relatives_menu_item_label_fragments.back();
+         }
+         else if (relatives_menu_item_label_fragments.size() == 1)
+         {
+            relatives_menu_item_label = relatives_menu_item_label_fragments.back();
+         }
       }
 
       relatives_menu_items.push_back({relatives_menu_item_label, relatives_menu_item});
