@@ -2,7 +2,7 @@ properties:
 
 
   - name: system
-    type: ::System*
+    type: Hexagon::System::System*
     init_with: nullptr
     constructor_arg: true
   - name: display
@@ -110,7 +110,7 @@ dependencies:
     headers: [ allegro5/allegro_color.h ]
   - symbol: al_clear_to_color
     headers: [ allegro5/allegro.h ]
-  - symbol: ::System*
+  - symbol: Hexagon::System::System*
     headers: [ Hexagon/System/System.hpp ]
   - symbol: Hexagon::CodeEditor::Stage*
     headers: [ Hexagon/CodeEditor/Stage.hpp ]

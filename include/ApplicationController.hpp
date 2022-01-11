@@ -14,7 +14,7 @@ private:
    ALLEGRO_EVENT_QUEUE* event_queue;
    ALLEGRO_TIMER* primary_timer;
    Motion motion;
-   System* system;
+   Hexagon::System::System* system;
    ALLEGRO_EVENT_SOURCE user_event_source;
    bool shutdown_program;
 

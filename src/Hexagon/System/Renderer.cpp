@@ -21,7 +21,7 @@ namespace System
 {
 
 
-Renderer::Renderer(::System* system, ALLEGRO_DISPLAY* display, ALLEGRO_COLOR* backfill_color)
+Renderer::Renderer(Hexagon::System::System* system, ALLEGRO_DISPLAY* display, ALLEGRO_COLOR* backfill_color)
    : system(system)
    , display(display)
    , backfill_color(backfill_color)

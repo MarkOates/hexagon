@@ -11,7 +11,7 @@
 
 TEST(Hexagon_System_System, can_be_created_without_blowing_up)
 {
-   System system;
+   Hexagon::System::System system;
 }
 
 TEST(Hexagon_System_System, initialize__will_initialize_the_config)
@@ -19,7 +19,7 @@ TEST(Hexagon_System_System, initialize__will_initialize_the_config)
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
 
-   System system(display);
+   Hexagon::System::System system(display);
    system.initialize();
    al_uninstall_system();
 }
@@ -29,7 +29,7 @@ TEST(Hexagon_System_System, get_default_code_editor_stage_width__returns_the_exp
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
 
-   System system(display);
+   Hexagon::System::System system(display);
    system.initialize();
 
    EXPECT_EQ(1235, system.get_default_code_editor_stage_width());
@@ -41,7 +41,7 @@ TEST(Hexagon_System_System,
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
-   System system(display);
+   Hexagon::System::System system(display);
 
    std::string expected_error_message = "[6System::create_two_or_three_split_layout_from_last_component_" \
                             "navigator_selection error:] guard not met: last_component_navigator_selection " \
@@ -61,7 +61,7 @@ TEST(Hexagon_System_System,
    std::string component_name = "FixtureObjectThing";
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
-   System system(display);
+   Hexagon::System::System system(display);
 
    system.initialize();
 

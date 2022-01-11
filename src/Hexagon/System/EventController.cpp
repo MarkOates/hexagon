@@ -18,7 +18,7 @@ namespace System
 {
 
 
-EventController::EventController(::System* system, std::map<std::string, std::function<bool(::System&)>> function_mapping)
+EventController::EventController(Hexagon::System::System* system, std::map<std::string, std::function<bool(Hexagon::System::System&)>> function_mapping)
    : system(system)
    , function_mapping(function_mapping)
 {
@@ -36,208 +36,208 @@ ALLEGRO_EVENT& EventController::dummy_ALLEGRO_EVENT()
    return ev;
 }
 
-std::map<std::string, std::function<bool(::System&)>> EventController::get_default_function_mapping()
+std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventController::get_default_function_mapping()
 {
-   std::map<std::string, std::function<bool(::System&)>> default_function_mapping = {
+   std::map<std::string, std::function<bool(Hexagon::System::System&)>> default_function_mapping = {
       {
          ::System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION,
-         &::System::attempt_to_create_stage_from_last_file_navigator_selection,
+         &::Hexagon::System::System::attempt_to_create_stage_from_last_file_navigator_selection,
       },
       {
          ::System::SPAWN_CLASS_BRIEF_MENU,
-         &::System::spawn_class_brief_menu,
+         &::Hexagon::System::System::spawn_class_brief_menu,
       },
       {
          ::System::SPAWN_DRAWING_BOX,
-         &::System::spawn_drawing_box,
+         &::Hexagon::System::System::spawn_drawing_box,
       },
       {
          ::System::SEND_MESSAGE_TO_DAEMUS_TO_BUILD,
-         &::System::send_message_to_daemus_to_build,
+         &::Hexagon::System::System::send_message_to_daemus_to_build,
       },
       {
          ::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION,
-         &::System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction,
+         &::Hexagon::System::System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction,
       },
       {
          ::System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION,
-         &::System::spawn_file_navigator_from_last_file_navigator_folder_selection,
+         &::Hexagon::System::System::spawn_file_navigator_from_last_file_navigator_folder_selection,
       },
       {
          ::System::CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION,
-         &::System::create_stages_from_layout_of_last_component_navigator_selection,
+         &::Hexagon::System::System::create_stages_from_layout_of_last_component_navigator_selection,
       },
       {
          ::System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION,
-         &::System::create_two_or_three_split_layout_from_last_component_navigator_selection,
+         &::Hexagon::System::System::create_two_or_three_split_layout_from_last_component_navigator_selection,
       },
       {
          ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
-         &::System::center_camera_on_frontmost_stage,
+         &::Hexagon::System::System::center_camera_on_frontmost_stage,
       },
       {
          ::System::DESTROY_TOPMOST_STAGE,
-         &::System::destroy_topmost_stage,
+         &::Hexagon::System::System::destroy_topmost_stage,
       },
       {
          ::System::OPEN_HEXAGON_CONFIG_FILE,
-         &::System::open_hexagon_config_file,
+         &::Hexagon::System::System::open_hexagon_config_file,
       },
       {
          ::System::DESTROY_ALL_CODE_EDITOR_STAGES,
-         &::System::destroy_all_code_editor_stages,
+         &::Hexagon::System::System::destroy_all_code_editor_stages,
       },
       {
          ::System::ESCAPE_CURRENT_MODAL,
-         &::System::escape_current_modal,
+         &::Hexagon::System::System::escape_current_modal,
       },
       {
          ::System::JUMP_TO_NEXT_CODE_POINT_ON_STAGE,
-         &::System::jump_to_next_code_point_on_stage,
+         &::Hexagon::System::System::jump_to_next_code_point_on_stage,
       },
       {
          ::System::JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE,
-         &::System::jump_to_next_or_nearest_code_point_on_stage,
+         &::Hexagon::System::System::jump_to_next_or_nearest_code_point_on_stage,
       },
       {
          ::System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE,
-         &::System::offset_first_line_to_vertically_center_cursor_on_stage,
+         &::Hexagon::System::System::offset_first_line_to_vertically_center_cursor_on_stage,
       },
       {
          ::System::ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES,
-         &::System::enable_drawing_info_overlays_on_all_code_editor_stages,
+         &::Hexagon::System::System::enable_drawing_info_overlays_on_all_code_editor_stages,
       },
       {
          ::System::DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES,
-         &::System::disable_drawing_info_overlays_on_all_code_editor_stages,
+         &::Hexagon::System::System::disable_drawing_info_overlays_on_all_code_editor_stages,
       },
       {
          ::System::PUSH_FILE_NAVIGATOR_SELECTION,
-         &::System::push_file_navigator_selection,
+         &::Hexagon::System::System::push_file_navigator_selection,
       },
       {
          ::System::PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION,
-         &::System::push_component_relations_navigator_selection,
+         &::Hexagon::System::System::push_component_relations_navigator_selection,
       },
       {
          ::System::PUSH_COMPONENT_NAVIGATOR_SELECTION,
-         &::System::push_component_navigator_selection,
+         &::Hexagon::System::System::push_component_navigator_selection,
       },
       {
          ::System::REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE,
-         &::System::refresh_regex_hilights_on_frontmost_stage,
+         &::Hexagon::System::System::refresh_regex_hilights_on_frontmost_stage,
       },
       {
          ::System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES,
-         &::System::refresh_regex_hilights_on_all_code_editor_stages,
+         &::Hexagon::System::System::refresh_regex_hilights_on_all_code_editor_stages,
       },
       {
          ::System::REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES,
-         &::System::refresh_git_modified_line_numbers_on_all_code_editor_stages,
+         &::Hexagon::System::System::refresh_git_modified_line_numbers_on_all_code_editor_stages,
       },
       {
          ::System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS,
-         &::System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents,
+         &::Hexagon::System::System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents,
       },
       {
          ::System::INCREASE_FONT_SIZE,
-         &::System::increase_font_size,
+         &::Hexagon::System::System::increase_font_size,
       },
       {
          ::System::DECREASE_FONT_SIZE,
-         &::System::decrease_font_size,
+         &System::decrease_font_size,
       },
       {
          ::System::ADD_FILE_IS_UNSAVED_NOTIFICATION,
-         &::System::add_file_is_unsaved_notification,
+         &System::add_file_is_unsaved_notification,
       },
       {
          ::System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE,
-         &::System::write_focused_component_name_to_file,
+         &System::write_focused_component_name_to_file,
       },
       {
          ::System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION,
-         &::System::remove_file_is_unsaved_notification,
+         &System::remove_file_is_unsaved_notification,
       },
       {
          ::System::TOGGLE_COMMAND_MODE_ON,
-         &::System::toggle_command_mode_on,
+         &System::toggle_command_mode_on,
       },
       {
          ::System::TOGGLE_COMMAND_MODE_OFF,
-         &::System::toggle_command_mode_off,
+         &System::toggle_command_mode_off,
       },
       {
          ::System::RESET_CAMERA_TO_CENTER,
-         &::System::reset_camera_to_center,
+         &System::reset_camera_to_center,
       },
       {
          ::System::ROTATE_STAGE_LEFT,
-         &::System::rotate_stage_left_and_update_focused_state_on_changed_stages,
+         &System::rotate_stage_left_and_update_focused_state_on_changed_stages,
       },
       {
          ::System::ROTATE_STAGE_RIGHT,
-         &::System::rotate_stage_right_and_update_focused_state_on_changed_stages,
+         &System::rotate_stage_right_and_update_focused_state_on_changed_stages,
       },
       {
          ::System::CLEAR_LAST_COMPILED_ERROR_MESSAGES,
-         &::System::clear_last_compiled_error_messages,
+         &System::clear_last_compiled_error_messages,
       },
       {
          ::System::RUN_PROJECT_TESTS,
-         &::System::run_project_tests,
+         &System::run_project_tests,
       },
       {
          ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK,
-         &::System::save_frontmost_code_editor_stage_and_touch_if_symlink,
+         &System::save_frontmost_code_editor_stage_and_touch_if_symlink,
       },
       {
          ::System::SPAWN_COMPONENT_NAVIGATOR,
-         &::System::spawn_component_navigator,
+         &System::spawn_component_navigator,
       },
       {
          ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR,
-         &::System::spawn_component_relations_navigator,
+         &System::spawn_component_relations_navigator,
       },
       {
          ::System::EXECUTE_MAGIC_COMMAND,
-         &::System::execute_magic_command,
+         &System::execute_magic_command,
       },
       {
          ::System::SPAWN_FILE_NAVIGATOR,
-         &::System::spawn_file_navigator,
+         &System::spawn_file_navigator,
       },
       {
          ::System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL,
-         &::System::spawn_regex_input_box_modal,
+         &System::spawn_regex_input_box_modal,
       },
       {
          ::System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL,
-         &::System::spawn_git_commit_message_input_box_modal,
+         &System::spawn_git_commit_message_input_box_modal,
       },
       {
          ::System::SUBMIT_CURRENT_MODAL,
-         &::System::submit_current_modal,
+         &System::submit_current_modal,
       },
       {
          ::System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE,
-         &::System::fx__play_focus_animation_on_frontmost_stage,
+         &System::fx__play_focus_animation_on_frontmost_stage,
       },
       {
          ::System::CHECK_GIT_SYNC_AND_UPDATE_POWERBAR,
-         &::System::check_git_sync_and_update_powerbar,
+         &System::check_git_sync_and_update_powerbar,
       },
       {
          ::System::OPEN_DOCUMENTATION_IN_BROWSER,
-         &::System::open_documentation_in_browser,
+         &System::open_documentation_in_browser,
       },
       {
          ::System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES,
-         &::System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores,
+         &System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores,
       },
       {
          ::System::PUSH_TO_GIT_REMOTE,
-         &::System::push_to_git_remote,
+         &System::push_to_git_remote,
       },
    };
    return default_function_mapping;
@@ -251,9 +251,9 @@ void EventController::process_local_event(std::string event_name)
          error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"system\" not met";
          throw std::runtime_error(error_message.str());
       }
-   std::map<std::string, std::function<bool(::System&)>> event_function_mapping = get_default_function_mapping();
+   std::map<std::string, std::function<bool(Hexagon::System::System&)>> event_function_mapping = get_default_function_mapping();
 
-   std::map<std::string, std::function<bool(::System&)>>::const_iterator it = event_function_mapping.find(event_name);
+   std::map<std::string, std::function<bool(Hexagon::System::System&)>>::const_iterator it = event_function_mapping.find(event_name);
    bool function_mapping_exists = it != event_function_mapping.end();
 
    if (!function_mapping_exists)
@@ -270,7 +270,7 @@ void EventController::process_local_event(std::string event_name)
          std::cout << "System::EventController::" << event_name << std::endl;
 
          // could use the iterator element found via the find() call above, rather than doing a new lookup
-         std::function<bool(::System&)> function_to_be_called = event_function_mapping[event_name];
+         std::function<bool(Hexagon::System::System&)> function_to_be_called = event_function_mapping[event_name];
          bool function_returned_true_from_execution = function_to_be_called(*system);
          if (!function_returned_true_from_execution)
          {

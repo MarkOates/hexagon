@@ -18,6 +18,8 @@
 #include <Hexagon/Packet.hpp>
 
 
+namespace Hexagon::System
+{
 class System
 {
 private:
@@ -171,6 +173,17 @@ public:
    // motion fx
    bool fx__play_focus_animation_on_frontmost_stage();
 
+   // core event processing
+   void process_local_event(std::string event_name);
+   void process_event(ALLEGRO_EVENT &event);
+};
+} // Hexagon::System
+
+
+
+class System
+{
+public:
    // events
    static const std::string SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION;
    static const std::string OPEN_HEXAGON_CONFIG_FILE;
@@ -229,7 +242,6 @@ public:
    static const std::string SPAWN_CLASS_BRIEF_MENU;
    static const std::string SPAWN_DRAWING_BOX;
 
-   void process_local_event(std::string event_name);
-   void process_event(ALLEGRO_EVENT &event);
 };
+
 

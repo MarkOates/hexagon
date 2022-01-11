@@ -22,7 +22,7 @@ TEST(Hexagon_System_RendererTest, render__without_a_system__throws_an_error)
 
 TEST(Hexagon_System_RendererTest, render__without_a_display__throws_an_error)
 {
-   ::System system;
+   Hexagon::System::System system;
    Hexagon::System::Renderer renderer(&system);
    std::string expected_error_message = "Renderer::render: error: guard \"display\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
@@ -33,7 +33,7 @@ TEST(Hexagon_System_RendererTest, render__without_a_backfill_color__throws_an_er
    al_init();
 
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
-   ::System system;
+   Hexagon::System::System system;
    Hexagon::System::Renderer renderer(&system, display);
 
    std::string expected_error_message = "Renderer::render: error: guard \"backfill_color\" not met";
@@ -52,7 +52,7 @@ TEST(Hexagon_System_RendererTest, render__renders_the_scene)
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
 
-   ::System system(display);
+   Hexagon::System::System system(display);
    Hexagon::System::Renderer renderer(&system, display);
 
    SUCCEED();

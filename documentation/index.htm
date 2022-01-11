@@ -236,7 +236,7 @@ table td
 </tr>
 <tr>
   <td class="property">system</td>
-  <td class="property">System*</td>
+  <td class="property">Hexagon::System::System*</td>
 </tr>
 <tr>
   <td class="property">user_event_source</td>
@@ -305,7 +305,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Shaders::TiledHexagonMotionEffect&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Shaders/TiledHexagonMotionEffect.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;System*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/System.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::System*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/System.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT_SOURCE&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
@@ -8641,11 +8641,11 @@ table td
      <table>
 <tr>
   <td class="property">system</td>
-  <td class="property">:System*</td>
+  <td class="property">Hexagon::System::System*</td>
 </tr>
 <tr>
   <td class="property">function_mapping</td>
-  <td class="property">std::map&lt;std::string, std::function&lt;bool(::System&amp;)&gt;&gt;</td>
+  <td class="property">std::map&lt;std::string, std::function&lt;bool(Hexagon::System::System&amp;)&gt;&gt;</td>
 </tr>
     </table>
      <table>
@@ -8670,13 +8670,13 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT&amp;&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::map&lt;std::string, std::function&lt;bool(::System&amp;)&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;map&quot;, &quot;string&quot;, &quot;functional&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::map&lt;std::string, std::function&lt;bool(Hexagon::System::System&amp;)&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;map&quot;, &quot;string&quot;, &quot;functional&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;add_notification&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/shared_globals.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;:&quot;:System*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/System.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::System*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/System.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -8687,7 +8687,7 @@ table td
      <table>
 <tr>
   <td class="property">system</td>
-  <td class="property">:System*</td>
+  <td class="property">Hexagon::System::System*</td>
 </tr>
 <tr>
   <td class="property">display</td>
@@ -8729,7 +8729,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_clear_to_color&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;:&quot;:System*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/System.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::System*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/System.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeEditor::Stage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeEditor/Stage.hpp&quot;]}</td>
@@ -9435,8 +9435,10 @@ table td
     "ApplicationController",
     "Hexagon/TitleScreen"
   ],
-  "System": [
-    "ApplicationController"
+  "Hexagon/System/System": [
+    "ApplicationController",
+    "Hexagon/System/EventController",
+    "Hexagon/System/Renderer"
   ],
   "ALLEGRO_EVENT_SOURCE": [
     "ApplicationController"
@@ -10722,15 +10724,11 @@ table td
   "AllegroFlare/Config": [
     "Hexagon/System/Config"
   ],
-  "std/map<std/string, std/function<bool(/System&)>>": [
+  "std/map<std/string, std/function<bool(Hexagon/System/System&)>>": [
     "Hexagon/System/EventController"
   ],
   "add_notification": [
     "Hexagon/System/EventController"
-  ],
-  ":System": [
-    "Hexagon/System/EventController",
-    "Hexagon/System/Renderer"
   ],
   "NOTIFICATION_FILE_IS_UNSAVED": [
     "Hexagon/System/Renderer"

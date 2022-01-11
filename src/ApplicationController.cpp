@@ -97,7 +97,7 @@ void ApplicationController::initialize()
    initialize_allegro_config_display_event_queue_and_timer();
    verify_presence_of_temp_files_and_assign_to_global_constants();
 
-   system = new System(display, config, motion);
+   system = new Hexagon::System::System(display, config, motion);
    system->initialize();
 }
 

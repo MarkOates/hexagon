@@ -84,6 +84,7 @@
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
 #include <Hexagon/OneLineInputBox/Stage.hpp>
 #include <Hexagon/PacketLogger.hpp>
+#include <Hexagon/System/Action/SendMessageToDaemusToBuild.hpp>
 
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Blast/StringJoiner.hpp>
@@ -107,6 +108,10 @@ From me far off, with others all too near.
 
 - William Shakespere)END";
 
+
+
+namespace Hexagon::System
+{
 
 
 System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config, Motion &motion)
@@ -831,7 +836,7 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
 
    if (update_save_counts_and_hud_status)
    {
-      process_local_event(REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
+      process_local_event(::System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION);
       increment_save_count();
       set_hud_save_count_to_save_count();
       check_git_local_status_and_update_powerbar();
@@ -840,11 +845,10 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
    return true;
 }
 
-#include <Hexagon/System/Action/SendMessageToDaemusToBuild.hpp>
 
 bool System::send_message_to_daemus_to_build()
 {
-   Hexagon::System::Action::SendMessageToDaemusToBuild action;
+   ::Hexagon::System::Action::SendMessageToDaemusToBuild action;
    return action.execute();
 }
 
@@ -876,7 +880,7 @@ bool System::refresh_regex_hilights_on_frontmost_stage()
    }
    if (stage->get_type() == StageInterface::CODE_EDITOR)
    {
-      Hexagon::CodeEditor::Stage *ce_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+      ::Hexagon::CodeEditor::Stage *ce_stage = static_cast<::Hexagon::CodeEditor::Stage *>(stage);
       ce_stage->get_code_editor_ref().refresh_regex_message_points();
    }
    if (stage->get_type() == StageInterface::ADVANCED_CODE_EDITOR)
@@ -889,12 +893,12 @@ bool System::refresh_regex_hilights_on_frontmost_stage()
 
 bool System::refresh_regex_hilights_on_all_code_editor_stages()
 {
-   std::vector<Hexagon::CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
+   std::vector<::Hexagon::CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
    for (auto &code_editor_stage : all_code_editor_stages)
    {
       code_editor_stage->get_code_editor_ref().refresh_regex_message_points();
    }
-   std::vector<Hexagon::AdvancedCodeEditor::Stage *> all_advanced_code_editor_stages =
+   std::vector<::Hexagon::AdvancedCodeEditor::Stage *> all_advanced_code_editor_stages =
       get_all_advanced_code_editor_stages();
    for (auto &advanced_code_editor_stage : all_advanced_code_editor_stages)
    {
@@ -908,7 +912,7 @@ bool System::refresh_regex_hilights_on_all_code_editor_stages()
 
 bool System::refresh_git_modified_line_numbers_on_all_code_editor_stages()
 {
-   std::vector<Hexagon::CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
+   std::vector<::Hexagon::CodeEditor::Stage *> all_code_editor_stages = get_all_code_editor_stages();
    for (auto &code_editor_stage : all_code_editor_stages)
    {
       code_editor_stage->get_code_editor_ref().refresh_git_modified_line_numbers();
@@ -922,14 +926,14 @@ bool System::set_regex_input_box_modal_to_insert_mode()
    // TODO: this function also handles git_commit_message modal, too
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return false;
-   frontmost_stage->process_local_event(CodeEditor::EventController::SET_INSERT_MODE);
+   frontmost_stage->process_local_event(::CodeEditor::EventController::SET_INSERT_MODE);
    return true;
 }
 
 
 bool System::spawn_class_brief_menu()
 {
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
    std::vector<std::tuple<std::string, std::string>> menu_items{
      { "mark_as_files_uncommitted", "32" },
      { "mark_as_not_in_sync_with_remote", "63" },
@@ -947,7 +951,7 @@ bool System::spawn_class_brief_menu()
 
 bool System::spawn_drawing_box()
 {
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *stage = stage_factory.create_drawing_box();
 
    stages.push_back(stage);
@@ -958,7 +962,7 @@ bool System::spawn_drawing_box()
 
 bool System::spawn_regex_input_box_modal()
 {
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *stage = stage_factory.create_regex_input_box_modal();
 
    stages.push_back(stage);
@@ -972,7 +976,7 @@ bool System::spawn_regex_input_box_modal()
 
 bool System::spawn_git_commit_message_input_box_modal()
 {
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *stage = stage_factory.create_git_commit_message_box();
 
    stages.push_back(stage);
@@ -986,7 +990,7 @@ bool System::spawn_git_commit_message_input_box_modal()
 
 bool System::spawn_component_navigator()
 {
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *stage = stage_factory.create_advanced_component_navigator();
 
    stages.push_back(stage);
@@ -997,7 +1001,7 @@ bool System::spawn_component_navigator()
 
 bool System::spawn_component_relations_navigator()
 {
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
    // HERE
    StageInterface *stage = stage_factory.create_component_relations_navigator(
       get_focused_component_name(),
@@ -1012,7 +1016,7 @@ bool System::spawn_component_relations_navigator()
 
 bool System::spawn_red_overlay()
 {
-   Hexagon::FullScreenOverlay::Stage *red_overlay = new Hexagon::FullScreenOverlay::Stage;
+   ::Hexagon::FullScreenOverlay::Stage *red_overlay = new ::Hexagon::FullScreenOverlay::Stage;
    stages.push_back(red_overlay);
    return true;
 }
@@ -1020,7 +1024,7 @@ bool System::spawn_red_overlay()
 
 bool System::spawn_file_navigator()
 {
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *stage = stage_factory.create_file_navigator();
 
    stages.push_back(stage);
@@ -1031,7 +1035,7 @@ bool System::spawn_file_navigator()
 
 bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
 {
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *stage = stage_factory.create_file_navigator(last_file_navigator_selection);
 
    stages.push_back(stage);
@@ -1087,16 +1091,16 @@ bool System::jump_to_next_code_point_on_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return false;
-   frontmost_stage->process_local_event(CodeEditor::EventController::JUMP_TO_NEXT_CODE_POINT);
+   frontmost_stage->process_local_event(::CodeEditor::EventController::JUMP_TO_NEXT_CODE_POINT);
    return true;
 }
 
 
 bool System::jump_to_next_or_nearest_code_point_on_stage()
 {
-   Hexagon::CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
+   ::Hexagon::CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
    if (!stage) return false;
-   stage->process_local_event(CodeEditor::EventController::JUMP_TO_NEXT_OR_NEAREST_CODE_POINT);
+   stage->process_local_event(::CodeEditor::EventController::JUMP_TO_NEXT_OR_NEAREST_CODE_POINT);
    return true;
 }
 
@@ -1110,7 +1114,7 @@ bool System::clear_last_compiled_error_messages()
 
 bool System::enable_drawing_info_overlays_on_all_code_editor_stages()
 {
-   std::vector<Hexagon::CodeEditor::Stage *> code_editor_stages = System::get_all_code_editor_stages();
+   std::vector<::Hexagon::CodeEditor::Stage *> code_editor_stages = System::get_all_code_editor_stages();
    for (auto &code_editor_stage : code_editor_stages)
    {
       code_editor_stage->get_code_editor_ref().enable_drawing_info_overlay();
@@ -1121,7 +1125,7 @@ bool System::enable_drawing_info_overlays_on_all_code_editor_stages()
 
 bool System::disable_drawing_info_overlays_on_all_code_editor_stages()
 {
-   std::vector<Hexagon::CodeEditor::Stage *> code_editor_stages = System::get_all_code_editor_stages();
+   std::vector<::Hexagon::CodeEditor::Stage *> code_editor_stages = System::get_all_code_editor_stages();
    for (auto &code_editor_stage : code_editor_stages)
    {
       code_editor_stage->get_code_editor_ref().disable_drawing_info_overlay();
@@ -1134,8 +1138,8 @@ bool System::check_git_sync_and_update_powerbar()
 {
    std::string repo_name = "blast";
    std::string repos_directory = "~/Repos";
-   Hexagon::Powerbar::Powerbar* powerbar = nullptr;
-   Hexagon::System::Action::CheckGitSyncAndUpdatePowerbar action(repo_name, repos_directory, powerbar);
+   ::Hexagon::Powerbar::Powerbar* powerbar = nullptr;
+   ::Hexagon::System::Action::CheckGitSyncAndUpdatePowerbar action(repo_name, repos_directory, powerbar);
 
    return action.execute();
 }
@@ -1145,15 +1149,15 @@ bool System::check_git_local_status_and_update_powerbar()
 {
    //std::string repo_name = "blast";
    //std::string repos_directory = "~/Repos";
-   Hexagon::Powerbar::Powerbar* powerbar = &hud.get_powerbar_ref();
-   Hexagon::System::Action::CheckGitLocalStatusAndUpdatePowerbar action(get_current_project_directory(), powerbar);
+   ::Hexagon::Powerbar::Powerbar* powerbar = &hud.get_powerbar_ref();
+   ::Hexagon::System::Action::CheckGitLocalStatusAndUpdatePowerbar action(get_current_project_directory(), powerbar);
    return action.execute();
 }
 
 
 bool System::open_documentation_in_browser()
 {
-   Hexagon::System::Action::OpenDocumentationInBrowser action;
+   ::Hexagon::System::Action::OpenDocumentationInBrowser action;
    action.execute();
    return true;
 }
@@ -1163,7 +1167,7 @@ bool System::offset_first_line_to_vertically_center_cursor_on_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return false;
-   frontmost_stage->process_local_event(CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
+   frontmost_stage->process_local_event(::CodeEditor::EventController::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR);
    return true;
 }
 
@@ -1183,8 +1187,8 @@ bool System::push_component_navigator_selection()
          << std::endl;
       throw std::runtime_error(error_message.str().c_str());
    }
-   Hexagon::AdvancedComponentNavigator::Stage *component_navigator =
-      static_cast<Hexagon::AdvancedComponentNavigator::Stage *>(frontmost_stage_interface);
+   ::Hexagon::AdvancedComponentNavigator::Stage *component_navigator =
+      static_cast<::Hexagon::AdvancedComponentNavigator::Stage *>(frontmost_stage_interface);
 
    std::string current_component_navigator_selection =
       component_navigator->get_component_ref().get_current_selection_label_or_empty_string();
@@ -1210,8 +1214,8 @@ bool System::push_component_relations_navigator_selection()
          << std::endl;
       throw std::runtime_error(error_message.str().c_str());
    }
-   Hexagon::ComponentRelationsNavigator::Stage *component_relations_navigator =
-      static_cast<Hexagon::ComponentRelationsNavigator::Stage *>(frontmost_stage_interface);
+   ::Hexagon::ComponentRelationsNavigator::Stage *component_relations_navigator =
+      static_cast<::Hexagon::ComponentRelationsNavigator::Stage *>(frontmost_stage_interface);
 
    std::string current_component_relations_navigator_selection =
       component_relations_navigator->get_current_selection_label_or_empty_string();
@@ -1238,8 +1242,8 @@ bool System::push_project_navigator_selection()
                     << std::endl;
       throw std::runtime_error(error_message.str().c_str());
    }
-   Hexagon::ProjectComponentNavigator::Stage *project_navigator =
-      static_cast<Hexagon::ProjectComponentNavigator::Stage *>(frontmost_stage_interface);
+   ::Hexagon::ProjectComponentNavigator::Stage *project_navigator =
+      static_cast<::Hexagon::ProjectComponentNavigator::Stage *>(frontmost_stage_interface);
 
    std::string current_project_navigator_selection =
       project_navigator->get_component_ref().get_current_selection_label_or_empty_string();
@@ -1264,8 +1268,8 @@ bool System::push_file_navigator_selection()
       throw std::runtime_error(error_message.str().c_str());
    }
 
-   Hexagon::FileNavigator::Stage *file_navigator =
-      static_cast<Hexagon::FileNavigator::Stage *>(frontmost_stage_interface);
+   ::Hexagon::FileNavigator::Stage *file_navigator =
+      static_cast<::Hexagon::FileNavigator::Stage *>(frontmost_stage_interface);
    std::string current_file_navigator_selection = file_navigator->get_current_selection();
 
    last_file_navigator_selection = current_file_navigator_selection;
@@ -1290,15 +1294,15 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
    if (file_system_node.infer_is_directory()) // is a valid folder
    {
       //TODO: some sloppy behavior here.  This method should be better encapsulated in the file navigator component
-      process_local_event(SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION);
+      process_local_event(::System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION);
    }
    else // is a valid file
    {
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f};
       ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
 
-      Hexagon::StageFactory stage_factory(&config, &font_bin);
-      Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+      ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+      ::Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
          filename,
          get_display_default_width(),
          get_display_default_height(),
@@ -1319,7 +1323,7 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
 
 bool System::destroy_all_code_editor_stages()
 {
-   Hexagon::System::Action::DestroyAllCodeEditorStages action(stages);
+   ::Hexagon::System::Action::DestroyAllCodeEditorStages action(stages);
    return action.managed_execute();
 }
 
@@ -1341,10 +1345,10 @@ bool System::create_stages_from_layout_of_last_component_navigator_selection()
    std::cout << " ---- CREATING project_dir:" << project_directory << std::endl;
    std::cout << "      CREATING component_name:" << component_name << std::endl;
 
-   Hexagon::BlastComponentLayoutGenerator component_layout_generator(project_directory, component_name);
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
-   Hexagon::Layout layout = component_layout_generator.generate();
-   Hexagon::LayoutToStagesCreator layout_to_stages_creator(&stages, &stage_factory, &layout, &font_bin);
+   ::Hexagon::BlastComponentLayoutGenerator component_layout_generator(project_directory, component_name);
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::Layout layout = component_layout_generator.generate();
+   ::Hexagon::LayoutToStagesCreator layout_to_stages_creator(&stages, &stage_factory, &layout, &font_bin);
 
    layout_to_stages_creator.create();
 
@@ -1368,7 +1372,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
    }
 
    bool create_as_advanced_code_editor = true;
-   Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
+   ::Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
 
    if (component.has_only_source_and_header())
    {
@@ -1378,9 +1382,9 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       write_focused_component_name_to_file();
 
 
-      Hexagon::StageFactory stage_factory(&config, &font_bin);
-      Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
-      Hexagon::System::Action::CreateThreeSplitFromComponent action(
+      ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+      ::Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
+      ::Hexagon::System::Action::CreateThreeSplitFromComponent action(
          get_current_project_directory(),
          component,
          stages,
@@ -1404,8 +1408,8 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       write_focused_component_name_to_file();
 
 
-      Hexagon::StageFactory stage_factory(&config, &font_bin);
-      Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection action(
+      ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+      ::Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection action(
             get_current_project_directory(),
             last_component_navigator_selection,
             get_display_default_width(),
@@ -1447,12 +1451,12 @@ bool System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp
 
    std::string regex_expression = regex_input_file_lines[0];
 
-   std::vector<Hexagon::CodeEditor::Stage *> stages = get_all_code_editor_stages();
+   std::vector<::Hexagon::CodeEditor::Stage *> stages = get_all_code_editor_stages();
    for (auto &stage : stages)
    {
       stage->get_code_editor_ref().set_search_regex_expression(regex_expression);
    }
-   std::vector<Hexagon::AdvancedCodeEditor::Stage *> ac_stages = get_all_advanced_code_editor_stages();
+   std::vector<::Hexagon::AdvancedCodeEditor::Stage *> ac_stages = get_all_advanced_code_editor_stages();
    for (auto &ac_stage : ac_stages)
    {
       ac_stage->set_current_search_regex(regex_expression);
@@ -1473,14 +1477,14 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
    std::string commit_message = regex_input_file_lines[0];
    std::string current_project_directory = get_current_project_directory();
 
-   Hexagon::Git::StageEverything stage_everything(current_project_directory);
+   ::Hexagon::Git::StageEverything stage_everything(current_project_directory);
    stage_everything.stage_everything();
 
-   Hexagon::Git::CommitStagedWithMessage commit_staged_with_message(get_current_project_directory(), commit_message);
+   ::Hexagon::Git::CommitStagedWithMessage commit_staged_with_message(get_current_project_directory(), commit_message);
    commit_staged_with_message.commit();
 
    // append packet to packets
-   Hexagon::Packet new_packet_to_append(search_count, save_count);
+   ::Hexagon::Packet new_packet_to_append(search_count, save_count);
    packets.push_back(new_packet_to_append);
 
    // refresh hud packets
@@ -1488,7 +1492,7 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
 
    // post the packet to a log file
    int score = search_count + save_count;
-   Hexagon::PacketLogger packet_logger(current_project_directory, commit_message, search_count, save_count, score);
+   ::Hexagon::PacketLogger packet_logger(current_project_directory, commit_message, search_count, save_count, score);
    packet_logger.write_log_file();
 
    // clear scores
@@ -1506,7 +1510,7 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
 
 bool System::push_to_git_remote()
 {
-   Hexagon::Git::Pusher git_pusher(get_current_project_directory());
+   ::Hexagon::Git::Pusher git_pusher(get_current_project_directory());
 
    git_pusher.push();
 
@@ -1522,43 +1526,43 @@ bool System::submit_current_modal()
    switch (frontmost_stage->get_type())
    {
    case StageInterface::ONE_LINE_INPUT_BOX:
-      process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK);
+      process_local_event(::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK);
 
-      process_local_event(DESTROY_TOPMOST_STAGE);
-      process_local_event(SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS);
-      process_local_event(REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
-      //process_local_event(JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE);
-      //process_local_event(OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
+      process_local_event(::System::DESTROY_TOPMOST_STAGE);
+      process_local_event(::System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS);
+      process_local_event(::System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
+      //process_local_event(::System::JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE);
+      //process_local_event(::System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
       break;
    case StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX:
-      //process_local_event(SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION);
-      process_local_event(SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK);
-      process_local_event(DESTROY_TOPMOST_STAGE);
-      process_local_event(COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES);
-      process_local_event(PUSH_TO_GIT_REMOTE);
-      process_local_event(REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES);
+      //process_local_event(::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION);
+      process_local_event(::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK);
+      process_local_event(::System::DESTROY_TOPMOST_STAGE);
+      process_local_event(::System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES);
+      process_local_event(::System::PUSH_TO_GIT_REMOTE);
+      process_local_event(::System::REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES);
       break;
    case StageInterface::FILE_NAVIGATOR:
-      process_local_event(PUSH_FILE_NAVIGATOR_SELECTION);
-      process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
-      process_local_event(ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION);
+      process_local_event(::System::PUSH_FILE_NAVIGATOR_SELECTION);
+      process_local_event(::System::DESTROY_TOPMOST_STAGE);  // destroys the modal
+      process_local_event(::System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION);
       break;
    case StageInterface::COMPONENT_NAVIGATOR:
-      process_local_event(PUSH_COMPONENT_NAVIGATOR_SELECTION);
-      process_local_event(DESTROY_TOPMOST_STAGE);
-      process_local_event(DESTROY_ALL_CODE_EDITOR_STAGES);
-      //process_local_event(CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION);
-      process_local_event(CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
-      process_local_event(ROTATE_STAGE_LEFT);
-      process_local_event(CENTER_CAMERA_ON_FRONTMOST_STAGE);
+      process_local_event(::System::PUSH_COMPONENT_NAVIGATOR_SELECTION);
+      process_local_event(::System::DESTROY_TOPMOST_STAGE);
+      process_local_event(::System::DESTROY_ALL_CODE_EDITOR_STAGES);
+      //process_local_event(::System::CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION);
+      process_local_event(::System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
+      process_local_event(::System::ROTATE_STAGE_LEFT);
+      process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
       break;
    case StageInterface::COMPONENT_RELATIONS_NAVIGATOR:
-      process_local_event(PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION);
-      process_local_event(DESTROY_TOPMOST_STAGE);  // destroys the modal
-      process_local_event(DESTROY_ALL_CODE_EDITOR_STAGES);
-      process_local_event(CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
-      process_local_event(ROTATE_STAGE_LEFT);
-      process_local_event(CENTER_CAMERA_ON_FRONTMOST_STAGE);
+      process_local_event(::System::PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION);
+      process_local_event(::System::DESTROY_TOPMOST_STAGE);  // destroys the modal
+      process_local_event(::System::DESTROY_ALL_CODE_EDITOR_STAGES);
+      process_local_event(::System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION);
+      process_local_event(::System::ROTATE_STAGE_LEFT);
+      process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
       break;
    default:
       throw std::runtime_error("submit_current_modal(): invalid modal type");
@@ -1570,7 +1574,7 @@ bool System::submit_current_modal()
 
 bool System::escape_current_modal()
 {
-   process_local_event(DESTROY_TOPMOST_STAGE);
+   process_local_event(::System::DESTROY_TOPMOST_STAGE);
    return true;
 }
 
@@ -1580,8 +1584,8 @@ bool System::open_hexagon_config_file()
    std::string config_filename = config.get_config_filename();
    if (!display) throw std::runtime_error("fooob arrra");
 
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
-   Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
       config_filename,
       al_get_display_width(display),
       al_get_display_height(display),
@@ -1599,7 +1603,7 @@ bool System::open_hexagon_config_file()
 
 void System::process_local_event(std::string event_name)
 {
-   Hexagon::System::EventController event_controller(this);
+   ::Hexagon::System::EventController event_controller(this);
    event_controller.process_local_event(event_name);
    return;
 }
@@ -1607,10 +1611,18 @@ void System::process_local_event(std::string event_name)
 
 void System::process_event(ALLEGRO_EVENT &event)
 {
-   Hexagon::System::EventController event_controller(this);
+   ::Hexagon::System::EventController event_controller(this);
    event_controller.process_event(event);
    return;
 }
+
+
+Motion System::dummy_motion;
+::Hexagon::System::Config System::dummy_config;
+
+
+} // namespace Hexagon::System
+
 
 
 const std::string System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION =
@@ -1683,9 +1695,6 @@ const std::string System::CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION =
 
 
 
-
-Motion System::dummy_motion;
-Hexagon::System::Config System::dummy_config;
 
 
 

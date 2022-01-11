@@ -18,7 +18,7 @@ properties:
     type: Motion
     init_with: ''
   - name: system
-    type: System*
+    type: Hexagon::System::System*
     init_with: nullptr
   - name: user_event_source
     type: ALLEGRO_EVENT_SOURCE
@@ -57,7 +57,7 @@ functions:
        initialize_allegro_config_display_event_queue_and_timer();
        verify_presence_of_temp_files_and_assign_to_global_constants();
 
-       system = new System(display, config, motion);
+       system = new Hexagon::System::System(display, config, motion);
        system->initialize();
 
 
@@ -340,7 +340,7 @@ dependencies:
     headers: [ allegro_flare/motion.h ]
   - symbol: Hexagon::Shaders::TiledHexagonMotionEffect
     headers: [ Hexagon/Shaders/TiledHexagonMotionEffect.hpp ]
-  - symbol: System*
+  - symbol: Hexagon::System::System*
     headers: [ Hexagon/System/System.hpp ]
   - symbol: ALLEGRO_EVENT_SOURCE
     headers: [ allegro5/allegro.h ]

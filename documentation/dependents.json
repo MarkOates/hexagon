@@ -47,8 +47,10 @@
     "ApplicationController",
     "Hexagon/TitleScreen"
   ],
-  "System": [
-    "ApplicationController"
+  "Hexagon/System/System": [
+    "ApplicationController",
+    "Hexagon/System/EventController",
+    "Hexagon/System/Renderer"
   ],
   "ALLEGRO_EVENT_SOURCE": [
     "ApplicationController"
@@ -1334,15 +1336,11 @@
   "AllegroFlare/Config": [
     "Hexagon/System/Config"
   ],
-  "std/map<std/string, std/function<bool(/System&)>>": [
+  "std/map<std/string, std/function<bool(Hexagon/System/System&)>>": [
     "Hexagon/System/EventController"
   ],
   "add_notification": [
     "Hexagon/System/EventController"
-  ],
-  ":System": [
-    "Hexagon/System/EventController",
-    "Hexagon/System/Renderer"
   ],
   "NOTIFICATION_FILE_IS_UNSAVED": [
     "Hexagon/System/Renderer"
