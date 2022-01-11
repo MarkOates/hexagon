@@ -15,14 +15,6 @@ properties:
 functions:
 
 
-  - name: dummy_ALLEGRO_EVENT
-    type: ALLEGRO_EVENT&
-    static: true
-    body: |
-      static ALLEGRO_EVENT ev;
-      return ev;
-
-
   - name: get_default_function_mapping
     static: true
     type: std::map<std::string, std::function<bool(Hexagon::System::System&)>>
@@ -291,14 +283,15 @@ functions:
   - name: process_event
     type: void
     parameters:
-      - name: event
-        type: ALLEGRO_EVENT&
-        default_argument: Hexagon::System::EventController::dummy_ALLEGRO_EVENT()
-    guards: [ system ]
+      - name: event_ptr
+        type: ALLEGRO_EVENT*
+        default_argument: nullptr
+    guards: [ system, event_ptr ]
     body: |
       KeyboardCommandMapper keyboard_key_up_mapper;
       KeyboardCommandMapper keyboard_key_down_mapper;
       KeyboardCommandMapper keyboard_key_char_mapper;
+      ALLEGRO_EVENT &event = *event_ptr;
 
       //KeyboardCommandMapper::COMMAND
 
@@ -440,7 +433,7 @@ functions:
 dependencies:
   - symbol: KeyboardCommandMapper
     headers: [ 'AllegroFlare/KeyboardCommandMapper.hpp' ]
-  - symbol: ALLEGRO_EVENT&
+  - symbol: ALLEGRO_EVENT*
     headers: [ 'allegro5/allegro.h' ]
   - symbol: std::map<std::string, std::function<bool(Hexagon::System::System&)>>
     headers: [ map, string, functional ]

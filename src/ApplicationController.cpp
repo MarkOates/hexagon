@@ -233,7 +233,7 @@ void ApplicationController::run_event_loop()
       al_wait_for_event(event_queue, &this_event);
       global::profiler.clear();
 
-      system->process_event(this_event);
+      system->process_event(&this_event);
 
       bool refresh = true;
 

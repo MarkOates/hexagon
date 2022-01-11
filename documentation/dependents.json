@@ -70,6 +70,7 @@
     "Hexagon/Notifications/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/System/EventController",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
   ],
@@ -241,7 +242,6 @@
     "Hexagon/Notifications/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
-    "Hexagon/System/EventController",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
   ],

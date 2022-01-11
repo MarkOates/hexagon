@@ -179,7 +179,7 @@ public:
 
    // core event processing
    void process_local_event(std::string event_name);
-   void process_event(ALLEGRO_EVENT &event);
+   void process_event(ALLEGRO_EVENT *event);
 };
 } // Hexagon::System
 

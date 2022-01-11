@@ -1634,7 +1634,7 @@ void System::process_local_event(std::string event_name)
 }
 
 
-void System::process_event(ALLEGRO_EVENT &event)
+void System::process_event(ALLEGRO_EVENT *event)
 {
    ::Hexagon::System::EventController event_controller(this);
    event_controller.process_event(event);

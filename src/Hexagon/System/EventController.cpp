@@ -30,12 +30,6 @@ EventController::~EventController()
 }
 
 
-ALLEGRO_EVENT& EventController::dummy_ALLEGRO_EVENT()
-{
-   static ALLEGRO_EVENT ev;
-   return ev;
-}
-
 std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventController::get_default_function_mapping()
 {
    std::map<std::string, std::function<bool(Hexagon::System::System&)>> default_function_mapping = {
@@ -296,7 +290,7 @@ void EventController::process_local_event(std::string event_name)
    return;
 }
 
-void EventController::process_event(ALLEGRO_EVENT& event)
+void EventController::process_event(ALLEGRO_EVENT* event_ptr)
 {
    if (!(system))
       {
@@ -304,9 +298,16 @@ void EventController::process_event(ALLEGRO_EVENT& event)
          error_message << "EventController" << "::" << "process_event" << ": error: " << "guard \"system\" not met";
          throw std::runtime_error(error_message.str());
       }
+   if (!(event_ptr))
+      {
+         std::stringstream error_message;
+         error_message << "EventController" << "::" << "process_event" << ": error: " << "guard \"event_ptr\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    KeyboardCommandMapper keyboard_key_up_mapper;
    KeyboardCommandMapper keyboard_key_down_mapper;
    KeyboardCommandMapper keyboard_key_char_mapper;
+   ALLEGRO_EVENT &event = *event_ptr;
 
    //KeyboardCommandMapper::COMMAND
 
