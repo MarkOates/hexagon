@@ -12,7 +12,6 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
-#include <Hexagon/OneLineInputBox/Stage.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/Hud.hpp>
 #include <Hexagon/Packet.hpp>
