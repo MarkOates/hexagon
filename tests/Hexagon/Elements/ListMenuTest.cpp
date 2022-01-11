@@ -85,6 +85,44 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
    place.restore_transform();
    al_flip_display();
 
+   //sleep(2);
+}
+
+TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_menu_as_expected_when_not_active)
+{
+   Hexagon::Elements::ListMenu list_menu(
+      &font_bin,
+      "Projects",
+      {
+         { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+         { "Solitare", "/Users/markoates/Repos/Solitare/" },
+         { "A Project That Should Be Selected", "none" },
+         { "Blast", "/Users/markoates/Repos/blast/" },
+         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      }
+   );
+   float width = 600;
+   list_menu.set_width(width);
+   placement3d place = centered_placement(0, 0);
+
+   list_menu.move_cursor_down();
+   list_menu.move_cursor_down();
+
+   al_clear_to_color(ALLEGRO_COLOR{0.1,0.1,0.1,1});
+   place.start_transform();
+   list_menu.render();
+   place.restore_transform();
+
+   list_menu.set_active(false);
+
+   place.position.x += (width + 100);
+ 
+   place.start_transform();
+   list_menu.render();
+   place.restore_transform();
+ 
+   al_flip_display();
+
    sleep(2);
 }
 

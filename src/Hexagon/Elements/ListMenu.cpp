@@ -159,6 +159,7 @@ void ListMenu::render()
    //ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
    ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
    ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.6};
+   ALLEGRO_COLOR inactive_but_selected_color = al_color_html("4e2f1a");
    float width = get_width();
    //float height = 300;
    int line_height = al_get_font_line_height(font) * 1.2;
@@ -244,7 +245,7 @@ void ListMenu::render()
                line_num * line_height,
                width,
                line_num * line_height + line_height,
-               get_active() ? color : al_color_html("4e2f1a")
+               get_active() ? color : inactive_but_selected_color
             );
          }
          //if (!get_active())
