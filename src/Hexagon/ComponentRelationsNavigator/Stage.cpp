@@ -98,9 +98,9 @@ void Stage::initialize()
    relatives_menu.set_color(default_color);
    dependencies_menu.set_color(default_color);
 
-   dependents_menu.set_inactive_color(default_inactive_color);
-   relatives_menu.set_inactive_color(default_inactive_color);
-   dependencies_menu.set_inactive_color(default_inactive_color);
+   //dependents_menu.set_inactive_color(default_inactive_color);
+   //relatives_menu.set_inactive_color(default_inactive_color);
+   //dependencies_menu.set_inactive_color(default_inactive_color);
 
    dependents_menu_place.size.x = 600; //dependents_menu.get_width();
    relatives_menu_place.size.x = 600; //relatives_menu.get_width();

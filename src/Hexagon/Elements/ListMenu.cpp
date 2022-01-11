@@ -20,7 +20,6 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , title(title)
    , list_items(list_items)
    , color(color)
-   , inactive_color(ALLEGRO_COLOR{color.r*0.4f, color.g*0.4f, color.b*0.4f, color.a*0.4f})
    , cursor(0)
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
    , title_upcase(true)
@@ -40,12 +39,6 @@ ListMenu::~ListMenu()
 void ListMenu::set_color(ALLEGRO_COLOR color)
 {
    this->color = color;
-}
-
-
-void ListMenu::set_inactive_color(ALLEGRO_COLOR inactive_color)
-{
-   this->inactive_color = inactive_color;
 }
 
 
@@ -82,12 +75,6 @@ void ListMenu::set_active(bool active)
 ALLEGRO_COLOR ListMenu::get_color()
 {
    return color;
-}
-
-
-ALLEGRO_COLOR ListMenu::get_inactive_color()
-{
-   return inactive_color;
 }
 
 
@@ -172,7 +159,7 @@ void ListMenu::render()
    //ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
    ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
    ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.9};
-   ALLEGRO_COLOR inactive_but_selected_color = get_inactive_color(); //al_color_html("4e2f1a");
+   ALLEGRO_COLOR inactive_but_selected_color = build_inactive_color(); //al_color_html("4e2f1a");
    float width = get_width();
    //float height = 300;
    int line_height = al_get_font_line_height(font) * 1.2;
@@ -333,6 +320,11 @@ ALLEGRO_FONT* ListMenu::obtain_title_font()
    //return font_bin->auto_get("Exan-Regular.ttf -23");
    //return font_bin->auto_get("Exan-Regular.ttf -23");
    //return font_bin->auto_get("Helvetica.ttf -23");
+}
+
+ALLEGRO_COLOR ListMenu::build_inactive_color()
+{
+   return ALLEGRO_COLOR{color.r * 0.38f, color.g * 0.38f, color.b * 0.4f, color.a * 0.4f};
 }
 
 void ListMenu::draw_cursor_pointer_arrow(float cpx, float cpy)
