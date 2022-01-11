@@ -44,6 +44,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, std::vector<std::tuple<std::string
    , initialized(false)
    , currently_active_menu(nullptr)
    , default_color({0.973, 0.592, 0.078, 1.0})
+   , default_inactive_color({0.31, 0.18, 0.1, 1.0})
 {
 }
 
@@ -71,6 +72,12 @@ ALLEGRO_COLOR Stage::get_default_color()
 }
 
 
+ALLEGRO_COLOR Stage::get_default_inactive_color()
+{
+   return default_inactive_color;
+}
+
+
 ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 {
    return a_default_empty_event;
@@ -85,9 +92,15 @@ void Stage::initialize()
          error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"(!get_initialized())\" not met";
          throw std::runtime_error(error_message.str());
       }
+   //al_color_html("4e2f1a");
+
    dependents_menu.set_color(default_color);
    relatives_menu.set_color(default_color);
    dependencies_menu.set_color(default_color);
+
+   dependents_menu.set_inactive_color(default_inactive_color);
+   relatives_menu.set_inactive_color(default_inactive_color);
+   dependencies_menu.set_inactive_color(default_inactive_color);
 
    dependents_menu_place.size.x = 600; //dependents_menu.get_width();
    relatives_menu_place.size.x = 600; //relatives_menu.get_width();
