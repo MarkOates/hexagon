@@ -101,21 +101,22 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_me
          { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       }
    );
-   float width = 600;
-   list_menu.set_width(width);
-   placement3d place = centered_placement(0, 0);
+   float spacing = 100;
+   placement3d place = centered_placement(list_menu.get_width(), -240);
+   place.position.x -= (list_menu.get_width()/2 - spacing/2);
 
    list_menu.move_cursor_down();
    list_menu.move_cursor_down();
 
    al_clear_to_color(ALLEGRO_COLOR{0.1,0.1,0.1,1});
+   //al_clear_to_color(ALLEGRO_COLOR{1, 1, 1, 1});
    place.start_transform();
    list_menu.render();
    place.restore_transform();
 
    list_menu.set_active(false);
 
-   place.position.x += (width + 100);
+   place.position.x += (list_menu.get_width() + spacing);
  
    place.start_transform();
    list_menu.render();
