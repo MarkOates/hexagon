@@ -4,19 +4,6 @@
 #include <Hexagon/System/System.hpp>
 
 
-#include <Hexagon/RailsMinitestTestResult.hpp>
-#include <Hexagon/RailsMinitestTestResultToCodeMessagePointConverter.hpp>
-#include <Hexagon/StageInterface.hpp>
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
-#include <Hexagon/CodeEditor/EventController.hpp>
-#include <Hexagon/FileNavigator/Stage.hpp>
-#include <Hexagon/FullScreenOverlay/Stage.hpp>
-#include <allegro5/allegro.h>
-#include <Hexagon/shared_globals.hpp>
-
-
-
-
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -56,6 +43,7 @@
 #include <Hexagon/CodePoint.hpp>
 #include <Hexagon/CodeRange.hpp>
 #include <Hexagon/RailsMinitestTestResult.hpp>
+#include <Hexagon/RailsMinitestTestResultToCodeMessagePointConverter.hpp>
 #include <Hexagon/RailsTestOutputParser.hpp>
 #include <Hexagon/RailsMinitestTestRunner.hpp>
 #include <Hexagon/CppCompiler/CompileRunner.hpp>
@@ -85,7 +73,6 @@
 #include <Hexagon/OneLineInputBox/Stage.hpp>
 #include <Hexagon/PacketLogger.hpp>
 #include <Hexagon/System/Action/SendMessageToDaemusToBuild.hpp>
-
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Blast/StringJoiner.hpp>
 
