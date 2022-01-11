@@ -101,39 +101,6 @@ void EventController::process_local_event(std::string event_name, ActionData act
    }
 
    return;
-
-
-
-
-
-
-
-
-      //try
-      //{
-      //   std::cout << "System::EventController::" << event_name << std::endl;
-
-      //   // could use the iterator element found via the find() call above, rather than doing a new lookup
-      //   std::function<bool(::System&)> function_to_be_called = event_function_mapping[event_name];
-      //   bool function_returned_true_from_execution = function_to_be_called(*system);
-      //   if (!function_returned_true_from_execution)
-      //   {
-      //      // TODO: add some throwing code here
-      //   }
-      //   return;
-      //}
-      //catch (const std::exception &exception)
-      //{
-      //   std::cout << ">BOOM< cannot execute \""
-      //             << event_name
-      //             << "\".  The following exception occurred: "
-      //             << exception.what()
-      //             << std::endl;
-
-      //   std::stringstream error_message;
-      //   error_message << "An exception was thrown: \"" << exception.what() << "\"";
-      //   add_notification(error_message.str());
-      //}
 }
 
 void EventController::process_event(ALLEGRO_EVENT& event)
