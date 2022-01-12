@@ -700,6 +700,7 @@ functions:
       result.set_mapping(ALLEGRO_KEY_V, 0, { "toggle_currently_grabbing_visual_selection" });
       result.set_mapping(ALLEGRO_KEY_Y, 0, { "yank_selected_text_to_clipboard" });
       result.set_mapping(ALLEGRO_KEY_P, ALLEGRO_KEYMOD_SHIFT, { "paste_selected_text_from_clipboard" });
+      result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "cursor_move_down", "insert_blank_line" });
       return result;
 
 
