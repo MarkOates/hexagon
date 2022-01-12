@@ -312,45 +312,25 @@ std::string ProgramRunner::__execute_command(std::string command, bool output_to
 
 std::string ProgramRunner::find_oldest_filename(std::string path)
 {
-   using namespace std::chrono_literals;
-
    // TODO check that path exists
    // TODO check that path is not empty, or return ""
-   // list out files
-
-   // TODO finish the body of this function
-   //auto first_file_to_check = std::filesystem::directory_iterator(path);
-   //first_file_to_check.begin();
-   std::string result = "";
-   std::time_t most_viable_created_at_time = 0; //std::filesystem::directory_iterator(path).begin();
 
    std::vector<std::pair<std::filesystem::file_time_type, std::string>> listing;
-
    for (const auto &entry : std::filesystem::directory_iterator(path))
    {
-      std::filesystem::file_time_type ftime = std::filesystem::last_write_time(entry);
+      std::filesystem::file_time_type file_time = std::filesystem::last_write_time(entry);
       std::string filename = entry.path().string();
-      //std::cout << filename << std::endl;
-      listing.push_back(std::pair<std::filesystem::file_time_type, std::string>(ftime, filename));
+      listing.push_back(std::pair<std::filesystem::file_time_type, std::string>(file_time, filename));
    }
 
    //std::random_device rd;
    //std::mt19937 g(rd());
    //std::shuffle(v.begin(), v.end(), g);
 
-   std::cout << "REEESSSULTS count: " << listing.size() << std::endl;
    // TODO: confirm this sort is actually doing what is expected
    std::sort(listing.begin(), listing.end());
 
    return listing[0].second;
-
-   //std::string result = "";
-   //std::filesystem::file_time_type last_write_time = std::filesystem::last_write_time
-
-   //std::time_t cftime = std::chrono::system_clock::to_time_t(std::chrono::file_clock::to_sys(ftime));
-   //std::cout << "File write time is " << std::asctime(std::localtime(&cftime));
-
-   //return result;
 }
 } // namespace Daemus
 } // namespace Hexagon
