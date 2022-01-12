@@ -20,6 +20,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <filesystem>
 
 
 namespace Hexagon
@@ -306,6 +307,26 @@ std::string ProgramRunner::__execute_command(std::string command, bool output_to
                        : Blast::ShellCommandExecutorWithCallback::simple_silent_callback
    );
    return shell_command_executor.execute();
+}
+
+std::string ProgramRunner::find_oldest_filename(std::string path)
+{
+   // TODO check that path exists
+   // TODO check that path is not empty, or return ""
+   // list out files
+
+   std::string result = "";
+
+   for (const auto & entry : std::filesystem::directory_iterator(path))
+     std::cout << entry.path() << std::endl;
+
+   //std::string result = "";
+   //std::filesystem::file_time_type last_write_time = std::filesystem::last_write_time
+
+   //std::time_t cftime = std::chrono::system_clock::to_time_t(std::chrono::file_clock::to_sys(ftime));
+   //std::cout << "File write time is " << std::asctime(std::localtime(&cftime));
+
+   return result;
 }
 } // namespace Daemus
 } // namespace Hexagon

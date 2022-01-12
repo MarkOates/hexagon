@@ -351,9 +351,41 @@ functions:
       - Blast::ShellCommandExecutorWithCallback
 
 
+  - name: find_oldest_filename
+    static: true
+    type: std::string
+    parameters:
+      - name: path
+        type: std::string
+        default_argument: '"/Users/markoates/Repos/hexagon/bin/programs/data/builds/pending"'
+    body: |
+      // TODO check that path exists
+      // TODO check that path is not empty, or return ""
+      // list out files
+
+      std::string result = "";
+
+      for (const auto & entry : std::filesystem::directory_iterator(path))
+        std::cout << entry.path() << std::endl;
+
+      //std::string result = "";
+      //std::filesystem::file_time_type last_write_time = std::filesystem::last_write_time
+
+      //std::time_t cftime = std::chrono::system_clock::to_time_t(std::chrono::file_clock::to_sys(ftime));
+      //std::cout << "File write time is " << std::asctime(std::localtime(&cftime));
+      
+      return result;
+    body_dependency_symbols:
+      - std::filesystem::last_write_time
+
+
 dependencies:
 
 
+  - symbol: std::chrono
+    headers: [ chrono ]
+  - symbol: std::filesystem::last_write_time
+    headers: [ filesystem ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
   - symbol: getpid

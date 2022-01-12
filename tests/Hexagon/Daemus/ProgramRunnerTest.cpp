@@ -8,6 +8,8 @@
 
 #include <Hexagon/Daemus/ProgramRunner.hpp>
 
+#define BUILDS_FIXTURE_FOLDER_NAME "/Users/markoates/Repos/hexagon/tests/fixtures/data/builds"
+
 TEST(Hexagon_Daemus_ProgramRunnerTest, can_be_created_without_blowing_up)
 {
    Hexagon::Daemus::ProgramRunner program_runner;
@@ -136,3 +138,26 @@ TEST(Hexagon_Daemus_ProgramRunnerTest,
    );
 }
 
+TEST(Hexagon_Daemus_ProgramRunnerTest,
+   find_oldest_filename__on_a_folder_that_does_not_exist__will_raise_an_exception)
+{
+   // TODO
+}
+
+TEST(Hexagon_Daemus_ProgramRunnerTest,
+   find_oldest_filename__when_no_files_are_present__returns_an_empty_string)
+{
+   // TODO 
+}
+
+TEST(Hexagon_Daemus_ProgramRunnerTest,
+   find_oldest_filename__returns_the_oldest_file_in_the_directory)
+{
+   // TODO: should use a tmp_directory_path() rather than the fixture path
+   // consider this example: https://en.cppreference.com/w/cpp/filesystem/last_write_time
+
+   std::string folder_to_look_in = std::string(BUILDS_FIXTURE_FOLDER_NAME) + "/pending";
+   std::string expected_oldest_file = "file_created_at_12_38.txt";
+
+   Hexagon::Daemus::ProgramRunner::find_oldest_filename(folder_to_look_in);
+}

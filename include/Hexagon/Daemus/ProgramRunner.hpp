@@ -39,6 +39,7 @@ namespace Hexagon
          void run_build_quintessence_file(std::string project_directory="", std::string quintessence_filename="");
          void output_pid();
          std::string __execute_command(std::string command="", bool output_to_stdout=true);
+         static std::string find_oldest_filename(std::string path="/Users/markoates/Repos/hexagon/bin/programs/data/builds/pending");
       };
    }
 }
