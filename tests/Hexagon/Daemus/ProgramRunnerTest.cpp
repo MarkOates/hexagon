@@ -158,7 +158,8 @@ TEST(Hexagon_Daemus_ProgramRunnerTest,
 
    // TODO: finish this test
    std::string folder_to_look_in = std::string(BUILDS_FIXTURE_FOLDER_NAME) + "/pending";
-   std::string expected_oldest_file = "file_created_at_12_38.txt";
+   std::string expected_oldest_file = folder_to_look_in + "/file_created_at_12_38.txt";
 
-   Hexagon::Daemus::ProgramRunner::find_oldest_filename(folder_to_look_in);
+   std::string actual_oldest_file = Hexagon::Daemus::ProgramRunner::find_oldest_filename(folder_to_look_in);
+   ASSERT_EQ(expected_oldest_file, actual_oldest_file);
 }
