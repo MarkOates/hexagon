@@ -323,11 +323,6 @@ std::string ProgramRunner::find_oldest_filename(std::string path)
       listing.push_back(std::pair<std::filesystem::file_time_type, std::string>(file_time, filename));
    }
 
-   //std::random_device rd;
-   //std::mt19937 g(rd());
-   //std::shuffle(v.begin(), v.end(), g);
-
-   // TODO: confirm this sort is actually doing what is expected
    std::sort(listing.begin(), listing.end());
 
    return listing[0].second;
