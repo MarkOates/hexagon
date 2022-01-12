@@ -25,6 +25,7 @@ namespace Hexagon
          std::string get_daemus_build_file_directory();
          std::string get_daemus_build_filename();
          void run();
+         void process_oldest_file_in_builds_folder();
          void run_full_rebuild();
          void run_in_holding_pattern();
          void run_simple_echo_command();

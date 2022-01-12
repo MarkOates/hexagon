@@ -66,6 +66,31 @@ void ProgramRunner::run()
    return;
 }
 
+void ProgramRunner::process_oldest_file_in_builds_folder()
+{
+   // TODO fill out this function
+   std::string oldest_filename = "foobar.txt";
+   std::string current_location = "location/foobar.txt";
+   std::string new_location = "new_location/foobar.txt";
+
+   //if (!file_exist)
+   {      
+      //throw
+   }
+
+
+   //try
+   //{
+      //std::filesystem::rename("from.txt", "to.txt");
+      //system("dir /od /b");
+   //}
+   //catch (std::filesystem::filesystem_error& e)
+   //{
+   //   std::cout << e.what() << '\n';
+   //}
+   return;
+}
+
 void ProgramRunner::run_full_rebuild()
 {
    std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
