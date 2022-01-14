@@ -342,6 +342,8 @@ void Renderer::draw_full_line_visual_selections()
    //for (auto &selection : code_editor->selections)
    //for (auto &visual_selection : *visual_selections)
    if ((*full_line_visual_selections).empty()) return;
+   ALLEGRO_COLOR selection_color = al_color_name("violet");
+   selection_color = AllegroFlare::color::color(selection_color, 0.4);
 
    for (auto &code_range : (*full_line_visual_selections))
    {
@@ -354,6 +356,7 @@ void Renderer::draw_full_line_visual_selections()
          first_line_number,
          cell_width,
          cell_height);
+      renderer.set_selection_color(selection_color);
       renderer.render();
    }
    return;

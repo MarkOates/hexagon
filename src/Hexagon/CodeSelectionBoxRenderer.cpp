@@ -29,6 +29,12 @@ CodeSelectionBoxRenderer::~CodeSelectionBoxRenderer()
 }
 
 
+void CodeSelectionBoxRenderer::set_selection_color(ALLEGRO_COLOR selection_color)
+{
+   this->selection_color = selection_color;
+}
+
+
 void CodeSelectionBoxRenderer::render()
 {
    if (!(code_range))
