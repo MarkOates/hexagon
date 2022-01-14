@@ -47,6 +47,8 @@ namespace Hexagon
          Hexagon::CodeMessagePointManager code_message_point_manager;
          std::vector<CodeRange> visual_selections;
          bool currently_grabbing_visual_selection;
+         std::vector<CodeRange> full_line_visual_selections;
+         bool currently_grabbing_full_line_visual_selection;
          std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
          Hexagon::AdvancedCodeEditor::Selection search_regex_selections;
 
@@ -110,6 +112,9 @@ namespace Hexagon
          bool create_visual_selection_at_current_cursor_location();
          bool destroy_current_visual_selection();
          bool toggle_currently_grabbing_visual_selection();
+         bool create_full_line_visual_selection_at_current_cursor_location();
+         bool destroy_current_full_line_visual_selection();
+         bool toggle_currently_grabbing_full_line_visual_selection();
          bool set_current_visual_selection_end_x(int x_pos=0);
          bool set_current_visual_selection_end_y(int y_pos=0);
          bool refresh_current_visual_selection_end_to_current_cursor_position();

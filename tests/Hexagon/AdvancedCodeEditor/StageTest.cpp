@@ -312,7 +312,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
-   interactive_test_works)
+   DISABLED__interactive_test_works)
 {
    AllegroFlare::Timer timer;
    std::string filename = std::tmpnam(nullptr);

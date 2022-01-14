@@ -875,6 +875,14 @@ table td
   <td class="property">bool</td>
 </tr>
 <tr>
+  <td class="property">full_line_visual_selections</td>
+  <td class="property">std::vector&lt;CodeRange&gt;</td>
+</tr>
+<tr>
+  <td class="property">currently_grabbing_full_line_visual_selection</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
   <td class="property">selections</td>
   <td class="property">std::vector&lt;Hexagon::AdvancedCodeEditor::Selection&gt;</td>
 </tr>
@@ -1006,6 +1014,15 @@ table td
 </tr>
 <tr>
   <td class="method">toggle_currently_grabbing_visual_selection()</td>
+</tr>
+<tr>
+  <td class="method">create_full_line_visual_selection_at_current_cursor_location()</td>
+</tr>
+<tr>
+  <td class="method">destroy_current_full_line_visual_selection()</td>
+</tr>
+<tr>
+  <td class="method">toggle_currently_grabbing_full_line_visual_selection()</td>
 </tr>
 <tr>
   <td class="method">set_current_visual_selection_end_x(1)</td>

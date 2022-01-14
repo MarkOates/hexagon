@@ -70,6 +70,8 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , code_message_point_manager({})
    , visual_selections({})
    , currently_grabbing_visual_selection(false)
+   , full_line_visual_selections({})
+   , currently_grabbing_full_line_visual_selection(false)
    , selections({})
    , search_regex_selections(Hexagon::AdvancedCodeEditor::Selection{})
 {
@@ -270,6 +272,7 @@ bool Stage::set_to_insert_mode()
 {
    mode = 1;
    if (currently_grabbing_visual_selection) toggle_currently_grabbing_visual_selection();
+   if (currently_grabbing_full_line_visual_selection) toggle_currently_grabbing_full_line_visual_selection();
    return true;
 }
 
@@ -518,6 +521,7 @@ void Stage::set_content(std::string content)
    advanced_code_editor.unmark_content_is_modified();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    if (currently_grabbing_visual_selection) toggle_currently_grabbing_visual_selection();
+   if (currently_grabbing_full_line_visual_selection) toggle_currently_grabbing_full_line_visual_selection();
    return;
 }
 
@@ -564,8 +568,29 @@ bool Stage::toggle_currently_grabbing_visual_selection()
    return true;
 }
 
+bool Stage::create_full_line_visual_selection_at_current_cursor_location()
+{
+   full_line_visual_selections.push_back(CodeRange(cursor_get_x(), cursor_get_y(), cursor_get_x()+1, cursor_get_y()));
+   return true;
+}
+
+bool Stage::destroy_current_full_line_visual_selection()
+{
+   full_line_visual_selections.clear();
+   return true;
+}
+
+bool Stage::toggle_currently_grabbing_full_line_visual_selection()
+{
+   currently_grabbing_full_line_visual_selection = !currently_grabbing_full_line_visual_selection;
+   if (currently_grabbing_full_line_visual_selection) create_full_line_visual_selection_at_current_cursor_location();
+   else destroy_current_full_line_visual_selection();
+   return true;
+}
+
 bool Stage::set_current_visual_selection_end_x(int x_pos)
 {
+   // TODO: modify this method to work with full line visual selection
    if (visual_selections.empty()) return true;
    visual_selections.back().set_cursor_end_x(x_pos);
    return true;
@@ -573,6 +598,7 @@ bool Stage::set_current_visual_selection_end_x(int x_pos)
 
 bool Stage::set_current_visual_selection_end_y(int y_pos)
 {
+   // TODO: modify this method to work with full line visual selection
    if (visual_selections.empty()) return true;
    visual_selections.back().set_cursor_end_y(y_pos);
    return true;
@@ -580,6 +606,7 @@ bool Stage::set_current_visual_selection_end_y(int y_pos)
 
 bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
 {
+   // TODO: modify this method to work with full line visual selection
    if (visual_selections.empty()) return false;
    visual_selections.back().set_cursor_end_x(cursor_get_x());
    visual_selections.back().set_cursor_end_y(cursor_get_y());
@@ -588,6 +615,7 @@ bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
 
 bool Stage::yank_selected_text_to_clipboard()
 {
+   // TODO: modify this method to work with full line visual selection
    if (visual_selections.empty())
    {
       throw std::runtime_error("aosoadsofaodfaofd");
