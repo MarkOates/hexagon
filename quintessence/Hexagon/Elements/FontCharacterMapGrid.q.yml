@@ -6,14 +6,17 @@ properties:
     init_with: nullptr
     constructor_arg: true
     setter: true
+
   - name: grid_width
     type: int
     init_with: 0
     getter: true
+
   - name: grid_height
     type: int
     init_with: 0
     getter: true
+
   - name: character_uv_mapping
     type: std::map<char, std::tuple<float, float, float, float>>
     init_with: '{}'
