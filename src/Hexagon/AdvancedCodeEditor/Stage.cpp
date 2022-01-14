@@ -733,6 +733,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
          &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_adjust_so_cursor_is_vertically_centered },
       { "toggle_currently_grabbing_visual_selection",
         &Hexagon::AdvancedCodeEditor::Stage::toggle_currently_grabbing_visual_selection },
+      { "toggle_currently_grabbing_full_line_visual_selection",
+        &Hexagon::AdvancedCodeEditor::Stage::toggle_currently_grabbing_full_line_visual_selection },
       { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
       { "insert_three_spaces_at_start_of_line",
          &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
@@ -804,6 +806,7 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
       "insert_three_spaces_at_start_of_line",
       });
    result.set_mapping(ALLEGRO_KEY_V, 0, { "toggle_currently_grabbing_visual_selection" });
+   result.set_mapping(ALLEGRO_KEY_V, ALLEGRO_KEYMOD_SHIFT, { "toggle_currently_grabbing_full_line_visual_selection" });
    result.set_mapping(ALLEGRO_KEY_Y, 0, { "yank_selected_text_to_clipboard" });
    result.set_mapping(ALLEGRO_KEY_P, ALLEGRO_KEYMOD_SHIFT, { "paste_selected_text_from_clipboard" });
    result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "cursor_move_down", "insert_blank_line" });
