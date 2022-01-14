@@ -591,25 +591,65 @@ bool Stage::toggle_currently_grabbing_full_line_visual_selection()
 bool Stage::set_current_visual_selection_end_x(int x_pos)
 {
    // TODO: modify this method to work with full line visual selection
-   if (visual_selections.empty()) return true;
-   visual_selections.back().set_cursor_end_x(x_pos);
+   // TODO: write test for this conditional behavior
+   if (visual_selections.empty() && full_line_visual_selections.empty()) return true;
+   if (!visual_selections.empty() && !full_line_visual_selections.empty())
+   {
+      throw std::runtime_error("unexpected state, both visual_slections and full_line_visual_selections");
+   }
+
+   if (!visual_selections.empty())
+   {
+      visual_selections.back().set_cursor_end_x(x_pos);
+   }
+   else if (!full_line_visual_selections.empty())
+   {
+      full_line_visual_selections.back().set_cursor_end_x(x_pos);
+   }
    return true;
 }
 
 bool Stage::set_current_visual_selection_end_y(int y_pos)
 {
    // TODO: modify this method to work with full line visual selection
-   if (visual_selections.empty()) return true;
-   visual_selections.back().set_cursor_end_y(y_pos);
+   // TODO: write test for this conditional behavior
+   if (visual_selections.empty() && full_line_visual_selections.empty()) return true;
+   if (!visual_selections.empty() && !full_line_visual_selections.empty())
+   {
+      throw std::runtime_error("unexpected state, both visual_slections and full_line_visual_selections");
+   }
+
+   if (!visual_selections.empty())
+   {
+      visual_selections.back().set_cursor_end_y(y_pos);
+   }
+   else if (!full_line_visual_selections.empty())
+   {
+      full_line_visual_selections.back().set_cursor_end_y(y_pos);
+   }
    return true;
 }
 
 bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
 {
    // TODO: modify this method to work with full line visual selection
-   if (visual_selections.empty()) return false;
-   visual_selections.back().set_cursor_end_x(cursor_get_x());
-   visual_selections.back().set_cursor_end_y(cursor_get_y());
+   // TODO: write test for this conditional behavior
+   if (visual_selections.empty() && full_line_visual_selections.empty()) return true;
+   if (!visual_selections.empty() && !full_line_visual_selections.empty())
+   {
+      throw std::runtime_error("unexpected state, both visual_slections and full_line_visual_selections");
+   }
+
+   if (!visual_selections.empty())
+   {
+      visual_selections.back().set_cursor_end_x(cursor_get_x());
+      visual_selections.back().set_cursor_end_y(cursor_get_y());
+   }
+   else if (!full_line_visual_selections.empty())
+   {
+      full_line_visual_selections.back().set_cursor_end_x(cursor_get_x());
+      full_line_visual_selections.back().set_cursor_end_y(cursor_get_y());
+   }
    return true;
 }
 
