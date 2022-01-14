@@ -654,11 +654,18 @@ functions:
       }
       else if (!full_line_visual_selections.empty())
       {
-         // TODO: add in this logic
+         CodeRange full_line_visual_selection = full_line_visual_selections.back();
+         std::vector<std::string> extracted_selection = Hexagon::CodeRangeExtractor(
+            &advanced_code_editor.get_lines_ref(),
+            &full_line_visual_selection
+         ).extract_full_lines();
+         ClipboardData::store(extracted_selection);
       }
       else
       {
-         // TODO: throw on unexpected branch path
+         // TODO: improve this error message
+         throw std::runtime_error("RarsoxxxadsofXfjaodfij");
+         return false;
       }
       return true;
     body_dependency_symbols:
