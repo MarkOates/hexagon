@@ -18,6 +18,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -32,13 +34,14 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections, std::vector<CodeRange>* visual_selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font, bool content_is_modified)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections, std::vector<CodeRange>* visual_selections, std::vector<CodeRange>* full_line_visual_selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font, bool content_is_modified)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
    , cursor(cursor)
    , selections(selections)
    , search_regex_selections(search_regex_selections)
    , visual_selections(visual_selections)
+   , full_line_visual_selections(full_line_visual_selections)
    , code_message_points(code_message_points)
    , lines(lines)
    , width(width)
@@ -110,6 +113,7 @@ void Renderer::render()
    if (selections) draw_selections();
    if (search_regex_selections) draw_search_regex_selections();
    if (visual_selections) draw_visual_selections();
+   if (full_line_visual_selections) draw_full_line_visual_selections();
    if (code_message_points) draw_code_message_points();
    render_cursor();
 
@@ -300,6 +304,46 @@ void Renderer::draw_visual_selections()
    if ((*visual_selections).empty()) return;
 
    for (auto &code_range : (*visual_selections))
+   {
+      //std::cout << " drawing selection " << selection << std::endl;
+      Hexagon::CodeSelectionBoxRenderer renderer(
+         //code_editor->get_lines_ref(),
+         lines,
+         &code_range,
+         //code_editor->get_first_line_number(),
+         first_line_number,
+         cell_width,
+         cell_height);
+      renderer.render();
+   }
+   return;
+}
+
+void Renderer::draw_full_line_visual_selections()
+{
+   if (!(full_line_visual_selections))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_full_line_visual_selections" << ": error: " << "guard \"full_line_visual_selections\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(lines))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_full_line_visual_selections" << ": error: " << "guard \"lines\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   int cell_width = text_mesh->get_cell_width();
+   int first_line_number = first_row_offset;
+   float cell_height = text_mesh->get_cell_height();
+
+   //if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
+
+   //for (auto &selection : code_editor->selections)
+   //for (auto &visual_selection : *visual_selections)
+   if ((*full_line_visual_selections).empty()) return;
+
+   for (auto &code_range : (*full_line_visual_selections))
    {
       //std::cout << " drawing selection " << selection << std::endl;
       Hexagon::CodeSelectionBoxRenderer renderer(

@@ -41,7 +41,17 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    Hexagon::Elements::TextMesh text_mesh(font);
    text_mesh.initialize();
 
-   Hexagon::AdvancedCodeEditor::Renderer renderer(&text_mesh, nullptr, nullptr, &selections, nullptr, nullptr, nullptr, &lines);
+   Hexagon::AdvancedCodeEditor::Renderer renderer(
+      &text_mesh,
+      nullptr,
+      nullptr,
+      &selections,
+      nullptr,
+      nullptr,
+      nullptr,
+      nullptr,
+      &lines
+   );
    std::string expected_error_message = "Renderer::render_cursor: error: guard \"cursor\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 
@@ -66,6 +76,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
       nullptr,
       &cursor,
       &selections,
+      nullptr,
       nullptr,
       nullptr,
       nullptr,
@@ -105,6 +116,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
       nullptr,
       nullptr,
       nullptr,
+      nullptr,
       &lines,
       place.size.x,
       place.size.y
@@ -140,6 +152,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
       nullptr,
       &cursor,
       &selections,
+      nullptr,
       nullptr,
       nullptr,
       nullptr,
@@ -196,6 +209,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
          bitmap,
          &cursor,
          &selections,
+         nullptr,
          nullptr,
          nullptr,
          nullptr,
@@ -265,6 +279,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, DISAB
          nullptr,
          nullptr,
          nullptr,
+         nullptr,
          &lines,
          place.size.x,
          place.size.y,
@@ -321,6 +336,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
          &text_mesh,
          bitmap,
          &cursor,
+         nullptr,
          nullptr,
          nullptr,
          nullptr,

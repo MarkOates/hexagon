@@ -856,6 +856,7 @@ void Stage::render()
       &selections,
       &search_regex_selections,
       &visual_selections,
+      &full_line_visual_selections,
       &code_message_point_manager.get_code_message_points_ref(),
       &lines,
       place.size.x,
