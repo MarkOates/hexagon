@@ -652,19 +652,34 @@ bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
 
 bool Stage::yank_selected_text_to_clipboard()
 {
-   // TODO: modify this method to work with full line visual selection
-   if (visual_selections.empty())
+   // TODO: write test for this conditional behavior
+   if (visual_selections.empty() && full_line_visual_selections.empty())
    {
       throw std::runtime_error("aosoadsofaodfaofd");
       return false;
    }
+   if (!visual_selections.empty() && !full_line_visual_selections.empty())
+   {
+      throw std::runtime_error("unexpected state, both visual_slections and full_line_visual_selections");
+   }
 
-   CodeRange visual_selection = visual_selections.back();
-   std::vector<std::string> extracted_selection = Hexagon::CodeRangeExtractor(
-      &advanced_code_editor.get_lines_ref(),
-      &visual_selection
-   ).extract();
-   ClipboardData::store(extracted_selection);
+   if (!visual_selections.empty())
+   {
+      CodeRange visual_selection = visual_selections.back();
+      std::vector<std::string> extracted_selection = Hexagon::CodeRangeExtractor(
+         &advanced_code_editor.get_lines_ref(),
+         &visual_selection
+      ).extract();
+      ClipboardData::store(extracted_selection);
+   }
+   else if (!full_line_visual_selections.empty())
+   {
+      // TODO: add in this logic
+   }
+   else
+   {
+      // TODO: throw on unexpected branch path
+   }
    return true;
 }
 
