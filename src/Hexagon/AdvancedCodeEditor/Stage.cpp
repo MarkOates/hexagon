@@ -563,9 +563,21 @@ bool Stage::destroy_current_visual_selection()
 bool Stage::toggle_currently_grabbing_visual_selection()
 {
    // TODO: have this untoggle if either full_line or not
-   currently_grabbing_visual_selection = !currently_grabbing_visual_selection;
-   if (currently_grabbing_visual_selection) create_visual_selection_at_current_cursor_location();
-   else destroy_current_visual_selection();
+
+   // if either is on, turn them both off
+   if (currently_grabbing_visual_selection || currently_grabbing_full_line_visual_selection)
+   {
+      currently_grabbing_visual_selection = false;
+      destroy_current_visual_selection();
+      currently_grabbing_full_line_visual_selection = false;
+      destroy_current_full_line_visual_selection();
+   }
+   // else if both are off turn on visual
+   else
+   {
+      currently_grabbing_visual_selection = true;
+      create_visual_selection_at_current_cursor_location();
+   }
    return true;
 }
 
@@ -584,6 +596,8 @@ bool Stage::destroy_current_full_line_visual_selection()
 bool Stage::toggle_currently_grabbing_full_line_visual_selection()
 {
    // TODO: have this untoggle if either full_line or no
+   // if either is on, turn them both off
+   // else if both are off turn on full line visual
    currently_grabbing_full_line_visual_selection = !currently_grabbing_full_line_visual_selection;
    if (currently_grabbing_full_line_visual_selection) create_full_line_visual_selection_at_current_cursor_location();
    else destroy_current_full_line_visual_selection();
