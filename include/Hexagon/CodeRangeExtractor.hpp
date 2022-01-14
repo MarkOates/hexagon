@@ -19,6 +19,7 @@ namespace Hexagon
       ~CodeRangeExtractor();
 
       std::vector<std::string> extract();
+      std::vector<std::string> extract_full_lines();
    };
 }
 

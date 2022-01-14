@@ -41,3 +41,19 @@ TEST(Hexagon_CodeRangeExtractorTest,
    EXPECT_EQ(expected_extracted_string, actual_extracted_string);
 }
 
+TEST(Hexagon_CodeRangeExtractorTest, extract_full_lines__extracts_the_expected_full_lines)
+{
+   CodeRange code_range{ 6, 4, 14, 6 };
+   std::vector<std::string> lines = Blast::StringSplitter(sonnet, '\n').split();
+
+   Hexagon::CodeRangeExtractor code_range_extractor(&lines, &code_range);
+
+   std::vector<std::string> expected_extracted_string = {
+      "Is it thy spirit that thou send'st from thee",
+      "So far from home into my deeds to pry,",
+      "To find out shames and idle hours in me,"
+   };
+   std::vector<std::string> actual_extracted_string = code_range_extractor.extract_full_lines();
+
+   EXPECT_EQ(expected_extracted_string, actual_extracted_string);
+}

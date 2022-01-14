@@ -53,6 +53,30 @@ functions:
       - std::max
 
 
+  - name: extract_full_lines
+    type: std::vector<std::string>
+    guards: [ lines, code_range ]
+    body: |
+      CodePoint start = code_range->infer_cursor_start();
+      CodePoint end = code_range->infer_cursor_end();
+
+      int start_x = start.get_x();
+      int end_x = end.get_x();
+      int start_y = std::min(std::max(0, start.get_y()), (int)lines->size());
+      int end_y = std::min(std::max(0, (end.get_y()+1)), (int)lines->size());
+
+      std::cout << "CodeRangeExtractor: attempting extraction at (" << start_y << ", " << end_y << ")" << std::endl;
+
+      std::vector<std::string> result_full_lines(lines->begin() + start_y, lines->begin() + end_y);
+
+      return result_full_lines;
+    body_dependency_symbols:
+      - std::cout
+      - std::min
+      - std::max
+
+
+
 dependencies:
 
 
