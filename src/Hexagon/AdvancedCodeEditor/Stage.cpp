@@ -590,7 +590,6 @@ bool Stage::toggle_currently_grabbing_full_line_visual_selection()
 
 bool Stage::set_current_visual_selection_end_x(int x_pos)
 {
-   // TODO: modify this method to work with full line visual selection
    // TODO: write test for this conditional behavior
    if (visual_selections.empty() && full_line_visual_selections.empty()) return true;
    if (!visual_selections.empty() && !full_line_visual_selections.empty())
@@ -611,7 +610,6 @@ bool Stage::set_current_visual_selection_end_x(int x_pos)
 
 bool Stage::set_current_visual_selection_end_y(int y_pos)
 {
-   // TODO: modify this method to work with full line visual selection
    // TODO: write test for this conditional behavior
    if (visual_selections.empty() && full_line_visual_selections.empty()) return true;
    if (!visual_selections.empty() && !full_line_visual_selections.empty())
@@ -632,7 +630,6 @@ bool Stage::set_current_visual_selection_end_y(int y_pos)
 
 bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
 {
-   // TODO: modify this method to work with full line visual selection
    // TODO: write test for this conditional behavior
    if (visual_selections.empty() && full_line_visual_selections.empty()) return true;
    if (!visual_selections.empty() && !full_line_visual_selections.empty())
