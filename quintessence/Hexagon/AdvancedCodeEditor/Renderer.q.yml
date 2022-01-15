@@ -89,6 +89,12 @@ properties:
     setter: true
     constructor_arg: true
 
+  - name: represents_symlink
+    type: bool
+    init_with: false
+    setter: true
+    construction_arg: true
+
 
 functions:
 

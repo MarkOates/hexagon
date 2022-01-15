@@ -52,6 +52,7 @@ Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surfa
    , draw_line_numbers(draw_line_numbers)
    , font(font)
    , content_is_modified(content_is_modified)
+   , represents_symlink(false)
 {
 }
 
@@ -76,6 +77,12 @@ void Renderer::set_font(ALLEGRO_FONT* font)
 void Renderer::set_content_is_modified(bool content_is_modified)
 {
    this->content_is_modified = content_is_modified;
+}
+
+
+void Renderer::set_represents_symlink(bool represents_symlink)
+{
+   this->represents_symlink = represents_symlink;
 }
 
 

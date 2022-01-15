@@ -14,52 +14,62 @@ properties:
     init_with: nullptr
     getter: true
     setter: true
+
   - name: project_root
     type: std::string
     init_with: '"/Users/markoates/Repos/hexagon/"'
     constructor_arg: true
     getter: true
     setter: true
+
   - name: component
     type: Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator
     init_with: 'project_root'
     getter_ref: true
+
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+
   - name: is_focused
     type: bool
     init_with: true
     getter: true
     setter: true
+
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
     getter: true
     setter: true
+
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
     getter: true
     setter: true
+
   - name: cell_width
     type: int
     init_with: 10
     getter: true
     setter: true
+
   - name: cell_height
     type: int
     init_with: 20
     getter: true
     setter: true
+
   - name: base_text_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
     constructor_arg: true
     getter: true
     setter: true
+
   - name: base_backfill_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
@@ -68,30 +78,37 @@ properties:
     setter: true
 
 
+
   - name: MOVE_CURSOR_UP
     type: std::string
     const: true
     init_with: '"move_cursor_up"'
+
   - name: MOVE_CURSOR_DOWN
     type: std::string
     const: true
     init_with: '"move_cursor_down"'
+
   - name: YANK_SELECTED_TEXT_LABEL
     type: std::string
     const: true
     init_with: '"yank_selected_text_label"'
+
   - name: YANK_SELECTED_TEXT_AS_COMPONENT_NAME
     type: std::string
     const: true
     init_with: '"yank_selected_text_as_component_name"'
+
   - name: YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE
     type: std::string
     const: true
     init_with: '"yank_selected_text_as_include_directive"'
+
   - name: YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES
     type: std::string
     const: true
     init_with: '"yank_selected_text_as_quintessence_dependency_lines"'
+
 
 functions:
 
