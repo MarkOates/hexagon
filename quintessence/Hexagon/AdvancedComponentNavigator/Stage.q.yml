@@ -77,8 +77,6 @@ properties:
     getter: true
     setter: true
 
-
-
   - name: MOVE_CURSOR_UP
     type: std::string
     const: true
