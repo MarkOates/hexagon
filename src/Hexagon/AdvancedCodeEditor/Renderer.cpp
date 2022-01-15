@@ -357,7 +357,7 @@ void Renderer::draw_full_line_visual_selections()
          cell_width,
          cell_height);
       renderer.set_selection_color(selection_color);
-      renderer.render();
+      renderer.render_full_line_selection();
    }
    return;
 }
