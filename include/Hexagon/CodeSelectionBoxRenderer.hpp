@@ -24,6 +24,7 @@ namespace Hexagon
       ~CodeSelectionBoxRenderer();
 
       void set_selection_color(ALLEGRO_COLOR selection_color);
+      void render_full_line_selection();
       void render();
       bool verify_line_in_range(int line_num=0);
       int get_line_length(int line_num=0);

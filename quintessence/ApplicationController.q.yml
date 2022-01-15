@@ -5,21 +5,27 @@ properties:
     type: Hexagon::System::Config
     init_with: '{"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"}'
     constructor_arg: true
+
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
+
   - name: event_queue
     type: ALLEGRO_EVENT_QUEUE*
     init_with: nullptr
+
   - name: primary_timer
     type: ALLEGRO_TIMER*
     init_with: nullptr
+
   - name: system
     type: Hexagon::System::System*
     init_with: nullptr
+
   - name: user_event_source
     type: ALLEGRO_EVENT_SOURCE
     init_with: ''
+
   - name: shutdown_program
     type: bool
     init_with: false

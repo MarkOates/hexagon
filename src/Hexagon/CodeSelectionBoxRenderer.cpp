@@ -1,6 +1,8 @@
 
 
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <stdexcept>
@@ -34,6 +36,30 @@ void CodeSelectionBoxRenderer::set_selection_color(ALLEGRO_COLOR selection_color
    this->selection_color = selection_color;
 }
 
+
+void CodeSelectionBoxRenderer::render_full_line_selection()
+{
+   if (!(code_range))
+      {
+         std::stringstream error_message;
+         error_message << "CodeSelectionBoxRenderer" << "::" << "render_full_line_selection" << ": error: " << "guard \"code_range\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   CodePoint start = code_range->infer_cursor_start();
+   CodePoint end = code_range->infer_cursor_end();
+   for (int i = (start.get_y()+1); i < end.get_y(); i++)
+   {
+      int this_line_y = (i - first_line_number);
+      al_draw_filled_rectangle(
+         0,
+         this_line_y * cell_height,
+         get_line_length(i) * cell_width,
+         (this_line_y + 1) * cell_height,
+         selection_color
+      );
+   }
+   return;
+}
 
 void CodeSelectionBoxRenderer::render()
 {

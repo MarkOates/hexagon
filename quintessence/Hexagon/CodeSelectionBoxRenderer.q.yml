@@ -36,6 +36,25 @@ properties:
 functions:
 
 
+  - name: render_full_line_selection
+    guards: [ code_range ]
+    body: |
+      CodePoint start = code_range->infer_cursor_start();
+      CodePoint end = code_range->infer_cursor_end();
+      for (int i = (start.get_y()+1); i < end.get_y(); i++)
+      {
+         int this_line_y = (i - first_line_number);
+         al_draw_filled_rectangle(
+            0,
+            this_line_y * cell_height,
+            get_line_length(i) * cell_width,
+            (this_line_y + 1) * cell_height,
+            selection_color
+         );
+      }
+      return;
+
+
   - name: render
     guards: [ code_range ]
     body: |
