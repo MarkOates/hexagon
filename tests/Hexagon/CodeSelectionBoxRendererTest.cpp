@@ -55,6 +55,17 @@ TEST_F(Hexagon_CodeSelectionBoxRendererTestWithAllegroRenderingFixture, render__
 }
 
 TEST_F(Hexagon_CodeSelectionBoxRendererTestWithAllegroRenderingFixture,
+   render_full_line_selection__renders_as_expected_on_a_single_line)
+{
+   std::vector<std::string> lines = Blast::StringSplitter(sonnet).split();
+   CodeRange code_range = { 0, 2, 10, 5 };
+   Hexagon::CodeSelectionBoxRenderer renderer(&lines, &code_range, 0, 30, 50);
+   renderer.render_full_line_selection();
+   al_flip_display();
+   sleep(1);
+}
+
+TEST_F(Hexagon_CodeSelectionBoxRendererTestWithAllegroRenderingFixture,
    render__renders_as_expected_on_a_single_line_while_respecting_the_first_line_number)
 {
    // TODO

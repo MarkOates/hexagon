@@ -41,7 +41,7 @@ functions:
     body: |
       CodePoint start = code_range->infer_cursor_start();
       CodePoint end = code_range->infer_cursor_end();
-      for (int i = (start.get_y()+1); i < end.get_y(); i++)
+      for (int i = start.get_y(); i <= end.get_y(); i++)
       {
          int this_line_y = (i - first_line_number);
          al_draw_filled_rectangle(
