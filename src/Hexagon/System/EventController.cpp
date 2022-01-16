@@ -313,6 +313,9 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
    KeyboardCommandMapper keyboard_key_char_mapper;
    ALLEGRO_EVENT &event = *event_ptr;
 
+   auto KEYMOD_SHIFT = KeyboardCommandMapper::SHIFT;
+   auto KEYMOD_CTRL = KeyboardCommandMapper::CTRL;
+
    //KeyboardCommandMapper::COMMAND
 
    keyboard_key_down_mapper.set_mapping(ALLEGRO_KEY_COMMAND, false, false, false, false, {
@@ -350,6 +353,7 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
             ::System::SPAWN_FILE_NAVIGATOR });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
             ::System::SPAWN_COMPONENT_NAVIGATOR });
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_Z, KEYMOD_CTRL, { ::System::SPAWN_FANCY });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, false, false, false, {
             ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, true, false, false, false, {
