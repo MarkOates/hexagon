@@ -25,8 +25,22 @@ functions:
 
 
   - name: render
+    override: true
     body: |
+      float width = 1920 / 5 * 4;
+      float height = 1080 / 8 * 6;
+      float o = 1.2;
+      ALLEGRO_COLOR fill_color = ALLEGRO_COLOR{1.0f*o, 1.0f*o, 0.0f*o, 1.0f*o};
+      placement3d place = get_place();
+
+      place.start_transform();
+      al_draw_filled_rectangle(0, 0, width, height, fill_color);
+      place.restore_transform();
+
       return;
+    body_dependency_symbols:
+      - al_draw_filled_rectangle
+      - ALLEGRO_COLOR
 
 
   - name: process_local_event
@@ -57,6 +71,8 @@ functions:
 dependencies:
 
 
+  - symbol: al_draw_filled_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: ALLEGRO_EVENT
@@ -65,3 +81,5 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]

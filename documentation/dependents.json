@@ -250,6 +250,7 @@
     "Hexagon/Elements/TextGrid",
     "Hexagon/Elements/TextMesh",
     "Hexagon/Elements/Window",
+    "Hexagon/Fancy/Stage",
     "Hexagon/FileNavigator/Stage",
     "Hexagon/Forms/Fun",
     "Hexagon/FullScreenOverlay/Stage",
@@ -671,6 +672,7 @@
     "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Elements/TextGrid",
+    "Hexagon/Fancy/Stage",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/TitleScreen"
   ],
