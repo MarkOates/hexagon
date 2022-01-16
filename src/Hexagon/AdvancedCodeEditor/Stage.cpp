@@ -849,6 +849,7 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
    result.set_mapping(ALLEGRO_KEY_Y, 0, { "yank_selected_text_to_clipboard" });
    result.set_mapping(ALLEGRO_KEY_P, ALLEGRO_KEYMOD_SHIFT, { "paste_selected_text_from_clipboard" });
    result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "cursor_move_down", "insert_blank_line" });
+   result.set_mapping(ALLEGRO_KEY_ENTER, ALLEGRO_KEYMOD_SHIFT, { "insert_blank_line" });
    return result;
 }
 
