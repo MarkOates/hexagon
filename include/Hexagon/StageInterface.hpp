@@ -29,6 +29,7 @@ public:
       LITTLE_MENU,
       DRAWING_BOX,
       NOTIFICATION,
+      FANCY,
    }; // these types should not be included within the base class
 
 private:

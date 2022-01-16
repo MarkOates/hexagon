@@ -75,6 +75,9 @@ std::string StageInterface::get_type_name()
       case NOTIFICATION:
          return "Notification";
          break;
+      case FANCY:
+         return "Fancy";
+         break;
       default:
       {
          throw std::runtime_error("StageInterface::get_type_name() unrecognized type");
