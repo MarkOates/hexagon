@@ -88,7 +88,7 @@ functions:
   - name: obtain_title_font
     type: ALLEGRO_FONT*
     body: |
-       //return font_bin->auto_get(EurostileExtendedBlack-aka-ExtendedBold.ttf
+       return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -26");
       
 
 

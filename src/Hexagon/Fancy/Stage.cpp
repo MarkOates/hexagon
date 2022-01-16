@@ -89,7 +89,7 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 
 ALLEGRO_FONT* Stage::obtain_title_font()
 {
-   //return font_bin->auto_get(EurostileExtendedBlack-aka-ExtendedBold.ttf
+   return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -26");
 }
 } // namespace Fancy
 } // namespace Hexagon
