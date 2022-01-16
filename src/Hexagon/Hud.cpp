@@ -622,6 +622,7 @@ void Hud::draw()
       StageInterface::FILE_NAVIGATOR,
       StageInterface::LITTLE_MENU,
       StageInterface::DRAWING_BOX,
+      StageInterface::FANCY,
    };
 
    bool draw_stages = true;
