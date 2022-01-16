@@ -240,7 +240,7 @@ functions:
       int width = get_hud_render_surface_projection_width();
       int height = get_hud_render_surface_projection_height();
 
-      Hexagon::Fancy::Stage *fancy_stage = new Hexagon::Fancy::Stage();
+      Hexagon::Fancy::Stage *fancy_stage = new Hexagon::Fancy::Stage(font_bin);
       //fancy_stage->initialize();
 
       fancy_stage->set_render_on_hud(true);

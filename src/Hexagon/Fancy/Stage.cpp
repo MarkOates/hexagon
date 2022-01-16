@@ -64,7 +64,7 @@ void Stage::render()
    float o = 0.2f;
    ALLEGRO_COLOR fill_color = ALLEGRO_COLOR{1.0f*o, 1.0f*o, 0.0f*o, 1.0f*o};
    ALLEGRO_COLOR font_color = fill_color;
-   //ALLEGRO_FONT *title_font = obtain_title_font();
+   ALLEGRO_FONT *title_font = obtain_title_font();
    placement3d place = get_place();
 
    // transform
