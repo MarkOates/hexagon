@@ -565,6 +565,8 @@ void Hud::draw_packets()
    place.size.y = height;
    place.align.x = 0.0;
    place.align.y = 1.0;
+   place.scale.x = 0.75;
+   place.scale.y = 0.75;
    ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
 
    al_draw_text(packet_text_font, ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5}, x, y, 0, "PACKETS");
