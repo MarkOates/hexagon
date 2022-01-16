@@ -1294,6 +1294,9 @@
     "Hexagon/StageFactory",
     "Hexagon/SymlinkToucher"
   ],
+  "Hexagon/Fancy/Stage": [
+    "Hexagon/StageFactory"
+  ],
   "Hexagon/MissingFile/Stage": [
     "Hexagon/StageFactory"
   ],

@@ -30,6 +30,7 @@
 #include <vector>
 #include <tuple>
 #include <string>
+#include <Hexagon/Fancy/Stage.hpp>
 #include <Hexagon/UI/DrawingBox.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
@@ -288,6 +289,20 @@ StageInterface* StageFactory::create_component_relations_navigator(std::string f
    component_relations_navigator->set_place(place);
 
    return component_relations_navigator;
+}
+
+StageInterface* StageFactory::create_fancy()
+{
+   ALLEGRO_DISPLAY *display = get_current_display();
+   int width = get_hud_render_surface_projection_width();
+   int height = get_hud_render_surface_projection_height();
+
+   Hexagon::Fancy::Stage *fancy_stage = new Hexagon::Fancy::Stage();
+   //fancy_stage->initialize();
+
+   fancy_stage->set_render_on_hud(true);
+
+   return fancy_stage;
 }
 
 StageInterface* StageFactory::create_drawing_box()

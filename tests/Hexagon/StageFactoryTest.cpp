@@ -151,6 +151,20 @@ TEST(Hexagon_StageFactoryTest,
 
 
 TEST(Hexagon_StageFactoryTest,
+   create_drawing_box__creates_a_drawing_box_tage_with_the_expected_properties)
+{
+   // TODO
+}
+
+
+TEST(Hexagon_StageFactoryTest,
+   create_fancy__creates_a_fancy_stage_with_the_expected_properties)
+{
+   // TODO
+}
+
+
+TEST(Hexagon_StageFactoryTest,
    create_missing_file__creates_a_missing_file_stage_with_the_expected_properties)
 {
    al_init();

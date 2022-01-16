@@ -233,6 +233,23 @@ functions:
        - std::vector<std::tuple<std::string, std::string>>
 
 
+  - name: create_fancy
+    type: StageInterface*
+    body: |
+      ALLEGRO_DISPLAY *display = get_current_display();
+      int width = get_hud_render_surface_projection_width();
+      int height = get_hud_render_surface_projection_height();
+
+      Hexagon::Fancy::Stage *fancy_stage = new Hexagon::Fancy::Stage();
+      //fancy_stage->initialize();
+
+      fancy_stage->set_render_on_hud(true);
+
+      return fancy_stage;
+    body_dependency_symbols:
+       - Hexagon::Fancy::Stage
+
+
   - name: create_drawing_box
     type: StageInterface*
     body: |
@@ -566,6 +583,8 @@ dependencies:
     headers: [ allegro_flare/useful_php.h ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
+  - symbol: Hexagon::Fancy::Stage
+    headers: [ Hexagon/Fancy/Stage.hpp ]
   - symbol: Hexagon::MissingFile::Stage
     headers: [ Hexagon/MissingFile/Stage.hpp ]
   - symbol: Hexagon::FileNavigator::Stage
