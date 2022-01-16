@@ -4615,6 +4615,10 @@ table td
     <h3 id="quintessence/Hexagon/Fancy/Stage.q.yml">quintessence/Hexagon/Fancy/Stage.q.yml</h3>
      <table>
 <tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
   <td class="property">a_default_empty_event</td>
   <td class="property">ALLEGRO_EVENT</td>
 </tr>
@@ -4631,6 +4635,9 @@ table td
 </tr>
 <tr>
   <td class="method">process_event(1)</td>
+</tr>
+<tr>
+  <td class="method">obtain_title_font()</td>
 </tr>
     </table>
      <table>
@@ -4651,6 +4658,15 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_COLOR&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_color.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -9926,6 +9942,8 @@ table td
     "Hexagon/Elements/SubBitmapCharacterMap",
     "Hexagon/Elements/TextGrid",
     "Hexagon/Elements/TextMesh",
+    "Hexagon/Fancy/Stage",
+    "Hexagon/Fancy/Stage",
     "Hexagon/FileNavigator/Stage",
     "Hexagon/Font",
     "Hexagon/FontSet",
@@ -10071,6 +10089,7 @@ table td
     "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/QuoteRenderer",
     "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Fancy/Stage",
     "Hexagon/Font",
     "Hexagon/FontSet",
     "Hexagon/Hud",
