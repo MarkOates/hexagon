@@ -133,6 +133,7 @@ public:
    bool spawn_regex_input_box_modal();
    bool spawn_git_commit_message_input_box_modal();
    bool spawn_component_navigator();
+   bool spawn_fancy();
    bool spawn_component_relations_navigator();
    bool spawn_red_overlay();
    bool spawn_file_navigator();
@@ -224,6 +225,7 @@ public:
    static const std::string RUN_PROJECT_TESTS;
    static const std::string SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK;
    static const std::string SEND_MESSAGE_TO_DAEMUS_TO_BUILD;
+   static const std::string SPAWN_FANCY;
    static const std::string SPAWN_COMPONENT_RELATIONS_NAVIGATOR;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
