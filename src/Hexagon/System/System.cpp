@@ -185,13 +185,26 @@ float System::get_default_camera_stepback()
 
 float System::get_default_code_editor_stage_width()
 {
+   // TODO: same with *get_default_code_editor_stage_height()*, this
+   // *width* should be better coordinated with the factory, the action, the
+   // method(s) that call the action in System::System, and the "num_columns" and "cell_width" properties
+   // of the stage(s) that are created
+
    return 1235; //2430/2 + 20;
 }
 
 
 float System::get_default_code_editor_stage_height()
 {
-   return 1380; //2430/2 + 20;
+   // TODO: OK, this *height* should be better coordinated with the factory, the action, the
+   // method(s) that call the action in System::System, and the "num_rows" and "cell_height" properties
+   // of the stage(s) that are created
+
+   float expected_cell_height = 20;
+   int expected_num_rows = 70;
+
+   return expected_cell_height * expected_num_rows; // 1400;
+   //return 1380; //2430/2 + 20;
 }
 
 

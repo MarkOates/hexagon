@@ -914,7 +914,6 @@ void Stage::render()
 
    place.start_transform();
    renderer.render();
-   //al_draw_text(obtain_text_font(), al_color_name("blue"), 20, 20, 0, is_in_insert_mode() ? "INSERT" : "EDIT");
    place.restore_transform();
 
    return;

@@ -14,51 +14,62 @@ properties:
     init_with: '"/Users/markoates/Repos/hexagon/"'
     constructor_arg: true
     getter: true
+
   - name: last_component_navigator_selection
     type: std::string
     init_with: '""'
     constructor_arg: true
+
   - name: display_default_width
     type: int
     init_with: 2430
     constructor_arg: true
+
   - name: display_default_height
     type: int
     init_with: 1350
     constructor_arg: true
+
   - name: stages
     type: std::vector<StageInterface *>&
     constructor_arg: true
     init_with: 'get_dummy_stages_ref()'
     getter: true
     setter: true
+
   - name: stage_factory
     type: Hexagon::StageFactory*
     init_with: nullptr
     constructor_arg: true
+
   - name: dummy_stages
     type: std::vector<StageInterface *>
     init_with: '{}'
     static: true
     getter_ref: true
+
   - name: code_editor_width
     type: int
     init_with: 1215
     constructor_arg: true
     getter: true
+
   - name: code_editor_height
     type: int
     init_with: 1380
     constructor_arg: true
     getter: true
+
   - name: text_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
     constructor_arg: true
+
   - name: backfill_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
     constructor_arg: true
+
   - name: create_as_advanced_code_editor
     type: bool
     init_with: false
