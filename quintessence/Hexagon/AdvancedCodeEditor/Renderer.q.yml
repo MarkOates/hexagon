@@ -124,7 +124,6 @@ functions:
       //timer.pause(); std::cout << " surface_render render time: "
       //                         << timer.get_elapsed_time_microseconds() << std::endl;
 
-      // draw the cursor
       if (draw_line_numbers) render_line_numbers();
       if (selections) draw_selections();
       if (search_regex_selections) draw_search_regex_selections();
