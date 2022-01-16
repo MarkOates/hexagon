@@ -190,6 +190,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          &System::spawn_component_navigator,
       },
       {
+         ::System::SPAWN_FANCY,
+         &System::spawn_fancy,
+      },
+      {
          ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR,
          &System::spawn_component_relations_navigator,
       },
