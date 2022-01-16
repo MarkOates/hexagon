@@ -1,0 +1,19 @@
+functions:
+
+
+  - name: calculate_max_half_surface_width
+    type: float
+    parameters:
+     - name: surface_width
+       type: float
+       default_argument: 1.0f
+     - name: cell_width
+       type: float
+       default_argument: 1.0f
+     - name: num_columns
+       type: int
+       default_argument: 1
+    body: |
+      // TODO: function is probably not needed or used anywhers
+      return (surface_width * 0.5f) / (cell_width * num_columns);
+
