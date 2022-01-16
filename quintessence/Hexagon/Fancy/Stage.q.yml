@@ -9,6 +9,11 @@ parent_classes:
 properties:
 
 
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
+
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -26,6 +31,7 @@ functions:
 
   - name: render
     override: true
+    guards: [ al_init(), al_is_primitives_addon_initialized() ]
     body: |
       // initialize
       float surface_width = 1920;
@@ -79,6 +85,13 @@ functions:
       return;
 
 
+  - name: obtain_title_font
+    type: ALLEGRO_FONT*
+    body: |
+       //return font_bin->auto_get(EurostileExtendedBlack-aka-ExtendedBold.ttf
+      
+
+
 dependencies:
 
 
@@ -94,3 +107,9 @@ dependencies:
     headers: [ Hexagon/ActionData.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: ALLEGRO_FONT*
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]

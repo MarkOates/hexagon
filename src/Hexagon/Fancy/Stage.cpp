@@ -3,6 +3,8 @@
 #include <Hexagon/Fancy/Stage.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -14,8 +16,9 @@ namespace Fancy
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage()
+Stage::Stage(AllegroFlare::FontBin* font_bin)
    : StageInterface(StageInterface::FANCY)
+   , font_bin(font_bin)
 {
 }
 
@@ -38,6 +41,18 @@ std::string Stage::run()
 
 void Stage::render()
 {
+   if (!(al_init()))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"al_init()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(al_is_primitives_addon_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    // initialize
    float surface_width = 1920;
    float surface_height = 1080;
@@ -70,6 +85,11 @@ void Stage::process_local_event(std::string event_name, ActionData action_data)
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
    return;
+}
+
+ALLEGRO_FONT* Stage::obtain_title_font()
+{
+   //return font_bin->auto_get(EurostileExtendedBlack-aka-ExtendedBold.ttf
 }
 } // namespace Fancy
 } // namespace Hexagon
