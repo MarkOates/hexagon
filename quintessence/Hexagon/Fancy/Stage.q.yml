@@ -31,7 +31,7 @@ functions:
 
   - name: render
     override: true
-    guards: [ al_init(), al_is_primitives_addon_initialized() ]
+    guards: [ al_is_system_installed(), al_is_primitives_addon_initialized() ]
     body: |
       // initialize
       float surface_width = 1920;
@@ -40,6 +40,8 @@ functions:
       float height = surface_height / 8 * 6;
       float o = 0.2f;
       ALLEGRO_COLOR fill_color = ALLEGRO_COLOR{1.0f*o, 1.0f*o, 0.0f*o, 1.0f*o};
+      ALLEGRO_COLOR font_color = fill_color;
+      //ALLEGRO_FONT *title_font = obtain_title_font();
       placement3d place = get_place();
 
       // transform
@@ -51,12 +53,14 @@ functions:
       // execute
       place.start_transform();
       al_draw_filled_rectangle(0, 0, width, height, fill_color);
+      al_draw_text(title_font, font_color, 20, 10, ALLEGRO_ALIGN_LEFT, "FANCY");
       place.restore_transform();
 
       // return
       return;
     body_dependency_symbols:
       - al_draw_filled_rectangle
+      - al_draw_text
       - ALLEGRO_COLOR
 
 
@@ -87,6 +91,7 @@ functions:
 
   - name: obtain_title_font
     type: ALLEGRO_FONT*
+    guards: [ font_bin ]
     body: |
        return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -26");
       
@@ -97,6 +102,8 @@ dependencies:
 
   - symbol: al_draw_filled_rectangle
     headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_draw_text
+    headers: [ allegro5/allegro_font.h ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: ALLEGRO_EVENT

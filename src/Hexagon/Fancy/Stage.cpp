@@ -2,7 +2,10 @@
 
 #include <Hexagon/Fancy/Stage.hpp>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 
@@ -41,10 +44,10 @@ std::string Stage::run()
 
 void Stage::render()
 {
-   if (!(al_init()))
+   if (!(al_is_system_installed()))
       {
          std::stringstream error_message;
-         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"al_init()\" not met";
+         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(al_is_primitives_addon_initialized()))
@@ -60,6 +63,8 @@ void Stage::render()
    float height = surface_height / 8 * 6;
    float o = 0.2f;
    ALLEGRO_COLOR fill_color = ALLEGRO_COLOR{1.0f*o, 1.0f*o, 0.0f*o, 1.0f*o};
+   ALLEGRO_COLOR font_color = fill_color;
+   //ALLEGRO_FONT *title_font = obtain_title_font();
    placement3d place = get_place();
 
    // transform
@@ -71,6 +76,7 @@ void Stage::render()
    // execute
    place.start_transform();
    al_draw_filled_rectangle(0, 0, width, height, fill_color);
+   al_draw_text(title_font, font_color, 20, 10, ALLEGRO_ALIGN_LEFT, "FANCY");
    place.restore_transform();
 
    // return
@@ -89,6 +95,12 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 
 ALLEGRO_FONT* Stage::obtain_title_font()
 {
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -26");
 }
 } // namespace Fancy

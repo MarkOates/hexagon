@@ -780,6 +780,7 @@
     "Hexagon/Elements/Frame",
     "Hexagon/Elements/QuoteRenderer",
     "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Fancy/Stage",
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
