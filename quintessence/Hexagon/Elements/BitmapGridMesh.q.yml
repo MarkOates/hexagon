@@ -5,41 +5,50 @@ properties:
     type: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>&
     init_with: 'get_dummy_grid_ref()'
     getter: true
+
   - name: dummy_grid
     static: true
     type: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
     init_with: '{}'
     getter_ref: true
+
   - name: vertexes
     type: std::vector<ALLEGRO_VERTEX>
     init_with: '{}'
     getter: true
+
   - name: num_columns
     type: int
     init_with: 0
     getter: true
+
   - name: num_rows
     type: int
     init_with: 0
     getter: true
+
   - name: cell_width
     type: float
     init_with: 1.0f
     getter: true
+
   - name: cell_height
     type: float
     init_with: 1.0f
     getter: true
+
   - name: clip_start_y
     type: int
     init_with: 0
     getter: true
     setter: true
+
   - name: clip_length_y
     type: int
     init_with: -1
     getter: true
     setter: true
+
   - name: bitmap
     type: ALLEGRO_BITMAP*
     init_with: nullptr
