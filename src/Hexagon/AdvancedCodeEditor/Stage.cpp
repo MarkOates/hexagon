@@ -255,10 +255,12 @@ bool Stage::save_file()
 bool Stage::save_file_and_touch_if_symlink()
 {
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
-   ::save_file(lines, filename);
    Hexagon::SymlinkToucher symlink_toucher(filename); // this is only needed because of rerun
+
+   ::save_file(lines, filename);
    symlink_toucher.touch_if_symlink();
    advanced_code_editor.unmark_content_is_modified();
+
    return true;
 }
 
@@ -341,6 +343,7 @@ bool Stage::cursor_jump_to_previous_word()
 
 bool Stage::cursor_jump_up_half_page()
 {
+   // TODO: account for "surface_render"
    int new_y = advanced_code_editor.cursor_get_y() - num_rows / 2;
    bool result = advanced_code_editor.cursor_set_y(new_y);
    refresh_current_visual_selection_end_to_current_cursor_position();
@@ -349,6 +352,7 @@ bool Stage::cursor_jump_up_half_page()
 
 bool Stage::cursor_jump_down_half_page()
 {
+   // TODO: account for "surface_render"
    int new_y = advanced_code_editor.cursor_get_y() + num_rows / 2;
    bool result = advanced_code_editor.cursor_set_y(new_y);
    refresh_current_visual_selection_end_to_current_cursor_position();
@@ -357,6 +361,7 @@ bool Stage::cursor_jump_down_half_page()
 
 bool Stage::first_row_offset_move_up()
 {
+   // TODO: account for "surface_render"
    first_row_offset -= 1;
    refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    return true;
@@ -364,6 +369,7 @@ bool Stage::first_row_offset_move_up()
 
 bool Stage::first_row_offset_move_down()
 {
+   // TODO: account for "surface_render"
    first_row_offset += 1;
    refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    return true;
@@ -371,6 +377,7 @@ bool Stage::first_row_offset_move_down()
 
 bool Stage::first_row_offset_jump_to(int new_offset)
 {
+   // TODO: account for "surface_render"
    first_row_offset = new_offset;
    refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    return true;
@@ -378,6 +385,7 @@ bool Stage::first_row_offset_jump_to(int new_offset)
 
 bool Stage::first_row_offset_jump_up_half_page()
 {
+   // TODO: account for "surface_render"
    first_row_offset = first_row_offset - calculate_half_num_rows();
    refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    return true;
@@ -385,6 +393,7 @@ bool Stage::first_row_offset_jump_up_half_page()
 
 bool Stage::first_row_offset_jump_down_half_page()
 {
+   // TODO: account for "surface_render"
    first_row_offset = first_row_offset + calculate_half_num_rows();
    refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    return true;
@@ -392,6 +401,7 @@ bool Stage::first_row_offset_jump_down_half_page()
 
 bool Stage::first_row_offset_adjust_so_cursor_is_vertically_centered()
 {
+   // TODO: account for "surface_render"
    first_row_offset = cursor_get_y() - calculate_one_third_num_rows();
    refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    return true;
@@ -409,9 +419,11 @@ bool Stage::cursor_jump_to_previous_code_message_point()
 
 bool Stage::cursor_jump_to_next_search_regex_selection()
 {
+   // TODO: account for "surface_render"
    CodePoint next_position = search_regex_selections.find_next_from(cursor_get_x(), cursor_get_y());
    cursor_move_to(next_position.get_x(), next_position.get_y());
    first_row_offset_jump_to(cursor_get_y() - 20); // TODO get a constant offset other than 20
+   refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    refresh_current_visual_selection_end_to_current_cursor_position();
    return true;
 }
@@ -421,6 +433,7 @@ bool Stage::cursor_jump_to_previous_search_regex_selection()
    CodePoint previous_position = search_regex_selections.find_previous_from(cursor_get_x(), cursor_get_y());
    cursor_move_to(previous_position.get_x(), previous_position.get_y());
    first_row_offset_jump_to(cursor_get_y() - 20); // TODO get a constant offset other than 20
+   refresh_text_mesh_respecting_first_row_offset(); // <-- this can be optimized
    refresh_current_visual_selection_end_to_current_cursor_position();
    return true;
 }
@@ -1088,6 +1101,10 @@ void Stage::refresh_text_mesh_respecting_first_row_offset()
          error_message << "Stage" << "::" << "refresh_text_mesh_respecting_first_row_offset" << ": error: " << "guard \"initialized\" not met";
          throw std::runtime_error(error_message.str());
       }
+   // TODO: optimize this. It does no need to wipe and refresh the entire mesh,
+   // it should be able to move existing vertexes by the previous offset.
+   // There's definitely some fun research to be done here.
+
    char clear_char = '\0';
    ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
    ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};

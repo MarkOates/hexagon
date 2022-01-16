@@ -8,25 +8,30 @@ properties:
     constructor_arg: true
     getter: true
     setter: true
+
   - name: cursor_position
     type: int
     getter: true
     init_with: 0
+
   - name: cursor_position_static
     type: bool
     getter: true
     setter: true
     init_with: false
+
   - name: nodes
     type: std::vector<Blast::Project::Component>
     init_with: "{}"
     getter: true
     setter: true
+
   - name: mode
     type: std::string
     init_with: '"navigating_list"'
     getter: true
     setter: true
+
   - name: search_text
     type: std::string
     init_with: '""'
