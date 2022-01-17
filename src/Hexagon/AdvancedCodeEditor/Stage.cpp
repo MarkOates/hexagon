@@ -1139,7 +1139,8 @@ void Stage::refresh_text_mesh_respecting_first_row_offset()
 
 void Stage::filter_text_mesh_for_syntax_highlights()
 {
-   ALLEGRO_COLOR highlight_color = al_color_html("f590b2");
+   //ALLEGRO_COLOR highlight_color = al_color_html("f590b2"); // pink
+   ALLEGRO_COLOR highlight_color = al_color_html("b290f5");
    //ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
