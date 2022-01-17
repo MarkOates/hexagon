@@ -1194,6 +1194,29 @@ void Stage::filter_text_mesh_for_syntax_highlights()
 
 void Stage::filter_text_mesh_for_comments()
 {
+   ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
+   std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+   std::string string_to_match = " //";
+
+   for (unsigned y=0; y<num_rows; y++)
+   {
+      int this_row_num = first_row_offset + y;
+      if (this_row_num >= 0 && this_row_num < lines.size())
+      {
+         std::string &this_line = lines[this_row_num];
+         //for (auto &string_to_match : strings_to_match)
+         //{
+            std::size_t found_pos = this_line.find(string_to_match);
+            if (found_pos != std::string::npos)
+            {
+               for (unsigned c=found_pos; c<this_line.size(); c++)
+               {
+                  text_mesh.set_cell_color(c, y, highlight_color);
+               }
+            }
+         //}
+      }
+   }
    return;
 }
 
