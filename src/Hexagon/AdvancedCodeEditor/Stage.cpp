@@ -1142,7 +1142,34 @@ void Stage::filter_text_mesh_for_syntax_highlights()
    //ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
-   std::vector<std::string> strings_to_match = { "  - name: " };
+   std::vector<std::string> strings_to_match = {
+      "properties:",
+      "  - name:",
+      "    constructor_arg:",
+      "    getter:",
+      "    type:",
+      "    setter:",
+      "    init_with:",
+      "    getter_ref:",
+      "    private:",
+      "    guards:",
+      "    parameters:",
+      "      - name:",
+      "        type:",
+      "        default_argument:",
+      "    body:",
+      "    body_dependency_symbols:",
+      "headers:",
+      "parent_classes:",
+      "    class:",
+      "    scope:",
+      "functions:",
+      "    virtual:",
+      "    override:",
+      "dependencies:",
+      "  - symbol:",
+      "    headers:",
+   };
 
    for (unsigned y=0; y<num_rows; y++)
    {
