@@ -1162,7 +1162,7 @@ functions:
     type: void
     body: |
       //ALLEGRO_COLOR highlight_color = al_color_html("f590b2"); // pink
-      ALLEGRO_COLOR highlight_color = al_color_html("b290f5");
+      ALLEGRO_COLOR highlight_color = al_color_html("a2a0f5");
       //ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
