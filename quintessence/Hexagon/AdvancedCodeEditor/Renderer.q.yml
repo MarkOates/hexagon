@@ -93,7 +93,7 @@ properties:
     type: bool
     init_with: false
     setter: true
-    construction_arg: true
+    constructor_arg: true
 
 
 functions:
