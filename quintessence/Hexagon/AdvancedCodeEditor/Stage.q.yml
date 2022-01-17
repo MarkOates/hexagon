@@ -495,7 +495,7 @@ functions:
         type: int
         default_argument: 0
     body: |
-      return;
+      return true;
 
 
   - name: set_content

@@ -533,7 +533,7 @@ bool Stage::push_down_all_selections_by_n_lines(int starting_on_line, int num_li
          error_message << "Stage" << "::" << "push_down_all_selections_by_n_lines" << ": error: " << "guard \"initialized\" not met";
          throw std::runtime_error(error_message.str());
       }
-   return;
+   return true;
 }
 
 void Stage::set_content(std::string content)
