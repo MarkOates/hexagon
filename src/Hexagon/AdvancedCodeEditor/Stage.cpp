@@ -1148,6 +1148,7 @@ void Stage::filter_text_mesh_for_syntax_highlights()
       "  - name:",
       "    constructor_arg:",
       "    getter:",
+      "    static:",
       "    type:",
       "    setter:",
       "    init_with:",

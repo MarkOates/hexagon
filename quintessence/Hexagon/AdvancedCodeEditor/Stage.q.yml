@@ -1170,6 +1170,7 @@ functions:
          "  - name:",
          "    constructor_arg:",
          "    getter:",
+         "    static:",
          "    type:",
          "    setter:",
          "    init_with:",
