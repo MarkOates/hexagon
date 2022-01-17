@@ -21,6 +21,7 @@ namespace Hexagon
 
          std::vector<CodeRange> get_code_ranges();
          void clear();
+         bool push_down_from(int starting_on_line=0, int num_lines_to_push_down=0);
          CodePoint find_next_from(int position_x=0, int position_y=0);
          CodePoint find_previous_from(int position_x=0, int position_y=0);
       };

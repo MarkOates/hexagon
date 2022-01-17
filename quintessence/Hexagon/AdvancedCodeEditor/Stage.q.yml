@@ -480,22 +480,7 @@ functions:
       bool result = advanced_code_editor.insert_lines(lines_to_insert);
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
       refresh_current_visual_selection_end_to_current_cursor_position();
-      push_down_all_selections_by_n_lines();
       return result;
-
-
-  - name: push_down_all_selections_by_n_lines
-    guards: [ initialized ]
-    type: bool
-    parameters:
-      - name: starting_on_line
-        type: int
-        default_argument: 0
-      - name: num_lines_to_push_down
-        type: int
-        default_argument: 0
-    body: |
-      return true;
 
 
   - name: set_content

@@ -21,8 +21,6 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
-#include <stdexcept>
-#include <sstream>
 #include <Hexagon/CodeRangeExtractor.hpp>
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/ClipboardData.hpp>
@@ -521,19 +519,7 @@ bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
    bool result = advanced_code_editor.insert_lines(lines_to_insert);
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    refresh_current_visual_selection_end_to_current_cursor_position();
-   push_down_all_selections_by_n_lines();
    return result;
-}
-
-bool Stage::push_down_all_selections_by_n_lines(int starting_on_line, int num_lines_to_push_down)
-{
-   if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "push_down_all_selections_by_n_lines" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
-   return true;
 }
 
 void Stage::set_content(std::string content)

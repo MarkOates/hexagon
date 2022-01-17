@@ -33,6 +33,12 @@ void Selection::clear()
    return;
 }
 
+bool Selection::push_down_from(int starting_on_line, int num_lines_to_push_down)
+{
+   // TODO: move selections down
+   return true;
+}
+
 CodePoint Selection::find_next_from(int position_x, int position_y)
 {
    CodePoint anchor_code_point(position_x, position_y);

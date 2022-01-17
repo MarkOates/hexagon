@@ -389,10 +389,17 @@ void Renderer::draw_search_regex_selections()
          error_message << "Renderer" << "::" << "draw_search_regex_selections" << ": error: " << "guard \"lines\" not met";
          throw std::runtime_error(error_message.str());
       }
+   if (!(text_mesh))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_search_regex_selections" << ": error: " << "guard \"text_mesh\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    int cell_width = text_mesh->get_cell_width();
    int first_line_number = first_row_offset;
    float cell_height = text_mesh->get_cell_height();
    ALLEGRO_COLOR selection_color = ALLEGRO_COLOR{0.12*0.4, 0.56*0.4, 1.0*0.4, 1.0*0.4};
+   int num_rows = text_mesh->get_num_rows();
 
    //if (!code_editor) throw std::runtime_error("CodeEditor::Renderer::draw_selections: code_editor is nullptr");
 
@@ -401,7 +408,14 @@ void Renderer::draw_search_regex_selections()
    {
       for (auto &code_range : (*search_regex_selections).get_code_ranges())
       {
-         //std::cout << " drawing selection " << selection << std::endl;
+         // skip if below range
+         CodePoint start = code_range.infer_cursor_start();
+         if (start.get_y() >= (first_line_number+num_rows)) continue;
+
+         // TODO: skip if below range
+         CodePoint end = code_range.infer_cursor_end();
+         if (end.get_y() < first_line_number) continue;
+
          Hexagon::CodeSelectionBoxRenderer renderer(
             //code_editor->get_lines_ref(),
             lines,

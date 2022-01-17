@@ -17,6 +17,20 @@ functions:
       return;
 
 
+  - name: push_down_from
+    type: bool
+    parameters:
+      - name: starting_on_line
+        type: int
+        default_argument: 0
+      - name: num_lines_to_push_down
+        type: int
+        default_argument: 0
+    body: |
+      // TODO: move selections down
+      return true;
+
+
   - name: find_next_from
     type: CodePoint
     parameters:
