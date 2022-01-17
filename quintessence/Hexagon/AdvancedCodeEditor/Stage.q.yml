@@ -1153,6 +1153,7 @@ functions:
          }
       }
       filter_text_mesh_for_syntax_highlights();
+      filter_text_mesh_for_comments();
       return;
 
 
@@ -1210,6 +1211,12 @@ functions:
             }
          }
       }
+      return;
+
+
+  - name: filter_text_mesh_for_comments
+    private: true
+    body: |
       return;
 
 

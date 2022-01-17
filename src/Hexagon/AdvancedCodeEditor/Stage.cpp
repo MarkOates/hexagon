@@ -1133,6 +1133,7 @@ void Stage::refresh_text_mesh_respecting_first_row_offset()
       }
    }
    filter_text_mesh_for_syntax_highlights();
+   filter_text_mesh_for_comments();
    return;
 }
 
@@ -1188,6 +1189,11 @@ void Stage::filter_text_mesh_for_syntax_highlights()
          }
       }
    }
+   return;
+}
+
+void Stage::filter_text_mesh_for_comments()
+{
    return;
 }
 
