@@ -1144,6 +1144,7 @@ void Stage::filter_text_mesh_for_syntax_highlights()
 
    std::vector<std::string> strings_to_match = {
       "properties:",
+      "  - class:",
       "  - name:",
       "    constructor_arg:",
       "    getter:",

@@ -1166,6 +1166,7 @@ functions:
 
       std::vector<std::string> strings_to_match = {
          "properties:",
+         "  - class:",
          "  - name:",
          "    constructor_arg:",
          "    getter:",
