@@ -142,6 +142,7 @@ namespace Hexagon
          void refresh_dirty_cells_on_surface_render_respecting_first_row_offset();
          void refresh_dirty_cells_on_text_mesh();
          void refresh_text_mesh_respecting_first_row_offset();
+         void filter_text_mesh_for_syntax_highlights();
          void refresh_text_mesh();
          Hexagon::DirtyGrid build_dirty_grid_from_lines_respecting_offset();
       };

@@ -1152,6 +1152,35 @@ functions:
             text_mesh.set_cell_color(x, y, color_to_set);
          }
       }
+      filter_text_mesh_for_syntax_highlights();
+      return;
+
+
+  - name: filter_text_mesh_for_syntax_highlights
+    private: true
+    type: void
+    body: |
+      ALLEGRO_COLOR highlight_color = al_color_html("f590b2");
+      //ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+      std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+
+      std::vector<std::string> strings_to_match = { "  - name: " };
+
+      for (unsigned y=0; y<num_rows; y++)
+      {
+         int this_row_num = first_row_offset + y;
+         if (this_row_num >= 0 && this_row_num < lines.size())
+         {
+            std::string &this_line = lines[this_row_num];
+            for (auto &string_to_match : strings_to_match)
+            {
+               if (this_line.find(string_to_match) == std::size_t(0))
+               {
+                  for (unsigned c=0; c<string_to_match.length(); c++) text_mesh.set_cell_color(c, y, highlight_color);
+               }
+            }
+         }
+      }
       return;
 
 
