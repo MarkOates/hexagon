@@ -1154,6 +1154,7 @@ functions:
       }
       filter_text_mesh_for_syntax_highlights();
       filter_text_mesh_for_comments();
+      filter_text_mesh_for_test_case();
       return;
 
 
@@ -1239,6 +1240,40 @@ functions:
                   }
                }
             //}
+         }
+      }
+      return;
+
+
+  - name: filter_text_mesh_for_test_case
+    private: true
+    body: |
+      //ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
+      ALLEGRO_COLOR highlight_color = al_color_html("a2a0f5");
+      std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+      std::vector<std::string> strings_to_match = {
+         "TEST(",
+         "TEST_F(",
+      };
+
+      for (unsigned y=0; y<num_rows; y++)
+      {
+         int this_row_num = first_row_offset + y;
+         if (this_row_num >= 0 && this_row_num < lines.size())
+         {
+            std::string &this_line = lines[this_row_num];
+            for (auto &string_to_match : strings_to_match)
+            {
+               std::size_t found_pos = this_line.find(string_to_match);
+               if (found_pos == std::size_t(0))
+               {
+                  for (unsigned c=0; c<this_line.size(); c++)
+                  {
+                     text_mesh.set_cell_color(c, y, highlight_color);
+                  }
+                  // TODO: check one line forward
+               }
+            }
          }
       }
       return;

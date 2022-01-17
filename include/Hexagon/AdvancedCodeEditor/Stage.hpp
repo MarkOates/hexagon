@@ -144,6 +144,7 @@ namespace Hexagon
          void refresh_text_mesh_respecting_first_row_offset();
          void filter_text_mesh_for_syntax_highlights();
          void filter_text_mesh_for_comments();
+         void filter_text_mesh_for_test_case();
          void refresh_text_mesh();
          Hexagon::DirtyGrid build_dirty_grid_from_lines_respecting_offset();
       };
