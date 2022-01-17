@@ -106,6 +106,7 @@ namespace Hexagon
          bool delete_line();
          bool insert_string_from_input_buffer();
          bool insert_lines(std::vector<std::string> lines_to_insert={});
+         bool push_down_all_selections_by_n_lines(int starting_on_line=0, int num_lines_to_push_down=0);
          void set_content(std::string content="");
          bool insert_three_spaces_at_start_of_line();
          bool insert_blank_line();
