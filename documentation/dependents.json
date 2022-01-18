@@ -935,6 +935,10 @@
   "Hexagon/Daemus/ProgramRunner": [
     "Hexagon/Daemus/NetworkMessageEventController"
   ],
+  "Blast/DirectoryExistenceChecker": [
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Daemus/ProgramRunner"
+  ],
   "std/chrono": [
     "Hexagon/Daemus/ProgramRunner"
   ],
@@ -942,9 +946,6 @@
     "Hexagon/Daemus/ProgramRunner"
   ],
   "getpid": [
-    "Hexagon/Daemus/ProgramRunner"
-  ],
-  "Blast/DirectoryExistenceChecker": [
     "Hexagon/Daemus/ProgramRunner"
   ],
   "Hexagon/Testing/GoogleTestRunOutputParser": [

@@ -142,7 +142,15 @@ TEST(Hexagon_Daemus_ProgramRunnerTest,
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    find_oldest_filename__on_a_folder_that_does_not_exist__will_raise_an_exception)
 {
-   // TODO
+   std::string folder_that_does_not_exist = "/This/is/a/folder/that/does/not/exist/hopefully/";
+   std::string expected_error_message = "[Hexagon::Daemus::ProgramRunner::find_oldest_filename] error: "
+                                        "The directory \"/This/is/a/folder/that/does/not/exist/hopefully/\" "
+                                        "does not exist";
+   ASSERT_THROW_WITH_MESSAGE(
+      Hexagon::Daemus::ProgramRunner::find_oldest_filename(folder_that_does_not_exist),
+      std::runtime_error,
+      expected_error_message
+   );
 }
 
 TEST(Hexagon_Daemus_ProgramRunnerTest,

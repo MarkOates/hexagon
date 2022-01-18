@@ -1243,11 +1243,13 @@ void Stage::filter_text_mesh_for_test_case()
             std::size_t found_pos = this_line.find(string_to_match);
             if (found_pos == std::size_t(0))
             {
+               // test line matched
                for (unsigned c=0; c<this_line.size(); c++)
                {
                   text_mesh.set_cell_color(c, y, highlight_color);
                }
                // TODO: check one line forward
+               // if any ) is present at end-of-line
             }
          }
       }

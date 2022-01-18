@@ -20,6 +20,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <Blast/DirectoryExistenceChecker.hpp>
 #include <filesystem>
 #include <chrono>
 
@@ -312,6 +313,14 @@ std::string ProgramRunner::__execute_command(std::string command, bool output_to
 
 std::string ProgramRunner::find_oldest_filename(std::string path)
 {
+   if (!Blast::DirectoryExistenceChecker(path).exists())
+   {
+      std::stringstream error_message;
+      error_message << "[Hexagon::Daemus::ProgramRunner::find_oldest_filename] error: The directory "
+                    << "\"" << path << "\" does not exist";
+      throw std::runtime_error(error_message.str());
+   }
+
    // TODO check that path exists
    // TODO check that path is not empty, or return ""
 
