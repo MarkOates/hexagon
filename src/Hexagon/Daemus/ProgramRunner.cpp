@@ -330,10 +330,6 @@ std::string ProgramRunner::find_oldest_filename(std::string path, bool ignore_do
       std::string filename = entry.path().filename();
       std::string full_path_filename = entry.path().string();
 
-      // check filename is not a dotfile
-      //bool file_is_a_dotfile = false;
-      //if (!filename.empty() && (filename[0] == '.')) file_is_a_dotfile = true;
-      
       if (ignore_dotfiles)
       {
          bool file_is_a_dotfile = false;
