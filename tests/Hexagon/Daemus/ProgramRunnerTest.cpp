@@ -7,8 +7,11 @@
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 #include <Hexagon/Daemus/ProgramRunner.hpp>
+#include <filesystem> // for std::temp_directory_path()
 
 #define BUILDS_FIXTURE_FOLDER_NAME "/Users/markoates/Repos/hexagon/tests/fixtures/data/builds"
+#define FIXTURE_FOLDER_THAT_IS_EMPTY_BUT_HAS_A_DOT_KEEP_FILE \
+   "/Users/markoates/Repos/hexagon/tests/fixtures/an_empty_directory_but_with_dot_keep_file"
 
 TEST(Hexagon_Daemus_ProgramRunnerTest, can_be_created_without_blowing_up)
 {
@@ -156,16 +159,26 @@ TEST(Hexagon_Daemus_ProgramRunnerTest,
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    find_oldest_filename__when_no_files_are_present__returns_an_empty_string)
 {
-   // TODO 
+   std::string a_folder_that_is_empty_but_has_a_dot_keep_file = FIXTURE_FOLDER_THAT_IS_EMPTY_BUT_HAS_A_DOT_KEEP_FILE;
+   std::string expected_dotfile_full_path = FIXTURE_FOLDER_THAT_IS_EMPTY_BUT_HAS_A_DOT_KEEP_FILE "/.keep";
+   std::string actual_oldest_filename_path = Hexagon::Daemus::ProgramRunner::find_oldest_filename(
+      a_folder_that_is_empty_but_has_a_dot_keep_file,
+      false
+   );
+
+   EXPECT_EQ(expected_dotfile_full_path, actual_oldest_filename_path);
+}
+
+TEST(Hexagon_Daemus_ProgramRunnerTest,
+   find_oldest_filename__when_no_files_are_present_or_dotfiles__returns_an_empty_string)
+{
+   std::string a_folder_that_is_empty_but_has_a_dot_keep_file = FIXTURE_FOLDER_THAT_IS_EMPTY_BUT_HAS_A_DOT_KEEP_FILE;
+   EXPECT_EQ("", Hexagon::Daemus::ProgramRunner::find_oldest_filename(a_folder_that_is_empty_but_has_a_dot_keep_file));
 }
 
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    find_oldest_filename__returns_the_oldest_file_in_the_directory)
 {
-   // TODO: should use a tmp_directory_path() rather than the fixture path
-   // consider this example: https://en.cppreference.com/w/cpp/filesystem/last_write_time
-
-   // TODO: finish this test
    std::string folder_to_look_in = std::string(BUILDS_FIXTURE_FOLDER_NAME) + "/pending";
    std::string expected_oldest_file = folder_to_look_in + "/file_created_at_12_38.txt";
 

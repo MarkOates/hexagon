@@ -23,6 +23,7 @@
 #include <Blast/DirectoryExistenceChecker.hpp>
 #include <filesystem>
 #include <chrono>
+#include <filesystem>
 
 
 namespace Hexagon
@@ -311,8 +312,9 @@ std::string ProgramRunner::__execute_command(std::string command, bool output_to
    return shell_command_executor.execute();
 }
 
-std::string ProgramRunner::find_oldest_filename(std::string path)
+std::string ProgramRunner::find_oldest_filename(std::string path, bool ignore_dotfiles)
 {
+   // check that path exists, or raise
    if (!Blast::DirectoryExistenceChecker(path).exists())
    {
       std::stringstream error_message;
@@ -321,16 +323,33 @@ std::string ProgramRunner::find_oldest_filename(std::string path)
       throw std::runtime_error(error_message.str());
    }
 
-   // TODO check that path exists
-   // TODO check that path is not empty, or return ""
-
    std::vector<std::pair<std::filesystem::file_time_type, std::string>> listing;
    for (const auto &entry : std::filesystem::directory_iterator(path))
    {
       std::filesystem::file_time_type file_time = std::filesystem::last_write_time(entry);
-      std::string filename = entry.path().string();
-      listing.push_back(std::pair<std::filesystem::file_time_type, std::string>(file_time, filename));
+      std::string filename = entry.path().filename();
+      std::string full_path_filename = entry.path().string();
+
+      // check filename is not a dotfile
+      //bool file_is_a_dotfile = false;
+      //if (!filename.empty() && (filename[0] == '.')) file_is_a_dotfile = true;
+      
+      if (ignore_dotfiles)
+      {
+         bool file_is_a_dotfile = false;
+         if (!filename.empty() && (filename[0] == '.')) file_is_a_dotfile = true;
+         if (!file_is_a_dotfile)
+         {
+            listing.push_back(std::pair<std::filesystem::file_time_type, std::string>(file_time, full_path_filename));
+         }
+      }
+      else
+      {
+         listing.push_back(std::pair<std::filesystem::file_time_type, std::string>(file_time, full_path_filename));
+      }
    }
+
+   if (listing.empty()) return "";
 
    std::sort(listing.begin(), listing.end());
 
