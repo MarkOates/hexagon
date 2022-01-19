@@ -387,6 +387,11 @@
   "CodePoint": [
     "Hexagon/AdvancedCodeEditor/Selection"
   ],
+  "std/min": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/CodeRangeExtractor",
+    "Hexagon/Hud"
+  ],
   "Hexagon/CodeRangeExtractor": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
@@ -863,10 +868,6 @@
   "CodeRange": [
     "Hexagon/CodeRangeExtractor",
     "Hexagon/CodeSelectionBoxRenderer"
-  ],
-  "std/min": [
-    "Hexagon/CodeRangeExtractor",
-    "Hexagon/Hud"
   ],
   "Blast/Project/ComponentRelativeLister": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"

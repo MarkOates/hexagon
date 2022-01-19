@@ -38,6 +38,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <algorithm>
+#include <algorithm>
 #include <stdexcept>
 #include <sstream>
 
@@ -1200,7 +1202,11 @@ void Stage::filter_text_mesh_for_syntax_highlights()
          {
             if (this_line.find(string_to_match) == std::size_t(0))
             {
-               for (unsigned c=0; c<string_to_match.length(); c++) text_mesh.set_cell_color(c, y, highlight_color);
+               int num_characters_to_process = std::min((int)string_to_match.size(), num_columns);
+               for (unsigned c=0; c<num_characters_to_process; c++)
+               {
+                  text_mesh.set_cell_color(c, y, highlight_color);
+               }
             }
          }
       }
@@ -1225,7 +1231,8 @@ void Stage::filter_text_mesh_for_comments()
             std::size_t found_pos = this_line.find(string_to_match);
             if (found_pos != std::string::npos)
             {
-               for (unsigned c=found_pos; c<this_line.size(); c++)
+               int end_to_process = std::min((int)this_line.size(), num_columns);
+               for (unsigned c=found_pos; c<end_to_process; c++)
                {
                   text_mesh.set_cell_color(c, y, highlight_color);
                }
@@ -1259,7 +1266,8 @@ void Stage::filter_text_mesh_for_test_case()
             if (found_pos == std::size_t(0))
             {
                // test line matched
-               for (unsigned c=0; c<this_line.size(); c++)
+               int num_characters_to_process = std::min((int)this_line.size(), num_columns);
+               for (unsigned c=0; c<num_characters_to_process; c++)
                {
                   text_mesh.set_cell_color(c, y, highlight_color);
                }

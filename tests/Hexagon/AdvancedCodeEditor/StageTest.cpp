@@ -257,7 +257,21 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
-   DISABLED_append_cells_to_cells_changed_since_last_render__if_taller_than_the_height__clips_the_filled_text_mesh)
+   DISABLED__filter_text_mesh_for_syntax_highlights__will_safely_sanitize_syntax_strings_that_are_longer_than_the_grid)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   DISABLED__filter_text_mesh_for_comments__will_safely_sanitize_syntax_strings_that_are_longer_than_the_grid)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   DISABLED__filter_text_mesh_for_test_case__will_safely_sanitize_syntax_strings_that_are_longer_than_the_grid)
 {
    // TODO
 }
