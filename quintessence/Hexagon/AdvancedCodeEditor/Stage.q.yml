@@ -118,7 +118,7 @@ properties:
     type: Hexagon::AdvancedCodeEditor::Selection
     init_with: 'Hexagon::AdvancedCodeEditor::Selection{}'
 
-  - name: hightlight_color
+  - name: syntax_hightlight_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.94f, 0.97f, 1.0f, 1.0f}
 
