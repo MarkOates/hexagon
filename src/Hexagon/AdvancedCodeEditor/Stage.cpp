@@ -74,6 +74,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , currently_grabbing_full_line_visual_selection(false)
    , selections({})
    , search_regex_selections(Hexagon::AdvancedCodeEditor::Selection{})
+   , hightlight_color(ALLEGRO_COLOR{0.94f, 0.97f, 1.0f, 1.0f})
 {
 }
 

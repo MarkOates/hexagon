@@ -118,6 +118,10 @@ properties:
     type: Hexagon::AdvancedCodeEditor::Selection
     init_with: 'Hexagon::AdvancedCodeEditor::Selection{}'
 
+  - name: hightlight_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.94f, 0.97f, 1.0f, 1.0f}
+
 
 functions:
 
@@ -1363,6 +1367,8 @@ dependencies:
   - symbol: AllegroFlare::Timer
     headers: [ AllegroFlare/Timer.hpp ]
   - symbol: ALLEGRO_BITMAP*
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]

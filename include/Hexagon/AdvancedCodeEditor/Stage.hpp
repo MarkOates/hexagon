@@ -51,6 +51,7 @@ namespace Hexagon
          bool currently_grabbing_full_line_visual_selection;
          std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
          Hexagon::AdvancedCodeEditor::Selection search_regex_selections;
+         ALLEGRO_COLOR hightlight_color;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
