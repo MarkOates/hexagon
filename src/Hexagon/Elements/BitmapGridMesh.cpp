@@ -118,7 +118,7 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &Bitmap
 void BitmapGridMesh::set_cell_uv(int x, int y, std::tuple<float, float, float, float> uv_coords)
 {
    std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* cell = find_cell(x, y);
-   if (!cell) throw std::runtime_error("set_cell_uv: cell not found");
+   if (!cell) throw std::runtime_error("Hexagon/Elements/BitmapGridMesh error: set_cell_uv: cell not found");
 
    int vertex_start = (x + y * num_columns) * 6;
 
@@ -152,7 +152,7 @@ void BitmapGridMesh::set_cell_color(int x, int y, ALLEGRO_COLOR color)
 {
    // set the cell in the grid
    std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* cell = find_cell(x, y);
-   if (!cell) throw std::runtime_error("cell not found");
+   if (!cell) throw std::runtime_error("Hexagon/Elements/BitmapGridMesh error: set_cell_color: cell not found");
    std::get<2>(*cell) = color;
 
    // set the vertexes in the mesh

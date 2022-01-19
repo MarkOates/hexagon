@@ -170,12 +170,14 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture,
    set_cell_uv__when_outside_the_bounds_of_the_grid__throws_an_error)
 {
+   Hexagon::Elements::BitmapGridMesh bitmap_grid_mesh;
    // TODO
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture,
    set_cell_color__when_outside_the_bounds_of_the_grid__throws_an_error)
 {
+   Hexagon::Elements::BitmapGridMesh bitmap_grid_mesh;
    // TODO
 }
 
