@@ -167,6 +167,18 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
    //sleep(1);
 }
 
+TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture,
+   set_cell_uv__when_outside_the_bounds_of_the_grid__throws_an_error)
+{
+   // TODO
+}
+
+TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture,
+   set_cell_color__when_outside_the_bounds_of_the_grid__throws_an_error)
+{
+   // TODO
+}
+
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithEmptyFixture, set_cell_color__sets_the_color_of_the_cell)
 {
    ALLEGRO_COLOR color = {0.2f, 1.0f, 0.2f, 1.0f};
