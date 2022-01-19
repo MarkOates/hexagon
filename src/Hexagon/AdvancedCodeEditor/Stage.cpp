@@ -74,7 +74,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , currently_grabbing_full_line_visual_selection(false)
    , selections({})
    , search_regex_selections(Hexagon::AdvancedCodeEditor::Selection{})
-   , syntax_highlight_color(ALLEGRO_COLOR{0.94f, 0.97f, 1.0f, 1.0f})
+   , syntax_highlight_color(ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f})
 {
 }
 
@@ -99,6 +99,12 @@ void Stage::set_input_buffer(std::string input_buffer)
 void Stage::set_current_search_regex(std::string current_search_regex)
 {
    this->current_search_regex = current_search_regex;
+}
+
+
+void Stage::set_syntax_highlight_color(ALLEGRO_COLOR syntax_highlight_color)
+{
+   this->syntax_highlight_color = syntax_highlight_color;
 }
 
 
@@ -153,6 +159,12 @@ int Stage::get_first_row_offset()
 ALLEGRO_BITMAP* Stage::get_surface_render()
 {
    return surface_render;
+}
+
+
+ALLEGRO_COLOR Stage::get_syntax_highlight_color()
+{
+   return syntax_highlight_color;
 }
 
 

@@ -120,7 +120,9 @@ properties:
 
   - name: syntax_highlight_color
     type: ALLEGRO_COLOR
-    init_with: ALLEGRO_COLOR{0.94f, 0.97f, 1.0f, 1.0f}
+    init_with: ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f}
+    getter: true
+    setter: true
 
 
 functions:

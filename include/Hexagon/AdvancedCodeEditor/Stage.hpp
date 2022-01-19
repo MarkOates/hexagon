@@ -60,6 +60,7 @@ namespace Hexagon
          void set_filename(std::string filename);
          void set_input_buffer(std::string input_buffer);
          void set_current_search_regex(std::string current_search_regex);
+         void set_syntax_highlight_color(ALLEGRO_COLOR syntax_highlight_color);
          int get_num_columns();
          int get_num_rows();
          std::string get_filename();
@@ -69,6 +70,7 @@ namespace Hexagon
          float get_offset_y_updated_at();
          int get_first_row_offset();
          ALLEGRO_BITMAP* get_surface_render();
+         ALLEGRO_COLOR get_syntax_highlight_color();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
