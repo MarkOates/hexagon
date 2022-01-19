@@ -74,7 +74,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , currently_grabbing_full_line_visual_selection(false)
    , selections({})
    , search_regex_selections(Hexagon::AdvancedCodeEditor::Selection{})
-   , syntax_hightlight_color(ALLEGRO_COLOR{0.94f, 0.97f, 1.0f, 1.0f})
+   , syntax_highlight_color(ALLEGRO_COLOR{0.94f, 0.97f, 1.0f, 1.0f})
 {
 }
 
@@ -1142,7 +1142,8 @@ void Stage::refresh_text_mesh_respecting_first_row_offset()
 void Stage::filter_text_mesh_for_syntax_highlights()
 {
    //ALLEGRO_COLOR highlight_color = al_color_html("f590b2"); // pink
-   ALLEGRO_COLOR highlight_color = al_color_html("a2a0f5");
+   //ALLEGRO_COLOR highlight_color = al_color_html("a2a0f5"); // a purpley color
+   ALLEGRO_COLOR highlight_color = get_syntax_highlight_color();
    //ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
@@ -1226,7 +1227,8 @@ void Stage::filter_text_mesh_for_comments()
 void Stage::filter_text_mesh_for_test_case()
 {
    //ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
-   ALLEGRO_COLOR highlight_color = al_color_html("a2a0f5");
+   //ALLEGRO_COLOR highlight_color = al_color_html("a2a0f5"); // a purpley color
+   ALLEGRO_COLOR highlight_color = get_syntax_highlight_color();
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
    std::vector<std::string> strings_to_match = {
       "TEST(",

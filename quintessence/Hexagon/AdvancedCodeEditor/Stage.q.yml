@@ -118,7 +118,7 @@ properties:
     type: Hexagon::AdvancedCodeEditor::Selection
     init_with: 'Hexagon::AdvancedCodeEditor::Selection{}'
 
-  - name: syntax_hightlight_color
+  - name: syntax_highlight_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.94f, 0.97f, 1.0f, 1.0f}
 
@@ -1167,7 +1167,8 @@ functions:
     type: void
     body: |
       //ALLEGRO_COLOR highlight_color = al_color_html("f590b2"); // pink
-      ALLEGRO_COLOR highlight_color = al_color_html("a2a0f5");
+      //ALLEGRO_COLOR highlight_color = al_color_html("a2a0f5"); // a purpley color
+      ALLEGRO_COLOR highlight_color = get_syntax_highlight_color();
       //ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
@@ -1253,7 +1254,8 @@ functions:
     private: true
     body: |
       //ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
-      ALLEGRO_COLOR highlight_color = al_color_html("a2a0f5");
+      //ALLEGRO_COLOR highlight_color = al_color_html("a2a0f5"); // a purpley color
+      ALLEGRO_COLOR highlight_color = get_syntax_highlight_color();
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
       std::vector<std::string> strings_to_match = {
          "TEST(",
