@@ -18,7 +18,7 @@ properties:
 
   - name: height
     type: float
-    init_with: 200
+    init_with: 100
     constructor_arg: true
 
   - name: is_activated

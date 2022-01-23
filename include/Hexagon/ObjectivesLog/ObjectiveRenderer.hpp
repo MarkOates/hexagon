@@ -20,7 +20,7 @@ namespace Hexagon
          bool is_activated;
 
       public:
-         ObjectiveRenderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ObjectivesLog::Objective* objective=nullptr, float width=600, float height=200);
+         ObjectiveRenderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ObjectivesLog::Objective* objective=nullptr, float width=600, float height=100);
          ~ObjectiveRenderer();
 
          void set_is_activated(bool is_activated);
