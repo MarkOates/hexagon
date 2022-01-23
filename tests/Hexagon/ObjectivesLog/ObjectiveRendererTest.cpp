@@ -8,26 +8,26 @@
 
 #include <Testing/WithAllegroRenderingFixture.hpp>
 
-class Hexagon_Elements_ObjectivesLog_ObjectiveRendererTest : public ::testing::Test
+class Hexagon_ObjectivesLog_ObjectiveRendererTest : public ::testing::Test
 {};
 
-class Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture
+class Hexagon_QuoteRendererTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture
 {};
 
 #include <Hexagon/ObjectivesLog/ObjectiveRenderer.hpp>
 
-//TEST_F(Hexagon_Elements_QuoteRendererTest, can_be_created_without_blowing_up)
-//{
-   //Hexagon::Elements::QuoteRenderer quote_renderer;
-//}
+TEST_F(Hexagon_ObjectivesLog_ObjectiveRendererTest, can_be_created_without_blowing_up)
+{
+   Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer;
+}
 
-//TEST_F(Hexagon_Elements_QuoteRendererTestWithEmptyFixture, render__without_allegro_initialized__raises_an_error)
-//{
+TEST_F(Hexagon_ObjectivesLog_ObjectiveRendererTest, render__without_allegro_initialized__raises_an_error)
+{
    //Hexagon::Elements::QuoteRenderer quote_renderer;
    //std::string expected_error_message =
       //"QuoteRenderer::render: error: guard \"al_is_system_installed()\" not met";
    //ASSERT_THROW_WITH_MESSAGE(quote_renderer.render(), std::runtime_error, expected_error_message);
-//}
+}
 
 //TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__will_not_blow_up)
 //{
