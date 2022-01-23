@@ -857,6 +857,11 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
       "cursor_move_to_start_of_line",
       "set_to_insert_mode",
       });
+   result.set_mapping(ALLEGRO_KEY_O, ALLEGRO_KEYMOD_SHIFT, {
+      "insert_blank_line",
+      "cursor_move_to_start_of_line",
+      "set_to_insert_mode",
+      });
    result.set_mapping(ALLEGRO_KEY_FULLSTOP, ALLEGRO_KEYMOD_SHIFT, {
       "insert_three_spaces_at_start_of_line",
       });

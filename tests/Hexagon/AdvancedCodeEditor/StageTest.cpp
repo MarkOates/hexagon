@@ -869,3 +869,9 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    sleep(2);
 }
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   keyboard_input__SHIFT__KEY_O__will_insert_a_newline)
+{
+   // TODO
+}
+
