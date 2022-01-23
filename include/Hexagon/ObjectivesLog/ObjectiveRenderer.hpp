@@ -17,7 +17,7 @@ namespace Hexagon
          Hexagon::ObjectivesLog::Objective* objective;
 
       public:
-         ObjectiveRenderer(AllegroFlare::FontBin* font_bin=nullptr);
+         ObjectiveRenderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ObjectivesLog::Objective* objective=nullptr);
          ~ObjectiveRenderer();
 
          void render();

@@ -9,6 +9,7 @@ properties:
   - name: objective
     type: Hexagon::ObjectivesLog::Objective*
     init_with: nullptr
+    constructor_arg: true
 
 
 functions:
@@ -16,7 +17,7 @@ functions:
 
   - name: render
     type: void
-    guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
+    guards: [ al_is_system_installed(), al_is_font_addon_initialized(), objective ]
     body: |
       return;
 

@@ -13,9 +13,9 @@ namespace ObjectivesLog
 {
 
 
-ObjectiveRenderer::ObjectiveRenderer(AllegroFlare::FontBin* font_bin)
+ObjectiveRenderer::ObjectiveRenderer(AllegroFlare::FontBin* font_bin, Hexagon::ObjectivesLog::Objective* objective)
    : font_bin(font_bin)
-   , objective(nullptr)
+   , objective(objective)
 {
 }
 
@@ -37,6 +37,12 @@ void ObjectiveRenderer::render()
       {
          std::stringstream error_message;
          error_message << "ObjectiveRenderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(objective))
+      {
+         std::stringstream error_message;
+         error_message << "ObjectiveRenderer" << "::" << "render" << ": error: " << "guard \"objective\" not met";
          throw std::runtime_error(error_message.str());
       }
    return;
