@@ -1206,6 +1206,9 @@
   "std/vector<Hexagon/ObjectivesLog/Objective>": [
     "Hexagon/ObjectivesLog/ObjectivesLog"
   ],
+  "Hexagon/ObjectivesLog/ObjectivesLog": [
+    "Hexagon/ObjectivesLog/Stage"
+  ],
   "al_draw_filled_rounded_rectangle": [
     "Hexagon/OneLineInputBox/Renderer"
   ],

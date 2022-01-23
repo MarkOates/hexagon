@@ -15,6 +15,15 @@ properties:
     init_with: "{}"
     getter_ref: true
 
+  - name: objectives_log
+    type: Hexagon::ObjectivesLog::ObjectivesLog*
+    init_with: ''
+    getter_ref: true
+
+  - name: cursor_pos
+    type: int
+    init_with: 0
+
 
 functions:
 
@@ -25,6 +34,21 @@ functions:
     body: |
       return;
     body_dependency_symbols: []
+
+
+  - name: move_cursor_up
+    type: void
+    body: |
+      cursor_pos--;
+      if (cursor_pos < 0) cursor_pos = infer_num_list_items() - 1;
+      return;
+
+
+  - name: infer_num_list_items
+    type: int
+    guards: [ objectives_log ]
+    body: |
+      return objectives_log->get_objectives_ref().size();
 
 
   - name: process_local_event
@@ -55,6 +79,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::ObjectivesLog::ObjectivesLog*
+    headers: [ Hexagon/ObjectivesLog/ObjectivesLog.hpp ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: ALLEGRO_EVENT

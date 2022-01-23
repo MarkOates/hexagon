@@ -6392,10 +6392,24 @@ table td
   <td class="property">a_default_empty_event</td>
   <td class="property">ALLEGRO_EVENT</td>
 </tr>
+<tr>
+  <td class="property">objectives_log</td>
+  <td class="property">Hexagon::ObjectivesLog::ObjectivesLog*</td>
+</tr>
+<tr>
+  <td class="property">cursor_pos</td>
+  <td class="property">int</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="method">move_cursor_up()</td>
+</tr>
+<tr>
+  <td class="method">infer_num_list_items()</td>
 </tr>
 <tr>
   <td class="method">process_local_event(2)</td>
@@ -6405,6 +6419,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ObjectivesLog::ObjectivesLog*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ObjectivesLog/ObjectivesLog.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;StageInterface&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageInterface.hpp&quot;]}</td>
 </tr>
@@ -11008,6 +11025,9 @@ table td
   ],
   "std/vector<Hexagon/ObjectivesLog/Objective>": [
     "Hexagon/ObjectivesLog/ObjectivesLog"
+  ],
+  "Hexagon/ObjectivesLog/ObjectivesLog": [
+    "Hexagon/ObjectivesLog/Stage"
   ],
   "al_draw_filled_rounded_rectangle": [
     "Hexagon/OneLineInputBox/Renderer"
