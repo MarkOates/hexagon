@@ -79,11 +79,13 @@ functions:
          height-frame_padding*2,
          box_color
       );
-      al_draw_circle(width-frame_padding*2-right_box_width/2, height/2, circle_radius, frame_color, 2.0);
+      al_draw_filled_circle(width-frame_padding*2-right_box_width/2, height/2, circle_radius*0.25, background_color);
       if (is_activated)
       {
+         al_draw_circle(width-frame_padding*2-right_box_width/2, height/2, circle_radius, frame_color, 2.0);
          al_draw_filled_circle(width-frame_padding*2-right_box_width/2, height/2, circle_radius-frame_padding, circle_color);
       }
+      else
 
       return;
     body_dependency_symbols:
