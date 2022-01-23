@@ -152,6 +152,7 @@ table td
   <li><a href="#quintessence/Hexagon/Notifications/NotificationFactory.q.yml">quintessence/Hexagon/Notifications/NotificationFactory.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Notifications/Stage.q.yml">quintessence/Hexagon/Notifications/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ObjectivesLog/Objective.q.yml">quintessence/Hexagon/ObjectivesLog/Objective.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ObjectivesLog/ObjectiveRenderer.q.yml">quintessence/Hexagon/ObjectivesLog/ObjectiveRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ObjectivesLog/ObjectivesLog.q.yml">quintessence/Hexagon/ObjectivesLog/ObjectivesLog.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/OneLineInputBox/Renderer.q.yml">quintessence/Hexagon/OneLineInputBox/Renderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/OneLineInputBox/Stage.q.yml">quintessence/Hexagon/OneLineInputBox/Stage.q.yml</a></li>
@@ -6317,6 +6318,37 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/ObjectivesLog/ObjectiveRenderer.q.yml">quintessence/Hexagon/ObjectivesLog/ObjectiveRenderer.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
+  <td class="property">quote</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="private_method">obtain_quote_font()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/ObjectivesLog/ObjectivesLog.q.yml">quintessence/Hexagon/ObjectivesLog/ObjectivesLog.q.yml</h3>
      <table>
 <tr>
@@ -10031,6 +10063,7 @@ table td
     "Hexagon/Hud",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/PacketRenderer",
@@ -10179,6 +10212,7 @@ table td
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/PacketRenderer",
     "Hexagon/StageFactory",
