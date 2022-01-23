@@ -68,7 +68,24 @@ void ObjectiveRenderer::render()
          throw std::runtime_error(error_message.str());
       }
    ALLEGRO_COLOR background_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.9};
+   ALLEGRO_COLOR frame_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
+   float frame_thickness = 2.0;
+   float frame_padding = frame_thickness * 2.5;
+   float text_padding_x = 20;
+   ALLEGRO_FONT *primary_text_font = obtain_primary_text_font();
+   float font_line_height = al_get_font_line_height(primary_text_font);
+
+   // draw backfill and frame
    al_draw_filled_rectangle(0, 0, width, height, background_color);
+   al_draw_rectangle(
+      0+frame_padding,
+      0+frame_padding,
+      width-frame_padding,
+      height-frame_padding,
+      frame_color,
+      frame_thickness
+   );
+   //al_draw_text(text_padding_x
    return;
 }
 
