@@ -693,6 +693,7 @@
     "Hexagon/Elements/Window",
     "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/Forms/Fun",
+    "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/PacketRenderer",
     "Hexagon/UI/DrawingBox"
   ],

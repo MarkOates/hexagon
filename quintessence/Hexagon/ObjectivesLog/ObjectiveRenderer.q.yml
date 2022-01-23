@@ -11,18 +11,32 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
+  - name: width
+    type: float
+    init_with: 600
+    constructor_arg: true
+
+  - name: height
+    type: float
+    init_with: 200
+    constructor_arg: true
+
 
 functions:
 
 
   - name: render
     type: void
-    guards: [ al_is_system_installed(), al_is_font_addon_initialized(), objective ]
+    guards: [ al_is_system_installed(), al_is_font_addon_initialized(), al_is_primitives_addon_initialized(), objective ]
     body: |
+      ALLEGRO_COLOR background_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.9};
+      al_draw_filled_rectangle(0, 0, width, height, background_color);
       return;
+    body_dependency_symbols:
+      - al_is_primitives_addon_initialized
 
 
-  - name: obtain_quote_font
+  - name: obtain_primary_text_font
     private: true
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
@@ -33,6 +47,8 @@ functions:
 dependencies:
 
 
+  - symbol: al_is_primitives_addon_initialized
+    headers: [ allegro5/allegro_primitives.h ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ALLEGRO_FONT*

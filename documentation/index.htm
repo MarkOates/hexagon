@@ -6328,16 +6328,27 @@ table td
   <td class="property">objective</td>
   <td class="property">Hexagon::ObjectivesLog::Objective*</td>
 </tr>
+<tr>
+  <td class="property">width</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">height</td>
+  <td class="property">float</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="private_method">obtain_quote_font()</td>
+  <td class="private_method">obtain_primary_text_font()</td>
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_is_primitives_addon_initialized&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_primitives.h&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
 </tr>
@@ -10444,6 +10455,7 @@ table td
     "Hexagon/Elements/Window",
     "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/Forms/Fun",
+    "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/PacketRenderer",
     "Hexagon/UI/DrawingBox"
   ],
