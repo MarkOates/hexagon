@@ -99,6 +99,12 @@ void ObjectiveRenderer::render()
       text.c_str()
    );
 
+   // draw the status thing
+   //al_draw_filled_rectangle(
+   float circle_radius = 10;
+   float right_box_width = 40;
+   al_draw_filled_circle(width-frame_padding*2-right_box_width/2, height/2, circle_radius, frame_color);
+
    return;
 }
 
