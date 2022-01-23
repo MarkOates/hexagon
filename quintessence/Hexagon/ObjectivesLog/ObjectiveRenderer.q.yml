@@ -6,9 +6,9 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
-  - name: quote
-    type: std::string
-    init_with: '{}'
+  - name: objective
+    type: Hexagon::ObjectivesLog::Objective*
+    init_with: nullptr
 
 
 functions:
@@ -36,4 +36,6 @@ dependencies:
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro_font.h ]
+  - symbol: Hexagon::ObjectivesLog::Objective*
+    headers: [ Hexagon/ObjectivesLog/Objective.hpp ]
 

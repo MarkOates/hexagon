@@ -2,8 +2,8 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
+#include <Hexagon/ObjectivesLog/Objective.hpp>
 #include <allegro5/allegro_font.h>
-#include <string>
 
 
 namespace Hexagon
@@ -14,7 +14,7 @@ namespace Hexagon
       {
       private:
          AllegroFlare::FontBin* font_bin;
-         std::string quote;
+         Hexagon::ObjectivesLog::Objective* objective;
 
       public:
          ObjectiveRenderer(AllegroFlare::FontBin* font_bin=nullptr);

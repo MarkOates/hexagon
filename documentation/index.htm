@@ -6325,8 +6325,8 @@ table td
   <td class="property">AllegroFlare::FontBin*</td>
 </tr>
 <tr>
-  <td class="property">quote</td>
-  <td class="property">std::string</td>
+  <td class="property">objective</td>
+  <td class="property">Hexagon::ObjectivesLog::Objective*</td>
 </tr>
     </table>
      <table>
@@ -6343,6 +6343,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ObjectivesLog::Objective*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ObjectivesLog/Objective.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -10942,6 +10945,9 @@ table td
   "Hexagon/Notifications/Notification": [
     "Hexagon/Notifications/NotificationFactory",
     "Hexagon/Notifications/Stage"
+  ],
+  "Hexagon/ObjectivesLog/Objective": [
+    "Hexagon/ObjectivesLog/ObjectiveRenderer"
   ],
   "al_draw_filled_rounded_rectangle": [
     "Hexagon/OneLineInputBox/Renderer"

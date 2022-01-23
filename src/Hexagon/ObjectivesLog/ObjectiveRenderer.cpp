@@ -15,7 +15,7 @@ namespace ObjectivesLog
 
 ObjectiveRenderer::ObjectiveRenderer(AllegroFlare::FontBin* font_bin)
    : font_bin(font_bin)
-   , quote({})
+   , objective(nullptr)
 {
 }
 

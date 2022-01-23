@@ -1195,6 +1195,9 @@
     "Hexagon/Notifications/NotificationFactory",
     "Hexagon/Notifications/Stage"
   ],
+  "Hexagon/ObjectivesLog/Objective": [
+    "Hexagon/ObjectivesLog/ObjectiveRenderer"
+  ],
   "al_draw_filled_rounded_rectangle": [
     "Hexagon/OneLineInputBox/Renderer"
   ],
