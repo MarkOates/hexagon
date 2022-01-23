@@ -78,6 +78,9 @@ std::string StageInterface::get_type_name()
       case FANCY:
          return "Fancy";
          break;
+      case OBJECTIVES_LOG:
+         return "ObjectivesLog";
+         break;
       default:
       {
          throw std::runtime_error("StageInterface::get_type_name() unrecognized type");
@@ -128,6 +131,7 @@ bool StageInterface::infer_is_modal()
    case KEYBOARD_INPUTS_MODAL:
    case NEW_COMPONENT_MAKER:
    case LITTLE_MENU:
+   case OBJECTIVES_LOG:
    case DRAWING_BOX:
       return true;
    default:

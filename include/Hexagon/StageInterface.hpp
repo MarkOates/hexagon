@@ -30,6 +30,7 @@ public:
       DRAWING_BOX,
       NOTIFICATION,
       FANCY,
+      OBJECTIVES_LOG,
    }; // these types should not be included within the base class
 
 private:

@@ -10,7 +10,11 @@ namespace ObjectivesLog
 {
 
 
+ALLEGRO_EVENT Stage::a_default_empty_event = {};
+
+
 Stage::Stage()
+   : StageInterface(StageInterface::OBJECTIVES_LOG)
 {
 }
 
@@ -20,9 +24,25 @@ Stage::~Stage()
 }
 
 
-std::string Stage::run()
+ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 {
-   return "Hello World!";
+   return a_default_empty_event;
+}
+
+
+void Stage::render()
+{
+   return;
+}
+
+void Stage::process_local_event(std::string event_name, ActionData action_data)
+{
+   return;
+}
+
+void Stage::process_event(ALLEGRO_EVENT& event)
+{
+   return;
 }
 } // namespace ObjectivesLog
 } // namespace Hexagon
