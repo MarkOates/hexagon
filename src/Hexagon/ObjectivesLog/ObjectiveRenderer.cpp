@@ -19,12 +19,25 @@ ObjectiveRenderer::ObjectiveRenderer(AllegroFlare::FontBin* font_bin, Hexagon::O
    , objective(objective)
    , width(width)
    , height(height)
+   , is_activated(false)
 {
 }
 
 
 ObjectiveRenderer::~ObjectiveRenderer()
 {
+}
+
+
+void ObjectiveRenderer::set_is_activated(bool is_activated)
+{
+   this->is_activated = is_activated;
+}
+
+
+bool ObjectiveRenderer::get_is_activated()
+{
+   return is_activated;
 }
 
 

@@ -21,6 +21,12 @@ properties:
     init_with: 200
     constructor_arg: true
 
+  - name: is_activated
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
+
 
 functions:
 

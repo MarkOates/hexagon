@@ -17,11 +17,14 @@ namespace Hexagon
          Hexagon::ObjectivesLog::Objective* objective;
          float width;
          float height;
+         bool is_activated;
 
       public:
          ObjectiveRenderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ObjectivesLog::Objective* objective=nullptr, float width=600, float height=200);
          ~ObjectiveRenderer();
 
+         void set_is_activated(bool is_activated);
+         bool get_is_activated();
          void render();
          ALLEGRO_FONT* obtain_primary_text_font();
       };
