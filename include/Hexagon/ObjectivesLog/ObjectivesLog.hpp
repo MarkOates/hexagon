@@ -2,6 +2,7 @@
 
 
 #include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -11,6 +12,7 @@ namespace Hexagon
       class ObjectivesLog
       {
       private:
+         std::vector<std::string> objectives;
 
       public:
          ObjectivesLog();

@@ -1,4 +1,14 @@
+properties:
+
+
+  - name: objectives
+    type: std::vector<std::string>
+    init_with: '{}'
+   
+
 functions:
+
+
   - name: run
     type: std::string
     body: return "Hello World!";

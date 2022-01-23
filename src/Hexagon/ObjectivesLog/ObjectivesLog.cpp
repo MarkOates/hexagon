@@ -11,6 +11,7 @@ namespace ObjectivesLog
 
 
 ObjectivesLog::ObjectivesLog()
+   : objectives({})
 {
 }
 
