@@ -2,7 +2,7 @@ properties:
 
 
   - name: objectives
-    type: std::vector<std::string>
+    type: std::vector<Hexagon::ObjectivesLog::Objective>
     init_with: '{}'
    
 
@@ -12,3 +12,11 @@ functions:
   - name: run
     type: std::string
     body: return "Hello World!";
+
+
+dependencies:
+
+
+  - symbol: std::vector<Hexagon::ObjectivesLog::Objective>
+    headers: [ vector, Hexagon/ObjectivesLog/Objective.hpp ]
+

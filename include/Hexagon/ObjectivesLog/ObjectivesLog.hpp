@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/ObjectivesLog/Objective.hpp>
 #include <string>
 #include <vector>
 
@@ -12,7 +13,7 @@ namespace Hexagon
       class ObjectivesLog
       {
       private:
-         std::vector<std::string> objectives;
+         std::vector<Hexagon::ObjectivesLog::Objective> objectives;
 
       public:
          ObjectivesLog();
