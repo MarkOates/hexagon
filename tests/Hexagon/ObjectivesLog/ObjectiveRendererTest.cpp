@@ -11,7 +11,8 @@
 class Hexagon_ObjectivesLog_ObjectiveRendererTest : public ::testing::Test
 {};
 
-class Hexagon_QuoteRendererTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture
+class Hexagon_ObjectivesLog_ObjectiveRendererTestWithAllegroRenderingFixture :
+   public Testing::WithAllegroRenderingFixture
 {};
 
 #include <Hexagon/ObjectivesLog/ObjectiveRenderer.hpp>
@@ -23,16 +24,16 @@ TEST_F(Hexagon_ObjectivesLog_ObjectiveRendererTest, can_be_created_without_blowi
 
 TEST_F(Hexagon_ObjectivesLog_ObjectiveRendererTest, render__without_allegro_initialized__raises_an_error)
 {
-   //Hexagon::Elements::QuoteRenderer quote_renderer;
-   //std::string expected_error_message =
-      //"QuoteRenderer::render: error: guard \"al_is_system_installed()\" not met";
-   //ASSERT_THROW_WITH_MESSAGE(quote_renderer.render(), std::runtime_error, expected_error_message);
+   Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer;
+   std::string expected_error_message =
+      "ObjectiveRenderer::render: error: guard \"al_is_system_installed()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(objective_renderer.render(), std::runtime_error, expected_error_message);
 }
 
-//TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__will_not_blow_up)
-//{
-   //Hexagon::Elements::QuoteRenderer quote_renderer;
-   //quote_renderer.render();
-   //SUCCEED();
-//}
+TEST_F(Hexagon_ObjectivesLog_ObjectiveRendererTestWithAllegroRenderingFixture, render__will_not_blow_up)
+{
+   Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer;
+   objective_renderer.render();
+   SUCCEED();
+}
 
