@@ -31,9 +31,20 @@ functions:
   - name: render
     virtual: true
     override: true
+    guards: [ objectives_log ]
     body: |
+      placement3d place = get_place();
+      std::vector<Hexagon::ObjectivesLog::Objective> &objectives = objectives_log->get_objectives_ref();
+      place.start_transform();
+      for (auto &objective : objectives)
+      {
+         Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer;
+         objective_renderer.render();
+      }
+      place.restore_transform();
       return;
-    body_dependency_symbols: []
+    body_dependency_symbols:
+      - Hexagon::ObjectivesLog::ObjectiveRenderer
 
 
   - name: move_cursor_up
@@ -87,6 +98,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::ObjectivesLog::ObjectiveRenderer
+    headers: [ Hexagon/ObjectivesLog/ObjectiveRenderer.hpp ]
   - symbol: Hexagon::ObjectivesLog::ObjectivesLog*
     headers: [ Hexagon/ObjectivesLog/ObjectivesLog.hpp ]
   - symbol: StageInterface

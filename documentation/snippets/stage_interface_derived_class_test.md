@@ -9,7 +9,7 @@ TEST(Hexagon_AdvancedCodeEditor_StageTest, can_be_created_without_blowing_up)
    Hexagon::AdvancedCodeEditor::Stage stage;
 }
 
-TEST(Hexagon_AdvancedCodeEditor_StageTest, render__returns_the_expected_response)
+TEST(Hexagon_AdvancedCodeEditor_StageTest, render__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
    stage.render();

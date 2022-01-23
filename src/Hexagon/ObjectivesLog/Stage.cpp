@@ -1,6 +1,9 @@
 
 
 #include <Hexagon/ObjectivesLog/Stage.hpp>
+#include <Hexagon/ObjectivesLog/ObjectiveRenderer.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 
@@ -41,6 +44,21 @@ Hexagon::ObjectivesLog::ObjectivesLog* &Stage::get_objectives_log_ref()
 
 void Stage::render()
 {
+   if (!(objectives_log))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"objectives_log\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   placement3d place = get_place();
+   std::vector<Hexagon::ObjectivesLog::Objective> &objectives = objectives_log->get_objectives_ref();
+   place.start_transform();
+   for (auto &objective : objectives)
+   {
+      Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer;
+      objective_renderer.render();
+   }
+   place.restore_transform();
    return;
 }
 

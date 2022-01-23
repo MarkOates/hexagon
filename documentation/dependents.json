@@ -1206,6 +1206,9 @@
   "std/vector<Hexagon/ObjectivesLog/Objective>": [
     "Hexagon/ObjectivesLog/ObjectivesLog"
   ],
+  "Hexagon/ObjectivesLog/ObjectiveRenderer": [
+    "Hexagon/ObjectivesLog/Stage"
+  ],
   "Hexagon/ObjectivesLog/ObjectivesLog": [
     "Hexagon/ObjectivesLog/Stage"
   ],
