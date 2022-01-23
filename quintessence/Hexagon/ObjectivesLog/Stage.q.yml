@@ -44,6 +44,14 @@ functions:
       return;
 
 
+  - name: move_cursor_down
+    type: void
+    body: |
+      cursor_pos++;
+      if (cursor_pos >= infer_num_list_items()) cursor_pos = 0;
+      return;
+
+
   - name: infer_num_list_items
     type: int
     guards: [ objectives_log ]

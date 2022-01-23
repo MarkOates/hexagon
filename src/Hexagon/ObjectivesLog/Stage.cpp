@@ -51,6 +51,13 @@ void Stage::move_cursor_up()
    return;
 }
 
+void Stage::move_cursor_down()
+{
+   cursor_pos++;
+   if (cursor_pos >= infer_num_list_items()) cursor_pos = 0;
+   return;
+}
+
 int Stage::infer_num_list_items()
 {
    if (!(objectives_log))

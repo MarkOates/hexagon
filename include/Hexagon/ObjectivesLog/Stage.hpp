@@ -27,6 +27,7 @@ namespace Hexagon
          Hexagon::ObjectivesLog::ObjectivesLog* &get_objectives_log_ref();
          virtual void render() override;
          void move_cursor_up();
+         void move_cursor_down();
          int infer_num_list_items();
          virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
          virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
