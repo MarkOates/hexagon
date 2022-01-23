@@ -1,0 +1,33 @@
+properties:
+
+
+  - name: title
+    type: std::string
+    init_with: '"Unnamed Objective"'
+    getter: true
+    setter: true
+    constructor_arg: true
+
+  - name: description
+    type: std::string
+    init_with: '"This objective has not yet been defined."'
+    getter: true
+    setter: true
+    constructor_arg: true
+
+  - name: completed
+    type: bool
+    init_with: false
+    getter: true
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: mark_as_completed
+    body: |
+      completed = true;
+      return;
+
+
