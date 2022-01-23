@@ -4,15 +4,8 @@ properties:
   - name: objectives
     type: std::vector<Hexagon::ObjectivesLog::Objective>
     init_with: '{}'
+    getter_ref: true
    
-
-functions:
-
-
-  - name: run
-    type: std::string
-    body: return "Hello World!";
-
 
 dependencies:
 

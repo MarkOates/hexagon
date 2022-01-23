@@ -2,7 +2,6 @@
 
 
 #include <Hexagon/ObjectivesLog/Objective.hpp>
-#include <string>
 #include <vector>
 
 
@@ -19,7 +18,7 @@ namespace Hexagon
          ObjectivesLog();
          ~ObjectivesLog();
 
-         std::string run();
+         std::vector<Hexagon::ObjectivesLog::Objective> &get_objectives_ref();
       };
    }
 }

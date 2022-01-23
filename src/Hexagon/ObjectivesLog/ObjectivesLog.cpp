@@ -21,10 +21,12 @@ ObjectivesLog::~ObjectivesLog()
 }
 
 
-std::string ObjectivesLog::run()
+std::vector<Hexagon::ObjectivesLog::Objective> &ObjectivesLog::get_objectives_ref()
 {
-   return "Hello World!";
+   return objectives;
 }
+
+
 } // namespace ObjectivesLog
 } // namespace Hexagon
 
