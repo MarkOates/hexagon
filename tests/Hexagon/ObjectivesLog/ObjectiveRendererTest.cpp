@@ -42,6 +42,7 @@ TEST_F(Hexagon_ObjectivesLog_ObjectiveRendererTestWithAllegroRenderingFixture, r
 {
    Hexagon::ObjectivesLog::Objective objective;
    Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer(&get_font_bin_ref(), &objective);
+   objective_renderer.set_is_activated(true);
 
    al_clear_to_color(ALLEGRO_COLOR{0.1, 0.1, 0.1, 1.0});
    objective_renderer.render();
