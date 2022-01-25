@@ -212,6 +212,7 @@ table td
   <li><a href="#quintessence/Hexagon/TitleScreen.q.yml">quintessence/Hexagon/TitleScreen.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/UI/DrawingBox.q.yml">quintessence/Hexagon/UI/DrawingBox.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/UI/LittleMenu.q.yml">quintessence/Hexagon/UI/LittleMenu.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/WordRangesFinder.q.yml">quintessence/Hexagon/WordRangesFinder.q.yml</a></li>
   <li><a href="#quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml">quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml</a></li>
   <li><a href="#quintessence/Testing/WithAllegroRenderingFixture.q.yml">quintessence/Testing/WithAllegroRenderingFixture.q.yml</a></li>
   <li><a href="#quintessence/Testing/WithStageFactoryFixture.q.yml">quintessence/Testing/WithStageFactoryFixture.q.yml</a></li>
@@ -9640,6 +9641,31 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/WordRangesFinder.q.yml">quintessence/Hexagon/WordRangesFinder.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">line_of_text</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">cursor_pos</td>
+  <td class="property">int</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">find_ranges()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::pair&lt;int, int&gt;&quot;, &quot;headers&quot;=&gt;[&quot;utility&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml">quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml</h3>
      <table>
 <tr>
@@ -11274,6 +11300,9 @@ table td
   ],
   "TimestampGenerator": [
     "Hexagon/UI/DrawingBox"
+  ],
+  "std/pair<int, int>": [
+    "Hexagon/WordRangesFinder"
   ],
   "al_init_primitives_addon": [
     "Testing/WithAllegroRenderingFixture"

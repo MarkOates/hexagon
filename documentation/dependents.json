@@ -1449,6 +1449,9 @@
   "TimestampGenerator": [
     "Hexagon/UI/DrawingBox"
   ],
+  "std/pair<int, int>": [
+    "Hexagon/WordRangesFinder"
+  ],
   "al_init_primitives_addon": [
     "Testing/WithAllegroRenderingFixture"
   ],

@@ -2,6 +2,7 @@
 
 
 #include <string>
+#include <utility>
 
 
 namespace Hexagon
@@ -9,12 +10,14 @@ namespace Hexagon
    class WordRangesFinder
    {
    private:
+      std::string line_of_text;
+      int cursor_pos;
 
    public:
-      WordRangesFinder();
+      WordRangesFinder(std::string line_of_text="empty", int cursor_pos=0);
       ~WordRangesFinder();
 
-      std::string run();
+      std::pair<int, int> find_ranges();
    };
 }
 

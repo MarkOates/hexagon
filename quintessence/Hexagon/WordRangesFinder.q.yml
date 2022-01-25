@@ -1,4 +1,30 @@
-functions:
-  - name: run
+properties:
+
+
+  - name: line_of_text
     type: std::string
-    body: return "Hello World!";
+    init_with: '"empty"'
+    constructor_arg: true
+
+  - name: cursor_pos
+    type: int
+    init_with: 0
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: find_ranges
+    type: std::pair<int, int>
+    body: |
+      if (cursor_pos < 0) return std::pair<int, int>(-1, 0);
+      if (cursor_pos >= line_of_text.length()) return std::pair<int, int>(-1, 0);
+      return std::pair<int, int>(1, 1);
+
+
+dependencies:
+
+
+  - symbol: std::pair<int, int>
+    headers: [ utility ]
