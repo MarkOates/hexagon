@@ -27,6 +27,11 @@ std::pair<int, int> WordRangesFinder::find_ranges()
 
    const std::string word_matching_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
+   if (word_matching_chars.find(line_of_text[cursor_pos]) == std::string::npos)
+   {
+      return std::pair<int, int>(-1, -1);
+   }
+
    int start_pos = line_of_text.find_last_not_of(word_matching_chars, cursor_pos) + 1;
    int end_pos = line_of_text.find_first_not_of(word_matching_chars, cursor_pos);
 
