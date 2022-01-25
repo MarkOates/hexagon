@@ -30,7 +30,8 @@ TEST(Hexagon_WordRangesFinderTest,
    find_ranges__will_return_the_position_and_length_of_a_full_word_underneath_the_cursor_pos)
 {
    Hexagon::WordRangesFinder word_ranges_finder("This is the line of text for testing", 14);
-   std::pair<int, int> expected_ranges_result = std::pair<int, int>(13, 4);
+                                  // cursor_pos (13) is here  ^
+   std::pair<int, int> expected_ranges_result = std::pair<int, int>(12, 4);
    std::pair<int, int> actual_ranges_result = word_ranges_finder.find_ranges();
-   //EXPECT_EQ(expected_ranges_result, actual_ranges_result);
+   EXPECT_EQ(expected_ranges_result, actual_ranges_result);
 }
