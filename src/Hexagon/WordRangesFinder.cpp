@@ -22,8 +22,8 @@ WordRangesFinder::~WordRangesFinder()
 
 std::pair<int, int> WordRangesFinder::find_ranges()
 {
-   if (cursor_pos < 0) return std::pair<int, int>(-1, 0);
-   if (cursor_pos >= line_of_text.length()) return std::pair<int, int>(-1, 0);
+   if (cursor_pos < 0) return std::pair<int, int>(-1, -1);
+   if (cursor_pos >= line_of_text.length()) return std::pair<int, int>(-1, -1);
 
    const std::string word_matching_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -31,6 +31,11 @@ std::pair<int, int> WordRangesFinder::find_ranges()
    int end_pos = line_of_text.find_first_not_of(word_matching_chars, cursor_pos);
 
    return std::pair<int, int>(start_pos, end_pos - start_pos);
+}
+
+bool WordRangesFinder::is_valid(std::pair<int, int> word_range)
+{
+   return word_range == std::pair<int, int>(-1, -1);
 }
 } // namespace Hexagon
 

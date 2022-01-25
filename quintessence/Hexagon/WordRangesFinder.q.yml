@@ -18,8 +18,8 @@ functions:
   - name: find_ranges
     type: std::pair<int, int>
     body: |
-      if (cursor_pos < 0) return std::pair<int, int>(-1, 0);
-      if (cursor_pos >= line_of_text.length()) return std::pair<int, int>(-1, 0);
+      if (cursor_pos < 0) return std::pair<int, int>(-1, -1);
+      if (cursor_pos >= line_of_text.length()) return std::pair<int, int>(-1, -1);
 
       const std::string word_matching_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -27,6 +27,16 @@ functions:
       int end_pos = line_of_text.find_first_not_of(word_matching_chars, cursor_pos);
 
       return std::pair<int, int>(start_pos, end_pos - start_pos);
+
+
+  - name: is_valid
+    type: bool
+    parameters:
+      - name: word_range
+        type: std::pair<int, int>
+        default_argument: '{0, 0}'
+    body: |
+      return word_range == std::pair<int, int>(-1, -1);
 
 
 dependencies:
