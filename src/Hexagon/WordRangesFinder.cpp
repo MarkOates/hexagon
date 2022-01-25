@@ -40,7 +40,7 @@ std::pair<int, int> WordRangesFinder::find_ranges()
 
 bool WordRangesFinder::is_valid(std::pair<int, int> word_range)
 {
-   return word_range == std::pair<int, int>(-1, -1);
+   return word_range != std::pair<int, int>(-1, -1);
 }
 } // namespace Hexagon
 

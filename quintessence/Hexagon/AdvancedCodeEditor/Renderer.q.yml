@@ -137,6 +137,7 @@ functions:
       if (visual_selections) draw_visual_selections();
       if (full_line_visual_selections) draw_full_line_visual_selections();
       if (code_message_points) draw_code_message_points();
+      if (lines && cursor) render_word_highlight_under_cursor();
       render_cursor();
 
       return;
@@ -196,6 +197,36 @@ functions:
     body_dependency_symbols:
       - AllegroFlare::color::color
       - ALLEGRO_COLOR
+
+
+  - name: render_word_highlight_under_cursor
+    guards: [ text_mesh, cursor, lines ]
+    body: |
+      int cursor_x_pos = cursor->get_x();
+      int cursor_y_pos = cursor->get_y();
+      if (cursor_y_pos < 0) return;
+      if (cursor_y_pos >= lines->size()) return;
+
+      std::string line_under_cursor = lines->at(cursor_y_pos);
+
+      Hexagon::WordRangesFinder word_ranges_finder(line_under_cursor, cursor_x_pos);
+      std::pair<int, int> found_range = word_ranges_finder.find_ranges();
+      if (!word_ranges_finder.is_valid(found_range)) return;
+
+      // render it
+      float cell_width = text_mesh->get_cell_width();
+      float cell_height = text_mesh->get_cell_height();
+      float x = found_range.first * cell_width;
+      float y = (cursor_y_pos - first_row_offset) * cell_height;
+      float height = cell_height;
+      float width = found_range.second * cell_width;
+      ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.0, 0.2, 0.0, 0.2};
+      al_draw_filled_rectangle(x, y, x+width, y+height, highlight_color);
+      al_draw_line(x, y+height, x+width, y+height, highlight_color, 2.0);
+        
+      return;
+    body_dependency_symbols:
+      - Hexagon::WordRangesFinder
 
 
   - name: render_cursor
@@ -399,6 +430,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::WordRangesFinder
+    headers: [ Hexagon/WordRangesFinder.hpp ]
   - symbol: std::vector<CodeRange>*
     headers: [ vector, Hexagon/CodeRange.hpp ]
   - symbol: Hexagon::Elements::TextMesh*

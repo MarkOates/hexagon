@@ -11,6 +11,9 @@
 #include <allegro5/allegro_color.h>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/WordRangesFinder.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
@@ -128,6 +131,7 @@ void Renderer::render()
    if (visual_selections) draw_visual_selections();
    if (full_line_visual_selections) draw_full_line_visual_selections();
    if (code_message_points) draw_code_message_points();
+   if (lines && cursor) render_word_highlight_under_cursor();
    render_cursor();
 
    return;
@@ -189,6 +193,51 @@ bool Renderer::render_line_numbers()
                    string_to_display.c_str());
    }
    return true;
+}
+
+void Renderer::render_word_highlight_under_cursor()
+{
+   if (!(text_mesh))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "render_word_highlight_under_cursor" << ": error: " << "guard \"text_mesh\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(cursor))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "render_word_highlight_under_cursor" << ": error: " << "guard \"cursor\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(lines))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "render_word_highlight_under_cursor" << ": error: " << "guard \"lines\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   int cursor_x_pos = cursor->get_x();
+   int cursor_y_pos = cursor->get_y();
+   if (cursor_y_pos < 0) return;
+   if (cursor_y_pos >= lines->size()) return;
+
+   std::string line_under_cursor = lines->at(cursor_y_pos);
+
+   Hexagon::WordRangesFinder word_ranges_finder(line_under_cursor, cursor_x_pos);
+   std::pair<int, int> found_range = word_ranges_finder.find_ranges();
+   if (!word_ranges_finder.is_valid(found_range)) return;
+
+   // render it
+   float cell_width = text_mesh->get_cell_width();
+   float cell_height = text_mesh->get_cell_height();
+   float x = found_range.first * cell_width;
+   float y = (cursor_y_pos - first_row_offset) * cell_height;
+   float height = cell_height;
+   float width = found_range.second * cell_width;
+   ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.0, 0.2, 0.0, 0.2};
+   al_draw_filled_rectangle(x, y, x+width, y+height, highlight_color);
+   al_draw_line(x, y+height, x+width, y+height, highlight_color, 2.0);
+     
+   return;
 }
 
 void Renderer::render_cursor()

@@ -41,7 +41,7 @@ functions:
         type: std::pair<int, int>
         default_argument: '{0, 0}'
     body: |
-      return word_range == std::pair<int, int>(-1, -1);
+      return word_range != std::pair<int, int>(-1, -1);
 
 
 dependencies:

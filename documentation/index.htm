@@ -685,6 +685,9 @@ table td
   <td class="method">render_line_numbers()</td>
 </tr>
 <tr>
+  <td class="method">render_word_highlight_under_cursor()</td>
+</tr>
+<tr>
   <td class="method">render_cursor()</td>
 </tr>
 <tr>
@@ -704,6 +707,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::WordRangesFinder&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/WordRangesFinder.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;CodeRange&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/CodeRange.hpp&quot;]}</td>
 </tr>
@@ -10050,6 +10056,9 @@ table td
   "std/map<std/string, std/function<void(Hexagon/AdvancedCodeEditor/Stage&)>>": [
     "Hexagon/AdvancedCodeEditor/EventController",
     "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "Hexagon/WordRangesFinder": [
+    "Hexagon/AdvancedCodeEditor/Renderer"
   ],
   "std/vector<CodeRange>": [
     "Hexagon/AdvancedCodeEditor/Renderer",
