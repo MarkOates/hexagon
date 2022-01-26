@@ -20,7 +20,7 @@ namespace Hexagon
          ~Renderer();
 
          void render();
-         void render_menu_item(float x=0, float y=0, std::string label="Unlabeled", std::string input="^H");
+         void render_menu_item(float x=0, float y=0, std::string input="^H", std::string label="Unlabeled");
          ALLEGRO_FONT* obtain_font();
       };
    }

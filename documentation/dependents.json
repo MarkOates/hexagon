@@ -595,6 +595,7 @@
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
+    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/Powerbar/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
@@ -1215,6 +1216,9 @@
   "std/vector<std/tuple<std/string, std/string, std/string, std/string>>": [
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/Stage"
+  ],
+  "AllegroFlare/color": [
+    "Hexagon/MultiplexMenu/Renderer"
   ],
   "Hexagon/MultiplexMenu/MultiplexMenu": [
     "Hexagon/MultiplexMenu/Stage"
