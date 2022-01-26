@@ -17,7 +17,6 @@ namespace MultiplexMenu
 
 Renderer::Renderer(AllegroFlare::FontBin* font_bin)
    : font_bin(font_bin)
-   , quote({})
 {
 }
 

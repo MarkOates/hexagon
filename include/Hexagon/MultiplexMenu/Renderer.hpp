@@ -14,7 +14,6 @@ namespace Hexagon
       {
       private:
          AllegroFlare::FontBin* font_bin;
-         std::string quote;
 
       public:
          Renderer(AllegroFlare::FontBin* font_bin=nullptr);
