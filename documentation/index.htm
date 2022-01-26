@@ -6128,13 +6128,27 @@ table td
   <div class="component">
     <h3 id="quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml</h3>
      <table>
-    </table>
-     <table>
 <tr>
-  <td class="method">run()</td>
+  <td class="property">stage</td>
+  <td class="property">StageInterface*</td>
+</tr>
+<tr>
+  <td class="property">items</td>
+  <td class="property">std::vector&lt;std::tuple&lt;std::string, std::string, std::string, std::string&gt;&gt;</td>
 </tr>
     </table>
      <table>
+<tr>
+  <td class="private_method">send_message_to_stage(1)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;StageInterface*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageInterface.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::tuple&lt;std::string, std::string, std::string, std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;tuple&quot;, &quot;string&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -6214,6 +6228,14 @@ table td
     <h3 id="quintessence/Hexagon/MultiplexMenu/Stage.q.yml">quintessence/Hexagon/MultiplexMenu/Stage.q.yml</h3>
      <table>
 <tr>
+  <td class="property">stage</td>
+  <td class="property">StageInterface*</td>
+</tr>
+<tr>
+  <td class="property">multiplex_menu</td>
+  <td class="property">Hexagon::MultiplexMenu::MultiplexMenu</td>
+</tr>
+<tr>
   <td class="property">a_default_empty_event</td>
   <td class="property">ALLEGRO_EVENT</td>
 </tr>
@@ -6230,6 +6252,12 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;StageInterface*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageInterface.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenu&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenu.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::Renderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/Renderer.hpp&quot;]}</td>
 </tr>
@@ -8568,6 +8596,9 @@ table td
   <td class="method">create_code_editor(2)</td>
 </tr>
 <tr>
+  <td class="method">create_delete_multiplex_menu(1)</td>
+</tr>
+<tr>
   <td class="method">create_regex_input_box_modal()</td>
 </tr>
 <tr>
@@ -8597,6 +8628,9 @@ table td
     </table>
      <table>
 <tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringSplitter&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringSplitter.hpp&quot;]}</td>
 </tr>
 <tr>
@@ -8625,6 +8659,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::GitCommitMessageInputBox::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/GitCommitMessageInputBox/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::Stage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/Stage.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/Stage.hpp&quot;]}</td>
@@ -10132,6 +10169,7 @@ table td
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
+    "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateThreeSplitFromComponent"
   ],
   "KeyboardCommandMapper": [
@@ -10419,6 +10457,8 @@ table td
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/MultiplexMenu/MultiplexMenu",
+    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/NewComponentMaker/Stage",
     "Hexagon/Notifications/Stage",
@@ -11198,6 +11238,12 @@ table td
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
   ],
+  "std/vector<std/tuple<std/string, std/string, std/string, std/string>>": [
+    "Hexagon/MultiplexMenu/MultiplexMenu"
+  ],
+  "Hexagon/MultiplexMenu/MultiplexMenu": [
+    "Hexagon/MultiplexMenu/Stage"
+  ],
   "Hexagon/MultiplexMenu/Renderer": [
     "Hexagon/MultiplexMenu/Stage"
   ],
@@ -11323,6 +11369,9 @@ table td
   ],
   "std/vector<Hexagon/AdvancedCodeEditor/Stage >": [
     "Hexagon/StageCollectionHelper"
+  ],
+  "Hexagon/MultiplexMenu/Stage": [
+    "Hexagon/StageFactory"
   ],
   "Blast/Project/SymlinkChecker": [
     "Hexagon/StageFactory",

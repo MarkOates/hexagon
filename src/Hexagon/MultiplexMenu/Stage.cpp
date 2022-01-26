@@ -13,8 +13,10 @@ namespace MultiplexMenu
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage()
+Stage::Stage(StageInterface* stage, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu)
    : StageInterface(StageInterface::MULTIPLEX_MENU)
+   , stage(stage)
+   , multiplex_menu(multiplex_menu)
 {
 }
 

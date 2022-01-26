@@ -40,6 +40,7 @@
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Blast/Project/SymlinkChecker.hpp>
+#include <Hexagon/MultiplexMenu/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/OneLineInputBox/Stage.hpp>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
@@ -379,6 +380,12 @@ StageInterface* StageFactory::create_code_editor(std::string filename, std::stri
    code_editor_stage->set_cell_height(cell_height);
 
    return code_editor_stage;
+}
+
+StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage)
+{
+   Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(advanced_code_editor_stage);
+   return stage;
 }
 
 StageInterface* StageFactory::create_regex_input_box_modal()

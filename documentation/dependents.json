@@ -143,6 +143,7 @@
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
+    "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateThreeSplitFromComponent"
   ],
   "KeyboardCommandMapper": [
@@ -430,6 +431,8 @@
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/MultiplexMenu/MultiplexMenu",
+    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/NewComponentMaker/Stage",
     "Hexagon/Notifications/Stage",
@@ -1209,6 +1212,12 @@
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
   ],
+  "std/vector<std/tuple<std/string, std/string, std/string, std/string>>": [
+    "Hexagon/MultiplexMenu/MultiplexMenu"
+  ],
+  "Hexagon/MultiplexMenu/MultiplexMenu": [
+    "Hexagon/MultiplexMenu/Stage"
+  ],
   "Hexagon/MultiplexMenu/Renderer": [
     "Hexagon/MultiplexMenu/Stage"
   ],
@@ -1334,6 +1343,9 @@
   ],
   "std/vector<Hexagon/AdvancedCodeEditor/Stage >": [
     "Hexagon/StageCollectionHelper"
+  ],
+  "Hexagon/MultiplexMenu/Stage": [
+    "Hexagon/StageFactory"
   ],
   "Blast/Project/SymlinkChecker": [
     "Hexagon/StageFactory",

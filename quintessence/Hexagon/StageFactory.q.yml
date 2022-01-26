@@ -364,6 +364,19 @@ functions:
        - Blast::Project::SymlinkChecker
 
 
+  - name: create_delete_multiplex_menu
+    type: StageInterface*
+    parameters:
+      - name: advanced_code_editor_stage
+        type: Hexagon::AdvancedCodeEditor::Stage*
+        default_argument: nullptr
+    body: |
+      Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(advanced_code_editor_stage);
+      return stage;
+    body_dependency_symbols:
+       - Hexagon::MultiplexMenu::Stage
+
+
   - name: create_regex_input_box_modal
     type: StageInterface*
     body: |
@@ -575,6 +588,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::MultiplexMenu::Stage
+    headers: [ Hexagon/MultiplexMenu/Stage.hpp ]
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
   - symbol: Blast::Project::SymlinkChecker
@@ -595,6 +610,8 @@ dependencies:
     headers: [ Hexagon/OneLineInputBox/Stage.hpp ]
   - symbol: Hexagon::GitCommitMessageInputBox::Stage
     headers: [ Hexagon/GitCommitMessageInputBox/Stage.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Stage*
+    headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: Hexagon::AdvancedCodeEditor::Stage
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::Stage

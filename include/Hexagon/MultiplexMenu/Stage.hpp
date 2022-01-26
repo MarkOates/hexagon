@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/ActionData.hpp>
+#include <Hexagon/MultiplexMenu/MultiplexMenu.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <string>
@@ -14,10 +15,12 @@ namespace Hexagon
       class Stage : public StageInterface
       {
       private:
+         StageInterface* stage;
+         Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         Stage();
+         Stage(StageInterface* stage=nullptr, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu={});
          virtual ~Stage();
 
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();

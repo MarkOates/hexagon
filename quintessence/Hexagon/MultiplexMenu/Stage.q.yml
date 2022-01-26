@@ -9,6 +9,16 @@ parent_classes:
 properties:
 
 
+  - name: stage
+    type: StageInterface*
+    init_with: nullptr
+    constructor_arg: true
+
+  - name: multiplex_menu
+    type: Hexagon::MultiplexMenu::MultiplexMenu
+    init_with: "{}"
+    constructor_arg: true
+
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -63,6 +73,10 @@ functions:
 dependencies:
 
 
+  - symbol: StageInterface*
+    headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenu
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenu.hpp ]
   - symbol: Hexagon::MultiplexMenu::Renderer
     headers: [ Hexagon/MultiplexMenu/Renderer.hpp ]
   - symbol: StageInterface

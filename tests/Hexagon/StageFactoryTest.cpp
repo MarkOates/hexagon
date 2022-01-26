@@ -279,6 +279,12 @@ TEST(Hexagon_StageFactoryTest,
 }
 
 TEST(Hexagon_StageFactoryTest,
+   create_delete_multiplex_menu__creates_a_multiplex_menu_with_the_expected_properties)
+{
+   // TODO
+}
+
+TEST(Hexagon_StageFactoryTest,
    create_git_commit_message_box__creates_a_git_commit_message_box_with_the_expected_properties)
 {
    al_init();
