@@ -1213,7 +1213,8 @@
     "Hexagon/MissingFile/Stage"
   ],
   "std/vector<std/tuple<std/string, std/string, std/string, std/string>>": [
-    "Hexagon/MultiplexMenu/MultiplexMenu"
+    "Hexagon/MultiplexMenu/MultiplexMenu",
+    "Hexagon/MultiplexMenu/Stage"
   ],
   "Hexagon/MultiplexMenu/MultiplexMenu": [
     "Hexagon/MultiplexMenu/Stage"

@@ -14,9 +14,9 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
-  - name: multiplex_menu
-    type: Hexagon::MultiplexMenu::MultiplexMenu
-    init_with: "{}"
+  - name: items
+    type: std::vector<std::tuple<std::string, std::string, std::string, std::string>>
+    init_with: '{}'
     constructor_arg: true
 
   - name: a_default_empty_event
@@ -43,6 +43,18 @@ functions:
       return;
     body_dependency_symbols:
       - Hexagon::MultiplexMenu::Renderer
+
+
+  - name: send_message_to_stage
+    private: true
+    parameters:
+      - name: message
+        type: std::string
+        default_argument: '"[message-identifier-set]"'
+    guards: [ stage ]
+    body: |
+      stage->process_local_event(message);
+      return;
 
 
   - name: process_local_event
@@ -73,6 +85,8 @@ functions:
 dependencies:
 
 
+  - symbol: std::vector<std::tuple<std::string, std::string, std::string, std::string>>
+    headers: [ vector, tuple, string ]
   - symbol: StageInterface*
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: Hexagon::MultiplexMenu::MultiplexMenu

@@ -6232,8 +6232,8 @@ table td
   <td class="property">StageInterface*</td>
 </tr>
 <tr>
-  <td class="property">multiplex_menu</td>
-  <td class="property">Hexagon::MultiplexMenu::MultiplexMenu</td>
+  <td class="property">items</td>
+  <td class="property">std::vector&lt;std::tuple&lt;std::string, std::string, std::string, std::string&gt;&gt;</td>
 </tr>
 <tr>
   <td class="property">a_default_empty_event</td>
@@ -6245,6 +6245,9 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
+  <td class="private_method">send_message_to_stage(1)</td>
+</tr>
+<tr>
   <td class="method">process_local_event(2)</td>
 </tr>
 <tr>
@@ -6252,6 +6255,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::tuple&lt;std::string, std::string, std::string, std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;tuple&quot;, &quot;string&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;StageInterface*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageInterface.hpp&quot;]}</td>
 </tr>
@@ -11239,7 +11245,8 @@ table td
     "Hexagon/MissingFile/Stage"
   ],
   "std/vector<std/tuple<std/string, std/string, std/string, std/string>>": [
-    "Hexagon/MultiplexMenu/MultiplexMenu"
+    "Hexagon/MultiplexMenu/MultiplexMenu",
+    "Hexagon/MultiplexMenu/Stage"
   ],
   "Hexagon/MultiplexMenu/MultiplexMenu": [
     "Hexagon/MultiplexMenu/Stage"
