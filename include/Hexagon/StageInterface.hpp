@@ -31,6 +31,7 @@ public:
       NOTIFICATION,
       FANCY,
       OBJECTIVES_LOG,
+      MULTIPLEX_MENU,
    }; // these types should not be included within the base class
 
 private:

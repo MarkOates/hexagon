@@ -81,6 +81,9 @@ std::string StageInterface::get_type_name()
       case OBJECTIVES_LOG:
          return "ObjectivesLog";
          break;
+      case MULTIPLEX_MENU:
+         return "MultiplexMenu";
+         break;
       default:
       {
          throw std::runtime_error("StageInterface::get_type_name() unrecognized type");
