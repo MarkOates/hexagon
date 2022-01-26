@@ -18,7 +18,41 @@ functions:
     type: void
     guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
     body: |
+      render_menu_item();
       return;
+
+
+  - name: render_menu_item
+    private: true
+    parameters:
+      - name: x
+        type: float
+        default_argument: 0
+      - name: y
+        type: float
+        default_argument: 0
+      - name: label
+        type: std::string
+        default_argument: '"Unlabeled"'
+      - name: input
+        type: std::string
+        default_argument: '"^H"'
+    body: |
+      ALLEGRO_COLOR frame_color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 1.0};
+      ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1, 1, 1, 1};
+      ALLEGRO_FONT *font = obtain_font();
+      float input_text_length = al_get_text_width(font, input.c_str());
+      float roundness = 6.0;
+
+      al_draw_filled_rounded_rectangle(x, y+3, 200, 43, roundness, roundness, frame_color);
+      al_draw_text(font, text_color, x+12, y+3, ALLEGRO_ALIGN_LEFT, input.c_str());
+      al_draw_text(font, text_color, x+12 + input_text_length + 20, y+3, ALLEGRO_ALIGN_LEFT, label.c_str());
+
+      return;
+    body_dependency_symbols:
+      - al_draw_filled_rectangle
+      - al_draw_text
+
 
   - name: obtain_font
     private: true
@@ -31,6 +65,10 @@ functions:
 dependencies:
 
 
+  - symbol: al_draw_text
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: al_draw_filled_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ALLEGRO_FONT*

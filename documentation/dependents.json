@@ -699,6 +699,7 @@
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Elements/TextGrid",
     "Hexagon/Fancy/Stage",
+    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/TitleScreen"
   ],
@@ -809,6 +810,7 @@
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/UI/DrawingBox"
   ],
@@ -1206,6 +1208,9 @@
   ],
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
+  ],
+  "Hexagon/MultiplexMenu/Renderer": [
+    "Hexagon/MultiplexMenu/Stage"
   ],
   "Hexagon/Notifications/Notification": [
     "Hexagon/Notifications/NotificationFactory",

@@ -23,8 +23,16 @@ functions:
     virtual: true
     override: true
     body: |
+      placement3d &place = get_place();
+      place.start_transform();
+
+      Hexagon::MultiplexMenu::Renderer renderer;
+      renderer.render();
+
+      place.restore_transform();
       return;
-    body_dependency_symbols: []
+    body_dependency_symbols:
+      - Hexagon::MultiplexMenu::Renderer
 
 
   - name: process_local_event
@@ -55,6 +63,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::MultiplexMenu::Renderer
+    headers: [ Hexagon/MultiplexMenu/Renderer.hpp ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: ALLEGRO_EVENT
