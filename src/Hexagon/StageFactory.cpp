@@ -387,6 +387,7 @@ StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCode
    // TODO: populate this mulitplex menu
    Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu({
      { "Shift+A", "Delete Around Word", "delete_around_word", "" },
+     //{ "ESCAPE", "Escape this menu", "", "" },
    });
    Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(
       font_bin,
