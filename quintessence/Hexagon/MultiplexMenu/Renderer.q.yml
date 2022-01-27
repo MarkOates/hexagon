@@ -14,7 +14,7 @@ functions:
     type: void
     guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
     body: |
-      float spacing_y = 64;
+      float spacing_y = 66;
 
       //std::map<std::tuple<int, bool, bool, bool, bool>, std::vector<std::string>> mapping;
       std::vector<std::tuple<int, bool, bool, bool, bool>>;

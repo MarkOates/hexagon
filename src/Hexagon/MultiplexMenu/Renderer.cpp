@@ -46,7 +46,7 @@ void Renderer::render()
          error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
-   float spacing_y = 64;
+   float spacing_y = 66;
 
    //std::map<std::tuple<int, bool, bool, bool, bool>, std::vector<std::string>> mapping;
    std::vector<std::tuple<int, bool, bool, bool, bool>>;
