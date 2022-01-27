@@ -117,10 +117,10 @@ bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::execute()
 
    //if (!test_file_contents.empty())
    {
-     placement3d place(0, 0, 0);
+     placement3d place(width/2, 0, 0);
      place.size = vec3d(width, height, 0.0);
-     place.align = vec3d(0.0, 0.5, 0.0);
-     place.scale = vec3d(1.0, 1.0, 0.0);
+     place.align = vec3d(0.25, 0.5, 0.0);
+     place.scale = vec3d(1.3, 1.3, 0.0);
 
      StageInterface *stage = nullptr;
 
@@ -156,10 +156,10 @@ bool AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection::execute()
 
    //if (!file_contents.empty())
    {
-     placement3d place(0, 0, 0);
+     placement3d place(-width/2, 0, 0);
      place.size = vec3d(width, height, 0.0);
-     place.align = vec3d(1.0, 0.5, 0.0);
-     place.scale = vec3d(1.0, 1.0, 0.0);
+     place.align = vec3d(0.75, 0.5, 0.0);
+     place.scale = vec3d(1.3, 1.3, 0.0);
 
      StageInterface *stage = nullptr;
 
