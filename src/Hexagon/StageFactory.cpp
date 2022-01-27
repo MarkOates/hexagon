@@ -385,6 +385,8 @@ StageInterface* StageFactory::create_code_editor(std::string filename, std::stri
 StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage)
 {
    Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(advanced_code_editor_stage);
+   stage->set_place(build_git_commit_message_input_box_initial_place());
+   stage->set_render_on_hud(true);
    return stage;
 }
 
