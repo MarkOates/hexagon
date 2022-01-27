@@ -460,12 +460,20 @@ void Hud::draw_current_title_text()
    float display_center_x = get_surface_projection_width() / 2;
    ALLEGRO_FONT *title_font = obtain_title_font();
    float title_font_line_height = al_get_font_line_height(title_font);
-   int y_position = 52;
+   float title_text_width = al_get_text_width(title_font, title_text.c_str());
+   int y_position = 52 - title_font_line_height/2;
+
+   al_draw_filled_rectangle(display_center_x - title_text_width/2 - 20,
+      y_position - title_font_line_height/2 - 10,
+      display_center_x + title_text_width/2 + 20,
+      y_position + title_font_line_height/2 + 10,
+      ALLEGRO_COLOR{0, 0, 0, 0.9}
+   );
 
    al_draw_text(title_font,
                 color,
                 display_center_x,
-                y_position - title_font_line_height,
+                y_position - title_font_line_height/2,
                 ALLEGRO_ALIGN_CENTER,
                 title_text.c_str());
    return;
