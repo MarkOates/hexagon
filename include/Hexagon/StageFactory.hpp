@@ -55,6 +55,7 @@ namespace Hexagon
       placement3d build_centered_on_hud_initial_place(float width=0, float height=0);
       placement3d build_component_navigator_initial_place();
       placement3d build_file_navigator_initial_place();
+      placement3d build_multiplex_menu_initial_place();
       placement3d build_git_commit_message_input_box_initial_place();
       placement3d build_regex_input_box_initial_place();
    };

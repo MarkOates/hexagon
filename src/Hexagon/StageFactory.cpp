@@ -385,7 +385,7 @@ StageInterface* StageFactory::create_code_editor(std::string filename, std::stri
 StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage)
 {
    Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(font_bin, advanced_code_editor_stage);
-   stage->set_place(build_git_commit_message_input_box_initial_place());
+   stage->set_place(build_multiplex_menu_initial_place());
    stage->set_render_on_hud(true);
    return stage;
 }
@@ -549,6 +549,22 @@ placement3d StageFactory::build_file_navigator_initial_place()
    result.scale = vec3d(0.8, 0.8, 1.0);
    result.rotation = vec3d(0.0, 0.0, 0.0);
    return result;
+}
+
+placement3d StageFactory::build_multiplex_menu_initial_place()
+{
+   float surface_width = get_hud_render_surface_projection_width();
+   float surface_height = get_hud_render_surface_projection_height();
+   float height = al_get_font_line_height(obtain_git_commit_message_box_font());
+
+   //ALLEGRO_DISPLAY *display = get_current_display();
+   //int surface_width = al_get_display_width(display);
+   //int surface_height = al_get_display_height(display);
+   placement3d place(surface_width*0.5f, surface_height*0.5f + 20, 0.0);
+   place.size = vec3d(680, height, 0.0);
+   place.scale = vec3d(0.5, 0.5, 1.0);
+   place.rotation = vec3d(0.0, 0.0, 0.0);
+   return place;
 }
 
 placement3d StageFactory::build_git_commit_message_input_box_initial_place()
