@@ -24,7 +24,7 @@
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
 #include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
-#include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
+#include <Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename.hpp>
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
 #include <Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.hpp>
 #include <Hexagon/System/Action/OpenDocumentationInBrowser.hpp>
@@ -1383,7 +1383,7 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
       ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
 
       ::Hexagon::StageFactory stage_factory(&config, &font_bin);
-      ::Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+      ::Hexagon::System::Action::AttemptToCreateCodeEditorStageFromFilename action(
          filename,
          get_display_default_width(),
          get_display_default_height(),
@@ -1671,7 +1671,7 @@ bool System::open_hexagon_config_file()
    if (!display) throw std::runtime_error("fooob arrra");
 
    ::Hexagon::StageFactory stage_factory(&config, &font_bin);
-   ::Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+   ::Hexagon::System::Action::AttemptToCreateCodeEditorStageFromFilename action(
       config_filename,
       al_get_display_width(display),
       al_get_display_height(display),

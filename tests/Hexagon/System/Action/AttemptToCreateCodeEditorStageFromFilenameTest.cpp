@@ -9,7 +9,7 @@
 static std::string TEST_FIXTURE_DIRECTORY_ROOT = "/Users/markoates/Repos/hexagon/tests/fixtures/";
 static std::string TEST_FIXTURE_TEXT_FILE = TEST_FIXTURE_DIRECTORY_ROOT + "file_that_contains_several_lines.txt";
 
-#include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
+#include <Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename.hpp>
 
 class Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture : public ::testing::Test
 {};
@@ -31,14 +31,14 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithE
 TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
    can_be_created_without_blowing_up)
 {
-   Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename attempt_to_craete_code_editor_stage_from_filename;
+   Hexagon::System::Action::AttemptToCreateCodeEditorStageFromFilename attempt_to_craete_code_editor_stage_from_filename;
 }
 
 TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
    execute__with_nullptr_stages__throws_an_error)
 {
-   Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action;
-   std::string expected_error_message = "AttemptToCraeteCodeEditorStageFromFilename::execute: error: " \
+   Hexagon::System::Action::AttemptToCreateCodeEditorStageFromFilename action;
+   std::string expected_error_message = "AttemptToCreateCodeEditorStageFromFilename::execute: error: " \
                                         "guard \"stages\" not met";
    ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
 }
@@ -47,7 +47,7 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithE
    execute__with_nullptr_stage_factory__throws_an_error)
 {
    std::vector<StageInterface *> stages = {};
-   Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+   Hexagon::System::Action::AttemptToCreateCodeEditorStageFromFilename action(
       TEST_FIXTURE_TEXT_FILE,
       300,
       200,
@@ -58,7 +58,7 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithE
       &stages,
       nullptr
    );
-   std::string expected_error_message = "AttemptToCraeteCodeEditorStageFromFilename::execute: error: " \
+   std::string expected_error_message = "AttemptToCreateCodeEditorStageFromFilename::execute: error: " \
                                         "guard \"stage_factory\" not met";
    ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
 }
@@ -67,7 +67,7 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithF
    execute__on_a_file_that_does_not_exist__throws_an_error)
 {
    std::vector<StageInterface *> stages = {};
-   Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+   Hexagon::System::Action::AttemptToCreateCodeEditorStageFromFilename action(
       "file_that_does_not_exist.txt",
       300,
       200,
@@ -94,7 +94,7 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithF
                                                              // here is a second-order hack to get this test passing.
                                                              // Eventually this should be fixed.
    std::vector<StageInterface *> stages = {};
-   Hexagon::System::Action::AttemptToCraeteCodeEditorStageFromFilename action(
+   Hexagon::System::Action::AttemptToCreateCodeEditorStageFromFilename action(
       TEST_FIXTURE_TEXT_FILE,
       300,
       200,

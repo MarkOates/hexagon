@@ -1,6 +1,6 @@
 
 
-#include <Hexagon/System/Action/AttemptToCraeteCodeEditorStageFromFilename.hpp>
+#include <Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename.hpp>
 #include <sstream>
 #include <Hexagon/util.hpp>
 #include <allegro_flare/placement3d.h>
@@ -19,7 +19,7 @@ namespace Action
 {
 
 
-AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFilename(std::string filename, int display_default_width, int display_default_height, int stage_width, int stage_height, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color, std::vector<StageInterface *>* stages, Hexagon::StageFactory* stage_factory)
+AttemptToCreateCodeEditorStageFromFilename::AttemptToCreateCodeEditorStageFromFilename(std::string filename, int display_default_width, int display_default_height, int stage_width, int stage_height, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color, std::vector<StageInterface *>* stages, Hexagon::StageFactory* stage_factory)
    : ::Action("System::Action::AttemptToCreateCodeEditorStageFromFilename", ActionData())
    , filename(filename)
    , display_default_width(display_default_width)
@@ -34,47 +34,47 @@ AttemptToCraeteCodeEditorStageFromFilename::AttemptToCraeteCodeEditorStageFromFi
 }
 
 
-AttemptToCraeteCodeEditorStageFromFilename::~AttemptToCraeteCodeEditorStageFromFilename()
+AttemptToCreateCodeEditorStageFromFilename::~AttemptToCreateCodeEditorStageFromFilename()
 {
 }
 
 
-int AttemptToCraeteCodeEditorStageFromFilename::get_display_default_width()
+int AttemptToCreateCodeEditorStageFromFilename::get_display_default_width()
 {
    return display_default_width;
 }
 
 
-int AttemptToCraeteCodeEditorStageFromFilename::get_display_default_height()
+int AttemptToCreateCodeEditorStageFromFilename::get_display_default_height()
 {
    return display_default_height;
 }
 
 
-int AttemptToCraeteCodeEditorStageFromFilename::get_stage_width()
+int AttemptToCreateCodeEditorStageFromFilename::get_stage_width()
 {
    return stage_width;
 }
 
 
-int AttemptToCraeteCodeEditorStageFromFilename::get_stage_height()
+int AttemptToCreateCodeEditorStageFromFilename::get_stage_height()
 {
    return stage_height;
 }
 
 
-bool AttemptToCraeteCodeEditorStageFromFilename::execute()
+bool AttemptToCreateCodeEditorStageFromFilename::execute()
 {
    if (!(stages))
       {
          std::stringstream error_message;
-         error_message << "AttemptToCraeteCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stages\" not met";
+         error_message << "AttemptToCreateCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stages\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(stage_factory))
       {
          std::stringstream error_message;
-         error_message << "AttemptToCraeteCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stage_factory\" not met";
+         error_message << "AttemptToCreateCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stage_factory\" not met";
          throw std::runtime_error(error_message.str());
       }
    std::vector<std::string> file_contents = {};

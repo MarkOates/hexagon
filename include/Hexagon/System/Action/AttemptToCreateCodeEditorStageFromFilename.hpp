@@ -15,7 +15,7 @@ namespace Hexagon
    {
       namespace Action
       {
-         class AttemptToCraeteCodeEditorStageFromFilename : public ::Action
+         class AttemptToCreateCodeEditorStageFromFilename : public ::Action
          {
          private:
             std::string filename;
@@ -29,8 +29,8 @@ namespace Hexagon
             Hexagon::StageFactory* stage_factory;
 
          public:
-            AttemptToCraeteCodeEditorStageFromFilename(std::string filename="file.txt", int display_default_width=1, int display_default_height=1, int stage_width=1, int stage_height=1, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}, std::vector<StageInterface *>* stages=nullptr, Hexagon::StageFactory* stage_factory=nullptr);
-            ~AttemptToCraeteCodeEditorStageFromFilename();
+            AttemptToCreateCodeEditorStageFromFilename(std::string filename="file.txt", int display_default_width=1, int display_default_height=1, int stage_width=1, int stage_height=1, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}, std::vector<StageInterface *>* stages=nullptr, Hexagon::StageFactory* stage_factory=nullptr);
+            ~AttemptToCreateCodeEditorStageFromFilename();
 
             int get_display_default_width();
             int get_display_default_height();
