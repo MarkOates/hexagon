@@ -34,7 +34,7 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
 {
    std::map<std::string, std::function<bool(Hexagon::System::System&)>> default_function_mapping = {
       {
-         ::System::ATTEMPT_TO_CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION,
+         ::System::CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION,
          &::Hexagon::System::System::create_stage_from_last_file_navigator_selection,
       },
       {
