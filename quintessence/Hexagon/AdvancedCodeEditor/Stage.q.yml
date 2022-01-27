@@ -776,6 +776,7 @@ functions:
          { "cursor_move_left", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_left },
          { "cursor_move_right", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_right },
          { "delete_character", &Hexagon::AdvancedCodeEditor::Stage::delete_character },
+         { "delete_word_under_cursor", &Hexagon::AdvancedCodeEditor::Stage::delete_word_under_cursor },
          { "split_lines", &Hexagon::AdvancedCodeEditor::Stage::split_lines },
          { "join_lines", &Hexagon::AdvancedCodeEditor::Stage::join_lines },
          { "delete_line", &Hexagon::AdvancedCodeEditor::Stage::delete_line },

@@ -455,6 +455,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   DISABLED_delete_word_under_character__returns_true)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    DISABLED_delete_word_under_character__moves_the_cursor_to_the_beginning_of_the_word_that_was_deleted)
 {
    // TODO
