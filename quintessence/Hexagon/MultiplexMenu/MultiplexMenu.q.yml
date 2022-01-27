@@ -1,30 +1,11 @@
 properties:
 
 
-  - name: stage
-    type: StageInterface*
-    init_with: nullptr
-    constructor_arg: true
-
   - name: items
     type: std::vector<std::tuple<std::string, std::string, std::string, std::string>>
     init_with: '{}'
     constructor_arg: true
-
-
-functions:
-
-
-  - name: send_message_to_stage
-    private: true
-    parameters:
-      - name: message
-        type: std::string
-        default_argument: '"[message-identifier-set]"'
-    guards: [ stage ]
-    body: |
-      stage->process_local_event(message);
-      return;
+    getter_ref: true
 
 
 dependencies:

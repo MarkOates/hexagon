@@ -608,6 +608,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::ObjectivesLog::Stage
+    headers: [ Hexagon/ObjectivesLog/Stage.hpp ]
   - symbol: Hexagon::MultiplexMenu::Stage
     headers: [ Hexagon/MultiplexMenu/Stage.hpp ]
   - symbol: Blast::StringSplitter

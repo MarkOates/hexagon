@@ -1358,6 +1358,9 @@
   "std/vector<Hexagon/AdvancedCodeEditor/Stage >": [
     "Hexagon/StageCollectionHelper"
   ],
+  "Hexagon/ObjectivesLog/Stage": [
+    "Hexagon/StageFactory"
+  ],
   "Hexagon/MultiplexMenu/Stage": [
     "Hexagon/StageFactory"
   ],

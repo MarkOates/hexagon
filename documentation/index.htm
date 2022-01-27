@@ -6135,18 +6135,11 @@ table td
     <h3 id="quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml</h3>
      <table>
 <tr>
-  <td class="property">stage</td>
-  <td class="property">StageInterface*</td>
-</tr>
-<tr>
   <td class="property">items</td>
   <td class="property">std::vector&lt;std::tuple&lt;std::string, std::string, std::string, std::string&gt;&gt;</td>
 </tr>
     </table>
      <table>
-<tr>
-  <td class="private_method">send_message_to_stage(1)</td>
-</tr>
     </table>
      <table>
 <tr>
@@ -8663,6 +8656,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ObjectivesLog::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ObjectivesLog/Stage.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/Stage.hpp&quot;]}</td>
 </tr>
@@ -11419,6 +11415,9 @@ table td
   ],
   "std/vector<Hexagon/AdvancedCodeEditor/Stage >": [
     "Hexagon/StageCollectionHelper"
+  ],
+  "Hexagon/ObjectivesLog/Stage": [
+    "Hexagon/StageFactory"
   ],
   "Hexagon/MultiplexMenu/Stage": [
     "Hexagon/StageFactory"
