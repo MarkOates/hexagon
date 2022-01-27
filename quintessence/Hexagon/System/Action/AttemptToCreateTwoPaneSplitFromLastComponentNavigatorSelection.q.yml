@@ -106,7 +106,7 @@ functions:
       float width = get_code_editor_width(); //display_default_width/2 * width_scale_of_halfwidth;
       float height = get_code_editor_height(); //display_default_width/2 * width_scale_of_halfwidth;
 
-      bool using_laptop_display = true;
+      bool using_laptop_display = false;
       //if (!test_file_contents.empty())
       {
         placement3d place(0, 0, 0);
