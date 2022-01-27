@@ -1,0 +1,30 @@
+properties:
+
+  - name: keyboard_input
+    type: std::string
+    init_with: '"[keyboard-input-not-set]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: label
+    type: std::string
+    init_with: '"[menu-item-label-not-set]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: action
+    type: std::string
+    init_with: '"[action-not-set]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: menu
+    type: std::string
+    init_with: '"[branching-menu-identifier-not-set]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+    
