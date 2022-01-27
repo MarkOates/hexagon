@@ -20,7 +20,7 @@
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <AllegroFlare/Config.hpp>
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
-#include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
+#include <Hexagon/System/Action/CreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>

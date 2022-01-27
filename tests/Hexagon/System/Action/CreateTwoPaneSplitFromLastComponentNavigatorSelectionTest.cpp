@@ -1,9 +1,9 @@
 
 #include <gtest/gtest.h>
 
-#include <Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
+#include <Hexagon/System/Action/CreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
 
-typedef Hexagon::System::Action::AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection CreateTwoSplit;
+typedef Hexagon::System::Action::CreateTwoPaneSplitFromLastComponentNavigatorSelection CreateTwoSplit;
 
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
