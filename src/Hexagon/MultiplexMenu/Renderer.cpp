@@ -68,7 +68,7 @@ void Renderer::render_menu_item(float x, float y, std::string input, std::string
    ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.8};
    float frame_opacity = 0.4f;
    ALLEGRO_COLOR frame_color = AllegroFlare::color::color(al_color_name("dodgerblue"), frame_opacity);
-   float text_opacity = 0.6f;
+   float text_opacity = 0.95f;
    ALLEGRO_COLOR text_color = AllegroFlare::color::color(al_color_name("white"), text_opacity);
    ALLEGRO_FONT *font = obtain_font();
    float padding_x = 20;
