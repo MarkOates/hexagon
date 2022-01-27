@@ -1217,6 +1217,13 @@
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/Stage"
   ],
+  "Blast/StringJoiner": [
+    "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/UI/DrawingBox"
+  ],
+  "al_keycode_to_name": [
+    "Hexagon/MultiplexMenu/Renderer"
+  ],
   "AllegroFlare/color": [
     "Hexagon/MultiplexMenu/Renderer"
   ],
@@ -1460,9 +1467,6 @@
   ],
   "Hexagon/Elements/DataTable": [
     "Hexagon/TitleScreen"
-  ],
-  "Blast/StringJoiner": [
-    "Hexagon/UI/DrawingBox"
   ],
   "al_draw_line": [
     "Hexagon/UI/DrawingBox"

@@ -6197,13 +6197,22 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="private_method">render_menu_item(4)</td>
+  <td class="method">convert_key_input_to_string(5)</td>
+</tr>
+<tr>
+  <td class="private_method">render_menu_item(5)</td>
 </tr>
 <tr>
   <td class="private_method">obtain_font()</td>
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringJoiner&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringJoiner.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_keycode_to_name&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::color&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Color.hpp&quot;]}</td>
 </tr>
@@ -11251,6 +11260,13 @@ table td
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/Stage"
   ],
+  "Blast/StringJoiner": [
+    "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/UI/DrawingBox"
+  ],
+  "al_keycode_to_name": [
+    "Hexagon/MultiplexMenu/Renderer"
+  ],
   "AllegroFlare/color": [
     "Hexagon/MultiplexMenu/Renderer"
   ],
@@ -11494,9 +11510,6 @@ table td
   ],
   "Hexagon/Elements/DataTable": [
     "Hexagon/TitleScreen"
-  ],
-  "Blast/StringJoiner": [
-    "Hexagon/UI/DrawingBox"
   ],
   "al_draw_line": [
     "Hexagon/UI/DrawingBox"

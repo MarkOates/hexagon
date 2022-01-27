@@ -44,3 +44,37 @@ TEST_F(Hexagon_MultiplexMenu_RendererTestWithAllegroRenderingFixture, render__wi
    sleep(2);
    SUCCEED();
 }
+
+
+TEST_F(Hexagon_MultiplexMenu_RendererTest,
+   convert_key_input_to_string__without_allegro_initialized__will_throw_an_error)
+{
+   Hexagon::MultiplexMenu::Renderer renderer;
+   std::string expected_error_message =
+      "Renderer::convert_key_input_to_string: error: guard \"al_is_system_installed()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(renderer.convert_key_input_to_string(), std::runtime_error, expected_error_message);
+}
+
+
+TEST_F(Hexagon_MultiplexMenu_RendererTest,
+   convert_key_input_to_string__without_a_keyboard_initialized__will_throw_an_error)
+{
+   al_init();
+   Hexagon::MultiplexMenu::Renderer renderer;
+   std::string expected_error_message =
+      "Renderer::convert_key_input_to_string: error: guard \"al_is_keyboard_installed()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(renderer.convert_key_input_to_string(), std::runtime_error, expected_error_message);
+   al_uninstall_system();
+}
+
+
+TEST_F(Hexagon_MultiplexMenu_RendererTest,
+   convert_key_input_to_string__will_return_a_string_representation_of_the_keyboard_input)
+{
+   al_init();
+   al_install_keyboard();
+   Hexagon::MultiplexMenu::Renderer renderer;
+   EXPECT_EQ("Shift+N", renderer.convert_key_input_to_string(ALLEGRO_KEY_N, false, false, false, true));
+   al_uninstall_system();
+}
+

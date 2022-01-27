@@ -3,6 +3,10 @@
 #include <Hexagon/MultiplexMenu/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Blast/StringJoiner.hpp>
+#include <allegro5/allegro.h>
+#include <stdexcept>
+#include <sstream>
 #include <AllegroFlare/Color.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
@@ -42,11 +46,39 @@ void Renderer::render()
          error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
+   float spacing_y = 80;
    render_menu_item();
    return;
 }
 
-void Renderer::render_menu_item(float x, float y, std::string input, std::string label)
+std::string Renderer::convert_key_input_to_string(int al_keycode, bool ctrl, bool alt, bool command, bool shift)
+{
+   if (!(al_is_system_installed()))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "convert_key_input_to_string" << ": error: " << "guard \"al_is_system_installed()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(al_is_keyboard_installed()))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "convert_key_input_to_string" << ": error: " << "guard \"al_is_keyboard_installed()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   std::vector<std::string> result_tokens;
+
+   if (shift) result_tokens.push_back("Shift");
+   if (ctrl) result_tokens.push_back("Ctrl");
+   if (alt) result_tokens.push_back("Alt");
+   if (command) result_tokens.push_back("Command");
+   result_tokens.push_back(al_keycode_to_name(al_keycode));
+
+   Blast::StringJoiner joiner(result_tokens, "+");
+
+   return joiner.join();
+}
+
+void Renderer::render_menu_item(float x, float y, std::string input, std::string label, bool opens_menu)
 {
    ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.8};
    float frame_opacity = 0.4f;
@@ -62,6 +94,8 @@ void Renderer::render_menu_item(float x, float y, std::string input, std::string
    float height = al_get_font_line_height(font) + padding_y * 2;
    float width = label_text_length + input_text_length + padding_x * 4;
    float frame_thickness = 2.0;
+
+   if (opens_menu) label = "= " + label;
 
    al_draw_filled_rounded_rectangle(x, y, width, height, roundness, roundness, backfill_color);
    al_draw_text(font, text_color, x+padding_x, y+padding_y, ALLEGRO_ALIGN_LEFT, input.c_str());

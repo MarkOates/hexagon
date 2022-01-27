@@ -14,8 +14,46 @@ functions:
     type: void
     guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
     body: |
+      float spacing_y = 80;
       render_menu_item();
       return;
+
+
+  - name: convert_key_input_to_string
+    type: std::string
+    static: true
+    parameters:
+      - name: al_keycode
+        type: int
+        default_argument: 0
+      - name: ctrl
+        type: bool
+        default_argument: false
+      - name: alt
+        type: bool
+        default_argument: false
+      - name: command
+        type: bool
+        default_argument: false
+      - name: shift
+        type: bool
+        default_argument: false
+    guards: [ al_is_system_installed(), al_is_keyboard_installed() ]
+    body: |
+      std::vector<std::string> result_tokens;
+
+      if (shift) result_tokens.push_back("Shift");
+      if (ctrl) result_tokens.push_back("Ctrl");
+      if (alt) result_tokens.push_back("Alt");
+      if (command) result_tokens.push_back("Command");
+      result_tokens.push_back(al_keycode_to_name(al_keycode));
+
+      Blast::StringJoiner joiner(result_tokens, "+");
+
+      return joiner.join();
+    body_dependency_symbols:
+      - Blast::StringJoiner
+      - al_keycode_to_name
 
 
   - name: render_menu_item
@@ -33,6 +71,9 @@ functions:
       - name: label
         type: std::string
         default_argument: '"Unlabeled"'
+      - name: opens_menu
+        type: bool
+        default_argument: false
     body: |
       ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.8};
       float frame_opacity = 0.4f;
@@ -48,6 +89,8 @@ functions:
       float height = al_get_font_line_height(font) + padding_y * 2;
       float width = label_text_length + input_text_length + padding_x * 4;
       float frame_thickness = 2.0;
+
+      if (opens_menu) label = "= " + label;
 
       al_draw_filled_rounded_rectangle(x, y, width, height, roundness, roundness, backfill_color);
       al_draw_text(font, text_color, x+padding_x, y+padding_y, ALLEGRO_ALIGN_LEFT, input.c_str());
@@ -82,6 +125,10 @@ functions:
 dependencies:
 
 
+  - symbol: Blast::StringJoiner
+    headers: [ Blast/StringJoiner.hpp ]
+  - symbol: al_keycode_to_name
+    headers: [ allegro5/allegro.h ]
   - symbol: AllegroFlare::color
     headers: [ AllegroFlare/Color.hpp ]
   - symbol: al_color_name
