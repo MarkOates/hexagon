@@ -237,6 +237,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          ::System::PUSH_TO_GIT_REMOTE,
          &System::push_to_git_remote,
       },
+      {
+         ::System::SPAWN_MULTIPLEX_DELETE_MENU,
+         &System::spawn_multiplex_delete_menu,
+      },
    };
    return default_function_mapping;
 }
@@ -358,6 +362,12 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
             ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, true, false, false, false, {
             ::System::SPAWN_CLASS_BRIEF_MENU });
+      }
+
+      if (system->is_topmost_stage_advanced_code_editor_in_edit_mode())
+      {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, false, {
+            ::System::SPAWN_MULTIPLEX_DELETE_MENU });
       }
 
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, false, {

@@ -335,6 +335,14 @@ bool System::is_drawing_mouse_cursor()
 }
 
 
+bool System::is_topmost_stage_advanced_code_editor_in_edit_mode()
+{
+   Hexagon::AdvancedCodeEditor::Stage *frontmost_advanced_code_editor = get_frontmost_advanced_code_editor_stage();
+   if (!frontmost_advanced_code_editor) return false;
+   return frontmost_advanced_code_editor->is_in_edit_mode();
+}
+
+
 bool System::has_no_stages()
 {
    return stages.empty();
@@ -1753,6 +1761,7 @@ const std::string System::RUN_PROJECT_TESTS = "RUN_PROJECT_TESTS";
 const std::string System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK =
    "SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK";
 const std::string System::SEND_MESSAGE_TO_DAEMUS_TO_BUILD = "SEND_MESSAGE_TO_DAEMUS_TO_BUILD";
+const std::string System::SPAWN_MULTIPLEX_DELETE_MENU = "SPAWN_MULTIPLEX_DELETE_MENU";
 const std::string System::SPAWN_FANCY = "SPAWN_FANCY";
 const std::string System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR = "SPAWN_COMPONENT_RELATIONS_NAVIGATOR";
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";

@@ -371,7 +371,7 @@ functions:
         type: Hexagon::AdvancedCodeEditor::Stage*
         default_argument: nullptr
     body: |
-      Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(advanced_code_editor_stage);
+      Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(font_bin, advanced_code_editor_stage);
       stage->set_place(build_git_commit_message_input_box_initial_place());
       stage->set_render_on_hud(true);
       return stage;

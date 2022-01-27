@@ -72,9 +72,9 @@ std::string Renderer::convert_key_input_to_string(int al_keycode, bool ctrl, boo
       }
    std::vector<std::string> result_tokens;
 
-   if (shift) result_tokens.push_back("Shift");
    if (ctrl) result_tokens.push_back("Ctrl");
    if (alt) result_tokens.push_back("Alt");
+   if (shift) result_tokens.push_back("Shift");
    if (command) result_tokens.push_back("Command");
    result_tokens.push_back(al_keycode_to_name(al_keycode));
 

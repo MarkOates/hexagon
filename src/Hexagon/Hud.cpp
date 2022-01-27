@@ -625,6 +625,7 @@ void Hud::draw()
       StageInterface::LITTLE_MENU,
       StageInterface::DRAWING_BOX,
       StageInterface::FANCY,
+      StageInterface::MULTIPLEX_MENU,
    };
 
    bool draw_stages = true;

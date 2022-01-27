@@ -482,6 +482,7 @@
     "Hexagon/MissingFile/Stage",
     "Hexagon/MultiplexMenu/MultiplexMenuRenderer",
     "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/PacketRenderer",

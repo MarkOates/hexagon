@@ -90,6 +90,7 @@ public:
    bool is_current_stage_in_insert_mode();
    bool is_current_stage_a_modal();
    bool is_drawing_mouse_cursor();
+   bool is_topmost_stage_advanced_code_editor_in_edit_mode();
    bool has_no_stages();
 
    // internal messages
@@ -228,6 +229,7 @@ public:
    static const std::string RUN_PROJECT_TESTS;
    static const std::string SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK;
    static const std::string SEND_MESSAGE_TO_DAEMUS_TO_BUILD;
+   static const std::string SPAWN_MULTIPLEX_DELETE_MENU;
    static const std::string SPAWN_FANCY;
    static const std::string SPAWN_COMPONENT_RELATIONS_NAVIGATOR;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;

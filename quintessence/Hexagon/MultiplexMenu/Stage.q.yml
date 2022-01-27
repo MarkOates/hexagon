@@ -9,6 +9,11 @@ parent_classes:
 properties:
 
 
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
+
   - name: stage
     type: StageInterface*
     init_with: nullptr
@@ -36,7 +41,7 @@ functions:
       placement3d &place = get_place();
       place.start_transform();
 
-      Hexagon::MultiplexMenu::Renderer renderer;
+      Hexagon::MultiplexMenu::Renderer renderer(font_bin);
       renderer.render();
 
       place.restore_transform();
@@ -85,6 +90,8 @@ functions:
 dependencies:
 
 
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: std::vector<std::tuple<std::string, std::string, std::string, std::string>>
     headers: [ vector, tuple, string ]
   - symbol: StageInterface*
