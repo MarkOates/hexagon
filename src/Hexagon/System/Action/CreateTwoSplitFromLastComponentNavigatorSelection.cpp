@@ -1,6 +1,6 @@
 
 
-#include <Hexagon/System/Action/CreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp>
+#include <Hexagon/System/Action/CreateTwoSplitFromLastComponentNavigatorSelection.hpp>
 #include <Blast/FileExistenceChecker.hpp>
 #include <NcursesArt/ProjectFilenameGenerator.hpp>
 #include <sstream>
@@ -19,11 +19,11 @@ namespace Action
 {
 
 
-std::vector<StageInterface *> CreateTwoPaneSplitFromLastComponentNavigatorSelection::dummy_stages = {};
+std::vector<StageInterface *> CreateTwoSplitFromLastComponentNavigatorSelection::dummy_stages = {};
 
 
-CreateTwoPaneSplitFromLastComponentNavigatorSelection::CreateTwoPaneSplitFromLastComponentNavigatorSelection(std::string project_path, std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages, Hexagon::StageFactory* stage_factory, int code_editor_width, int code_editor_height, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
-   : ::Action("System::Action::CreateTwoPaneSplitFromLastComponentNavigatorSelection", ActionData())
+CreateTwoSplitFromLastComponentNavigatorSelection::CreateTwoSplitFromLastComponentNavigatorSelection(std::string project_path, std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages, Hexagon::StageFactory* stage_factory, int code_editor_width, int code_editor_height, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+   : ::Action("System::Action::CreateTwoSplitFromLastComponentNavigatorSelection", ActionData())
    , project_path(project_path)
    , last_component_navigator_selection(last_component_navigator_selection)
    , display_default_width(display_default_width)
@@ -39,60 +39,60 @@ CreateTwoPaneSplitFromLastComponentNavigatorSelection::CreateTwoPaneSplitFromLas
 }
 
 
-CreateTwoPaneSplitFromLastComponentNavigatorSelection::~CreateTwoPaneSplitFromLastComponentNavigatorSelection()
+CreateTwoSplitFromLastComponentNavigatorSelection::~CreateTwoSplitFromLastComponentNavigatorSelection()
 {
 }
 
 
-void CreateTwoPaneSplitFromLastComponentNavigatorSelection::set_stages(std::vector<StageInterface *>& stages)
+void CreateTwoSplitFromLastComponentNavigatorSelection::set_stages(std::vector<StageInterface *>& stages)
 {
    this->stages = stages;
 }
 
 
-void CreateTwoPaneSplitFromLastComponentNavigatorSelection::set_create_as_advanced_code_editor(bool create_as_advanced_code_editor)
+void CreateTwoSplitFromLastComponentNavigatorSelection::set_create_as_advanced_code_editor(bool create_as_advanced_code_editor)
 {
    this->create_as_advanced_code_editor = create_as_advanced_code_editor;
 }
 
 
-std::string CreateTwoPaneSplitFromLastComponentNavigatorSelection::get_project_path()
+std::string CreateTwoSplitFromLastComponentNavigatorSelection::get_project_path()
 {
    return project_path;
 }
 
 
-std::vector<StageInterface *>& CreateTwoPaneSplitFromLastComponentNavigatorSelection::get_stages()
+std::vector<StageInterface *>& CreateTwoSplitFromLastComponentNavigatorSelection::get_stages()
 {
    return stages;
 }
 
 
-int CreateTwoPaneSplitFromLastComponentNavigatorSelection::get_code_editor_width()
+int CreateTwoSplitFromLastComponentNavigatorSelection::get_code_editor_width()
 {
    return code_editor_width;
 }
 
 
-int CreateTwoPaneSplitFromLastComponentNavigatorSelection::get_code_editor_height()
+int CreateTwoSplitFromLastComponentNavigatorSelection::get_code_editor_height()
 {
    return code_editor_height;
 }
 
 
-bool CreateTwoPaneSplitFromLastComponentNavigatorSelection::get_create_as_advanced_code_editor()
+bool CreateTwoSplitFromLastComponentNavigatorSelection::get_create_as_advanced_code_editor()
 {
    return create_as_advanced_code_editor;
 }
 
 
-std::vector<StageInterface *> &CreateTwoPaneSplitFromLastComponentNavigatorSelection::get_dummy_stages_ref()
+std::vector<StageInterface *> &CreateTwoSplitFromLastComponentNavigatorSelection::get_dummy_stages_ref()
 {
    return dummy_stages;
 }
 
 
-bool CreateTwoPaneSplitFromLastComponentNavigatorSelection::execute()
+bool CreateTwoSplitFromLastComponentNavigatorSelection::execute()
 {
    std::string component_name = last_component_navigator_selection;
 

@@ -368,7 +368,7 @@ dependencies:
       - AllegroFlare/KeyboardCommandMapper.hpp
       - AllegroFlare/Config.hpp
       - Hexagon/System/Action/DestroyAllCodeEditorStages.hpp
-      - Hexagon/System/Action/CreateTwoPaneSplitFromLastComponentNavigatorSelection.hpp
+      - Hexagon/System/Action/CreateTwoSplitFromLastComponentNavigatorSelection.hpp
       - Hexagon/System/Action/CreateThreeSplitFromComponent.hpp
       - Hexagon/Logo.hpp
       - Hexagon/RegexMatcher.hpp
