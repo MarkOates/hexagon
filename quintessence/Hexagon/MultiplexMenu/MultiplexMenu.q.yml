@@ -2,7 +2,7 @@ properties:
 
 
   - name: items
-    type: std::vector<std::tuple<std::string, std::string, std::string, std::string>>
+    type: std::vector<Hexagon::MultiplexMenu::MenuItem>
     init_with: '{}'
     constructor_arg: true
     getter_ref: true
@@ -13,6 +13,6 @@ dependencies:
 
   - symbol: StageInterface*
     headers: [ Hexagon/StageInterface.hpp ]
-  - symbol: std::vector<std::tuple<std::string, std::string, std::string, std::string>>
-    headers: [ vector, tuple, string ]
+  - symbol: std::vector<Hexagon::MultiplexMenu::MenuItem>
+    headers: [ vector, Hexagon/MultiplexMenu/MenuItem.hpp ]
 

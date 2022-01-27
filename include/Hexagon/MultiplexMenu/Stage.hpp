@@ -3,11 +3,10 @@
 
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/ActionData.hpp>
+#include <Hexagon/MultiplexMenu/MultiplexMenu.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <string>
-#include <tuple>
-#include <vector>
 
 
 namespace Hexagon
@@ -19,11 +18,11 @@ namespace Hexagon
       private:
          AllegroFlare::FontBin* font_bin;
          StageInterface* stage;
-         std::vector<std::tuple<std::string, std::string, std::string, std::string>> items;
+         Hexagon::MultiplexMenu::MultiplexMenu menu;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         Stage(AllegroFlare::FontBin* font_bin=nullptr, StageInterface* stage=nullptr, std::vector<std::tuple<std::string, std::string, std::string, std::string>> items={});
+         Stage(AllegroFlare::FontBin* font_bin=nullptr, StageInterface* stage=nullptr, Hexagon::MultiplexMenu::MultiplexMenu menu={});
          virtual ~Stage();
 
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();

@@ -15,11 +15,11 @@ namespace MultiplexMenu
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage, std::vector<std::tuple<std::string, std::string, std::string, std::string>> items)
+Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage, Hexagon::MultiplexMenu::MultiplexMenu menu)
    : StageInterface(StageInterface::MULTIPLEX_MENU)
    , font_bin(font_bin)
    , stage(stage)
-   , items(items)
+   , menu(menu)
 {
 }
 

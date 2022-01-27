@@ -19,8 +19,8 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
-  - name: items
-    type: std::vector<std::tuple<std::string, std::string, std::string, std::string>>
+  - name: menu
+    type: Hexagon::MultiplexMenu::MultiplexMenu
     init_with: '{}'
     constructor_arg: true
 
@@ -110,8 +110,8 @@ dependencies:
 
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
-  - symbol: std::vector<std::tuple<std::string, std::string, std::string, std::string>>
-    headers: [ vector, tuple, string ]
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenu
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenu.hpp ]
   - symbol: StageInterface*
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: Hexagon::MultiplexMenu::MultiplexMenu

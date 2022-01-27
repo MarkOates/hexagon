@@ -1,8 +1,7 @@
 #pragma once
 
 
-#include <string>
-#include <tuple>
+#include <Hexagon/MultiplexMenu/MenuItem.hpp>
 #include <vector>
 
 
@@ -13,13 +12,13 @@ namespace Hexagon
       class MultiplexMenu
       {
       private:
-         std::vector<std::tuple<std::string, std::string, std::string, std::string>> items;
+         std::vector<Hexagon::MultiplexMenu::MenuItem> items;
 
       public:
-         MultiplexMenu(std::vector<std::tuple<std::string, std::string, std::string, std::string>> items={});
+         MultiplexMenu(std::vector<Hexagon::MultiplexMenu::MenuItem> items={});
          ~MultiplexMenu();
 
-         std::vector<std::tuple<std::string, std::string, std::string, std::string>> &get_items_ref();
+         std::vector<Hexagon::MultiplexMenu::MenuItem> &get_items_ref();
       };
    }
 }

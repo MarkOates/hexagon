@@ -10,7 +10,7 @@ namespace MultiplexMenu
 {
 
 
-MultiplexMenu::MultiplexMenu(std::vector<std::tuple<std::string, std::string, std::string, std::string>> items)
+MultiplexMenu::MultiplexMenu(std::vector<Hexagon::MultiplexMenu::MenuItem> items)
    : items(items)
 {
 }
@@ -21,7 +21,7 @@ MultiplexMenu::~MultiplexMenu()
 }
 
 
-std::vector<std::tuple<std::string, std::string, std::string, std::string>> &MultiplexMenu::get_items_ref()
+std::vector<Hexagon::MultiplexMenu::MenuItem> &MultiplexMenu::get_items_ref()
 {
    return items;
 }

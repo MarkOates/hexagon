@@ -1215,9 +1215,8 @@
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
   ],
-  "std/vector<std/tuple<std/string, std/string, std/string, std/string>>": [
-    "Hexagon/MultiplexMenu/MultiplexMenu",
-    "Hexagon/MultiplexMenu/Stage"
+  "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
+    "Hexagon/MultiplexMenu/MultiplexMenu"
   ],
   "Blast/StringJoiner": [
     "Hexagon/MultiplexMenu/Renderer",
@@ -1230,6 +1229,7 @@
     "Hexagon/MultiplexMenu/Renderer"
   ],
   "Hexagon/MultiplexMenu/MultiplexMenu": [
+    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage"
   ],
   "Hexagon/MultiplexMenu/Renderer": [
