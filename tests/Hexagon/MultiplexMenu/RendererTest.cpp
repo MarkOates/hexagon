@@ -35,6 +35,7 @@ TEST_F(Hexagon_MultiplexMenu_RendererTest, render__without_allegro_initialized__
 
 TEST_F(Hexagon_MultiplexMenu_RendererTestWithAllegroRenderingFixture, render__will_render_as_expected)
 {
+   al_install_keyboard();
    Hexagon::MultiplexMenu::Renderer renderer(&get_font_bin_ref());
    al_clear_to_color(ALLEGRO_COLOR{0.1, 0.1, 0.1, 1});
 
@@ -42,6 +43,8 @@ TEST_F(Hexagon_MultiplexMenu_RendererTestWithAllegroRenderingFixture, render__wi
 
    al_flip_display();
    sleep(2);
+
+   al_uninstall_keyboard();
    SUCCEED();
 }
 

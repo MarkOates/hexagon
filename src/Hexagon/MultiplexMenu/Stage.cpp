@@ -66,6 +66,24 @@ void Stage::process_local_event(std::string event_name, ActionData action_data)
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
+   switch(event.type)
+   {
+   case ALLEGRO_EVENT_KEY_DOWN:
+      break;
+   case ALLEGRO_EVENT_KEY_UP:
+      break;
+   case ALLEGRO_EVENT_KEY_CHAR:
+      bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
+      bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
+      bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
+      bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
+
+      // TODO
+      // right now, pressing the A key will send "delete_word_under_cursor" to the stage
+      if (event.keyboard.keycode == ALLEGRO_KEY_A) send_message_to_stage("delete_word_under_cursor");
+
+      break;
+   }
    return;
 }
 } // namespace MultiplexMenu
