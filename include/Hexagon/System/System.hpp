@@ -10,6 +10,7 @@
 #include <Hexagon/Camera.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/Hud.hpp>
 #include <Hexagon/Packet.hpp>
@@ -79,6 +80,7 @@ public:
 
    // retrieval
    StageInterface *get_frontmost_stage();
+   Hexagon::AdvancedCodeEditor::Stage *get_frontmost_advanced_code_editor_stage();
    Hexagon::CodeEditor::Stage *get_frontmost_code_editor_stage();
    std::vector<Hexagon::CodeEditor::Stage *> get_all_code_editor_stages();
    int get_number_of_code_editor_stages();
@@ -128,6 +130,7 @@ public:
    bool refresh_regex_hilights_on_all_code_editor_stages();
    bool refresh_git_modified_line_numbers_on_all_code_editor_stages();
    bool set_regex_input_box_modal_to_insert_mode();
+   bool spawn_multiplex_delete_menu();
    bool spawn_class_brief_menu();
    bool spawn_drawing_box();
    bool spawn_regex_input_box_modal();

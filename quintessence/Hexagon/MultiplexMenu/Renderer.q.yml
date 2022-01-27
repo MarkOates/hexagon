@@ -15,6 +15,11 @@ functions:
     guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
     body: |
       float spacing_y = 80;
+
+      //std::map<std::tuple<int, bool, bool, bool, bool>, std::vector<std::string>> mapping;
+      std::vector<std::tuple<int, bool, bool, bool, bool>>;
+      //std key;
+      
       render_menu_item();
       return;
 

@@ -63,6 +63,20 @@ functions:
       return result;
   
 
+  - name: get_frontmost_advanced_code_editor_stage
+    type: Hexagon::AdvancedCodeEditor::Stage*
+    body: |
+      StageInterface *frontmost_stage = get_frontmost_stage();
+      if (!frontmost_stage) return nullptr;
+
+      StageInterface::type_t type = frontmost_stage->get_type();
+      if (type == StageInterface::ADVANCED_CODE_EDITOR)
+      {
+         return static_cast<Hexagon::AdvancedCodeEditor::Stage *>(get_frontmost_stage());
+      }
+      return nullptr;
+
+
   - name: get_frontmost_code_editor_stage
     type: Hexagon::CodeEditor::Stage*
     body: |

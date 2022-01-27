@@ -47,6 +47,11 @@ void Renderer::render()
          throw std::runtime_error(error_message.str());
       }
    float spacing_y = 80;
+
+   //std::map<std::tuple<int, bool, bool, bool, bool>, std::vector<std::string>> mapping;
+   std::vector<std::tuple<int, bool, bool, bool, bool>>;
+   //std key;
+
    render_menu_item();
    return;
 }

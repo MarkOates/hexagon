@@ -74,7 +74,11 @@ TEST_F(Hexagon_MultiplexMenu_RendererTest,
    al_init();
    al_install_keyboard();
    Hexagon::MultiplexMenu::Renderer renderer;
+
    EXPECT_EQ("Shift+N", renderer.convert_key_input_to_string(ALLEGRO_KEY_N, false, false, false, true));
+   EXPECT_EQ("Ctrl+Shift+DOWN", renderer.convert_key_input_to_string(ALLEGRO_KEY_DOWN, true, false, false, true));
+   EXPECT_EQ("Command+SPACE", renderer.convert_key_input_to_string(ALLEGRO_KEY_SPACE, false, false, true, false));
+
    al_uninstall_system();
 }
 

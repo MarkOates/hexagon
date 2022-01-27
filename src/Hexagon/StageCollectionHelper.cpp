@@ -99,6 +99,19 @@ std::vector<Hexagon::AdvancedCodeEditor::Stage *> StageCollectionHelper::get_all
    return result;
 }
 
+Hexagon::AdvancedCodeEditor::Stage* StageCollectionHelper::get_frontmost_advanced_code_editor_stage()
+{
+   StageInterface *frontmost_stage = get_frontmost_stage();
+   if (!frontmost_stage) return nullptr;
+
+   StageInterface::type_t type = frontmost_stage->get_type();
+   if (type == StageInterface::ADVANCED_CODE_EDITOR)
+   {
+      return static_cast<Hexagon::AdvancedCodeEditor::Stage *>(get_frontmost_stage());
+   }
+   return nullptr;
+}
+
 Hexagon::CodeEditor::Stage* StageCollectionHelper::get_frontmost_code_editor_stage()
 {
    StageInterface *frontmost_stage = get_frontmost_stage();

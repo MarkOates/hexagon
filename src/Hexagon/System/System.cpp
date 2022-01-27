@@ -261,6 +261,13 @@ Hexagon::CodeEditor::Stage *System::get_frontmost_code_editor_stage()
 }
 
 
+Hexagon::AdvancedCodeEditor::Stage *System::get_frontmost_advanced_code_editor_stage()
+{
+   Hexagon::StageCollectionHelper stage_collection_helper(&stages);
+   return stage_collection_helper.get_frontmost_advanced_code_editor_stage();
+}
+
+
 std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
 {
    Hexagon::StageCollectionHelper stage_collection_helper(&stages);
@@ -961,6 +968,21 @@ bool System::set_regex_input_box_modal_to_insert_mode()
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return false;
    frontmost_stage->process_local_event(::CodeEditor::EventController::SET_INSERT_MODE);
+   return true;
+}
+
+
+bool System::spawn_multiplex_delete_menu()
+{
+   // TODO
+   Hexagon::AdvancedCodeEditor::Stage *frontmost_advanced_code_editor_stage = get_frontmost_advanced_code_editor_stage();
+   if (!frontmost_advanced_code_editor_stage) return false;
+
+   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   StageInterface *stage = stage_factory.create_delete_multiplex_menu(frontmost_advanced_code_editor_stage);
+
+   stages.push_back(stage);
+
    return true;
 }
 

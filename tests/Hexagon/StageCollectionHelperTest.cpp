@@ -55,6 +55,18 @@ TEST(Hexagon_StageCollectionHelperTest,
 }
 
 TEST(Hexagon_StageCollectionHelperTest,
+   get_frontmost_advanced_code_editor_stage__returns_the_frontmost_advanced_code_editor_stage)
+{
+   // TODO
+}
+
+TEST(Hexagon_StageCollectionHelperTest,
+   get_frontmost_advanced_code_editor_stage__returns_nullptr_if_the_frontmost_stage_is_not_an_advanced_code_editor)
+{
+   // TODO
+}
+
+TEST(Hexagon_StageCollectionHelperTest,
    get_frontmost_code_editor_stage__returns_the_frontmost_stage_if_it_is_a_code_editor_type)
 {
    // TODO
