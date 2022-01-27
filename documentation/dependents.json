@@ -233,7 +233,8 @@
     "Hexagon/Elements/TextPixelPreviewCreator",
     "Hexagon/FileNavigator/Stage",
     "Hexagon/ProjectComponentNavigator/ComponentSearcher",
-    "Hexagon/ProjectComponentNavigator/Stage"
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename"
   ],
   "ALLEGRO_COLOR": [
     "Hexagon/AdvancedCodeEditor/Renderer",
@@ -288,6 +289,7 @@
     "Hexagon/Shapes/Hexagon/Renderer",
     "Hexagon/Shapes/Hexagon/Stroke",
     "Hexagon/StageFactory",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Config",
@@ -458,6 +460,7 @@
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
     "Hexagon/StageFactory",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/TitleScreen",
@@ -1155,6 +1158,7 @@
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageCollectionHelper",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages"
@@ -1163,6 +1167,7 @@
     "Hexagon/Hud",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
     "Hexagon/System/Renderer"
@@ -1189,6 +1194,7 @@
   ],
   "Hexagon/StageFactory": [
     "Hexagon/LayoutToStagesCreator",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Testing/WithStageFactoryFixture",
@@ -1402,13 +1408,8 @@
   "al_font_line_height": [
     "Hexagon/StageFactory"
   ],
-  "std/vector": [
-    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
-  ],
-  "std/string": [
-    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
-  ],
   ":Action": [
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar",
     "Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar",
@@ -1416,6 +1417,15 @@
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
     "Hexagon/System/Action/OpenDocumentationInBrowser",
     "Hexagon/System/Action/SendMessageToDaemusToBuild"
+  ],
+  ":read_file": [
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename"
+  ],
+  "std/vector": [
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
+  ],
+  "std/string": [
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
   ],
   "NcursesArt/ProjectFilenameGenerator": [
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"

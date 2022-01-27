@@ -9,84 +9,92 @@ parent_classes:
 properties:
 
 
-   - name: filename
-     type: std::string
-     init_with: "\"file.txt\""
-     constructor_arg: true
-   - name: display_default_width
-     type: int
-     init_with: 1
-     constructor_arg: true
-     getter: true
-   - name: display_default_height
-     type: int
-     init_with: 1
-     constructor_arg: true
-     getter: true
-   - name: stage_width
-     type: int
-     init_with: 1
-     constructor_arg: true
-     getter: true
-   - name: stage_height
-     type: int
-     init_with: 1
-     constructor_arg: true
-     getter: true
-   - name: text_color
-     type: ALLEGRO_COLOR
-     init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
-     constructor_arg: true
-   - name: backfill_color
-     type: ALLEGRO_COLOR
-     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
-     constructor_arg: true
-   - name: stages
-     type: std::vector<StageInterface *>*
-     init_with: nullptr
-     constructor_arg: true
-   - name: stage_factory
-     type: Hexagon::StageFactory*
-     init_with: nullptr
-     constructor_arg: true
+  - name: filename
+    type: std::string
+    init_with: "\"file.txt\""
+    constructor_arg: true
+
+  - name: display_default_width
+    type: int
+    init_with: 1
+    constructor_arg: true
+    getter: true
+
+  - name: display_default_height
+    type: int
+    init_with: 1
+    constructor_arg: true
+    getter: true
+
+  - name: stage_width
+    type: int
+    init_with: 1
+    constructor_arg: true
+    getter: true
+
+  - name: stage_height
+    type: int
+    init_with: 1
+    constructor_arg: true
+    getter: true
+
+  - name: text_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
+    constructor_arg: true
+
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    constructor_arg: true
+
+  - name: stages
+    type: std::vector<StageInterface *>*
+    init_with: nullptr
+    constructor_arg: true
+
+  - name: stage_factory
+    type: Hexagon::StageFactory*
+    init_with: nullptr
+    constructor_arg: true
 
 
 functions:
 
 
-   - name: execute
-     type: bool
-     guards: [ stages, stage_factory ]
-     body: |
-       std::vector<std::string> file_contents = {};
-       if (!::read_file(file_contents, filename))
-       {
-          //TODO: improve this error message
-          throw std::runtime_error("Could not open the selected file");
-       }
+  - name: execute
+    type: bool
+    guards: [ stages, stage_factory ]
+    body: |
+      std::vector<std::string> file_contents = {};
+      if (!::read_file(file_contents, filename))
+      {
+         //TODO: improve this error message
+         throw std::runtime_error("Could not open the selected file");
+      }
 
-       placement3d place(0, 0, 0);
-       place.size = vec3d(get_stage_width(), get_stage_height(), 0.0);
-       place.align = vec3d(0.5, 0.5, 0.0);
-       place.scale = vec3d(0.9, 0.9, 0.0);
+      placement3d place(0, 0, 0);
+      place.size = vec3d(get_stage_width(), get_stage_height(), 0.0);
+      place.align = vec3d(0.5, 0.5, 0.0);
+      place.scale = vec3d(0.9, 0.9, 0.0);
 
-       StageInterface *stage = stage_factory->create_code_editor(filename, "undefined");
-       Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
+      StageInterface *stage = stage_factory->create_code_editor(filename, "undefined");
+      Hexagon::CodeEditor::Stage *code_editor_stage = static_cast<Hexagon::CodeEditor::Stage *>(stage);
 
-       code_editor_stage->set_place(place);
-       code_editor_stage->set_base_font_color(text_color);
-       code_editor_stage->set_backfill_color(backfill_color);
-       code_editor_stage->get_code_editor_ref().set_content(file_contents);
+      code_editor_stage->set_place(place);
+      code_editor_stage->set_base_font_color(text_color);
+      code_editor_stage->set_backfill_color(backfill_color);
+      code_editor_stage->get_code_editor_ref().set_content(file_contents);
 
-       stages->push_back(code_editor_stage);
+      stages->push_back(code_editor_stage);
 
-       return true;
-     body_dependency_symbols:
-       - std::stringstream
-       - ::read_file
-       - placement3d
-       - std::vector<std::string>
-       - Hexagon::CodeEditor::Stage
+      return true;
+    body_dependency_symbols:
+      - std::stringstream
+      - ::read_file
+      - placement3d
+      - std::vector<std::string>
+      - Hexagon::CodeEditor::Stage
 
 
 dependencies:

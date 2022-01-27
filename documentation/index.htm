@@ -201,6 +201,7 @@ table td
   <li><a href="#quintessence/Hexagon/StageCollectionHelper.q.yml">quintessence/Hexagon/StageCollectionHelper.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/StageFactory.q.yml">quintessence/Hexagon/StageFactory.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/SymlinkToucher.q.yml">quintessence/Hexagon/SymlinkToucher.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename.q.yml">quintessence/Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.q.yml">quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.q.yml">quintessence/Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.q.yml">quintessence/Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.q.yml</a></li>
@@ -8809,6 +8810,80 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename.q.yml">quintessence/Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">filename</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">display_default_width</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">display_default_height</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">stage_width</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">stage_height</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">text_color</td>
+  <td class="property">ALLEGRO_COLOR</td>
+</tr>
+<tr>
+  <td class="property">backfill_color</td>
+  <td class="property">ALLEGRO_COLOR</td>
+</tr>
+<tr>
+  <td class="property">stages</td>
+  <td class="property">std::vector&lt;StageInterface *&gt;*</td>
+</tr>
+<tr>
+  <td class="property">stage_factory</td>
+  <td class="property">Hexagon::StageFactory*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">execute()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_COLOR&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_color.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;:&quot;:Action&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Action.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;StageInterface *&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/StageInterface.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeEditor::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeEditor/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;:&quot;:read_file&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/util.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::string&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement3d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement3d.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::StageFactory*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageFactory.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.q.yml">quintessence/Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection.q.yml</h3>
      <table>
 <tr>
@@ -10319,7 +10394,8 @@ table td
     "Hexagon/Elements/TextPixelPreviewCreator",
     "Hexagon/FileNavigator/Stage",
     "Hexagon/ProjectComponentNavigator/ComponentSearcher",
-    "Hexagon/ProjectComponentNavigator/Stage"
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename"
   ],
   "ALLEGRO_COLOR": [
     "Hexagon/AdvancedCodeEditor/Renderer",
@@ -10374,6 +10450,7 @@ table td
     "Hexagon/Shapes/Hexagon/Renderer",
     "Hexagon/Shapes/Hexagon/Stroke",
     "Hexagon/StageFactory",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Config",
@@ -10544,6 +10621,7 @@ table td
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
     "Hexagon/StageFactory",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/TitleScreen",
@@ -11241,6 +11319,7 @@ table td
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageCollectionHelper",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages"
@@ -11249,6 +11328,7 @@ table td
     "Hexagon/Hud",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
     "Hexagon/System/Renderer"
@@ -11275,6 +11355,7 @@ table td
   ],
   "Hexagon/StageFactory": [
     "Hexagon/LayoutToStagesCreator",
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Testing/WithStageFactoryFixture",
@@ -11488,13 +11569,8 @@ table td
   "al_font_line_height": [
     "Hexagon/StageFactory"
   ],
-  "std/vector": [
-    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
-  ],
-  "std/string": [
-    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
-  ],
   ":Action": [
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection",
     "Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar",
     "Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar",
@@ -11502,6 +11578,15 @@ table td
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
     "Hexagon/System/Action/OpenDocumentationInBrowser",
     "Hexagon/System/Action/SendMessageToDaemusToBuild"
+  ],
+  ":read_file": [
+    "Hexagon/System/Action/AttemptToCreateCodeEditorStageFromFilename"
+  ],
+  "std/vector": [
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
+  ],
+  "std/string": [
+    "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
   ],
   "NcursesArt/ProjectFilenameGenerator": [
     "Hexagon/System/Action/AttemptToCreateTwoPaneSplitFromLastComponentNavigatorSelection"
