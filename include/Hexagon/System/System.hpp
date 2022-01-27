@@ -151,7 +151,7 @@ public:
    bool push_component_relations_navigator_selection();
    bool push_project_navigator_selection();
    bool push_file_navigator_selection();
-   bool attempt_to_create_stage_from_last_file_navigator_selection();
+   bool create_stage_from_last_file_navigator_selection();
    bool spawn_file_navigator_from_last_file_navigator_folder_selection();
    bool destroy_all_code_editor_stages();
    bool create_stages_from_layout_of_last_component_navigator_selection();

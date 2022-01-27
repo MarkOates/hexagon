@@ -1358,7 +1358,7 @@ bool System::push_file_navigator_selection()
 }
 
 
-bool System::attempt_to_create_stage_from_last_file_navigator_selection()
+bool System::create_stage_from_last_file_navigator_selection()
 {
    std::string filename = last_file_navigator_selection;
 
@@ -1366,7 +1366,7 @@ bool System::attempt_to_create_stage_from_last_file_navigator_selection()
    if (!fs_entry)
    {
       std::stringstream error_message;
-      error_message << "Could not attempt_to_create_stage_from_last_file_navigator_selection: "
+      error_message << "Could not create_stage_from_last_file_navigator_selection: "
                     << "fs_entry could not be created. al_get_errno() returned with "
                     << al_get_errno() << std::endl;
       throw std::runtime_error(error_message.str().c_str());

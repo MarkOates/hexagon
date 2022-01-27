@@ -31,7 +31,7 @@ TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithE
 TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
    can_be_created_without_blowing_up)
 {
-   Hexagon::System::Action::AttemptToCreateCodeEditorStageFromFilename attempt_to_craete_code_editor_stage_from_filename;
+   Hexagon::System::Action::AttemptToCreateCodeEditorStageFromFilename craete_code_editor_stage_from_filename;
 }
 
 TEST_F(Hexagon_System_Action_AttemptToCreateCodeEditorStageFromFilenameTestWithEmptyFixture,
