@@ -201,7 +201,8 @@
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "Hexagon/WordRangesFinder": [
-    "Hexagon/AdvancedCodeEditor/Renderer"
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "std/vector<CodeRange>": [
     "Hexagon/AdvancedCodeEditor/Renderer",

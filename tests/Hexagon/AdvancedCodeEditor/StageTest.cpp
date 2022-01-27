@@ -433,6 +433,41 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   DISABLED_delete_word_under_character__with_the_cursor_out_of_bounds__returns_false)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   DISABLED_delete_word_under_character__when_the_cursor_is_not_over_a_word__returns_false)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   DISABLED_delete_word_under_character__removes_the_word_underneath_the_cursor)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   DISABLED_delete_word_under_character__moves_the_cursor_to_the_beginning_of_the_word_that_was_deleted)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   DISABLED_delete_word_under_character__refreshes_the_text_mesh)
+{
+   // TODO
+}
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, join_lines__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;

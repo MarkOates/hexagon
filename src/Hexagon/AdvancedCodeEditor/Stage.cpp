@@ -9,6 +9,9 @@
 #include <Hexagon/SymlinkToucher.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/WordRangesFinder.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -464,6 +467,45 @@ bool Stage::delete_character()
    bool result = advanced_code_editor.delete_character();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    refresh_current_visual_selection_end_to_current_cursor_position(); // TODO: only do if result == true
+   return result;
+}
+
+bool Stage::delete_word_under_cursor()
+{
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "delete_word_under_cursor" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (cursor_get_y() < 0) return false;
+   if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
+
+   // HERE
+   // get word ranges
+   std::string line_content = advanced_code_editor.get_lines_ref()[cursor_get_y()];
+   Hexagon::WordRangesFinder word_ranges_finder(line_content, cursor_get_x());
+
+   std::pair<int, int> found_word_ranges = word_ranges_finder.find_ranges();
+   // if word ranges are invalid, return false
+   if (!word_ranges_finder.is_valid(found_word_ranges)) return false;
+
+   // move cursor to beginning of inside word
+   cursor_move_to(found_word_ranges.first, cursor_get_y());
+
+   // delete n characters, the length of the word
+   // if any delete_character() returns false, set the result to false      
+   bool result = true;
+   int num_characters_to_delete = found_word_ranges.second;
+   for (int i=0; i<num_characters_to_delete; i++)
+   {
+      bool this_deletion = advanced_code_editor.delete_character();
+      if (!this_deletion) result = false;
+   }
+
+   if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+
    return result;
 }
 

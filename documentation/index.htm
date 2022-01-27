@@ -1018,6 +1018,9 @@ table td
   <td class="method">delete_character()</td>
 </tr>
 <tr>
+  <td class="method">delete_word_under_cursor()</td>
+</tr>
+<tr>
   <td class="method">join_lines()</td>
 </tr>
 <tr>
@@ -1157,6 +1160,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::WordRangesFinder&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/WordRangesFinder.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::min&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
 </tr>
@@ -10254,7 +10260,8 @@ table td
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "Hexagon/WordRangesFinder": [
-    "Hexagon/AdvancedCodeEditor/Renderer"
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "std/vector<CodeRange>": [
     "Hexagon/AdvancedCodeEditor/Renderer",

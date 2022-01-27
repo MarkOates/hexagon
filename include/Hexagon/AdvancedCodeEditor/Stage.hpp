@@ -104,6 +104,7 @@ namespace Hexagon
          bool cursor_jump_to_next_search_regex_selection();
          bool cursor_jump_to_previous_search_regex_selection();
          bool delete_character();
+         bool delete_word_under_cursor();
          bool join_lines();
          bool split_lines();
          bool delete_line();
