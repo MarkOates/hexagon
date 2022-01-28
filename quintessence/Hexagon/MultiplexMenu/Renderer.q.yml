@@ -51,6 +51,7 @@ functions:
         default_argument: false
     body: |
       ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.8};
+      ALLEGRO_COLOR input_backfill_color = ALLEGRO_COLOR{0.25, 0.25, 0.25, 1.0};
       float frame_opacity = 0.4f;
       ALLEGRO_COLOR frame_color = AllegroFlare::color::color(al_color_name("dodgerblue"), frame_opacity);
       float text_opacity = 0.95f;
@@ -68,6 +69,15 @@ functions:
       if (opens_menu) label = "= " + label;
 
       al_draw_filled_rounded_rectangle(x, y, x+width, y+height, roundness, roundness, backfill_color);
+      al_draw_filled_rounded_rectangle(
+         x+10,
+         y+10,
+         x+10+padding_x+input_text_length,
+         y-10+height,
+         roundness,
+         roundness,
+         input_backfill_color
+      );
       al_draw_text(font, text_color, x+padding_x, y+padding_y, ALLEGRO_ALIGN_LEFT, input.c_str());
       al_draw_text(font, text_color, x+padding_x + input_text_length + 20, y+padding_y, ALLEGRO_ALIGN_LEFT, label.c_str());
       al_draw_rounded_rectangle(
