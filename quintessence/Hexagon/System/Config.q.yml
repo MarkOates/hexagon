@@ -106,6 +106,14 @@ functions:
       initialized = true;
 
 
+  - name: reload
+    type: void
+    guards: [ initialized ]
+    body:
+      config.reload();
+      return;
+
+
   - name: get_initial_display_width
     type: int
     body: |

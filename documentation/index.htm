@@ -9319,6 +9319,9 @@ table td
   <td class="method">initialize()</td>
 </tr>
 <tr>
+  <td class="method">reload()</td>
+</tr>
+<tr>
   <td class="method">get_initial_display_width()</td>
 </tr>
 <tr>
@@ -9613,6 +9616,10 @@ table td
   <td class="property">AllegroFlare::FontBin*</td>
 </tr>
 <tr>
+  <td class="property">config</td>
+  <td class="property">Hexagon::System::Config*</td>
+</tr>
+<tr>
   <td class="property">main_menu</td>
   <td class="property">Hexagon::Elements::ListMenu</td>
 </tr>
@@ -9647,7 +9654,7 @@ table td
   <td class="method">build_allegro_version_string()</td>
 </tr>
 <tr>
-  <td class="method">append_project_path_to_config_file()</td>
+  <td class="method">append_project_path_to_config_file_and_reload_injected_config()</td>
 </tr>
     </table>
      <table>
@@ -9662,6 +9669,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Logo&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Logo.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::Config*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/Config.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::Profiler&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Profiler.hpp&quot;]}</td>
@@ -10166,6 +10176,7 @@ table td
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Hud",
     "Hexagon/StageFactory",
+    "Hexagon/TitleScreen",
     "Testing/WithStageFactoryFixture"
   ],
   "Hexagon/TitleScreen": [

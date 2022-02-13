@@ -37,6 +37,7 @@ namespace Hexagon
          std::string get_config_filename();
          void validate_initialized(std::string function_name="[unnamed_function]");
          void initialize();
+         void reload();
          int get_initial_display_width();
          int get_initial_display_height();
          std::string get_default_navigator_directory();

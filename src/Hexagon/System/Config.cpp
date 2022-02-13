@@ -10,6 +10,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -96,6 +98,17 @@ void Config::initialize()
    if (initialized) return;
    config.load();
    initialized = true;
+}
+
+void Config::reload()
+{
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "Config" << "::" << "reload" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   config.reload(); return;
 }
 
 int Config::get_initial_display_width()

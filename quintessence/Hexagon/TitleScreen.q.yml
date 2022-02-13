@@ -5,9 +5,16 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+
+  - name: config
+    type: Hexagon::System::Config*
+    init_with: nullptr
+    constructor_arg: true
+
   - name: main_menu
     type: Hexagon::Elements::ListMenu
     init_with: '{}'
+
   - name: initialized
     type: bool
     init_with: false
@@ -113,7 +120,7 @@ functions:
                    main_menu_cursor_move_up();
                    break;
                 case ALLEGRO_KEY_ENTER:
-                   append_project_path_to_config_file();
+                   append_project_path_to_config_file_and_reload_injected_config();
                    abort_program = true;
                    break;
                 default:
@@ -262,14 +269,18 @@ functions:
       - std::stringstream
 
 
-  - name: append_project_path_to_config_file
+  - name: append_project_path_to_config_file_and_reload_injected_config
+    guards: [ config ]
     body: |
-      std::string config_filename = "/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg";
+      std::string config_filename = config->get_config_filename();
       std::string current_menu_selection_path_text = main_menu_get_current_list_item_identifier();
 
       std::ofstream outfile;
       outfile.open(config_filename, std::ios_base::app); // append instead of overwrite
       outfile << std::endl << "default_navigator_directory = " << current_menu_selection_path_text;
+      outfile.close();
+
+      config->reload();
 
       return;
     body_dependency_symbols:
@@ -287,6 +298,8 @@ dependencies:
     headers: [ allegro_flare/placement3d.h ]
   - symbol: Hexagon::Logo
     headers: [ Hexagon/Logo.hpp ]
+  - symbol: Hexagon::System::Config*
+    headers: [ Hexagon/System/Config.hpp ]
   - symbol: AllegroFlare::Profiler
     headers: [ AllegroFlare/Profiler.hpp ]
   - symbol: AllegroFlare::Profiler*

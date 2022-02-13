@@ -5,6 +5,7 @@
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Hud",
     "Hexagon/StageFactory",
+    "Hexagon/TitleScreen",
     "Testing/WithStageFactoryFixture"
   ],
   "Hexagon/TitleScreen": [

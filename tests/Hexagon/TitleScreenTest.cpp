@@ -4,6 +4,7 @@
 #include <Hexagon/TitleScreen.hpp>
 #include <allegro5/allegro_primitives.h>
 
+
 class Hexagon_TitleScreenTest : public ::testing::Test
 {
 protected:
@@ -47,12 +48,22 @@ protected:
    }
 };
 
-TEST_F(Hexagon_TitleScreenTest, DISABLED__can_be_created_without_blowing_up)
+
+TEST_F(Hexagon_TitleScreenTest, can_be_created_without_blowing_up)
 {
-   Hexagon::TitleScreen title_screen(&font_bin);
-   title_screen.initialize();
-   title_screen.draw_hexagon_logo_and_wait_for_keypress();
+   Hexagon::TitleScreen title_screen;
 }
+
+
+TEST_F(Hexagon_TitleScreenTest, DISABLED__INTERACTIVE__operates_as_expected)
+{
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   Hexagon::TitleScreen title_screen(&font_bin);
+   //title_screen.initialize();
+   //title_screen.draw_hexagon_logo_and_wait_for_keypress();
+}
+
 
 TEST_F(Hexagon_TitleScreenTest, build_allegro_version_string__will_create_the_expected_version)
 {

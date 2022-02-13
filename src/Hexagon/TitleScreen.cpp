@@ -18,14 +18,17 @@
 #include <allegro5/allegro.h>
 #include <sstream>
 #include <fstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
 {
 
 
-TitleScreen::TitleScreen(AllegroFlare::FontBin* font_bin)
+TitleScreen::TitleScreen(AllegroFlare::FontBin* font_bin, Hexagon::System::Config* config)
    : font_bin(font_bin)
+   , config(config)
    , main_menu({})
    , initialized(false)
 {
@@ -160,7 +163,7 @@ void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
                main_menu_cursor_move_up();
                break;
             case ALLEGRO_KEY_ENTER:
-               append_project_path_to_config_file();
+               append_project_path_to_config_file_and_reload_injected_config();
                abort_program = true;
                break;
             default:
@@ -303,14 +306,23 @@ std::string TitleScreen::build_allegro_version_string()
    return result.str();
 }
 
-void TitleScreen::append_project_path_to_config_file()
+void TitleScreen::append_project_path_to_config_file_and_reload_injected_config()
 {
-   std::string config_filename = "/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg";
+   if (!(config))
+      {
+         std::stringstream error_message;
+         error_message << "TitleScreen" << "::" << "append_project_path_to_config_file_and_reload_injected_config" << ": error: " << "guard \"config\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   std::string config_filename = config->get_config_filename();
    std::string current_menu_selection_path_text = main_menu_get_current_list_item_identifier();
 
    std::ofstream outfile;
    outfile.open(config_filename, std::ios_base::app); // append instead of overwrite
    outfile << std::endl << "default_navigator_directory = " << current_menu_selection_path_text;
+   outfile.close();
+
+   config->reload();
 
    return;
 }
