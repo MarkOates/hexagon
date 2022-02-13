@@ -136,13 +136,22 @@ void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
    al_register_event_source(primary_event_queue, al_get_timer_event_source(primary_timer));
    al_start_timer(primary_timer);
 
-   ALLEGRO_BITMAP *dummy_bitmap = al_create_bitmap(display_width, display_height);
+   ALLEGRO_BITMAP *dummy_bitmap = al_create_bitmap(surface_width, surface_height);
+
+
+   ALLEGRO_STATE previous_render_state; 
+   al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
 
    al_set_target_bitmap(dummy_bitmap);
    ALLEGRO_TRANSFORM dummy_bitmap_transform;
-   al_scale_transform(&dummy_bitmap_transform, 1.2, 1.2);
-   al_use_projection_transform(&dummy_bitmap_transform);
-   al_set_target_bitmap(al_get_backbuffer(al_get_current_display()));
+   al_identity_transform(&dummy_bitmap_transform);
+   //float x_scale = (float)surface_width / display_width;
+   //float y_scale = (float)surface_height / display_height;
+   //al_scale_transform(&dummy_bitmap_transform, x_scale, y_scale);
+   //al_use_projection_transform(&dummy_bitmap_transform);
+   //al_set_target_bitmap(al_get_backbuffer(al_get_current_display()));
+
+   al_restore_state(&previous_render_state);
 
 
    // wait for keypress
@@ -185,8 +194,13 @@ void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
          {
             profiler.emit("primary_timer logic started");
 
+            ALLEGRO_STATE previous_render_state; 
+            al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
+            al_set_target_bitmap(dummy_bitmap);
+
             al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 1});
 
+            bool draw_motion_effect = false;
             if (draw_motion_effect)
             {
                shader.activate();
@@ -216,6 +230,11 @@ void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
             draw_menu();
 
             //render_profiler_graph(&profiler, purista_font);
+
+            //al_set_target_bitmap(al_get_backbuffer(al_get_current_display()));
+            al_restore_state(&previous_render_state);
+
+            al_draw_bitmap(dummy_bitmap, 0, 0, 0);
 
             profiler.emit("primary_timer logic ended");
             profiler.emit("al_flip_display logic started");
@@ -254,10 +273,7 @@ void TitleScreen::draw_menu()
          error_message << "TitleScreen" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   int display_width = surface_width; //al_get_bitmap_width(al_get_target_bitmap());
-   int display_height = surface_height; //al_get_bitmap_height(al_get_target_bitmap());
-
-   placement3d place(display_width/2 + 300, display_height/2, 0);
+   placement3d place(surface_width/2, surface_height/2, 0);
    place.start_transform();
    main_menu.render();
    place.restore_transform();
