@@ -138,6 +138,13 @@ void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
 
    ALLEGRO_BITMAP *dummy_bitmap = al_create_bitmap(display_width, display_height);
 
+   al_set_target_bitmap(dummy_bitmap);
+   ALLEGRO_TRANSFORM dummy_bitmap_transform;
+   al_scale_transform(&dummy_bitmap_transform, 1.2, 1.2);
+   al_use_projection_transform(&dummy_bitmap_transform);
+   al_set_target_bitmap(al_get_backbuffer(al_get_current_display()));
+
+
    // wait for keypress
    bool abort_program = false;
    bool draw_motion_effect = true;
@@ -247,8 +254,8 @@ void TitleScreen::draw_menu()
          error_message << "TitleScreen" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   int display_width = al_get_bitmap_width(al_get_target_bitmap());
-   int display_height = al_get_bitmap_height(al_get_target_bitmap());
+   int display_width = surface_width; //al_get_bitmap_width(al_get_target_bitmap());
+   int display_height = surface_height; //al_get_bitmap_height(al_get_target_bitmap());
 
    placement3d place(display_width/2 + 300, display_height/2, 0);
    place.start_transform();

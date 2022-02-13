@@ -30,7 +30,7 @@ protected:
       al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
       ASSERT_EQ(ALLEGRO_OPENGL, al_get_new_display_flags() & ALLEGRO_OPENGL);
       ASSERT_EQ(ALLEGRO_PROGRAMMABLE_PIPELINE, al_get_new_display_flags() & ALLEGRO_PROGRAMMABLE_PIPELINE);
-      ALLEGRO_DISPLAY *display = al_create_display(16 * 256, 9 * 256);
+      ALLEGRO_DISPLAY *display = al_create_display(1920 / 5 * 4, 1080 / 5 * 4);
       ASSERT_NE(nullptr, display);
    }
 
@@ -55,13 +55,11 @@ TEST_F(Hexagon_TitleScreenTest, can_be_created_without_blowing_up)
 }
 
 
-TEST_F(Hexagon_TitleScreenTest, DISABLED__INTERACTIVE__operates_as_expected)
+TEST_F(Hexagon_TitleScreenTest, INTERACTIVE__operates_as_expected)
 {
-   AllegroFlare::FontBin font_bin;
-   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::TitleScreen title_screen(&font_bin);
-   //title_screen.initialize();
-   //title_screen.draw_hexagon_logo_and_wait_for_keypress();
+   title_screen.initialize();
+   title_screen.draw_hexagon_logo_and_wait_for_keypress();
 }
 
 
