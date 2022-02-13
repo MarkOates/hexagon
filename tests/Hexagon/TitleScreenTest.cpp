@@ -55,7 +55,7 @@ TEST_F(Hexagon_TitleScreenTest, can_be_created_without_blowing_up)
 }
 
 
-TEST_F(Hexagon_TitleScreenTest, INTERACTIVE__operates_as_expected)
+TEST_F(Hexagon_TitleScreenTest, DISABLED__INTERACTIVE__operates_as_expected)
 {
    Hexagon::TitleScreen title_screen(&font_bin);
    title_screen.initialize();
