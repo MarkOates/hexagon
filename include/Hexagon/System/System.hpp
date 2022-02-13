@@ -99,6 +99,7 @@ public:
    void acknowledge_display_switch_in(ALLEGRO_DISPLAY *display);
 
    // actions
+   bool run_title_screen();
    bool mark_as_files_changed();
    bool set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction();
    bool mark_as_files_committed();

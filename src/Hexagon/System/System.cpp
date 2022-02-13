@@ -32,6 +32,7 @@
 #include <Hexagon/Git/StageEverything.hpp>
 #include <Hexagon/Git/CommitStagedWithMessage.hpp>
 #include <Hexagon/Git/Pusher.hpp>
+#include <Hexagon/TitleScreen.hpp>
 #include <Hexagon/Logo.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/shared_globals.hpp>
@@ -369,6 +370,22 @@ void System::acknowledge_display_switch_in(ALLEGRO_DISPLAY *display)
 
 
 // actions
+
+
+bool System::run_title_screen()
+{
+   AllegroFlare::FontBin title_screen_font_bin;
+   title_screen_font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   Hexagon::TitleScreen title_screen(&title_screen_font_bin, &config);
+   title_screen.initialize();
+   title_screen.draw_hexagon_logo_and_wait_for_keypress();
+   title_screen_font_bin.clear();
+
+   // assume that the default_navigator_directory may have been changed; Update it accordingly
+   set_current_project_directory(config.get_default_navigator_directory());
+
+   return true;
+}
 
 
 bool System::mark_as_files_changed()

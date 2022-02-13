@@ -95,14 +95,6 @@ void ApplicationController::initialize()
    // check that the files that act as temp storage strings are present
    verify_presence_of_temp_files_and_assign_to_global_constants();
 
-   // use the title screen
-   AllegroFlare::FontBin font_bin;
-   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-   Hexagon::TitleScreen title_screen(&font_bin, &config);
-   title_screen.initialize();
-   title_screen.draw_hexagon_logo_and_wait_for_keypress();
-   font_bin.clear();
-
    // startup the system
    system = new Hexagon::System::System(display, config);
    system->initialize();
@@ -212,6 +204,7 @@ void ApplicationController::emit_user_event(ALLEGRO_EVENT user_event)
 void ApplicationController::run_program()
 {
    initialize();
+   system->run_title_screen();
    run_event_loop();
    shutdown();
 }
@@ -226,6 +219,7 @@ void ApplicationController::run_event_loop()
       }
    bool mouse_event_occurred_and_requires_screen_refresh = false;
    static int mouse_event_skip = 0;
+
    while(!shutdown_program)
    {
       ALLEGRO_EVENT this_event;
