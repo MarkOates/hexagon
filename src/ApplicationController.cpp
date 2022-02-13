@@ -72,8 +72,9 @@ ApplicationController::~ApplicationController()
 }
 
 
-void ApplicationController::initialize_allegro_config_display_event_queue_and_timer()
+void ApplicationController::initialize()
 {
+   // initialize allegro
    if (!al_init()) std::cerr << "al_init() failed" << std::endl;
    if (!al_init_font_addon()) std::cerr << "al_init_font_addon() failed" << std::endl;
    if (!al_init_ttf_addon()) std::cerr << "al_init_ttf_addon() failed" << std::endl;
@@ -82,20 +83,27 @@ void ApplicationController::initialize_allegro_config_display_event_queue_and_ti
    if (!al_install_keyboard()) std::cerr << "al_install_keyboard() failed" << std::endl;
    if (!al_install_mouse()) std::cerr << "al_install_mouse() failed" << std::endl;
 
+   // initialize the config
    config.initialize();
 
+   // create the display
    create_display();
 
+   // create the event queue, regester the event sources (keyboard, mouse, etc...)
    create_event_queue_and_register_event_sources();
 
-   return;
-}
-
-void ApplicationController::initialize()
-{
-   initialize_allegro_config_display_event_queue_and_timer();
+   // check that the files that act as temp storage strings are present
    verify_presence_of_temp_files_and_assign_to_global_constants();
 
+   // use the title screen
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   Hexagon::TitleScreen title_screen(&font_bin, &config);
+   title_screen.initialize();
+   title_screen.draw_hexagon_logo_and_wait_for_keypress();
+   font_bin.clear();
+
+   // startup the system
    system = new Hexagon::System::System(display, config);
    system->initialize();
 }
@@ -204,14 +212,6 @@ void ApplicationController::emit_user_event(ALLEGRO_EVENT user_event)
 void ApplicationController::run_program()
 {
    initialize();
-
-   AllegroFlare::FontBin font_bin;
-   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-   Hexagon::TitleScreen title_screen(&font_bin, &config);
-   title_screen.initialize();
-   title_screen.draw_hexagon_logo_and_wait_for_keypress();
-   font_bin.clear();
-
    run_event_loop();
    shutdown();
 }

@@ -95,7 +95,7 @@ void Config::initialize()
          error_message << "Config" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
          throw std::runtime_error(error_message.str());
       }
-   if (initialized) return;
+   if (initialized) return; // TODO, double initialization should raise an exception
    config.load();
    initialized = true;
 }

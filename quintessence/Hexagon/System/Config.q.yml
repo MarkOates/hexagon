@@ -101,7 +101,7 @@ functions:
     type: void
     guards: [ al_is_system_installed() ]
     body: |
-      if (initialized) return;
+      if (initialized) return; // TODO, double initialization should raise an exception
       config.load();
       initialized = true;
 

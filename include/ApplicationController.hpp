@@ -20,7 +20,6 @@ public:
    ApplicationController(Hexagon::System::Config config={"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"});
    ~ApplicationController();
 
-   void initialize_allegro_config_display_event_queue_and_timer();
    void initialize();
    void shutdown();
    void create_event_queue_and_register_event_sources();
