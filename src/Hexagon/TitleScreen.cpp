@@ -166,7 +166,7 @@ void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
                append_project_path_to_config_file_and_reload_injected_config();
                abort_program = true;
                break;
-            default:
+            case ALLEGRO_KEY_ESCAPE:
                abort_program = true;
                break;
             }
