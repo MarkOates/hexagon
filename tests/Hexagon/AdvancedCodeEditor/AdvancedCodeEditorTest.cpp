@@ -455,6 +455,24 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   join_lines__if_cursor_is_outside_vertical_bounds__will_do_nothing_and_return_false)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   join_lines__if_cursor_is_inside_vertical_bounds_but_outside_horizontal_bounds__will_sill_join_lines)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   join_lines__if_cursor_is_on_the_last_line__will_do_nothing_and_return_false)
+{
+   // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    split_lines__will_set_the_dirty_cells_with_the_expected_cells_from_the_current_line)
 {
    std::string lines = R"END(        - 9 -

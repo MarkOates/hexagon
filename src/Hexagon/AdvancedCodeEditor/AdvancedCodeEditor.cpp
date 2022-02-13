@@ -111,7 +111,7 @@ bool AdvancedCodeEditor::delete_character()
 
 bool AdvancedCodeEditor::join_lines()
 {
-   if (!is_cursor_in_bounds()) return false;
+   if (!is_cursor_in_vertical_bounds()) return false;
    if (is_cursor_on_last_line()) return false;
 
    Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
@@ -373,6 +373,13 @@ bool AdvancedCodeEditor::is_cursor_in_bounds()
    if (cursor.get_y() >= lines.size()) return false;
    if (cursor.get_y() < 0) return false;
    if (cursor.get_x() >= lines[cursor.get_y()].size()) return false;
+   return true;
+}
+
+bool AdvancedCodeEditor::is_cursor_in_vertical_bounds()
+{
+   if (cursor.get_y() >= lines.size()) return false;
+   if (cursor.get_y() < 0) return false;
    return true;
 }
 

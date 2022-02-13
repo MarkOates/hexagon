@@ -55,6 +55,7 @@ namespace Hexagon
          int cursor_get_x();
          int cursor_get_y();
          bool is_cursor_in_bounds();
+         bool is_cursor_in_vertical_bounds();
          bool is_cursor_on_last_line();
          void dirty_grid_clear();
          std::vector<std::pair<int, int>> get_dirty_cells();
