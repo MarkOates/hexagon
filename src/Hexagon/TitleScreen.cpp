@@ -30,6 +30,8 @@ TitleScreen::TitleScreen(AllegroFlare::FontBin* font_bin, Hexagon::System::Confi
    : font_bin(font_bin)
    , config(config)
    , main_menu({})
+   , surface_width(1920)
+   , surface_height(1080)
    , initialized(false)
 {
 }

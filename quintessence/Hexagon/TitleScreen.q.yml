@@ -15,6 +15,14 @@ properties:
     type: Hexagon::Elements::ListMenu
     init_with: '{}'
 
+  - name: surface_width
+    type: int
+    init_with: 1920
+
+  - name: surface_height
+    type: int
+    init_with: 1080
+
   - name: initialized
     type: bool
     init_with: false

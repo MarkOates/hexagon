@@ -17,6 +17,8 @@ namespace Hexagon
       AllegroFlare::FontBin* font_bin;
       Hexagon::System::Config* config;
       Hexagon::Elements::ListMenu main_menu;
+      int surface_width;
+      int surface_height;
       bool initialized;
 
    public:

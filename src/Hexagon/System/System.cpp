@@ -374,9 +374,18 @@ void System::acknowledge_display_switch_in(ALLEGRO_DISPLAY *display)
 
 bool System::run_title_screen()
 {
+   //if (!al_get_current_display()) throw std::runtime_error("AAAhhghhg no current display");
+   //int title_screen_surface_width = al_get_display_width(al_get_current_display());
+   //int title_screen_surface_height = al_get_display_height(al_get_current_display());
+
    AllegroFlare::FontBin title_screen_font_bin;
    title_screen_font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-   Hexagon::TitleScreen title_screen(&title_screen_font_bin, &config);
+   Hexagon::TitleScreen title_screen(
+      &title_screen_font_bin,
+      &config
+      //title_screen_surface_width,
+      //title_screen_surface_height
+   );
    title_screen.initialize();
    title_screen.draw_hexagon_logo_and_wait_for_keypress();
    title_screen_font_bin.clear();
