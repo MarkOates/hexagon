@@ -12,7 +12,7 @@ properties:
     constructor_arg: true
 
   - name: stages
-    type: std::vector<std::tuple<std::string, std::string, std::string>>
+    type: std::vector<std::tuple<std::string, std::string, std::string, std::string>>
     init_with: '{}'
     constructor_arg: true
 
@@ -58,6 +58,7 @@ functions:
       float cursor_y = meter_height - box_height;
       for (auto &stage : stages)
       {
+         std::string stage_result_dump_filename = std::get<3>(stage); // currently not used, but hopefully soon :)
          std::string stage_status = std::get<2>(stage);
          std::string stage_label = std::get<1>(stage);
          draw_rectangle(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
@@ -203,7 +204,7 @@ dependencies:
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: al_is_ttf_addon_initialized
     headers: [ allegro5/allegro_ttf.h ]
-  - symbol: std::vector<std::tuple<std::string, std::string, std::string>>
+  - symbol: std::vector<std::tuple<std::string, std::string, std::string, std::string>>
     headers: [ vector, utility, string ]
   - symbol: std::map<std::string, ALLEGRO_COLOR>
     headers: [ map, string, allegro5/allegro_color.h ]

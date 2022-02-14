@@ -56,17 +56,17 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    render__will_draw_the_build_stages)
 {
    placement2d place{1920 - 60, 1080 / 2, 90, 690};
-   std::vector<std::tuple<std::string, std::string, std::string>> build_stages = {
-     { "started", "0001", "finished" },
-     { "generating_sources_files_from_quintessence", "0002", "finished" },
-     { "building_component_object_files", "0003", "finished" },
-     { "delete_focused_component_test_object_file_and_test_executable", "0004", "running" },
-     { "build_focused_component_test_object_file_and_test_executable", "0005", "not_started" },
-     { "run_test_for_focused_component", "0006", "not_started" },
-     { "make_all_programs", "0007", "not_started" },
-     { "make_documentation", "0008", "not_started" },
-     { "signal_component_built_and_integrated", "0009", "not_started" },
-     { "completed", "0010", "not_started" },
+   std::vector<std::tuple<std::string, std::string, std::string, std::string>> build_stages = {
+     { "started", "0001", "finished", "no_file.txt" },
+     { "generating_sources_files_from_quintessence", "0002", "finished", "no_file.txt" },
+     { "building_component_object_files", "0003", "finished", "no_file.txt" },
+     { "delete_focused_component_test_object_file_and_test_executable", "0004", "running", "no_file.txt" },
+     { "build_focused_component_test_object_file_and_test_executable", "0005", "not_started", "no_file.txt" },
+     { "run_test_for_focused_component", "0006", "not_started", "no_file.txt" },
+     { "make_all_programs", "0007", "not_started", "no_file.txt" },
+     { "make_documentation", "0008", "not_started", "no_file.txt" },
+     { "signal_component_built_and_integrated", "0009", "not_started", "no_file.txt" },
+     { "completed", "0010", "not_started", "no_file.txt" },
    };
    Hexagon::BuildSequenceMeter::Renderer renderer(
       &get_font_bin_ref(),

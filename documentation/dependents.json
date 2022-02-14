@@ -726,7 +726,7 @@
   "al_is_ttf_addon_initialized": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
-  "std/vector<std/tuple<std/string, std/string, std/string>>": [
+  "std/vector<std/tuple<std/string, std/string, std/string, std/string>>": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
   "std/map<std/string, ALLEGRO_COLOR>": [
