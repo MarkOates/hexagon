@@ -1266,7 +1266,8 @@ void Stage::filter_text_mesh_for_comments()
 {
    ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
-   std::string string_to_match = " //";
+   //std::string string_to_match = " //";
+   std::string string_to_match = "//";
 
    for (unsigned y=0; y<num_rows; y++)
    {
