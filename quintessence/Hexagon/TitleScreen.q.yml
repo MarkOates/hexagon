@@ -42,6 +42,13 @@ functions:
          { "NcursesArt", "/Users/markoates/Repos/ncurses_art/" },
          { "Solitare", "/Users/markoates/Repos/Solitare/" },
          { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+         { "Wicked", "/Users/markoates/Repos/Wicked/" },
+         { "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
+         { "Peri", "/Users/markoates/Repos/Peri/" },
+         { "Solitare", "/Users/markoates/Repos/Solitare/" },
+         { "Epidemic", "/Users/markoates/Repos/Epidemic/" },
+         { "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
+         { "tins2021", "/Users/markoates/Repos/tins2021/" },
       });
       initialized = true;
       return;
