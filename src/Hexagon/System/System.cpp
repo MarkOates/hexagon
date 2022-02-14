@@ -234,6 +234,7 @@ void System::clear_focused_component_name()
    this->focused_component_name = "";
 }
 
+
 void System::set_last_component_navigator_selection(std::string last_component_navigator_selection)
 {
    this->last_component_navigator_selection = last_component_navigator_selection;

@@ -99,7 +99,7 @@ void Renderer::render()
       }
    AllegroFlare::Timer timer;
 
-   timer.reset(); timer.start();
+   //timer.reset(); timer.start();
    // draw the window
    Hexagon::AdvancedCodeEditor::WindowRenderer window_renderer(width, height);
    //window_renderer.render();
@@ -119,7 +119,7 @@ void Renderer::render()
    }
 
    // draw the surface render
-   timer.reset(); timer.start();
+   //timer.reset(); timer.start();
    //if (surface_render) al_draw_bitmap(surface_render, 0, text_mesh_y_offset, 0);
    text_mesh->render();
    //timer.pause(); std::cout << " surface_render render time: "
