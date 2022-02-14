@@ -148,6 +148,7 @@ bool AdvancedCodeEditor::split_lines()
 
    int virtual_cursor_x = cursor.get_x();
    if (virtual_cursor_x > current_line_length) virtual_cursor_x = current_line_length;
+   if (virtual_cursor_x < 0) virtual_cursor_x = 0;
 
    // mark dirty: cells from the curent x, y, to the end of the line
    dirty_grid.mark_row_as_dirty(cursor.get_y(), virtual_cursor_x, current_line_length - virtual_cursor_x);
