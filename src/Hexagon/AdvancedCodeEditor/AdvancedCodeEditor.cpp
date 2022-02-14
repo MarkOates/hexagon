@@ -142,22 +142,30 @@ bool AdvancedCodeEditor::join_lines()
 
 bool AdvancedCodeEditor::split_lines()
 {
-   if (!is_cursor_in_bounds()) return false;
+   if (!is_cursor_in_vertical_bounds()) return false;
 
-   // cells from the curent x, y, to the end of the line
-   dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() - cursor.get_x());
+   int current_line_length = lines[cursor.get_y()].length();
 
-   // all of the lines below the current line, before change
+   int virtual_cursor_x = cursor.get_x();
+   if (virtual_cursor_x > current_line_length) virtual_cursor_x = current_line_length;
+
+   // mark dirty: cells from the curent x, y, to the end of the line
+   dirty_grid.mark_row_as_dirty(cursor.get_y(), virtual_cursor_x, current_line_length - virtual_cursor_x);
+
+   //// mark dirty: all of the lines below the current line, before change
    for (int row=(cursor.get_y()+1); row<lines.size(); row++)
    {
       dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
    }
 
-   lines.insert(lines.begin() + cursor.get_y() + 1, lines[cursor.get_y()].substr(cursor.get_x()));
-   std::string &current_line = lines[cursor.get_y()];
-   current_line.erase(cursor.get_x());
+   // insert the actual new line into lines, initializing the content with a substring from the original line
+   lines.insert(lines.begin() + cursor.get_y() + 1, lines[cursor.get_y()].substr(virtual_cursor_x));
 
-   // all of the lines below the current line, after change
+   // erase characters from the original line, up to the point where cursor was placed
+   std::string &current_line = lines[cursor.get_y()];
+   current_line.erase(virtual_cursor_x);
+
+   // mark dirty: all of the lines below the current line, after change
    for (int row=(cursor.get_y()+1); row<lines.size(); row++)
    {
       dirty_grid.mark_row_as_dirty(row, 0, lines[row].length());
