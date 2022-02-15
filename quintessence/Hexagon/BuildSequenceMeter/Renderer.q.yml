@@ -78,11 +78,11 @@ functions:
                dump_place.scale = vec2d(0.8, 0.8);
                dump_place.position = vec2d(-10, 0);
                dump_place.align = vec2d(1.0, 0.5);
-               dump_place.size = vec2d(1000, 450);
+               dump_place.size = vec2d(1000, 900);
 
                dump_place.start_transform();
                
-               ALLEGRO_COLOR bg_trans_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.1};
+               ALLEGRO_COLOR bg_trans_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
                al_draw_filled_rectangle(0, 0, dump_place.size.x, dump_place.size.y, bg_trans_color);
 
                std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);
