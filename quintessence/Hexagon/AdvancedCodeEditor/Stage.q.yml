@@ -1223,6 +1223,7 @@ functions:
          "  - name:",
          "    constructor_arg:",
          "    getter:",
+         "    const:",
          "    static:",
          "    type:",
          "    setter:",
