@@ -48,7 +48,6 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    Hexagon::BuildSequenceMeter::Renderer renderer(&get_font_bin_ref());
    renderer.render();
    al_flip_display();
-   //FAIL();
    SUCCEED();
 }
 
