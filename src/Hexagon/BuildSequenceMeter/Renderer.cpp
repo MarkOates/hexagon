@@ -83,7 +83,6 @@ void Renderer::render()
       std::string stage_label = std::get<1>(stage);
       std::string sequence_dump_full_path = PATH_TO_BUILD_DUMPS + stage_result_dump_filename;
 
-      draw_status_box(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
       if (Blast::FileExistenceChecker(sequence_dump_full_path).exists())
       {
          ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
@@ -112,6 +111,9 @@ void Renderer::render()
             dump_place.restore_transform();
          }
       }
+
+      draw_status_box(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
+
       cursor_y -= (box_height + box_spacing);
    }
 
