@@ -49,6 +49,7 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    renderer.render();
    al_flip_display();
    SUCCEED();
+   //FAIL();
 }
 
 
