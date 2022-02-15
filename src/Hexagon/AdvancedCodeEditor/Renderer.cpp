@@ -157,13 +157,17 @@ bool Renderer::draw_null_separator_line()
    float cell_height = text_mesh->get_cell_height();
    float line_num = 0;
    float top_line_y = cell_height * (line_num - first_row_offset) + text_mesh_y_offset;
+   ALLEGRO_COLOR line_color = ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1};
+   ALLEGRO_COLOR null_space_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.2};
+
    if (top_line_y <= 0 || top_line_y >= height)
    {
       // don't draw
    }
    else
    {
-      al_draw_line(0, top_line_y, width, top_line_y, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 2.0);
+      al_draw_line(0, top_line_y, width, top_line_y, line_color, 2.0);
+      al_draw_filled_rectangle(0, 0, width, top_line_y, null_space_color);
    }
    line_num = lines->size();
    float bottom_line_y = cell_height * (line_num - first_row_offset) + text_mesh_y_offset;
@@ -173,7 +177,8 @@ bool Renderer::draw_null_separator_line()
    }
    else
    {
-      al_draw_line(0, bottom_line_y, width, bottom_line_y, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 2.0);
+      al_draw_line(0, bottom_line_y, width, bottom_line_y, line_color, 2.0);
+      //al_draw_filled_rectangle(0, bottom_line_y, width, bottom_line_y - height, null_space_color);
    }
    return true;
 }
