@@ -178,7 +178,7 @@ bool Renderer::draw_null_separator_line()
    else
    {
       al_draw_line(0, bottom_line_y, width, bottom_line_y, line_color, 2.0);
-      //al_draw_filled_rectangle(0, bottom_line_y, width, bottom_line_y - height, null_space_color);
+      al_draw_filled_rectangle(0, bottom_line_y, width, height, null_space_color);
    }
    return true;
 }
