@@ -64,7 +64,8 @@ functions:
          std::string stage_label = std::get<1>(stage);
          std::string sequence_dump_full_path = PATH_TO_BUILD_DUMPS + stage_result_dump_filename;
          bool expecting_stage_to_have_file = !stage_result_dump_filename.empty();
-         bool stage_dump_path_exists = Blast::FileExistenceChecker(sequence_dump_full_path).exists();
+         bool stage_dump_path_exists = expecting_stage_to_have_file
+                                     && Blast::FileExistenceChecker(sequence_dump_full_path).exists();
 
          if (expecting_stage_to_have_file)
          {

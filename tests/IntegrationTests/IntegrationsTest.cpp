@@ -13,7 +13,7 @@ TEST(IntegrationTests_IntegrationsTest, can_be_created_without_blowing_up)
 // ApplicationController
 ///////////////////////////
 
-std::string TEST_CONFIG_FILENAME =
+static std::string TEST_CONFIG_FILENAME =
    "/Users/markoates/Repos/hexagon/tests/fixtures/hexagon.application_controller_test.cfg";
 
 #include <ApplicationController.hpp>
@@ -29,8 +29,8 @@ TEST(IntegrationsTests_IntegrationsTest, ApplicationController__will_use_the_com
    // open component navigator
    {
       ALLEGRO_EVENT ev;
-      e.type = ALLEGRO_EVENT_KEY_CHAR;
-      e.keyboard.keycode = ALLEGRO_KEY_TAB;
+      ev.type = ALLEGRO_EVENT_KEY_CHAR;
+      ev.keyboard.keycode = ALLEGRO_KEY_TAB;
       application_controller.emit_user_event(ev);
    }
 
