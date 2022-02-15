@@ -63,15 +63,33 @@ functions:
          std::string stage_status = std::get<2>(stage);
          std::string stage_label = std::get<1>(stage);
          std::string sequence_dump_full_path = PATH_TO_BUILD_DUMPS + stage_result_dump_filename;
+         bool expecting_stage_to_have_file = !stage_result_dump_filename.empty();
+         bool stage_dump_path_exists = Blast::FileExistenceChecker(sequence_dump_full_path).exists();
 
-         if (Blast::FileExistenceChecker(sequence_dump_full_path).exists())
+         if (expecting_stage_to_have_file)
          {
-            ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
-            al_draw_filled_rectangle(0-6, cursor_y, 0-3, cursor_y+box_height, dump_text_color);
+            ALLEGRO_COLOR stage_box_color = build_color_from_status(stage_status);
+            if (stage_dump_path_exists)
+            {
+               al_draw_filled_rectangle(0-6, cursor_y, 0-3, cursor_y+box_height, stage_box_color);
+            }
+            else
+            {
+               al_draw_rectangle(0-6, cursor_y, 0-3, cursor_y+box_height, stage_box_color, 1.0);
+            }
+         }
+
+         if (stage_dump_path_exists)
+         {
+            //ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
+            //ALLEGRO_COLOR stage_box_color = build_color_from_status(stage_status);
+            //al_draw_filled_rectangle(0-6, cursor_y, 0-3, cursor_y+box_height, stage_box_color);
+
             if (is_status_to_draw_label(stage_status))
             {
                ALLEGRO_FONT *dump_font = obtain_dump_font();
                float font_line_height = al_get_font_line_height(dump_font);
+               ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
 
                placement2d dump_place;
                dump_place.scale = vec2d(0.8, 0.8);
@@ -93,6 +111,7 @@ functions:
             }
          }
 
+         //ALLEGRO_COLOR box_color = build_color_from_status(stage_status);
          draw_status_box(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
 
          cursor_y -= (box_height + box_spacing);
