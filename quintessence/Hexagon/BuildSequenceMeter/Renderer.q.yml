@@ -77,7 +77,7 @@ functions:
                placement2d dump_place;
                dump_place.scale = vec2d(0.8, 0.8);
                dump_place.position = vec2d(-10, 0);
-               dump_place.align = vec2d(1.0, 0.5);
+               dump_place.align = vec2d(1.0, 0.0);
                dump_place.size = vec2d(1000, 900);
 
                dump_place.start_transform();
