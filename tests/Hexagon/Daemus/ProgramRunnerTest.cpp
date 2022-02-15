@@ -13,10 +13,12 @@
 #define FIXTURE_FOLDER_THAT_IS_EMPTY_BUT_HAS_A_DOT_KEEP_FILE \
    "/Users/markoates/Repos/hexagon/tests/fixtures/an_empty_directory_but_with_dot_keep_file"
 
+
 TEST(Hexagon_Daemus_ProgramRunnerTest, can_be_created_without_blowing_up)
 {
    Hexagon::Daemus::ProgramRunner program_runner;
 }
+
 
 TEST(Hexagon_Daemus_ProgramRunnerTest, run__runs_the_expected_command)
 {
@@ -26,12 +28,14 @@ TEST(Hexagon_Daemus_ProgramRunnerTest, run__runs_the_expected_command)
    //FAIL();
 }
 
+
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    DISABLED__run_in_holding_pattern__runs_in_a_suspended_state_waiting_for_command_to_execute)
 {
    Hexagon::Daemus::ProgramRunner program_runner;
    // TODO: finish test
 }
+
 
 TEST(Hexagon_Daemus_ProgramRunnerTest, run_simple_echo_command__will_run_the_command)
 {
@@ -45,6 +49,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest, run_simple_echo_command__will_run_the_com
    EXPECT_EQ(expected_captured_cout_output, captured_cout_output);
 }
 
+
 TEST(Hexagon_Daemus_ProgramRunnerTest, run_simple_sleep_command__will_run_the_command)
 {
    Hexagon::Daemus::ProgramRunner daemus;
@@ -57,6 +62,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest, run_simple_sleep_command__will_run_the_co
    EXPECT_EQ(expected_captured_cout_output, captured_cout_output);
 }
 
+
 TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__runs_the_test_executable_for_the_component)
    // TODO not a very complete test
 {
@@ -66,6 +72,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__runs_the_test_executa
    SUCCEED();
 }
 
+
 TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__returns_test_results)
 {
    Blast::Project::Component component("Blast/String/Trimmer", "/Users/markoates/Repos/hexagon/");
@@ -74,6 +81,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__returns_test_results)
 
    EXPECT_EQ(false, test_results.empty());
 }
+
 
 TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__returns_the_expected_data_in_the_returned_results)
 {
@@ -95,6 +103,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__returns_the_expected_
    EXPECT_EQ(expected_test_results[0].get_result(), actual_test_results[0].get_result());
 }
 
+
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    run_component_test__when_the_component_project_directory_is_not_present__raises_an_error)
 {
@@ -110,6 +119,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest,
       expected_error_message
    );
 }
+
 
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    run_component_test__when_the_component_does_not_exist__raises_an_error)
@@ -128,6 +138,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest,
    );
 }
 
+
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    run_build_quintessence_file__when_the_required_project_directory_is_not_present__raises_an_error)
 {
@@ -141,6 +152,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest,
       expected_error_message
    );
 }
+
 
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    find_oldest_filename__on_a_folder_that_does_not_exist__will_raise_an_exception)
@@ -156,6 +168,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest,
    );
 }
 
+
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    find_oldest_filename__when_no_files_are_present__returns_an_empty_string)
 {
@@ -169,12 +182,14 @@ TEST(Hexagon_Daemus_ProgramRunnerTest,
    EXPECT_EQ(expected_dotfile_full_path, actual_oldest_filename_path);
 }
 
+
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    find_oldest_filename__when_no_files_are_present_or_dotfiles__returns_an_empty_string)
 {
    std::string a_folder_that_is_empty_but_has_a_dot_keep_file = FIXTURE_FOLDER_THAT_IS_EMPTY_BUT_HAS_A_DOT_KEEP_FILE;
    EXPECT_EQ("", Hexagon::Daemus::ProgramRunner::find_oldest_filename(a_folder_that_is_empty_but_has_a_dot_keep_file));
 }
+
 
 TEST(Hexagon_Daemus_ProgramRunnerTest,
    find_oldest_filename__returns_the_oldest_file_in_the_directory)
