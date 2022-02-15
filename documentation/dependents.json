@@ -726,11 +726,36 @@
   "al_is_ttf_addon_initialized": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "allegro_flare/placement2d": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/PacketRenderer"
+  ],
+  "php/file_get_contents": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/Hud",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/ProjectFactory",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent"
+  ],
   "std/vector<std/tuple<std/string, std/string, std/string, std/string>>": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
   "std/map<std/string, ALLEGRO_COLOR>": [
     "Hexagon/BuildSequenceMeter/Renderer"
+  ],
+  "Blast/FileExistenceChecker": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/ProjectFactory",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromLastComponentNavigatorSelection"
   ],
   "std/find": [
     "Hexagon/BuildSequenceMeter/Renderer"
@@ -907,25 +932,6 @@
   ],
   "JSON": [
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader"
-  ],
-  "php/file_get_contents": [
-    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
-    "Hexagon/Elements/FilePixelPreviewCreator",
-    "Hexagon/Hud",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/ProjectFactory",
-    "Hexagon/StageFactory",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent"
-  ],
-  "Blast/FileExistenceChecker": [
-    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
-    "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/Elements/FilePixelPreviewCreator",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/ProjectFactory",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "Hexagon/System/Action/CreateTwoSplitFromLastComponentNavigatorSelection"
   ],
   "Hexagon/Elements/ListMenu": [
     "Hexagon/ComponentRelationsNavigator/Stage",
@@ -1268,9 +1274,6 @@
     "Hexagon/PacketLogger"
   ],
   "Hexagon/Packet": [
-    "Hexagon/PacketRenderer"
-  ],
-  "allegro_flare/placement2d": [
     "Hexagon/PacketRenderer"
   ],
   "allegro_flare/placement3d": [

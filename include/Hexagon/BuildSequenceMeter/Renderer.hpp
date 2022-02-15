@@ -33,6 +33,7 @@ namespace Hexagon
          void draw_status_box(float x=0, float y=0, float w=1, float h=1, std::string status="incomplete", std::string label="-  -");
          bool is_status_to_draw_label(std::string status="status_unset");
          ALLEGRO_COLOR build_color_from_status(std::string status="status_unset");
+         ALLEGRO_FONT* obtain_dump_font();
          ALLEGRO_FONT* obtain_font();
       };
    }

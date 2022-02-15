@@ -2,6 +2,9 @@
 
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
 #include <allegro5/allegro_color.h>
+#include <Blast/FileExistenceChecker.hpp>
+#include <allegro_flare/useful_php.h>
+#include <allegro_flare/placement2d.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_ttf.h>
@@ -13,6 +16,8 @@
 #include <map>
 #include <string>
 #include <allegro5/allegro_color.h>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 
@@ -72,10 +77,36 @@ void Renderer::render()
    float cursor_y = meter_height - box_height;
    for (auto &stage : stages)
    {
+      std::string PATH_TO_BUILD_DUMPS = "/Users/markoates/Repos/hexagon/bin/programs/data/builds/dumps/";
       std::string stage_result_dump_filename = std::get<3>(stage); // currently not used, but hopefully soon :)
       std::string stage_status = std::get<2>(stage);
       std::string stage_label = std::get<1>(stage);
+      std::string sequence_dump_full_path = PATH_TO_BUILD_DUMPS + stage_result_dump_filename;
+
       draw_status_box(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
+      if (Blast::FileExistenceChecker(sequence_dump_full_path).exists())
+      {
+         ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
+         al_draw_filled_rectangle(0-6, cursor_y, 0-3, cursor_y+box_height, dump_text_color);
+         if (is_status_to_draw_label(stage_status))
+         {
+            ALLEGRO_FONT *dump_font = obtain_dump_font();
+            float font_line_height = al_get_font_line_height(dump_font);
+
+            placement2d dump_place;
+            dump_place.scale = vec2d(0.25, 0.25);
+            dump_place.position = vec2d(-600, -200);
+            dump_place.start_transform();
+            dump_place.size = vec2d(800, 900);
+            
+            std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);
+            al_draw_multiline_text(dump_font, dump_text_color, 0, 0, dump_place.size.x, font_line_height, ALLEGRO_ALIGN_LEFT,
+               stage_text_dump.c_str()
+            );
+
+            dump_place.restore_transform();
+         }
+      }
       cursor_y -= (box_height + box_spacing);
    }
 
@@ -171,6 +202,21 @@ ALLEGRO_COLOR Renderer::build_color_from_status(std::string status)
    if (it == status_colors.end()) return al_color_html("333333");
 
    return it->second;
+}
+
+ALLEGRO_FONT* Renderer::obtain_dump_font()
+{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "obtain_dump_font" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   float scale = 2.0;
+   int font_size = -10 * scale;
+   std::stringstream ident;
+   ident << "Purista Medium.otf " << (int)(font_size * scale);
+   return font_bin->auto_get(ident.str());
 }
 
 ALLEGRO_FONT* Renderer::obtain_font()

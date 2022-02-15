@@ -1926,6 +1926,9 @@ table td
   <td class="method">build_color_from_status(1)</td>
 </tr>
 <tr>
+  <td class="method">obtain_dump_font()</td>
+</tr>
+<tr>
   <td class="method">obtain_font()</td>
 </tr>
     </table>
@@ -1955,10 +1958,19 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_is_ttf_addon_initialized&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_ttf.h&quot;]}</td>
 </tr>
 <tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;allegro_flare::placement2d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement2d.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::file_get_contents&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
+</tr>
+<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::tuple&lt;std::string, std::string, std::string, std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;utility&quot;, &quot;string&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::map&lt;std::string, ALLEGRO_COLOR&gt;&quot;, &quot;headers&quot;=&gt;[&quot;map&quot;, &quot;string&quot;, &quot;allegro5/allegro_color.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::FileExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/FileExistenceChecker.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::find&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
@@ -10905,11 +10917,36 @@ table td
   "al_is_ttf_addon_initialized": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "allegro_flare/placement2d": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/PacketRenderer"
+  ],
+  "php/file_get_contents": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/Hud",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/ProjectFactory",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent"
+  ],
   "std/vector<std/tuple<std/string, std/string, std/string, std/string>>": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
   "std/map<std/string, ALLEGRO_COLOR>": [
     "Hexagon/BuildSequenceMeter/Renderer"
+  ],
+  "Blast/FileExistenceChecker": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/ProjectFactory",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromLastComponentNavigatorSelection"
   ],
   "std/find": [
     "Hexagon/BuildSequenceMeter/Renderer"
@@ -11086,25 +11123,6 @@ table td
   ],
   "JSON": [
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader"
-  ],
-  "php/file_get_contents": [
-    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
-    "Hexagon/Elements/FilePixelPreviewCreator",
-    "Hexagon/Hud",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/ProjectFactory",
-    "Hexagon/StageFactory",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent"
-  ],
-  "Blast/FileExistenceChecker": [
-    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
-    "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/Elements/FilePixelPreviewCreator",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/ProjectFactory",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "Hexagon/System/Action/CreateTwoSplitFromLastComponentNavigatorSelection"
   ],
   "Hexagon/Elements/ListMenu": [
     "Hexagon/ComponentRelationsNavigator/Stage",
@@ -11447,9 +11465,6 @@ table td
     "Hexagon/PacketLogger"
   ],
   "Hexagon/Packet": [
-    "Hexagon/PacketRenderer"
-  ],
-  "allegro_flare/placement2d": [
     "Hexagon/PacketRenderer"
   ],
   "allegro_flare/placement3d": [
