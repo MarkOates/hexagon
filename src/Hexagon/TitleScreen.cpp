@@ -64,7 +64,7 @@ void TitleScreen::initialize()
       { "Solitare", "/Users/markoates/Repos/Solitare/" },
       { "Epidemic", "/Users/markoates/Repos/Epidemic/" },
       { "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
-      { "tins2021", "/Users/markoates/Repos/tins2021/" },
+      //{ "tins2021", "/Users/markoates/Repos/tins2021/" },
    });
    initialized = true;
    return;
