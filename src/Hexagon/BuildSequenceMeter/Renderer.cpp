@@ -94,11 +94,16 @@ void Renderer::render()
             float font_line_height = al_get_font_line_height(dump_font);
 
             placement2d dump_place;
-            dump_place.scale = vec2d(0.5, 0.5);
-            dump_place.position = vec2d(-600, -200);
+            dump_place.scale = vec2d(0.8, 0.8);
+            dump_place.position = vec2d(-10, 0);
+            dump_place.align = vec2d(1.0, 0.5);
+            dump_place.size = vec2d(1000, 450);
+
             dump_place.start_transform();
-            dump_place.size = vec2d(500, 450);
             
+            ALLEGRO_COLOR bg_trans_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.1};
+            al_draw_filled_rectangle(0, 0, dump_place.size.x, dump_place.size.y, bg_trans_color);
+
             std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);
             al_draw_multiline_text(dump_font, dump_text_color, 0, 0, dump_place.size.x, font_line_height, ALLEGRO_ALIGN_LEFT,
                stage_text_dump.c_str()
@@ -212,7 +217,7 @@ ALLEGRO_FONT* Renderer::obtain_dump_font()
          error_message << "Renderer" << "::" << "obtain_dump_font" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   float scale = 1.0;
+   float scale = 1.45;
    int font_size = -10 * scale;
    std::stringstream ident;
    ident << "Purista Medium.otf " << (int)(font_size * scale);
