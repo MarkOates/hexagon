@@ -81,7 +81,7 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    place.restore_transform();
 
    al_flip_display();
-   sleep(2);
+   //sleep(2);
    SUCCEED();
 }
 

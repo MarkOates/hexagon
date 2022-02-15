@@ -75,37 +75,37 @@ void Renderer::render()
       std::string stage_result_dump_filename = std::get<3>(stage); // currently not used, but hopefully soon :)
       std::string stage_status = std::get<2>(stage);
       std::string stage_label = std::get<1>(stage);
-      draw_rectangle(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
+      draw_status_box(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
       cursor_y -= (box_height + box_spacing);
    }
 
    return;
 }
 
-void Renderer::draw_rectangle(float x, float y, float w, float h, std::string status, std::string label)
+void Renderer::draw_status_box(float x, float y, float w, float h, std::string status, std::string label)
 {
    if (!(al_is_system_installed()))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_rectangle" << ": error: " << "guard \"al_is_system_installed()\" not met";
+         error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"al_is_system_installed()\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(al_is_primitives_addon_initialized()))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_rectangle" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+         error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(al_is_ttf_addon_initialized()))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_rectangle" << ": error: " << "guard \"al_is_ttf_addon_initialized()\" not met";
+         error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"al_is_ttf_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(font_bin))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_rectangle" << ": error: " << "guard \"font_bin\" not met";
+         error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
    // statuses:

@@ -61,7 +61,7 @@ functions:
          std::string stage_result_dump_filename = std::get<3>(stage); // currently not used, but hopefully soon :)
          std::string stage_status = std::get<2>(stage);
          std::string stage_label = std::get<1>(stage);
-         draw_rectangle(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
+         draw_status_box(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
          cursor_y -= (box_height + box_spacing);
       }
 
@@ -70,7 +70,7 @@ functions:
       - ALLEGRO_COLOR
 
 
-  - name: draw_rectangle
+  - name: draw_status_box
     type: void
     parameters:
       - name: x
