@@ -362,3 +362,5 @@ dependencies:
     headers: [ Hexagon/Shapes/Hexagon/Renderer.hpp ]
   - symbol: Hexagon::Shapes::Hexagon::Stroke
     headers: [ Hexagon/Shapes/Hexagon/Stroke.hpp ]
+
+
