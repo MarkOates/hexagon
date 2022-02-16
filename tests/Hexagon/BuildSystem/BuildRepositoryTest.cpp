@@ -13,3 +13,4 @@ TEST(Hexagon_BuildSystem_BuildRepositoryTest, get_latest_if_exists__returns_null
    Hexagon::BuildSystem::BuildRepository build_repository;
    EXPECT_EQ(nullptr, build_repository.get_latest_if_exists());
 }
+

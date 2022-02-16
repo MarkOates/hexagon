@@ -1,11 +1,14 @@
 properties:
 
+
   - name: builds
     type: std::vector<Hexagon::BuildSystem::Build>
     private: true
     init_with: '{}'
 
+
 functions:
+
 
   - name: get_latest_if_exists
     type: Hexagon::BuildSystem::Build*
@@ -13,10 +16,13 @@ functions:
       if (builds.empty()) return nullptr;
       return &builds.back();
 
+
 dependencies:
+
 
   - symbol: std::vector<Hexagon::BuildSystem::Build>
     headers: [ vector, Hexagon/BuildSystem/Build.hpp ]
   - symbol: Hexagon::BuildSystem::Build*
     headers: [ vector, Hexagon/BuildSystem/Build.hpp ]
+
 
