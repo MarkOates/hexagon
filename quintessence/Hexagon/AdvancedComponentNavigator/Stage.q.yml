@@ -77,6 +77,12 @@ properties:
     getter: true
     setter: true
 
+  - name: represents_symlink
+    type: bool
+    init_with: false
+    constructor_arg: true
+    getter: true
+
   - name: MOVE_CURSOR_UP
     type: std::string
     const: true

@@ -18,7 +18,7 @@ namespace AdvancedComponentNavigator
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_COLOR base_backfill_color)
+Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_COLOR base_backfill_color, bool represents_symlink)
    : StageInterface(StageInterface::COMPONENT_NAVIGATOR)
    , font_bin(nullptr)
    , project_root(project_root)
@@ -30,6 +30,7 @@ Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_CO
    , cell_height(20)
    , base_text_color(base_text_color)
    , base_backfill_color(base_backfill_color)
+   , represents_symlink(represents_symlink)
    , MOVE_CURSOR_UP("move_cursor_up")
    , MOVE_CURSOR_DOWN("move_cursor_down")
    , YANK_SELECTED_TEXT_LABEL("yank_selected_text_label")
@@ -150,6 +151,12 @@ ALLEGRO_COLOR Stage::get_base_text_color()
 ALLEGRO_COLOR Stage::get_base_backfill_color()
 {
    return base_backfill_color;
+}
+
+
+bool Stage::get_represents_symlink()
+{
+   return represents_symlink;
 }
 
 

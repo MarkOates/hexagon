@@ -32,6 +32,7 @@ namespace Hexagon
          int cell_height;
          ALLEGRO_COLOR base_text_color;
          ALLEGRO_COLOR base_backfill_color;
+         bool represents_symlink;
          std::string MOVE_CURSOR_UP;
          std::string MOVE_CURSOR_DOWN;
          std::string YANK_SELECTED_TEXT_LABEL;
@@ -40,7 +41,7 @@ namespace Hexagon
          std::string YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES;
 
       public:
-         Stage(std::string project_root="/Users/markoates/Repos/hexagon/", ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR base_backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+         Stage(std::string project_root="/Users/markoates/Repos/hexagon/", ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR base_backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}, bool represents_symlink=false);
          virtual ~Stage();
 
          void set_font_bin(AllegroFlare::FontBin* font_bin);
@@ -61,6 +62,7 @@ namespace Hexagon
          int get_cell_height();
          ALLEGRO_COLOR get_base_text_color();
          ALLEGRO_COLOR get_base_backfill_color();
+         bool get_represents_symlink();
          Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &get_component_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          KeyboardCommandMapper build_keyboard_command_mapping();
