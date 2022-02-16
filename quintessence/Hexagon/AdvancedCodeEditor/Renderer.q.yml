@@ -114,7 +114,7 @@ functions:
       bool drawing_backfill = true;
       if (drawing_backfill)
       {
-         ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.05, 0.05, 0.05, 0.05};
+         ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.06, 0.06, 0.06, 0.06};
          al_draw_filled_rectangle(0, 0, width, height, backfill_color);
       }
 
