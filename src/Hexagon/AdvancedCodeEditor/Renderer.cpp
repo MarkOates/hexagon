@@ -160,7 +160,7 @@ bool Renderer::draw_null_separator_line()
    ALLEGRO_COLOR line_color = ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1};
    ALLEGRO_COLOR null_space_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.2};
 
-   if (top_line_y <= 0 || top_line_y >= height)
+   if (top_line_y < 0 || top_line_y > height)
    {
       // don't draw
    }
@@ -171,7 +171,7 @@ bool Renderer::draw_null_separator_line()
    }
    line_num = lines->size();
    float bottom_line_y = cell_height * (line_num - first_row_offset) + text_mesh_y_offset;
-   if (bottom_line_y <= 0 || bottom_line_y >= height)
+   if (bottom_line_y < 0 || bottom_line_y > height)
    {
       // don't draw
    }
