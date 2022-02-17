@@ -1,5 +1,6 @@
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
    try { code; FAIL() << "Expected " # raised_exception_type; } \
@@ -186,6 +187,12 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
 
    ASSERT_EQ(files.size(), stages.size());
 
+   // collect and assert on types
+   std::vector<StageInterface::type_t> types;
+   for (auto &stage : stages) types.push_back(stage->get_type());
+   ASSERT_THAT(types, testing::Each(StageInterface::ADVANCED_CODE_EDITOR));
+
+   // assert expected initialization
    for (auto &stage : stages)
    {
       Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =

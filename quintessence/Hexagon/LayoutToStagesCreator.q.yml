@@ -89,7 +89,6 @@ functions:
       return true;
     body_dependency_symbols:
       - php::file_get_contents
-      - Hexagon::AdvancedCodeEditor::Stage
       - Blast::FileExistenceChecker
 
 
@@ -112,8 +111,6 @@ dependencies:
     headers: [ allegro_flare/useful_php.h ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
-  - symbol: Hexagon::AdvancedCodeEditor::Stage
-    headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
   - symbol: ALLEGRO_COLOR

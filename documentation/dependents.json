@@ -141,7 +141,6 @@
   ],
   "Hexagon/AdvancedCodeEditor/Stage": [
     "Hexagon/AdvancedCodeEditor/EventController",
-    "Hexagon/LayoutToStagesCreator",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
     "Hexagon/StageFactory",
