@@ -63,6 +63,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , num_rows(num_rows)
    , text_mesh({nullptr, num_columns, num_rows})
    , filename("untitled.txt")
+   , represents_symlink(false)
    , advanced_code_editor({})
    , input_buffer("")
    , mode(0)
@@ -92,6 +93,12 @@ Stage::~Stage()
 void Stage::set_filename(std::string filename)
 {
    this->filename = filename;
+}
+
+
+void Stage::set_represents_symlink(bool represents_symlink)
+{
+   this->represents_symlink = represents_symlink;
 }
 
 
@@ -128,6 +135,12 @@ int Stage::get_num_rows()
 std::string Stage::get_filename()
 {
    return filename;
+}
+
+
+bool Stage::get_represents_symlink()
+{
+   return represents_symlink;
 }
 
 
@@ -973,7 +986,8 @@ void Stage::render()
       first_row_offset,
       true, // draw line numbers
       obtain_text_font(),
-      advanced_code_editor.get_content_is_modified()
+      advanced_code_editor.get_content_is_modified(),
+      represents_symlink
    );
 
    place.start_transform();

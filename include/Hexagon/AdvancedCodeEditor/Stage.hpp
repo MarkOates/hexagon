@@ -34,6 +34,7 @@ namespace Hexagon
          int num_rows;
          Hexagon::Elements::TextMesh text_mesh;
          std::string filename;
+         bool represents_symlink;
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
          std::string input_buffer;
          int mode;
@@ -58,12 +59,14 @@ namespace Hexagon
          virtual ~Stage();
 
          void set_filename(std::string filename);
+         void set_represents_symlink(bool represents_symlink);
          void set_input_buffer(std::string input_buffer);
          void set_current_search_regex(std::string current_search_regex);
          void set_syntax_highlight_color(ALLEGRO_COLOR syntax_highlight_color);
          int get_num_columns();
          int get_num_rows();
          std::string get_filename();
+         bool get_represents_symlink();
          std::string get_input_buffer();
          bool get_initialized();
          float get_offset_y();

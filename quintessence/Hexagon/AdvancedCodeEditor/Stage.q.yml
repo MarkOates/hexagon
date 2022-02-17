@@ -38,6 +38,12 @@ properties:
     getter: true
     setter: true
 
+  - name: represents_symlink
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
+
   - name: advanced_code_editor
     type: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
     init_with: '{}'
@@ -956,7 +962,8 @@ functions:
          first_row_offset,
          true, // draw line numbers
          obtain_text_font(),
-         advanced_code_editor.get_content_is_modified()
+         advanced_code_editor.get_content_is_modified(),
+         represents_symlink
       );
 
       place.start_transform();

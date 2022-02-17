@@ -350,6 +350,8 @@ StageInterface* StageFactory::create_advanced_code_editor(std::string filename, 
    advanced_code_editor_stage->initialize();
 
    std::string file_contents = php::file_get_contents(filename);
+   bool is_symlink = Blast::Project::SymlinkChecker(filename).is_symlink();
+   advanced_code_editor_stage->set_represents_symlink(is_symlink);
    advanced_code_editor_stage->set_filename(filename);
    advanced_code_editor_stage->set_content(file_contents);
    //advanced_code_editor_stage->set_base_font_color(text_color);
