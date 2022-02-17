@@ -17,10 +17,12 @@ class Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture : public ::testing
 class Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture
 {};
 
+
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, can_be_created_without_blowing_up)
 {
    Hexagon::AdvancedCodeEditor::Renderer renderer;
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_a_valid_text_mesh__raises_an_error)
 {
@@ -28,6 +30,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    std::string expected_error_message = "Renderer::render: error: guard \"text_mesh\" not met";
    ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_a_valid_cursor__raises_an_error)
 {
@@ -59,6 +62,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithEmptyFixture, render__without_
    al_destroy_bitmap(bitmap);
    al_uninstall_system();
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, render__does_not_blow_up)
 {
@@ -95,6 +99,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
 
    SUCCEED();
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    render__when_draw_line_numbers_is_true__renders_the_line_numbers)
@@ -135,6 +140,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    SUCCEED();
 }
 
+
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    render__when_cursor_is_bar_is_set__renders_the_cursor_as_a_bar)
 {
@@ -171,6 +177,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
 
    SUCCEED();
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
    render___respects_the_mesh_y_offset__and_renders_the_cursor_by_the_offset_as_well)
@@ -231,6 +238,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
 
    SUCCEED();
 }
+
 
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, DISABLED__render___renders_the_selections)
 {
@@ -299,6 +307,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, DISAB
    SUCCEED();
 }
 
+
 TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, render___renders_the_code_message_points)
 {
    ALLEGRO_FONT *font = get_any_font();
@@ -360,4 +369,12 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture, rende
 
    SUCCEED();
 }
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
+   render___with_represents_symlink_on__renders_the_expected_style)
+{
+   // TODO
+}
+
 

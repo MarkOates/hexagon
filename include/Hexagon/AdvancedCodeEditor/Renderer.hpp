@@ -47,6 +47,7 @@ namespace Hexagon
          void set_content_is_modified(bool content_is_modified);
          void set_represents_symlink(bool represents_symlink);
          void render();
+         void draw_represents_symlink_frames();
          bool draw_null_separator_line();
          bool render_line_numbers();
          void render_word_highlight_under_cursor();

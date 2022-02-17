@@ -135,8 +135,39 @@ void Renderer::render()
    if (full_line_visual_selections) draw_full_line_visual_selections();
    if (code_message_points) draw_code_message_points();
    if (lines && cursor) render_word_highlight_under_cursor();
+   if (represents_symlink) draw_represents_symlink_frames();
    render_cursor();
 
+   return;
+}
+
+void Renderer::draw_represents_symlink_frames()
+{
+   float place_size_x = width;
+   float place_size_y = height;
+   float inner_padding = place_size_x * 0.333;
+   float inset = 6;
+   float thickness = 2;
+   ALLEGRO_COLOR frame_color = al_color_name("dodgerblue");
+   frame_color = AllegroFlare::color::mix(frame_color, al_color_name("white"), 0.5);
+      // top line
+   al_draw_line(
+      inner_padding,
+      inset,
+      place_size_x-inner_padding,
+      inset,
+      frame_color,
+      thickness
+   );
+   // bottom line
+   al_draw_line(
+      inner_padding,
+      place_size_y-inset,
+      place_size_x-inner_padding,
+      place_size_y-inset,
+      frame_color,
+      thickness
+   );
    return;
 }
 
