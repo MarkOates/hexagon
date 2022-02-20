@@ -994,7 +994,8 @@ void Stage::render()
       true, // draw line numbers
       obtain_text_font(),
       advanced_code_editor.get_content_is_modified(),
-      represents_symlink
+      represents_symlink,
+      advanced_code_editor.is_cursor_in_bounds()
    );
 
    place.start_transform();
