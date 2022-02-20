@@ -31,6 +31,7 @@ namespace Hexagon
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
          void mark_content_is_modified();
          void unmark_content_is_modified();
+         int get_num_lines();
          bool set_content(std::string content="");
          bool insert_string(std::string string="");
          bool delete_character();

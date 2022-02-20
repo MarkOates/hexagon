@@ -66,6 +66,11 @@ void AdvancedCodeEditor::unmark_content_is_modified()
    return;
 }
 
+int AdvancedCodeEditor::get_num_lines()
+{
+   return lines.size();
+}
+
 bool AdvancedCodeEditor::set_content(std::string content)
 {
    dirty_grid.mark_all_as_dirty(&lines);

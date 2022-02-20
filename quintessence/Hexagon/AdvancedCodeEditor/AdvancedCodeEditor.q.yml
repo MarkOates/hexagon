@@ -42,6 +42,12 @@ functions:
       return;
 
 
+  - name: get_num_lines
+    type: int
+    body: |
+      return lines.size();
+
+
   - name: set_content
     type: bool
     parameters:
