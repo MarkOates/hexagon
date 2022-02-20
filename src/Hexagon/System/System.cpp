@@ -1586,15 +1586,10 @@ bool System::set_regex_temp_file_contents_to_word_under_current_advanced_code_ed
    Hexagon::AdvancedCodeEditor::Stage *frontmost_advanced_code_editor = get_frontmost_advanced_code_editor_stage();
    if (!frontmost_advanced_code_editor) return false;
 
-   std::string word_under_current_advanced_code_editor_cursor = "foobar";
+   std::string word_under_current_advanced_code_editor_cursor = frontmost_advanced_code_editor->grab_word_under_cursor();
 
    bool success_or_not = php::file_put_contents(REGEX_TEMP_FILENAME, word_under_current_advanced_code_editor_cursor);
    return success_or_not;
-
-   //process_local_event(::System::SET_REGEX_TEMP_FILE_CONTENTS_TO_WORD_UNDER_CURRENT_ADVANCED_CODE_EDITOR_CURSOR);
-   //process_local_event(::System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS);
-   //process_local_event(::System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
-   //return true;
 }
 
 
