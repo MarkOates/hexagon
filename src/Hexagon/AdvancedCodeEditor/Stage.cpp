@@ -376,7 +376,10 @@ bool Stage::cursor_jump_up_half_page()
 {
    // TODO: account for "surface_render"
    int new_y = advanced_code_editor.cursor_get_y() - num_rows / 2;
-   bool result = advanced_code_editor.cursor_set_y(new_y);
+   if (new_y < 0) new_y = 0;
+   bool result = advanced_code_editor.cursor_set_y(new_y); // TODO also only allow this behavior if will go out
+                                                           // of bounds and not if already out of bounds going
+                                                           // further out of bounds
    refresh_current_visual_selection_end_to_current_cursor_position();
    return result;
 }
@@ -385,6 +388,10 @@ bool Stage::cursor_jump_down_half_page()
 {
    // TODO: account for "surface_render"
    int new_y = advanced_code_editor.cursor_get_y() + num_rows / 2;
+   int num_lines = advanced_code_editor.get_lines_ref().size();
+   if (new_y >= (num_lines - 1)) new_y = num_lines - 1; // TODO also only allow this behavior if will go out of bounds
+                                                        // and not if already out of bounds going further out of bounds
+
    bool result = advanced_code_editor.cursor_set_y(new_y);
    refresh_current_visual_selection_end_to_current_cursor_position();
    return result;

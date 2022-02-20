@@ -573,7 +573,21 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   cursor_jump_up_half_page__if_it_would_jump_beyond_the_top_line__will_set_the_cursor_on_the_first_line)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    cursor_jump_down_half_page__will_move_the_cursor_down_half_the_number_of_rows_of_the_window)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   cursor_jump_down_half_page__if_it_would_jump_beyond_the_bottom_line__will_set_the_cursor_to_the_bottom_line)
 {
    // TODO
 }
