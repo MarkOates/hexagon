@@ -475,6 +475,36 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   grab_word_under_cursor__will_return_the_word_under_the_cursor)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);
+   stage.initialize();
+
+   stage.set_content(FIXTURE_PASSAGE);
+   stage.cursor_move_to(21, 11);
+
+   std::string expected_word_under_cursor = "greatness";
+   std::string actual_word_under_cursor = stage.grab_word_under_cursor();
+
+   EXPECT_EQ(expected_word_under_cursor, actual_word_under_cursor);
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   grab_word_under_cursor__if_the_cursor_is_out_of_bounds__will_return_an_empty_string)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   grab_word_under_cursor__if_there_is_no_word_under_the_cursor__will_return_an_empty_string)
+{
+   // TODO
+}
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, join_lines__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;

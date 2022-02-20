@@ -448,6 +448,27 @@ functions:
       return result;
 
 
+  - name: grab_word_under_cursor
+    type: std::string
+    guards: [ initialized ]
+    body: |
+      if (cursor_get_y() < 0) return "";
+      if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return "";
+
+      // HERE
+      // get word ranges
+      std::string line_content = advanced_code_editor.get_lines_ref()[cursor_get_y()];
+      Hexagon::WordRangesFinder word_ranges_finder(line_content, cursor_get_x());
+
+      std::pair<int, int> found_word_ranges = word_ranges_finder.find_ranges();
+      // if word ranges are invalid, return false
+      if (!word_ranges_finder.is_valid(found_word_ranges)) return "";
+
+      std::string word_under_cursor = line_content.substr(found_word_ranges.first, found_word_ranges.second);
+
+      return word_under_cursor;
+
+
   - name: delete_word_under_cursor
     type: bool
     guards: [ initialized ]

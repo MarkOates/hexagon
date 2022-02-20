@@ -9,6 +9,8 @@
 #include <Hexagon/SymlinkToucher.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/WordRangesFinder.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -488,6 +490,31 @@ bool Stage::delete_character()
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    refresh_current_visual_selection_end_to_current_cursor_position(); // TODO: only do if result == true
    return result;
+}
+
+std::string Stage::grab_word_under_cursor()
+{
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "Stage" << "::" << "grab_word_under_cursor" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (cursor_get_y() < 0) return "";
+   if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return "";
+
+   // HERE
+   // get word ranges
+   std::string line_content = advanced_code_editor.get_lines_ref()[cursor_get_y()];
+   Hexagon::WordRangesFinder word_ranges_finder(line_content, cursor_get_x());
+
+   std::pair<int, int> found_word_ranges = word_ranges_finder.find_ranges();
+   // if word ranges are invalid, return false
+   if (!word_ranges_finder.is_valid(found_word_ranges)) return "";
+
+   std::string word_under_cursor = line_content.substr(found_word_ranges.first, found_word_ranges.second);
+
+   return word_under_cursor;
 }
 
 bool Stage::delete_word_under_cursor()
