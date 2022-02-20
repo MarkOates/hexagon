@@ -5,6 +5,19 @@ properties:
     type: std::vector<Hexagon::ObjectivesLog::Objective>
     init_with: '{}'
     getter_ref: true
+
+
+functions:
+
+
+  - name: add_objective
+    parameters:
+      - name: objective
+        type: Hexagon::ObjectivesLog::Objective
+        default_argument: '{}'
+    body: |
+      objectives.push_back(objective);
+      return;
    
 
 dependencies:
@@ -12,4 +25,7 @@ dependencies:
 
   - symbol: std::vector<Hexagon::ObjectivesLog::Objective>
     headers: [ vector, Hexagon/ObjectivesLog/Objective.hpp ]
+  - symbol: Hexagon::ObjectivesLog::Objective
+    headers: [ Hexagon/ObjectivesLog/Objective.hpp ]
+
 

@@ -22,19 +22,37 @@ TEST_F(Hexagon_ObjectivesLog_StageTest, can_be_created_without_blowing_up)
 }
 
 
-TEST_F(Hexagon_ObjectivesLog_StageTest, render__without_an_objectives_log__throws_an_error)
+TEST_F(Hexagon_ObjectivesLog_StageTest, render__without_a_font_bin__throws_an_error)
 {
    Hexagon::ObjectivesLog::Stage stage;
+   std::string expected_error_message = "Stage::render: error: guard \"font_bin\" not met";
+   ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
+}
+
+
+TEST_F(Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture, render__without_an_objectives_log__throws_an_error)
+{
+   AllegroFlare::FontBin font_bin;
+   Hexagon::ObjectivesLog::Stage stage(&font_bin);
+
    std::string expected_error_message = "Stage::render: error: guard \"objectives_log\" not met";
    ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
 }
 
 
-TEST_F(Hexagon_ObjectivesLog_StageTest, render__does_not_blow_up)
+TEST_F(Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture, render__does_not_blow_up)
 {
-   //Hexagon::ObjectivesLog::ObjectivesLog objectives_log;
-   //Hexagon::ObjectivesLog::Stage stage(&objectives_log);
-   //stage.render();
+   Hexagon::ObjectivesLog::ObjectivesLog objectives_log;
+   objectives_log.add_objective(
+      { "Write a Passing Test", "Before continuing to use a feature in production, you should write a test.", false }
+   );
+   Hexagon::ObjectivesLog::Stage stage(&get_font_bin_ref(), &objectives_log);
+
+   stage.render();
+   al_flip_display();
+   sleep(1);
+
+   SUCCEED();
 }
 
 

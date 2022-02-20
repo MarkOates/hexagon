@@ -27,6 +27,11 @@ std::vector<Hexagon::ObjectivesLog::Objective> &ObjectivesLog::get_objectives_re
 }
 
 
+void ObjectivesLog::add_objective(Hexagon::ObjectivesLog::Objective objective)
+{
+   objectives.push_back(objective);
+   return;
+}
 } // namespace ObjectivesLog
 } // namespace Hexagon
 

@@ -6614,10 +6614,16 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="method">add_objective(1)</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::ObjectivesLog::Objective&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/ObjectivesLog/Objective.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ObjectivesLog::Objective&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ObjectivesLog/Objective.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -6629,6 +6635,10 @@ table td
 <tr>
   <td class="property">a_default_empty_event</td>
   <td class="property">ALLEGRO_EVENT</td>
+</tr>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
 </tr>
 <tr>
   <td class="property">objectives_log</td>
@@ -6660,6 +6670,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ObjectivesLog::ObjectiveRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ObjectivesLog/ObjectiveRenderer.hpp&quot;]}</td>
 </tr>
@@ -10690,6 +10703,7 @@ table td
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
+    "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/PacketRenderer",
     "Hexagon/StageFactory",
@@ -11454,7 +11468,8 @@ table td
     "Hexagon/Notifications/Stage"
   ],
   "Hexagon/ObjectivesLog/Objective": [
-    "Hexagon/ObjectivesLog/ObjectiveRenderer"
+    "Hexagon/ObjectivesLog/ObjectiveRenderer",
+    "Hexagon/ObjectivesLog/ObjectivesLog"
   ],
   "std/vector<Hexagon/ObjectivesLog/Objective>": [
     "Hexagon/ObjectivesLog/ObjectivesLog"

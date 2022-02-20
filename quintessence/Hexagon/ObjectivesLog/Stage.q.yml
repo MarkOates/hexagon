@@ -15,6 +15,11 @@ properties:
     init_with: "{}"
     getter_ref: true
 
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
+
   - name: objectives_log
     type: Hexagon::ObjectivesLog::ObjectivesLog*
     init_with: nullptr
@@ -32,14 +37,14 @@ functions:
   - name: render
     virtual: true
     override: true
-    guards: [ objectives_log ]
+    guards: [ font_bin, objectives_log ]
     body: |
       placement3d place = get_place();
       std::vector<Hexagon::ObjectivesLog::Objective> &objectives = objectives_log->get_objectives_ref();
       place.start_transform();
       for (auto &objective : objectives)
       {
-         Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer;
+         Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer(font_bin, &objective);
          objective_renderer.render();
       }
       place.restore_transform();
@@ -99,6 +104,8 @@ functions:
 dependencies:
 
 
+  - symbol: AllegroFlare::FontBin*
+    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: Hexagon::ObjectivesLog::ObjectiveRenderer
     headers: [ Hexagon/ObjectivesLog/ObjectiveRenderer.hpp ]
   - symbol: Hexagon::ObjectivesLog::ObjectivesLog*

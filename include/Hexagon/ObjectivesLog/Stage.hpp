@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/ObjectivesLog/ObjectivesLog.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -16,11 +17,12 @@ namespace Hexagon
       {
       private:
          static ALLEGRO_EVENT a_default_empty_event;
+         AllegroFlare::FontBin* font_bin;
          Hexagon::ObjectivesLog::ObjectivesLog* objectives_log;
          int cursor_pos;
 
       public:
-         Stage(Hexagon::ObjectivesLog::ObjectivesLog* objectives_log=nullptr);
+         Stage(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ObjectivesLog::ObjectivesLog* objectives_log=nullptr);
          virtual ~Stage();
 
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();

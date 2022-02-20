@@ -488,6 +488,7 @@
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
+    "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/PacketRenderer",
     "Hexagon/StageFactory",
@@ -1252,7 +1253,8 @@
     "Hexagon/Notifications/Stage"
   ],
   "Hexagon/ObjectivesLog/Objective": [
-    "Hexagon/ObjectivesLog/ObjectiveRenderer"
+    "Hexagon/ObjectivesLog/ObjectiveRenderer",
+    "Hexagon/ObjectivesLog/ObjectivesLog"
   ],
   "std/vector<Hexagon/ObjectivesLog/Objective>": [
     "Hexagon/ObjectivesLog/ObjectivesLog"

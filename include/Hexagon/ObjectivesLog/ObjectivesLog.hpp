@@ -19,6 +19,7 @@ namespace Hexagon
          ~ObjectivesLog();
 
          std::vector<Hexagon::ObjectivesLog::Objective> &get_objectives_ref();
+         void add_objective(Hexagon::ObjectivesLog::Objective objective={});
       };
    }
 }
