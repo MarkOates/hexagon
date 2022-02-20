@@ -104,5 +104,12 @@ TEST(Hexagon_System_System,
 TEST(Hexagon_System_System,
    submit_current_modal__on_a_ONE_LINE_INPUT_BOX__will_save_the_frontmost_code_editor_stage)
 {
+   // TODO
+}
+
+TEST(Hexagon_System_System,
+   set_regex_temp_file_contents_to_word_under_current_advanced_code_editor_cursor__will_do_as_described)
+{
+   // TODO
 }
 

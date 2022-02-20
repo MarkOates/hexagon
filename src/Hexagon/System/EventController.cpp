@@ -130,6 +130,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          &::Hexagon::System::System::refresh_git_modified_line_numbers_on_all_code_editor_stages,
       },
       {
+         ::System::SET_REGEX_TEMP_FILE_CONTENTS_TO_WORD_UNDER_CURRENT_ADVANCED_CODE_EDITOR_CURSOR,
+         &::Hexagon::System::System::set_regex_temp_file_contents_to_word_under_current_advanced_code_editor_cursor,
+      },
+      {
          ::System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS,
          &::Hexagon::System::System::set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents,
       },
@@ -368,6 +372,13 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
       {
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, false, {
             ::System::SPAWN_MULTIPLEX_DELETE_MENU });
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_8, true, false, false, false, {
+            ::System::SET_REGEX_TEMP_FILE_CONTENTS_TO_WORD_UNDER_CURRENT_ADVANCED_CODE_EDITOR_CURSOR,
+            ::System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS,
+            ::System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES }); // TODO, consider adding this "SHIFT+*"
+                                                                           // mapping to the AdvancedCodeEditor itself,
+                                                                           // too. But it will also be overridden
+                                                                           // here to affect all stages as a feature.
       }
 
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_EQUALS, false, true, false, false, {
