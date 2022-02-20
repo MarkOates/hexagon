@@ -879,11 +879,11 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
    result.set_mapping(ALLEGRO_KEY_B, 0, { "cursor_jump_to_previous_word" });
    result.set_mapping(ALLEGRO_KEY_U, KeyboardCommandMapper::CTRL, {
       "cursor_jump_up_half_page",
-      "first_row_offset_jump_up_half_page",
+      "first_row_offset_adjust_so_cursor_is_vertically_centered",
       });
    result.set_mapping(ALLEGRO_KEY_D, KeyboardCommandMapper::CTRL, {
       "cursor_jump_down_half_page",
-      "first_row_offset_jump_down_half_page",
+      "first_row_offset_adjust_so_cursor_is_vertically_centered",
       });
    result.set_mapping(ALLEGRO_KEY_B, 0, { "cursor_jump_to_previous_word" });
    result.set_mapping(ALLEGRO_KEY_N, 0, { "cursor_jump_to_next_search_regex_selection" });
