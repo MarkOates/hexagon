@@ -21,11 +21,10 @@ TEST(Hexagon_ObjectivesLog_StageTest, render__without_an_objectives_log__throws_
 }
 
 TEST(Hexagon_ObjectivesLog_StageTest, render__does_not_blow_up)
-   // TODO
 {
-   //Hexagon::ObjectivesLog::Stage stage;
+   //Hexagon::ObjectivesLog::ObjectivesLog objectives_log;
+   //Hexagon::ObjectivesLog::Stage stage(&objectives_log);
    //stage.render();
-   //SUCCEED();
 }
 
 TEST(Hexagon_ObjectivesLog_StageTest, process_local_event__does_not_blow_up)

@@ -20,7 +20,7 @@ namespace Hexagon
          int cursor_pos;
 
       public:
-         Stage();
+         Stage(Hexagon::ObjectivesLog::ObjectivesLog* objectives_log=nullptr);
          virtual ~Stage();
 
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();

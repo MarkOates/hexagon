@@ -17,8 +17,9 @@ properties:
 
   - name: objectives_log
     type: Hexagon::ObjectivesLog::ObjectivesLog*
-    init_with: ''
+    init_with: nullptr
     getter_ref: true
+    constructor_arg: true
 
   - name: cursor_pos
     type: int

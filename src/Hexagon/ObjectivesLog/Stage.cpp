@@ -17,9 +17,9 @@ namespace ObjectivesLog
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage()
+Stage::Stage(Hexagon::ObjectivesLog::ObjectivesLog* objectives_log)
    : StageInterface(StageInterface::OBJECTIVES_LOG)
-   , objectives_log()
+   , objectives_log(objectives_log)
    , cursor_pos(0)
 {
 }
