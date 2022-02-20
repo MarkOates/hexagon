@@ -8,36 +8,49 @@
 
 #include <Hexagon/ObjectivesLog/Stage.hpp>
 
-TEST(Hexagon_ObjectivesLog_StageTest, can_be_created_without_blowing_up)
+class Hexagon_ObjectivesLog_StageTest : public ::testing::Test {};
+
+#include <Testing/WithAllegroRenderingFixture.hpp>
+
+class Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture
+{};
+
+
+TEST_F(Hexagon_ObjectivesLog_StageTest, can_be_created_without_blowing_up)
 {
    Hexagon::ObjectivesLog::Stage stage;
 }
 
-TEST(Hexagon_ObjectivesLog_StageTest, render__without_an_objectives_log__throws_an_error)
+
+TEST_F(Hexagon_ObjectivesLog_StageTest, render__without_an_objectives_log__throws_an_error)
 {
    Hexagon::ObjectivesLog::Stage stage;
    std::string expected_error_message = "Stage::render: error: guard \"objectives_log\" not met";
    ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
 }
 
-TEST(Hexagon_ObjectivesLog_StageTest, render__does_not_blow_up)
+
+TEST_F(Hexagon_ObjectivesLog_StageTest, render__does_not_blow_up)
 {
    //Hexagon::ObjectivesLog::ObjectivesLog objectives_log;
    //Hexagon::ObjectivesLog::Stage stage(&objectives_log);
    //stage.render();
 }
 
-TEST(Hexagon_ObjectivesLog_StageTest, process_local_event__does_not_blow_up)
+
+TEST_F(Hexagon_ObjectivesLog_StageTest, process_local_event__does_not_blow_up)
 {
    Hexagon::ObjectivesLog::Stage stage;
    stage.process_local_event();
    SUCCEED();
 }
 
-TEST(Hexagon_ObjectivesLog_StageTest, process_event__does_not_blow_up)
+
+TEST_F(Hexagon_ObjectivesLog_StageTest, process_event__does_not_blow_up)
 {
    Hexagon::ObjectivesLog::Stage stage;
    stage.process_event();
    SUCCEED();
 }
+
 
