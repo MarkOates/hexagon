@@ -5,6 +5,7 @@ properties:
     type: std::vector<Hexagon::ObjectivesLog::Objective>
     init_with: '{}'
     getter_ref: true
+    constructor_arg: true
 
 
 functions:

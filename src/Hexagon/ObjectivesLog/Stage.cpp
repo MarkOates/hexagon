@@ -59,12 +59,30 @@ void Stage::render()
       }
    placement3d place = get_place();
    std::vector<Hexagon::ObjectivesLog::Objective> &objectives = objectives_log->get_objectives_ref();
+   float objectives_width = 700;
+   float objectives_height = 100;
+   float spacing = 4;
+   float y_cursor = 0;
+
    place.start_transform();
+   ALLEGRO_TRANSFORM list_offset_transform;
+   al_copy_transform(&list_offset_transform, al_get_current_transform());
+   al_use_transform(&list_offset_transform);
+
    for (auto &objective : objectives)
    {
-      Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer(font_bin, &objective);
+      Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer(
+         font_bin,
+         &objective,
+         objectives_width,
+         objectives_height
+      );
       objective_renderer.render();
+
+      al_translate_transform(&list_offset_transform, 0, objectives_height + spacing);
+      al_use_transform(&list_offset_transform);
    }
+
    place.restore_transform();
    return;
 }

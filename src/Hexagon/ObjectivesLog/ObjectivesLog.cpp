@@ -10,8 +10,8 @@ namespace ObjectivesLog
 {
 
 
-ObjectivesLog::ObjectivesLog()
-   : objectives({})
+ObjectivesLog::ObjectivesLog(std::vector<Hexagon::ObjectivesLog::Objective> objectives)
+   : objectives(objectives)
 {
 }
 

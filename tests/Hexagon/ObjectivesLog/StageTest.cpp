@@ -42,10 +42,14 @@ TEST_F(Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture, render__witho
 
 TEST_F(Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture, render__does_not_blow_up)
 {
-   Hexagon::ObjectivesLog::ObjectivesLog objectives_log;
-   objectives_log.add_objective(
-      { "Write a Passing Test", "Before continuing to use a feature in production, you should write a test.", false }
-   );
+   Hexagon::ObjectivesLog::ObjectivesLog objectives_log({
+         { "Write a Passing Test", "Before continuing to use a feature in production, you should write a test.", false },
+         { "Add Full Test Coverage Or Setup For It.",
+           "Being able to isolate problems when they occour is critical to happy software development.  Make sure"
+              " all of your features are tested, or, at least write empty DISABLED tests for the features so you"
+              " can anticipate developing the feature in isolation when you need it.",
+           false },
+      });
    Hexagon::ObjectivesLog::Stage stage(&get_font_bin_ref(), &objectives_log);
 
    stage.render();

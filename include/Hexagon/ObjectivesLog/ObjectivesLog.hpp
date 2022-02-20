@@ -15,7 +15,7 @@ namespace Hexagon
          std::vector<Hexagon::ObjectivesLog::Objective> objectives;
 
       public:
-         ObjectivesLog();
+         ObjectivesLog(std::vector<Hexagon::ObjectivesLog::Objective> objectives={});
          ~ObjectivesLog();
 
          std::vector<Hexagon::ObjectivesLog::Objective> &get_objectives_ref();
