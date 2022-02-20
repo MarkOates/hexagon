@@ -42,6 +42,15 @@ TEST_F(Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture, render__witho
 
 TEST_F(Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture, render__does_not_blow_up)
 {
+   Hexagon::ObjectivesLog::ObjectivesLog objectives_log;
+   Hexagon::ObjectivesLog::Stage stage(&get_font_bin_ref(), &objectives_log);
+   stage.render();
+   SUCCEED();
+}
+
+
+TEST_F(Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture, render__works_as_expected)
+{
    Hexagon::ObjectivesLog::ObjectivesLog objectives_log({
          { "Write a Passing Test", "Before continuing to use a feature in production, you should write a test.", false },
          { "Add Full Test Coverage Or Setup For It.",
@@ -49,9 +58,15 @@ TEST_F(Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture, render__does_
               " all of your features are tested, or, at least write empty DISABLED tests for the features so you"
               " can anticipate developing the feature in isolation when you need it.",
            false },
+         { "Take A Break",
+               "It's important to remember that work isn't everything. Take time to care for your family",
+               false },
       });
    Hexagon::ObjectivesLog::Stage stage(&get_font_bin_ref(), &objectives_log);
    stage.get_place() = build_centered_placement(700, 500);
+
+   stage.move_cursor_down();
+   stage.move_cursor_down();
 
    stage.render();
    al_flip_display();
