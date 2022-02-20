@@ -13,6 +13,7 @@ properties:
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
     getter: true
+
   - name: font_bin
     type: AllegroFlare::FontBin
     init_with: '{}'
