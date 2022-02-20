@@ -239,18 +239,21 @@ bool AdvancedCodeEditor::cursor_set_height(float height)
 
 bool AdvancedCodeEditor::cursor_move_up()
 {
+   if (is_cursor_at_or_past_top_edge()) return false;
    cursor.move_up();
    return true;
 }
 
 bool AdvancedCodeEditor::cursor_move_down()
 {
+   if (is_cursor_at_or_past_bottom_edge()) return false;
    cursor.move_down();
    return true;
 }
 
 bool AdvancedCodeEditor::cursor_move_left()
 {
+   if (is_cursor_at_or_past_left_edge()) return false;
    cursor.move_left();
    return true;
 }
@@ -390,6 +393,24 @@ bool AdvancedCodeEditor::is_cursor_in_vertical_bounds()
    if (cursor.get_y() >= lines.size()) return false;
    if (cursor.get_y() < 0) return false;
    return true;
+}
+
+bool AdvancedCodeEditor::is_cursor_at_or_past_left_edge()
+{
+   if (cursor.get_x() <= 0) return true;
+   return false;
+}
+
+bool AdvancedCodeEditor::is_cursor_at_or_past_top_edge()
+{
+   if (cursor.get_y() <= 0) return true;
+   return false;
+}
+
+bool AdvancedCodeEditor::is_cursor_at_or_past_bottom_edge()
+{
+   if (cursor.get_y() >= (lines.size() - 1)) return true;
+   return false;
 }
 
 bool AdvancedCodeEditor::is_cursor_on_last_line()

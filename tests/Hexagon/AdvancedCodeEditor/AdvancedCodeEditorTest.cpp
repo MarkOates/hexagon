@@ -162,6 +162,62 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    }
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, cursor_move_left__will_move_the_cursor_left)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SONNET_TEXT);
+
+   advanced_code_editor.cursor_move_to(45, 4);
+
+   advanced_code_editor.cursor_move_left();
+   EXPECT_EQ(44, advanced_code_editor.cursor_get_x());
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   cursor_move_left__will_not_move_left_if_at_or_past_the_left_edge_of_the_editor)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SONNET_TEXT);
+
+   advanced_code_editor.cursor_move_to(0, 4);
+
+   advanced_code_editor.cursor_move_left();
+   EXPECT_EQ(0, advanced_code_editor.cursor_get_x());
+
+   advanced_code_editor.cursor_move_to(-5, 4);
+
+   advanced_code_editor.cursor_move_left();
+   EXPECT_EQ(-5, advanced_code_editor.cursor_get_x());
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, cursor_move_up__will_move_the_cursor_up)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SONNET_TEXT);
+
+   advanced_code_editor.cursor_move_to(45, 4);
+
+   EXPECT_EQ(true, advanced_code_editor.cursor_move_up());
+   EXPECT_EQ(3, advanced_code_editor.cursor_get_y());
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   cursor_move_up__will_not_move_up_if_at_or_past_the_top_edge_of_the_editor)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SONNET_TEXT);
+
+   advanced_code_editor.cursor_move_to(45, 0);
+
+   advanced_code_editor.cursor_move_up();
+   EXPECT_EQ(0, advanced_code_editor.cursor_get_y());
+
+   advanced_code_editor.cursor_move_to(45, -6);
+
+   advanced_code_editor.cursor_move_up();
+   EXPECT_EQ(-6, advanced_code_editor.cursor_get_y());
+}
+
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    cursor_move_to_end_of_line__will_move_the_cursor_to_the_last_character_on_the_line)
 {

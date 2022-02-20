@@ -251,6 +251,7 @@ functions:
   - name: cursor_move_up
     type: bool
     body: |
+      if (is_cursor_at_or_past_top_edge()) return false;
       cursor.move_up();
       return true;
 
@@ -258,6 +259,7 @@ functions:
   - name: cursor_move_down
     type: bool
     body: |
+      if (is_cursor_at_or_past_bottom_edge()) return false;
       cursor.move_down();
       return true;
 
@@ -265,6 +267,7 @@ functions:
   - name: cursor_move_left
     type: bool
     body: |
+      if (is_cursor_at_or_past_left_edge()) return false;
       cursor.move_left();
       return true;
 
@@ -445,6 +448,30 @@ functions:
       if (cursor.get_y() >= lines.size()) return false;
       if (cursor.get_y() < 0) return false;
       return true;
+
+
+  - name: is_cursor_at_or_past_left_edge
+    private: true
+    type: bool
+    body: |
+      if (cursor.get_x() <= 0) return true;
+      return false;
+
+
+  - name: is_cursor_at_or_past_top_edge
+    private: true
+    type: bool
+    body: |
+      if (cursor.get_y() <= 0) return true;
+      return false;
+
+
+  - name: is_cursor_at_or_past_bottom_edge
+    private: true
+    type: bool
+    body: |
+      if (cursor.get_y() >= (lines.size() - 1)) return true;
+      return false;
 
 
   - name: is_cursor_on_last_line
