@@ -95,6 +95,12 @@ properties:
     setter: true
     constructor_arg: true
 
+  - name: cursor_is_in_valid_range
+    type: bool
+    init_with: true
+    setter: true
+    constructor_arg: true
+
 
 functions:
 
@@ -300,8 +306,15 @@ functions:
     body: |
       float cursor_x = cursor->get_x() * text_mesh->get_cell_width();
       float cursor_y = (cursor->get_y() - first_row_offset) * text_mesh->get_cell_height() + text_mesh_y_offset;
+      // TODO
       ALLEGRO_COLOR cursor_color = ALLEGRO_COLOR{0.0f, 1.0f, 0.2f, 1.0f};
       ALLEGRO_COLOR h_cursor_color = ALLEGRO_COLOR{0.0f, 0.5f, 0.1f, 0.5f};
+
+      if (!cursor_is_in_valid_range)
+      {
+         cursor_color = ALLEGRO_COLOR{1.0f, 0.55f, 0.1f, 1.0f};
+         h_cursor_color = AllegroFlare::color::color(cursor_color, 0.5);
+      }
 
       if (cursor_is_bar)
       {
@@ -326,6 +339,7 @@ functions:
             cursor_color,
             2.0f
             );
+         // outer highlight
          al_draw_rounded_rectangle(
             cursor_x - 2,
             cursor_y - 2,

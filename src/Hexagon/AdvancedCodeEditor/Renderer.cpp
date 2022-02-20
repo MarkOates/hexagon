@@ -39,7 +39,7 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections, std::vector<CodeRange>* visual_selections, std::vector<CodeRange>* full_line_visual_selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font, bool content_is_modified, bool represents_symlink)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections, std::vector<CodeRange>* visual_selections, std::vector<CodeRange>* full_line_visual_selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool draw_line_numbers, ALLEGRO_FONT* font, bool content_is_modified, bool represents_symlink, bool cursor_is_in_valid_range)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
    , cursor(cursor)
@@ -58,6 +58,7 @@ Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surfa
    , font(font)
    , content_is_modified(content_is_modified)
    , represents_symlink(represents_symlink)
+   , cursor_is_in_valid_range(cursor_is_in_valid_range)
 {
 }
 
@@ -88,6 +89,12 @@ void Renderer::set_content_is_modified(bool content_is_modified)
 void Renderer::set_represents_symlink(bool represents_symlink)
 {
    this->represents_symlink = represents_symlink;
+}
+
+
+void Renderer::set_cursor_is_in_valid_range(bool cursor_is_in_valid_range)
+{
+   this->cursor_is_in_valid_range = cursor_is_in_valid_range;
 }
 
 
@@ -339,8 +346,15 @@ void Renderer::render_cursor()
       }
    float cursor_x = cursor->get_x() * text_mesh->get_cell_width();
    float cursor_y = (cursor->get_y() - first_row_offset) * text_mesh->get_cell_height() + text_mesh_y_offset;
+   // TODO
    ALLEGRO_COLOR cursor_color = ALLEGRO_COLOR{0.0f, 1.0f, 0.2f, 1.0f};
    ALLEGRO_COLOR h_cursor_color = ALLEGRO_COLOR{0.0f, 0.5f, 0.1f, 0.5f};
+
+   if (!cursor_is_in_valid_range)
+   {
+      cursor_color = ALLEGRO_COLOR{1.0f, 0.55f, 0.1f, 1.0f};
+      h_cursor_color = AllegroFlare::color::color(cursor_color, 0.5);
+   }
 
    if (cursor_is_bar)
    {
@@ -365,6 +379,7 @@ void Renderer::render_cursor()
          cursor_color,
          2.0f
          );
+      // outer highlight
       al_draw_rounded_rectangle(
          cursor_x - 2,
          cursor_y - 2,
