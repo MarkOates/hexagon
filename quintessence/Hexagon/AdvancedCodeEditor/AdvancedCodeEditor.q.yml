@@ -476,7 +476,7 @@ functions:
     private: true
     type: bool
     body: |
-      if (cursor.get_y() >= (lines.size() - 1)) return true;
+      if (cursor.get_y() >= ((int)lines.size() - 1)) return true;
       return false;
 
 

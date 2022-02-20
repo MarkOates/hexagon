@@ -242,6 +242,16 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    EXPECT_EQ(last_line_num, advanced_code_editor.cursor_get_y());
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, DISABLED__cursor_move_down__when_above_the_boundary__will_move_down)
+{
+   // TRUE
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, DISABLED__cursor_move_up__when_below_the_boundary__will_move_up)
+{
+   // TRUE
+}
+
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    cursor_move_to_end_of_line__will_move_the_cursor_to_the_last_character_on_the_line)
 {

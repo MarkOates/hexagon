@@ -414,7 +414,7 @@ bool AdvancedCodeEditor::is_cursor_at_or_past_top_edge()
 
 bool AdvancedCodeEditor::is_cursor_at_or_past_bottom_edge()
 {
-   if (cursor.get_y() >= (lines.size() - 1)) return true;
+   if (cursor.get_y() >= ((int)lines.size() - 1)) return true;
    return false;
 }
 
