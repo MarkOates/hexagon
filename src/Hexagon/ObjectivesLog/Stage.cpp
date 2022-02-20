@@ -2,6 +2,7 @@
 
 #include <Hexagon/ObjectivesLog/Stage.hpp>
 #include <Hexagon/ObjectivesLog/ObjectiveRenderer.hpp>
+#include <allegro5/allegro_primitives.h>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -63,6 +64,10 @@ void Stage::render()
    float objectives_height = 100;
    float spacing = 4;
    float y_cursor = 0;
+   int objective_item_num = 0;
+   ALLEGRO_COLOR cursor_box_color = ALLEGRO_COLOR{0, 1, 1, 1};
+   float cursor_box_thickness = 4.0;
+   float cursor_box_roundness = 4.0;
 
    place.start_transform();
    ALLEGRO_TRANSFORM list_offset_transform;
@@ -71,6 +76,7 @@ void Stage::render()
 
    for (auto &objective : objectives)
    {
+      bool cursor_is_over_current_objective = (objective_item_num == cursor_pos);
       Hexagon::ObjectivesLog::ObjectiveRenderer objective_renderer(
          font_bin,
          &objective,
@@ -79,8 +85,23 @@ void Stage::render()
       );
       objective_renderer.render();
 
+      if (cursor_is_over_current_objective)
+      {
+         al_draw_rounded_rectangle(
+            0,
+            0,
+            objectives_width,
+            objectives_height,
+            cursor_box_roundness,
+            cursor_box_roundness,
+            cursor_box_color,
+            cursor_box_thickness
+         );
+      }
+
       al_translate_transform(&list_offset_transform, 0, objectives_height + spacing);
       al_use_transform(&list_offset_transform);
+      objective_item_num++;
    }
 
    place.restore_transform();

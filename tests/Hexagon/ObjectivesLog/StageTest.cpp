@@ -51,6 +51,7 @@ TEST_F(Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture, render__does_
            false },
       });
    Hexagon::ObjectivesLog::Stage stage(&get_font_bin_ref(), &objectives_log);
+   stage.get_place() = build_centered_placement(700, 500);
 
    stage.render();
    al_flip_display();

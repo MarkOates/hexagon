@@ -812,6 +812,7 @@
     "Hexagon/Hud",
     "Hexagon/MissingFile/Stage",
     "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/Powerbar/Renderer"
   ],
