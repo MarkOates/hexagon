@@ -159,6 +159,7 @@ public:
    bool create_two_or_three_split_layout_from_last_component_navigator_selection();
    bool create_layout_from_last_project_navigator_selection();
    bool set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
+   bool set_regex_temp_file_contents_to_word_under_advanced_code_editor_cursor();
    bool commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores();
    bool push_to_git_remote();
    bool execute_magic_command();
@@ -219,6 +220,7 @@ public:
    static const std::string REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS;
+   static const std::string SET_REGEX_TEMP_FILE_CONTENTS_TO_WORD_UNDER_CURRENT_ADVANCED_CODE_EDITOR_CURSOR;
    static const std::string REMOVE_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string TOGGLE_COMMAND_MODE_ON;
    static const std::string TOGGLE_COMMAND_MODE_OFF;
