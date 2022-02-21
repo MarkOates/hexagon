@@ -38,7 +38,7 @@ std::vector<std::string> ComponentRelations::build_relatives_list()
 
 std::vector<std::string> ComponentRelations::build_dependencies_list()
 {
-   return {};
+   return { "Not/Yet/Implemented" };
 }
 } // namespace ComponentRelationsNavigator
 } // namespace Hexagon
