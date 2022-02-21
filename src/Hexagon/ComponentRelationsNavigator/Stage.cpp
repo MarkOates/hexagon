@@ -312,7 +312,7 @@ std::string Stage::get_current_selection_label_or_empty_string()
    }
    else if (is_currently_active_menu(&dependencies_menu))
    {
-      result = dependents_menu.get_current_list_item_identifier();
+      result = dependencies_menu.get_current_list_item_identifier();
    }
    else
    {
