@@ -3,6 +3,7 @@
 #include <Hexagon/ComponentRelationsNavigator/ComponentRelations.hpp>
 #include <Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.hpp>
 #include <Blast/Project/ComponentRelativeLister.hpp>
+#include <Blast/Project/ComponentDependencyLister.hpp>
 
 
 namespace Hexagon
@@ -38,8 +39,10 @@ std::vector<std::string> ComponentRelations::build_relatives_list()
 
 std::vector<std::string> ComponentRelations::build_dependencies_list()
 {
-   // TODO: fill out this list
-   return { "Not/Yet/Implemented" };
+   // TODO: test this functionality
+   Blast::Project::ComponentDependencyLister dependency_lister(&component);
+   std::vector<std::string> result_component_names = dependency_lister.list_component_dependency_names();
+   return result_component_names;
 }
 } // namespace ComponentRelationsNavigator
 } // namespace Hexagon

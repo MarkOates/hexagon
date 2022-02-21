@@ -36,13 +36,19 @@ functions:
   - name: build_dependencies_list
     type: std::vector<std::string>
     body: |
-      // TODO: fill out this list
-      return { "Not/Yet/Implemented" };
+      // TODO: test this functionality
+      Blast::Project::ComponentDependencyLister dependency_lister(&component);
+      std::vector<std::string> result_component_names = dependency_lister.list_component_dependency_names();
+      return result_component_names;
+    body_dependency_symbols:
+      - Blast::Project::ComponentDependencyLister
 
 
 dependencies:
 
 
+  - symbol: Blast::Project::ComponentDependencyLister
+    headers: [ Blast/Project/ComponentDependencyLister.hpp ]
   - symbol: Blast::Project::ComponentRelativeLister
     headers: [ Blast/Project/ComponentRelativeLister.hpp ]
   - symbol: Blast::Project::Component

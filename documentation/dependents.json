@@ -925,6 +925,9 @@
     "Hexagon/CodeRangeExtractor",
     "Hexagon/CodeSelectionBoxRenderer"
   ],
+  "Blast/Project/ComponentDependencyLister": [
+    "Hexagon/ComponentRelationsNavigator/ComponentRelations"
+  ],
   "Blast/Project/ComponentRelativeLister": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"
   ],
