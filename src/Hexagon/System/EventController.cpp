@@ -337,8 +337,8 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
 
 
    //                      set_mapping(al_keycode,         shift, ctrl,  alt,   command, std::vector<std::string>)
-   keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, {
-      ::System::DESTROY_TOPMOST_STAGE });
+   //keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_ESCAPE, false, false, false, false, {
+   //   ::System::DESTROY_TOPMOST_STAGE });
 
    if (system->is_current_stage_a_modal()) // should remove this principal
    {
