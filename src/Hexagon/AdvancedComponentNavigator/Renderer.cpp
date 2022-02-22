@@ -122,11 +122,6 @@ void Renderer::draw_search_text_box()
    return;
 }
 
-void Renderer::foobar()
-{
-   return;
-}
-
 void Renderer::render()
 {
    if (!(stage))

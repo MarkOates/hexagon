@@ -122,12 +122,6 @@ functions:
       return;
 
 
-  - name: foobar
-    type: void
-    body: |
-      return;
-
-
   - name: render
     type: void
     guards: [ stage, font ]
