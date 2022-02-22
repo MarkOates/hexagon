@@ -171,7 +171,7 @@ void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
 
       switch(event.type)
       {
-      case ALLEGRO_EVENT_KEY_DOWN:
+      case ALLEGRO_EVENT_KEY_CHAR:
          {
             switch (event.keyboard.keycode)
             {
