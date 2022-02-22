@@ -232,8 +232,6 @@ public:
    static const std::string RESET_CAMERA_TO_CENTER;
    static const std::string ROTATE_STAGE_LEFT;
    static const std::string ROTATE_STAGE_RIGHT;
-   static const std::string ROTATE_RELATIVE_UP;
-   static const std::string ROTATE_RELATIVE_DOWN;
    static const std::string RUN_PROJECT_TESTS;
    static const std::string SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK;
    static const std::string SEND_MESSAGE_TO_DAEMUS_TO_BUILD;
