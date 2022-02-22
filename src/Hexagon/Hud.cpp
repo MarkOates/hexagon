@@ -32,7 +32,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool render_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool render_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool render_focus_timer_bar, bool draw_notifications, float left_column_x)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool render_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool render_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool render_focus_timer_bar, bool render_build_sequence_meter, bool draw_notifications, float left_column_x)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -55,6 +55,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string 
    , draw_search_count(draw_search_count)
    , search_count(search_count)
    , render_focus_timer_bar(render_focus_timer_bar)
+   , render_build_sequence_meter(render_build_sequence_meter)
    , draw_notifications(draw_notifications)
    , left_column_x(left_column_x)
    , surface_projection_width(1920)
@@ -170,6 +171,12 @@ void Hud::set_search_count(int search_count)
 void Hud::set_render_focus_timer_bar(bool render_focus_timer_bar)
 {
    this->render_focus_timer_bar = render_focus_timer_bar;
+}
+
+
+void Hud::set_render_build_sequence_meter(bool render_build_sequence_meter)
+{
+   this->render_build_sequence_meter = render_build_sequence_meter;
 }
 
 
@@ -290,6 +297,12 @@ int Hud::get_search_count()
 bool Hud::get_render_focus_timer_bar()
 {
    return render_focus_timer_bar;
+}
+
+
+bool Hud::get_render_build_sequence_meter()
+{
+   return render_build_sequence_meter;
 }
 
 
@@ -722,7 +735,7 @@ void Hud::draw()
 
    if (render_focus_timer_bar) draw_focus_timer_bar();
 
-   draw_build_sequence_meter();
+   if (render_build_sequence_meter) draw_build_sequence_meter();
 
    if (show_disabled_screen)
    {

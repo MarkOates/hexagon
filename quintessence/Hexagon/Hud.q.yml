@@ -142,6 +142,13 @@ properties:
     getter: true
     constructor_arg: true
 
+  - name: render_build_sequence_meter
+    type: bool
+    init_with: true
+    setter: true
+    getter: true
+    constructor_arg: true
+
   - name: draw_notifications
     type: bool
     init_with: true
@@ -584,7 +591,7 @@ functions:
 
       if (render_focus_timer_bar) draw_focus_timer_bar();
 
-      draw_build_sequence_meter();
+      if (render_build_sequence_meter) draw_build_sequence_meter();
 
       if (show_disabled_screen)
       {

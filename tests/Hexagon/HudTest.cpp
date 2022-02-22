@@ -243,6 +243,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    Hexagon::Hud hud(display, font_bin); // TODO: font_bin is required for construction, but never used
                                         // in this use case.  Should probably be removed from the constructor
                                         // or changed to an AllegroFlare::FontBin*
+   hud.set_render_build_sequence_meter(false);
    hud.initialize();
    hud.set_stages(&stages);
 
@@ -250,7 +251,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   //sleep(2);
+   sleep(2);
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
