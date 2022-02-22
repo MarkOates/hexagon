@@ -72,6 +72,13 @@ public:
       place.size = vec3d(width, height, 0);
       return place;
    }
+
+   placement3d build_centered_placement(Hexagon::Hud &hud, float object_width, float object_height)
+   {
+      placement3d place(hud.get_surface_projection_width()/2, hud.get_surface_projection_height()/2, 0.0f);
+      place.size = vec3d(object_width, object_height, 0);
+      return place;
+   }
 };
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
@@ -231,20 +238,20 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    render__will_render_advanced_component_navigator_stages_that_are_marked_as_render_on_hud)
 {
-   Hexagon::AdvancedComponentNavigator::Stage stage;
-   stage.set_render_on_hud(true);
-   stage.get_place() = build_centered_placement(800, 700);
-   stage.set_font(font_bin["Menlo-Regular.ttf -20"]);
-   stage.set_font_bin(&font_bin);
-   stage.process_local_event("refresh_list");
-
-   std::vector<StageInterface *> stages = { &stage };
-
    Hexagon::Hud hud(display, font_bin); // TODO: font_bin is required for construction, but never used
                                         // in this use case.  Should probably be removed from the constructor
                                         // or changed to an AllegroFlare::FontBin*
    hud.set_render_build_sequence_meter(false);
    hud.initialize();
+
+   Hexagon::AdvancedComponentNavigator::Stage stage;
+   stage.get_place() = build_centered_placement(hud, 800, 700);
+   stage.set_render_on_hud(true);
+   stage.set_font(font_bin["Menlo-Regular.ttf -20"]);
+   stage.set_font_bin(&font_bin);
+   stage.process_local_event("refresh_list");
+
+   std::vector<StageInterface *> stages = { &stage };
    hud.set_stages(&stages);
 
    hud.draw();
