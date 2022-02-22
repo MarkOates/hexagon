@@ -309,8 +309,13 @@ TEST(Hexagon_System_ConfigTest,
 TEST(Hexagon_System_ConfigTest,
    get_initial_baseline_camera_stepback__returns_the_expected_value)
 {
+   al_init();
+
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
+   config.initialize();
    ASSERT_EQ(130, config.get_initial_baseline_camera_stepback());
+
+   al_uninstall_system();
 }
 
 TEST(Hexagon_System_ConfigTest, get_initial_baseline_camera_stepback__before_initialization__raises_an_error)
