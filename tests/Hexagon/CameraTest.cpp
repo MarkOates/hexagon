@@ -9,9 +9,16 @@
 #include <AllegroFlare/Vec2D.hpp>
 
 
-void _draw_grid(float x, float y, float width, float height, float spacing)
+void _draw_grid(
+      float x,
+      float y,
+      float width,
+      float height,
+      float spacing,
+      ALLEGRO_COLOR line_color=ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2}
+   )
 {
-   ALLEGRO_COLOR line_color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   //ALLEGRO_COLOR line_color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    float thickness = 1.0f;
 
    for (unsigned cursor_y=0; cursor_y<=height; cursor_y+=spacing)
@@ -42,10 +49,10 @@ void _draw_crosshair(float x, float y, ALLEGRO_COLOR color, float size, float th
 }
 
 
-void _draw_crosshair_grid(float x, float y, float width, float height, float spacing)
+void _draw_crosshair_grid(float x, float y, float width, float height, float spacing, float size=20.0f)
 {
    ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
-   float size = 20.0f;
+   //float size = 20.0f;
    float thickness = 1.0f;
 
    for (unsigned cursor_y=0; cursor_y<=height; cursor_y+=spacing)
@@ -105,7 +112,7 @@ void _draw_vertical_ruler(float x, float y, float length, float spacing)
    float thickness = 1.0f;
 
    al_draw_line(x, y, x, y + length, color, thickness);
-   for (unsigned cursor_y=0; cursor_y<=length; cursor_y+=spacing)
+   for (int cursor_y=0; cursor_y<=length; cursor_y+=spacing)
    {
       al_draw_line(-hcross_line_length, cursor_y, hcross_line_length, cursor_y, color, thickness);
    }
@@ -182,7 +189,7 @@ void _draw_vertical_pin_lines(float x, float y, float width, float height, float
    //float height = 300;
    //float spacing = 10;
 
-   for (unsigned i=0; i<=width; i+=spacing)
+   for (int i=0; i<=width; i+=spacing)
    {
       al_draw_line(x+i, y, x+i, y+height, color, thickness);
    }
@@ -208,7 +215,7 @@ void _draw_horizontal_pin_lines(float x, float y, float width, float height, flo
 
 void _draw_diagonal_pin_lines_in_box(float x, float y, float size, float spacing)
 {
-   // This approach is failing.  Need time to step away from the problem.
+   // TODO: This approach is failing.  Need time to step away from the problem.
 
    ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    float thickness = 1.0f;
@@ -340,23 +347,45 @@ TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, setup_camera_perspective_
    ALLEGRO_BITMAP *bitmap = al_get_backbuffer(display);
    Hexagon::Camera camera;
    camera.setup_camera_perspective(bitmap);
+   //al_flip_display();
+   //sleep(2);
+}
 
-   //_draw_grid(500, 500, 50);
-   //_draw_grid(500, 500, 500);
-   //_draw_grid(500, 500, 250);
-   //_draw_crosshair(0, 0, ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2}, 30.0, 2.0);
 
-   //_draw_crosshair_grid(-500, -500, 1000, 1000, 100);
+TEST_F(Hexagon_CameraTest_WithAllegroRenderingFixture, position_rotation_stepback_tilt_and_zoom_work_together)
+{
+   Hexagon::Camera camera;
 
-   _draw_vertical_ruler(0, 0, 500, 10);
-   _draw_numbered_vertical_ruler(obtain_font(), -20, 0, 500, 100);
-   _draw_horizontal_ruler(0, 0, 500, 10);
-   _draw_numbered_horizontal_ruler(obtain_font(), 0, -20, 500, 100);
+   vec3d &camera_position = camera.get_position_ref();
+   vec3d &camera_stepback = camera.get_stepback_ref();
+   vec3d &camera_rotation = camera.get_rotation_ref();
 
-   //_draw_horizontal_pin_lines(0, 0, 400, 300, 10);
-   //_draw_vertical_pin_lines(0, 0, 400, 300, 10);
-   //_draw_diagonal_pin_lines(0, 0, 400, 300, 10);
-   _draw_diagonal_pin_lines_in_box(0, 0, 400, 10);
+   camera_position.x = 150;
+   camera_position.y = 150;
+
+   camera_rotation.x = 0.2;  // rotates around the horizontal axis  <------------------->
+
+   camera_rotation.y = 0.2;  // rotates around the horizontal axis ^
+                               //                                    |
+                               //                                    |
+                               //                                    |
+                               //                                    |
+                               //                                    v
+
+   //camera_rotation.z = 0.5;  // currently has no effect, otherwise would "rotate" 2D-like on the screen plane
+
+   camera_stepback = vec3d(0, 0, -300);
+
+   {
+      camera.setup_camera_perspective(al_get_backbuffer(display));
+   
+      _draw_vertical_ruler(0, 0, 500, 10);
+      _draw_numbered_vertical_ruler(obtain_font(), -20, 0, 500, 100);
+      _draw_horizontal_ruler(0, 0, 500, 10);
+      _draw_numbered_horizontal_ruler(obtain_font(), 0, -20, 500, 100);
+      _draw_crosshair_grid(0, 0, 500, 500, 100, 10);
+      _draw_crosshair_grid(0, 0, 500, 500, 500, 20);
+   }
 
    al_flip_display();
 
