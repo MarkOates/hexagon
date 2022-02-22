@@ -109,6 +109,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config)
    , focused_component_name("")
    , mouse_x(0)
    , mouse_y(0)
+   , baseline_camera_stepback(160)
    , drawing_mouse_cursor(false)
    , display(display)
    , config(config)
@@ -148,7 +149,9 @@ void System::initialize()
    hud.set_render_focus_timer_bar(config.get_hud_render_focus_timer_bar());
    hud.initialize();
 
-   camera.get_stepback_ref().z = get_default_camera_stepback();
+   baseline_camera_stepback = config.get_default_camera_stepback();
+   
+   camera.get_stepback_ref().z = baseline_camera_stepback;
 
    //process_local_event(EXECUTE_MAGIC_COMMAND);
 }
@@ -178,9 +181,9 @@ int System::get_display_default_height()
 }
 
 
-float System::get_default_camera_stepback()
+float System::get_baseline_camera_stepback()
 {
-   return config.get_default_camera_stepback();
+   return baseline_camera_stepback;
 }
 
 
@@ -625,8 +628,8 @@ bool System::toggle_command_mode_on()
 
    if (command_mode) return true;
 
-   //float camera_zoomed_out_position = get_default_camera_stepback() + 40;
-   float camera_zoomed_out_position = get_default_camera_stepback();
+   //float camera_zoomed_out_position = get_baseline_camera_stepback() + 40;
+   float camera_zoomed_out_position = get_baseline_camera_stepback();
    //camera.rotation.x = 0.035;
    //float camera_x_rotation_in_zoomed_out_position = 0.035;
    float camera_x_rotation_in_zoomed_out_position = 0.0;
@@ -666,7 +669,7 @@ bool System::reset_camera_to_center()
 
    if (!command_mode) return true;
 
-   float camera_zoomed_in_position = get_default_camera_stepback();
+   float camera_zoomed_in_position = get_baseline_camera_stepback();
    //camera.rotation.x = 0;
 
    motion.canimate(&camera.get_rotation_ref().x,

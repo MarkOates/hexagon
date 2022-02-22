@@ -28,6 +28,7 @@ private:
    std::string focused_component_name;
    float mouse_x;
    float mouse_y;
+   float baseline_camera_stepback;
    bool drawing_mouse_cursor;
 
    ALLEGRO_DISPLAY *display;
@@ -58,7 +59,7 @@ public:
    void initialize();
    int get_display_default_width();
    int get_display_default_height();
-   float get_default_camera_stepback();
+   float get_baseline_camera_stepback();
    float get_default_code_editor_stage_width();
    float get_default_code_editor_stage_height();
    std::string get_current_project_directory();
