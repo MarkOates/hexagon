@@ -33,8 +33,12 @@ functions:
             &::Hexagon::System::System::spawn_drawing_box,
          },
          {
-            ::System::PULL_BACK_CAMERA_TO_OFF_AXIS,
-            &::Hexagon::System::System::pull_back_camera_to_off_axis,
+            ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
+            &::Hexagon::System::System::pull_back_camera_to_off_axis_left,
+         },
+         {
+            ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_RIGHT,
+            &::Hexagon::System::System::pull_back_camera_to_off_axis_right,
          },
          {
             ::System::SEND_MESSAGE_TO_DAEMUS_TO_BUILD,
@@ -356,16 +360,16 @@ functions:
                });
             keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, {
                ::System::SPAWN_FILE_NAVIGATOR,
-               ::System::PULL_BACK_CAMERA_TO_OFF_AXIS,
+               ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
              });
             keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
                ::System::SPAWN_COMPONENT_NAVIGATOR,
-               ::System::PULL_BACK_CAMERA_TO_OFF_AXIS,
+               ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
              });
             keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_Z, KEYMOD_CTRL, { ::System::SPAWN_FANCY });
             keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, false, false, false, {
                ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR,
-               ::System::PULL_BACK_CAMERA_TO_OFF_AXIS,
+               ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_RIGHT,
              });
             keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, true, false, false, false, {
                ::System::SPAWN_CLASS_BRIEF_MENU });

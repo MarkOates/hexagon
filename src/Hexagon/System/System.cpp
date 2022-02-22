@@ -819,7 +819,7 @@ bool System::rotate_stage_left_and_update_focused_state_on_changed_stages()
 }
 
 
-bool System::pull_back_camera_to_off_axis()
+bool System::pull_back_camera_to_off_axis_left()
 {
    vec3d target_position = camera.get_position_ref();
    vec3d target_rotation = vec3d(0, 0, 0); //camera.get_rotation_ref();
@@ -829,7 +829,34 @@ bool System::pull_back_camera_to_off_axis()
    target_position.z = 70; //camera_position.z;
 
    //target_rotation.x = 0.1;
-   //target_rotation.y = 0.1;
+   target_rotation.y = 0.1;
+   //target_position.z = 0;
+
+   float speed = 1.2f;
+
+   motion.cmove_to(&camera.get_position_ref().x, target_position.x, speed, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_position_ref().y, target_position.y, speed, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_position_ref().z, target_position.z, speed, interpolator::tripple_fast_in);
+
+   motion.cmove_to(&camera.get_rotation_ref().x, target_rotation.x, speed, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().y, target_rotation.y, speed, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().z, target_rotation.z, speed, interpolator::tripple_fast_in);
+
+   return true;
+}
+
+
+bool System::pull_back_camera_to_off_axis_right()
+{
+   vec3d target_position = camera.get_position_ref();
+   vec3d target_rotation = vec3d(0, 0, 0); //camera.get_rotation_ref();
+
+   target_position.x = target_position.x;
+   target_position.y = target_position.y;
+   target_position.z = 70; //camera_position.z;
+
+   //target_rotation.x = 0.1;
+   target_rotation.y = -0.1;
    //target_position.z = 0;
 
    float speed = 1.2f;
@@ -1123,6 +1150,35 @@ bool System::spawn_component_navigator()
 
    placement3d &place = stage->get_place();
    //place.rotation.y = 0.2; // hud rendered items will not appear in 3D
+
+   place.position.z = 300;
+
+
+   bool do_fancy_stuff_with_position_and_movement = true;
+   if (do_fancy_stuff_with_position_and_movement)
+   {
+      vec3d target_position = place.position;
+      vec3d target_rotation = vec3d(0, 0, 0); //camera.get_rotation_ref();
+
+      target_position.x = 200; //target_position.x;
+      target_position.y = target_position.y;
+      target_position.z = target_position.z + 40; //camera_position.z;
+
+      target_rotation.x = target_rotation.x;
+      target_rotation.y = -0.02; //target_rotation.y;
+      target_rotation.z = target_rotation.z;
+
+      float speed = 0.6f;
+
+      motion.cmove_to(&place.position.x, target_position.x, speed, interpolator::tripple_fast_in);
+      motion.cmove_to(&place.position.y, target_position.y, speed, interpolator::tripple_fast_in);
+      motion.cmove_to(&place.position.z, target_position.z, speed, interpolator::tripple_fast_in);
+
+      motion.cmove_to(&place.rotation.x, target_rotation.x, speed, interpolator::tripple_fast_in);
+      motion.cmove_to(&place.rotation.y, target_rotation.y, speed, interpolator::tripple_fast_in);
+      motion.cmove_to(&place.rotation.z, target_rotation.z, speed, interpolator::tripple_fast_in);
+   }
+
 
    stages.push_back(stage);
 
@@ -1796,7 +1852,8 @@ const std::string System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE = "WRITE_FOCUSED_
 const std::string System::ADD_FILE_IS_UNSAVED_NOTIFICATION = "ADD_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
-const std::string System::PULL_BACK_CAMERA_TO_OFF_AXIS = "PULL_BACK_CAMERA_TO_OFF_AXIS";
+const std::string System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT = "PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT";
+const std::string System::PULL_BACK_CAMERA_TO_OFF_AXIS_RIGHT = "PULL_BACK_CAMERA_TO_OFF_AXIS_RIGHT";
 const std::string System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION = "SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION";
 const std::string System::CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION =
    "CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION";
