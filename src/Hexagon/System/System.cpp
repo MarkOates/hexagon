@@ -817,16 +817,26 @@ bool System::rotate_stage_left_and_update_focused_state_on_changed_stages()
 
 bool System::pull_back_camera_to_off_axis()
 {
-   vec3d &camera_position = camera.get_position_ref();
-   vec3d &camera_rotation = camera.get_rotation_ref();
+   vec3d target_position = camera.get_position_ref();
+   vec3d target_rotation = vec3d(0, 0, 0); //camera.get_rotation_ref();
 
-   camera_position.x = camera_position.x;
-   camera_position.y = camera_position.y;
-   camera_position.z = 100; //camera_position.z;
+   target_position.x = target_position.x;
+   target_position.y = target_position.y;
+   target_position.z = 70; //camera_position.z;
 
-   //camera_rotation.x = 0.1;
-   //camera_rotation.y = 0.1;
-   //camera_position.z = 100; //camera_position.z;
+   //target_rotation.x = 0.1;
+   //target_rotation.y = 0.1;
+   //target_position.z = 0;
+
+   float speed = 1.2f;
+
+   motion.cmove_to(&camera.get_position_ref().x, target_position.x, speed, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_position_ref().y, target_position.y, speed, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_position_ref().z, target_position.z, speed, interpolator::tripple_fast_in);
+
+   motion.cmove_to(&camera.get_rotation_ref().x, target_rotation.x, speed, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().y, target_rotation.y, speed, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().z, target_rotation.z, speed, interpolator::tripple_fast_in);
 
    return true;
 }
