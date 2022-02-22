@@ -6,7 +6,6 @@
 #include <Hexagon/OneLineInputBox/Renderer.hpp>
 #include <Hexagon/CodeEditor/Renderer.hpp>
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
-#include <Hexagon/CodeEditor/FileCategoryDecorator.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/CodeEditor/EventController.hpp>

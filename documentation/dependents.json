@@ -910,13 +910,11 @@
   ],
   "Hexagon/CodeEditor/FileCategoryDecorator": [
     "Hexagon/CodeEditor/Stage",
-    "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/OneLineInputBox/Stage"
   ],
   "Hexagon/Elements/FontCharacterMapGrid": [
     "Hexagon/CodeEditor/Stage",
     "Hexagon/Elements/TextMesh",
-    "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/OneLineInputBox/Stage"
   ],
   "CodeMessagePoint": [
