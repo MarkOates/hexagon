@@ -1134,6 +1134,12 @@
   ":GitCommitMessageInputBox/EventController": [
     "Hexagon/GitCommitMessageInputBox/Stage"
   ],
+  "sin": [
+    "Hexagon/Hud"
+  ],
+  "Hexagon/Camera": [
+    "Hexagon/Hud"
+  ],
   "Hexagon/Powerbar/Powerbar": [
     "Hexagon/Hud",
     "Hexagon/Powerbar/Renderer",

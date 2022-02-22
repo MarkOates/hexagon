@@ -11,6 +11,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+
 #include <allegro_flare/placement3d.h>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -241,7 +242,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    Hexagon::Hud hud(display, font_bin); // TODO: font_bin is required for construction, but never used
                                         // in this use case.  Should probably be removed from the constructor
                                         // or changed to an AllegroFlare::FontBin*
-   hud.set_render_build_sequence_meter(false);
+   //hud.set_render_build_sequence_meter(false);
    hud.initialize();
 
    Hexagon::AdvancedComponentNavigator::Stage stage;
@@ -254,11 +255,15 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    std::vector<StageInterface *> stages = { &stage };
    hud.set_stages(&stages);
 
-   hud.draw();
+   int passes = 60 * 3;
+   for (unsigned i=0; i<passes; i++)
+   {
+      al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 0});
+      hud.draw();
+      al_flip_display();
+   }
 
-   al_flip_display();
-
-   sleep(2);
+   //sleep(2);
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,

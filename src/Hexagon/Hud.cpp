@@ -9,6 +9,7 @@
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
 #include <allegro_flare/useful_php.h>
 #include <allegro_flare/placement2d.h>
+#include <math.h>
 #include <algorithm>
 #include <allegro_flare/placement3d.h>
 #include <allegro5/allegro_font.h>
@@ -21,6 +22,7 @@
 #include <Hexagon/PacketRenderer.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+#include <Hexagon/Camera.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -650,6 +652,21 @@ void Hud::draw()
       StageInterface::MULTIPLEX_MENU,
    };
 
+   // alternatively using a camera
+   bool using_camera = false;
+   if (using_camera)
+   {
+      Hexagon::Camera camera;
+      vec3d &camera_position = camera.get_position_ref();
+      vec3d &camera_stepback = camera.get_stepback_ref();
+      vec3d &camera_rotation = camera.get_rotation_ref();
+      camera_position.x = frame_width / 2; //al_get_display_width(display)/2;
+      camera_position.y = frame_height / 2; //al_get_display_height(display)/2;
+      camera_stepback.z = 0; //(sin(al_get_time()) * 100);
+      camera.setup_camera_perspective(screen_sub_bitmap);
+      al_clear_depth_buffer(1000);
+   }
+
    bool draw_stages = true;
    if (draw_stages && stages)
    {
@@ -756,15 +773,33 @@ void Hud::set_orthographic_projection(ALLEGRO_BITMAP* bitmap, float left, float 
    ALLEGRO_TRANSFORM trans;
    al_identity_transform(&trans);
    float h_depth = 200;
-   al_orthographic_transform(
-         &trans,
-         left,
-         top,
-         -1.0 * h_depth,
-         right,
-         bottom,
-         1.0 * h_depth
-      );
+
+   bool using_ortho = true;
+   if (using_ortho)
+   {
+      al_orthographic_transform(
+            &trans,
+            left,
+            top,
+            -1.0 * h_depth,
+            right,
+            bottom,
+            1.0 * h_depth
+         );
+   }
+   else
+   {
+      // NOTE: This doesn't work
+      al_perspective_transform(
+            &trans,
+            left - 500,
+            top - 500,
+            -2000, //-1.0 * h_depth + 350,
+            right + 500,
+            bottom + 500,
+            2000 //1.0 * h_depth + 350
+         );
+   }
 
    ALLEGRO_STATE previous_target_bitmap_state;
    al_store_state(&previous_target_bitmap_state, ALLEGRO_STATE_TARGET_BITMAP);
