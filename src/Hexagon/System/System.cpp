@@ -824,15 +824,15 @@ bool System::pull_back_camera_to_off_axis_left()
    vec3d target_position = camera.get_position_ref();
    vec3d target_rotation = vec3d(0, 0, 0); //camera.get_rotation_ref();
 
-   target_position.x = target_position.x;
-   target_position.y = target_position.y;
+   target_position.x = 0; //target_position.x;
+   target_position.y = 0; //target_position.y;
    target_position.z = 70; //camera_position.z;
 
    //target_rotation.x = 0.1;
    target_rotation.y = 0.1;
    //target_position.z = 0;
 
-   float speed = 1.2f;
+   float speed = 0.8; //1.2f;
 
    motion.cmove_to(&camera.get_position_ref().x, target_position.x, speed, interpolator::tripple_fast_in);
    motion.cmove_to(&camera.get_position_ref().y, target_position.y, speed, interpolator::tripple_fast_in);
@@ -851,15 +851,15 @@ bool System::pull_back_camera_to_off_axis_right()
    vec3d target_position = camera.get_position_ref();
    vec3d target_rotation = vec3d(0, 0, 0); //camera.get_rotation_ref();
 
-   target_position.x = target_position.x;
-   target_position.y = target_position.y;
+   target_position.x = 0; //target_position.x;
+   target_position.y = 0; //target_position.y;
    target_position.z = 70; //camera_position.z;
 
    //target_rotation.x = 0.1;
    target_rotation.y = -0.1;
    //target_position.z = 0;
 
-   float speed = 1.2f;
+   float speed = 0.8f; //1.2f;
 
    motion.cmove_to(&camera.get_position_ref().x, target_position.x, speed, interpolator::tripple_fast_in);
    motion.cmove_to(&camera.get_position_ref().y, target_position.y, speed, interpolator::tripple_fast_in);
@@ -1260,6 +1260,7 @@ bool System::destroy_topmost_stage()
 {
    if (stages.size() >= 1)
    {
+      // TODO: clear motions for stage params
       delete stages.back();
       stages.pop_back();
       return true;
