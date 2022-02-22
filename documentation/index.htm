@@ -111,6 +111,7 @@ table td
   <li><a href="#quintessence/Hexagon/Elements/FontedTextGrid.q.yml">quintessence/Hexagon/Elements/FontedTextGrid.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/Frame.q.yml">quintessence/Hexagon/Elements/Frame.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/ListMenu.q.yml">quintessence/Hexagon/Elements/ListMenu.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/Pill.q.yml">quintessence/Hexagon/Elements/Pill.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/QuoteRenderer.q.yml">quintessence/Hexagon/Elements/QuoteRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/SingleBlockBarGraph.q.yml">quintessence/Hexagon/Elements/SingleBlockBarGraph.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/StageInfoOverlay.q.yml">quintessence/Hexagon/Elements/StageInfoOverlay.q.yml</a></li>
@@ -4099,6 +4100,70 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::transform&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Elements/Pill.q.yml">quintessence/Hexagon/Elements/Pill.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
+  <td class="property">x</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">y</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">width</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">height</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">label</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">color</td>
+  <td class="property">ALLEGRO_COLOR</td>
+</tr>
+<tr>
+  <td class="property">font_color</td>
+  <td class="property">ALLEGRO_COLOR</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="private_method">obtain_font()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_COLOR&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_color.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_draw_text&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_draw_filled_rectangle&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_primitives.h&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -10550,6 +10615,7 @@ table td
     "Hexagon/Elements/Frame",
     "Hexagon/Elements/Frame",
     "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/Pill",
     "Hexagon/Elements/SingleBlockBarGraph",
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Elements/TextGrid",
@@ -10605,6 +10671,7 @@ table td
     "Hexagon/Elements/FontedTextGrid",
     "Hexagon/Elements/Frame",
     "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/Pill",
     "Hexagon/Elements/QuoteRenderer",
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Elements/SubBitmapCharacterMap",
@@ -10769,6 +10836,7 @@ table td
     "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/Frame",
     "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/Pill",
     "Hexagon/Elements/QuoteRenderer",
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Fancy/Stage",
@@ -11000,6 +11068,7 @@ table td
     "Hexagon/CodeSelectionBoxRenderer",
     "Hexagon/Elements/FlashingGrid",
     "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/Pill",
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Elements/TextGrid",
     "Hexagon/Fancy/Stage",
@@ -11133,6 +11202,7 @@ table td
     "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/Elements/Frame",
+    "Hexagon/Elements/Pill",
     "Hexagon/Elements/QuoteRenderer",
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Fancy/Stage",

@@ -28,15 +28,17 @@ TEST_F(Hexagon_Elements_PillTest, render__without_allegro_initialized__raises_an
 {
    Hexagon::Elements::Pill pill;
    std::string expected_error_message =
-      "XXXXXXX::render: error: guard \"al_is_system_installed()\" not met";
+      "Pill::render: error: guard \"al_is_system_installed()\" not met";
    ASSERT_THROW_WITH_MESSAGE(pill.render(), std::runtime_error, expected_error_message);
 }
 
 
 TEST_F(Hexagon_Elements_PillTestWithAllegroRenderingFixture, render__will_not_blow_up)
 {
-   Hexagon::Elements::Pill pill;
+   Hexagon::Elements::Pill pill(&get_font_bin_ref());
    pill.render();
+   al_flip_display();
+   sleep(2);
    SUCCEED();
 }
 
