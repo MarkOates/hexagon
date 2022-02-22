@@ -815,6 +815,23 @@ bool System::rotate_stage_left_and_update_focused_state_on_changed_stages()
 }
 
 
+bool System::pull_back_camera_to_off_axis()
+{
+   vec3d &camera_position = camera.get_position_ref();
+   vec3d &camera_rotation = camera.get_rotation_ref();
+
+   camera_position.x = camera_position.x;
+   camera_position.y = camera_position.y;
+   camera_position.z = 100; //camera_position.z;
+
+   //camera_rotation.x = 0.1;
+   //camera_rotation.y = 0.1;
+   //camera_position.z = 100; //camera_position.z;
+
+   return true;
+}
+
+
 bool System::center_camera_on_frontmost_stage()
 {
    //if (!motion) throw std::runtime_error(">BOOM< invalid motion: center_camera... need motion");
@@ -831,13 +848,13 @@ bool System::center_camera_on_frontmost_stage()
    vec3d target = place.position;
    //camera.position = target;
 
-   motion.cmove_to(&camera.get_position_ref().x, target.x, 0.2, interpolator::double_fast_in);
-   motion.cmove_to(&camera.get_position_ref().y, target.y, 0.2, interpolator::double_fast_in);
-   motion.cmove_to(&camera.get_position_ref().z, target.z, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.get_position_ref().x, target.x, 0.3, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_position_ref().y, target.y, 0.3, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_position_ref().z, target.z, 0.3, interpolator::tripple_fast_in);
 
-   motion.cmove_to(&camera.get_rotation_ref().x, 0.0f, 0.2, interpolator::double_fast_in);
-   motion.cmove_to(&camera.get_rotation_ref().y, 0.0f, 0.2, interpolator::double_fast_in);
-   motion.cmove_to(&camera.get_rotation_ref().z, 0.0f, 0.2, interpolator::double_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().x, 0.0f, 0.3, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().y, 0.0f, 0.3, interpolator::tripple_fast_in);
+   motion.cmove_to(&camera.get_rotation_ref().z, 0.0f, 0.3, interpolator::tripple_fast_in);
 
    return true;
 }
@@ -1762,6 +1779,7 @@ const std::string System::WRITE_FOCUSED_COMPONENT_NAME_TO_FILE = "WRITE_FOCUSED_
 const std::string System::ADD_FILE_IS_UNSAVED_NOTIFICATION = "ADD_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::REMOVE_FILE_IS_UNSAVED_NOTIFICATION = "REMOVE_FILE_IS_UNSAVED_NOTIFICATION";
 const std::string System::CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION = "CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION";
+const std::string System::PULL_BACK_CAMERA_TO_OFF_AXIS = "PULL_BACK_CAMERA_TO_OFF_AXIS";
 const std::string System::SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION = "SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION";
 const std::string System::CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION =
    "CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION";

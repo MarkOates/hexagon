@@ -46,6 +46,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          &::Hexagon::System::System::spawn_drawing_box,
       },
       {
+         ::System::PULL_BACK_CAMERA_TO_OFF_AXIS,
+         &::Hexagon::System::System::pull_back_camera_to_off_axis,
+      },
+      {
          ::System::SEND_MESSAGE_TO_DAEMUS_TO_BUILD,
          &::Hexagon::System::System::send_message_to_daemus_to_build,
       },
@@ -367,12 +371,18 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
             ::System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL,
             });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, {
-            ::System::SPAWN_FILE_NAVIGATOR });
+            ::System::SPAWN_FILE_NAVIGATOR,
+            ::System::PULL_BACK_CAMERA_TO_OFF_AXIS,
+          });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
-            ::System::SPAWN_COMPONENT_NAVIGATOR });
+            ::System::SPAWN_COMPONENT_NAVIGATOR,
+            ::System::PULL_BACK_CAMERA_TO_OFF_AXIS,
+          });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_Z, KEYMOD_CTRL, { ::System::SPAWN_FANCY });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, false, false, false, {
-            ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR });
+            ::System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR,
+            ::System::PULL_BACK_CAMERA_TO_OFF_AXIS,
+          });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, true, false, false, false, {
             ::System::SPAWN_CLASS_BRIEF_MENU });
       }

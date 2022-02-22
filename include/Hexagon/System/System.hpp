@@ -122,6 +122,7 @@ public:
    bool reset_camera_to_center();
    bool rotate_stage_right_and_update_focused_state_on_changed_stages();
    bool rotate_stage_left_and_update_focused_state_on_changed_stages();
+   bool pull_back_camera_to_off_axis();
    bool center_camera_on_frontmost_stage();
    bool run_project_tests();
    bool save_frontmost_code_editor_stage_and_touch_if_symlink();
@@ -193,6 +194,7 @@ public:
    static const std::string WRITE_FOCUSED_COMPONENT_NAME_TO_FILE;
    static const std::string ADD_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION;
+   static const std::string PULL_BACK_CAMERA_TO_OFF_AXIS;
    static const std::string SPAWN_FILE_NAVIGATOR_FROM_LAST_FILE_NAVIGATOR_FOLDER_SELECTION;
    static const std::string CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION;
