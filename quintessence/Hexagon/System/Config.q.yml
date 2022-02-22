@@ -61,6 +61,11 @@ properties:
     static: true
     const: true
     init_with: '"fullscreen"'
+  - name: INITIAL_BASELINE_CAMERA_STEPBACK_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: '"initial_baseline_camera_stepback"'
   - name: config_filename
     type: std::string
     constructor_arg: true
@@ -177,10 +182,12 @@ functions:
       return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
 
 
-  - name: get_default_camera_stepback
+  - name: get_initial_baseline_camera_stepback
     type: int
+    guards: [ initialized ]
     body: |
-     return 130;
+      validate_initialized(__FUNCTION__);
+      return config.get_or_default_int("", INITIAL_BASELINE_CAMERA_STEPBACK_KEY, 130);
 
 
   - name: is_dark_mode

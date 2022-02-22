@@ -12,6 +12,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -54,6 +56,9 @@ std::string Config::HUD_RENDER_FOCUS_TIMER_BAR_KEY = "hud_render_focus_timer_bar
 
 
 std::string Config::FULLSCREEN_KEY = "fullscreen";
+
+
+std::string Config::INITIAL_BASELINE_CAMERA_STEPBACK_KEY = "initial_baseline_camera_stepback";
 
 
 Config::Config(std::string config_filename)
@@ -165,9 +170,16 @@ std::string Config::get_font_bin_path()
    return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
 }
 
-int Config::get_default_camera_stepback()
+int Config::get_initial_baseline_camera_stepback()
 {
-   return 130;
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "Config" << "::" << "get_initial_baseline_camera_stepback" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   validate_initialized(__FUNCTION__);
+   return config.get_or_default_int("", INITIAL_BASELINE_CAMERA_STEPBACK_KEY, 130);
 }
 
 bool Config::is_dark_mode()

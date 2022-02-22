@@ -149,7 +149,7 @@ void System::initialize()
    hud.set_render_focus_timer_bar(config.get_hud_render_focus_timer_bar());
    hud.initialize();
 
-   baseline_camera_stepback = config.get_default_camera_stepback();
+   baseline_camera_stepback = config.get_initial_baseline_camera_stepback();
    
    camera.get_stepback_ref().z = baseline_camera_stepback;
 

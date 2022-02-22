@@ -26,6 +26,7 @@ namespace Hexagon
          static std::string DARK_MODE_KEY;
          static std::string HUD_RENDER_FOCUS_TIMER_BAR_KEY;
          static std::string FULLSCREEN_KEY;
+         static std::string INITIAL_BASELINE_CAMERA_STEPBACK_KEY;
          std::string config_filename;
          AllegroFlare::Config config;
          bool initialized;
@@ -47,7 +48,7 @@ namespace Hexagon
          std::string get_make_command_filename();
          std::string get_focused_component_filename();
          std::string get_font_bin_path();
-         int get_default_camera_stepback();
+         int get_initial_baseline_camera_stepback();
          bool is_dark_mode();
          bool is_fullscreen();
          bool get_hud_render_focus_timer_bar();
