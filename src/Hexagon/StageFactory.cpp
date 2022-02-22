@@ -484,10 +484,10 @@ StageInterface* StageFactory::create_advanced_component_navigator()
                                                 // this refresh should be part of an operation that
                                                 // happens after the creation, or something like that
    result->set_font_bin(font_bin);
-   result->set_render_on_hud(true);
+   result->set_render_on_hud(false);
    result->set_base_text_color(obtain_base_text_color());
    result->set_base_backfill_color(obtain_base_backfill_color());
-   result->set_place(build_component_navigator_initial_place());
+   result->set_place(build_centered_on_hud_initial_place(800, 700));
 
    // properties previously assigned at render time:
    ALLEGRO_DISPLAY *display = get_current_display();
@@ -529,22 +529,6 @@ placement3d StageFactory::build_centered_on_hud_initial_place(float width, float
    //result.position = vec3d(get_display_width(display)/2, al_get_display_height(display)/2, 0);
    result.position = vec3d(surface_width/2, surface_height/2, 0);
    result.size = vec3d(width, height, 0);
-   result.align = vec3d(0.5, 0.5, 0.5);
-   result.scale = vec3d(1.0, 1.0, 1.0);
-   result.rotation = vec3d(0.0, 0.0, 0.0);
-   return result;
-}
-
-placement3d StageFactory::build_component_navigator_initial_place()
-{
-   ALLEGRO_DISPLAY *display = get_current_display();
-   float surface_width = get_hud_render_surface_projection_width();
-   float surface_height = get_hud_render_surface_projection_height();
-   placement3d result;
-   //result.position = vec3d(get_display_width(display)/2, al_get_display_height(display)/2, 0);
-   result.position = vec3d(surface_width/2, surface_height/2, 0);
-   //placement3d result;
-   result.size = vec3d(800, 700, 0);
    result.align = vec3d(0.5, 0.5, 0.5);
    result.scale = vec3d(1.0, 1.0, 1.0);
    result.rotation = vec3d(0.0, 0.0, 0.0);
