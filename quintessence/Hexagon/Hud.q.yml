@@ -191,6 +191,12 @@ properties:
     getter: true
     setter: true
 
+  - name: show_caps_lock_notification_light
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
+
 
 functions:
 
@@ -477,6 +483,21 @@ functions:
       }
       return;
     body_dependency_symbols: []
+
+
+  - name: draw_caps_lock_notification_light
+    type: void
+    parameters:
+      - name: active
+        type: bool
+        default_argument: false
+    guards: [ initialized, al_is_primitives_addon_initialized() ]
+    body: |
+      //TODO: fill out this drawing
+      //ALLEGRO_KEY_SCROLLLOCK
+      //ALLEGRO_KEY_NUMLOCK
+      //ALLEGRO_KEY_CAPSLOCK
+      return;
 
 
   - name: draw

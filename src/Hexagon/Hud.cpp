@@ -9,6 +9,8 @@
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
 #include <allegro_flare/useful_php.h>
 #include <allegro_flare/placement2d.h>
+#include <stdexcept>
+#include <sstream>
 #include <math.h>
 #include <algorithm>
 #include <allegro_flare/placement3d.h>
@@ -65,6 +67,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string 
    , stages(nullptr)
    , global_font_str("unset-global_font_str")
    , current_component_is_symlinked_thus_has_different_title_color(false)
+   , show_caps_lock_notification_light(false)
 {
 }
 
@@ -224,6 +227,12 @@ void Hud::set_current_component_is_symlinked_thus_has_different_title_color(bool
 }
 
 
+void Hud::set_show_caps_lock_notification_light(bool show_caps_lock_notification_light)
+{
+   this->show_caps_lock_notification_light = show_caps_lock_notification_light;
+}
+
+
 std::vector<std::string> Hud::get_notifications()
 {
    return notifications;
@@ -335,6 +344,12 @@ float Hud::get_surface_projection_height()
 bool Hud::get_current_component_is_symlinked_thus_has_different_title_color()
 {
    return current_component_is_symlinked_thus_has_different_title_color;
+}
+
+
+bool Hud::get_show_caps_lock_notification_light()
+{
+   return show_caps_lock_notification_light;
 }
 
 
@@ -618,6 +633,27 @@ void Hud::draw_packets()
 
       place.position.y += y_increment;
    }
+   return;
+}
+
+void Hud::draw_caps_lock_notification_light(bool active)
+{
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "Hud" << "::" << "draw_caps_lock_notification_light" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(al_is_primitives_addon_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "Hud" << "::" << "draw_caps_lock_notification_light" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   //TODO: fill out this drawing
+   //ALLEGRO_KEY_SCROLLLOCK
+   //ALLEGRO_KEY_NUMLOCK
+   //ALLEGRO_KEY_CAPSLOCK
    return;
 }
 

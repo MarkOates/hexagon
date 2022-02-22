@@ -49,6 +49,7 @@ namespace Hexagon
       std::vector<StageInterface *>* stages;
       std::string global_font_str;
       bool current_component_is_symlinked_thus_has_different_title_color;
+      bool show_caps_lock_notification_light;
 
    public:
       Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& font_bin=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool render_powerbar=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool draw_save_count=false, int save_count=0, bool render_packets=false, std::vector<Hexagon::Packet> packets={}, bool draw_search_count=false, int search_count=0, bool render_focus_timer_bar=false, bool render_build_sequence_meter=true, bool draw_notifications=true, float left_column_x=30);
@@ -79,6 +80,7 @@ namespace Hexagon
       void set_stages(std::vector<StageInterface *>* stages);
       void set_global_font_str(std::string global_font_str);
       void set_current_component_is_symlinked_thus_has_different_title_color(bool current_component_is_symlinked_thus_has_different_title_color);
+      void set_show_caps_lock_notification_light(bool show_caps_lock_notification_light);
       std::vector<std::string> get_notifications();
       std::vector<std::string> get_notifications2();
       std::string get_title_text();
@@ -98,6 +100,7 @@ namespace Hexagon
       float get_surface_projection_width();
       float get_surface_projection_height();
       bool get_current_component_is_symlinked_thus_has_different_title_color();
+      bool get_show_caps_lock_notification_light();
       Hexagon::Powerbar::Powerbar &get_powerbar_ref();
       Hexagon::FocusTimerBar::FocusTimerBar &get_focus_timer_bar_ref();
       static AllegroFlare::FontBin& get_dummy_font_bin();
@@ -116,6 +119,7 @@ namespace Hexagon
       void draw_focus_timer_bar();
       void draw_build_sequence_meter();
       void draw_packets();
+      void draw_caps_lock_notification_light(bool active=false);
       void draw();
       void set_orthographic_projection(ALLEGRO_BITMAP* bitmap=nullptr, float left=0, float top=0, float right=1920, float bottom=1080);
    };
