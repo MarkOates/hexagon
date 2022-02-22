@@ -22,14 +22,14 @@ properties:
 
   - name: width
     type: float
-    init_with: 160
+    init_with: 120
     getter: true
     setter: true
     constructor_arg: true
 
   - name: height
     type: float
-    init_with: 41
+    init_with: 31
     getter: true
     setter: true
     constructor_arg: true
@@ -78,7 +78,7 @@ functions:
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
-      return font_bin->auto_get("Purista Medium.otf -32");
+      return font_bin->auto_get("Purista Medium.otf -16");
 
 
 dependencies:

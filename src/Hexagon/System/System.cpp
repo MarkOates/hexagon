@@ -577,6 +577,20 @@ bool System::set_hud_packets_to_packets()
 }
 
 
+bool System::set_hud_caps_lock_light_on()
+{
+   hud.set_show_caps_lock_notification_light(true);
+   return true;
+}
+
+
+bool System::set_hud_caps_lock_light_off()
+{
+   hud.set_show_caps_lock_notification_light(false);
+   return true;
+}
+
+
 bool System::fx__play_focus_animation_on_frontmost_stage()
 {
    //if (!motion)
@@ -1861,6 +1875,8 @@ const std::string System::CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_
 const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION =
       "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE = "SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE";
+const std::string System::SET_HUD_CAPS_LOCK_LIGHT_ON = "SET_HUD_CAPS_LOCK_LIGHT_ON";
+const std::string System::SET_HUD_CAPS_LOCK_LIGHT_OFF = "SET_HUD_CAPS_LOCK_LIGHT_OFF";
 const std::string System::CENTER_CAMERA_ON_FRONTMOST_STAGE = "CENTER_CAMERA_ON_FRONTMOST_STAGE";
 const std::string System::DESTROY_FILE_NAVIGATOR = "DESTROY_FILE_NAVIGATOR";
 const std::string System::DESTROY_TOPMOST_STAGE = "DESTROY_TOPMOST_STAGE";

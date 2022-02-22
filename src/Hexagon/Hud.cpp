@@ -9,6 +9,7 @@
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
 #include <allegro_flare/useful_php.h>
 #include <allegro_flare/placement2d.h>
+#include <Hexagon/Elements/Pill.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <math.h>
@@ -365,53 +366,6 @@ Hexagon::FocusTimerBar::FocusTimerBar &Hud::get_focus_timer_bar_ref()
 }
 
 
-AllegroFlare::FontBin& Hud::get_dummy_font_bin()
-{
-   return dummy_font_bin;
-}
-
-ALLEGRO_FONT* Hud::obtain_text_font()
-{
-   return font_bin["Eurostile.ttf -27"];
-   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-}
-
-ALLEGRO_FONT* Hud::obtain_title_font()
-{
-   return font_bin["Purista Medium.otf -28"];
-   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-}
-
-ALLEGRO_FONT* Hud::obtain_powerbar_text_font()
-{
-   return font_bin["Purista Medium.otf -18"];
-   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-}
-
-ALLEGRO_FONT* Hud::obtain_score_text_font()
-{
-   return font_bin["Purista Medium.otf -22"];
-   //return font_bin["Eurostile.ttf -22"];
-   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-}
-
-ALLEGRO_FONT* Hud::obtain_global_font()
-{
-   return font_bin[global_font_str];
-   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-}
-
-ALLEGRO_FONT* Hud::obtain_packet_text_font()
-{
-   return font_bin["Exan-Regular.ttf -14"];
-}
-
-ALLEGRO_FONT* Hud::obtain_component_navigator_font()
-{
-   return font_bin["Purista Medium.otf -22"];
-   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-}
-
 void Hud::initialize()
 {
    if (initialized) return;
@@ -644,8 +598,13 @@ void Hud::draw_caps_lock_notification_light(bool active)
          error_message << "Hud" << "::" << "draw_caps_lock_notification_light" << ": error: " << "guard \"initialized\" not met";
          throw std::runtime_error(error_message.str());
       }
-   ALLEGRO_FONT *font = obtain_global_font();
-   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   float caps_notification_lights_x = 130;
+   float caps_notification_lights_y = get_surface_projection_height() - 200;
+
+   Hexagon::Elements::Pill pill(&font_bin, caps_notification_lights_x, caps_notification_lights_y);
+   pill.render();
+   //ALLEGRO_FONT *font = obtain_global_font();
+   //ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
    //al_draw_text(font, color, 10, 10, ALLEGRO_ALIGN_CENTER, "CAPS");
    //TODO: fill out this drawing
    //ALLEGRO_KEY_SCROLLLOCK
@@ -787,7 +746,6 @@ void Hud::draw()
 
    if (show_caps_lock_notification_light) draw_caps_lock_notification_light();
 
-
    if (render_build_sequence_meter) draw_build_sequence_meter();
 
    if (show_disabled_screen)
@@ -845,6 +803,53 @@ void Hud::set_orthographic_projection(ALLEGRO_BITMAP* bitmap, float left, float 
 
    al_restore_state(&previous_target_bitmap_state);
    return;
+}
+
+AllegroFlare::FontBin& Hud::get_dummy_font_bin()
+{
+   return dummy_font_bin;
+}
+
+ALLEGRO_FONT* Hud::obtain_text_font()
+{
+   return font_bin["Eurostile.ttf -27"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+}
+
+ALLEGRO_FONT* Hud::obtain_title_font()
+{
+   return font_bin["Purista Medium.otf -28"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+}
+
+ALLEGRO_FONT* Hud::obtain_powerbar_text_font()
+{
+   return font_bin["Purista Medium.otf -18"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+}
+
+ALLEGRO_FONT* Hud::obtain_score_text_font()
+{
+   return font_bin["Purista Medium.otf -22"];
+   //return font_bin["Eurostile.ttf -22"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+}
+
+ALLEGRO_FONT* Hud::obtain_global_font()
+{
+   return font_bin[global_font_str];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+}
+
+ALLEGRO_FONT* Hud::obtain_packet_text_font()
+{
+   return font_bin["Exan-Regular.ttf -14"];
+}
+
+ALLEGRO_FONT* Hud::obtain_component_navigator_font()
+{
+   return font_bin["Purista Medium.otf -22"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
 } // namespace Hexagon
 

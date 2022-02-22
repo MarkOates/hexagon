@@ -1197,6 +1197,9 @@
   "Hexagon/BuildSequenceMeter/Renderer": [
     "Hexagon/Hud"
   ],
+  "Hexagon/Elements/Pill": [
+    "Hexagon/Hud"
+  ],
   "std/vector<std/tuple<std/string, std/string, placement3d>>": [
     "Hexagon/Layout",
     "Hexagon/LayoutToStagesCreator"

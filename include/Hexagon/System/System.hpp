@@ -118,6 +118,8 @@ public:
    bool set_hud_save_count_to_save_count();
    bool set_hud_search_count_to_search_count();
    bool set_hud_packets_to_packets();
+   bool set_hud_caps_lock_light_on();
+   bool set_hud_caps_lock_light_off();
    bool toggle_command_mode_on();
    bool toggle_command_mode_off();
    bool reset_camera_to_center();
@@ -203,6 +205,8 @@ public:
    static const std::string CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION;
    static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE;
+   static const std::string SET_HUD_CAPS_LOCK_LIGHT_ON;
+   static const std::string SET_HUD_CAPS_LOCK_LIGHT_OFF;
    static const std::string CENTER_CAMERA_ON_FRONTMOST_STAGE;
    static const std::string CLEAR_LAST_COMPILED_ERROR_MESSAGES;
    static const std::string DESTROY_FILE_NAVIGATOR;

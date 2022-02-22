@@ -201,62 +201,6 @@ properties:
 functions:
 
 
-  - name: get_dummy_font_bin
-    type: AllegroFlare::FontBin&
-    static: true
-    body: |
-      return dummy_font_bin;
-
-
-  - name: obtain_text_font
-    type: ALLEGRO_FONT*
-    body: |
-      return font_bin["Eurostile.ttf -27"];
-      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-
-
-  - name: obtain_title_font
-    type: ALLEGRO_FONT*
-    body: |
-      return font_bin["Purista Medium.otf -28"];
-      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-
-
-  - name: obtain_powerbar_text_font
-    type: ALLEGRO_FONT*
-    body: |
-      return font_bin["Purista Medium.otf -18"];
-      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-
-
-  - name: obtain_score_text_font
-    type: ALLEGRO_FONT*
-    body: |
-      return font_bin["Purista Medium.otf -22"];
-      //return font_bin["Eurostile.ttf -22"];
-      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-
-
-  - name: obtain_global_font
-    type: ALLEGRO_FONT*
-    body: |
-      return font_bin[global_font_str];
-      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-
-
-  - name: obtain_packet_text_font
-    type: ALLEGRO_FONT*
-    body: |
-      return font_bin["Exan-Regular.ttf -14"];
-
-
-  - name: obtain_component_navigator_font
-    type: ALLEGRO_FONT*
-    body: |
-      return font_bin["Purista Medium.otf -22"];
-      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
-
-
   - name: initialize
     type: void
     body: |
@@ -493,14 +437,21 @@ functions:
         default_argument: false
     guards: [ initialized ]
     body: |
-      ALLEGRO_FONT *font = obtain_global_font();
-      ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+      float caps_notification_lights_x = 130;
+      float caps_notification_lights_y = get_surface_projection_height() - 200;
+
+      Hexagon::Elements::Pill pill(&font_bin, caps_notification_lights_x, caps_notification_lights_y);
+      pill.render();
+      //ALLEGRO_FONT *font = obtain_global_font();
+      //ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
       //al_draw_text(font, color, 10, 10, ALLEGRO_ALIGN_CENTER, "CAPS");
       //TODO: fill out this drawing
       //ALLEGRO_KEY_SCROLLLOCK
       //ALLEGRO_KEY_NUMLOCK
       //ALLEGRO_KEY_CAPSLOCK
       return;
+    body_dependency_symbols:
+      - Hexagon::Elements::Pill
 
 
   - name: draw
@@ -632,7 +583,6 @@ functions:
 
       if (show_caps_lock_notification_light) draw_caps_lock_notification_light();
 
-
       if (render_build_sequence_meter) draw_build_sequence_meter();
 
       if (show_disabled_screen)
@@ -723,6 +673,62 @@ functions:
       return;
 
 
+  - name: get_dummy_font_bin
+    type: AllegroFlare::FontBin&
+    static: true
+    body: |
+      return dummy_font_bin;
+
+
+  - name: obtain_text_font
+    type: ALLEGRO_FONT*
+    body: |
+      return font_bin["Eurostile.ttf -27"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+
+  - name: obtain_title_font
+    type: ALLEGRO_FONT*
+    body: |
+      return font_bin["Purista Medium.otf -28"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+
+  - name: obtain_powerbar_text_font
+    type: ALLEGRO_FONT*
+    body: |
+      return font_bin["Purista Medium.otf -18"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+
+  - name: obtain_score_text_font
+    type: ALLEGRO_FONT*
+    body: |
+      return font_bin["Purista Medium.otf -22"];
+      //return font_bin["Eurostile.ttf -22"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+
+  - name: obtain_global_font
+    type: ALLEGRO_FONT*
+    body: |
+      return font_bin[global_font_str];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+
+  - name: obtain_packet_text_font
+    type: ALLEGRO_FONT*
+    body: |
+      return font_bin["Exan-Regular.ttf -14"];
+
+
+  - name: obtain_component_navigator_font
+    type: ALLEGRO_FONT*
+    body: |
+      return font_bin["Purista Medium.otf -22"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+
 dependencies:
 
 
@@ -788,5 +794,7 @@ dependencies:
     headers: [ Hexagon/System/Config.hpp ]
   - symbol: Hexagon::BuildSequenceMeter::Renderer
     headers: [ Hexagon/BuildSequenceMeter/Renderer.hpp ]
+  - symbol: Hexagon::Elements::Pill
+    headers: [ Hexagon/Elements/Pill.hpp ]
 
 

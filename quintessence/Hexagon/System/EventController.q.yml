@@ -29,6 +29,14 @@ functions:
             &::Hexagon::System::System::spawn_class_brief_menu,
          },
          {
+            ::System::SET_HUD_CAPS_LOCK_LIGHT_ON,
+            &::Hexagon::System::System::set_hud_caps_lock_light_on,
+         },
+         {
+            ::System::SET_HUD_CAPS_LOCK_LIGHT_OFF,
+            &::Hexagon::System::System::set_hud_caps_lock_light_off,
+         },
+         {
             ::System::SPAWN_DRAWING_BOX,
             &::Hexagon::System::System::spawn_drawing_box,
          },

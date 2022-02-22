@@ -146,7 +146,7 @@ ALLEGRO_FONT* Pill::obtain_font()
          error_message << "Pill" << "::" << "obtain_font" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   return font_bin->auto_get("Purista Medium.otf -32");
+   return font_bin->auto_get("Purista Medium.otf -16");
 }
 } // namespace Elements
 } // namespace Hexagon

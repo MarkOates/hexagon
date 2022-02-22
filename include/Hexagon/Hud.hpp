@@ -103,14 +103,6 @@ namespace Hexagon
       bool get_show_caps_lock_notification_light();
       Hexagon::Powerbar::Powerbar &get_powerbar_ref();
       Hexagon::FocusTimerBar::FocusTimerBar &get_focus_timer_bar_ref();
-      static AllegroFlare::FontBin& get_dummy_font_bin();
-      ALLEGRO_FONT* obtain_text_font();
-      ALLEGRO_FONT* obtain_title_font();
-      ALLEGRO_FONT* obtain_powerbar_text_font();
-      ALLEGRO_FONT* obtain_score_text_font();
-      ALLEGRO_FONT* obtain_global_font();
-      ALLEGRO_FONT* obtain_packet_text_font();
-      ALLEGRO_FONT* obtain_component_navigator_font();
       void initialize();
       void reinitialize();
       void draw_current_title_text();
@@ -122,6 +114,14 @@ namespace Hexagon
       void draw_caps_lock_notification_light(bool active=false);
       void draw();
       void set_orthographic_projection(ALLEGRO_BITMAP* bitmap=nullptr, float left=0, float top=0, float right=1920, float bottom=1080);
+      static AllegroFlare::FontBin& get_dummy_font_bin();
+      ALLEGRO_FONT* obtain_text_font();
+      ALLEGRO_FONT* obtain_title_font();
+      ALLEGRO_FONT* obtain_powerbar_text_font();
+      ALLEGRO_FONT* obtain_score_text_font();
+      ALLEGRO_FONT* obtain_global_font();
+      ALLEGRO_FONT* obtain_packet_text_font();
+      ALLEGRO_FONT* obtain_component_navigator_font();
    };
 }
 
