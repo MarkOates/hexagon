@@ -479,7 +479,8 @@ functions:
       result->set_render_on_hud(false);
       result->set_base_text_color(obtain_base_text_color());
       result->set_base_backfill_color(obtain_base_backfill_color());
-      result->set_place(build_centered_on_hud_initial_place(800, 700));
+      //result->set_place(build_centered_on_hud_initial_place(600, 700));
+      result->set_place(build_centered_in_world_initial_place(600, 700));
 
       // properties previously assigned at render time:
       ALLEGRO_DISPLAY *display = get_current_display();
@@ -523,6 +524,30 @@ functions:
       ALLEGRO_DISPLAY *display = get_current_display();
       float surface_width = get_hud_render_surface_projection_width();
       float surface_height = get_hud_render_surface_projection_height();
+      placement3d result;
+      //result.position = vec3d(get_display_width(display)/2, al_get_display_height(display)/2, 0);
+      result.position = vec3d(surface_width/2, surface_height/2, 0);
+      result.size = vec3d(width, height, 0);
+      result.align = vec3d(0.5, 0.5, 0.5);
+      result.scale = vec3d(1.0, 1.0, 1.0);
+      result.rotation = vec3d(0.0, 0.0, 0.0);
+      return result;
+
+
+  - name: build_centered_in_world_initial_place
+    private: true
+    type: placement3d
+    parameters:
+      - name: width
+        type: float
+        default_argument: 0
+      - name: height
+        type: float
+        default_argument: 0
+    body: |
+      ALLEGRO_DISPLAY *display = get_current_display();
+      float surface_width = 0; //get_hud_render_surface_projection_width();
+      float surface_height = 0; //get_hud_render_surface_projection_height();
       placement3d result;
       //result.position = vec3d(get_display_width(display)/2, al_get_display_height(display)/2, 0);
       result.position = vec3d(surface_width/2, surface_height/2, 0);

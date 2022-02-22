@@ -384,7 +384,7 @@ TEST(Hexagon_StageFactoryTest,
    ALLEGRO_COLOR expected_base_backfill_color = config.get_backfill_color();
    ALLEGRO_COLOR actual_base_backfill_color = stage->get_base_backfill_color();
 
-   placement3d expected_place = stage_factory.build_component_navigator_initial_place();
+   placement3d expected_place = stage_factory.build_centered_in_world_initial_place(600, 700);
    placement3d actual_place = stage->get_place();
 
    //EXPECT_EQ(true, stage->get_render_on_hud());
@@ -468,21 +468,6 @@ TEST(Hexagon_StageFactoryTest, get_current_display__returns_the_current_display)
    Hexagon::StageFactory stage_factory;
    ALLEGRO_DISPLAY *expected_display = display;
    ASSERT_EQ(expected_display, stage_factory.get_current_display());
-
-   al_destroy_display(display);
-   al_uninstall_system();
-}
-
-TEST(Hexagon_StageFactoryTest, build_component_navigator_initial_place__returns_the_expected_position)
-{
-   al_init();
-   ALLEGRO_DISPLAY *display = al_create_display(800, 600);
-   Hexagon::StageFactory stage_factory;
-
-   vec3d expected_placement_position = vec3d(1920/2, 1080/2, 0);
-   placement3d actual_placement = stage_factory.build_component_navigator_initial_place();
-
-   ASSERT_EQ(expected_placement_position, actual_placement.position);
 
    al_destroy_display(display);
    al_uninstall_system();
