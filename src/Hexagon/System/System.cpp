@@ -1120,6 +1120,9 @@ bool System::spawn_component_navigator()
    ::Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *stage = stage_factory.create_advanced_component_navigator();
 
+   placement3d &place = stage->get_place();
+   //place.rotation.y = 0.2; // hud rendered items will not appear in 3D
+
    stages.push_back(stage);
 
    return true;

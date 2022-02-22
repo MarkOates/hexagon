@@ -72,7 +72,7 @@ bool Renderer::render()
       if (stage->get_render_on_hud())
       {
          continue; // NOTE: this will prevent any hud-rendered items from displaying
-                   // the implicitly rendered frame, or "window" in this case
+                   // this surface.  They're rendered through the hud explicitly after this step.
       }
       else
       {

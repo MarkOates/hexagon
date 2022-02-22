@@ -742,14 +742,15 @@ void Hud::set_orthographic_projection(ALLEGRO_BITMAP* bitmap, float left, float 
 {
    ALLEGRO_TRANSFORM trans;
    al_identity_transform(&trans);
+   float h_depth = 200;
    al_orthographic_transform(
          &trans,
          left,
          top,
-         -1.0,
+         -1.0 * h_depth,
          right,
          bottom,
-         1.0
+         1.0 * h_depth
       );
 
    ALLEGRO_STATE previous_target_bitmap_state;

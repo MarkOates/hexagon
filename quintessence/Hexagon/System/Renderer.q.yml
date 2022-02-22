@@ -5,11 +5,13 @@ properties:
     type: Hexagon::System::System*
     init_with: nullptr
     constructor_arg: true
+
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
     constructor_arg: true
   - name: backfill_color
+
     type: ALLEGRO_COLOR*
     init_with: nullptr
     constructor_arg: true
@@ -35,7 +37,7 @@ functions:
          if (stage->get_render_on_hud())
          {
             continue; // NOTE: this will prevent any hud-rendered items from displaying
-                      // the implicitly rendered frame, or "window" in this case
+                      // this surface.  They're rendered through the hud explicitly after this step.
          }
          else
          {
