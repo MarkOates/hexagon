@@ -193,7 +193,7 @@ properties:
 
   - name: show_caps_lock_notification_light
     type: bool
-    init_with: false
+    init_with: true
     getter: true
     setter: true
 
@@ -491,8 +491,11 @@ functions:
       - name: active
         type: bool
         default_argument: false
-    guards: [ initialized, al_is_primitives_addon_initialized() ]
+    guards: [ initialized ]
     body: |
+      ALLEGRO_FONT *font = obtain_global_font();
+      ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+      //al_draw_text(font, color, 10, 10, ALLEGRO_ALIGN_CENTER, "CAPS");
       //TODO: fill out this drawing
       //ALLEGRO_KEY_SCROLLLOCK
       //ALLEGRO_KEY_NUMLOCK
@@ -626,6 +629,9 @@ functions:
       if (render_powerbar) draw_powerbar();
 
       if (render_focus_timer_bar) draw_focus_timer_bar();
+
+      if (show_caps_lock_notification_light) draw_caps_lock_notification_light();
+
 
       if (render_build_sequence_meter) draw_build_sequence_meter();
 

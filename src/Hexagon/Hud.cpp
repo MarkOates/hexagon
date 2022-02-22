@@ -67,7 +67,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string 
    , stages(nullptr)
    , global_font_str("unset-global_font_str")
    , current_component_is_symlinked_thus_has_different_title_color(false)
-   , show_caps_lock_notification_light(false)
+   , show_caps_lock_notification_light(true)
 {
 }
 
@@ -644,12 +644,9 @@ void Hud::draw_caps_lock_notification_light(bool active)
          error_message << "Hud" << "::" << "draw_caps_lock_notification_light" << ": error: " << "guard \"initialized\" not met";
          throw std::runtime_error(error_message.str());
       }
-   if (!(al_is_primitives_addon_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "Hud" << "::" << "draw_caps_lock_notification_light" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   ALLEGRO_FONT *font = obtain_global_font();
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+   //al_draw_text(font, color, 10, 10, ALLEGRO_ALIGN_CENTER, "CAPS");
    //TODO: fill out this drawing
    //ALLEGRO_KEY_SCROLLLOCK
    //ALLEGRO_KEY_NUMLOCK
@@ -787,6 +784,9 @@ void Hud::draw()
    if (render_powerbar) draw_powerbar();
 
    if (render_focus_timer_bar) draw_focus_timer_bar();
+
+   if (show_caps_lock_notification_light) draw_caps_lock_notification_light();
+
 
    if (render_build_sequence_meter) draw_build_sequence_meter();
 
