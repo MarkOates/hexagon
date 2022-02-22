@@ -15,9 +15,11 @@ namespace Hexagon
       private:
          AllegroFlare::FontBin* font_bin;
          std::string quote;
+         float width;
+         float height;
 
       public:
-         ComponentTitleSlate(AllegroFlare::FontBin* font_bin=nullptr);
+         ComponentTitleSlate(AllegroFlare::FontBin* font_bin=nullptr, std::string quote={}, float width=1, float height=1);
          ~ComponentTitleSlate();
 
          void render();

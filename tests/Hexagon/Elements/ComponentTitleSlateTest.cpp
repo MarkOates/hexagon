@@ -35,8 +35,21 @@ TEST_F(Hexagon_Elements_ComponentTitleSlateTest, DISABLED__render__without_alleg
 
 TEST_F(Hexagon_Elements_ComponentTitleSlateTestWithAllegroRenderingFixture, render__will_not_blow_up)
 {
-   Hexagon::Elements::ComponentTitleSlate component_title_slate;
+   placement3d place = build_centered_placement();
+   Hexagon::Elements::ComponentTitleSlate component_title_slate(
+      &get_font_bin_ref(),
+      "Component/Name",
+      place.size.x,
+      place.size.y
+   );
+
+   place.start_transform();
    component_title_slate.render();
+   place.restore_transform();
+
+   al_flip_display();
+   sleep(1);
+
    SUCCEED();
 }
 

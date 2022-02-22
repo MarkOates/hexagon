@@ -101,6 +101,7 @@ table td
   <li><a href="#quintessence/Hexagon/Elements/BitmapGridRenderSurface.q.yml">quintessence/Hexagon/Elements/BitmapGridRenderSurface.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/CheckTextureGenerator.q.yml">quintessence/Hexagon/Elements/CheckTextureGenerator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/ColorKit.q.yml">quintessence/Hexagon/Elements/ColorKit.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Elements/ComponentTitleSlate.q.yml">quintessence/Hexagon/Elements/ComponentTitleSlate.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/CoolGrid.q.yml">quintessence/Hexagon/Elements/CoolGrid.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/DataTable.q.yml">quintessence/Hexagon/Elements/DataTable.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/DynamicGridMesh.q.yml">quintessence/Hexagon/Elements/DynamicGridMesh.q.yml</a></li>
@@ -3570,6 +3571,45 @@ table td
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_COLOR&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_color.h&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Elements/ComponentTitleSlate.q.yml">quintessence/Hexagon/Elements/ComponentTitleSlate.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
+  <td class="property">quote</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">width</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">height</td>
+  <td class="property">float</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="private_method">obtain_font()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -10551,6 +10591,7 @@ table td
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
     "Hexagon/CodeEditor/Stage",
+    "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/DataTable",
     "Hexagon/Elements/FontCharacterMapGrid",
     "Hexagon/Elements/FontedTextGrid",
@@ -10717,6 +10758,7 @@ table td
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/Frame",
     "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/QuoteRenderer",

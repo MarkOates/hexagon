@@ -9,6 +9,17 @@ properties:
   - name: quote
     type: std::string
     init_with: '{}'
+    constructor_arg: true
+
+  - name: width
+    type: float
+    init_with: 1
+    constructor_arg: true
+
+  - name: height
+    type: float
+    init_with: 1
+    constructor_arg: true
 
 
 functions:
@@ -18,14 +29,20 @@ functions:
     type: void
     guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
     body: |
+      ALLEGRO_FONT *font = obtain_font();
+      float width = al_get_text_width(font, quote.c_str());
+      float height = al_get_font_line_height(font);
+      ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1, 1, 1, 1};
+      al_draw_text(font, text_color, 0, -height * 0.5, ALLEGRO_ALIGN_CENTER, quote.c_str());
       return;
+
 
   - name: obtain_font
     private: true
     type: ALLEGRO_FONT*
     guards: [ font_bin ]
     body: |
-      return font_bin->auto_get("Purista Medium.otf -32");
+      return font_bin->auto_get("Purista Medium.otf -84");
 
 
 dependencies:
