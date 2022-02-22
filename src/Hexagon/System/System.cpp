@@ -1660,6 +1660,7 @@ bool System::submit_current_modal()
       process_local_event(::System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
       //process_local_event(::System::JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE);
       //process_local_event(::System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
+      process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
       break;
    case StageInterface::GIT_COMMIT_MESSAGE_INPUT_BOX:
       //process_local_event(::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION);
@@ -1668,11 +1669,13 @@ bool System::submit_current_modal()
       process_local_event(::System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES);
       process_local_event(::System::PUSH_TO_GIT_REMOTE);
       process_local_event(::System::REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES);
+      process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
       break;
    case StageInterface::FILE_NAVIGATOR:
       process_local_event(::System::PUSH_FILE_NAVIGATOR_SELECTION);
       process_local_event(::System::DESTROY_TOPMOST_STAGE);  // destroys the modal
       process_local_event(::System::CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION);
+      process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
       break;
    case StageInterface::COMPONENT_NAVIGATOR:
       process_local_event(::System::PUSH_COMPONENT_NAVIGATOR_SELECTION);
