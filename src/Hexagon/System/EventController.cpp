@@ -402,7 +402,7 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
             ::System::SPAWN_COMPONENT_NAVIGATOR,
             ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
           });
-         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, true, false, false, false, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false, {
             ::System::SPAWN_PROJECT_NAVIGATOR,
             ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
           });
@@ -442,7 +442,7 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
          ::System::ROTATE_STAGE_RIGHT,
          ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
          ::System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE });
-      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false, {
+      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, true, false, false, false, {
          ::System::OPEN_HEXAGON_CONFIG_FILE,
          ::System::CENTER_CAMERA_ON_FRONTMOST_STAGE,
           });
