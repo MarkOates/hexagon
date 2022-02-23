@@ -14,6 +14,7 @@
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/UI/DrawingBox.hpp>
 #include <Hexagon/Notifications/Stage.hpp>
+#include <Hexagon/ProjectNavigator.hpp>
 
 TEST(Hexagon_StageFactoryTest, can_be_created_without_blowing_up)
 {
@@ -395,6 +396,65 @@ TEST(Hexagon_StageFactoryTest,
    //EXPECT_EQ(18, stage->get_cell_height());
    EXPECT_EQ(4, stage->get_cell_width());
    EXPECT_EQ(19, stage->get_cell_height());
+
+   font_bin.clear();
+   al_destroy_display(display);
+   al_shutdown_ttf_addon();
+   al_uninstall_system();
+}
+
+TEST(Hexagon_StageFactoryTest, create_project_navigator__without_a_font_bin__raises_an_exception)
+{
+   //AllegroFlare::FontBin font_bin;
+   Hexagon::StageFactory stage_factory(nullptr, nullptr);//&font_bin);
+
+   std::string expected_error_message = "StageFactory::create_project_navigator: error: guard " \
+                                        "\"font_bin\" not met";
+   ASSERT_THROW_WITH_MESSAGE(
+      stage_factory.create_project_navigator(),
+      std::runtime_error,
+      expected_error_message
+   );
+}
+
+TEST(Hexagon_StageFactoryTest, create_project_navigator__creates_a_project_navigator_with_the_expected_properties)
+{
+   al_init();
+   al_init_font_addon();
+   al_init_ttf_addon();
+
+   ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
+   AllegroFlare::FontBin font_bin;
+   font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   Hexagon::System::Config config;
+   config.initialize();
+   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   StageInterface *created_stage = stage_factory.create_project_navigator();
+   Hexagon::ProjectNavigator *stage = static_cast<Hexagon::ProjectNavigator*>(created_stage);
+
+   StageInterface::type_t expected_type = StageInterface::PROJECT_NAVIGATOR;
+   StageInterface::type_t actual_type = created_stage->get_type();
+
+   ASSERT_NE(nullptr, created_stage);
+   ASSERT_EQ(expected_type, actual_type);
+
+   //ALLEGRO_COLOR expected_base_text_color = config.get_base_text_color();
+   //ALLEGRO_COLOR actual_base_text_color = stage->get_base_text_color();
+
+   //ALLEGRO_COLOR expected_base_backfill_color = config.get_backfill_color();
+   //ALLEGRO_COLOR actual_base_backfill_color = stage->get_base_backfill_color();
+
+   //placement3d expected_place = stage_factory.build_centered_in_world_initial_place(600, 700);
+   //placement3d actual_place = stage->get_place();
+
+   ////EXPECT_EQ(true, stage->get_render_on_hud());
+   //EXPECT_EQ(expected_base_text_color.r, actual_base_text_color.r); // for now, just comparing red component
+   //EXPECT_EQ(expected_base_backfill_color.r, actual_base_backfill_color.r); // for now, just comparing red component
+   //EXPECT_EQ(expected_place, actual_place);
+   ////EXPECT_EQ(9, stage->get_cell_width());
+   ////EXPECT_EQ(18, stage->get_cell_height());
+   //EXPECT_EQ(4, stage->get_cell_width());
+   //EXPECT_EQ(19, stage->get_cell_height());
 
    font_bin.clear();
    al_destroy_display(display);
