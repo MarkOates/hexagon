@@ -103,6 +103,7 @@ public:
    bool run_title_screen();
    bool mark_as_files_changed();
    bool set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction();
+   bool set_current_project_directory_from_project_navigator_selection();
    bool mark_as_files_committed();
    bool mark_as_in_sync_with_remote();
    bool mark_as_files_unchanged();
@@ -224,6 +225,7 @@ public:
    static const std::string ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
+   static const std::string PUSH_PROJECT_NAVIGATOR_SELECTION;
    static const std::string PUSH_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE;

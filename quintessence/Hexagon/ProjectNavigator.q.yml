@@ -37,11 +37,17 @@ properties:
     init_with: "{}"
     getter_ref: true
 
+  - name: initialized
+    type: bool
+    init_with: false
+
 
 functions:
 
 
   - name: initialize
+    type: bool
+    guards: [ (!initialized) ]
     body: |
       main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
          { "Hexagon", "/Users/markoates/Repos/hexagon/" },
@@ -59,40 +65,28 @@ functions:
          { "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
          //{ "tins2021", "/Users/markoates/Repos/tins2021/" },
       });
-      return;
+      initialized = true;
+      return true;
 
 
   - name: render
     virtual: true
     override: true
+    guards: [ initialized ]
     body: |
-      main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
-         { "Hexagon", "/Users/markoates/Repos/hexagon/" },
-         { "Blast", "/Users/markoates/Repos/blast/" },
-         { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
-         { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
-         { "NcursesArt", "/Users/markoates/Repos/ncurses_art/" },
-         { "Solitare", "/Users/markoates/Repos/Solitare/" },
-         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
-         { "Wicked", "/Users/markoates/Repos/Wicked/" },
-         { "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
-         { "Peri", "/Users/markoates/Repos/Peri/" },
-         { "Solitare", "/Users/markoates/Repos/Solitare/" },
-         { "Epidemic", "/Users/markoates/Repos/Epidemic/" },
-         { "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
-         //{ "tins2021", "/Users/markoates/Repos/tins2021/" },
-      });
       draw_menu();
       return;
 
 
   - name: main_menu_cursor_move_up
+    guards: [ initialized ]
     type: bool
     body: |
        return main_menu.move_cursor_up();
 
 
   - name: main_menu_cursor_move_down
+    guards: [ initialized ]
     type: bool
     body: |
        return main_menu.move_cursor_down();
@@ -100,12 +94,13 @@ functions:
 
   - name: main_menu_get_current_list_item_identifier
     type: std::string
+    guards: [ initialized ]
     body: |
        return main_menu.get_current_list_item_identifier();
 
 
   - name: draw_menu
-    guards: [ font_bin ]
+    guards: [ initialized, font_bin ]
     body: |
       //placement3d place(surface_width/2, surface_height/2, 0);
       //place.start_transform();
@@ -144,6 +139,7 @@ functions:
       - name: action_data
         type: ActionData
         default_argument: "ActionData()"
+    guards: [ initialized ]
     body: |
       //Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
       //event_controller.process_local_event(event_name, action_data);
@@ -158,6 +154,7 @@ functions:
       - name: event
         type: ALLEGRO_EVENT&
         default_argument: "get_a_default_empty_event_ref()"
+    guards: [ initialized ]
     body: |
       switch(event.type)
           {

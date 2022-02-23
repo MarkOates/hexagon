@@ -61,6 +61,7 @@
 #include <Hexagon/FileSystemNode.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+#include <Hexagon/ProjectNavigator.hpp>
 #include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/ProjectComponentNavigator/Stage.hpp>
@@ -1452,27 +1453,33 @@ bool System::push_component_relations_navigator_selection()
 }
 
 
-bool System::push_project_navigator_selection()
+bool System::push_project_navigator_selection() // TODO: this function *also* includes setting the value globally
 {
    StageInterface *frontmost_stage_interface = get_frontmost_stage();
-   if (!frontmost_stage_interface || !(frontmost_stage_interface->get_type() == StageInterface::COMPONENT_NAVIGATOR))
+   if (!frontmost_stage_interface || !(frontmost_stage_interface->get_type() == StageInterface::PROJECT_NAVIGATOR))
    {
       std::stringstream error_message;
       std::string function_name = "push_project_navigator_selection";
       error_message << "Could not "
                     << function_name
                     << ": Either the frontmost_stage_interface is a nullptr OR is not "
-                    << "of type StageInterface::COMPONENT_NAVIGATOR."
+                    << "of type StageInterface::PROJECT_NAVIGATOR."
                     << std::endl;
       throw std::runtime_error(error_message.str().c_str());
    }
-   ::Hexagon::ProjectComponentNavigator::Stage *project_navigator =
-      static_cast<::Hexagon::ProjectComponentNavigator::Stage *>(frontmost_stage_interface);
+   ::Hexagon::ProjectNavigator *project_navigator =
+      static_cast<::Hexagon::ProjectNavigator *>(frontmost_stage_interface);
+   //main_menu_get_current_list_item_identifier
 
    std::string current_project_navigator_selection =
-      project_navigator->get_component_ref().get_current_selection_label_or_empty_string();
+      project_navigator->main_menu_get_current_list_item_identifier();
 
-   last_project_navigator_selection = current_project_navigator_selection;
+   // set the "selection" in the storage space
+   set_last_project_navigator_selection(current_project_navigator_selection);
+
+   // But also set the current project directory here for now
+   set_current_project_directory(last_project_navigator_selection);
+
    return true;
 }
 
@@ -1793,6 +1800,12 @@ bool System::submit_current_modal()
       process_local_event(::System::CREATE_STAGE_FROM_LAST_FILE_NAVIGATOR_SELECTION);
       process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
       break;
+   case StageInterface::PROJECT_NAVIGATOR:
+      process_local_event(::System::PUSH_PROJECT_NAVIGATOR_SELECTION);
+      process_local_event(::System::DESTROY_TOPMOST_STAGE);
+      process_local_event(::System::DESTROY_ALL_CODE_EDITOR_STAGES);
+      //process_local_event(::System::CENTER_CAMERA_TO_ORIGIN); // TODO
+      break;
    case StageInterface::COMPONENT_NAVIGATOR:
       process_local_event(::System::PUSH_COMPONENT_NAVIGATOR_SELECTION);
       process_local_event(::System::DESTROY_TOPMOST_STAGE);
@@ -1904,6 +1917,7 @@ const std::string System::ENABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES
 const std::string System::DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES =
    "DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES";
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
+const std::string System::PUSH_PROJECT_NAVIGATOR_SELECTION = "PUSH_PROJECT_NAVIGATOR_SELECTION";
 const std::string System::PUSH_COMPONENT_NAVIGATOR_SELECTION = "PUSH_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION = "PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE = "REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE";

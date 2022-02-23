@@ -21,13 +21,14 @@ namespace Hexagon
       int surface_width;
       int surface_height;
       static ALLEGRO_EVENT a_default_empty_event;
+      bool initialized;
 
    public:
       ProjectNavigator(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::System::Config* config=nullptr);
       virtual ~ProjectNavigator();
 
       static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      void initialize();
+      bool initialize();
       virtual void render() override;
       bool main_menu_cursor_move_up();
       bool main_menu_cursor_move_down();

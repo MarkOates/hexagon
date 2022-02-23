@@ -1,11 +1,25 @@
 
 
 #include <Hexagon/ProjectNavigator.hpp>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <allegro_flare/placement3d.h>
 #include <Hexagon/Elements/ListMenu.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <allegro5/allegro.h>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
 #include <sstream>
 
 
@@ -23,6 +37,7 @@ ProjectNavigator::ProjectNavigator(AllegroFlare::FontBin* font_bin, Hexagon::Sys
    , main_menu({})
    , surface_width(1920)
    , surface_height(1080)
+   , initialized(false)
 {
 }
 
@@ -38,8 +53,14 @@ ALLEGRO_EVENT &ProjectNavigator::get_a_default_empty_event_ref()
 }
 
 
-void ProjectNavigator::initialize()
+bool ProjectNavigator::initialize()
 {
+   if (!((!initialized)))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
       { "Hexagon", "/Users/markoates/Repos/hexagon/" },
       { "Blast", "/Users/markoates/Repos/blast/" },
@@ -56,48 +77,63 @@ void ProjectNavigator::initialize()
       { "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
       //{ "tins2021", "/Users/markoates/Repos/tins2021/" },
    });
-   return;
+   initialized = true;
+   return true;
 }
 
 void ProjectNavigator::render()
 {
-   main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
-      { "Hexagon", "/Users/markoates/Repos/hexagon/" },
-      { "Blast", "/Users/markoates/Repos/blast/" },
-      { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
-      { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
-      { "NcursesArt", "/Users/markoates/Repos/ncurses_art/" },
-      { "Solitare", "/Users/markoates/Repos/Solitare/" },
-      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
-      { "Wicked", "/Users/markoates/Repos/Wicked/" },
-      { "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
-      { "Peri", "/Users/markoates/Repos/Peri/" },
-      { "Solitare", "/Users/markoates/Repos/Solitare/" },
-      { "Epidemic", "/Users/markoates/Repos/Epidemic/" },
-      { "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
-      //{ "tins2021", "/Users/markoates/Repos/tins2021/" },
-   });
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    draw_menu();
    return;
 }
 
 bool ProjectNavigator::main_menu_cursor_move_up()
 {
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "main_menu_cursor_move_up" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    return main_menu.move_cursor_up();
 }
 
 bool ProjectNavigator::main_menu_cursor_move_down()
 {
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "main_menu_cursor_move_down" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    return main_menu.move_cursor_down();
 }
 
 std::string ProjectNavigator::main_menu_get_current_list_item_identifier()
 {
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "main_menu_get_current_list_item_identifier" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    return main_menu.get_current_list_item_identifier();
 }
 
 void ProjectNavigator::draw_menu()
 {
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "draw_menu" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    if (!(font_bin))
       {
          std::stringstream error_message;
@@ -126,6 +162,12 @@ std::string ProjectNavigator::build_allegro_version_string()
 
 void ProjectNavigator::process_local_event(std::string event_name, ActionData action_data)
 {
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "process_local_event" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    //Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
    //event_controller.process_local_event(event_name, action_data);
    return;
@@ -133,6 +175,12 @@ void ProjectNavigator::process_local_event(std::string event_name, ActionData ac
 
 void ProjectNavigator::process_event(ALLEGRO_EVENT& event)
 {
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "process_event" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    switch(event.type)
        {
        case ALLEGRO_EVENT_KEY_CHAR:

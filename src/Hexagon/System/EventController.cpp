@@ -126,6 +126,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          &::Hexagon::System::System::push_file_navigator_selection,
       },
       {
+         ::System::PUSH_PROJECT_NAVIGATOR_SELECTION,
+         &::Hexagon::System::System::push_project_navigator_selection,
+      },
+      {
          ::System::PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION,
          &::Hexagon::System::System::push_component_relations_navigator_selection,
       },

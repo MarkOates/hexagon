@@ -516,6 +516,7 @@ StageInterface* StageFactory::create_project_navigator()
          throw std::runtime_error(error_message.str());
       }
    Hexagon::ProjectNavigator *result = new Hexagon::ProjectNavigator(font_bin);
+   result->initialize();
 
    //result->set_font_bin(font_bin);
    //result->set_render_on_hud(true);
