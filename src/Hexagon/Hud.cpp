@@ -68,7 +68,7 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string 
    , stages(nullptr)
    , global_font_str("unset-global_font_str")
    , current_component_is_symlinked_thus_has_different_title_color(false)
-   , show_caps_lock_notification_light(true)
+   , show_caps_lock_notification_light(false)
 {
 }
 

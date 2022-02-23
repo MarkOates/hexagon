@@ -193,7 +193,7 @@ properties:
 
   - name: show_caps_lock_notification_light
     type: bool
-    init_with: true
+    init_with: false
     getter: true
     setter: true
 
