@@ -143,6 +143,7 @@ public:
    bool spawn_regex_input_box_modal();
    bool spawn_git_commit_message_input_box_modal();
    bool spawn_component_navigator();
+   bool spawn_project_navigator();
    bool spawn_fancy();
    bool spawn_component_relations_navigator();
    bool spawn_red_overlay();
@@ -243,6 +244,7 @@ public:
    static const std::string SPAWN_FANCY;
    static const std::string SPAWN_COMPONENT_RELATIONS_NAVIGATOR;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;
+   static const std::string SPAWN_PROJECT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
    static const std::string SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL;
