@@ -1138,15 +1138,12 @@ bool System::spawn_component_navigator()
    ::Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *stage = stage_factory.create_advanced_component_navigator(current_project_directory);
 
-   placement3d &place = stage->get_place();
-   //place.rotation.y = 0.2; // hud rendered items will not appear in 3D
-
-   place.position.z = 300;
-
-
    bool do_fancy_stuff_with_position_and_movement = false;
    if (do_fancy_stuff_with_position_and_movement)
    {
+      placement3d &place = stage->get_place();
+      place.position.z = 300;
+
       vec3d target_position = place.position;
       vec3d target_rotation = vec3d(0, 0, 0); //camera.get_rotation_ref();
 
@@ -1168,7 +1165,6 @@ bool System::spawn_component_navigator()
       motion.cmove_to(&place.rotation.y, target_rotation.y, speed, interpolator::tripple_fast_in);
       motion.cmove_to(&place.rotation.z, target_rotation.z, speed, interpolator::tripple_fast_in);
    }
-
 
    stages.push_back(stage);
 
