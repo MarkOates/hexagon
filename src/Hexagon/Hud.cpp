@@ -434,6 +434,8 @@ void Hud::reinitialize()
 
 void Hud::draw_current_title_text()
 {
+   if (title_text.empty()) return;
+
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
    if (get_current_component_is_symlinked_thus_has_different_title_color())
