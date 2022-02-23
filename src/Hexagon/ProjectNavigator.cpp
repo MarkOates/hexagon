@@ -90,6 +90,7 @@ void ProjectNavigator::render()
          error_message << "ProjectNavigator" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
          throw std::runtime_error(error_message.str());
       }
+   draw_menu();
    return;
 }
 
@@ -303,10 +304,10 @@ void ProjectNavigator::draw_menu()
          error_message << "ProjectNavigator" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   placement3d place(surface_width/2, surface_height/2, 0);
-   place.start_transform();
+   //placement3d place(surface_width/2, surface_height/2, 0);
+   //place.start_transform();
    main_menu.render();
-   place.restore_transform();
+   //place.restore_transform();
    return;
 }
 
@@ -391,6 +392,35 @@ void ProjectNavigator::process_local_event(std::string event_name, ActionData ac
 
 void ProjectNavigator::process_event(ALLEGRO_EVENT& event)
 {
+   switch(event.type)
+       {
+       case ALLEGRO_EVENT_KEY_CHAR:
+          {
+             switch (event.keyboard.keycode)
+             {
+             case ALLEGRO_KEY_M:
+                // disable shader
+                //draw_motion_effect = false;
+
+                // open dialog box
+                break;
+             case ALLEGRO_KEY_J:
+                main_menu_cursor_move_down();
+                break;
+             case ALLEGRO_KEY_K:
+                main_menu_cursor_move_up();
+                break;
+             case ALLEGRO_KEY_ENTER:
+                //append_project_path_to_config_file_and_reload_injected_config();
+                //abort_program = true;
+                break;
+             case ALLEGRO_KEY_ESCAPE:
+                //abort_program = true;
+                break;
+             }
+          }
+          break;
+   }
    //KeyboardCommandMapper keyboard_command_mapping;
    //if (is_in_insert_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_insert_mode();
    //else if (is_in_edit_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_edit_mode();
