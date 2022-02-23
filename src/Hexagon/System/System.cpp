@@ -156,6 +156,8 @@ void System::initialize()
    camera.get_stepback_ref().z = baseline_camera_stepback;
 
    //process_local_event(EXECUTE_MAGIC_COMMAND);
+
+   process_local_event(::System::SPAWN_PROJECT_NAVIGATOR);
 }
 
 
