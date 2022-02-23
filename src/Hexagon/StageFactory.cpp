@@ -19,8 +19,6 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
-#include <stdexcept>
-#include <sstream>
 #include <Hexagon/Notifications/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
@@ -86,17 +84,6 @@ float StageFactory::get_hud_render_surface_projection_height()
    return hud_render_surface_projection_height;
 }
 
-
-std::string StageFactory::__OBSOLETE__obtain_default_navigator_directory()
-{
-   if (!(config))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "__OBSOLETE__obtain_default_navigator_directory" << ": error: " << "guard \"config\" not met";
-         throw std::runtime_error(error_message.str());
-      }
-   return config->get_default_navigator_directory();
-}
 
 ALLEGRO_COLOR StageFactory::obtain_base_text_color()
 {

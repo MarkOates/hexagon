@@ -25,13 +25,6 @@ properties:
 functions:
 
 
-  - name: __OBSOLETE__obtain_default_navigator_directory
-    type: std::string
-    guards: [ config ]
-    body: |
-      return config->get_default_navigator_directory();
-
-
   - name: obtain_base_text_color
     type: ALLEGRO_COLOR
     guards: [ config ]
