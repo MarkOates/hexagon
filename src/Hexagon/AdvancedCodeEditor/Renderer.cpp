@@ -130,7 +130,6 @@ void Renderer::render()
    if (selections) draw_selections();
    if (search_regex_selections) draw_search_regex_selections();
    if (visual_selections) draw_visual_selections();
-   draw_null_space_above_and_below();
    if (full_line_visual_selections) draw_full_line_visual_selections();
    if (code_message_points) draw_code_message_points();
    if (lines && cursor) render_word_highlight_under_cursor();
@@ -154,6 +153,8 @@ void Renderer::render_backfill()
       ALLEGRO_COLOR content_is_modified_background_color = ALLEGRO_COLOR{0.05, 0.025, 0.0, 0.05};
       al_draw_filled_rectangle(0, 0, width, height, content_is_modified_background_color);
    }
+
+   draw_null_space_above_and_below();
    return;
 }
 
