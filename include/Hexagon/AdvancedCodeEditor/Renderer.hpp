@@ -49,6 +49,7 @@ namespace Hexagon
          void set_represents_symlink(bool represents_symlink);
          void set_cursor_is_in_valid_range(bool cursor_is_in_valid_range);
          void render();
+         void render_backfill();
          void draw_represents_symlink_frames();
          bool draw_null_space_above_and_below();
          bool render_line_numbers();
