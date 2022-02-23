@@ -633,6 +633,7 @@ void Hud::draw()
    ALLEGRO_FONT *component_navigator_font = obtain_component_navigator_font();
 
    std::vector<StageInterface::type_t> permitted_types = {
+      StageInterface::PROJECT_NAVIGATOR,
       StageInterface::COMPONENT_NAVIGATOR,
       StageInterface::COMPONENT_RELATIONS_NAVIGATOR,
       StageInterface::ONE_LINE_INPUT_BOX,

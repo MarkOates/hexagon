@@ -1,3 +1,11 @@
+parent_classes:
+
+
+  - class: 'StageInterface'
+    scope: public
+    init_with: "StageInterface::PROJECT_NAVIGATOR"
+
+
 properties:
 
 
@@ -28,6 +36,12 @@ properties:
     init_with: false
     getter: true
 
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
+
 
 functions:
 
@@ -51,6 +65,14 @@ functions:
          //{ "tins2021", "/Users/markoates/Repos/tins2021/" },
       });
       initialized = true;
+      return;
+
+
+  - name: render
+    virtual: true
+    override: true
+    guards: [ initialized ]
+    body: |
       return;
 
 
@@ -325,9 +347,50 @@ functions:
       - std::ofstream
 
 
+  - name: process_local_event
+    virtual: true
+    override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: '""'
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: |
+      //Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
+      //event_controller.process_local_event(event_name, action_data);
+      return;
+    body_dependency_symbols: []
+
+
+  - name: process_event
+    virtual: true
+    override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: |
+      //KeyboardCommandMapper keyboard_command_mapping;
+      //if (is_in_insert_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_insert_mode();
+      //else if (is_in_edit_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_edit_mode();
+
+      //Hexagon::AdvancedCodeEditor::EventController event_controller(
+      //      this,
+      //      build_local_events_dictionary(),
+      //      keyboard_command_mapping
+      //   );
+      //event_controller.process_event(event);
+      return;
+    body_dependency_symbols: []
+
+
 dependencies:
 
 
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
   - symbol: std::ofstream
     headers: [ fstream ]
   - symbol: al_draw_filled_rectangle
@@ -354,4 +417,11 @@ dependencies:
     headers: [ Hexagon/Elements/ListMenu.hpp ]
   - symbol: Hexagon::Shaders::TiledHexagonMotionEffect
     headers: [ Hexagon/Shaders/TiledHexagonMotionEffect.hpp ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_EVENT&
+    headers: [ allegro5/allegro.h ]
+  - symbol: ActionData
+    headers: [ Hexagon/ActionData.hpp ]
+
 

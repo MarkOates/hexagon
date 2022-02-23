@@ -4,6 +4,7 @@
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Hud",
+    "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/TitleScreen",
     "Testing/WithStageFactoryFixture"
@@ -13,6 +14,7 @@
   ],
   "al_get_allegro_version": [
     "ApplicationController",
+    "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
   "ALLEGRO_DISPLAY": [
@@ -46,6 +48,7 @@
   ],
   "Hexagon/Shaders/TiledHexagonMotionEffect": [
     "ApplicationController",
+    "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
   "Hexagon/System/System": [
@@ -74,6 +77,7 @@
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/System/EventController",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
@@ -173,6 +177,7 @@
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/EventController",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
   ],
@@ -193,6 +198,7 @@
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
   ],
@@ -340,6 +346,7 @@
     "Hexagon/Powerbar/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/Shapes/Hexagon/Renderer",
     "Hexagon/StageFactory",
     "Hexagon/TitleScreen",
@@ -445,6 +452,7 @@
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
     "Hexagon/System/Renderer",
@@ -462,6 +470,7 @@
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
@@ -496,6 +505,7 @@
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/PacketRenderer",
+    "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/TitleScreen",
     "Hexagon/UI/DrawingBox",
@@ -717,6 +727,7 @@
     "Hexagon/Fancy/Stage",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
+    "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
   "al_is_primitives_addon_initialized": [
@@ -945,6 +956,7 @@
   "Hexagon/Elements/ListMenu": [
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
@@ -1338,6 +1350,24 @@
   "Hexagon/LayoutFromYAML": [
     "Hexagon/ProjectFromYAML"
   ],
+  "std/ofstream": [
+    "Hexagon/ProjectNavigator",
+    "Hexagon/TitleScreen"
+  ],
+  "Hexagon/Logo": [
+    "Hexagon/ProjectNavigator",
+    "Hexagon/TitleScreen"
+  ],
+  "AllegroFlare/Profiler": [
+    "Hexagon/ProjectNavigator",
+    "Hexagon/ProjectNavigator",
+    "Hexagon/TitleScreen",
+    "Hexagon/TitleScreen"
+  ],
+  "Hexagon/Elements/DataTable": [
+    "Hexagon/ProjectNavigator",
+    "Hexagon/TitleScreen"
+  ],
   "RailsMinitestTestResult": [
     "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
   ],
@@ -1492,19 +1522,6 @@
   "std/pair<std/string, std/string>": [
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/ProjectComponentBasenameExtractor"
-  ],
-  "std/ofstream": [
-    "Hexagon/TitleScreen"
-  ],
-  "Hexagon/Logo": [
-    "Hexagon/TitleScreen"
-  ],
-  "AllegroFlare/Profiler": [
-    "Hexagon/TitleScreen",
-    "Hexagon/TitleScreen"
-  ],
-  "Hexagon/Elements/DataTable": [
-    "Hexagon/TitleScreen"
   ],
   "al_draw_line": [
     "Hexagon/UI/DrawingBox"

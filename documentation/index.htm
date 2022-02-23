@@ -179,6 +179,7 @@ table td
   <li><a href="#quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml">quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ProjectFactory.q.yml">quintessence/Hexagon/ProjectFactory.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ProjectFromYAML.q.yml">quintessence/Hexagon/ProjectFromYAML.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ProjectNavigator.q.yml">quintessence/Hexagon/ProjectNavigator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Rails/ComponentLister.q.yml">quintessence/Hexagon/Rails/ComponentLister.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/RailsMinitestTestResultToCodeMessagePointConverter.q.yml">quintessence/Hexagon/RailsMinitestTestResultToCodeMessagePointConverter.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/RailsTestOutputParser.q.yml">quintessence/Hexagon/RailsTestOutputParser.q.yml</a></li>
@@ -7930,6 +7931,132 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/ProjectNavigator.q.yml">quintessence/Hexagon/ProjectNavigator.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
+  <td class="property">config</td>
+  <td class="property">Hexagon::System::Config*</td>
+</tr>
+<tr>
+  <td class="property">main_menu</td>
+  <td class="property">Hexagon::Elements::ListMenu</td>
+</tr>
+<tr>
+  <td class="property">surface_width</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">surface_height</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">initialized</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
+  <td class="property">a_default_empty_event</td>
+  <td class="property">ALLEGRO_EVENT</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">initialize()</td>
+</tr>
+<tr>
+  <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="method">main_menu_cursor_move_up()</td>
+</tr>
+<tr>
+  <td class="method">main_menu_cursor_move_down()</td>
+</tr>
+<tr>
+  <td class="method">main_menu_get_current_list_item_identifier()</td>
+</tr>
+<tr>
+  <td class="method">__draw_hexagon_logo_and_wait_for_keypress()</td>
+</tr>
+<tr>
+  <td class="method">draw_menu()</td>
+</tr>
+<tr>
+  <td class="method">render_profiler_graph(2)</td>
+</tr>
+<tr>
+  <td class="method">build_allegro_version_string()</td>
+</tr>
+<tr>
+  <td class="method">append_project_path_to_config_file_and_reload_injected_config()</td>
+</tr>
+<tr>
+  <td class="method">process_local_event(2)</td>
+</tr>
+<tr>
+  <td class="method">process_event(1)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;StageInterface&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageInterface.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::ofstream&quot;, &quot;headers&quot;=&gt;[&quot;fstream&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_draw_filled_rectangle&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_primitives.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement3d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement3d.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Logo&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Logo.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::Config*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/Config.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::Profiler&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Profiler.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::Profiler*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Profiler.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::DataTable&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/DataTable.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_get_allegro_version&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::ListMenu&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/ListMenu.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Shaders::TiledHexagonMotionEffect&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Shaders/TiledHexagonMotionEffect.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT&amp;&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ActionData&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ActionData.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/Rails/ComponentLister.q.yml">quintessence/Hexagon/Rails/ComponentLister.q.yml</h3>
      <table>
 <tr>
@@ -10367,6 +10494,7 @@ table td
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Hud",
+    "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/TitleScreen",
     "Testing/WithStageFactoryFixture"
@@ -10376,6 +10504,7 @@ table td
   ],
   "al_get_allegro_version": [
     "ApplicationController",
+    "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
   "ALLEGRO_DISPLAY": [
@@ -10409,6 +10538,7 @@ table td
   ],
   "Hexagon/Shaders/TiledHexagonMotionEffect": [
     "ApplicationController",
+    "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
   "Hexagon/System/System": [
@@ -10437,6 +10567,7 @@ table td
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/System/EventController",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
@@ -10536,6 +10667,7 @@ table td
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/EventController",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
   ],
@@ -10556,6 +10688,7 @@ table td
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
   ],
@@ -10703,6 +10836,7 @@ table td
     "Hexagon/Powerbar/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/Shapes/Hexagon/Renderer",
     "Hexagon/StageFactory",
     "Hexagon/TitleScreen",
@@ -10808,6 +10942,7 @@ table td
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
     "Hexagon/System/Renderer",
@@ -10825,6 +10960,7 @@ table td
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
@@ -10859,6 +10995,7 @@ table td
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/PacketRenderer",
+    "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/TitleScreen",
     "Hexagon/UI/DrawingBox",
@@ -11080,6 +11217,7 @@ table td
     "Hexagon/Fancy/Stage",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
+    "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
   "al_is_primitives_addon_initialized": [
@@ -11308,6 +11446,7 @@ table td
   "Hexagon/Elements/ListMenu": [
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
@@ -11701,6 +11840,24 @@ table td
   "Hexagon/LayoutFromYAML": [
     "Hexagon/ProjectFromYAML"
   ],
+  "std/ofstream": [
+    "Hexagon/ProjectNavigator",
+    "Hexagon/TitleScreen"
+  ],
+  "Hexagon/Logo": [
+    "Hexagon/ProjectNavigator",
+    "Hexagon/TitleScreen"
+  ],
+  "AllegroFlare/Profiler": [
+    "Hexagon/ProjectNavigator",
+    "Hexagon/ProjectNavigator",
+    "Hexagon/TitleScreen",
+    "Hexagon/TitleScreen"
+  ],
+  "Hexagon/Elements/DataTable": [
+    "Hexagon/ProjectNavigator",
+    "Hexagon/TitleScreen"
+  ],
   "RailsMinitestTestResult": [
     "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
   ],
@@ -11855,19 +12012,6 @@ table td
   "std/pair<std/string, std/string>": [
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/ProjectComponentBasenameExtractor"
-  ],
-  "std/ofstream": [
-    "Hexagon/TitleScreen"
-  ],
-  "Hexagon/Logo": [
-    "Hexagon/TitleScreen"
-  ],
-  "AllegroFlare/Profiler": [
-    "Hexagon/TitleScreen",
-    "Hexagon/TitleScreen"
-  ],
-  "Hexagon/Elements/DataTable": [
-    "Hexagon/TitleScreen"
   ],
   "al_draw_line": [
     "Hexagon/UI/DrawingBox"

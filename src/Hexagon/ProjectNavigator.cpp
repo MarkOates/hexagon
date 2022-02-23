@@ -1,6 +1,8 @@
 
 
 #include <Hexagon/ProjectNavigator.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <allegro5/allegro_primitives.h>
 #include <AllegroFlare/Profiler.hpp>
 #include <Hexagon/Logo.hpp>
@@ -26,8 +28,12 @@ namespace Hexagon
 {
 
 
+ALLEGRO_EVENT ProjectNavigator::a_default_empty_event = {};
+
+
 ProjectNavigator::ProjectNavigator(AllegroFlare::FontBin* font_bin, Hexagon::System::Config* config)
-   : font_bin(font_bin)
+   : StageInterface(StageInterface::PROJECT_NAVIGATOR)
+   , font_bin(font_bin)
    , config(config)
    , main_menu({})
    , surface_width(1920)
@@ -45,6 +51,12 @@ ProjectNavigator::~ProjectNavigator()
 bool ProjectNavigator::get_initialized()
 {
    return initialized;
+}
+
+
+ALLEGRO_EVENT &ProjectNavigator::get_a_default_empty_event_ref()
+{
+   return a_default_empty_event;
 }
 
 
@@ -67,6 +79,17 @@ void ProjectNavigator::initialize()
       //{ "tins2021", "/Users/markoates/Repos/tins2021/" },
    });
    initialized = true;
+   return;
+}
+
+void ProjectNavigator::render()
+{
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    return;
 }
 
@@ -356,6 +379,28 @@ void ProjectNavigator::append_project_path_to_config_file_and_reload_injected_co
 
    config->reload();
 
+   return;
+}
+
+void ProjectNavigator::process_local_event(std::string event_name, ActionData action_data)
+{
+   //Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
+   //event_controller.process_local_event(event_name, action_data);
+   return;
+}
+
+void ProjectNavigator::process_event(ALLEGRO_EVENT& event)
+{
+   //KeyboardCommandMapper keyboard_command_mapping;
+   //if (is_in_insert_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_insert_mode();
+   //else if (is_in_edit_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_edit_mode();
+
+   //Hexagon::AdvancedCodeEditor::EventController event_controller(
+   //      this,
+   //      build_local_events_dictionary(),
+   //      keyboard_command_mapping
+   //   );
+   //event_controller.process_event(event);
    return;
 }
 } // namespace Hexagon
