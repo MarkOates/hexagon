@@ -964,6 +964,12 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
       check_git_local_status_and_update_powerbar();
    }
 
+
+   //php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/deamus_build.txt", "asdf234");
+
+   php::file_put_contents("/Users/markoates/Repos/hexagon/tmp/daemus_build.txt", "12345asdf");
+
+
    return true;
 }
 

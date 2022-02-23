@@ -8,7 +8,7 @@ properties:
 
   - name: daemus_build_file_directory
     type: std::string
-    init_with: '"/Users/markoates/Repos/hexagon/bin/programs/data/tmp"'
+    init_with: '"/Users/markoates/Repos/hexagon/tmp/"'
     getter: true
 
   - name: daemus_build_filename
@@ -22,15 +22,28 @@ functions:
 
   - name: run
     type: void
+    parameters:
+      - name: watch_for_changes_in_tree_and_not_buildfile
+        type: bool
+        default_argument: true
     body: |
       al_init();
-      Hexagon::System::Config hexagon_config;
-      hexagon_config.initialize();
 
-      std::string project_directory = hexagon_config.get_default_navigator_directory();
+      if (watch_for_changes_in_tree_and_not_buildfile)
+      {
+         Hexagon::System::Config hexagon_config;
+         hexagon_config.initialize();
+         std::string project_directory = hexagon_config.get_default_navigator_directory();
+         cd_to_project_directory_and_run_with_rerun(project_directory);
+      }
+      else
+      {
+         Hexagon::System::Config hexagon_config;
+         hexagon_config.initialize();
+         std::string project_directory = hexagon_config.get_default_navigator_directory();
+         watch_for_buildfile(project_directory);
+      }
 
-      cd_to_project_directory_and_run_with_rerun(project_directory);
-      //watch_for_buildfile(project_directory);
       return;
 
 
@@ -145,6 +158,9 @@ functions:
         type: std::string
         default_argument: '""'
     body: |
+      // this will, being run from any directory, will watch for a new buildfile in the "project_directory"
+      // (as set by the hexagon config), and then cd into that directory and run make focus
+
       std::string actual_command_to_execute_in_project_directory = "make focus";
 
       std::cout << "watching for buildfile (\"" << get_daemus_build_filename() << "\")" << std::endl;
@@ -160,7 +176,10 @@ functions:
         " " \
         "-p \"" + get_daemus_build_filename() + "\"" \
         " " \
-        "\"(cd ";
+        "\"(" \
+        "cd ";
+
+      project_directory = "`cat /Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt` ";
 
       build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
       std::string output = execute_command(build_command);

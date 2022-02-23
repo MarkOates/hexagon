@@ -34,7 +34,7 @@ namespace Daemus
 
 ProgramRunner::ProgramRunner(std::string quintessence_build_executable)
    : quintessence_build_executable(quintessence_build_executable)
-   , daemus_build_file_directory("/Users/markoates/Repos/hexagon/bin/programs/data/tmp")
+   , daemus_build_file_directory("/Users/markoates/Repos/hexagon/tmp/")
    , daemus_build_filename("daemus_build.txt")
 {
 }
@@ -57,16 +57,25 @@ std::string ProgramRunner::get_daemus_build_filename()
 }
 
 
-void ProgramRunner::run()
+void ProgramRunner::run(bool watch_for_changes_in_tree_and_not_buildfile)
 {
    al_init();
-   Hexagon::System::Config hexagon_config;
-   hexagon_config.initialize();
 
-   std::string project_directory = hexagon_config.get_default_navigator_directory();
+   if (watch_for_changes_in_tree_and_not_buildfile)
+   {
+      Hexagon::System::Config hexagon_config;
+      hexagon_config.initialize();
+      std::string project_directory = hexagon_config.get_default_navigator_directory();
+      cd_to_project_directory_and_run_with_rerun(project_directory);
+   }
+   else
+   {
+      Hexagon::System::Config hexagon_config;
+      hexagon_config.initialize();
+      std::string project_directory = hexagon_config.get_default_navigator_directory();
+      watch_for_buildfile(project_directory);
+   }
 
-   cd_to_project_directory_and_run_with_rerun(project_directory);
-   //watch_for_buildfile(project_directory);
    return;
 }
 
@@ -161,6 +170,9 @@ void ProgramRunner::cd_to_project_directory_and_run_with_rerun(std::string proje
 
 void ProgramRunner::watch_for_buildfile(std::string project_directory)
 {
+   // this will, being run from any directory, will watch for a new buildfile in the "project_directory"
+   // (as set by the hexagon config), and then cd into that directory and run make focus
+
    std::string actual_command_to_execute_in_project_directory = "make focus";
 
    std::cout << "watching for buildfile (\"" << get_daemus_build_filename() << "\")" << std::endl;
@@ -176,7 +188,10 @@ void ProgramRunner::watch_for_buildfile(std::string project_directory)
      " " \
      "-p \"" + get_daemus_build_filename() + "\"" \
      " " \
-     "\"(cd ";
+     "\"(" \
+     "cd ";
+
+   project_directory = "`cat /Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt` ";
 
    build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
    std::string output = execute_command(build_command);
