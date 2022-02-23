@@ -204,7 +204,7 @@ void ApplicationController::emit_user_event(ALLEGRO_EVENT user_event)
 void ApplicationController::run_program()
 {
    initialize();
-   system->run_title_screen();
+   //system->run_title_screen();
    run_event_loop();
    shutdown();
 }

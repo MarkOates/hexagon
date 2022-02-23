@@ -176,7 +176,7 @@ functions:
     type: void
     body: |
        initialize();
-       system->run_title_screen();
+       //system->run_title_screen();
        run_event_loop();
        shutdown();
     body_dependency_symbols:
