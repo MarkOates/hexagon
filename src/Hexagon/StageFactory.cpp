@@ -49,6 +49,9 @@
 #include <allegro5/allegro_font.h>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/ProjectNavigator.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <allegro5/allegro.h>
 #include <stdexcept>
 #include <sstream>
@@ -500,6 +503,35 @@ StageInterface* StageFactory::create_advanced_component_navigator()
    result->set_font(font);
    result->set_cell_width(cell_width);
    result->set_cell_height(cell_height);
+
+   return result;
+}
+
+StageInterface* StageFactory::create_project_navigator()
+{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "StageFactory" << "::" << "create_project_navigator" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   Hexagon::ProjectNavigator *result = new Hexagon::ProjectNavigator(font_bin);
+
+   //result->set_font_bin(font_bin);
+   //result->set_render_on_hud(true);
+   //result->set_base_text_color(obtain_base_text_color());
+   //result->set_base_backfill_color(obtain_base_backfill_color());
+   //result->set_place(build_centered_in_world_initial_place(600, 700));
+
+   //ALLEGRO_DISPLAY *display = get_current_display();
+   //ALLEGRO_FONT *font = obtain_component_navigator_font();
+   //int cell_width = al_get_text_width(font, " ");
+   //int cell_height = al_get_font_line_height(font);
+
+   //result->set_display(display);
+   //result->set_font(font);
+   //result->set_cell_width(cell_width);
+   //result->set_cell_height(cell_height);
 
    return result;
 }

@@ -51,6 +51,7 @@ namespace Hexagon
       StageInterface* create_regex_input_box_modal();
       StageInterface* create_git_commit_message_box();
       StageInterface* create_advanced_component_navigator();
+      StageInterface* create_project_navigator();
       ALLEGRO_DISPLAY* get_current_display();
       placement3d build_centered_on_hud_initial_place(float width=0, float height=0);
       placement3d build_centered_in_world_initial_place(float width=0, float height=0);

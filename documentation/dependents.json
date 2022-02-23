@@ -1440,6 +1440,9 @@
   "Hexagon/OneLineInputBox/Stage": [
     "Hexagon/StageFactory"
   ],
+  "Hexagon/ProjectNavigator": [
+    "Hexagon/StageFactory"
+  ],
   "Hexagon/Notifications/Stage": [
     "Hexagon/StageFactory"
   ],
