@@ -87,12 +87,12 @@ float StageFactory::get_hud_render_surface_projection_height()
 }
 
 
-std::string StageFactory::obtain_default_navigator_directory()
+std::string StageFactory::__OBSOLETE__obtain_default_navigator_directory()
 {
    if (!(config))
       {
          std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_default_navigator_directory" << ": error: " << "guard \"config\" not met";
+         error_message << "StageFactory" << "::" << "__OBSOLETE__obtain_default_navigator_directory" << ": error: " << "guard \"config\" not met";
          throw std::runtime_error(error_message.str());
       }
    return config->get_default_navigator_directory();
@@ -205,9 +205,9 @@ StageInterface* StageFactory::create_notification(std::string body_text)
    return stage;
 }
 
-StageInterface* StageFactory::create_file_navigator(std::string directory)
+StageInterface* StageFactory::create_file_navigator(std::string project_directory)
 {
-   std::string directory_to_start = directory.empty() ? obtain_default_navigator_directory() : directory;
+   std::string directory_to_start = project_directory; //directory.empty() ? obtain_default_navigator_directory() : directory;
 
    ALLEGRO_FONT *font = obtain_file_navigator_font();
    Hexagon::FileNavigator::Stage *file_navigator
@@ -470,7 +470,7 @@ StageInterface* StageFactory::create_git_commit_message_box()
    return stage;
 }
 
-StageInterface* StageFactory::create_advanced_component_navigator()
+StageInterface* StageFactory::create_advanced_component_navigator(std::string project_directory)
 {
    if (!(font_bin))
       {
@@ -479,7 +479,7 @@ StageInterface* StageFactory::create_advanced_component_navigator()
          throw std::runtime_error(error_message.str());
       }
    Hexagon::AdvancedComponentNavigator::Stage *result =
-      new Hexagon::AdvancedComponentNavigator::Stage(obtain_default_navigator_directory());
+      new Hexagon::AdvancedComponentNavigator::Stage(project_directory);
 
    result->process_local_event("refresh_list"); // TODO: find a test technique for this,
                                                 // I feel like this event should not be run real-time

@@ -28,7 +28,7 @@ namespace Hexagon
 
       float get_hud_render_surface_projection_width();
       float get_hud_render_surface_projection_height();
-      std::string obtain_default_navigator_directory();
+      std::string __OBSOLETE__obtain_default_navigator_directory();
       ALLEGRO_COLOR obtain_base_text_color();
       std::string obtain_regex_temp_filename();
       ALLEGRO_COLOR obtain_base_backfill_color();
@@ -39,7 +39,7 @@ namespace Hexagon
       int obtain_display_default_width();
       int obtain_display_default_height();
       StageInterface* create_notification(std::string body_text="");
-      StageInterface* create_file_navigator(std::string directory="");
+      StageInterface* create_file_navigator(std::string project_directory="/Users/markoates/Repos/hexagon/");
       StageInterface* create_class_brief_menu(std::string title="Untitled Menu", std::vector<std::tuple<std::string, std::string>> items={{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}});
       StageInterface* create_component_relations_navigator(std::string focused_component_name="", std::string current_project_directory="", bool simplify_relatives_names=true);
       StageInterface* create_fancy();
@@ -50,7 +50,7 @@ namespace Hexagon
       StageInterface* create_delete_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage=nullptr);
       StageInterface* create_regex_input_box_modal();
       StageInterface* create_git_commit_message_box();
-      StageInterface* create_advanced_component_navigator();
+      StageInterface* create_advanced_component_navigator(std::string project_directory="/Users/markoates/Repos/hexagon/");
       StageInterface* create_project_navigator();
       ALLEGRO_DISPLAY* get_current_display();
       placement3d build_centered_on_hud_initial_place(float width=0, float height=0);
