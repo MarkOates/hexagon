@@ -138,7 +138,7 @@ void Renderer::render()
    if (selections) draw_selections();
    if (search_regex_selections) draw_search_regex_selections();
    if (visual_selections) draw_visual_selections();
-   draw_null_separator_line();
+   draw_null_space_above_and_below();
    if (full_line_visual_selections) draw_full_line_visual_selections();
    if (code_message_points) draw_code_message_points();
    if (lines && cursor) render_word_highlight_under_cursor();
@@ -178,18 +178,18 @@ void Renderer::draw_represents_symlink_frames()
    return;
 }
 
-bool Renderer::draw_null_separator_line()
+bool Renderer::draw_null_space_above_and_below()
 {
    if (!(text_mesh))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_null_separator_line" << ": error: " << "guard \"text_mesh\" not met";
+         error_message << "Renderer" << "::" << "draw_null_space_above_and_below" << ": error: " << "guard \"text_mesh\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(lines))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_null_separator_line" << ": error: " << "guard \"lines\" not met";
+         error_message << "Renderer" << "::" << "draw_null_space_above_and_below" << ": error: " << "guard \"lines\" not met";
          throw std::runtime_error(error_message.str());
       }
    float cell_height = text_mesh->get_cell_height();

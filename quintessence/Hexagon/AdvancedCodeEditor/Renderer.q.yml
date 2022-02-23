@@ -141,7 +141,7 @@ functions:
       if (selections) draw_selections();
       if (search_regex_selections) draw_search_regex_selections();
       if (visual_selections) draw_visual_selections();
-      draw_null_separator_line();
+      draw_null_space_above_and_below();
       if (full_line_visual_selections) draw_full_line_visual_selections();
       if (code_message_points) draw_code_message_points();
       if (lines && cursor) render_word_highlight_under_cursor();
@@ -186,7 +186,7 @@ functions:
       return;
 
 
-  - name: draw_null_separator_line
+  - name: draw_null_space_above_and_below
     type: bool
     guards: [ text_mesh, lines ]
     body: |
