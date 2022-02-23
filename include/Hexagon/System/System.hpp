@@ -206,6 +206,7 @@ public:
    static const std::string CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION;
    static const std::string CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE;
+   static const std::string CLEAR_HUD_TITLE;
    static const std::string SET_HUD_CAPS_LOCK_LIGHT_ON;
    static const std::string SET_HUD_CAPS_LOCK_LIGHT_OFF;
    static const std::string CENTER_CAMERA_ON_FRONTMOST_STAGE;

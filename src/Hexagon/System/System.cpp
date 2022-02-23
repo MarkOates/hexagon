@@ -1775,6 +1775,7 @@ bool System::submit_current_modal()
       process_local_event(::System::PUSH_PROJECT_NAVIGATOR_SELECTION);
       process_local_event(::System::DESTROY_TOPMOST_STAGE);
       process_local_event(::System::DESTROY_ALL_CODE_EDITOR_STAGES);
+      process_local_event(::System::CLEAR_HUD_TITLE);
       //process_local_event(::System::CENTER_CAMERA_TO_ORIGIN); // TODO
       break;
    case StageInterface::COMPONENT_NAVIGATOR:
@@ -1870,6 +1871,7 @@ const std::string System::CREATE_STAGES_FROM_LAYOUT_OF_LAST_COMPONENT_NAVIGATOR_
 const std::string System::CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION =
       "CREATE_TWO_OR_THREE_SPLIT_LAYOUT_FROM_LAST_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE = "SET_FOCUSED_COMPONENT_NAME_TO_TOPMOST_RELATIVE";
+const std::string System::CLEAR_HUD_TITLE = "CLEAR_HUD_TITLE";
 const std::string System::SET_HUD_CAPS_LOCK_LIGHT_ON = "SET_HUD_CAPS_LOCK_LIGHT_ON";
 const std::string System::SET_HUD_CAPS_LOCK_LIGHT_OFF = "SET_HUD_CAPS_LOCK_LIGHT_OFF";
 const std::string System::CENTER_CAMERA_ON_FRONTMOST_STAGE = "CENTER_CAMERA_ON_FRONTMOST_STAGE";

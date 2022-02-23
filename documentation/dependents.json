@@ -738,6 +738,7 @@
     "Hexagon/Forms/Fun",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/PacketRenderer",
+    "Hexagon/ProjectNavigator",
     "Hexagon/UI/DrawingBox"
   ],
   "al_is_ttf_addon_initialized": [

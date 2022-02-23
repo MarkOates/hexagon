@@ -5,6 +5,9 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <allegro5/allegro_primitives.h>
+#include <stdexcept>
+#include <sstream>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -77,6 +80,8 @@ bool ProjectNavigator::initialize()
       { "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
       //{ "tins2021", "/Users/markoates/Repos/tins2021/" },
    });
+   main_menu.set_color(ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f});
+
    initialized = true;
    return true;
 }
@@ -89,7 +94,39 @@ void ProjectNavigator::render()
          error_message << "ProjectNavigator" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
          throw std::runtime_error(error_message.str());
       }
+   draw_frame();
    draw_menu();
+   return;
+}
+
+void ProjectNavigator::draw_frame()
+{
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "draw_frame" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(al_is_primitives_addon_initialized()))
+      {
+         std::stringstream error_message;
+         error_message << "ProjectNavigator" << "::" << "draw_frame" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   float inset = 20;
+   float thickness = 4;
+   float roundness = 19;
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f};
+   al_draw_rounded_rectangle(
+      0+inset,
+      0+inset,
+      surface_width-inset,
+      surface_height-inset,
+      roundness,
+      roundness,
+      color,
+      thickness
+   );
    return;
 }
 
@@ -140,10 +177,11 @@ void ProjectNavigator::draw_menu()
          error_message << "ProjectNavigator" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   //placement3d place(surface_width/2, surface_height/2, 0);
-   //place.start_transform();
+   placement3d place(surface_width/2, surface_height/2, 0);
+   place.scale = vec3d(0.6, 0.6, 0.6);
+   place.start_transform();
    main_menu.render();
-   //place.restore_transform();
+   place.restore_transform();
    return;
 }
 

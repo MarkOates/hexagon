@@ -517,10 +517,10 @@ StageInterface* StageFactory::create_project_navigator()
    result->initialize();
 
    //result->set_font_bin(font_bin);
-   //result->set_render_on_hud(true);
+   result->set_render_on_hud(true);
    //result->set_base_text_color(obtain_base_text_color());
    //result->set_base_backfill_color(obtain_base_backfill_color());
-   //result->set_place(build_centered_in_world_initial_place(600, 700));
+   result->set_place(build_centered_on_hud_initial_place(600, 700));
 
    //ALLEGRO_DISPLAY *display = get_current_display();
    //ALLEGRO_FONT *font = obtain_component_navigator_font();

@@ -30,6 +30,7 @@ namespace Hexagon
       static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       bool initialize();
       virtual void render() override;
+      void draw_frame();
       bool main_menu_cursor_move_up();
       bool main_menu_cursor_move_down();
       std::string main_menu_get_current_list_item_identifier();

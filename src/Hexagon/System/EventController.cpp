@@ -42,6 +42,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          &::Hexagon::System::System::spawn_class_brief_menu,
       },
       {
+         ::System::CLEAR_HUD_TITLE,
+         &::Hexagon::System::System::clear_hud_title,
+      },
+      {
          ::System::SET_HUD_CAPS_LOCK_LIGHT_ON,
          &::Hexagon::System::System::set_hud_caps_lock_light_on,
       },
