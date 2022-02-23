@@ -483,9 +483,20 @@ functions:
       result->set_render_on_hud(false);
       result->set_base_text_color(obtain_base_text_color());
       result->set_base_backfill_color(obtain_base_backfill_color());
-      //result->set_place(build_centered_on_hud_initial_place(600, 700));
-      result->set_place(build_centered_in_world_initial_place(600, 700));
 
+      bool stage_is_on_hud = true;
+      if (stage_is_on_hud)
+      {
+         result->set_render_on_hud(true);
+         result->set_place(build_centered_on_hud_initial_place(600, 700));
+      }
+      else
+      {
+         result->set_render_on_hud(false);
+         result->set_place(build_centered_in_world_initial_place(600, 700));
+      }
+
+    
       // properties previously assigned at render time:
       ALLEGRO_DISPLAY *display = get_current_display();
       ALLEGRO_FONT *font = obtain_component_navigator_font();

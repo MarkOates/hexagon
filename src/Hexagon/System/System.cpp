@@ -1144,7 +1144,7 @@ bool System::spawn_component_navigator()
    place.position.z = 300;
 
 
-   bool do_fancy_stuff_with_position_and_movement = true;
+   bool do_fancy_stuff_with_position_and_movement = false;
    if (do_fancy_stuff_with_position_and_movement)
    {
       vec3d target_position = place.position;

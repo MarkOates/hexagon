@@ -385,9 +385,22 @@ TEST(Hexagon_StageFactoryTest,
    ALLEGRO_COLOR expected_base_backfill_color = config.get_backfill_color();
    ALLEGRO_COLOR actual_base_backfill_color = stage->get_base_backfill_color();
 
-   placement3d expected_place = stage_factory.build_centered_in_world_initial_place(600, 700);
-   placement3d actual_place = stage->get_place();
+   placement3d expected_place;// = stage_factory.build_centered_in_world_initial_place(600, 700);
+   bool render_on_hud = stage->get_render_on_hud();
 
+   bool is_configured_to_render_on_hud = true;
+   if (is_configured_to_render_on_hud)
+   {
+      EXPECT_EQ(true, stage->get_render_on_hud());
+      expected_place = stage_factory.build_centered_on_hud_initial_place(600, 700);
+   }
+   else
+   {
+      EXPECT_EQ(false, stage->get_render_on_hud());
+      expected_place = stage_factory.build_centered_in_world_initial_place(600, 700);
+   }
+
+   placement3d actual_place = stage->get_place();
    //EXPECT_EQ(true, stage->get_render_on_hud());
    EXPECT_EQ(expected_base_text_color.r, actual_base_text_color.r); // for now, just comparing red component
    EXPECT_EQ(expected_base_backfill_color.r, actual_base_backfill_color.r); // for now, just comparing red component
