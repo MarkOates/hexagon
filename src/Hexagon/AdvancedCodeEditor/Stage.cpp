@@ -83,6 +83,9 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , selections({})
    , search_regex_selections(Hexagon::AdvancedCodeEditor::Selection{})
    , syntax_highlight_color(ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f})
+   , on_color(ALLEGRO_COLOR{1.0f, 1.0f, 0.0f, 1.0f})
+   , comment_color(ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f})
+   , clear_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f})
 {
 }
 
@@ -119,6 +122,24 @@ void Stage::set_current_search_regex(std::string current_search_regex)
 void Stage::set_syntax_highlight_color(ALLEGRO_COLOR syntax_highlight_color)
 {
    this->syntax_highlight_color = syntax_highlight_color;
+}
+
+
+void Stage::set_on_color(ALLEGRO_COLOR on_color)
+{
+   this->on_color = on_color;
+}
+
+
+void Stage::set_comment_color(ALLEGRO_COLOR comment_color)
+{
+   this->comment_color = comment_color;
+}
+
+
+void Stage::set_clear_color(ALLEGRO_COLOR clear_color)
+{
+   this->clear_color = clear_color;
 }
 
 
@@ -188,6 +209,24 @@ ALLEGRO_COLOR Stage::get_syntax_highlight_color()
 }
 
 
+ALLEGRO_COLOR Stage::get_on_color()
+{
+   return on_color;
+}
+
+
+ALLEGRO_COLOR Stage::get_comment_color()
+{
+   return comment_color;
+}
+
+
+ALLEGRO_COLOR Stage::get_clear_color()
+{
+   return clear_color;
+}
+
+
 Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &Stage::get_advanced_code_editor_ref()
 {
    return advanced_code_editor;
@@ -233,7 +272,7 @@ void Stage::initialize()
    al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
    al_set_target_bitmap(surface_render);
 
-   al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+   al_clear_to_color(clear_color);
    al_restore_state(&previous_render_state);
 
    advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
@@ -1174,8 +1213,8 @@ void Stage::refresh_dirty_cells_on_text_mesh()
          throw std::runtime_error(error_message.str());
       }
    char clear_char = '\0';
-   ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
-   ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+   //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+   //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
    int text_mesh_max_x = num_columns;
@@ -1219,8 +1258,8 @@ void Stage::refresh_text_mesh_respecting_first_row_offset()
    // There's definitely some fun research to be done here.
 
    char clear_char = '\0';
-   ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
-   ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+   //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+   //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
    for (unsigned y=0; y<num_rows; y++)
@@ -1314,7 +1353,7 @@ void Stage::filter_text_mesh_for_syntax_highlights()
 
 void Stage::filter_text_mesh_for_comments()
 {
-   ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
+   ALLEGRO_COLOR highlight_color = comment_color; //ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
    //std::string string_to_match = " //";
    std::string string_to_match = "//";
@@ -1389,8 +1428,8 @@ void Stage::refresh_text_mesh()
       }
    char clear_char = '\0';
 
-   ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
-   ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+   //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+   //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
    for (unsigned y=0; y<num_rows; y++)

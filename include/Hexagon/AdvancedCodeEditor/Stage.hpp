@@ -53,6 +53,9 @@ namespace Hexagon
          std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
          Hexagon::AdvancedCodeEditor::Selection search_regex_selections;
          ALLEGRO_COLOR syntax_highlight_color;
+         ALLEGRO_COLOR on_color;
+         ALLEGRO_COLOR comment_color;
+         ALLEGRO_COLOR clear_color;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
@@ -63,6 +66,9 @@ namespace Hexagon
          void set_input_buffer(std::string input_buffer);
          void set_current_search_regex(std::string current_search_regex);
          void set_syntax_highlight_color(ALLEGRO_COLOR syntax_highlight_color);
+         void set_on_color(ALLEGRO_COLOR on_color);
+         void set_comment_color(ALLEGRO_COLOR comment_color);
+         void set_clear_color(ALLEGRO_COLOR clear_color);
          int get_num_columns();
          int get_num_rows();
          std::string get_filename();
@@ -74,6 +80,9 @@ namespace Hexagon
          int get_first_row_offset();
          ALLEGRO_BITMAP* get_surface_render();
          ALLEGRO_COLOR get_syntax_highlight_color();
+         ALLEGRO_COLOR get_on_color();
+         ALLEGRO_COLOR get_comment_color();
+         ALLEGRO_COLOR get_clear_color();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();

@@ -130,6 +130,24 @@ properties:
     getter: true
     setter: true
 
+  - name: on_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f, 1.0f, 0.0f, 1.0f}
+    getter: true
+    setter: true
+
+  - name: comment_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f}
+    getter: true
+    setter: true
+   
+  - name: clear_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
+    getter: true
+    setter: true
+   
 
 functions:
 
@@ -150,7 +168,7 @@ functions:
       al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);
       al_set_target_bitmap(surface_render);
 
-      al_clear_to_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+      al_clear_to_color(clear_color);
       al_restore_state(&previous_render_state);
 
       advanced_code_editor.cursor_set_width(text_mesh.get_cell_width());
@@ -1171,8 +1189,8 @@ functions:
     guards: [ initialized ]
     body: |
       char clear_char = '\0';
-      ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
-      ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+      //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+      //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
       int text_mesh_max_x = num_columns;
@@ -1212,8 +1230,8 @@ functions:
       // There's definitely some fun research to be done here.
 
       char clear_char = '\0';
-      ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
-      ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+      //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+      //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
       for (unsigned y=0; y<num_rows; y++)
@@ -1312,7 +1330,7 @@ functions:
   - name: filter_text_mesh_for_comments
     private: true
     body: |
-      ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
+      ALLEGRO_COLOR highlight_color = comment_color; //ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
       //std::string string_to_match = " //";
       std::string string_to_match = "//";
@@ -1386,8 +1404,8 @@ functions:
     body: |
       char clear_char = '\0';
 
-      ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
-      ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+      //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+      //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
       for (unsigned y=0; y<num_rows; y++)
