@@ -9,6 +9,7 @@ int main(int argc, char **argv)
    Hexagon::Daemus::ProgramRunner daemus;
 
    if (args.size() == 0) daemus.run();
+   else if (args[0] == "run_once") daemus.run_once();
    else daemus.run(false);
 
    return 0;

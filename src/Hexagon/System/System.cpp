@@ -967,7 +967,13 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
 
    //php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/deamus_build.txt", "asdf234");
 
-   php::file_put_contents("/Users/markoates/Repos/hexagon/tmp/daemus_build.txt", "12345asdf");
+   // TODO: map these two lines to constants
+   // TODO: disable these lines during normal rerun watcher build
+
+   php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/daemus_build.txt", "12345asdf");
+
+   php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt",
+      current_project_directory);
 
 
    return true;

@@ -34,7 +34,7 @@ namespace Daemus
 
 ProgramRunner::ProgramRunner(std::string quintessence_build_executable)
    : quintessence_build_executable(quintessence_build_executable)
-   , daemus_build_file_directory("/Users/markoates/Repos/hexagon/tmp/")
+   , daemus_build_file_directory("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/")
    , daemus_build_filename("daemus_build.txt")
 {
 }
@@ -135,6 +135,10 @@ void ProgramRunner::run_once(std::string project_directory)
 {
    std::string actual_command_to_execute_in_project_directory = "make focus";
 
+   // TODO: note this override of 
+   project_directory = "`cat /Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt`";
+   //project_directory = "/Users/markoates/Repos/hexagon/ ";
+
    std::stringstream result_command;
    result_command << "cd "
                   << project_directory
@@ -187,13 +191,16 @@ void ProgramRunner::watch_for_buildfile(std::string project_directory)
      "--dir \"" + get_daemus_build_file_directory() + "\"" \
      " " \
      "-p \"" + get_daemus_build_filename() + "\"" \
-     " " \
-     "\"(" \
-     "cd ";
+     " "
+     //"\"(" \
+     //"cd "
+     ;
 
-   project_directory = "`cat /Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt` ";
+   //project_directory = "`cat /Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt` ";
 
-   build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
+   //build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
+   build_command += "\"(/Users/markoates/Repos/hexagon/bin/programs/daemus run_once)\"";
+
    std::string output = execute_command(build_command);
    return;
 }
@@ -215,6 +222,8 @@ void ProgramRunner::run_with_rerun(std::string project_directory)
      "\"(cd ";
 
    build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
+   //build_command += "(/Users/markoates/Repos/hexagon/bin/programs/daemus run_once)\"";
+
    std::string output = execute_command(build_command);
    return;
 }

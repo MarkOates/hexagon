@@ -8,7 +8,7 @@ properties:
 
   - name: daemus_build_file_directory
     type: std::string
-    init_with: '"/Users/markoates/Repos/hexagon/tmp/"'
+    init_with: '"/Users/markoates/Repos/hexagon/bin/programs/data/tmp/"'
     getter: true
 
   - name: daemus_build_filename
@@ -108,6 +108,10 @@ functions:
     body: |
       std::string actual_command_to_execute_in_project_directory = "make focus";
 
+      // TODO: note this override of 
+      project_directory = "`cat /Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt`";
+      //project_directory = "/Users/markoates/Repos/hexagon/ ";
+
       std::stringstream result_command;
       result_command << "cd "
                      << project_directory
@@ -175,13 +179,16 @@ functions:
         "--dir \"" + get_daemus_build_file_directory() + "\"" \
         " " \
         "-p \"" + get_daemus_build_filename() + "\"" \
-        " " \
-        "\"(" \
-        "cd ";
+        " "
+        //"\"(" \
+        //"cd "
+        ;
 
-      project_directory = "`cat /Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt` ";
+      //project_directory = "`cat /Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt` ";
 
-      build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
+      //build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
+      build_command += "\"(/Users/markoates/Repos/hexagon/bin/programs/daemus run_once)\"";
+
       std::string output = execute_command(build_command);
       return;
     body_dependency_symbols:
@@ -212,6 +219,8 @@ functions:
         "\"(cd ";
 
       build_command += project_directory + " && " + actual_command_to_execute_in_project_directory + ")\"";
+      //build_command += "(/Users/markoates/Repos/hexagon/bin/programs/daemus run_once)\"";
+
       std::string output = execute_command(build_command);
       return;
     body_dependency_symbols:
