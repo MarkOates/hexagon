@@ -19,6 +19,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/Notifications/Stage.hpp>
 #include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/UI/LittleMenu.hpp>
@@ -33,6 +35,7 @@
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <allegro_flare/useful_php.h>
+#include <AllegroFlare/Color.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -183,6 +186,17 @@ int StageFactory::obtain_display_default_height()
          throw std::runtime_error(error_message.str());
       }
    return config->get_initial_display_height();
+}
+
+bool StageFactory::obtain_dark_mode()
+{
+   if (!(config))
+      {
+         std::stringstream error_message;
+         error_message << "StageFactory" << "::" << "obtain_dark_mode" << ": error: " << "guard \"config\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return config->is_dark_mode();
 }
 
 StageInterface* StageFactory::create_notification(std::string body_text)
@@ -340,6 +354,26 @@ StageInterface* StageFactory::create_advanced_code_editor(std::string filename, 
 {
    Hexagon::AdvancedCodeEditor::Stage *advanced_code_editor_stage =
       new Hexagon::AdvancedCodeEditor::Stage(font_bin, num_columns, num_rows);
+   advanced_code_editor_stage->set_on_color(obtain_base_text_color()); // TODO: these should be able to be set
+                                                                       // after initialization
+   if (obtain_dark_mode())
+   {
+      //ALLEGRO_COLOR syntax_highlight_color = ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f};
+      //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 0.0f, 1.0f};
+      //ALLEGRO_COLOR comment_color = ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
+      //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+
+      ALLEGRO_COLOR on_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f};
+      ALLEGRO_COLOR syntax_highlight_color =
+         AllegroFlare::color::mix(on_color, ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f}, 0.8);
+      ALLEGRO_COLOR comment_color = AllegroFlare::color::color(on_color, 0.5);
+      ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
+
+      advanced_code_editor_stage->set_syntax_highlight_color(syntax_highlight_color);
+      advanced_code_editor_stage->set_on_color(on_color);
+      advanced_code_editor_stage->set_comment_color(comment_color);
+      advanced_code_editor_stage->set_clear_color(clear_color);
+   }
 
    advanced_code_editor_stage->initialize();
 
@@ -348,8 +382,9 @@ StageInterface* StageFactory::create_advanced_code_editor(std::string filename, 
    advanced_code_editor_stage->set_represents_symlink(is_symlink);
    advanced_code_editor_stage->set_filename(filename);
    advanced_code_editor_stage->set_content(file_contents);
-   //advanced_code_editor_stage->set_base_font_color(text_color);
-   //advanced_code_editor_stage->set_backfill_color(backfill_color);
+
+   //advanced_code_editor_stage->set_on_color(obtain_base_text_color());
+   //advanced_code_editor_stage->set_backfill_color(obtain_base_backfill_color());
 
    return advanced_code_editor_stage;
 }

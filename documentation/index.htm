@@ -977,6 +977,9 @@ table td
   <td class="method">initialize()</td>
 </tr>
 <tr>
+  <td class="method">initialize_surface_render()</td>
+</tr>
+<tr>
   <td class="method">destroy()</td>
 </tr>
 <tr>
@@ -8937,6 +8940,9 @@ table td
   <td class="method">obtain_display_default_height()</td>
 </tr>
 <tr>
+  <td class="method">obtain_dark_mode()</td>
+</tr>
+<tr>
   <td class="method">create_notification(1)</td>
 </tr>
 <tr>
@@ -9001,6 +9007,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::color::mix&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Color.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ObjectivesLog::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ObjectivesLog/Stage.hpp&quot;]}</td>
 </tr>
@@ -11583,7 +11592,8 @@ table td
   "AllegroFlare/color/mix": [
     "Hexagon/Elements/Frame",
     "Hexagon/Hud",
-    "Hexagon/Powerbar/Renderer"
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/StageFactory"
   ],
   "std/transform": [
     "Hexagon/Elements/ListMenu",

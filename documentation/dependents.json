@@ -1081,7 +1081,8 @@
   "AllegroFlare/color/mix": [
     "Hexagon/Elements/Frame",
     "Hexagon/Hud",
-    "Hexagon/Powerbar/Renderer"
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/StageFactory"
   ],
   "std/transform": [
     "Hexagon/Elements/ListMenu",

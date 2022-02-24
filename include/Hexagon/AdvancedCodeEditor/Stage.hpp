@@ -87,6 +87,7 @@ namespace Hexagon
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          void initialize();
+         void initialize_surface_render();
          virtual void destroy() override;
          bool refresh_search_regex_selections();
          void set_code_message_points(std::vector<CodeMessagePoint> code_message_points={});

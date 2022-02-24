@@ -37,6 +37,7 @@ namespace Hexagon
       ALLEGRO_FONT* obtain_git_commit_message_box_font();
       int obtain_display_default_width();
       int obtain_display_default_height();
+      bool obtain_dark_mode();
       StageInterface* create_notification(std::string body_text="");
       StageInterface* create_file_navigator(std::string project_directory="/Users/markoates/Repos/hexagon/");
       StageInterface* create_class_brief_menu(std::string title="Untitled Menu", std::vector<std::tuple<std::string, std::string>> items={{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}});
