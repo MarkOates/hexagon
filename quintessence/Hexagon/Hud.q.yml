@@ -67,7 +67,7 @@ properties:
     getter: true
     constructor_arg: true
 
-  - name: render_powerbar
+  - name: show_powerbar
     type: bool
     init_with: false
     setter: true
@@ -93,7 +93,7 @@ properties:
     constructor_arg: true
     getter: true
 
-  - name: draw_save_count
+  - name: show_save_count
     type: bool
     init_with: false
     setter: true
@@ -107,7 +107,7 @@ properties:
     getter: true
     setter: true
 
-  - name: render_packets
+  - name: show_packets
     type: bool
     init_with: false
     setter: true
@@ -121,7 +121,7 @@ properties:
     getter: true
     setter: true
 
-  - name: draw_search_count
+  - name: show_search_count
     type: bool
     init_with: false
     setter: true
@@ -135,21 +135,21 @@ properties:
     getter: true
     setter: true
 
-  - name: render_focus_timer_bar
+  - name: show_focus_timer_bar
     type: bool
     init_with: false
     setter: true
     getter: true
     constructor_arg: true
 
-  - name: render_build_sequence_meter
+  - name: show_build_sequence_meter
     type: bool
-    init_with: true
+    init_with: false
     setter: true
     getter: true
     constructor_arg: true
 
-  - name: draw_notifications
+  - name: show_notifications
     type: bool
     init_with: true
     setter: true
@@ -522,7 +522,7 @@ functions:
 
       if (show_profiler) draw_profile_timer_graph();
 
-      if (draw_notifications)
+      if (show_notifications)
       {
          ALLEGRO_COLOR color = al_color_name("red");
          float notification_bottom_padding = al_get_font_line_height(obtain_text_font());
@@ -549,7 +549,7 @@ functions:
          }
       }
 
-      if (draw_save_count)
+      if (show_save_count)
       {
          // bottom left of screen
          std::string save_count_text_to_draw = std::string("Saves: ") + std::to_string(save_count);
@@ -564,7 +564,7 @@ functions:
          );
       }
 
-      if (draw_search_count)
+      if (show_search_count)
       {
          // bottom left of screen
          std::string search_count_text_to_draw = std::string("Searches: ") + std::to_string(search_count);
@@ -579,15 +579,15 @@ functions:
          );
       }
 
-      if (render_packets) draw_packets();
+      if (show_packets) draw_packets();
 
-      if (render_powerbar) draw_powerbar();
+      if (show_powerbar) draw_powerbar();
 
-      if (render_focus_timer_bar) draw_focus_timer_bar();
+      if (show_focus_timer_bar) draw_focus_timer_bar();
 
       if (show_caps_lock_notification_light) draw_caps_lock_notification_light();
 
-      if (render_build_sequence_meter) draw_build_sequence_meter();
+      if (show_build_sequence_meter) draw_build_sequence_meter();
 
       if (show_disabled_screen)
       {

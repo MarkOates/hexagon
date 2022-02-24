@@ -146,9 +146,9 @@ void System::initialize()
    hud.set_backfill_color(config.get_backfill_color());
    hud.set_stages(&stages);
    hud.set_global_font_str(get_global_font_str());
-   hud.set_render_packets(true);
-   hud.set_render_build_sequence_meter(true);
-   hud.set_render_focus_timer_bar(config.get_hud_render_focus_timer_bar());
+   hud.set_show_packets(true);
+   hud.set_show_build_sequence_meter(true);
+   hud.set_show_focus_timer_bar(config.get_hud_render_focus_timer_bar()); // TODO: rename this config method to show_*
    hud.initialize();
 
    baseline_camera_stepback = config.get_initial_baseline_camera_stepback();

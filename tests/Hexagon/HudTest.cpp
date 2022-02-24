@@ -96,31 +96,38 @@ TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
-   render_powerbar__has_a_getter_and_is_initialized_with_the_expected_default)
+   show_powerbar__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
-   ASSERT_EQ(false, hud.get_render_powerbar());
+   ASSERT_EQ(false, hud.get_show_powerbar());
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
-   render_packets__has_a_getter_and_is_initialized_with_the_expected_default)
+   show_packets__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
-   ASSERT_EQ(false, hud.get_render_packets());
+   ASSERT_EQ(false, hud.get_show_packets());
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
-   render_focus_timer_bar__has_a_getter_and_is_initialized_with_the_expected_default)
+   show_focus_timer_bar__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
-   ASSERT_EQ(false, hud.get_render_focus_timer_bar());
+   ASSERT_EQ(false, hud.get_show_focus_timer_bar());
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
-   draw_notifications__has_a_getter_and_is_initialized_with_the_expected_default)
+   show_build_sequence_meter__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
-   ASSERT_EQ(true, hud.get_draw_notifications());
+   ASSERT_EQ(false, hud.get_show_build_sequence_meter());
+}
+
+TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+   show_notifications__has_a_getter_and_is_initialized_with_the_expected_default)
+{
+   Hexagon::Hud hud;
+   ASSERT_EQ(true, hud.get_show_notifications());
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
@@ -151,10 +158,11 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
-   render__will_render_packets_with_newest_packets_at_the_bottom)
+   render__will_show_packets_with_newest_packets_at_the_bottom)
 {
    Hexagon::Hud hud(display, font_bin);
    hud.initialize();
+   hud.set_show_packets(true);
 
    std::vector<Hexagon::Packet> packets = {
       Hexagon::Packet(1, 8),
@@ -162,7 +170,6 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
       Hexagon::Packet(3, 27),
    };
    hud.set_packets(packets);
-   hud.set_render_packets(true);
 
    hud.draw();
 
@@ -176,6 +183,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 {
    Hexagon::Hud hud(display, font_bin);
    hud.initialize();
+   hud.set_show_packets(true);
 
    std::vector<Hexagon::Packet> packets = {
       Hexagon::Packet(1, 1), // should not be shown
@@ -192,7 +200,6 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
       // an additional packet is appended, one that is the "packet in progress"
    };
    hud.set_packets(packets);
-   hud.set_render_packets(true);
 
    hud.draw();
 
@@ -209,7 +216,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 
    Hexagon::Powerbar::Powerbar &powerbar = hud.get_powerbar_ref();
 
-   hud.set_render_powerbar(true);
+   hud.set_show_powerbar(true);
    powerbar.set_files_are_modified(true);
    powerbar.set_files_are_staged(true);
    powerbar.set_files_are_untracked(true);

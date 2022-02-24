@@ -37,7 +37,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool render_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool draw_save_count, int save_count, bool render_packets, std::vector<Hexagon::Packet> packets, bool draw_search_count, int search_count, bool render_focus_timer_bar, bool render_build_sequence_meter, bool draw_notifications, float left_column_x)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool show_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool show_save_count, int save_count, bool show_packets, std::vector<Hexagon::Packet> packets, bool show_search_count, int search_count, bool show_focus_timer_bar, bool show_build_sequence_meter, bool show_notifications, float left_column_x)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -49,19 +49,19 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string 
    , title_text(title_text)
    , backfill_color(backfill_color)
    , show_disabled_screen(show_disabled_screen)
-   , render_powerbar(render_powerbar)
+   , show_powerbar(show_powerbar)
    , files_are_committed(files_are_committed)
    , commits_are_in_sync_with_remote(commits_are_in_sync_with_remote)
    , show_profiler(show_profiler)
-   , draw_save_count(draw_save_count)
+   , show_save_count(show_save_count)
    , save_count(save_count)
-   , render_packets(render_packets)
+   , show_packets(show_packets)
    , packets(packets)
-   , draw_search_count(draw_search_count)
+   , show_search_count(show_search_count)
    , search_count(search_count)
-   , render_focus_timer_bar(render_focus_timer_bar)
-   , render_build_sequence_meter(render_build_sequence_meter)
-   , draw_notifications(draw_notifications)
+   , show_focus_timer_bar(show_focus_timer_bar)
+   , show_build_sequence_meter(show_build_sequence_meter)
+   , show_notifications(show_notifications)
    , left_column_x(left_column_x)
    , surface_projection_width(1920)
    , surface_projection_height(1080)
@@ -114,9 +114,9 @@ void Hud::set_show_disabled_screen(bool show_disabled_screen)
 }
 
 
-void Hud::set_render_powerbar(bool render_powerbar)
+void Hud::set_show_powerbar(bool show_powerbar)
 {
-   this->render_powerbar = render_powerbar;
+   this->show_powerbar = show_powerbar;
 }
 
 
@@ -138,9 +138,9 @@ void Hud::set_show_profiler(bool show_profiler)
 }
 
 
-void Hud::set_draw_save_count(bool draw_save_count)
+void Hud::set_show_save_count(bool show_save_count)
 {
-   this->draw_save_count = draw_save_count;
+   this->show_save_count = show_save_count;
 }
 
 
@@ -150,9 +150,9 @@ void Hud::set_save_count(int save_count)
 }
 
 
-void Hud::set_render_packets(bool render_packets)
+void Hud::set_show_packets(bool show_packets)
 {
-   this->render_packets = render_packets;
+   this->show_packets = show_packets;
 }
 
 
@@ -162,9 +162,9 @@ void Hud::set_packets(std::vector<Hexagon::Packet> packets)
 }
 
 
-void Hud::set_draw_search_count(bool draw_search_count)
+void Hud::set_show_search_count(bool show_search_count)
 {
-   this->draw_search_count = draw_search_count;
+   this->show_search_count = show_search_count;
 }
 
 
@@ -174,21 +174,21 @@ void Hud::set_search_count(int search_count)
 }
 
 
-void Hud::set_render_focus_timer_bar(bool render_focus_timer_bar)
+void Hud::set_show_focus_timer_bar(bool show_focus_timer_bar)
 {
-   this->render_focus_timer_bar = render_focus_timer_bar;
+   this->show_focus_timer_bar = show_focus_timer_bar;
 }
 
 
-void Hud::set_render_build_sequence_meter(bool render_build_sequence_meter)
+void Hud::set_show_build_sequence_meter(bool show_build_sequence_meter)
 {
-   this->render_build_sequence_meter = render_build_sequence_meter;
+   this->show_build_sequence_meter = show_build_sequence_meter;
 }
 
 
-void Hud::set_draw_notifications(bool draw_notifications)
+void Hud::set_show_notifications(bool show_notifications)
 {
-   this->draw_notifications = draw_notifications;
+   this->show_notifications = show_notifications;
 }
 
 
@@ -258,9 +258,9 @@ bool Hud::get_show_disabled_screen()
 }
 
 
-bool Hud::get_render_powerbar()
+bool Hud::get_show_powerbar()
 {
-   return render_powerbar;
+   return show_powerbar;
 }
 
 
@@ -270,9 +270,9 @@ bool Hud::get_show_profiler()
 }
 
 
-bool Hud::get_draw_save_count()
+bool Hud::get_show_save_count()
 {
-   return draw_save_count;
+   return show_save_count;
 }
 
 
@@ -282,9 +282,9 @@ int Hud::get_save_count()
 }
 
 
-bool Hud::get_render_packets()
+bool Hud::get_show_packets()
 {
-   return render_packets;
+   return show_packets;
 }
 
 
@@ -294,9 +294,9 @@ std::vector<Hexagon::Packet> Hud::get_packets()
 }
 
 
-bool Hud::get_draw_search_count()
+bool Hud::get_show_search_count()
 {
-   return draw_search_count;
+   return show_search_count;
 }
 
 
@@ -306,21 +306,21 @@ int Hud::get_search_count()
 }
 
 
-bool Hud::get_render_focus_timer_bar()
+bool Hud::get_show_focus_timer_bar()
 {
-   return render_focus_timer_bar;
+   return show_focus_timer_bar;
 }
 
 
-bool Hud::get_render_build_sequence_meter()
+bool Hud::get_show_build_sequence_meter()
 {
-   return render_build_sequence_meter;
+   return show_build_sequence_meter;
 }
 
 
-bool Hud::get_draw_notifications()
+bool Hud::get_show_notifications()
 {
-   return draw_notifications;
+   return show_notifications;
 }
 
 
@@ -685,7 +685,7 @@ void Hud::draw()
 
    if (show_profiler) draw_profile_timer_graph();
 
-   if (draw_notifications)
+   if (show_notifications)
    {
       ALLEGRO_COLOR color = al_color_name("red");
       float notification_bottom_padding = al_get_font_line_height(obtain_text_font());
@@ -712,7 +712,7 @@ void Hud::draw()
       }
    }
 
-   if (draw_save_count)
+   if (show_save_count)
    {
       // bottom left of screen
       std::string save_count_text_to_draw = std::string("Saves: ") + std::to_string(save_count);
@@ -727,7 +727,7 @@ void Hud::draw()
       );
    }
 
-   if (draw_search_count)
+   if (show_search_count)
    {
       // bottom left of screen
       std::string search_count_text_to_draw = std::string("Searches: ") + std::to_string(search_count);
@@ -742,15 +742,15 @@ void Hud::draw()
       );
    }
 
-   if (render_packets) draw_packets();
+   if (show_packets) draw_packets();
 
-   if (render_powerbar) draw_powerbar();
+   if (show_powerbar) draw_powerbar();
 
-   if (render_focus_timer_bar) draw_focus_timer_bar();
+   if (show_focus_timer_bar) draw_focus_timer_bar();
 
    if (show_caps_lock_notification_light) draw_caps_lock_notification_light();
 
-   if (render_build_sequence_meter) draw_build_sequence_meter();
+   if (show_build_sequence_meter) draw_build_sequence_meter();
 
    if (show_disabled_screen)
    {
