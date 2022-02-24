@@ -32,23 +32,23 @@ properties:
     constructor_arg: true
 
   - name: base_backfill_color
-    type: ALLEGRO_COLOR*
-    init_with: nullptr
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f}
     constructor_arg: true
     getter: true
 
   - name: backfill_opacity
     type: float
-    init_with: 1.0f
+    init_with: 0.8f
     constructor_arg: true
 
   - name: base_text_color
-    type: ALLEGRO_COLOR*
-    init_with: nullptr
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
     constructor_arg: true
     getter: true
 
-  - name: frame_color
+  - name: frame_color_bluegreen
     type: ALLEGRO_COLOR
     init_with: 'al_color_html("39c3c5")'
 
@@ -59,9 +59,8 @@ functions:
   - name: build_backfill_color
     private: true
     type: ALLEGRO_COLOR
-    guards: [ base_backfill_color ]
     body: |
-      ALLEGRO_COLOR result_backfill_color = color::color(*base_backfill_color, 0.8);
+      ALLEGRO_COLOR result_backfill_color = color::color(base_backfill_color, 0.8);
       return result_backfill_color;
 
 
@@ -76,7 +75,7 @@ functions:
       ALLEGRO_COLOR backfill_color = build_backfill_color();
       bool focus_is_search_bar = component.is_mode_typing_in_search_bar();
 
-      ALLEGRO_COLOR search_text_font_color = focus_is_search_bar ? al_color_name("chartreuse") : frame_color;
+      ALLEGRO_COLOR search_text_font_color = focus_is_search_bar ? al_color_name("chartreuse") : frame_color_bluegreen;
       std::string search_text_val = component.get_search_text();
       float search_text_width = al_get_text_width(font, search_text_val.c_str());
       float search_text_height = al_get_font_line_height(font);
@@ -135,7 +134,7 @@ functions:
 
   - name: render_raw
     type: void
-    guards: [ stage, font, base_text_color ]
+    guards: [ stage, font ]
     body: |
       Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
       Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
@@ -148,7 +147,7 @@ functions:
       float roundness = 0.0; //6.0;
       float padding_x = cell_width;
       float padding_y = cell_width;
-      //ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
+      //ALLEGRO_COLOR frame_color_bluegreen = al_color_html("39c3c5");
       ALLEGRO_COLOR backfill_color = build_backfill_color();
 
       al_draw_filled_rounded_rectangle(
@@ -162,7 +161,7 @@ functions:
       );
       al_draw_rounded_rectangle(- padding_x, - padding_y,
          place.size.x+padding_x, place.size.y+padding_y,
-         roundness, roundness, frame_color, line_stroke_thickness);
+         roundness, roundness, frame_color_bluegreen, line_stroke_thickness);
 
 
       // draw cursor box for focused line
@@ -247,7 +246,7 @@ functions:
 
       // draw the project root (window title)
 
-      ALLEGRO_COLOR node_root_font_color = frame_color;
+      ALLEGRO_COLOR node_root_font_color = frame_color_bluegreen;
       ALLEGRO_FONT* title_text_font = obtain_title_text_font();
       std::string node_root_val = component.get_project_root();
       float title_text_font_width = al_get_text_width(title_text_font, node_root_val.c_str());
@@ -288,7 +287,7 @@ functions:
       {
         std::string line_content = node.get_name();
         //ALLEGRO_COLOR base_text_color = al_color_name("skyblue");
-        ALLEGRO_COLOR global_base_text_color = *get_base_text_color();
+        ALLEGRO_COLOR global_base_text_color = get_base_text_color();
         ALLEGRO_COLOR local_base_text_color = color::mix(global_base_text_color, color::cyan, 0.8);
         ALLEGRO_COLOR col; //
          //color::mix(base_text_color, al_color_name("chartreuce"), 0.4);
@@ -346,7 +345,7 @@ functions:
              list_extension_indicator_radius,
              list_extension_indicator_radius,
              {
-               { 9, 3, frame_color, line_stroke_thickness },
+               { 9, 3, frame_color_bluegreen, line_stroke_thickness },
              }
            ).render();
       }
@@ -357,7 +356,7 @@ functions:
              place.size.y - list_extension_indicator_radius,
              list_extension_indicator_radius,
              {
-               { 3, 9, frame_color, line_stroke_thickness },
+               { 3, 9, frame_color_bluegreen, line_stroke_thickness },
              }
            ).render();
       }

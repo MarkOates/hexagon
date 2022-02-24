@@ -1,3 +1,19 @@
+properties:
+
+
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f}
+    getter: true
+    setter: true
+
+  - name: base_text_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0f,1.0f,1.0f,1.0f}
+    getter: true
+    setter: true
+
+
 functions:
 
 
@@ -5,7 +21,27 @@ functions:
     type: ALLEGRO_COLOR
     body: return ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f};
 
+  - name: white
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f};
+
+  - name: turn_on_all_the_house_lights_white
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f};
+
+  - name: inv_base_text_color
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{1.0f-base_text_color.r, 1.0f-base_text_color.g, 1.0f-base_text_color.b, base_text_color.a};
+
+  - name: inv_backfill_color
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{1.0f-backfill_color.r, 1.0f-backfill_color.g, 1.0f-backfill_color.b, backfill_color.a};
+
 
 dependencies:
+
+
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
+
+

@@ -245,9 +245,9 @@ void Stage::render()
       font,
       cell_width,
       cell_height,
-      &base_backfill_color,
+      base_backfill_color,
       backfill_opacity,
-      &base_text_color
+      base_text_color
    );
    renderer.render();
    return;

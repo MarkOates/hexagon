@@ -3,8 +3,6 @@
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
-#include <stdexcept>
-#include <sstream>
 #include <cmath>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/color.h>
@@ -23,7 +21,7 @@ namespace AdvancedComponentNavigator
 {
 
 
-Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, AllegroFlare::FontBin* font_bin, bool is_focused, ALLEGRO_FONT* font, int cell_width, int cell_height, ALLEGRO_COLOR* base_backfill_color, float backfill_opacity, ALLEGRO_COLOR* base_text_color)
+Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, AllegroFlare::FontBin* font_bin, bool is_focused, ALLEGRO_FONT* font, int cell_width, int cell_height, ALLEGRO_COLOR base_backfill_color, float backfill_opacity, ALLEGRO_COLOR base_text_color)
    : stage(stage)
    , font_bin(font_bin)
    , is_focused(is_focused)
@@ -33,7 +31,7 @@ Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, AllegroFla
    , base_backfill_color(base_backfill_color)
    , backfill_opacity(backfill_opacity)
    , base_text_color(base_text_color)
-   , frame_color(al_color_html("39c3c5"))
+   , frame_color_bluegreen(al_color_html("39c3c5"))
 {
 }
 
@@ -43,13 +41,13 @@ Renderer::~Renderer()
 }
 
 
-ALLEGRO_COLOR* Renderer::get_base_backfill_color()
+ALLEGRO_COLOR Renderer::get_base_backfill_color()
 {
    return base_backfill_color;
 }
 
 
-ALLEGRO_COLOR* Renderer::get_base_text_color()
+ALLEGRO_COLOR Renderer::get_base_text_color()
 {
    return base_text_color;
 }
@@ -57,13 +55,7 @@ ALLEGRO_COLOR* Renderer::get_base_text_color()
 
 ALLEGRO_COLOR Renderer::build_backfill_color()
 {
-   if (!(base_backfill_color))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "build_backfill_color" << ": error: " << "guard \"base_backfill_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
-   ALLEGRO_COLOR result_backfill_color = color::color(*base_backfill_color, 0.8);
+   ALLEGRO_COLOR result_backfill_color = color::color(base_backfill_color, 0.8);
    return result_backfill_color;
 }
 
@@ -76,7 +68,7 @@ void Renderer::draw_search_text_box()
    ALLEGRO_COLOR backfill_color = build_backfill_color();
    bool focus_is_search_bar = component.is_mode_typing_in_search_bar();
 
-   ALLEGRO_COLOR search_text_font_color = focus_is_search_bar ? al_color_name("chartreuse") : frame_color;
+   ALLEGRO_COLOR search_text_font_color = focus_is_search_bar ? al_color_name("chartreuse") : frame_color_bluegreen;
    std::string search_text_val = component.get_search_text();
    float search_text_width = al_get_text_width(font, search_text_val.c_str());
    float search_text_height = al_get_font_line_height(font);
@@ -157,12 +149,6 @@ void Renderer::render_raw()
          error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
          throw std::runtime_error(error_message.str());
       }
-   if (!(base_text_color))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
    Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
    Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
    placement3d &place = stage.get_place();
@@ -174,7 +160,7 @@ void Renderer::render_raw()
    float roundness = 0.0; //6.0;
    float padding_x = cell_width;
    float padding_y = cell_width;
-   //ALLEGRO_COLOR frame_color = al_color_html("39c3c5");
+   //ALLEGRO_COLOR frame_color_bluegreen = al_color_html("39c3c5");
    ALLEGRO_COLOR backfill_color = build_backfill_color();
 
    al_draw_filled_rounded_rectangle(
@@ -188,7 +174,7 @@ void Renderer::render_raw()
    );
    al_draw_rounded_rectangle(- padding_x, - padding_y,
       place.size.x+padding_x, place.size.y+padding_y,
-      roundness, roundness, frame_color, line_stroke_thickness);
+      roundness, roundness, frame_color_bluegreen, line_stroke_thickness);
 
 
    // draw cursor box for focused line
@@ -273,7 +259,7 @@ void Renderer::render_raw()
 
    // draw the project root (window title)
 
-   ALLEGRO_COLOR node_root_font_color = frame_color;
+   ALLEGRO_COLOR node_root_font_color = frame_color_bluegreen;
    ALLEGRO_FONT* title_text_font = obtain_title_text_font();
    std::string node_root_val = component.get_project_root();
    float title_text_font_width = al_get_text_width(title_text_font, node_root_val.c_str());
@@ -314,7 +300,7 @@ void Renderer::render_raw()
    {
      std::string line_content = node.get_name();
      //ALLEGRO_COLOR base_text_color = al_color_name("skyblue");
-     ALLEGRO_COLOR global_base_text_color = *get_base_text_color();
+     ALLEGRO_COLOR global_base_text_color = get_base_text_color();
      ALLEGRO_COLOR local_base_text_color = color::mix(global_base_text_color, color::cyan, 0.8);
      ALLEGRO_COLOR col; //
       //color::mix(base_text_color, al_color_name("chartreuce"), 0.4);
@@ -372,7 +358,7 @@ void Renderer::render_raw()
           list_extension_indicator_radius,
           list_extension_indicator_radius,
           {
-            { 9, 3, frame_color, line_stroke_thickness },
+            { 9, 3, frame_color_bluegreen, line_stroke_thickness },
           }
         ).render();
    }
@@ -383,7 +369,7 @@ void Renderer::render_raw()
           place.size.y - list_extension_indicator_radius,
           list_extension_indicator_radius,
           {
-            { 3, 9, frame_color, line_stroke_thickness },
+            { 3, 9, frame_color_bluegreen, line_stroke_thickness },
           }
         ).render();
    }

@@ -53,11 +53,8 @@ protected:
       font_bin.set_full_path(TEST_FIXTURE_FONT_FOLDER);
       ALLEGRO_COLOR base_backfill_color = al_color_name("black");
       float backfill_opacity = 0.8f;
-      ALLEGRO_COLOR base_text_color = al_color_name("white");
       stage = new Hexagon::AdvancedComponentNavigator::Stage();
-      renderer = new Hexagon::AdvancedComponentNavigator::Renderer(
-         stage, &font_bin, true, font, cell_width, cell_height, &base_backfill_color, backfill_opacity, &base_text_color
-      );
+      renderer = new Hexagon::AdvancedComponentNavigator::Renderer(stage, &font_bin, true, font, cell_width, cell_height);
 
       placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
       place.size.x = al_get_display_width(display)/4;
