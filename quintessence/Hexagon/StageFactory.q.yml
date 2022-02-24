@@ -318,7 +318,7 @@ functions:
          new Hexagon::AdvancedCodeEditor::Stage(font_bin, num_columns, num_rows);
       advanced_code_editor_stage->set_on_color(obtain_base_text_color()); // TODO: these should be able to be set
                                                                           // after initialization
-      if (obtain_dark_mode())
+      if (!obtain_dark_mode())
       {
          //ALLEGRO_COLOR syntax_highlight_color = ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f};
          //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 0.0f, 1.0f};
@@ -327,8 +327,8 @@ functions:
 
          ALLEGRO_COLOR on_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f};
          ALLEGRO_COLOR syntax_highlight_color =
-            AllegroFlare::color::mix(on_color, ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f}, 0.8);
-         ALLEGRO_COLOR comment_color = AllegroFlare::color::color(on_color, 0.5);
+            AllegroFlare::color::mix(on_color, ALLEGRO_COLOR{0.5f, 0.75f, 1.0f, 1.0f}, 0.56);
+         ALLEGRO_COLOR comment_color = ALLEGRO_COLOR{0.2, 0.21, 0.28, 0.5f}; //AllegroFlare::color::color(on_color, 0.5);
          ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
 
          advanced_code_editor_stage->set_syntax_highlight_color(syntax_highlight_color);

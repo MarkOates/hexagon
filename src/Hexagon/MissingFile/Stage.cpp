@@ -133,12 +133,19 @@ void Stage::render()
    float width = place.size.x;
    float height = place.size.y;
    ALLEGRO_COLOR color = al_color_html("d82133");
-   float thickness = 2.5;
+   float thickness = 5; //2.5;
+   float roundness = 14;
 
-   al_draw_rectangle(
-      h_padding, h_padding,
-      width-h_padding, height-h_padding,
-      color, thickness);
+   al_draw_rounded_rectangle(
+      h_padding,
+      h_padding,
+      width-h_padding,
+      height-h_padding,
+      roundness,
+      roundness,
+      color,
+      thickness
+   );
 
    //ALLEGRO_BITMAP *texture = nullptr;// TODO
    //Hexagon::Elements::TexturedRectangle red_lines_texture_background(

@@ -453,7 +453,8 @@ void Hud::draw_current_title_text()
       y_position - title_font_line_height/2 - 10,
       display_center_x + title_text_width/2 + 20,
       y_position + title_font_line_height/2 + 10,
-      ALLEGRO_COLOR{0, 0, 0, 0.9}
+      AllegroFlare::color::color(backfill_color, 0.9)
+      //ALLEGRO_COLOR{0, 0, 0, 0.9}
    );
 
    al_draw_text(title_font,

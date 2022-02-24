@@ -1359,7 +1359,6 @@ void Stage::filter_text_mesh_for_syntax_highlights()
 
 void Stage::filter_text_mesh_for_comments()
 {
-   ALLEGRO_COLOR highlight_color = comment_color; //ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f};
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
    //std::string string_to_match = " //";
    std::string string_to_match = "//";
@@ -1378,7 +1377,7 @@ void Stage::filter_text_mesh_for_comments()
                int end_to_process = std::min((int)this_line.size(), num_columns);
                for (unsigned c=found_pos; c<end_to_process; c++)
                {
-                  text_mesh.set_cell_color(c, y, highlight_color);
+                  text_mesh.set_cell_color(c, y, comment_color);
                }
             }
          //}
