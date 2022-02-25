@@ -105,6 +105,18 @@
     "ApplicationController",
     "Testing/WithAllegroRenderingFixture"
   ],
+  "Blast/FileExistenceChecker": [
+    "ApplicationController",
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/ProjectFactory",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent"
+  ],
   "all": [
     "ApplicationController",
     "Hexagon/CodeEditor/CachedLineRenderer"
@@ -786,17 +798,6 @@
   ],
   "std/map<std/string, ALLEGRO_COLOR>": [
     "Hexagon/BuildSequenceMeter/Renderer"
-  ],
-  "Blast/FileExistenceChecker": [
-    "Hexagon/BuildSequenceMeter/Renderer",
-    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
-    "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/Elements/FilePixelPreviewCreator",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/ProjectFactory",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "Hexagon/System/Action/CreateTwoSplitFromComponent"
   ],
   "std/find": [
     "Hexagon/BuildSequenceMeter/Renderer"

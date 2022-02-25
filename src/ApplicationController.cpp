@@ -11,10 +11,10 @@
 #include <Hexagon/System/Renderer.hpp>
 #include <iostream>
 #include <sstream>
-#include <allegro_flare/useful_php.h>
 #include <Hexagon/shared_globals.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Blast/FileExistenceChecker.hpp>
 
 
 
@@ -265,7 +265,7 @@ void ApplicationController::run_event_loop()
 void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_constants()
 {
    std::string regex_temp_filename = hexagon_config.get_regex_temp_filename();
-   if (!php::file_exists(regex_temp_filename))
+   if (!Blast::FileExistenceChecker(regex_temp_filename).exists())
    {
       std::stringstream error_message;
       error_message << "Error: there is no \"" << regex_temp_filename << "\" located in the directory tree.  "
@@ -274,7 +274,7 @@ void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_c
    }
 
    std::string clipboard_temp_filename = hexagon_config.get_clipboard_temp_filename();
-   if (!php::file_exists(clipboard_temp_filename))
+   if (!Blast::FileExistenceChecker(clipboard_temp_filename).exists())
    {
       std::stringstream error_message;
       error_message << "Error: there is no \"" << clipboard_temp_filename << "\" located in the directory tree. "
@@ -283,7 +283,7 @@ void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_c
    }
 
    std::string file_navigator_selection_filename = hexagon_config.get_file_navigator_selection_filename();
-   if (!php::file_exists(file_navigator_selection_filename))
+   if (!Blast::FileExistenceChecker(file_navigator_selection_filename).exists())
    {
       std::stringstream error_message;
       error_message << "Error: there is no \"" << file_navigator_selection_filename
@@ -292,7 +292,7 @@ void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_c
    }
 
    std::string make_command_filename = hexagon_config.get_make_command_filename();
-   if (!php::file_exists(make_command_filename))
+   if (!Blast::FileExistenceChecker(make_command_filename).exists())
    {
       std::stringstream error_message;
       error_message << "Error: there is no \"" << make_command_filename
