@@ -86,7 +86,7 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_parsing_was_succ
    ASSERT_EQ(true, google_test_run_output_parser.get_parse_error_messages().empty());
 }
 
-TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_unsuccessful__will_store_error_messages)
+TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_parsing_failed__will_store_error_messages)
 {
    std::string unparseable_content = "Some content that has nothing to do with the expected parseable stuff.";
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(unparseable_content);
