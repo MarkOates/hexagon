@@ -19,7 +19,7 @@ namespace Hexagon
          {
          private:
             std::string project_path;
-            std::string last_component_navigator_selection;
+            std::string component_name;
             int display_default_width;
             int display_default_height;
             std::vector<StageInterface *>& stages;
@@ -32,7 +32,7 @@ namespace Hexagon
             bool create_as_advanced_code_editor;
 
          public:
-            CreateTwoSplitFromLastComponentNavigatorSelection(std::string project_path="/Users/markoates/Repos/hexagon/", std::string last_component_navigator_selection="", int display_default_width=2430, int display_default_height=1350, std::vector<StageInterface *>& stages=get_dummy_stages_ref(), Hexagon::StageFactory* stage_factory=nullptr, int code_editor_width=1215, int code_editor_height=1380, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
+            CreateTwoSplitFromLastComponentNavigatorSelection(std::string project_path="/Users/markoates/Repos/hexagon/", std::string component_name="", int display_default_width=2430, int display_default_height=1350, std::vector<StageInterface *>& stages=get_dummy_stages_ref(), Hexagon::StageFactory* stage_factory=nullptr, int code_editor_width=1215, int code_editor_height=1380, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
             virtual ~CreateTwoSplitFromLastComponentNavigatorSelection();
 
             void set_stages(std::vector<StageInterface *>& stages);

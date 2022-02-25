@@ -15,7 +15,7 @@ properties:
     constructor_arg: true
     getter: true
 
-  - name: last_component_navigator_selection
+  - name: component_name
     type: std::string
     init_with: '""'
     constructor_arg: true
@@ -85,7 +85,7 @@ functions:
     override: true
     type: bool
     body: |
-      std::string component_name = last_component_navigator_selection;
+      //std::string component_name = last_component_navigator_selection;
 
       NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name, false);
       std::string quintessence_filename = project_path

@@ -22,10 +22,10 @@ namespace Action
 std::vector<StageInterface *> CreateTwoSplitFromLastComponentNavigatorSelection::dummy_stages = {};
 
 
-CreateTwoSplitFromLastComponentNavigatorSelection::CreateTwoSplitFromLastComponentNavigatorSelection(std::string project_path, std::string last_component_navigator_selection, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages, Hexagon::StageFactory* stage_factory, int code_editor_width, int code_editor_height, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
+CreateTwoSplitFromLastComponentNavigatorSelection::CreateTwoSplitFromLastComponentNavigatorSelection(std::string project_path, std::string component_name, int display_default_width, int display_default_height, std::vector<StageInterface *>& stages, Hexagon::StageFactory* stage_factory, int code_editor_width, int code_editor_height, ALLEGRO_COLOR text_color, ALLEGRO_COLOR backfill_color)
    : ::Action("System::Action::CreateTwoSplitFromLastComponentNavigatorSelection", ActionData())
    , project_path(project_path)
-   , last_component_navigator_selection(last_component_navigator_selection)
+   , component_name(component_name)
    , display_default_width(display_default_width)
    , display_default_height(display_default_height)
    , stages(stages)
@@ -94,7 +94,7 @@ std::vector<StageInterface *> &CreateTwoSplitFromLastComponentNavigatorSelection
 
 bool CreateTwoSplitFromLastComponentNavigatorSelection::execute()
 {
-   std::string component_name = last_component_navigator_selection;
+   //std::string component_name = last_component_navigator_selection;
 
    NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name, false);
    std::string quintessence_filename = project_path
