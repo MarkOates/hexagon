@@ -23,14 +23,18 @@ namespace Hexagon
       ~PacketRenderer();
 
       void render();
-      void render_window();
-      void render_text();
-      ALLEGRO_COLOR generate_top_left_little_bar_color();
+      ALLEGRO_COLOR box_fill_color();
+      float box_fill_opacity();
+      ALLEGRO_COLOR box_outline_color();
+      float box_outline_opacity();
       ALLEGRO_COLOR color_good();
       ALLEGRO_COLOR color_failure();
       ALLEGRO_COLOR color_approaching_failure();
       ALLEGRO_COLOR color_warning();
       ALLEGRO_COLOR color_neutral();
+      void render_window();
+      void render_text();
+      ALLEGRO_COLOR generate_top_left_little_bar_color();
       ALLEGRO_FONT* obtain_table_text_font();
    };
 }

@@ -43,17 +43,62 @@ functions:
       - allegro_flare::placement2d
 
 
+  - name: box_fill_color
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 1.0f};
+
+
+  - name: box_fill_opacity
+    type: float
+    body: return 0.1f;
+
+
+  - name: box_outline_color
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+
+
+  - name: box_outline_opacity
+    type: float
+    body: return 0.2f;
+
+
+  - name: color_good
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.066, 0.394, 0.4023, 1.0};
+
+
+  - name: color_failure
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
+
+
+  - name: color_approaching_failure
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.957, 0.46, 0.05, 1.0};
+
+
+  - name: color_warning
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{1.0, 1.0, 0, 1.0};
+
+
+  - name: color_neutral
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
+
+
   - name: render_window
     private: true
     body: |
       Hexagon::Elements::Window window(width, height);
 
-      window.set_box_fill_color(ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 1.0f});
-      window.set_box_opacity(0.1);
+      window.set_box_fill_color(box_fill_color());
+      window.set_box_opacity(box_fill_opacity());
       window.set_cell_padding(10);
 
-      window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
-      window.set_outer_line_opacity(0.2);
+      window.set_outer_line_color(box_outline_color());
+      window.set_outer_line_opacity(box_outline_opacity());
       window.set_outer_line_thickness(1.0);
 
       ALLEGRO_COLOR top_left_little_bar_color = generate_top_left_little_bar_color();
@@ -118,31 +163,6 @@ functions:
       if (packet_score >= 50) return color_approaching_failure();
       if (packet_score >= 20) return color_warning();
       return color_neutral();
-
-
-  - name: color_good
-    type: ALLEGRO_COLOR
-    body: return ALLEGRO_COLOR{0.066, 0.394, 0.4023, 1.0};
-
-
-  - name: color_failure
-    type: ALLEGRO_COLOR
-    body: return ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
-
-
-  - name: color_approaching_failure
-    type: ALLEGRO_COLOR
-    body: return ALLEGRO_COLOR{0.957, 0.46, 0.05, 1.0};
-
-
-  - name: color_warning
-    type: ALLEGRO_COLOR
-    body: return ALLEGRO_COLOR{1.0, 1.0, 0, 1.0};
-
-
-  - name: color_neutral
-    type: ALLEGRO_COLOR
-    body: return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
 
 
   - name: obtain_table_text_font

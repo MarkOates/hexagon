@@ -70,16 +70,61 @@ void PacketRenderer::render()
    return;
 }
 
+ALLEGRO_COLOR PacketRenderer::box_fill_color()
+{
+   return ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 1.0f};
+}
+
+float PacketRenderer::box_fill_opacity()
+{
+   return 0.1f;
+}
+
+ALLEGRO_COLOR PacketRenderer::box_outline_color()
+{
+   return ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
+}
+
+float PacketRenderer::box_outline_opacity()
+{
+   return 0.2f;
+}
+
+ALLEGRO_COLOR PacketRenderer::color_good()
+{
+   return ALLEGRO_COLOR{0.066, 0.394, 0.4023, 1.0};
+}
+
+ALLEGRO_COLOR PacketRenderer::color_failure()
+{
+   return ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
+}
+
+ALLEGRO_COLOR PacketRenderer::color_approaching_failure()
+{
+   return ALLEGRO_COLOR{0.957, 0.46, 0.05, 1.0};
+}
+
+ALLEGRO_COLOR PacketRenderer::color_warning()
+{
+   return ALLEGRO_COLOR{1.0, 1.0, 0, 1.0};
+}
+
+ALLEGRO_COLOR PacketRenderer::color_neutral()
+{
+   return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
+}
+
 void PacketRenderer::render_window()
 {
    Hexagon::Elements::Window window(width, height);
 
-   window.set_box_fill_color(ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 1.0f});
-   window.set_box_opacity(0.1);
+   window.set_box_fill_color(box_fill_color());
+   window.set_box_opacity(box_fill_opacity());
    window.set_cell_padding(10);
 
-   window.set_outer_line_color(ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f});
-   window.set_outer_line_opacity(0.2);
+   window.set_outer_line_color(box_outline_color());
+   window.set_outer_line_opacity(box_outline_opacity());
    window.set_outer_line_thickness(1.0);
 
    ALLEGRO_COLOR top_left_little_bar_color = generate_top_left_little_bar_color();
@@ -135,31 +180,6 @@ ALLEGRO_COLOR PacketRenderer::generate_top_left_little_bar_color()
    if (packet_score >= 50) return color_approaching_failure();
    if (packet_score >= 20) return color_warning();
    return color_neutral();
-}
-
-ALLEGRO_COLOR PacketRenderer::color_good()
-{
-   return ALLEGRO_COLOR{0.066, 0.394, 0.4023, 1.0};
-}
-
-ALLEGRO_COLOR PacketRenderer::color_failure()
-{
-   return ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
-}
-
-ALLEGRO_COLOR PacketRenderer::color_approaching_failure()
-{
-   return ALLEGRO_COLOR{0.957, 0.46, 0.05, 1.0};
-}
-
-ALLEGRO_COLOR PacketRenderer::color_warning()
-{
-   return ALLEGRO_COLOR{1.0, 1.0, 0, 1.0};
-}
-
-ALLEGRO_COLOR PacketRenderer::color_neutral()
-{
-   return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
 }
 
 ALLEGRO_FONT* PacketRenderer::obtain_table_text_font()
