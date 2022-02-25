@@ -45,6 +45,10 @@ functions:
             &::Hexagon::System::System::spawn_drawing_box,
          },
          {
+            ::System::PARSE_TEST_RESULTS_FROM_LAST_TEST_RUN_DUMP,
+            &::Hexagon::System::System::parse_test_results_from_last_test_run_dump,
+         },
+         {
             ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
             &::Hexagon::System::System::pull_back_camera_to_off_axis_left,
          },

@@ -115,6 +115,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &hexagon_config
    , display(display)
    , hexagon_config(hexagon_config)
    , motion()
+   , test_results()
    , option__saving_focused_filename_to_file_is_disabled(false)
    , save_count(0)
    , search_count(0)
@@ -1237,6 +1238,16 @@ bool System::spawn_red_overlay()
 }
 
 
+bool System::parse_test_results_from_last_test_run_dump()
+{
+   //Users/markoates/Repos/hexagon/bin/programs/data/builds/dumps/component_test_run.txt
+   // TODO: here
+   test_results.clear();
+   TEST_RUN_DUMP_FULL_PATH;
+   return true;
+}
+
+
 bool System::spawn_file_navigator()
 {
    ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
@@ -1940,6 +1951,7 @@ const std::string System::SPAWN_PROJECT_NAVIGATOR = "SPAWN_PROJECT_NAVIGATOR";
 const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
 const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
+const std::string System::PARSE_TEST_RESULTS_FROM_LAST_TEST_RUN_DUMP = "PARSE_TEST_RESULTS_FROM_LAST_TEST_RUN_DUMP";
 const std::string System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL = "SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL";
 const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 const std::string System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE = "FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE";

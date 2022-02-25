@@ -18,6 +18,9 @@ extern std::string DEFAULT_CONTENT_FILENAME;
 extern std::string BACKFILL_COLOR_HEX;
 
 
+extern std::string TEST_RUN_DUMP_FULL_PATH;
+
+
 extern std::string NOTIFICATION_FILE_IS_UNSAVED;
 
 

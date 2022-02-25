@@ -17,6 +17,12 @@ std::string DEFAULT_CONTENT_FILENAME = "default.txt";
 std::string BACKFILL_COLOR_HEX = "5b5c90";
 
 
+
+std::string TEST_RUN_DUMP_FULL_PATH =
+   "/Users/markoates/Repos/hexagon/bin/programs/data/builds/dumps/component_test_run.txt";
+
+
+
 std::string NOTIFICATION_FILE_IS_UNSAVED = "file is unsaved";
 
 

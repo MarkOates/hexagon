@@ -14,6 +14,7 @@
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/Hud.hpp>
 #include <Hexagon/Packet.hpp>
+#include <Hexagon/Testing/GoogleTestRunTestResult.hpp>
 
 
 namespace Hexagon::System
@@ -34,6 +35,8 @@ private:
    ALLEGRO_DISPLAY *display;
    Hexagon::System::Config &hexagon_config;
    Motion motion;
+
+   std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results;
 
    bool option__saving_focused_filename_to_file_is_disabled;
    int save_count;
@@ -148,6 +151,7 @@ public:
    bool spawn_fancy();
    bool spawn_component_relations_navigator();
    bool spawn_red_overlay();
+   bool parse_test_results_from_last_test_run_dump();
    bool spawn_file_navigator();
    bool add_file_is_unsaved_notification();
    bool remove_file_is_unsaved_notification();
@@ -250,6 +254,7 @@ public:
    static const std::string SPAWN_PROJECT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
+   static const std::string PARSE_TEST_RESULTS_FROM_LAST_TEST_RUN_DUMP;
    static const std::string SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL;
    static const std::string SUBMIT_CURRENT_MODAL;
    static const std::string FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE;
