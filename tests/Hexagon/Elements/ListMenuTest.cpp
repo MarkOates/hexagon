@@ -124,7 +124,7 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_me
  
    al_flip_display();
 
-   sleep(2);
+   //sleep(2);
 }
 
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,
