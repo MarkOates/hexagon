@@ -1640,11 +1640,12 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       set_hud_title_to_focused_component_name();
       write_focused_component_name_to_file();
 
+      std::string component_name = last_component_navigator_selection;
 
       ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
       ::Hexagon::System::Action::CreateTwoSplitFromLastComponentNavigatorSelection action(
             get_current_project_directory(),
-            last_component_navigator_selection,
+            component_name,
             get_display_default_width(),
             get_display_default_height(),
             stages,
