@@ -115,13 +115,13 @@ bool CreateTwoSplitFromLastComponentNavigatorSelection::execute()
    float width = get_code_editor_width(); //display_default_width/2 * width_scale_of_halfwidth;
    float height = get_code_editor_height(); //display_default_width/2 * width_scale_of_halfwidth;
 
-   bool using_laptop_display = false;
+   bool using_fuller_fit_stages_for_smaller_display = true;
    //if (!test_file_contents.empty())
    {
      placement3d place(0, 0, 0);
      place.size = vec3d(width, height, 0.0);
 
-     if (using_laptop_display)
+     if (using_fuller_fit_stages_for_smaller_display)
      {
         place.position.x = width/2;
         place.align = vec3d(0.35, 0.5, 0.0);
@@ -170,7 +170,7 @@ bool CreateTwoSplitFromLastComponentNavigatorSelection::execute()
      placement3d place(0, 0, 0);
      place.size = vec3d(width, height, 0.0);
 
-     if (using_laptop_display)
+     if (using_fuller_fit_stages_for_smaller_display)
      {
         place.position.x = -width/2;
         place.size = vec3d(width, height, 0.0);
