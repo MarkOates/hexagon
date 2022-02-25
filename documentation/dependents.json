@@ -117,9 +117,8 @@
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Action/CreateTwoSplitFromComponent"
   ],
-  "all": [
-    "ApplicationController",
-    "Hexagon/CodeEditor/CachedLineRenderer"
+  "global": [
+    "ApplicationController"
   ],
   "std/find_if": [
     "Blast/String/Trimmer"
@@ -829,6 +828,9 @@
   ],
   "vec3d": [
     "Hexagon/Camera"
+  ],
+  "all": [
+    "Hexagon/CodeEditor/CachedLineRenderer"
   ],
   "std/vector<ALLEGRO_BITMAP>": [
     "Hexagon/CodeEditor/CachedLineRenderer",

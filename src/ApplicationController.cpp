@@ -1,6 +1,8 @@
 
 
 #include <ApplicationController.hpp>
+#include <iostream>
+#include <iostream>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
@@ -9,8 +11,6 @@
 #include <Hexagon/TitleScreen.hpp>
 #include <Hexagon/System/System.hpp>
 #include <Hexagon/System/Renderer.hpp>
-#include <iostream>
-#include <sstream>
 #include <Hexagon/shared_globals.hpp>
 #include <stdexcept>
 #include <sstream>

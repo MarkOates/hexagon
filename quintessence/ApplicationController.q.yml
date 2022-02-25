@@ -62,6 +62,8 @@ functions:
       system = new Hexagon::System::System(display, hexagon_config);
       system->initialize();
     body_dependency_symbols:
+      - std::cerr
+      - std::endl
       - al_init
       - al_init_font_addon
       - al_init_ttf_addon
@@ -275,7 +277,7 @@ functions:
     body_dependency_symbols:
       - Hexagon::System::Config
       - Hexagon::System::Renderer
-      - all
+      - global
 
 
   - name: verify_presence_of_temp_files_and_assign_to_global_constants
@@ -368,8 +370,7 @@ dependencies:
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
-  - symbol: all
-    headers:
-      - iostream
-      - sstream
-      - Hexagon/shared_globals.hpp
+  - symbol: global
+    headers: [ Hexagon/shared_globals.hpp ]
+
+
