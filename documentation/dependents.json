@@ -298,6 +298,7 @@
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Hexagon/System/Config",
     "Hexagon/System/Renderer",
     "Hexagon/UI/DrawingBox"
@@ -473,6 +474,7 @@
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Hexagon/TitleScreen",
     "Testing/WithAllegroRenderingFixture"
   ],
@@ -770,7 +772,8 @@
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/ProjectFactory",
     "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent"
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent"
   ],
   "std/find": [
     "Hexagon/BuildSequenceMeter/Renderer"
@@ -1130,6 +1133,7 @@
     "Hexagon/LayoutPlacements",
     "Hexagon/PasteboardData",
     "Hexagon/Search/ComponentElasticsearchIndex",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Hexagon/System/Config"
   ],
   "std/map<std/string, std/string>": [
@@ -1192,6 +1196,7 @@
     "Hexagon/StageCollectionHelper",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages"
   ],
   "Hexagon/CodeEditor/Stage": [
@@ -1223,12 +1228,14 @@
   "std/vector<StageInterface >&": [
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages"
   ],
   "Hexagon/StageFactory": [
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Testing/WithStageFactoryFixture",
     "Testing/WithStageFactoryFixture"
   ],
@@ -1473,6 +1480,7 @@
     "Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
     "Hexagon/System/Action/OpenDocumentationInBrowser",
     "Hexagon/System/Action/SendMessageToDaemusToBuild"
@@ -1482,6 +1490,21 @@
   ],
   ":read_file": [
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename"
+  ],
+  "std/vector": [
+    "Hexagon/System/Action/CreateTwoSplitFromComponent"
+  ],
+  "std/string": [
+    "Hexagon/System/Action/CreateTwoSplitFromComponent"
+  ],
+  "NcursesArt/ProjectFilenameGenerator": [
+    "Hexagon/System/Action/CreateTwoSplitFromComponent"
+  ],
+  "read_file": [
+    "Hexagon/System/Action/CreateTwoSplitFromComponent"
+  ],
+  "CodeEditor/Stage": [
+    "Hexagon/System/Action/CreateTwoSplitFromComponent"
   ],
   "AllegroFlare/Config": [
     "Hexagon/System/Config"
