@@ -24,6 +24,12 @@ TEST(Hexagon_System_System, initialize__will_initialize_the_config)
    al_uninstall_system();
 }
 
+TEST(Hexagon_System_System,
+   save_frontmost_code_editor_stage_and_touch_if_symlink__will_run_builds_if_the_frontmost_stage_is_a_code_editor_type)
+{
+   // TODO
+}
+
 TEST(Hexagon_System_System, get_default_code_editor_stage_width__returns_the_expected_value)
 {
    al_init();
