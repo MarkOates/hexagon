@@ -15,7 +15,7 @@ namespace Testing
 GoogleTestRunOutputParser::GoogleTestRunOutputParser(std::string google_test_run_output)
    : google_test_run_output(google_test_run_output)
    , parsed_test_results({})
-   , parse_error_messages({})
+   , error_messages_during_parsing({})
 {
 }
 
@@ -31,16 +31,16 @@ std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser
 }
 
 
-std::vector<std::string> GoogleTestRunOutputParser::get_parse_error_messages()
+std::vector<std::string> GoogleTestRunOutputParser::get_error_messages_during_parsing()
 {
-   return parse_error_messages;
+   return error_messages_during_parsing;
 }
 
 
 bool GoogleTestRunOutputParser::parse()
 {
    parsed_test_results.empty();
-   parse_error_messages.empty();
+   error_messages_during_parsing.empty();
    bool test_suite_is_starting_line_was_found = false;
    bool test_suite_is_starting_line_was_detected_multiple_times = false;
    std::string captured_test_output_body = "";
@@ -192,14 +192,14 @@ bool GoogleTestRunOutputParser::parse()
 
    if (!test_suite_is_starting_line_was_found)
    {
-      parse_error_messages.push_back("expected test suite start line is missing");
+      error_messages_during_parsing.push_back("expected test suite start line is missing");
    }
    if (test_suite_is_starting_line_was_detected_multiple_times)
    {
-      parse_error_messages.push_back("test suite start line detected multiple times");
+      error_messages_during_parsing.push_back("test suite start line detected multiple times");
    }
 
-   return parse_error_messages.empty();
+   return error_messages_during_parsing.empty();
 }
 
 std::pair<std::string, std::string> GoogleTestRunOutputParser::extract_test_class_name_and_test_description(std::string line)

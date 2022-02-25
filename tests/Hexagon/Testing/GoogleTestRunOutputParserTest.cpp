@@ -83,7 +83,7 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_parsing_was_succ
 {
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(BASIC_PASSING_TEST_RUN_OUTPUT);
    ASSERT_EQ(true, google_test_run_output_parser.parse());
-   ASSERT_EQ(true, google_test_run_output_parser.get_parse_error_messages().empty());
+   ASSERT_EQ(true, google_test_run_output_parser.get_error_messages_during_parsing().empty());
 }
 
 TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_parsing_failed__will_store_error_messages)
@@ -92,7 +92,7 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest, parse__when_parsing_failed__
    Hexagon::Testing::GoogleTestRunOutputParser google_test_run_output_parser(unparseable_content);
 
    ASSERT_EQ(false, google_test_run_output_parser.parse());
-   std::vector<std::string> error_messages = google_test_run_output_parser.get_parse_error_messages();
+   std::vector<std::string> error_messages = google_test_run_output_parser.get_error_messages_during_parsing();
    ASSERT_EQ(false, error_messages.empty());
 
    std::string expected_error_message = "expected test suite start line is missing";
@@ -113,7 +113,7 @@ TEST(Hexagon_Testing_GoogleTestRunOutputParserTest,
    );
 
    ASSERT_EQ(false, google_test_run_output_parser.parse());
-   std::vector<std::string> error_messages = google_test_run_output_parser.get_parse_error_messages();
+   std::vector<std::string> error_messages = google_test_run_output_parser.get_error_messages_during_parsing();
    ASSERT_EQ(false, error_messages.empty());
 
    std::string expected_error_message = "test suite start line detected multiple times";
