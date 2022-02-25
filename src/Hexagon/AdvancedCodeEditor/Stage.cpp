@@ -1089,7 +1089,7 @@ void Stage::render()
       is_in_insert_mode(),
       0.0f,
       first_row_offset,
-      true, // draw line numbers
+      true, // show line numbers
       obtain_text_font(),
       advanced_code_editor.get_content_is_modified(),
       represents_symlink,
