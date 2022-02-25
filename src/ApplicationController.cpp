@@ -5,7 +5,6 @@
 #include <Hexagon/System/System.hpp>
 #include <iostream>
 #include <sstream>
-#include <algorithm>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_font.h>
@@ -26,8 +25,8 @@
 
 
 
-ApplicationController::ApplicationController(Hexagon::System::Config config)
-   : config(config)
+ApplicationController::ApplicationController(Hexagon::System::Config hexagon_config)
+   : hexagon_config(hexagon_config)
    , display(nullptr)
    , event_queue(nullptr)
    , primary_timer(nullptr)
@@ -55,7 +54,7 @@ void ApplicationController::initialize()
    if (!al_install_mouse()) std::cerr << "al_install_mouse() failed" << std::endl;
 
    // initialize the config
-   config.initialize();
+   hexagon_config.initialize();
 
    // create the display
    create_display();
@@ -67,7 +66,7 @@ void ApplicationController::initialize()
    verify_presence_of_temp_files_and_assign_to_global_constants();
 
    // startup the system
-   system = new Hexagon::System::System(display, config);
+   system = new Hexagon::System::System(display, hexagon_config);
    system->initialize();
 }
 
@@ -107,15 +106,18 @@ void ApplicationController::create_display()
    al_set_new_display_flags(ALLEGRO_NOFRAME);
    al_set_new_display_flags(ALLEGRO_NOFRAME | ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
    al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
-   if (config.is_fullscreen()) al_set_new_display_flags(al_get_new_display_flags() | ALLEGRO_FULLSCREEN_WINDOW);
+   if (hexagon_config.is_fullscreen())
+   {
+      al_set_new_display_flags(al_get_new_display_flags() | ALLEGRO_FULLSCREEN_WINDOW);
+   }
 
    // new bitmap flags
    al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
    //al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_PROGRAMMABLE_PIPELINE);
 
    display = al_create_display(
-      config.get_initial_display_width(),
-      config.get_initial_display_height());
+      hexagon_config.get_initial_display_width(),
+      hexagon_config.get_initial_display_height());
    if (!display) std::cerr << "al_create_display() failed" << std::endl;
 
    al_set_window_title(display, "[ProjectName] - Hexagon");
@@ -242,7 +244,7 @@ void ApplicationController::run_event_loop()
 
       if (refresh)
       {
-         ALLEGRO_COLOR backfill_color = config.get_backfill_color();
+         ALLEGRO_COLOR backfill_color = hexagon_config.get_backfill_color();
          al_clear_to_color(backfill_color);
 
          Hexagon::System::Renderer renderer(system, display, &backfill_color);
@@ -268,7 +270,7 @@ void ApplicationController::run_event_loop()
 
 void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_constants()
 {
-   std::string regex_temp_filename = config.get_regex_temp_filename();
+   std::string regex_temp_filename = hexagon_config.get_regex_temp_filename();
    if (!php::file_exists(regex_temp_filename))
    {
       std::stringstream error_message;
@@ -277,7 +279,7 @@ void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_c
       throw std::runtime_error(error_message.str());
    }
 
-   std::string clipboard_temp_filename = config.get_clipboard_temp_filename();
+   std::string clipboard_temp_filename = hexagon_config.get_clipboard_temp_filename();
    if (!php::file_exists(clipboard_temp_filename))
    {
       std::stringstream error_message;
@@ -286,7 +288,7 @@ void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_c
       throw std::runtime_error(error_message.str());
    }
 
-   std::string file_navigator_selection_filename = config.get_file_navigator_selection_filename();
+   std::string file_navigator_selection_filename = hexagon_config.get_file_navigator_selection_filename();
    if (!php::file_exists(file_navigator_selection_filename))
    {
       std::stringstream error_message;
@@ -295,7 +297,7 @@ void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_c
       throw std::runtime_error(error_message.str());
    }
 
-   std::string make_command_filename = config.get_make_command_filename();
+   std::string make_command_filename = hexagon_config.get_make_command_filename();
    if (!php::file_exists(make_command_filename))
    {
       std::stringstream error_message;
