@@ -55,6 +55,18 @@ TEST(Hexagon_StageCollectionHelperTest,
 }
 
 TEST(Hexagon_StageCollectionHelperTest,
+   get_all_render_on_hud_stages__returns_all_the_stages_that_have_the_render_on_hud_flag_set_to_true)
+{
+   // TODO
+}
+
+TEST(Hexagon_StageCollectionHelperTest,
+   get_all_stages_not_rendered_on_hud__returns_all_the_stages_that_have_the_render_on_hud_flag_set_to_false)
+{
+   // TODO
+}
+
+TEST(Hexagon_StageCollectionHelperTest,
    get_frontmost_advanced_code_editor_stage__returns_the_frontmost_advanced_code_editor_stage)
 {
    // TODO

@@ -20,6 +20,8 @@ namespace Hexagon
       ~StageCollectionHelper();
 
       std::vector<StageInterface *> all();
+      std::vector<StageInterface *> get_all_stages_not_rendered_on_hud();
+      std::vector<StageInterface *> get_all_render_on_hud_stages();
       int count_code_editor_stages();
       std::vector<Hexagon::CodeEditor::Stage *> get_all_code_editor_stages();
       std::vector<Hexagon::AdvancedCodeEditor::Stage *> get_all_advanced_code_editor_stages();

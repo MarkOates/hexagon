@@ -32,30 +32,24 @@ functions:
 
       global::profiler.start("all stages");
 
-      for (auto &stage : system->get_stages_ref())
+      Hexagon::StageCollectionHelper stage_collection_helper(&system->get_stages_ref());
+
+      for (auto &stage : stage_collection_helper.get_all_stages_not_rendered_on_hud())
       {
-         if (stage->get_render_on_hud())
+         std::stringstream profile_timer_element_label;
+         profile_timer_element_label << "Stage [" << stage->get_type_name() << "]                    " << stage;
+         global::profiler.start(profile_timer_element_label.str());
+
+         bool infer_is_focused = (system->get_frontmost_stage() == stage);
+
+         stage->render();
+
+         if (infer_is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
          {
-            continue; // NOTE: this will prevent any hud-rendered items from displaying
-                      // this surface.  They're rendered through the hud explicitly after this step.
+            draw_focused_frame(stage);
          }
-         else
-         {
-            std::stringstream profile_timer_element_label;
-            profile_timer_element_label << "Stage [" << stage->get_type_name() << "]                    " << stage;
-            global::profiler.start(profile_timer_element_label.str());
 
-            bool infer_is_focused = (system->get_frontmost_stage() == stage);
-
-            stage->render();
-
-            if (infer_is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
-            {
-               draw_focused_frame(stage);
-            }
-
-            global::profiler.pause(profile_timer_element_label.str());
-         }
+         global::profiler.pause(profile_timer_element_label.str());
       }
       global::profiler.pause("all stages");
 
@@ -71,6 +65,7 @@ functions:
       - Hexagon::AdvancedComponentNavigator::Stage*
       - Hexagon::FileNavigator::Stage*
       - Hexagon::Elements::Window
+      - Hexagon::StageCollectionHelper
 
 
   - name: draw_focused_frame
@@ -122,5 +117,7 @@ dependencies:
     headers: [ Hexagon/FileNavigator/Stage.hpp ]
   - symbol: Hexagon::Elements::Window
     headers: [ Hexagon/Elements/Window.hpp ]
+  - symbol: Hexagon::StageCollectionHelper
+    headers: [ Hexagon/StageCollectionHelper.hpp ]
 
 

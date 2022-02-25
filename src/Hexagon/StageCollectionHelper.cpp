@@ -5,6 +5,10 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <vector>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <stdexcept>
@@ -41,6 +45,38 @@ std::vector<StageInterface *> StageCollectionHelper::all()
          throw std::runtime_error(error_message.str());
       }
    return *stages;
+}
+
+std::vector<StageInterface *> StageCollectionHelper::get_all_stages_not_rendered_on_hud()
+{
+   if (!(stages))
+      {
+         std::stringstream error_message;
+         error_message << "StageCollectionHelper" << "::" << "get_all_stages_not_rendered_on_hud" << ": error: " << "guard \"stages\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   std::vector<StageInterface *> result;
+   for (auto &stage : *stages)
+   {
+      if (!stage->get_render_on_hud()) result.push_back(stage);
+   }
+   return result;
+}
+
+std::vector<StageInterface *> StageCollectionHelper::get_all_render_on_hud_stages()
+{
+   if (!(stages))
+      {
+         std::stringstream error_message;
+         error_message << "StageCollectionHelper" << "::" << "get_all_render_on_hud_stages" << ": error: " << "guard \"stages\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   std::vector<StageInterface *> result;
+   for (auto &stage : *stages)
+   {
+      if (stage->get_render_on_hud()) result.push_back(stage);
+   }
+   return result;
 }
 
 int StageCollectionHelper::count_code_editor_stages()

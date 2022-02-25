@@ -17,6 +17,30 @@ functions:
       return *stages;
 
 
+  - name: get_all_stages_not_rendered_on_hud
+    type: std::vector<StageInterface *>
+    guards: [ stages ]
+    body: |
+      std::vector<StageInterface *> result;
+      for (auto &stage : *stages)
+      {
+         if (!stage->get_render_on_hud()) result.push_back(stage);
+      }
+      return result;
+
+
+  - name: get_all_render_on_hud_stages
+    type: std::vector<StageInterface *>
+    guards: [ stages ]
+    body: |
+      std::vector<StageInterface *> result;
+      for (auto &stage : *stages)
+      {
+         if (stage->get_render_on_hud()) result.push_back(stage);
+      }
+      return result;
+
+
   - name: count_code_editor_stages
     type: int
     guards: [ stages ]

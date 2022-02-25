@@ -1547,6 +1547,9 @@
   "al_clear_to_color": [
     "Hexagon/System/Renderer"
   ],
+  "Hexagon/StageCollectionHelper": [
+    "Hexagon/System/Renderer"
+  ],
   "debugging": [
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
