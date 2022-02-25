@@ -61,6 +61,10 @@ functions:
       // startup the system
       system = new Hexagon::System::System(display, hexagon_config);
       system->initialize();
+    body_dependency_symbols:
+      - al_init
+      - al_init_font_addon
+      - al_init_ttf_addon
 
 
   - name: shutdown
@@ -345,18 +349,19 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT
     headers: [ allegro5/allegro.h ]
+  - symbol: al_init
+    headers: [ allegro5/allegro.h ]
+  - symbol: al_init_font_addon
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: al_init_ttf_addon
+    headers: [ allegro5/allegro_ttf.h ]
   - symbol: all
     headers:
       - iostream
       - sstream
-      - allegro5/allegro.h
-      - allegro5/allegro_ttf.h
-      - allegro5/allegro_font.h
       - allegro5/allegro_color.h
       - allegro5/allegro_primitives.h
       - allegro5/allegro_image.h
-      - allegro_flare/placement2d.h
-      - allegro_flare/placement3d.h
       - allegro_flare/useful_php.h
       - allegro_flare/render_cache.h
       - AllegroFlare/Config.hpp

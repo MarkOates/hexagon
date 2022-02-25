@@ -1,18 +1,16 @@
 
 
 #include <ApplicationController.hpp>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include <Hexagon/TitleScreen.hpp>
 #include <Hexagon/System/System.hpp>
 #include <iostream>
 #include <sstream>
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_ttf.h>
-#include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
-#include <allegro_flare/placement2d.h>
-#include <allegro_flare/placement3d.h>
 #include <allegro_flare/useful_php.h>
 #include <allegro_flare/render_cache.h>
 #include <AllegroFlare/Config.hpp>

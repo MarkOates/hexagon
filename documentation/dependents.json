@@ -82,6 +82,19 @@
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
   ],
+  "al_init": [
+    "ApplicationController",
+    "Testing/WithStageFactoryFixture"
+  ],
+  "al_init_font_addon": [
+    "ApplicationController",
+    "Testing/WithStageFactoryFixture"
+  ],
+  "al_init_ttf_addon": [
+    "ApplicationController",
+    "Testing/WithAllegroRenderingFixture",
+    "Testing/WithStageFactoryFixture"
+  ],
   "all": [
     "ApplicationController",
     "Hexagon/CodeEditor/CachedLineRenderer"
@@ -1552,18 +1565,8 @@
   "al_init_primitives_addon": [
     "Testing/WithAllegroRenderingFixture"
   ],
-  "al_init_ttf_addon": [
-    "Testing/WithAllegroRenderingFixture",
-    "Testing/WithStageFactoryFixture"
-  ],
   ":testing/Test": [
     "Testing/WithAllegroRenderingFixture",
-    "Testing/WithStageFactoryFixture"
-  ],
-  "al_init": [
-    "Testing/WithStageFactoryFixture"
-  ],
-  "al_init_font_addon": [
     "Testing/WithStageFactoryFixture"
   ],
   "X": [

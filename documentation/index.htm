@@ -327,7 +327,16 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;all&quot;, &quot;headers&quot;=&gt;[&quot;iostream&quot;, &quot;sstream&quot;, &quot;allegro5/allegro.h&quot;, &quot;allegro5/allegro_ttf.h&quot;, &quot;allegro5/allegro_font.h&quot;, &quot;allegro5/allegro_color.h&quot;, &quot;allegro5/allegro_primitives.h&quot;, &quot;allegro5/allegro_image.h&quot;, &quot;allegro_flare/placement2d.h&quot;, &quot;allegro_flare/placement3d.h&quot;, &quot;allegro_flare/useful_php.h&quot;, &quot;allegro_flare/render_cache.h&quot;, &quot;AllegroFlare/Config.hpp&quot;, &quot;Hexagon/shared_globals.hpp&quot;, &quot;Hexagon/System/Renderer.hpp&quot;, &quot;Hexagon/System/System.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_init&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_init_font_addon&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_init_ttf_addon&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_ttf.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;all&quot;, &quot;headers&quot;=&gt;[&quot;iostream&quot;, &quot;sstream&quot;, &quot;allegro5/allegro_color.h&quot;, &quot;allegro5/allegro_primitives.h&quot;, &quot;allegro5/allegro_image.h&quot;, &quot;allegro_flare/useful_php.h&quot;, &quot;allegro_flare/render_cache.h&quot;, &quot;AllegroFlare/Config.hpp&quot;, &quot;Hexagon/shared_globals.hpp&quot;, &quot;Hexagon/System/Renderer.hpp&quot;, &quot;Hexagon/System/System.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -10657,6 +10666,19 @@ table td
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
   ],
+  "al_init": [
+    "ApplicationController",
+    "Testing/WithStageFactoryFixture"
+  ],
+  "al_init_font_addon": [
+    "ApplicationController",
+    "Testing/WithStageFactoryFixture"
+  ],
+  "al_init_ttf_addon": [
+    "ApplicationController",
+    "Testing/WithAllegroRenderingFixture",
+    "Testing/WithStageFactoryFixture"
+  ],
   "all": [
     "ApplicationController",
     "Hexagon/CodeEditor/CachedLineRenderer"
@@ -12127,18 +12149,8 @@ table td
   "al_init_primitives_addon": [
     "Testing/WithAllegroRenderingFixture"
   ],
-  "al_init_ttf_addon": [
-    "Testing/WithAllegroRenderingFixture",
-    "Testing/WithStageFactoryFixture"
-  ],
   ":testing/Test": [
     "Testing/WithAllegroRenderingFixture",
-    "Testing/WithStageFactoryFixture"
-  ],
-  "al_init": [
-    "Testing/WithStageFactoryFixture"
-  ],
-  "al_init_font_addon": [
     "Testing/WithStageFactoryFixture"
   ],
   "X": [
