@@ -80,7 +80,8 @@ bool Renderer::render()
 
       stage->render();
 
-      if (infer_is_focused) // for now, we're just going to do this as an experiment in assessing focused state in the UI
+      if (infer_is_focused) // for now, we're just going to do this as an experiment in
+                            // assessing focused state in the UI
       {
          draw_focused_frame(stage);
       }
