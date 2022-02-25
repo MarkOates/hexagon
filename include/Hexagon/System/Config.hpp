@@ -24,7 +24,7 @@ namespace Hexagon
          static std::string FOCUSED_COMPONENT_FILENAME_KEY;
          static std::string FONT_BIN_PATH_KEY;
          static std::string DARK_MODE_KEY;
-         static std::string HUD_RENDER_FOCUS_TIMER_BAR_KEY;
+         static std::string HUD_SHOW_FOCUS_TIMER_BAR_KEY;
          static std::string FULLSCREEN_KEY;
          static std::string INITIAL_BASELINE_CAMERA_STEPBACK_KEY;
          std::string config_filename;
@@ -51,7 +51,7 @@ namespace Hexagon
          int get_initial_baseline_camera_stepback();
          bool is_dark_mode();
          bool is_fullscreen();
-         bool get_hud_render_focus_timer_bar();
+         bool get_hud_show_focus_timer_bar();
          ALLEGRO_COLOR get_backfill_color();
          ALLEGRO_COLOR get_base_text_color();
          float get_backfill_opacity();

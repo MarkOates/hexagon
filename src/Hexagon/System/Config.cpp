@@ -52,7 +52,7 @@ std::string Config::FONT_BIN_PATH_KEY = "font_bin_path";
 std::string Config::DARK_MODE_KEY = "dark_mode";
 
 
-std::string Config::HUD_RENDER_FOCUS_TIMER_BAR_KEY = "hud_render_focus_timer_bar";
+std::string Config::HUD_SHOW_FOCUS_TIMER_BAR_KEY = "hud_show_focus_timer_bar";
 
 
 std::string Config::FULLSCREEN_KEY = "fullscreen";
@@ -204,15 +204,15 @@ bool Config::is_fullscreen()
    return config.get_or_default_bool("", FULLSCREEN_KEY, false);
 }
 
-bool Config::get_hud_render_focus_timer_bar()
+bool Config::get_hud_show_focus_timer_bar()
 {
    if (!(initialized))
       {
          std::stringstream error_message;
-         error_message << "Config" << "::" << "get_hud_render_focus_timer_bar" << ": error: " << "guard \"initialized\" not met";
+         error_message << "Config" << "::" << "get_hud_show_focus_timer_bar" << ": error: " << "guard \"initialized\" not met";
          throw std::runtime_error(error_message.str());
       }
-   return config.get_or_default_bool("", HUD_RENDER_FOCUS_TIMER_BAR_KEY, false);
+   return config.get_or_default_bool("", HUD_SHOW_FOCUS_TIMER_BAR_KEY, false);
 }
 
 ALLEGRO_COLOR Config::get_backfill_color()

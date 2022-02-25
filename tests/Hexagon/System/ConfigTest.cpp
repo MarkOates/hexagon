@@ -273,35 +273,35 @@ TEST(Hexagon_System_ConfigTest,
    al_uninstall_system();
 }
 
-TEST(Hexagon_System_ConfigTest, get_hud_render_focus_timer_bar__before_initialization__raises_an_error)
+TEST(Hexagon_System_ConfigTest, get_hud_show_focus_timer_bar__before_initialization__raises_an_error)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
-   std::string expected_error_message = "Config::get_hud_render_focus_timer_bar: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(config.get_hud_render_focus_timer_bar(), std::runtime_error, expected_error_message);
+   std::string expected_error_message = "Config::get_hud_show_focus_timer_bar: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(config.get_hud_show_focus_timer_bar(), std::runtime_error, expected_error_message);
    al_uninstall_system();
 }
 
 TEST(Hexagon_System_ConfigTest,
-   get_hud_render_focus_timer_bar__returns_true_if_the_a_true_value_is_set_in_the_config)
+   get_hud_show_focus_timer_bar__returns_true_if_the_a_true_value_is_set_in_the_config)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
    config.initialize();
 
-   ASSERT_EQ(true, config.get_hud_render_focus_timer_bar());
+   ASSERT_EQ(true, config.get_hud_show_focus_timer_bar());
 
    al_uninstall_system();
 }
 
 TEST(Hexagon_System_ConfigTest,
-   get_hud_render_focus_timer_bar__returns_false_by_default)
+   get_hud_show_focus_timer_bar__returns_false_by_default)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
    config.initialize();
 
-   ASSERT_EQ(false, config.get_hud_render_focus_timer_bar());
+   ASSERT_EQ(false, config.get_hud_show_focus_timer_bar());
 
    al_uninstall_system();
 }

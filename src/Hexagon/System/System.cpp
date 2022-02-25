@@ -148,7 +148,7 @@ void System::initialize()
    hud.set_global_font_str(get_global_font_str());
    hud.set_show_packets(true);
    hud.set_show_build_sequence_meter(true);
-   hud.set_show_focus_timer_bar(hexagon_config.get_hud_render_focus_timer_bar()); // TODO: rename this config method to show_*
+   hud.set_show_focus_timer_bar(hexagon_config.get_hud_show_focus_timer_bar());
    hud.initialize();
 
    baseline_camera_stepback = hexagon_config.get_initial_baseline_camera_stepback();
