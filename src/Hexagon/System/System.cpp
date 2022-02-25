@@ -1739,29 +1739,6 @@ bool System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_
    last_commit_message = commit_message;
 
    return true;
-
-   // append packet to packets
-   ::Hexagon::Packet new_packet_to_append(search_count, save_count);
-   packets.push_back(new_packet_to_append);
-
-   // refresh hud packets
-   set_hud_packets_to_packets();
-
-   // post the packet to a log file
-   int score = search_count + save_count;
-   ::Hexagon::PacketLogger packet_logger(current_project_directory, commit_message, search_count, save_count, score);
-   packet_logger.write_log_file();
-
-   // clear scores
-   clear_search_count();
-   clear_save_count();
-
-   // refresh the cleared scores on the hud
-   set_hud_search_count_to_search_count();
-   set_hud_save_count_to_save_count();
-   check_git_local_status_and_update_powerbar();
-
-   return true;
 }
 
 
