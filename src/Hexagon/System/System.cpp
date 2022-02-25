@@ -935,6 +935,7 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
    if (!stage) throw std::runtime_error("Cannot save_frontmost_code_editor_stage; current stage is not a stage stage");
 
    bool update_save_counts_and_hud_status = false;
+   bool run_builds = false;
 
    if (stage->get_type() == StageInterface::ADVANCED_CODE_EDITOR)
    {
@@ -943,6 +944,7 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
       advanced_code_editor_stage->save_file_and_touch_if_symlink();
       //stage->get_code_editor_ref().refresh_git_modified_line_numbers();
       update_save_counts_and_hud_status = true;
+      run_builds = true;
    }
    else
    {
@@ -953,6 +955,7 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
       if (stage->get_type() == StageInterface::CODE_EDITOR)
       {
          update_save_counts_and_hud_status = true;
+         run_builds = true;
       }
    }
 
@@ -965,15 +968,18 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
    }
 
 
-   //php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/deamus_build.txt", "asdf234");
+   if (run_builds)
+   {
+      //php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/deamus_build.txt", "asdf234");
 
-   // TODO: map these two lines to constants
-   // TODO: disable these lines during normal rerun watcher build
+      // TODO: map these two lines to constants
+      // TODO: disable these lines during normal rerun watcher build
 
-   php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/daemus_build.txt", "12345asdf");
+      php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/daemus_build.txt", "12345asdf");
 
-   php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt",
-      current_project_directory);
+      php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt",
+         current_project_directory);
+   }
 
 
    return true;
