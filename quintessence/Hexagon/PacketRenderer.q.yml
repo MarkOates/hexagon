@@ -113,11 +113,36 @@ functions:
     type: ALLEGRO_COLOR
     body: |
       int packet_score = packet->calculate_score();
-      if (packet_score <= 10) return ALLEGRO_COLOR{0.066, 0.394, 0.4023, 1.0};
-      if (packet_score >= 100) return ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
-      if (packet_score >= 50) return ALLEGRO_COLOR{0.957, 0.46, 0.05, 1.0};
-      if (packet_score >= 20) return ALLEGRO_COLOR{1.0, 1.0, 0, 1.0};
-      return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
+      if (packet_score <= 10) return color_good();
+      if (packet_score >= 100) return color_failure();
+      if (packet_score >= 50) return color_approaching_failure();
+      if (packet_score >= 20) return color_warning();
+      return color_neutral();
+
+
+  - name: color_good
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.066, 0.394, 0.4023, 1.0};
+
+
+  - name: color_failure
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{1.0, 0.0, 0.0, 1.0};
+
+
+  - name: color_approaching_failure
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.957, 0.46, 0.05, 1.0};
+
+
+  - name: color_warning
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{1.0, 1.0, 0, 1.0};
+
+
+  - name: color_neutral
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
 
 
   - name: obtain_table_text_font
