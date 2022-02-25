@@ -103,7 +103,7 @@ namespace Hexagon::System
 {
 
 
-System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config)
+System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &hexagon_config)
    : last_component_navigator_selection("")
    , current_project_directory("")
    , last_project_navigator_selection("")
@@ -113,7 +113,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config)
    , baseline_camera_stepback(160)
    , drawing_mouse_cursor(false)
    , display(display)
-   , config(config)
+   , hexagon_config(hexagon_config)
    , motion()
    , option__saving_focused_filename_to_file_is_disabled(false)
    , save_count(0)
@@ -136,22 +136,22 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &config)
 
 void System::initialize()
 {
-   config.initialize(); // is this redundant?  Should this be initialized before being passed in?
+   hexagon_config.initialize(); // is this redundant?  Should this be initialized before being passed in?
 
-   std::string font_bin_path = config.get_font_bin_path();
+   std::string font_bin_path = hexagon_config.get_font_bin_path();
    font_bin.set_full_path(font_bin_path);
 
-   set_current_project_directory(config.get_default_navigator_directory());
+   set_current_project_directory(hexagon_config.get_default_navigator_directory());
 
-   hud.set_backfill_color(config.get_backfill_color());
+   hud.set_backfill_color(hexagon_config.get_backfill_color());
    hud.set_stages(&stages);
    hud.set_global_font_str(get_global_font_str());
    hud.set_show_packets(true);
    hud.set_show_build_sequence_meter(true);
-   hud.set_show_focus_timer_bar(config.get_hud_render_focus_timer_bar()); // TODO: rename this config method to show_*
+   hud.set_show_focus_timer_bar(hexagon_config.get_hud_render_focus_timer_bar()); // TODO: rename this config method to show_*
    hud.initialize();
 
-   baseline_camera_stepback = config.get_initial_baseline_camera_stepback();
+   baseline_camera_stepback = hexagon_config.get_initial_baseline_camera_stepback();
    
    camera.get_stepback_ref().z = baseline_camera_stepback;
 
@@ -175,13 +175,13 @@ std::string System::get_current_project_directory()
 
 int System::get_display_default_width()
 {
-   return config.get_initial_display_width();
+   return hexagon_config.get_initial_display_width();
 }
 
 
 int System::get_display_default_height()
 {
-   return config.get_initial_display_height();
+   return hexagon_config.get_initial_display_height();
 }
 
 
@@ -475,7 +475,7 @@ bool System::write_focused_component_name_to_file()
 
    //std::string hard_coded_project_path = "/Users/markoates/Repos/hexagon/";
    //hard_coded_project_path + "bin/programs/data/tmp/focused_component.txt";
-   std::string FOCUSED_COMPONENT_FILENAME = config.get_focused_component_filename();
+   std::string FOCUSED_COMPONENT_FILENAME = hexagon_config.get_focused_component_filename();
 
 
    std::string focused_component_to_write = get_focused_component_name();
@@ -1081,7 +1081,7 @@ bool System::spawn_multiplex_delete_menu()
    Hexagon::AdvancedCodeEditor::Stage *frontmost_advanced_code_editor_stage = get_frontmost_advanced_code_editor_stage();
    if (!frontmost_advanced_code_editor_stage) return false;
 
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    StageInterface *stage = stage_factory.create_delete_multiplex_menu(frontmost_advanced_code_editor_stage);
 
    stages.push_back(stage);
@@ -1092,7 +1092,7 @@ bool System::spawn_multiplex_delete_menu()
 
 bool System::spawn_class_brief_menu()
 {
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    std::vector<std::tuple<std::string, std::string>> menu_items{
      { "mark_as_files_uncommitted", "32" },
      { "mark_as_not_in_sync_with_remote", "63" },
@@ -1110,7 +1110,7 @@ bool System::spawn_class_brief_menu()
 
 bool System::spawn_drawing_box()
 {
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    StageInterface *stage = stage_factory.create_drawing_box();
 
    stages.push_back(stage);
@@ -1121,7 +1121,7 @@ bool System::spawn_drawing_box()
 
 bool System::spawn_regex_input_box_modal()
 {
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    StageInterface *stage = stage_factory.create_regex_input_box_modal();
 
    stages.push_back(stage);
@@ -1138,7 +1138,7 @@ bool System::spawn_regex_input_box_modal()
 
 bool System::spawn_git_commit_message_input_box_modal()
 {
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    StageInterface *stage = stage_factory.create_git_commit_message_box();
 
    stages.push_back(stage);
@@ -1155,7 +1155,7 @@ bool System::spawn_git_commit_message_input_box_modal()
 
 bool System::spawn_component_navigator()
 {
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    StageInterface *stage = stage_factory.create_advanced_component_navigator(current_project_directory);
 
    bool do_fancy_stuff_with_position_and_movement = false;
@@ -1194,7 +1194,7 @@ bool System::spawn_component_navigator()
 
 bool System::spawn_project_navigator()
 {
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    StageInterface *stage = stage_factory.create_project_navigator();
 
    stages.push_back(stage);
@@ -1205,7 +1205,7 @@ bool System::spawn_project_navigator()
 
 bool System::spawn_fancy()
 {
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
 
    StageInterface *stage = stage_factory.create_fancy();
    stages.push_back(stage);
@@ -1216,7 +1216,7 @@ bool System::spawn_fancy()
 
 bool System::spawn_component_relations_navigator()
 {
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    // HERE
    StageInterface *stage = stage_factory.create_component_relations_navigator(
       get_focused_component_name(),
@@ -1239,7 +1239,7 @@ bool System::spawn_red_overlay()
 
 bool System::spawn_file_navigator()
 {
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    StageInterface *stage = stage_factory.create_file_navigator(current_project_directory);
 
    stages.push_back(stage);
@@ -1250,7 +1250,7 @@ bool System::spawn_file_navigator()
 
 bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
 {
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    StageInterface *stage = stage_factory.create_file_navigator(last_file_navigator_selection);
 
    stages.push_back(stage);
@@ -1523,7 +1523,7 @@ bool System::create_stage_from_last_file_navigator_selection()
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f};
       ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
 
-      ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+      ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
       ::Hexagon::System::Action::CreateCodeEditorStageFromFilename action(
          filename,
          get_display_default_width(),
@@ -1568,7 +1568,7 @@ bool System::create_stages_from_layout_of_last_component_navigator_selection()
    std::cout << "      CREATING component_name:" << component_name << std::endl;
 
    ::Hexagon::BlastComponentLayoutGenerator component_layout_generator(project_directory, component_name);
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    ::Hexagon::Layout layout = component_layout_generator.generate();
    ::Hexagon::LayoutToStagesCreator layout_to_stages_creator(&stages, &stage_factory, &layout, &font_bin);
 
@@ -1604,7 +1604,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       write_focused_component_name_to_file();
 
 
-      ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+      ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
       ::Blast::Project::Component component(last_component_navigator_selection, get_current_project_directory());
       ::Hexagon::System::Action::CreateThreeSplitFromComponent action(
          get_current_project_directory(),
@@ -1615,8 +1615,8 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
          get_display_default_height(),
          get_default_code_editor_stage_width(),
          get_default_code_editor_stage_height(),
-         config.get_base_text_color(),
-         config.get_backfill_color()
+         hexagon_config.get_base_text_color(),
+         hexagon_config.get_backfill_color()
       );
       action.set_create_as_advanced_code_editor(create_as_advanced_code_editor);
 
@@ -1630,7 +1630,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       write_focused_component_name_to_file();
 
 
-      ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+      ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
       ::Hexagon::System::Action::CreateTwoSplitFromLastComponentNavigatorSelection action(
             get_current_project_directory(),
             last_component_navigator_selection,
@@ -1640,8 +1640,8 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
             &stage_factory,
             get_default_code_editor_stage_width(),
             get_default_code_editor_stage_height(),
-            config.get_base_text_color(),
-            config.get_backfill_color()
+            hexagon_config.get_base_text_color(),
+            hexagon_config.get_backfill_color()
          );
       action.set_create_as_advanced_code_editor(create_as_advanced_code_editor);
 
@@ -1832,18 +1832,18 @@ bool System::escape_current_modal()
 
 bool System::open_hexagon_config_file()
 {
-   std::string config_filename = config.get_config_filename();
+   std::string hexagon_config_filename = hexagon_config.get_config_filename();
    if (!display) throw std::runtime_error("fooob arrra");
 
-   ::Hexagon::StageFactory stage_factory(&config, &font_bin);
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    ::Hexagon::System::Action::CreateCodeEditorStageFromFilename action(
-      config_filename,
+      hexagon_config_filename,
       al_get_display_width(display),
       al_get_display_height(display),
       get_default_code_editor_stage_width(),
       get_default_code_editor_stage_height(),
-      config.get_base_text_color(),
-      config.get_backfill_color(),
+      hexagon_config.get_base_text_color(),
+      hexagon_config.get_backfill_color(),
       &stages,
       &stage_factory
       );
@@ -1869,7 +1869,7 @@ void System::process_event(ALLEGRO_EVENT *event)
 
 
 //Motion System::dummy_motion;
-::Hexagon::System::Config System::dummy_config;
+::Hexagon::System::Config System::dummy_hexagon_config;
 
 
 } // namespace Hexagon::System

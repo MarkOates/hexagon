@@ -14,7 +14,7 @@ TEST(Hexagon_System_System, can_be_created_without_blowing_up)
    Hexagon::System::System system;
 }
 
-TEST(Hexagon_System_System, initialize__will_initialize_the_config)
+TEST(Hexagon_System_System, initialize__will_initialize_the_hexagon_config)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);

@@ -21,7 +21,7 @@ namespace Hexagon::System
 class System
 {
 private:
-   static Hexagon::System::Config dummy_config;
+   static Hexagon::System::Config dummy_hexagon_config;
    std::string last_component_navigator_selection;
    std::string current_project_directory;
    std::string last_project_navigator_selection;
@@ -32,7 +32,7 @@ private:
    bool drawing_mouse_cursor;
 
    ALLEGRO_DISPLAY *display;
-   Hexagon::System::Config &config;
+   Hexagon::System::Config &hexagon_config;
    Motion motion;
 
    bool option__saving_focused_filename_to_file_is_disabled;
@@ -52,14 +52,15 @@ private:
    AllegroFlare::FontBin font_bin;
    Hexagon::Hud hud;
 
-public:
-
-   System(ALLEGRO_DISPLAY *display=nullptr, Hexagon::System::Config &config = System::dummy_config);
-
-   void initialize();
    int get_display_default_width();
    int get_display_default_height();
    float get_baseline_camera_stepback();
+
+public:
+
+   System(ALLEGRO_DISPLAY *display=nullptr, Hexagon::System::Config &hexagon_config = System::dummy_hexagon_config);
+
+   void initialize();
    float get_default_code_editor_stage_width();
    float get_default_code_editor_stage_height();
    std::string get_current_project_directory();
