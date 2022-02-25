@@ -277,6 +277,24 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   show_line_too_long__for_now__has_getter_and_setter_and_is_initialied_with_the_expected_default_values)
+{
+   // TODO it has "for now" in the test description because enabling showing the line too long should refresh the mesh
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   EXPECT_EQ(false, stage.get_show_line_too_long());
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   max_line_length__for_now__)
+{
+   // TODO it has "for now" in the test description because modifying the number should trigger a refresh of the mesh
+   Hexagon::AdvancedCodeEditor::Stage stage;
+   EXPECT_EQ(120, stage.get_max_line_length());
+}
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, render__does_not_blow_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 40, 30);

@@ -86,6 +86,8 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , on_color(ALLEGRO_COLOR{1.0f, 1.0f, 0.0f, 1.0f})
    , comment_color(ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f})
    , clear_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f})
+   , show_line_too_long(false)
+   , max_line_length(120)
 {
 }
 
@@ -140,6 +142,18 @@ void Stage::set_comment_color(ALLEGRO_COLOR comment_color)
 void Stage::set_clear_color(ALLEGRO_COLOR clear_color)
 {
    this->clear_color = clear_color;
+}
+
+
+void Stage::set_show_line_too_long(bool show_line_too_long)
+{
+   this->show_line_too_long = show_line_too_long;
+}
+
+
+void Stage::set_max_line_length(int max_line_length)
+{
+   this->max_line_length = max_line_length;
 }
 
 
@@ -224,6 +238,18 @@ ALLEGRO_COLOR Stage::get_comment_color()
 ALLEGRO_COLOR Stage::get_clear_color()
 {
    return clear_color;
+}
+
+
+bool Stage::get_show_line_too_long()
+{
+   return show_line_too_long;
+}
+
+
+int Stage::get_max_line_length()
+{
+   return max_line_length;
 }
 
 
@@ -1292,6 +1318,7 @@ void Stage::refresh_text_mesh_respecting_first_row_offset()
    filter_text_mesh_for_syntax_highlights();
    filter_text_mesh_for_comments();
    filter_text_mesh_for_test_case();
+   if (show_line_too_long) filter_text_mesh_for_line_too_long();
    return;
 }
 
@@ -1423,6 +1450,33 @@ void Stage::filter_text_mesh_for_test_case()
    return;
 }
 
+void Stage::filter_text_mesh_for_line_too_long()
+{
+   ALLEGRO_COLOR line_too_long_color = ALLEGRO_COLOR{0.9f, 0.4f, 0.42f, 1.0f};
+   std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+
+   for (unsigned y=0; y<num_rows; y++)
+   {
+      int this_row_num = first_row_offset + y;
+      if (this_row_num < 0 && this_row_num >= lines.size()) continue;
+      bool this_line_is_too_long = false;
+
+      std::string &this_line = lines[this_row_num];
+      
+      if (this_line.size() > max_line_length) this_line_is_too_long = true;
+
+      if (this_line_is_too_long)
+      {
+         int num_characters_to_process = std::min((int)this_line.size(), num_columns);
+         for (unsigned c=0; c<num_characters_to_process; c++)
+         {
+            text_mesh.set_cell_color(c, y, line_too_long_color);
+         }
+      }
+   }
+   return;
+}
+
 void Stage::refresh_text_mesh()
 {
    if (!(initialized))
@@ -1433,8 +1487,6 @@ void Stage::refresh_text_mesh()
       }
    char clear_char = '\0';
 
-   //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
-   //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
    for (unsigned y=0; y<num_rows; y++)

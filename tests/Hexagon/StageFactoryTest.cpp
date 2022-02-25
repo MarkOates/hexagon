@@ -272,6 +272,7 @@ TEST(Hexagon_StageFactoryTest,
    EXPECT_EQ(80, stage->get_num_columns());
    EXPECT_EQ(35, stage->get_num_rows());
    EXPECT_EQ("foobar_filename.htm", stage->get_filename());
+   EXPECT_EQ(true, stage->get_show_line_too_long());
 
    font_bin.clear();
    al_destroy_display(display);

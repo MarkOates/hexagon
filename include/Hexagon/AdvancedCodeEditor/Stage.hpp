@@ -56,6 +56,8 @@ namespace Hexagon
          ALLEGRO_COLOR on_color;
          ALLEGRO_COLOR comment_color;
          ALLEGRO_COLOR clear_color;
+         bool show_line_too_long;
+         int max_line_length;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
@@ -69,6 +71,8 @@ namespace Hexagon
          void set_on_color(ALLEGRO_COLOR on_color);
          void set_comment_color(ALLEGRO_COLOR comment_color);
          void set_clear_color(ALLEGRO_COLOR clear_color);
+         void set_show_line_too_long(bool show_line_too_long);
+         void set_max_line_length(int max_line_length);
          int get_num_columns();
          int get_num_rows();
          std::string get_filename();
@@ -83,6 +87,8 @@ namespace Hexagon
          ALLEGRO_COLOR get_on_color();
          ALLEGRO_COLOR get_comment_color();
          ALLEGRO_COLOR get_clear_color();
+         bool get_show_line_too_long();
+         int get_max_line_length();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
@@ -163,6 +169,7 @@ namespace Hexagon
          void filter_text_mesh_for_syntax_highlights();
          void filter_text_mesh_for_comments();
          void filter_text_mesh_for_test_case();
+         void filter_text_mesh_for_line_too_long();
          void refresh_text_mesh();
          Hexagon::DirtyGrid build_dirty_grid_from_lines_respecting_offset();
       };

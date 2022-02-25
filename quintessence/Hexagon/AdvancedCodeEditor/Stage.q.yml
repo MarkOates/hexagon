@@ -147,6 +147,18 @@ properties:
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
     getter: true
     setter: true
+
+  - name: show_line_too_long
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
+
+  - name: max_line_length
+    type: int
+    init_with: 120
+    getter: true
+    setter: true
    
 
 functions:
@@ -1265,6 +1277,7 @@ functions:
       filter_text_mesh_for_syntax_highlights();
       filter_text_mesh_for_comments();
       filter_text_mesh_for_test_case();
+      if (show_line_too_long) filter_text_mesh_for_line_too_long();
       return;
 
 
@@ -1404,14 +1417,40 @@ functions:
       - std::min
 
 
+  - name: filter_text_mesh_for_line_too_long
+    private: true
+    body: |
+      ALLEGRO_COLOR line_too_long_color = ALLEGRO_COLOR{0.9f, 0.4f, 0.42f, 1.0f};
+      std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
+
+      for (unsigned y=0; y<num_rows; y++)
+      {
+         int this_row_num = first_row_offset + y;
+         if (this_row_num < 0 && this_row_num >= lines.size()) continue;
+         bool this_line_is_too_long = false;
+
+         std::string &this_line = lines[this_row_num];
+         
+         if (this_line.size() > max_line_length) this_line_is_too_long = true;
+
+         if (this_line_is_too_long)
+         {
+            int num_characters_to_process = std::min((int)this_line.size(), num_columns);
+            for (unsigned c=0; c<num_characters_to_process; c++)
+            {
+               text_mesh.set_cell_color(c, y, line_too_long_color);
+            }
+         }
+      }
+      return;
+
+
   - name: refresh_text_mesh
     private: true
     guards: [ initialized ]
     body: |
       char clear_char = '\0';
 
-      //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
-      //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
       for (unsigned y=0; y<num_rows; y++)
