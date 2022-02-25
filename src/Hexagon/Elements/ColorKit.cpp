@@ -56,6 +56,11 @@ ALLEGRO_COLOR ColorKit::white()
    return ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f};
 }
 
+ALLEGRO_COLOR ColorKit::terminal_warm_orange()
+{
+   return ALLEGRO_COLOR{0.973, 0.592, 0.078, 1.0};
+}
+
 ALLEGRO_COLOR ColorKit::turn_on_all_the_house_lights_white()
 {
    return ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f};

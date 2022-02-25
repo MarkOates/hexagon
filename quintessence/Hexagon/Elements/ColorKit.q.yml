@@ -25,6 +25,10 @@ functions:
     type: ALLEGRO_COLOR
     body: return ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f};
 
+  - name: terminal_warm_orange
+    type: ALLEGRO_COLOR
+    body: return ALLEGRO_COLOR{0.973, 0.592, 0.078, 1.0};
+
   - name: turn_on_all_the_house_lights_white
     type: ALLEGRO_COLOR
     body: return ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f};
