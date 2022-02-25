@@ -126,7 +126,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_RendererTestWithAllegroRenderingFixture,
       place.size.x,
       place.size.y
    );
-   renderer.set_draw_line_numbers(true);
+   renderer.set_show_line_numbers(true);
    renderer.set_font(font);
 
    place.start_transform();

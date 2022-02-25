@@ -33,17 +33,17 @@ namespace Hexagon
          bool cursor_is_bar;
          float text_mesh_y_offset;
          int first_row_offset;
-         bool draw_line_numbers;
+         bool show_line_numbers;
          ALLEGRO_FONT* font;
          bool content_is_modified;
          bool represents_symlink;
          bool cursor_is_in_valid_range;
 
       public:
-         Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr, ALLEGRO_BITMAP* surface_render=nullptr, Hexagon::AdvancedCodeEditor::Cursor* cursor=nullptr, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections=nullptr, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections=nullptr, std::vector<CodeRange>* visual_selections=nullptr, std::vector<CodeRange>* full_line_visual_selections=nullptr, std::vector<CodeMessagePoint>* code_message_points=nullptr, std::vector<std::string>* lines=nullptr, float width=1, float height=1, bool cursor_is_bar=false, float text_mesh_y_offset=0.0f, int first_row_offset=0, bool draw_line_numbers=false, ALLEGRO_FONT* font=nullptr, bool content_is_modified=false, bool represents_symlink=false, bool cursor_is_in_valid_range=true);
+         Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr, ALLEGRO_BITMAP* surface_render=nullptr, Hexagon::AdvancedCodeEditor::Cursor* cursor=nullptr, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections=nullptr, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections=nullptr, std::vector<CodeRange>* visual_selections=nullptr, std::vector<CodeRange>* full_line_visual_selections=nullptr, std::vector<CodeMessagePoint>* code_message_points=nullptr, std::vector<std::string>* lines=nullptr, float width=1, float height=1, bool cursor_is_bar=false, float text_mesh_y_offset=0.0f, int first_row_offset=0, bool show_line_numbers=false, ALLEGRO_FONT* font=nullptr, bool content_is_modified=false, bool represents_symlink=false, bool cursor_is_in_valid_range=true);
          ~Renderer();
 
-         void set_draw_line_numbers(bool draw_line_numbers);
+         void set_show_line_numbers(bool show_line_numbers);
          void set_font(ALLEGRO_FONT* font);
          void set_content_is_modified(bool content_is_modified);
          void set_represents_symlink(bool represents_symlink);
