@@ -32,6 +32,7 @@ namespace Hexagon
       ALLEGRO_COLOR color_approaching_failure();
       ALLEGRO_COLOR color_warning();
       ALLEGRO_COLOR color_neutral();
+      ALLEGRO_COLOR text_color();
       void render_window();
       void render_text();
       ALLEGRO_COLOR generate_top_left_little_bar_color();

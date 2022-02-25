@@ -115,6 +115,11 @@ ALLEGRO_COLOR PacketRenderer::color_neutral()
    return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
 }
 
+ALLEGRO_COLOR PacketRenderer::text_color()
+{
+   return ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+}
+
 void PacketRenderer::render_window()
 {
    Hexagon::Elements::Window window(width, height);
@@ -140,7 +145,7 @@ void PacketRenderer::render_window()
 void PacketRenderer::render_text()
 {
    float text_scale = 2.0;
-   ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+   //ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 
    std::vector<std::tuple<std::string, std::string>> table = {
       { "SEARCHES", std::to_string(packet->get_searches_count()) },
@@ -161,10 +166,10 @@ void PacketRenderer::render_text()
       float row_y = first_row_y + line_height * line_number;
 
       // draw label
-      al_draw_text(font, text_color, row1_x, row_y, ALLEGRO_ALIGN_LEFT, row_label.c_str());
+      al_draw_text(font, text_color(), row1_x, row_y, ALLEGRO_ALIGN_LEFT, row_label.c_str());
 
       // draw data
-      al_draw_text(font, text_color, row2_x, row_y, ALLEGRO_ALIGN_RIGHT, row_value.c_str());
+      al_draw_text(font, text_color(), row2_x, row_y, ALLEGRO_ALIGN_RIGHT, row_value.c_str());
 
       line_number++;
    }
