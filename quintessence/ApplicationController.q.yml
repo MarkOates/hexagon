@@ -363,7 +363,6 @@ dependencies:
       - allegro5/allegro_primitives.h
       - allegro5/allegro_image.h
       - allegro_flare/useful_php.h
-      - allegro_flare/render_cache.h
       - AllegroFlare/Config.hpp
       - Hexagon/shared_globals.hpp
       - Hexagon/System/Renderer.hpp

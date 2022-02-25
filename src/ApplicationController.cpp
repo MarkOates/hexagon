@@ -12,7 +12,6 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 #include <allegro_flare/useful_php.h>
-#include <allegro_flare/render_cache.h>
 #include <AllegroFlare/Config.hpp>
 #include <Hexagon/shared_globals.hpp>
 #include <Hexagon/System/Renderer.hpp>
