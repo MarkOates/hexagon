@@ -26,6 +26,7 @@ private:
    std::string last_component_navigator_selection;
    std::string current_project_directory;
    std::string last_project_navigator_selection;
+   std::string last_commit_message;
    std::string focused_component_name;
    float mouse_x;
    float mouse_y;
@@ -172,6 +173,7 @@ public:
    bool set_search_regex_expression_on_all_code_editor_stages_to_regex_temp_file_contents();
    bool set_regex_temp_file_contents_to_word_under_current_advanced_code_editor_cursor();
    bool commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores();
+   bool append_packet_using_last_commit_message_and_clear_scores();
    bool push_to_git_remote();
    bool execute_magic_command();
    bool submit_current_modal();
@@ -261,6 +263,7 @@ public:
    static const std::string CHECK_GIT_SYNC_AND_UPDATE_POWERBAR;
    static const std::string OPEN_DOCUMENTATION_IN_BROWSER;
    static const std::string COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES;
+   static const std::string APPEND_PACKET_USING_LAST_COMMIT_MESSAGE_AND_CLEAR_SCORES;
    static const std::string PUSH_TO_GIT_REMOTE;
    static const std::string SPAWN_CLASS_BRIEF_MENU;
    static const std::string SPAWN_DRAWING_BOX;

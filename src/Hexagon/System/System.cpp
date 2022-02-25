@@ -107,6 +107,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &hexagon_config
    : last_component_navigator_selection("")
    , current_project_directory("")
    , last_project_navigator_selection("")
+   , last_commit_message("")
    , focused_component_name("")
    , mouse_x(0)
    , mouse_y(0)
@@ -1729,12 +1730,44 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
 
    std::string commit_message = regex_input_file_lines[0];
    std::string current_project_directory = get_current_project_directory();
-
+   
    ::Hexagon::Git::StageEverything stage_everything(current_project_directory);
    stage_everything.stage_everything();
 
    ::Hexagon::Git::CommitStagedWithMessage commit_staged_with_message(get_current_project_directory(), commit_message);
    commit_staged_with_message.commit();
+
+   last_commit_message = commit_message;
+
+   // append packet to packets
+   ::Hexagon::Packet new_packet_to_append(search_count, save_count);
+   packets.push_back(new_packet_to_append);
+
+   // refresh hud packets
+   set_hud_packets_to_packets();
+
+   // post the packet to a log file
+   int score = search_count + save_count;
+   ::Hexagon::PacketLogger packet_logger(current_project_directory, commit_message, search_count, save_count, score);
+   packet_logger.write_log_file();
+
+   // clear scores
+   clear_search_count();
+   clear_save_count();
+
+   // refresh the cleared scores on the hud
+   set_hud_search_count_to_search_count();
+   set_hud_save_count_to_save_count();
+   check_git_local_status_and_update_powerbar();
+
+   return true;
+}
+
+
+bool System::append_packet_using_last_commit_message_and_clear_scores()
+{
+   std::string current_project_directory = get_current_project_directory();
+   std::string commit_message = last_commit_message;
 
    // append packet to packets
    ::Hexagon::Packet new_packet_to_append(search_count, save_count);
@@ -1960,6 +1993,8 @@ const std::string System::CHECK_GIT_SYNC_AND_UPDATE_POWERBAR = "CHECK_GIT_SYNC_A
 const std::string System::OPEN_DOCUMENTATION_IN_BROWSER = "OPEN_DOCUMENTATION_IN_BROWSER";
 const std::string System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES =
    "COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES";
+const std::string System::APPEND_PACKET_USING_LAST_COMMIT_MESSAGE_AND_CLEAR_SCORES =
+   "APPEND_PACKET_USING_LAST_COMMIT_MESSAGE_AND_CLEAR_SCORES";
 const std::string System::PUSH_TO_GIT_REMOTE = "PUSH_TO_GIT_REMOTE";
 const std::string System::SPAWN_CLASS_BRIEF_MENU = "SPAWN_CLASS_BRIEF_MENU";
 const std::string System::SPAWN_DRAWING_BOX = "SPAWN_DRAWING_BOX";
