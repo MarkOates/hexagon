@@ -26,6 +26,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/Camera.hpp>
+#include <Hexagon/StageCollectionHelper.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -664,11 +665,16 @@ void Hud::draw()
    }
 
    bool draw_stages = true;
+
+   Hexagon::StageCollectionHelper stage_collection_helper(stages);
+   //for (auto &stage : stage_collection_helper.get_all_render_on_hud_stages())
+
    if (draw_stages && stages)
    {
-      for (auto &stage : (*stages))
+      for (auto &stage : stage_collection_helper.get_all_render_on_hud_stages())
+      //for (auto &stage : (*stages))
       {
-         if (!stage->get_render_on_hud()) continue;
+         //if (!stage->get_render_on_hud()) continue;
          if (std::find(permitted_types.begin(), permitted_types.end(), stage->get_type()) == permitted_types.end())
          {
             std::stringstream error_message;

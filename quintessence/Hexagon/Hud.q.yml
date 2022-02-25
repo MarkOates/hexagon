@@ -501,11 +501,16 @@ functions:
       }
 
       bool draw_stages = true;
+
+      Hexagon::StageCollectionHelper stage_collection_helper(stages);
+      //for (auto &stage : stage_collection_helper.get_all_render_on_hud_stages())
+
       if (draw_stages && stages)
       {
-         for (auto &stage : (*stages))
+         for (auto &stage : stage_collection_helper.get_all_render_on_hud_stages())
+         //for (auto &stage : (*stages))
          {
-            if (!stage->get_render_on_hud()) continue;
+            //if (!stage->get_render_on_hud()) continue;
             if (std::find(permitted_types.begin(), permitted_types.end(), stage->get_type()) == permitted_types.end())
             {
                std::stringstream error_message;
@@ -616,6 +621,7 @@ functions:
       - Hexagon::CodeEditor::Stage*
       - Hexagon::AdvancedComponentNavigator::Stage*
       - Hexagon::Camera
+      - Hexagon::StageCollectionHelper
 
 
   - name: set_orthographic_projection
@@ -800,5 +806,7 @@ dependencies:
     headers: [ Hexagon/BuildSequenceMeter/Renderer.hpp ]
   - symbol: Hexagon::Elements::Pill
     headers: [ Hexagon/Elements/Pill.hpp ]
+  - symbol: Hexagon::StageCollectionHelper
+    headers: [ Hexagon/StageCollectionHelper.hpp ]
 
 

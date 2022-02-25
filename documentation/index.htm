@@ -5975,6 +5975,9 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::Pill&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/Pill.hpp&quot;]}</td>
 </tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::StageCollectionHelper&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageCollectionHelper.hpp&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -11845,6 +11848,10 @@ table td
   "Hexagon/Elements/Pill": [
     "Hexagon/Hud"
   ],
+  "Hexagon/StageCollectionHelper": [
+    "Hexagon/Hud",
+    "Hexagon/System/Renderer"
+  ],
   "std/vector<std/tuple<std/string, std/string, placement3d>>": [
     "Hexagon/Layout",
     "Hexagon/LayoutToStagesCreator"
@@ -12150,9 +12157,6 @@ table td
     "Hexagon/System/Renderer"
   ],
   "al_clear_to_color": [
-    "Hexagon/System/Renderer"
-  ],
-  "Hexagon/StageCollectionHelper": [
     "Hexagon/System/Renderer"
   ],
   "debugging": [

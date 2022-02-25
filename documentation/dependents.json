@@ -1240,6 +1240,10 @@
   "Hexagon/Elements/Pill": [
     "Hexagon/Hud"
   ],
+  "Hexagon/StageCollectionHelper": [
+    "Hexagon/Hud",
+    "Hexagon/System/Renderer"
+  ],
   "std/vector<std/tuple<std/string, std/string, placement3d>>": [
     "Hexagon/Layout",
     "Hexagon/LayoutToStagesCreator"
@@ -1545,9 +1549,6 @@
     "Hexagon/System/Renderer"
   ],
   "al_clear_to_color": [
-    "Hexagon/System/Renderer"
-  ],
-  "Hexagon/StageCollectionHelper": [
     "Hexagon/System/Renderer"
   ],
   "debugging": [
