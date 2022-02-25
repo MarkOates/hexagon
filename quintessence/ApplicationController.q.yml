@@ -358,8 +358,6 @@ dependencies:
       - allegro_flare/useful_php.h
       - allegro_flare/render_cache.h
       - AllegroFlare/Config.hpp
-      - Hexagon/Logo.hpp
       - Hexagon/shared_globals.hpp
-      - Hexagon/util.hpp
       - Hexagon/System/Renderer.hpp
       - Hexagon/System/System.hpp

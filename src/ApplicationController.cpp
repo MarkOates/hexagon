@@ -17,9 +17,7 @@
 #include <allegro_flare/useful_php.h>
 #include <allegro_flare/render_cache.h>
 #include <AllegroFlare/Config.hpp>
-#include <Hexagon/Logo.hpp>
 #include <Hexagon/shared_globals.hpp>
-#include <Hexagon/util.hpp>
 #include <Hexagon/System/Renderer.hpp>
 #include <Hexagon/System/System.hpp>
 #include <stdexcept>
