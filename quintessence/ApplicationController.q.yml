@@ -65,6 +65,8 @@ functions:
       - al_init
       - al_init_font_addon
       - al_init_ttf_addon
+      - al_init_image_addon
+      - al_init_primitives_addon
 
 
   - name: shutdown
@@ -272,6 +274,7 @@ functions:
        return;
     body_dependency_symbols:
       - Hexagon::System::Config
+      - Hexagon::System::Renderer
       - all
 
 
@@ -345,6 +348,8 @@ dependencies:
     headers: [ Hexagon/Shaders/TiledHexagonMotionEffect.hpp ]
   - symbol: Hexagon::System::System*
     headers: [ Hexagon/System/System.hpp ]
+  - symbol: Hexagon::System::Renderer
+    headers: [ Hexagon/System/Renderer.hpp ]
   - symbol: ALLEGRO_EVENT_SOURCE
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT
@@ -355,15 +360,13 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: al_init_ttf_addon
     headers: [ allegro5/allegro_ttf.h ]
+  - symbol: al_init_image_addon
+    headers: [ allegro5/allegro_image.h ]
+  - symbol: al_init_primitives_addon
+    headers: [ allegro5/allegro_primitives.h ]
   - symbol: all
     headers:
       - iostream
       - sstream
-      - allegro5/allegro_color.h
-      - allegro5/allegro_primitives.h
-      - allegro5/allegro_image.h
       - allegro_flare/useful_php.h
-      - AllegroFlare/Config.hpp
       - Hexagon/shared_globals.hpp
-      - Hexagon/System/Renderer.hpp
-      - Hexagon/System/System.hpp

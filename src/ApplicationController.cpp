@@ -4,18 +4,15 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_primitives.h>
 #include <Hexagon/TitleScreen.hpp>
 #include <Hexagon/System/System.hpp>
+#include <Hexagon/System/Renderer.hpp>
 #include <iostream>
 #include <sstream>
-#include <allegro5/allegro_color.h>
-#include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_image.h>
 #include <allegro_flare/useful_php.h>
-#include <AllegroFlare/Config.hpp>
 #include <Hexagon/shared_globals.hpp>
-#include <Hexagon/System/Renderer.hpp>
-#include <Hexagon/System/System.hpp>
 #include <stdexcept>
 #include <sstream>
 

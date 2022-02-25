@@ -56,6 +56,9 @@
     "Hexagon/System/EventController",
     "Hexagon/System/Renderer"
   ],
+  "Hexagon/System/Renderer": [
+    "ApplicationController"
+  ],
   "ALLEGRO_EVENT_SOURCE": [
     "ApplicationController"
   ],
@@ -94,6 +97,13 @@
     "ApplicationController",
     "Testing/WithAllegroRenderingFixture",
     "Testing/WithStageFactoryFixture"
+  ],
+  "al_init_image_addon": [
+    "ApplicationController"
+  ],
+  "al_init_primitives_addon": [
+    "ApplicationController",
+    "Testing/WithAllegroRenderingFixture"
   ],
   "all": [
     "ApplicationController",
@@ -1561,9 +1571,6 @@
   ],
   "std/pair<int, int>": [
     "Hexagon/WordRangesFinder"
-  ],
-  "al_init_primitives_addon": [
-    "Testing/WithAllegroRenderingFixture"
   ],
   ":testing/Test": [
     "Testing/WithAllegroRenderingFixture",

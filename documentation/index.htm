@@ -321,6 +321,9 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::System*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/System.hpp&quot;]}</td>
 </tr>
 <tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::Renderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/Renderer.hpp&quot;]}</td>
+</tr>
+<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT_SOURCE&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
 </tr>
 <tr>
@@ -336,7 +339,13 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_init_ttf_addon&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_ttf.h&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;all&quot;, &quot;headers&quot;=&gt;[&quot;iostream&quot;, &quot;sstream&quot;, &quot;allegro5/allegro_color.h&quot;, &quot;allegro5/allegro_primitives.h&quot;, &quot;allegro5/allegro_image.h&quot;, &quot;allegro_flare/useful_php.h&quot;, &quot;AllegroFlare/Config.hpp&quot;, &quot;Hexagon/shared_globals.hpp&quot;, &quot;Hexagon/System/Renderer.hpp&quot;, &quot;Hexagon/System/System.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_init_image_addon&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_image.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_init_primitives_addon&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_primitives.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;all&quot;, &quot;headers&quot;=&gt;[&quot;iostream&quot;, &quot;sstream&quot;, &quot;allegro_flare/useful_php.h&quot;, &quot;Hexagon/shared_globals.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -10640,6 +10649,9 @@ table td
     "Hexagon/System/EventController",
     "Hexagon/System/Renderer"
   ],
+  "Hexagon/System/Renderer": [
+    "ApplicationController"
+  ],
   "ALLEGRO_EVENT_SOURCE": [
     "ApplicationController"
   ],
@@ -10678,6 +10690,13 @@ table td
     "ApplicationController",
     "Testing/WithAllegroRenderingFixture",
     "Testing/WithStageFactoryFixture"
+  ],
+  "al_init_image_addon": [
+    "ApplicationController"
+  ],
+  "al_init_primitives_addon": [
+    "ApplicationController",
+    "Testing/WithAllegroRenderingFixture"
   ],
   "all": [
     "ApplicationController",
@@ -12145,9 +12164,6 @@ table td
   ],
   "std/pair<int, int>": [
     "Hexagon/WordRangesFinder"
-  ],
-  "al_init_primitives_addon": [
-    "Testing/WithAllegroRenderingFixture"
   ],
   ":testing/Test": [
     "Testing/WithAllegroRenderingFixture",
