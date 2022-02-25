@@ -29,7 +29,7 @@ functions:
       return result;
 
 
-  - name: get_all_code_editor_stages_as_code_editor_stages
+  - name: get_all_code_editor_stages
     type: std::vector<Hexagon::CodeEditor::Stage *>
     guards: [ stages ]
     body: |

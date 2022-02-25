@@ -59,12 +59,12 @@ int StageCollectionHelper::count_code_editor_stages()
    return result;
 }
 
-std::vector<Hexagon::CodeEditor::Stage *> StageCollectionHelper::get_all_code_editor_stages_as_code_editor_stages()
+std::vector<Hexagon::CodeEditor::Stage *> StageCollectionHelper::get_all_code_editor_stages()
 {
    if (!(stages))
       {
          std::stringstream error_message;
-         error_message << "StageCollectionHelper" << "::" << "get_all_code_editor_stages_as_code_editor_stages" << ": error: " << "guard \"stages\" not met";
+         error_message << "StageCollectionHelper" << "::" << "get_all_code_editor_stages" << ": error: " << "guard \"stages\" not met";
          throw std::runtime_error(error_message.str());
       }
    std::vector<Hexagon::CodeEditor::Stage *> result;

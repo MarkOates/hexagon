@@ -280,7 +280,7 @@ Hexagon::AdvancedCodeEditor::Stage *System::get_frontmost_advanced_code_editor_s
 std::vector<Hexagon::CodeEditor::Stage *> System::get_all_code_editor_stages()
 {
    Hexagon::StageCollectionHelper stage_collection_helper(&stages);
-   return stage_collection_helper.get_all_code_editor_stages_as_code_editor_stages(); // TODO <- rename this method
+   return stage_collection_helper.get_all_code_editor_stages();
 }
 
 
