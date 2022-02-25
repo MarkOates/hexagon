@@ -22,7 +22,7 @@
 #include <AllegroFlare/Config.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
-#include <Hexagon/System/Action/CreateTwoSplitFromLastComponentNavigatorSelection.hpp>
+#include <Hexagon/System/Action/CreateTwoSplitFromComponent.hpp>
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
 #include <Hexagon/System/Action/CreateCodeEditorStageFromFilename.hpp>
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
@@ -1643,7 +1643,7 @@ bool System::create_two_or_three_split_layout_from_last_component_navigator_sele
       std::string component_name = last_component_navigator_selection;
 
       ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
-      ::Hexagon::System::Action::CreateTwoSplitFromLastComponentNavigatorSelection action(
+      ::Hexagon::System::Action::CreateTwoSplitFromComponent action(
             get_current_project_directory(),
             component_name,
             get_display_default_width(),

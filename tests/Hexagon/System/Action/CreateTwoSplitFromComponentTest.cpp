@@ -1,29 +1,29 @@
 
 #include <gtest/gtest.h>
 
-#include <Hexagon/System/Action/CreateTwoSplitFromLastComponentNavigatorSelection.hpp>
+#include <Hexagon/System/Action/CreateTwoSplitFromComponent.hpp>
 
-typedef Hexagon::System::Action::CreateTwoSplitFromLastComponentNavigatorSelection CreateTwoSplit;
+typedef Hexagon::System::Action::CreateTwoSplitFromComponent CreateTwoSplitFromComponent;
 
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/MissingFile/Stage.hpp>
 
-class Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture : public ::testing::Test
+class Hexagon_System_Action_CreateTwoSplitFromComponentTestWithEmptyFixture : public ::testing::Test
 {};
 
 #include <Testing/WithStageFactoryFixture.hpp>
 
-class Hexagon_System_Action_CreateTwoSplitTestWithFixture : public Testing::WithStageFactoryFixture
+class Hexagon_System_Action_CreateTwoSplitFromComponentTestWithFixture : public Testing::WithStageFactoryFixture
 {};
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitFromComponentTestWithEmptyFixture,
    can_be_created_without_blowing_up)
 {
-   CreateTwoSplit create_two_split_action;
+   CreateTwoSplitFromComponent action;
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitFromComponentTestWithFixture,
    execute__creates_two_stages_with_the_expected_size)
 {
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
@@ -38,7 +38,7 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    std::string component_name = "Hexagon/Elements/Frame";
    int code_editor_width = 234;
 
-   CreateTwoSplit create_two_split(
+   CreateTwoSplitFromComponent action(
       home_directory,
       component_name,
       2430,
@@ -48,7 +48,7 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
       code_editor_width
    );
 
-   create_two_split.execute();
+   action.execute();
    EXPECT_EQ(2, stages.size());
 
    for (auto &stage : stages)
@@ -61,7 +61,7 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    SUCCEED();
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitFromComponentTestWithFixture,
    execute__with_a_valid_component_creats_two_code_editor_stages)
 {
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
@@ -75,9 +75,9 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/Elements/Frame";
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
+   CreateTwoSplitFromComponent action(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
 
-   create_two_split.execute();
+   action.execute();
    EXPECT_EQ(2, stages.size());
    for (auto &stage : stages)
    {
@@ -86,7 +86,7 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    al_destroy_display(display);
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitFromComponentTestWithFixture,
    execute__with_create_as_advanced_code_editor_set_to_true__creates_two_advanced_code_editor_stages)
 {
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
@@ -100,10 +100,10 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/Elements/Frame";
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
-   create_two_split.set_create_as_advanced_code_editor(true);
+   CreateTwoSplitFromComponent action(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
+   action.set_create_as_advanced_code_editor(true);
 
-   create_two_split.execute();
+   action.execute();
    EXPECT_EQ(2, stages.size());
    for (auto &stage : stages)
    {
@@ -112,13 +112,13 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    al_destroy_display(display);
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitFromComponentTestWithFixture,
    execute__with_create_as_advanced_code_editor_set_to_true__creates_two_advanced_code_editor_stages_with_the_filename)
 {
    // TODO
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitFromComponentTestWithFixture,
    execute__with_a_valid_component_opens_the_quintessence_and_test_file)
 {
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
@@ -132,9 +132,9 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/Elements/Frame";
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
+   CreateTwoSplitFromComponent action(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
 
-   create_two_split.execute();
+   action.execute();
    EXPECT_EQ(2, stages.size());
 
    std::string expected_quintessence_filename =
@@ -153,13 +153,13 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    al_destroy_display(display);
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithEmptyFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitFromComponentTestWithEmptyFixture,
    execute__positions_two_stages_at_expected_placements)
 {
    //skip
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitFromComponentTestWithFixture,
    execute__if_files_are_missing_will_create_missing_file_stages)
 {
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
@@ -173,9 +173,9 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/ComponentThatIsNotPresent";
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
+   CreateTwoSplitFromComponent action(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
 
-   create_two_split.execute();
+   action.execute();
    EXPECT_EQ(2, stages.size());
    for (auto &stage : stages)
    {
@@ -184,7 +184,7 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    al_destroy_display(display);
 }
 
-TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
+TEST_F(Hexagon_System_Action_CreateTwoSplitFromComponentTestWithFixture,
    execute__will_set_the_expected_filename_when_creating_missing_file_stages)
 {
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080); // TODO: remove this hack.  This is only required because
@@ -198,9 +198,9 @@ TEST_F(Hexagon_System_Action_CreateTwoSplitTestWithFixture,
    std::string home_directory = "/Users/markoates/Repos/hexagon/";
    std::string component_name = "Hexagon/ComponentThatIsNotPresent";
 
-   CreateTwoSplit create_two_split(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
+   CreateTwoSplitFromComponent action(home_directory, component_name, 2430, 1350, stages, &get_stage_factory_ref());
 
-   create_two_split.execute();
+   action.execute();
    EXPECT_EQ(2, stages.size());
 
    Hexagon::MissingFile::Stage &missing_quintessence_file_stage = *static_cast<Hexagon::MissingFile::Stage *>(stages[1]);
