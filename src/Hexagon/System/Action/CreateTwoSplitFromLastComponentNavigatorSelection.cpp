@@ -99,16 +99,13 @@ bool CreateTwoSplitFromLastComponentNavigatorSelection::execute()
    NcursesArt::ProjectFilenameGenerator project_component_filename_generator(component_name, false);
    std::string quintessence_filename = project_path
       + project_component_filename_generator.generate_quintessence_filename();
-   std::string test_src_filename = project_path + project_component_filename_generator.generate_test_src_filename();
-
-   std::string filename = quintessence_filename;
-   std::string test_filename = test_src_filename;
+   std::string test_filename = project_path + project_component_filename_generator.generate_test_src_filename();
 
    std::vector<std::string> missing_files = {};
 
    bool quintessence_file_present = true;
    bool test_file_present = true;
-   if (!Blast::FileExistenceChecker(filename).exists()) quintessence_file_present = false;
+   if (!Blast::FileExistenceChecker(quintessence_filename).exists()) quintessence_file_present = false;
    if (!Blast::FileExistenceChecker(test_filename).exists()) test_file_present = false;
 
    float width_scale_of_halfwidth = 1.0; //0.6180339;
@@ -188,15 +185,15 @@ bool CreateTwoSplitFromLastComponentNavigatorSelection::execute()
      if (quintessence_file_present)
      {
         std::vector<std::string> file_contents = {};
-        ::read_file(file_contents, filename);
+        ::read_file(file_contents, quintessence_filename);
 
         if (get_create_as_advanced_code_editor())
         {
-           stage = stage_factory->create_advanced_code_editor(filename);
+           stage = stage_factory->create_advanced_code_editor(quintessence_filename);
         }
         else
         {
-           stage = stage_factory->create_code_editor(filename, "blast_quintessence");
+           stage = stage_factory->create_code_editor(quintessence_filename, "blast_quintessence");
 
            static_cast<CodeEditor::Stage *>(stage)->get_code_editor_ref().set_initial_content(file_contents);
            static_cast<CodeEditor::Stage *>(stage)->set_base_font_color(text_color);
@@ -205,7 +202,7 @@ bool CreateTwoSplitFromLastComponentNavigatorSelection::execute()
      }
      else
      {
-         stage = stage_factory->create_missing_file(filename);
+         stage = stage_factory->create_missing_file(quintessence_filename);
      }
 
      stage->set_place(place);
