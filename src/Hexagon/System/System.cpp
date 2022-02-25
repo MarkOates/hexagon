@@ -1720,8 +1720,7 @@ bool System::set_regex_temp_file_contents_to_word_under_current_advanced_code_ed
 }
 
 
-bool
-System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores()
+bool System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents()
 {
    // get regex expression input from file named REGEX_TEMP_FILENAME
    std::vector<std::string> regex_input_file_lines;
@@ -1738,6 +1737,8 @@ System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_conte
    commit_staged_with_message.commit();
 
    last_commit_message = commit_message;
+
+   return true;
 
    // append packet to packets
    ::Hexagon::Packet new_packet_to_append(search_count, save_count);
@@ -1825,7 +1826,8 @@ bool System::submit_current_modal()
       //process_local_event(::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION);
       process_local_event(::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK);
       process_local_event(::System::DESTROY_TOPMOST_STAGE);
-      process_local_event(::System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES);
+      process_local_event(::System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS);
+      process_local_event(::System::APPEND_PACKET_USING_LAST_COMMIT_MESSAGE_AND_CLEAR_SCORES);
       process_local_event(::System::PUSH_TO_GIT_REMOTE);
       process_local_event(::System::REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES);
       process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
@@ -1991,8 +1993,8 @@ const std::string System::SUBMIT_CURRENT_MODAL = "SUBMIT_CURRENT_MODAL";
 const std::string System::FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE = "FX__PLAY_FOCUS_ANIMATION_ON_FRONTMOST_STAGE";
 const std::string System::CHECK_GIT_SYNC_AND_UPDATE_POWERBAR = "CHECK_GIT_SYNC_AND_UPDATE_POWERBAR";
 const std::string System::OPEN_DOCUMENTATION_IN_BROWSER = "OPEN_DOCUMENTATION_IN_BROWSER";
-const std::string System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES =
-   "COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES";
+const std::string System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS =
+   "COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS";
 const std::string System::APPEND_PACKET_USING_LAST_COMMIT_MESSAGE_AND_CLEAR_SCORES =
    "APPEND_PACKET_USING_LAST_COMMIT_MESSAGE_AND_CLEAR_SCORES";
 const std::string System::PUSH_TO_GIT_REMOTE = "PUSH_TO_GIT_REMOTE";

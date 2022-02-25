@@ -266,8 +266,12 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          &System::open_documentation_in_browser,
       },
       {
-         ::System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS_AND_APPEND_PACKET_AND_CLEAR_SCORES,
-         &System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents_and_append_packet_and_clear_scores,
+         ::System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS,
+         &System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_contents,
+      },
+      {
+         ::System::APPEND_PACKET_USING_LAST_COMMIT_MESSAGE_AND_CLEAR_SCORES,
+         &System::append_packet_using_last_commit_message_and_clear_scores,
       },
       {
          ::System::PUSH_TO_GIT_REMOTE,
@@ -289,9 +293,11 @@ void EventController::process_local_event(std::string event_name)
          error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"system\" not met";
          throw std::runtime_error(error_message.str());
       }
-   std::map<std::string, std::function<bool(Hexagon::System::System&)>> event_function_mapping = get_default_function_mapping();
+   std::map<std::string, std::function<bool(Hexagon::System::System&)>> event_function_mapping =
+      get_default_function_mapping();
 
-   std::map<std::string, std::function<bool(Hexagon::System::System&)>>::const_iterator it = event_function_mapping.find(event_name);
+   std::map<std::string, std::function<bool(Hexagon::System::System&)>>::const_iterator it =
+      event_function_mapping.find(event_name);
    bool function_mapping_exists = it != event_function_mapping.end();
 
    if (!function_mapping_exists)
