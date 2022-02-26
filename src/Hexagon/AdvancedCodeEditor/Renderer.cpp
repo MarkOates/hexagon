@@ -59,6 +59,7 @@ Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surfa
    , content_is_modified(content_is_modified)
    , represents_symlink(represents_symlink)
    , cursor_is_in_valid_range(cursor_is_in_valid_range)
+   , line_numbers_color(ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0})
 {
 }
 
@@ -95,6 +96,18 @@ void Renderer::set_represents_symlink(bool represents_symlink)
 void Renderer::set_cursor_is_in_valid_range(bool cursor_is_in_valid_range)
 {
    this->cursor_is_in_valid_range = cursor_is_in_valid_range;
+}
+
+
+void Renderer::set_line_numbers_color(ALLEGRO_COLOR line_numbers_color)
+{
+   this->line_numbers_color = line_numbers_color;
+}
+
+
+ALLEGRO_COLOR Renderer::get_line_numbers_color()
+{
+   return line_numbers_color;
 }
 
 
@@ -246,7 +259,8 @@ bool Renderer::render_line_numbers()
          throw std::runtime_error(error_message.str());
       }
    int cell_width = text_mesh->get_cell_width();
-   ALLEGRO_COLOR font_color = al_color_name("white");
+   ALLEGRO_COLOR font_color = get_line_numbers_color(); //al_color_name("white");
+   float line_numbers_opacity = 0.1;
    ALLEGRO_COLOR cursor_color = al_color_name("dodgerblue");
    int first_line_number = first_row_offset;
    int _cursor_y = cursor->get_y();
@@ -259,12 +273,12 @@ bool Renderer::render_line_numbers()
       int line_number = first_line_number + i;
       if (line_number < 0) continue;
 
-      ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(font_color, 0.2);
+      //ALLEGRO_COLOR default_line_number_green_color = AllegroFlare::color::color(font_color, 0.2);
       float frame_right_x = width - cell_width * 0.5;
       bool cursor_is_on_this_line = (_cursor_y == line_number);
       std::stringstream ss;
       ss << (line_number+1);
-      ALLEGRO_COLOR text_color = default_line_number_green_color;
+      ALLEGRO_COLOR text_color = AllegroFlare::color::color(font_color, line_numbers_opacity);
       std::string string_to_display = ss.str();
       float y = i * cell_height;
       float that_y = y;

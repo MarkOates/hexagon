@@ -7,6 +7,7 @@
 #include <Hexagon/CodeRange.hpp>
 #include <Hexagon/Elements/TextMesh.hpp>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <string>
 #include <vector>
@@ -38,6 +39,7 @@ namespace Hexagon
          bool content_is_modified;
          bool represents_symlink;
          bool cursor_is_in_valid_range;
+         ALLEGRO_COLOR line_numbers_color;
 
       public:
          Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr, ALLEGRO_BITMAP* surface_render=nullptr, Hexagon::AdvancedCodeEditor::Cursor* cursor=nullptr, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections=nullptr, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections=nullptr, std::vector<CodeRange>* visual_selections=nullptr, std::vector<CodeRange>* full_line_visual_selections=nullptr, std::vector<CodeMessagePoint>* code_message_points=nullptr, std::vector<std::string>* lines=nullptr, float width=1, float height=1, bool cursor_is_bar=false, float text_mesh_y_offset=0.0f, int first_row_offset=0, bool show_line_numbers=false, ALLEGRO_FONT* font=nullptr, bool content_is_modified=false, bool represents_symlink=false, bool cursor_is_in_valid_range=true);
@@ -48,6 +50,8 @@ namespace Hexagon
          void set_content_is_modified(bool content_is_modified);
          void set_represents_symlink(bool represents_symlink);
          void set_cursor_is_in_valid_range(bool cursor_is_in_valid_range);
+         void set_line_numbers_color(ALLEGRO_COLOR line_numbers_color);
+         ALLEGRO_COLOR get_line_numbers_color();
          void render();
          void render_backfill();
          void draw_represents_symlink_frames();

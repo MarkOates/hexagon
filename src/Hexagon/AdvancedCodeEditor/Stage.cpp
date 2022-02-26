@@ -1096,6 +1096,8 @@ void Stage::render()
       advanced_code_editor.is_cursor_in_bounds()
    );
 
+   renderer.set_line_numbers_color(get_on_color());
+
    place.start_transform();
    renderer.render();
    place.restore_transform();
