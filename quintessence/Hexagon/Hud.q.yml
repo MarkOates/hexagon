@@ -403,7 +403,9 @@ functions:
       place.scale.y = 0.75;
       ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
 
-      al_draw_text(packet_text_font, ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5}, x, y, 0, "PACKETS");
+      ALLEGRO_COLOR packet_text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+
+      al_draw_text(packet_text_font, packet_text_color, x, y, 0, "PACKETS");
 
       place.position.y -= al_get_font_line_height(packet_text_font);
 
@@ -421,7 +423,9 @@ functions:
       {
          place.start_transform();
 
-         Hexagon::PacketRenderer packet_renderer(&font_bin, &packet, packet_text_font, place.size.x, place.size.y);
+         Hexagon::PacketRenderer packet_renderer(
+            &font_bin, &packet, packet_text_font, place.size.x, place.size.y, packet_text_color
+         );
          packet_renderer.render();
 
          place.restore_transform();

@@ -18,18 +18,31 @@ namespace Hexagon
 {
 
 
-PacketRenderer::PacketRenderer(AllegroFlare::FontBin* font_bin, Hexagon::Packet* packet, ALLEGRO_FONT* font, float width, float height)
+PacketRenderer::PacketRenderer(AllegroFlare::FontBin* font_bin, Hexagon::Packet* packet, ALLEGRO_FONT* font, float width, float height, ALLEGRO_COLOR text_color)
    : font_bin(font_bin)
    , packet(packet)
    , font(font)
    , width(width)
    , height(height)
+   , text_color(text_color)
 {
 }
 
 
 PacketRenderer::~PacketRenderer()
 {
+}
+
+
+void PacketRenderer::set_text_color(ALLEGRO_COLOR text_color)
+{
+   this->text_color = text_color;
+}
+
+
+ALLEGRO_COLOR PacketRenderer::get_text_color()
+{
+   return text_color;
 }
 
 
@@ -115,11 +128,6 @@ ALLEGRO_COLOR PacketRenderer::color_neutral()
    return ALLEGRO_COLOR{0.26, 0.26, 0.26, 1.0};
 }
 
-ALLEGRO_COLOR PacketRenderer::text_color()
-{
-   return ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
-}
-
 void PacketRenderer::render_window()
 {
    Hexagon::Elements::Window window(width, height);
@@ -166,10 +174,10 @@ void PacketRenderer::render_text()
       float row_y = first_row_y + line_height * line_number;
 
       // draw label
-      al_draw_text(font, text_color(), row1_x, row_y, ALLEGRO_ALIGN_LEFT, row_label.c_str());
+      al_draw_text(font, get_text_color(), row1_x, row_y, ALLEGRO_ALIGN_LEFT, row_label.c_str());
 
       // draw data
-      al_draw_text(font, text_color(), row2_x, row_y, ALLEGRO_ALIGN_RIGHT, row_value.c_str());
+      al_draw_text(font, get_text_color(), row2_x, row_y, ALLEGRO_ALIGN_RIGHT, row_value.c_str());
 
       line_number++;
    }
