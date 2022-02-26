@@ -598,8 +598,8 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    stage.cursor_move_to(0, 4);
    ASSERT_EQ(true, stage.join_lines());
 
-   std::string expected_line_at_cursor = "That this huge stage presenteth nought but showsWhereon the stars in secret " \
-                                         "influence comment.";
+   std::string expected_line_at_cursor = "That this huge stage presenteth nought but showsWhereon the stars in " \
+                                         "secret influence comment.";
 
    std::string expected_line_below_cursor = "When I perceive that men as plants increase,";
 
