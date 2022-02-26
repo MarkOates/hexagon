@@ -39,7 +39,7 @@ namespace AdvancedCodeEditor
 {
 
 
-Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections, std::vector<CodeRange>* visual_selections, std::vector<CodeRange>* full_line_visual_selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool show_line_numbers, ALLEGRO_FONT* font, bool content_is_modified, bool represents_symlink, bool cursor_is_in_valid_range)
+Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surface_render, Hexagon::AdvancedCodeEditor::Cursor* cursor, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections, std::vector<CodeRange>* visual_selections, std::vector<CodeRange>* full_line_visual_selections, std::vector<CodeMessagePoint>* code_message_points, std::vector<std::string>* lines, float width, float height, bool cursor_is_bar, float text_mesh_y_offset, int first_row_offset, bool show_line_numbers, ALLEGRO_FONT* font, bool content_is_modified, bool represents_symlink, bool cursor_is_in_valid_range, bool show_backfill)
    : text_mesh(text_mesh)
    , surface_render(surface_render)
    , cursor(cursor)
@@ -60,6 +60,7 @@ Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surfa
    , represents_symlink(represents_symlink)
    , cursor_is_in_valid_range(cursor_is_in_valid_range)
    , line_numbers_color(ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0})
+   , show_backfill(show_backfill)
 {
 }
 
@@ -105,6 +106,12 @@ void Renderer::set_line_numbers_color(ALLEGRO_COLOR line_numbers_color)
 }
 
 
+void Renderer::set_show_backfill(bool show_backfill)
+{
+   this->show_backfill = show_backfill;
+}
+
+
 ALLEGRO_COLOR Renderer::get_line_numbers_color()
 {
    return line_numbers_color;
@@ -127,7 +134,8 @@ void Renderer::render()
    //window_renderer.render();
    //timer.pause(); std::cout << " window render: " << timer.get_elapsed_time_microseconds() << std::endl;
 
-   render_backfill();
+   //bool show_backfill = true;
+   if (show_backfill) render_backfill();
 
    // draw the surface render
    //timer.reset(); timer.start();
@@ -154,12 +162,8 @@ void Renderer::render()
 
 void Renderer::render_backfill()
 {
-   bool drawing_backfill = true;
-   if (drawing_backfill)
-   {
-      ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.06, 0.06, 0.06, 0.06};
-      al_draw_filled_rectangle(0, 0, width, height, backfill_color);
-   }
+   ALLEGRO_COLOR backfill_base_color = AllegroFlare::color::color(al_color_name("white"), 0.06);
+   al_draw_filled_rectangle(0, 0, width, height, backfill_base_color);
 
    if (content_is_modified)
    {

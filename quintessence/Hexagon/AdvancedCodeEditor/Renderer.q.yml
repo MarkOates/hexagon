@@ -107,6 +107,12 @@ properties:
     getter: true
     setter: true
 
+  - name: show_backfill
+    type: bool
+    init_with: true
+    setter: true
+    constructor_arg: true
+
 
 functions:
 
@@ -123,7 +129,8 @@ functions:
       //window_renderer.render();
       //timer.pause(); std::cout << " window render: " << timer.get_elapsed_time_microseconds() << std::endl;
 
-      render_backfill();
+      //bool show_backfill = true;
+      if (show_backfill) render_backfill();
 
       // draw the surface render
       //timer.reset(); timer.start();
@@ -155,12 +162,8 @@ functions:
 
   - name: render_backfill
     body: |
-      bool drawing_backfill = true;
-      if (drawing_backfill)
-      {
-         ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.06, 0.06, 0.06, 0.06};
-         al_draw_filled_rectangle(0, 0, width, height, backfill_color);
-      }
+      ALLEGRO_COLOR backfill_base_color = AllegroFlare::color::color(al_color_name("white"), 0.06);
+      al_draw_filled_rectangle(0, 0, width, height, backfill_base_color);
 
       if (content_is_modified)
       {
