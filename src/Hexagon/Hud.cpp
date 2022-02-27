@@ -38,7 +38,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool show_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool show_save_count, int save_count, bool show_packets, std::vector<Hexagon::Packet> packets, bool show_search_count, int search_count, bool show_focus_timer_bar, bool show_build_sequence_meter, bool show_notifications, float left_column_x)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool show_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool show_save_count, int save_count, bool show_packets, std::vector<Hexagon::Packet> packets, bool show_search_count, int search_count, bool show_focus_timer_bar, bool show_build_sequence_meter, bool show_notifications, float left_column_x, ALLEGRO_COLOR base_text_color, float base_text_opacity)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -70,6 +70,8 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string 
    , global_font_str("unset-global_font_str")
    , current_component_is_symlinked_thus_has_different_title_color(false)
    , show_caps_lock_notification_light(false)
+   , base_text_color(base_text_color)
+   , base_text_opacity(base_text_opacity)
 {
 }
 
@@ -235,6 +237,18 @@ void Hud::set_show_caps_lock_notification_light(bool show_caps_lock_notification
 }
 
 
+void Hud::set_base_text_color(ALLEGRO_COLOR base_text_color)
+{
+   this->base_text_color = base_text_color;
+}
+
+
+void Hud::set_base_text_opacity(float base_text_opacity)
+{
+   this->base_text_opacity = base_text_opacity;
+}
+
+
 std::vector<std::string> Hud::get_notifications()
 {
    return notifications;
@@ -352,6 +366,18 @@ bool Hud::get_current_component_is_symlinked_thus_has_different_title_color()
 bool Hud::get_show_caps_lock_notification_light()
 {
    return show_caps_lock_notification_light;
+}
+
+
+ALLEGRO_COLOR Hud::get_base_text_color()
+{
+   return base_text_color;
+}
+
+
+float Hud::get_base_text_opacity()
+{
+   return base_text_opacity;
 }
 
 
@@ -566,7 +592,7 @@ void Hud::draw_packets()
    place.scale.y = 0.75;
    ALLEGRO_FONT *packet_text_font = obtain_packet_text_font();
 
-   ALLEGRO_COLOR packet_text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+   ALLEGRO_COLOR packet_text_color = AllegroFlare::color::color(get_base_text_color(), base_text_opacity);
 
    al_draw_text(packet_text_font, packet_text_color, x, y, 0, "PACKETS");
 
