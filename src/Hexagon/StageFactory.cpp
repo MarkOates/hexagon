@@ -208,7 +208,7 @@ StageInterface* StageFactory::create_notification(std::string body_text)
 
 StageInterface* StageFactory::create_file_navigator(std::string project_directory)
 {
-   std::string directory_to_start = project_directory; //directory.empty() ? obtain_default_navigator_directory() : directory;
+   std::string directory_to_start = project_directory;
 
    ALLEGRO_FONT *font = obtain_file_navigator_font();
    Hexagon::FileNavigator::Stage *file_navigator
