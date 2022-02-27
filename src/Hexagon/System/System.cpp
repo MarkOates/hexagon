@@ -429,7 +429,8 @@ bool System::mark_as_not_in_sync_with_remote()
 bool System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction()
 {
    Hexagon::StageCollectionHelper stage_collection_helper(&stages);
-   Hexagon::GitCommitMessageInputBox::Stage *stage = stage_collection_helper.get_frontmost_git_commit_message_input_box();
+   Hexagon::GitCommitMessageInputBox::Stage *stage =
+      stage_collection_helper.get_frontmost_git_commit_message_input_box();
 
    if (!stage) return false;
    stage->change_state_to_submitted_and_pending_destruction();
