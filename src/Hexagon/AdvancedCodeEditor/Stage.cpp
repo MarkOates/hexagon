@@ -462,8 +462,9 @@ bool Stage::cursor_jump_down_half_page()
    // TODO: account for "surface_render"
    int new_y = advanced_code_editor.cursor_get_y() + num_rows / 2;
    int num_lines = advanced_code_editor.get_lines_ref().size();
-   if (new_y >= (num_lines - 1)) new_y = num_lines - 1; // TODO also only allow this behavior if will go out of bounds
-                                                        // and not if already out of bounds going further out of bounds
+   if (new_y >= (num_lines - 1)) new_y = num_lines - 1; // TODO also only allow this behavior if will go out of
+                                                        // bounds and not if already out of bounds going further
+                                                        // out of bounds
 
    bool result = advanced_code_editor.cursor_set_y(new_y);
    refresh_current_visual_selection_end_to_current_cursor_position();
@@ -772,7 +773,9 @@ bool Stage::toggle_currently_grabbing_visual_selection()
 
 bool Stage::create_full_line_visual_selection_at_current_cursor_location()
 {
-   full_line_visual_selections.push_back(CodeRange(cursor_get_x(), cursor_get_y(), cursor_get_x()+1, cursor_get_y()));
+   full_line_visual_selections.push_back(
+      CodeRange(cursor_get_x(), cursor_get_y(), cursor_get_x()+1, cursor_get_y())
+   );
    return true;
 }
 
@@ -1027,7 +1030,9 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
       "insert_three_spaces_at_start_of_line",
       });
    result.set_mapping(ALLEGRO_KEY_V, 0, { "toggle_currently_grabbing_visual_selection" });
-   result.set_mapping(ALLEGRO_KEY_V, ALLEGRO_KEYMOD_SHIFT, { "toggle_currently_grabbing_full_line_visual_selection" });
+   result.set_mapping(ALLEGRO_KEY_V, ALLEGRO_KEYMOD_SHIFT, {
+      "toggle_currently_grabbing_full_line_visual_selection"
+   });
    result.set_mapping(ALLEGRO_KEY_Y, 0, { "yank_selected_text_to_clipboard" });
    result.set_mapping(ALLEGRO_KEY_P, ALLEGRO_KEYMOD_SHIFT, { "paste_selected_text_from_clipboard" });
    result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "cursor_move_down", "insert_blank_line" });

@@ -134,6 +134,7 @@ void Renderer::render()
    //window_renderer.render();
    //timer.pause(); std::cout << " window render: " << timer.get_elapsed_time_microseconds() << std::endl;
 
+
    //bool show_backfill = true;
    if (show_backfill) render_backfill();
 
