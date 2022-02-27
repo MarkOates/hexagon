@@ -146,6 +146,8 @@ void System::initialize()
    set_current_project_directory(hexagon_config.get_default_navigator_directory());
 
    hud.set_backfill_color(hexagon_config.get_backfill_color());
+   hud.set_base_text_color(hexagon_config.get_base_text_color());
+   hud.set_base_text_opacity(0.55);
    hud.set_stages(&stages);
    hud.set_global_font_str(get_global_font_str());
    hud.set_show_packets(true);

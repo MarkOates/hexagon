@@ -602,7 +602,8 @@ void Hud::draw_packets()
    std::vector<Hexagon::Packet> packets_to_render = packets;
    packets_to_render.push_back(packet_in_progress);
 
-   // 9, because golf has 9-hole halves, also divisible by 2 or 3. Good number.  Also 1 extra for the in-progress
+   // 9, because golf has 9-hole halves (of a game of 18 holes)
+   // also it's divisible by 2 or 3. Good number.  Also 1 extra for the in-progress
    int max_num_packets_to_render = 10;
 
    while (packets_to_render.size() > max_num_packets_to_render) packets_to_render.erase(packets_to_render.begin());
