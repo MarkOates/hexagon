@@ -73,6 +73,7 @@ bool ProjectNavigator::initialize()
       { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
       { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
       { "NcursesArt", "/Users/markoates/Repos/ncurses_art/" },
+      { "DragonWrath", "/Users/markoates/Repos/DragonWrath/" },
       { "Solitare", "/Users/markoates/Repos/Solitare/" },
       { "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
       { "Peri", "/Users/markoates/Repos/Peri/" },
