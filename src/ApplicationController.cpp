@@ -239,9 +239,11 @@ void ApplicationController::run_event_loop()
       if (refresh)
       {
          ALLEGRO_COLOR backfill_color = hexagon_config.get_backfill_color();
+         ALLEGRO_COLOR base_text_color = hexagon_config.get_base_text_color();
+
          al_clear_to_color(backfill_color);
 
-         Hexagon::System::Renderer renderer(system, display, &backfill_color);
+         Hexagon::System::Renderer renderer(system, display, &backfill_color, base_text_color);
          renderer.render();
 
          al_flip_display();

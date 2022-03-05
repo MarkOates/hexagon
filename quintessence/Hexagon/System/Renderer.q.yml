@@ -10,10 +10,16 @@ properties:
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
     constructor_arg: true
-  - name: backfill_color
 
+  - name: backfill_color
     type: ALLEGRO_COLOR*
     init_with: nullptr
+    constructor_arg: true
+    getter: true
+
+  - name: base_text_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1, 1, 1, 1}
     constructor_arg: true
     getter: true
 
@@ -25,7 +31,7 @@ functions:
     type: bool
     guards: [ system, display, backfill_color ]
     body: |
-      al_clear_to_color(*get_backfill_color());
+      //al_clear_to_color(*get_backfill_color());
 
       system->get_camera_ref().setup_camera_perspective(al_get_backbuffer(display));
       al_clear_depth_buffer(1000);
@@ -70,6 +76,7 @@ functions:
 
 
   - name: draw_focused_frame
+    private: true
     guards: [ stage ]
     parameters:
       - name: stage
@@ -78,9 +85,11 @@ functions:
     body: |
       placement3d place = stage->get_place();
       Hexagon::Elements::Window window(place.size.x, place.size.y);
+      ALLEGRO_COLOR btc = get_base_text_color();
+      ALLEGRO_COLOR focus_frame_color = ALLEGRO_COLOR{btc.r*0.3f, btc.g*0.3f, btc.b*0.3f, btc.a*0.3f};
 
       //window.set_outer_line_color(ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f});
-      window.set_outer_line_color(ALLEGRO_COLOR{0.3f, 0.3f, 0.3f, 0.3f});
+      window.set_outer_line_color(focus_frame_color); //ALLEGRO_COLOR{0.3f, 0.3f, 0.3f, 0.3f});
       window.set_outer_line_opacity(0.5);
       window.set_outer_line_thickness(4.0);
 
@@ -94,6 +103,8 @@ functions:
 dependencies:
 
 
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro_color.h ]
   - symbol: ALLEGRO_COLOR*
     headers: [ allegro5/allegro_color.h ]
   - symbol: global::profiler

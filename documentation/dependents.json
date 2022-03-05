@@ -335,6 +335,7 @@
     "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Hexagon/System/Config",
     "Hexagon/System/Renderer",
+    "Hexagon/System/Renderer",
     "Hexagon/UI/DrawingBox"
   ],
   "ALLEGRO_FONT": [

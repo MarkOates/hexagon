@@ -17,12 +17,14 @@ namespace Hexagon
          Hexagon::System::System* system;
          ALLEGRO_DISPLAY* display;
          ALLEGRO_COLOR* backfill_color;
+         ALLEGRO_COLOR base_text_color;
 
       public:
-         Renderer(Hexagon::System::System* system=nullptr, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_COLOR* backfill_color=nullptr);
+         Renderer(Hexagon::System::System* system=nullptr, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_COLOR* backfill_color=nullptr, ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1, 1, 1, 1});
          ~Renderer();
 
          ALLEGRO_COLOR* get_backfill_color();
+         ALLEGRO_COLOR get_base_text_color();
          bool render();
          void draw_focused_frame(StageInterface* stage=nullptr);
       };

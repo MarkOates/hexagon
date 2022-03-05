@@ -22,10 +22,11 @@ namespace System
 {
 
 
-Renderer::Renderer(Hexagon::System::System* system, ALLEGRO_DISPLAY* display, ALLEGRO_COLOR* backfill_color)
+Renderer::Renderer(Hexagon::System::System* system, ALLEGRO_DISPLAY* display, ALLEGRO_COLOR* backfill_color, ALLEGRO_COLOR base_text_color)
    : system(system)
    , display(display)
    , backfill_color(backfill_color)
+   , base_text_color(base_text_color)
 {
 }
 
@@ -38,6 +39,12 @@ Renderer::~Renderer()
 ALLEGRO_COLOR* Renderer::get_backfill_color()
 {
    return backfill_color;
+}
+
+
+ALLEGRO_COLOR Renderer::get_base_text_color()
+{
+   return base_text_color;
 }
 
 
@@ -61,7 +68,7 @@ bool Renderer::render()
          error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
          throw std::runtime_error(error_message.str());
       }
-   al_clear_to_color(*get_backfill_color());
+   //al_clear_to_color(*get_backfill_color());
 
    system->get_camera_ref().setup_camera_perspective(al_get_backbuffer(display));
    al_clear_depth_buffer(1000);
@@ -105,9 +112,11 @@ void Renderer::draw_focused_frame(StageInterface* stage)
       }
    placement3d place = stage->get_place();
    Hexagon::Elements::Window window(place.size.x, place.size.y);
+   ALLEGRO_COLOR btc = get_base_text_color();
+   ALLEGRO_COLOR focus_frame_color = ALLEGRO_COLOR{btc.r*0.3f, btc.g*0.3f, btc.b*0.3f, btc.a*0.3f};
 
    //window.set_outer_line_color(ALLEGRO_COLOR{0.0f, 1.0f, 1.0f, 1.0f});
-   window.set_outer_line_color(ALLEGRO_COLOR{0.3f, 0.3f, 0.3f, 0.3f});
+   window.set_outer_line_color(focus_frame_color); //ALLEGRO_COLOR{0.3f, 0.3f, 0.3f, 0.3f});
    window.set_outer_line_opacity(0.5);
    window.set_outer_line_thickness(4.0);
 
