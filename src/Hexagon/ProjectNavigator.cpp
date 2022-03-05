@@ -181,6 +181,7 @@ void ProjectNavigator::draw_menu()
       }
    placement3d place(surface_width/2, surface_height/2, 0);
    place.scale = vec3d(0.6, 0.6, 0.6);
+   place.size = vec3d{ (float)main_menu.get_width(), 400.0f, 0.0f };
    place.start_transform();
    main_menu.render();
    place.restore_transform();
