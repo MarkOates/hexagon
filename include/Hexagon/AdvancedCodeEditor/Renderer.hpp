@@ -42,6 +42,7 @@ namespace Hexagon
          ALLEGRO_COLOR line_numbers_color;
          bool show_backfill;
          ALLEGRO_COLOR null_space_color;
+         ALLEGRO_COLOR backfill_color;
 
       public:
          Renderer(Hexagon::Elements::TextMesh* text_mesh=nullptr, ALLEGRO_BITMAP* surface_render=nullptr, Hexagon::AdvancedCodeEditor::Cursor* cursor=nullptr, std::vector<Hexagon::AdvancedCodeEditor::Selection>* selections=nullptr, Hexagon::AdvancedCodeEditor::Selection* search_regex_selections=nullptr, std::vector<CodeRange>* visual_selections=nullptr, std::vector<CodeRange>* full_line_visual_selections=nullptr, std::vector<CodeMessagePoint>* code_message_points=nullptr, std::vector<std::string>* lines=nullptr, float width=1, float height=1, bool cursor_is_bar=false, float text_mesh_y_offset=0.0f, int first_row_offset=0, bool show_line_numbers=false, ALLEGRO_FONT* font=nullptr, bool content_is_modified=false, bool represents_symlink=false, bool cursor_is_in_valid_range=true, bool show_backfill=true);
@@ -55,8 +56,10 @@ namespace Hexagon
          void set_line_numbers_color(ALLEGRO_COLOR line_numbers_color);
          void set_show_backfill(bool show_backfill);
          void set_null_space_color(ALLEGRO_COLOR null_space_color);
+         void set_backfill_color(ALLEGRO_COLOR backfill_color);
          ALLEGRO_COLOR get_line_numbers_color();
          ALLEGRO_COLOR get_null_space_color();
+         ALLEGRO_COLOR get_backfill_color();
          void render();
          void render_backfill();
          void draw_represents_symlink_frames();

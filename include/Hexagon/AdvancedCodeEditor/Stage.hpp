@@ -59,6 +59,7 @@ namespace Hexagon
          bool show_line_too_long;
          int max_line_length;
          ALLEGRO_COLOR null_space_color;
+         ALLEGRO_COLOR backfill_color;
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
@@ -75,6 +76,7 @@ namespace Hexagon
          void set_show_line_too_long(bool show_line_too_long);
          void set_max_line_length(int max_line_length);
          void set_null_space_color(ALLEGRO_COLOR null_space_color);
+         void set_backfill_color(ALLEGRO_COLOR backfill_color);
          int get_num_columns();
          int get_num_rows();
          std::string get_filename();
@@ -92,6 +94,7 @@ namespace Hexagon
          bool get_show_line_too_long();
          int get_max_line_length();
          ALLEGRO_COLOR get_null_space_color();
+         ALLEGRO_COLOR get_backfill_color();
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();

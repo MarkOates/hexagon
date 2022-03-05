@@ -336,8 +336,14 @@ functions:
          advanced_code_editor_stage->set_comment_color(comment_color);
          advanced_code_editor_stage->set_clear_color(clear_color);
 
-         ALLEGRO_COLOR null_space_color = AllegroFlare::color::color(obtain_base_backfill_color(), 0.2);
+         ALLEGRO_COLOR base_backfill_color = obtain_base_backfill_color();
+         ALLEGRO_COLOR &bbc = base_backfill_color;
+         ALLEGRO_COLOR inv_base_backfill_color = ALLEGRO_COLOR{1.0f - bbc.r, 1.0f - bbc.g, 1.0f - bbc.b, 1.0f};
+
+         ALLEGRO_COLOR null_space_color = AllegroFlare::color::color(inv_base_backfill_color, 0.05);
+         ALLEGRO_COLOR backfill_color = AllegroFlare::color::color(inv_base_backfill_color, 0.025);
          advanced_code_editor_stage->set_null_space_color(null_space_color);
+         advanced_code_editor_stage->set_backfill_color(backfill_color);
       }
 
       advanced_code_editor_stage->initialize();

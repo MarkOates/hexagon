@@ -89,6 +89,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , show_line_too_long(false)
    , max_line_length(120)
    , null_space_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.3f})
+   , backfill_color(ALLEGRO_COLOR{0.06, 0.06, 0.06, 0.06})
 {
 }
 
@@ -161,6 +162,12 @@ void Stage::set_max_line_length(int max_line_length)
 void Stage::set_null_space_color(ALLEGRO_COLOR null_space_color)
 {
    this->null_space_color = null_space_color;
+}
+
+
+void Stage::set_backfill_color(ALLEGRO_COLOR backfill_color)
+{
+   this->backfill_color = backfill_color;
 }
 
 
@@ -263,6 +270,12 @@ int Stage::get_max_line_length()
 ALLEGRO_COLOR Stage::get_null_space_color()
 {
    return null_space_color;
+}
+
+
+ALLEGRO_COLOR Stage::get_backfill_color()
+{
+   return backfill_color;
 }
 
 
@@ -1117,6 +1130,7 @@ void Stage::render()
       advanced_code_editor.is_cursor_in_bounds()
    );
 
+   renderer.set_backfill_color(get_backfill_color());
    renderer.set_null_space_color(get_null_space_color());
    renderer.set_line_numbers_color(get_on_color());
 

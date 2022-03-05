@@ -62,6 +62,7 @@ Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surfa
    , line_numbers_color(ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0})
    , show_backfill(show_backfill)
    , null_space_color(ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3})
+   , backfill_color(ALLEGRO_COLOR{0.06, 0.06, 0.06, 0.06})
 {
 }
 
@@ -119,6 +120,12 @@ void Renderer::set_null_space_color(ALLEGRO_COLOR null_space_color)
 }
 
 
+void Renderer::set_backfill_color(ALLEGRO_COLOR backfill_color)
+{
+   this->backfill_color = backfill_color;
+}
+
+
 ALLEGRO_COLOR Renderer::get_line_numbers_color()
 {
    return line_numbers_color;
@@ -128,6 +135,12 @@ ALLEGRO_COLOR Renderer::get_line_numbers_color()
 ALLEGRO_COLOR Renderer::get_null_space_color()
 {
    return null_space_color;
+}
+
+
+ALLEGRO_COLOR Renderer::get_backfill_color()
+{
+   return backfill_color;
 }
 
 
@@ -176,8 +189,9 @@ void Renderer::render()
 
 void Renderer::render_backfill()
 {
-   ALLEGRO_COLOR backfill_base_color = AllegroFlare::color::color(al_color_name("white"), 0.06);
-   al_draw_filled_rectangle(0, 0, width, height, backfill_base_color);
+   //ALLEGRO_COLOR backfill_base_color = 
+   //AllegroFlare::color::color(al_color_name("white"), 0.06);
+   al_draw_filled_rectangle(0, 0, width, height, backfill_color);
 
    if (content_is_modified)
    {
