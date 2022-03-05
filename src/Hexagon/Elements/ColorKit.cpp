@@ -66,6 +66,11 @@ ALLEGRO_COLOR ColorKit::turn_on_all_the_house_lights_white()
    return ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f};
 }
 
+ALLEGRO_COLOR ColorKit::backwall_gray()
+{
+   return ALLEGRO_COLOR{0.733f, 0.631f, 0.569f, 1.0f}; // bba191
+}
+
 ALLEGRO_COLOR ColorKit::inv_base_text_color()
 {
    return ALLEGRO_COLOR{1.0f-base_text_color.r, 1.0f-base_text_color.g, 1.0f-base_text_color.b, base_text_color.a};

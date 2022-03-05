@@ -26,6 +26,7 @@ namespace Hexagon
          ALLEGRO_COLOR white();
          ALLEGRO_COLOR terminal_warm_orange();
          ALLEGRO_COLOR turn_on_all_the_house_lights_white();
+         ALLEGRO_COLOR backwall_gray();
          ALLEGRO_COLOR inv_base_text_color();
          ALLEGRO_COLOR inv_backfill_color();
       };
