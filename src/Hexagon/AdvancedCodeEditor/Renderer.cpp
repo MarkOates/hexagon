@@ -61,6 +61,7 @@ Renderer::Renderer(Hexagon::Elements::TextMesh* text_mesh, ALLEGRO_BITMAP* surfa
    , cursor_is_in_valid_range(cursor_is_in_valid_range)
    , line_numbers_color(ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0})
    , show_backfill(show_backfill)
+   , null_space_color(ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3})
 {
 }
 
@@ -112,9 +113,21 @@ void Renderer::set_show_backfill(bool show_backfill)
 }
 
 
+void Renderer::set_null_space_color(ALLEGRO_COLOR null_space_color)
+{
+   this->null_space_color = null_space_color;
+}
+
+
 ALLEGRO_COLOR Renderer::get_line_numbers_color()
 {
    return line_numbers_color;
+}
+
+
+ALLEGRO_COLOR Renderer::get_null_space_color()
+{
+   return null_space_color;
 }
 
 
@@ -224,7 +237,7 @@ bool Renderer::draw_null_space_above_and_below()
    float line_num = 0;
    float top_line_y = cell_height * (line_num - first_row_offset) + text_mesh_y_offset;
    ALLEGRO_COLOR line_color = ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1};
-   ALLEGRO_COLOR null_space_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
+   //ALLEGRO_COLOR null_space_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
 
    if (top_line_y < 0 || top_line_y > height)
    {

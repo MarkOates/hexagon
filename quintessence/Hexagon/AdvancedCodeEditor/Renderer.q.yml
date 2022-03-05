@@ -113,6 +113,12 @@ properties:
     setter: true
     constructor_arg: true
 
+  - name: null_space_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3}
+    getter: true
+    setter: true
+
 
 functions:
 
@@ -214,7 +220,7 @@ functions:
       float line_num = 0;
       float top_line_y = cell_height * (line_num - first_row_offset) + text_mesh_y_offset;
       ALLEGRO_COLOR line_color = ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1};
-      ALLEGRO_COLOR null_space_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
+      //ALLEGRO_COLOR null_space_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
 
       if (top_line_y < 0 || top_line_y > height)
       {
