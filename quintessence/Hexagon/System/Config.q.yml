@@ -220,6 +220,8 @@ functions:
       }
       else
       {
+         Hexagon::Elements::ColorKit color_kit;
+         return color_kit.backwall_gray();
          return al_color_name("white");
          //return al_color_html("8f9996"); // deep rich gray
          //return al_color_html("8a5b38"); // darker, more true deep brown from lamp
@@ -232,6 +234,8 @@ functions:
 
       //return al_color_html("5b5c60");
       //return al_color_name("black");
+    body_dependency_symbols:
+      - Hexagon::Elements::ColorKit
 
 
   - name: get_base_text_color
@@ -279,6 +283,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::Elements::ColorKit
+    headers: [ Hexagon/Elements/ColorKit.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
   - symbol: std::stringstream

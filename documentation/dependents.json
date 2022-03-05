@@ -1537,6 +1537,9 @@
   "CodeEditor/Stage": [
     "Hexagon/System/Action/CreateTwoSplitFromComponent"
   ],
+  "Hexagon/Elements/ColorKit": [
+    "Hexagon/System/Config"
+  ],
   "AllegroFlare/Config": [
     "Hexagon/System/Config"
   ],

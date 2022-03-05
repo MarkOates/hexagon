@@ -14,6 +14,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/Elements/ColorKit.hpp>
 
 
 namespace Hexagon
@@ -223,6 +224,8 @@ ALLEGRO_COLOR Config::get_backfill_color()
    }
    else
    {
+      Hexagon::Elements::ColorKit color_kit;
+      return color_kit.backwall_gray();
       return al_color_name("white");
       //return al_color_html("8f9996"); // deep rich gray
       //return al_color_html("8a5b38"); // darker, more true deep brown from lamp
