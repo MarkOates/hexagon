@@ -373,6 +373,9 @@ StageInterface* StageFactory::create_advanced_code_editor(std::string filename, 
       advanced_code_editor_stage->set_on_color(on_color);
       advanced_code_editor_stage->set_comment_color(comment_color);
       advanced_code_editor_stage->set_clear_color(clear_color);
+
+      ALLEGRO_COLOR null_space_color = AllegroFlare::color::color(obtain_base_backfill_color(), 0.2);
+      advanced_code_editor_stage->set_null_space_color(null_space_color);
    }
 
    advanced_code_editor_stage->initialize();

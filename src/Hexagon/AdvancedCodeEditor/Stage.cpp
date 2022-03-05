@@ -88,6 +88,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , clear_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f})
    , show_line_too_long(false)
    , max_line_length(120)
+   , null_space_color(ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.3f})
 {
 }
 
@@ -154,6 +155,12 @@ void Stage::set_show_line_too_long(bool show_line_too_long)
 void Stage::set_max_line_length(int max_line_length)
 {
    this->max_line_length = max_line_length;
+}
+
+
+void Stage::set_null_space_color(ALLEGRO_COLOR null_space_color)
+{
+   this->null_space_color = null_space_color;
 }
 
 
@@ -250,6 +257,12 @@ bool Stage::get_show_line_too_long()
 int Stage::get_max_line_length()
 {
    return max_line_length;
+}
+
+
+ALLEGRO_COLOR Stage::get_null_space_color()
+{
+   return null_space_color;
 }
 
 
@@ -1079,6 +1092,9 @@ void Stage::render()
       },
    };
 
+
+   //ALLEGRO_COLOR null_space_color = ALLEGRO_COLOR{0, 0, 0, 0.3};
+
    Hexagon::AdvancedCodeEditor::Renderer renderer(
       &text_mesh,
       surface_render,
@@ -1101,6 +1117,7 @@ void Stage::render()
       advanced_code_editor.is_cursor_in_bounds()
    );
 
+   renderer.set_null_space_color(get_null_space_color());
    renderer.set_line_numbers_color(get_on_color());
 
    place.start_transform();

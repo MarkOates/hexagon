@@ -160,6 +160,12 @@ properties:
     getter: true
     setter: true
 
+  - name: null_space_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.3f}
+    getter: true
+    setter: true
+
 
 functions:
 
@@ -1015,6 +1021,9 @@ functions:
          },
       };
 
+
+      //ALLEGRO_COLOR null_space_color = ALLEGRO_COLOR{0, 0, 0, 0.3};
+
       Hexagon::AdvancedCodeEditor::Renderer renderer(
          &text_mesh,
          surface_render,
@@ -1037,6 +1046,7 @@ functions:
          advanced_code_editor.is_cursor_in_bounds()
       );
 
+      renderer.set_null_space_color(get_null_space_color());
       renderer.set_line_numbers_color(get_on_color());
 
       place.start_transform();
