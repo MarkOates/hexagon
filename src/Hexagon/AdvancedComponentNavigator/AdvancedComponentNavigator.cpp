@@ -188,7 +188,7 @@ void AdvancedComponentNavigator::yank_selected_text_as_public_parent_class_lines
    std::string selected_text = get_current_selection_label_or_empty_string();
    std::string symbol_text = selected_text;
    symbol_text = php::str_replace("/", "::", symbol_text);
-   std::string text_for_clipboard = "  - class_name: " + symbol_text + "\n"
+   std::string text_for_clipboard = "  - class: " + symbol_text + "\n"
                                   + "    scope: public\n"
                                   + "    init_with: ''\n";
 

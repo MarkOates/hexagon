@@ -37,7 +37,7 @@ Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_CO
    , YANK_SELECTED_TEXT_AS_COMPONENT_NAME("yank_selected_text_as_component_name")
    , YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE("yank_selected_text_as_include_directive")
    , YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES("yank_selected_text_as_quintessence_dependency_lines")
-   , YANK_SELECTED_TEXT_AS_PUBLIC_PARENT_CLASS_LINES("yank_selected_text_as_quintessence_dependency_lines")
+   , YANK_SELECTED_TEXT_AS_PUBLIC_PARENT_CLASS_LINES("yank_selected_text_as_public_parent_class_lines")
 {
 }
 
@@ -219,7 +219,8 @@ std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> Stage::b
       { MOVE_CURSOR_DOWN, &AdvancedComponentNavigator::move_cursor_down },
       { YANK_SELECTED_TEXT_LABEL, &AdvancedComponentNavigator::yank_selected_text_label },
       { YANK_SELECTED_TEXT_AS_COMPONENT_NAME, &AdvancedComponentNavigator::yank_selected_text_as_component_name },
-      { YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE, &AdvancedComponentNavigator::yank_selected_text_as_include_directive },
+      { YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE,
+        &AdvancedComponentNavigator::yank_selected_text_as_include_directive },
       { YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES,
         &AdvancedComponentNavigator::yank_selected_text_as_quintessence_dependency_lines },
       { YANK_SELECTED_TEXT_AS_PUBLIC_PARENT_CLASS_LINES,

@@ -71,7 +71,7 @@ TEST(Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest,
 
    std::vector<std::string> actual_clipboard_lines = ClipboardData::retrieve();
    std::vector<std::string> expected_clipboard_lines = {
-      "  - class_name: This::Is::An::Example::Component",
+      "  - class: This::Is::An::Example::Component",
       "    scope: public",
       "    init_with: ''",
    };
