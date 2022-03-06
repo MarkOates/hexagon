@@ -1,7 +1,7 @@
 # Proceedure for Renaming a Component
 
 
-## Move the Files
+## 1. Move the Files
 
 ```
 - If there is a quintessence file:
@@ -14,7 +14,7 @@
   - if there is a documentation file, move it to the new location/filename
 ```
 
-## Rename All Symbols and Include Files In the Project's Codebase 
+## 2. Rename All Symbols and Include Files In the Project's Codebase 
 
 ```
 - find-replace the symbol in all files (except git directory, see below for options)
@@ -22,7 +22,7 @@
 - find-replace test names, and test fixture names (Wicked_Entities_Zones_BaseTest)
 ```
 
-## Warnings and Concerns to Look out for
+## 3. Warnings and Concerns to Look out for
 
 ```
 ! there will be instance variable names that may need to be changed.
@@ -63,7 +63,7 @@ git grep -lz 'Wicked_Zones_Rectangle3D' | xargs -0 perl -i'' -pE "s/Wicked_Zones
 find ./ -type f -exec sed -i -e 's/apple/orange/g' {} \;
 ```
 
-### If Something Goes Wrong
+## If Something Goes Wrong
 
 You can reset your code with `git` command.
 
