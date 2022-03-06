@@ -7,6 +7,7 @@
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/ClipboardData.hpp>
+#include <Hexagon/ClipboardData.hpp>
 
 
 namespace Hexagon
@@ -177,7 +178,19 @@ void AdvancedComponentNavigator::yank_selected_text_as_quintessence_dependency_l
    symbol_text = php::str_replace("/", "::", symbol_text);
    std::string headers_text = "    headers: [ " + selected_text + ".hpp ]";
 
-   std::string text_for_clipboard = "  - symbol: " + symbol_text + "\n" + headers_text;
+   std::string text_for_clipboard = "  - symbol: " + symbol_text + "\n" + headers_text; // TODO clean this up
+
+   ClipboardData::store(text_for_clipboard);
+}
+
+void AdvancedComponentNavigator::yank_selected_text_as_public_parent_class_lines()
+{
+   std::string selected_text = get_current_selection_label_or_empty_string();
+   std::string symbol_text = selected_text;
+   symbol_text = php::str_replace("/", "::", symbol_text);
+   std::string text_for_clipboard = "  - class_name: " + symbol_text + "\n"
+                                  + "    scope: public\n"
+                                  + "    init_with: ''\n";
 
    ClipboardData::store(text_for_clipboard);
 }
