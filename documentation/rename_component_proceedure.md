@@ -24,7 +24,7 @@
 
 To do the above renaming tasks, you'll need to find-and-replace recursively
 throughout the entire project tree without borking up the .git directory.  To do
-this, plase use the "`component_renamer`" program in blast which will generate the commands
+this, please use the "`component_renamer`" program in blast which will generate the commands
 for you. Otherwise, there are some example commands below in `Examples`.
 
 ## 3. Warnings and Concerns to Look out for
