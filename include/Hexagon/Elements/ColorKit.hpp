@@ -15,13 +15,13 @@ namespace Hexagon
          ALLEGRO_COLOR base_text_color;
 
       public:
-         ColorKit();
+         ColorKit(ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f}, ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0f,1.0f,1.0f,1.0f});
          ~ColorKit();
 
          void set_backfill_color(ALLEGRO_COLOR backfill_color);
          void set_base_text_color(ALLEGRO_COLOR base_text_color);
-         ALLEGRO_COLOR get_backfill_color();
-         ALLEGRO_COLOR get_base_text_color();
+         ALLEGRO_COLOR get_backfill_color(float opacity=1.0f);
+         ALLEGRO_COLOR get_base_text_color(float opacity=1.0f);
          ALLEGRO_COLOR black();
          ALLEGRO_COLOR white();
          ALLEGRO_COLOR terminal_warm_orange();

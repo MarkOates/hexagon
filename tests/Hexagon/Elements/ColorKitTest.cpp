@@ -21,6 +21,18 @@ TEST(Hexagon_Elements_ColorKitTest, can_be_created_without_blowing_up)
 TEST(Hexagon_Elements_ColorKitTest, black__returns_the_expected_value)
 {
    Hexagon::Elements::ColorKit color_kit;
-   ALLEGRO_COLOR expected = al_color_name("black");
+   ALLEGRO_COLOR expected = al_color_name("black"); // <-- TODO: this is probably a failing test, al_color_addon
+                                                    //           has not been initialized
    EXPECT_COLOR_EQ(expected, color_kit.black());
 }
+
+TEST(Hexagon_Elements_ColorKitTest, get_backfill_color__returns_the_base_text_modified_by_an_alpha)
+{
+   // TODO
+}
+
+TEST(Hexagon_Elements_ColorKitTest, get_base_text_color__returns_the_base_text_modified_by_an_alpha)
+{
+   // TODO
+}
+

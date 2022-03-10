@@ -10,9 +10,9 @@ namespace Elements
 {
 
 
-ColorKit::ColorKit()
-   : backfill_color(ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f})
-   , base_text_color(ALLEGRO_COLOR{1.0f,1.0f,1.0f,1.0f})
+ColorKit::ColorKit(ALLEGRO_COLOR backfill_color, ALLEGRO_COLOR base_text_color)
+   : backfill_color(backfill_color)
+   , base_text_color(base_text_color)
 {
 }
 
@@ -34,17 +34,15 @@ void ColorKit::set_base_text_color(ALLEGRO_COLOR base_text_color)
 }
 
 
-ALLEGRO_COLOR ColorKit::get_backfill_color()
+ALLEGRO_COLOR ColorKit::get_backfill_color(float opacity)
 {
-   return backfill_color;
+   return ALLEGRO_COLOR{backfill_color.r*opacity, backfill_color.g*opacity, backfill_color.b*opacity, opacity};
 }
 
-
-ALLEGRO_COLOR ColorKit::get_base_text_color()
+ALLEGRO_COLOR ColorKit::get_base_text_color(float opacity)
 {
-   return base_text_color;
+   return ALLEGRO_COLOR{base_text_color.r*opacity, base_text_color.g*opacity, base_text_color.b*opacity, opacity};
 }
-
 
 ALLEGRO_COLOR ColorKit::black()
 {

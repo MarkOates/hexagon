@@ -528,7 +528,8 @@ void Hud::draw_profile_timer_graph()
 
 void Hud::draw_objective_text()
 {
-   Hexagon::Elements::ColorKit color_kit;
+   Hexagon::Elements::ColorKit color_kit(backfill_color, base_text_color);
+   float opacity = base_text_opacity;
    ALLEGRO_FONT *objective_text_font = obtain_title_font();
    float x = 30;
    float y = 30;

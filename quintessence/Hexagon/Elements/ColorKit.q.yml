@@ -4,18 +4,35 @@ properties:
   - name: backfill_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f}
-    getter: true
     setter: true
+    constructor_arg: true
 
   - name: base_text_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{1.0f,1.0f,1.0f,1.0f}
-    getter: true
     setter: true
+    constructor_arg: true
 
 
 functions:
 
+
+  - name: get_backfill_color
+    type: ALLEGRO_COLOR
+    parameters:
+      - name: opacity
+        type: float
+        default_argument: 1.0f
+    body: return ALLEGRO_COLOR{backfill_color.r*opacity, backfill_color.g*opacity, backfill_color.b*opacity, opacity};
+
+  - name: get_base_text_color
+    type: ALLEGRO_COLOR
+    parameters:
+      - name: opacity
+        type: float
+        default_argument: 1.0f
+    body: |
+      return ALLEGRO_COLOR{base_text_color.r*opacity, base_text_color.g*opacity, base_text_color.b*opacity, opacity};
 
   - name: black
     type: ALLEGRO_COLOR
