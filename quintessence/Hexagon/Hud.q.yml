@@ -211,6 +211,20 @@ properties:
     getter: true
     setter: true
 
+  - name: objective_text
+    type: std::string
+    init_with: '""'
+    setter: true
+    getter: true
+    constructor_arg: true
+
+  - name: show_objective
+    type: bool
+    init_with: true
+    setter: true
+    getter: true
+    constructor_arg: true
+
 
 functions:
 
@@ -312,6 +326,24 @@ functions:
       return;
     body_dependency_symbols:
       - global::profiler
+
+
+  - name: draw_objective_text
+    type: void
+    body: |
+      Hexagon::Elements::ColorKit color_kit;
+      ALLEGRO_FONT *objective_text_font = obtain_title_font();
+      float x = 30;
+      float y = 30;
+      al_draw_text(objective_text_font,
+                   color_kit.get_base_text_color(),
+                   x,
+                   y,
+                   ALLEGRO_ALIGN_LEFT,
+                   objective_text.c_str());
+      return;
+    body_dependency_symbols:
+      - Hexagon::Elements::ColorKit
 
 
   - name: draw_powerbar
@@ -544,6 +576,8 @@ functions:
 
       draw_current_title_text();
 
+      if (show_objective) draw_objective_text();
+
       if (show_profiler) draw_profile_timer_graph();
 
       if (show_notifications)
@@ -761,6 +795,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::Elements::ColorKit
+    headers: [ Hexagon/Elements/ColorKit.hpp ]
   - symbol: sin
     headers: [ math.h ]
   - symbol: Hexagon::Camera

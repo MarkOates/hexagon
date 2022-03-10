@@ -52,9 +52,11 @@ namespace Hexagon
       bool show_caps_lock_notification_light;
       ALLEGRO_COLOR base_text_color;
       float base_text_opacity;
+      std::string objective_text;
+      bool show_objective;
 
    public:
-      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& font_bin=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool show_powerbar=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool show_save_count=false, int save_count=0, bool show_packets=false, std::vector<Hexagon::Packet> packets={}, bool show_search_count=false, int search_count=0, bool show_focus_timer_bar=false, bool show_build_sequence_meter=false, bool show_notifications=true, float left_column_x=30, ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}, float base_text_opacity=0.5f);
+      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& font_bin=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool show_powerbar=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool show_save_count=false, int save_count=0, bool show_packets=false, std::vector<Hexagon::Packet> packets={}, bool show_search_count=false, int search_count=0, bool show_focus_timer_bar=false, bool show_build_sequence_meter=false, bool show_notifications=true, float left_column_x=30, ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}, float base_text_opacity=0.5f, std::string objective_text="", bool show_objective=true);
       ~Hud();
 
       void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
@@ -85,6 +87,8 @@ namespace Hexagon
       void set_show_caps_lock_notification_light(bool show_caps_lock_notification_light);
       void set_base_text_color(ALLEGRO_COLOR base_text_color);
       void set_base_text_opacity(float base_text_opacity);
+      void set_objective_text(std::string objective_text);
+      void set_show_objective(bool show_objective);
       std::vector<std::string> get_notifications();
       std::vector<std::string> get_notifications2();
       std::string get_title_text();
@@ -107,12 +111,15 @@ namespace Hexagon
       bool get_show_caps_lock_notification_light();
       ALLEGRO_COLOR get_base_text_color();
       float get_base_text_opacity();
+      std::string get_objective_text();
+      bool get_show_objective();
       Hexagon::Powerbar::Powerbar &get_powerbar_ref();
       Hexagon::FocusTimerBar::FocusTimerBar &get_focus_timer_bar_ref();
       void initialize();
       void reinitialize();
       void draw_current_title_text();
       void draw_profile_timer_graph();
+      void draw_objective_text();
       void draw_powerbar();
       void draw_focus_timer_bar();
       void draw_build_sequence_meter();

@@ -51,6 +51,11 @@ properties:
     static: true
     const: true
     init_with: '"dark_mode"'
+  - name: OBJECTIVE_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: '"objective"'
   - name: HUD_SHOW_FOCUS_TIMER_BAR_KEY
     type: std::string
     static: true
@@ -195,6 +200,13 @@ functions:
     guards: [ initialized ]
     body: |
       return config.get_or_default_bool("", DARK_MODE_KEY, false);
+
+
+  - name: get_objective
+    type: std::string
+    guards: [ initialized ]
+    body: |
+      return config.get_or_default_str("", OBJECTIVE_KEY, "- objective unset -");
 
 
   - name: is_fullscreen

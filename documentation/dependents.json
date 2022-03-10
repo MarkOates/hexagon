@@ -1180,6 +1180,10 @@
   ":GitCommitMessageInputBox/EventController": [
     "Hexagon/GitCommitMessageInputBox/Stage"
   ],
+  "Hexagon/Elements/ColorKit": [
+    "Hexagon/Hud",
+    "Hexagon/System/Config"
+  ],
   "sin": [
     "Hexagon/Hud"
   ],
@@ -1536,9 +1540,6 @@
   ],
   "CodeEditor/Stage": [
     "Hexagon/System/Action/CreateTwoSplitFromComponent"
-  ],
-  "Hexagon/Elements/ColorKit": [
-    "Hexagon/System/Config"
   ],
   "AllegroFlare/Config": [
     "Hexagon/System/Config"

@@ -5860,6 +5860,14 @@ table td
   <td class="property">base_text_opacity</td>
   <td class="property">float</td>
 </tr>
+<tr>
+  <td class="property">objective_text</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">show_objective</td>
+  <td class="property">bool</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -5873,6 +5881,9 @@ table td
 </tr>
 <tr>
   <td class="method">draw_profile_timer_graph()</td>
+</tr>
+<tr>
+  <td class="method">draw_objective_text()</td>
 </tr>
 <tr>
   <td class="method">draw_powerbar()</td>
@@ -5921,6 +5932,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::ColorKit&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/ColorKit.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;sin&quot;, &quot;headers&quot;=&gt;[&quot;math.h&quot;]}</td>
 </tr>
@@ -9756,6 +9770,10 @@ table td
   <td class="property">std::string</td>
 </tr>
 <tr>
+  <td class="property">OBJECTIVE_KEY</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
   <td class="property">HUD_SHOW_FOCUS_TIMER_BAR_KEY</td>
   <td class="property">std::string</td>
 </tr>
@@ -9822,6 +9840,9 @@ table td
 </tr>
 <tr>
   <td class="method">is_dark_mode()</td>
+</tr>
+<tr>
+  <td class="method">get_objective()</td>
 </tr>
 <tr>
   <td class="method">is_fullscreen()</td>
@@ -11841,6 +11862,10 @@ table td
   ":GitCommitMessageInputBox/EventController": [
     "Hexagon/GitCommitMessageInputBox/Stage"
   ],
+  "Hexagon/Elements/ColorKit": [
+    "Hexagon/Hud",
+    "Hexagon/System/Config"
+  ],
   "sin": [
     "Hexagon/Hud"
   ],
@@ -12197,9 +12222,6 @@ table td
   ],
   "CodeEditor/Stage": [
     "Hexagon/System/Action/CreateTwoSplitFromComponent"
-  ],
-  "Hexagon/Elements/ColorKit": [
-    "Hexagon/System/Config"
   ],
   "AllegroFlare/Config": [
     "Hexagon/System/Config"

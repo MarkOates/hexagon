@@ -67,6 +67,7 @@ public:
    void initialize();
    float get_default_code_editor_stage_width();
    float get_default_code_editor_stage_height();
+   std::string get_objective();
    std::string get_current_project_directory();
    std::string get_global_font_str();
    void set_option__saving_focused_filename_to_file_is_disabled(bool option=false);
@@ -119,6 +120,7 @@ public:
    bool increment_search_count();
    bool clear_search_count();
    bool set_hud_title_to_focused_component_name();
+   bool set_hud_objective_to_objective();
    bool clear_hud_title();
    bool set_hud_save_count_to_save_count();
    bool set_hud_search_count_to_search_count();

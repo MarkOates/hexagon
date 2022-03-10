@@ -14,6 +14,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/Elements/ColorKit.hpp>
 
 
@@ -51,6 +53,9 @@ std::string Config::FONT_BIN_PATH_KEY = "font_bin_path";
 
 
 std::string Config::DARK_MODE_KEY = "dark_mode";
+
+
+std::string Config::OBJECTIVE_KEY = "objective";
 
 
 std::string Config::HUD_SHOW_FOCUS_TIMER_BAR_KEY = "hud_show_focus_timer_bar";
@@ -192,6 +197,17 @@ bool Config::is_dark_mode()
          throw std::runtime_error(error_message.str());
       }
    return config.get_or_default_bool("", DARK_MODE_KEY, false);
+}
+
+std::string Config::get_objective()
+{
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "Config" << "::" << "get_objective" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return config.get_or_default_str("", OBJECTIVE_KEY, "- objective unset -");
 }
 
 bool Config::is_fullscreen()

@@ -229,6 +229,24 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+   render__will_render_the_objective_with_the_expected_text)
+{
+   Hexagon::Hud hud(display, font_bin);
+   hud.initialize();
+
+   Hexagon::Powerbar::Powerbar &powerbar = hud.get_powerbar_ref();
+
+   hud.set_show_objective(true);
+   hud.set_objective_text("Show the objective text in the hud");
+
+   hud.draw();
+
+   al_flip_display();
+
+   sleep(2);
+}
+
+TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    render__will_render_title)
 {
    Hexagon::Hud hud(display, font_bin);
@@ -246,6 +264,8 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    render__will_render_advanced_component_navigator_stages_that_are_marked_as_render_on_hud)
 {
+   // TODO: use a test class for this instead of the (very heavy) AdvancedComponentNavigator
+
    Hexagon::Hud hud(display, font_bin); // TODO: font_bin is required for construction, but never used
                                         // in this use case.  Should probably be removed from the constructor
                                         // or changed to an AllegroFlare::FontBin*
@@ -262,7 +282,8 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    std::vector<StageInterface *> stages = { &stage };
    hud.set_stages(&stages);
 
-   int passes = 60 * 3;
+   //int passes = 60 * 3;
+   int passes = 1;
    for (unsigned i=0; i<passes; i++)
    {
       al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 0});

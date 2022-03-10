@@ -189,6 +189,12 @@ int System::get_display_default_height()
 }
 
 
+std::string System::get_objective()
+{
+   return hexagon_config.get_objective();
+}
+
+
 float System::get_baseline_camera_stepback()
 {
    return baseline_camera_stepback;
@@ -528,6 +534,13 @@ bool System::clear_search_count()
 bool System::set_hud_title_to_focused_component_name()
 {
    hud.set_title_text(get_focused_component_name());
+   return true;
+}
+
+
+bool System::set_hud_objective_to_objective()
+{
+   hud.set_objective_text(get_objective());
    return true;
 }
 
