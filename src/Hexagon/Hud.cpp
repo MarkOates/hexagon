@@ -530,11 +530,11 @@ void Hud::draw_objective_text()
 {
    Hexagon::Elements::ColorKit color_kit(backfill_color, base_text_color);
    float opacity = base_text_opacity;
-   ALLEGRO_FONT *objective_text_font = obtain_title_font();
-   float x = 30;
+   ALLEGRO_FONT *objective_text_font = obtain_objective_font();
+   float x = surface_projection_width / 32 * 1;
    float y = 30;
    al_draw_text(objective_text_font,
-                color_kit.get_base_text_color(),
+                color_kit.get_base_text_color(base_text_opacity),
                 x,
                 y,
                 ALLEGRO_ALIGN_LEFT,
@@ -905,6 +905,12 @@ ALLEGRO_FONT* Hud::obtain_text_font()
 ALLEGRO_FONT* Hud::obtain_title_font()
 {
    return font_bin["Purista Medium.otf -28"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+}
+
+ALLEGRO_FONT* Hud::obtain_objective_font()
+{
+   return font_bin["Purista Medium.otf -22"];
    //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
 

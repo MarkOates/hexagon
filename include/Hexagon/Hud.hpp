@@ -130,6 +130,7 @@ namespace Hexagon
       static AllegroFlare::FontBin& get_dummy_font_bin();
       ALLEGRO_FONT* obtain_text_font();
       ALLEGRO_FONT* obtain_title_font();
+      ALLEGRO_FONT* obtain_objective_font();
       ALLEGRO_FONT* obtain_powerbar_text_font();
       ALLEGRO_FONT* obtain_score_text_font();
       ALLEGRO_FONT* obtain_global_font();
