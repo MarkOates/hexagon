@@ -152,6 +152,8 @@ void System::initialize()
    hud.set_global_font_str(get_global_font_str());
    hud.set_show_packets(true);
    hud.set_show_build_sequence_meter(true);
+   hud.set_show_objective(true);
+   hud.set_objective_text(hexagon_config.get_objective());
    hud.set_show_focus_timer_bar(hexagon_config.get_hud_show_focus_timer_bar());
    hud.initialize();
 
@@ -186,12 +188,6 @@ int System::get_display_default_width()
 int System::get_display_default_height()
 {
    return hexagon_config.get_initial_display_height();
-}
-
-
-std::string System::get_objective()
-{
-   return hexagon_config.get_objective();
 }
 
 
@@ -540,8 +536,9 @@ bool System::set_hud_title_to_focused_component_name()
 
 bool System::set_hud_objective_to_objective()
 {
-   hud.set_objective_text(get_objective());
-   return true;
+   // not implemented
+   //hud.set_objective_text(get_objective());
+   return false;
 }
 
 

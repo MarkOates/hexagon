@@ -206,7 +206,7 @@ functions:
     type: std::string
     guards: [ initialized ]
     body: |
-      return config.get_or_default_str("", OBJECTIVE_KEY, "- objective unset -");
+      return config.get_or_default_str("", OBJECTIVE_KEY, "- objective not set -");
 
 
   - name: is_fullscreen

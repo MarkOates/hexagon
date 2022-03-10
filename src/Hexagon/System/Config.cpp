@@ -207,7 +207,7 @@ std::string Config::get_objective()
          error_message << "Config" << "::" << "get_objective" << ": error: " << "guard \"initialized\" not met";
          throw std::runtime_error(error_message.str());
       }
-   return config.get_or_default_str("", OBJECTIVE_KEY, "- objective unset -");
+   return config.get_or_default_str("", OBJECTIVE_KEY, "- objective not set -");
 }
 
 bool Config::is_fullscreen()

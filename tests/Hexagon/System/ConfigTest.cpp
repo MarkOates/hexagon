@@ -256,19 +256,19 @@ TEST(Hexagon_System_ConfigTest,
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
    config.initialize();
 
-   ASSERT_EQ(true, config.get_objective());
+   ASSERT_EQ("Load objective text from test config file", config.get_objective());
 
    al_uninstall_system();
 }
 
 TEST(Hexagon_System_ConfigTest,
-   get_objective__returns_false_by_default)
+   get_objective__returns_the_expected_default_value)
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
    config.initialize();
 
-   ASSERT_EQ(false, config.get_objective());
+   ASSERT_EQ("- objective not set -", config.get_objective());
 
    al_uninstall_system();
 }
