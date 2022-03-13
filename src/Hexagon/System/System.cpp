@@ -109,6 +109,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &hexagon_config
    , last_project_navigator_selection("")
    , last_commit_message("")
    , focused_component_name("")
+   , current_objective("")
    , mouse_x(0)
    , mouse_y(0)
    , baseline_camera_stepback(160)
@@ -144,6 +145,7 @@ void System::initialize()
    font_bin.set_full_path(font_bin_path);
 
    set_current_project_directory(hexagon_config.get_default_navigator_directory());
+   set_current_objective(hexagon_config.get_objective());
 
    hud.set_backfill_color(hexagon_config.get_backfill_color());
    hud.set_base_text_color(hexagon_config.get_base_text_color());
@@ -153,7 +155,7 @@ void System::initialize()
    hud.set_show_packets(true);
    hud.set_show_build_sequence_meter(true);
    hud.set_show_objective(true);
-   hud.set_objective_text(hexagon_config.get_objective());
+   hud.set_objective_text(get_current_objective());
    hud.set_show_focus_timer_bar(hexagon_config.get_hud_show_focus_timer_bar());
    hud.initialize();
 
@@ -170,6 +172,12 @@ void System::initialize()
 void System::set_current_project_directory(std::string current_project_directory)
 {
    this->current_project_directory = current_project_directory;
+}
+
+
+std::string System::get_current_objective()
+{
+   return current_objective;
 }
 
 
@@ -233,6 +241,12 @@ std::string System::get_global_font_str()
 void System::set_focused_component_name(std::string focused_component_name)
 {
    this->focused_component_name = focused_component_name;
+}
+
+
+void System::set_current_objective(std::string current_objective)
+{
+   this->current_objective = current_objective;
 }
 
 
@@ -1760,7 +1774,7 @@ bool System::append_packet_using_last_commit_message_and_clear_scores()
 {
    std::string current_project_directory = get_current_project_directory();
    std::string commit_message = last_commit_message;
-   std::string current_posted_objective = hexagon_config.get_objective();
+   std::string current_posted_objective = get_current_objective();
 
    // append packet to packets
    ::Hexagon::Packet new_packet_to_append(search_count, save_count);
