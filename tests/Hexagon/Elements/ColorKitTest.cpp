@@ -5,6 +5,7 @@
 
 #include <AllegroFlare/Color.hpp>
 
+
 static void EXPECT_COLOR_EQ(const ALLEGRO_COLOR &color1, const ALLEGRO_COLOR &color2)
 {
    EXPECT_EQ(color1.r, color2.r);
@@ -13,10 +14,12 @@ static void EXPECT_COLOR_EQ(const ALLEGRO_COLOR &color1, const ALLEGRO_COLOR &co
    EXPECT_EQ(color1.a, color2.a);
 }
 
+
 TEST(Hexagon_Elements_ColorKitTest, can_be_created_without_blowing_up)
 {
    Hexagon::Elements::ColorKit color_kit;
 }
+
 
 TEST(Hexagon_Elements_ColorKitTest, black__returns_the_expected_value)
 {
@@ -26,13 +29,16 @@ TEST(Hexagon_Elements_ColorKitTest, black__returns_the_expected_value)
    EXPECT_COLOR_EQ(expected, color_kit.black());
 }
 
+
 TEST(Hexagon_Elements_ColorKitTest, get_backfill_color__returns_the_base_text_modified_by_an_alpha)
 {
    // TODO
 }
 
+
 TEST(Hexagon_Elements_ColorKitTest, get_base_text_color__returns_the_base_text_modified_by_an_alpha)
 {
    // TODO
 }
+
 
