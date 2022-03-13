@@ -1398,7 +1398,7 @@ bool System::check_git_local_status_and_update_powerbar()
 
 bool System::open_documentation_in_browser()
 {
-   ::Hexagon::System::Action::OpenDocumentationInBrowser action;
+   ::Hexagon::System::Action::OpenDocumentationInBrowser action(current_project_directory);
    action.execute();
    return true;
 }
