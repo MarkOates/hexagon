@@ -13,11 +13,12 @@ namespace Action
 {
 
 
-std::string OpenDocumentationInBrowser::DOCUMENTATION_FILENAME = "/Users/markoates/Repos/hexagon/documentation/index.htm";
+std::string OpenDocumentationInBrowser::DOCUMENTATION_FILENAME = "documentation/index.htm";
 
 
-OpenDocumentationInBrowser::OpenDocumentationInBrowser()
+OpenDocumentationInBrowser::OpenDocumentationInBrowser(std::string project_path)
    : ::Action("Hexagon::System::Action::OpenDocumentationInBrowser", ActionData())
+   , project_path(project_path)
 {
 }
 
@@ -38,7 +39,7 @@ bool OpenDocumentationInBrowser::execute()
 std::string OpenDocumentationInBrowser::build_shell_command_to_open_browser()
 {
    std::stringstream result;
-   result << "open " << DOCUMENTATION_FILENAME;
+   result << "open " << project_path << "/" << DOCUMENTATION_FILENAME;
    return result.str();
 }
 } // namespace Action

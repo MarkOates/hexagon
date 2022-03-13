@@ -13,7 +13,12 @@ properties:
     static: true
     const: true
     type: std::string
-    init_with: '"/Users/markoates/Repos/hexagon/documentation/index.htm"'
+    init_with: '"documentation/index.htm"'
+
+  - name: project_path
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon"'
+    constructor_arg: true
 
 
 functions:
@@ -35,7 +40,7 @@ functions:
     type: std::string
     body: |
       std::stringstream result;
-      result << "open " << DOCUMENTATION_FILENAME;
+      result << "open " << project_path << "/" << DOCUMENTATION_FILENAME;
       return result.str();
     body_dependency_symbols:
       - std::stringstream
