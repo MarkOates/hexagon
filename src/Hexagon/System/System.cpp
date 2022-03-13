@@ -1760,6 +1760,7 @@ bool System::append_packet_using_last_commit_message_and_clear_scores()
 {
    std::string current_project_directory = get_current_project_directory();
    std::string commit_message = last_commit_message;
+   std::string current_posted_objective = hexagon_config.get_objective();
 
    // append packet to packets
    ::Hexagon::Packet new_packet_to_append(search_count, save_count);
@@ -1770,7 +1771,14 @@ bool System::append_packet_using_last_commit_message_and_clear_scores()
 
    // post the packet to a log file
    int score = search_count + save_count;
-   ::Hexagon::PacketLogger packet_logger(current_project_directory, commit_message, search_count, save_count, score);
+   ::Hexagon::PacketLogger packet_logger(
+      current_project_directory,
+      commit_message,
+      search_count,
+      save_count,
+      score,
+      current_posted_objective
+   );
    packet_logger.write_log_file();
 
    // clear scores

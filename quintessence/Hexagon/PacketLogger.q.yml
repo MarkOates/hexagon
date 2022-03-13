@@ -32,6 +32,11 @@ properties:
     init_with: -1
     constructor_arg: true
 
+  - name: currently_posted_objective
+    type: std::string
+    init_with: '"[current-posted-objective-not-set]"'
+    constructor_arg: true
+
   - name: datetime
     type: std::string
     init_with: 'generate_time_now_string()'
@@ -71,6 +76,7 @@ functions:
       result << "searches: " << searches_count << std::endl;
       result << "saves: " << saves_count << std::endl;
       result << "score: " << score << std::endl;
+      result << "currently_posted_objective: " << currently_posted_objective << std::endl;
       result << "time_posted: " << generate_time_now_string() << std::endl;
 
       return result.str();

@@ -12,13 +12,14 @@ namespace Hexagon
 {
 
 
-PacketLogger::PacketLogger(std::string project_name, std::string commit_message, int searches_count, int saves_count, int score)
+PacketLogger::PacketLogger(std::string project_name, std::string commit_message, int searches_count, int saves_count, int score, std::string currently_posted_objective)
    : PACKET_LOG_FOLDER_LOCATION("/Users/markoates/Repos/me/programming_logs")
    , project_name(project_name)
    , commit_message(commit_message)
    , searches_count(searches_count)
    , saves_count(saves_count)
    , score(score)
+   , currently_posted_objective(currently_posted_objective)
    , datetime(generate_time_now_string())
 {
 }
@@ -78,6 +79,7 @@ std::string PacketLogger::generate_log_file_contents()
    result << "searches: " << searches_count << std::endl;
    result << "saves: " << saves_count << std::endl;
    result << "score: " << score << std::endl;
+   result << "currently_posted_objective: " << currently_posted_objective << std::endl;
    result << "time_posted: " << generate_time_now_string() << std::endl;
 
    return result.str();
