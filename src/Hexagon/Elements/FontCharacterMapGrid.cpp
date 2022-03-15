@@ -3,6 +3,8 @@
 #include <Hexagon/Elements/FontCharacterMapGrid.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -16,6 +18,8 @@ FontCharacterMapGrid::FontCharacterMapGrid(ALLEGRO_FONT* font)
    , grid_width(0)
    , grid_height(0)
    , character_uv_mapping({})
+   , created_character_map_bitmap(nullptr)
+   , created(false)
 {
 }
 
@@ -49,7 +53,24 @@ std::map<char, std::tuple<float, float, float, float>> FontCharacterMapGrid::get
 }
 
 
-ALLEGRO_BITMAP* FontCharacterMapGrid::create()
+bool FontCharacterMapGrid::get_created()
+{
+   return created;
+}
+
+
+ALLEGRO_BITMAP* FontCharacterMapGrid::get_created_character_map_bitmap()
+{
+   if (!(created))
+      {
+         std::stringstream error_message;
+         error_message << "FontCharacterMapGrid" << "::" << "get_created_character_map_bitmap" << ": error: " << "guard \"created\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return created_character_map_bitmap;
+}
+
+bool FontCharacterMapGrid::create()
 {
    if (!(al_is_system_installed()))
       {
@@ -61,6 +82,12 @@ ALLEGRO_BITMAP* FontCharacterMapGrid::create()
       {
          std::stringstream error_message;
          error_message << "FontCharacterMapGrid" << "::" << "create" << ": error: " << "guard \"font\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!((!created)))
+      {
+         std::stringstream error_message;
+         error_message << "FontCharacterMapGrid" << "::" << "create" << ": error: " << "guard \"(!created)\" not met";
          throw std::runtime_error(error_message.str());
       }
    character_uv_mapping.clear();
@@ -95,7 +122,11 @@ ALLEGRO_BITMAP* FontCharacterMapGrid::create()
       }
    }
    al_restore_state(&previous_state);
-   return result;
+
+   created = true;
+   created_character_map_bitmap = result;
+
+   return true;
 }
 } // namespace Elements
 } // namespace Hexagon

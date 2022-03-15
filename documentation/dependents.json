@@ -956,11 +956,6 @@
     "Hexagon/CodeEditor/Stage",
     "Hexagon/OneLineInputBox/Stage"
   ],
-  "Hexagon/Elements/FontCharacterMapGrid": [
-    "Hexagon/CodeEditor/Stage",
-    "Hexagon/Elements/TextMesh",
-    "Hexagon/OneLineInputBox/Stage"
-  ],
   "CodeMessagePoint": [
     "Hexagon/CodeMessagePointManager",
     "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
@@ -1135,6 +1130,9 @@
     "Hexagon/Elements/SubBitmapCharacterMap"
   ],
   "Hexagon/Elements/BitmapGridMesh": [
+    "Hexagon/Elements/TextMesh"
+  ],
+  "Hexagon/Elements/FontCharacterMapGrid": [
     "Hexagon/Elements/TextMesh"
   ],
   "draw_textured_rectangle": [

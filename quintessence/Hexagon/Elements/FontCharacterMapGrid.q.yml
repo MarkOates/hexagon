@@ -22,13 +22,30 @@ properties:
     init_with: '{}'
     getter: true
 
+  - name: created_character_map_bitmap
+    type: ALLEGRO_BITMAP*
+    init_with: nullptr
+    getter: explicit
+
+  - name: created
+    type: bool
+    init_with: false
+    getter: true
+
 
 functions:
 
 
-  - name: create
+  - name: get_created_character_map_bitmap
     type: ALLEGRO_BITMAP*
-    guards: [ al_is_system_installed(), font ]
+    guards: [ created ]
+    body: |
+      return created_character_map_bitmap;
+
+
+  - name: create
+    type: bool
+    guards: [ al_is_system_installed(), font, (!created) ]
     body: |
       character_uv_mapping.clear();
 
@@ -62,7 +79,11 @@ functions:
          }
       }
       al_restore_state(&previous_state);
-      return result;
+
+      created = true;
+      created_character_map_bitmap = result;
+
+      return true;
 
 
 dependencies:

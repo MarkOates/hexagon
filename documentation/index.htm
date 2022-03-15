@@ -2700,9 +2700,6 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeEditor::FileCategoryDecorator&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeEditor/FileCategoryDecorator.hpp&quot;]}</td>
 </tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::FontCharacterMapGrid&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/FontCharacterMapGrid.hpp&quot;]}</td>
-</tr>
     </table>
   </div>
 </ul>
@@ -3950,8 +3947,19 @@ table td
   <td class="property">character_uv_mapping</td>
   <td class="property">std::map&lt;char, std::tuple&lt;float, float, float, float&gt;&gt;</td>
 </tr>
+<tr>
+  <td class="property">created_character_map_bitmap</td>
+  <td class="property">ALLEGRO_BITMAP*</td>
+</tr>
+<tr>
+  <td class="property">created</td>
+  <td class="property">bool</td>
+</tr>
     </table>
      <table>
+<tr>
+  <td class="method">get_created_character_map_bitmap()</td>
+</tr>
 <tr>
   <td class="method">create()</td>
 </tr>
@@ -7239,9 +7247,6 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeEditor::FileCategoryDecorator&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeEditor/FileCategoryDecorator.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::FontCharacterMapGrid&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/FontCharacterMapGrid.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -11655,11 +11660,6 @@ table td
     "Hexagon/CodeEditor/Stage",
     "Hexagon/OneLineInputBox/Stage"
   ],
-  "Hexagon/Elements/FontCharacterMapGrid": [
-    "Hexagon/CodeEditor/Stage",
-    "Hexagon/Elements/TextMesh",
-    "Hexagon/OneLineInputBox/Stage"
-  ],
   "CodeMessagePoint": [
     "Hexagon/CodeMessagePointManager",
     "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
@@ -11834,6 +11834,9 @@ table td
     "Hexagon/Elements/SubBitmapCharacterMap"
   ],
   "Hexagon/Elements/BitmapGridMesh": [
+    "Hexagon/Elements/TextMesh"
+  ],
+  "Hexagon/Elements/FontCharacterMapGrid": [
     "Hexagon/Elements/TextMesh"
   ],
   "draw_textured_rectangle": [

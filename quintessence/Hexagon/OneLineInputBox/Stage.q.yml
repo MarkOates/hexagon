@@ -211,5 +211,4 @@ dependencies:
     headers: [ Hexagon/ActionData.hpp ]
   - symbol: Hexagon::CodeEditor::FileCategoryDecorator
     headers: [ Hexagon/CodeEditor/FileCategoryDecorator.hpp ]
-  - symbol: Hexagon::Elements::FontCharacterMapGrid
-    headers: [ Hexagon/Elements/FontCharacterMapGrid.hpp ]
+

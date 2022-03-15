@@ -106,7 +106,8 @@ void TextMesh::initialize()
    font_character_uv_mapping.clear();
    cell_width = 1;
    cell_height = 1;
-   font_character_map_bitmap = font_character_map_grid.create();
+   font_character_map_grid.create();
+   font_character_map_bitmap = font_character_map_grid.get_created_character_map_bitmap();
    font_character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
 
    if (!font_character_map_bitmap) throw std::runtime_error("boobaz");

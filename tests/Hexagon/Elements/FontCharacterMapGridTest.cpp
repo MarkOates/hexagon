@@ -22,6 +22,14 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, create__without_allegro_initiali
    ASSERT_THROW_WITH_MESSAGE(text_mesh.create(), std::runtime_error, expected_error_message);
 }
 
+
+TEST(Hexagon_Elements_FontCharacterMapGridTest, character_uv_mapping__is_empty_by_default)
+{
+   Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
+   EXPECT_EQ(true, font_character_map_grid.get_character_uv_mapping().empty());
+}
+
+
 TEST(Hexagon_Elements_FontCharacterMapGridTest, create__without_a_valid_font__raises_an_error)
 {
    al_init();
@@ -31,39 +39,23 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, create__without_a_valid_font__ra
    al_uninstall_system();
 }
 
-TEST(Hexagon_Elements_FontCharacterMapGridTest, create__with_valid_arguments__returns_a_bitmap)
+
+TEST(Hexagon_Elements_FontCharacterMapGridTest, create__returns_true)
 {
-   al_init();
-   ALLEGRO_DISPLAY *display = al_create_display(800, 600);
-   al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 1});
-   ALLEGRO_FONT *font = al_create_builtin_font();
-
-   Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
-
-   ALLEGRO_BITMAP *result = font_character_map_grid.create();
-   ASSERT_NE(nullptr, result);
-
-   al_init_image_addon();
-   al_draw_bitmap(result, 0, 0, 0);
-   al_flip_display();
-   EXPECT_EQ(true, al_save_bitmap("/Users/markoates/Repos/hexagon/tmp/FontCharacterMapGridTest.png", result));
-
-   //sleep(2);
-
-   al_destroy_font(font);
-   al_destroy_display(display);
-   al_uninstall_system();
+   // TODO
 }
 
-TEST(Hexagon_Elements_FontCharacterMapGridTest, create__with_valid_arguments__will_populate_the_character_uv_mapping)
+
+TEST(Hexagon_Elements_FontCharacterMapGridTest, create__will_populate_the_character_uv_mapping)
 {
    al_init();
    ALLEGRO_FONT *font = al_create_builtin_font();
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
 
-   ASSERT_EQ(true, font_character_map_grid.get_character_uv_mapping().empty());
+   ASSERT_EQ(true, font_character_map_grid.create());
 
-   ALLEGRO_BITMAP *result = font_character_map_grid.create();
+   ALLEGRO_BITMAP *result = font_character_map_grid.get_created_character_map_bitmap();
+   //ALLEGRO_BITMAP *result = font_character_map_grid.create();
    ASSERT_NE(nullptr, result);
 
    std::map<char, std::tuple<float, float, float, float>> some_expected_mappings = {
@@ -92,4 +84,45 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, create__with_valid_arguments__wi
    al_destroy_font(font);
    al_uninstall_system();
 }
+
+
+TEST(Hexagon_Elements_FontCharacterMapGridTest, create__if_called_more_than_once__will_throw_an_error)
+{
+}
+
+
+TEST(Hexagon_Elements_FontCharacterMapGridTest,
+   get_created_character_map_bitmap__before_create_is_called__will_throw_an_error)
+{
+   // TODO
+}
+
+
+TEST(Hexagon_Elements_FontCharacterMapGridTest,
+   get_created_character_map_bitmap__will_create_the_created_character_map_bitmap)
+{
+   al_init();
+   ALLEGRO_DISPLAY *display = al_create_display(800, 600);
+   al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 1});
+   ALLEGRO_FONT *font = al_create_builtin_font();
+
+   Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
+
+   ASSERT_EQ(true, font_character_map_grid.create());
+
+   ALLEGRO_BITMAP *result = font_character_map_grid.get_created_character_map_bitmap();
+   ASSERT_NE(nullptr, result);
+
+   al_init_image_addon();
+   al_draw_bitmap(result, 0, 0, 0);
+   al_flip_display();
+   EXPECT_EQ(true, al_save_bitmap("/Users/markoates/Repos/hexagon/tmp/FontCharacterMapGridTest.png", result));
+
+   //sleep(2);
+
+   al_destroy_font(font);
+   al_destroy_display(display);
+   al_uninstall_system();
+}
+
 
