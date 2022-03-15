@@ -35,7 +35,14 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__without_a_valid_font
 
 TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__returns_true)
 {
-   // TODO
+   al_init();
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
+
+   ASSERT_EQ(true, font_character_map_grid.initialize());
+
+   al_destroy_font(font);
+   al_uninstall_system();
 }
 
 
@@ -45,7 +52,7 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__will_populate_the_ch
    ALLEGRO_FONT *font = al_create_builtin_font();
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
 
-   ASSERT_EQ(true, font_character_map_grid.initialize());
+   font_character_map_grid.initialize();
 
    ALLEGRO_BITMAP *result = font_character_map_grid.get_created_character_map_bitmap();
    ASSERT_NE(nullptr, result);
@@ -69,9 +76,7 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__will_populate_the_ch
          std::tuple<float, float, float, float> actual_mapping = created_mapping[character];
          EXPECT_EQ(expected_mapping, actual_mapping);
       }
-      //ASSERT_EQ(std::make_tuple({8.0f, 48.0f, 16.0f, 56.0f}), created_mapping['a']);
    }
-   //ASSERT_EQ(std::make_tuple({1.0f, 1.0f, 1.0f, 1.0f}), created_mapping['a']);
 
    al_destroy_font(font);
    al_uninstall_system();
