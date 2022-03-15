@@ -372,6 +372,12 @@ bool System::is_topmost_stage_advanced_code_editor_in_edit_mode()
 }
 
 
+bool System::is_topmost_stage_an_advanced_code_editor()
+{
+   return (get_frontmost_advanced_code_editor_stage() != nullptr);
+}
+
+
 bool System::has_no_stages()
 {
    return stages.empty();

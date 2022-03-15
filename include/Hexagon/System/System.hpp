@@ -100,6 +100,7 @@ public:
    bool is_current_stage_a_modal();
    bool is_drawing_mouse_cursor();
    bool is_topmost_stage_advanced_code_editor_in_edit_mode();
+   bool is_topmost_stage_an_advanced_code_editor();
    bool has_no_stages();
 
    // internal messages
