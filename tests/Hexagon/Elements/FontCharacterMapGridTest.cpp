@@ -14,48 +14,40 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, can_be_created_without_blowing_u
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
 }
 
-TEST(Hexagon_Elements_FontCharacterMapGridTest, create__without_allegro_initialized__raises_an_error)
+TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__without_allegro_initialized__raises_an_error)
 {
    Hexagon::Elements::FontCharacterMapGrid text_mesh;
    std::string expected_error_message =
-      "FontCharacterMapGrid::create: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.create(), std::runtime_error, expected_error_message);
+      "FontCharacterMapGrid::initialize: error: guard \"al_is_system_installed()\" not met";
+   ASSERT_THROW_WITH_MESSAGE(text_mesh.initialize(), std::runtime_error, expected_error_message);
 }
 
 
-TEST(Hexagon_Elements_FontCharacterMapGridTest, character_uv_mapping__is_empty_by_default)
-{
-   Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
-   EXPECT_EQ(true, font_character_map_grid.get_character_uv_mapping().empty());
-}
-
-
-TEST(Hexagon_Elements_FontCharacterMapGridTest, create__without_a_valid_font__raises_an_error)
+TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__without_a_valid_font__raises_an_error)
 {
    al_init();
    Hexagon::Elements::FontCharacterMapGrid text_mesh;
-   std::string expected_error_message = "FontCharacterMapGrid::create: error: guard \"font\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.create(), std::runtime_error, expected_error_message);
+   std::string expected_error_message = "FontCharacterMapGrid::initialize: error: guard \"font\" not met";
+   ASSERT_THROW_WITH_MESSAGE(text_mesh.initialize(), std::runtime_error, expected_error_message);
    al_uninstall_system();
 }
 
 
-TEST(Hexagon_Elements_FontCharacterMapGridTest, create__returns_true)
+TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__returns_true)
 {
    // TODO
 }
 
 
-TEST(Hexagon_Elements_FontCharacterMapGridTest, create__will_populate_the_character_uv_mapping)
+TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__will_populate_the_character_uv_mapping)
 {
    al_init();
    ALLEGRO_FONT *font = al_create_builtin_font();
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
 
-   ASSERT_EQ(true, font_character_map_grid.create());
+   ASSERT_EQ(true, font_character_map_grid.initialize());
 
    ALLEGRO_BITMAP *result = font_character_map_grid.get_created_character_map_bitmap();
-   //ALLEGRO_BITMAP *result = font_character_map_grid.create();
    ASSERT_NE(nullptr, result);
 
    std::map<char, std::tuple<float, float, float, float>> some_expected_mappings = {
@@ -86,20 +78,43 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, create__will_populate_the_charac
 }
 
 
-TEST(Hexagon_Elements_FontCharacterMapGridTest, create__if_called_more_than_once__will_throw_an_error)
+TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__if_called_more_than_once__will_throw_an_error)
 {
+   al_init();
+   ALLEGRO_FONT *font = al_create_builtin_font();
+   Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
+
+   ASSERT_EQ(true, font_character_map_grid.initialize());
+   std::string expected_error_message =
+      "FontCharacterMapGrid::initialize: error: guard \"(!initialized)\" not met";
+   ASSERT_THROW_WITH_MESSAGE(font_character_map_grid.initialize(), std::runtime_error, expected_error_message);
 }
 
 
 TEST(Hexagon_Elements_FontCharacterMapGridTest,
-   get_created_character_map_bitmap__before_create_is_called__will_throw_an_error)
+   get_created_character_map_bitmap__before_initialize_is_called__will_throw_an_error)
 {
-   // TODO
+   Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
+
+   std::string expected_error_message =
+      "FontCharacterMapGrid::get_created_character_map_bitmap: error: guard \"initialized\" not met";
+   ASSERT_THROW_WITH_MESSAGE(
+      font_character_map_grid.get_created_character_map_bitmap(),
+      std::runtime_error,
+      expected_error_message
+   );
+}
+
+
+TEST(Hexagon_Elements_FontCharacterMapGridTest, character_uv_mapping__is_empty_by_default)
+{
+   Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
+   EXPECT_EQ(true, font_character_map_grid.get_character_uv_mapping().empty());
 }
 
 
 TEST(Hexagon_Elements_FontCharacterMapGridTest,
-   get_created_character_map_bitmap__will_create_the_created_character_map_bitmap)
+   get_created_character_map_bitmap__will_return_the_created_character_map_bitmap)
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
@@ -108,14 +123,15 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest,
 
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
 
-   ASSERT_EQ(true, font_character_map_grid.create());
+   ASSERT_EQ(true, font_character_map_grid.initialize());
 
    ALLEGRO_BITMAP *result = font_character_map_grid.get_created_character_map_bitmap();
    ASSERT_NE(nullptr, result);
 
-   al_init_image_addon();
    al_draw_bitmap(result, 0, 0, 0);
    al_flip_display();
+
+   al_init_image_addon();
    EXPECT_EQ(true, al_save_bitmap("/Users/markoates/Repos/hexagon/tmp/FontCharacterMapGridTest.png", result));
 
    //sleep(2);

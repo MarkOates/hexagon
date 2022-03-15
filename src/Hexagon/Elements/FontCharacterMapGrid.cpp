@@ -19,7 +19,7 @@ FontCharacterMapGrid::FontCharacterMapGrid(ALLEGRO_FONT* font)
    , grid_height(0)
    , character_uv_mapping({})
    , created_character_map_bitmap(nullptr)
-   , created(false)
+   , initialized(false)
 {
 }
 
@@ -53,41 +53,41 @@ std::map<char, std::tuple<float, float, float, float>> FontCharacterMapGrid::get
 }
 
 
-bool FontCharacterMapGrid::get_created()
+bool FontCharacterMapGrid::get_initialized()
 {
-   return created;
+   return initialized;
 }
 
 
 ALLEGRO_BITMAP* FontCharacterMapGrid::get_created_character_map_bitmap()
 {
-   if (!(created))
+   if (!(initialized))
       {
          std::stringstream error_message;
-         error_message << "FontCharacterMapGrid" << "::" << "get_created_character_map_bitmap" << ": error: " << "guard \"created\" not met";
+         error_message << "FontCharacterMapGrid" << "::" << "get_created_character_map_bitmap" << ": error: " << "guard \"initialized\" not met";
          throw std::runtime_error(error_message.str());
       }
    return created_character_map_bitmap;
 }
 
-bool FontCharacterMapGrid::create()
+bool FontCharacterMapGrid::initialize()
 {
    if (!(al_is_system_installed()))
       {
          std::stringstream error_message;
-         error_message << "FontCharacterMapGrid" << "::" << "create" << ": error: " << "guard \"al_is_system_installed()\" not met";
+         error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(font))
       {
          std::stringstream error_message;
-         error_message << "FontCharacterMapGrid" << "::" << "create" << ": error: " << "guard \"font\" not met";
+         error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
          throw std::runtime_error(error_message.str());
       }
-   if (!((!created)))
+   if (!((!initialized)))
       {
          std::stringstream error_message;
-         error_message << "FontCharacterMapGrid" << "::" << "create" << ": error: " << "guard \"(!created)\" not met";
+         error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
          throw std::runtime_error(error_message.str());
       }
    character_uv_mapping.clear();
@@ -123,8 +123,8 @@ bool FontCharacterMapGrid::create()
    }
    al_restore_state(&previous_state);
 
-   created = true;
    created_character_map_bitmap = result;
+   initialized = true;
 
    return true;
 }

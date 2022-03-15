@@ -19,7 +19,7 @@ namespace Hexagon
          int grid_height;
          std::map<char, std::tuple<float, float, float, float>> character_uv_mapping;
          ALLEGRO_BITMAP* created_character_map_bitmap;
-         bool created;
+         bool initialized;
 
       public:
          FontCharacterMapGrid(ALLEGRO_FONT* font=nullptr);
@@ -29,9 +29,9 @@ namespace Hexagon
          int get_grid_width();
          int get_grid_height();
          std::map<char, std::tuple<float, float, float, float>> get_character_uv_mapping();
-         bool get_created();
+         bool get_initialized();
          ALLEGRO_BITMAP* get_created_character_map_bitmap();
-         bool create();
+         bool initialize();
       };
    }
 }
