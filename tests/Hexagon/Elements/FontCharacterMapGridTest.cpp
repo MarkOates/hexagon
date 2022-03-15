@@ -7,7 +7,6 @@
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 #include <Hexagon/Elements/FontCharacterMapGrid.hpp>
-#include <allegro5/allegro_color.h> // for al_color_name
 #include <allegro5/allegro_image.h> // for al_save_bitmap to png
 
 TEST(Hexagon_Elements_FontCharacterMapGridTest, can_be_created_without_blowing_up)
@@ -36,7 +35,7 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, create__with_valid_arguments__re
 {
    al_init();
    ALLEGRO_DISPLAY *display = al_create_display(800, 600);
-   al_clear_to_color(al_color_name("black"));
+   al_clear_to_color(ALLEGRO_COLOR{0, 0, 0, 1});
    ALLEGRO_FONT *font = al_create_builtin_font();
 
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
