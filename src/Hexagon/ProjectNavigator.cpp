@@ -80,6 +80,7 @@ bool ProjectNavigator::initialize()
       { "Solitare", "/Users/markoates/Repos/Solitare/" },
       { "Epidemic", "/Users/markoates/Repos/Epidemic/" },
       { "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
+      { "Golf", "/Users/markoates/Repos/Golf/" },
       //{ "tins2021", "/Users/markoates/Repos/tins2021/" },
    });
    main_menu.set_color(ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f});
