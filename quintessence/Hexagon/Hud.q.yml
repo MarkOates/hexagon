@@ -395,6 +395,7 @@ functions:
         { "build_focused_component_test_object_file", "BTOB", "not_started", "component_test_object_build.txt" },
         { "build_focused_component_test_executable", "BTEX", "not_started", "component_test_executable.txt" },
         { "run_test_for_focused_component", "TEST", "not_started", "component_test_run.txt" },
+        { "make_library", "LIBB", "not_started", "" },
         { "make_all_programs", "PROG", "not_started", "" },
         { "make_documentation", "DOCS", "not_started", "" },
         { "signal_component_built_and_integrated", "SIGF", "not_started", "" },
