@@ -6,10 +6,12 @@ properties:
     init_with: '{}'
     constructor_arg: true
     setter: false
+    getter: true
 
   - name: page_history
     type: std::vector<std::string>
     init_with: '{"start"}'
+    getter: true
 
 
 functions:
@@ -45,21 +47,9 @@ functions:
         type: std::string
         default_argument: '"[unset-page_name]"'
     body: |
+      page_history.push_back(page_name);
       return;
         
-
-  - name: add_page_to_dictionary
-    parameters:
-      - name: page_name
-        type: std::string
-        default_argument: '"[unset-page_name]"'
-      - name: page
-        type: Hexagon::MultiplexMenu::MultiplexMenuPage
-        default_argument: '{}'
-    body: |
-      // cannot already exist
-      return;
-
 
   - name: find_page_by_name
     type: Hexagon::MultiplexMenu::MultiplexMenuPage*

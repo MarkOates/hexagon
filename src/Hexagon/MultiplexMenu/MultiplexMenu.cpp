@@ -22,6 +22,18 @@ MultiplexMenu::~MultiplexMenu()
 }
 
 
+std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> MultiplexMenu::get_page_dictionary()
+{
+   return page_dictionary;
+}
+
+
+std::vector<std::string> MultiplexMenu::get_page_history()
+{
+   return page_history;
+}
+
+
 void MultiplexMenu::set_page_dictionary(std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> page_dictionary)
 {
    this->page_dictionary = page_dictionary;
@@ -43,14 +55,9 @@ Hexagon::MultiplexMenu::MultiplexMenuPage* MultiplexMenu::current_page()
 
 void MultiplexMenu::open_page(std::string page_name)
 {
+   page_history.push_back(page_name);
    return;
      
-}
-
-void MultiplexMenu::add_page_to_dictionary(std::string page_name, Hexagon::MultiplexMenu::MultiplexMenuPage page)
-{
-   // cannot already exist
-   return;
 }
 
 Hexagon::MultiplexMenu::MultiplexMenuPage* MultiplexMenu::find_page_by_name(std::string page_name)
