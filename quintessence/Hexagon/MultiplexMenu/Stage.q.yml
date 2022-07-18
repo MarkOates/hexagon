@@ -126,4 +126,7 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
+  - symbol: KeyboardCommandMapper
+    headers: [ AllegroFlare/KeyboardCommandMapper.hpp ]
+
 

@@ -26,7 +26,15 @@ functions:
       {
          int x = 0;
          int y = menu_item_spacing_y*i;
-         std::string input_text = menu_item.get_keyboard_key_to_activate();
+         Hexagon::KeyboardCommandKey keyboard_command_key = menu_item.get_keyboard_command_key();
+         std::string input_text = convert_key_input_to_string(
+               keyboard_command_key.get_al_keycode(),
+               keyboard_command_key.get_ctrl(),
+               keyboard_command_key.get_alt(),
+               keyboard_command_key.get_command(),
+               keyboard_command_key.get_shift()
+            );
+
          std::string label = menu_item.get_label();
          bool opens_menu = true;
          std::string state = "no_state";

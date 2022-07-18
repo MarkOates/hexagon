@@ -1,0 +1,39 @@
+properties:
+
+
+  - name: al_keycode
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: shift
+    type: bool
+    init_with: false
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: ctrl
+    type: bool
+    init_with: false
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: alt
+    type: bool
+    init_with: false
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: command
+    type: bool
+    init_with: false
+    constructor_arg: true
+    getter: true
+    setter: true
+
+

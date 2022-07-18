@@ -10,8 +10,8 @@ namespace MultiplexMenu
 {
 
 
-MenuItem::MenuItem(std::string keyboard_key_to_activate, std::string label, std::string value)
-   : keyboard_key_to_activate(keyboard_key_to_activate)
+MenuItem::MenuItem(Hexagon::KeyboardCommandKey keyboard_command_key, std::string label, std::string value)
+   : keyboard_command_key(keyboard_command_key)
    , label(label)
    , value(value)
 {
@@ -23,9 +23,9 @@ MenuItem::~MenuItem()
 }
 
 
-void MenuItem::set_keyboard_key_to_activate(std::string keyboard_key_to_activate)
+void MenuItem::set_keyboard_command_key(Hexagon::KeyboardCommandKey keyboard_command_key)
 {
-   this->keyboard_key_to_activate = keyboard_key_to_activate;
+   this->keyboard_command_key = keyboard_command_key;
 }
 
 
@@ -35,9 +35,9 @@ void MenuItem::set_label(std::string label)
 }
 
 
-std::string MenuItem::get_keyboard_key_to_activate()
+Hexagon::KeyboardCommandKey MenuItem::get_keyboard_command_key()
 {
-   return keyboard_key_to_activate;
+   return keyboard_command_key;
 }
 
 

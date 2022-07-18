@@ -189,6 +189,7 @@
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/FileNavigator/Stage",
+    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/System/EventController"
   ],
@@ -1293,6 +1294,9 @@
   ],
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
+  ],
+  "Hexagon/KeyboardCommandKey": [
+    "Hexagon/MultiplexMenu/MenuItem"
   ],
   "std/map<std/string, Hexagon/MultiplexMenu/MultiplexMenuPage>": [
     "Hexagon/MultiplexMenu/MultiplexMenu"

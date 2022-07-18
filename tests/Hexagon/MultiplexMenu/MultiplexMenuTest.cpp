@@ -3,7 +3,7 @@
 
 #include <Hexagon/MultiplexMenu/MultiplexMenu.hpp>
 
-//#include <allegro5/allegro.h> // for the key names
+#include <allegro5/allegro.h> // for the key names
 
 
 class Hexagon_MultiplexMenu_MultiplexMenuTest : public ::testing::Test
@@ -15,17 +15,17 @@ protected:
    Hexagon::MultiplexMenu::MultiplexMenuPage build_menu_page_a()
    {
       return Hexagon::MultiplexMenu::MultiplexMenuPage({
-         Hexagon::MultiplexMenu::MenuItem("A", "Do thing"),
-         Hexagon::MultiplexMenu::MenuItem("B", "Do other thing"),
-         Hexagon::MultiplexMenu::MenuItem("N", "Some thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A, true}, "Do thing"),
+         //Hexagon::MultiplexMenu::MenuItem("B", "Do other thing"),
+         //Hexagon::MultiplexMenu::MenuItem("N", "Some thing"),
       });
    }
    Hexagon::MultiplexMenu::MultiplexMenuPage build_menu_page_b()
    {
       return Hexagon::MultiplexMenu::MultiplexMenuPage({
-         Hexagon::MultiplexMenu::MenuItem("R", "Do r thing"),
-         Hexagon::MultiplexMenu::MenuItem("N", "Other thing executes"),
-         Hexagon::MultiplexMenu::MenuItem("X", "Some other thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_R}, "Do r thing"),
+         //Hexagon::MultiplexMenu::MenuItem("N", "Other thing executes"),
+         //Hexagon::MultiplexMenu::MenuItem("X", "Some other thing"),
       });
    }
    std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> build_dictionary_a()

@@ -140,6 +140,7 @@ table td
   <li><a href="#quintessence/Hexagon/GitCommitMessageInputBox/Stage.q.yml">quintessence/Hexagon/GitCommitMessageInputBox/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Hud.q.yml">quintessence/Hexagon/Hud.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Joystick.q.yml">quintessence/Hexagon/Joystick.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/KeyboardCommandKey.q.yml">quintessence/Hexagon/KeyboardCommandKey.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Layout.q.yml">quintessence/Hexagon/Layout.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/LayoutFromYAML.q.yml">quintessence/Hexagon/LayoutFromYAML.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/LayoutPlacements.q.yml">quintessence/Hexagon/LayoutPlacements.q.yml</a></li>
@@ -6080,6 +6081,37 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/KeyboardCommandKey.q.yml">quintessence/Hexagon/KeyboardCommandKey.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">al_keycode</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">shift</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
+  <td class="property">ctrl</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
+  <td class="property">alt</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
+  <td class="property">command</td>
+  <td class="property">bool</td>
+</tr>
+    </table>
+     <table>
+    </table>
+     <table>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/Layout.q.yml">quintessence/Hexagon/Layout.q.yml</h3>
      <table>
 <tr>
@@ -6458,8 +6490,8 @@ table td
     <h3 id="quintessence/Hexagon/MultiplexMenu/MenuItem.q.yml">quintessence/Hexagon/MultiplexMenu/MenuItem.q.yml</h3>
      <table>
 <tr>
-  <td class="property">keyboard_key_to_activate</td>
-  <td class="property">std::string</td>
+  <td class="property">keyboard_command_key</td>
+  <td class="property">Hexagon::KeyboardCommandKey</td>
 </tr>
 <tr>
   <td class="property">label</td>
@@ -6473,6 +6505,9 @@ table td
      <table>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::KeyboardCommandKey&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/KeyboardCommandKey.hpp&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -6719,6 +6754,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ActionData&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ActionData.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -10977,6 +11015,7 @@ table td
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/FileNavigator/Stage",
+    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/System/EventController"
   ],
@@ -12081,6 +12120,9 @@ table td
   ],
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
+  ],
+  "Hexagon/KeyboardCommandKey": [
+    "Hexagon/MultiplexMenu/MenuItem"
   ],
   "std/map<std/string, Hexagon/MultiplexMenu/MultiplexMenuPage>": [
     "Hexagon/MultiplexMenu/MultiplexMenu"

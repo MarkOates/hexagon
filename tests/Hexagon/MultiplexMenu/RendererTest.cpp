@@ -23,17 +23,17 @@ protected:
       //convert_key_input_to_string(ALLEGRO_KEY_B, false, false, false, false);
 
       return Hexagon::MultiplexMenu::MultiplexMenuPage({
-         Hexagon::MultiplexMenu::MenuItem("Shift+A", "Do thing"),
-         Hexagon::MultiplexMenu::MenuItem("B", "Do other thing"),
-         Hexagon::MultiplexMenu::MenuItem("N", "Some thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A, true}, "Do thing"),
+         //Hexagon::MultiplexMenu::MenuItem("B", "Do other thing"),
+         //Hexagon::MultiplexMenu::MenuItem("N", "Some thing"),
       });
    }
    Hexagon::MultiplexMenu::MultiplexMenuPage build_menu_page_b()
    {
       return Hexagon::MultiplexMenu::MultiplexMenuPage({
-         Hexagon::MultiplexMenu::MenuItem("R", "Do R thing"),
-         Hexagon::MultiplexMenu::MenuItem("N", "Other thing executes"),
-         Hexagon::MultiplexMenu::MenuItem("X", "Some other thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_R}, "Do R thing"),
+         //Hexagon::MultiplexMenu::MenuItem("N", "Other thing executes"),
+         //Hexagon::MultiplexMenu::MenuItem("X", "Some other thing"),
       });
    }
    std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> build_dictionary_a()
