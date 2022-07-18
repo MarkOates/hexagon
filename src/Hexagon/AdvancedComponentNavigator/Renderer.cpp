@@ -31,7 +31,7 @@ Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, AllegroFla
    , base_backfill_color(base_backfill_color)
    , backfill_opacity(backfill_opacity)
    , base_text_color(base_text_color)
-   , frame_color_bluegreen(al_color_html("39c3c5"))
+   , frame_color_bluegreen(al_color_html("5cb7e2"))
 {
 }
 
@@ -52,6 +52,12 @@ ALLEGRO_COLOR Renderer::get_base_text_color()
    return base_text_color;
 }
 
+
+void Renderer::note()
+{
+   // frame_color_bluegree used to be 'al_color_html("39c3c5")'
+   return;
+}
 
 ALLEGRO_COLOR Renderer::build_backfill_color()
 {

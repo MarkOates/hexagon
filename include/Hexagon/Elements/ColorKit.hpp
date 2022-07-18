@@ -22,6 +22,7 @@ namespace Hexagon
          void set_base_text_color(ALLEGRO_COLOR base_text_color);
          ALLEGRO_COLOR get_backfill_color(float opacity=1.0f);
          ALLEGRO_COLOR get_base_text_color(float opacity=1.0f);
+         ALLEGRO_COLOR pure_white_blue();
          ALLEGRO_COLOR black();
          ALLEGRO_COLOR white();
          ALLEGRO_COLOR terminal_warm_orange();

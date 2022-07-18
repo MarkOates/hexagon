@@ -1617,6 +1617,9 @@ table td
     </table>
      <table>
 <tr>
+  <td class="method">note()</td>
+</tr>
+<tr>
   <td class="private_method">build_backfill_color()</td>
 </tr>
 <tr>
@@ -3656,6 +3659,9 @@ table td
   <td class="method">get_base_text_color(1)</td>
 </tr>
 <tr>
+  <td class="method">pure_white_blue()</td>
+</tr>
+<tr>
   <td class="method">black()</td>
 </tr>
 <tr>
@@ -3678,6 +3684,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::color::mix&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Color.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_COLOR&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_color.h&quot;]}</td>
 </tr>
@@ -11771,6 +11780,13 @@ table td
   "ALLEGRO_STATE": [
     "Hexagon/Elements/BitmapGridRenderSurface"
   ],
+  "AllegroFlare/color/mix": [
+    "Hexagon/Elements/ColorKit",
+    "Hexagon/Elements/Frame",
+    "Hexagon/Hud",
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/StageFactory"
+  ],
   "al_draw_textf": [
     "Hexagon/Elements/DataTable",
     "Hexagon/PacketRenderer"
@@ -11803,12 +11819,6 @@ table td
     "Hexagon/Elements/Frame",
     "Hexagon/FontSet",
     "Hexagon/Hud"
-  ],
-  "AllegroFlare/color/mix": [
-    "Hexagon/Elements/Frame",
-    "Hexagon/Hud",
-    "Hexagon/Powerbar/Renderer",
-    "Hexagon/StageFactory"
   ],
   "std/transform": [
     "Hexagon/Elements/ListMenu",

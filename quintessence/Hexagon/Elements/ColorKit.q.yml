@@ -34,6 +34,16 @@ functions:
     body: |
       return ALLEGRO_COLOR{base_text_color.r*opacity, base_text_color.g*opacity, base_text_color.b*opacity, opacity};
 
+  - name: pure_white_blue
+    type: ALLEGRO_COLOR
+    body: |
+      //ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
+      //ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
+      //color;
+      return al_color_html("5cb7e2");
+    body_dependency_symbols:
+      - AllegroFlare::color::mix
+
   - name: black
     type: ALLEGRO_COLOR
     body: return ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f};
@@ -66,6 +76,8 @@ functions:
 dependencies:
 
 
+  - symbol: AllegroFlare::color::mix
+    headers: [ AllegroFlare/Color.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
 

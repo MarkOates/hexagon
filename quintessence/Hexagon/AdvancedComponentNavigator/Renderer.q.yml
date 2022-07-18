@@ -50,10 +50,16 @@ properties:
 
   - name: frame_color_bluegreen
     type: ALLEGRO_COLOR
-    init_with: 'al_color_html("39c3c5")'
+    init_with: 'al_color_html("5cb7e2")'
 
 
 functions:
+
+
+  - name: note
+    body: |
+      // frame_color_bluegree used to be 'al_color_html("39c3c5")'
+      return;
 
 
   - name: build_backfill_color

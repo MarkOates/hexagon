@@ -1067,6 +1067,13 @@
   "ALLEGRO_STATE": [
     "Hexagon/Elements/BitmapGridRenderSurface"
   ],
+  "AllegroFlare/color/mix": [
+    "Hexagon/Elements/ColorKit",
+    "Hexagon/Elements/Frame",
+    "Hexagon/Hud",
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/StageFactory"
+  ],
   "al_draw_textf": [
     "Hexagon/Elements/DataTable",
     "Hexagon/PacketRenderer"
@@ -1099,12 +1106,6 @@
     "Hexagon/Elements/Frame",
     "Hexagon/FontSet",
     "Hexagon/Hud"
-  ],
-  "AllegroFlare/color/mix": [
-    "Hexagon/Elements/Frame",
-    "Hexagon/Hud",
-    "Hexagon/Powerbar/Renderer",
-    "Hexagon/StageFactory"
   ],
   "std/transform": [
     "Hexagon/Elements/ListMenu",

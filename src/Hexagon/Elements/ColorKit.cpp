@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/Elements/ColorKit.hpp>
-
+#include <AllegroFlare/Color.hpp>
 
 
 namespace Hexagon
@@ -42,6 +42,14 @@ ALLEGRO_COLOR ColorKit::get_backfill_color(float opacity)
 ALLEGRO_COLOR ColorKit::get_base_text_color(float opacity)
 {
    return ALLEGRO_COLOR{base_text_color.r*opacity, base_text_color.g*opacity, base_text_color.b*opacity, opacity};
+}
+
+ALLEGRO_COLOR ColorKit::pure_white_blue()
+{
+   //ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
+   //ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
+   //color;
+   return al_color_html("5cb7e2");
 }
 
 ALLEGRO_COLOR ColorKit::black()
