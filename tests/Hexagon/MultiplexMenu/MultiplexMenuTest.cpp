@@ -16,16 +16,17 @@ protected:
    {
       return Hexagon::MultiplexMenu::MultiplexMenuPage({
          Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A, true}, "Do thing"),
-         //Hexagon::MultiplexMenu::MenuItem("B", "Do other thing"),
-         //Hexagon::MultiplexMenu::MenuItem("N", "Some thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_B},       "Do other thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_N},       "Some thing"),
       });
    }
    Hexagon::MultiplexMenu::MultiplexMenuPage build_menu_page_b()
    {
       return Hexagon::MultiplexMenu::MultiplexMenuPage({
-         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_R}, "Do r thing"),
-         //Hexagon::MultiplexMenu::MenuItem("N", "Other thing executes"),
-         //Hexagon::MultiplexMenu::MenuItem("X", "Some other thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_R}, "Do R thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_N}, "Other thing executes"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_X}, "Some other thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_Z}, "Something else"),
       });
    }
    std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> build_dictionary_a()

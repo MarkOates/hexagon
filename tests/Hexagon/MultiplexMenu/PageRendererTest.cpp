@@ -19,22 +19,19 @@ class Hexagon_MultiplexMenu_PageRendererTestWithAllegroRenderingFixture : public
 protected:
    Hexagon::MultiplexMenu::MultiplexMenuPage* create_menu_page_a()
    {
-      //return new Hexagon::MultiplexMenu::MultiplexMenuPage();
-      //convert_key_input_to_string(ALLEGRO_KEY_B, false, false, false, false);
-
       return new Hexagon::MultiplexMenu::MultiplexMenuPage({
          Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A, true}, "Do thing"),
-         //Hexagon::MultiplexMenu::MenuItem("B", "Do other thing"),
-         //Hexagon::MultiplexMenu::MenuItem("N", "Some thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_B}, "Do other thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_N}, "Some thing"),
       });
    }
    Hexagon::MultiplexMenu::MultiplexMenuPage* create_menu_page_b()
    {
-      //return new Hexagon::MultiplexMenu::MultiplexMenuPage();
       return new Hexagon::MultiplexMenu::MultiplexMenuPage({
          Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_R}, "Do R thing"),
-         //Hexagon::MultiplexMenu::MenuItem("N", "Other thing executes"),
-         //Hexagon::MultiplexMenu::MenuItem("X", "Some other thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_N}, "Other thing executes"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_X}, "Some other thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_Z}, "Something else"),
       });
    }
 };
