@@ -19,7 +19,7 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
-  - name: menu
+  - name: multiplex_menu
     type: Hexagon::MultiplexMenu::MultiplexMenu
     init_with: '{}'
     constructor_arg: true
@@ -41,7 +41,7 @@ functions:
       placement3d &place = get_place();
       place.start_transform();
 
-      Hexagon::MultiplexMenu::Renderer renderer(font_bin);
+      Hexagon::MultiplexMenu::Renderer renderer(font_bin, &multiplex_menu);
       renderer.render();
 
       place.restore_transform();

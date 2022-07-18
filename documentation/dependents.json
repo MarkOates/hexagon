@@ -1302,6 +1302,11 @@
   "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage"
   ],
+  "Hexagon/MultiplexMenu/MultiplexMenu": [
+    "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/MultiplexMenu/Stage"
+  ],
   "Blast/StringJoiner": [
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/UI/DrawingBox"
@@ -1311,10 +1316,6 @@
   ],
   "AllegroFlare/color": [
     "Hexagon/MultiplexMenu/Renderer"
-  ],
-  "Hexagon/MultiplexMenu/MultiplexMenu": [
-    "Hexagon/MultiplexMenu/Stage",
-    "Hexagon/MultiplexMenu/Stage"
   ],
   "Hexagon/MultiplexMenu/Renderer": [
     "Hexagon/MultiplexMenu/Stage"

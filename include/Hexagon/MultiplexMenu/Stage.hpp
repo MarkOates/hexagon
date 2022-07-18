@@ -18,11 +18,11 @@ namespace Hexagon
       private:
          AllegroFlare::FontBin* font_bin;
          StageInterface* stage_to_send_messages_to;
-         Hexagon::MultiplexMenu::MultiplexMenu menu;
+         Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         Stage(AllegroFlare::FontBin* font_bin=nullptr, StageInterface* stage_to_send_messages_to=nullptr, Hexagon::MultiplexMenu::MultiplexMenu menu={});
+         Stage(AllegroFlare::FontBin* font_bin=nullptr, StageInterface* stage_to_send_messages_to=nullptr, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu={});
          virtual ~Stage();
 
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();

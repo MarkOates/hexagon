@@ -15,11 +15,11 @@ namespace MultiplexMenu
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage_to_send_messages_to, Hexagon::MultiplexMenu::MultiplexMenu menu)
+Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage_to_send_messages_to, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu)
    : StageInterface(StageInterface::MULTIPLEX_MENU)
    , font_bin(font_bin)
    , stage_to_send_messages_to(stage_to_send_messages_to)
-   , menu(menu)
+   , multiplex_menu(multiplex_menu)
 {
 }
 
@@ -40,7 +40,7 @@ void Stage::render()
    placement3d &place = get_place();
    place.start_transform();
 
-   Hexagon::MultiplexMenu::Renderer renderer(font_bin);
+   Hexagon::MultiplexMenu::Renderer renderer(font_bin, &multiplex_menu);
    renderer.render();
 
    place.restore_transform();

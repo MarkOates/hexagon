@@ -23,8 +23,9 @@ namespace MultiplexMenu
 {
 
 
-Renderer::Renderer(AllegroFlare::FontBin* font_bin)
+Renderer::Renderer(AllegroFlare::FontBin* font_bin, Hexagon::MultiplexMenu::MultiplexMenu* multiplex_menu)
    : font_bin(font_bin)
+   , multiplex_menu(multiplex_menu)
 {
 }
 
@@ -36,23 +37,23 @@ Renderer::~Renderer()
 
 void Renderer::render()
 {
-   render_page();
-}
-
-void Renderer::render_page()
-{
    if (!(al_is_system_installed()))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_page" << ": error: " << "guard \"al_is_system_installed()\" not met";
+         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(al_is_font_addon_initialized()))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_page" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
+         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
+   render_page();
+}
+
+void Renderer::render_page()
+{
    float spacing_y = 66;
 
    //std::map<std::tuple<int, bool, bool, bool, bool>, std::vector<std::string>> mapping;

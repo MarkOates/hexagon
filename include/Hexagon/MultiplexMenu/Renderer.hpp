@@ -2,6 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
+#include <Hexagon/MultiplexMenu/MultiplexMenu.hpp>
 #include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
 #include <allegro5/allegro_font.h>
 #include <string>
@@ -15,9 +16,10 @@ namespace Hexagon
       {
       private:
          AllegroFlare::FontBin* font_bin;
+         Hexagon::MultiplexMenu::MultiplexMenu* multiplex_menu;
 
       public:
-         Renderer(AllegroFlare::FontBin* font_bin=nullptr);
+         Renderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::MultiplexMenu::MultiplexMenu* multiplex_menu=nullptr);
          ~Renderer();
 
          void render();

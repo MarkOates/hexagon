@@ -6,18 +6,24 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
+  - name: multiplex_menu
+    type: Hexagon::MultiplexMenu::MultiplexMenu*
+    init_with: nullptr
+    constructor_arg: true
+
 
 functions:
 
 
   - name: render
+    guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
     body: |
       render_page();
 
 
   - name: render_page
+    private: true
     type: void
-    guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
     body: |
       float spacing_y = 66;
 
@@ -190,6 +196,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenu*
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenu.hpp ]
   - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage
     headers: [ Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
   - symbol: Blast::StringJoiner

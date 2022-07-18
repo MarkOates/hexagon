@@ -6544,13 +6544,17 @@ table td
   <td class="property">font_bin</td>
   <td class="property">AllegroFlare::FontBin*</td>
 </tr>
+<tr>
+  <td class="property">multiplex_menu</td>
+  <td class="property">Hexagon::MultiplexMenu::MultiplexMenu*</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">render_page()</td>
+  <td class="private_method">render_page()</td>
 </tr>
 <tr>
   <td class="private_method">render_menu_page(1)</td>
@@ -6569,6 +6573,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenu*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenu.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
 </tr>
@@ -6612,7 +6619,7 @@ table td
   <td class="property">StageInterface*</td>
 </tr>
 <tr>
-  <td class="property">menu</td>
+  <td class="property">multiplex_menu</td>
   <td class="property">Hexagon::MultiplexMenu::MultiplexMenu</td>
 </tr>
 <tr>
@@ -12032,6 +12039,11 @@ table td
   "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage"
   ],
+  "Hexagon/MultiplexMenu/MultiplexMenu": [
+    "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/MultiplexMenu/Stage"
+  ],
   "Blast/StringJoiner": [
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/UI/DrawingBox"
@@ -12041,10 +12053,6 @@ table td
   ],
   "AllegroFlare/color": [
     "Hexagon/MultiplexMenu/Renderer"
-  ],
-  "Hexagon/MultiplexMenu/MultiplexMenu": [
-    "Hexagon/MultiplexMenu/Stage",
-    "Hexagon/MultiplexMenu/Stage"
   ],
   "Hexagon/MultiplexMenu/Renderer": [
     "Hexagon/MultiplexMenu/Stage"
