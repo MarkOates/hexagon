@@ -63,23 +63,22 @@ void PageRenderer::render()
          error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"page\" not met";
          throw std::runtime_error(error_message.str());
       }
-   float spacing_y = 66;
+   float menu_item_spacing_y = 66;
 
-   //std::map<std::tuple<int, bool, bool, bool, bool>, std::vector<std::string>> mapping;
-   //std::vector<std::tuple<int, bool, bool, bool, bool>>;
-   //std key;
+   int i = 0;
+   for (auto &menu_item : page->get_items_ref())
+   {
+      int x = 0;
+      int y = menu_item_spacing_y*i;
+      std::string input_text = menu_item.get_keyboard_key_to_activate();
+      std::string label = menu_item.get_label();
+      bool opens_menu = true;
+      std::string state = "no_state";
 
-   std::string input = convert_key_input_to_string(ALLEGRO_KEY_B, false, false, false, false);
-   std::string label = "Breakout Menu";
-   render_menu_item(0, 0+spacing_y*0, input, label, true, "activated");
+      render_menu_item(x, y, input_text, label, opens_menu, state);
 
-   input = convert_key_input_to_string(ALLEGRO_KEY_A, false, false, false, false);
-   label = "Delete Around Word";
-   render_menu_item(0, 0+spacing_y*1, input, label, false);
-
-   input = convert_key_input_to_string(ALLEGRO_KEY_ESCAPE, false, false, false, false);
-   label = "Close Multiplex Menu";
-   render_menu_item(0, 0+spacing_y*2, input, label, false);
+      i++;
+   }
 
    return;
 }

@@ -8,14 +8,34 @@
 
 #include <Testing/WithAllegroRenderingFixture.hpp>
 
+#include <Hexagon/MultiplexMenu/PageRenderer.hpp>
+
+
 class Hexagon_MultiplexMenu_PageRendererTest : public ::testing::Test
 {};
 
 class Hexagon_MultiplexMenu_PageRendererTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture
-{};
+{
+protected:
+   Hexagon::MultiplexMenu::MultiplexMenuPage* create_menu_page_a()
+   {
+      //convert_key_input_to_string(ALLEGRO_KEY_B, false, false, false, false);
 
-
-#include <Hexagon/MultiplexMenu/PageRenderer.hpp>
+      return new Hexagon::MultiplexMenu::MultiplexMenuPage({
+         Hexagon::MultiplexMenu::MenuItem("Shift+A", "Do thing"),
+         Hexagon::MultiplexMenu::MenuItem("B", "Do other thing"),
+         Hexagon::MultiplexMenu::MenuItem("N", "Some thing"),
+      });
+   }
+   Hexagon::MultiplexMenu::MultiplexMenuPage* create_menu_page_b()
+   {
+      return new Hexagon::MultiplexMenu::MultiplexMenuPage({
+         Hexagon::MultiplexMenu::MenuItem("R", "Do R thing"),
+         Hexagon::MultiplexMenu::MenuItem("N", "Other thing executes"),
+         Hexagon::MultiplexMenu::MenuItem("X", "Some other thing"),
+      });
+   }
+};
 
 
 TEST_F(Hexagon_MultiplexMenu_PageRendererTest, can_be_created_without_blowing_up)
@@ -54,13 +74,16 @@ TEST_F(Hexagon_MultiplexMenu_PageRendererTestWithAllegroRenderingFixture, render
 
 TEST_F(Hexagon_MultiplexMenu_PageRendererTestWithAllegroRenderingFixture, render__will_render_as_expected)
 {
-   Hexagon::MultiplexMenu::PageRenderer renderer(&get_font_bin_ref());
+   Hexagon::MultiplexMenu::MultiplexMenuPage* page = create_menu_page_b();
+   Hexagon::MultiplexMenu::PageRenderer renderer(&get_font_bin_ref(), page);
+   al_install_keyboard();
 
    al_clear_to_color(ALLEGRO_COLOR{0.1, 0.1, 0.1, 1});
-   //renderer.render();
+   renderer.render();
    al_flip_display();
    sleep(1);
 
+   al_uninstall_keyboard();
    SUCCEED();
 }
 
@@ -94,9 +117,9 @@ TEST_F(Hexagon_MultiplexMenu_PageRendererTest,
    al_install_keyboard();
    Hexagon::MultiplexMenu::PageRenderer renderer;
 
-   //EXPECT_EQ("Shift+N", renderer.convert_key_input_to_string(ALLEGRO_KEY_N, false, false, false, true));
-   //EXPECT_EQ("Ctrl+Shift+DOWN", renderer.convert_key_input_to_string(ALLEGRO_KEY_DOWN, true, false, false, true));
-   //EXPECT_EQ("Command+SPACE", renderer.convert_key_input_to_string(ALLEGRO_KEY_SPACE, false, false, true, false));
+   EXPECT_EQ("Shift+N", renderer.convert_key_input_to_string(ALLEGRO_KEY_N, false, false, false, true));
+   EXPECT_EQ("Ctrl+Shift+DOWN", renderer.convert_key_input_to_string(ALLEGRO_KEY_DOWN, true, false, false, true));
+   EXPECT_EQ("Command+SPACE", renderer.convert_key_input_to_string(ALLEGRO_KEY_SPACE, false, false, true, false));
 
    al_uninstall_system();
 }
