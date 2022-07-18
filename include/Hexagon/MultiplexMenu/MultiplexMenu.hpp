@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include <Hexagon/MultiplexMenu/MenuItem.hpp>
-#include <vector>
+#include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
+#include <map>
 
 
 namespace Hexagon
@@ -12,13 +12,13 @@ namespace Hexagon
       class MultiplexMenu
       {
       private:
-         std::vector<Hexagon::MultiplexMenu::MenuItem> items;
+         std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> pages;
 
       public:
-         MultiplexMenu(std::vector<Hexagon::MultiplexMenu::MenuItem> items={});
+         MultiplexMenu(std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> pages={});
          ~MultiplexMenu();
 
-         std::vector<Hexagon::MultiplexMenu::MenuItem> &get_items_ref();
+         std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> &get_pages_ref();
       };
    }
 }

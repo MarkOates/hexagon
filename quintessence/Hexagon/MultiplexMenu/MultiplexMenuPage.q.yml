@@ -1,0 +1,17 @@
+properties:
+
+
+  - name: items
+    type: std::vector<Hexagon::MultiplexMenu::MenuItem>
+    init_with: '{}'
+    constructor_arg: true
+    getter_ref: true
+
+
+dependencies:
+
+
+  - symbol: std::vector<Hexagon::MultiplexMenu::MenuItem>
+    headers: [ vector, Hexagon/MultiplexMenu/MenuItem.hpp ]
+
+

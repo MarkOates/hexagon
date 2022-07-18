@@ -10,11 +10,10 @@ namespace MultiplexMenu
 {
 
 
-MenuItem::MenuItem(std::string keyboard_input, std::string label, std::string action, std::string menu)
-   : keyboard_input(keyboard_input)
+MenuItem::MenuItem(std::string keyboard_key_to_activate, std::string label, std::string value)
+   : keyboard_key_to_activate(keyboard_key_to_activate)
    , label(label)
-   , action(action)
-   , menu(menu)
+   , value(value)
 {
 }
 
@@ -24,9 +23,9 @@ MenuItem::~MenuItem()
 }
 
 
-void MenuItem::set_keyboard_input(std::string keyboard_input)
+void MenuItem::set_keyboard_key_to_activate(std::string keyboard_key_to_activate)
 {
-   this->keyboard_input = keyboard_input;
+   this->keyboard_key_to_activate = keyboard_key_to_activate;
 }
 
 
@@ -36,21 +35,9 @@ void MenuItem::set_label(std::string label)
 }
 
 
-void MenuItem::set_action(std::string action)
+std::string MenuItem::get_keyboard_key_to_activate()
 {
-   this->action = action;
-}
-
-
-void MenuItem::set_menu(std::string menu)
-{
-   this->menu = menu;
-}
-
-
-std::string MenuItem::get_keyboard_input()
-{
-   return keyboard_input;
+   return keyboard_key_to_activate;
 }
 
 
@@ -60,15 +47,9 @@ std::string MenuItem::get_label()
 }
 
 
-std::string MenuItem::get_action()
+std::string MenuItem::get_value()
 {
-   return action;
-}
-
-
-std::string MenuItem::get_menu()
-{
-   return menu;
+   return value;
 }
 
 

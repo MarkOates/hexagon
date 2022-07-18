@@ -426,10 +426,11 @@ StageInterface* StageFactory::create_code_editor(std::string filename, std::stri
 StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage)
 {
    // TODO: populate this mulitplex menu
-   Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu({
-     { "Shift+A", "Delete Around Word", "delete_around_word", "" },
-     //{ "ESCAPE", "Escape this menu", "", "" },
-   });
+   Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu;
+   //Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu({
+     //{ "Shift+A", "Delete Around Word", "delete_around_word" },
+     ////{ "ESCAPE", "Escape this menu", "", "" },
+   //});
    Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(
       font_bin,
       advanced_code_editor_stage,

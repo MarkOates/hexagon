@@ -10,8 +10,8 @@ namespace MultiplexMenu
 {
 
 
-MultiplexMenu::MultiplexMenu(std::vector<Hexagon::MultiplexMenu::MenuItem> items)
-   : items(items)
+MultiplexMenu::MultiplexMenu(std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> pages)
+   : pages(pages)
 {
 }
 
@@ -21,9 +21,9 @@ MultiplexMenu::~MultiplexMenu()
 }
 
 
-std::vector<Hexagon::MultiplexMenu::MenuItem> &MultiplexMenu::get_items_ref()
+std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> &MultiplexMenu::get_pages_ref()
 {
-   return items;
+   return pages;
 }
 
 

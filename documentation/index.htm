@@ -6457,7 +6457,7 @@ table td
     <h3 id="quintessence/Hexagon/MultiplexMenu/MenuItem.q.yml">quintessence/Hexagon/MultiplexMenu/MenuItem.q.yml</h3>
      <table>
 <tr>
-  <td class="property">keyboard_input</td>
+  <td class="property">keyboard_key_to_activate</td>
   <td class="property">std::string</td>
 </tr>
 <tr>
@@ -6465,11 +6465,7 @@ table td
   <td class="property">std::string</td>
 </tr>
 <tr>
-  <td class="property">action</td>
-  <td class="property">std::string</td>
-</tr>
-<tr>
-  <td class="property">menu</td>
+  <td class="property">value</td>
   <td class="property">std::string</td>
 </tr>
     </table>
@@ -6484,18 +6480,15 @@ table td
     <h3 id="quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml</h3>
      <table>
 <tr>
-  <td class="property">items</td>
-  <td class="property">std::vector&lt;Hexagon::MultiplexMenu::MenuItem&gt;</td>
+  <td class="property">pages</td>
+  <td class="property">std::map&lt;std::string, Hexagon::MultiplexMenu::MultiplexMenuPage&gt;</td>
 </tr>
     </table>
      <table>
     </table>
      <table>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;StageInterface*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageInterface.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::MultiplexMenu::MenuItem&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/MultiplexMenu/MenuItem.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::map&lt;std::string, Hexagon::MultiplexMenu::MultiplexMenuPage&gt;&quot;, &quot;headers&quot;=&gt;[&quot;map&quot;, &quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -11192,7 +11185,6 @@ table td
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/MissingFile/Stage",
-    "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/NewComponentMaker/Stage",
@@ -12007,7 +11999,7 @@ table td
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
   ],
-  "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
+  "std/map<std/string, Hexagon/MultiplexMenu/MultiplexMenuPage>": [
     "Hexagon/MultiplexMenu/MultiplexMenu"
   ],
   "Blast/StringJoiner": [

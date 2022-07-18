@@ -1,8 +1,9 @@
 properties:
 
-  - name: keyboard_input
+
+  - name: keyboard_key_to_activate
     type: std::string
-    init_with: '"[keyboard-input-not-set]"'
+    init_with: '"[menu-item-key_to_activate-not-set]"'
     constructor_arg: true
     getter: true
     setter: true
@@ -14,17 +15,11 @@ properties:
     getter: true
     setter: true
 
-  - name: action
+  - name: value
     type: std::string
-    init_with: '"[action-not-set]"'
+    init_with: '"[menu-item-value-not-set]"'
     constructor_arg: true
     getter: true
-    setter: true
+    setter: false
 
-  - name: menu
-    type: std::string
-    init_with: '"[branching-menu-identifier-not-set]"'
-    constructor_arg: true
-    getter: true
-    setter: true
-    
+

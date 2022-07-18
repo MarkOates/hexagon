@@ -479,7 +479,6 @@
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/MissingFile/Stage",
-    "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/NewComponentMaker/Stage",
@@ -1294,7 +1293,7 @@
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
   ],
-  "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
+  "std/map<std/string, Hexagon/MultiplexMenu/MultiplexMenuPage>": [
     "Hexagon/MultiplexMenu/MultiplexMenu"
   ],
   "Blast/StringJoiner": [

@@ -1,8 +1,8 @@
 properties:
 
 
-  - name: items
-    type: std::vector<Hexagon::MultiplexMenu::MenuItem>
+  - name: pages
+    type: std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage>
     init_with: '{}'
     constructor_arg: true
     getter_ref: true
@@ -11,8 +11,7 @@ properties:
 dependencies:
 
 
-  - symbol: StageInterface*
-    headers: [ Hexagon/StageInterface.hpp ]
-  - symbol: std::vector<Hexagon::MultiplexMenu::MenuItem>
-    headers: [ vector, Hexagon/MultiplexMenu/MenuItem.hpp ]
+  - symbol: std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage>
+    headers: [ map, Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
+
 
