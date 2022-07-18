@@ -36,16 +36,21 @@ Renderer::~Renderer()
 
 void Renderer::render()
 {
+   render_page();
+}
+
+void Renderer::render_page()
+{
    if (!(al_is_system_installed()))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
+         error_message << "Renderer" << "::" << "render_page" << ": error: " << "guard \"al_is_system_installed()\" not met";
          throw std::runtime_error(error_message.str());
       }
    if (!(al_is_font_addon_initialized()))
       {
          std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
+         error_message << "Renderer" << "::" << "render_page" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
    float spacing_y = 66;
@@ -54,18 +59,27 @@ void Renderer::render()
    std::vector<std::tuple<int, bool, bool, bool, bool>>;
    //std key;
 
-   std::string input = convert_key_input_to_string(ALLEGRO_KEY_A, false, false, false, false);
-   std::string label = "Delete Around Word";
-   render_menu_item(0, 0, input, label, false);
+   std::string input = convert_key_input_to_string(ALLEGRO_KEY_B, false, false, false, false);
+   std::string label = "Breakout Menu";
+   render_menu_item(0, 0+spacing_y*0, input, label, true, "activated");
+
+   input = convert_key_input_to_string(ALLEGRO_KEY_A, false, false, false, false);
+   label = "Delete Around Word";
+   render_menu_item(0, 0+spacing_y*1, input, label, false);
 
    input = convert_key_input_to_string(ALLEGRO_KEY_ESCAPE, false, false, false, false);
    label = "Close Multiplex Menu";
-   render_menu_item(0, 0+spacing_y, input, label, false);
+   render_menu_item(0, 0+spacing_y*2, input, label, false);
 
    return;
 }
 
-void Renderer::render_menu_item(float x, float y, std::string input, std::string label, bool opens_menu)
+void Renderer::render_menu_page(Hexagon::MultiplexMenu::MultiplexMenuPage menu_page)
+{
+   return;
+}
+
+void Renderer::render_menu_item(float x, float y, std::string input, std::string label, bool opens_menu, std::string state)
 {
    ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.8};
    ALLEGRO_COLOR input_backfill_color = ALLEGRO_COLOR{0.25, 0.25, 0.25, 1.0};
@@ -105,6 +119,11 @@ void Renderer::render_menu_item(float x, float y, std::string input, std::string
    al_draw_text(font, text_color, x+padding_x + input_text_length + 20, y+padding_y, ALLEGRO_ALIGN_LEFT, label.c_str());
 
    // draw the border
+   if (state == "activated")
+   {
+      frame_color = ALLEGRO_COLOR{1, 1, 1, 1};
+      frame_thickness = 4.0f;
+   }
    al_draw_rounded_rectangle(
       x+frame_thickness*2,
       y+frame_thickness*2,

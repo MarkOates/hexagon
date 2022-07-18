@@ -151,7 +151,6 @@ table td
   <li><a href="#quintessence/Hexagon/MultiplexMenu/MenuItem.q.yml">quintessence/Hexagon/MultiplexMenu/MenuItem.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/MultiplexMenuPage.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenuPage.q.yml</a></li>
-  <li><a href="#quintessence/Hexagon/MultiplexMenu/MultiplexMenuRenderer.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenuRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/Renderer.q.yml">quintessence/Hexagon/MultiplexMenu/Renderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/Stage.q.yml">quintessence/Hexagon/MultiplexMenu/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/NewComponentMaker/NewComponentMaker.q.yml">quintessence/Hexagon/NewComponentMaker/NewComponentMaker.q.yml</a></li>
@@ -6481,15 +6480,43 @@ table td
     <h3 id="quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml</h3>
      <table>
 <tr>
-  <td class="property">pages</td>
+  <td class="property">page_dictionary</td>
   <td class="property">std::map&lt;std::string, Hexagon::MultiplexMenu::MultiplexMenuPage&gt;</td>
+</tr>
+<tr>
+  <td class="property">page_history</td>
+  <td class="property">std::vector&lt;std::string&gt;</td>
 </tr>
     </table>
      <table>
+<tr>
+  <td class="method">set_page_dictionary(1)</td>
+</tr>
+<tr>
+  <td class="method">clear_history()</td>
+</tr>
+<tr>
+  <td class="method">current_page()</td>
+</tr>
+<tr>
+  <td class="method">open_page(1)</td>
+</tr>
+<tr>
+  <td class="method">add_page_to_dictionary(2)</td>
+</tr>
+<tr>
+  <td class="method">find_page_by_name(1)</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::map&lt;std::string, Hexagon::MultiplexMenu::MultiplexMenuPage&gt;&quot;, &quot;headers&quot;=&gt;[&quot;map&quot;, &quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -6514,37 +6541,6 @@ table td
 </ul>
 <ul>
   <div class="component">
-    <h3 id="quintessence/Hexagon/MultiplexMenu/MultiplexMenuRenderer.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenuRenderer.q.yml</h3>
-     <table>
-<tr>
-  <td class="property">font_bin</td>
-  <td class="property">AllegroFlare::FontBin*</td>
-</tr>
-<tr>
-  <td class="property">quote</td>
-  <td class="property">std::string</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="method">render()</td>
-</tr>
-<tr>
-  <td class="private_method">obtain_font()</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
-</tr>
-    </table>
-  </div>
-</ul>
-<ul>
-  <div class="component">
     <h3 id="quintessence/Hexagon/MultiplexMenu/Renderer.q.yml">quintessence/Hexagon/MultiplexMenu/Renderer.q.yml</h3>
      <table>
 <tr>
@@ -6557,7 +6553,13 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="private_method">render_menu_item(5)</td>
+  <td class="method">render_page()</td>
+</tr>
+<tr>
+  <td class="private_method">render_menu_page(1)</td>
+</tr>
+<tr>
+  <td class="private_method">render_menu_item(6)</td>
 </tr>
 <tr>
   <td class="method">convert_key_input_to_string(5)</td>
@@ -6570,6 +6572,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringJoiner&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringJoiner.hpp&quot;]}</td>
 </tr>
@@ -11100,7 +11105,6 @@ table td
     "Hexagon/Hud",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
-    "Hexagon/MultiplexMenu/MultiplexMenuRenderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/OneLineInputBox/Renderer",
@@ -11260,7 +11264,6 @@ table td
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
-    "Hexagon/MultiplexMenu/MultiplexMenuRenderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
@@ -12023,6 +12026,11 @@ table td
   ],
   "std/map<std/string, Hexagon/MultiplexMenu/MultiplexMenuPage>": [
     "Hexagon/MultiplexMenu/MultiplexMenu"
+  ],
+  "Hexagon/MultiplexMenu/MultiplexMenuPage": [
+    "Hexagon/MultiplexMenu/MultiplexMenu",
+    "Hexagon/MultiplexMenu/MultiplexMenu",
+    "Hexagon/MultiplexMenu/Renderer"
   ],
   "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage"

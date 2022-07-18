@@ -1,11 +1,77 @@
 properties:
 
 
-  - name: pages
+  - name: page_dictionary
     type: std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage>
     init_with: '{}'
     constructor_arg: true
-    getter_ref: true
+    setter: false
+
+  - name: page_history
+    type: std::vector<std::string>
+    init_with: '{"start"}'
+
+
+functions:
+
+
+  - name: set_page_dictionary
+    parameters:
+      - name: page_dictionary
+        type: std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage>
+        default_argument: '{}'
+    body: |
+      this->page_dictionary = page_dictionary;
+      clear_history();
+      return;
+
+
+  - name: clear_history
+    body: |
+      page_history.clear();
+      return;
+
+
+  - name: current_page
+    type: Hexagon::MultiplexMenu::MultiplexMenuPage*
+    body: |
+      if (page_history.empty()) return nullptr;
+      return find_page_by_name(page_history.back());
+
+
+  - name: open_page
+    parameters:
+      - name: page_name
+        type: std::string
+        default_argument: '"[unset-page_name]"'
+    body: |
+      return;
+        
+
+  - name: add_page_to_dictionary
+    parameters:
+      - name: page_name
+        type: std::string
+        default_argument: '"[unset-page_name]"'
+      - name: page
+        type: Hexagon::MultiplexMenu::MultiplexMenuPage
+        default_argument: '{}'
+    body: |
+      // cannot already exist
+      return;
+
+
+  - name: find_page_by_name
+    type: Hexagon::MultiplexMenu::MultiplexMenuPage*
+    parameters:
+      - name: page_name
+        type: std::string
+        default_argument: '"[unset-page_name]"'
+    body: |
+      std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage>::iterator it;
+      it = page_dictionary.find(page_name);
+      if (it != page_dictionary.end())
+      return &it->second;
 
 
 dependencies:
@@ -13,5 +79,9 @@ dependencies:
 
   - symbol: std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage>
     headers: [ map, Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage*
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
 
 
