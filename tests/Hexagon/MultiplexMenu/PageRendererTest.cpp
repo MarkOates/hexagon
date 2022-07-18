@@ -83,6 +83,7 @@ TEST_F(Hexagon_MultiplexMenu_PageRendererTestWithAllegroRenderingFixture, render
    al_flip_display();
    sleep(1);
 
+   delete page;
    al_uninstall_keyboard();
    SUCCEED();
 }

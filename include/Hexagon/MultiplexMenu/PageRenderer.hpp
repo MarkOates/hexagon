@@ -16,11 +16,9 @@ namespace Hexagon
       private:
          AllegroFlare::FontBin* font_bin;
          Hexagon::MultiplexMenu::MultiplexMenuPage* page;
-         float width;
-         float height;
 
       public:
-         PageRenderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::MultiplexMenu::MultiplexMenuPage* page=nullptr, float width=1, float height=1);
+         PageRenderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::MultiplexMenu::MultiplexMenuPage* page=nullptr);
          ~PageRenderer();
 
          void render();

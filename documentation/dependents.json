@@ -373,7 +373,6 @@
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
     "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/OneLineInputBox/Stage",
@@ -651,7 +650,6 @@
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
     "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/Powerbar/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
@@ -894,7 +892,6 @@
     "Hexagon/Hud",
     "Hexagon/MissingFile/Stage",
     "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/UI/DrawingBox"
   ],
@@ -1310,12 +1307,10 @@
   ],
   "Blast/StringJoiner": [
     "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/UI/DrawingBox"
   ],
   "al_keycode_to_name": [
-    "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer"
+    "Hexagon/MultiplexMenu/PageRenderer"
   ],
   "AllegroFlare/color": [
     "Hexagon/MultiplexMenu/PageRenderer",
@@ -1325,6 +1320,9 @@
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage"
+  ],
+  "Hexagon/MultiplexMenu/PageRenderer": [
+    "Hexagon/MultiplexMenu/Renderer"
   ],
   "Hexagon/MultiplexMenu/Renderer": [
     "Hexagon/MultiplexMenu/Stage"

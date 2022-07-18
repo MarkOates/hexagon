@@ -6549,14 +6549,6 @@ table td
   <td class="property">page</td>
   <td class="property">Hexagon::MultiplexMenu::MultiplexMenuPage*</td>
 </tr>
-<tr>
-  <td class="property">width</td>
-  <td class="property">float</td>
-</tr>
-<tr>
-  <td class="property">height</td>
-  <td class="property">float</td>
-</tr>
     </table>
      <table>
 <tr>
@@ -6624,22 +6616,7 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="private_method">render_page()</td>
-</tr>
-<tr>
-  <td class="private_method">render_menu_page(1)</td>
-</tr>
-<tr>
-  <td class="private_method">render_menu_item(6)</td>
-</tr>
-<tr>
-  <td class="method">convert_key_input_to_string(5)</td>
-</tr>
-<tr>
-  <td class="private_method">obtain_font()</td>
-</tr>
-<tr>
-  <td class="private_method">obtain_keyboard_key_font()</td>
+  <td class="private_method">render_page(1)</td>
 </tr>
     </table>
      <table>
@@ -6647,31 +6624,19 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenu*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenu.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringJoiner&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringJoiner.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_keycode_to_name&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::PageRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/PageRenderer.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::color&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Color.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_color_name&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_color.h&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_draw_text&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_draw_filled_rectangle&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_primitives.h&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -11180,7 +11145,6 @@ table td
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
     "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/OneLineInputBox/Stage",
@@ -11458,7 +11422,6 @@ table td
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
     "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/Powerbar/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
@@ -11701,7 +11664,6 @@ table td
     "Hexagon/Hud",
     "Hexagon/MissingFile/Stage",
     "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/UI/DrawingBox"
   ],
@@ -12117,12 +12079,10 @@ table td
   ],
   "Blast/StringJoiner": [
     "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/UI/DrawingBox"
   ],
   "al_keycode_to_name": [
-    "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer"
+    "Hexagon/MultiplexMenu/PageRenderer"
   ],
   "AllegroFlare/color": [
     "Hexagon/MultiplexMenu/PageRenderer",
@@ -12132,6 +12092,9 @@ table td
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage"
+  ],
+  "Hexagon/MultiplexMenu/PageRenderer": [
+    "Hexagon/MultiplexMenu/Renderer"
   ],
   "Hexagon/MultiplexMenu/Renderer": [
     "Hexagon/MultiplexMenu/Stage"

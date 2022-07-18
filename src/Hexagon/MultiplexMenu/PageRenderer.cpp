@@ -23,11 +23,9 @@ namespace MultiplexMenu
 {
 
 
-PageRenderer::PageRenderer(AllegroFlare::FontBin* font_bin, Hexagon::MultiplexMenu::MultiplexMenuPage* page, float width, float height)
+PageRenderer::PageRenderer(AllegroFlare::FontBin* font_bin, Hexagon::MultiplexMenu::MultiplexMenuPage* page)
    : font_bin(font_bin)
    , page(page)
-   , width(width)
-   , height(height)
 {
 }
 
