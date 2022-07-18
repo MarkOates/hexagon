@@ -26,19 +26,13 @@ functions:
 
 
   - name: render
-    guards: [ al_is_system_installed(), al_is_font_addon_initialized() ]
-    body: |
-      render_page();
-
-
-  - name: render_page
     private: true
-    type: void
+    guards: [ al_is_system_installed(), al_is_font_addon_initialized(), font_bin, page ]
     body: |
       float spacing_y = 66;
 
       //std::map<std::tuple<int, bool, bool, bool, bool>, std::vector<std::string>> mapping;
-      std::vector<std::tuple<int, bool, bool, bool, bool>>;
+      //std::vector<std::tuple<int, bool, bool, bool, bool>>;
       //std key;
 
       std::string input = convert_key_input_to_string(ALLEGRO_KEY_B, false, false, false, false);

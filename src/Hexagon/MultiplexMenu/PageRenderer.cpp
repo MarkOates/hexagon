@@ -51,15 +51,22 @@ void PageRenderer::render()
          error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
          throw std::runtime_error(error_message.str());
       }
-   render_page();
-}
-
-void PageRenderer::render_page()
-{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   if (!(page))
+      {
+         std::stringstream error_message;
+         error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"page\" not met";
+         throw std::runtime_error(error_message.str());
+      }
    float spacing_y = 66;
 
    //std::map<std::tuple<int, bool, bool, bool, bool>, std::vector<std::string>> mapping;
-   std::vector<std::tuple<int, bool, bool, bool, bool>>;
+   //std::vector<std::tuple<int, bool, bool, bool, bool>>;
    //std key;
 
    std::string input = convert_key_input_to_string(ALLEGRO_KEY_B, false, false, false, false);
