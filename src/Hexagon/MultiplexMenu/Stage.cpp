@@ -15,10 +15,10 @@ namespace MultiplexMenu
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage, Hexagon::MultiplexMenu::MultiplexMenu menu)
+Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage_to_send_messages_to, Hexagon::MultiplexMenu::MultiplexMenu menu)
    : StageInterface(StageInterface::MULTIPLEX_MENU)
    , font_bin(font_bin)
-   , stage(stage)
+   , stage_to_send_messages_to(stage_to_send_messages_to)
    , menu(menu)
 {
 }
@@ -49,13 +49,13 @@ void Stage::render()
 
 void Stage::send_message_to_stage(std::string message)
 {
-   if (!(stage))
+   if (!(stage_to_send_messages_to))
       {
          std::stringstream error_message;
-         error_message << "Stage" << "::" << "send_message_to_stage" << ": error: " << "guard \"stage\" not met";
+         error_message << "Stage" << "::" << "send_message_to_stage" << ": error: " << "guard \"stage_to_send_messages_to\" not met";
          throw std::runtime_error(error_message.str());
       }
-   stage->process_local_event(message);
+   stage_to_send_messages_to->process_local_event(message);
    return;
 }
 

@@ -14,7 +14,7 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
-  - name: stage
+  - name: stage_to_send_messages_to
     type: StageInterface*
     init_with: nullptr
     constructor_arg: true
@@ -56,9 +56,9 @@ functions:
       - name: message
         type: std::string
         default_argument: '"[message-identifier-set]"'
-    guards: [ stage ]
+    guards: [ stage_to_send_messages_to ]
     body: |
-      stage->process_local_event(message);
+      stage_to_send_messages_to->process_local_event(message);
       return;
 
 
