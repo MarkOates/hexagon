@@ -13,6 +13,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 
 
 namespace Hexagon
@@ -72,9 +74,10 @@ void Renderer::render_menu_item(float x, float y, std::string input, std::string
    float text_opacity = 0.95f;
    ALLEGRO_COLOR text_color = AllegroFlare::color::color(al_color_name("white"), text_opacity);
    ALLEGRO_FONT *font = obtain_font();
+   ALLEGRO_FONT *keyboard_key_font = obtain_keyboard_key_font();
    float padding_x = 20;
    float padding_y = 12;
-   float input_text_length = al_get_text_width(font, input.c_str());
+   float input_text_length = al_get_text_width(keyboard_key_font, input.c_str());
    float label_text_length = al_get_text_width(font, label.c_str());
    float roundness = 6.0;
    float height = al_get_font_line_height(font) + padding_y * 2;
@@ -83,7 +86,10 @@ void Renderer::render_menu_item(float x, float y, std::string input, std::string
 
    if (opens_menu) label = "= " + label;
 
+   // draw the surrounding box
    al_draw_filled_rounded_rectangle(x, y, x+width, y+height, roundness, roundness, backfill_color);
+
+   // draw the input key
    al_draw_filled_rounded_rectangle(
       x+10,
       y+10,
@@ -93,8 +99,12 @@ void Renderer::render_menu_item(float x, float y, std::string input, std::string
       roundness,
       input_backfill_color
    );
-   al_draw_text(font, text_color, x+padding_x, y+padding_y, ALLEGRO_ALIGN_LEFT, input.c_str());
+   al_draw_text(keyboard_key_font, text_color, x+padding_x, y+padding_y+5, ALLEGRO_ALIGN_LEFT, input.c_str());
+
+   // draw the label text
    al_draw_text(font, text_color, x+padding_x + input_text_length + 20, y+padding_y, ALLEGRO_ALIGN_LEFT, label.c_str());
+
+   // draw the border
    al_draw_rounded_rectangle(
       x+frame_thickness*2,
       y+frame_thickness*2,
@@ -145,6 +155,17 @@ ALLEGRO_FONT* Renderer::obtain_font()
          throw std::runtime_error(error_message.str());
       }
    return font_bin->auto_get("Purista Medium.otf -38");
+}
+
+ALLEGRO_FONT* Renderer::obtain_keyboard_key_font()
+{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "obtain_keyboard_key_font" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return font_bin->auto_get("consolas.ttf -30");
 }
 } // namespace MultiplexMenu
 } // namespace Hexagon

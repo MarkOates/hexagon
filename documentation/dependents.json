@@ -1296,6 +1296,9 @@
   "std/map<std/string, Hexagon/MultiplexMenu/MultiplexMenuPage>": [
     "Hexagon/MultiplexMenu/MultiplexMenu"
   ],
+  "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
+    "Hexagon/MultiplexMenu/MultiplexMenuPage"
+  ],
   "Blast/StringJoiner": [
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/UI/DrawingBox"
