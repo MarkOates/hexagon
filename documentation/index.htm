@@ -6486,12 +6486,15 @@ table td
 </tr>
 <tr>
   <td class="property">page_history</td>
-  <td class="property">std::vector&lt;std::string&gt;</td>
+  <td class="property">std::vector&lt;Hexagon::MultiplexMenu::MultiplexMenuPage*&gt;</td>
 </tr>
     </table>
      <table>
 <tr>
   <td class="method">set_page_dictionary(1)</td>
+</tr>
+<tr>
+  <td class="method">get_num_pages()</td>
 </tr>
 <tr>
   <td class="method">clear_history()</td>
@@ -6509,6 +6512,9 @@ table td
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::map&lt;std::string, Hexagon::MultiplexMenu::MultiplexMenuPage&gt;&quot;, &quot;headers&quot;=&gt;[&quot;map&quot;, &quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::MultiplexMenu::MultiplexMenuPage*&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
@@ -6610,10 +6616,17 @@ table td
   <td class="property">multiplex_menu</td>
   <td class="property">Hexagon::MultiplexMenu::MultiplexMenu*</td>
 </tr>
+<tr>
+  <td class="property">page_width</td>
+  <td class="property">float</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="method">get_width()</td>
 </tr>
 <tr>
   <td class="private_method">render_page(1)</td>
@@ -6637,6 +6650,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement3d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement3d.h&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -11273,6 +11289,7 @@ table td
     "Hexagon/Hud",
     "Hexagon/LayoutPlacements",
     "Hexagon/LayoutToStagesCreator",
+    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
     "Hexagon/ProjectNavigator",
@@ -12066,6 +12083,9 @@ table td
     "Hexagon/MissingFile/Stage"
   ],
   "std/map<std/string, Hexagon/MultiplexMenu/MultiplexMenuPage>": [
+    "Hexagon/MultiplexMenu/MultiplexMenu"
+  ],
+  "std/vector<Hexagon/MultiplexMenu/MultiplexMenuPage>": [
     "Hexagon/MultiplexMenu/MultiplexMenu"
   ],
   "Hexagon/MultiplexMenu/MultiplexMenuPage": [

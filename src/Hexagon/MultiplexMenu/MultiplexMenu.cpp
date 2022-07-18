@@ -12,7 +12,7 @@ namespace MultiplexMenu
 
 MultiplexMenu::MultiplexMenu(std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> page_dictionary)
    : page_dictionary(page_dictionary)
-   , page_history({"start"})
+   , page_history({})
 {
 }
 
@@ -28,7 +28,7 @@ std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> MultiplexMenu::
 }
 
 
-std::vector<std::string> MultiplexMenu::get_page_history()
+std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*> MultiplexMenu::get_page_history()
 {
    return page_history;
 }
@@ -41,6 +41,11 @@ void MultiplexMenu::set_page_dictionary(std::map<std::string, Hexagon::Multiplex
    return;
 }
 
+int MultiplexMenu::get_num_pages()
+{
+   return page_history.size();
+}
+
 void MultiplexMenu::clear_history()
 {
    page_history.clear();
@@ -50,12 +55,12 @@ void MultiplexMenu::clear_history()
 Hexagon::MultiplexMenu::MultiplexMenuPage* MultiplexMenu::current_page()
 {
    if (page_history.empty()) return nullptr;
-   return find_page_by_name(page_history.back());
+   return page_history.back();
 }
 
 void MultiplexMenu::open_page(std::string page_name)
 {
-   page_history.push_back(page_name);
+   page_history.push_back(find_page_by_name(page_name));
    return;
      
 }

@@ -18,27 +18,38 @@ class Hexagon_MultiplexMenu_RendererTest : public ::testing::Test
 class Hexagon_MultiplexMenu_RendererTestWithAllegroRenderingFixture : public Testing::WithAllegroRenderingFixture
 {
 protected:
-   Hexagon::MultiplexMenu::MultiplexMenuPage* create_menu_page_a()
+   Hexagon::MultiplexMenu::MultiplexMenuPage build_menu_page_a()
    {
       //convert_key_input_to_string(ALLEGRO_KEY_B, false, false, false, false);
 
-      return new Hexagon::MultiplexMenu::MultiplexMenuPage({
+      return Hexagon::MultiplexMenu::MultiplexMenuPage({
          Hexagon::MultiplexMenu::MenuItem("Shift+A", "Do thing"),
          Hexagon::MultiplexMenu::MenuItem("B", "Do other thing"),
          Hexagon::MultiplexMenu::MenuItem("N", "Some thing"),
       });
    }
-   Hexagon::MultiplexMenu::MultiplexMenuPage* create_menu_page_b()
+   Hexagon::MultiplexMenu::MultiplexMenuPage build_menu_page_b()
    {
-      return new Hexagon::MultiplexMenu::MultiplexMenuPage({
+      return Hexagon::MultiplexMenu::MultiplexMenuPage({
          Hexagon::MultiplexMenu::MenuItem("R", "Do R thing"),
          Hexagon::MultiplexMenu::MenuItem("N", "Other thing executes"),
          Hexagon::MultiplexMenu::MenuItem("X", "Some other thing"),
       });
    }
+   std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> build_dictionary_a()
+   {
+      return {
+         { "page_a", build_menu_page_a() },
+         { "page_b", build_menu_page_b() },
+      };
+   }
    Hexagon::MultiplexMenu::MultiplexMenu* create_multiplex_menu_a()
    {
-      return new Hexagon::MultiplexMenu::MultiplexMenu;
+      Hexagon::MultiplexMenu::MultiplexMenu* result;
+      result = new Hexagon::MultiplexMenu::MultiplexMenu(build_dictionary_a());
+      result->open_page("page_a");
+      result->open_page("page_b");
+      return result;
    }
 };
 

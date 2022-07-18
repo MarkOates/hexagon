@@ -9,8 +9,8 @@ properties:
     getter: true
 
   - name: page_history
-    type: std::vector<std::string>
-    init_with: '{"start"}'
+    type: std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*>
+    init_with: '{}'
     getter: true
 
 
@@ -28,6 +28,12 @@ functions:
       return;
 
 
+  - name: get_num_pages
+    type: int
+    body: |
+      return page_history.size();
+
+
   - name: clear_history
     body: |
       page_history.clear();
@@ -38,7 +44,7 @@ functions:
     type: Hexagon::MultiplexMenu::MultiplexMenuPage*
     body: |
       if (page_history.empty()) return nullptr;
-      return find_page_by_name(page_history.back());
+      return page_history.back();
 
 
   - name: open_page
@@ -47,7 +53,7 @@ functions:
         type: std::string
         default_argument: '"[unset-page_name]"'
     body: |
-      page_history.push_back(page_name);
+      page_history.push_back(find_page_by_name(page_name));
       return;
         
 
@@ -69,6 +75,8 @@ dependencies:
 
   - symbol: std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage>
     headers: [ map, Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
+  - symbol: std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*>
+    headers: [ vector, Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
   - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage
     headers: [ Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
   - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage*

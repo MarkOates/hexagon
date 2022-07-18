@@ -15,15 +15,16 @@ namespace Hexagon
       {
       private:
          std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> page_dictionary;
-         std::vector<std::string> page_history;
+         std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*> page_history;
 
       public:
          MultiplexMenu(std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> page_dictionary={});
          ~MultiplexMenu();
 
          std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> get_page_dictionary();
-         std::vector<std::string> get_page_history();
+         std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*> get_page_history();
          void set_page_dictionary(std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> page_dictionary={});
+         int get_num_pages();
          void clear_history();
          Hexagon::MultiplexMenu::MultiplexMenuPage* current_page();
          void open_page(std::string page_name="[unset-page_name]");

@@ -11,6 +11,11 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
+  - name: page_width
+    type: float
+    init_with: 400
+    constructor_arg: true
+
 
 functions:
 
@@ -18,8 +23,24 @@ functions:
   - name: render
     guards: [ multiplex_menu ]
     body: |
-      //Hexagon::MultiplexMenu::MultiplexMenuPage
-      render_page();
+      placement3d place;
+      for (auto &page : multiplex_menu->get_page_history())
+      {
+         place.start_transform();
+         render_page(page);
+         place.restore_transform();
+         place.position.x += page_width;
+      }
+      return;
+    body_dependency_symbols:
+      - placement3d
+
+
+  - name: get_width
+    type: float
+    body: |
+      if (!multiplex_menu) return 0;
+      return page_width * multiplex_menu->get_num_pages();
 
 
   - name: render_page
@@ -29,8 +50,11 @@ functions:
         type: Hexagon::MultiplexMenu::MultiplexMenuPage*
         default_argument: nullptr
     body: |
-      //Hexagon::MultiplexMenu::MultiplexMenuPage
+      Hexagon::MultiplexMenu::PageRenderer page_renderer(font_bin, page);
+      page_renderer.render();
       return;
+    body_dependency_symbols:
+      - Hexagon::MultiplexMenu::PageRenderer
 
 
 dependencies:
@@ -48,5 +72,7 @@ dependencies:
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
 
 

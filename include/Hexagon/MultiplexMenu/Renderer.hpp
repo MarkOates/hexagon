@@ -15,12 +15,14 @@ namespace Hexagon
       private:
          AllegroFlare::FontBin* font_bin;
          Hexagon::MultiplexMenu::MultiplexMenu* multiplex_menu;
+         float page_width;
 
       public:
-         Renderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::MultiplexMenu::MultiplexMenu* multiplex_menu=nullptr);
+         Renderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::MultiplexMenu::MultiplexMenu* multiplex_menu=nullptr, float page_width=400);
          ~Renderer();
 
          void render();
+         float get_width();
          void render_page(Hexagon::MultiplexMenu::MultiplexMenuPage* page=nullptr);
       };
    }
