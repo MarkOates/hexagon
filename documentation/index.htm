@@ -151,6 +151,7 @@ table td
   <li><a href="#quintessence/Hexagon/MultiplexMenu/MenuItem.q.yml">quintessence/Hexagon/MultiplexMenu/MenuItem.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/MultiplexMenuPage.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenuPage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/MultiplexMenu/PageRenderer.q.yml">quintessence/Hexagon/MultiplexMenu/PageRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/Renderer.q.yml">quintessence/Hexagon/MultiplexMenu/Renderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/Stage.q.yml">quintessence/Hexagon/MultiplexMenu/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/NewComponentMaker/NewComponentMaker.q.yml">quintessence/Hexagon/NewComponentMaker/NewComponentMaker.q.yml</a></li>
@@ -6538,6 +6539,78 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/MultiplexMenu/PageRenderer.q.yml">quintessence/Hexagon/MultiplexMenu/PageRenderer.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
+  <td class="property">page</td>
+  <td class="property">Hexagon::MultiplexMenu::MultiplexMenuPage*</td>
+</tr>
+<tr>
+  <td class="property">width</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">height</td>
+  <td class="property">float</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="private_method">render_page()</td>
+</tr>
+<tr>
+  <td class="private_method">render_menu_item(6)</td>
+</tr>
+<tr>
+  <td class="method">convert_key_input_to_string(5)</td>
+</tr>
+<tr>
+  <td class="private_method">obtain_font()</td>
+</tr>
+<tr>
+  <td class="private_method">obtain_keyboard_key_font()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenu.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringJoiner&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringJoiner.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_keycode_to_name&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::color&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Color.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_color_name&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_color.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_draw_text&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_draw_filled_rectangle&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_primitives.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/MultiplexMenu/Renderer.q.yml">quintessence/Hexagon/MultiplexMenu/Renderer.q.yml</h3>
      <table>
 <tr>
@@ -11109,6 +11182,7 @@ table td
     "Hexagon/Hud",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/OneLineInputBox/Renderer",
@@ -11268,6 +11342,7 @@ table td
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
@@ -11385,6 +11460,7 @@ table td
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/Powerbar/Renderer",
@@ -11494,6 +11570,7 @@ table td
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Elements/TextGrid",
     "Hexagon/Fancy/Stage",
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/ProjectNavigator",
@@ -11626,6 +11703,7 @@ table td
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/UI/DrawingBox"
@@ -12034,25 +12112,29 @@ table td
   "Hexagon/MultiplexMenu/MultiplexMenuPage": [
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/MultiplexMenu",
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer"
   ],
   "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage"
   ],
-  "Hexagon/MultiplexMenu/MultiplexMenu": [
-    "Hexagon/MultiplexMenu/Renderer",
-    "Hexagon/MultiplexMenu/Stage",
-    "Hexagon/MultiplexMenu/Stage"
-  ],
   "Blast/StringJoiner": [
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/UI/DrawingBox"
   ],
   "al_keycode_to_name": [
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer"
   ],
   "AllegroFlare/color": [
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer"
+  ],
+  "Hexagon/MultiplexMenu/MultiplexMenu": [
+    "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/MultiplexMenu/Stage"
   ],
   "Hexagon/MultiplexMenu/Renderer": [
     "Hexagon/MultiplexMenu/Stage"

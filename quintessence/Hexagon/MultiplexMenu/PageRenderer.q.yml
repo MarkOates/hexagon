@@ -6,9 +6,19 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
-  - name: multiplex_menu
-    type: Hexagon::MultiplexMenu::MultiplexMenu*
+  - name: page
+    type: Hexagon::MultiplexMenu::MultiplexMenuPage*
     init_with: nullptr
+    constructor_arg: true
+
+  - name: width
+    type: float
+    init_with: 1
+    constructor_arg: true
+
+  - name: height
+    type: float
+    init_with: 1
     constructor_arg: true
 
 
@@ -43,16 +53,6 @@ functions:
       label = "Close Multiplex Menu";
       render_menu_item(0, 0+spacing_y*2, input, label, false);
 
-      return;
-
-
-  - name: render_menu_page
-    private: true
-    parameters:
-      - name: menu_page
-        type: Hexagon::MultiplexMenu::MultiplexMenuPage
-        default_argument: '{}'
-    body: |
       return;
 
 
@@ -196,10 +196,8 @@ functions:
 dependencies:
 
 
-  - symbol: Hexagon::MultiplexMenu::MultiplexMenu*
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage*
     headers: [ Hexagon/MultiplexMenu/MultiplexMenu.hpp ]
-  - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage
-    headers: [ Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
   - symbol: Blast::StringJoiner
     headers: [ Blast/StringJoiner.hpp ]
   - symbol: al_keycode_to_name
