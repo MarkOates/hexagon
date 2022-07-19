@@ -429,6 +429,12 @@ StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCode
    Hexagon::MultiplexMenu::MultiplexMenuPage start_page(
    {
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_D}, "Delete >", "open_page:page_delete" ),
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_C}, "Change >", "open_page:page_change" ),
+   });
+
+   Hexagon::MultiplexMenu::MultiplexMenuPage page_change(
+   {
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around >", "open_page:page_change_around" ),
    });
 
    Hexagon::MultiplexMenu::MultiplexMenuPage page_delete(
@@ -441,11 +447,19 @@ StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCode
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "Word", "delete_word_under_cursor" ),
    });
 
+   Hexagon::MultiplexMenu::MultiplexMenuPage page_change_around(
+   {
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "Word", "change_word_under_cursor" ),
+   });
+
    std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> dictionary =
    {
       { "start", start_page },
       { "page_delete", page_delete },
       { "page_delete_around", page_delete_around },
+
+      { "page_change", page_change },
+      { "page_change_around", page_change_around },
    };
 
    Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu(dictionary);
