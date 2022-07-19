@@ -443,6 +443,13 @@ bool Stage::cursor_move_to_start_of_line()
    return result;
 }
 
+bool Stage::cursor_move_to_start_of_file()
+{
+   bool result = advanced_code_editor.cursor_move_to_start_of_file();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   return result;
+}
+
 bool Stage::cursor_move_to_first_non_whitespace_character()
 {
    bool result = advanced_code_editor.cursor_move_to_first_non_whitespace_character();
@@ -966,6 +973,7 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "set_to_edit_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
       { "set_to_insert_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
       { "cursor_move_to_start_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_start_of_line },
+      { "cursor_move_to_start_of_file", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_start_of_file },
       { "cursor_move_to_end_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_end_of_line },
       { "cursor_move_to_first_non_whitespace_character",
          &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_first_non_whitespace_character },

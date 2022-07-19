@@ -463,6 +463,9 @@ table td
   <td class="method">cursor_move_to_start_of_line()</td>
 </tr>
 <tr>
+  <td class="method">cursor_move_to_start_of_file()</td>
+</tr>
+<tr>
   <td class="method">cursor_move_to_end_of_line()</td>
 </tr>
 <tr>
@@ -1072,6 +1075,9 @@ table td
 </tr>
 <tr>
   <td class="method">cursor_move_to_start_of_line()</td>
+</tr>
+<tr>
+  <td class="method">cursor_move_to_start_of_file()</td>
 </tr>
 <tr>
   <td class="method">cursor_move_to_first_non_whitespace_character()</td>
@@ -6505,7 +6511,7 @@ table td
 </tr>
 <tr>
   <td class="property">value</td>
-  <td class="property">std::string</td>
+  <td class="property">std::vector&lt;std::string&gt;</td>
 </tr>
     </table>
      <table>
@@ -9316,6 +9322,12 @@ table td
   <td class="method">create_delete_multiplex_menu(2)</td>
 </tr>
 <tr>
+  <td class="method">create_change_multiplex_menu(2)</td>
+</tr>
+<tr>
+  <td class="method">create_goto_multiplex_menu(2)</td>
+</tr>
+<tr>
   <td class="method">create_regex_input_box_modal()</td>
 </tr>
 <tr>
@@ -9348,6 +9360,9 @@ table td
 <tr>
   <td class="private_method">build_regex_input_box_initial_place()</td>
 </tr>
+<tr>
+  <td class="method">build_full_multiplex_menu()</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -9358,6 +9373,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenu&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenu.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
@@ -12222,7 +12240,8 @@ table td
   "Hexagon/MultiplexMenu/MultiplexMenu": [
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Stage",
-    "Hexagon/MultiplexMenu/Stage"
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/StageFactory"
   ],
   "Hexagon/MultiplexMenu/PageRenderer": [
     "Hexagon/MultiplexMenu/Renderer"

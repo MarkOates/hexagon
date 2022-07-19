@@ -281,6 +281,14 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          ::System::SPAWN_MULTIPLEX_DELETE_MENU,
          &System::spawn_multiplex_delete_menu,
       },
+      {
+         ::System::SPAWN_MULTIPLEX_CHANGE_MENU,
+         &System::spawn_multiplex_change_menu,
+      },
+      {
+         ::System::SPAWN_MULTIPLEX_GOTO_MENU,
+         &System::spawn_multiplex_goto_menu,
+      },
    };
    return default_function_mapping;
 }
@@ -432,6 +440,10 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
       {
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_D, false, false, false, false, {
             ::System::SPAWN_MULTIPLEX_DELETE_MENU });
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_C, false, false, false, false, {
+            ::System::SPAWN_MULTIPLEX_CHANGE_MENU });
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_G, false, false, false, false, {
+            ::System::SPAWN_MULTIPLEX_GOTO_MENU });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_8, true, false, false, false, {
             ::System::SET_REGEX_TEMP_FILE_CONTENTS_TO_WORD_UNDER_CURRENT_ADVANCED_CODE_EDITOR_CURSOR,
             ::System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS,

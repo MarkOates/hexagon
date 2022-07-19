@@ -1338,7 +1338,8 @@
   "Hexagon/MultiplexMenu/MultiplexMenu": [
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Stage",
-    "Hexagon/MultiplexMenu/Stage"
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/StageFactory"
   ],
   "Hexagon/MultiplexMenu/PageRenderer": [
     "Hexagon/MultiplexMenu/Renderer"

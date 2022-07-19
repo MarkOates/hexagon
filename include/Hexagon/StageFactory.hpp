@@ -3,6 +3,7 @@
 
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
+#include <Hexagon/MultiplexMenu/MultiplexMenu.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/System.hpp>
@@ -49,6 +50,8 @@ namespace Hexagon
       StageInterface* create_advanced_code_editor(std::string filename="untitled.txt", int num_columns=123, int num_rows=70);
       StageInterface* create_code_editor(std::string filename="", std::string file_category="undefined");
       StageInterface* create_delete_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage=nullptr, Hexagon::System::System* system=nullptr);
+      StageInterface* create_change_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage=nullptr, Hexagon::System::System* system=nullptr);
+      StageInterface* create_goto_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage=nullptr, Hexagon::System::System* system=nullptr);
       StageInterface* create_regex_input_box_modal();
       StageInterface* create_git_commit_message_box();
       StageInterface* create_advanced_component_navigator(std::string project_directory="/Users/markoates/Repos/hexagon/");
@@ -60,6 +63,7 @@ namespace Hexagon
       placement3d build_multiplex_menu_initial_place();
       placement3d build_git_commit_message_input_box_initial_place();
       placement3d build_regex_input_box_initial_place();
+      Hexagon::MultiplexMenu::MultiplexMenu build_full_multiplex_menu();
    };
 }
 

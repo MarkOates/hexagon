@@ -16,8 +16,8 @@ properties:
     setter: true
 
   - name: value
-    type: std::string
-    init_with: '"[menu-item-value-not-set]"'
+    type: std::vector<std::string>
+    init_with: '{ "[menu-item-value-not-set]" }'
     constructor_arg: true
     getter: true
     setter: false

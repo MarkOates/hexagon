@@ -106,18 +106,28 @@ void Stage::process_event(ALLEGRO_EVENT& event)
       
       if (menu_item_matching_key)
       {
-         std::string command = menu_item_matching_key->get_value();
-         std::cout << "Found key combo on current page of multiplex menu. The command is \""
-                   << command << "\"" << std::endl;
-         //bool value_opens_another_page = false; // TODO evaluate this command
-         if (infer_menu_item_value_is_instruction_to_open_page(command))
+         bool commands_executed_and_assuming_close_menu = false;
+
+         for (auto &command : menu_item_matching_key->get_value())
          {
-            std::string page_name_to_open = extract_menu_item_value_page_name_to_open(command);
-            multiplex_menu.open_page(page_name_to_open);
+            //std::string command = menu_item_matching_key->get_value();
+            std::cout << "Found key combo on current page of multiplex menu. The command is \""
+                      << command << "\"" << std::endl;
+            //bool value_opens_another_page = false; // TODO evaluate this command
+            if (infer_menu_item_value_is_instruction_to_open_page(command))
+            {
+               std::string page_name_to_open = extract_menu_item_value_page_name_to_open(command);
+               multiplex_menu.open_page(page_name_to_open);
+            }
+            else
+            {
+               send_message_to_stage(command);
+               commands_executed_and_assuming_close_menu = true;
+            }
          }
-         else
+
+         if (commands_executed_and_assuming_close_menu)
          {
-            send_message_to_stage(command);
             std::cout << "Notice: MultiplexMenu/Stage is about to notify the system that it should close the "
                       << "multiplex menu.  The way this is designed, I'm surprised it won't crash.  Keep an "
                       << "eye on it." << std::endl;

@@ -1122,11 +1122,42 @@ bool System::set_regex_input_box_modal_to_insert_mode()
 bool System::spawn_multiplex_delete_menu()
 {
    // TODO
-   Hexagon::AdvancedCodeEditor::Stage *frontmost_advanced_code_editor_stage = get_frontmost_advanced_code_editor_stage();
+   Hexagon::AdvancedCodeEditor::Stage *frontmost_advanced_code_editor_stage =
+      get_frontmost_advanced_code_editor_stage();
    if (!frontmost_advanced_code_editor_stage) return false;
 
    ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
    StageInterface *stage = stage_factory.create_delete_multiplex_menu(frontmost_advanced_code_editor_stage, this);
+
+   stages.push_back(stage);
+
+   return true;
+}
+
+
+bool System::spawn_multiplex_change_menu()
+{
+   Hexagon::AdvancedCodeEditor::Stage *frontmost_advanced_code_editor_stage =
+      get_frontmost_advanced_code_editor_stage();
+   if (!frontmost_advanced_code_editor_stage) return false;
+
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
+   StageInterface *stage = stage_factory.create_change_multiplex_menu(frontmost_advanced_code_editor_stage, this);
+
+   stages.push_back(stage);
+
+   return true;
+}
+
+
+bool System::spawn_multiplex_goto_menu()
+{
+   Hexagon::AdvancedCodeEditor::Stage *frontmost_advanced_code_editor_stage =
+      get_frontmost_advanced_code_editor_stage();
+   if (!frontmost_advanced_code_editor_stage) return false;
+
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
+   StageInterface *stage = stage_factory.create_goto_multiplex_menu(frontmost_advanced_code_editor_stage, this);
 
    stages.push_back(stage);
 
@@ -2012,6 +2043,8 @@ const std::string System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK 
    "SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK";
 const std::string System::SEND_MESSAGE_TO_DAEMUS_TO_BUILD = "SEND_MESSAGE_TO_DAEMUS_TO_BUILD";
 const std::string System::SPAWN_MULTIPLEX_DELETE_MENU = "SPAWN_MULTIPLEX_DELETE_MENU";
+const std::string System::SPAWN_MULTIPLEX_CHANGE_MENU = "SPAWN_MULTIPLEX_CHANGE_MENU";
+const std::string System::SPAWN_MULTIPLEX_GOTO_MENU = "SPAWN_MULTIPLEX_GOTO_MENU";
 const std::string System::SPAWN_FANCY = "SPAWN_FANCY";
 const std::string System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR = "SPAWN_COMPONENT_RELATIONS_NAVIGATOR";
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";

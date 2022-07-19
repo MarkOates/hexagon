@@ -151,6 +151,8 @@ public:
    bool refresh_git_modified_line_numbers_on_all_code_editor_stages();
    bool set_regex_input_box_modal_to_insert_mode();
    bool spawn_multiplex_delete_menu();
+   bool spawn_multiplex_change_menu();
+   bool spawn_multiplex_goto_menu();
    bool spawn_class_brief_menu();
    bool spawn_drawing_box();
    bool spawn_regex_input_box_modal();
@@ -258,6 +260,8 @@ public:
    static const std::string SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK;
    static const std::string SEND_MESSAGE_TO_DAEMUS_TO_BUILD;
    static const std::string SPAWN_MULTIPLEX_DELETE_MENU;
+   static const std::string SPAWN_MULTIPLEX_CHANGE_MENU;
+   static const std::string SPAWN_MULTIPLEX_GOTO_MENU;
    static const std::string SPAWN_FANCY;
    static const std::string SPAWN_COMPONENT_RELATIONS_NAVIGATOR;
    static const std::string SPAWN_COMPONENT_NAVIGATOR;

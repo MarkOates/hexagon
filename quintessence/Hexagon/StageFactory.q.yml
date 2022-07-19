@@ -412,60 +412,77 @@ functions:
         type: Hexagon::System::System*
         default_argument: nullptr
     body: |
-      Hexagon::MultiplexMenu::MultiplexMenuPage start_page(
-      {
-         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_D}, "Delete >", "open_page:page_delete" ),
-         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_C}, "Change >", "open_page:page_change" ),
-      });
-
-      Hexagon::MultiplexMenu::MultiplexMenuPage page_change(
-      {
-         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around >", "open_page:page_change_around" ),
-      });
-
-      Hexagon::MultiplexMenu::MultiplexMenuPage page_delete(
-      {
-         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around >", "open_page:page_delete_around" ),
-         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_D}, "Line", "delete_line" ),
-         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_4, true}, "To end of line", "delete_to_end_of_line" ),
-      });
-
-      Hexagon::MultiplexMenu::MultiplexMenuPage page_delete_around(
-      {
-         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "Word", "delete_word_under_cursor" ),
-      });
-
-      Hexagon::MultiplexMenu::MultiplexMenuPage page_change_around(
-      {
-         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "Word", "change_word_under_cursor" ),
-      });
-
-      std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> dictionary =
-      {
-         { "start", start_page },
-         { "page_delete", page_delete },
-         { "page_delete_around", page_delete_around },
-
-         { "page_change", page_change },
-         { "page_change_around", page_change_around },
-      };
-
-      Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu(dictionary);
-
-      std::string start_page_name = "start";
+      Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu = build_full_multiplex_menu();
 
       Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(
          font_bin,
          advanced_code_editor_stage,
          system,
          delete_multiplex_menu
-         //start_page_name
       );
-
-      // TODO: validate menu commands are valid commands for the advanced_code_editor_stage
 
       stage->open_page("start");
       stage->open_page("page_delete");
+
+      stage->set_place(build_multiplex_menu_initial_place());
+      stage->set_render_on_hud(true);
+      return stage;
+    body_dependency_symbols:
+       - Hexagon::MultiplexMenu::Stage
+       - Hexagon::MultiplexMenu::MultiplexMenuPage
+
+
+  - name: create_change_multiplex_menu
+    type: StageInterface*
+    parameters:
+      - name: advanced_code_editor_stage
+        type: Hexagon::AdvancedCodeEditor::Stage*
+        default_argument: nullptr
+      - name: system
+        type: Hexagon::System::System*
+        default_argument: nullptr
+    body: |
+      Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu = build_full_multiplex_menu();
+
+      Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(
+         font_bin,
+         advanced_code_editor_stage,
+         system,
+         delete_multiplex_menu
+      );
+
+      stage->open_page("start");
+      stage->open_page("page_change");
+
+      stage->set_place(build_multiplex_menu_initial_place());
+      stage->set_render_on_hud(true);
+      return stage;
+    body_dependency_symbols:
+       - Hexagon::MultiplexMenu::Stage
+       - Hexagon::MultiplexMenu::MultiplexMenuPage
+
+
+  - name: create_goto_multiplex_menu
+    type: StageInterface*
+    parameters:
+      - name: advanced_code_editor_stage
+        type: Hexagon::AdvancedCodeEditor::Stage*
+        default_argument: nullptr
+      - name: system
+        type: Hexagon::System::System*
+        default_argument: nullptr
+    body: |
+      Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu = build_full_multiplex_menu();
+
+      Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(
+         font_bin,
+         advanced_code_editor_stage,
+         system,
+         delete_multiplex_menu
+      );
+
+      stage->open_page("start");
+      stage->open_page("page_goto");
 
       stage->set_place(build_multiplex_menu_initial_place());
       stage->set_render_on_hud(true);
@@ -751,6 +768,88 @@ functions:
       return place;
 
 
+  - name: build_full_multiplex_menu
+    type: Hexagon::MultiplexMenu::MultiplexMenu
+    body: |
+      Hexagon::MultiplexMenu::MultiplexMenuPage start_page(
+      {
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_D}, "Delete >", { "open_page:page_delete" } ),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_C}, "Change >", { "open_page:page_change" } ),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_G}, "Go to >", { "open_page:page_goto" } ),
+      });
+
+      Hexagon::MultiplexMenu::MultiplexMenuPage page_change(
+      {
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around >", { "open_page:page_change_around" } ),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_I}, "Inside >", { "open_page:page_change_inside" } ),
+      });
+
+      Hexagon::MultiplexMenu::MultiplexMenuPage page_delete(
+      {
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around >", { "open_page:page_delete_around" } ),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_I}, "Inside >", { "open_page:page_delete_inside" } ),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_D}, "Line", { "delete_line" } ),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_4, true}, "To end of line", { "delete_to_end_of_line" } ),
+      });
+
+      Hexagon::MultiplexMenu::MultiplexMenuPage page_delete_around(
+      {
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "Word", { "delete_word_under_cursor" } ),
+      });
+
+      Hexagon::MultiplexMenu::MultiplexMenuPage page_delete_inside(
+      {
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "Word", { "delete_word_under_cursor" } ),
+      });
+
+      Hexagon::MultiplexMenu::MultiplexMenuPage page_change_around(
+      {
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "Word", {
+               "delete_word_under_cursor",
+               "set_to_insert_mode",
+            }),
+      });
+
+      Hexagon::MultiplexMenu::MultiplexMenuPage page_change_inside(
+      {
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "Word", {
+               "delete_word_under_cursor",
+               "set_to_insert_mode",
+            }),
+      });
+
+      Hexagon::MultiplexMenu::MultiplexMenuPage page_goto(
+      {
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_G}, "Top of file", {
+               "cursor_move_to_start_of_file",
+               "first_row_offset_adjust_so_cursor_is_vertically_centered",
+            }),
+      });
+
+      std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> dictionary =
+      {
+         { "start", start_page },
+
+         { "page_delete", page_delete },
+         { "page_delete_around", page_delete_around },
+         { "page_delete_inside", page_delete_inside },
+
+         { "page_change", page_change },
+         { "page_change_around", page_change_around },
+         { "page_change_inside", page_change_inside },
+
+         { "page_goto", page_goto },
+      };
+
+      // TODO: validate menu commands are valid commands for the advanced_code_editor_stage
+
+      Hexagon::MultiplexMenu::MultiplexMenu full_multiplex_menu(dictionary);
+      return full_multiplex_menu;
+    body_dependency_symbols:
+       - Hexagon::MultiplexMenu::MultiplexMenuPage
+    
+
+
 dependencies:
 
 
@@ -760,6 +859,8 @@ dependencies:
     headers: [ Hexagon/ObjectivesLog/Stage.hpp ]
   - symbol: Hexagon::MultiplexMenu::Stage
     headers: [ Hexagon/MultiplexMenu/Stage.hpp ]
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenu
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenu.hpp ]
   - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage
     headers: [ Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
   - symbol: Blast::StringSplitter
@@ -824,4 +925,5 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: al_font_line_height
     headers: [ allegro5/allegro_font.h ]
+
 

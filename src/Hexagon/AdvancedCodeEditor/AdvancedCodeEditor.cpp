@@ -294,6 +294,13 @@ bool AdvancedCodeEditor::cursor_move_to_start_of_line()
    return true;
 }
 
+bool AdvancedCodeEditor::cursor_move_to_start_of_file()
+{
+   cursor.set_x(0);
+   cursor.set_y(0);
+   return true;
+}
+
 bool AdvancedCodeEditor::cursor_move_to_end_of_line()
 {
    // if not on a valid line

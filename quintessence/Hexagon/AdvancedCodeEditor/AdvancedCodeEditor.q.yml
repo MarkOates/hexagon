@@ -308,6 +308,14 @@ functions:
       return true;
 
 
+  - name: cursor_move_to_start_of_file
+    type: bool
+    body: |
+      cursor.set_x(0);
+      cursor.set_y(0);
+      return true;
+
+
   - name: cursor_move_to_end_of_line
     type: bool
     body: |

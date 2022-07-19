@@ -10,7 +10,7 @@ namespace MultiplexMenu
 {
 
 
-MenuItem::MenuItem(Hexagon::KeyboardCommandKey keyboard_command_key, std::string label, std::string value)
+MenuItem::MenuItem(Hexagon::KeyboardCommandKey keyboard_command_key, std::string label, std::vector<std::string> value)
    : keyboard_command_key(keyboard_command_key)
    , label(label)
    , value(value)
@@ -47,7 +47,7 @@ std::string MenuItem::get_label()
 }
 
 
-std::string MenuItem::get_value()
+std::vector<std::string> MenuItem::get_value()
 {
    return value;
 }
