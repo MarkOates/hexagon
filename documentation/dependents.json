@@ -144,6 +144,7 @@
     "Hexagon/Git/Modified",
     "Hexagon/Git/Staged",
     "Hexagon/Git/Untracked",
+    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/NewComponentMaker/NewComponentMaker",
     "Hexagon/NewComponentMaker/Stage",
     "Hexagon/Rails/ComponentLister",

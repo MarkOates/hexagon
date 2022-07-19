@@ -36,6 +36,8 @@ namespace Hexagon
          void send_message_to_stage(std::string message="[message-identifier-set]");
          virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
          virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
+         bool infer_menu_item_value_is_instruction_to_open_page(std::string menu_item_value="[unset-menu_item_value]");
+         std::string extract_menu_item_value_page_name_to_open(std::string menu_item_value="[unset-menu_item_value]");
          void open_start_page();
          Hexagon::MultiplexMenu::MenuItem* find_menu_item_by_keyboard_command_key_on_current_page(Hexagon::KeyboardCommandKey keyboard_command_key={});
       };

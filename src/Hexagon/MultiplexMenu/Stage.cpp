@@ -4,6 +4,8 @@
 #include <Hexagon/MultiplexMenu/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Blast/StringSplitter.hpp>
+#include <Blast/StringSplitter.hpp>
 #include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
 
 
@@ -119,10 +121,10 @@ void Stage::process_event(ALLEGRO_EVENT& event)
          std::string command = menu_item_matching_key->get_value();
          std::cout << "Found key combo on current page of multiplex menu. The command is \""
                    << command << "\"" << std::endl;
-         bool value_opens_another_page = false; // TODO evaluate this command
-         if (value_opens_another_page)
+         //bool value_opens_another_page = false; // TODO evaluate this command
+         if (infer_menu_item_value_is_instruction_to_open_page(command))
          {
-            std::string page_name_to_open = ""; // TODO fill this logic
+            std::string page_name_to_open = extract_menu_item_value_page_name_to_open(command);
             multiplex_menu.open_page(page_name_to_open);
          }
          else
@@ -134,6 +136,24 @@ void Stage::process_event(ALLEGRO_EVENT& event)
       break;
    }
    return;
+}
+
+bool Stage::infer_menu_item_value_is_instruction_to_open_page(std::string menu_item_value)
+{
+   std::string magic_open_page_header = "open_page";
+   Blast::StringSplitter splitter(menu_item_value, ':');
+   std::vector<std::string> tokens = splitter.split();
+   if (tokens.size() >= 2 && tokens[0] == magic_open_page_header) return true;
+   return false;
+}
+
+std::string Stage::extract_menu_item_value_page_name_to_open(std::string menu_item_value)
+{
+   std::string magic_open_page_header = "open_page";
+   Blast::StringSplitter splitter(menu_item_value, ':');
+   std::vector<std::string> tokens = splitter.split();
+   if (tokens.size() >= 2 && tokens[0] == magic_open_page_header && !tokens[1].empty()) return tokens[1];
+   return "[invalid-value-from-extract_menu_item_value_page_name_to_open]";
 }
 
 void Stage::open_start_page()
