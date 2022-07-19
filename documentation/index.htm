@@ -6717,6 +6717,10 @@ table td
   <td class="property">StageInterface*</td>
 </tr>
 <tr>
+  <td class="property">system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design</td>
+  <td class="property">Hexagon::System::System*</td>
+</tr>
+<tr>
   <td class="property">multiplex_menu</td>
   <td class="property">Hexagon::MultiplexMenu::MultiplexMenu</td>
 </tr>
@@ -6739,6 +6743,9 @@ table td
   <td class="method">process_event(1)</td>
 </tr>
 <tr>
+  <td class="private_method">notify_system_that_its_time_to_close_this_multiplex_menu()</td>
+</tr>
+<tr>
   <td class="private_method">infer_menu_item_value_is_instruction_to_open_page(1)</td>
 </tr>
 <tr>
@@ -6752,6 +6759,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::System*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/System.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::KeyboardCommandKey&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/KeyboardCommandKey.hpp&quot;]}</td>
 </tr>
@@ -9297,7 +9307,7 @@ table td
   <td class="method">create_code_editor(2)</td>
 </tr>
 <tr>
-  <td class="method">create_delete_multiplex_menu(1)</td>
+  <td class="method">create_delete_multiplex_menu(2)</td>
 </tr>
 <tr>
   <td class="method">create_regex_input_box_modal()</td>
@@ -9357,6 +9367,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::Project::Component&quot;, &quot;headers&quot;=&gt;[&quot;Blast/Project/Component.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::System*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/System.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Fancy::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Fancy/Stage.hpp&quot;]}</td>
@@ -10918,6 +10931,8 @@ table td
   ],
   "Hexagon/System/System": [
     "ApplicationController",
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/StageFactory",
     "Hexagon/System/EventController",
     "Hexagon/System/Renderer"
   ],

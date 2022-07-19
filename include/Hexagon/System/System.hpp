@@ -108,6 +108,9 @@ public:
    void acknowledge_display_switch_out(ALLEGRO_DISPLAY *display);
    void acknowledge_display_switch_in(ALLEGRO_DISPLAY *display);
 
+   // internally sent messages
+   void close_topmost_multiplex_menu();
+
    // actions
    bool mark_as_files_changed();
    bool set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction();

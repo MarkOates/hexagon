@@ -424,7 +424,7 @@ StageInterface* StageFactory::create_code_editor(std::string filename, std::stri
    return code_editor_stage;
 }
 
-StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage)
+StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage, Hexagon::System::System* system)
 {
    Hexagon::MultiplexMenu::MultiplexMenuPage start_page(
    {
@@ -469,6 +469,7 @@ StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCode
    Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(
       font_bin,
       advanced_code_editor_stage,
+      system,
       delete_multiplex_menu
       //start_page_name
    );

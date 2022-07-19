@@ -19,6 +19,11 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
+  - name: system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design
+    type: Hexagon::System::System*
+    init_with: nullptr
+    constructor_arg: true
+
   - name: multiplex_menu
     type: Hexagon::MultiplexMenu::MultiplexMenu
     init_with: '{}'
@@ -127,11 +132,24 @@ functions:
             else
             {
                send_message_to_stage(command);
+               std::cout << "Notice: MultiplexMenu/Stage is about to notify the system that it should close the "
+                         << "multiplex menu.  The way this is designed, I'm surprised it won't crash.  Keep an "
+                         << "eye on it." << std::endl;
+               notify_system_that_its_time_to_close_this_multiplex_menu();
             }
          }
 
          break;
       }
+      return;
+
+
+  - name: notify_system_that_its_time_to_close_this_multiplex_menu
+    type: void
+    private: true
+    body: |
+      if (system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design)
+         system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design->close_topmost_multiplex_menu();
       return;
 
 
@@ -197,6 +215,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::System::System*
+    headers: [ Hexagon/System/System.hpp ]
   - symbol: Hexagon::KeyboardCommandKey
     headers: [ Hexagon/KeyboardCommandKey.hpp ]
   - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage

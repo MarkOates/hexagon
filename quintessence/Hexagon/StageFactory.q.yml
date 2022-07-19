@@ -408,6 +408,9 @@ functions:
       - name: advanced_code_editor_stage
         type: Hexagon::AdvancedCodeEditor::Stage*
         default_argument: nullptr
+      - name: system
+        type: Hexagon::System::System*
+        default_argument: nullptr
     body: |
       Hexagon::MultiplexMenu::MultiplexMenuPage start_page(
       {
@@ -452,6 +455,7 @@ functions:
       Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(
          font_bin,
          advanced_code_editor_stage,
+         system,
          delete_multiplex_menu
          //start_page_name
       );
@@ -764,6 +768,8 @@ dependencies:
     headers: [ allegro_flare/useful_php.h ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
+  - symbol: Hexagon::System::System*
+    headers: [ Hexagon/System/System.hpp ]
   - symbol: Hexagon::Fancy::Stage
     headers: [ Hexagon/Fancy/Stage.hpp ]
   - symbol: Hexagon::MissingFile::Stage

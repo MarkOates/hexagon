@@ -18,10 +18,11 @@ namespace MultiplexMenu
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage_to_send_messages_to, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu)
+Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage_to_send_messages_to, Hexagon::System::System* system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu)
    : StageInterface(StageInterface::MULTIPLEX_MENU)
    , font_bin(font_bin)
    , stage_to_send_messages_to(stage_to_send_messages_to)
+   , system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design(system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design)
    , multiplex_menu(multiplex_menu)
 {
 }
@@ -117,11 +118,22 @@ void Stage::process_event(ALLEGRO_EVENT& event)
          else
          {
             send_message_to_stage(command);
+            std::cout << "Notice: MultiplexMenu/Stage is about to notify the system that it should close the "
+                      << "multiplex menu.  The way this is designed, I'm surprised it won't crash.  Keep an "
+                      << "eye on it." << std::endl;
+            notify_system_that_its_time_to_close_this_multiplex_menu();
          }
       }
 
       break;
    }
+   return;
+}
+
+void Stage::notify_system_that_its_time_to_close_this_multiplex_menu()
+{
+   if (system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design)
+      system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design->close_topmost_multiplex_menu();
    return;
 }
 

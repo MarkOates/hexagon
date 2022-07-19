@@ -403,6 +403,15 @@ void System::acknowledge_display_switch_in(ALLEGRO_DISPLAY *display)
 }
 
 
+
+// internally sent message
+
+void System::close_topmost_multiplex_menu()
+{
+   destroy_topmost_stage();
+}
+
+
 // actions
 
 
@@ -1117,7 +1126,7 @@ bool System::spawn_multiplex_delete_menu()
    if (!frontmost_advanced_code_editor_stage) return false;
 
    ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
-   StageInterface *stage = stage_factory.create_delete_multiplex_menu(frontmost_advanced_code_editor_stage);
+   StageInterface *stage = stage_factory.create_delete_multiplex_menu(frontmost_advanced_code_editor_stage, this);
 
    stages.push_back(stage);
 

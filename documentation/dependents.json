@@ -53,6 +53,8 @@
   ],
   "Hexagon/System/System": [
     "ApplicationController",
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/StageFactory",
     "Hexagon/System/EventController",
     "Hexagon/System/Renderer"
   ],
