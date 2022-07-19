@@ -52,7 +52,7 @@ void MultiplexMenu::clear_history()
    return;
 }
 
-Hexagon::MultiplexMenu::MultiplexMenuPage* MultiplexMenu::current_page()
+Hexagon::MultiplexMenu::MultiplexMenuPage* MultiplexMenu::infer_current_page()
 {
    if (page_history.empty()) return nullptr;
    return page_history.back();

@@ -8,10 +8,52 @@ properties:
     getter_ref: true
 
 
+functions:
+
+
+  - name: find_item_by_keyboard_command_key
+    type: Hexagon::MultiplexMenu::MenuItem*
+    parameters:
+      - name: keyboard_command_key
+        type: Hexagon::KeyboardCommandKey
+        default_argument: '{}'
+    body: |
+      for (auto &menu_item : items)
+      {
+         if (compare_keyboard_command_keys_equal(keyboard_command_key, menu_item.get_keyboard_command_key()))
+            return &menu_item;
+      }
+      return nullptr;
+
+
+  - name: compare_keyboard_command_keys_equal
+    type: bool
+    parameters:
+      - name: a
+        type: Hexagon::KeyboardCommandKey
+        default_argument: '{}'
+      - name: b
+        type: Hexagon::KeyboardCommandKey
+        default_argument: '{}'
+    body: |
+       if (a.get_al_keycode() != b.get_al_keycode()) return false;
+       if (a.get_shift() != b.get_shift()) return false;
+       if (a.get_alt() != b.get_alt()) return false;
+       if (a.get_command() != b.get_command()) return false;
+       if (a.get_ctrl() != b.get_ctrl()) return false;
+       return true;
+    body_dependency_symbols:
+      - Hexagon::KeyboardCommandKey
+    
+
 dependencies:
 
 
+  - symbol: Hexagon::MultiplexMenu::MenuItem*
+    headers: [ Hexagon/MultiplexMenu/MenuItem.hpp ]
   - symbol: std::vector<Hexagon::MultiplexMenu::MenuItem>
     headers: [ vector, Hexagon/MultiplexMenu/MenuItem.hpp ]
+  - symbol: Hexagon::KeyboardCommandKey
+    headers: [ Hexagon/KeyboardCommandKey.hpp ]
 
 

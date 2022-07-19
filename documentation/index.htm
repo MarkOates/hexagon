@@ -6535,7 +6535,7 @@ table td
   <td class="method">clear_history()</td>
 </tr>
 <tr>
-  <td class="method">current_page()</td>
+  <td class="method">infer_current_page()</td>
 </tr>
 <tr>
   <td class="method">open_page(1)</td>
@@ -6570,10 +6570,22 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="method">find_item_by_keyboard_command_key(1)</td>
+</tr>
+<tr>
+  <td class="method">compare_keyboard_command_keys_equal(2)</td>
+</tr>
     </table>
      <table>
 <tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MenuItem*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MenuItem.hpp&quot;]}</td>
+</tr>
+<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::MultiplexMenu::MenuItem&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/MultiplexMenu/MenuItem.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::KeyboardCommandKey&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/KeyboardCommandKey.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -6726,8 +6738,17 @@ table td
 <tr>
   <td class="method">process_event(1)</td>
 </tr>
+<tr>
+  <td class="method">find_menu_item_by_keyboard_command_key_on_current_page(1)</td>
+</tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::KeyboardCommandKey&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/KeyboardCommandKey.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin*&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
 </tr>
@@ -6739,6 +6760,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenu&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenu.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MenuItem*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MenuItem.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::Renderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/Renderer.hpp&quot;]}</td>
@@ -12122,7 +12146,9 @@ table td
     "Hexagon/MissingFile/Stage"
   ],
   "Hexagon/KeyboardCommandKey": [
-    "Hexagon/MultiplexMenu/MenuItem"
+    "Hexagon/MultiplexMenu/MenuItem",
+    "Hexagon/MultiplexMenu/MultiplexMenuPage",
+    "Hexagon/MultiplexMenu/Stage"
   ],
   "std/map<std/string, Hexagon/MultiplexMenu/MultiplexMenuPage>": [
     "Hexagon/MultiplexMenu/MultiplexMenu"
@@ -12134,7 +12160,12 @@ table td
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer"
+    "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/MultiplexMenu/Stage"
+  ],
+  "Hexagon/MultiplexMenu/MenuItem": [
+    "Hexagon/MultiplexMenu/MultiplexMenuPage",
+    "Hexagon/MultiplexMenu/Stage"
   ],
   "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage"

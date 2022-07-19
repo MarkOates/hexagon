@@ -1296,7 +1296,9 @@
     "Hexagon/MissingFile/Stage"
   ],
   "Hexagon/KeyboardCommandKey": [
-    "Hexagon/MultiplexMenu/MenuItem"
+    "Hexagon/MultiplexMenu/MenuItem",
+    "Hexagon/MultiplexMenu/MultiplexMenuPage",
+    "Hexagon/MultiplexMenu/Stage"
   ],
   "std/map<std/string, Hexagon/MultiplexMenu/MultiplexMenuPage>": [
     "Hexagon/MultiplexMenu/MultiplexMenu"
@@ -1308,7 +1310,12 @@
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/MultiplexMenu/Renderer"
+    "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/MultiplexMenu/Stage"
+  ],
+  "Hexagon/MultiplexMenu/MenuItem": [
+    "Hexagon/MultiplexMenu/MultiplexMenuPage",
+    "Hexagon/MultiplexMenu/Stage"
   ],
   "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage"

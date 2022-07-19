@@ -40,7 +40,7 @@ functions:
       return;
 
 
-  - name: current_page
+  - name: infer_current_page
     type: Hexagon::MultiplexMenu::MultiplexMenuPage*
     body: |
       if (page_history.empty()) return nullptr;

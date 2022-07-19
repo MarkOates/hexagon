@@ -4,6 +4,7 @@
 #include <Hexagon/MultiplexMenu/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
 
 
 namespace Hexagon
@@ -26,6 +27,12 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage_to_send_mess
 
 Stage::~Stage()
 {
+}
+
+
+Hexagon::MultiplexMenu::MultiplexMenu &Stage::get_multiplex_menu_ref()
+{
+   return multiplex_menu;
 }
 
 
@@ -73,6 +80,7 @@ void Stage::process_event(ALLEGRO_EVENT& event)
    case ALLEGRO_EVENT_KEY_UP:
       break;
    case ALLEGRO_EVENT_KEY_CHAR:
+      int al_keycode = event.keyboard.keycode;
       bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;
       bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
       bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
@@ -80,11 +88,46 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 
       // TODO
       // right now, pressing the A key will send "delete_word_under_cursor" to the stage
-      if (event.keyboard.keycode == ALLEGRO_KEY_A) send_message_to_stage("delete_word_under_cursor");
+      //if (event.keyboard.keycode == ALLEGRO_KEY_A) send_message_to_stage("delete_word_under_cursor");
+      
+      // build an object representing this current keyboard command
+      Hexagon::KeyboardCommandKey this_keyboard_command;
+      this_keyboard_command.set_al_keycode(al_keycode);
+      this_keyboard_command.set_ctrl(ctrl);
+      this_keyboard_command.set_command(command);
+      this_keyboard_command.set_alt(alt);
+      this_keyboard_command.set_shift(shift);
+      
+      Hexagon::MultiplexMenu::MenuItem* menu_item_matching_key =
+         find_menu_item_by_keyboard_command_key_on_current_page(this_keyboard_command);
+      
+      if (menu_item_matching_key)
+      {
+         std::string command = menu_item_matching_key->get_value();
+         std::cout << "Found key combo on current page of multiplex menu. The command is \""
+                   << command << "\"" << std::endl;
+         bool value_opens_another_page = false; // TODO evaluate this command
+         if (value_opens_another_page)
+         {
+            std::string page_name_to_open = ""; // TODO fill this logic
+            multiplex_menu.open_page(page_name_to_open);
+         }
+         else
+         {
+            send_message_to_stage(command);
+         }
+      }
 
       break;
    }
    return;
+}
+
+Hexagon::MultiplexMenu::MenuItem* Stage::find_menu_item_by_keyboard_command_key_on_current_page(Hexagon::KeyboardCommandKey keyboard_command_key)
+{
+   Hexagon::MultiplexMenu::MultiplexMenuPage *page = multiplex_menu.infer_current_page();
+   if (!page) return nullptr;
+   return page->find_item_by_keyboard_command_key(keyboard_command_key);
 }
 } // namespace MultiplexMenu
 } // namespace Hexagon

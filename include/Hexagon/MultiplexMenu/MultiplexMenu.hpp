@@ -26,7 +26,7 @@ namespace Hexagon
          void set_page_dictionary(std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> page_dictionary={});
          int get_num_pages();
          void clear_history();
-         Hexagon::MultiplexMenu::MultiplexMenuPage* current_page();
+         Hexagon::MultiplexMenu::MultiplexMenuPage* infer_current_page();
          void open_page(std::string page_name="[unset-page_name]");
          Hexagon::MultiplexMenu::MultiplexMenuPage* find_page_by_name(std::string page_name="[unset-page_name]");
       };
