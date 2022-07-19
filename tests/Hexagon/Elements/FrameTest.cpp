@@ -30,4 +30,5 @@ TEST(Hexagon_Elements_FrameTest, build_default_frame_color__builds_the_expected_
    ALLEGRO_COLOR actual_color = Hexagon::Elements::Frame::build_default_frame_color();
 
    EXPECT_EQ_COLOR(expected_color, actual_color);
+
 }

@@ -6620,6 +6620,22 @@ table td
   <td class="property">page</td>
   <td class="property">Hexagon::MultiplexMenu::MultiplexMenuPage*</td>
 </tr>
+<tr>
+  <td class="property">is_active</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
+  <td class="property">width</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">height</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">padding</td>
+  <td class="property">float</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -6630,6 +6646,9 @@ table td
 </tr>
 <tr>
   <td class="method">convert_key_input_to_string(5)</td>
+</tr>
+<tr>
+  <td class="method">render_frame()</td>
 </tr>
 <tr>
   <td class="private_method">obtain_font()</td>
@@ -6666,6 +6685,9 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
 </tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::ColorKit&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/ColorKit.hpp&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -6694,7 +6716,7 @@ table td
   <td class="method">get_width()</td>
 </tr>
 <tr>
-  <td class="private_method">render_page(1)</td>
+  <td class="private_method">render_page(2)</td>
 </tr>
     </table>
      <table>
@@ -12093,6 +12115,7 @@ table td
   ],
   "Hexagon/Elements/ColorKit": [
     "Hexagon/Hud",
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/System/Config"
   ],
   "sin": [

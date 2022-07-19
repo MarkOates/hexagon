@@ -23,7 +23,7 @@ namespace Hexagon
 
          void render();
          float get_width();
-         void render_page(Hexagon::MultiplexMenu::MultiplexMenuPage* page=nullptr);
+         void render_page(Hexagon::MultiplexMenu::MultiplexMenuPage* page=nullptr, bool is_active=false);
       };
    }
 }

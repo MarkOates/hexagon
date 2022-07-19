@@ -35,12 +35,16 @@ void Renderer::render()
          throw std::runtime_error(error_message.str());
       }
    placement3d place;
+   int i=0;
+   int num_pages = multiplex_menu->get_num_pages();
    for (auto &page : multiplex_menu->get_page_history())
    {
+      bool at_last_page = (i == num_pages-1);
       place.start_transform();
-      render_page(page);
+      render_page(page, at_last_page);
       place.restore_transform();
       place.position.x += page_width;
+      i++;
    }
    return;
 }
@@ -51,9 +55,9 @@ float Renderer::get_width()
    return page_width * multiplex_menu->get_num_pages();
 }
 
-void Renderer::render_page(Hexagon::MultiplexMenu::MultiplexMenuPage* page)
+void Renderer::render_page(Hexagon::MultiplexMenu::MultiplexMenuPage* page, bool is_active)
 {
-   Hexagon::MultiplexMenu::PageRenderer page_renderer(font_bin, page);
+   Hexagon::MultiplexMenu::PageRenderer page_renderer(font_bin, page, is_active);
    page_renderer.render();
    return;
 }

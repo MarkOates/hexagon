@@ -24,12 +24,16 @@ functions:
     guards: [ multiplex_menu ]
     body: |
       placement3d place;
+      int i=0;
+      int num_pages = multiplex_menu->get_num_pages();
       for (auto &page : multiplex_menu->get_page_history())
       {
+         bool at_last_page = (i == num_pages-1);
          place.start_transform();
-         render_page(page);
+         render_page(page, at_last_page);
          place.restore_transform();
          place.position.x += page_width;
+         i++;
       }
       return;
     body_dependency_symbols:
@@ -49,8 +53,11 @@ functions:
       - name: page
         type: Hexagon::MultiplexMenu::MultiplexMenuPage*
         default_argument: nullptr
+      - name: is_active
+        type: bool
+        default_argument: false
     body: |
-      Hexagon::MultiplexMenu::PageRenderer page_renderer(font_bin, page);
+      Hexagon::MultiplexMenu::PageRenderer page_renderer(font_bin, page, is_active);
       page_renderer.render();
       return;
     body_dependency_symbols:

@@ -11,6 +11,7 @@
 #include <allegro5/allegro.h>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/Elements/ColorKit.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <stdexcept>
@@ -23,15 +24,25 @@ namespace MultiplexMenu
 {
 
 
-PageRenderer::PageRenderer(AllegroFlare::FontBin* font_bin, Hexagon::MultiplexMenu::MultiplexMenuPage* page)
+PageRenderer::PageRenderer(AllegroFlare::FontBin* font_bin, Hexagon::MultiplexMenu::MultiplexMenuPage* page, bool is_active, int width, int height)
    : font_bin(font_bin)
    , page(page)
+   , is_active(is_active)
+   , width(width)
+   , height(height)
+   , padding(14.0f)
 {
 }
 
 
 PageRenderer::~PageRenderer()
 {
+}
+
+
+float PageRenderer::get_padding()
+{
+   return padding;
 }
 
 
@@ -56,6 +67,8 @@ void PageRenderer::render()
          throw std::runtime_error(error_message.str());
       }
    float menu_item_spacing_y = 66;
+
+   render_frame();
 
    if (!page)
    {
@@ -100,6 +113,7 @@ void PageRenderer::render_menu_item(float x, float y, std::string input, std::st
    ALLEGRO_COLOR frame_color = AllegroFlare::color::color(al_color_name("dodgerblue"), frame_opacity);
    float text_opacity = 0.95f;
    ALLEGRO_COLOR text_color = AllegroFlare::color::color(al_color_name("white"), text_opacity);
+
    ALLEGRO_FONT *font = obtain_font();
    ALLEGRO_FONT *keyboard_key_font = obtain_keyboard_key_font();
    float padding_x = 20;
@@ -136,17 +150,17 @@ void PageRenderer::render_menu_item(float x, float y, std::string input, std::st
    {
       frame_color = ALLEGRO_COLOR{1, 1, 1, 1};
       frame_thickness = 4.0f;
+      al_draw_rounded_rectangle(
+         x+frame_thickness*2,
+         y+frame_thickness*2,
+         x+width-frame_thickness*2,
+         y+height-frame_thickness*2,
+         roundness,
+         roundness,
+         frame_color,
+         frame_thickness
+      );
    }
-   al_draw_rounded_rectangle(
-      x+frame_thickness*2,
-      y+frame_thickness*2,
-      x+width-frame_thickness*2,
-      y+height-frame_thickness*2,
-      roundness,
-      roundness,
-      frame_color,
-      frame_thickness
-   );
 
    return;
 }
@@ -176,6 +190,68 @@ std::string PageRenderer::convert_key_input_to_string(int al_keycode, bool ctrl,
    Blast::StringJoiner joiner(result_tokens, "+");
 
    return joiner.join();
+}
+
+void PageRenderer::render_frame()
+{
+   Hexagon::Elements::ColorKit color_kit;
+   //bool is_active = true;
+   //ALLEGRO_FONT *font = obtain_list_item_font();
+   //ALLEGRO_FONT *title_font = obtain_title_font();
+   ALLEGRO_COLOR color = color_kit.pure_white_blue();
+   //ALLEGRO_COLOR{1, 0, 0, 1};
+   //ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
+   ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.9};
+   ALLEGRO_COLOR inactive_but_selected_color = al_color_html("4e2f1a"); //build_inactive_color();
+   //float width = get_width();
+   //float height = 300;
+   //int line_height = al_get_font_line_height(font) * 1.2;
+   //int line_num = 0;
+   //float height = line_height * (list_items.size() + 1);
+   //int title_font_line_height = al_get_font_line_height(title_font) * 1.2;
+   float padding_hack = 10.0f;
+   ALLEGRO_COLOR frame_color = is_active ? color : inactive_but_selected_color;
+
+   // draw backfill
+   //al_draw_filled_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, backfill_color);
+
+   float place_size_x = width;
+   float place_size_y = height;
+
+   // draw frame
+   //if (get_active())
+   {
+      float outer_roundness = 16;
+      float inner_roundness = 6;
+      //float padding = 6;
+      float padding = get_padding();
+      al_draw_filled_rounded_rectangle(
+         0-padding*2,
+         0-padding*2,
+         place_size_x+padding*2,
+         place_size_y+padding*2,
+         outer_roundness,
+         outer_roundness,
+         backfill_color);
+      al_draw_rounded_rectangle(
+         0-padding,
+         0-padding,
+         place_size_x+padding,
+         place_size_y+padding,
+         inner_roundness,
+         inner_roundness,
+         frame_color,
+         5.0);
+
+      //al_draw_rectangle(-padding_hack, -padding_hack, width+padding_hack, height+padding_hack, color, 2.0);
+      //al_draw_rectangle(
+      //   -padding_hack,
+      //   -padding_hack,
+      //   width+padding_hack,
+      //   height+padding_hack,
+      //   color,
+      //   2.0);
+   }
 }
 
 ALLEGRO_FONT* PageRenderer::obtain_font()

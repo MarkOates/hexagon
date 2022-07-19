@@ -1185,6 +1185,7 @@
   ],
   "Hexagon/Elements/ColorKit": [
     "Hexagon/Hud",
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/System/Config"
   ],
   "sin": [
