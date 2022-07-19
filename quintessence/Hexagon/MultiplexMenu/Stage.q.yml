@@ -25,13 +25,6 @@ properties:
     constructor_arg: true
     getter_ref: true
 
-  - name: start_page_name
-    type: std::string
-    init_with: '"[unset-start_page_name]"'
-    constructor_arg: true
-    getter: true
-    setter: true
-
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -176,9 +169,13 @@ functions:
       - Blast::StringSplitter
 
 
-  - name: open_start_page
+  - name: open_page
+    parameters:
+      - name: page_name
+        type: std::string
+        default_argument: '"[unset-page_name]"'
     body: |
-      multiplex_menu.open_page(start_page_name);
+      multiplex_menu.open_page(page_name);
       return;
         
 

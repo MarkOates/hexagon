@@ -108,10 +108,10 @@ void PageRenderer::render_menu_item(float x, float y, std::string input, std::st
    float label_text_length = al_get_text_width(font, label.c_str());
    float roundness = 6.0;
    float height = al_get_font_line_height(font) + padding_y * 2;
-   float width = label_text_length + input_text_length + padding_x * 4;
+   float width = label_text_length + input_text_length + padding_x * 3;
    float frame_thickness = 2.0;
 
-   if (opens_menu) label = "= " + label;
+   //if (opens_menu) label = "= " + label;
 
    // draw the surrounding box
    al_draw_filled_rounded_rectangle(x, y, x+width, y+height, roundness, roundness, backfill_color);

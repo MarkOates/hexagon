@@ -18,30 +18,17 @@ namespace MultiplexMenu
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage_to_send_messages_to, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu, std::string start_page_name)
+Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage_to_send_messages_to, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu)
    : StageInterface(StageInterface::MULTIPLEX_MENU)
    , font_bin(font_bin)
    , stage_to_send_messages_to(stage_to_send_messages_to)
    , multiplex_menu(multiplex_menu)
-   , start_page_name(start_page_name)
 {
 }
 
 
 Stage::~Stage()
 {
-}
-
-
-void Stage::set_start_page_name(std::string start_page_name)
-{
-   this->start_page_name = start_page_name;
-}
-
-
-std::string Stage::get_start_page_name()
-{
-   return start_page_name;
 }
 
 
@@ -156,9 +143,9 @@ std::string Stage::extract_menu_item_value_page_name_to_open(std::string menu_it
    return "[invalid-value-from-extract_menu_item_value_page_name_to_open]";
 }
 
-void Stage::open_start_page()
+void Stage::open_page(std::string page_name)
 {
-   multiplex_menu.open_page(start_page_name);
+   multiplex_menu.open_page(page_name);
    return;
      
 }

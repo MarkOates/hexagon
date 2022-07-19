@@ -21,15 +21,12 @@ namespace Hexagon
          AllegroFlare::FontBin* font_bin;
          StageInterface* stage_to_send_messages_to;
          Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu;
-         std::string start_page_name;
          static ALLEGRO_EVENT a_default_empty_event;
 
       public:
-         Stage(AllegroFlare::FontBin* font_bin=nullptr, StageInterface* stage_to_send_messages_to=nullptr, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu={}, std::string start_page_name="[unset-start_page_name]");
+         Stage(AllegroFlare::FontBin* font_bin=nullptr, StageInterface* stage_to_send_messages_to=nullptr, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu={});
          virtual ~Stage();
 
-         void set_start_page_name(std::string start_page_name);
-         std::string get_start_page_name();
          Hexagon::MultiplexMenu::MultiplexMenu &get_multiplex_menu_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          virtual void render() override;
@@ -38,7 +35,7 @@ namespace Hexagon
          virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
          bool infer_menu_item_value_is_instruction_to_open_page(std::string menu_item_value="[unset-menu_item_value]");
          std::string extract_menu_item_value_page_name_to_open(std::string menu_item_value="[unset-menu_item_value]");
-         void open_start_page();
+         void open_page(std::string page_name="[unset-page_name]");
          Hexagon::MultiplexMenu::MenuItem* find_menu_item_by_keyboard_command_key_on_current_page(Hexagon::KeyboardCommandKey keyboard_command_key={});
       };
    }
