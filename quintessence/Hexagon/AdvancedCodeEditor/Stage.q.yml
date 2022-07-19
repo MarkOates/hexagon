@@ -214,7 +214,6 @@ functions:
       return;
 
 
-
   - name: destroy
     virtual: true
     override: true
