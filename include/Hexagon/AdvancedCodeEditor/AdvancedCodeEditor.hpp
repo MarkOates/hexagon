@@ -35,6 +35,7 @@ namespace Hexagon
          bool set_content(std::string content="");
          bool insert_string(std::string string="");
          bool delete_character();
+         bool delete_to_end_of_line();
          bool join_lines();
          bool split_lines();
          bool delete_line();

@@ -104,6 +104,22 @@ functions:
       return true;
 
 
+  - name: delete_to_end_of_line
+    type: bool
+    body: |
+      if (!is_cursor_in_bounds()) return false;
+
+      Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+      std::vector<std::string> &lines = get_lines_ref();
+
+      lines[cursor.get_y()].erase(cursor.get_x());
+
+      dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x()+1, lines[cursor.get_y()].length()+1 - cursor.get_x());
+      mark_content_is_modified();
+
+      return true;
+
+
   - name: join_lines
     type: bool
     body: |
@@ -533,11 +549,12 @@ dependencies:
   - symbol: RegexMatcher
     headers: [ Hexagon/RegexMatcher.hpp ]
   - symbol: std::max
-    header: [ algorithm ]
+    headers: [ algorithm ]
   - symbol: std::reverse
     headers: [ algorithm ]
   - symbol: std::begin
     headers: [ array ]
   - symbol: std::end
     headers: [ array ]
+
 

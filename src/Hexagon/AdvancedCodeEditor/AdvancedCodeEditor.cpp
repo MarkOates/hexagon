@@ -2,6 +2,10 @@
 
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 #include <Blast/StringSplitter.hpp>
+#include <algorithm>
+#include <algorithm>
+#include <algorithm>
+#include <algorithm>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <algorithm>
@@ -109,6 +113,21 @@ bool AdvancedCodeEditor::delete_character()
    lines[cursor.get_y()].erase(cursor.get_x(), 1);
 
    dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), lines[cursor.get_y()].length() + 2 - cursor.get_x());
+   mark_content_is_modified();
+
+   return true;
+}
+
+bool AdvancedCodeEditor::delete_to_end_of_line()
+{
+   if (!is_cursor_in_bounds()) return false;
+
+   Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+   std::vector<std::string> &lines = get_lines_ref();
+
+   lines[cursor.get_y()].erase(cursor.get_x());
+
+   dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x()+1, lines[cursor.get_y()].length()+1 - cursor.get_x());
    mark_content_is_modified();
 
    return true;

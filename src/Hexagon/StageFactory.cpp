@@ -441,6 +441,7 @@ StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCode
    {
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around >", "open_page:page_delete_around" ),
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_D}, "Line", "delete_line" ),
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_4, true}, "To end of line", "delete_to_end_of_line" ),
    });
 
    Hexagon::MultiplexMenu::MultiplexMenuPage page_delete_around(

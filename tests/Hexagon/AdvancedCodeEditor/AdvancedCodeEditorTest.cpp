@@ -324,6 +324,11 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, cursor_move_to_first_non
    // TODO
 }
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest, delete_to_end_of_line__will_remove_the_expected_characters)
+{
+   // TODO
+}
+
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    split_lines__will_split_a_single_line_to_two_sliced_at_the_cursor)
 {
