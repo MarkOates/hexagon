@@ -133,6 +133,7 @@ namespace Hexagon
          std::string grab_word_under_cursor();
          bool delete_word_under_cursor();
          bool delete_to_end_of_line();
+         bool delete_to_next_word();
          bool join_lines();
          bool split_lines();
          bool delete_line();
