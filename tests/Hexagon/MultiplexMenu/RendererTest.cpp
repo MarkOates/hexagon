@@ -47,6 +47,7 @@ protected:
       Hexagon::MultiplexMenu::MultiplexMenu* result;
       result = new Hexagon::MultiplexMenu::MultiplexMenu(build_dictionary_a());
       result->open_page("page_a");
+      result->open_page("a-page-that-does-not-exist");
       result->open_page("page_b");
       return result;
    }

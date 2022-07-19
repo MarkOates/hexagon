@@ -69,8 +69,8 @@ Hexagon::MultiplexMenu::MultiplexMenuPage* MultiplexMenu::find_page_by_name(std:
 {
    std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage>::iterator it;
    it = page_dictionary.find(page_name);
-   if (it != page_dictionary.end())
-   return &it->second;
+   if (it != page_dictionary.end()) return &it->second;
+   return nullptr;
 }
 } // namespace MultiplexMenu
 } // namespace Hexagon

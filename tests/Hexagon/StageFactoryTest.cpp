@@ -286,6 +286,17 @@ TEST(Hexagon_StageFactoryTest,
    // TODO
 }
 
+
+TEST(Hexagon_StageFactoryTest,
+   DISABLED__create_delete_multiplex_menu__will_not_create_the_menu_if_commands_do_not_exist_on_the_target_stage)
+{
+   // TODO
+   // - name: build_local_events_dictionary
+   //   static: true
+   //   type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
+}
+
+
 TEST(Hexagon_StageFactoryTest,
    create_git_commit_message_box__creates_a_git_commit_message_box_with_the_expected_properties)
 {

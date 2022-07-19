@@ -1311,7 +1311,8 @@
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
-    "Hexagon/MultiplexMenu/Stage"
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/StageFactory"
   ],
   "Hexagon/MultiplexMenu/MenuItem": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage",

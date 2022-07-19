@@ -42,6 +42,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Blast/Project/SymlinkChecker.hpp>
 #include <Hexagon/MultiplexMenu/Stage.hpp>
+#include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/OneLineInputBox/Stage.hpp>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
@@ -425,17 +426,43 @@ StageInterface* StageFactory::create_code_editor(std::string filename, std::stri
 
 StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage)
 {
-   // TODO: populate this mulitplex menu
-   Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu;
-   //Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu({
-     //{ "Shift+A", "Delete Around Word", "delete_around_word" },
-     ////{ "ESCAPE", "Escape this menu", "", "" },
-   //});
+   Hexagon::MultiplexMenu::MultiplexMenuPage page_a(
+   {
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Delete around word", "delete_word_under_cursor" ),
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_O}, "Add blank line above cursor", "insert_blank_line" ),
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_X}, "Delete character", "delete_character" ),
+      //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_B},       "Do other thing"),
+      //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_N},       "Some thing"),
+   });
+
+   Hexagon::MultiplexMenu::MultiplexMenuPage page_b(
+   {
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around Word", ),
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_N}, "Other thing executes"),
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_X}, "Some other thing"),
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_Z}, "Something else"),
+   });
+
+   std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> dictionary =
+   {
+      { "start", page_a },
+      { "around", page_b },
+   };
+
+   Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu(dictionary);
+
+   std::string start_page_name = "start";
+
    Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(
       font_bin,
       advanced_code_editor_stage,
-      delete_multiplex_menu
+      delete_multiplex_menu,
+      start_page_name
    );
+
+   // TODO: validate menu commands are valid commands for the advanced_code_editor_stage
+
+   stage->open_start_page();
    stage->set_place(build_multiplex_menu_initial_place());
    stage->set_render_on_hud(true);
    return stage;

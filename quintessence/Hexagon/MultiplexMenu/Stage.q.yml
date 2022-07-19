@@ -25,6 +25,13 @@ properties:
     constructor_arg: true
     getter_ref: true
 
+  - name: start_page_name
+    type: std::string
+    init_with: '"[unset-start_page_name]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -135,8 +142,15 @@ functions:
       return;
 
 
+  - name: open_start_page
+    body: |
+      multiplex_menu.open_page(start_page_name);
+      return;
+        
+
   - name: find_menu_item_by_keyboard_command_key_on_current_page
     type: Hexagon::MultiplexMenu::MenuItem*
+    private: true
     parameters:
       - name: keyboard_command_key
         type: Hexagon::KeyboardCommandKey

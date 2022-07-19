@@ -16,10 +16,18 @@ functions:
 
 
   - name: render
-    private: true
-    guards: [ al_is_system_installed(), al_is_font_addon_initialized(), font_bin, page ]
+    guards: [ al_is_system_installed(), al_is_font_addon_initialized(), font_bin ]
     body: |
       float menu_item_spacing_y = 66;
+
+      if (!page)
+      {
+         // render the "invalid" page
+         ALLEGRO_FONT *font = obtain_font();
+         std::string page_text = "Not a valid page";
+         al_draw_text(font, ALLEGRO_COLOR{1, 0, 0, 1}, 0, 0, ALLEGRO_ALIGN_LEFT, page_text.c_str());
+         return;
+      }
 
       int i = 0;
       for (auto &menu_item : page->get_items_ref())

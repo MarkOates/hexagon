@@ -16,17 +16,30 @@ namespace MultiplexMenu
 ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 
-Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage_to_send_messages_to, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu)
+Stage::Stage(AllegroFlare::FontBin* font_bin, StageInterface* stage_to_send_messages_to, Hexagon::MultiplexMenu::MultiplexMenu multiplex_menu, std::string start_page_name)
    : StageInterface(StageInterface::MULTIPLEX_MENU)
    , font_bin(font_bin)
    , stage_to_send_messages_to(stage_to_send_messages_to)
    , multiplex_menu(multiplex_menu)
+   , start_page_name(start_page_name)
 {
 }
 
 
 Stage::~Stage()
 {
+}
+
+
+void Stage::set_start_page_name(std::string start_page_name)
+{
+   this->start_page_name = start_page_name;
+}
+
+
+std::string Stage::get_start_page_name()
+{
+   return start_page_name;
 }
 
 
@@ -121,6 +134,13 @@ void Stage::process_event(ALLEGRO_EVENT& event)
       break;
    }
    return;
+}
+
+void Stage::open_start_page()
+{
+   multiplex_menu.open_page(start_page_name);
+   return;
+     
 }
 
 Hexagon::MultiplexMenu::MenuItem* Stage::find_menu_item_by_keyboard_command_key_on_current_page(Hexagon::KeyboardCommandKey keyboard_command_key)

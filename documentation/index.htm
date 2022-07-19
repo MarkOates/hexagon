@@ -6605,7 +6605,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="private_method">render()</td>
+  <td class="method">render()</td>
 </tr>
 <tr>
   <td class="private_method">render_menu_item(6)</td>
@@ -6721,6 +6721,10 @@ table td
   <td class="property">Hexagon::MultiplexMenu::MultiplexMenu</td>
 </tr>
 <tr>
+  <td class="property">start_page_name</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
   <td class="property">a_default_empty_event</td>
   <td class="property">ALLEGRO_EVENT</td>
 </tr>
@@ -6739,7 +6743,10 @@ table td
   <td class="method">process_event(1)</td>
 </tr>
 <tr>
-  <td class="method">find_menu_item_by_keyboard_command_key_on_current_page(1)</td>
+  <td class="method">open_start_page()</td>
+</tr>
+<tr>
+  <td class="private_method">find_menu_item_by_keyboard_command_key_on_current_page(1)</td>
 </tr>
     </table>
      <table>
@@ -9330,6 +9337,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::MultiplexMenu::MultiplexMenuPage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/MultiplexMenu/MultiplexMenuPage.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringSplitter&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringSplitter.hpp&quot;]}</td>
@@ -12161,7 +12171,8 @@ table td
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
-    "Hexagon/MultiplexMenu/Stage"
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/StageFactory"
   ],
   "Hexagon/MultiplexMenu/MenuItem": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage",

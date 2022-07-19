@@ -55,13 +55,16 @@ void PageRenderer::render()
          error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
-   if (!(page))
-      {
-         std::stringstream error_message;
-         error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"page\" not met";
-         throw std::runtime_error(error_message.str());
-      }
    float menu_item_spacing_y = 66;
+
+   if (!page)
+   {
+      // render the "invalid" page
+      ALLEGRO_FONT *font = obtain_font();
+      std::string page_text = "Not a valid page";
+      al_draw_text(font, ALLEGRO_COLOR{1, 0, 0, 1}, 0, 0, ALLEGRO_ALIGN_LEFT, page_text.c_str());
+      return;
+   }
 
    int i = 0;
    for (auto &menu_item : page->get_items_ref())

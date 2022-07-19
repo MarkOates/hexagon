@@ -62,12 +62,14 @@ TEST_F(Hexagon_MultiplexMenu_PageRendererTestWithAllegroRenderingFixture,
 }
 
 
-TEST_F(Hexagon_MultiplexMenu_PageRendererTestWithAllegroRenderingFixture, render__without_a_page__will_throw_an_error)
+TEST_F(Hexagon_MultiplexMenu_PageRendererTestWithAllegroRenderingFixture,
+   VISUAL__render__without_a_page__will_render_a_special_empty_page)
 {
    Hexagon::MultiplexMenu::PageRenderer renderer(&get_font_bin_ref());
-   std::string expected_error_message =
-      "PageRenderer::render: error: guard \"page\" not met";
-   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+   al_clear_to_color(ALLEGRO_COLOR{0.1, 0.1, 0.1, 1});
+   renderer.render();
+   al_flip_display();
+   sleep(1);
 }
 
 

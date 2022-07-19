@@ -409,22 +409,49 @@ functions:
         type: Hexagon::AdvancedCodeEditor::Stage*
         default_argument: nullptr
     body: |
-      // TODO: populate this mulitplex menu
-      Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu;
-      //Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu({
-        //{ "Shift+A", "Delete Around Word", "delete_around_word" },
-        ////{ "ESCAPE", "Escape this menu", "", "" },
-      //});
+      Hexagon::MultiplexMenu::MultiplexMenuPage page_a(
+      {
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Delete around word", "delete_word_under_cursor" ),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_O}, "Add blank line above cursor", "insert_blank_line" ),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_X}, "Delete character", "delete_character" ),
+         //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_B},       "Do other thing"),
+         //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_N},       "Some thing"),
+      });
+
+      Hexagon::MultiplexMenu::MultiplexMenuPage page_b(
+      {
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around Word", ),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_N}, "Other thing executes"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_X}, "Some other thing"),
+         Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_Z}, "Something else"),
+      });
+
+      std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> dictionary =
+      {
+         { "start", page_a },
+         { "around", page_b },
+      };
+
+      Hexagon::MultiplexMenu::MultiplexMenu delete_multiplex_menu(dictionary);
+
+      std::string start_page_name = "start";
+
       Hexagon::MultiplexMenu::Stage *stage = new Hexagon::MultiplexMenu::Stage(
          font_bin,
          advanced_code_editor_stage,
-         delete_multiplex_menu
+         delete_multiplex_menu,
+         start_page_name
       );
+
+      // TODO: validate menu commands are valid commands for the advanced_code_editor_stage
+
+      stage->open_start_page();
       stage->set_place(build_multiplex_menu_initial_place());
       stage->set_render_on_hud(true);
       return stage;
     body_dependency_symbols:
        - Hexagon::MultiplexMenu::Stage
+       - Hexagon::MultiplexMenu::MultiplexMenuPage
 
 
   - name: create_regex_input_box_modal
@@ -712,6 +739,8 @@ dependencies:
     headers: [ Hexagon/ObjectivesLog/Stage.hpp ]
   - symbol: Hexagon::MultiplexMenu::Stage
     headers: [ Hexagon/MultiplexMenu/Stage.hpp ]
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
   - symbol: Blast::Project::SymlinkChecker
