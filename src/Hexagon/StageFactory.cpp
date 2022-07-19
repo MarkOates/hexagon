@@ -428,17 +428,17 @@ StageInterface* StageFactory::create_delete_multiplex_menu(Hexagon::AdvancedCode
 {
    Hexagon::MultiplexMenu::MultiplexMenuPage page_a(
    {
-      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Delete around word", "delete_word_under_cursor" ),
-      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_O}, "Add blank line above cursor", "insert_blank_line" ),
-      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_X}, "Delete character", "delete_character" ),
-      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_R}, "Open >>", "open_page:around" ),
+      //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Delete around word", "delete_word_under_cursor" ),
+      //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_O}, "Add blank line above cursor", "insert_blank_line" ),
+      //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_X}, "Delete character", "delete_character" ),
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around >", "open_page:around" ),
       //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_B},       "Do other thing"),
       //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_N},       "Some thing"),
    });
 
    Hexagon::MultiplexMenu::MultiplexMenuPage page_b(
    {
-      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around Word", "delete_word_under_cursor" ),
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "Word", "delete_word_under_cursor" ),
       //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_N}, "Other thing executes"),
       //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_X}, "Some other thing"),
       //Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_Z}, "Something else"),
