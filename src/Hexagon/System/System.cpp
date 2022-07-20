@@ -73,6 +73,8 @@
 #include <Hexagon/StageFactory.hpp>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
 #include <Hexagon/OneLineInputBox/Stage.hpp>
+#include <Hexagon/MultiplexMenu/Stage.hpp>
+#include <Hexagon/MultiplexMenu/CommandExecutor.hpp>
 #include <Hexagon/PacketLogger.hpp>
 #include <Hexagon/System/Action/SendMessageToDaemusToBuild.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
@@ -418,6 +420,43 @@ void System::close_topmost_multiplex_menu()
 bool System::mark_as_files_changed()
 {
    this->files_changed = true;
+   return true;
+}
+
+
+bool System::send_commands_from_multiplex_menu_to_editor()
+{
+   Hexagon::MultiplexMenu::Stage *multiplex_menu_stage =
+      static_cast<Hexagon::MultiplexMenu::Stage*>(get_frontmost_stage());
+   if (!multiplex_menu_stage)
+   {
+      return false;
+      std::cout << "[System::send_commands_from_multiplex_menu_to_editor] warning: get_frontmost_stage() "
+                << "returned a stage that could not be casted to a Hexagon::MultiplexMenu::Stage"
+                << std::endl;
+   }
+   if (stages.size() < 2)
+   {
+      std::cout << "[System::send_commands_from_multiplex_menu_to_editor] warning: expecting at least two stages, "
+                << "topmost being the multiplex menu and below it the editor, but there is only 1 stage."
+                << std::endl;
+      return false;
+   }
+   StageInterface *stage_to_send_messages_to = stages[stages.size()-2];
+   if (!stage_to_send_messages_to)
+   {
+      std::cout << "[System::send_commands_from_multiplex_menu_to_editor] warning: stage below the top page is "
+                << "expected to be valid so that messages can be sent to it, but it is a nullptr."
+                << std::endl;
+      return false;
+   }
+
+   Hexagon::MultiplexMenu::CommandExecutor command_executor(
+      stage_to_send_messages_to,
+      &multiplex_menu_stage->get_multiplex_menu_ref()
+   );
+   command_executor.execute();
+
    return true;
 }
 
@@ -1922,6 +1961,12 @@ bool System::submit_current_modal()
       process_local_event(::System::ROTATE_STAGE_LEFT);
       process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
       break;
+   case StageInterface::MULTIPLEX_MENU:
+      // in theory:
+      process_local_event(::System::SEND_COMMANDS_FROM_MULTIPLEX_MENU_TO_EDITOR);
+      process_local_event(::System::DESTROY_TOPMOST_STAGE);
+      process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
+      break;
    default:
       throw std::runtime_error("submit_current_modal(): invalid modal type");
       break;
@@ -1983,6 +2028,8 @@ void System::process_event(ALLEGRO_EVENT *event)
 
 
 
+const std::string System::SEND_COMMANDS_FROM_MULTIPLEX_MENU_TO_EDITOR =
+   "SEND_COMMANDS_FROM_MULTIPLEX_MENU_TO_EDITOR";
 const std::string System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION =
    "SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION";
 const std::string System::OPEN_HEXAGON_CONFIG_FILE = "OPEN_HEXAGON_CONFIG_FILE";

@@ -13,6 +13,12 @@ properties:
     init_with: '{}'
     getter: true
 
+  - name: final_command_set_to_execute
+    type: std::vector<std::string>
+    init_with: '{"[command_to_execute-not-set]"}'
+    getter: true
+    setter: true
+
 
 functions:
 

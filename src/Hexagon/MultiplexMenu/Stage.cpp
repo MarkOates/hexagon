@@ -103,6 +103,8 @@ void Stage::process_event(ALLEGRO_EVENT& event)
       
       Hexagon::MultiplexMenu::MenuItem* menu_item_matching_key =
          find_menu_item_by_keyboard_command_key_on_current_page(this_keyboard_command);
+
+      std::vector<std::string> final_command_set_to_execute;
       
       if (menu_item_matching_key)
       {
@@ -118,10 +120,13 @@ void Stage::process_event(ALLEGRO_EVENT& event)
             {
                std::string page_name_to_open = extract_menu_item_value_page_name_to_open(command);
                multiplex_menu.open_page(page_name_to_open);
+               final_command_set_to_execute.clear();
             }
             else
             {
-               send_message_to_stage(command);
+               final_command_set_to_execute.push_back(command);
+               //multiplex_menu.set_final_command_to_execute(command);
+               //send_message_to_stage(command);
                commands_executed_and_assuming_close_menu = true;
             }
          }
@@ -131,6 +136,8 @@ void Stage::process_event(ALLEGRO_EVENT& event)
             std::cout << "Notice: MultiplexMenu/Stage is about to notify the system that it should close the "
                       << "multiplex menu.  The way this is designed, I'm surprised it won't crash.  Keep an "
                       << "eye on it." << std::endl;
+
+            multiplex_menu.set_final_command_set_to_execute(final_command_set_to_execute);
             notify_system_that_its_time_to_close_this_multiplex_menu();
          }
       }
@@ -143,7 +150,8 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 void Stage::notify_system_that_its_time_to_close_this_multiplex_menu()
 {
    if (system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design)
-      system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design->close_topmost_multiplex_menu();
+      system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design->submit_current_modal();
+      //system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design->close_topmost_multiplex_menu();
    return;
 }
 

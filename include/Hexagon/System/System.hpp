@@ -113,6 +113,7 @@ public:
 
    // actions
    bool mark_as_files_changed();
+   bool send_commands_from_multiplex_menu_to_editor();
    bool set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction();
    bool set_current_project_directory_from_project_navigator_selection();
    bool mark_as_files_committed();
@@ -211,6 +212,7 @@ class System
 {
 public:
    // events
+   static const std::string SEND_COMMANDS_FROM_MULTIPLEX_MENU_TO_EDITOR;
    static const std::string SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION;
    static const std::string OPEN_HEXAGON_CONFIG_FILE;
    static const std::string WRITE_FOCUSED_COMPONENT_NAME_TO_FILE;
