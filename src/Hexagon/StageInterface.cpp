@@ -140,6 +140,7 @@ bool StageInterface::infer_is_modal()
    case LITTLE_MENU:
    case OBJECTIVES_LOG:
    case DRAWING_BOX:
+   case MULTIPLEX_MENU:
       return true;
    default:
       return false;
