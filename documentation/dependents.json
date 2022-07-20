@@ -482,6 +482,7 @@
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/MultiplexMenu/CommandExecutor",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/NewComponentMaker/Stage",
@@ -1299,6 +1300,13 @@
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
   ],
+  "Hexagon/MultiplexMenu/MultiplexMenu": [
+    "Hexagon/MultiplexMenu/CommandExecutor",
+    "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/MultiplexMenu/Stage",
+    "Hexagon/StageFactory"
+  ],
   "Hexagon/KeyboardCommandKey": [
     "Hexagon/MultiplexMenu/MenuItem",
     "Hexagon/MultiplexMenu/MultiplexMenuPage",
@@ -1335,12 +1343,6 @@
   "AllegroFlare/color": [
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer"
-  ],
-  "Hexagon/MultiplexMenu/MultiplexMenu": [
-    "Hexagon/MultiplexMenu/Renderer",
-    "Hexagon/MultiplexMenu/Stage",
-    "Hexagon/MultiplexMenu/Stage",
-    "Hexagon/StageFactory"
   ],
   "Hexagon/MultiplexMenu/PageRenderer": [
     "Hexagon/MultiplexMenu/Renderer"

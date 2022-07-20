@@ -1,0 +1,44 @@
+properties:
+
+
+  - name: stage_to_send_messages_to
+    type: StageInterface*
+    init_with: nullptr
+    constructor_arg: true
+
+  - name: multiplex_menu
+    type: Hexagon::MultiplexMenu::MultiplexMenu*
+    init_with: nullptr
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: send_message_to_stage
+    private: true
+    parameters:
+      - name: message
+        type: std::string
+        default_argument: '"[message-identifier-set]"'
+    guards: [ stage_to_send_messages_to ]
+    body: |
+      stage_to_send_messages_to->process_local_event(message);
+      return;
+
+
+  - name: execute
+    guards: [ stage_to_send_messages_to, multiplex_menu ]
+    body: |
+      send_message_to_stage(multiplex_menu->get_final_command_to_execute());
+
+
+dependencies:
+
+
+  - symbol: StageInterface*
+    headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenu*
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenu.hpp ]
+
+

@@ -121,7 +121,8 @@ void Stage::process_event(ALLEGRO_EVENT& event)
             }
             else
             {
-               send_message_to_stage(command);
+               multiplex_menu.set_final_command_to_execute(command);
+               //send_message_to_stage(command);
                commands_executed_and_assuming_close_menu = true;
             }
          }
@@ -143,7 +144,8 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 void Stage::notify_system_that_its_time_to_close_this_multiplex_menu()
 {
    if (system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design)
-      system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design->close_topmost_multiplex_menu();
+      system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design->submit_current_modal();
+      //system_to_tell_when_its_time_to_close_and_by_the_way_this_is_bad_design->close_topmost_multiplex_menu();
    return;
 }
 
