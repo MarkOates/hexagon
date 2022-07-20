@@ -532,6 +532,8 @@ functions:
 
 
 dependencies:
+
+
   - symbol: KeyboardCommandMapper
     headers: [ 'AllegroFlare/KeyboardCommandMapper.hpp' ]
   - symbol: ALLEGRO_EVENT*
