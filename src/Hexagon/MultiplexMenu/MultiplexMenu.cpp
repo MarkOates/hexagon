@@ -13,7 +13,7 @@ namespace MultiplexMenu
 MultiplexMenu::MultiplexMenu(std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> page_dictionary)
    : page_dictionary(page_dictionary)
    , page_history({})
-   , final_command_to_execute("[command_to_execute-not-set]")
+   , final_command_set_to_execute({"[command_to_execute-not-set]"})
 {
 }
 
@@ -23,9 +23,9 @@ MultiplexMenu::~MultiplexMenu()
 }
 
 
-void MultiplexMenu::set_final_command_to_execute(std::string final_command_to_execute)
+void MultiplexMenu::set_final_command_set_to_execute(std::vector<std::string> final_command_set_to_execute)
 {
-   this->final_command_to_execute = final_command_to_execute;
+   this->final_command_set_to_execute = final_command_set_to_execute;
 }
 
 
@@ -41,9 +41,9 @@ std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*> MultiplexMenu::get_page_
 }
 
 
-std::string MultiplexMenu::get_final_command_to_execute()
+std::vector<std::string> MultiplexMenu::get_final_command_set_to_execute()
 {
-   return final_command_to_execute;
+   return final_command_set_to_execute;
 }
 
 

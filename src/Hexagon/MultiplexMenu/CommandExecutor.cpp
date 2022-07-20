@@ -37,7 +37,7 @@ void CommandExecutor::send_message_to_stage(std::string message)
    return;
 }
 
-void CommandExecutor::execute()
+bool CommandExecutor::execute()
 {
    if (!(stage_to_send_messages_to))
       {
@@ -51,7 +51,11 @@ void CommandExecutor::execute()
          error_message << "CommandExecutor" << "::" << "execute" << ": error: " << "guard \"multiplex_menu\" not met";
          throw std::runtime_error(error_message.str());
       }
-   send_message_to_stage(multiplex_menu->get_final_command_to_execute());
+   for (auto &command : multiplex_menu->get_final_command_set_to_execute())
+   {
+      send_message_to_stage(command);
+   }
+   return true;
 }
 } // namespace MultiplexMenu
 } // namespace Hexagon

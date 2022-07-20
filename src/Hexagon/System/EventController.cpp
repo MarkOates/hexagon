@@ -74,6 +74,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          &::Hexagon::System::System::send_message_to_daemus_to_build,
       },
       {
+         ::System::SEND_COMMANDS_FROM_MULTIPLEX_MENU_TO_EDITOR,
+         &::Hexagon::System::System::send_commands_from_multiplex_menu_to_editor,
+      },
+      {
          ::System::SET_FRONTMOST_GIT_COMMIT_MESSAGE_INPUT_BOX_TO_SUBMITTED_AND_PENDING_DESTRUCTION,
          &::Hexagon::System::System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction,
       },

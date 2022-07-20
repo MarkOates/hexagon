@@ -21,7 +21,7 @@ namespace Hexagon
          ~CommandExecutor();
 
          void send_message_to_stage(std::string message="[message-identifier-set]");
-         void execute();
+         bool execute();
       };
    }
 }

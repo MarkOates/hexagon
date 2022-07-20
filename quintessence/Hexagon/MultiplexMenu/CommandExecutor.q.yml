@@ -29,8 +29,13 @@ functions:
 
   - name: execute
     guards: [ stage_to_send_messages_to, multiplex_menu ]
+    type: bool
     body: |
-      send_message_to_stage(multiplex_menu->get_final_command_to_execute());
+      for (auto &command : multiplex_menu->get_final_command_set_to_execute())
+      {
+         send_message_to_stage(command);
+      }
+      return true;
 
 
 dependencies:
