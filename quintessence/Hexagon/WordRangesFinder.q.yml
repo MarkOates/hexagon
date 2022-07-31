@@ -21,7 +21,7 @@ functions:
       if (cursor_pos < 0) return std::pair<int, int>(-1, -1);
       if (cursor_pos >= line_of_text.length()) return std::pair<int, int>(-1, -1);
 
-      const std::string word_matching_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+      const std::string word_matching_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
       if (word_matching_chars.find(line_of_text[cursor_pos]) == std::string::npos)
       {
