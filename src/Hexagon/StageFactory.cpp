@@ -748,7 +748,7 @@ Hexagon::MultiplexMenu::MultiplexMenu StageFactory::build_full_multiplex_menu()
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around >", { "open_page:page_change_around" } ),
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_I}, "Inside >", { "open_page:page_change_inside" } ),
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "To next word", {
-            "delete_to_next_word",
+            "delete_to_next_word_or_end_of_line",
             "set_to_insert_mode",
          }),
    });
@@ -757,7 +757,7 @@ Hexagon::MultiplexMenu::MultiplexMenu StageFactory::build_full_multiplex_menu()
    {
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_A}, "Around >", { "open_page:page_delete_around" } ),
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_I}, "Inside >", { "open_page:page_delete_inside" } ),
-      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "To next word", { "delete_to_next_word" } ),
+      Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_W}, "To next word", { "delete_to_next_word_or_end_of_line" } ),
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_D}, "Line", { "delete_line" } ),
       Hexagon::MultiplexMenu::MenuItem({ALLEGRO_KEY_4, true}, "To end of line", { "delete_to_end_of_line" } ),
    });

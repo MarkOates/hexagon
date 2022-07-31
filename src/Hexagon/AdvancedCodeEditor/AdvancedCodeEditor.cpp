@@ -9,6 +9,7 @@
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexMatcher.hpp>
+#include <Hexagon/RegexMatcher.hpp>
 #include <algorithm>
 #include <array>
 #include <array>
@@ -406,6 +407,50 @@ bool AdvancedCodeEditor::delete_to_next_word()
    }
 
    if (jump_position == cursor.get_x()) return false; // do nothing
+
+   Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
+   //std::vector<std::string> &lines = get_lines_ref();
+
+   current_line.erase(cursor.get_x(), jump_position - cursor.get_x());
+
+   dirty_grid.mark_row_as_dirty(cursor.get_y(), cursor.get_x(), current_line.length()+2 - cursor.get_x());
+   mark_content_is_modified();
+
+   return true;
+}
+
+bool AdvancedCodeEditor::delete_to_next_word_or_end_of_line()
+{
+   if (!is_cursor_in_bounds()) return false;
+
+   // This regex from vimdoc.sourceforge.net/htmldoc/motion.html#word
+   std::string vim_equivelent_word_jump_regex = "([0-9a-zA-Z_]+)|([^0-9a-zA-Z_ \\s]+)";
+   std::string &current_line = lines[cursor.get_y()];
+
+   RegexMatcher regex_matcher(current_line, vim_equivelent_word_jump_regex);
+   std::vector<std::pair<int, int>> match_positions = regex_matcher.get_match_info();
+
+   int jump_position = cursor.get_x();
+
+   for (auto &match_position : match_positions)
+   {
+      if (match_position.first > cursor.get_x())
+      {
+         jump_position = match_position.first;
+         break;
+      }
+   }
+
+   if (jump_position == cursor.get_x()) // assuming cursor was unable to jump to a next word boundary
+   {
+      // attempt to set jump_position to end of line
+      
+      int end_of_line_pos = current_line.size();
+      if (end_of_line_pos > jump_position) jump_position = end_of_line_pos;
+   }
+
+   if (jump_position == cursor.get_x()) return false; // even with a possible jump to end of line, no movement
+                                                      // happened, so do nothing and return false.
 
    Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
    //std::vector<std::string> &lines = get_lines_ref();

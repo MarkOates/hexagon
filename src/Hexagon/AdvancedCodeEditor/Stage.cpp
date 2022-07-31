@@ -682,6 +682,13 @@ bool Stage::delete_to_next_word()
    return result;
 }
 
+bool Stage::delete_to_next_word_or_end_of_line()
+{
+   bool result = advanced_code_editor.delete_to_next_word_or_end_of_line();
+   if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   return result;
+}
+
 bool Stage::join_lines()
 {
    if (!(initialized))
@@ -980,6 +987,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "delete_word_under_cursor", &Hexagon::AdvancedCodeEditor::Stage::delete_word_under_cursor },
       { "delete_to_end_of_line", &Hexagon::AdvancedCodeEditor::Stage::delete_to_end_of_line },
       { "delete_to_next_word", &Hexagon::AdvancedCodeEditor::Stage::delete_to_next_word },
+      { "delete_to_next_word_or_end_of_line",
+         &Hexagon::AdvancedCodeEditor::Stage::delete_to_next_word_or_end_of_line },
       { "split_lines", &Hexagon::AdvancedCodeEditor::Stage::split_lines },
       { "join_lines", &Hexagon::AdvancedCodeEditor::Stage::join_lines },
       { "delete_line", &Hexagon::AdvancedCodeEditor::Stage::delete_line },
