@@ -51,6 +51,7 @@ namespace Hexagon
          bool cursor_move_to_end_of_line();
          bool cursor_move_to_first_non_whitespace_character();
          bool cursor_jump_to_next_word();
+         bool cursor_jump_to_next_word_or_last_char();
          bool delete_to_next_word();
          bool cursor_jump_to_previous_word();
          bool cursor_move_to(int x=0, int y=0);

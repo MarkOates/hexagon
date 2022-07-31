@@ -383,6 +383,30 @@ functions:
       - RegexMatcher
 
 
+  - name: cursor_jump_to_next_word_or_last_char
+    type: bool
+    body: |
+      bool jump_successful = cursor_jump_to_next_word();
+      if (!jump_successful)
+      {
+         if (!is_cursor_in_bounds()) return false;
+         std::string &current_line = lines[cursor.get_y()];
+         
+         int new_pos = current_line.size()-1;
+         if (new_pos == cursor.get_x())
+         {
+            // do nothing
+            return false;
+         }
+         else
+         {
+            cursor.set_x(new_pos);
+            return true;
+         }
+      }
+      return true;
+      
+
   - name: delete_to_next_word
     type: bool
     body: |

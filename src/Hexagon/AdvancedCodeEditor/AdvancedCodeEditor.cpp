@@ -360,6 +360,29 @@ bool AdvancedCodeEditor::cursor_jump_to_next_word()
    return false;
 }
 
+bool AdvancedCodeEditor::cursor_jump_to_next_word_or_last_char()
+{
+   bool jump_successful = cursor_jump_to_next_word();
+   if (!jump_successful)
+   {
+      if (!is_cursor_in_bounds()) return false;
+      std::string &current_line = lines[cursor.get_y()];
+      
+      int new_pos = current_line.size()-1;
+      if (new_pos == cursor.get_x())
+      {
+         // do nothing
+         return false;
+      }
+      else
+      {
+         cursor.set_x(new_pos);
+         return true;
+      }
+   }
+   return true;
+}
+
 bool AdvancedCodeEditor::delete_to_next_word()
 {
    if (!is_cursor_in_bounds()) return false;
