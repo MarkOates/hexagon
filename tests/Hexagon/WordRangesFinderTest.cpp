@@ -36,12 +36,23 @@ TEST(Hexagon_WordRangesFinderTest,
    EXPECT_EQ(expected_ranges_result, actual_ranges_result);
 }
 
-TEST(Hexagon_WordRangesFinderTest, find_ranges__when_the_cursor_is_on_a_non_word_character__returns_a_nofind_result)
+TEST(Hexagon_WordRangesFinderTest,
+   DISABLED__find_ranges__when_the_cursor_is_on_a_non_word_character__returns_a_nofind_result)
 {
    Hexagon::WordRangesFinder word_ranges_finder("This is the l:ne of text for testing", 13);
                                   // cursor_pos (13) is here  ^
    std::pair<int, int> expected_ranges_result = std::pair<int, int>(-1, -1);
    std::pair<int, int> actual_ranges_result = word_ranges_finder.find_ranges();
+   EXPECT_EQ(expected_ranges_result, actual_ranges_result);
+}
+
+TEST(Hexagon_WordRangesFinderTest,
+   find_whitespace_char_ranges__when_the_cursor_is_on_a_whitespace_character__returns_the_ranges_of_the_whitespace)
+{
+   Hexagon::WordRangesFinder word_ranges_finder("This is the l\r   \n\tne of text for testing", 14);
+                                    // cursor_pos (14) is here  ^
+   std::pair<int, int> expected_ranges_result = std::pair<int, int>(13, 6);
+   std::pair<int, int> actual_ranges_result = word_ranges_finder.find_whitespace_char_ranges();
    EXPECT_EQ(expected_ranges_result, actual_ranges_result);
 }
 

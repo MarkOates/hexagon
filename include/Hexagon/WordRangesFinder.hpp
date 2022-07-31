@@ -18,6 +18,8 @@ namespace Hexagon
       ~WordRangesFinder();
 
       std::pair<int, int> find_ranges();
+      std::pair<int, int> find_word_char_ranges();
+      std::pair<int, int> find_whitespace_char_ranges();
       bool is_valid(std::pair<int, int> word_range={0, 0});
    };
 }
