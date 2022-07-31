@@ -18,15 +18,21 @@ functions:
   - name: find_ranges
     type: std::pair<int, int>
     body: |
-      if (cursor_pos < 0) return std::pair<int, int>(-1, -1);
-      if (cursor_pos >= line_of_text.length()) return std::pair<int, int>(-1, -1);
+      std::pair<int, int> result = find_word_char_ranges();
+      if (is_valid(result)) return result;
 
-      return find_word_char_ranges();
+      result = find_non_word_char_ranges();
+      if (is_valid(result)) return result;
+
+      return find_whitespace_char_ranges();
 
 
   - name: find_word_char_ranges
     type: std::pair<int, int>
     body: |
+      if (cursor_pos < 0) return std::pair<int, int>(-1, -1);
+      if (cursor_pos >= line_of_text.length()) return std::pair<int, int>(-1, -1);
+
       const std::string word_matching_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
       if (word_matching_chars.find(line_of_text[cursor_pos]) == std::string::npos)
@@ -42,21 +48,44 @@ functions:
       return std::pair<int, int>(start_pos, end_pos - start_pos);
 
 
+  - name: find_non_word_char_ranges
+    type: std::pair<int, int>
+    body: |
+      if (cursor_pos < 0) return std::pair<int, int>(-1, -1);
+      if (cursor_pos >= line_of_text.length()) return std::pair<int, int>(-1, -1);
+
+      const std::string word_matching_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      const std::string whitespace_matching_chars = " \f\n\r\t\v"; // chars matching the isupper() function from c++
+      const std::string non_word_matching_chars = word_matching_chars + whitespace_matching_chars;
+
+      if (non_word_matching_chars.find(line_of_text[cursor_pos]) != std::string::npos)
+      {
+         return std::pair<int, int>(-1, -1);
+      }
+
+      std::size_t start_pos = line_of_text.find_last_of(non_word_matching_chars, cursor_pos) + 1;
+      std::size_t end_pos = line_of_text.find_first_of(non_word_matching_chars, cursor_pos);
+
+      if (end_pos == std::string::npos) end_pos = (int)line_of_text.length();
+
+      return std::pair<int, int>(start_pos, end_pos - start_pos);
+
+
   - name: find_whitespace_char_ranges
     type: std::pair<int, int>
     body: |
       if (cursor_pos < 0) return std::pair<int, int>(-1, -1);
       if (cursor_pos >= line_of_text.length()) return std::pair<int, int>(-1, -1);
 
-      const std::string word_matching_chars = " \f\n\r\t\v"; // chars matching the isupper() function from c++ standard
+      const std::string whitespace_matching_chars = " \f\n\r\t\v"; // chars matching the isupper() function from c++
 
-      if (word_matching_chars.find(line_of_text[cursor_pos]) == std::string::npos)
+      if (whitespace_matching_chars.find(line_of_text[cursor_pos]) == std::string::npos)
       {
          return std::pair<int, int>(-1, -1);
       }
 
-      std::size_t start_pos = line_of_text.find_last_not_of(word_matching_chars, cursor_pos) + 1;
-      std::size_t end_pos = line_of_text.find_first_not_of(word_matching_chars, cursor_pos);
+      std::size_t start_pos = line_of_text.find_last_not_of(whitespace_matching_chars, cursor_pos) + 1;
+      std::size_t end_pos = line_of_text.find_first_not_of(whitespace_matching_chars, cursor_pos);
 
       if (end_pos == std::string::npos) end_pos = (int)line_of_text.length();
 
