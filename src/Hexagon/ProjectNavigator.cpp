@@ -65,11 +65,13 @@ bool ProjectNavigator::initialize()
          throw std::runtime_error(error_message.str());
       }
    main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", {
+      { "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
+      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       { "Hexagon", "/Users/markoates/Repos/hexagon/" },
       { "Wicked", "/Users/markoates/Repos/Wicked/" },
       { "Tileo", "/Users/markoates/Repos/Tileo/" },
       { "Blast", "/Users/markoates/Repos/blast/" },
-      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      //{ "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
       { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
       { "NcursesArt", "/Users/markoates/Repos/ncurses-art/" },
@@ -84,7 +86,8 @@ bool ProjectNavigator::initialize()
       { "TINS2022-test", "/Users/markoates/Repos/TINS2022-test/" },
       { "Tins2", "/Users/markoates/Repos/Tins2/" },
       { "AllegroMembersClub", "/Users/markoates/Repos/AllegroMembersClub/" },
-      { "Tins3", "/Users/markoates/Repos/Tins3/" },
+      { "tins_22_prep", "/Users/markoates/Repos/tins_22_prep/" },
+      //{ "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
       //{ "tins2021", "/Users/markoates/Repos/tins2021/" },
    });
    main_menu.set_color(ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f});
