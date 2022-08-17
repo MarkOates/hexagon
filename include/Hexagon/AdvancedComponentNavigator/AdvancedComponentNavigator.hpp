@@ -50,6 +50,7 @@ namespace Hexagon
          void yank_selected_text_as_include_directive();
          void yank_selected_text_as_quintessence_dependency_lines();
          void yank_selected_text_as_public_parent_class_lines();
+         void yank_selected_text_as_injected_dependency_property();
       };
    }
 }

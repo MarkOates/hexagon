@@ -8,6 +8,7 @@
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/ClipboardData.hpp>
+#include <Hexagon/ClipboardData.hpp>
 
 
 namespace Hexagon
@@ -193,6 +194,27 @@ void AdvancedComponentNavigator::yank_selected_text_as_public_parent_class_lines
                                   + "    init_with: ''\n";
 
    ClipboardData::store(text_for_clipboard);
+}
+
+void AdvancedComponentNavigator::yank_selected_text_as_injected_dependency_property()
+{
+   // take the class symbol, store it
+   // take the last component, snake_case it
+   // build up the string
+
+   std::string snake_case_name = "component";
+   std::string type = "This::Is::An::Example::Component*";
+
+   std::stringstream result;
+      result << "  - name: " << snake_case_name << std::endl;
+      result << "    type: " << type << std::endl;
+      result << "    constructor_arg: true" << std::endl;
+      result << "    init_with: nullptr" << std::endl;
+      result << "    getter: true" << std::endl;
+      result << "    setter: true" << std::endl;
+      result << std::endl;
+      result << std::endl;
+   ClipboardData::store(result.str());
 }
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon

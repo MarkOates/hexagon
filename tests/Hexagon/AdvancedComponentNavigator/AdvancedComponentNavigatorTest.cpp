@@ -81,3 +81,30 @@ TEST(Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest,
 }
 
 
+TEST(Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest,
+   yank_selected_text_as_injected_dependency_property__copies_the_expected_lines_to_the_clipboard)
+{
+   Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator advanced_component_navigator;
+   advanced_component_navigator.set_nodes(
+      { Blast::Project::Component("This/Is/An/Example/Component")});
+
+   ClipboardData::clear();
+   advanced_component_navigator.yank_selected_text_as_injected_dependency_property();
+
+   std::vector<std::string> actual_clipboard_lines = ClipboardData::retrieve();
+   std::vector<std::string> expected_clipboard_lines = {
+      "  - name: component",
+      "    type: This::Is::An::Example::Component*",
+      "    constructor_arg: true",
+      "    init_with: nullptr",
+      "    getter: true",
+      "    setter: true",
+      "",
+      "",
+   };
+   EXPECT_EQ(expected_clipboard_lines, actual_clipboard_lines);
+
+   ClipboardData::clear();
+}
+
+
