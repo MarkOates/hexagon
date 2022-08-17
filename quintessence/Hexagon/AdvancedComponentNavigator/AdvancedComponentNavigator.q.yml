@@ -120,7 +120,7 @@ functions:
 
   - name: yank_selected_text_label
     type: void
-    guard: [ current_selection_is_valid() ]
+    guards: [ current_selection_is_valid() ]
     body: |
       std::string selected_text = get_current_selection_label_or_empty_string();
       ClipboardData::store(selected_text);
@@ -131,7 +131,7 @@ functions:
 
   - name: yank_selected_text_as_component_name
     type: void
-    guard: [ current_selection_is_valid() ]
+    guards: [ current_selection_is_valid() ]
     body: |
       std::string selected_text = get_current_selection_label_or_empty_string();
       std::string filtered_text = php::str_replace("/", "::", selected_text);
@@ -143,7 +143,7 @@ functions:
 
   - name: yank_selected_text_as_include_directive
     type: void
-    guard: [ current_selection_is_valid() ]
+    guards: [ current_selection_is_valid() ]
     body: |
       std::string selected_text = get_current_selection_label_or_empty_string();
       std::string filtered_text = "#include <" + selected_text + ".hpp>";
@@ -154,7 +154,7 @@ functions:
 
   - name: yank_selected_text_as_quintessence_dependency_lines
     type: void
-    guard: [ current_selection_is_valid() ]
+    guards: [ current_selection_is_valid() ]
     body: |
       std::string selected_text = get_current_selection_label_or_empty_string();
       std::string symbol_text = selected_text;
@@ -170,7 +170,7 @@ functions:
 
   - name: yank_selected_text_as_public_parent_class_lines
     type: void
-    guard: [ current_selection_is_valid() ]
+    guards: [ current_selection_is_valid() ]
     body: |
       std::string selected_text = get_current_selection_label_or_empty_string();
       std::string symbol_text = selected_text;
@@ -186,7 +186,7 @@ functions:
 
   - name: yank_selected_text_as_injected_dependency_property
     type: void
-    guard: [ current_selection_is_valid() ]
+    guards: [ current_selection_is_valid() ]
     body: |
       std::string selected_text = get_current_selection_label_or_empty_string();
 
