@@ -8,10 +8,12 @@
 
 #include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
 
+
 TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest, can_be_created_without_blowing_up)
 {
    Hexagon::AdvancedComponentNavigator::EventController event_controller;
 }
+
 
 TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest, process_local_event__processes_the_events)
 {
@@ -32,6 +34,7 @@ TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest, process_local_event
    EXPECT_EQ(2, stage.get_cursor_position());
 }
 
+
 TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest,
    process_local_event__with_an_event_that_does_not_exist_throws_an_error)
 {
@@ -45,4 +48,5 @@ TEST(Hexagon_AdvancedComponentNavigator_EventControllerTest,
                              std::runtime_error,
                              expected_error_message);
 }
+
 
