@@ -53,7 +53,7 @@ namespace Hexagon
          ALLEGRO_COLOR get_base_backfill_color();
          Hexagon::ProjectComponentNavigator::ProjectComponentNavigator &get_component_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-         KeyboardCommandMapper build_keyboard_command_mapping();
+         AllegroFlare::KeyboardCommandMapper build_keyboard_command_mapping();
          std::map<std::string, std::function<void(ProjectComponentNavigator&)>> build_local_events_dictionary();
          virtual void render() override;
          virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;

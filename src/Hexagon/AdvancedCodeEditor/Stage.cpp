@@ -1033,9 +1033,9 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
    return local_events;
 }
 
-KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
+AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
 {
-   KeyboardCommandMapper result;
+   AllegroFlare::KeyboardCommandMapper result;
    result.set_mapping(ALLEGRO_KEY_K, 0, { "cursor_move_up" });
    result.set_mapping(ALLEGRO_KEY_J, 0, { "cursor_move_down" });
    result.set_mapping(ALLEGRO_KEY_J, ALLEGRO_KEYMOD_SHIFT, { "join_lines" });
@@ -1045,22 +1045,22 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
    result.set_mapping(ALLEGRO_KEY_4, ALLEGRO_KEYMOD_SHIFT, { "cursor_move_to_end_of_line" });
    result.set_mapping(ALLEGRO_KEY_W, 0, { "cursor_jump_to_next_word_or_last_char" });
    result.set_mapping(ALLEGRO_KEY_B, 0, { "cursor_jump_to_previous_word" });
-   result.set_mapping(ALLEGRO_KEY_U, KeyboardCommandMapper::CTRL, {
+   result.set_mapping(ALLEGRO_KEY_U, AllegroFlare::KeyboardCommandMapper::CTRL, {
       "cursor_jump_up_half_page",
       "first_row_offset_adjust_so_cursor_is_vertically_centered",
       });
-   result.set_mapping(ALLEGRO_KEY_D, KeyboardCommandMapper::CTRL, {
+   result.set_mapping(ALLEGRO_KEY_D, AllegroFlare::KeyboardCommandMapper::CTRL, {
       "cursor_jump_down_half_page",
       "first_row_offset_adjust_so_cursor_is_vertically_centered",
       });
    result.set_mapping(ALLEGRO_KEY_B, 0, { "cursor_jump_to_previous_word" });
    result.set_mapping(ALLEGRO_KEY_N, 0, { "cursor_jump_to_next_search_regex_selection" });
    result.set_mapping(ALLEGRO_KEY_N, ALLEGRO_KEYMOD_SHIFT, { "cursor_jump_to_previous_search_regex_selection" });
-   result.set_mapping(ALLEGRO_KEY_Y, KeyboardCommandMapper::CTRL, { "first_row_offset_move_up" });
-   result.set_mapping(ALLEGRO_KEY_E, KeyboardCommandMapper::CTRL, { "first_row_offset_move_down" });
+   result.set_mapping(ALLEGRO_KEY_Y, AllegroFlare::KeyboardCommandMapper::CTRL, { "first_row_offset_move_up" });
+   result.set_mapping(ALLEGRO_KEY_E, AllegroFlare::KeyboardCommandMapper::CTRL, { "first_row_offset_move_down" });
    result.set_mapping(ALLEGRO_KEY_X, 0, { "delete_character" });
    result.set_mapping(ALLEGRO_KEY_BACKSPACE, ALLEGRO_KEYMOD_SHIFT, { "delete_line" });
-   result.set_mapping(ALLEGRO_KEY_S, KeyboardCommandMapper::COMMAND, { "save_file" });
+   result.set_mapping(ALLEGRO_KEY_S, AllegroFlare::KeyboardCommandMapper::COMMAND, { "save_file" });
    result.set_mapping(ALLEGRO_KEY_I, 0, { "set_to_insert_mode" });
    result.set_mapping(ALLEGRO_KEY_Z, 0, {
       "first_row_offset_adjust_so_cursor_is_vertically_centered",
@@ -1107,9 +1107,9 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_edit_mode()
    return result;
 }
 
-KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_insert_mode()
+AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_insert_mode()
 {
-   KeyboardCommandMapper result;
+   AllegroFlare::KeyboardCommandMapper result;
    result.set_mapping(ALLEGRO_KEY_UP, 0, { "cursor_move_up" });
    result.set_mapping(ALLEGRO_KEY_DOWN, 0, { "cursor_move_down" });
    result.set_mapping(ALLEGRO_KEY_LEFT, 0, { "cursor_move_left" });
@@ -1118,8 +1118,8 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_insert_mode()
    result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "split_lines", "cursor_move_down", "cursor_move_to_start_of_line" });
    result.set_mapping(ALLEGRO_KEY_BACKSPACE, 0, { "cursor_move_left", "delete_character" });
 
-   result.set_mapping(ALLEGRO_KEY_OPENBRACE, KeyboardCommandMapper::CTRL, { "set_to_edit_mode" });
-   result.set_mapping(ALLEGRO_KEY_S, KeyboardCommandMapper::COMMAND, { "save_file" });
+   result.set_mapping(ALLEGRO_KEY_OPENBRACE, AllegroFlare::KeyboardCommandMapper::CTRL, { "set_to_edit_mode" });
+   result.set_mapping(ALLEGRO_KEY_S, AllegroFlare::KeyboardCommandMapper::COMMAND, { "save_file" });
    return result;
 }
 
@@ -1191,7 +1191,7 @@ void Stage::process_local_event(std::string event_name, ActionData action_data)
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
-   KeyboardCommandMapper keyboard_command_mapping;
+   AllegroFlare::KeyboardCommandMapper keyboard_command_mapping;
    if (is_in_insert_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_insert_mode();
    else if (is_in_edit_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_edit_mode();
 

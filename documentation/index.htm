@@ -623,7 +623,7 @@ table td
 </tr>
 <tr>
   <td class="property">keyboard_command_mapping</td>
-  <td class="property">KeyboardCommandMapper</td>
+  <td class="property">AllegroFlare::KeyboardCommandMapper</td>
 </tr>
 <tr>
   <td class="property">a_default_empty_event</td>
@@ -643,7 +643,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::Stage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/Stage.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ActionData&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ActionData.hpp&quot;]}</td>
@@ -1377,7 +1377,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::Renderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/Renderer.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::TextMesh&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/TextMesh.hpp&quot;]}</td>
@@ -1659,6 +1659,9 @@ table td
   <td class="private_method">draw_search_text_box()</td>
 </tr>
 <tr>
+  <td class="method">draw_input_hints()</td>
+</tr>
+<tr>
   <td class="method">render()</td>
 </tr>
 <tr>
@@ -1900,7 +1903,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;FileSystemNode&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/FileSystemNode.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedComponentNavigator::ComponentSearcher&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp&quot;]}</td>
@@ -5191,7 +5194,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;FileSystemNode&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/FileSystemNode.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -8286,7 +8289,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;FileSystemNode&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/FileSystemNode.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ProjectComponentNavigator::ComponentSearcher&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ProjectComponentNavigator/ComponentSearcher.hpp&quot;]}</td>
@@ -10201,7 +10204,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::KeyboardCommandMapper&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/KeyboardCommandMapper.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
@@ -11174,12 +11177,11 @@ table td
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateThreeSplitFromComponent"
   ],
-  "KeyboardCommandMapper": [
+  "AllegroFlare/KeyboardCommandMapper": [
     "Hexagon/AdvancedCodeEditor/EventController",
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/FileNavigator/Stage",
-    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/System/EventController"
   ],
@@ -12335,6 +12337,9 @@ table td
     "Hexagon/MultiplexMenu/Renderer"
   ],
   "Hexagon/MultiplexMenu/Renderer": [
+    "Hexagon/MultiplexMenu/Stage"
+  ],
+  "KeyboardCommandMapper": [
     "Hexagon/MultiplexMenu/Stage"
   ],
   "Hexagon/Notifications/Notification": [

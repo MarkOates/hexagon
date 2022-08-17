@@ -400,7 +400,7 @@ bool Stage::save_file()
 
 void Stage::process_event(ALLEGRO_EVENT& event)
 {
-   KeyboardCommandMapper keyboard_command_mapper;
+   AllegroFlare::KeyboardCommandMapper keyboard_command_mapper;
                                               // al_keycodee, shift, ctrl, alt, command, { command_identifier }
    static const std::string SET_NODE_ROOT_TO_SYSTEM_ROOT_DIRECTORY = "set_node_root_to_system_root_directory";
    static const std::string SET_NODE_ROOT_TO_REPOS_DIRECTORY = "set_node_root_to_repos_directory";

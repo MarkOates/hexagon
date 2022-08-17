@@ -144,16 +144,16 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
-KeyboardCommandMapper Stage::build_keyboard_command_mapping()
+AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping()
 {
-   constexpr auto NO_MODIFIER = KeyboardCommandMapper::NO_MODIFIER;
-   constexpr auto SHIFT = KeyboardCommandMapper::SHIFT;
-   constexpr auto CTRL = KeyboardCommandMapper::CTRL;
-   constexpr auto ALT = KeyboardCommandMapper::ALT;
-   constexpr auto COMMAND = KeyboardCommandMapper::COMMAND;
-   constexpr auto OPTION = KeyboardCommandMapper::OPTION;
+   constexpr auto NO_MODIFIER = AllegroFlare::KeyboardCommandMapper::NO_MODIFIER;
+   constexpr auto SHIFT = AllegroFlare::KeyboardCommandMapper::SHIFT;
+   constexpr auto CTRL = AllegroFlare::KeyboardCommandMapper::CTRL;
+   constexpr auto ALT = AllegroFlare::KeyboardCommandMapper::ALT;
+   constexpr auto COMMAND = AllegroFlare::KeyboardCommandMapper::COMMAND;
+   constexpr auto OPTION = AllegroFlare::KeyboardCommandMapper::OPTION;
 
-   KeyboardCommandMapper mapping;
+   AllegroFlare::KeyboardCommandMapper mapping;
 
    static const std::string MOVE_CURSOR_UP = "move_cursor_up";
    static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
@@ -254,7 +254,7 @@ void Stage::process_event(ALLEGRO_EVENT& event)
       break;
    case ALLEGRO_EVENT_KEY_CHAR:
       {
-         KeyboardCommandMapper keyboard_command_mapper = build_keyboard_command_mapping();
+         AllegroFlare::KeyboardCommandMapper keyboard_command_mapper = build_keyboard_command_mapping();
          bool event_caught = false;
 
          bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;

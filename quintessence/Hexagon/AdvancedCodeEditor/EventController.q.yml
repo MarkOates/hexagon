@@ -13,7 +13,7 @@ properties:
     constructor_arg: true
 
   - name: keyboard_command_mapping
-    type: KeyboardCommandMapper
+    type: AllegroFlare::KeyboardCommandMapper
     init_with: '{}'
     constructor_arg: true
 
@@ -134,7 +134,7 @@ dependencies:
 
   - symbol: Hexagon::AdvancedCodeEditor::Stage*
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
-  - symbol: KeyboardCommandMapper
+  - symbol: AllegroFlare::KeyboardCommandMapper
     headers: [ AllegroFlare/KeyboardCommandMapper.hpp ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]

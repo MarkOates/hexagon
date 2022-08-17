@@ -187,12 +187,11 @@
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateThreeSplitFromComponent"
   ],
-  "KeyboardCommandMapper": [
+  "AllegroFlare/KeyboardCommandMapper": [
     "Hexagon/AdvancedCodeEditor/EventController",
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/FileNavigator/Stage",
-    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/System/EventController"
   ],
@@ -1348,6 +1347,9 @@
     "Hexagon/MultiplexMenu/Renderer"
   ],
   "Hexagon/MultiplexMenu/Renderer": [
+    "Hexagon/MultiplexMenu/Stage"
+  ],
+  "KeyboardCommandMapper": [
     "Hexagon/MultiplexMenu/Stage"
   ],
   "Hexagon/Notifications/Notification": [

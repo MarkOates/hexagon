@@ -8,7 +8,7 @@ namespace KeyboardInputsModal
 {
 
 
-Stage::Stage(KeyboardCommandMapper *keyboard_command_mapper)
+Stage::Stage(AllegroFlare::KeyboardCommandMapper *keyboard_command_mapper)
    : StageInterface(KEYBOARD_INPUTS_MODAL)
    , keyboard_command_mapper(keyboard_command_mapper)
 {}

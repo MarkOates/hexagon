@@ -7,10 +7,10 @@ namespace KeyboardInputsModal
    class Stage : public StageInterface
    {
    private:
-      KeyboardCommandMapper *keyboard_command_mapper;
+      AllegroFlare::KeyboardCommandMapper *keyboard_command_mapper;
 
    public:
-      Stage(KeyboardCommandMapper *keyboard_command_mapper);
+      Stage(AllegroFlare::KeyboardCommandMapper *keyboard_command_mapper);
       ~Stage();
 
       virtual void render() override;

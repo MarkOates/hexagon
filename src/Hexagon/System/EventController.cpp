@@ -366,13 +366,13 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
          error_message << "EventController" << "::" << "process_event" << ": error: " << "guard \"event_ptr\" not met";
          throw std::runtime_error(error_message.str());
       }
-   KeyboardCommandMapper keyboard_key_up_mapper;
-   KeyboardCommandMapper keyboard_key_down_mapper;
-   KeyboardCommandMapper keyboard_key_char_mapper;
+   AllegroFlare::KeyboardCommandMapper keyboard_key_up_mapper;
+   AllegroFlare::KeyboardCommandMapper keyboard_key_down_mapper;
+   AllegroFlare::KeyboardCommandMapper keyboard_key_char_mapper;
    ALLEGRO_EVENT &event = *event_ptr;
 
-   auto KEYMOD_SHIFT = KeyboardCommandMapper::SHIFT;
-   auto KEYMOD_CTRL = KeyboardCommandMapper::CTRL;
+   auto KEYMOD_SHIFT = AllegroFlare::KeyboardCommandMapper::SHIFT;
+   auto KEYMOD_CTRL = AllegroFlare::KeyboardCommandMapper::CTRL;
 
    //KeyboardCommandMapper::COMMAND
 
@@ -477,7 +477,7 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
           });
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_S, false, false, false, true, {
          ::System::SAVE_FRONTMOST_CODE_EDITOR_STAGE_AND_TOUCH_IF_SYMLINK, });
-      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_D, KeyboardCommandMapper::COMMAND, {
+      keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_D, AllegroFlare::KeyboardCommandMapper::COMMAND, {
          ::System::OPEN_DOCUMENTATION_IN_BROWSER,
          });
       keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_T, false, false, true, false, {

@@ -16,7 +16,7 @@ namespace AdvancedCodeEditor
 ALLEGRO_EVENT EventController::a_default_empty_event = {};
 
 
-EventController::EventController(Hexagon::AdvancedCodeEditor::Stage* stage, std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary, KeyboardCommandMapper keyboard_command_mapping)
+EventController::EventController(Hexagon::AdvancedCodeEditor::Stage* stage, std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary, AllegroFlare::KeyboardCommandMapper keyboard_command_mapping)
    : stage(stage)
    , events_dictionary(events_dictionary)
    , keyboard_command_mapping(keyboard_command_mapping)

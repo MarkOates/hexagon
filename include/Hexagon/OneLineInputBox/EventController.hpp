@@ -27,8 +27,8 @@ namespace OneLineInputBox
    private:
       Hexagon::OneLineInputBox::Stage *stage;
 
-      KeyboardCommandMapper edit_mode__keyboard_command_mapper;
-      KeyboardCommandMapper insert_mode__keyboard_command_mapper;
+      AllegroFlare::KeyboardCommandMapper edit_mode__keyboard_command_mapper;
+      AllegroFlare::KeyboardCommandMapper insert_mode__keyboard_command_mapper;
 
       ActionQueueRecording last_performed_action_queue_recording;
       bool last_performed_action_queue_is_recording;
