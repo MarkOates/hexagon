@@ -59,7 +59,7 @@ void EventController::process_local_event(std::string event_name, ActionData act
 
       std::stringstream info_message2;
       info_message2 << "AdvancedComponentNavigator::EventController::process_local_event: info: "
-                   << "event named \"" << event_name << "\" handled.";
+                   << "handled event named \"" << event_name << "\".";
       std::cout << info_message2.str() << std::endl;
    }
 
