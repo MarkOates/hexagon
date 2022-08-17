@@ -1506,6 +1506,9 @@ table td
 <tr>
   <td class="method">yank_selected_text_as_injected_dependency_property()</td>
 </tr>
+<tr>
+  <td class="method">convert_to_snake_case(1)</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -1519,6 +1522,18 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ClipboardData::store&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ClipboardData.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::transform&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;isupper&quot;, &quot;headers&quot;=&gt;[&quot;cctype&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;islower&quot;, &quot;headers&quot;=&gt;[&quot;cctype&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringSplitter&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringSplitter.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -11139,6 +11154,7 @@ table td
   ],
   "Blast/StringSplitter": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Staged",
@@ -11588,6 +11604,17 @@ table td
     "Hexagon/ComponentRelationsNavigator/ComponentRelations",
     "Hexagon/ProjectComponentNavigator/ComponentSearcher",
     "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "std/transform": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
+    "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/StageInfoOverlay"
+  ],
+  "isupper": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
+  ],
+  "islower": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
   ],
   "Blast/Project/ComponentLister": [
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
@@ -12107,10 +12134,6 @@ table td
     "Hexagon/Elements/Frame",
     "Hexagon/FontSet",
     "Hexagon/Hud"
-  ],
-  "std/transform": [
-    "Hexagon/Elements/ListMenu",
-    "Hexagon/Elements/StageInfoOverlay"
   ],
   "const char": [
     "Hexagon/Elements/QuoteRenderer"

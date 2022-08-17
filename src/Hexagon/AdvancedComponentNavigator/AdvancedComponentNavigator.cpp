@@ -9,6 +9,10 @@
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/ClipboardData.hpp>
+#include <Blast/StringSplitter.hpp>
+#include <algorithm>
+#include <cctype>
+#include <cctype>
 
 
 namespace Hexagon
@@ -201,15 +205,21 @@ void AdvancedComponentNavigator::yank_selected_text_as_injected_dependency_prope
    std::string selected_text = get_current_selection_label_or_empty_string();
 
    // take the class symbol, store it
-   // take the last component, snake_case it
-   // build up the string
-   std::string selected_text_as_class = php::str_replace("/", "::", selected_text);
+   std::string selected_text_as_class = selected_text;
+   php::str_replace("/", "::", selected_text_as_class);
 
-   std::string snake_case_name = "component";
+   // take the last component, snake_case it
+   std::vector<std::string> split_tokens = Blast::StringSplitter(selected_text, '/').split();
+   std::string snake_case_name = split_tokens.empty() ? "error_unextractable_component_base_name"
+                                                      : convert_to_snake_case(split_tokens[split_tokens.size()-1]);
+
+   // build up the string
+
+   std::string name = snake_case_name;
    std::string type = selected_text_as_class + "*";
 
    std::stringstream result;
-      result << "  - name: " << snake_case_name << std::endl;
+      result << "  - name: " << name << std::endl;
       result << "    type: " << type << std::endl;
       result << "    constructor_arg: true" << std::endl;
       result << "    init_with: nullptr" << std::endl;
@@ -218,6 +228,27 @@ void AdvancedComponentNavigator::yank_selected_text_as_injected_dependency_prope
       result << std::endl;
       result << std::endl;
    ClipboardData::store(result.str());
+}
+
+std::string AdvancedComponentNavigator::convert_to_snake_case(std::string source_str)
+{
+   std::string camelCase = source_str;
+   // Convert lowerCamelCase and UpperCamelCase strings to lower_with_underscore.
+   std::string str(1, tolower(camelCase[0]));
+
+   // First place underscores between contiguous lower and upper case letters.
+   // For example, `_LowerCamelCase` becomes `_Lower_Camel_Case`.
+   for (auto it = camelCase.begin() + 1; it != camelCase.end(); ++it) {
+     if (isupper(*it) && *(it-1) != '_' && islower(*(it-1))) {
+       str += "_";
+     }
+     str += *it;
+   }
+
+   // Then convert it to lower case.
+   std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+
+   return str;
 }
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon

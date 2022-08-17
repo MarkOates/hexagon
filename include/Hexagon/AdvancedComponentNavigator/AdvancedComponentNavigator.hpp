@@ -51,6 +51,7 @@ namespace Hexagon
          void yank_selected_text_as_quintessence_dependency_lines();
          void yank_selected_text_as_public_parent_class_lines();
          void yank_selected_text_as_injected_dependency_property();
+         std::string convert_to_snake_case(std::string source_str="[unset-str]");
       };
    }
 }

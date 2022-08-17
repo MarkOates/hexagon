@@ -142,6 +142,7 @@
   ],
   "Blast/StringSplitter": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Staged",
@@ -591,6 +592,17 @@
     "Hexagon/ComponentRelationsNavigator/ComponentRelations",
     "Hexagon/ProjectComponentNavigator/ComponentSearcher",
     "Hexagon/ProjectComponentNavigator/Stage"
+  ],
+  "std/transform": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
+    "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/StageInfoOverlay"
+  ],
+  "isupper": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
+  ],
+  "islower": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
   ],
   "Blast/Project/ComponentLister": [
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
@@ -1110,10 +1122,6 @@
     "Hexagon/Elements/Frame",
     "Hexagon/FontSet",
     "Hexagon/Hud"
-  ],
-  "std/transform": [
-    "Hexagon/Elements/ListMenu",
-    "Hexagon/Elements/StageInfoOverlay"
   ],
   "const char": [
     "Hexagon/Elements/QuoteRenderer"
