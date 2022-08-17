@@ -198,12 +198,15 @@ void AdvancedComponentNavigator::yank_selected_text_as_public_parent_class_lines
 
 void AdvancedComponentNavigator::yank_selected_text_as_injected_dependency_property()
 {
+   std::string selected_text = get_current_selection_label_or_empty_string();
+
    // take the class symbol, store it
    // take the last component, snake_case it
    // build up the string
+   std::string selected_text_as_class = php::str_replace("/", "::", selected_text);
 
    std::string snake_case_name = "component";
-   std::string type = "This::Is::An::Example::Component*";
+   std::string type = selected_text_as_class + "*";
 
    std::stringstream result;
       result << "  - name: " << snake_case_name << std::endl;
