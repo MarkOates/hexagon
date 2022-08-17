@@ -48,6 +48,13 @@ properties:
     constructor_arg: true
     getter: true
 
+  - name: input_hints_tokens
+    type: std::vector<std::string>
+    init_with: '{}'
+    constructor_arg: true
+    getter: true
+    setter: true
+
   - name: frame_color_bluegreen
     type: ALLEGRO_COLOR
     init_with: 'al_color_html("5cb7e2")'
@@ -130,9 +137,11 @@ functions:
   - name: draw_input_hints
     guards: [ font_bin ]
     body: |
+      if (input_hints_tokens.empty()) return;
+
       Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
       placement3d &place = stage.get_place();
-      std::string text_to_draw = "Input hints";
+      std::string text_to_draw = input_hints_tokens[0];
       ALLEGRO_COLOR color = base_text_color;
       al_draw_text(font, color, place.size.x * 0.5, place.size.y+30, ALLEGRO_ALIGN_CENTER, text_to_draw.c_str());
       return;

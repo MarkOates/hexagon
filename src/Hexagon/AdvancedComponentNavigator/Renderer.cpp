@@ -23,7 +23,7 @@ namespace AdvancedComponentNavigator
 {
 
 
-Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, AllegroFlare::FontBin* font_bin, bool is_focused, ALLEGRO_FONT* font, int cell_width, int cell_height, ALLEGRO_COLOR base_backfill_color, float backfill_opacity, ALLEGRO_COLOR base_text_color)
+Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, AllegroFlare::FontBin* font_bin, bool is_focused, ALLEGRO_FONT* font, int cell_width, int cell_height, ALLEGRO_COLOR base_backfill_color, float backfill_opacity, ALLEGRO_COLOR base_text_color, std::vector<std::string> input_hints_tokens)
    : stage(stage)
    , font_bin(font_bin)
    , is_focused(is_focused)
@@ -33,6 +33,7 @@ Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, AllegroFla
    , base_backfill_color(base_backfill_color)
    , backfill_opacity(backfill_opacity)
    , base_text_color(base_text_color)
+   , input_hints_tokens(input_hints_tokens)
    , frame_color_bluegreen(al_color_html("5cb7e2"))
 {
 }
@@ -40,6 +41,12 @@ Renderer::Renderer(Hexagon::AdvancedComponentNavigator::Stage* stage, AllegroFla
 
 Renderer::~Renderer()
 {
+}
+
+
+void Renderer::set_input_hints_tokens(std::vector<std::string> input_hints_tokens)
+{
+   this->input_hints_tokens = input_hints_tokens;
 }
 
 
@@ -52,6 +59,12 @@ ALLEGRO_COLOR Renderer::get_base_backfill_color()
 ALLEGRO_COLOR Renderer::get_base_text_color()
 {
    return base_text_color;
+}
+
+
+std::vector<std::string> Renderer::get_input_hints_tokens()
+{
+   return input_hints_tokens;
 }
 
 
@@ -130,9 +143,11 @@ void Renderer::draw_input_hints()
          error_message << "Renderer" << "::" << "draw_input_hints" << ": error: " << "guard \"font_bin\" not met";
          throw std::runtime_error(error_message.str());
       }
+   if (input_hints_tokens.empty()) return;
+
    Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
    placement3d &place = stage.get_place();
-   std::string text_to_draw = "Input hints";
+   std::string text_to_draw = input_hints_tokens[0];
    ALLEGRO_COLOR color = base_text_color;
    al_draw_text(font, color, place.size.x * 0.5, place.size.y+30, ALLEGRO_ALIGN_CENTER, text_to_draw.c_str());
    return;

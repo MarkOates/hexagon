@@ -244,6 +244,18 @@ void Stage::render()
       }
    float backfill_opacity = 0.8f;
 
+   std::vector<std::string> input_hints_tokens = {
+      "Y - copy Component/Name"
+      "    "
+      "C - copy Class::Name"
+      "    "
+      "I - copy #include"
+      "    "
+      "D - copy dependency item"
+      "    "
+      "P - copy parent_classes item"
+   };
+
    Hexagon::AdvancedComponentNavigator::Renderer renderer(
       this,
       font_bin,
@@ -253,7 +265,8 @@ void Stage::render()
       cell_height,
       base_backfill_color,
       backfill_opacity,
-      base_text_color
+      base_text_color,
+      input_hints_tokens
    );
    renderer.render();
    return;
