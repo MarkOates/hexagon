@@ -202,10 +202,9 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping()
       mapping.set_mapping(ALLEGRO_KEY_Y, NO_MODIFIER, { YANK_SELECTED_TEXT_LABEL });
       mapping.set_mapping(ALLEGRO_KEY_C, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_COMPONENT_NAME });
       mapping.set_mapping(ALLEGRO_KEY_I, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE });
+      mapping.set_mapping(ALLEGRO_KEY_I, SHIFT, { YANK_SELECTED_TEXT_AS_INJECTED_DEPENDENCY_PROPERTY });
       mapping.set_mapping(ALLEGRO_KEY_D, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES });
-      //mapping.set_mapping(ALLEGRO_KEY_D, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_CLASS_PROPERTY_POINTER });
       mapping.set_mapping(ALLEGRO_KEY_P, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_PUBLIC_PARENT_CLASS_LINES });
-      mapping.set_mapping(ALLEGRO_KEY_P, SHIFT, { YANK_SELECTED_TEXT_AS_INJECTED_DEPENDENCY_PROPERTY });
    }
    else if (component.is_mode_typing_in_search_bar())
    {

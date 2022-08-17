@@ -5,6 +5,7 @@
 #include <string>
 #include <functional>
 #include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
+#include <iostream>
 #include <stdexcept>
 #include <sstream>
 
@@ -49,7 +50,17 @@ void EventController::process_local_event(std::string event_name, ActionData act
    }
    else
    {
+      std::stringstream info_message;
+      info_message << "AdvancedComponentNavigator::EventController::process_local_event: info: "
+                   << "handling event named \"" << event_name << "\": ";
+      std::cout << info_message.str() << std::endl;
+
       event_dictionary[event_name](component);
+
+      std::stringstream info_message2;
+      info_message2 << "AdvancedComponentNavigator::EventController::process_local_event: info: "
+                   << "event named \"" << event_name << "\" handled.";
+      std::cout << info_message2.str() << std::endl;
    }
 
    return;
