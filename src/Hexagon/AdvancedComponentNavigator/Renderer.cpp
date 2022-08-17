@@ -3,6 +3,8 @@
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <cmath>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/color.h>
@@ -117,6 +119,22 @@ void Renderer::draw_search_text_box()
    }
 
    al_draw_text(font, search_text_font_color, 0, search_text_y, 0, search_text_val.c_str());
+   return;
+}
+
+void Renderer::draw_input_hints()
+{
+   if (!(font_bin))
+      {
+         std::stringstream error_message;
+         error_message << "Renderer" << "::" << "draw_input_hints" << ": error: " << "guard \"font_bin\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
+   placement3d &place = stage.get_place();
+   std::string text_to_draw = "Input hints";
+   ALLEGRO_COLOR color = base_text_color;
+   al_draw_text(font, color, place.size.x * 0.5, place.size.y+30, ALLEGRO_ALIGN_CENTER, text_to_draw.c_str());
    return;
 }
 
@@ -379,6 +397,12 @@ void Renderer::render_raw()
           }
         ).render();
    }
+
+
+   // draw the input hints
+
+   draw_input_hints();
+
 
    return;
 }

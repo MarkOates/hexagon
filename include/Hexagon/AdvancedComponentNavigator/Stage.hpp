@@ -66,7 +66,7 @@ namespace Hexagon
          bool get_represents_symlink();
          Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &get_component_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-         KeyboardCommandMapper build_keyboard_command_mapping();
+         AllegroFlare::KeyboardCommandMapper build_keyboard_command_mapping();
          std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> build_local_events_dictionary();
          virtual void render() override;
          virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;

@@ -34,6 +34,7 @@ namespace Hexagon
          void note();
          ALLEGRO_COLOR build_backfill_color();
          void draw_search_text_box();
+         void draw_input_hints();
          void render();
          void render_raw();
          ALLEGRO_FONT* obtain_title_text_font();

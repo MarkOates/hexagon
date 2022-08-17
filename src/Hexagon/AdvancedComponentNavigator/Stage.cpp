@@ -173,16 +173,16 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 }
 
 
-KeyboardCommandMapper Stage::build_keyboard_command_mapping()
+AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping()
 {
-   constexpr auto NO_MODIFIER = KeyboardCommandMapper::NO_MODIFIER;
-   constexpr auto SHIFT = KeyboardCommandMapper::SHIFT;
-   constexpr auto CTRL = KeyboardCommandMapper::CTRL;
-   constexpr auto ALT = KeyboardCommandMapper::ALT;
-   constexpr auto COMMAND = KeyboardCommandMapper::COMMAND;
-   constexpr auto OPTION = KeyboardCommandMapper::OPTION;
+   constexpr auto NO_MODIFIER = AllegroFlare::KeyboardCommandMapper::NO_MODIFIER;
+   constexpr auto SHIFT = AllegroFlare::KeyboardCommandMapper::SHIFT;
+   constexpr auto CTRL = AllegroFlare::KeyboardCommandMapper::CTRL;
+   constexpr auto ALT = AllegroFlare::KeyboardCommandMapper::ALT;
+   constexpr auto COMMAND = AllegroFlare::KeyboardCommandMapper::COMMAND;
+   constexpr auto OPTION = AllegroFlare::KeyboardCommandMapper::OPTION;
 
-   KeyboardCommandMapper mapping;
+   AllegroFlare::KeyboardCommandMapper mapping;
 
    //static const std::string MOVE_CURSOR_UP = "move_cursor_up";
    //static const std::string MOVE_CURSOR_DOWN = "move_cursor_down";
@@ -202,6 +202,7 @@ KeyboardCommandMapper Stage::build_keyboard_command_mapping()
       mapping.set_mapping(ALLEGRO_KEY_C, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_COMPONENT_NAME });
       mapping.set_mapping(ALLEGRO_KEY_I, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE });
       mapping.set_mapping(ALLEGRO_KEY_D, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES });
+      //mapping.set_mapping(ALLEGRO_KEY_D, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_CLASS_PROPERTY_POINTER });
       mapping.set_mapping(ALLEGRO_KEY_P, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_PUBLIC_PARENT_CLASS_LINES });
    }
    else if (component.is_mode_typing_in_search_bar())
@@ -309,7 +310,7 @@ void Stage::process_event(ALLEGRO_EVENT& event)
       break;
    case ALLEGRO_EVENT_KEY_CHAR:
       {
-         KeyboardCommandMapper keyboard_command_mapper = build_keyboard_command_mapping();
+         AllegroFlare::KeyboardCommandMapper keyboard_command_mapper = build_keyboard_command_mapping();
          bool event_caught = false;
 
          bool shift = event.keyboard.modifiers & ALLEGRO_KEYMOD_SHIFT;

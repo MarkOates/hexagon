@@ -127,6 +127,17 @@ functions:
       return;
 
 
+  - name: draw_input_hints
+    guards: [ font_bin ]
+    body: |
+      Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
+      placement3d &place = stage.get_place();
+      std::string text_to_draw = "Input hints";
+      ALLEGRO_COLOR color = base_text_color;
+      al_draw_text(font, color, place.size.x * 0.5, place.size.y+30, ALLEGRO_ALIGN_CENTER, text_to_draw.c_str());
+      return;
+
+
   - name: render
     type: void
     guards: [ stage, font ]
@@ -366,6 +377,12 @@ functions:
              }
            ).render();
       }
+
+
+      // draw the input hints
+
+      draw_input_hints();
+
 
       return;
     body_dependency_symbols:
