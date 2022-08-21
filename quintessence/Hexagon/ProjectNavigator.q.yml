@@ -21,7 +21,7 @@ properties:
 
   - name: menu_items
     type: std::vector<std::tuple<std::string, std::string>>
-    init_with: '{}'
+    init_with: 'build_placeholder_menu_items()'
     constructor_arg: true
     getter: true
     setter: false
@@ -67,7 +67,7 @@ functions:
     type: bool
     guards: [ (!initialized) ]
     body: |
-      main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", build_placeholder_menu_items());
+      main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", menu_items);
       main_menu.set_color(ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f});
       initialized = true;
       return true;

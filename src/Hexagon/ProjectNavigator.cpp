@@ -78,7 +78,7 @@ bool ProjectNavigator::initialize()
          error_message << "ProjectNavigator" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
          throw std::runtime_error(error_message.str());
       }
-   main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", build_placeholder_menu_items());
+   main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", menu_items);
    main_menu.set_color(ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f});
    initialized = true;
    return true;
