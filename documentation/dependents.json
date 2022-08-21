@@ -1011,6 +1011,7 @@
     "Hexagon/PacketRenderer",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
+    "Hexagon/StageFactory",
     "Hexagon/UI/LittleMenu"
   ],
   "Hexagon/Daemus/Builds/Base": [

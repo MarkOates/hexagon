@@ -56,6 +56,9 @@
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/ProjectNavigator.hpp>
+#include <vector>
+#include <tuple>
+#include <string>
 #include <stdexcept>
 #include <sstream>
 #include <allegro5/allegro.h>
@@ -605,13 +608,42 @@ StageInterface* StageFactory::create_project_navigator()
          throw std::runtime_error(error_message.str());
       }
    Hexagon::ProjectNavigator *result = new Hexagon::ProjectNavigator(font_bin);
-   result->initialize();
 
    //result->set_font_bin(font_bin);
    result->set_render_on_hud(true);
    //result->set_base_text_color(obtain_base_text_color());
    //result->set_base_backfill_color(obtain_base_backfill_color());
    result->set_place(build_centered_on_hud_initial_place(600, 700));
+
+
+   std::vector<std::tuple<std::string, std::string>> project_menu_items = {
+      { "Blast", "/Users/markoates/Repos/blast/" },
+      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+      { "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
+      { "Wicked", "/Users/markoates/Repos/Wicked/" },
+      { "Tileo", "/Users/markoates/Repos/Tileo/" },
+      { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
+      { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
+      //{ "NcursesArt", "/Users/markoates/Repos/ncurses-art/" },
+      //{ "-- GAMES --", },
+      { "DragonWrath", "/Users/markoates/Repos/DragonWrath/" },
+      { "Solitare", "/Users/markoates/Repos/Solitare/" },
+      { "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
+      { "Peri", "/Users/markoates/Repos/Peri/" },
+      { "Solitare", "/Users/markoates/Repos/Solitare/" },
+      { "Epidemic", "/Users/markoates/Repos/Epidemic/" },
+      //{ "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
+      { "Golf", "/Users/markoates/Repos/Golf/" },
+      //{ "TINS2022-test", "/Users/markoates/Repos/TINS2022-test/" },
+      //{ "Tins2", "/Users/markoates/Repos/Tins2/" },
+      { "AllegroMembersClub", "/Users/markoates/Repos/AllegroMembersClub/" },
+      //{ "tins_22_prep", "/Users/markoates/Repos/tins_22_prep/" },
+   };
+
+   result->set_menu_items(project_menu_items);
+
+   result->initialize();
 
    //ALLEGRO_DISPLAY *display = get_current_display();
    //ALLEGRO_FONT *font = obtain_component_navigator_font();
