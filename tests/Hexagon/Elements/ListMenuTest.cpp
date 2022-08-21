@@ -208,6 +208,19 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,
    EXPECT_EQ(current_list_item, "/Users/markoates/Repos/blast/");
 }
 
+
+TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, set_list_items__will_set_the_list_items)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, set_list_items__will_reset_the_cursor_position_to_zero)
+{
+   // TODO
+}
+
+
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,
    move_cursor_down__with_wrap_cursor_when_moving_cursor_outsize_bounds_set_to_true__will_wrap_the_cursor)
 {

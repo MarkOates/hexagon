@@ -19,6 +19,13 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
+  - name: menu_items
+    type: std::vector<std::tuple<std::string, std::string>>
+    init_with: '{}'
+    constructor_arg: true
+    getter: true
+    setter: false
+
   - name: main_menu
     type: Hexagon::Elements::ListMenu
     init_with: '{}'
@@ -43,6 +50,17 @@ properties:
 
 
 functions:
+
+
+  - name: set_menu_items
+    parameters:
+      - name: menu_items
+        type: std::vector<std::tuple<std::string, std::string>>
+        default_argument: '{}'
+    body: |
+      this->menu_items = menu_items;
+      main_menu.set_list_items(menu_items);
+      return;
 
 
   - name: initialize
@@ -276,5 +294,7 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
+  - symbol: std::vector<std::tuple<std::string, std::string>>
+    headers: [ vector, tuple, string ]
 
 

@@ -36,12 +36,6 @@ ListMenu::~ListMenu()
 }
 
 
-void ListMenu::set_list_items(std::vector<std::tuple<std::string, std::string>> list_items)
-{
-   this->list_items = list_items;
-}
-
-
 void ListMenu::set_color(ALLEGRO_COLOR color)
 {
    this->color = color;
@@ -125,6 +119,13 @@ float ListMenu::get_padding()
    return padding;
 }
 
+
+void ListMenu::set_list_items(std::vector<std::tuple<std::string, std::string>> list_items)
+{
+   this->list_items = list_items;
+   cursor = 0;
+   return;
+}
 
 bool ListMenu::move_cursor_up()
 {

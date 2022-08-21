@@ -4253,6 +4253,9 @@ table td
     </table>
      <table>
 <tr>
+  <td class="method">set_list_items(1)</td>
+</tr>
+<tr>
   <td class="method">move_cursor_up()</td>
 </tr>
 <tr>
@@ -8407,6 +8410,10 @@ table td
   <td class="property">Hexagon::System::Config*</td>
 </tr>
 <tr>
+  <td class="property">menu_items</td>
+  <td class="property">std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt;</td>
+</tr>
+<tr>
   <td class="property">main_menu</td>
   <td class="property">Hexagon::Elements::ListMenu</td>
 </tr>
@@ -8428,6 +8435,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="method">set_menu_items(1)</td>
+</tr>
 <tr>
   <td class="method">initialize()</td>
 </tr>
@@ -8513,6 +8523,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ActionData&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ActionData.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;tuple&quot;, &quot;string&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -12213,6 +12226,7 @@ table td
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/Elements/ListMenu",
     "Hexagon/PacketRenderer",
+    "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/UI/LittleMenu"
   ],

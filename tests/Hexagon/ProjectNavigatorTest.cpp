@@ -71,3 +71,15 @@ TEST_F(Hexagon_ProjectNavigatorTest, build_allegro_version_string__will_create_t
    ASSERT_EQ(expected_version_string, actual_version_string);
 }
 
+TEST_F(Hexagon_ProjectNavigatorTest, set_list_items__will_set_the_list_items)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_ProjectNavigatorTest, set_list_items__will_reset_the_cursor_position_to_zero)
+{
+   // TODO
+}
+
+

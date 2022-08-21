@@ -33,10 +33,11 @@ namespace Hexagon
 ALLEGRO_EVENT ProjectNavigator::a_default_empty_event = {};
 
 
-ProjectNavigator::ProjectNavigator(AllegroFlare::FontBin* font_bin, Hexagon::System::Config* config)
+ProjectNavigator::ProjectNavigator(AllegroFlare::FontBin* font_bin, Hexagon::System::Config* config, std::vector<std::tuple<std::string, std::string>> menu_items)
    : StageInterface(StageInterface::PROJECT_NAVIGATOR)
    , font_bin(font_bin)
    , config(config)
+   , menu_items(menu_items)
    , main_menu({})
    , surface_width(1920)
    , surface_height(1080)
@@ -50,11 +51,24 @@ ProjectNavigator::~ProjectNavigator()
 }
 
 
+std::vector<std::tuple<std::string, std::string>> ProjectNavigator::get_menu_items()
+{
+   return menu_items;
+}
+
+
 ALLEGRO_EVENT &ProjectNavigator::get_a_default_empty_event_ref()
 {
    return a_default_empty_event;
 }
 
+
+void ProjectNavigator::set_menu_items(std::vector<std::tuple<std::string, std::string>> menu_items)
+{
+   this->menu_items = menu_items;
+   main_menu.set_list_items(menu_items);
+   return;
+}
 
 bool ProjectNavigator::initialize()
 {
