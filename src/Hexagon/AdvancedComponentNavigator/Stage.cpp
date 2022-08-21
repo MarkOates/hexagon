@@ -36,6 +36,7 @@ Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_CO
    , YANK_SELECTED_TEXT_LABEL("yank_selected_text_label")
    , YANK_SELECTED_TEXT_AS_COMPONENT_NAME("yank_selected_text_as_component_name")
    , YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE("yank_selected_text_as_include_directive")
+   , YANK_SELECTED_TEXT_AS_ERROR_MESSAGE_TEMPLATE("yank_selected_text_as_error_message_template")
    , YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES("yank_selected_text_as_quintessence_dependency_lines")
    , YANK_SELECTED_TEXT_AS_PUBLIC_PARENT_CLASS_LINES("yank_selected_text_as_public_parent_class_lines")
    , YANK_SELECTED_TEXT_AS_INJECTED_DEPENDENCY_PROPERTY("yank_selected_text_as_injected_dependency_property")
@@ -205,6 +206,7 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping()
       mapping.set_mapping(ALLEGRO_KEY_I, SHIFT, { YANK_SELECTED_TEXT_AS_INJECTED_DEPENDENCY_PROPERTY });
       mapping.set_mapping(ALLEGRO_KEY_D, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES });
       mapping.set_mapping(ALLEGRO_KEY_P, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_PUBLIC_PARENT_CLASS_LINES });
+      mapping.set_mapping(ALLEGRO_KEY_E, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_ERROR_MESSAGE_TEMPLATE });
    }
    else if (component.is_mode_typing_in_search_bar())
    {
@@ -223,6 +225,8 @@ std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> Stage::b
       { YANK_SELECTED_TEXT_AS_COMPONENT_NAME, &AdvancedComponentNavigator::yank_selected_text_as_component_name },
       { YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE,
         &AdvancedComponentNavigator::yank_selected_text_as_include_directive },
+      { YANK_SELECTED_TEXT_AS_ERROR_MESSAGE_TEMPLATE,
+        &AdvancedComponentNavigator::yank_selected_text_as_error_message_template },
       { YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES,
         &AdvancedComponentNavigator::yank_selected_text_as_quintessence_dependency_lines },
       { YANK_SELECTED_TEXT_AS_PUBLIC_PARENT_CLASS_LINES,
@@ -252,13 +256,15 @@ void Stage::render()
       "    "
       "C - copy Class::Name"
       "    "
-      "I - copy #include"
+      "I - copy #include<>"
       "    "
-      "D - copy dependency item"
+      "D - copy as dependency item"
       "    "
-      "P - copy parent_classes item"
+      "P - copy as parent_classes item"
       "    "
       "SHIFT+I - as injected dependency property"
+      "    "
+      "E - copy as error message template"
    };
 
    Hexagon::AdvancedComponentNavigator::Renderer renderer(

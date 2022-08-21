@@ -108,3 +108,24 @@ TEST(Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest,
 }
 
 
+TEST(Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest,
+   yank_selected_text_as_error_message_template__copies_the_expected_lines_to_the_clipboard)
+{
+   Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator advanced_component_navigator;
+   advanced_component_navigator.set_nodes(
+      { Blast::Project::Component("This/Is/An/Example/Component")});
+
+   ClipboardData::clear();
+   advanced_component_navigator.yank_selected_text_as_error_message_template();
+
+   std::vector<std::string> actual_clipboard_lines = ClipboardData::retrieve();
+   std::vector<std::string> expected_clipboard_lines = {
+      "          std::stringstream error_message;",
+      "          error_message << \"CLASS_NAME error: \"",
+   };
+   EXPECT_EQ(expected_clipboard_lines, actual_clipboard_lines);
+
+   ClipboardData::clear();
+}
+
+

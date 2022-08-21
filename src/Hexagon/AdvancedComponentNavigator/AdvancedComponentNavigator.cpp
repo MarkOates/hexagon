@@ -21,6 +21,9 @@
 #include <Hexagon/ClipboardData.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Hexagon/ClipboardData.hpp>
+#include <stdexcept>
+#include <sstream>
 #include <Blast/StringSplitter.hpp>
 #include <algorithm>
 #include <cctype>
@@ -275,6 +278,36 @@ void AdvancedComponentNavigator::yank_selected_text_as_injected_dependency_prope
       result << "    setter: true" << std::endl;
       result << std::endl;
       result << std::endl;
+   ClipboardData::store(result.str());
+}
+
+void AdvancedComponentNavigator::yank_selected_text_as_error_message_template()
+{
+   if (!(current_selection_is_valid()))
+      {
+         std::stringstream error_message;
+         error_message << "AdvancedComponentNavigator" << "::" << "yank_selected_text_as_error_message_template" << ": error: " << "guard \"current_selection_is_valid()\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   std::string selected_text = get_current_selection_label_or_empty_string();
+
+   // take the class symbol, store it
+   std::string selected_text_as_class = selected_text;
+   php::str_replace("/", "::", selected_text_as_class);
+
+   // take the last component, snake_case it
+   std::vector<std::string> split_tokens = Blast::StringSplitter(selected_text, '/').split();
+   std::string snake_case_name = split_tokens.empty() ? "error_unextractable_component_base_name"
+                                                      : convert_to_snake_case(split_tokens[split_tokens.size()-1]);
+
+   // build up the string
+
+   std::string name = snake_case_name;
+   std::string type = selected_text_as_class + "*";
+
+   std::stringstream result;
+      result << "          std::stringstream error_message;" << std::endl;
+      result << "          error_message << \"CLASS_NAME error: \"" << std::endl;
    ClipboardData::store(result.str());
 }
 
