@@ -225,7 +225,9 @@ table td
   <li><a href="#quintessence/Hexagon/UI/DrawingBox.q.yml">quintessence/Hexagon/UI/DrawingBox.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/UI/LittleMenu.q.yml">quintessence/Hexagon/UI/LittleMenu.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/WordRangesFinder.q.yml">quintessence/Hexagon/WordRangesFinder.q.yml</a></li>
+  <li><a href="#quintessence/NcursesArt/GithubRepoStatusFetcher.q.yml">quintessence/NcursesArt/GithubRepoStatusFetcher.q.yml</a></li>
   <li><a href="#quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml">quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml</a></li>
+  <li><a href="#quintessence/NcursesArt/ProjectFilenameGenerator.q.yml">quintessence/NcursesArt/ProjectFilenameGenerator.q.yml</a></li>
   <li><a href="#quintessence/Testing/WithAllegroRenderingFixture.q.yml">quintessence/Testing/WithAllegroRenderingFixture.q.yml</a></li>
   <li><a href="#quintessence/Testing/WithStageFactoryFixture.q.yml">quintessence/Testing/WithStageFactoryFixture.q.yml</a></li>
   <li><a href="#quintessence/TimestampGenerator.q.yml">quintessence/TimestampGenerator.q.yml</a></li>
@@ -10830,6 +10832,149 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/NcursesArt/GithubRepoStatusFetcher.q.yml">quintessence/NcursesArt/GithubRepoStatusFetcher.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">last_captured_output_from_status_request</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">git_status_command</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">git_pull_command</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">git_branch_count_command</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">git_current_branch_command</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">git_remote_branch_names_command</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">component_quintessence_filenames_command</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">git_current_staged_files_command</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">repo_name</td>
+  <td class="property"></td>
+</tr>
+<tr>
+  <td class="property">repos_directory</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">only_poll_once</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
+  <td class="property">status_polled</td>
+  <td class="property">bool</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">local_repo_exists()</td>
+</tr>
+<tr>
+  <td class="method">has_file_changes()</td>
+</tr>
+<tr>
+  <td class="method">has_untracked_files()</td>
+</tr>
+<tr>
+  <td class="method">is_the_repo_in_sync_with_remote()</td>
+</tr>
+<tr>
+  <td class="method">is_the_local_repo_ahead()</td>
+</tr>
+<tr>
+  <td class="method">is_the_local_repo_behind()</td>
+</tr>
+<tr>
+  <td class="method">get_branch_count()</td>
+</tr>
+<tr>
+  <td class="method">get_branch_names_at_remote()</td>
+</tr>
+<tr>
+  <td class="method">is_current_branch_master()</td>
+</tr>
+<tr>
+  <td class="method">get_current_branch_name_command()</td>
+</tr>
+<tr>
+  <td class="method">get_pull_command()</td>
+</tr>
+<tr>
+  <td class="method">get_status_command()</td>
+</tr>
+<tr>
+  <td class="method">get_current_staged_files_command()</td>
+</tr>
+<tr>
+  <td class="method">get_current_staged_files()</td>
+</tr>
+<tr>
+  <td class="method">get_current_branch_name()</td>
+</tr>
+<tr>
+  <td class="method">get_quintessence_filenames()</td>
+</tr>
+<tr>
+  <td class="method">have_the_local_and_remote_repos_diverged()</td>
+</tr>
+<tr>
+  <td class="method">last_captured_output_from_status_request_contains_string(1)</td>
+</tr>
+<tr>
+  <td class="method">poll_status()</td>
+</tr>
+<tr>
+  <td class="method">execute_command(1)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringSplitter&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringSplitter.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::String::Trimmer&quot;, &quot;headers&quot;=&gt;[&quot;Blast/String/Trimmer.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::stringstream&quot;, &quot;headers&quot;=&gt;[&quot;sstream&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::sort&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::cerr&quot;, &quot;headers&quot;=&gt;[&quot;iostream&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::endl&quot;, &quot;headers&quot;=&gt;[&quot;iostream&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::string&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml">quintessence/NcursesArt/ProjectComponentBasenameExtractor.q.yml</h3>
      <table>
 <tr>
@@ -10855,6 +11000,49 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::pair&lt;std::string, std::string&gt;&quot;, &quot;headers&quot;=&gt;[&quot;string&quot;]}</td>
 </tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/NcursesArt/ProjectFilenameGenerator.q.yml">quintessence/NcursesArt/ProjectFilenameGenerator.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">basename</td>
+  <td class="property"></td>
+</tr>
+<tr>
+  <td class="property">underscores</td>
+  <td class="property">bool</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">generate_quintessence_filename()</td>
+</tr>
+<tr>
+  <td class="method">generate_source_filename()</td>
+</tr>
+<tr>
+  <td class="method">generate_header_filename()</td>
+</tr>
+<tr>
+  <td class="method">generate_test_src_filename()</td>
+</tr>
+<tr>
+  <td class="method">generate_example_src_filename()</td>
+</tr>
+<tr>
+  <td class="method">generate_obj_binary()</td>
+</tr>
+<tr>
+  <td class="method">generate_test_binary()</td>
+</tr>
+<tr>
+  <td class="method">generate_example_binary()</td>
+</tr>
+    </table>
+     <table>
     </table>
   </div>
 </ul>
@@ -11169,7 +11357,8 @@ table td
     "Hexagon/Rails/ComponentLister",
     "Hexagon/RailsTestOutputParser",
     "Hexagon/StageFactory",
-    "Hexagon/Testing/GoogleTestRunOutputParser"
+    "Hexagon/Testing/GoogleTestRunOutputParser",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "Hexagon/AdvancedCodeEditor/Cursor": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
@@ -11294,7 +11483,8 @@ table td
     "Hexagon/FileNavigator/Stage",
     "Hexagon/ProjectComponentNavigator/ComponentSearcher",
     "Hexagon/ProjectComponentNavigator/Stage",
-    "Hexagon/System/Action/CreateCodeEditorStageFromFilename"
+    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "ALLEGRO_COLOR": [
     "Hexagon/AdvancedCodeEditor/Renderer",
@@ -11723,12 +11913,14 @@ table td
     "Hexagon/FileNavigator/Stage",
     "Hexagon/PasteboardData",
     "Hexagon/ProjectComponentNavigator/Stage",
-    "Hexagon/RailsTestOutputParser"
+    "Hexagon/RailsTestOutputParser",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/cerr": [
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/FileNavigator/Stage",
-    "Hexagon/ProjectComponentNavigator/Stage"
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/cout": [
     "Hexagon/AdvancedComponentNavigator/Stage",
@@ -11857,7 +12049,8 @@ table td
     "Hexagon/Search/Elasticsearch/HealthChecker",
     "Hexagon/SymlinkToucher",
     "Hexagon/System/Action/OpenDocumentationInBrowser",
-    "Hexagon/Testing/ComponentTestRunner"
+    "Hexagon/Testing/ComponentTestRunner",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "vec3d": [
     "Hexagon/Camera"
@@ -12033,7 +12226,8 @@ table td
   ],
   "Blast/String/Trimmer": [
     "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
-    "Hexagon/PacketLogger"
+    "Hexagon/PacketLogger",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "php/file_put_contents": [
     "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
@@ -12188,7 +12382,8 @@ table td
     "Hexagon/PasteboardData",
     "Hexagon/Search/ComponentElasticsearchIndex",
     "Hexagon/System/Action/CreateTwoSplitFromComponent",
-    "Hexagon/System/Config"
+    "Hexagon/System/Config",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/map<std/string, std/string>": [
     "Hexagon/FontSet"
@@ -12644,6 +12839,9 @@ table td
   ],
   "std/pair<int, int>": [
     "Hexagon/WordRangesFinder"
+  ],
+  "std/sort": [
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   ":testing/Test": [
     "Testing/WithAllegroRenderingFixture",

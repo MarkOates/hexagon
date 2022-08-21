@@ -153,7 +153,8 @@
     "Hexagon/Rails/ComponentLister",
     "Hexagon/RailsTestOutputParser",
     "Hexagon/StageFactory",
-    "Hexagon/Testing/GoogleTestRunOutputParser"
+    "Hexagon/Testing/GoogleTestRunOutputParser",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "Hexagon/AdvancedCodeEditor/Cursor": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
@@ -278,7 +279,8 @@
     "Hexagon/FileNavigator/Stage",
     "Hexagon/ProjectComponentNavigator/ComponentSearcher",
     "Hexagon/ProjectComponentNavigator/Stage",
-    "Hexagon/System/Action/CreateCodeEditorStageFromFilename"
+    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "ALLEGRO_COLOR": [
     "Hexagon/AdvancedCodeEditor/Renderer",
@@ -707,12 +709,14 @@
     "Hexagon/FileNavigator/Stage",
     "Hexagon/PasteboardData",
     "Hexagon/ProjectComponentNavigator/Stage",
-    "Hexagon/RailsTestOutputParser"
+    "Hexagon/RailsTestOutputParser",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/cerr": [
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/FileNavigator/Stage",
-    "Hexagon/ProjectComponentNavigator/Stage"
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/cout": [
     "Hexagon/AdvancedComponentNavigator/Stage",
@@ -841,7 +845,8 @@
     "Hexagon/Search/Elasticsearch/HealthChecker",
     "Hexagon/SymlinkToucher",
     "Hexagon/System/Action/OpenDocumentationInBrowser",
-    "Hexagon/Testing/ComponentTestRunner"
+    "Hexagon/Testing/ComponentTestRunner",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "vec3d": [
     "Hexagon/Camera"
@@ -1017,7 +1022,8 @@
   ],
   "Blast/String/Trimmer": [
     "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
-    "Hexagon/PacketLogger"
+    "Hexagon/PacketLogger",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "php/file_put_contents": [
     "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
@@ -1172,7 +1178,8 @@
     "Hexagon/PasteboardData",
     "Hexagon/Search/ComponentElasticsearchIndex",
     "Hexagon/System/Action/CreateTwoSplitFromComponent",
-    "Hexagon/System/Config"
+    "Hexagon/System/Config",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/map<std/string, std/string>": [
     "Hexagon/FontSet"
@@ -1628,6 +1635,9 @@
   ],
   "std/pair<int, int>": [
     "Hexagon/WordRangesFinder"
+  ],
+  "std/sort": [
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   ":testing/Test": [
     "Testing/WithAllegroRenderingFixture",
