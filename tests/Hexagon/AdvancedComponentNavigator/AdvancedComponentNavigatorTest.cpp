@@ -122,6 +122,8 @@ TEST(Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest,
    std::vector<std::string> expected_clipboard_lines = {
       "          std::stringstream error_message;",
       "          error_message << \"CLASS_NAME error: \"",
+      "                        << \"THING_THAT_HAPPENED\";",
+      "          throw std::runtime_error(error_message.c_str());",
    };
    EXPECT_EQ(expected_clipboard_lines, actual_clipboard_lines);
 

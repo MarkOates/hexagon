@@ -308,6 +308,8 @@ void AdvancedComponentNavigator::yank_selected_text_as_error_message_template()
    std::stringstream result;
       result << "          std::stringstream error_message;" << std::endl;
       result << "          error_message << \"CLASS_NAME error: \"" << std::endl;
+      result << "                        << \"THING_THAT_HAPPENED\";" << std::endl;
+      result << "          throw std::runtime_error(error_message.c_str());" << std::endl;
    ClipboardData::store(result.str());
 }
 
