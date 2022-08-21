@@ -36,6 +36,12 @@ ListMenu::~ListMenu()
 }
 
 
+void ListMenu::set_list_items(std::vector<std::tuple<std::string, std::string>> list_items)
+{
+   this->list_items = list_items;
+}
+
+
 void ListMenu::set_color(ALLEGRO_COLOR color)
 {
    this->color = color;
@@ -69,6 +75,12 @@ void ListMenu::set_width(int width)
 void ListMenu::set_active(bool active)
 {
    this->active = active;
+}
+
+
+std::vector<std::tuple<std::string, std::string>> ListMenu::get_list_items()
+{
+   return list_items;
 }
 
 
