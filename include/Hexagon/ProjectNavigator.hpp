@@ -43,6 +43,7 @@ namespace Hexagon
       std::string build_allegro_version_string();
       virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
       virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
+      static std::vector<std::tuple<std::string, std::string>> build_placeholder_menu_items();
    };
 }
 
