@@ -120,10 +120,10 @@ TEST(Hexagon_AdvancedComponentNavigator_AdvancedComponentNavigatorTest,
 
    std::vector<std::string> actual_clipboard_lines = ClipboardData::retrieve();
    std::vector<std::string> expected_clipboard_lines = {
-      "          std::stringstream error_message;",
-      "          error_message << \"CLASS_NAME error: \"",
-      "                        << \"THING_THAT_HAPPENED\";",
-      "          throw std::runtime_error(error_message.c_str());",
+      "         std::stringstream error_message;",
+      "         error_message << \"This::Is::An::Example::Component error: \"",
+      "                       << \"THING_THAT_HAPPENED\";",
+      "         throw std::runtime_error(error_message.str());",
    };
    EXPECT_EQ(expected_clipboard_lines, actual_clipboard_lines);
 
