@@ -147,10 +147,12 @@ void System::initialize()
    std::string font_bin_path = hexagon_config.get_font_bin_path();
    font_bin.set_full_path(font_bin_path);
 
+   // fill the System/System values with config values
    set_current_project_directory(hexagon_config.get_default_navigator_directory());
    set_current_objective(hexagon_config.get_objective());
    set_current_project_domain(hexagon_config.get_current_project_domain());
 
+   // Update the HUD
    hud.set_backfill_color(hexagon_config.get_backfill_color());
    hud.set_base_text_color(hexagon_config.get_base_text_color());
    hud.set_base_text_opacity(0.55);
@@ -160,6 +162,8 @@ void System::initialize()
    hud.set_show_build_sequence_meter(true);
    hud.set_show_objective(true);
    hud.set_objective_text(get_current_objective());
+   hud.set_show_domain(true);
+   hud.set_domain_text(get_current_project_domain());
    hud.set_show_focus_timer_bar(hexagon_config.get_hud_show_focus_timer_bar());
    hud.initialize();
 
@@ -618,9 +622,17 @@ bool System::set_hud_title_to_focused_component_name()
 
 bool System::set_hud_objective_to_objective()
 {
+   throw std::runtime_error("set_hud_objective_to_objective: not implemented");
    // not implemented
    //hud.set_objective_text(get_objective());
    return false;
+}
+
+
+bool System::set_hud_domain_to_current_project_domain()
+{
+   throw std::runtime_error("set_hud_domain_to_current_project_domain: not implemented");
+   // not implemented
 }
 
 

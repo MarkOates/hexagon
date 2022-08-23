@@ -131,6 +131,7 @@ public:
    bool clear_search_count();
    bool set_hud_title_to_focused_component_name();
    bool set_hud_objective_to_objective();
+   bool set_hud_domain_to_current_project_domain();
    bool clear_hud_title();
    bool set_hud_save_count_to_save_count();
    bool set_hud_search_count_to_search_count();

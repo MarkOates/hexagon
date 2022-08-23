@@ -225,6 +225,20 @@ properties:
     getter: true
     constructor_arg: true
 
+  - name: domain_text
+    type: std::string
+    init_with: '""'
+    setter: true
+    getter: true
+    constructor_arg: true
+
+  - name: show_domain
+    type: bool
+    init_with: true
+    setter: true
+    getter: true
+    constructor_arg: true
+
 
 functions:
 
@@ -342,6 +356,25 @@ functions:
                    y,
                    ALLEGRO_ALIGN_LEFT,
                    objective_text.c_str());
+      return;
+    body_dependency_symbols:
+      - Hexagon::Elements::ColorKit
+
+
+  - name: draw_domain_text_and_overlay
+    type: void
+    body: |
+      Hexagon::Elements::ColorKit color_kit(backfill_color, base_text_color);
+      float opacity = base_text_opacity;
+      ALLEGRO_FONT *domain_text_font = obtain_domain_font();
+      float x = surface_projection_width * 0.5;
+      float y = 2;
+      al_draw_text(domain_text_font,
+                   color_kit.get_base_text_color(base_text_opacity),
+                   x,
+                   y,
+                   ALLEGRO_ALIGN_CENTER,
+                   domain_text.c_str());
       return;
     body_dependency_symbols:
       - Hexagon::Elements::ColorKit
@@ -580,6 +613,8 @@ functions:
 
       if (show_objective) draw_objective_text();
 
+      if (show_domain) draw_domain_text_and_overlay();
+
       if (show_profiler) draw_profile_timer_graph();
 
       if (show_notifications)
@@ -763,6 +798,13 @@ functions:
     type: ALLEGRO_FONT*
     body: |
       return font_bin["Purista Medium.otf -22"];
+      //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+
+
+  - name: obtain_domain_font
+    type: ALLEGRO_FONT*
+    body: |
+      return font_bin["Purista Medium.otf -16"];
       //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 
 
