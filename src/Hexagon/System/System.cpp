@@ -1285,7 +1285,10 @@ bool System::spawn_git_commit_message_input_box_modal()
 bool System::spawn_component_navigator()
 {
    ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
-   StageInterface *stage = stage_factory.create_advanced_component_navigator(current_project_directory);
+   StageInterface *stage = stage_factory.create_advanced_component_navigator(
+         current_project_directory,
+         current_project_domain
+   );
 
    bool do_fancy_stuff_with_position_and_movement = false;
    if (do_fancy_stuff_with_position_and_movement)
