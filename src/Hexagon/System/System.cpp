@@ -112,6 +112,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &hexagon_config
    , last_commit_message("")
    , focused_component_name("")
    , current_objective("")
+   , current_project_domain("")
    , mouse_x(0)
    , mouse_y(0)
    , baseline_camera_stepback(160)
@@ -148,6 +149,7 @@ void System::initialize()
 
    set_current_project_directory(hexagon_config.get_default_navigator_directory());
    set_current_objective(hexagon_config.get_objective());
+   set_current_project_domain(hexagon_config.get_current_project_domain());
 
    hud.set_backfill_color(hexagon_config.get_backfill_color());
    hud.set_base_text_color(hexagon_config.get_base_text_color());
@@ -180,6 +182,12 @@ void System::set_current_project_directory(std::string current_project_directory
 std::string System::get_current_objective()
 {
    return current_objective;
+}
+
+
+std::string System::get_current_project_domain()
+{
+   return current_project_domain;
 }
 
 
@@ -249,6 +257,12 @@ void System::set_focused_component_name(std::string focused_component_name)
 void System::set_current_objective(std::string current_objective)
 {
    this->current_objective = current_objective;
+}
+
+
+void System::set_current_project_domain(std::string current_project_domain)
+{
+   this->current_project_domain = current_project_domain;
 }
 
 
@@ -1357,7 +1371,7 @@ bool System::parse_test_results_from_last_test_run_dump()
    //Users/markoates/Repos/hexagon/bin/programs/data/builds/dumps/component_test_run.txt
    // TODO: here
    test_results.clear();
-   TEST_RUN_DUMP_FULL_PATH;
+   //TEST_RUN_DUMP_FULL_PATH;
    return true;
 }
 

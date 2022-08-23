@@ -29,6 +29,7 @@ private:
    std::string last_commit_message;
    std::string focused_component_name;
    std::string current_objective;
+   std::string current_project_domain;
    float mouse_x;
    float mouse_y;
    float baseline_camera_stepback;
@@ -70,6 +71,7 @@ public:
    float get_default_code_editor_stage_height();
    std::string get_current_project_directory();
    std::string get_current_objective();
+   std::string get_current_project_domain();
    std::string get_global_font_str();
    void set_option__saving_focused_filename_to_file_is_disabled(bool option=false);
    Hexagon::Camera &get_camera_ref();
@@ -79,6 +81,7 @@ public:
 
    void set_focused_component_name(std::string focused_component_name);
    void set_current_objective(std::string current_objective);
+   void set_current_project_domain(std::string current_project_domain="");
    std::string get_focused_component_name();
    void clear_focused_component_name();
    void set_last_project_navigator_selection(std::string last_project_navigator_selection);

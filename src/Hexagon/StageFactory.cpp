@@ -551,7 +551,7 @@ StageInterface* StageFactory::create_git_commit_message_box()
    return stage;
 }
 
-StageInterface* StageFactory::create_advanced_component_navigator(std::string project_directory)
+StageInterface* StageFactory::create_advanced_component_navigator(std::string project_directory, std::string initial_search_text)
 {
    if (!(font_bin))
       {
@@ -595,6 +595,12 @@ StageInterface* StageFactory::create_advanced_component_navigator(std::string pr
    result->set_font(font);
    result->set_cell_width(cell_width);
    result->set_cell_height(cell_height);
+
+   if (!initial_search_text.empty())
+   {
+      result->get_component_ref().set_search_text(initial_search_text);
+      result->get_component_ref().refresh_list();
+   }
 
    return result;
 }

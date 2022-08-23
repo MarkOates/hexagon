@@ -17,6 +17,7 @@ namespace Hexagon
          static std::string INITIAL_DISPLAY_WIDTH_KEY;
          static std::string INITIAL_DISPLAY_HEIGHT_KEY;
          static std::string DEFAULT_NAVIGATOR_DIRECTORY_KEY;
+         static std::string DOMAIN_KEY;
          static std::string REGEX_TEMP_FILENAME_KEY;
          static std::string CLIPBOARD_TEMP_FILENAME_KEY;
          static std::string FILE_NAVIGATOR_SELECTION_FILENAME_KEY;
@@ -52,6 +53,7 @@ namespace Hexagon
          int get_initial_baseline_camera_stepback();
          bool is_dark_mode();
          std::string get_objective();
+         std::string get_current_project_domain();
          bool is_fullscreen();
          bool get_hud_show_focus_timer_bar();
          ALLEGRO_COLOR get_backfill_color();

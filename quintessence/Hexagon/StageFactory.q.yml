@@ -567,6 +567,9 @@ functions:
       - name: project_directory
         type: std::string
         default_argument: '"/Users/markoates/Repos/hexagon/"'
+      - name: initial_search_text
+        type: std::string
+        default_argument: '""'
     guards: [ font_bin ]
     body: |
       Hexagon::AdvancedComponentNavigator::Stage *result =
@@ -605,6 +608,12 @@ functions:
       result->set_font(font);
       result->set_cell_width(cell_width);
       result->set_cell_height(cell_height);
+
+      if (!initial_search_text.empty())
+      {
+         result->get_component_ref().set_search_text(initial_search_text);
+         result->get_component_ref().refresh_list();
+      }
 
       return result;
     body_dependency_symbols:

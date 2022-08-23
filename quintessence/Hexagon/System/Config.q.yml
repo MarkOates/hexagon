@@ -16,6 +16,11 @@ properties:
     static: true
     const: true
     init_with: '"default_navigator_directory"'
+  - name: DOMAIN_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: '"domain"'
   - name: REGEX_TEMP_FILENAME_KEY
     type: std::string
     static: true
@@ -207,6 +212,13 @@ functions:
     guards: [ initialized ]
     body: |
       return config.get_or_default_str("", OBJECTIVE_KEY, "- objective not set -");
+
+
+  - name: get_current_project_domain
+    type: std::string
+    guards: [ initialized ]
+    body: |
+      return config.get_or_default_str("", DOMAIN_KEY, ""); // value should be an empty string
 
 
   - name: is_fullscreen

@@ -54,7 +54,7 @@ namespace Hexagon
       StageInterface* create_goto_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage=nullptr, Hexagon::System::System* system=nullptr);
       StageInterface* create_regex_input_box_modal();
       StageInterface* create_git_commit_message_box();
-      StageInterface* create_advanced_component_navigator(std::string project_directory="/Users/markoates/Repos/hexagon/");
+      StageInterface* create_advanced_component_navigator(std::string project_directory="/Users/markoates/Repos/hexagon/", std::string initial_search_text="");
       StageInterface* create_project_navigator();
       ALLEGRO_DISPLAY* get_current_display();
       placement3d build_centered_on_hud_initial_place(float width=0, float height=0);

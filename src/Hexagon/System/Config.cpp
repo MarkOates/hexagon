@@ -16,6 +16,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <sstream>
 #include <Hexagon/Elements/ColorKit.hpp>
 
 
@@ -32,6 +34,9 @@ std::string Config::INITIAL_DISPLAY_HEIGHT_KEY = "initial_display_height";
 
 
 std::string Config::DEFAULT_NAVIGATOR_DIRECTORY_KEY = "default_navigator_directory";
+
+
+std::string Config::DOMAIN_KEY = "domain";
 
 
 std::string Config::REGEX_TEMP_FILENAME_KEY = "regex_temp_filename";
@@ -208,6 +213,17 @@ std::string Config::get_objective()
          throw std::runtime_error(error_message.str());
       }
    return config.get_or_default_str("", OBJECTIVE_KEY, "- objective not set -");
+}
+
+std::string Config::get_current_project_domain()
+{
+   if (!(initialized))
+      {
+         std::stringstream error_message;
+         error_message << "Config" << "::" << "get_current_project_domain" << ": error: " << "guard \"initialized\" not met";
+         throw std::runtime_error(error_message.str());
+      }
+   return config.get_or_default_str("", DOMAIN_KEY, ""); // value should be an empty string
 }
 
 bool Config::is_fullscreen()
