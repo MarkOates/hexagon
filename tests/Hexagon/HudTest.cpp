@@ -265,6 +265,25 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 }
 
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+   render__will_remove_the_domain_from_the_title_text)
+{
+   Hexagon::Hud hud(display, font_bin);
+   hud.initialize();
+
+   Hexagon::Powerbar::Powerbar &powerbar = hud.get_powerbar_ref();
+
+   hud.set_show_domain(true);
+   hud.set_domain_text("Hexagon/System/");
+   hud.set_title_text("Hexagon/System/Action/CreateCodeEditorStageFromFilename");
+
+   hud.draw();
+
+   al_flip_display();
+
+   sleep(2);
+}
+
+TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    render__will_render_title)
 {
    Hexagon::Hud hud(display, font_bin);

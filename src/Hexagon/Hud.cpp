@@ -515,7 +515,12 @@ void Hud::reinitialize()
 
 void Hud::draw_current_title_text()
 {
-   if (title_text.empty()) return;
+   std::string title_text_filtered_with_domain_removed = title_text;
+   if (title_text.find(domain_text) == 0) title_text_filtered_with_domain_removed = title_text.substr(domain_text.size());
+
+   std::string &text = title_text_filtered_with_domain_removed;
+
+   if (text.empty()) return;
 
    ALLEGRO_COLOR epic_green_color = al_color_html("99ddc4");
    ALLEGRO_COLOR color = AllegroFlare::color::mix(epic_green_color, al_color_name("dodgerblue"), 0.5);
@@ -527,12 +532,12 @@ void Hud::draw_current_title_text()
    float display_center_x = get_surface_projection_width() / 2;
    ALLEGRO_FONT *title_font = obtain_title_font();
    float title_font_line_height = al_get_font_line_height(title_font);
-   float title_text_width = al_get_text_width(title_font, title_text.c_str());
+   float text_width = al_get_text_width(title_font, text.c_str());
    int y_position = 52 - title_font_line_height/2;
 
-   al_draw_filled_rectangle(display_center_x - title_text_width/2 - 20,
+   al_draw_filled_rectangle(display_center_x - text_width/2 - 20,
       y_position - title_font_line_height/2 - 10,
-      display_center_x + title_text_width/2 + 20,
+      display_center_x + text_width/2 + 20,
       y_position + title_font_line_height/2 + 10,
       AllegroFlare::color::color(backfill_color, 0.9)
       //ALLEGRO_COLOR{0, 0, 0, 0.9}
@@ -543,7 +548,7 @@ void Hud::draw_current_title_text()
                 display_center_x,
                 y_position - title_font_line_height/2,
                 ALLEGRO_ALIGN_CENTER,
-                title_text.c_str());
+                text.c_str());
    return;
 }
 
