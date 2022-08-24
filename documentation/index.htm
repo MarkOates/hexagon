@@ -51,6 +51,7 @@ table td
 <ul>
   <li><a href="#quintessence/ApplicationController.q.yml">quintessence/ApplicationController.q.yml</a></li>
   <li><a href="#quintessence/Blast/String/Trimmer.q.yml">quintessence/Blast/String/Trimmer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ASTTraverser.q.yml">quintessence/Hexagon/ASTTraverser.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.q.yml">quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Cursor.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Cursor.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/EventController.q.yml">quintessence/Hexagon/AdvancedCodeEditor/EventController.q.yml</a></li>
@@ -381,6 +382,44 @@ table td
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::find_if&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ASTTraverser.q.yml">quintessence/Hexagon/ASTTraverser.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">json_ast_filename</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">json</td>
+  <td class="property">nlohmann::json</td>
+</tr>
+<tr>
+  <td class="property">initialized</td>
+  <td class="property">bool</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">set_json_ast_filename()</td>
+</tr>
+<tr>
+  <td class="method">initialize()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;nlohmann::json&quot;, &quot;headers&quot;=&gt;[&quot;lib/nlohmann/json.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::ifstream&quot;, &quot;headers&quot;=&gt;[&quot;fstream&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::FileExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/FileExistenceChecker.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -11360,6 +11399,7 @@ table td
   ],
   "Blast/FileExistenceChecker": [
     "ApplicationController",
+    "Hexagon/ASTTraverser",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Daemus/ProgramRunner",
@@ -11375,6 +11415,13 @@ table td
   ],
   "std/find_if": [
     "Blast/String/Trimmer"
+  ],
+  "nlohmann/json": [
+    "Hexagon/ASTTraverser",
+    "Hexagon/Search/ComponentElasticsearchIndexer"
+  ],
+  "std/ifstream": [
+    "Hexagon/ASTTraverser"
   ],
   "Hexagon/DirtyGrid": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
@@ -12721,9 +12768,6 @@ table td
   ],
   "std/vector<RailsMinitestTestResult>": [
     "Hexagon/RailsTestOutputParser"
-  ],
-  "nlohmann/json": [
-    "Hexagon/Search/ComponentElasticsearchIndexer"
   ],
   "AllegroFlare/Shader": [
     "Hexagon/Shaders/Base"

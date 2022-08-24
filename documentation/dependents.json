@@ -109,6 +109,7 @@
   ],
   "Blast/FileExistenceChecker": [
     "ApplicationController",
+    "Hexagon/ASTTraverser",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Daemus/ProgramRunner",
@@ -124,6 +125,13 @@
   ],
   "std/find_if": [
     "Blast/String/Trimmer"
+  ],
+  "nlohmann/json": [
+    "Hexagon/ASTTraverser",
+    "Hexagon/Search/ComponentElasticsearchIndexer"
+  ],
+  "std/ifstream": [
+    "Hexagon/ASTTraverser"
   ],
   "Hexagon/DirtyGrid": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
@@ -1470,9 +1478,6 @@
   ],
   "std/vector<RailsMinitestTestResult>": [
     "Hexagon/RailsTestOutputParser"
-  ],
-  "nlohmann/json": [
-    "Hexagon/Search/ComponentElasticsearchIndexer"
   ],
   "AllegroFlare/Shader": [
     "Hexagon/Shaders/Base"

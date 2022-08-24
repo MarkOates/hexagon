@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <sstream>
 #include <fstream>
+#include <Blast/FileExistenceChecker.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -50,7 +51,16 @@ void ASTTraverser::initialize()
          error_message << "ASTTraverser" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
          throw std::runtime_error(error_message.str());
       }
-   std::ifstream ifs("test.json");
+   if (json_ast_filename.empty() || !Blast::FileExistenceChecker(json_ast_filename).exists())
+   {
+      std::stringstream error_message;
+      error_message << "Hexagon::ASTTraverser error: "
+                    << "The file \"" << json_ast_filename << "\" does not exist. "
+                    << "The current path is \"" << std::filesystem::current_path() << "\"";
+      throw std::runtime_error(error_message.str());
+   }
+
+   std::ifstream ifs(json_ast_filename);
    nlohmann::json json = nlohmann::json::parse(ifs);
    initialized = true;
    return;
