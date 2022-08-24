@@ -9,6 +9,11 @@ To dump the AST of a file to the terminal, you may use a command like this:
 clang -Xclang -ast-dump -fsyntax-only include/Hexagon/Logo.hpp -I../allegro_flare/include
 ```
 
+Clang can also output the format in JSON by adding the argument to `-ast-dump=json`
+```
+clang -Xclang -ast-dump=json -fsyntax-only include/Hexagon/Logo.hpp -I../allegro_flare/include
+```
+
 Alternatively, any component of the above can be assembled programatically
 within C++ using the `clang` llvm library (See https://github.com/llvm/llvm-project),
 
