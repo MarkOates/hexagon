@@ -1,0 +1,50 @@
+properties:
+
+
+  - name: json_ast_filename
+    type: std::string
+    constructor_arg: true
+    init_with: '{}'
+    getter: true
+    setter: false
+
+  - name: json
+    type: nlohmann::json
+    init_with: '{}'
+
+  - name: initialized
+    type: bool
+    init_with: false
+
+
+functions:
+
+
+  - name: set_json_ast_filename
+    guards: [ initialized ]
+    type: void
+    body: |
+      return;
+
+
+  - name: initialize
+    type: void
+    guards: [ (!initialized) ]
+    body: |
+      std::ifstream ifs("test.json");
+      nlohmann::json json = nlohmann::json::parse(ifs);
+      initialized = true;
+      return;
+    body_dependency_symbols:
+      - std::ifstream
+
+
+dependencies:
+
+
+  - symbol: nlohmann::json
+    headers: [ lib/nlohmann/json.hpp ]
+  - symbol: std::ifstream
+    headers: [ fstream ]
+
+
