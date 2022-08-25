@@ -1,0 +1,45 @@
+properties:
+
+
+  - name: clang_build_run_output
+    type: std::string
+    init_with: '"[unset-clang_build_run_output]"'
+    constructor_arg: true
+
+  - name: clang_build_results
+    type: std::vector<Hexagon::Testing::ClangBuildOutputResult>
+    init_with: '{}'
+    getter: true
+
+  - name: error_messages_during_parsing
+    type: std::vector<std::string>
+    init_with: '{}'
+    getter: true
+
+
+functions:
+
+
+  - name: parse
+    type: void
+    body: |
+      // split lines
+      Blast::StringSplitter splitter(clang_build_run_output, '\n');
+      std::vector<std::string> lines = splitter.split();
+      // discard or filter out lines
+      // snag known lines
+      return;
+    body_dependency_symbols:
+      - Blast::StringSplitter
+
+
+dependencies:
+
+
+  - symbol: std::vector<Hexagon::Testing::ClangBuildOutputResult>
+    headers: [ vector, Hexagon/Testing/ClangBuildOutputResult.hpp ]
+  - symbol: Blast::StringSplitter
+    headers: [ Blast/StringSplitter.hpp ]
+
+
+

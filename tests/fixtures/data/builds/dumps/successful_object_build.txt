@@ -1,0 +1,4 @@
+find: demos: No such file or directory
+Compiling object file [1m[34msrc/Hexagon/Testing/ClangBuildOutputParser.cpp[0m...
+g++ -c -ferror-limit=1 -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ src/Hexagon/Testing/ClangBuildOutputParser.cpp -o obj/Hexagon/Testing/ClangBuildOutputParser.o -I./include -I/Users/markoates/Repos/asio/asio/include -I/usr/local/opt/ncurses/include -I/Users/markoates/Repos/allegro5/include -I/Users/markoates/Repos/allegro5/build/include -L/usr/local/opt/ncurses/lib -lncurses -I/Users/markoates/Repos/yaml-cpp/include -D_XOPEN_SOURCE_EXTENDED -I/Users/markoates/Repos/allegro_flare/include -L/Users/markoates/Repos/allegro_flare/lib -lallegro_flare-0.8.11wip
+done. object at [1m[32mobj/Hexagon/Testing/ClangBuildOutputParser.o[0m

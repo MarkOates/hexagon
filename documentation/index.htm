@@ -219,6 +219,7 @@ table td
   <li><a href="#quintessence/Hexagon/System/Config.q.yml">quintessence/Hexagon/System/Config.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/EventController.q.yml">quintessence/Hexagon/System/EventController.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Renderer.q.yml">quintessence/Hexagon/System/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Testing/ClangBuildOutputParser.q.yml">quintessence/Hexagon/Testing/ClangBuildOutputParser.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Testing/ComponentTestRunner.q.yml">quintessence/Hexagon/Testing/ComponentTestRunner.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Testing/GoogleTestRunOutputParser.q.yml">quintessence/Hexagon/Testing/GoogleTestRunOutputParser.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Testing/GoogleTestRunTestResult.q.yml">quintessence/Hexagon/Testing/GoogleTestRunTestResult.q.yml</a></li>
@@ -10426,6 +10427,38 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/Testing/ClangBuildOutputParser.q.yml">quintessence/Hexagon/Testing/ClangBuildOutputParser.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">clang_build_run_output</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">clang_build_results</td>
+  <td class="property">std::vector&lt;Hexagon::Testing::ClangBuildOutputResult&gt;</td>
+</tr>
+<tr>
+  <td class="property">error_messages_during_parsing</td>
+  <td class="property">std::vector&lt;std::string&gt;</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">parse()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::Testing::ClangBuildOutputResult&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/Testing/ClangBuildOutputResult.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringSplitter&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringSplitter.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/Testing/ComponentTestRunner.q.yml">quintessence/Hexagon/Testing/ComponentTestRunner.q.yml</h3>
      <table>
 <tr>
@@ -11465,6 +11498,7 @@ table td
     "Hexagon/Rails/ComponentLister",
     "Hexagon/RailsTestOutputParser",
     "Hexagon/StageFactory",
+    "Hexagon/Testing/ClangBuildOutputParser",
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/GithubRepoStatusFetcher"
   ],
@@ -12922,6 +12956,9 @@ table td
   ],
   "al_clear_to_color": [
     "Hexagon/System/Renderer"
+  ],
+  "std/vector<Hexagon/Testing/ClangBuildOutputResult>": [
+    "Hexagon/Testing/ClangBuildOutputParser"
   ],
   "debugging": [
     "Hexagon/Testing/GoogleTestRunOutputParser"

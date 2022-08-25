@@ -1,0 +1,89 @@
+find: demos: No such file or directory
+Compiling test object file [1m[36mtests/Hexagon/Testing/ClangBuildOutputParserTest.cpp[0m...
+tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:13:1: error: redefinition of 'Hexagon_Testing_ClangBuildOutputParserTest_can_be_created_without_blowing_up_Test'
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, can_be_created_without_blowing_up)
+^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2356:42: note: expanded from macro 'TEST'
+#define TEST(test_suite_name, test_name) GTEST_TEST(test_suite_name, test_name)
+                                         ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2350:3: note: expanded from macro 'GTEST_TEST'
+  GTEST_TEST_(test_suite_name, test_name, ::testing::Test, \
+  ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/internal/gtest-internal.h:1530:9: note: expanded from macro 'GTEST_TEST_'
+  class GTEST_TEST_CLASS_NAME_(test_suite_name, test_name)                    \
+        ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/internal/gtest-internal.h:1522:3: note: expanded from macro 'GTEST_TEST_CLASS_NAME_'
+  test_suite_name##_##test_name##_Test
+  ^
+<scratch space>:103:1: note: expanded from here
+Hexagon_Testing_ClangBuildOutputParserTest_can_be_created_without_blowing_up_Test
+^
+tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:7:1: note: previous definition is here
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, can_be_created_without_blowing_up)
+^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2356:42: note: expanded from macro 'TEST'
+#define TEST(test_suite_name, test_name) GTEST_TEST(test_suite_name, test_name)
+                                         ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2350:3: note: expanded from macro 'GTEST_TEST'
+  GTEST_TEST_(test_suite_name, test_name, ::testing::Test, \
+  ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/internal/gtest-internal.h:1530:9: note: expanded from macro 'GTEST_TEST_'
+  class GTEST_TEST_CLASS_NAME_(test_suite_name, test_name)                    \
+        ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/internal/gtest-internal.h:1522:3: note: expanded from macro 'GTEST_TEST_CLASS_NAME_'
+  test_suite_name##_##test_name##_Test
+  ^
+<scratch space>:69:1: note: expanded from here
+Hexagon_Testing_ClangBuildOutputParserTest_can_be_created_without_blowing_up_Test
+^
+tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:13:1: error: redefinition of 'test_info_'
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, can_be_created_without_blowing_up)
+^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2356:42: note: expanded from macro 'TEST'
+#define TEST(test_suite_name, test_name) GTEST_TEST(test_suite_name, test_name)
+                                         ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2350:3: note: expanded from macro 'GTEST_TEST'
+  GTEST_TEST_(test_suite_name, test_name, ::testing::Test, \
+  ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/internal/gtest-internal.h:1546:65: note: expanded from macro 'GTEST_TEST_'
+                                                    test_name)::test_info_ =  \
+                                                                ^
+tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:7:1: note: previous definition is here
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, can_be_created_without_blowing_up)
+^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2356:42: note: expanded from macro 'TEST'
+#define TEST(test_suite_name, test_name) GTEST_TEST(test_suite_name, test_name)
+                                         ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2350:3: note: expanded from macro 'GTEST_TEST'
+  GTEST_TEST_(test_suite_name, test_name, ::testing::Test, \
+  ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/internal/gtest-internal.h:1546:65: note: expanded from macro 'GTEST_TEST_'
+                                                    test_name)::test_info_ =  \
+                                                                ^
+tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:13:1: error: redefinition of 'TestBody'
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, can_be_created_without_blowing_up)
+^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2356:42: note: expanded from macro 'TEST'
+#define TEST(test_suite_name, test_name) GTEST_TEST(test_suite_name, test_name)
+                                         ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2350:3: note: expanded from macro 'GTEST_TEST'
+  GTEST_TEST_(test_suite_name, test_name, ::testing::Test, \
+  ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/internal/gtest-internal.h:1556:60: note: expanded from macro 'GTEST_TEST_'
+  void GTEST_TEST_CLASS_NAME_(test_suite_name, test_name)::TestBody()
+                                                           ^
+tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:7:1: note: previous definition is here
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, can_be_created_without_blowing_up)
+^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2356:42: note: expanded from macro 'TEST'
+#define TEST(test_suite_name, test_name) GTEST_TEST(test_suite_name, test_name)
+                                         ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2350:3: note: expanded from macro 'GTEST_TEST'
+  GTEST_TEST_(test_suite_name, test_name, ::testing::Test, \
+  ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/internal/gtest-internal.h:1556:60: note: expanded from macro 'GTEST_TEST_'
+  void GTEST_TEST_CLASS_NAME_(test_suite_name, test_name)::TestBody()
+                                                           ^
+3 errors generated.
+make[1]: *** [obj/tests/Hexagon/Testing/ClangBuildOutputParserTest.o] Error 1
+

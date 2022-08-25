@@ -161,6 +161,7 @@
     "Hexagon/Rails/ComponentLister",
     "Hexagon/RailsTestOutputParser",
     "Hexagon/StageFactory",
+    "Hexagon/Testing/ClangBuildOutputParser",
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/GithubRepoStatusFetcher"
   ],
@@ -1618,6 +1619,9 @@
   ],
   "al_clear_to_color": [
     "Hexagon/System/Renderer"
+  ],
+  "std/vector<Hexagon/Testing/ClangBuildOutputResult>": [
+    "Hexagon/Testing/ClangBuildOutputParser"
   ],
   "debugging": [
     "Hexagon/Testing/GoogleTestRunOutputParser"
