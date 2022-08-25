@@ -15,6 +15,7 @@ namespace Hexagon
       private:
          std::string clang_build_run_output;
          std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_and_errors;
+         bool warnings_and_errors_parsed;
          std::vector<std::string> error_messages_during_parsing;
          std::vector<std::string> lines;
          bool lines_parsed;

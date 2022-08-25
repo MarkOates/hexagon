@@ -1,4 +1,67 @@
-functions:
-  - name: run
+properties:
+
+
+  - name: message
     type: std::string
-    body: return "Hello World!";
+    init_with: '"[unset-message]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: body
+    type: std::string
+    init_with: '"[unset-body]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: filename
+    type: std::string
+    init_with: '"[unset-filename]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: type
+    type: std::string
+    init_with: '"unknown"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: line_num
+    type: int
+    init_with: -1
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: column_num
+    type: int
+    init_with: -1
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: actual_error_message
+    type: std::string
+    init_with: '"unknown"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: on_test_dump_line_num
+    type: int
+    init_with: -1
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: test_dump_line_num
+    type: int
+    init_with: -1
+    constructor_arg: true
+    getter: true
+    setter: true
+    
+

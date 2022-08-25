@@ -10439,6 +10439,10 @@ table td
   <td class="property">std::vector&lt;Hexagon::Testing::ClangBuildOutputResult&gt;</td>
 </tr>
 <tr>
+  <td class="private_property">warnings_and_errors_parsed</td>
+  <td class="private_property">bool</td>
+</tr>
+<tr>
   <td class="property">error_messages_during_parsing</td>
   <td class="property">std::vector&lt;std::string&gt;</td>
 </tr>
@@ -10505,11 +10509,44 @@ table td
   <div class="component">
     <h3 id="quintessence/Hexagon/Testing/ClangBuildOutputResult.q.yml">quintessence/Hexagon/Testing/ClangBuildOutputResult.q.yml</h3>
      <table>
+<tr>
+  <td class="property">message</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">body</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">filename</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">type</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">line_num</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">column_num</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">actual_error_message</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">on_test_dump_line_num</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">test_dump_line_num</td>
+  <td class="property">int</td>
+</tr>
     </table>
      <table>
-<tr>
-  <td class="method">run()</td>
-</tr>
     </table>
      <table>
     </table>

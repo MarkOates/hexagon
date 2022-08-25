@@ -11,6 +11,11 @@ properties:
     init_with: '{}'
     getter: true
 
+  - name: warnings_and_errors_parsed
+    type: bool
+    init_with: false
+    private: true
+
   - name: error_messages_during_parsing
     type: std::vector<std::string>
     init_with: '{}'
@@ -89,7 +94,11 @@ functions:
 
   - name: parse_warnings_and_errors
     body: |
-      // TODO
+      if (warnings_and_errors_parsed) return;
+      warnings_and_errors_parsed = true;
+
+
+
       return;
 
 

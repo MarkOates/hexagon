@@ -21,6 +21,7 @@ std::string ClangBuildOutputParser::WARNING_OR_ERROR_REGEX = "[TODO]";
 ClangBuildOutputParser::ClangBuildOutputParser(std::string clang_build_run_output)
    : clang_build_run_output(clang_build_run_output)
    , warnings_and_errors({})
+   , warnings_and_errors_parsed(false)
    , error_messages_during_parsing({})
    , lines({})
    , lines_parsed(false)
@@ -98,7 +99,11 @@ void ClangBuildOutputParser::parse_split_lines()
 
 void ClangBuildOutputParser::parse_warnings_and_errors()
 {
-   // TODO
+   if (warnings_and_errors_parsed) return;
+   warnings_and_errors_parsed = true;
+
+
+
    return;
 }
 
