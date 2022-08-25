@@ -32,7 +32,7 @@ TEST(Hexagon_Testing_ClangBuildOutputParserTest, can_be_created_without_blowing_
 }
 
 
-TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__will_extract_the_warnings_errors_generated_line)
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__will_extract_the_num_warnings_errors_generated_line)
 {
    std::string test_build_dump_with_duplicate_object_test_names = file_get_contents(DUPLICATE_TEST_NAME);
    Hexagon::Testing::ClangBuildOutputParser clang_build_output_parser(test_build_dump_with_duplicate_object_test_names);
@@ -41,12 +41,16 @@ TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__will_extract_the_warning
 }
 
 
-TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__will_extract_the_num_warnings_errors_generated_line)
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__will_extract_the_warnings_errors_and_notes)
 {
    std::string test_build_dump_with_duplicate_object_test_names = file_get_contents(DUPLICATE_TEST_NAME);
    Hexagon::Testing::ClangBuildOutputParser clang_build_output_parser(test_build_dump_with_duplicate_object_test_names);
    clang_build_output_parser.parse();
-   EXPECT_EQ("3 errors generated.", clang_build_output_parser.get_num_warnings_errors_generated_line());
+
+   std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes = 
+      clang_build_output_parser.get_warnings_errors_and_notes();
+
+   EXPECT_EQ(26, warnings_errors_and_notes.size());
 }
 
 

@@ -14,8 +14,8 @@ namespace Hexagon
       {
       private:
          std::string clang_build_run_output;
-         std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_and_errors;
-         bool warnings_and_errors_parsed;
+         std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes;
+         bool warnings_errors_and_notes_parsed;
          std::vector<std::string> error_messages_during_parsing;
          std::vector<std::string> lines;
          bool lines_parsed;
@@ -29,7 +29,7 @@ namespace Hexagon
          ClangBuildOutputParser(std::string clang_build_run_output="[unset-clang_build_run_output]");
          ~ClangBuildOutputParser();
 
-         std::vector<Hexagon::Testing::ClangBuildOutputResult> get_warnings_and_errors() const;
+         std::vector<Hexagon::Testing::ClangBuildOutputResult> get_warnings_errors_and_notes() const;
          std::vector<std::string> get_error_messages_during_parsing() const;
          std::string get_num_warnings_errors_generated_line() const;
          static std::string get_NUM_WARNINGS_ERRORS_GENERATED_REGEX();
@@ -38,7 +38,7 @@ namespace Hexagon
          void parse();
          std::vector<std::string> discard_irrelevant_lines();
          void parse_split_lines();
-         void parse_warnings_and_errors();
+         void parse_warnings_errors_and_notes();
          void parse_num_warnings_errors_generated_line();
       };
    }

@@ -20,8 +20,8 @@ std::string ClangBuildOutputParser::WARNING_OR_ERROR_REGEX = "[TODO]";
 
 ClangBuildOutputParser::ClangBuildOutputParser(std::string clang_build_run_output)
    : clang_build_run_output(clang_build_run_output)
-   , warnings_and_errors({})
-   , warnings_and_errors_parsed(false)
+   , warnings_errors_and_notes({})
+   , warnings_errors_and_notes_parsed(false)
    , error_messages_during_parsing({})
    , lines({})
    , lines_parsed(false)
@@ -37,9 +37,9 @@ ClangBuildOutputParser::~ClangBuildOutputParser()
 }
 
 
-std::vector<Hexagon::Testing::ClangBuildOutputResult> ClangBuildOutputParser::get_warnings_and_errors() const
+std::vector<Hexagon::Testing::ClangBuildOutputResult> ClangBuildOutputParser::get_warnings_errors_and_notes() const
 {
-   return warnings_and_errors;
+   return warnings_errors_and_notes;
 }
 
 
@@ -78,7 +78,7 @@ void ClangBuildOutputParser::parse()
    if (parsed) return;
    parse_split_lines();
    parse_num_warnings_errors_generated_line();
-   parse_warnings_and_errors();
+   parse_warnings_errors_and_notes();
    parsed = true;
    return;
 }
@@ -97,13 +97,43 @@ void ClangBuildOutputParser::parse_split_lines()
    return;
 }
 
-void ClangBuildOutputParser::parse_warnings_and_errors()
+void ClangBuildOutputParser::parse_warnings_errors_and_notes()
 {
-   if (warnings_and_errors_parsed) return;
-   warnings_and_errors_parsed = true;
+   if (warnings_errors_and_notes_parsed) return;
+   warnings_errors_and_notes_parsed = true;
 
+   for (int line_i=0; line_i<lines.size(); line_i++)
+   {
+      std::string &this_line = lines[line_i];
+      std::string regex = "([a-zA-Z0-9/_\\.]+):([0-9]+):([0-9]+): (error|note|warning): (.+)";
 
+      RegexMatcher matcher(this_line, regex);
+      std::vector<std::pair<int, int>> match_info = matcher.get_match_info();
+      if (!match_info.empty())
+      {
+         if (match_info.size() != 1)
+         {
+            std::cout << "Weird error - expecting just 1 match in a line but there were several." << std::endl;
+         }
+         //else if (match_found)
+         //{
+            //std::cout << "Weird error - found another match but one has already been found." << std::endl;
+         //}
+         else
+         {
+            Hexagon::Testing::ClangBuildOutputResult parsed_output_result(
+               this_line
+            );
 
+            warnings_errors_and_notes.push_back(parsed_output_result);
+         }
+         std::cout << "# " << this_line << std::endl;
+      }
+      else
+      {
+         std::cout << ". " << this_line << std::endl;
+      }
+   }
    return;
 }
 

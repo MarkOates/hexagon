@@ -6,12 +6,12 @@ properties:
     init_with: '"[unset-clang_build_run_output]"'
     constructor_arg: true
 
-  - name: warnings_and_errors
+  - name: warnings_errors_and_notes
     type: std::vector<Hexagon::Testing::ClangBuildOutputResult>
     init_with: '{}'
     getter: true
 
-  - name: warnings_and_errors_parsed
+  - name: warnings_errors_and_notes_parsed
     type: bool
     init_with: false
     private: true
@@ -70,7 +70,7 @@ functions:
       if (parsed) return;
       parse_split_lines();
       parse_num_warnings_errors_generated_line();
-      parse_warnings_and_errors();
+      parse_warnings_errors_and_notes();
       parsed = true;
       return;
     body_dependency_symbols:
@@ -92,13 +92,43 @@ functions:
       return;
 
 
-  - name: parse_warnings_and_errors
+  - name: parse_warnings_errors_and_notes
     body: |
-      if (warnings_and_errors_parsed) return;
-      warnings_and_errors_parsed = true;
+      if (warnings_errors_and_notes_parsed) return;
+      warnings_errors_and_notes_parsed = true;
 
+      for (int line_i=0; line_i<lines.size(); line_i++)
+      {
+         std::string &this_line = lines[line_i];
+         std::string regex = "([a-zA-Z0-9/_\\.]+):([0-9]+):([0-9]+): (error|note|warning): (.+)";
 
+         RegexMatcher matcher(this_line, regex);
+         std::vector<std::pair<int, int>> match_info = matcher.get_match_info();
+         if (!match_info.empty())
+         {
+            if (match_info.size() != 1)
+            {
+               std::cout << "Weird error - expecting just 1 match in a line but there were several." << std::endl;
+            }
+            //else if (match_found)
+            //{
+               //std::cout << "Weird error - found another match but one has already been found." << std::endl;
+            //}
+            else
+            {
+               Hexagon::Testing::ClangBuildOutputResult parsed_output_result(
+                  this_line
+               );
 
+               warnings_errors_and_notes.push_back(parsed_output_result);
+            }
+            std::cout << "# " << this_line << std::endl;
+         }
+         else
+         {
+            std::cout << ". " << this_line << std::endl;
+         }
+      }
       return;
 
 

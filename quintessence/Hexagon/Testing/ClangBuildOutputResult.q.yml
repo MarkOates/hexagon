@@ -1,7 +1,7 @@
 properties:
 
 
-  - name: message
+  - name: message_line
     type: std::string
     init_with: '"[unset-message]"'
     constructor_arg: true
@@ -43,7 +43,7 @@ properties:
     getter: true
     setter: true
 
-  - name: actual_error_message
+  - name: message
     type: std::string
     init_with: '"unknown"'
     constructor_arg: true

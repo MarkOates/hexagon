@@ -10,14 +10,14 @@ namespace Testing
 {
 
 
-ClangBuildOutputResult::ClangBuildOutputResult(std::string message, std::string body, std::string filename, std::string type, int line_num, int column_num, std::string actual_error_message, int on_test_dump_line_num, int test_dump_line_num)
-   : message(message)
+ClangBuildOutputResult::ClangBuildOutputResult(std::string message_line, std::string body, std::string filename, std::string type, int line_num, int column_num, std::string message, int on_test_dump_line_num, int test_dump_line_num)
+   : message_line(message_line)
    , body(body)
    , filename(filename)
    , type(type)
    , line_num(line_num)
    , column_num(column_num)
-   , actual_error_message(actual_error_message)
+   , message(message)
    , on_test_dump_line_num(on_test_dump_line_num)
    , test_dump_line_num(test_dump_line_num)
 {
@@ -29,9 +29,9 @@ ClangBuildOutputResult::~ClangBuildOutputResult()
 }
 
 
-void ClangBuildOutputResult::set_message(std::string message)
+void ClangBuildOutputResult::set_message_line(std::string message_line)
 {
-   this->message = message;
+   this->message_line = message_line;
 }
 
 
@@ -65,9 +65,9 @@ void ClangBuildOutputResult::set_column_num(int column_num)
 }
 
 
-void ClangBuildOutputResult::set_actual_error_message(std::string actual_error_message)
+void ClangBuildOutputResult::set_message(std::string message)
 {
-   this->actual_error_message = actual_error_message;
+   this->message = message;
 }
 
 
@@ -83,9 +83,9 @@ void ClangBuildOutputResult::set_test_dump_line_num(int test_dump_line_num)
 }
 
 
-std::string ClangBuildOutputResult::get_message() const
+std::string ClangBuildOutputResult::get_message_line() const
 {
-   return message;
+   return message_line;
 }
 
 
@@ -119,9 +119,9 @@ int ClangBuildOutputResult::get_column_num() const
 }
 
 
-std::string ClangBuildOutputResult::get_actual_error_message() const
+std::string ClangBuildOutputResult::get_message() const
 {
-   return actual_error_message;
+   return message;
 }
 
 
