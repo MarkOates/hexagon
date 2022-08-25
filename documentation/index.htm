@@ -10435,7 +10435,7 @@ table td
   <td class="property">std::string</td>
 </tr>
 <tr>
-  <td class="property">clang_build_results</td>
+  <td class="property">warnings_and_errors</td>
   <td class="property">std::vector&lt;Hexagon::Testing::ClangBuildOutputResult&gt;</td>
 </tr>
 <tr>
@@ -10459,8 +10459,16 @@ table td
   <td class="private_property">bool</td>
 </tr>
 <tr>
-  <td class="property">WARNINGS_ERRORS_MATCHER</td>
+  <td class="property">WARNINGS_ERRORS_GENERATED_REGEX</td>
   <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">WARNING_OR_ERROR_REGEX</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">parsed</td>
+  <td class="property">bool</td>
 </tr>
     </table>
      <table>
@@ -10474,7 +10482,10 @@ table td
   <td class="method">parse_split_lines()</td>
 </tr>
 <tr>
-  <td class="method">parse_warnings_errors_generated_line()</td>
+  <td class="method">parse_warnings_and_errors()</td>
+</tr>
+<tr>
+  <td class="method">parse_num_warnings_errors_generated_line()</td>
 </tr>
     </table>
      <table>

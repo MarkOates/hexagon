@@ -41,7 +41,7 @@ TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__will_extract_the_warning
 }
 
 
-TEST(Hexagon_Testing_ClangBuildOutputParserTest, WARNINGS_ERRORS_MATCHER__will_match_valid_lines)
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, WARNINGS_ERRORS_GENERATED_REGEX__will_match_valid_lines)
 {
    std::vector<std::string> valid_warnings_errors_lines = {
       "2 warnings generated.",
@@ -51,7 +51,7 @@ TEST(Hexagon_Testing_ClangBuildOutputParserTest, WARNINGS_ERRORS_MATCHER__will_m
       "3 warnings and 1 error generated.",
    };
 
-   std::string regex = Hexagon::Testing::ClangBuildOutputParser::get_WARNINGS_ERRORS_MATCHER();
+   std::string regex = Hexagon::Testing::ClangBuildOutputParser::get_WARNINGS_ERRORS_GENERATED_REGEX();
    for (auto &valid_warnings_errors_line : valid_warnings_errors_lines)
    {
       RegexMatcher matcher(valid_warnings_errors_line, regex);

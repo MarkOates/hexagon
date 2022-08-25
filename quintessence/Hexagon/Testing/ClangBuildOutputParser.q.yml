@@ -6,7 +6,7 @@ properties:
     init_with: '"[unset-clang_build_run_output]"'
     constructor_arg: true
 
-  - name: clang_build_results
+  - name: warnings_and_errors
     type: std::vector<Hexagon::Testing::ClangBuildOutputResult>
     init_with: '{}'
     getter: true
@@ -36,12 +36,24 @@ properties:
     init_with: false
     private: true
 
-  - name: WARNINGS_ERRORS_MATCHER
+  - name: WARNINGS_ERRORS_GENERATED_REGEX
     type: std::string
     init_with: '"[0-9]+ (?:warning[s]?|error[s]?) generated\\."'
     getter: true
     const: true
     static: true
+
+  - name: WARNING_OR_ERROR_REGEX
+    type: std::string
+    init_with: '"[TODO]"'
+    getter: true
+    const: true
+    static: true
+
+  - name: parsed
+    type: bool
+    init_with: false
+    getter: true
 
 
 functions:
@@ -50,13 +62,11 @@ functions:
   - name: parse
     type: void
     body: |
-      // split lines
+      if (parsed) return;
       parse_split_lines();
-
-      parse_warnings_errors_generated_line();
-
-      // discard or filter out lines
-      // snag known lines
+      parse_num_warnings_errors_generated_line();
+      parse_warnings_and_errors();
+      parsed = true;
       return;
     body_dependency_symbols:
       - Blast::StringSplitter
@@ -65,6 +75,7 @@ functions:
   - name: discard_irrelevant_lines
     type: std::vector<std::string>
     body: |
+      // TODO in FUTURE
       return {};
 
 
@@ -76,7 +87,13 @@ functions:
       return;
 
 
-  - name: parse_warnings_errors_generated_line
+  - name: parse_warnings_and_errors
+    body: |
+      // TODO
+      return;
+
+
+  - name: parse_num_warnings_errors_generated_line
     body: |
       if (warnings_errors_generated_line_parsed) return;
       warnings_errors_generated_line_parsed = true;
@@ -85,7 +102,7 @@ functions:
       for (int line_i=0; line_i<lines.size(); line_i++)
       {
          std::string &this_line = lines[line_i];
-         RegexMatcher matcher(this_line, WARNINGS_ERRORS_MATCHER);
+         RegexMatcher matcher(this_line, WARNINGS_ERRORS_GENERATED_REGEX);
          std::vector<std::pair<int, int>> match_info = matcher.get_match_info();
          if (!match_info.empty())
          {

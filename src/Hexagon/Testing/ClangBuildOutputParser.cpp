@@ -12,17 +12,21 @@ namespace Testing
 {
 
 
-std::string ClangBuildOutputParser::WARNINGS_ERRORS_MATCHER = "[0-9]+ (?:warning[s]?|error[s]?) generated\\.";
+std::string ClangBuildOutputParser::WARNINGS_ERRORS_GENERATED_REGEX = "[0-9]+ (?:warning[s]?|error[s]?) generated\\.";
+
+
+std::string ClangBuildOutputParser::WARNING_OR_ERROR_REGEX = "[TODO]";
 
 
 ClangBuildOutputParser::ClangBuildOutputParser(std::string clang_build_run_output)
    : clang_build_run_output(clang_build_run_output)
-   , clang_build_results({})
+   , warnings_and_errors({})
    , error_messages_during_parsing({})
    , lines({})
    , lines_parsed(false)
    , warnings_errors_generated_line("")
    , warnings_errors_generated_line_parsed(false)
+   , parsed(false)
 {
 }
 
@@ -32,9 +36,9 @@ ClangBuildOutputParser::~ClangBuildOutputParser()
 }
 
 
-std::vector<Hexagon::Testing::ClangBuildOutputResult> ClangBuildOutputParser::get_clang_build_results() const
+std::vector<Hexagon::Testing::ClangBuildOutputResult> ClangBuildOutputParser::get_warnings_and_errors() const
 {
-   return clang_build_results;
+   return warnings_and_errors;
 }
 
 
@@ -50,26 +54,37 @@ std::string ClangBuildOutputParser::get_warnings_errors_generated_line() const
 }
 
 
-std::string ClangBuildOutputParser::get_WARNINGS_ERRORS_MATCHER()
+std::string ClangBuildOutputParser::get_WARNINGS_ERRORS_GENERATED_REGEX()
 {
-   return WARNINGS_ERRORS_MATCHER;
+   return WARNINGS_ERRORS_GENERATED_REGEX;
+}
+
+
+std::string ClangBuildOutputParser::get_WARNING_OR_ERROR_REGEX()
+{
+   return WARNING_OR_ERROR_REGEX;
+}
+
+
+bool ClangBuildOutputParser::get_parsed() const
+{
+   return parsed;
 }
 
 
 void ClangBuildOutputParser::parse()
 {
-   // split lines
+   if (parsed) return;
    parse_split_lines();
-
-   parse_warnings_errors_generated_line();
-
-   // discard or filter out lines
-   // snag known lines
+   parse_num_warnings_errors_generated_line();
+   parse_warnings_and_errors();
+   parsed = true;
    return;
 }
 
 std::vector<std::string> ClangBuildOutputParser::discard_irrelevant_lines()
 {
+   // TODO in FUTURE
    return {};
 }
 
@@ -81,7 +96,13 @@ void ClangBuildOutputParser::parse_split_lines()
    return;
 }
 
-void ClangBuildOutputParser::parse_warnings_errors_generated_line()
+void ClangBuildOutputParser::parse_warnings_and_errors()
+{
+   // TODO
+   return;
+}
+
+void ClangBuildOutputParser::parse_num_warnings_errors_generated_line()
 {
    if (warnings_errors_generated_line_parsed) return;
    warnings_errors_generated_line_parsed = true;
@@ -90,7 +111,7 @@ void ClangBuildOutputParser::parse_warnings_errors_generated_line()
    for (int line_i=0; line_i<lines.size(); line_i++)
    {
       std::string &this_line = lines[line_i];
-      RegexMatcher matcher(this_line, WARNINGS_ERRORS_MATCHER);
+      RegexMatcher matcher(this_line, WARNINGS_ERRORS_GENERATED_REGEX);
       std::vector<std::pair<int, int>> match_info = matcher.get_match_info();
       if (!match_info.empty())
       {

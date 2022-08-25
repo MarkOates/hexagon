@@ -14,26 +14,31 @@ namespace Hexagon
       {
       private:
          std::string clang_build_run_output;
-         std::vector<Hexagon::Testing::ClangBuildOutputResult> clang_build_results;
+         std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_and_errors;
          std::vector<std::string> error_messages_during_parsing;
          std::vector<std::string> lines;
          bool lines_parsed;
          std::string warnings_errors_generated_line;
          bool warnings_errors_generated_line_parsed;
-         static std::string WARNINGS_ERRORS_MATCHER;
+         static std::string WARNINGS_ERRORS_GENERATED_REGEX;
+         static std::string WARNING_OR_ERROR_REGEX;
+         bool parsed;
 
       public:
          ClangBuildOutputParser(std::string clang_build_run_output="[unset-clang_build_run_output]");
          ~ClangBuildOutputParser();
 
-         std::vector<Hexagon::Testing::ClangBuildOutputResult> get_clang_build_results() const;
+         std::vector<Hexagon::Testing::ClangBuildOutputResult> get_warnings_and_errors() const;
          std::vector<std::string> get_error_messages_during_parsing() const;
          std::string get_warnings_errors_generated_line() const;
-         static std::string get_WARNINGS_ERRORS_MATCHER();
+         static std::string get_WARNINGS_ERRORS_GENERATED_REGEX();
+         static std::string get_WARNING_OR_ERROR_REGEX();
+         bool get_parsed() const;
          void parse();
          std::vector<std::string> discard_irrelevant_lines();
          void parse_split_lines();
-         void parse_warnings_errors_generated_line();
+         void parse_warnings_and_errors();
+         void parse_num_warnings_errors_generated_line();
       };
    }
 }
