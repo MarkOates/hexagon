@@ -162,6 +162,7 @@
     "Hexagon/RailsTestOutputParser",
     "Hexagon/StageFactory",
     "Hexagon/Testing/ClangBuildOutputParser",
+    "Hexagon/Testing/ClangBuildOutputResult",
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/GithubRepoStatusFetcher"
   ],
@@ -1625,6 +1626,9 @@
   ],
   "Hexagon/RegexMatcher": [
     "Hexagon/Testing/ClangBuildOutputParser"
+  ],
+  "Hexagon/Testing/ClangBuildOutputResult": [
+    "Hexagon/Testing/ClangBuildOutputResult"
   ],
   "debugging": [
     "Hexagon/Testing/GoogleTestRunOutputParser"

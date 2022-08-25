@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/Testing/ClangBuildOutputResult.hpp>
 #include <string>
 
 
@@ -43,6 +44,7 @@ namespace Hexagon
          std::string get_message() const;
          int get_on_test_dump_line_num() const;
          int get_test_dump_line_num() const;
+         static Hexagon::Testing::ClangBuildOutputResult build_from_message_line(std::string line="[unset-line]");
       };
    }
 }

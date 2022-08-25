@@ -65,3 +65,48 @@ properties:
     setter: true
     
 
+functions:
+
+
+  - name: build_from_message_line
+    type: Hexagon::Testing::ClangBuildOutputResult
+    static: true
+    parameters:
+      - name: line
+        type: std::string
+        default_argument: '"[unset-line]"'
+    body: |
+      Hexagon::Testing::ClangBuildOutputResult result;
+      result.set_message_line(line);
+
+      // TODO: validate line is valid
+      Blast::StringSplitter splitter(line, ':');
+      std::vector<std::string> tokens = splitter.split();
+
+      if (tokens.size() < 4)
+      {
+         std::stringstream error_message;
+         error_message << "Hexagon::Testing::ClangBuildOutputResult error: "
+                       << "Expecting more than 4 tokens (elements separated by ':' character).";
+         throw std::runtime_error(error_message.str());
+      }
+      else
+      {
+      }
+
+      return result;
+    body_dependency_symbols:
+      - std::stringstream
+      - Blast::StringSplitter
+
+
+
+dependencies:
+
+
+  - symbol: Hexagon::Testing::ClangBuildOutputResult
+    headers: [ Hexagon/Testing/ClangBuildOutputResult.hpp ]
+  - symbol: Blast::StringSplitter
+    headers: [ Blast/StringSplitter.hpp ]
+
+

@@ -1,7 +1,8 @@
 
 
 #include <Hexagon/Testing/ClangBuildOutputResult.hpp>
-
+#include <sstream>
+#include <Blast/StringSplitter.hpp>
 
 
 namespace Hexagon
@@ -137,6 +138,28 @@ int ClangBuildOutputResult::get_test_dump_line_num() const
 }
 
 
+Hexagon::Testing::ClangBuildOutputResult ClangBuildOutputResult::build_from_message_line(std::string line)
+{
+   Hexagon::Testing::ClangBuildOutputResult result;
+   result.set_message_line(line);
+
+   // TODO: validate line is valid
+   Blast::StringSplitter splitter(line, ':');
+   std::vector<std::string> tokens = splitter.split();
+
+   if (tokens.size() < 4)
+   {
+      std::stringstream error_message;
+      error_message << "Hexagon::Testing::ClangBuildOutputResult error: "
+                    << "Expecting more than 4 tokens (elements separated by ':' character).";
+      throw std::runtime_error(error_message.str());
+   }
+   else
+   {
+   }
+
+   return result;
+}
 } // namespace Testing
 } // namespace Hexagon
 

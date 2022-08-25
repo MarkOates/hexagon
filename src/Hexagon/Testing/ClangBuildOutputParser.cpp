@@ -102,6 +102,10 @@ void ClangBuildOutputParser::parse_warnings_errors_and_notes()
    if (warnings_errors_and_notes_parsed) return;
    warnings_errors_and_notes_parsed = true;
 
+   // TODO
+   //std::string accumulated_message_body = "";
+   //Hexagon::Testing::ClangBuildOutputResult accumulated_parsed_output_result;
+
    for (int line_i=0; line_i<lines.size(); line_i++)
    {
       std::string &this_line = lines[line_i];
@@ -121,9 +125,8 @@ void ClangBuildOutputParser::parse_warnings_errors_and_notes()
          //}
          else
          {
-            Hexagon::Testing::ClangBuildOutputResult parsed_output_result(
-               this_line
-            );
+            Hexagon::Testing::ClangBuildOutputResult parsed_output_result =
+               Hexagon::Testing::ClangBuildOutputResult::build_from_message_line(this_line);
 
             warnings_errors_and_notes.push_back(parsed_output_result);
          }
