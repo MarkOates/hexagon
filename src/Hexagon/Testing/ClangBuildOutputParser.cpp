@@ -12,6 +12,9 @@ namespace Testing
 {
 
 
+std::string ClangBuildOutputParser::WARNINGS_ERRORS_MATCHER = "[0-9]+ (?:warning[s]?|error[s]?) generated\\.";
+
+
 ClangBuildOutputParser::ClangBuildOutputParser(std::string clang_build_run_output)
    : clang_build_run_output(clang_build_run_output)
    , clang_build_results({})
@@ -20,7 +23,6 @@ ClangBuildOutputParser::ClangBuildOutputParser(std::string clang_build_run_outpu
    , lines_parsed(false)
    , warnings_errors_generated_line("")
    , warnings_errors_generated_line_parsed(false)
-   , WARNINGS_ERRORS_MATCHER("[0-9]+ (?:warning[s]?|error[s]?) generated\\.")
 {
 }
 
@@ -48,7 +50,7 @@ std::string ClangBuildOutputParser::get_warnings_errors_generated_line() const
 }
 
 
-std::string ClangBuildOutputParser::get_WARNINGS_ERRORS_MATCHER() const
+std::string ClangBuildOutputParser::get_WARNINGS_ERRORS_MATCHER()
 {
    return WARNINGS_ERRORS_MATCHER;
 }

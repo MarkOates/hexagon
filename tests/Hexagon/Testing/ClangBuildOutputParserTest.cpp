@@ -9,6 +9,9 @@
          (TEST_FIXTURE_BUILD_DUMP_FOLDER "component_test_object_1.txt")
 
 
+#include <Hexagon/RegexMatcher.hpp>
+
+
 #include <fstream>
 std::string file_get_contents(std::string filename)
 {
@@ -38,14 +41,24 @@ TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__will_extract_the_warning
 }
 
 
-TEST(Hexagon_Testing_ClangBuildOutputParserTest, DISABLED__parse__DEV)
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, WARNINGS_ERRORS_MATCHER__will_match_valid_lines)
 {
-   std::string test_build_dump_with_duplicate_object_test_names = file_get_contents(DUPLICATE_TEST_NAME);
-   Hexagon::Testing::ClangBuildOutputParser clang_build_output_parser(test_build_dump_with_duplicate_object_test_names);
+   std::vector<std::string> valid_warnings_errors_lines = {
+      "2 warnings generated.",
+      "1 error generated.",
+      "3 errors generated.",
+      "1 warning and 2 errors generated.",
+      "3 warnings and 1 error generated.",
+   };
 
-   clang_build_output_parser.parse();
-
-   EXPECT_EQ(true, clang_build_output_parser.get_error_messages_during_parsing().empty());
+   std::string regex = Hexagon::Testing::ClangBuildOutputParser::get_WARNINGS_ERRORS_MATCHER();
+   for (auto &valid_warnings_errors_line : valid_warnings_errors_lines)
+   {
+      RegexMatcher matcher(valid_warnings_errors_line, regex);
+      std::vector<std::pair<int, int>> match_info = matcher.get_match_info();
+   
+      EXPECT_EQ(1, match_info.size());
+   }
 }
 
 

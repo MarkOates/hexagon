@@ -20,7 +20,7 @@ namespace Hexagon
          bool lines_parsed;
          std::string warnings_errors_generated_line;
          bool warnings_errors_generated_line_parsed;
-         std::string WARNINGS_ERRORS_MATCHER;
+         static std::string WARNINGS_ERRORS_MATCHER;
 
       public:
          ClangBuildOutputParser(std::string clang_build_run_output="[unset-clang_build_run_output]");
@@ -29,7 +29,7 @@ namespace Hexagon
          std::vector<Hexagon::Testing::ClangBuildOutputResult> get_clang_build_results() const;
          std::vector<std::string> get_error_messages_during_parsing() const;
          std::string get_warnings_errors_generated_line() const;
-         std::string get_WARNINGS_ERRORS_MATCHER() const;
+         static std::string get_WARNINGS_ERRORS_MATCHER();
          void parse();
          std::vector<std::string> discard_irrelevant_lines();
          void parse_split_lines();

@@ -41,6 +41,7 @@ properties:
     init_with: '"[0-9]+ (?:warning[s]?|error[s]?) generated\\."'
     getter: true
     const: true
+    static: true
 
 
 functions:
