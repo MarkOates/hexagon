@@ -36,13 +36,13 @@ AdvancedCodeEditor::~AdvancedCodeEditor()
 }
 
 
-std::vector<std::string> AdvancedCodeEditor::get_lines()
+std::vector<std::string> AdvancedCodeEditor::get_lines() const
 {
    return lines;
 }
 
 
-bool AdvancedCodeEditor::get_content_is_modified()
+bool AdvancedCodeEditor::get_content_is_modified() const
 {
    return content_is_modified;
 }

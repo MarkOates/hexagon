@@ -20,13 +20,13 @@ Packet::~Packet()
 }
 
 
-int Packet::get_searches_count()
+int Packet::get_searches_count() const
 {
    return searches_count;
 }
 
 
-int Packet::get_saves_count()
+int Packet::get_saves_count() const
 {
    return saves_count;
 }

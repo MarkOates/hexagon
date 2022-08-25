@@ -28,13 +28,13 @@ CheckGitSyncAndUpdatePowerbar::~CheckGitSyncAndUpdatePowerbar()
 }
 
 
-std::string CheckGitSyncAndUpdatePowerbar::get_repo_name()
+std::string CheckGitSyncAndUpdatePowerbar::get_repo_name() const
 {
    return repo_name;
 }
 
 
-std::string CheckGitSyncAndUpdatePowerbar::get_repos_directory()
+std::string CheckGitSyncAndUpdatePowerbar::get_repos_directory() const
 {
    return repos_directory;
 }

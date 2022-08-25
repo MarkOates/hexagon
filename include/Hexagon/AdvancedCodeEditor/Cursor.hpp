@@ -23,10 +23,10 @@ namespace Hexagon
          void set_y(int y);
          void set_width(float width);
          void set_height(float height);
-         int get_x();
-         int get_y();
-         float get_width();
-         float get_height();
+         int get_x() const;
+         int get_y() const;
+         float get_width() const;
+         float get_height() const;
          void move_up();
          void move_down();
          void move_left();

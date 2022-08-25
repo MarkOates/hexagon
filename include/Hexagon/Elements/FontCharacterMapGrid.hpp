@@ -26,10 +26,10 @@ namespace Hexagon
          ~FontCharacterMapGrid();
 
          void set_font(ALLEGRO_FONT* font);
-         int get_grid_width();
-         int get_grid_height();
-         std::map<char, std::tuple<float, float, float, float>> get_character_uv_mapping();
-         bool get_initialized();
+         int get_grid_width() const;
+         int get_grid_height() const;
+         std::map<char, std::tuple<float, float, float, float>> get_character_uv_mapping() const;
+         bool get_initialized() const;
          ALLEGRO_BITMAP* get_created_character_map_bitmap();
          bool initialize();
       };

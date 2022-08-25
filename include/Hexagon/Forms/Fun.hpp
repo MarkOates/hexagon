@@ -19,7 +19,7 @@ namespace Hexagon
          Fun();
          ~Fun();
 
-         std::string get_buffer();
+         std::string get_buffer() const;
          void draw(placement3d place={}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
          int process_char_input(char input_ch=0);
       };

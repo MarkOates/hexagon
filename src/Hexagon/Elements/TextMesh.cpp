@@ -37,43 +37,43 @@ TextMesh::~TextMesh()
 }
 
 
-int TextMesh::get_num_columns()
+int TextMesh::get_num_columns() const
 {
    return num_columns;
 }
 
 
-int TextMesh::get_num_rows()
+int TextMesh::get_num_rows() const
 {
    return num_rows;
 }
 
 
-float TextMesh::get_cell_width()
+float TextMesh::get_cell_width() const
 {
    return cell_width;
 }
 
 
-float TextMesh::get_cell_height()
+float TextMesh::get_cell_height() const
 {
    return cell_height;
 }
 
 
-Hexagon::Elements::BitmapGridMesh TextMesh::get_bitmap_grid_mesh()
+Hexagon::Elements::BitmapGridMesh TextMesh::get_bitmap_grid_mesh() const
 {
    return bitmap_grid_mesh;
 }
 
 
-ALLEGRO_BITMAP* TextMesh::get_font_character_map_bitmap()
+ALLEGRO_BITMAP* TextMesh::get_font_character_map_bitmap() const
 {
    return font_character_map_bitmap;
 }
 
 
-bool TextMesh::get_initialized()
+bool TextMesh::get_initialized() const
 {
    return initialized;
 }

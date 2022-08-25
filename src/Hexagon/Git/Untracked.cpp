@@ -23,7 +23,7 @@ Untracked::~Untracked()
 }
 
 
-std::string Untracked::get_current_project_directory()
+std::string Untracked::get_current_project_directory() const
 {
    return current_project_directory;
 }

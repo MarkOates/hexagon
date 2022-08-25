@@ -38,25 +38,25 @@ void SubBitmapCharacterMap::set_font(ALLEGRO_FONT* font)
 }
 
 
-int SubBitmapCharacterMap::get_grid_width()
+int SubBitmapCharacterMap::get_grid_width() const
 {
    return grid_width;
 }
 
 
-int SubBitmapCharacterMap::get_grid_height()
+int SubBitmapCharacterMap::get_grid_height() const
 {
    return grid_height;
 }
 
 
-ALLEGRO_BITMAP* SubBitmapCharacterMap::get_surface()
+ALLEGRO_BITMAP* SubBitmapCharacterMap::get_surface() const
 {
    return surface;
 }
 
 
-std::map<char, ALLEGRO_BITMAP*> SubBitmapCharacterMap::get_cell_sub_bitmaps()
+std::map<char, ALLEGRO_BITMAP*> SubBitmapCharacterMap::get_cell_sub_bitmaps() const
 {
    return cell_sub_bitmaps;
 }

@@ -56,31 +56,31 @@ void CreateThreeSplitFromComponent::set_create_as_advanced_code_editor(bool crea
 }
 
 
-std::string CreateThreeSplitFromComponent::get_project_path()
+std::string CreateThreeSplitFromComponent::get_project_path() const
 {
    return project_path;
 }
 
 
-std::vector<StageInterface *>& CreateThreeSplitFromComponent::get_stages()
+std::vector<StageInterface *>& CreateThreeSplitFromComponent::get_stages() const
 {
    return stages;
 }
 
 
-int CreateThreeSplitFromComponent::get_code_editor_width()
+int CreateThreeSplitFromComponent::get_code_editor_width() const
 {
    return code_editor_width;
 }
 
 
-int CreateThreeSplitFromComponent::get_code_editor_height()
+int CreateThreeSplitFromComponent::get_code_editor_height() const
 {
    return code_editor_height;
 }
 
 
-bool CreateThreeSplitFromComponent::get_create_as_advanced_code_editor()
+bool CreateThreeSplitFromComponent::get_create_as_advanced_code_editor() const
 {
    return create_as_advanced_code_editor;
 }

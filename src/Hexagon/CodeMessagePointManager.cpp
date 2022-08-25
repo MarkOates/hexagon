@@ -19,7 +19,7 @@ CodeMessagePointManager::~CodeMessagePointManager()
 }
 
 
-std::vector<CodeMessagePoint> CodeMessagePointManager::get_code_message_points()
+std::vector<CodeMessagePoint> CodeMessagePointManager::get_code_message_points() const
 {
    return code_message_points;
 }

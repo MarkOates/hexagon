@@ -50,7 +50,7 @@ void Renderer::set_draw_frame(bool draw_frame)
 }
 
 
-bool Renderer::get_draw_frame()
+bool Renderer::get_draw_frame() const
 {
    return draw_frame;
 }

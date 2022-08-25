@@ -33,7 +33,7 @@ void DestroyAllCodeEditorStages::set_stages(std::vector<StageInterface *>& stage
 }
 
 
-std::vector<StageInterface *>& DestroyAllCodeEditorStages::get_stages()
+std::vector<StageInterface *>& DestroyAllCodeEditorStages::get_stages() const
 {
    return stages;
 }

@@ -18,8 +18,8 @@ namespace Hexagon
          FocusTimerBar();
          ~FocusTimerBar();
 
-         std::time_t get_focus_timer_started_at();
-         float get_focus_timer_duration_sec();
+         std::time_t get_focus_timer_started_at() const;
+         float get_focus_timer_duration_sec() const;
       };
    }
 }

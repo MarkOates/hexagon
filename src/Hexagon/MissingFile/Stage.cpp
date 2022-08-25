@@ -72,37 +72,37 @@ void Stage::set_cell_height(int cell_height)
 }
 
 
-std::string Stage::get_expected_filename()
+std::string Stage::get_expected_filename() const
 {
    return expected_filename;
 }
 
 
-bool Stage::get_is_focused()
+bool Stage::get_is_focused() const
 {
    return is_focused;
 }
 
 
-ALLEGRO_DISPLAY* Stage::get_display()
+ALLEGRO_DISPLAY* Stage::get_display() const
 {
    return display;
 }
 
 
-ALLEGRO_FONT* Stage::get_font()
+ALLEGRO_FONT* Stage::get_font() const
 {
    return font;
 }
 
 
-int Stage::get_cell_width()
+int Stage::get_cell_width() const
 {
    return cell_width;
 }
 
 
-int Stage::get_cell_height()
+int Stage::get_cell_height() const
 {
    return cell_height;
 }

@@ -29,19 +29,19 @@ void MultiplexMenu::set_final_command_set_to_execute(std::vector<std::string> fi
 }
 
 
-std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> MultiplexMenu::get_page_dictionary()
+std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> MultiplexMenu::get_page_dictionary() const
 {
    return page_dictionary;
 }
 
 
-std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*> MultiplexMenu::get_page_history()
+std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*> MultiplexMenu::get_page_history() const
 {
    return page_history;
 }
 
 
-std::vector<std::string> MultiplexMenu::get_final_command_set_to_execute()
+std::vector<std::string> MultiplexMenu::get_final_command_set_to_execute() const
 {
    return final_command_set_to_execute;
 }

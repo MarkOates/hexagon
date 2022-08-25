@@ -26,7 +26,7 @@ Stage::~Stage()
 }
 
 
-std::string Stage::get_current_project_directory()
+std::string Stage::get_current_project_directory() const
 {
    return current_project_directory;
 }

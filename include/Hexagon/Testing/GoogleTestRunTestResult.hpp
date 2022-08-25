@@ -28,12 +28,12 @@ namespace Hexagon
          void set_duration_msec(int duration_msec);
          void set_output_body(std::string output_body);
          void set_failure_message(std::string failure_message);
-         std::string get_test_class_name();
-         std::string get_test_description();
-         std::string get_result();
-         int get_duration_msec();
-         std::string get_output_body();
-         std::string get_failure_message();
+         std::string get_test_class_name() const;
+         std::string get_test_description() const;
+         std::string get_result() const;
+         int get_duration_msec() const;
+         std::string get_output_body() const;
+         std::string get_failure_message() const;
       };
    }
 }

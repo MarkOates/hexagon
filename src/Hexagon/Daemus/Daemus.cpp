@@ -22,7 +22,7 @@ Daemus::~Daemus()
 }
 
 
-Hexagon::Daemus::Builds::Base* Daemus::get_current_build()
+Hexagon::Daemus::Builds::Base* Daemus::get_current_build() const
 {
    return current_build;
 }

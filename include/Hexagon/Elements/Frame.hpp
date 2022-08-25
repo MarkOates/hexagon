@@ -30,8 +30,8 @@ namespace Hexagon
          void set_height(float height);
          void set_outline_color(ALLEGRO_COLOR outline_color);
          void set_line_thickness(float line_thickness);
-         ALLEGRO_COLOR get_outline_color();
-         float get_line_thickness();
+         ALLEGRO_COLOR get_outline_color() const;
+         float get_line_thickness() const;
          static ALLEGRO_COLOR build_default_frame_color();
          static AllegroFlare::FontBin& get_dummy_font_bin();
          void render();

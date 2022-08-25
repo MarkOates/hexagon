@@ -24,8 +24,8 @@ namespace Hexagon
 
       void set_PACKET_LOG_FOLDER_LOCATION(std::string PACKET_LOG_FOLDER_LOCATION);
       void set_datetime(std::string datetime);
-      std::string get_PACKET_LOG_FOLDER_LOCATION();
-      std::string get_datetime();
+      std::string get_PACKET_LOG_FOLDER_LOCATION() const;
+      std::string get_datetime() const;
       void write_log_file();
       std::string generate_log_filename();
       std::string generate_log_file_contents();

@@ -82,37 +82,37 @@ void AdvancedComponentNavigator::set_search_text(std::string search_text)
 }
 
 
-std::string AdvancedComponentNavigator::get_project_root()
+std::string AdvancedComponentNavigator::get_project_root() const
 {
    return project_root;
 }
 
 
-int AdvancedComponentNavigator::get_cursor_position()
+int AdvancedComponentNavigator::get_cursor_position() const
 {
    return cursor_position;
 }
 
 
-bool AdvancedComponentNavigator::get_cursor_position_static()
+bool AdvancedComponentNavigator::get_cursor_position_static() const
 {
    return cursor_position_static;
 }
 
 
-std::vector<Blast::Project::Component> AdvancedComponentNavigator::get_nodes()
+std::vector<Blast::Project::Component> AdvancedComponentNavigator::get_nodes() const
 {
    return nodes;
 }
 
 
-std::string AdvancedComponentNavigator::get_mode()
+std::string AdvancedComponentNavigator::get_mode() const
 {
    return mode;
 }
 
 
-std::string AdvancedComponentNavigator::get_search_text()
+std::string AdvancedComponentNavigator::get_search_text() const
 {
    return search_text;
 }

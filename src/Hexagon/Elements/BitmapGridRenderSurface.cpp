@@ -39,13 +39,13 @@ BitmapGridRenderSurface::~BitmapGridRenderSurface()
 }
 
 
-ALLEGRO_BITMAP* BitmapGridRenderSurface::get_surface()
+ALLEGRO_BITMAP* BitmapGridRenderSurface::get_surface() const
 {
    return surface;
 }
 
 
-bool BitmapGridRenderSurface::get_initialized()
+bool BitmapGridRenderSurface::get_initialized() const
 {
    return initialized;
 }

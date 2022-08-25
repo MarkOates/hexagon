@@ -75,43 +75,43 @@ void Pill::set_font_color(ALLEGRO_COLOR font_color)
 }
 
 
-float Pill::get_x()
+float Pill::get_x() const
 {
    return x;
 }
 
 
-float Pill::get_y()
+float Pill::get_y() const
 {
    return y;
 }
 
 
-float Pill::get_width()
+float Pill::get_width() const
 {
    return width;
 }
 
 
-float Pill::get_height()
+float Pill::get_height() const
 {
    return height;
 }
 
 
-std::string Pill::get_label()
+std::string Pill::get_label() const
 {
    return label;
 }
 
 
-ALLEGRO_COLOR Pill::get_color()
+ALLEGRO_COLOR Pill::get_color() const
 {
    return color;
 }
 
 
-ALLEGRO_COLOR Pill::get_font_color()
+ALLEGRO_COLOR Pill::get_font_color() const
 {
    return font_color;
 }

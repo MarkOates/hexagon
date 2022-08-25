@@ -37,7 +37,7 @@ namespace Hexagon
          Config(std::string config_filename="/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg");
          ~Config();
 
-         std::string get_config_filename();
+         std::string get_config_filename() const;
          void validate_initialized(std::string function_name="[unnamed_function]");
          void initialize();
          void reload();

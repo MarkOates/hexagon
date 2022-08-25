@@ -29,7 +29,7 @@ namespace Hexagon
          LittleMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="Untitled Menu", std::vector<std::tuple<std::string, std::string>> items={{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}});
          ~LittleMenu();
 
-         bool get_initialized();
+         bool get_initialized() const;
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          void initialize();
          void render() override;

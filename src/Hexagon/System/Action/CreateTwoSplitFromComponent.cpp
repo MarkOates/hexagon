@@ -56,31 +56,31 @@ void CreateTwoSplitFromComponent::set_create_as_advanced_code_editor(bool create
 }
 
 
-std::string CreateTwoSplitFromComponent::get_project_path()
+std::string CreateTwoSplitFromComponent::get_project_path() const
 {
    return project_path;
 }
 
 
-std::vector<StageInterface *>& CreateTwoSplitFromComponent::get_stages()
+std::vector<StageInterface *>& CreateTwoSplitFromComponent::get_stages() const
 {
    return stages;
 }
 
 
-int CreateTwoSplitFromComponent::get_code_editor_width()
+int CreateTwoSplitFromComponent::get_code_editor_width() const
 {
    return code_editor_width;
 }
 
 
-int CreateTwoSplitFromComponent::get_code_editor_height()
+int CreateTwoSplitFromComponent::get_code_editor_height() const
 {
    return code_editor_height;
 }
 
 
-bool CreateTwoSplitFromComponent::get_create_as_advanced_code_editor()
+bool CreateTwoSplitFromComponent::get_create_as_advanced_code_editor() const
 {
    return create_as_advanced_code_editor;
 }

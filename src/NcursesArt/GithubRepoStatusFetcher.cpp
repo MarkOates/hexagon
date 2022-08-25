@@ -44,73 +44,73 @@ void GithubRepoStatusFetcher::set_status_polled(bool status_polled)
 }
 
 
-std::string GithubRepoStatusFetcher::get_last_captured_output_from_status_request()
+std::string GithubRepoStatusFetcher::get_last_captured_output_from_status_request() const
 {
    return last_captured_output_from_status_request;
 }
 
 
-std::string GithubRepoStatusFetcher::get_git_status_command()
+std::string GithubRepoStatusFetcher::get_git_status_command() const
 {
    return git_status_command;
 }
 
 
-std::string GithubRepoStatusFetcher::get_git_pull_command()
+std::string GithubRepoStatusFetcher::get_git_pull_command() const
 {
    return git_pull_command;
 }
 
 
-std::string GithubRepoStatusFetcher::get_git_branch_count_command()
+std::string GithubRepoStatusFetcher::get_git_branch_count_command() const
 {
    return git_branch_count_command;
 }
 
 
-std::string GithubRepoStatusFetcher::get_git_current_branch_command()
+std::string GithubRepoStatusFetcher::get_git_current_branch_command() const
 {
    return git_current_branch_command;
 }
 
 
-std::string GithubRepoStatusFetcher::get_git_remote_branch_names_command()
+std::string GithubRepoStatusFetcher::get_git_remote_branch_names_command() const
 {
    return git_remote_branch_names_command;
 }
 
 
-std::string GithubRepoStatusFetcher::get_component_quintessence_filenames_command()
+std::string GithubRepoStatusFetcher::get_component_quintessence_filenames_command() const
 {
    return component_quintessence_filenames_command;
 }
 
 
-std::string GithubRepoStatusFetcher::get_git_current_staged_files_command()
+std::string GithubRepoStatusFetcher::get_git_current_staged_files_command() const
 {
    return git_current_staged_files_command;
 }
 
 
-std::string GithubRepoStatusFetcher::get_repo_name()
+std::string GithubRepoStatusFetcher::get_repo_name() const
 {
    return repo_name;
 }
 
 
-std::string GithubRepoStatusFetcher::get_repos_directory()
+std::string GithubRepoStatusFetcher::get_repos_directory() const
 {
    return repos_directory;
 }
 
 
-bool GithubRepoStatusFetcher::get_only_poll_once()
+bool GithubRepoStatusFetcher::get_only_poll_once() const
 {
    return only_poll_once;
 }
 
 
-bool GithubRepoStatusFetcher::get_status_polled()
+bool GithubRepoStatusFetcher::get_status_polled() const
 {
    return status_polled;
 }

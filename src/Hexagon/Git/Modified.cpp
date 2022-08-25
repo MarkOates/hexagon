@@ -23,7 +23,7 @@ Modified::~Modified()
 }
 
 
-std::string Modified::get_current_project_directory()
+std::string Modified::get_current_project_directory() const
 {
    return current_project_directory;
 }

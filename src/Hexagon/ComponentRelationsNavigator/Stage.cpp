@@ -53,19 +53,19 @@ Stage::~Stage()
 }
 
 
-bool Stage::get_initialized()
+bool Stage::get_initialized() const
 {
    return initialized;
 }
 
 
-Hexagon::Elements::ListMenu* Stage::get_currently_active_menu()
+Hexagon::Elements::ListMenu* Stage::get_currently_active_menu() const
 {
    return currently_active_menu;
 }
 
 
-ALLEGRO_COLOR Stage::get_default_color()
+ALLEGRO_COLOR Stage::get_default_color() const
 {
    return default_color;
 }

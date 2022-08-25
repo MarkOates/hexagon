@@ -25,7 +25,7 @@ Fun::~Fun()
 }
 
 
-std::string Fun::get_buffer()
+std::string Fun::get_buffer() const
 {
    return buffer;
 }

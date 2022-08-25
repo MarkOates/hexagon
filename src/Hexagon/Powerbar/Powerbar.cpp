@@ -57,43 +57,43 @@ void Powerbar::set_commits_are_in_sync_with_remote(bool commits_are_in_sync_with
 }
 
 
-bool Powerbar::get_files_are_modified()
+bool Powerbar::get_files_are_modified() const
 {
    return files_are_modified;
 }
 
 
-bool Powerbar::get_files_are_staged()
+bool Powerbar::get_files_are_staged() const
 {
    return files_are_staged;
 }
 
 
-bool Powerbar::get_files_are_untracked()
+bool Powerbar::get_files_are_untracked() const
 {
    return files_are_untracked;
 }
 
 
-bool Powerbar::get_files_are_committed()
+bool Powerbar::get_files_are_committed() const
 {
    return files_are_committed;
 }
 
 
-bool Powerbar::get_commits_are_in_sync_with_remote()
+bool Powerbar::get_commits_are_in_sync_with_remote() const
 {
    return commits_are_in_sync_with_remote;
 }
 
 
-std::time_t Powerbar::get_focus_timer_started_at()
+std::time_t Powerbar::get_focus_timer_started_at() const
 {
    return focus_timer_started_at;
 }
 
 
-float Powerbar::get_focus_timer_duration_sec()
+float Powerbar::get_focus_timer_duration_sec() const
 {
    return focus_timer_duration_sec;
 }

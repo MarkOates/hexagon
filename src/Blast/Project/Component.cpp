@@ -36,13 +36,13 @@ Component::~Component()
 }
 
 
-std::string Component::get_name()
+std::string Component::get_name() const
 {
    return name;
 }
 
 
-std::string Component::get_project_root()
+std::string Component::get_project_root() const
 {
    return project_root;
 }

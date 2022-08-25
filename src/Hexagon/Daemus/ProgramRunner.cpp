@@ -45,13 +45,13 @@ ProgramRunner::~ProgramRunner()
 }
 
 
-std::string ProgramRunner::get_daemus_build_file_directory()
+std::string ProgramRunner::get_daemus_build_file_directory() const
 {
    return daemus_build_file_directory;
 }
 
 
-std::string ProgramRunner::get_daemus_build_filename()
+std::string ProgramRunner::get_daemus_build_filename() const
 {
    return daemus_build_filename;
 }

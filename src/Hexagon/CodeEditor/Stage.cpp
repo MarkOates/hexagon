@@ -97,61 +97,61 @@ void Stage::set_represents_a_symlink(bool represents_a_symlink)
 }
 
 
-::CodeEditor::CodeEditor Stage::get_code_editor()
+::CodeEditor::CodeEditor Stage::get_code_editor() const
 {
    return code_editor;
 }
 
 
-bool Stage::get_is_focused()
+bool Stage::get_is_focused() const
 {
    return is_focused;
 }
 
 
-ALLEGRO_DISPLAY* Stage::get_display()
+ALLEGRO_DISPLAY* Stage::get_display() const
 {
    return display;
 }
 
 
-ALLEGRO_FONT* Stage::get_font()
+ALLEGRO_FONT* Stage::get_font() const
 {
    return font;
 }
 
 
-AllegroFlare::FontBin* Stage::get_font_bin()
+AllegroFlare::FontBin* Stage::get_font_bin() const
 {
    return font_bin;
 }
 
 
-int Stage::get_cell_width()
+int Stage::get_cell_width() const
 {
    return cell_width;
 }
 
 
-int Stage::get_cell_height()
+int Stage::get_cell_height() const
 {
    return cell_height;
 }
 
 
-ALLEGRO_COLOR Stage::get_base_font_color()
+ALLEGRO_COLOR Stage::get_base_font_color() const
 {
    return base_font_color;
 }
 
 
-ALLEGRO_COLOR Stage::get_backfill_color()
+ALLEGRO_COLOR Stage::get_backfill_color() const
 {
    return backfill_color;
 }
 
 
-bool Stage::get_represents_a_symlink()
+bool Stage::get_represents_a_symlink() const
 {
    return represents_a_symlink;
 }

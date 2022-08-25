@@ -94,55 +94,55 @@ void Stage::set_cell_height(int cell_height)
 }
 
 
-ALLEGRO_COLOR Stage::get_selector_color()
+ALLEGRO_COLOR Stage::get_selector_color() const
 {
    return selector_color;
 }
 
 
-std::vector<std::pair<std::string, std::string>> Stage::get_nodes()
+std::vector<std::pair<std::string, std::string>> Stage::get_nodes() const
 {
    return nodes;
 }
 
 
-int Stage::get_cursor_position()
+int Stage::get_cursor_position() const
 {
    return cursor_position;
 }
 
 
-std::string Stage::get_node_root()
+std::string Stage::get_node_root() const
 {
    return node_root;
 }
 
 
-bool Stage::get_is_focused()
+bool Stage::get_is_focused() const
 {
    return is_focused;
 }
 
 
-ALLEGRO_DISPLAY* Stage::get_display()
+ALLEGRO_DISPLAY* Stage::get_display() const
 {
    return display;
 }
 
 
-ALLEGRO_FONT* Stage::get_font()
+ALLEGRO_FONT* Stage::get_font() const
 {
    return font;
 }
 
 
-int Stage::get_cell_width()
+int Stage::get_cell_width() const
 {
    return cell_width;
 }
 
 
-int Stage::get_cell_height()
+int Stage::get_cell_height() const
 {
    return cell_height;
 }

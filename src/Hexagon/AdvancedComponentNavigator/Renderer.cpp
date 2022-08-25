@@ -50,19 +50,19 @@ void Renderer::set_input_hints_tokens(std::vector<std::string> input_hints_token
 }
 
 
-ALLEGRO_COLOR Renderer::get_base_backfill_color()
+ALLEGRO_COLOR Renderer::get_base_backfill_color() const
 {
    return base_backfill_color;
 }
 
 
-ALLEGRO_COLOR Renderer::get_base_text_color()
+ALLEGRO_COLOR Renderer::get_base_text_color() const
 {
    return base_text_color;
 }
 
 
-std::vector<std::string> Renderer::get_input_hints_tokens()
+std::vector<std::string> Renderer::get_input_hints_tokens() const
 {
    return input_hints_tokens;
 }

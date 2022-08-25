@@ -39,7 +39,7 @@ LittleMenu::~LittleMenu()
 }
 
 
-bool LittleMenu::get_initialized()
+bool LittleMenu::get_initialized() const
 {
    return initialized;
 }

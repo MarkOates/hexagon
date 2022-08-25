@@ -27,8 +27,8 @@ namespace Hexagon
          Renderer(Hexagon::ProjectComponentNavigator::Stage* stage=nullptr, ALLEGRO_FONT* font=nullptr, int cell_width=10, int cell_height=20, ALLEGRO_COLOR* base_backfill_color=nullptr, float backfill_opacity=1.0f, ALLEGRO_COLOR* base_text_color=nullptr);
          ~Renderer();
 
-         ALLEGRO_COLOR* get_base_backfill_color();
-         ALLEGRO_COLOR* get_base_text_color();
+         ALLEGRO_COLOR* get_base_backfill_color() const;
+         ALLEGRO_COLOR* get_base_text_color() const;
          ALLEGRO_COLOR build_backfill_color();
          ALLEGRO_COLOR build_text_color();
          ALLEGRO_COLOR build_frame_color();

@@ -20,7 +20,7 @@ namespace Hexagon
          Daemus();
          ~Daemus();
 
-         Hexagon::Daemus::Builds::Base* get_current_build();
+         Hexagon::Daemus::Builds::Base* get_current_build() const;
          std::vector<Hexagon::Daemus::Builds::Base*> &get_builds_ref();
          Hexagon::Daemus::Builds::ExtrapolateQuintessence* create_extrapolate_quintessence_build();
       };

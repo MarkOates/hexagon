@@ -34,7 +34,7 @@ void ExtrapolateQuintessence::set_BUILDS_PENDING_FOLDER_LOCATION(std::string BUI
 }
 
 
-std::string ExtrapolateQuintessence::get_BUILDS_PENDING_FOLDER_LOCATION()
+std::string ExtrapolateQuintessence::get_BUILDS_PENDING_FOLDER_LOCATION() const
 {
    return BUILDS_PENDING_FOLDER_LOCATION;
 }

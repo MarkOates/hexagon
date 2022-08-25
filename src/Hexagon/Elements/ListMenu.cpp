@@ -72,49 +72,49 @@ void ListMenu::set_active(bool active)
 }
 
 
-std::vector<std::tuple<std::string, std::string>> ListMenu::get_list_items()
+std::vector<std::tuple<std::string, std::string>> ListMenu::get_list_items() const
 {
    return list_items;
 }
 
 
-ALLEGRO_COLOR ListMenu::get_color()
+ALLEGRO_COLOR ListMenu::get_color() const
 {
    return color;
 }
 
 
-bool ListMenu::get_wrap_cursor_when_moving_cursor_outside_bounds()
+bool ListMenu::get_wrap_cursor_when_moving_cursor_outside_bounds() const
 {
    return wrap_cursor_when_moving_cursor_outside_bounds;
 }
 
 
-bool ListMenu::get_title_upcase()
+bool ListMenu::get_title_upcase() const
 {
    return title_upcase;
 }
 
 
-bool ListMenu::get_menu_items_upcase()
+bool ListMenu::get_menu_items_upcase() const
 {
    return menu_items_upcase;
 }
 
 
-int ListMenu::get_width()
+int ListMenu::get_width() const
 {
    return width;
 }
 
 
-bool ListMenu::get_active()
+bool ListMenu::get_active() const
 {
    return active;
 }
 
 
-float ListMenu::get_padding()
+float ListMenu::get_padding() const
 {
    return padding;
 }

@@ -24,7 +24,7 @@ namespace Hexagon
          CursorRenderer(ALLEGRO_COLOR color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, float x=0, float y=0, float width=1, float height=1, ::CodeEditor::CodeEditor::mode_t mode=::CodeEditor::CodeEditor::EDIT, bool focus=true);
          ~CursorRenderer();
 
-         ALLEGRO_COLOR get_color();
+         ALLEGRO_COLOR get_color() const;
          void render();
       };
    }

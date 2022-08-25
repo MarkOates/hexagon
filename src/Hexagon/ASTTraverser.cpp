@@ -26,7 +26,7 @@ ASTTraverser::~ASTTraverser()
 }
 
 
-std::string ASTTraverser::get_json_ast_filename()
+std::string ASTTraverser::get_json_ast_filename() const
 {
    return json_ast_filename;
 }

@@ -20,13 +20,13 @@ Marker::~Marker()
 }
 
 
-std::string Marker::get_filename()
+std::string Marker::get_filename() const
 {
    return filename;
 }
 
 
-int Marker::get_line_num()
+int Marker::get_line_num() const
 {
    return line_num;
 }

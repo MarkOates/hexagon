@@ -24,7 +24,7 @@ WithAllegroRenderingFixture::~WithAllegroRenderingFixture()
 }
 
 
-ALLEGRO_DISPLAY* WithAllegroRenderingFixture::get_display()
+ALLEGRO_DISPLAY* WithAllegroRenderingFixture::get_display() const
 {
    return display;
 }

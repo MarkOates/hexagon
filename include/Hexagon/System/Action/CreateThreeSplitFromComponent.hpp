@@ -38,11 +38,11 @@ namespace Hexagon
 
             void set_stages(std::vector<StageInterface *>& stages);
             void set_create_as_advanced_code_editor(bool create_as_advanced_code_editor);
-            std::string get_project_path();
-            std::vector<StageInterface *>& get_stages();
-            int get_code_editor_width();
-            int get_code_editor_height();
-            bool get_create_as_advanced_code_editor();
+            std::string get_project_path() const;
+            std::vector<StageInterface *>& get_stages() const;
+            int get_code_editor_width() const;
+            int get_code_editor_height() const;
+            bool get_create_as_advanced_code_editor() const;
             static std::vector<StageInterface *> &get_dummy_stages_ref();
             bool place_stage(std::string filename="/foobar.txt", std::string file_category="undefined", float x=0.0, float align_x=0.0);
             std::string generate_header_filename();

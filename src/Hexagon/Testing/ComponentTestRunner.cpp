@@ -23,13 +23,13 @@ ComponentTestRunner::~ComponentTestRunner()
 }
 
 
-std::string ComponentTestRunner::get_project_root()
+std::string ComponentTestRunner::get_project_root() const
 {
    return project_root;
 }
 
 
-std::string ComponentTestRunner::get_component_name()
+std::string ComponentTestRunner::get_component_name() const
 {
    return component_name;
 }

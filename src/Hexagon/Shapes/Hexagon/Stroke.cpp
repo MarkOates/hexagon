@@ -26,25 +26,25 @@ Stroke::~Stroke()
 }
 
 
-float Stroke::get_start()
+float Stroke::get_start() const
 {
    return start;
 }
 
 
-float Stroke::get_end()
+float Stroke::get_end() const
 {
    return end;
 }
 
 
-ALLEGRO_COLOR Stroke::get_color()
+ALLEGRO_COLOR Stroke::get_color() const
 {
    return color;
 }
 
 
-float Stroke::get_thickness()
+float Stroke::get_thickness() const
 {
    return thickness;
 }

@@ -39,25 +39,25 @@ CreateCodeEditorStageFromFilename::~CreateCodeEditorStageFromFilename()
 }
 
 
-int CreateCodeEditorStageFromFilename::get_display_default_width()
+int CreateCodeEditorStageFromFilename::get_display_default_width() const
 {
    return display_default_width;
 }
 
 
-int CreateCodeEditorStageFromFilename::get_display_default_height()
+int CreateCodeEditorStageFromFilename::get_display_default_height() const
 {
    return display_default_height;
 }
 
 
-int CreateCodeEditorStageFromFilename::get_stage_width()
+int CreateCodeEditorStageFromFilename::get_stage_width() const
 {
    return stage_width;
 }
 
 
-int CreateCodeEditorStageFromFilename::get_stage_height()
+int CreateCodeEditorStageFromFilename::get_stage_height() const
 {
    return stage_height;
 }

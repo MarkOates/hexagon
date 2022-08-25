@@ -28,8 +28,8 @@ namespace Hexagon
       StageFactory(Hexagon::System::Config* config=nullptr, AllegroFlare::FontBin* font_bin=nullptr);
       ~StageFactory();
 
-      float get_hud_render_surface_projection_width();
-      float get_hud_render_surface_projection_height();
+      float get_hud_render_surface_projection_width() const;
+      float get_hud_render_surface_projection_height() const;
       ALLEGRO_COLOR obtain_base_text_color();
       std::string obtain_regex_temp_filename();
       ALLEGRO_COLOR obtain_base_backfill_color();

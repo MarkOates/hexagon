@@ -21,9 +21,9 @@ namespace Hexagon
 
       void set_concept_name(std::string concept_name);
       void set_files(std::vector<std::tuple<std::string, std::string, placement3d>> files);
-      std::string get_concept_name();
-      std::vector<std::tuple<std::string, std::string, placement3d>> get_files();
-      std::string get_daemus_command();
+      std::string get_concept_name() const;
+      std::vector<std::tuple<std::string, std::string, placement3d>> get_files() const;
+      std::string get_daemus_command() const;
       std::vector<std::tuple<std::string, std::string, placement3d>> &get_files_ref();
    };
 }

@@ -25,8 +25,8 @@ namespace Hexagon
          BitmapGridRenderSurface(int num_columns=0, int num_rows=0, int cell_width=1, int cell_height=1);
          ~BitmapGridRenderSurface();
 
-         ALLEGRO_BITMAP* get_surface();
-         bool get_initialized();
+         ALLEGRO_BITMAP* get_surface() const;
+         bool get_initialized() const;
          void set_cell_width(int cell_width=1);
          void set_cell_height(int cell_height=1);
          void lock_for_render();

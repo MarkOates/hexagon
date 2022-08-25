@@ -34,13 +34,13 @@ namespace Hexagon
          TextMesh(ALLEGRO_FONT* font=nullptr, int num_columns=0, int num_rows=0);
          ~TextMesh();
 
-         int get_num_columns();
-         int get_num_rows();
-         float get_cell_width();
-         float get_cell_height();
-         Hexagon::Elements::BitmapGridMesh get_bitmap_grid_mesh();
-         ALLEGRO_BITMAP* get_font_character_map_bitmap();
-         bool get_initialized();
+         int get_num_columns() const;
+         int get_num_rows() const;
+         float get_cell_width() const;
+         float get_cell_height() const;
+         Hexagon::Elements::BitmapGridMesh get_bitmap_grid_mesh() const;
+         ALLEGRO_BITMAP* get_font_character_map_bitmap() const;
+         bool get_initialized() const;
          void set_font(ALLEGRO_FONT* font=nullptr);
          void initialize();
          void destruct();

@@ -93,31 +93,31 @@ void DrawingBox::set_pointer_y(int pointer_y)
 }
 
 
-bool DrawingBox::get_initialized()
+bool DrawingBox::get_initialized() const
 {
    return initialized;
 }
 
 
-int DrawingBox::get_width()
+int DrawingBox::get_width() const
 {
    return width;
 }
 
 
-int DrawingBox::get_height()
+int DrawingBox::get_height() const
 {
    return height;
 }
 
 
-bool DrawingBox::get_stroking()
+bool DrawingBox::get_stroking() const
 {
    return stroking;
 }
 
 
-bool DrawingBox::get_erasing()
+bool DrawingBox::get_erasing() const
 {
    return erasing;
 }

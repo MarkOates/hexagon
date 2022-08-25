@@ -21,8 +21,8 @@ namespace Hexagon
 
       void set_project_name(std::string project_name);
       void set_layouts(std::vector<std::tuple<std::string, Hexagon::Layout>> layouts);
-      std::string get_project_name();
-      std::vector<std::tuple<std::string, Hexagon::Layout>> get_layouts();
+      std::string get_project_name() const;
+      std::vector<std::tuple<std::string, Hexagon::Layout>> get_layouts() const;
    };
 }
 

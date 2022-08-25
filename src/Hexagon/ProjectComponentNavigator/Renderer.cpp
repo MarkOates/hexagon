@@ -46,13 +46,13 @@ Renderer::~Renderer()
 }
 
 
-ALLEGRO_COLOR* Renderer::get_base_backfill_color()
+ALLEGRO_COLOR* Renderer::get_base_backfill_color() const
 {
    return base_backfill_color;
 }
 
 
-ALLEGRO_COLOR* Renderer::get_base_text_color()
+ALLEGRO_COLOR* Renderer::get_base_text_color() const
 {
    return base_text_color;
 }

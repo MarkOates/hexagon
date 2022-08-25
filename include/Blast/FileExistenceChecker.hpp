@@ -15,7 +15,7 @@ namespace Blast
       FileExistenceChecker(std::string filename="");
       ~FileExistenceChecker();
 
-      std::string get_filename();
+      std::string get_filename() const;
       bool exists();
    };
 }

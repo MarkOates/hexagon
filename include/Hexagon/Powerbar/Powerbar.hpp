@@ -28,13 +28,13 @@ namespace Hexagon
          void set_files_are_untracked(bool files_are_untracked);
          void set_files_are_committed(bool files_are_committed);
          void set_commits_are_in_sync_with_remote(bool commits_are_in_sync_with_remote);
-         bool get_files_are_modified();
-         bool get_files_are_staged();
-         bool get_files_are_untracked();
-         bool get_files_are_committed();
-         bool get_commits_are_in_sync_with_remote();
-         std::time_t get_focus_timer_started_at();
-         float get_focus_timer_duration_sec();
+         bool get_files_are_modified() const;
+         bool get_files_are_staged() const;
+         bool get_files_are_untracked() const;
+         bool get_files_are_committed() const;
+         bool get_commits_are_in_sync_with_remote() const;
+         std::time_t get_focus_timer_started_at() const;
+         float get_focus_timer_duration_sec() const;
       };
    }
 }

@@ -34,13 +34,13 @@ void Font::set_font_size(int font_size)
 }
 
 
-std::string Font::get_font_filename()
+std::string Font::get_font_filename() const
 {
    return font_filename;
 }
 
 
-int Font::get_font_size()
+int Font::get_font_size() const
 {
    return font_size;
 }

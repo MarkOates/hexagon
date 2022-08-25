@@ -48,25 +48,25 @@ void Cursor::set_height(float height)
 }
 
 
-int Cursor::get_x()
+int Cursor::get_x() const
 {
    return x;
 }
 
 
-int Cursor::get_y()
+int Cursor::get_y() const
 {
    return y;
 }
 
 
-float Cursor::get_width()
+float Cursor::get_width() const
 {
    return width;
 }
 
 
-float Cursor::get_height()
+float Cursor::get_height() const
 {
    return height;
 }

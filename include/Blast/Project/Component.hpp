@@ -22,8 +22,8 @@ namespace Blast
          Component(std::string name="Unnamed/Component", std::string project_root="");
          ~Component();
 
-         std::string get_name();
-         std::string get_project_root();
+         std::string get_name() const;
+         std::string get_project_root() const;
          std::string generate_full_path_test_binary_filename();
          std::vector<std::string> list_existing_component_files();
          std::time_t last_write_time();

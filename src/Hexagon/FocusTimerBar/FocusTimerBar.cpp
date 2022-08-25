@@ -22,13 +22,13 @@ FocusTimerBar::~FocusTimerBar()
 }
 
 
-std::time_t FocusTimerBar::get_focus_timer_started_at()
+std::time_t FocusTimerBar::get_focus_timer_started_at() const
 {
    return focus_timer_started_at;
 }
 
 
-float FocusTimerBar::get_focus_timer_duration_sec()
+float FocusTimerBar::get_focus_timer_duration_sec() const
 {
    return focus_timer_duration_sec;
 }

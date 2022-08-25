@@ -53,31 +53,31 @@ void KeyboardCommandKey::set_command(bool command)
 }
 
 
-int KeyboardCommandKey::get_al_keycode()
+int KeyboardCommandKey::get_al_keycode() const
 {
    return al_keycode;
 }
 
 
-bool KeyboardCommandKey::get_shift()
+bool KeyboardCommandKey::get_shift() const
 {
    return shift;
 }
 
 
-bool KeyboardCommandKey::get_ctrl()
+bool KeyboardCommandKey::get_ctrl() const
 {
    return ctrl;
 }
 
 
-bool KeyboardCommandKey::get_alt()
+bool KeyboardCommandKey::get_alt() const
 {
    return alt;
 }
 
 
-bool KeyboardCommandKey::get_command()
+bool KeyboardCommandKey::get_command() const
 {
    return command;
 }

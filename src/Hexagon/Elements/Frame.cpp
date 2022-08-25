@@ -67,13 +67,13 @@ void Frame::set_line_thickness(float line_thickness)
 }
 
 
-ALLEGRO_COLOR Frame::get_outline_color()
+ALLEGRO_COLOR Frame::get_outline_color() const
 {
    return outline_color;
 }
 
 
-float Frame::get_line_thickness()
+float Frame::get_line_thickness() const
 {
    return line_thickness;
 }

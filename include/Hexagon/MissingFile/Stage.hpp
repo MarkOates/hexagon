@@ -35,12 +35,12 @@ namespace Hexagon
          void set_font(ALLEGRO_FONT* font);
          void set_cell_width(int cell_width);
          void set_cell_height(int cell_height);
-         std::string get_expected_filename();
-         bool get_is_focused();
-         ALLEGRO_DISPLAY* get_display();
-         ALLEGRO_FONT* get_font();
-         int get_cell_width();
-         int get_cell_height();
+         std::string get_expected_filename() const;
+         bool get_is_focused() const;
+         ALLEGRO_DISPLAY* get_display() const;
+         ALLEGRO_FONT* get_font() const;
+         int get_cell_width() const;
+         int get_cell_height() const;
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          virtual void render() override;
          ALLEGRO_FONT* obtain_text_font();

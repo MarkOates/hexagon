@@ -229,175 +229,175 @@ void Window::set_distance_of_columns(float distance_of_columns)
 }
 
 
-float Window::get_width()
+float Window::get_width() const
 {
    return width;
 }
 
 
-float Window::get_height()
+float Window::get_height() const
 {
    return height;
 }
 
 
-float Window::get_box_opacity()
+float Window::get_box_opacity() const
 {
    return box_opacity;
 }
 
 
-float Window::get_cell_padding()
+float Window::get_cell_padding() const
 {
    return cell_padding;
 }
 
 
-ALLEGRO_COLOR Window::get_box_fill_color()
+ALLEGRO_COLOR Window::get_box_fill_color() const
 {
    return box_fill_color;
 }
 
 
-ALLEGRO_COLOR Window::get_header_bar_color()
+ALLEGRO_COLOR Window::get_header_bar_color() const
 {
    return header_bar_color;
 }
 
 
-ALLEGRO_COLOR Window::get_bottom_line_color()
+ALLEGRO_COLOR Window::get_bottom_line_color() const
 {
    return bottom_line_color;
 }
 
 
-ALLEGRO_COLOR Window::get_outer_line_color()
+ALLEGRO_COLOR Window::get_outer_line_color() const
 {
    return outer_line_color;
 }
 
 
-ALLEGRO_COLOR Window::get_header_baseline_color()
+ALLEGRO_COLOR Window::get_header_baseline_color() const
 {
    return header_baseline_color;
 }
 
 
-ALLEGRO_COLOR Window::get_top_left_little_bar_color()
+ALLEGRO_COLOR Window::get_top_left_little_bar_color() const
 {
    return top_left_little_bar_color;
 }
 
 
-ALLEGRO_COLOR Window::get_corner_squares_color()
+ALLEGRO_COLOR Window::get_corner_squares_color() const
 {
    return corner_squares_color;
 }
 
 
-float Window::get_header_bar_height()
+float Window::get_header_bar_height() const
 {
    return header_bar_height;
 }
 
 
-float Window::get_header_baseline_thickness()
+float Window::get_header_baseline_thickness() const
 {
    return header_baseline_thickness;
 }
 
 
-float Window::get_header_bar_opacity()
+float Window::get_header_bar_opacity() const
 {
    return header_bar_opacity;
 }
 
 
-float Window::get_header_baseline_opacity()
+float Window::get_header_baseline_opacity() const
 {
    return header_baseline_opacity;
 }
 
 
-float Window::get_top_left_little_bar_width()
+float Window::get_top_left_little_bar_width() const
 {
    return top_left_little_bar_width;
 }
 
 
-float Window::get_outer_line_thickness()
+float Window::get_outer_line_thickness() const
 {
    return outer_line_thickness;
 }
 
 
-float Window::get_outer_line_opacity()
+float Window::get_outer_line_opacity() const
 {
    return outer_line_opacity;
 }
 
 
-float Window::get_bottom_line_thickness()
+float Window::get_bottom_line_thickness() const
 {
    return bottom_line_thickness;
 }
 
 
-float Window::get_bottom_line_opacity()
+float Window::get_bottom_line_opacity() const
 {
    return bottom_line_opacity;
 }
 
 
-bool Window::get_corner_squares_resize_from_center()
+bool Window::get_corner_squares_resize_from_center() const
 {
    return corner_squares_resize_from_center;
 }
 
 
-float Window::get_corner_squares_width()
+float Window::get_corner_squares_width() const
 {
    return corner_squares_width;
 }
 
 
-float Window::get_corner_squares_height()
+float Window::get_corner_squares_height() const
 {
    return corner_squares_height;
 }
 
 
-float Window::get_corner_squares_opacity()
+float Window::get_corner_squares_opacity() const
 {
    return corner_squares_opacity;
 }
 
 
-bool Window::get_corner_squares_are_circles()
+bool Window::get_corner_squares_are_circles() const
 {
    return corner_squares_are_circles;
 }
 
 
-int Window::get_number_of_rows()
+int Window::get_number_of_rows() const
 {
    return number_of_rows;
 }
 
 
-int Window::get_number_of_columns()
+int Window::get_number_of_columns() const
 {
    return number_of_columns;
 }
 
 
-float Window::get_distance_of_rows()
+float Window::get_distance_of_rows() const
 {
    return distance_of_rows;
 }
 
 
-float Window::get_distance_of_columns()
+float Window::get_distance_of_columns() const
 {
    return distance_of_columns;
 }

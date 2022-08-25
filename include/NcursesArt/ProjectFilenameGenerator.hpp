@@ -16,7 +16,7 @@ namespace NcursesArt
       ProjectFilenameGenerator(std::string basename="", bool underscores="");
       ~ProjectFilenameGenerator();
 
-      std::string get_basename();
+      std::string get_basename() const;
       std::string generate_quintessence_filename();
       std::string generate_source_filename();
       std::string generate_header_filename();

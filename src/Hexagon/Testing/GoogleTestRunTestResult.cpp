@@ -62,37 +62,37 @@ void GoogleTestRunTestResult::set_failure_message(std::string failure_message)
 }
 
 
-std::string GoogleTestRunTestResult::get_test_class_name()
+std::string GoogleTestRunTestResult::get_test_class_name() const
 {
    return test_class_name;
 }
 
 
-std::string GoogleTestRunTestResult::get_test_description()
+std::string GoogleTestRunTestResult::get_test_description() const
 {
    return test_description;
 }
 
 
-std::string GoogleTestRunTestResult::get_result()
+std::string GoogleTestRunTestResult::get_result() const
 {
    return result;
 }
 
 
-int GoogleTestRunTestResult::get_duration_msec()
+int GoogleTestRunTestResult::get_duration_msec() const
 {
    return duration_msec;
 }
 
 
-std::string GoogleTestRunTestResult::get_output_body()
+std::string GoogleTestRunTestResult::get_output_body() const
 {
    return output_body;
 }
 
 
-std::string GoogleTestRunTestResult::get_failure_message()
+std::string GoogleTestRunTestResult::get_failure_message() const
 {
    return failure_message;
 }

@@ -51,7 +51,7 @@ ProjectNavigator::~ProjectNavigator()
 }
 
 
-std::vector<std::tuple<std::string, std::string>> ProjectNavigator::get_menu_items()
+std::vector<std::tuple<std::string, std::string>> ProjectNavigator::get_menu_items() const
 {
    return menu_items;
 }

@@ -22,7 +22,7 @@ namespace Hexagon
             CheckGitLocalStatusAndUpdatePowerbar(std::string current_project_directory="/Users/markoates/Repos/hexagon/", Hexagon::Powerbar::Powerbar* powerbar=nullptr);
             ~CheckGitLocalStatusAndUpdatePowerbar();
 
-            std::string get_current_project_directory();
+            std::string get_current_project_directory() const;
             bool execute() override;
          };
       }

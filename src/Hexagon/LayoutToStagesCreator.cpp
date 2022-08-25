@@ -35,19 +35,19 @@ void LayoutToStagesCreator::set_stages(std::vector<StageInterface *>* stages)
 }
 
 
-std::vector<StageInterface *>* LayoutToStagesCreator::get_stages()
+std::vector<StageInterface *>* LayoutToStagesCreator::get_stages() const
 {
    return stages;
 }
 
 
-int LayoutToStagesCreator::get_code_editor_height()
+int LayoutToStagesCreator::get_code_editor_height() const
 {
    return code_editor_height;
 }
 
 
-int LayoutToStagesCreator::get_code_editor_width()
+int LayoutToStagesCreator::get_code_editor_width() const
 {
    return code_editor_width;
 }

@@ -55,55 +55,55 @@ void BitmapGridMesh::set_bitmap(ALLEGRO_BITMAP* bitmap)
 }
 
 
-std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>& BitmapGridMesh::get_grid()
+std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>& BitmapGridMesh::get_grid() const
 {
    return grid;
 }
 
 
-std::vector<ALLEGRO_VERTEX> BitmapGridMesh::get_vertexes()
+std::vector<ALLEGRO_VERTEX> BitmapGridMesh::get_vertexes() const
 {
    return vertexes;
 }
 
 
-int BitmapGridMesh::get_num_columns()
+int BitmapGridMesh::get_num_columns() const
 {
    return num_columns;
 }
 
 
-int BitmapGridMesh::get_num_rows()
+int BitmapGridMesh::get_num_rows() const
 {
    return num_rows;
 }
 
 
-float BitmapGridMesh::get_cell_width()
+float BitmapGridMesh::get_cell_width() const
 {
    return cell_width;
 }
 
 
-float BitmapGridMesh::get_cell_height()
+float BitmapGridMesh::get_cell_height() const
 {
    return cell_height;
 }
 
 
-int BitmapGridMesh::get_clip_start_y()
+int BitmapGridMesh::get_clip_start_y() const
 {
    return clip_start_y;
 }
 
 
-int BitmapGridMesh::get_clip_length_y()
+int BitmapGridMesh::get_clip_length_y() const
 {
    return clip_length_y;
 }
 
 
-ALLEGRO_BITMAP* BitmapGridMesh::get_bitmap()
+ALLEGRO_BITMAP* BitmapGridMesh::get_bitmap() const
 {
    return bitmap;
 }

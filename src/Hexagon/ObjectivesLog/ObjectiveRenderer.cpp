@@ -35,7 +35,7 @@ void ObjectiveRenderer::set_is_activated(bool is_activated)
 }
 
 
-bool ObjectiveRenderer::get_is_activated()
+bool ObjectiveRenderer::get_is_activated() const
 {
    return is_activated;
 }

@@ -53,31 +53,31 @@ void StageInfoOverlay::set_upcase(bool upcase)
 }
 
 
-ALLEGRO_COLOR* StageInfoOverlay::get_backfill_color()
+ALLEGRO_COLOR* StageInfoOverlay::get_backfill_color() const
 {
    return backfill_color;
 }
 
 
-float StageInfoOverlay::get_backfill_opacity()
+float StageInfoOverlay::get_backfill_opacity() const
 {
    return backfill_opacity;
 }
 
 
-placement3d* StageInfoOverlay::get_place()
+placement3d* StageInfoOverlay::get_place() const
 {
    return place;
 }
 
 
-std::string StageInfoOverlay::get_text()
+std::string StageInfoOverlay::get_text() const
 {
    return text;
 }
 
 
-bool StageInfoOverlay::get_upcase()
+bool StageInfoOverlay::get_upcase() const
 {
    return upcase;
 }

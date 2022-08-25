@@ -26,7 +26,7 @@ void LayoutPlacements::set_placements(std::map<std::string, placement3d> placeme
 }
 
 
-std::map<std::string, placement3d> LayoutPlacements::get_placements()
+std::map<std::string, placement3d> LayoutPlacements::get_placements() const
 {
    return placements;
 }

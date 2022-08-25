@@ -30,7 +30,7 @@ namespace Hexagon
       ProjectNavigator(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::System::Config* config=nullptr, std::vector<std::tuple<std::string, std::string>> menu_items=build_placeholder_menu_items());
       virtual ~ProjectNavigator();
 
-      std::vector<std::tuple<std::string, std::string>> get_menu_items();
+      std::vector<std::tuple<std::string, std::string>> get_menu_items() const;
       static ALLEGRO_EVENT &get_a_default_empty_event_ref();
       void set_menu_items(std::vector<std::tuple<std::string, std::string>> menu_items={});
       bool initialize();

@@ -85,7 +85,7 @@ Config::~Config()
 }
 
 
-std::string Config::get_config_filename()
+std::string Config::get_config_filename() const
 {
    return config_filename;
 }

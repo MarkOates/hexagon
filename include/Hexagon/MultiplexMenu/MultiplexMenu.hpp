@@ -23,9 +23,9 @@ namespace Hexagon
          ~MultiplexMenu();
 
          void set_final_command_set_to_execute(std::vector<std::string> final_command_set_to_execute);
-         std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> get_page_dictionary();
-         std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*> get_page_history();
-         std::vector<std::string> get_final_command_set_to_execute();
+         std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> get_page_dictionary() const;
+         std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*> get_page_history() const;
+         std::vector<std::string> get_final_command_set_to_execute() const;
          void set_page_dictionary(std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> page_dictionary={});
          int get_num_pages();
          void clear_history();

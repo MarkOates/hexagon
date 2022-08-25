@@ -19,7 +19,7 @@ FilesOpenedHistory::~FilesOpenedHistory()
 }
 
 
-std::vector<std::string> FilesOpenedHistory::get_files()
+std::vector<std::string> FilesOpenedHistory::get_files() const
 {
    return files;
 }

@@ -21,7 +21,7 @@ Selection::~Selection()
 }
 
 
-std::vector<CodeRange> Selection::get_code_ranges()
+std::vector<CodeRange> Selection::get_code_ranges() const
 {
    return code_ranges;
 }

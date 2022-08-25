@@ -25,7 +25,7 @@ namespace Hexagon
       TitleScreen(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::System::Config* config=nullptr);
       ~TitleScreen();
 
-      bool get_initialized();
+      bool get_initialized() const;
       void initialize();
       bool main_menu_cursor_move_up();
       bool main_menu_cursor_move_down();

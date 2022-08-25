@@ -26,7 +26,7 @@ DocumentationDependentsJSONLoader::~DocumentationDependentsJSONLoader()
 }
 
 
-std::string DocumentationDependentsJSONLoader::get_DEPENDENTS_JSON_FILENAME()
+std::string DocumentationDependentsJSONLoader::get_DEPENDENTS_JSON_FILENAME() const
 {
    return DEPENDENTS_JSON_FILENAME;
 }

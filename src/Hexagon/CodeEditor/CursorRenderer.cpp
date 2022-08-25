@@ -34,7 +34,7 @@ CursorRenderer::~CursorRenderer()
 }
 
 
-ALLEGRO_COLOR CursorRenderer::get_color()
+ALLEGRO_COLOR CursorRenderer::get_color() const
 {
    return color;
 }

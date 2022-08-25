@@ -171,109 +171,109 @@ void Stage::set_backfill_color(ALLEGRO_COLOR backfill_color)
 }
 
 
-int Stage::get_num_columns()
+int Stage::get_num_columns() const
 {
    return num_columns;
 }
 
 
-int Stage::get_num_rows()
+int Stage::get_num_rows() const
 {
    return num_rows;
 }
 
 
-std::string Stage::get_filename()
+std::string Stage::get_filename() const
 {
    return filename;
 }
 
 
-bool Stage::get_represents_symlink()
+bool Stage::get_represents_symlink() const
 {
    return represents_symlink;
 }
 
 
-std::string Stage::get_input_buffer()
+std::string Stage::get_input_buffer() const
 {
    return input_buffer;
 }
 
 
-bool Stage::get_initialized()
+bool Stage::get_initialized() const
 {
    return initialized;
 }
 
 
-float Stage::get_offset_y()
+float Stage::get_offset_y() const
 {
    return offset_y;
 }
 
 
-float Stage::get_offset_y_updated_at()
+float Stage::get_offset_y_updated_at() const
 {
    return offset_y_updated_at;
 }
 
 
-int Stage::get_first_row_offset()
+int Stage::get_first_row_offset() const
 {
    return first_row_offset;
 }
 
 
-ALLEGRO_BITMAP* Stage::get_surface_render()
+ALLEGRO_BITMAP* Stage::get_surface_render() const
 {
    return surface_render;
 }
 
 
-ALLEGRO_COLOR Stage::get_syntax_highlight_color()
+ALLEGRO_COLOR Stage::get_syntax_highlight_color() const
 {
    return syntax_highlight_color;
 }
 
 
-ALLEGRO_COLOR Stage::get_on_color()
+ALLEGRO_COLOR Stage::get_on_color() const
 {
    return on_color;
 }
 
 
-ALLEGRO_COLOR Stage::get_comment_color()
+ALLEGRO_COLOR Stage::get_comment_color() const
 {
    return comment_color;
 }
 
 
-ALLEGRO_COLOR Stage::get_clear_color()
+ALLEGRO_COLOR Stage::get_clear_color() const
 {
    return clear_color;
 }
 
 
-bool Stage::get_show_line_too_long()
+bool Stage::get_show_line_too_long() const
 {
    return show_line_too_long;
 }
 
 
-int Stage::get_max_line_length()
+int Stage::get_max_line_length() const
 {
    return max_line_length;
 }
 
 
-ALLEGRO_COLOR Stage::get_null_space_color()
+ALLEGRO_COLOR Stage::get_null_space_color() const
 {
    return null_space_color;
 }
 
 
-ALLEGRO_COLOR Stage::get_backfill_color()
+ALLEGRO_COLOR Stage::get_backfill_color() const
 {
    return backfill_color;
 }

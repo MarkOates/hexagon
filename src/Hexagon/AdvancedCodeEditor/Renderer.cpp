@@ -126,19 +126,19 @@ void Renderer::set_backfill_color(ALLEGRO_COLOR backfill_color)
 }
 
 
-ALLEGRO_COLOR Renderer::get_line_numbers_color()
+ALLEGRO_COLOR Renderer::get_line_numbers_color() const
 {
    return line_numbers_color;
 }
 
 
-ALLEGRO_COLOR Renderer::get_null_space_color()
+ALLEGRO_COLOR Renderer::get_null_space_color() const
 {
    return null_space_color;
 }
 
 
-ALLEGRO_COLOR Renderer::get_backfill_color()
+ALLEGRO_COLOR Renderer::get_backfill_color() const
 {
    return backfill_color;
 }

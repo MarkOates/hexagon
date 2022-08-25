@@ -29,11 +29,11 @@ namespace Hexagon
          void set_place(placement3d* place);
          void set_text(std::string text);
          void set_upcase(bool upcase);
-         ALLEGRO_COLOR* get_backfill_color();
-         float get_backfill_opacity();
-         placement3d* get_place();
-         std::string get_text();
-         bool get_upcase();
+         ALLEGRO_COLOR* get_backfill_color() const;
+         float get_backfill_opacity() const;
+         placement3d* get_place() const;
+         std::string get_text() const;
+         bool get_upcase() const;
          void render();
          ALLEGRO_FONT* obtain_title_font();
       };

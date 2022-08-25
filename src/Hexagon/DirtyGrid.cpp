@@ -24,7 +24,7 @@ DirtyGrid::~DirtyGrid()
 }
 
 
-std::set<std::pair<int, int>> DirtyGrid::get_dirty_cells()
+std::set<std::pair<int, int>> DirtyGrid::get_dirty_cells() const
 {
    return dirty_cells;
 }

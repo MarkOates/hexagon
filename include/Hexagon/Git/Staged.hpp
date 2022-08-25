@@ -18,7 +18,7 @@ namespace Hexagon
          Staged(std::string current_project_directory="/Users/markoates/Repos/hexagon/");
          ~Staged();
 
-         std::string get_current_project_directory();
+         std::string get_current_project_directory() const;
          std::vector<std::string> get_shell_response();
          std::string build_staged_files_shell_command();
       };

@@ -31,7 +31,7 @@ ComponentElasticsearchIndexer::~ComponentElasticsearchIndexer()
 }
 
 
-std::string ComponentElasticsearchIndexer::get_index_name()
+std::string ComponentElasticsearchIndexer::get_index_name() const
 {
    return index_name;
 }

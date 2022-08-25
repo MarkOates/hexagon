@@ -40,7 +40,7 @@ PageRenderer::~PageRenderer()
 }
 
 
-float PageRenderer::get_padding()
+float PageRenderer::get_padding() const
 {
    return padding;
 }

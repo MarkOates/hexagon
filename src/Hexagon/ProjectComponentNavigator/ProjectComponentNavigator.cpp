@@ -56,37 +56,37 @@ void ProjectComponentNavigator::set_search_text(std::string search_text)
 }
 
 
-std::string ProjectComponentNavigator::get_project_root()
+std::string ProjectComponentNavigator::get_project_root() const
 {
    return project_root;
 }
 
 
-int ProjectComponentNavigator::get_cursor_position()
+int ProjectComponentNavigator::get_cursor_position() const
 {
    return cursor_position;
 }
 
 
-bool ProjectComponentNavigator::get_cursor_position_static()
+bool ProjectComponentNavigator::get_cursor_position_static() const
 {
    return cursor_position_static;
 }
 
 
-std::vector<Hexagon::Layout> ProjectComponentNavigator::get_nodes()
+std::vector<Hexagon::Layout> ProjectComponentNavigator::get_nodes() const
 {
    return nodes;
 }
 
 
-std::string ProjectComponentNavigator::get_mode()
+std::string ProjectComponentNavigator::get_mode() const
 {
    return mode;
 }
 
 
-std::string ProjectComponentNavigator::get_search_text()
+std::string ProjectComponentNavigator::get_search_text() const
 {
    return search_text;
 }

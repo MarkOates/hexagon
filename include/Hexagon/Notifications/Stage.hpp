@@ -24,7 +24,7 @@ namespace Hexagon
          virtual ~Stage();
 
          void set_body_text(std::string body_text);
-         std::string get_body_text();
+         std::string get_body_text() const;
          Hexagon::Notifications::Notification &get_component_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          virtual void render() override;

@@ -35,19 +35,19 @@ void MenuItem::set_label(std::string label)
 }
 
 
-Hexagon::KeyboardCommandKey MenuItem::get_keyboard_command_key()
+Hexagon::KeyboardCommandKey MenuItem::get_keyboard_command_key() const
 {
    return keyboard_command_key;
 }
 
 
-std::string MenuItem::get_label()
+std::string MenuItem::get_label() const
 {
    return label;
 }
 
 
-std::vector<std::string> MenuItem::get_value()
+std::vector<std::string> MenuItem::get_value() const
 {
    return value;
 }

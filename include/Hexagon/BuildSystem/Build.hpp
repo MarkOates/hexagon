@@ -18,7 +18,7 @@ namespace Hexagon
          Build();
          ~Build();
 
-         std::string get_status();
+         std::string get_status() const;
          std::string start();
       };
    }

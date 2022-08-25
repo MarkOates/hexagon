@@ -25,8 +25,8 @@ namespace Hexagon
          AdvancedCodeEditor();
          ~AdvancedCodeEditor();
 
-         std::vector<std::string> get_lines();
-         bool get_content_is_modified();
+         std::vector<std::string> get_lines() const;
+         bool get_content_is_modified() const;
          std::vector<std::string> &get_lines_ref();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
          void mark_content_is_modified();

@@ -23,11 +23,11 @@ namespace Hexagon
       void set_ctrl(bool ctrl);
       void set_alt(bool alt);
       void set_command(bool command);
-      int get_al_keycode();
-      bool get_shift();
-      bool get_ctrl();
-      bool get_alt();
-      bool get_command();
+      int get_al_keycode() const;
+      bool get_shift() const;
+      bool get_ctrl() const;
+      bool get_alt() const;
+      bool get_command() const;
    };
 }
 

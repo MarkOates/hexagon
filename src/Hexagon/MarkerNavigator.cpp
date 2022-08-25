@@ -19,7 +19,7 @@ MarkerNavigator::~MarkerNavigator()
 }
 
 
-std::map<std::string, Hexagon::Marker> MarkerNavigator::get_markers_index()
+std::map<std::string, Hexagon::Marker> MarkerNavigator::get_markers_index() const
 {
    return markers_index;
 }

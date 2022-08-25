@@ -22,10 +22,10 @@ namespace Hexagon
             Stroke(float start=0, float end=0, ALLEGRO_COLOR color=default_color(), float thickness=1);
             ~Stroke();
 
-            float get_start();
-            float get_end();
-            ALLEGRO_COLOR get_color();
-            float get_thickness();
+            float get_start() const;
+            float get_end() const;
+            ALLEGRO_COLOR get_color() const;
+            float get_thickness() const;
             static ALLEGRO_COLOR default_color();
          };
       }

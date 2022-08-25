@@ -23,9 +23,9 @@ namespace Hexagon
 
          void set_keyboard_command_key(Hexagon::KeyboardCommandKey keyboard_command_key);
          void set_label(std::string label);
-         Hexagon::KeyboardCommandKey get_keyboard_command_key();
-         std::string get_label();
-         std::vector<std::string> get_value();
+         Hexagon::KeyboardCommandKey get_keyboard_command_key() const;
+         std::string get_label() const;
+         std::vector<std::string> get_value() const;
       };
    }
 }

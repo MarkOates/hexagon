@@ -22,9 +22,9 @@ namespace Hexagon
       Camera();
       ~Camera();
 
-      vec3d get_position();
-      vec3d get_stepback();
-      vec3d get_rotation();
+      vec3d get_position() const;
+      vec3d get_stepback() const;
+      vec3d get_rotation() const;
       vec3d &get_position_ref();
       vec3d &get_stepback_ref();
       vec3d &get_rotation_ref();

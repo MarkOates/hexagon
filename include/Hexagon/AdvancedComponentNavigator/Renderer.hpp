@@ -33,9 +33,9 @@ namespace Hexagon
          ~Renderer();
 
          void set_input_hints_tokens(std::vector<std::string> input_hints_tokens);
-         ALLEGRO_COLOR get_base_backfill_color();
-         ALLEGRO_COLOR get_base_text_color();
-         std::vector<std::string> get_input_hints_tokens();
+         ALLEGRO_COLOR get_base_backfill_color() const;
+         ALLEGRO_COLOR get_base_text_color() const;
+         std::vector<std::string> get_input_hints_tokens() const;
          void note();
          ALLEGRO_COLOR build_backfill_color();
          void draw_search_text_box();

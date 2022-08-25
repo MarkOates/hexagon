@@ -21,7 +21,7 @@ Notification::~Notification()
 }
 
 
-std::string Notification::get_body_text()
+std::string Notification::get_body_text() const
 {
    return body_text;
 }

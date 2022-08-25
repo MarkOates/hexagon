@@ -35,19 +35,19 @@ void Objective::set_description(std::string description)
 }
 
 
-std::string Objective::get_title()
+std::string Objective::get_title() const
 {
    return title;
 }
 
 
-std::string Objective::get_description()
+std::string Objective::get_description() const
 {
    return description;
 }
 
 
-bool Objective::get_completed()
+bool Objective::get_completed() const
 {
    return completed;
 }

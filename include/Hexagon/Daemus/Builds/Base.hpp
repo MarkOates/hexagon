@@ -20,8 +20,8 @@ namespace Hexagon
             Base(std::string type="Base");
             virtual ~Base();
 
-            std::string get_type();
-            std::string get_status();
+            std::string get_type() const;
+            std::string get_status() const;
             virtual void initiate();
          };
       }

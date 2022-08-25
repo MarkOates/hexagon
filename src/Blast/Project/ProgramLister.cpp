@@ -24,7 +24,7 @@ ProgramLister::~ProgramLister()
 }
 
 
-std::string ProgramLister::get_project_root()
+std::string ProgramLister::get_project_root() const
 {
    return project_root;
 }

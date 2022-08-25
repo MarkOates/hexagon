@@ -33,19 +33,19 @@ void Layout::set_files(std::vector<std::tuple<std::string, std::string, placemen
 }
 
 
-std::string Layout::get_concept_name()
+std::string Layout::get_concept_name() const
 {
    return concept_name;
 }
 
 
-std::vector<std::tuple<std::string, std::string, placement3d>> Layout::get_files()
+std::vector<std::tuple<std::string, std::string, placement3d>> Layout::get_files() const
 {
    return files;
 }
 
 
-std::string Layout::get_daemus_command()
+std::string Layout::get_daemus_command() const
 {
    return daemus_command;
 }

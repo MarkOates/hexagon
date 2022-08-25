@@ -35,25 +35,25 @@ void FontCharacterMapGrid::set_font(ALLEGRO_FONT* font)
 }
 
 
-int FontCharacterMapGrid::get_grid_width()
+int FontCharacterMapGrid::get_grid_width() const
 {
    return grid_width;
 }
 
 
-int FontCharacterMapGrid::get_grid_height()
+int FontCharacterMapGrid::get_grid_height() const
 {
    return grid_height;
 }
 
 
-std::map<char, std::tuple<float, float, float, float>> FontCharacterMapGrid::get_character_uv_mapping()
+std::map<char, std::tuple<float, float, float, float>> FontCharacterMapGrid::get_character_uv_mapping() const
 {
    return character_uv_mapping;
 }
 
 
-bool FontCharacterMapGrid::get_initialized()
+bool FontCharacterMapGrid::get_initialized() const
 {
    return initialized;
 }

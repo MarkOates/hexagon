@@ -18,7 +18,7 @@ namespace Blast
          ProgramLister(std::string project_root="");
          ~ProgramLister();
 
-         std::string get_project_root();
+         std::string get_project_root() const;
          std::string build_program_lister_shell_command();
          std::vector<std::string> program_filenames();
       };

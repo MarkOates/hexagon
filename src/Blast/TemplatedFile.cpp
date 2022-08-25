@@ -26,7 +26,7 @@ void TemplatedFile::set_insertion_variables(std::vector<std::pair<std::string, s
 }
 
 
-std::vector<std::pair<std::string, std::string>> TemplatedFile::get_insertion_variables()
+std::vector<std::pair<std::string, std::string>> TemplatedFile::get_insertion_variables() const
 {
    return insertion_variables;
 }

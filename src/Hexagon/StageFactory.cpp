@@ -85,13 +85,13 @@ StageFactory::~StageFactory()
 }
 
 
-float StageFactory::get_hud_render_surface_projection_width()
+float StageFactory::get_hud_render_surface_projection_width() const
 {
    return hud_render_surface_projection_width;
 }
 
 
-float StageFactory::get_hud_render_surface_projection_height()
+float StageFactory::get_hud_render_surface_projection_height() const
 {
    return hud_render_surface_projection_height;
 }

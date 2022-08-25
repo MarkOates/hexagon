@@ -20,7 +20,7 @@ namespace Testing
       WithAllegroRenderingFixture();
       virtual ~WithAllegroRenderingFixture();
 
-      ALLEGRO_DISPLAY* get_display();
+      ALLEGRO_DISPLAY* get_display() const;
       AllegroFlare::FontBin &get_font_bin_ref();
       virtual void SetUp() override;
       virtual void TearDown() override;

@@ -18,7 +18,7 @@ namespace Hexagon
       ASTTraverser(std::string json_ast_filename={});
       ~ASTTraverser();
 
-      std::string get_json_ast_filename();
+      std::string get_json_ast_filename() const;
       void set_json_ast_filename();
       void initialize();
    };

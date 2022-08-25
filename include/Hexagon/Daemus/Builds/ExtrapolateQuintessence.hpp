@@ -21,7 +21,7 @@ namespace Hexagon
             virtual ~ExtrapolateQuintessence();
 
             void set_BUILDS_PENDING_FOLDER_LOCATION(std::string BUILDS_PENDING_FOLDER_LOCATION);
-            std::string get_BUILDS_PENDING_FOLDER_LOCATION();
+            std::string get_BUILDS_PENDING_FOLDER_LOCATION() const;
             virtual void initiate() override;
             void write_build_file();
             void poll_for_progress();

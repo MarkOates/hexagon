@@ -17,7 +17,7 @@ namespace Hexagon
       MarkerNavigator();
       ~MarkerNavigator();
 
-      std::map<std::string, Hexagon::Marker> get_markers_index();
+      std::map<std::string, Hexagon::Marker> get_markers_index() const;
       void load();
       void clear();
       void add_or_override(std::string label="[no-label-set]", Hexagon::Marker marker={});

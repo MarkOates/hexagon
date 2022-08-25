@@ -29,7 +29,7 @@ CheckGitLocalStatusAndUpdatePowerbar::~CheckGitLocalStatusAndUpdatePowerbar()
 }
 
 
-std::string CheckGitLocalStatusAndUpdatePowerbar::get_current_project_directory()
+std::string CheckGitLocalStatusAndUpdatePowerbar::get_current_project_directory() const
 {
    return current_project_directory;
 }

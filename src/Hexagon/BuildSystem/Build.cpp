@@ -24,7 +24,7 @@ Build::~Build()
 }
 
 
-std::string Build::get_status()
+std::string Build::get_status() const
 {
    return status;
 }

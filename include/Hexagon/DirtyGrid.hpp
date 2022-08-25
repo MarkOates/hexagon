@@ -18,7 +18,7 @@ namespace Hexagon
       DirtyGrid();
       ~DirtyGrid();
 
-      std::set<std::pair<int, int>> get_dirty_cells();
+      std::set<std::pair<int, int>> get_dirty_cells() const;
       int dirty_cells_count();
       int dirty_cells_empty();
       void mark_as_dirty(int x=0, int y=0);

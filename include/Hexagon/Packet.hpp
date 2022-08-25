@@ -15,8 +15,8 @@ namespace Hexagon
       Packet(int searches_count=0, int saves_count=0);
       ~Packet();
 
-      int get_searches_count();
-      int get_saves_count();
+      int get_searches_count() const;
+      int get_saves_count() const;
       int calculate_score();
    };
 }

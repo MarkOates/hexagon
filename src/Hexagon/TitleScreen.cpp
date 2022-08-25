@@ -42,7 +42,7 @@ TitleScreen::~TitleScreen()
 }
 
 
-bool TitleScreen::get_initialized()
+bool TitleScreen::get_initialized() const
 {
    return initialized;
 }

@@ -57,9 +57,9 @@ namespace Hexagon
          void set_show_backfill(bool show_backfill);
          void set_null_space_color(ALLEGRO_COLOR null_space_color);
          void set_backfill_color(ALLEGRO_COLOR backfill_color);
-         ALLEGRO_COLOR get_line_numbers_color();
-         ALLEGRO_COLOR get_null_space_color();
-         ALLEGRO_COLOR get_backfill_color();
+         ALLEGRO_COLOR get_line_numbers_color() const;
+         ALLEGRO_COLOR get_null_space_color() const;
+         ALLEGRO_COLOR get_backfill_color() const;
          void render();
          void render_backfill();
          void draw_represents_symlink_frames();

@@ -17,7 +17,7 @@ namespace Hexagon
          Notification(std::string body_text="");
          ~Notification();
 
-         std::string get_body_text();
+         std::string get_body_text() const;
       };
    }
 }

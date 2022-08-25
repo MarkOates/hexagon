@@ -32,13 +32,13 @@ void Project::set_layouts(std::vector<std::tuple<std::string, Hexagon::Layout>> 
 }
 
 
-std::string Project::get_project_name()
+std::string Project::get_project_name() const
 {
    return project_name;
 }
 
 
-std::vector<std::tuple<std::string, Hexagon::Layout>> Project::get_layouts()
+std::vector<std::tuple<std::string, Hexagon::Layout>> Project::get_layouts() const
 {
    return layouts;
 }

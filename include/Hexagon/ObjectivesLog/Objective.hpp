@@ -21,9 +21,9 @@ namespace Hexagon
 
          void set_title(std::string title);
          void set_description(std::string description);
-         std::string get_title();
-         std::string get_description();
-         bool get_completed();
+         std::string get_title() const;
+         std::string get_description() const;
+         bool get_completed() const;
          void mark_as_completed();
       };
    }

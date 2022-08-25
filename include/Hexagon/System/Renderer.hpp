@@ -23,8 +23,8 @@ namespace Hexagon
          Renderer(Hexagon::System::System* system=nullptr, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_COLOR* backfill_color=nullptr, ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1, 1, 1, 1});
          ~Renderer();
 
-         ALLEGRO_COLOR* get_backfill_color();
-         ALLEGRO_COLOR get_base_text_color();
+         ALLEGRO_COLOR* get_backfill_color() const;
+         ALLEGRO_COLOR get_base_text_color() const;
          bool render();
          void draw_focused_frame(StageInterface* stage=nullptr);
       };

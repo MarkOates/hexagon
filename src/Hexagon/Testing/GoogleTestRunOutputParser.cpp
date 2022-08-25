@@ -25,13 +25,13 @@ GoogleTestRunOutputParser::~GoogleTestRunOutputParser()
 }
 
 
-std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser::get_parsed_test_results()
+std::vector<Hexagon::Testing::GoogleTestRunTestResult> GoogleTestRunOutputParser::get_parsed_test_results() const
 {
    return parsed_test_results;
 }
 
 
-std::vector<std::string> GoogleTestRunOutputParser::get_error_messages_during_parsing()
+std::vector<std::string> GoogleTestRunOutputParser::get_error_messages_during_parsing() const
 {
    return error_messages_during_parsing;
 }

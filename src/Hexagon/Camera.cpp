@@ -25,19 +25,19 @@ Camera::~Camera()
 }
 
 
-vec3d Camera::get_position()
+vec3d Camera::get_position() const
 {
    return position;
 }
 
 
-vec3d Camera::get_stepback()
+vec3d Camera::get_stepback() const
 {
    return stepback;
 }
 
 
-vec3d Camera::get_rotation()
+vec3d Camera::get_rotation() const
 {
    return rotation;
 }

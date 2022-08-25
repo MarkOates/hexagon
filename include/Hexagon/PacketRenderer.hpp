@@ -24,7 +24,7 @@ namespace Hexagon
       ~PacketRenderer();
 
       void set_text_color(ALLEGRO_COLOR text_color);
-      ALLEGRO_COLOR get_text_color();
+      ALLEGRO_COLOR get_text_color() const;
       void render();
       ALLEGRO_COLOR box_fill_color();
       float box_fill_opacity();

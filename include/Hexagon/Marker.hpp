@@ -16,8 +16,8 @@ namespace Hexagon
       Marker();
       ~Marker();
 
-      std::string get_filename();
-      int get_line_num();
+      std::string get_filename() const;
+      int get_line_num() const;
    };
 }
 

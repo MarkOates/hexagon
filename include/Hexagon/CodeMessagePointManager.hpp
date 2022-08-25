@@ -16,7 +16,7 @@ namespace Hexagon
       CodeMessagePointManager();
       ~CodeMessagePointManager();
 
-      std::vector<CodeMessagePoint> get_code_message_points();
+      std::vector<CodeMessagePoint> get_code_message_points() const;
       std::vector<CodeMessagePoint> &get_code_message_points_ref();
       void append(CodeMessagePoint code_message_point={});
       void set_code_message_points(std::vector<CodeMessagePoint> code_message_points={});

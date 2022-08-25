@@ -31,13 +31,13 @@ void DynamicGridMesh::set_texture(ALLEGRO_BITMAP* texture)
 }
 
 
-std::vector<ALLEGRO_VERTEX> DynamicGridMesh::get_vertexes()
+std::vector<ALLEGRO_VERTEX> DynamicGridMesh::get_vertexes() const
 {
    return vertexes;
 }
 
 
-ALLEGRO_BITMAP* DynamicGridMesh::get_texture()
+ALLEGRO_BITMAP* DynamicGridMesh::get_texture() const
 {
    return texture;
 }

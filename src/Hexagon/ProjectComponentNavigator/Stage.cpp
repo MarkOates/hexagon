@@ -84,49 +84,49 @@ void Stage::set_base_backfill_color(ALLEGRO_COLOR base_backfill_color)
 }
 
 
-std::string Stage::get_project_root()
+std::string Stage::get_project_root() const
 {
    return project_root;
 }
 
 
-bool Stage::get_is_focused()
+bool Stage::get_is_focused() const
 {
    return is_focused;
 }
 
 
-ALLEGRO_DISPLAY* Stage::get_display()
+ALLEGRO_DISPLAY* Stage::get_display() const
 {
    return display;
 }
 
 
-ALLEGRO_FONT* Stage::get_font()
+ALLEGRO_FONT* Stage::get_font() const
 {
    return font;
 }
 
 
-int Stage::get_cell_width()
+int Stage::get_cell_width() const
 {
    return cell_width;
 }
 
 
-int Stage::get_cell_height()
+int Stage::get_cell_height() const
 {
    return cell_height;
 }
 
 
-ALLEGRO_COLOR Stage::get_base_text_color()
+ALLEGRO_COLOR Stage::get_base_text_color() const
 {
    return base_text_color;
 }
 
 
-ALLEGRO_COLOR Stage::get_base_backfill_color()
+ALLEGRO_COLOR Stage::get_base_backfill_color() const
 {
    return base_backfill_color;
 }

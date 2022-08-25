@@ -19,7 +19,7 @@ FileExistenceChecker::~FileExistenceChecker()
 }
 
 
-std::string FileExistenceChecker::get_filename()
+std::string FileExistenceChecker::get_filename() const
 {
    return filename;
 }

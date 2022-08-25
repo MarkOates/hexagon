@@ -24,7 +24,7 @@ namespace Hexagon
          ~ObjectiveRenderer();
 
          void set_is_activated(bool is_activated);
-         bool get_is_activated();
+         bool get_is_activated() const;
          void render();
          ALLEGRO_FONT* obtain_primary_text_font();
       };

@@ -42,13 +42,13 @@ void PacketLogger::set_datetime(std::string datetime)
 }
 
 
-std::string PacketLogger::get_PACKET_LOG_FOLDER_LOCATION()
+std::string PacketLogger::get_PACKET_LOG_FOLDER_LOCATION() const
 {
    return PACKET_LOG_FOLDER_LOCATION;
 }
 
 
-std::string PacketLogger::get_datetime()
+std::string PacketLogger::get_datetime() const
 {
    return datetime;
 }

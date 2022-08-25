@@ -279,157 +279,157 @@ void Hud::set_show_domain(bool show_domain)
 }
 
 
-std::vector<std::string> Hud::get_notifications()
+std::vector<std::string> Hud::get_notifications() const
 {
    return notifications;
 }
 
 
-std::vector<std::string> Hud::get_notifications2()
+std::vector<std::string> Hud::get_notifications2() const
 {
    return notifications2;
 }
 
 
-std::string Hud::get_title_text()
+std::string Hud::get_title_text() const
 {
    return title_text;
 }
 
 
-bool Hud::get_show_disabled_screen()
+bool Hud::get_show_disabled_screen() const
 {
    return show_disabled_screen;
 }
 
 
-bool Hud::get_show_powerbar()
+bool Hud::get_show_powerbar() const
 {
    return show_powerbar;
 }
 
 
-bool Hud::get_show_profiler()
+bool Hud::get_show_profiler() const
 {
    return show_profiler;
 }
 
 
-bool Hud::get_show_save_count()
+bool Hud::get_show_save_count() const
 {
    return show_save_count;
 }
 
 
-int Hud::get_save_count()
+int Hud::get_save_count() const
 {
    return save_count;
 }
 
 
-bool Hud::get_show_packets()
+bool Hud::get_show_packets() const
 {
    return show_packets;
 }
 
 
-std::vector<Hexagon::Packet> Hud::get_packets()
+std::vector<Hexagon::Packet> Hud::get_packets() const
 {
    return packets;
 }
 
 
-bool Hud::get_show_search_count()
+bool Hud::get_show_search_count() const
 {
    return show_search_count;
 }
 
 
-int Hud::get_search_count()
+int Hud::get_search_count() const
 {
    return search_count;
 }
 
 
-bool Hud::get_show_focus_timer_bar()
+bool Hud::get_show_focus_timer_bar() const
 {
    return show_focus_timer_bar;
 }
 
 
-bool Hud::get_show_build_sequence_meter()
+bool Hud::get_show_build_sequence_meter() const
 {
    return show_build_sequence_meter;
 }
 
 
-bool Hud::get_show_notifications()
+bool Hud::get_show_notifications() const
 {
    return show_notifications;
 }
 
 
-float Hud::get_left_column_x()
+float Hud::get_left_column_x() const
 {
    return left_column_x;
 }
 
 
-float Hud::get_surface_projection_width()
+float Hud::get_surface_projection_width() const
 {
    return surface_projection_width;
 }
 
 
-float Hud::get_surface_projection_height()
+float Hud::get_surface_projection_height() const
 {
    return surface_projection_height;
 }
 
 
-bool Hud::get_current_component_is_symlinked_thus_has_different_title_color()
+bool Hud::get_current_component_is_symlinked_thus_has_different_title_color() const
 {
    return current_component_is_symlinked_thus_has_different_title_color;
 }
 
 
-bool Hud::get_show_caps_lock_notification_light()
+bool Hud::get_show_caps_lock_notification_light() const
 {
    return show_caps_lock_notification_light;
 }
 
 
-ALLEGRO_COLOR Hud::get_base_text_color()
+ALLEGRO_COLOR Hud::get_base_text_color() const
 {
    return base_text_color;
 }
 
 
-float Hud::get_base_text_opacity()
+float Hud::get_base_text_opacity() const
 {
    return base_text_opacity;
 }
 
 
-std::string Hud::get_objective_text()
+std::string Hud::get_objective_text() const
 {
    return objective_text;
 }
 
 
-bool Hud::get_show_objective()
+bool Hud::get_show_objective() const
 {
    return show_objective;
 }
 
 
-std::string Hud::get_domain_text()
+std::string Hud::get_domain_text() const
 {
    return domain_text;
 }
 
 
-bool Hud::get_show_domain()
+bool Hud::get_show_domain() const
 {
    return show_domain;
 }

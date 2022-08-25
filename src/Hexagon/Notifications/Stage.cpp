@@ -32,7 +32,7 @@ void Stage::set_body_text(std::string body_text)
 }
 
 
-std::string Stage::get_body_text()
+std::string Stage::get_body_text() const
 {
    return body_text;
 }

@@ -40,7 +40,7 @@ void PacketRenderer::set_text_color(ALLEGRO_COLOR text_color)
 }
 
 
-ALLEGRO_COLOR PacketRenderer::get_text_color()
+ALLEGRO_COLOR PacketRenderer::get_text_color() const
 {
    return text_color;
 }
