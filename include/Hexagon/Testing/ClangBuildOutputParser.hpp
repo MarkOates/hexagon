@@ -18,9 +18,9 @@ namespace Hexagon
          std::vector<std::string> error_messages_during_parsing;
          std::vector<std::string> lines;
          bool lines_parsed;
-         std::string warnings_errors_generated_line;
-         bool warnings_errors_generated_line_parsed;
-         static std::string WARNINGS_ERRORS_GENERATED_REGEX;
+         std::string num_warnings_errors_generated_line;
+         bool num_warnings_errors_generated_line_parsed;
+         static std::string NUM_WARNINGS_ERRORS_GENERATED_REGEX;
          static std::string WARNING_OR_ERROR_REGEX;
          bool parsed;
 
@@ -30,8 +30,8 @@ namespace Hexagon
 
          std::vector<Hexagon::Testing::ClangBuildOutputResult> get_warnings_and_errors() const;
          std::vector<std::string> get_error_messages_during_parsing() const;
-         std::string get_warnings_errors_generated_line() const;
-         static std::string get_WARNINGS_ERRORS_GENERATED_REGEX();
+         std::string get_num_warnings_errors_generated_line() const;
+         static std::string get_NUM_WARNINGS_ERRORS_GENERATED_REGEX();
          static std::string get_WARNING_OR_ERROR_REGEX();
          bool get_parsed() const;
          void parse();

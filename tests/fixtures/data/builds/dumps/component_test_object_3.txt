@@ -1,0 +1,35 @@
+Compiling test object file [1m[36mtests/Hexagon/Testing/ClangBuildOutputParserTest.cpp[0m...
+tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:40:63: error: no member named 'get_warnings_errors_generated_line' in 'Hexagon::Testing::ClangBuildOutputParser'; did you mean 'get_num_warnings_errors_generated_line'?
+   EXPECT_EQ("3 errors generated.", clang_build_output_parser.get_warnings_errors_generated_line());
+                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                              get_num_warnings_errors_generated_line
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest.h:2047:69: note: expanded from macro 'EXPECT_EQ'
+  EXPECT_PRED_FORMAT2(::testing::internal::EqHelper::Compare, val1, val2)
+                                                                    ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest_pred_impl.h:163:40: note: expanded from macro 'EXPECT_PRED_FORMAT2'
+  GTEST_PRED_FORMAT2_(pred_format, v1, v2, GTEST_NONFATAL_FAILURE_)
+                                       ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest_pred_impl.h:148:43: note: expanded from macro 'GTEST_PRED_FORMAT2_'
+  GTEST_ASSERT_(pred_format(#v1, #v2, v1, v2), \
+                                          ^
+/Users/markoates/Repos/googletest/googletest/include/gtest/gtest_pred_impl.h:76:52: note: expanded from macro 'GTEST_ASSERT_'
+  if (const ::testing::AssertionResult gtest_ar = (expression)) \
+                                                   ^
+./include/Hexagon/Testing/ClangBuildOutputParser.hpp:33:22: note: 'get_num_warnings_errors_generated_line' declared here
+         std::string get_num_warnings_errors_generated_line() const;
+                     ^
+tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:63:66: error: no member named 'get_WARNINGS_ERRORS_GENERATED_REGEX' in 'Hexagon::Testing::ClangBuildOutputParser'; did you mean 'get_NUM_WARNINGS_ERRORS_GENERATED_REGEX'?
+   std::string regex = Hexagon::Testing::ClangBuildOutputParser::get_WARNINGS_ERRORS_GENERATED_REGEX();
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                                 get_NUM_WARNINGS_ERRORS_GENERATED_REGEX
+./include/Hexagon/Testing/ClangBuildOutputParser.hpp:34:29: note: 'get_NUM_WARNINGS_ERRORS_GENERATED_REGEX' declared here
+         static std::string get_NUM_WARNINGS_ERRORS_GENERATED_REGEX();
+                            ^
+tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:63:66: error: 'NUM_WARNINGS_ERRORS_GENERATED_REGEX' is a private member of 'Hexagon::Testing::ClangBuildOutputParser'
+   std::string regex = Hexagon::Testing::ClangBuildOutputParser::get_WARNINGS_ERRORS_GENERATED_REGEX();
+                                                                 ^
+./include/Hexagon/Testing/ClangBuildOutputParser.hpp:23:29: note: declared private here
+         static std::string NUM_WARNINGS_ERRORS_GENERATED_REGEX;
+                            ^
+3 errors generated.
+make[1]: *** [obj/tests/Hexagon/Testing/ClangBuildOutputParserTest.o] Error 1

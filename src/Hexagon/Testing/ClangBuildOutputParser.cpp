@@ -12,7 +12,7 @@ namespace Testing
 {
 
 
-std::string ClangBuildOutputParser::WARNINGS_ERRORS_GENERATED_REGEX = "[0-9]+ (?:warning[s]?|error[s]?) generated\\.";
+std::string ClangBuildOutputParser::NUM_WARNINGS_ERRORS_GENERATED_REGEX = "[0-9]+ (?:warning[s]?|error[s]?) generated\\.";
 
 
 std::string ClangBuildOutputParser::WARNING_OR_ERROR_REGEX = "[TODO]";
@@ -24,8 +24,8 @@ ClangBuildOutputParser::ClangBuildOutputParser(std::string clang_build_run_outpu
    , error_messages_during_parsing({})
    , lines({})
    , lines_parsed(false)
-   , warnings_errors_generated_line("")
-   , warnings_errors_generated_line_parsed(false)
+   , num_warnings_errors_generated_line("")
+   , num_warnings_errors_generated_line_parsed(false)
    , parsed(false)
 {
 }
@@ -48,15 +48,15 @@ std::vector<std::string> ClangBuildOutputParser::get_error_messages_during_parsi
 }
 
 
-std::string ClangBuildOutputParser::get_warnings_errors_generated_line() const
+std::string ClangBuildOutputParser::get_num_warnings_errors_generated_line() const
 {
-   return warnings_errors_generated_line;
+   return num_warnings_errors_generated_line;
 }
 
 
-std::string ClangBuildOutputParser::get_WARNINGS_ERRORS_GENERATED_REGEX()
+std::string ClangBuildOutputParser::get_NUM_WARNINGS_ERRORS_GENERATED_REGEX()
 {
-   return WARNINGS_ERRORS_GENERATED_REGEX;
+   return NUM_WARNINGS_ERRORS_GENERATED_REGEX;
 }
 
 
@@ -104,14 +104,14 @@ void ClangBuildOutputParser::parse_warnings_and_errors()
 
 void ClangBuildOutputParser::parse_num_warnings_errors_generated_line()
 {
-   if (warnings_errors_generated_line_parsed) return;
-   warnings_errors_generated_line_parsed = true;
+   if (num_warnings_errors_generated_line_parsed) return;
+   num_warnings_errors_generated_line_parsed = true;
 
    bool match_found = false;
    for (int line_i=0; line_i<lines.size(); line_i++)
    {
       std::string &this_line = lines[line_i];
-      RegexMatcher matcher(this_line, WARNINGS_ERRORS_GENERATED_REGEX);
+      RegexMatcher matcher(this_line, NUM_WARNINGS_ERRORS_GENERATED_REGEX);
       std::vector<std::pair<int, int>> match_info = matcher.get_match_info();
       if (!match_info.empty())
       {
@@ -126,7 +126,7 @@ void ClangBuildOutputParser::parse_num_warnings_errors_generated_line()
          else
          {
             match_found = true;
-            warnings_errors_generated_line = this_line;
+            num_warnings_errors_generated_line = this_line;
          }
          //std::cout << "# " << this_line << std::endl;
       }

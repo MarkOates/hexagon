@@ -26,17 +26,17 @@ properties:
     init_with: false
     private: true
 
-  - name: warnings_errors_generated_line
+  - name: num_warnings_errors_generated_line
     type: std::string
     init_with: '""'
     getter: true
 
-  - name: warnings_errors_generated_line_parsed
+  - name: num_warnings_errors_generated_line_parsed
     type: bool
     init_with: false
     private: true
 
-  - name: WARNINGS_ERRORS_GENERATED_REGEX
+  - name: NUM_WARNINGS_ERRORS_GENERATED_REGEX
     type: std::string
     init_with: '"[0-9]+ (?:warning[s]?|error[s]?) generated\\."'
     getter: true
@@ -95,14 +95,14 @@ functions:
 
   - name: parse_num_warnings_errors_generated_line
     body: |
-      if (warnings_errors_generated_line_parsed) return;
-      warnings_errors_generated_line_parsed = true;
+      if (num_warnings_errors_generated_line_parsed) return;
+      num_warnings_errors_generated_line_parsed = true;
 
       bool match_found = false;
       for (int line_i=0; line_i<lines.size(); line_i++)
       {
          std::string &this_line = lines[line_i];
-         RegexMatcher matcher(this_line, WARNINGS_ERRORS_GENERATED_REGEX);
+         RegexMatcher matcher(this_line, NUM_WARNINGS_ERRORS_GENERATED_REGEX);
          std::vector<std::pair<int, int>> match_info = matcher.get_match_info();
          if (!match_info.empty())
          {
@@ -117,7 +117,7 @@ functions:
             else
             {
                match_found = true;
-               warnings_errors_generated_line = this_line;
+               num_warnings_errors_generated_line = this_line;
             }
             //std::cout << "# " << this_line << std::endl;
          }
