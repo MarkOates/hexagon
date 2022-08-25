@@ -6,7 +6,7 @@
 
 #define TEST_FIXTURE_BUILD_DUMP_FOLDER "/Users/markoates/Repos/hexagon/tests/fixtures/data/builds/dumps/"
 #define DUPLICATE_TEST_NAME \
-         (TEST_FIXTURE_BUILD_DUMP_FOLDER "build_dump_with_duplicate_test_name.txt")
+         (TEST_FIXTURE_BUILD_DUMP_FOLDER "component_test_object_1.txt")
 
 
 #include <fstream>
@@ -29,10 +29,19 @@ TEST(Hexagon_Testing_ClangBuildOutputParserTest, can_be_created_without_blowing_
 }
 
 
-TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__DEV)
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__will_extract_the_warnings_errors_generated_line)
 {
    std::string test_build_dump_with_duplicate_object_test_names = file_get_contents(DUPLICATE_TEST_NAME);
-   Hexagon::Testing::ClangBuildOutputParser clang_build_output_parser;
+   Hexagon::Testing::ClangBuildOutputParser clang_build_output_parser(test_build_dump_with_duplicate_object_test_names);
+   clang_build_output_parser.parse();
+   EXPECT_EQ("3 errors generated.", clang_build_output_parser.get_warnings_errors_generated_line());
+}
+
+
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, DISABLED__parse__DEV)
+{
+   std::string test_build_dump_with_duplicate_object_test_names = file_get_contents(DUPLICATE_TEST_NAME);
+   Hexagon::Testing::ClangBuildOutputParser clang_build_output_parser(test_build_dump_with_duplicate_object_test_names);
 
    clang_build_output_parser.parse();
 

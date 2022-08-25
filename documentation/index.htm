@@ -10443,8 +10443,24 @@ table td
   <td class="property">std::vector&lt;std::string&gt;</td>
 </tr>
 <tr>
-  <td class="private_property">errors_warnings_generated_line</td>
-  <td class="private_property">std::string</td>
+  <td class="private_property">lines</td>
+  <td class="private_property">std::vector&lt;std::string&gt;</td>
+</tr>
+<tr>
+  <td class="private_property">lines_parsed</td>
+  <td class="private_property">bool</td>
+</tr>
+<tr>
+  <td class="property">warnings_errors_generated_line</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="private_property">warnings_errors_generated_line_parsed</td>
+  <td class="private_property">bool</td>
+</tr>
+<tr>
+  <td class="property">WARNINGS_ERRORS_MATCHER</td>
+  <td class="property">std::string</td>
 </tr>
     </table>
      <table>
@@ -10455,13 +10471,10 @@ table td
   <td class="method">discard_irrelevant_lines()</td>
 </tr>
 <tr>
-  <td class="method">extract_num_warnings_errors_generated_line()</td>
+  <td class="method">parse_split_lines()</td>
 </tr>
 <tr>
-  <td class="method">extract_num_errors_generated()</td>
-</tr>
-<tr>
-  <td class="method">extract_num_warnings_generated()</td>
+  <td class="method">parse_warnings_errors_generated_line()</td>
 </tr>
     </table>
      <table>

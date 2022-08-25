@@ -16,10 +16,31 @@ properties:
     init_with: '{}'
     getter: true
 
-  - name: errors_warnings_generated_line
+  - name: lines
+    type: std::vector<std::string>
+    init_with: '{}'
+    private: true
+
+  - name: lines_parsed
+    type: bool
+    init_with: false
+    private: true
+
+  - name: warnings_errors_generated_line
     type: std::string
     init_with: '""'
+    getter: true
+
+  - name: warnings_errors_generated_line_parsed
+    type: bool
+    init_with: false
     private: true
+
+  - name: WARNINGS_ERRORS_MATCHER
+    type: std::string
+    init_with: '"[0-9]+ (?:warning[s]?|error[s]?) generated\\."'
+    getter: true
+    const: true
 
 
 functions:
@@ -29,8 +50,9 @@ functions:
     type: void
     body: |
       // split lines
-      Blast::StringSplitter splitter(clang_build_run_output, '\n');
-      std::vector<std::string> lines = splitter.split();
+      parse_split_lines();
+
+      parse_warnings_errors_generated_line();
 
       // discard or filter out lines
       // snag known lines
@@ -45,27 +67,52 @@ functions:
       return {};
 
 
-  - name: extract_num_warnings_errors_generated_line
-    type: std::string
+  - name: parse_split_lines
     body: |
-      // TODO
-      std::string basic_warnings_errors_matcher = R"REGEX([0-9]+ (?:warning[s]?|error[s]?) generated\\.)REGEX";
-      RegexMatcher matcher(clang_build_run_output, basic_warnings_errors_matcher);
-      return "";
+      if (lines_parsed) return;
+      Blast::StringSplitter splitter(clang_build_run_output, '\n');
+      lines = splitter.split();
+      return;
+
+
+  - name: parse_warnings_errors_generated_line
+    body: |
+      if (warnings_errors_generated_line_parsed) return;
+      warnings_errors_generated_line_parsed = true;
+
+      bool match_found = false;
+      for (int line_i=0; line_i<lines.size(); line_i++)
+      {
+         std::string &this_line = lines[line_i];
+         RegexMatcher matcher(this_line, WARNINGS_ERRORS_MATCHER);
+         std::vector<std::pair<int, int>> match_info = matcher.get_match_info();
+         if (!match_info.empty())
+         {
+            if (match_info.size() != 1)
+            {
+               std::cout << "Weird error - expecting just 1 match in a line but there were several." << std::endl;
+            }
+            else if (match_found)
+            {
+               std::cout << "Weird error - found another match but one has already been found." << std::endl;
+            }
+            else
+            {
+               match_found = true;
+               warnings_errors_generated_line = this_line;
+            }
+            //std::cout << "# " << this_line << std::endl;
+         }
+         else
+         {
+            //std::cout << ". " << this_line << std::endl;
+         }
+      }
+
+      return;
     body_dependency_symbols:
       - Hexagon::RegexMatcher
-
-
-  - name: extract_num_errors_generated
-    type: int
-    body: |
-      return 0;
-
-
-  - name: extract_num_warnings_generated
-    type: int
-    body: |
-      return 0;
+      - std::cout
 
 
 dependencies:
