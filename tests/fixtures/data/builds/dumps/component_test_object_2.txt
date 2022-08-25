@@ -1,0 +1,10 @@
+find: demos: No such file or directory
+Compiling test object file [1m[36mtests/Hexagon/Testing/ClangBuildOutputParserTest.cpp[0m...
+tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:39:46: error: 'error_messages_during_parsing' is a private member of 'Hexagon::Testing::ClangBuildOutputParser'
+   EXPECT_EQ(true, clang_build_output_parser.error_messages_during_parsing.empty());
+                                             ^
+./include/Hexagon/Testing/ClangBuildOutputParser.hpp:18:35: note: declared private here
+         std::vector<std::string> error_messages_during_parsing;
+                                  ^
+1 error generated.
+make[1]: *** [obj/tests/Hexagon/Testing/ClangBuildOutputParserTest.o] Error 1

@@ -1623,6 +1623,9 @@
   "std/vector<Hexagon/Testing/ClangBuildOutputResult>": [
     "Hexagon/Testing/ClangBuildOutputParser"
   ],
+  "Hexagon/RegexMatcher": [
+    "Hexagon/Testing/ClangBuildOutputParser"
+  ],
   "debugging": [
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],

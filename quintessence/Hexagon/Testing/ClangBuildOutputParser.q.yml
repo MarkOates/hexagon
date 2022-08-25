@@ -16,6 +16,11 @@ properties:
     init_with: '{}'
     getter: true
 
+  - name: errors_warnings_generated_line
+    type: std::string
+    init_with: '""'
+    private: true
+
 
 functions:
 
@@ -26,11 +31,41 @@ functions:
       // split lines
       Blast::StringSplitter splitter(clang_build_run_output, '\n');
       std::vector<std::string> lines = splitter.split();
+
       // discard or filter out lines
       // snag known lines
       return;
     body_dependency_symbols:
       - Blast::StringSplitter
+
+
+  - name: discard_irrelevant_lines
+    type: std::vector<std::string>
+    body: |
+      return {};
+
+
+  - name: extract_num_warnings_errors_generated_line
+    type: std::string
+    body: |
+      // TODO
+      std::string basic_warnings_errors_matcher = R"REGEX([0-9]+ (?:warning[s]?|error[s]?) generated\\.)REGEX";
+      RegexMatcher matcher(clang_build_run_output, basic_warnings_errors_matcher);
+      return "";
+    body_dependency_symbols:
+      - Hexagon::RegexMatcher
+
+
+  - name: extract_num_errors_generated
+    type: int
+    body: |
+      return 0;
+
+
+  - name: extract_num_warnings_generated
+    type: int
+    body: |
+      return 0;
 
 
 dependencies:
@@ -40,6 +75,8 @@ dependencies:
     headers: [ vector, Hexagon/Testing/ClangBuildOutputResult.hpp ]
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
+  - symbol: Hexagon::RegexMatcher
+    headers: [ Hexagon/RegexMatcher.hpp ]
 
 
 
