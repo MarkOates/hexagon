@@ -653,7 +653,9 @@ void Hud::draw_build_sequence_meter()
       build_sequence_status,
       build_stages,
       place.size.x,
-      place.size.y
+      place.size.y,
+      backfill_color,
+      base_text_color
    );
 
    place.start_transform();

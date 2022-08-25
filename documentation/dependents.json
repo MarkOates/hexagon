@@ -830,6 +830,15 @@
   "std/find": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "Hexagon/Elements/ColorKit": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/Hud",
+    "Hexagon/MultiplexMenu/PageRenderer",
+    "Hexagon/System/Config"
+  ],
+  "AllegroFlare/Color": [
+    "Hexagon/BuildSequenceMeter/Renderer"
+  ],
   "std/vector<Hexagon/BuildSystem/Build>": [
     "Hexagon/BuildSystem/BuildRepository"
   ],
@@ -1207,11 +1216,6 @@
   ],
   ":GitCommitMessageInputBox/EventController": [
     "Hexagon/GitCommitMessageInputBox/Stage"
-  ],
-  "Hexagon/Elements/ColorKit": [
-    "Hexagon/Hud",
-    "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/System/Config"
   ],
   "sin": [
     "Hexagon/Hud"

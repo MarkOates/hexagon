@@ -5,6 +5,8 @@
 #include <Blast/FileExistenceChecker.hpp>
 #include <allegro_flare/useful_php.h>
 #include <allegro_flare/placement2d.h>
+#include <AllegroFlare/Color.hpp>
+#include <Hexagon/Elements/ColorKit.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_ttf.h>
@@ -28,12 +30,14 @@ namespace BuildSequenceMeter
 {
 
 
-Renderer::Renderer(AllegroFlare::FontBin* font_bin, std::string status, std::vector<std::tuple<std::string, std::string, std::string, std::string>> stages, float meter_width, float meter_height)
+Renderer::Renderer(AllegroFlare::FontBin* font_bin, std::string status, std::vector<std::tuple<std::string, std::string, std::string, std::string>> stages, float meter_width, float meter_height, ALLEGRO_COLOR backfill_color, ALLEGRO_COLOR base_text_color)
    : font_bin(font_bin)
    , status(status)
    , stages(stages)
    , meter_width(meter_width)
    , meter_height(meter_height)
+   , backfill_color(backfill_color)
+   , base_text_color(base_text_color)
    , draw_frame(false)
 {
 }
@@ -44,9 +48,33 @@ Renderer::~Renderer()
 }
 
 
+void Renderer::set_backfill_color(ALLEGRO_COLOR backfill_color)
+{
+   this->backfill_color = backfill_color;
+}
+
+
+void Renderer::set_base_text_color(ALLEGRO_COLOR base_text_color)
+{
+   this->base_text_color = base_text_color;
+}
+
+
 void Renderer::set_draw_frame(bool draw_frame)
 {
    this->draw_frame = draw_frame;
+}
+
+
+ALLEGRO_COLOR Renderer::get_backfill_color() const
+{
+   return backfill_color;
+}
+
+
+ALLEGRO_COLOR Renderer::get_base_text_color() const
+{
+   return base_text_color;
 }
 
 
@@ -101,6 +129,7 @@ void Renderer::render()
 
       if (stage_dump_path_exists)
       {
+         Hexagon::Elements::ColorKit color_kit;
          //ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
          //ALLEGRO_COLOR stage_box_color = build_color_from_status(stage_status);
          //al_draw_filled_rectangle(0-6, cursor_y, 0-3, cursor_y+box_height, stage_box_color);
@@ -109,7 +138,10 @@ void Renderer::render()
          {
             ALLEGRO_FONT *dump_font = obtain_dump_font();
             float font_line_height = al_get_font_line_height(dump_font);
-            ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
+            //ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
+            ALLEGRO_COLOR bg_trans_color = AllegroFlare::Color(backfill_color, 0.3).to_al(); //ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
+            ALLEGRO_COLOR dump_text_color = color_kit.terminal_warm_orange();
+               //al_color_html("ffa500");
 
             placement2d dump_place;
             dump_place.scale = vec2d(0.8, 0.8);
@@ -119,7 +151,7 @@ void Renderer::render()
 
             dump_place.start_transform();
             
-            ALLEGRO_COLOR bg_trans_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
+            //ALLEGRO_COLOR bg_trans_color = AllegroFlare::Color(backfill_color, 0.3); //ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
             al_draw_filled_rectangle(0, 0, dump_place.size.x, dump_place.size.y, bg_trans_color);
 
             std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);

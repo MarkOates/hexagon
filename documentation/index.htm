@@ -2135,6 +2135,14 @@ table td
   <td class="property">float</td>
 </tr>
 <tr>
+  <td class="property">backfill_color</td>
+  <td class="property">ALLEGRO_COLOR</td>
+</tr>
+<tr>
+  <td class="property">base_text_color</td>
+  <td class="property">ALLEGRO_COLOR</td>
+</tr>
+<tr>
   <td class="property">draw_frame</td>
   <td class="property">bool</td>
 </tr>
@@ -2201,6 +2209,12 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::find&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::ColorKit&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/ColorKit.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::Color&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Color.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -12120,6 +12134,15 @@ table td
   "std/find": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "Hexagon/Elements/ColorKit": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/Hud",
+    "Hexagon/MultiplexMenu/PageRenderer",
+    "Hexagon/System/Config"
+  ],
+  "AllegroFlare/Color": [
+    "Hexagon/BuildSequenceMeter/Renderer"
+  ],
   "std/vector<Hexagon/BuildSystem/Build>": [
     "Hexagon/BuildSystem/BuildRepository"
   ],
@@ -12497,11 +12520,6 @@ table td
   ],
   ":GitCommitMessageInputBox/EventController": [
     "Hexagon/GitCommitMessageInputBox/Stage"
-  ],
-  "Hexagon/Elements/ColorKit": [
-    "Hexagon/Hud",
-    "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/System/Config"
   ],
   "sin": [
     "Hexagon/Hud"

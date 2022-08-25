@@ -26,6 +26,20 @@ properties:
     init_with: 690
     constructor_arg: true
 
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2}
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: base_text_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}
+    constructor_arg: true
+    getter: true
+    setter: true
+
   - name: draw_frame
     type: bool
     init_with: false
@@ -82,6 +96,7 @@ functions:
 
          if (stage_dump_path_exists)
          {
+            Hexagon::Elements::ColorKit color_kit;
             //ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
             //ALLEGRO_COLOR stage_box_color = build_color_from_status(stage_status);
             //al_draw_filled_rectangle(0-6, cursor_y, 0-3, cursor_y+box_height, stage_box_color);
@@ -90,7 +105,10 @@ functions:
             {
                ALLEGRO_FONT *dump_font = obtain_dump_font();
                float font_line_height = al_get_font_line_height(dump_font);
-               ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
+               //ALLEGRO_COLOR dump_text_color = al_color_html("ffa500");
+               ALLEGRO_COLOR bg_trans_color = AllegroFlare::Color(backfill_color, 0.3).to_al(); //ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
+               ALLEGRO_COLOR dump_text_color = color_kit.terminal_warm_orange();
+                  //al_color_html("ffa500");
 
                placement2d dump_place;
                dump_place.scale = vec2d(0.8, 0.8);
@@ -100,7 +118,7 @@ functions:
 
                dump_place.start_transform();
                
-               ALLEGRO_COLOR bg_trans_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
+               //ALLEGRO_COLOR bg_trans_color = AllegroFlare::Color(backfill_color, 0.3); //ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.3};
                al_draw_filled_rectangle(0, 0, dump_place.size.x, dump_place.size.y, bg_trans_color);
 
                std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);
@@ -124,6 +142,8 @@ functions:
       - Blast::FileExistenceChecker
       - php::file_get_contents
       - allegro_flare::placement2d
+      - AllegroFlare::Color
+      - Hexagon::Elements::ColorKit
 
 
   - name: draw_status_box
@@ -283,5 +303,9 @@ dependencies:
     headers: [ Blast/FileExistenceChecker.hpp ]
   - symbol: std::find
     headers: [ algorithm ]
+  - symbol: Hexagon::Elements::ColorKit
+    headers: [ Hexagon/Elements/ColorKit.hpp ]
+  - symbol: AllegroFlare::Color
+    headers: [ AllegroFlare/Color.hpp ]
 
 
