@@ -8,6 +8,7 @@
 #include <AllegroFlare/Color.hpp>
 #include <Hexagon/Elements/ColorKit.hpp>
 #include <Hexagon/Testing/ClangBuildOutputParser.hpp>
+#include <algorithm>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_ttf.h>
@@ -222,6 +223,7 @@ void Renderer::draw_build_dump(float width, std::string stage_text_dump)
       composed_string << notice.get_message() << std::endl;
       composed_string << "================" << std::endl;
       composed_string << notice.get_body() << std::endl;
+      composed_string << "================" << std::endl;
 
       al_draw_multiline_text(
          dump_font,
@@ -234,7 +236,10 @@ void Renderer::draw_build_dump(float width, std::string stage_text_dump)
          composed_string.str().c_str()
       );
 
-      cursor_y += (font_line_height * 6);
+      std::string str = composed_string.str();
+      std::string::difference_type num_lines = std::count(str.begin(), str.end(), '\n');
+
+      cursor_y += (font_line_height * (num_lines+2));
    }
       
    return;

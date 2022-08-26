@@ -844,6 +844,9 @@
   "Hexagon/Testing/ClangBuildOutputParser": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "std/count": [
+    "Hexagon/BuildSequenceMeter/Renderer"
+  ],
   "std/vector<Hexagon/BuildSystem/Build>": [
     "Hexagon/BuildSystem/BuildRepository"
   ],

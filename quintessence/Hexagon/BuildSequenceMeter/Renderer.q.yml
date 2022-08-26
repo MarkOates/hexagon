@@ -209,6 +209,7 @@ functions:
          composed_string << notice.get_message() << std::endl;
          composed_string << "================" << std::endl;
          composed_string << notice.get_body() << std::endl;
+         composed_string << "================" << std::endl;
 
          al_draw_multiline_text(
             dump_font,
@@ -221,12 +222,16 @@ functions:
             composed_string.str().c_str()
          );
 
-         cursor_y += (font_line_height * 6);
+         std::string str = composed_string.str();
+         std::string::difference_type num_lines = std::count(str.begin(), str.end(), '\n');
+
+         cursor_y += (font_line_height * (num_lines+2));
       }
          
       return;
     body_dependency_symbols:
       - Hexagon::Testing::ClangBuildOutputParser
+      - std::count
 
 
   - name: draw_status_box
@@ -392,5 +397,7 @@ dependencies:
     headers: [ AllegroFlare/Color.hpp ]
   - symbol: Hexagon::Testing::ClangBuildOutputParser
     headers: [ Hexagon/Testing/ClangBuildOutputParser.hpp ]
+  - symbol: std::count
+    headers: [ algorithm ]
 
 
