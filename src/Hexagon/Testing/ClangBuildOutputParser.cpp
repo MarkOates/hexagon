@@ -103,8 +103,8 @@ void ClangBuildOutputParser::parse_warnings_errors_and_notes()
    warnings_errors_and_notes_parsed = true;
 
    // TODO
-   //std::string accumulated_message_body = "";
-   //Hexagon::Testing::ClangBuildOutputResult accumulated_parsed_output_result;
+   bool body_accumulation_started = false;
+   Hexagon::Testing::ClangBuildOutputResult accumulated_parsed_output_result;
 
    for (int line_i=0; line_i<lines.size(); line_i++)
    {
@@ -127,17 +127,31 @@ void ClangBuildOutputParser::parse_warnings_errors_and_notes()
          {
             Hexagon::Testing::ClangBuildOutputResult parsed_output_result =
                Hexagon::Testing::ClangBuildOutputResult::build_from_message_line(this_line);
-            parsed_output_result.set_parsed_from_test_dump_line_num(line_i);
+            //parsed_output_result.set_parsed_from_test_dump_line_num(line_i);
+            //parsed_output_result.set_body(this_line);
 
-            warnings_errors_and_notes.push_back(parsed_output_result);
+            if (parsed_output_result.get_type() != "note")
+            {
+               warnings_errors_and_notes.push_back(parsed_output_result);
+               parsed_output_result.set_parsed_from_test_dump_line_num(line_i);
+               parsed_output_result.set_body(this_line);
+            }
+
+            body_accumulation_started = true;
          }
          std::cout << "# " << this_line << std::endl;
       }
       else
       {
+         if (body_accumulation_started)
+         {
+            std::string new_body = warnings_errors_and_notes.back().get_body() + "\n" + this_line;
+            warnings_errors_and_notes.back().set_body(new_body);
+         }
          std::cout << ". " << this_line << std::endl;
       }
    }
+
    return;
 }
 
