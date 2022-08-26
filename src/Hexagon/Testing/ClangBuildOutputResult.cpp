@@ -162,6 +162,11 @@ Hexagon::Testing::ClangBuildOutputResult ClangBuildOutputResult::build_from_mess
       result.line_num = atoi(tokens[1].c_str());
       result.column_num = atoi(tokens[2].c_str());
       result.type = Blast::String::Trimmer(tokens[3]).trim();
+      size_t message_start_pos = tokens[0].size() + 1
+                               + tokens[1].size() + 1
+                               + tokens[2].size() + 1
+                               + tokens[3].size() + 2;
+      result.message = line.substr(message_start_pos);
    }
 
    return result;
