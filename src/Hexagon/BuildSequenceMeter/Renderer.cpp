@@ -155,9 +155,11 @@ void Renderer::render()
             al_draw_filled_rectangle(0, 0, dump_place.size.x, dump_place.size.y, bg_trans_color);
 
             std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);
-            al_draw_multiline_text(dump_font, dump_text_color, 0, 0, dump_place.size.x, font_line_height, ALLEGRO_ALIGN_LEFT,
-               stage_text_dump.c_str()
-            );
+
+            draw_build_dump(dump_place.size.x, stage_text_dump);
+            //al_draw_multiline_text(dump_font, dump_text_color, 0, 0, dump_place.size.x, font_line_height, ALLEGRO_ALIGN_LEFT,
+               //stage_text_dump.c_str()
+            //);
 
             dump_place.restore_transform();
          }
@@ -169,6 +171,20 @@ void Renderer::render()
       cursor_y -= (box_height + box_spacing);
    }
 
+   return;
+}
+
+void Renderer::draw_build_dump(float width, std::string stage_text_dump)
+{
+   Hexagon::Elements::ColorKit color_kit;
+   ALLEGRO_FONT *dump_font = obtain_dump_font();
+   float font_line_height = al_get_font_line_height(dump_font);
+   ALLEGRO_COLOR dump_text_color = color_kit.terminal_warm_orange();
+
+   //std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);
+   al_draw_multiline_text(dump_font, dump_text_color, 0, 0, width, font_line_height, ALLEGRO_ALIGN_LEFT,
+      stage_text_dump.c_str()
+   );
    return;
 }
 
