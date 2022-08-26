@@ -137,6 +137,11 @@ void ClangBuildOutputParser::parse_warnings_errors_and_notes()
                parsed_output_result.set_parsed_from_test_dump_line_num(line_i);
                parsed_output_result.set_body(this_line);
             }
+            else
+            {
+               std::string new_body = warnings_errors_and_notes.back().get_body() + "\n" + this_line;
+               warnings_errors_and_notes.back().set_body(new_body);
+            }
 
             body_accumulation_started = true;
          }

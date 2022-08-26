@@ -178,10 +178,21 @@ functions:
         type: std::string
         default_argument: '"[unset-stage_text_dump]"'
     body: |
-      Hexagon::Testing::ClangBuildOutputParser build_output_parser(stage_text_dump);
-      build_output_parser.parse();
-      std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes =
-         build_output_parser.get_warnings_errors_and_notes();
+      static std::string last_dump = "";
+      static std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes;
+
+      if (stage_text_dump != last_dump) // quick little cache
+      {
+         last_dump = stage_text_dump;
+         Hexagon::Testing::ClangBuildOutputParser build_output_parser(stage_text_dump);
+         build_output_parser.parse();
+         warnings_errors_and_notes = build_output_parser.get_warnings_errors_and_notes();
+      }
+
+      //Hexagon::Testing::ClangBuildOutputParser build_output_parser(stage_text_dump);
+      //build_output_parser.parse();
+      //std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes =
+         //build_output_parser.get_warnings_errors_and_notes();
 
       if (warnings_errors_and_notes.empty())
       {
@@ -195,9 +206,15 @@ functions:
       ALLEGRO_COLOR dump_text_color = color_kit.terminal_warm_orange();
 
       int cursor_y = 0;
+      int max_num_warnings = 3;
+      int warning_count = 0;
       for (auto &warning_error_or_note : warnings_errors_and_notes)
       {
+         warning_count++;
+         if (warning_count > max_num_warnings) return;
+
          Hexagon::Testing::ClangBuildOutputResult &notice = warning_error_or_note;
+         if (notice.get_type() != "error") continue; // disable warnings and info from displaying
 
          ALLEGRO_COLOR this_notice_text_color = dump_text_color;
 
