@@ -841,6 +841,9 @@
   "AllegroFlare/Color": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "Hexagon/Testing/ClangBuildOutputParser": [
+    "Hexagon/BuildSequenceMeter/Renderer"
+  ],
   "std/vector<Hexagon/BuildSystem/Build>": [
     "Hexagon/BuildSystem/BuildRepository"
   ],

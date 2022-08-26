@@ -148,7 +148,7 @@ functions:
       - Hexagon::Elements::ColorKit
 
 
-  - name: draw_build_dump
+  - name: draw_build_dump_legacy
     parameters:
       - name: width
         type: float
@@ -167,6 +167,66 @@ functions:
          stage_text_dump.c_str()
       );
       return;
+
+
+  - name: draw_build_dump
+    parameters:
+      - name: width
+        type: float
+        default_argument: 0
+      - name: stage_text_dump
+        type: std::string
+        default_argument: '"[unset-stage_text_dump]"'
+    body: |
+      Hexagon::Testing::ClangBuildOutputParser build_output_parser(stage_text_dump);
+      build_output_parser.parse();
+      std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes =
+         build_output_parser.get_warnings_errors_and_notes();
+
+      if (warnings_errors_and_notes.empty())
+      {
+         draw_build_dump_legacy(width, stage_text_dump);
+         return;
+      }
+
+      Hexagon::Elements::ColorKit color_kit;
+      ALLEGRO_FONT *dump_font = obtain_dump_font();
+      float font_line_height = al_get_font_line_height(dump_font);
+      ALLEGRO_COLOR dump_text_color = color_kit.terminal_warm_orange();
+
+      int cursor_y = 0;
+      for (auto &warning_error_or_note : warnings_errors_and_notes)
+      {
+         Hexagon::Testing::ClangBuildOutputResult &notice = warning_error_or_note;
+
+         ALLEGRO_COLOR this_notice_text_color = dump_text_color;
+
+         std::stringstream composed_string;
+         composed_string << notice.get_type() << std::endl;
+         composed_string << "File: " << notice.get_filename() << std::endl;
+         composed_string << "Line: " << notice.get_line_num() << "   Column: " << notice.get_column_num() << std::endl;
+         composed_string << "================" << std::endl;
+         composed_string << notice.get_message() << std::endl;
+         composed_string << "================" << std::endl;
+         composed_string << notice.get_body() << std::endl;
+
+         al_draw_multiline_text(
+            dump_font,
+            this_notice_text_color,
+            0,
+            cursor_y,
+            width,
+            font_line_height,
+            ALLEGRO_ALIGN_LEFT,
+            composed_string.str().c_str()
+         );
+
+         cursor_y += (font_line_height * 6);
+      }
+         
+      return;
+    body_dependency_symbols:
+      - Hexagon::Testing::ClangBuildOutputParser
 
 
   - name: draw_status_box
@@ -330,5 +390,7 @@ dependencies:
     headers: [ Hexagon/Elements/ColorKit.hpp ]
   - symbol: AllegroFlare::Color
     headers: [ AllegroFlare/Color.hpp ]
+  - symbol: Hexagon::Testing::ClangBuildOutputParser
+    headers: [ Hexagon/Testing/ClangBuildOutputParser.hpp ]
 
 

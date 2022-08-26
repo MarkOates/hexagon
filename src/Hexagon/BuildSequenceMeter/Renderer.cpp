@@ -7,6 +7,7 @@
 #include <allegro_flare/placement2d.h>
 #include <AllegroFlare/Color.hpp>
 #include <Hexagon/Elements/ColorKit.hpp>
+#include <Hexagon/Testing/ClangBuildOutputParser.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_ttf.h>
@@ -174,7 +175,7 @@ void Renderer::render()
    return;
 }
 
-void Renderer::draw_build_dump(float width, std::string stage_text_dump)
+void Renderer::draw_build_dump_legacy(float width, std::string stage_text_dump)
 {
    Hexagon::Elements::ColorKit color_kit;
    ALLEGRO_FONT *dump_font = obtain_dump_font();
@@ -185,6 +186,57 @@ void Renderer::draw_build_dump(float width, std::string stage_text_dump)
    al_draw_multiline_text(dump_font, dump_text_color, 0, 0, width, font_line_height, ALLEGRO_ALIGN_LEFT,
       stage_text_dump.c_str()
    );
+   return;
+}
+
+void Renderer::draw_build_dump(float width, std::string stage_text_dump)
+{
+   Hexagon::Testing::ClangBuildOutputParser build_output_parser(stage_text_dump);
+   build_output_parser.parse();
+   std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes =
+      build_output_parser.get_warnings_errors_and_notes();
+
+   if (warnings_errors_and_notes.empty())
+   {
+      draw_build_dump_legacy(width, stage_text_dump);
+      return;
+   }
+
+   Hexagon::Elements::ColorKit color_kit;
+   ALLEGRO_FONT *dump_font = obtain_dump_font();
+   float font_line_height = al_get_font_line_height(dump_font);
+   ALLEGRO_COLOR dump_text_color = color_kit.terminal_warm_orange();
+
+   int cursor_y = 0;
+   for (auto &warning_error_or_note : warnings_errors_and_notes)
+   {
+      Hexagon::Testing::ClangBuildOutputResult &notice = warning_error_or_note;
+
+      ALLEGRO_COLOR this_notice_text_color = dump_text_color;
+
+      std::stringstream composed_string;
+      composed_string << notice.get_type() << std::endl;
+      composed_string << "File: " << notice.get_filename() << std::endl;
+      composed_string << "Line: " << notice.get_line_num() << "   Column: " << notice.get_column_num() << std::endl;
+      composed_string << "================" << std::endl;
+      composed_string << notice.get_message() << std::endl;
+      composed_string << "================" << std::endl;
+      composed_string << notice.get_body() << std::endl;
+
+      al_draw_multiline_text(
+         dump_font,
+         this_notice_text_color,
+         0,
+         cursor_y,
+         width,
+         font_line_height,
+         ALLEGRO_ALIGN_LEFT,
+         composed_string.str().c_str()
+      );
+
+      cursor_y += (font_line_height * 6);
+   }
+      
    return;
 }
 

@@ -36,6 +36,7 @@ namespace Hexagon
          ALLEGRO_COLOR get_base_text_color() const;
          bool get_draw_frame() const;
          void render();
+         void draw_build_dump_legacy(float width=0, std::string stage_text_dump="[unset-stage_text_dump]");
          void draw_build_dump(float width=0, std::string stage_text_dump="[unset-stage_text_dump]");
          void draw_status_box(float x=0, float y=0, float w=1, float h=1, std::string status="incomplete", std::string label="-  -");
          bool is_status_to_draw_label(std::string status="status_unset");
