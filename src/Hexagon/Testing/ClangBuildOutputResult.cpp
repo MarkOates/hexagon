@@ -3,6 +3,8 @@
 #include <Hexagon/Testing/ClangBuildOutputResult.hpp>
 #include <sstream>
 #include <Blast/StringSplitter.hpp>
+#include <Blast/String/Trimmer.hpp>
+#include <cstdlib>
 
 
 namespace Hexagon
@@ -141,7 +143,7 @@ int ClangBuildOutputResult::get_test_dump_line_num() const
 Hexagon::Testing::ClangBuildOutputResult ClangBuildOutputResult::build_from_message_line(std::string line)
 {
    Hexagon::Testing::ClangBuildOutputResult result;
-   result.set_message_line(line);
+   result.message_line = line;
 
    // TODO: validate line is valid
    Blast::StringSplitter splitter(line, ':');
@@ -156,6 +158,10 @@ Hexagon::Testing::ClangBuildOutputResult ClangBuildOutputResult::build_from_mess
    }
    else
    {
+      result.filename = tokens[0];
+      result.line_num = atoi(tokens[1].c_str());
+      result.column_num = atoi(tokens[2].c_str());
+      result.type = Blast::String::Trimmer(tokens[3]).trim();
    }
 
    return result;

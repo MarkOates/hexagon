@@ -17,3 +17,10 @@ TEST(Hexagon_Testing_ClangBuildOutputResultTest,
 }
 
 
+TEST(Hexagon_Testing_ClangBuildOutputResultTest,
+   build_from_message_line__will_parse_the_expected_values_from_the_message_line)
+{
+   // TODO
+}
+
+

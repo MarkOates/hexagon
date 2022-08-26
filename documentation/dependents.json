@@ -1044,6 +1044,7 @@
   "Blast/String/Trimmer": [
     "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
     "Hexagon/PacketLogger",
+    "Hexagon/Testing/ClangBuildOutputResult",
     "NcursesArt/GithubRepoStatusFetcher"
   ],
   "php/file_put_contents": [
@@ -1628,6 +1629,9 @@
     "Hexagon/Testing/ClangBuildOutputParser"
   ],
   "Hexagon/Testing/ClangBuildOutputResult": [
+    "Hexagon/Testing/ClangBuildOutputResult"
+  ],
+  "atoi": [
     "Hexagon/Testing/ClangBuildOutputResult"
   ],
   "debugging": [

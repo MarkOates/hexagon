@@ -77,7 +77,7 @@ functions:
         default_argument: '"[unset-line]"'
     body: |
       Hexagon::Testing::ClangBuildOutputResult result;
-      result.set_message_line(line);
+      result.message_line = line;
 
       // TODO: validate line is valid
       Blast::StringSplitter splitter(line, ':');
@@ -92,12 +92,18 @@ functions:
       }
       else
       {
+         result.filename = tokens[0];
+         result.line_num = atoi(tokens[1].c_str());
+         result.column_num = atoi(tokens[2].c_str());
+         result.type = Blast::String::Trimmer(tokens[3]).trim();
       }
 
       return result;
     body_dependency_symbols:
       - std::stringstream
       - Blast::StringSplitter
+      - Blast::String::Trimmer
+      - atoi
 
 
 
@@ -108,5 +114,9 @@ dependencies:
     headers: [ Hexagon/Testing/ClangBuildOutputResult.hpp ]
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
+  - symbol: Blast::String::Trimmer
+    headers: [ Blast/String/Trimmer.hpp ]
+  - symbol: atoi
+    headers: [ cstdlib ]
 
 
