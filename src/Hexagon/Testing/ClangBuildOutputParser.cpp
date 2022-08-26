@@ -140,7 +140,7 @@ void ClangBuildOutputParser::parse_warnings_errors_and_notes()
 
             body_accumulation_started = true;
          }
-         std::cout << "# " << this_line << std::endl;
+         //std::cout << "# " << this_line << std::endl;
       }
       else
       {
@@ -149,7 +149,7 @@ void ClangBuildOutputParser::parse_warnings_errors_and_notes()
             std::string new_body = warnings_errors_and_notes.back().get_body() + "\n" + this_line;
             warnings_errors_and_notes.back().set_body(new_body);
          }
-         std::cout << ". " << this_line << std::endl;
+         //std::cout << ". " << this_line << std::endl;
       }
    }
 
