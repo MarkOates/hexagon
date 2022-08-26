@@ -50,14 +50,7 @@ properties:
     getter: true
     setter: true
 
-  - name: on_test_dump_line_num
-    type: int
-    init_with: -1
-    constructor_arg: true
-    getter: true
-    setter: true
-
-  - name: test_dump_line_num
+  - name: parsed_from_test_dump_line_num
     type: int
     init_with: -1
     constructor_arg: true

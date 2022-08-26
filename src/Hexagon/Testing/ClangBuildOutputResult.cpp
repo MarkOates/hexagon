@@ -13,7 +13,7 @@ namespace Testing
 {
 
 
-ClangBuildOutputResult::ClangBuildOutputResult(std::string message_line, std::string body, std::string filename, std::string type, int line_num, int column_num, std::string message, int on_test_dump_line_num, int test_dump_line_num)
+ClangBuildOutputResult::ClangBuildOutputResult(std::string message_line, std::string body, std::string filename, std::string type, int line_num, int column_num, std::string message, int parsed_from_test_dump_line_num)
    : message_line(message_line)
    , body(body)
    , filename(filename)
@@ -21,8 +21,7 @@ ClangBuildOutputResult::ClangBuildOutputResult(std::string message_line, std::st
    , line_num(line_num)
    , column_num(column_num)
    , message(message)
-   , on_test_dump_line_num(on_test_dump_line_num)
-   , test_dump_line_num(test_dump_line_num)
+   , parsed_from_test_dump_line_num(parsed_from_test_dump_line_num)
 {
 }
 
@@ -74,15 +73,9 @@ void ClangBuildOutputResult::set_message(std::string message)
 }
 
 
-void ClangBuildOutputResult::set_on_test_dump_line_num(int on_test_dump_line_num)
+void ClangBuildOutputResult::set_parsed_from_test_dump_line_num(int parsed_from_test_dump_line_num)
 {
-   this->on_test_dump_line_num = on_test_dump_line_num;
-}
-
-
-void ClangBuildOutputResult::set_test_dump_line_num(int test_dump_line_num)
-{
-   this->test_dump_line_num = test_dump_line_num;
+   this->parsed_from_test_dump_line_num = parsed_from_test_dump_line_num;
 }
 
 
@@ -128,15 +121,9 @@ std::string ClangBuildOutputResult::get_message() const
 }
 
 
-int ClangBuildOutputResult::get_on_test_dump_line_num() const
+int ClangBuildOutputResult::get_parsed_from_test_dump_line_num() const
 {
-   return on_test_dump_line_num;
-}
-
-
-int ClangBuildOutputResult::get_test_dump_line_num() const
-{
-   return test_dump_line_num;
+   return parsed_from_test_dump_line_num;
 }
 
 

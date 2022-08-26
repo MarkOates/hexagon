@@ -50,7 +50,10 @@ TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__will_extract_the_warning
    std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes = 
       clang_build_output_parser.get_warnings_errors_and_notes();
 
-   EXPECT_EQ(26, warnings_errors_and_notes.size());
+   ASSERT_EQ(26, warnings_errors_and_notes.size());
+
+   // TODO: a few more selected examples like:
+   EXPECT_EQ("error", warnings_errors_and_notes[0].get_type());
 }
 
 

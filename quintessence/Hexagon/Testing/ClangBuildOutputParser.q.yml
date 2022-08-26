@@ -122,6 +122,7 @@ functions:
             {
                Hexagon::Testing::ClangBuildOutputResult parsed_output_result =
                   Hexagon::Testing::ClangBuildOutputResult::build_from_message_line(this_line);
+               parsed_output_result.set_parsed_from_test_dump_line_num(line_i);
 
                warnings_errors_and_notes.push_back(parsed_output_result);
             }
