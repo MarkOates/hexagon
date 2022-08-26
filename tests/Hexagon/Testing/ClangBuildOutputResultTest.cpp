@@ -20,7 +20,17 @@ TEST(Hexagon_Testing_ClangBuildOutputResultTest,
 TEST(Hexagon_Testing_ClangBuildOutputResultTest,
    build_from_message_line__will_parse_the_expected_values_from_the_message_line)
 {
-   // TODO
+   std::string message_line = "tests/Hexagon/Testing/ClangBuildOutputParserTest.cpp:63:66: error: "
+                              "'NUM_WARNINGS_ERRORS_GENERATED_REGEX' is a private member of "
+                              "'Hexagon::Testing::ClangBuildOutputParser'";
+
+   Hexagon::Testing::ClangBuildOutputResult built = 
+      Hexagon::Testing::ClangBuildOutputResult::build_from_message_line(message_line);
+
+   EXPECT_EQ(message_line, built.get_message_line());
+   EXPECT_EQ(63, built.get_line_num());
+   EXPECT_EQ(66, built.get_column_num());
+   EXPECT_EQ("error", built.get_type());
 }
 
 
