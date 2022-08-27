@@ -110,6 +110,9 @@ void ClangBuildOutputParser::parse_warnings_errors_and_notes()
    {
       std::string &this_line = lines[line_i];
       std::string regex = "([a-zA-Z0-9/_\\.]+):([0-9]+):([0-9]+): (error|note|warning): (.+)";
+      //https://cplusplus.com/reference/regex/ECMAScript/
+      //https://regex101.com/r/cX0eP2/164
+
 
       RegexMatcher matcher(this_line, regex);
       std::vector<std::pair<int, int>> match_info = matcher.get_match_info();
