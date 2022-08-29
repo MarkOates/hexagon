@@ -70,6 +70,16 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
 
 
 TEST(Hexagon_BuildSystem_Builds_BaseTest,
+   run__with_a_failed_build__will_set_the_status_to_failed)
+{
+   BuildsBaseTestClass base_build;
+   base_build.set_build_stages({ new ExceptionThrowingBuildStageTestClass });
+   base_build.run();
+   EXPECT_EQ(Hexagon::BuildSystem::Builds::Base::STATUS_FAILED, base_build.get_status());
+}
+
+
+TEST(Hexagon_BuildSystem_Builds_BaseTest,
    run__with_build_stages__will_call_execute_on_each_build_stage)
 {
    BuildsBaseTestClass base_build;
