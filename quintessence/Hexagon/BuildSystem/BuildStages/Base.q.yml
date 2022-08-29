@@ -64,28 +64,10 @@ functions:
       return (possible_type == get_type());
 
 
-  - name: execute_raw
+  - name: execute
     virtual: true
     body: |
       return;
-
-
-  - name: execute
-    body: |
-      status = STATUS_RUNNING;
-      try
-      {
-         execute_raw();
-         status = STATUS_FINISHED;
-      }
-      catch (const std::exception& e)
-      {
-         std::cout << "execution of build stage failed." << std::endl;
-         status = STATUS_FAILED;
-      }
-      return;
-    body_dependency_symbols:
-      - std::cout
 
 
 dependencies:

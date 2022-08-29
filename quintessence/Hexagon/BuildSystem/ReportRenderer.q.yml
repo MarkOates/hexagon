@@ -1,0 +1,50 @@
+properties:
+
+
+  - name: report
+    type: Hexagon::BuildSystem::Builds::Base*
+    init_with: nullptr
+    constructor_arg: true
+    getter: true
+    setter: true
+
+
+functions:
+
+
+  - name: build_report
+    type: std::string
+    guards: [ report ]
+    body: |
+      std::string result;
+
+      if (report->is_type(Hexagon::BuildSystem::Builds::Focused::TYPE))
+      {
+         // TODO render report
+      }
+      else
+      {
+         std::stringstream error_message;
+         error_message << "Hexagon::BuildSystem::ReportRenderer::build_report error: "
+                       << "Cannot build_report() on a report that is of unknown type \"" << report->get_type() << "\".";
+         throw std::runtime_error(error_message.str());
+      }
+
+      return result;
+    body_dependency_symbols:
+      - Hexagon::BuildSystem::Builds::Focused
+
+
+dependencies:
+
+
+  - symbol: Hexagon::BuildSystem::Builds::Base*
+    headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
+  - symbol: Hexagon::BuildSystem::Builds::Focused
+    headers: [ Hexagon/BuildSystem/Builds/Focused.hpp ]
+  - symbol: Hexagon::BuildSystem::ReportRenderers::Basic
+    headers: [ Hexagon/BuildSystem/ReportRenderers/Basic.hpp ]
+  - symbol: Hexagon::BuildSystem::ReportRenderers::Base
+    headers: [ Hexagon/BuildSystem/ReportRenderers/Base.hpp ]
+
+

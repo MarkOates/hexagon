@@ -852,7 +852,8 @@
     "Hexagon/Daemus/ProgramRunner"
   ],
   "Hexagon/BuildSystem/Builds/Focused": [
-    "Hexagon/BuildSystem/BuildFactory"
+    "Hexagon/BuildSystem/BuildFactory",
+    "Hexagon/BuildSystem/ReportRenderer"
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStages/Base",
@@ -862,11 +863,10 @@
   "char": [
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/Builds/Base",
+    "Hexagon/BuildSystem/Builds/Focused",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "Hexagon/BuildSystem/BuildStages/Base": [
-    "Hexagon/BuildSystem/BuildStages/BuildPrograms",
-    "Hexagon/BuildSystem/BuildStages/BuildQuintessence",
     "Hexagon/BuildSystem/BuildStages/ShellCommand"
   ],
   "Blast/ShellCommandExecutorWithCallback": [
@@ -893,7 +893,14 @@
     "Hexagon/BuildSystem/Builds/Base"
   ],
   "Hexagon/BuildSystem/Builds/Base": [
-    "Hexagon/BuildSystem/Builds/Focused"
+    "Hexagon/BuildSystem/Builds/Focused",
+    "Hexagon/BuildSystem/ReportRenderer"
+  ],
+  "Hexagon/BuildSystem/ReportRenderers/Basic": [
+    "Hexagon/BuildSystem/ReportRenderer"
+  ],
+  "Hexagon/BuildSystem/ReportRenderers/Base": [
+    "Hexagon/BuildSystem/ReportRenderer"
   ],
   "vec3d": [
     "Hexagon/Camera"

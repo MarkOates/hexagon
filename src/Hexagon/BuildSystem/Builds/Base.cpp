@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/BuildSystem/Builds/Base.hpp>
-
+#include <iostream>
 
 
 namespace Hexagon
@@ -17,7 +17,7 @@ Base::Base(std::string type)
    , started_at(0)
    , ended_at(0)
    , status("[unset-status]")
-   , stages({})
+   , build_stages({})
 {
 }
 
@@ -45,9 +45,9 @@ void Base::set_status(std::string status)
 }
 
 
-void Base::set_stages(std::vector<Hexagon::BuildSystem::BuildStages::Base*> stages)
+void Base::set_build_stages(std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages)
 {
-   this->stages = stages;
+   this->build_stages = build_stages;
 }
 
 
@@ -75,15 +75,38 @@ std::string Base::get_status() const
 }
 
 
-std::vector<Hexagon::BuildSystem::BuildStages::Base*> Base::get_stages() const
+std::vector<Hexagon::BuildSystem::BuildStages::Base*> Base::get_build_stages() const
 {
-   return stages;
+   return build_stages;
 }
 
 
 bool Base::is_type(std::string possible_type)
 {
    return (possible_type == get_type());
+}
+
+void Base::start()
+{
+   for (auto &build_stage : build_stages)
+   {
+      build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED);
+   }
+   for (auto &build_stage : build_stages)
+   {
+      build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING);
+      try
+      {
+         build_stage->execute();
+         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED);
+      }
+      catch (const std::exception& e)
+      {
+         std::cout << "execution of build stage failed." << std::endl;
+         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED);
+      }
+   }
+   return;
 }
 } // namespace Builds
 } // namespace BuildSystem

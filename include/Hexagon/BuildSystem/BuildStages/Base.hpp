@@ -36,8 +36,7 @@ namespace Hexagon
             float get_ended_at() const;
             std::string get_status() const;
             bool is_type(std::string possible_type="");
-            virtual void execute_raw();
-            void execute();
+            virtual void execute();
          };
       }
    }

@@ -24,7 +24,7 @@ namespace Hexagon
 
             std::string get_shell_command() const;
             std::string get_shell_command_result() const;
-            virtual void execute_raw() override;
+            virtual void execute() override;
          };
       }
    }

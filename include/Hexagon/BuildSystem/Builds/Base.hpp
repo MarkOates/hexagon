@@ -25,7 +25,7 @@ namespace Hexagon
             float started_at;
             float ended_at;
             std::string status;
-            std::vector<Hexagon::BuildSystem::BuildStages::Base*> stages;
+            std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages;
 
          public:
             Base(std::string type="Base");
@@ -34,13 +34,14 @@ namespace Hexagon
             void set_started_at(float started_at);
             void set_ended_at(float ended_at);
             void set_status(std::string status);
-            void set_stages(std::vector<Hexagon::BuildSystem::BuildStages::Base*> stages);
+            void set_build_stages(std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages);
             std::string get_type() const;
             float get_started_at() const;
             float get_ended_at() const;
             std::string get_status() const;
-            std::vector<Hexagon::BuildSystem::BuildStages::Base*> get_stages() const;
+            std::vector<Hexagon::BuildSystem::BuildStages::Base*> get_build_stages() const;
             bool is_type(std::string possible_type="");
+            void start();
          };
       }
    }

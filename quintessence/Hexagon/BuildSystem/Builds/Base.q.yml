@@ -25,7 +25,7 @@ properties:
     getter: true
     setter: true
 
-  - name: stages
+  - name: build_stages
     type: std::vector<Hexagon::BuildSystem::BuildStages::Base*>
     init_with: '{}'
     getter: true
@@ -67,6 +67,32 @@ functions:
         default_argument: '""'
     body: |
       return (possible_type == get_type());
+
+
+  - name: start
+    body: |
+      for (auto &build_stage : build_stages)
+      {
+         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED);
+      }
+      for (auto &build_stage : build_stages)
+      {
+         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING);
+         try
+         {
+            build_stage->execute();
+            build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED);
+         }
+         catch (const std::exception& e)
+         {
+            std::cout << "execution of build stage failed." << std::endl;
+            build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED);
+         }
+      }
+      return;
+    body_dependency_symbols:
+      - std::cout
+
 
 
 dependencies:

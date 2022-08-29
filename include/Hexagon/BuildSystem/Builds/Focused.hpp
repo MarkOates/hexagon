@@ -2,7 +2,6 @@
 
 
 #include <Hexagon/BuildSystem/Builds/Base.hpp>
-#include <string>
 
 
 namespace Hexagon
@@ -13,15 +12,15 @@ namespace Hexagon
       {
          class Focused : public Hexagon::BuildSystem::Builds::Base
          {
+         public:
+            static constexpr char* TYPE = "Focused";
+
          private:
-            std::string property;
 
          public:
-            Focused(std::string property="[unset-property]");
+            Focused();
             ~Focused();
 
-            std::string get_property() const;
-            bool property_is(std::string possible_type="");
          };
       }
    }

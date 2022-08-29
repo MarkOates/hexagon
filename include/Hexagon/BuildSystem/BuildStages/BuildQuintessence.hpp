@@ -2,7 +2,6 @@
 
 
 #include <Hexagon/BuildSystem/BuildStages/Base.hpp>
-#include <string>
 
 
 namespace Hexagon
@@ -14,14 +13,11 @@ namespace Hexagon
          class BuildQuintessence : public Hexagon::BuildSystem::BuildStages::Base
          {
          private:
-            std::string property;
 
          public:
-            BuildQuintessence(std::string property="[unset-property]");
+            BuildQuintessence();
             ~BuildQuintessence();
 
-            std::string get_property() const;
-            bool property_is(std::string possible_type="");
          };
       }
    }

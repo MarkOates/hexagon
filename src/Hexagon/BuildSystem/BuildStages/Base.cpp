@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/BuildSystem/BuildStages/Base.hpp>
-#include <iostream>
+
 
 
 namespace Hexagon
@@ -73,24 +73,8 @@ bool Base::is_type(std::string possible_type)
    return (possible_type == get_type());
 }
 
-void Base::execute_raw()
-{
-   return;
-}
-
 void Base::execute()
 {
-   status = STATUS_RUNNING;
-   try
-   {
-      execute_raw();
-      status = STATUS_FINISHED;
-   }
-   catch (const std::exception& e)
-   {
-      std::cout << "execution of build stage failed." << std::endl;
-      status = STATUS_FAILED;
-   }
    return;
 }
 } // namespace BuildStages

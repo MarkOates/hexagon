@@ -40,12 +40,12 @@ std::string ShellCommand::get_shell_command_result() const
 }
 
 
-void ShellCommand::execute_raw()
+void ShellCommand::execute()
 {
    if (!((!executed)))
       {
          std::stringstream error_message;
-         error_message << "ShellCommand" << "::" << "execute_raw" << ": error: " << "guard \"(!executed)\" not met";
+         error_message << "ShellCommand" << "::" << "execute" << ": error: " << "guard \"(!executed)\" not met";
          throw std::runtime_error(error_message.str());
       }
    Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command);
