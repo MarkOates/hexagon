@@ -14,6 +14,12 @@ namespace Hexagon
       {
          class Base
          {
+         public:
+            static constexpr char* STATUS_NOT_STARTED = "not_started";
+            static constexpr char* STATUS_RUNNING = "running";
+            static constexpr char* STATUS_FINISHED = "finished";
+            static constexpr char* STATUS_FAILED = "failed";
+
          private:
             std::string type;
             float started_at;

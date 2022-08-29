@@ -851,6 +851,9 @@
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/Daemus/ProgramRunner"
   ],
+  "Hexagon/BuildSystem/Builds/Focused": [
+    "Hexagon/BuildSystem/BuildFactory"
+  ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/Builds/Base",
@@ -863,6 +866,10 @@
   ],
   "std/vector<Hexagon/BuildSystem/BuildStages/Base>": [
     "Hexagon/BuildSystem/Builds/Base"
+  ],
+  "char": [
+    "Hexagon/BuildSystem/Builds/Base",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "Hexagon/BuildSystem/Builds/Base": [
     "Hexagon/BuildSystem/Builds/Focused"
@@ -1633,9 +1640,6 @@
   "std/pair<std/string, std/string>": [
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/ProjectComponentBasenameExtractor"
-  ],
-  "char": [
-    "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "al_draw_line": [
     "Hexagon/UI/DrawingBox"

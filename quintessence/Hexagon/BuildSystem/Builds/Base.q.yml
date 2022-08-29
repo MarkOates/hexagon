@@ -31,6 +31,30 @@ properties:
     getter: true
     setter: true
 
+  - name: STATUS_NOT_STARTED
+    type: char*
+    static: true
+    init_with: '"not_started"'
+    constexpr: true
+
+  - name: STATUS_RUNNING
+    type: char*
+    static: true
+    init_with: '"running"'
+    constexpr: true
+
+  - name: STATUS_FINISHED
+    type: char*
+    static: true
+    init_with: '"finished"'
+    constexpr: true
+
+  - name: STATUS_FAILED
+    type: char*
+    static: true
+    init_with: '"failed"'
+    constexpr: true
+
 
 functions:
 
@@ -52,5 +76,7 @@ dependencies:
     headers: [ vector, string ]
   - symbol: std::vector<Hexagon::BuildSystem::BuildStages::Base*>
     headers: [ vector, Hexagon/BuildSystem/BuildStages/Base.hpp ]
+  - symbol: char*
+    headers: [ ]
 
 

@@ -2246,10 +2246,13 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">run()</td>
+  <td class="method">create_focused_build()</td>
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::Builds::Focused*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/Builds/Focused.hpp&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -2361,6 +2364,22 @@ table td
   <td class="property">stages</td>
   <td class="property">std::vector&lt;Hexagon::BuildSystem::BuildStages::Base*&gt;</td>
 </tr>
+<tr>
+  <td class="property">STATUS_NOT_STARTED</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">STATUS_RUNNING</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">STATUS_FINISHED</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">STATUS_FAILED</td>
+  <td class="property">char*</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -2373,6 +2392,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::BuildSystem::BuildStages::Base*&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/BuildSystem/BuildStages/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
 </tr>
     </table>
   </div>
@@ -12290,6 +12312,9 @@ table td
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/Daemus/ProgramRunner"
   ],
+  "Hexagon/BuildSystem/Builds/Focused": [
+    "Hexagon/BuildSystem/BuildFactory"
+  ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/Builds/Base",
@@ -12302,6 +12327,10 @@ table td
   ],
   "std/vector<Hexagon/BuildSystem/BuildStages/Base>": [
     "Hexagon/BuildSystem/Builds/Base"
+  ],
+  "char": [
+    "Hexagon/BuildSystem/Builds/Base",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "Hexagon/BuildSystem/Builds/Base": [
     "Hexagon/BuildSystem/Builds/Focused"
@@ -13072,9 +13101,6 @@ table td
   "std/pair<std/string, std/string>": [
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/ProjectComponentBasenameExtractor"
-  ],
-  "char": [
-    "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "al_draw_line": [
     "Hexagon/UI/DrawingBox"

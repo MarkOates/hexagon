@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <string>
+#include <Hexagon/BuildSystem/Builds/Focused.hpp>
 
 
 namespace Hexagon
@@ -16,7 +16,7 @@ namespace Hexagon
          BuildFactory();
          ~BuildFactory();
 
-         std::string run();
+         Hexagon::BuildSystem::Builds::Focused* create_focused_build();
       };
    }
 }

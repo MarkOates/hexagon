@@ -20,9 +20,10 @@ BuildFactory::~BuildFactory()
 }
 
 
-std::string BuildFactory::run()
+Hexagon::BuildSystem::Builds::Focused* BuildFactory::create_focused_build()
 {
-   return "Hello World!";
+   Hexagon::BuildSystem::Builds::Focused *focused_build = new Hexagon::BuildSystem::Builds::Focused;
+   return focused_build;
 }
 } // namespace BuildSystem
 } // namespace Hexagon
