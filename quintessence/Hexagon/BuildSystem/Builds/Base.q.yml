@@ -11,20 +11,25 @@ properties:
     type: float
     init_with: 0
     getter: true
+    setter: true
 
   - name: ended_at
     type: float
     init_with: 0
     getter: true
+    setter: true
 
   - name: status
     type: std::string
     init_with: '"[unset-status]"'
     getter: true
+    setter: true
 
   - name: stages
     type: std::vector<Hexagon::BuildSystem::BuildStages::Base*>
     init_with: '{}'
+    getter: true
+    setter: true
 
 
 functions:
