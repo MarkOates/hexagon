@@ -108,9 +108,10 @@ void Renderer::render()
    for (auto &stage : stages)
    {
       std::string PATH_TO_BUILD_DUMPS = "/Users/markoates/Repos/hexagon/bin/programs/data/builds/dumps/";
+      std::string stage_name = std::get<0>(stage); // run_test_for_focused_component
       std::string stage_result_dump_filename = std::get<3>(stage); // currently not used, but hopefully soon :)
       std::string stage_status = std::get<2>(stage);
-      std::string stage_label = std::get<1>(stage);
+      std::string stage_status_box_label = std::get<1>(stage);
       std::string sequence_dump_full_path = PATH_TO_BUILD_DUMPS + stage_result_dump_filename;
       bool expecting_stage_to_have_file = !stage_result_dump_filename.empty();
       bool stage_dump_path_exists = expecting_stage_to_have_file
@@ -158,7 +159,7 @@ void Renderer::render()
 
             std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);
 
-            draw_build_dump_report(dump_place.size.x, stage_text_dump);
+            draw_build_dump_report(dump_place.size.x, stage_text_dump, stage_name);
             //al_draw_multiline_text(dump_font, dump_text_color, 0, 0, dump_place.size.x, font_line_height, ALLEGRO_ALIGN_LEFT,
                //stage_text_dump.c_str()
             //);
@@ -168,7 +169,7 @@ void Renderer::render()
       }
 
       //ALLEGRO_COLOR box_color = build_color_from_status(stage_status);
-      draw_status_box(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_label);
+      draw_status_box(0, cursor_y, box_width, cursor_y+box_height, stage_status, stage_status_box_label);
 
       cursor_y -= (box_height + box_spacing);
    }
@@ -190,7 +191,7 @@ void Renderer::draw_build_dump_report_legacy(float width, std::string stage_text
    return;
 }
 
-void Renderer::draw_build_dump_report(float width, std::string stage_text_dump)
+void Renderer::draw_build_dump_report(float width, std::string stage_text_dump, std::string stage_name)
 {
    static std::string last_dump = "";
    static std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes;
