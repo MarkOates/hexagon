@@ -34,6 +34,7 @@ namespace Hexagon
          int get_duration_msec() const;
          std::string get_output_body() const;
          std::string get_failure_message() const;
+         bool infer_failed();
       };
    }
 }

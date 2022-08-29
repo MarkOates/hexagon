@@ -44,3 +44,12 @@ properties:
     setter: true
 
 
+functions:
+
+
+  - name: infer_failed
+    type: bool
+    body: |
+      return result == "failed"; // TODO: compare this to a constant
+
+

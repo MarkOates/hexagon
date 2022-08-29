@@ -185,7 +185,6 @@ functions:
       ALLEGRO_FONT *font = obtain_font();
       al_draw_text(font, dump_text_color, 0, -20, ALLEGRO_ALIGN_LEFT, "================ TEST RESUT =================");
 
-      // HERE
       static std::string last_dump = "";
       static Hexagon::Testing::GoogleTestRunOutputParser test_run_output_parser; //(stage_text_dump);
       //static std::vector<Hexagon::Testing::GoogleTestRunTestResult> parsed_test_results = {};
@@ -212,7 +211,51 @@ functions:
       }
       else
       {
-         draw_build_dump_report_legacy(width, stage_text_dump);
+         //draw_build_dump_report_legacy(width, stage_text_dump);
+         //return;
+
+         Hexagon::Elements::ColorKit color_kit;
+         ALLEGRO_FONT *dump_font = obtain_dump_font();
+         float font_line_height = al_get_font_line_height(dump_font);
+         ALLEGRO_COLOR dump_text_color = color_kit.terminal_warm_orange();
+
+         float cursor_y = 0;
+         //int num_lines = 0;
+         for (auto &result : test_run_output_parser.get_parsed_test_results())
+         {
+            // HERE
+            if (!result.infer_failed()) continue;
+
+            std::stringstream composed_string;
+            composed_string << "=======================================" << std::endl;
+            composed_string << "============== FAILURE ===============" << std::endl;
+            composed_string << "Class: " << result.get_test_class_name() << std::endl;
+            composed_string << "Description: " << result.get_test_description() << std::endl;
+            composed_string << "============== BODY ==========" << std::endl;
+            //composed_string << "Failure message: " << result.get_failure_message() << std::endl;
+            composed_string << std::endl;
+            composed_string << result.get_output_body();
+            composed_string << std::endl;
+            composed_string << std::endl;
+            composed_string << "======================================" << std::endl;
+            composed_string << std::endl;
+
+            std::string str = composed_string.str();
+            std::string::difference_type num_lines = std::count(str.begin(), str.end(), '\n');
+
+            al_draw_multiline_text(
+               dump_font,
+               dump_text_color,
+               0,
+               cursor_y,
+               width,
+               font_line_height,
+               ALLEGRO_ALIGN_LEFT,
+               composed_string.str().c_str()
+            );
+
+            cursor_y += (font_line_height * (num_lines+2));
+         }
       }
 
       return;

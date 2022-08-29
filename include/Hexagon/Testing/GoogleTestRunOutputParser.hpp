@@ -13,6 +13,10 @@ namespace Hexagon
    {
       class GoogleTestRunOutputParser
       {
+      public:
+         static constexpr char* RESULT_OK = "ok";
+         static constexpr char* RESULT_FAILED = "failed";
+
       private:
          std::string google_test_run_output;
          std::vector<Hexagon::Testing::GoogleTestRunTestResult> parsed_test_results;

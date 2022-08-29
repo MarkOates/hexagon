@@ -1621,6 +1621,9 @@
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/ProjectComponentBasenameExtractor"
   ],
+  "char": [
+    "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
   "al_draw_line": [
     "Hexagon/UI/DrawingBox"
   ],

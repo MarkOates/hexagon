@@ -17,6 +17,18 @@ properties:
     init_with: '{}'
     getter: true
 
+  - name: RESULT_OK
+    type: char*
+    static: true
+    init_with: '"ok"'
+    constexpr: true
+
+  - name: RESULT_FAILED
+    type: char*
+    static: true
+    init_with: '"failed"'
+    constexpr: true
+
 
 functions:
 
@@ -102,7 +114,7 @@ functions:
             if (match_was_found)
             {
                if (!current_test_case) throw std::runtime_error("asdfasdf \"current_test_case\" expected");
-               std::string result_to_set = "ok";
+               std::string result_to_set = RESULT_OK;
                int duration_msec_to_set = extract_ms(line);
 
                current_test_case->set_result(result_to_set);
@@ -128,7 +140,7 @@ functions:
             if (match_was_found)
             {
                if (!current_test_case) throw std::runtime_error("asdfasdfasdfasdf \"current_test_case\" expected");
-               std::string result_to_set = "failed";
+               std::string result_to_set = RESULT_FAILED;
                int duration_msec_to_set = extract_ms(line);
 
                current_test_case->set_result(result_to_set);
@@ -242,3 +254,7 @@ dependencies:
     headers: [ Hexagon/RegexMatcher.hpp ]
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
+  - symbol: char*
+    headers: [ ]
+
+

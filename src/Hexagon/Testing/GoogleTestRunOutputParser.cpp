@@ -123,7 +123,7 @@ bool GoogleTestRunOutputParser::parse()
          if (match_was_found)
          {
             if (!current_test_case) throw std::runtime_error("asdfasdf \"current_test_case\" expected");
-            std::string result_to_set = "ok";
+            std::string result_to_set = RESULT_OK;
             int duration_msec_to_set = extract_ms(line);
 
             current_test_case->set_result(result_to_set);
@@ -149,7 +149,7 @@ bool GoogleTestRunOutputParser::parse()
          if (match_was_found)
          {
             if (!current_test_case) throw std::runtime_error("asdfasdfasdfasdf \"current_test_case\" expected");
-            std::string result_to_set = "failed";
+            std::string result_to_set = RESULT_FAILED;
             int duration_msec_to_set = extract_ms(line);
 
             current_test_case->set_result(result_to_set);

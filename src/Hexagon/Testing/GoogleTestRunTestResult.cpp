@@ -98,6 +98,10 @@ std::string GoogleTestRunTestResult::get_failure_message() const
 }
 
 
+bool GoogleTestRunTestResult::infer_failed()
+{
+   return result == "failed"; // TODO: compare this to a constant
+}
 } // namespace Testing
 } // namespace Hexagon
 
