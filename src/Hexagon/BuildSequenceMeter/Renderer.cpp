@@ -191,8 +191,27 @@ void Renderer::draw_build_dump_report_legacy(float width, std::string stage_text
    return;
 }
 
+void Renderer::draw_build_dump_report_for_google_test_run(float width, std::string stage_text_dump)
+{
+   Hexagon::Elements::ColorKit color_kit;
+   ALLEGRO_COLOR dump_text_color = color_kit.terminal_warm_orange();
+   ALLEGRO_FONT *font = obtain_font();
+   al_draw_text(font, dump_text_color, 0, -20, ALLEGRO_ALIGN_LEFT, "================ TEST RESUT =================");
+
+   // HERE
+   draw_build_dump_report_legacy(width, stage_text_dump);
+   return;
+}
+
 void Renderer::draw_build_dump_report(float width, std::string stage_text_dump, std::string stage_name)
 {
+   if (stage_name == "run_test_for_focused_component")
+   {
+      draw_build_dump_report_for_google_test_run(width, stage_text_dump);
+      return;
+   }
+
+
    static std::string last_dump = "";
    static std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes;
 
