@@ -3,6 +3,7 @@
 
 #include <Hexagon/BuildSystem/BuildStages/Base.hpp>
 #include <string>
+#include <vector>
 
 
 namespace Hexagon

@@ -851,6 +851,22 @@
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/Daemus/ProgramRunner"
   ],
+  "std/vector<std/vector<std/string>>": [
+    "Hexagon/BuildSystem/BuildStages/Base",
+    "Hexagon/BuildSystem/Builds/Base",
+    "Hexagon/Elements/DataTable"
+  ],
+  "Hexagon/BuildSystem/BuildStages/Base": [
+    "Hexagon/BuildSystem/BuildStages/Basic",
+    "Hexagon/BuildSystem/BuildStages/BuildPrograms",
+    "Hexagon/BuildSystem/BuildStages/BuildQuintessence"
+  ],
+  "std/vector<Hexagon/BuildSystem/BuildStages/Base>": [
+    "Hexagon/BuildSystem/Builds/Base"
+  ],
+  "Hexagon/BuildSystem/Builds/Base": [
+    "Hexagon/BuildSystem/Builds/Focused"
+  ],
   "vec3d": [
     "Hexagon/Camera"
   ],
@@ -1094,9 +1110,6 @@
   "al_get_font_line_height": [
     "Hexagon/Elements/DataTable",
     "Hexagon/PacketRenderer"
-  ],
-  "std/vector<std/vector<std/string>>": [
-    "Hexagon/Elements/DataTable"
   ],
   "std/map<std/tuple<int, int>, int>": [
     "Hexagon/Elements/DynamicGridMesh"

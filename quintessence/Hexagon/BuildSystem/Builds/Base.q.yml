@@ -46,6 +46,6 @@ dependencies:
   - symbol: std::vector<std::vector<std::string>>
     headers: [ vector, string ]
   - symbol: std::vector<Hexagon::BuildSystem::BuildStages::Base*>
-    headers: [ Hexagon/BuildSystem/BuildStages/Base.hpp ]
+    headers: [ vector, Hexagon/BuildSystem/BuildStages/Base.hpp ]
 
 
