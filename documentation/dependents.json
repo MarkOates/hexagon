@@ -859,17 +859,38 @@
     "Hexagon/BuildSystem/Builds/Base",
     "Hexagon/Elements/DataTable"
   ],
+  "char": [
+    "Hexagon/BuildSystem/BuildStages/Base",
+    "Hexagon/BuildSystem/Builds/Base",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
   "Hexagon/BuildSystem/BuildStages/Base": [
-    "Hexagon/BuildSystem/BuildStages/Basic",
     "Hexagon/BuildSystem/BuildStages/BuildPrograms",
-    "Hexagon/BuildSystem/BuildStages/BuildQuintessence"
+    "Hexagon/BuildSystem/BuildStages/BuildQuintessence",
+    "Hexagon/BuildSystem/BuildStages/ShellCommand"
+  ],
+  "Blast/ShellCommandExecutorWithCallback": [
+    "Hexagon/BuildSystem/BuildStages/ShellCommand",
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Git/CommitStagedWithMessage",
+    "Hexagon/Git/Modified",
+    "Hexagon/Git/Pusher",
+    "Hexagon/Git/StageEverything",
+    "Hexagon/Git/Staged",
+    "Hexagon/Git/Untracked",
+    "Hexagon/NewComponentMaker/NewComponentMaker",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/PasteboardData",
+    "Hexagon/Rails/ComponentLister",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/Search/Elasticsearch/HealthChecker",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/Testing/ComponentTestRunner",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/vector<Hexagon/BuildSystem/BuildStages/Base>": [
     "Hexagon/BuildSystem/Builds/Base"
-  ],
-  "char": [
-    "Hexagon/BuildSystem/Builds/Base",
-    "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "Hexagon/BuildSystem/Builds/Base": [
     "Hexagon/BuildSystem/Builds/Focused"
@@ -1059,25 +1080,6 @@
   "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "Blast/ShellCommandExecutorWithCallback": [
-    "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/Git/CommitStagedWithMessage",
-    "Hexagon/Git/Modified",
-    "Hexagon/Git/Pusher",
-    "Hexagon/Git/StageEverything",
-    "Hexagon/Git/Staged",
-    "Hexagon/Git/Untracked",
-    "Hexagon/NewComponentMaker/NewComponentMaker",
-    "Hexagon/NewComponentMaker/Stage",
-    "Hexagon/PasteboardData",
-    "Hexagon/Rails/ComponentLister",
-    "Hexagon/Search/ComponentElasticsearchIndexer",
-    "Hexagon/Search/Elasticsearch/HealthChecker",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/OpenDocumentationInBrowser",
-    "Hexagon/Testing/ComponentTestRunner",
-    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"

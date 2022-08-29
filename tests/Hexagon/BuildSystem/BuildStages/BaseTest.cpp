@@ -28,7 +28,7 @@ TEST(Hexagon_BuildSystem_BuildStages_BaseTest, has_the_expected_type)
 
 TEST(Hexagon_BuildSystem_BuildStages_BaseTest, derived_classes_will_have_the_expected_type)
 {
-   BuildStages]BaseTestClass test_class;
+   BuildStagesBaseTestClass test_class;
    EXPECT_EQ("BuildStagesBaseTestClass", test_class.get_type());
 }
 

@@ -1,0 +1,52 @@
+parent_classes:
+
+
+  - class: Hexagon::BuildSystem::BuildStages::Base
+    scope: public
+    init_with: '"ShellCommand"'
+
+
+properties:
+
+
+  - name: shell_command
+    type: std::string
+    init_with: '"echo \"hello, shell command.\""'
+    constructor_arg: true
+    getter: true
+
+  - name: shell_command_result
+    type: std::string
+    init_with: '""'
+    getter: true
+
+  - name: executed
+    type: bool
+    init_with: false
+
+
+functions:
+
+
+  - name: execute_raw
+    virtual: true
+    override: true
+    guards: [ (!executed) ]
+    body: |
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command);
+      shell_command_result = shell_command_executor.execute();
+      executed = true;
+      return;
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
+
+
+dependencies:
+
+
+  - symbol: Hexagon::BuildSystem::BuildStages::Base
+    headers: [ Hexagon/BuildSystem/BuildStages/Base.hpp ]
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+
+

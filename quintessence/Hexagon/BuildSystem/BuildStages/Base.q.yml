@@ -7,6 +7,49 @@ properties:
     constructor_arg: true
     getter: true
 
+  - name: started_at
+    type: float
+    init_with: 0
+    getter: true
+    setter: true
+
+  - name: ended_at
+    type: float
+    init_with: 0
+    getter: true
+    setter: true
+
+  - name: status
+    type: std::string
+    init_with: '"[unset-status]"'
+    getter: true
+    setter: true
+
+  - name: STATUS_NOT_STARTED
+    type: char*
+    static: true
+    init_with: '"not_started"'
+    constexpr: true
+
+  - name: STATUS_RUNNING
+    type: char*
+    static: true
+    init_with: '"running"'
+    constexpr: true
+
+  - name: STATUS_FINISHED
+    type: char*
+    static: true
+    init_with: '"finished"'
+    constexpr: true
+
+  - name: STATUS_FAILED
+    type: char*
+    static: true
+    init_with: '"failed"'
+    constexpr: true
+
+
 
 functions:
 
@@ -21,10 +64,36 @@ functions:
       return (possible_type == get_type());
 
 
+  - name: execute_raw
+    virtual: true
+    body: |
+      return;
+
+
+  - name: execute
+    body: |
+      status = STATUS_RUNNING;
+      try
+      {
+         execute_raw();
+         status = STATUS_FINISHED;
+      }
+      catch (const std::exception& e)
+      {
+         std::cout << "execution of build stage failed." << std::endl;
+         status = STATUS_FAILED;
+      }
+      return;
+    body_dependency_symbols:
+      - std::cout
+
+
 dependencies:
 
 
   - symbol: std::vector<std::vector<std::string>>
     headers: [ vector, string ]
+  - symbol: char*
+    headers: [ ]
 
 
