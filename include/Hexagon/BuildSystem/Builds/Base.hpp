@@ -15,6 +15,7 @@ namespace Hexagon
          class Base
          {
          public:
+            static constexpr char* TYPE = "Base";
             static constexpr char* STATUS_NOT_STARTED = "not_started";
             static constexpr char* STATUS_RUNNING = "running";
             static constexpr char* STATUS_FINISHED = "finished";
@@ -28,7 +29,7 @@ namespace Hexagon
             std::string status;
 
          public:
-            Base(std::string type="Base", std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages={});
+            Base(std::string type=TYPE, std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages={});
             ~Base();
 
             void set_build_stages(std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages);

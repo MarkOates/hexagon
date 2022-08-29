@@ -897,12 +897,6 @@
   "std/vector<Hexagon/BuildSystem/BuildStages/Base>": [
     "Hexagon/BuildSystem/Builds/Base"
   ],
-  "Hexagon/BuildSystem/Builds/Focused": [
-    "Hexagon/BuildSystem/ReportRenderer"
-  ],
-  "Hexagon/BuildSystem/ReportRenderers/Basic": [
-    "Hexagon/BuildSystem/ReportRenderer"
-  ],
   "Hexagon/BuildSystem/ReportRenderers/Base": [
     "Hexagon/BuildSystem/ReportRenderer"
   ],
