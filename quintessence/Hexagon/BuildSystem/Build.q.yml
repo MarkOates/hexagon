@@ -4,6 +4,7 @@ properties:
     type: std::string
     init_with: STATUS_UNDEFINED
     getter: true
+
   - name: STATUS_UNDEFINED
     type: std::string
     const: true
