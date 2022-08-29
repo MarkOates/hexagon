@@ -19,9 +19,10 @@ namespace Hexagon
          std::vector<std::string> error_messages_during_parsing;
 
       public:
-         GoogleTestRunOutputParser(std::string google_test_run_output="");
+         GoogleTestRunOutputParser(std::string google_test_run_output="[unset-google_test_run_output]");
          ~GoogleTestRunOutputParser();
 
+         void set_google_test_run_output(std::string google_test_run_output);
          std::vector<Hexagon::Testing::GoogleTestRunTestResult> get_parsed_test_results() const;
          std::vector<std::string> get_error_messages_during_parsing() const;
          bool parse();

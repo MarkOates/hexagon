@@ -3,8 +3,9 @@ properties:
 
   - name: google_test_run_output
     type: std::string
-    init_with: '""'
+    init_with: '"[unset-google_test_run_output]"'
     constructor_arg: true
+    setter: true
 
   - name: parsed_test_results
     type: std::vector<Hexagon::Testing::GoogleTestRunTestResult>
@@ -23,8 +24,8 @@ functions:
   - name: parse
     type: bool
     body: |
-      parsed_test_results.empty();
-      error_messages_during_parsing.empty();
+      parsed_test_results.clear();
+      error_messages_during_parsing.clear();
       bool test_suite_is_starting_line_was_found = false;
       bool test_suite_is_starting_line_was_detected_multiple_times = false;
       std::string captured_test_output_body = "";
