@@ -7,6 +7,7 @@
 #include <allegro_flare/placement2d.h>
 #include <AllegroFlare/Color.hpp>
 #include <Hexagon/Elements/ColorKit.hpp>
+#include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
 #include <Hexagon/Testing/ClangBuildOutputParser.hpp>
 #include <algorithm>
 #include <allegro5/allegro_primitives.h>
@@ -199,7 +200,22 @@ void Renderer::draw_build_dump_report_for_google_test_run(float width, std::stri
    al_draw_text(font, dump_text_color, 0, -20, ALLEGRO_ALIGN_LEFT, "================ TEST RESUT =================");
 
    // HERE
-   draw_build_dump_report_legacy(width, stage_text_dump);
+   Hexagon::Testing::GoogleTestRunOutputParser test_run_output_parser(stage_text_dump);
+   test_run_output_parser.parse();
+   if (!test_run_output_parser.get_error_messages_during_parsing().empty())
+   {
+      std::stringstream error_message;
+      error_message << "Hexagon::BuildSequenceMeter::Renderer::draw_build_dump_report_for_google_test_run warning: "
+                    << "There were errors during parsing with the GoogleTestRunOutputParser. Drawing with legacy.";
+      std::cout << error_message.str() << std::endl;
+
+      draw_build_dump_report_legacy(width, stage_text_dump);
+   }
+   else
+   {
+      draw_build_dump_report_legacy(width, stage_text_dump);
+   }
+
    return;
 }
 

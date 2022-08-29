@@ -847,6 +847,10 @@
   "std/count": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "Hexagon/Testing/GoogleTestRunOutputParser": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/Daemus/ProgramRunner"
+  ],
   "vec3d": [
     "Hexagon/Camera"
   ],
@@ -1027,9 +1031,6 @@
     "Hexagon/Daemus/ProgramRunner"
   ],
   "getpid": [
-    "Hexagon/Daemus/ProgramRunner"
-  ],
-  "Hexagon/Testing/GoogleTestRunOutputParser": [
     "Hexagon/Daemus/ProgramRunner"
   ],
   "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [

@@ -2224,6 +2224,9 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::count&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
 </tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Testing::GoogleTestRunOutputParser&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Testing/GoogleTestRunOutputParser.hpp&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -12073,6 +12076,10 @@ table td
   "std/count": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
+  "Hexagon/Testing/GoogleTestRunOutputParser": [
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/Daemus/ProgramRunner"
+  ],
   "vec3d": [
     "Hexagon/Camera"
   ],
@@ -12253,9 +12260,6 @@ table td
     "Hexagon/Daemus/ProgramRunner"
   ],
   "getpid": [
-    "Hexagon/Daemus/ProgramRunner"
-  ],
-  "Hexagon/Testing/GoogleTestRunOutputParser": [
     "Hexagon/Daemus/ProgramRunner"
   ],
   "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [

@@ -185,8 +185,25 @@ functions:
       al_draw_text(font, dump_text_color, 0, -20, ALLEGRO_ALIGN_LEFT, "================ TEST RESUT =================");
 
       // HERE
-      draw_build_dump_report_legacy(width, stage_text_dump);
+      Hexagon::Testing::GoogleTestRunOutputParser test_run_output_parser(stage_text_dump);
+      test_run_output_parser.parse();
+      if (!test_run_output_parser.get_error_messages_during_parsing().empty())
+      {
+         std::stringstream error_message;
+         error_message << "Hexagon::BuildSequenceMeter::Renderer::draw_build_dump_report_for_google_test_run warning: "
+                       << "There were errors during parsing with the GoogleTestRunOutputParser. Drawing with legacy.";
+         std::cout << error_message.str() << std::endl;
+
+         draw_build_dump_report_legacy(width, stage_text_dump);
+      }
+      else
+      {
+         draw_build_dump_report_legacy(width, stage_text_dump);
+      }
+
       return;
+    body_dependency_symbols:
+      - Hexagon::Testing::GoogleTestRunOutputParser
 
 
   - name: draw_build_dump_report
@@ -446,5 +463,7 @@ dependencies:
     headers: [ Hexagon/Testing/ClangBuildOutputParser.hpp ]
   - symbol: std::count
     headers: [ algorithm ]
+  - symbol: Hexagon::Testing::GoogleTestRunOutputParser
+    headers: [ Hexagon/Testing/GoogleTestRunOutputParser.hpp ]
 
 
