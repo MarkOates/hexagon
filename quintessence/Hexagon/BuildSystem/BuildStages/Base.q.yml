@@ -43,6 +43,12 @@ properties:
     init_with: '"finished"'
     constexpr: true
 
+  - name: STATUS_ERROR
+    type: char*
+    static: true
+    init_with: '"error"'
+    constexpr: true
+
   - name: STATUS_FAILED
     type: char*
     static: true

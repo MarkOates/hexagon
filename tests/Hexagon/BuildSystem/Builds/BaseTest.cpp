@@ -75,7 +75,7 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
    BuildsBaseTestClass base_build;
    base_build.set_build_stages({ new ExceptionThrowingBuildStageTestClass });
    base_build.run();
-   EXPECT_EQ(Hexagon::BuildSystem::Builds::Base::STATUS_FAILED, base_build.get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::Builds::Base::STATUS_ERROR, base_build.get_status());
 }
 
 
@@ -117,7 +117,7 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
 
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[0]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[1]->get_status());
-   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED, build_stages[2]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR, build_stages[2]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED, build_stages[3]->get_status());
 }
 

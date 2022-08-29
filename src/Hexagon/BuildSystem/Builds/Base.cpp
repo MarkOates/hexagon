@@ -105,10 +105,10 @@ void Base::run()
       }
       catch (const std::exception& e)
       {
-         std::cout << "execution of build stage failed." << std::endl;
-         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED);
+         std::cout << "There was an error during the execution of build stage." << std::endl;
+         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR);
 
-         status = STATUS_FAILED;
+         status = STATUS_ERROR;
          return;
       }
    }

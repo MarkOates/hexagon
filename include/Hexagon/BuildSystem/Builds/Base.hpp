@@ -18,7 +18,7 @@ namespace Hexagon
             static constexpr char* STATUS_NOT_STARTED = "not_started";
             static constexpr char* STATUS_RUNNING = "running";
             static constexpr char* STATUS_FINISHED = "finished";
-            static constexpr char* STATUS_FAILED = "failed";
+            static constexpr char* STATUS_ERROR = "error";
 
          private:
             std::string type;
