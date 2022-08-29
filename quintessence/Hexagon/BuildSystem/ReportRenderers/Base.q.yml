@@ -27,11 +27,15 @@ functions:
       return (possible_type == get_type());
 
 
-  - name: render
+  - name: render_text
     type: std::string
     virtual: true
     body: |
-      return;
+      std::stringstream result;
+      result << "[== REPORT ==]" << std::endl;
+      return result.str();
+    body_dependency_symbols:
+      - std::stringstream
 
 
 dependencies:

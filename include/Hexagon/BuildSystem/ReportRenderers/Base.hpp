@@ -24,7 +24,7 @@ namespace Hexagon
 
             std::string get_type() const;
             bool is_type(std::string possible_type="");
-            virtual std::string render();
+            virtual std::string render_text();
          };
       }
    }

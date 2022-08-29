@@ -28,7 +28,7 @@ TEST(Hexagon_BuildSystem_ReportRenderers_BaseTest, has_the_expected_type)
 
 TEST(Hexagon_BuildSystem_ReportRenderers_BaseTest, derived_classes_will_have_the_expected_type)
 {
-   ReportRenderers]BaseTestClass test_class;
+   ReportRenderersBaseTestClass test_class;
    EXPECT_EQ("ReportRenderersBaseTestClass", test_class.get_type());
 }
 

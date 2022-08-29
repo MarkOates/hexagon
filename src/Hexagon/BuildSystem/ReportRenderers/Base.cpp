@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/BuildSystem/ReportRenderers/Base.hpp>
-
+#include <sstream>
 
 
 namespace Hexagon
@@ -34,9 +34,11 @@ bool Base::is_type(std::string possible_type)
    return (possible_type == get_type());
 }
 
-std::string Base::render()
+std::string Base::render_text()
 {
-   return;
+   std::stringstream result;
+   result << "[== REPORT ==]" << std::endl;
+   return result.str();
 }
 } // namespace ReportRenderers
 } // namespace BuildSystem

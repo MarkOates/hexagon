@@ -48,7 +48,7 @@ std::string ReportRenderer::build_report()
    if (report->is_type(Hexagon::BuildSystem::Builds::Base::TYPE))
    {
       Hexagon::BuildSystem::ReportRenderers::Base base_report_renderer;
-      result = base_report_renderer.render();
+      result = base_report_renderer.render_text();
    }
    else
    {
