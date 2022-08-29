@@ -1,7 +1,7 @@
 
 
 #include <Hexagon/BuildSystem/ReportRenderer.hpp>
-#include <Hexagon/BuildSystem/Builds/Focused.hpp>
+#include <Hexagon/BuildSystem/ReportRenderers/Base.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -45,9 +45,10 @@ std::string ReportRenderer::build_report()
       }
    std::string result;
 
-   if (report->is_type(Hexagon::BuildSystem::Builds::Focused::TYPE))
+   if (report->is_type(Hexagon::BuildSystem::Builds::Base::TYPE))
    {
-      // TODO render report
+      Hexagon::BuildSystem::ReportRenderers::Base base_report_renderer;
+      result = base_report_renderer.render();
    }
    else
    {

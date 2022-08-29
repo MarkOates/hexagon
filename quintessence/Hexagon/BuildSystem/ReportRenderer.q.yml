@@ -18,9 +18,10 @@ functions:
     body: |
       std::string result;
 
-      if (report->is_type(Hexagon::BuildSystem::Builds::Focused::TYPE))
+      if (report->is_type(Hexagon::BuildSystem::Builds::Base::TYPE))
       {
-         // TODO render report
+         Hexagon::BuildSystem::ReportRenderers::Base base_report_renderer;
+         result = base_report_renderer.render();
       }
       else
       {
@@ -32,7 +33,7 @@ functions:
 
       return result;
     body_dependency_symbols:
-      - Hexagon::BuildSystem::Builds::Focused
+      - Hexagon::BuildSystem::ReportRenderers::Base
 
 
 dependencies:
@@ -40,10 +41,6 @@ dependencies:
 
   - symbol: Hexagon::BuildSystem::Builds::Base*
     headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
-  - symbol: Hexagon::BuildSystem::Builds::Focused
-    headers: [ Hexagon/BuildSystem/Builds/Focused.hpp ]
-  - symbol: Hexagon::BuildSystem::ReportRenderers::Basic
-    headers: [ Hexagon/BuildSystem/ReportRenderers/Basic.hpp ]
   - symbol: Hexagon::BuildSystem::ReportRenderers::Base
     headers: [ Hexagon/BuildSystem/ReportRenderers/Base.hpp ]
 
