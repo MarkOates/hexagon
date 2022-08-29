@@ -1,0 +1,38 @@
+parent_classes:
+
+
+  - class: Hexagon::BuildSystem::Builds::Base
+    scope: public
+    init_with: '"Focused"'
+
+
+properties:
+
+
+  - name: property
+    type: std::string
+    init_with: '"[unset-property]"'
+    constructor_arg: true
+    getter: true
+
+
+functions:
+
+
+  - name: property_is
+    type: bool
+    parameters:
+      - name: possible_type
+        type: std::string
+        default_argument: '""'
+    body: |
+      return (possible_type == get_property());
+
+
+dependencies:
+
+
+  - symbol: Hexagon::BuildSystem::Builds::Base
+    headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
+
+

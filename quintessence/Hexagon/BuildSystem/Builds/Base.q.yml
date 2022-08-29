@@ -1,0 +1,51 @@
+properties:
+
+
+  - name: type
+    type: std::string
+    init_with: '"Base"'
+    constructor_arg: true
+    getter: true
+
+  - name: started_at
+    type: float
+    init_with: 0
+    getter: true
+
+  - name: ended_at
+    type: float
+    init_with: 0
+    getter: true
+
+  - name: status
+    type: std::string
+    init_with: '"[unset-status]"'
+    getter: true
+
+  - name: stages
+    type: std::vector<Hexagon::BuildSystem::BuildStages::Base*>
+    init_with: '{}'
+
+
+functions:
+
+
+  - name: is_type
+    type: bool
+    parameters:
+      - name: possible_type
+        type: std::string
+        default_argument: '""'
+    body: |
+      return (possible_type == get_type());
+
+
+dependencies:
+
+
+  - symbol: std::vector<std::vector<std::string>>
+    headers: [ vector, string ]
+  - symbol: std::vector<Hexagon::BuildSystem::BuildStages::Base*>
+    headers: [ Hexagon/BuildSystem/BuildStages/Base.hpp ]
+
+
