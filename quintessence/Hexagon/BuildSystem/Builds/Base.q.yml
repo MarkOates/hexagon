@@ -7,6 +7,13 @@ properties:
     constructor_arg: true
     getter: true
 
+  - name: build_stages
+    type: std::vector<Hexagon::BuildSystem::BuildStages::Base*>
+    init_with: '{}'
+    constructor_arg: true
+    getter: true
+    setter: true
+
   - name: started_at
     type: float
     init_with: 0
@@ -21,13 +28,7 @@ properties:
 
   - name: status
     type: std::string
-    init_with: '"[unset-status]"'
-    getter: true
-    setter: true
-
-  - name: build_stages
-    type: std::vector<Hexagon::BuildSystem::BuildStages::Base*>
-    init_with: '{}'
+    init_with: STATUS_NOT_STARTED
     getter: true
     setter: true
 

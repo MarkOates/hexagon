@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include <Hexagon/BuildSystem/Builds/Focused.hpp>
+#include <Hexagon/BuildSystem/BuildStageFactory.hpp>
+#include <Hexagon/BuildSystem/Builds/Base.hpp>
 
 
 namespace Hexagon
@@ -11,12 +12,13 @@ namespace Hexagon
       class BuildFactory
       {
       private:
+         Hexagon::BuildSystem::BuildStageFactory build_stage_factory;
 
       public:
          BuildFactory();
          ~BuildFactory();
 
-         Hexagon::BuildSystem::Builds::Focused* create_focused_build();
+         Hexagon::BuildSystem::Builds::Base* create_placeholder_build();
       };
    }
 }

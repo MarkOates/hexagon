@@ -851,9 +851,12 @@
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/Daemus/ProgramRunner"
   ],
-  "Hexagon/BuildSystem/Builds/Focused": [
+  "Hexagon/BuildSystem/Builds/Base": [
     "Hexagon/BuildSystem/BuildFactory",
     "Hexagon/BuildSystem/ReportRenderer"
+  ],
+  "Hexagon/BuildSystem/BuildStageFactory": [
+    "Hexagon/BuildSystem/BuildFactory"
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStages/Base",
@@ -863,7 +866,6 @@
   "char": [
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/Builds/Base",
-    "Hexagon/BuildSystem/Builds/Focused",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "Hexagon/BuildSystem/BuildStages/Base": [
@@ -892,8 +894,7 @@
   "std/vector<Hexagon/BuildSystem/BuildStages/Base>": [
     "Hexagon/BuildSystem/Builds/Base"
   ],
-  "Hexagon/BuildSystem/Builds/Base": [
-    "Hexagon/BuildSystem/Builds/Focused",
+  "Hexagon/BuildSystem/Builds/Focused": [
     "Hexagon/BuildSystem/ReportRenderer"
   ],
   "Hexagon/BuildSystem/ReportRenderers/Basic": [

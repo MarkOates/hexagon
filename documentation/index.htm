@@ -73,7 +73,6 @@ table td
   <li><a href="#quintessence/Hexagon/BuildSystem/BuildStages/Base.q.yml">quintessence/Hexagon/BuildSystem/BuildStages/Base.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/BuildStages/ShellCommand.q.yml">quintessence/Hexagon/BuildSystem/BuildStages/ShellCommand.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/Builds/Base.q.yml">quintessence/Hexagon/BuildSystem/Builds/Base.q.yml</a></li>
-  <li><a href="#quintessence/Hexagon/BuildSystem/Builds/Focused.q.yml">quintessence/Hexagon/BuildSystem/Builds/Focused.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderers/Basic.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderers/Basic.q.yml</a></li>
@@ -2242,15 +2241,22 @@ table td
   <div class="component">
     <h3 id="quintessence/Hexagon/BuildSystem/BuildFactory.q.yml">quintessence/Hexagon/BuildSystem/BuildFactory.q.yml</h3>
      <table>
-    </table>
-     <table>
 <tr>
-  <td class="method">create_focused_build()</td>
+  <td class="property">build_stage_factory</td>
+  <td class="property">Hexagon::BuildSystem::BuildStageFactory</td>
 </tr>
     </table>
      <table>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::Builds::Focused*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/Builds/Focused.hpp&quot;]}</td>
+  <td class="method">create_placeholder_build()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::Builds::Base*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/Builds/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStageFactory&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStageFactory.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -2351,6 +2357,10 @@ table td
   <td class="property">std::string</td>
 </tr>
 <tr>
+  <td class="property">build_stages</td>
+  <td class="property">std::vector&lt;Hexagon::BuildSystem::BuildStages::Base*&gt;</td>
+</tr>
+<tr>
   <td class="property">started_at</td>
   <td class="property">float</td>
 </tr>
@@ -2361,10 +2371,6 @@ table td
 <tr>
   <td class="property">status</td>
   <td class="property">std::string</td>
-</tr>
-<tr>
-  <td class="property">build_stages</td>
-  <td class="property">std::vector&lt;Hexagon::BuildSystem::BuildStages::Base*&gt;</td>
 </tr>
 <tr>
   <td class="property">STATUS_NOT_STARTED</td>
@@ -2397,27 +2403,6 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::BuildSystem::BuildStages::Base*&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/BuildSystem/BuildStages/Base.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
-</tr>
-    </table>
-  </div>
-</ul>
-<ul>
-  <div class="component">
-    <h3 id="quintessence/Hexagon/BuildSystem/Builds/Focused.q.yml">quintessence/Hexagon/BuildSystem/Builds/Focused.q.yml</h3>
-     <table>
-<tr>
-  <td class="property">TYPE</td>
-  <td class="property">char*</td>
-</tr>
-    </table>
-     <table>
-    </table>
-     <table>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::Builds::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/Builds/Base.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
@@ -12347,9 +12332,12 @@ table td
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/Daemus/ProgramRunner"
   ],
-  "Hexagon/BuildSystem/Builds/Focused": [
+  "Hexagon/BuildSystem/Builds/Base": [
     "Hexagon/BuildSystem/BuildFactory",
     "Hexagon/BuildSystem/ReportRenderer"
+  ],
+  "Hexagon/BuildSystem/BuildStageFactory": [
+    "Hexagon/BuildSystem/BuildFactory"
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStages/Base",
@@ -12359,7 +12347,6 @@ table td
   "char": [
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/Builds/Base",
-    "Hexagon/BuildSystem/Builds/Focused",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "Hexagon/BuildSystem/BuildStages/Base": [
@@ -12388,8 +12375,7 @@ table td
   "std/vector<Hexagon/BuildSystem/BuildStages/Base>": [
     "Hexagon/BuildSystem/Builds/Base"
   ],
-  "Hexagon/BuildSystem/Builds/Base": [
-    "Hexagon/BuildSystem/Builds/Focused",
+  "Hexagon/BuildSystem/Builds/Focused": [
     "Hexagon/BuildSystem/ReportRenderer"
   ],
   "Hexagon/BuildSystem/ReportRenderers/Basic": [

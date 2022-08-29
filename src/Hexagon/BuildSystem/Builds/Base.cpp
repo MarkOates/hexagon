@@ -12,18 +12,24 @@ namespace Builds
 {
 
 
-Base::Base(std::string type)
+Base::Base(std::string type, std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages)
    : type(type)
+   , build_stages(build_stages)
    , started_at(0)
    , ended_at(0)
-   , status("[unset-status]")
-   , build_stages({})
+   , status(STATUS_NOT_STARTED)
 {
 }
 
 
 Base::~Base()
 {
+}
+
+
+void Base::set_build_stages(std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages)
+{
+   this->build_stages = build_stages;
 }
 
 
@@ -45,15 +51,15 @@ void Base::set_status(std::string status)
 }
 
 
-void Base::set_build_stages(std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages)
-{
-   this->build_stages = build_stages;
-}
-
-
 std::string Base::get_type() const
 {
    return type;
+}
+
+
+std::vector<Hexagon::BuildSystem::BuildStages::Base*> Base::get_build_stages() const
+{
+   return build_stages;
 }
 
 
@@ -72,12 +78,6 @@ float Base::get_ended_at() const
 std::string Base::get_status() const
 {
    return status;
-}
-
-
-std::vector<Hexagon::BuildSystem::BuildStages::Base*> Base::get_build_stages() const
-{
-   return build_stages;
 }
 
 
