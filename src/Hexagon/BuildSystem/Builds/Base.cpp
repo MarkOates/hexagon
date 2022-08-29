@@ -88,10 +88,13 @@ bool Base::is_type(std::string possible_type)
 
 void Base::run()
 {
+   // set all the statuses to STATUS_NOT_STARTED
    for (auto &build_stage : build_stages)
    {
       build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED);
    }
+
+   // run the stages one-by-one, or halt when one fails
    for (auto &build_stage : build_stages)
    {
       build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING);
@@ -104,8 +107,13 @@ void Base::run()
       {
          std::cout << "execution of build stage failed." << std::endl;
          build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED);
+
+         status = STATUS_FAILED;
+         return;
       }
    }
+
+   // set the status to STATUS_FINISHED when all the stages are completed (without error)
    status = STATUS_FINISHED;
    return;
 }

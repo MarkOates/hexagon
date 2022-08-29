@@ -14,6 +14,16 @@ public:
 };
 
 
+class ExceptionThrowingBuildStageTestClass : public Hexagon::BuildSystem::BuildStages::Base
+{
+public:
+   ExceptionThrowingBuildStageTestClass()
+      : Hexagon::BuildSystem::BuildStages::Base("ExceptionThrowingBuildStageTestClass")
+   {}
+   virtual void execute() override { throw std::runtime_error("exception thrown!"); }
+};
+
+
 class BuildsBaseTestClass : public Hexagon::BuildSystem::Builds::Base
 {
 public:
@@ -73,8 +83,32 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
    std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages = base_build.get_build_stages();
    for (auto &build_stage : build_stages)
    {
-      EXPECT_EQ(1, static_cast<BuildStageTestClass*>(build_stage)->call_counter);
+      EXPECT_EQ(1, dynamic_cast<BuildStageTestClass*>(build_stage)->call_counter);
    }
+}
+
+
+TEST(Hexagon_BuildSystem_Builds_BaseTest,
+   run__when_a_build_stage_throws_an_exception__will_halt_execution_of_the_remaining_stages)
+{
+   BuildsBaseTestClass base_build;
+   base_build.set_build_stages({
+      new BuildStageTestClass,
+      new BuildStageTestClass,
+      new ExceptionThrowingBuildStageTestClass,
+      new BuildStageTestClass,
+   });
+
+   base_build.run();
+
+   std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages = base_build.get_build_stages();
+
+   ASSERT_EQ(4, build_stages.size());
+
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[0]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[1]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED, build_stages[2]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED, build_stages[3]->get_status());
 }
 
 
