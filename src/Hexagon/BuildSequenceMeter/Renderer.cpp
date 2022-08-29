@@ -158,7 +158,7 @@ void Renderer::render()
 
             std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);
 
-            draw_build_dump(dump_place.size.x, stage_text_dump);
+            draw_build_dump_report(dump_place.size.x, stage_text_dump);
             //al_draw_multiline_text(dump_font, dump_text_color, 0, 0, dump_place.size.x, font_line_height, ALLEGRO_ALIGN_LEFT,
                //stage_text_dump.c_str()
             //);
@@ -176,7 +176,7 @@ void Renderer::render()
    return;
 }
 
-void Renderer::draw_build_dump_legacy(float width, std::string stage_text_dump)
+void Renderer::draw_build_dump_report_legacy(float width, std::string stage_text_dump)
 {
    Hexagon::Elements::ColorKit color_kit;
    ALLEGRO_FONT *dump_font = obtain_dump_font();
@@ -190,7 +190,7 @@ void Renderer::draw_build_dump_legacy(float width, std::string stage_text_dump)
    return;
 }
 
-void Renderer::draw_build_dump(float width, std::string stage_text_dump)
+void Renderer::draw_build_dump_report(float width, std::string stage_text_dump)
 {
    static std::string last_dump = "";
    static std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes;
@@ -210,7 +210,7 @@ void Renderer::draw_build_dump(float width, std::string stage_text_dump)
 
    if (warnings_errors_and_notes.empty())
    {
-      draw_build_dump_legacy(width, stage_text_dump);
+      draw_build_dump_report_legacy(width, stage_text_dump);
       return;
    }
 

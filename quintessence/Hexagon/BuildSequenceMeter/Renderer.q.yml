@@ -123,7 +123,7 @@ functions:
 
                std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);
 
-               draw_build_dump(dump_place.size.x, stage_text_dump);
+               draw_build_dump_report(dump_place.size.x, stage_text_dump);
                //al_draw_multiline_text(dump_font, dump_text_color, 0, 0, dump_place.size.x, font_line_height, ALLEGRO_ALIGN_LEFT,
                   //stage_text_dump.c_str()
                //);
@@ -148,7 +148,7 @@ functions:
       - Hexagon::Elements::ColorKit
 
 
-  - name: draw_build_dump_legacy
+  - name: draw_build_dump_report_legacy
     parameters:
       - name: width
         type: float
@@ -169,7 +169,7 @@ functions:
       return;
 
 
-  - name: draw_build_dump
+  - name: draw_build_dump_report
     parameters:
       - name: width
         type: float
@@ -196,7 +196,7 @@ functions:
 
       if (warnings_errors_and_notes.empty())
       {
-         draw_build_dump_legacy(width, stage_text_dump);
+         draw_build_dump_report_legacy(width, stage_text_dump);
          return;
       }
 
