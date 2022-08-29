@@ -13,6 +13,9 @@ namespace Hexagon
       {
          class ShellCommand : public Hexagon::BuildSystem::BuildStages::Base
          {
+         public:
+            static constexpr char* TYPE = "ShellCommand";
+
          private:
             std::string shell_command;
             std::string shell_command_result;

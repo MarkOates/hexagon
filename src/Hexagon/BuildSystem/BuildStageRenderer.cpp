@@ -3,6 +3,7 @@
 #include <Hexagon/BuildSystem/BuildStageRenderer.hpp>
 #include <Hexagon/BuildSystem/BuildStageRenderers/Base.hpp>
 #include <Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.hpp>
+#include <iostream>
 #include <stdexcept>
 #include <sstream>
 
@@ -45,6 +46,9 @@ std::string BuildStageRenderer::build_text_report()
          throw std::runtime_error(error_message.str());
       }
    std::string result;
+
+   std::cout << "TYPE: \"" << build_stage->get_type() << "\"" << std::endl;
+   std::cout << " == TYPE: \"" << Hexagon::BuildSystem::BuildStages::ShellCommand::TYPE << "\"" << std::endl;
 
    if (build_stage->is_type(Hexagon::BuildSystem::BuildStages::Base::TYPE))
    {

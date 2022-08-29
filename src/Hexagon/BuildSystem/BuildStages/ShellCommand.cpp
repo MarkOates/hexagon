@@ -15,7 +15,7 @@ namespace BuildStages
 
 
 ShellCommand::ShellCommand(std::string shell_command)
-   : Hexagon::BuildSystem::BuildStages::Base("ShellCommand")
+   : Hexagon::BuildSystem::BuildStages::Base(Hexagon::BuildSystem::BuildStages::ShellCommand::TYPE)
    , shell_command(shell_command)
    , shell_command_result("")
    , executed(false)

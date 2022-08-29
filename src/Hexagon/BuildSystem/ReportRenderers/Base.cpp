@@ -2,6 +2,7 @@
 
 #include <Hexagon/BuildSystem/ReportRenderers/Base.hpp>
 #include <sstream>
+#include <Hexagon/BuildSystem/BuildStageRenderer.hpp>
 #include <stdexcept>
 #include <sstream>
 
@@ -64,10 +65,15 @@ std::string Base::render_text()
    result << std::endl;
    for (auto &build_stage : build->get_build_stages())
    {
+      Hexagon::BuildSystem::BuildStageRenderer build_stage_renderer;
+      build_stage_renderer.set_build_stage(build_stage);
+      std::string build_stage_render = build_stage_renderer.build_text_report();
+
       i++;
       result << "[#=------ STAGE " << i << " ------=#]" << std::endl;
       result << "  - Type: " << build_stage->get_type() << std::endl;
       result << "  - Status: " << build_stage->get_status() << std::endl;
+      if (!build_stage_render.empty()) result << build_stage_render;
       result << std::endl;
    }
    result << "[=========================]" << std::endl;

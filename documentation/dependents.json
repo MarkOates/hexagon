@@ -863,6 +863,17 @@
     "Hexagon/BuildSystem/BuildStageFactory",
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
   ],
+  "Hexagon/BuildSystem/BuildStages/Base": [
+    "Hexagon/BuildSystem/BuildStageRenderer",
+    "Hexagon/BuildSystem/BuildStages/ShellCommand"
+  ],
+  "Hexagon/BuildSystem/BuildStageRenderers/Base": [
+    "Hexagon/BuildSystem/BuildStageRenderer",
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
+  ],
+  "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand": [
+    "Hexagon/BuildSystem/BuildStageRenderer"
+  ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",
     "Hexagon/BuildSystem/BuildStages/Base",
@@ -874,15 +885,10 @@
     "Hexagon/BuildSystem/BuildStageRenderers/Base",
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
     "Hexagon/BuildSystem/BuildStages/Base",
+    "Hexagon/BuildSystem/BuildStages/ShellCommand",
     "Hexagon/BuildSystem/Builds/Base",
     "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "Hexagon/BuildSystem/BuildStageRenderers/Base": [
-    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
-  ],
-  "Hexagon/BuildSystem/BuildStages/Base": [
-    "Hexagon/BuildSystem/BuildStages/ShellCommand"
   ],
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
@@ -909,6 +915,9 @@
   ],
   "Hexagon/BuildSystem/ReportRenderers/Base": [
     "Hexagon/BuildSystem/ReportRenderer"
+  ],
+  "Hexagon/BuildSystem/BuildStageRenderer": [
+    "Hexagon/BuildSystem/ReportRenderers/Base"
   ],
   "vec3d": [
     "Hexagon/Camera"

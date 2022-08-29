@@ -18,12 +18,12 @@ TEST(Hexagon_BuildSystem_BuildStages_ShellCommandTest, has_the_expected_type)
 
 
 TEST(Hexagon_BuildSystem_BuildStages_ShellCommandTest,
-   execute_raw__will_execute_the_shell_command_and_capture_the_result)
+   execute__will_execute_the_shell_command_and_capture_the_result)
 {
    std::string shell_command = "printf \"this is test output\"";
    Hexagon::BuildSystem::BuildStages::ShellCommand shell_command_build_stage(shell_command);
 
-   shell_command_build_stage.execute_raw();
+   shell_command_build_stage.execute();
 
    EXPECT_EQ("this is test output", shell_command_build_stage.get_shell_command_result());
 }

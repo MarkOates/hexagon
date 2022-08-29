@@ -18,6 +18,9 @@ functions:
     body: |
       std::string result;
 
+      std::cout << "TYPE: \"" << build_stage->get_type() << "\"" << std::endl;
+      std::cout << " == TYPE: \"" << Hexagon::BuildSystem::BuildStages::ShellCommand::TYPE << "\"" << std::endl;
+
       if (build_stage->is_type(Hexagon::BuildSystem::BuildStages::Base::TYPE))
       {
         // do nothing for this case
@@ -45,6 +48,7 @@ functions:
     body_dependency_symbols:
       - Hexagon::BuildSystem::BuildStageRenderers::Base
       - Hexagon::BuildSystem::BuildStageRenderers::ShellCommand
+      - std::cout
 
 
 dependencies:
