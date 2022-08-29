@@ -19,6 +19,22 @@ properties:
     type: Hexagon::BuildSystem::BuildStages::ShellCommand*
     constructor_arg: true
     init_with: nullptr
+    setter: true
+
+
+functions:
+
+
+  - name: render_text
+    type: std::string
+    virtual: true
+    override: true
+    body: |
+      std::stringstream result;
+      result << "  - Command: " << shell_command_build_stage->get_shell_command() << std::endl;
+      return result.str();
+    body_dependency_symbols:
+      - std::stringstream
 
 
 dependencies:

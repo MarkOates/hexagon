@@ -27,6 +27,13 @@ functions:
       return (possible_type == get_type());
 
 
+  - name: render_text
+    type: std::string
+    virtual: true
+    body: |
+      return "";
+
+
 dependencies:
 
 

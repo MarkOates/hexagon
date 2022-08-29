@@ -860,19 +860,26 @@
     "Hexagon/BuildSystem/BuildFactory"
   ],
   "Hexagon/BuildSystem/BuildStages/ShellCommand": [
-    "Hexagon/BuildSystem/BuildStageFactory"
+    "Hexagon/BuildSystem/BuildStageFactory",
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
   ],
   "std/vector<std/vector<std/string>>": [
+    "Hexagon/BuildSystem/BuildStageRenderers/Base",
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/Builds/Base",
     "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Elements/DataTable"
   ],
   "char": [
+    "Hexagon/BuildSystem/BuildStageRenderers/Base",
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/Builds/Base",
     "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "Hexagon/BuildSystem/BuildStageRenderers/Base": [
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
   ],
   "Hexagon/BuildSystem/BuildStages/Base": [
     "Hexagon/BuildSystem/BuildStages/ShellCommand"

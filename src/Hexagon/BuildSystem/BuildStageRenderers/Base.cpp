@@ -33,6 +33,11 @@ bool Base::is_type(std::string possible_type)
 {
    return (possible_type == get_type());
 }
+
+std::string Base::render_text()
+{
+   return "";
+}
 } // namespace BuildStageRenderers
 } // namespace BuildSystem
 } // namespace Hexagon
