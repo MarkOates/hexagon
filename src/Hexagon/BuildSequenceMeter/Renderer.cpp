@@ -200,9 +200,20 @@ void Renderer::draw_build_dump_report_for_google_test_run(float width, std::stri
    al_draw_text(font, dump_text_color, 0, -20, ALLEGRO_ALIGN_LEFT, "================ TEST RESUT =================");
 
    // HERE
-   Hexagon::Testing::GoogleTestRunOutputParser test_run_output_parser(stage_text_dump);
-   test_run_output_parser.parse();
-   if (!test_run_output_parser.get_error_messages_during_parsing().empty())
+   static std::string last_dump = "";
+   static std::vector<Hexagon::Testing::GoogleTestRunTestResult> parsed_test_results = {};
+   static std::vector<std::string> error_messages_during_parsing = {};
+
+   if (last_dump != stage_text_dump)
+   {
+      Hexagon::Testing::GoogleTestRunOutputParser test_run_output_parser(stage_text_dump);
+      test_run_output_parser.parse();
+      parsed_test_results = test_run_output_parser.get_parsed_test_results();
+      error_messages_during_parsing = test_run_output_parser.get_error_messages_during_parsing();
+      last_dump = stage_text_dump;
+   }
+
+   if (!error_messages_during_parsing.empty())
    {
       std::stringstream error_message;
       error_message << "Hexagon::BuildSequenceMeter::Renderer::draw_build_dump_report_for_google_test_run warning: "
