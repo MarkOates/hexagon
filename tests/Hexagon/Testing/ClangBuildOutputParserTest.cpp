@@ -65,6 +65,27 @@ TEST(Hexagon_Testing_ClangBuildOutputParserTest, parse__will_extract_the_warning
 }
 
 
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, this_particular_test_dump_will_parse_1)
+{
+   std::string testfile = "/Users/markoates/Repos/hexagon/tests/fixtures/data/builds/dumps/component_test_object_4.txt";
+
+   std::string test_build_dump_with_duplicate_object_test_names = file_get_contents(testfile);
+   Hexagon::Testing::ClangBuildOutputParser clang_build_output_parser(test_build_dump_with_duplicate_object_test_names);
+   clang_build_output_parser.parse();
+
+   std::vector<Hexagon::Testing::ClangBuildOutputResult> warnings_errors_and_notes = 
+      clang_build_output_parser.get_warnings_errors_and_notes();
+
+   ASSERT_EQ(6, warnings_errors_and_notes.size());
+   EXPECT_EQ("warning", warnings_errors_and_notes[0].get_type());
+   EXPECT_EQ("warning", warnings_errors_and_notes[1].get_type());
+   EXPECT_EQ("warning", warnings_errors_and_notes[2].get_type());
+   EXPECT_EQ("warning", warnings_errors_and_notes[3].get_type());
+   EXPECT_EQ("error",   warnings_errors_and_notes[4].get_type());
+   EXPECT_EQ("warning", warnings_errors_and_notes[5].get_type());
+}
+
+
 TEST(Hexagon_Testing_ClangBuildOutputParserTest, NUM_WARNINGS_ERRORS_GENERATED_REGEX__will_match_valid_lines)
 {
    std::vector<std::string> valid_warnings_errors_lines = {

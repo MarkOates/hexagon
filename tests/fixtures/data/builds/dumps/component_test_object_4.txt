@@ -1,0 +1,24 @@
+Compiling object file [1m[34msrc/Hexagon/BuildSequenceMeter/Renderer.cpp[0m...
+g++ -c -ferror-limit=1 -std=c++17 -Qunused-arguments -Wall -Wuninitialized -Weffc++ src/Hexagon/BuildSequenceMeter/Renderer.cpp -o obj/Hexagon/BuildSequenceMeter/Renderer.o -I./include -I/Users/markoates/Repos/asio/asio/include -I/usr/local/opt/ncurses/include -I/Users/markoates/Repos/allegro5/include -I/Users/markoates/Repos/allegro5/build/include -L/usr/local/opt/ncurses/lib -lncurses -I/Users/markoates/Repos/yaml-cpp/include -D_XOPEN_SOURCE_EXTENDED -I/Users/markoates/Repos/allegro_flare/include -L/Users/markoates/Repos/allegro_flare/lib -lallegro_flare-0.8.11wip
+src/Hexagon/BuildSequenceMeter/Renderer.cpp:144:19: warning: unused variable 'font_line_height' [-Wunused-variable]
+            float font_line_height = al_get_font_line_height(dump_font);
+                  ^
+src/Hexagon/BuildSequenceMeter/Renderer.cpp:147:27: warning: unused variable 'dump_text_color' [-Wunused-variable]
+            ALLEGRO_COLOR dump_text_color = color_kit.terminal_warm_orange();
+                          ^
+src/Hexagon/BuildSequenceMeter/Renderer.cpp:92:18: warning: unused variable 'color' [-Wunused-variable]
+   ALLEGRO_COLOR color = ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2};
+                 ^
+src/Hexagon/BuildSequenceMeter/Renderer.cpp:93:18: warning: unused variable 'font' [-Wunused-variable]
+   ALLEGRO_FONT *font = obtain_font();
+                 ^
+src/Hexagon/BuildSequenceMeter/Renderer.cpp:219:32: error: reference to non-static member function must be called; did you mean to call it with no arguments?
+   if (!test_run_output_parser.get_error_messages_during_parsing.empty())
+        ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                                ()
+src/Hexagon/BuildSequenceMeter/Renderer.cpp:390:18: warning: unused variable 'result' [-Wunused-variable]
+   ALLEGRO_COLOR result;
+                 ^
+5 warnings and 1 error generated.
+make[1]: *** [obj/Hexagon/BuildSequenceMeter/Renderer.o] Error 1
+

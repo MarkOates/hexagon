@@ -124,6 +124,7 @@ functions:
 
                std::string stage_text_dump = php::file_get_contents(sequence_dump_full_path);
 
+               //draw_build_dump_report_legacy(dump_place.size.x, stage_text_dump);
                draw_build_dump_report(dump_place.size.x, stage_text_dump, stage_name);
                //al_draw_multiline_text(dump_font, dump_text_color, 0, 0, dump_place.size.x, font_line_height, ALLEGRO_ALIGN_LEFT,
                   //stage_text_dump.c_str()
@@ -267,14 +268,15 @@ functions:
 
       int cursor_y = 0;
       int max_num_warnings = 3;
-      int warning_count = 0;
+      int error_count = 0;
       for (auto &warning_error_or_note : warnings_errors_and_notes)
       {
-         warning_count++;
-         if (warning_count > max_num_warnings) return;
-
          Hexagon::Testing::ClangBuildOutputResult &notice = warning_error_or_note;
          if (notice.get_type() != "error") continue; // disable warnings and info from displaying
+
+         error_count++;
+         if (error_count > max_num_warnings) return;
+
 
          ALLEGRO_COLOR this_notice_text_color = dump_text_color;
 
