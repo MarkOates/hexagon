@@ -1,0 +1,34 @@
+parent_classes:
+
+
+  - class: Hexagon::BuildSystem::BuildStageRenderers::Base
+    scope: public
+    init_with: Hexagon::BuildSystem::BuildStageRenderers::ShellCommand::TYPE
+
+
+properties:
+
+
+  - name: TYPE
+    type: char*
+    static: true
+    init_with: '"ShellCommand"'
+    constexpr: true
+
+  - name: shell_command_build_stage
+    type: Hexagon::BuildSystem::BuildStages::ShellCommand*
+    constructor_arg: true
+    init_with: nullptr
+
+
+dependencies:
+
+
+  - symbol: Hexagon::BuildSystem::BuildStageRenderers::Base
+    headers: [ Hexagon/BuildSystem/BuildStageRenderers/Base.hpp ]
+  - symbol: Hexagon::BuildSystem::BuildStages::ShellCommand*
+    headers: [ Hexagon/BuildSystem/BuildStages/ShellCommand.hpp ]
+  - symbol: char*
+    headers: [ ]
+
+
