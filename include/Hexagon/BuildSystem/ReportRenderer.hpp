@@ -12,15 +12,15 @@ namespace Hexagon
       class ReportRenderer
       {
       private:
-         Hexagon::BuildSystem::Builds::Base* report;
+         Hexagon::BuildSystem::Builds::Base* build;
 
       public:
-         ReportRenderer(Hexagon::BuildSystem::Builds::Base* report=nullptr);
+         ReportRenderer(Hexagon::BuildSystem::Builds::Base* build=nullptr);
          ~ReportRenderer();
 
-         void set_report(Hexagon::BuildSystem::Builds::Base* report);
-         Hexagon::BuildSystem::Builds::Base* get_report() const;
-         std::string build_report();
+         void set_build(Hexagon::BuildSystem::Builds::Base* build);
+         Hexagon::BuildSystem::Builds::Base* get_build() const;
+         std::string build_text_report();
       };
    }
 }

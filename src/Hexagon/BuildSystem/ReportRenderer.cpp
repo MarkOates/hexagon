@@ -12,8 +12,8 @@ namespace BuildSystem
 {
 
 
-ReportRenderer::ReportRenderer(Hexagon::BuildSystem::Builds::Base* report)
-   : report(report)
+ReportRenderer::ReportRenderer(Hexagon::BuildSystem::Builds::Base* build)
+   : build(build)
 {
 }
 
@@ -23,38 +23,40 @@ ReportRenderer::~ReportRenderer()
 }
 
 
-void ReportRenderer::set_report(Hexagon::BuildSystem::Builds::Base* report)
+void ReportRenderer::set_build(Hexagon::BuildSystem::Builds::Base* build)
 {
-   this->report = report;
+   this->build = build;
 }
 
 
-Hexagon::BuildSystem::Builds::Base* ReportRenderer::get_report() const
+Hexagon::BuildSystem::Builds::Base* ReportRenderer::get_build() const
 {
-   return report;
+   return build;
 }
 
 
-std::string ReportRenderer::build_report()
+std::string ReportRenderer::build_text_report()
 {
-   if (!(report))
+   if (!(build))
       {
          std::stringstream error_message;
-         error_message << "ReportRenderer" << "::" << "build_report" << ": error: " << "guard \"report\" not met";
+         error_message << "ReportRenderer" << "::" << "build_text_report" << ": error: " << "guard \"build\" not met";
          throw std::runtime_error(error_message.str());
       }
    std::string result;
 
-   if (report->is_type(Hexagon::BuildSystem::Builds::Base::TYPE))
+   if (build->is_type(Hexagon::BuildSystem::Builds::Base::TYPE))
    {
       Hexagon::BuildSystem::ReportRenderers::Base base_report_renderer;
+      base_report_renderer.set_build(build);
+
       result = base_report_renderer.render_text();
    }
    else
    {
       std::stringstream error_message;
       error_message << "Hexagon::BuildSystem::ReportRenderer::build_report error: "
-                    << "Cannot build_report() on a report that is of unknown type \"" << report->get_type() << "\".";
+                    << "Cannot build_report() on a report that is of unknown type \"" << build->get_type() << "\".";
       throw std::runtime_error(error_message.str());
    }
 

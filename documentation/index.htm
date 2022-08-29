@@ -2444,13 +2444,13 @@ table td
     <h3 id="quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml</h3>
      <table>
 <tr>
-  <td class="property">report</td>
+  <td class="property">build</td>
   <td class="property">Hexagon::BuildSystem::Builds::Base*</td>
 </tr>
     </table>
      <table>
 <tr>
-  <td class="method">build_report()</td>
+  <td class="method">build_text_report()</td>
 </tr>
     </table>
      <table>
@@ -2475,6 +2475,10 @@ table td
   <td class="property">type</td>
   <td class="property">std::string</td>
 </tr>
+<tr>
+  <td class="property">build</td>
+  <td class="property">Hexagon::BuildSystem::Builds::Base*</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -2485,6 +2489,9 @@ table td
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::Builds::Base*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/Builds/Base.hpp&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::vector&lt;std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
 </tr>
@@ -12360,7 +12367,8 @@ table td
   ],
   "Hexagon/BuildSystem/Builds/Base": [
     "Hexagon/BuildSystem/BuildFactory",
-    "Hexagon/BuildSystem/ReportRenderer"
+    "Hexagon/BuildSystem/ReportRenderer",
+    "Hexagon/BuildSystem/ReportRenderers/Base"
   ],
   "Hexagon/BuildSystem/BuildStageFactory": [
     "Hexagon/BuildSystem/BuildFactory"

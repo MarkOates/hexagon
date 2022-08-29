@@ -26,6 +26,7 @@ Hexagon::BuildSystem::Builds::Base* BuildFactory::create_placeholder_build()
    Hexagon::BuildSystem::Builds::Base *build = new Hexagon::BuildSystem::Builds::Base;
    build->set_build_stages({
       build_stage_factory.create_shell_command_build_stage(),
+      build_stage_factory.create_shell_command_build_stage(),
    });
    return build;
 }

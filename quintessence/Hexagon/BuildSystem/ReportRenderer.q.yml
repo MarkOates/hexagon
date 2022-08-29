@@ -1,7 +1,7 @@
 properties:
 
 
-  - name: report
+  - name: build
     type: Hexagon::BuildSystem::Builds::Base*
     init_with: nullptr
     constructor_arg: true
@@ -12,22 +12,24 @@ properties:
 functions:
 
 
-  - name: build_report
+  - name: build_text_report
     type: std::string
-    guards: [ report ]
+    guards: [ build ]
     body: |
       std::string result;
 
-      if (report->is_type(Hexagon::BuildSystem::Builds::Base::TYPE))
+      if (build->is_type(Hexagon::BuildSystem::Builds::Base::TYPE))
       {
          Hexagon::BuildSystem::ReportRenderers::Base base_report_renderer;
+         base_report_renderer.set_build(build);
+
          result = base_report_renderer.render_text();
       }
       else
       {
          std::stringstream error_message;
          error_message << "Hexagon::BuildSystem::ReportRenderer::build_report error: "
-                       << "Cannot build_report() on a report that is of unknown type \"" << report->get_type() << "\".";
+                       << "Cannot build_report() on a report that is of unknown type \"" << build->get_type() << "\".";
          throw std::runtime_error(error_message.str());
       }
 

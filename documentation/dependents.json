@@ -853,7 +853,8 @@
   ],
   "Hexagon/BuildSystem/Builds/Base": [
     "Hexagon/BuildSystem/BuildFactory",
-    "Hexagon/BuildSystem/ReportRenderer"
+    "Hexagon/BuildSystem/ReportRenderer",
+    "Hexagon/BuildSystem/ReportRenderers/Base"
   ],
   "Hexagon/BuildSystem/BuildStageFactory": [
     "Hexagon/BuildSystem/BuildFactory"

@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <Hexagon/BuildSystem/Builds/Base.hpp>
 #include <string>
 
 
@@ -17,12 +18,15 @@ namespace Hexagon
 
          private:
             std::string type;
+            Hexagon::BuildSystem::Builds::Base* build;
 
          public:
             Base(std::string type=TYPE);
             virtual ~Base();
 
+            void set_build(Hexagon::BuildSystem::Builds::Base* build);
             std::string get_type() const;
+            Hexagon::BuildSystem::Builds::Base* get_build() const;
             bool is_type(std::string possible_type="");
             virtual std::string render_text();
          };

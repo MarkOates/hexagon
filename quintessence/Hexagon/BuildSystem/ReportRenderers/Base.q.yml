@@ -13,6 +13,12 @@ properties:
     constructor_arg: true
     getter: true
 
+  - name: build
+    type: Hexagon::BuildSystem::Builds::Base*
+    init_with: nullptr
+    getter: true
+    setter: true
+
 
 functions:
 
@@ -30,9 +36,23 @@ functions:
   - name: render_text
     type: std::string
     virtual: true
+    guards: [ build ]
     body: |
       std::stringstream result;
-      result << "[== REPORT ==]" << std::endl;
+
+      unsigned i=0;
+      result << "[========= BUILD =========]" << std::endl;
+      result << std::endl;
+      for (auto &build_stage : build->get_build_stages())
+      {
+         i++;
+         result << "[#=------ STAGE " << i << " ------=#]" << std::endl;
+         result << "  - Type: " << build_stage->get_type() << std::endl;
+         result << "  - Status: " << build_stage->get_status() << std::endl;
+         result << std::endl;
+      }
+      result << "[=========================]" << std::endl;
+
       return result.str();
     body_dependency_symbols:
       - std::stringstream
@@ -41,6 +61,8 @@ functions:
 dependencies:
 
 
+  - symbol: Hexagon::BuildSystem::Builds::Base*
+    headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
   - symbol: std::vector<std::vector<std::string>>
     headers: [ vector, string ]
   - symbol: char*
