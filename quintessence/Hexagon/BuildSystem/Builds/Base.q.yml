@@ -70,7 +70,7 @@ functions:
       return (possible_type == get_type());
 
 
-  - name: start
+  - name: run
     body: |
       for (auto &build_stage : build_stages)
       {
@@ -90,6 +90,7 @@ functions:
             build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED);
          }
       }
+      status = STATUS_FINISHED;
       return;
     body_dependency_symbols:
       - std::cout

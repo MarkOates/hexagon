@@ -70,6 +70,7 @@ table td
   <li><a href="#quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml">quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml">quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/BuildFactory.q.yml">quintessence/Hexagon/BuildSystem/BuildFactory.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/BuildStageFactory.q.yml">quintessence/Hexagon/BuildSystem/BuildStageFactory.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/BuildStages/Base.q.yml">quintessence/Hexagon/BuildSystem/BuildStages/Base.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/BuildStages/ShellCommand.q.yml">quintessence/Hexagon/BuildSystem/BuildStages/ShellCommand.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/Builds/Base.q.yml">quintessence/Hexagon/BuildSystem/Builds/Base.q.yml</a></li>
@@ -2263,6 +2264,23 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/BuildStageFactory.q.yml">quintessence/Hexagon/BuildSystem/BuildStageFactory.q.yml</h3>
+     <table>
+    </table>
+     <table>
+<tr>
+  <td class="method">create_shell_command_build_stage(1)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStages::ShellCommand*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStages/ShellCommand.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/BuildSystem/BuildStages/Base.q.yml">quintessence/Hexagon/BuildSystem/BuildStages/Base.q.yml</h3>
      <table>
 <tr>
@@ -2394,7 +2412,7 @@ table td
   <td class="method">is_type(1)</td>
 </tr>
 <tr>
-  <td class="method">start()</td>
+  <td class="method">run()</td>
 </tr>
     </table>
      <table>
@@ -12338,6 +12356,9 @@ table td
   ],
   "Hexagon/BuildSystem/BuildStageFactory": [
     "Hexagon/BuildSystem/BuildFactory"
+  ],
+  "Hexagon/BuildSystem/BuildStages/ShellCommand": [
+    "Hexagon/BuildSystem/BuildStageFactory"
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStages/Base",

@@ -858,6 +858,9 @@
   "Hexagon/BuildSystem/BuildStageFactory": [
     "Hexagon/BuildSystem/BuildFactory"
   ],
+  "Hexagon/BuildSystem/BuildStages/ShellCommand": [
+    "Hexagon/BuildSystem/BuildStageFactory"
+  ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/Builds/Base",

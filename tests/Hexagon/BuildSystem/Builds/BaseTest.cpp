@@ -33,3 +33,19 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest, derived_classes_will_have_the_expected
 }
 
 
+TEST(Hexagon_BuildSystem_Builds_BaseTest, status__is_initialized_with_the_expected_value)
+{
+   BuildsBaseTestClass base_build;
+   EXPECT_EQ(Hexagon::BuildSystem::Builds::Base::STATUS_NOT_STARTED, base_build.get_status());
+}
+
+
+TEST(Hexagon_BuildSystem_Builds_BaseTest,
+   start__with_a_successful_build__will_set_the_status_to_finished)
+{
+   BuildsBaseTestClass base_build;
+   base_build.run();
+   EXPECT_EQ(Hexagon::BuildSystem::Builds::Base::STATUS_FINISHED, base_build.get_status());
+}
+
+

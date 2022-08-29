@@ -86,7 +86,7 @@ bool Base::is_type(std::string possible_type)
    return (possible_type == get_type());
 }
 
-void Base::start()
+void Base::run()
 {
    for (auto &build_stage : build_stages)
    {
@@ -106,6 +106,7 @@ void Base::start()
          build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED);
       }
    }
+   status = STATUS_FINISHED;
    return;
 }
 } // namespace Builds
