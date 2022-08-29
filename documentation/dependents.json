@@ -1039,34 +1039,6 @@
     "Hexagon/StageFactory",
     "Hexagon/UI/LittleMenu"
   ],
-  "Hexagon/Daemus/Builds/Base": [
-    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
-    "Hexagon/Daemus/Daemus"
-  ],
-  "time": [
-    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
-    "Hexagon/PacketLogger"
-  ],
-  "Blast/String/Trimmer": [
-    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
-    "Hexagon/PacketLogger",
-    "Hexagon/Testing/ClangBuildOutputResult",
-    "NcursesArt/GithubRepoStatusFetcher"
-  ],
-  "php/file_put_contents": [
-    "Hexagon/Daemus/Builds/ExtrapolateQuintessence",
-    "Hexagon/PacketLogger"
-  ],
-  "Hexagon/Daemus/Builds/ExtrapolateQuintessence": [
-    "Hexagon/Daemus/Daemus"
-  ],
-  "std/vector<Hexagon/Daemus/Builds/Base>": [
-    "Hexagon/Daemus/Daemus",
-    "Hexagon/Daemus/Stage"
-  ],
-  "Hexagon/Daemus/ProgramRunner": [
-    "Hexagon/Daemus/NetworkMessageEventController"
-  ],
   "Blast/DirectoryExistenceChecker": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Daemus/ProgramRunner"
@@ -1089,9 +1061,6 @@
   "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "Hexagon/Daemus/Daemus": [
-    "Hexagon/Daemus/Stage"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"
@@ -1413,7 +1382,18 @@
   ":OneLineInputBox/EventController": [
     "Hexagon/OneLineInputBox/Stage"
   ],
+  "time": [
+    "Hexagon/PacketLogger"
+  ],
   "AllegroFlare/random_string": [
+    "Hexagon/PacketLogger"
+  ],
+  "Blast/String/Trimmer": [
+    "Hexagon/PacketLogger",
+    "Hexagon/Testing/ClangBuildOutputResult",
+    "NcursesArt/GithubRepoStatusFetcher"
+  ],
+  "php/file_put_contents": [
     "Hexagon/PacketLogger"
   ],
   "Hexagon/Packet": [
