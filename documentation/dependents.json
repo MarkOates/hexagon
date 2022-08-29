@@ -847,32 +847,6 @@
   "std/count": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
-  "std/vector<Hexagon/BuildSystem/Build>": [
-    "Hexagon/BuildSystem/BuildRepository"
-  ],
-  "Hexagon/BuildSystem/Build": [
-    "Hexagon/BuildSystem/BuildRepository"
-  ],
-  "Blast/ShellCommandExecutorWithCallback": [
-    "Hexagon/BuildSystem/Controller",
-    "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/Git/CommitStagedWithMessage",
-    "Hexagon/Git/Modified",
-    "Hexagon/Git/Pusher",
-    "Hexagon/Git/StageEverything",
-    "Hexagon/Git/Staged",
-    "Hexagon/Git/Untracked",
-    "Hexagon/NewComponentMaker/NewComponentMaker",
-    "Hexagon/NewComponentMaker/Stage",
-    "Hexagon/PasteboardData",
-    "Hexagon/Rails/ComponentLister",
-    "Hexagon/Search/ComponentElasticsearchIndexer",
-    "Hexagon/Search/Elasticsearch/HealthChecker",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/OpenDocumentationInBrowser",
-    "Hexagon/Testing/ComponentTestRunner",
-    "NcursesArt/GithubRepoStatusFetcher"
-  ],
   "vec3d": [
     "Hexagon/Camera"
   ],
@@ -1061,6 +1035,25 @@
   "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "Blast/ShellCommandExecutorWithCallback": [
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Git/CommitStagedWithMessage",
+    "Hexagon/Git/Modified",
+    "Hexagon/Git/Pusher",
+    "Hexagon/Git/StageEverything",
+    "Hexagon/Git/Staged",
+    "Hexagon/Git/Untracked",
+    "Hexagon/NewComponentMaker/NewComponentMaker",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/PasteboardData",
+    "Hexagon/Rails/ComponentLister",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/Search/Elasticsearch/HealthChecker",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/Testing/ComponentTestRunner",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"

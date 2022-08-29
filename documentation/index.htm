@@ -69,9 +69,6 @@ table td
   <li><a href="#quintessence/Hexagon/BlastComponentLayoutGenerator.q.yml">quintessence/Hexagon/BlastComponentLayoutGenerator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml">quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml">quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml</a></li>
-  <li><a href="#quintessence/Hexagon/BuildSystem/Build.q.yml">quintessence/Hexagon/BuildSystem/Build.q.yml</a></li>
-  <li><a href="#quintessence/Hexagon/BuildSystem/BuildRepository.q.yml">quintessence/Hexagon/BuildSystem/BuildRepository.q.yml</a></li>
-  <li><a href="#quintessence/Hexagon/BuildSystem/Controller.q.yml">quintessence/Hexagon/BuildSystem/Controller.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Camera.q.yml">quintessence/Hexagon/Camera.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/Cursor.q.yml">quintessence/Hexagon/CodeEditor/Cursor.q.yml</a></li>
@@ -2223,69 +2220,6 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::count&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
-</tr>
-    </table>
-  </div>
-</ul>
-<ul>
-  <div class="component">
-    <h3 id="quintessence/Hexagon/BuildSystem/Build.q.yml">quintessence/Hexagon/BuildSystem/Build.q.yml</h3>
-     <table>
-<tr>
-  <td class="property">status</td>
-  <td class="property">std::string</td>
-</tr>
-<tr>
-  <td class="property">STATUS_UNDEFINED</td>
-  <td class="property">std::string</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="method">start()</td>
-</tr>
-    </table>
-     <table>
-    </table>
-  </div>
-</ul>
-<ul>
-  <div class="component">
-    <h3 id="quintessence/Hexagon/BuildSystem/BuildRepository.q.yml">quintessence/Hexagon/BuildSystem/BuildRepository.q.yml</h3>
-     <table>
-<tr>
-  <td class="private_property">builds</td>
-  <td class="private_property">std::vector&lt;Hexagon::BuildSystem::Build&gt;</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="method">get_latest_if_exists()</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::BuildSystem::Build&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/BuildSystem/Build.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::Build*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/BuildSystem/Build.hpp&quot;]}</td>
-</tr>
-    </table>
-  </div>
-</ul>
-<ul>
-  <div class="component">
-    <h3 id="quintessence/Hexagon/BuildSystem/Controller.q.yml">quintessence/Hexagon/BuildSystem/Controller.q.yml</h3>
-     <table>
-    </table>
-     <table>
-<tr>
-  <td class="method">create()</td>
-</tr>
-    </table>
-     <table>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -12136,32 +12070,6 @@ table td
   "std/count": [
     "Hexagon/BuildSequenceMeter/Renderer"
   ],
-  "std/vector<Hexagon/BuildSystem/Build>": [
-    "Hexagon/BuildSystem/BuildRepository"
-  ],
-  "Hexagon/BuildSystem/Build": [
-    "Hexagon/BuildSystem/BuildRepository"
-  ],
-  "Blast/ShellCommandExecutorWithCallback": [
-    "Hexagon/BuildSystem/Controller",
-    "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/Git/CommitStagedWithMessage",
-    "Hexagon/Git/Modified",
-    "Hexagon/Git/Pusher",
-    "Hexagon/Git/StageEverything",
-    "Hexagon/Git/Staged",
-    "Hexagon/Git/Untracked",
-    "Hexagon/NewComponentMaker/NewComponentMaker",
-    "Hexagon/NewComponentMaker/Stage",
-    "Hexagon/PasteboardData",
-    "Hexagon/Rails/ComponentLister",
-    "Hexagon/Search/ComponentElasticsearchIndexer",
-    "Hexagon/Search/Elasticsearch/HealthChecker",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/OpenDocumentationInBrowser",
-    "Hexagon/Testing/ComponentTestRunner",
-    "NcursesArt/GithubRepoStatusFetcher"
-  ],
   "vec3d": [
     "Hexagon/Camera"
   ],
@@ -12350,6 +12258,25 @@ table td
   "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "Blast/ShellCommandExecutorWithCallback": [
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Git/CommitStagedWithMessage",
+    "Hexagon/Git/Modified",
+    "Hexagon/Git/Pusher",
+    "Hexagon/Git/StageEverything",
+    "Hexagon/Git/Staged",
+    "Hexagon/Git/Untracked",
+    "Hexagon/NewComponentMaker/NewComponentMaker",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/PasteboardData",
+    "Hexagon/Rails/ComponentLister",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/Search/Elasticsearch/HealthChecker",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/Testing/ComponentTestRunner",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"
