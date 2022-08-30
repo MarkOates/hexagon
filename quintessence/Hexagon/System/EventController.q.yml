@@ -554,8 +554,7 @@ dependencies:
   - symbol: ProjectComponentNavigator
     headers: [ ProjectComponentNavigator.hpp ]
   - symbol: std::function
-    headers: [ std/function.hpp ]
-
+    headers: [ functional ]
   - symbol: ALLEGRO_EVENT
     headers: [ allegro5/allegro.h ]
   - symbol: Hexagon::System::System

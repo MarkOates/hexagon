@@ -216,7 +216,7 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping()
    return mapping;
 }
 
-std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> Stage::build_local_events_dictionary()
+std::map<std::string, std::function<void(Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator&)>> Stage::build_local_events_dictionary()
 {
    std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> local_events = {
       { MOVE_CURSOR_UP, &AdvancedComponentNavigator::move_cursor_up },

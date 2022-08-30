@@ -188,5 +188,5 @@ dependencies:
   - symbol: Hexagon::GitCommitMessageInputBox::Stage
     headers: [ Hexagon/GitCommitMessageInputBox/Stage.hpp ]
   - symbol: StageInterface
-    headers: [ StageInterface.hpp ]
+    headers: [ Hexagon/StageInterface.hpp ]
 

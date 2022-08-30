@@ -6,7 +6,7 @@ properties:
     init_with: nullptr
     constructor_arg: true
   - name: event_dictionary
-    type: std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>
+    type: std::map<std::string, std::function<void(Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator&)>>
     init_with: '{}'
     constructor_arg: true
 
@@ -27,8 +27,9 @@ functions:
       using Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator;
       AdvancedComponentNavigator &component = *this->component;
 
-      std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>::iterator it =
-         event_dictionary.find(event_name);
+      std::map<std::string, std::function<void(Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator&)>>
+         ::iterator it =
+            event_dictionary.find(event_name);
       if (it == event_dictionary.end())
       {
          std::stringstream error_message;
@@ -72,8 +73,6 @@ dependencies:
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
 
-  - symbol: AdvancedComponentNavigator
-    headers: [ AdvancedComponentNavigator.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator
     headers: [ Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp ]
   - symbol: std::function

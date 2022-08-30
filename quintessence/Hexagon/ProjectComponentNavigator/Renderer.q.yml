@@ -462,7 +462,7 @@ dependencies:
     headers: [ allegro_flare/placement3d.h ]
 
   - symbol: ALLEGRO_FONT
-    headers: [ ALLEGRO_FONT.hpp ]
+    headers: [ 'allegro5/allegro_font.h' ]
   - symbol: Hexagon::ProjectComponentNavigator::Stage
     headers: [ Hexagon/ProjectComponentNavigator/Stage.hpp ]
 

@@ -6,7 +6,7 @@ properties:
     init_with: nullptr
     constructor_arg: true
   - name: event_dictionary
-    type: std::map<std::string, std::function<void(ProjectComponentNavigator&)>>
+    type: std::map<std::string, std::function<void(Hexagon::ProjectComponentNavigator::ProjectComponentNavigator&)>>
     init_with: '{}'
     constructor_arg: true
 
@@ -64,7 +64,7 @@ dependencies:
   - symbol: Hexagon::ProjectComponentNavigator::ProjectComponentNavigator
     headers: [ Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.hpp ]
   - symbol: ProjectComponentNavigator
-    headers: [ ProjectComponentNavigator.hpp ]
+    headers: [ Hexagon/ProjectComponentNavigator.hpp ]
   - symbol: std::function
     headers: [ functional ]
 

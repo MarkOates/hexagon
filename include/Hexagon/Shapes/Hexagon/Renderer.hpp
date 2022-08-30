@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <Shapes/Hexagon/Stroke.hpp>
+#include <Hexagon/Shapes/Hexagon/Stroke.hpp>
 #include <vector>
 
 

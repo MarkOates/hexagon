@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include <ALLEGRO_FONT.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/Packet.hpp>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
 
 
 namespace Hexagon

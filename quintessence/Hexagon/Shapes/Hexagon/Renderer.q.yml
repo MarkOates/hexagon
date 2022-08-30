@@ -87,5 +87,5 @@ dependencies:
     headers: [ 'cmath' ]
 
   - symbol: Shapes::Hexagon::Stroke
-    headers: [ Shapes/Hexagon/Stroke.hpp ]
+    headers: [ Hexagon/Shapes/Hexagon/Stroke.hpp ]
 

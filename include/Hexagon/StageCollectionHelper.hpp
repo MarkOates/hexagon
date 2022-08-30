@@ -4,7 +4,7 @@
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
-#include <StageInterface.hpp>
+#include <Hexagon/StageInterface.hpp>
 #include <vector>
 
 

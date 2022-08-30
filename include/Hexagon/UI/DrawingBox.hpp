@@ -1,14 +1,13 @@
 #pragma once
 
 
-#include <ALLEGRO_BITMAP.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/UI/DrawingBox.hpp>
 #include <allegro5/allegro.h>
+#include <functional>
 #include <map>
-#include <std/function.hpp>
 #include <string>
 
 
