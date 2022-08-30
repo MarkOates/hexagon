@@ -31,11 +31,11 @@ FilePixelPreviewCreator::~FilePixelPreviewCreator()
 ALLEGRO_BITMAP* FilePixelPreviewCreator::create()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "FilePixelPreviewCreator" << "::" << "create" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FilePixelPreviewCreator" << "::" << "create" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!Blast::FileExistenceChecker(filename).exists())
    {
       std::stringstream error_message;

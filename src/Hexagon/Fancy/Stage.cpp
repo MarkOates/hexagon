@@ -45,17 +45,17 @@ std::string Stage::run()
 void Stage::render()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_is_primitives_addon_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    // initialize
    float surface_width = 1920;
    float surface_height = 1080;
@@ -96,11 +96,11 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 ALLEGRO_FONT* Stage::obtain_title_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -26");
 }
 } // namespace Fancy

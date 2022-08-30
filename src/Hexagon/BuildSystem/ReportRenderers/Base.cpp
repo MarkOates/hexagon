@@ -53,11 +53,11 @@ bool Base::is_type(std::string possible_type)
 std::string Base::render_text()
 {
    if (!(build))
-      {
-         std::stringstream error_message;
-         error_message << "Base" << "::" << "render_text" << ": error: " << "guard \"build\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Base" << "::" << "render_text" << ": error: " << "guard \"build\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::stringstream result;
 
    unsigned i=0;

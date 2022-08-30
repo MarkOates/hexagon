@@ -49,11 +49,11 @@ void DirtyGrid::mark_as_dirty(int x, int y)
 void DirtyGrid::mark_all_as_dirty(std::vector<std::string>* lines)
 {
    if (!(lines))
-      {
-         std::stringstream error_message;
-         error_message << "DirtyGrid" << "::" << "mark_all_as_dirty" << ": error: " << "guard \"lines\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "DirtyGrid" << "::" << "mark_all_as_dirty" << ": error: " << "guard \"lines\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    type: std::vector<std::string>& local_lines_ref = *lines;
    for (int l=0; l<local_lines_ref.size(); l++)
    {
@@ -74,11 +74,11 @@ void DirtyGrid::mark_row_as_dirty(int row, int start, int length)
 void DirtyGrid::incorporate(Hexagon::DirtyGrid* other_dirty_grid)
 {
    if (!(other_dirty_grid))
-      {
-         std::stringstream error_message;
-         error_message << "DirtyGrid" << "::" << "incorporate" << ": error: " << "guard \"other_dirty_grid\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "DirtyGrid" << "::" << "incorporate" << ": error: " << "guard \"other_dirty_grid\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    dirty_cells.insert(other_dirty_grid->dirty_cells.begin(), other_dirty_grid->dirty_cells.end());
    return;
 }

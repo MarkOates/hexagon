@@ -51,23 +51,23 @@ ALLEGRO_COLOR Renderer::get_base_text_color() const
 bool Renderer::render()
 {
    if (!(system))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"system\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"system\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(display))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"display\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"display\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(backfill_color))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    //al_clear_to_color(*get_backfill_color());
 
    system->get_camera_ref().setup_camera_perspective(al_get_backbuffer(display));
@@ -105,11 +105,11 @@ bool Renderer::render()
 void Renderer::draw_focused_frame(StageInterface* stage)
 {
    if (!(stage))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_focused_frame" << ": error: " << "guard \"stage\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "draw_focused_frame" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d place = stage->get_place();
    Hexagon::Elements::Window window(place.size.x, place.size.y);
    ALLEGRO_COLOR btc = get_base_text_color();

@@ -29,11 +29,11 @@ Renderer::~Renderer()
 void Renderer::render()
 {
    if (!(multiplex_menu))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"multiplex_menu\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"multiplex_menu\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d place;
    int i=0;
    int num_pages = multiplex_menu->get_num_pages();

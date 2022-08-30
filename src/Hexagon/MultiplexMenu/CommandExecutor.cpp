@@ -28,11 +28,11 @@ CommandExecutor::~CommandExecutor()
 void CommandExecutor::send_message_to_stage(std::string message)
 {
    if (!(stage_to_send_messages_to))
-      {
-         std::stringstream error_message;
-         error_message << "CommandExecutor" << "::" << "send_message_to_stage" << ": error: " << "guard \"stage_to_send_messages_to\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CommandExecutor" << "::" << "send_message_to_stage" << ": error: " << "guard \"stage_to_send_messages_to\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    stage_to_send_messages_to->process_local_event(message);
    return;
 }
@@ -40,17 +40,17 @@ void CommandExecutor::send_message_to_stage(std::string message)
 bool CommandExecutor::execute()
 {
    if (!(stage_to_send_messages_to))
-      {
-         std::stringstream error_message;
-         error_message << "CommandExecutor" << "::" << "execute" << ": error: " << "guard \"stage_to_send_messages_to\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CommandExecutor" << "::" << "execute" << ": error: " << "guard \"stage_to_send_messages_to\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(multiplex_menu))
-      {
-         std::stringstream error_message;
-         error_message << "CommandExecutor" << "::" << "execute" << ": error: " << "guard \"multiplex_menu\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CommandExecutor" << "::" << "execute" << ": error: " << "guard \"multiplex_menu\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    for (auto &command : multiplex_menu->get_final_command_set_to_execute())
    {
       send_message_to_stage(command);

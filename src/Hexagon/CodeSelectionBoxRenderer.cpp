@@ -40,11 +40,11 @@ void CodeSelectionBoxRenderer::set_selection_color(ALLEGRO_COLOR selection_color
 void CodeSelectionBoxRenderer::render_full_line_selection()
 {
    if (!(code_range))
-      {
-         std::stringstream error_message;
-         error_message << "CodeSelectionBoxRenderer" << "::" << "render_full_line_selection" << ": error: " << "guard \"code_range\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CodeSelectionBoxRenderer" << "::" << "render_full_line_selection" << ": error: " << "guard \"code_range\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    CodePoint start = code_range->infer_cursor_start();
    CodePoint end = code_range->infer_cursor_end();
    for (int i = start.get_y(); i <= end.get_y(); i++)
@@ -64,11 +64,11 @@ void CodeSelectionBoxRenderer::render_full_line_selection()
 void CodeSelectionBoxRenderer::render()
 {
    if (!(code_range))
-      {
-         std::stringstream error_message;
-         error_message << "CodeSelectionBoxRenderer" << "::" << "render" << ": error: " << "guard \"code_range\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CodeSelectionBoxRenderer" << "::" << "render" << ": error: " << "guard \"code_range\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    int num_lines = code_range->infer_num_lines();
    CodePoint start = code_range->infer_cursor_start();
    CodePoint end = code_range->infer_cursor_end();
@@ -150,11 +150,11 @@ bool CodeSelectionBoxRenderer::verify_line_in_range(int line_num)
 int CodeSelectionBoxRenderer::get_line_length(int line_num)
 {
    if (!(lines))
-      {
-         std::stringstream error_message;
-         error_message << "CodeSelectionBoxRenderer" << "::" << "get_line_length" << ": error: " << "guard \"lines\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CodeSelectionBoxRenderer" << "::" << "get_line_length" << ": error: " << "guard \"lines\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!verify_line_in_range(line_num)) return 0;
    return (*lines)[line_num].length();
    return 0;

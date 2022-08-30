@@ -179,11 +179,11 @@ void ApplicationController::run_program()
 void ApplicationController::run_event_loop()
 {
    if (!(system))
-      {
-         std::stringstream error_message;
-         error_message << "ApplicationController" << "::" << "run_event_loop" << ": error: " << "guard \"system\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ApplicationController" << "::" << "run_event_loop" << ": error: " << "guard \"system\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    bool mouse_event_occurred_and_requires_screen_refresh = false;
    static int mouse_event_skip = 0;
 

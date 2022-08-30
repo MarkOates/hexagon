@@ -42,17 +42,17 @@ std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>> &TextGr
 void TextGrid::render()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "TextGrid" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TextGrid" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "TextGrid" << "::" << "render" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TextGrid" << "::" << "render" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    // note: missing guard for al_is_primitives_addon_initialized();
    int y=0;
    std::string str_to_render = "\0";

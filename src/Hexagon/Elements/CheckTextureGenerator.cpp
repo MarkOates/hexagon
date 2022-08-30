@@ -27,17 +27,17 @@ CheckTextureGenerator::~CheckTextureGenerator()
 ALLEGRO_BITMAP* CheckTextureGenerator::generate_grid_check()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "CheckTextureGenerator" << "::" << "generate_grid_check" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CheckTextureGenerator" << "::" << "generate_grid_check" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(display))
-      {
-         std::stringstream error_message;
-         error_message << "CheckTextureGenerator" << "::" << "generate_grid_check" << ": error: " << "guard \"display\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CheckTextureGenerator" << "::" << "generate_grid_check" << ": error: " << "guard \"display\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    float width = 400;
    float height = 300;
 

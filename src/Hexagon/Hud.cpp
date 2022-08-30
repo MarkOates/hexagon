@@ -483,23 +483,23 @@ void Hud::initialize()
 void Hud::reinitialize()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Hud" << "::" << "reinitialize" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Hud" << "::" << "reinitialize" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(display))
-      {
-         std::stringstream error_message;
-         error_message << "Hud" << "::" << "reinitialize" << ": error: " << "guard \"display\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Hud" << "::" << "reinitialize" << ": error: " << "guard \"display\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(screen_sub_bitmap))
-      {
-         std::stringstream error_message;
-         error_message << "Hud" << "::" << "reinitialize" << ": error: " << "guard \"screen_sub_bitmap\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Hud" << "::" << "reinitialize" << ": error: " << "guard \"screen_sub_bitmap\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    ALLEGRO_BITMAP *backbuffer = al_get_backbuffer(display);
    al_destroy_bitmap(screen_sub_bitmap);
    ALLEGRO_BITMAP *hud_screen_sub_bitmap = al_create_sub_bitmap(backbuffer,
@@ -722,11 +722,11 @@ void Hud::draw_packets()
 void Hud::draw_caps_lock_notification_light(bool active)
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Hud" << "::" << "draw_caps_lock_notification_light" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Hud" << "::" << "draw_caps_lock_notification_light" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    float caps_notification_lights_x = 130;
    float caps_notification_lights_y = get_surface_projection_height() - 200;
 
@@ -745,11 +745,11 @@ void Hud::draw_caps_lock_notification_light(bool active)
 void Hud::draw()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Hud" << "::" << "draw" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Hud" << "::" << "draw" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    int y_cursor = 0;
    int frame_width = get_surface_projection_width();
    int frame_height = get_surface_projection_height();

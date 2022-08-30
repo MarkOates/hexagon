@@ -69,11 +69,11 @@ ALLEGRO_FONT* WithAllegroRenderingFixture::get_any_font()
 placement3d WithAllegroRenderingFixture::build_centered_placement(float width, float height)
 {
    if (!(al_get_target_bitmap()))
-      {
-         std::stringstream error_message;
-         error_message << "WithAllegroRenderingFixture" << "::" << "build_centered_placement" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "WithAllegroRenderingFixture" << "::" << "build_centered_placement" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d place(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0f);
    place.size = vec3d(width, height, 0);
    return place;

@@ -82,11 +82,11 @@ bool TextMesh::get_initialized() const
 void TextMesh::set_font(ALLEGRO_FONT* font)
 {
    if (!(!initialized))
-      {
-         std::stringstream error_message;
-         error_message << "TextMesh" << "::" << "set_font" << ": error: " << "guard \"!initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TextMesh" << "::" << "set_font" << ": error: " << "guard \"!initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    this->font = font;
    font_character_map_grid.set_font(font);
    return;
@@ -95,11 +95,11 @@ void TextMesh::set_font(ALLEGRO_FONT* font)
 void TextMesh::initialize()
 {
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "TextMesh" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TextMesh" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (initialized) return;
 
    if (font_character_map_bitmap) al_destroy_bitmap(font_character_map_bitmap);
@@ -125,11 +125,11 @@ void TextMesh::initialize()
 void TextMesh::destruct()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "TextMesh" << "::" << "destruct" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TextMesh" << "::" << "destruct" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (font_character_map_bitmap)
    {
       al_destroy_bitmap(font_character_map_bitmap);
@@ -166,11 +166,11 @@ int TextMesh::calculate_height()
 void TextMesh::render()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "TextMesh" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TextMesh" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    bitmap_grid_mesh.render();
    return;
 }

@@ -30,17 +30,17 @@ TexturedRectangle::~TexturedRectangle()
 void TexturedRectangle::draw()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "TexturedRectangle" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TexturedRectangle" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(texture))
-      {
-         std::stringstream error_message;
-         error_message << "TexturedRectangle" << "::" << "draw" << ": error: " << "guard \"texture\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TexturedRectangle" << "::" << "draw" << ": error: " << "guard \"texture\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    ALLEGRO_COLOR white_color = ALLEGRO_COLOR{1, 1, 1, 1};
    draw_textured_rectangle(
       x1,

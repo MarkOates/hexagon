@@ -34,22 +34,22 @@ void TexturedTruchet::initialize()
 void TexturedTruchet::activate()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "TexturedTruchet" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TexturedTruchet" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::Shaders::Base::activate();
 }
 
 void TexturedTruchet::deactivate()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "TexturedTruchet" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TexturedTruchet" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::Shaders::Base::deactivate();
 }
 

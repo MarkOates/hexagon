@@ -43,11 +43,11 @@ std::string CheckGitSyncAndUpdatePowerbar::get_repos_directory() const
 bool CheckGitSyncAndUpdatePowerbar::execute()
 {
    if (!(powerbar))
-      {
-         std::stringstream error_message;
-         error_message << "CheckGitSyncAndUpdatePowerbar" << "::" << "execute" << ": error: " << "guard \"powerbar\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CheckGitSyncAndUpdatePowerbar" << "::" << "execute" << ": error: " << "guard \"powerbar\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::Git::RemoteSyncChecker sync_checker(repo_name, repos_directory);
    bool is_in_sync_with_remote = sync_checker.is_in_sync_with_remote();
 

@@ -232,17 +232,17 @@ bool BitmapGridMesh::resize(int num_columns, int num_rows, float cell_width, flo
 void BitmapGridMesh::render()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridMesh" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridMesh" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(bitmap))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridMesh" << "::" << "render" << ": error: " << "guard \"bitmap\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridMesh" << "::" << "render" << ": error: " << "guard \"bitmap\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (clip_length_y == 0) return;
 
    int clip_length_y = std::max(0, this->clip_length_y);
@@ -274,17 +274,17 @@ void BitmapGridMesh::render()
 void BitmapGridMesh::render_only_select_cells(std::vector<std::pair<int, int>> cell_coordinates)
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridMesh" << "::" << "render_only_select_cells" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridMesh" << "::" << "render_only_select_cells" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(bitmap))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridMesh" << "::" << "render_only_select_cells" << ": error: " << "guard \"bitmap\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridMesh" << "::" << "render_only_select_cells" << ": error: " << "guard \"bitmap\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
    int indices_per_cell = 6;
    std::vector<int> indices(cell_coordinates.size() * indices_per_cell);

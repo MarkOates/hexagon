@@ -300,17 +300,17 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 void Stage::initialize()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "initialize" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (initialized) return;
 
    text_mesh.set_font(obtain_text_font());
@@ -593,11 +593,11 @@ bool Stage::cursor_jump_to_previous_search_regex_selection()
 bool Stage::delete_character()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "delete_character" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "delete_character" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    bool result = advanced_code_editor.delete_character();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    refresh_current_visual_selection_end_to_current_cursor_position(); // TODO: only do if result == true
@@ -607,11 +607,11 @@ bool Stage::delete_character()
 std::string Stage::grab_word_under_cursor()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "grab_word_under_cursor" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "grab_word_under_cursor" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (cursor_get_y() < 0) return "";
    if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return "";
 
@@ -632,11 +632,11 @@ std::string Stage::grab_word_under_cursor()
 bool Stage::delete_word_under_cursor()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "delete_word_under_cursor" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "delete_word_under_cursor" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (cursor_get_y() < 0) return false;
    if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
 
@@ -692,11 +692,11 @@ bool Stage::delete_to_next_word_or_end_of_line()
 bool Stage::join_lines()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "join_lines" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "join_lines" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    bool result = advanced_code_editor.join_lines();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    refresh_current_visual_selection_end_to_current_cursor_position();
@@ -706,11 +706,11 @@ bool Stage::join_lines()
 bool Stage::split_lines()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "split_lines" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "split_lines" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    bool result = advanced_code_editor.split_lines();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    refresh_current_visual_selection_end_to_current_cursor_position();
@@ -720,11 +720,11 @@ bool Stage::split_lines()
 bool Stage::delete_line()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "delete_line" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "delete_line" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    bool result = advanced_code_editor.delete_line();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    refresh_current_visual_selection_end_to_current_cursor_position();
@@ -734,11 +734,11 @@ bool Stage::delete_line()
 bool Stage::insert_string_from_input_buffer()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "insert_string_from_input_buffer" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "insert_string_from_input_buffer" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    bool result = advanced_code_editor.insert_string(input_buffer);
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    refresh_current_visual_selection_end_to_current_cursor_position();
@@ -748,11 +748,11 @@ bool Stage::insert_string_from_input_buffer()
 bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "insert_lines" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "insert_lines" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    bool result = advanced_code_editor.insert_lines(lines_to_insert);
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    refresh_current_visual_selection_end_to_current_cursor_position();
@@ -762,11 +762,11 @@ bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
 void Stage::set_content(std::string content)
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "set_content" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "set_content" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    advanced_code_editor.set_content(content);
    advanced_code_editor.unmark_content_is_modified();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
@@ -1132,11 +1132,11 @@ bool Stage::cursor_move_to(int x, int y)
 void Stage::render()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d &place = get_place();
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
 
@@ -1207,11 +1207,11 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 ALLEGRO_FONT* Stage::obtain_text_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "obtain_text_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "obtain_text_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("Menlo-Regular.ttf -20");
 }
 
@@ -1291,11 +1291,11 @@ void Stage::refresh_render_surfaces()
 void Stage::refresh_dirty_cells_on_surface_render_respecting_first_row_offset()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "refresh_dirty_cells_on_surface_render_respecting_first_row_offset" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "refresh_dirty_cells_on_surface_render_respecting_first_row_offset" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    ALLEGRO_STATE previous_render_state;
    al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
    al_set_target_bitmap(surface_render);
@@ -1318,11 +1318,11 @@ void Stage::refresh_dirty_cells_on_surface_render_respecting_first_row_offset()
 void Stage::refresh_dirty_cells_on_text_mesh()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "refresh_dirty_cells_on_text_mesh" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "refresh_dirty_cells_on_text_mesh" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    char clear_char = '\0';
    //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
    //ALLEGRO_COLOR on_color = ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f};
@@ -1359,11 +1359,11 @@ void Stage::refresh_dirty_cells_on_text_mesh()
 void Stage::refresh_text_mesh_respecting_first_row_offset()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "refresh_text_mesh_respecting_first_row_offset" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "refresh_text_mesh_respecting_first_row_offset" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    // TODO: optimize this. It does no need to wipe and refresh the entire mesh,
    // it should be able to move existing vertexes by the previous offset.
    // There's definitely some fun research to be done here.
@@ -1559,11 +1559,11 @@ void Stage::filter_text_mesh_for_line_too_long()
 void Stage::refresh_text_mesh()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "refresh_text_mesh" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "refresh_text_mesh" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    char clear_char = '\0';
 
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();

@@ -38,11 +38,11 @@ std::string CheckGitLocalStatusAndUpdatePowerbar::get_current_project_directory(
 bool CheckGitLocalStatusAndUpdatePowerbar::execute()
 {
    if (!(powerbar))
-      {
-         std::stringstream error_message;
-         error_message << "CheckGitLocalStatusAndUpdatePowerbar" << "::" << "execute" << ": error: " << "guard \"powerbar\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CheckGitLocalStatusAndUpdatePowerbar" << "::" << "execute" << ": error: " << "guard \"powerbar\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::Git::Modified modified(current_project_directory);
    std::vector<std::string> modified_files = modified.get_shell_response();
 

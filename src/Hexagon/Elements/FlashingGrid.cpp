@@ -39,11 +39,11 @@ void FlashingGrid::set_counter(int counter)
 void FlashingGrid::render()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "FlashingGrid" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FlashingGrid" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    // note: missing guard for al_is_primitives_addon_initialized();
    ALLEGRO_COLOR box_color;
 

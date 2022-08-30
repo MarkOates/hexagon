@@ -113,11 +113,11 @@ ALLEGRO_COLOR Renderer::get_user_input_text_color()
 void Renderer::render()
 {
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    //placement3d place = get_place();
    place.start_transform();
 

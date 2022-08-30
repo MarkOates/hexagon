@@ -49,29 +49,29 @@ ALLEGRO_COLOR PacketRenderer::get_text_color() const
 void PacketRenderer::render()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(packet))
-      {
-         std::stringstream error_message;
-         error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"packet\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"packet\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_is_primitives_addon_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PacketRenderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    render_window();
 
    placement2d text_scaler(0, 0, 0, 0);

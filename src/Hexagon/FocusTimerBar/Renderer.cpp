@@ -33,17 +33,17 @@ Renderer::~Renderer()
 void Renderer::render()
 {
    if (!(focus_timer_bar))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"focus_timer_bar\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"focus_timer_bar\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_is_primitives_addon_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    float width = surface_width * 0.6;
    float height = 30;
    float x = surface_width / 2 - width / 2;

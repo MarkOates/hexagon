@@ -65,17 +65,17 @@ std::map<char, ALLEGRO_BITMAP*> SubBitmapCharacterMap::get_cell_sub_bitmaps() co
 void SubBitmapCharacterMap::initialize()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "SubBitmapCharacterMap" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "SubBitmapCharacterMap" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "SubBitmapCharacterMap" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "SubBitmapCharacterMap" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    for (auto &cell_sub_bitmap : cell_sub_bitmaps) al_destroy_bitmap(cell_sub_bitmap.second);
    cell_sub_bitmaps.clear();
    if (surface) al_destroy_bitmap(surface);

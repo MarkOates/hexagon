@@ -54,11 +54,11 @@ bool BitmapGridRenderSurface::get_initialized() const
 void BitmapGridRenderSurface::set_cell_width(int cell_width)
 {
    if (!((!get_initialized())))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridRenderSurface" << "::" << "set_cell_width" << ": error: " << "guard \"(!get_initialized())\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "set_cell_width" << ": error: " << "guard \"(!get_initialized())\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    this->cell_width = cell_width;
    return;
 }
@@ -66,11 +66,11 @@ void BitmapGridRenderSurface::set_cell_width(int cell_width)
 void BitmapGridRenderSurface::set_cell_height(int cell_height)
 {
    if (!((!get_initialized())))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridRenderSurface" << "::" << "set_cell_height" << ": error: " << "guard \"(!get_initialized())\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "set_cell_height" << ": error: " << "guard \"(!get_initialized())\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    this->cell_height = cell_height;
    return;
 }
@@ -78,11 +78,11 @@ void BitmapGridRenderSurface::set_cell_height(int cell_height)
 void BitmapGridRenderSurface::lock_for_render()
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridRenderSurface" << "::" << "lock_for_render" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "lock_for_render" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
    al_set_target_bitmap(surface);
    al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_ZERO);
@@ -92,11 +92,11 @@ void BitmapGridRenderSurface::lock_for_render()
 void BitmapGridRenderSurface::unlock_for_render()
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridRenderSurface" << "::" << "unlock_for_render" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "unlock_for_render" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    al_restore_state(&previous_render_state);
    return;
 }
@@ -104,11 +104,11 @@ void BitmapGridRenderSurface::unlock_for_render()
 void BitmapGridRenderSurface::initialize()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridRenderSurface" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (initialized) return;
 
    ALLEGRO_STATE previous_render_state;
@@ -148,17 +148,17 @@ void BitmapGridRenderSurface::initialize()
 void BitmapGridRenderSurface::draw_to_cell(ALLEGRO_BITMAP* bitmap_to_draw, ALLEGRO_COLOR tint, int x, int y)
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridRenderSurface" << "::" << "draw_to_cell" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "draw_to_cell" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(bitmap_to_draw))
-      {
-         std::stringstream error_message;
-         error_message << "BitmapGridRenderSurface" << "::" << "draw_to_cell" << ": error: " << "guard \"bitmap_to_draw\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BitmapGridRenderSurface" << "::" << "draw_to_cell" << ": error: " << "guard \"bitmap_to_draw\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    al_draw_tinted_bitmap(bitmap_to_draw, tint, x*cell_width, y*cell_height, 0);
 
    return;

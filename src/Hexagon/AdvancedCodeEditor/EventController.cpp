@@ -44,11 +44,11 @@ ALLEGRO_EVENT &EventController::get_a_default_empty_event_ref()
 void EventController::process_local_event(std::string event_name, ActionData action_data)
 {
    if (!(stage))
-      {
-         std::stringstream error_message;
-         error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"stage\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::AdvancedCodeEditor::Stage &component = *stage;
 
    std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>::iterator it =
@@ -106,11 +106,11 @@ void EventController::process_local_event(std::string event_name, ActionData act
 void EventController::process_event(ALLEGRO_EVENT& event)
 {
    if (!(stage))
-      {
-         std::stringstream error_message;
-         error_message << "EventController" << "::" << "process_event" << ": error: " << "guard \"stage\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "EventController" << "::" << "process_event" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    switch(event.type)
    {
    case ALLEGRO_EVENT_KEY_DOWN:

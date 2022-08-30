@@ -60,11 +60,11 @@ void Stage::render()
 void Stage::send_message_to_stage(std::string message)
 {
    if (!(stage_to_send_messages_to))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "send_message_to_stage" << ": error: " << "guard \"stage_to_send_messages_to\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "send_message_to_stage" << ": error: " << "guard \"stage_to_send_messages_to\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    stage_to_send_messages_to->process_local_event(message);
    return;
 }

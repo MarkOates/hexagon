@@ -130,11 +130,11 @@ std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::b
 std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::build_comment_tokens()
 {
    if (!(backfill_color))
-      {
-         std::stringstream error_message;
-         error_message << "AdvancedLineRenderer" << "::" << "build_comment_tokens" << ": error: " << "guard \"backfill_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "AdvancedLineRenderer" << "::" << "build_comment_tokens" << ": error: " << "guard \"backfill_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens;
    ALLEGRO_COLOR base_backfill_color = *backfill_color;
    ALLEGRO_COLOR comment_color = AllegroFlare::color::color(base_backfill_color, 0.75f);
@@ -195,23 +195,23 @@ void AdvancedLineRenderer::render_tokens(std::vector<std::tuple<std::string, int
 void AdvancedLineRenderer::render()
 {
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "AdvancedLineRenderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "AdvancedLineRenderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font_color))
-      {
-         std::stringstream error_message;
-         error_message << "AdvancedLineRenderer" << "::" << "render" << ": error: " << "guard \"font_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "AdvancedLineRenderer" << "::" << "render" << ": error: " << "guard \"font_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(backfill_color))
-      {
-         std::stringstream error_message;
-         error_message << "AdvancedLineRenderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "AdvancedLineRenderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::string concatinated_line = full_line_text.substr(0, max_num_columns);
    // draw the line straight out
    al_draw_text(font, *font_color, x, y, ALLEGRO_ALIGN_LEFT, concatinated_line.c_str());

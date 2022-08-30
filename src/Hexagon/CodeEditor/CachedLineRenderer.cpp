@@ -38,17 +38,17 @@ CachedLineRenderer::~CachedLineRenderer()
 void CachedLineRenderer::initialize()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "CachedLineRenderer" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "CachedLineRenderer" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (initialized) return;
 
    // destroy any existing resources
@@ -89,11 +89,11 @@ int CachedLineRenderer::size()
 bool CachedLineRenderer::exists(int index)
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "CachedLineRenderer" << "::" << "exists" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "exists" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (index < 0) return false;
    if (index >= cache.size()) return false;
    return true;
@@ -102,23 +102,23 @@ bool CachedLineRenderer::exists(int index)
 ALLEGRO_BITMAP* CachedLineRenderer::pull(int index)
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "CachedLineRenderer" << "::" << "pull" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "pull" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(index >= 0))
-      {
-         std::stringstream error_message;
-         error_message << "CachedLineRenderer" << "::" << "pull" << ": error: " << "guard \"index >= 0\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "pull" << ": error: " << "guard \"index >= 0\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(index < cache.size()))
-      {
-         std::stringstream error_message;
-         error_message << "CachedLineRenderer" << "::" << "pull" << ": error: " << "guard \"index < cache.size()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CachedLineRenderer" << "::" << "pull" << ": error: " << "guard \"index < cache.size()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return cache[index];
 }
 } // namespace CodeEditor

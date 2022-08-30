@@ -62,11 +62,11 @@ bool FontedTextGrid::get_initialized() const
 void FontedTextGrid::initialize()
 {
    if (!((!get_initialized())))
-      {
-         std::stringstream error_message;
-         error_message << "FontedTextGrid" << "::" << "initialize" << ": error: " << "guard \"(!get_initialized())\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FontedTextGrid" << "::" << "initialize" << ": error: " << "guard \"(!get_initialized())\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    sub_bitmap_character_map.set_font(font);
    sub_bitmap_character_map.initialize();
 
@@ -81,11 +81,11 @@ void FontedTextGrid::initialize()
 void FontedTextGrid::destroy()
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "FontedTextGrid" << "::" << "destroy" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FontedTextGrid" << "::" << "destroy" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    sub_bitmap_character_map.destroy();
    bitmap_grid_render_surface.destroy();
    initialized = false;
@@ -95,11 +95,11 @@ void FontedTextGrid::destroy()
 void FontedTextGrid::set_cell_to_character_and_color(char character, int x, int y, ALLEGRO_COLOR tint)
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "FontedTextGrid" << "::" << "set_cell_to_character_and_color" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FontedTextGrid" << "::" << "set_cell_to_character_and_color" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap(character);
    bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, tint, x, y);
    return;
@@ -120,11 +120,11 @@ void FontedTextGrid::unlock_for_update()
 void FontedTextGrid::draw()
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "FontedTextGrid" << "::" << "draw" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FontedTextGrid" << "::" << "draw" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
    if (surface) al_draw_bitmap(surface, 0, 0, 0);
    return;
@@ -133,11 +133,11 @@ void FontedTextGrid::draw()
 ALLEGRO_BITMAP* FontedTextGrid::__cheat_really_badly_and_get_the_bitmap_grid_render_surface()
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "FontedTextGrid" << "::" << "__cheat_really_badly_and_get_the_bitmap_grid_render_surface" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FontedTextGrid" << "::" << "__cheat_really_badly_and_get_the_bitmap_grid_render_surface" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return bitmap_grid_render_surface.get_surface();
 }
 } // namespace Elements

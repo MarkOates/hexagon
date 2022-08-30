@@ -62,34 +62,34 @@ bool FontCharacterMapGrid::get_initialized() const
 ALLEGRO_BITMAP* FontCharacterMapGrid::get_created_character_map_bitmap()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "FontCharacterMapGrid" << "::" << "get_created_character_map_bitmap" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FontCharacterMapGrid" << "::" << "get_created_character_map_bitmap" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return created_character_map_bitmap;
 }
 
 bool FontCharacterMapGrid::initialize()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!((!initialized)))
-      {
-         std::stringstream error_message;
-         error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    character_uv_mapping.clear();
 
    grid_width = al_get_text_width(font, "W"); // 'W' character as an estimate for reasonable large width

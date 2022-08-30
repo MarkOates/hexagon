@@ -88,35 +88,35 @@ std::string TitleScreen::main_menu_get_current_list_item_identifier()
 void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_is_primitives_addon_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_get_target_bitmap()))
-      {
-         std::stringstream error_message;
-         error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    AllegroFlare::Profiler profiler;
 
    float logo_radius = 64;
@@ -275,11 +275,11 @@ void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
 void TitleScreen::draw_menu()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "TitleScreen" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d place(surface_width/2, surface_height/2, 0);
    place.start_transform();
    main_menu.render();
@@ -290,17 +290,17 @@ void TitleScreen::draw_menu()
 void TitleScreen::render_profiler_graph(AllegroFlare::Profiler* profiler, ALLEGRO_FONT* font)
 {
    if (!(profiler))
-      {
-         std::stringstream error_message;
-         error_message << "TitleScreen" << "::" << "render_profiler_graph" << ": error: " << "guard \"profiler\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "render_profiler_graph" << ": error: " << "guard \"profiler\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "TitleScreen" << "::" << "render_profiler_graph" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "render_profiler_graph" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::list<std::string> event_bucket_names = profiler->get_event_bucket_names();
    int line_height = 20;
    ALLEGRO_COLOR hexagon_red = al_color_html("#bc2d48");
@@ -341,11 +341,11 @@ std::string TitleScreen::build_allegro_version_string()
 void TitleScreen::append_project_path_to_config_file_and_reload_injected_config()
 {
    if (!(config))
-      {
-         std::stringstream error_message;
-         error_message << "TitleScreen" << "::" << "append_project_path_to_config_file_and_reload_injected_config" << ": error: " << "guard \"config\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TitleScreen" << "::" << "append_project_path_to_config_file_and_reload_injected_config" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::string config_filename = config->get_config_filename();
    std::string current_menu_selection_path_text = main_menu_get_current_list_item_identifier();
 

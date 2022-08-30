@@ -29,17 +29,17 @@ TextPixelPreviewCreator::~TextPixelPreviewCreator()
 ALLEGRO_BITMAP* TextPixelPreviewCreator::create()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "TextPixelPreviewCreator" << "::" << "create" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TextPixelPreviewCreator" << "::" << "create" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!((!text_lines.empty())))
-      {
-         std::stringstream error_message;
-         error_message << "TextPixelPreviewCreator" << "::" << "create" << ": error: " << "guard \"(!text_lines.empty())\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TextPixelPreviewCreator" << "::" << "create" << ": error: " << "guard \"(!text_lines.empty())\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    int height = text_lines.size();
    ALLEGRO_COLOR foreground_color = al_map_rgba_f(1.0f, 1.0f, 1.0f, 1.0f);
    ALLEGRO_COLOR background_color = al_map_rgba_f(0.0f, 0.0f, 0.0f, 1.0f);

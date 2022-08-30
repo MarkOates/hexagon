@@ -34,22 +34,22 @@ void TruchetVineSquiggle::initialize()
 void TruchetVineSquiggle::activate()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "TruchetVineSquiggle" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TruchetVineSquiggle" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::Shaders::Base::activate();
 }
 
 void TruchetVineSquiggle::deactivate()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "TruchetVineSquiggle" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TruchetVineSquiggle" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::Shaders::Base::deactivate();
 }
 

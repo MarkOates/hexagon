@@ -47,17 +47,17 @@ Hexagon::ObjectivesLog::ObjectivesLog* &Stage::get_objectives_log_ref()
 void Stage::render()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(objectives_log))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"objectives_log\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"objectives_log\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d place = get_place();
    std::vector<Hexagon::ObjectivesLog::Objective> &objectives = objectives_log->get_objectives_ref();
    float objectives_width = 700;
@@ -125,11 +125,11 @@ void Stage::move_cursor_down()
 int Stage::infer_num_list_items()
 {
    if (!(objectives_log))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "infer_num_list_items" << ": error: " << "guard \"objectives_log\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "infer_num_list_items" << ": error: " << "guard \"objectives_log\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return objectives_log->get_objectives_ref().size();
 }
 

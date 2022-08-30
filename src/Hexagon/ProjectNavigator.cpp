@@ -73,11 +73,11 @@ void ProjectNavigator::set_menu_items(std::vector<std::tuple<std::string, std::s
 bool ProjectNavigator::initialize()
 {
    if (!((!initialized)))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    main_menu = Hexagon::Elements::ListMenu(font_bin, "Projects", menu_items);
    main_menu.set_color(ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f});
    initialized = true;
@@ -87,11 +87,11 @@ bool ProjectNavigator::initialize()
 void ProjectNavigator::render()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "render" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    draw_frame();
    draw_menu();
    return;
@@ -100,17 +100,17 @@ void ProjectNavigator::render()
 void ProjectNavigator::draw_frame()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "draw_frame" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "draw_frame" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_is_primitives_addon_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "draw_frame" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "draw_frame" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    float inset = 20;
    float thickness = 4;
    float roundness = 19;
@@ -131,50 +131,50 @@ void ProjectNavigator::draw_frame()
 bool ProjectNavigator::main_menu_cursor_move_up()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "main_menu_cursor_move_up" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "main_menu_cursor_move_up" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return main_menu.move_cursor_up();
 }
 
 bool ProjectNavigator::main_menu_cursor_move_down()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "main_menu_cursor_move_down" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "main_menu_cursor_move_down" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return main_menu.move_cursor_down();
 }
 
 std::string ProjectNavigator::main_menu_get_current_list_item_identifier()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "main_menu_get_current_list_item_identifier" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "main_menu_get_current_list_item_identifier" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return main_menu.get_current_list_item_identifier();
 }
 
 void ProjectNavigator::draw_menu()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "draw_menu" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "draw_menu" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d place(surface_width/2, surface_height/2, 0);
    place.scale = vec3d(0.6, 0.6, 0.6);
    place.size = vec3d{ (float)main_menu.get_width(), 400.0f, 0.0f };
@@ -200,11 +200,11 @@ std::string ProjectNavigator::build_allegro_version_string()
 void ProjectNavigator::process_local_event(std::string event_name, ActionData action_data)
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "process_local_event" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "process_local_event" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    //Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
    //event_controller.process_local_event(event_name, action_data);
    return;
@@ -213,11 +213,11 @@ void ProjectNavigator::process_local_event(std::string event_name, ActionData ac
 void ProjectNavigator::process_event(ALLEGRO_EVENT& event)
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "ProjectNavigator" << "::" << "process_event" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ProjectNavigator" << "::" << "process_event" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    switch(event.type)
        {
        case ALLEGRO_EVENT_KEY_CHAR:

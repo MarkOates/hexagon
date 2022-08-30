@@ -35,22 +35,22 @@ std::string ASTTraverser::get_json_ast_filename() const
 void ASTTraverser::set_json_ast_filename()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "ASTTraverser" << "::" << "set_json_ast_filename" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ASTTraverser" << "::" << "set_json_ast_filename" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return;
 }
 
 void ASTTraverser::initialize()
 {
    if (!((!initialized)))
-      {
-         std::stringstream error_message;
-         error_message << "ASTTraverser" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ASTTraverser" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (json_ast_filename.empty() || !Blast::FileExistenceChecker(json_ast_filename).exists())
    {
       std::stringstream error_message;

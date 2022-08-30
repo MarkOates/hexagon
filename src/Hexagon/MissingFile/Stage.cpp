@@ -117,11 +117,11 @@ ALLEGRO_EVENT &Stage::get_a_default_empty_event_ref()
 void Stage::render()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d place = get_place();
    place.start_transform();
 
@@ -170,22 +170,22 @@ void Stage::render()
 ALLEGRO_FONT* Stage::obtain_text_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "obtain_text_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "obtain_text_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("Menlo-Regular.ttf -20");
 }
 
 ALLEGRO_FONT* Stage::obtain_title_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -60");
 }
 

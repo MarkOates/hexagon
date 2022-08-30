@@ -43,11 +43,11 @@ std::string ShellCommand::get_shell_command_result() const
 void ShellCommand::execute()
 {
    if (!((!executed)))
-      {
-         std::stringstream error_message;
-         error_message << "ShellCommand" << "::" << "execute" << ": error: " << "guard \"(!executed)\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ShellCommand" << "::" << "execute" << ": error: " << "guard \"(!executed)\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command);
    shell_command_result = shell_command_executor.execute();
    executed = true;

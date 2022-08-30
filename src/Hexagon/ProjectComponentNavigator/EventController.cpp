@@ -30,11 +30,11 @@ EventController::~EventController()
 void EventController::process_local_event(std::string event_name, ActionData action_data)
 {
    if (!(component))
-      {
-         std::stringstream error_message;
-         error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"component\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "EventController" << "::" << "process_local_event" << ": error: " << "guard \"component\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    using Hexagon::ProjectComponentNavigator::ProjectComponentNavigator;
    ProjectComponentNavigator &component = *this->component;
 

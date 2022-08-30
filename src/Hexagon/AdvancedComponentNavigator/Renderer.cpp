@@ -138,11 +138,11 @@ void Renderer::draw_search_text_box()
 void Renderer::draw_input_hints()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_input_hints" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "draw_input_hints" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (input_hints_tokens.empty()) return;
 
    Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
@@ -156,17 +156,17 @@ void Renderer::draw_input_hints()
 void Renderer::render()
 {
    if (!(stage))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"stage\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d &place = stage->get_place();
    place.start_transform();
    render_raw();
@@ -177,17 +177,17 @@ void Renderer::render()
 void Renderer::render_raw()
 {
    if (!(stage))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
    Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();
    placement3d &place = stage.get_place();

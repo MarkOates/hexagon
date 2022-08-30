@@ -244,11 +244,11 @@ std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> Stage::b
 void Stage::render()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    float backfill_opacity = 0.8f;
 
    std::vector<std::string> input_hints_tokens = {

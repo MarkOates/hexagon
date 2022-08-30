@@ -34,23 +34,23 @@ std::string Fun::get_buffer() const
 void Fun::draw(placement3d place, ALLEGRO_COLOR backfill_color)
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "Fun" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Fun" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_is_primitives_addon_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "Fun" << "::" << "draw" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Fun" << "::" << "draw" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_get_target_bitmap()))
-      {
-         std::stringstream error_message;
-         error_message << "Fun" << "::" << "draw" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Fun" << "::" << "draw" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, backfill_color);
    return;
 }

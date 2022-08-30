@@ -106,11 +106,11 @@ void Config::validate_initialized(std::string function_name)
 void Config::initialize()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "Config" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Config" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (initialized) return; // TODO, double initialization should raise an exception
    config.load();
    initialized = true;
@@ -119,11 +119,11 @@ void Config::initialize()
 void Config::reload()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Config" << "::" << "reload" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Config" << "::" << "reload" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    config.reload(); return;
 }
 
@@ -184,11 +184,11 @@ std::string Config::get_font_bin_path()
 int Config::get_initial_baseline_camera_stepback()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Config" << "::" << "get_initial_baseline_camera_stepback" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Config" << "::" << "get_initial_baseline_camera_stepback" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    validate_initialized(__FUNCTION__);
    return config.get_or_default_int("", INITIAL_BASELINE_CAMERA_STEPBACK_KEY, 130);
 }
@@ -196,55 +196,55 @@ int Config::get_initial_baseline_camera_stepback()
 bool Config::is_dark_mode()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Config" << "::" << "is_dark_mode" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Config" << "::" << "is_dark_mode" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config.get_or_default_bool("", DARK_MODE_KEY, false);
 }
 
 std::string Config::get_objective()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Config" << "::" << "get_objective" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Config" << "::" << "get_objective" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config.get_or_default_str("", OBJECTIVE_KEY, "- objective not set -");
 }
 
 std::string Config::get_current_project_domain()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Config" << "::" << "get_current_project_domain" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Config" << "::" << "get_current_project_domain" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config.get_or_default_str("", DOMAIN_KEY, ""); // value should be an empty string
 }
 
 bool Config::is_fullscreen()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Config" << "::" << "is_fullscreen" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Config" << "::" << "is_fullscreen" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config.get_or_default_bool("", FULLSCREEN_KEY, false);
 }
 
 bool Config::get_hud_show_focus_timer_bar()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Config" << "::" << "get_hud_show_focus_timer_bar" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Config" << "::" << "get_hud_show_focus_timer_bar" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config.get_or_default_bool("", HUD_SHOW_FOCUS_TIMER_BAR_KEY, false);
 }
 

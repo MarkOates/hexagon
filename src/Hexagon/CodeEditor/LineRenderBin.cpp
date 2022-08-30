@@ -29,11 +29,11 @@ LineRenderBin::~LineRenderBin()
 ALLEGRO_BITMAP* LineRenderBin::load_data(std::string identifier)
 {
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "LineRenderBin" << "::" << "load_data" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "LineRenderBin" << "::" << "load_data" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::string text_to_render = identifier;
    ALLEGRO_BITMAP *render = nullptr;
 

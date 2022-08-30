@@ -34,22 +34,22 @@ void Fun::initialize()
 void Fun::activate()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Fun" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Fun" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::Shaders::Base::activate();
 }
 
 void Fun::deactivate()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "Fun" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Fun" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::Shaders::Base::deactivate();
 }
 

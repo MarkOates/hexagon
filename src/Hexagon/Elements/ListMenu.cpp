@@ -310,11 +310,11 @@ void ListMenu::render()
 ALLEGRO_FONT* ListMenu::obtain_list_item_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "ListMenu" << "::" << "obtain_list_item_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ListMenu" << "::" << "obtain_list_item_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("Jura-Medium.ttf -26");
    //return font_bin->auto_get("Exan-Regular.ttf -23");
    //return font_bin->auto_get("Helvetica.ttf -23");
@@ -323,11 +323,11 @@ ALLEGRO_FONT* ListMenu::obtain_list_item_font()
 ALLEGRO_FONT* ListMenu::obtain_title_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "ListMenu" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ListMenu" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -26");
    //return font_bin->auto_get("Exan-Regular.ttf -23");
    //return font_bin->auto_get("Exan-Regular.ttf -23");

@@ -38,11 +38,11 @@ Hexagon::BuildSystem::Builds::Base* ReportRenderer::get_build() const
 std::string ReportRenderer::build_text_report()
 {
    if (!(build))
-      {
-         std::stringstream error_message;
-         error_message << "ReportRenderer" << "::" << "build_text_report" << ": error: " << "guard \"build\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "ReportRenderer" << "::" << "build_text_report" << ": error: " << "guard \"build\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::string result;
 
    if (build->is_type(Hexagon::BuildSystem::Builds::Base::TYPE))

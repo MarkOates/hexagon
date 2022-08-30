@@ -359,29 +359,29 @@ void Renderer::draw_build_dump_report(float width, std::string stage_text_dump, 
 void Renderer::draw_status_box(float x, float y, float w, float h, std::string status, std::string label)
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_is_primitives_addon_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_is_ttf_addon_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"al_is_ttf_addon_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"al_is_ttf_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "draw_status_box" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    // statuses:
    //   incomplete: nothing has run yet
    //   running: current step is being executed and will show results once processed
@@ -450,11 +450,11 @@ ALLEGRO_COLOR Renderer::build_color_from_status(std::string status)
 ALLEGRO_FONT* Renderer::obtain_dump_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "obtain_dump_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "obtain_dump_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    float scale = 1.45;
    int font_size = -10 * scale;
    std::stringstream ident;
@@ -465,11 +465,11 @@ ALLEGRO_FONT* Renderer::obtain_dump_font()
 ALLEGRO_FONT* Renderer::obtain_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "obtain_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "obtain_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("Purista Medium.otf -20");
 }
 } // namespace BuildSequenceMeter

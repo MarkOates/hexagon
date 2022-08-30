@@ -61,11 +61,11 @@ ALLEGRO_COLOR* Renderer::get_base_text_color() const
 ALLEGRO_COLOR Renderer::build_backfill_color()
 {
    if (!(base_backfill_color))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "build_backfill_color" << ": error: " << "guard \"base_backfill_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "build_backfill_color" << ": error: " << "guard \"base_backfill_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    ALLEGRO_COLOR result_backfill_color = color::color(*base_backfill_color, 0.8);
    return result_backfill_color;
 }
@@ -73,11 +73,11 @@ ALLEGRO_COLOR Renderer::build_backfill_color()
 ALLEGRO_COLOR Renderer::build_text_color()
 {
    if (!(base_text_color))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "build_text_color" << ": error: " << "guard \"base_text_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "build_text_color" << ": error: " << "guard \"base_text_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    ALLEGRO_COLOR result_text_color = color::color(*base_text_color, 0.8);
    return result_text_color;
 }
@@ -85,11 +85,11 @@ ALLEGRO_COLOR Renderer::build_text_color()
 ALLEGRO_COLOR Renderer::build_frame_color()
 {
    if (!(base_text_color))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "build_frame_color" << ": error: " << "guard \"base_text_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "build_frame_color" << ": error: " << "guard \"base_text_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return al_color_html("39c3c5");
    //ALLEGRO_COLOR result_frame_color = color::color(*base_text_color, 0.8);
    //return result_frame_color;
@@ -158,17 +158,17 @@ void Renderer::draw_search_text_box()
 void Renderer::render()
 {
    if (!(stage))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"stage\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d &place = stage->get_place();
    place.start_transform();
    render_raw();
@@ -397,23 +397,23 @@ void Renderer::render_list_clipping_arrows_raw(bool list_clipping_occurred_above
 void Renderer::render_raw()
 {
    if (!(stage))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(base_text_color))
-      {
-         std::stringstream error_message;
-         error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    render_window_raw();
 
    render_cursor_box_raw();

@@ -51,11 +51,11 @@ std::vector<std::string> DocumentationDependentsJSONLoader::build_dependent_name
 std::string DocumentationDependentsJSONLoader::dependents_json_file_contents()
 {
    if (!(dependents_json_file_exists()))
-      {
-         std::stringstream error_message;
-         error_message << "DocumentationDependentsJSONLoader" << "::" << "dependents_json_file_contents" << ": error: " << "guard \"dependents_json_file_exists()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "DocumentationDependentsJSONLoader" << "::" << "dependents_json_file_contents" << ": error: " << "guard \"dependents_json_file_exists()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return php::file_get_contents(get_DEPENDENTS_JSON_FILENAME());
 }
 

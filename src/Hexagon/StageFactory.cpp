@@ -100,44 +100,44 @@ float StageFactory::get_hud_render_surface_projection_height() const
 ALLEGRO_COLOR StageFactory::obtain_base_text_color()
 {
    if (!(config))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_base_text_color" << ": error: " << "guard \"config\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_base_text_color" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config->get_base_text_color();
 }
 
 std::string StageFactory::obtain_regex_temp_filename()
 {
    if (!(config))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_regex_temp_filename" << ": error: " << "guard \"config\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_regex_temp_filename" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config->get_regex_temp_filename();
 }
 
 ALLEGRO_COLOR StageFactory::obtain_base_backfill_color()
 {
    if (!(config))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_base_backfill_color" << ": error: " << "guard \"config\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_base_backfill_color" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config->get_backfill_color();
 }
 
 ALLEGRO_FONT* StageFactory::obtain_component_navigator_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_component_navigator_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_component_navigator_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    //return font_bin->auto_get("Menlo-Regular.ttf -18");
    return font_bin->auto_get("Purista Medium.otf -18");
 }
@@ -145,66 +145,66 @@ ALLEGRO_FONT* StageFactory::obtain_component_navigator_font()
 ALLEGRO_FONT* StageFactory::obtain_file_navigator_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_file_navigator_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_file_navigator_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("consolas.ttf -18");
 }
 
 ALLEGRO_FONT* StageFactory::obtain_global_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_global_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_global_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("Menlo-Regular.ttf -20");
 }
 
 ALLEGRO_FONT* StageFactory::obtain_git_commit_message_box_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_git_commit_message_box_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_git_commit_message_box_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("Purista Medium.otf -22");
 }
 
 int StageFactory::obtain_display_default_width()
 {
    if (!(config))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_display_default_width" << ": error: " << "guard \"config\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_display_default_width" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config->get_initial_display_width();
 }
 
 int StageFactory::obtain_display_default_height()
 {
    if (!(config))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_display_default_height" << ": error: " << "guard \"config\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_display_default_height" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config->get_initial_display_height();
 }
 
 bool StageFactory::obtain_dark_mode()
 {
    if (!(config))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "obtain_dark_mode" << ": error: " << "guard \"config\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "obtain_dark_mode" << ": error: " << "guard \"config\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return config->is_dark_mode();
 }
 
@@ -554,11 +554,11 @@ StageInterface* StageFactory::create_git_commit_message_box()
 StageInterface* StageFactory::create_advanced_component_navigator(std::string project_directory, std::string initial_search_text)
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "create_advanced_component_navigator" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "create_advanced_component_navigator" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::AdvancedComponentNavigator::Stage *result =
       new Hexagon::AdvancedComponentNavigator::Stage(project_directory);
 
@@ -608,11 +608,11 @@ StageInterface* StageFactory::create_advanced_component_navigator(std::string pr
 StageInterface* StageFactory::create_project_navigator()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "create_project_navigator" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "create_project_navigator" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::ProjectNavigator *result = new Hexagon::ProjectNavigator(font_bin);
 
    //result->set_font_bin(font_bin);
@@ -667,17 +667,17 @@ StageInterface* StageFactory::create_project_navigator()
 ALLEGRO_DISPLAY* StageFactory::get_current_display()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "get_current_display" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "get_current_display" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_get_current_display()))
-      {
-         std::stringstream error_message;
-         error_message << "StageFactory" << "::" << "get_current_display" << ": error: " << "guard \"al_get_current_display()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageFactory" << "::" << "get_current_display" << ": error: " << "guard \"al_get_current_display()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return al_get_current_display();
 }
 

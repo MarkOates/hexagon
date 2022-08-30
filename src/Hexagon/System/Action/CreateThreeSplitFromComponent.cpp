@@ -95,11 +95,11 @@ std::vector<StageInterface *> &CreateThreeSplitFromComponent::get_dummy_stages_r
 bool CreateThreeSplitFromComponent::place_stage(std::string filename, std::string file_category, float x, float align_x)
 {
    if (!(stage_factory))
-      {
-         std::stringstream error_message;
-         error_message << "CreateThreeSplitFromComponent" << "::" << "place_stage" << ": error: " << "guard \"stage_factory\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CreateThreeSplitFromComponent" << "::" << "place_stage" << ": error: " << "guard \"stage_factory\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    bool file_exists = Blast::FileExistenceChecker(filename).exists();
    float width = get_code_editor_width();
    float height = get_code_editor_height();

@@ -34,22 +34,22 @@ void TruchetMaze::initialize()
 void TruchetMaze::activate()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "TruchetMaze" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TruchetMaze" << "::" << "activate" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::Shaders::Base::activate();
 }
 
 void TruchetMaze::deactivate()
 {
    if (!(initialized))
-      {
-         std::stringstream error_message;
-         error_message << "TruchetMaze" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "TruchetMaze" << "::" << "deactivate" << ": error: " << "guard \"initialized\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    Hexagon::Shaders::Base::deactivate();
 }
 

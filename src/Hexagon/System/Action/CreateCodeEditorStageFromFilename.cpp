@@ -66,17 +66,17 @@ int CreateCodeEditorStageFromFilename::get_stage_height() const
 bool CreateCodeEditorStageFromFilename::execute()
 {
    if (!(stages))
-      {
-         std::stringstream error_message;
-         error_message << "CreateCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stages\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CreateCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stages\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(stage_factory))
-      {
-         std::stringstream error_message;
-         error_message << "CreateCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stage_factory\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "CreateCodeEditorStageFromFilename" << "::" << "execute" << ": error: " << "guard \"stage_factory\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::vector<std::string> file_contents = {};
    if (!::read_file(file_contents, filename))
    {

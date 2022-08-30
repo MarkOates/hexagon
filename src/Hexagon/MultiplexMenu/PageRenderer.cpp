@@ -49,23 +49,23 @@ float PageRenderer::get_padding() const
 void PageRenderer::render()
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_is_font_addon_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PageRenderer" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    float menu_item_spacing_y = 66;
 
    render_frame();
@@ -168,17 +168,17 @@ void PageRenderer::render_menu_item(float x, float y, std::string input, std::st
 std::string PageRenderer::convert_key_input_to_string(int al_keycode, bool ctrl, bool alt, bool command, bool shift)
 {
    if (!(al_is_system_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "PageRenderer" << "::" << "convert_key_input_to_string" << ": error: " << "guard \"al_is_system_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PageRenderer" << "::" << "convert_key_input_to_string" << ": error: " << "guard \"al_is_system_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(al_is_keyboard_installed()))
-      {
-         std::stringstream error_message;
-         error_message << "PageRenderer" << "::" << "convert_key_input_to_string" << ": error: " << "guard \"al_is_keyboard_installed()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PageRenderer" << "::" << "convert_key_input_to_string" << ": error: " << "guard \"al_is_keyboard_installed()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::vector<std::string> result_tokens;
 
    if (ctrl) result_tokens.push_back("Ctrl");
@@ -257,22 +257,22 @@ void PageRenderer::render_frame()
 ALLEGRO_FONT* PageRenderer::obtain_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "PageRenderer" << "::" << "obtain_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PageRenderer" << "::" << "obtain_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("Purista Medium.otf -38");
 }
 
 ALLEGRO_FONT* PageRenderer::obtain_keyboard_key_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "PageRenderer" << "::" << "obtain_keyboard_key_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "PageRenderer" << "::" << "obtain_keyboard_key_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return font_bin->auto_get("consolas.ttf -30");
 }
 } // namespace MultiplexMenu

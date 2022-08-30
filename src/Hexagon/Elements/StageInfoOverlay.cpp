@@ -86,17 +86,17 @@ bool StageInfoOverlay::get_upcase() const
 void StageInfoOverlay::render()
 {
    if (!(backfill_color))
-      {
-         std::stringstream error_message;
-         error_message << "StageInfoOverlay" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageInfoOverlay" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    if (!(place))
-      {
-         std::stringstream error_message;
-         error_message << "StageInfoOverlay" << "::" << "render" << ": error: " << "guard \"place\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageInfoOverlay" << "::" << "render" << ": error: " << "guard \"place\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    //if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
    //if (!place) throw std::runtime_error("[StageInfoOverlay::render() error]: place can not be a nullptr");
 
@@ -136,11 +136,11 @@ void StageInfoOverlay::render()
 ALLEGRO_FONT* StageInfoOverlay::obtain_title_font()
 {
    if (!(font_bin))
-      {
-         std::stringstream error_message;
-         error_message << "StageInfoOverlay" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "StageInfoOverlay" << "::" << "obtain_title_font" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    // TODO: guard with font_bin->get_initialized()
    //return font_bin->auto_get("Eurostile.ttf 32");
    return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf 48");

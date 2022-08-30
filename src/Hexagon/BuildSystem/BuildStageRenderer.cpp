@@ -39,11 +39,11 @@ Hexagon::BuildSystem::BuildStages::Base* BuildStageRenderer::get_build_stage() c
 std::string BuildStageRenderer::build_text_report()
 {
    if (!(build_stage))
-      {
-         std::stringstream error_message;
-         error_message << "BuildStageRenderer" << "::" << "build_text_report" << ": error: " << "guard \"build_stage\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "BuildStageRenderer" << "::" << "build_text_report" << ": error: " << "guard \"build_stage\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::string result;
 
    if (build_stage->is_type(Hexagon::BuildSystem::BuildStages::Base::TYPE))

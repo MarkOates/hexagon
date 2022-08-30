@@ -159,11 +159,11 @@ bool Stage::is_state_to_submitted_and_pending_destruction()
 void Stage::render()
 {
    if (!((code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)))
-      {
-         std::stringstream error_message;
-         error_message << "Stage" << "::" << "render" << ": error: " << "guard \"(code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"(code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    //ALLEGRO_COLOR outline_color = al_color_html("f9ac1e");
    //ALLEGRO_COLOR user_input_text_color = al_color_html("ffd033");
    ALLEGRO_COLOR outline_color = al_color_name("red");

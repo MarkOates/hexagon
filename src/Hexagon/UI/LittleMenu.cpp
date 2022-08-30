@@ -54,11 +54,11 @@ ALLEGRO_EVENT &LittleMenu::get_a_default_empty_event_ref()
 void LittleMenu::initialize()
 {
    if (!((!get_initialized())))
-      {
-         std::stringstream error_message;
-         error_message << "LittleMenu" << "::" << "initialize" << ": error: " << "guard \"(!get_initialized())\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "LittleMenu" << "::" << "initialize" << ": error: " << "guard \"(!get_initialized())\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    menu.set_title_upcase(false);
    menu.set_menu_items_upcase(false);
    initialized = true;
@@ -68,11 +68,11 @@ void LittleMenu::initialize()
 void LittleMenu::render()
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "LittleMenu" << "::" << "render" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "LittleMenu" << "::" << "render" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    placement3d &place = get_place();
    place.start_transform();
    menu.render();
@@ -83,11 +83,11 @@ void LittleMenu::render()
 void LittleMenu::process_event(ALLEGRO_EVENT& event)
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "LittleMenu" << "::" << "process_event" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "LittleMenu" << "::" << "process_event" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    switch(event.type)
    {
    case ALLEGRO_EVENT_KEY_CHAR:
@@ -111,22 +111,22 @@ void LittleMenu::process_event(ALLEGRO_EVENT& event)
 void LittleMenu::process_local_event(std::string event_name, ActionData action_data)
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "LittleMenu" << "::" << "process_local_event" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "LittleMenu" << "::" << "process_local_event" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    return;
 }
 
 void LittleMenu::emit_submission()
 {
    if (!(get_initialized()))
-      {
-         std::stringstream error_message;
-         error_message << "LittleMenu" << "::" << "emit_submission" << ": error: " << "guard \"get_initialized()\" not met";
-         throw std::runtime_error(error_message.str());
-      }
+   {
+      std::stringstream error_message;
+      error_message << "LittleMenu" << "::" << "emit_submission" << ": error: " << "guard \"get_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
    std::cout << "Sumitting Modal with selection \"" << menu.get_current_list_item_identifier() << "\"" << std::endl;
 }
 } // namespace UI
