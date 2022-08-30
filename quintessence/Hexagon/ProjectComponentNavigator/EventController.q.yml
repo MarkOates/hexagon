@@ -66,6 +66,6 @@ dependencies:
   - symbol: ProjectComponentNavigator
     headers: [ ProjectComponentNavigator.hpp ]
   - symbol: std::function
-    headers: [ std/function.hpp ]
+    headers: [ functional ]
 
 

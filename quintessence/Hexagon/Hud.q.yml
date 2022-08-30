@@ -923,13 +923,13 @@ dependencies:
     headers: [ Hexagon/StageCollectionHelper.hpp ]
 
   - symbol: ALLEGRO_BITMAP
-    headers: [ ALLEGRO_BITMAP.hpp ]
+    headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_DISPLAY
-    headers: [ ALLEGRO_DISPLAY.hpp ]
+    headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT
-    headers: [ ALLEGRO_FONT.hpp ]
+    headers: [ allegro5/allegro_font.h ]
   - symbol: Hexagon::Packet
     headers: [ Hexagon/Packet.hpp ]
   - symbol: StageInterface
-    headers: [ StageInterface.hpp ]
+    headers: [ Hexagon/StageInterface.hpp ]
 

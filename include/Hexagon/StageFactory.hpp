@@ -4,9 +4,9 @@
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/MultiplexMenu/MultiplexMenu.hpp>
+#include <Hexagon/StageInterface.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/System.hpp>
-#include <StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <allegro_flare/placement3d.h>
 #include <string>

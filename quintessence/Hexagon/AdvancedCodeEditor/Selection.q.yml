@@ -111,3 +111,6 @@ dependencies:
   - symbol: CodePoint
     headers: [ Hexagon/CodePoint.hpp ]
 
+  - symbol: CodeRange
+    headers: [ Hexagon/CodeRange.hpp ]
+

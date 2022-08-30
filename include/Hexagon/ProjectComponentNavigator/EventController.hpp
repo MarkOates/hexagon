@@ -4,8 +4,8 @@
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.hpp>
 #include <ProjectComponentNavigator.hpp>
+#include <functional>
 #include <map>
-#include <std/function.hpp>
 #include <string>
 
 

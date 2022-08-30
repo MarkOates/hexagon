@@ -983,5 +983,5 @@ dependencies:
   - symbol: Hexagon::System::System
     headers: [ Hexagon/System/System.hpp ]
   - symbol: StageInterface
-    headers: [ StageInterface.hpp ]
+    headers: [ Hexagon/StageInterface.hpp ]
 

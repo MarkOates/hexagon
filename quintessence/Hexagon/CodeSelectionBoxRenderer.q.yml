@@ -173,5 +173,5 @@ dependencies:
     headers: [ allegro5/allegro_primitives.h ]
 
   - symbol: CodeRange
-    headers: [ CodeRange.hpp ]
+    headers: [ Hexagon/CodeRange.hpp ]
 

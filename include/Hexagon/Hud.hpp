@@ -1,15 +1,14 @@
 #pragma once
 
 
-#include <ALLEGRO_BITMAP.hpp>
-#include <ALLEGRO_DISPLAY.hpp>
-#include <ALLEGRO_FONT.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/FocusTimerBar/FocusTimerBar.hpp>
 #include <Hexagon/Packet.hpp>
 #include <Hexagon/Powerbar/Powerbar.hpp>
-#include <StageInterface.hpp>
+#include <Hexagon/StageInterface.hpp>
+#include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
+#include <allegro5/allegro_font.h>
 #include <string>
 #include <vector>
 

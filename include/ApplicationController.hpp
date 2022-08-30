@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include <ALLEGRO_DISPLAY.hpp>
-#include <ALLEGRO_EVENT_QUEUE.hpp>
-#include <ALLEGRO_TIMER.hpp>
 #include <Hexagon/System/System.hpp>
 #include <allegro5/allegro.h>
 

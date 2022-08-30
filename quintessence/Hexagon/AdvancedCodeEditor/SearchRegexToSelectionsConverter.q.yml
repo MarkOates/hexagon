@@ -50,3 +50,6 @@ dependencies:
     headers: [ Hexagon/RegexMatcher.hpp ]
 
 
+  - symbol: CodeRange
+    headers: [ Hexagon/CodeRange.hpp ]
+

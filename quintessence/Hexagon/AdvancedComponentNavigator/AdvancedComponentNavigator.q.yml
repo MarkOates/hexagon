@@ -299,4 +299,6 @@ dependencies:
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
 
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
 

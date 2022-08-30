@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <ALLEGRO_BITMAP.hpp>
+#include <allegro5/allegro.h>
 #include <allegro_flare/vec3d.h>
 
 
