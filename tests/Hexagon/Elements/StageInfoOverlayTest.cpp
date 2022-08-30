@@ -8,6 +8,9 @@
    catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
    catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
+
+#include <allegro5/allegro_color.h> // for al_color_name
+
 TEST(Hexagon_Elements_StageInfoOverlayTest, can_be_created_without_blowing_up)
 {
    Hexagon::Elements::StageInfoOverlay stage_info_overlay;

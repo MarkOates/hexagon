@@ -5,7 +5,10 @@
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Hud",
     "Hexagon/ProjectNavigator",
+    "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
+    "Hexagon/StageFactory",
+    "Hexagon/TitleScreen",
     "Hexagon/TitleScreen",
     "Testing/WithStageFactoryFixture"
   ],
@@ -19,28 +22,45 @@
   ],
   "ALLEGRO_DISPLAY": [
     "ApplicationController",
+    "ApplicationController",
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeEditor/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/Elements/CheckTextureGenerator",
+    "Hexagon/Elements/CheckTextureGenerator",
+    "Hexagon/FileNavigator/Stage",
     "Hexagon/FileNavigator/Stage",
     "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
+    "Hexagon/Hud",
+    "Hexagon/MissingFile/Stage",
     "Hexagon/MissingFile/Stage",
     "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/Powerbar/Renderer",
     "Hexagon/Powerbar/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/StageFactory",
     "Hexagon/StageFactory",
     "Hexagon/System/Renderer",
+    "Hexagon/System/Renderer",
+    "Testing/WithAllegroRenderingFixture",
     "Testing/WithAllegroRenderingFixture"
   ],
   "ALLEGRO_EVENT_QUEUE": [
+    "ApplicationController",
     "ApplicationController"
   ],
   "ALLEGRO_TIMER": [
+    "ApplicationController",
     "ApplicationController"
   ],
   "Motion": [
@@ -53,9 +73,14 @@
   ],
   "Hexagon/System/System": [
     "ApplicationController",
+    "ApplicationController",
+    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/StageFactory",
+    "Hexagon/StageFactory",
     "Hexagon/System/EventController",
+    "Hexagon/System/EventController",
+    "Hexagon/System/Renderer",
     "Hexagon/System/Renderer"
   ],
   "Hexagon/System/Renderer": [
@@ -83,6 +108,7 @@
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/ProjectNavigator",
+    "Hexagon/System/EventController",
     "Hexagon/System/EventController",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
@@ -169,6 +195,7 @@
   "Hexagon/AdvancedCodeEditor/Cursor": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
     "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "RegexMatcher": [
@@ -194,6 +221,9 @@
   ],
   "Hexagon/AdvancedCodeEditor/Stage": [
     "Hexagon/AdvancedCodeEditor/EventController",
+    "Hexagon/AdvancedCodeEditor/EventController",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/StageCollectionHelper",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
     "Hexagon/StageFactory",
@@ -255,6 +285,16 @@
     "Hexagon/AdvancedCodeEditor/EventController",
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
+  "std/function": [
+    "Hexagon/AdvancedCodeEditor/EventController",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/EventController",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/EventController",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/System/EventController",
+    "Hexagon/UI/DrawingBox"
+  ],
   "Hexagon/WordRangesFinder": [
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage"
@@ -268,6 +308,7 @@
   ],
   "Hexagon/Elements/TextMesh": [
     "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "std/vector<Hexagon/AdvancedCodeEditor/Selection>": [
@@ -275,6 +316,7 @@
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "Hexagon/AdvancedCodeEditor/Selection": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
@@ -301,6 +343,8 @@
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/CodeEditor/CursorRenderer",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
+    "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
     "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/CodeSelectionBoxRenderer",
@@ -316,6 +360,7 @@
     "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/Pill",
     "Hexagon/Elements/SingleBlockBarGraph",
+    "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Elements/TextGrid",
     "Hexagon/Elements/TextMesh",
@@ -356,77 +401,141 @@
   ],
   "ALLEGRO_FONT": [
     "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/LineRenderBin",
+    "Hexagon/CodeEditor/LineRenderBin",
+    "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
+    "Hexagon/CodeEditor/Renderer/BasicLineRenderer",
+    "Hexagon/CodeEditor/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/Elements/ComponentTitleSlate",
+    "Hexagon/Elements/ComponentTitleSlate",
+    "Hexagon/Elements/DataTable",
     "Hexagon/Elements/DataTable",
     "Hexagon/Elements/FontCharacterMapGrid",
+    "Hexagon/Elements/FontCharacterMapGrid",
+    "Hexagon/Elements/FontedTextGrid",
     "Hexagon/Elements/FontedTextGrid",
     "Hexagon/Elements/Frame",
     "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/Pill",
     "Hexagon/Elements/Pill",
     "Hexagon/Elements/QuoteRenderer",
     "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Elements/SubBitmapCharacterMap",
     "Hexagon/Elements/SubBitmapCharacterMap",
     "Hexagon/Elements/TextGrid",
+    "Hexagon/Elements/TextGrid",
     "Hexagon/Elements/TextMesh",
+    "Hexagon/Elements/TextMesh",
+    "Hexagon/Elements/TextPixelPreviewCreator",
     "Hexagon/Fancy/Stage",
     "Hexagon/Fancy/Stage",
     "Hexagon/FileNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/Font",
     "Hexagon/Font",
     "Hexagon/FontSet",
+    "Hexagon/FontSet",
     "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
     "Hexagon/Hud",
+    "Hexagon/Hud",
+    "Hexagon/Logo",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
+    "Hexagon/ObjectivesLog/ObjectiveRenderer",
+    "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/PacketRenderer",
     "Hexagon/PacketRenderer",
     "Hexagon/Powerbar/Renderer",
+    "Hexagon/Powerbar/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/ProjectNavigator",
     "Hexagon/Shapes/Hexagon/Renderer",
     "Hexagon/StageFactory",
+    "Hexagon/StageFactory",
+    "Hexagon/TitleScreen",
     "Hexagon/TitleScreen",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/DrawingBox",
+    "Testing/WithAllegroRenderingFixture",
     "Testing/WithAllegroRenderingFixture"
   ],
   "ALLEGRO_BITMAP": [
     "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/Camera",
+    "Hexagon/Camera",
+    "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/LineRenderBin",
+    "Hexagon/CodeEditor/LineRenderBin",
+    "Hexagon/ComponentBitmapRenderCreator",
     "Hexagon/ComponentBitmapRenderCreator",
     "Hexagon/Elements/BitmapGridMesh",
+    "Hexagon/Elements/BitmapGridMesh",
+    "Hexagon/Elements/BitmapGridRenderSurface",
     "Hexagon/Elements/BitmapGridRenderSurface",
     "Hexagon/Elements/CheckTextureGenerator",
+    "Hexagon/Elements/CheckTextureGenerator",
+    "Hexagon/Elements/DynamicGridMesh",
     "Hexagon/Elements/DynamicGridMesh",
     "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/Elements/FilePixelPreviewCreator",
+    "Hexagon/Elements/FontCharacterMapGrid",
     "Hexagon/Elements/FontCharacterMapGrid",
     "Hexagon/Elements/FontedTextGrid",
+    "Hexagon/Elements/FontedTextGrid",
+    "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Elements/SubBitmapCharacterMap",
     "Hexagon/Elements/SubBitmapCharacterMap",
     "Hexagon/Elements/TextMesh",
+    "Hexagon/Elements/TextMesh",
+    "Hexagon/Elements/TextPixelPreviewCreator",
     "Hexagon/Elements/TextPixelPreviewCreator",
     "Hexagon/Elements/TexturedRectangle",
+    "Hexagon/Elements/TexturedRectangle",
+    "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/Hud",
+    "Hexagon/Hud",
+    "Hexagon/Shaders/Fun",
     "Hexagon/Shaders/Fun",
     "Hexagon/Shaders/TexturedTruchet",
+    "Hexagon/Shaders/TexturedTruchet",
     "Hexagon/Shaders/TiledHexagonMotionEffect",
+    "Hexagon/Shaders/TiledHexagonMotionEffect",
+    "Hexagon/UI/DrawingBox",
     "Hexagon/UI/DrawingBox"
   ],
   "al_draw_bitmap": [
@@ -459,6 +568,23 @@
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/CodeMessagePointManager"
+  ],
+  "CodeMessagePoint": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/CodeMessagePointManager",
+    "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
+  ],
+  "CodeRange": [
+    "Hexagon/AdvancedCodeEditor/Renderer",
+    "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter",
+    "Hexagon/AdvancedCodeEditor/Selection",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/CodeRangeExtractor",
+    "Hexagon/CodeRangeExtractor",
+    "Hexagon/CodeSelectionBoxRenderer",
+    "Hexagon/CodeSelectionBoxRenderer",
+    "Hexagon/OneLineInputBox/Renderer"
   ],
   "CodePoint": [
     "Hexagon/AdvancedCodeEditor/Selection"
@@ -493,7 +619,10 @@
     "Hexagon/FileNavigator/Stage",
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/Hud",
+    "Hexagon/LayoutToStagesCreator",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/MultiplexMenu/CommandExecutor",
     "Hexagon/MultiplexMenu/CommandExecutor",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage",
@@ -504,7 +633,14 @@
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageCollectionHelper",
+    "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
+    "Hexagon/System/Action/DestroyAllCodeEditorStages",
+    "Hexagon/System/Renderer",
     "Hexagon/System/Renderer",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
@@ -514,8 +650,10 @@
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/Elements/StageInfoOverlay",
+    "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Forms/Fun",
     "Hexagon/Hud",
+    "Hexagon/Layout",
     "Hexagon/LayoutPlacements",
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/MultiplexMenu/Renderer",
@@ -531,35 +669,63 @@
   ],
   "AllegroFlare/FontBin": [
     "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/CodeEditor/Stage",
+    "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/Frame",
     "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/ListMenu",
+    "Hexagon/Elements/Pill",
     "Hexagon/Elements/Pill",
     "Hexagon/Elements/QuoteRenderer",
+    "Hexagon/Elements/QuoteRenderer",
+    "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Fancy/Stage",
+    "Hexagon/Fancy/Stage",
+    "Hexagon/Font",
     "Hexagon/Font",
     "Hexagon/FontSet",
     "Hexagon/Hud",
     "Hexagon/LayoutToStagesCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/Logo",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/MultiplexMenu/Renderer",
+    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
+    "Hexagon/ObjectivesLog/ObjectiveRenderer",
+    "Hexagon/ObjectivesLog/Stage",
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Renderer",
+    "Hexagon/OneLineInputBox/Renderer",
+    "Hexagon/PacketRenderer",
     "Hexagon/PacketRenderer",
     "Hexagon/ProjectNavigator",
+    "Hexagon/ProjectNavigator",
+    "Hexagon/StageFactory",
     "Hexagon/StageFactory",
     "Hexagon/TitleScreen",
+    "Hexagon/TitleScreen",
     "Hexagon/UI/DrawingBox",
+    "Hexagon/UI/DrawingBox",
+    "Hexagon/UI/LittleMenu",
     "Hexagon/UI/LittleMenu",
     "Testing/WithAllegroRenderingFixture",
     "Testing/WithStageFactoryFixture"
@@ -616,6 +782,24 @@
   "islower": [
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator"
   ],
+  "Blast/Project/Component": [
+    "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
+    "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/BlastComponentLayoutGenerator",
+    "Hexagon/BlastProjectLayoutsGenerator",
+    "Hexagon/ComponentBitmapRenderCreator",
+    "Hexagon/ComponentBitmapRenderCreator",
+    "Hexagon/ComponentRelationsNavigator/ComponentRelations",
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/ProjectComponentNavigator/ComponentSearcher",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/Testing/ComponentTestRunner"
+  ],
   "Blast/Project/ComponentLister": [
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
     "Hexagon/BlastComponentLayoutGenerator",
@@ -636,6 +820,7 @@
   ],
   "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator": [
     "Hexagon/AdvancedComponentNavigator/EventController",
+    "Hexagon/AdvancedComponentNavigator/EventController",
     "Hexagon/AdvancedComponentNavigator/Stage"
   ],
   "Hexagon/AdvancedComponentNavigator/EventController": [
@@ -647,6 +832,7 @@
     "Hexagon/ProjectComponentNavigator/Renderer"
   ],
   "Hexagon/AdvancedComponentNavigator/Stage": [
+    "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/Hud",
     "Hexagon/StageFactory",
@@ -734,19 +920,6 @@
     "Hexagon/ProjectComponentNavigator/Stage",
     "Hexagon/RailsTestOutputParser"
   ],
-  "Blast/Project/Component": [
-    "Hexagon/AdvancedComponentNavigator/Stage",
-    "Hexagon/BlastComponentLayoutGenerator",
-    "Hexagon/BlastProjectLayoutsGenerator",
-    "Hexagon/ComponentBitmapRenderCreator",
-    "Hexagon/ComponentRelationsNavigator/ComponentRelations",
-    "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/ProjectComponentNavigator/Stage",
-    "Hexagon/Search/ComponentElasticsearchIndexer",
-    "Hexagon/StageFactory",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "Hexagon/Testing/ComponentTestRunner"
-  ],
   "std/vector<Hexagon/Layout>": [
     "Hexagon/BlastComponentLayoutGenerator",
     "Hexagon/BlastProjectLayoutsGenerator",
@@ -756,7 +929,10 @@
     "Hexagon/BlastComponentLayoutGenerator",
     "Hexagon/BlastProjectLayoutsGenerator",
     "Hexagon/LayoutFromYAML",
-    "Hexagon/LayoutToStagesCreator"
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/Project",
+    "Hexagon/ProjectComponentNavigator/ProjectComponentNavigator"
   ],
   "Blast/ProjectComponentFilenameGenerator": [
     "Hexagon/BlastComponentLayoutGenerator",
@@ -853,7 +1029,10 @@
   ],
   "Hexagon/BuildSystem/Builds/Base": [
     "Hexagon/BuildSystem/BuildFactory",
+    "Hexagon/BuildSystem/BuildFactory",
     "Hexagon/BuildSystem/ReportRenderer",
+    "Hexagon/BuildSystem/ReportRenderer",
+    "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/BuildSystem/ReportRenderers/Base"
   ],
   "Hexagon/BuildSystem/BuildStageFactory": [
@@ -861,11 +1040,15 @@
   ],
   "Hexagon/BuildSystem/BuildStages/ShellCommand": [
     "Hexagon/BuildSystem/BuildStageFactory",
+    "Hexagon/BuildSystem/BuildStageFactory",
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
   ],
   "Hexagon/BuildSystem/BuildStages/Base": [
     "Hexagon/BuildSystem/BuildStageRenderer",
-    "Hexagon/BuildSystem/BuildStages/ShellCommand"
+    "Hexagon/BuildSystem/BuildStageRenderer",
+    "Hexagon/BuildSystem/BuildStages/ShellCommand",
+    "Hexagon/BuildSystem/Builds/Base"
   ],
   "Hexagon/BuildSystem/BuildStageRenderers/Base": [
     "Hexagon/BuildSystem/BuildStageRenderer",
@@ -995,6 +1178,9 @@
     "Hexagon/CodeEditor/LineRenderBin",
     "Hexagon/CodeEditor/Renderer/BasicLineRenderer"
   ],
+  "AllegroFlare/Bin": [
+    "Hexagon/CodeEditor/LineRenderBin"
+  ],
   "Hexagon/RegexStore": [
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer"
   ],
@@ -1048,14 +1234,6 @@
     "Hexagon/CodeEditor/Stage",
     "Hexagon/OneLineInputBox/Stage"
   ],
-  "CodeMessagePoint": [
-    "Hexagon/CodeMessagePointManager",
-    "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
-  ],
-  "CodeRange": [
-    "Hexagon/CodeRangeExtractor",
-    "Hexagon/CodeSelectionBoxRenderer"
-  ],
   "Blast/Project/ComponentDependencyLister": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"
   ],
@@ -1105,6 +1283,10 @@
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
+  "Hexagon/Testing/GoogleTestRunTestResult": [
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"
   ],
@@ -1125,6 +1307,10 @@
   ],
   "std/tuple<float, float, float, float>": [
     "Hexagon/Elements/BitmapGridMesh"
+  ],
+  "ALLEGRO_VERTEX": [
+    "Hexagon/Elements/BitmapGridMesh",
+    "Hexagon/Elements/DynamicGridMesh"
   ],
   "ALLEGRO_STATE": [
     "Hexagon/Elements/BitmapGridRenderSurface"
@@ -1204,6 +1390,7 @@
   ],
   "Hexagon/FocusTimerBar/FocusTimerBar": [
     "Hexagon/FocusTimerBar/Renderer",
+    "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/Hud"
   ],
   "std/fmod": [
@@ -1244,7 +1431,10 @@
   "Hexagon/Powerbar/Powerbar": [
     "Hexagon/Hud",
     "Hexagon/Powerbar/Renderer",
+    "Hexagon/Powerbar/Renderer",
     "Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar",
+    "Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar",
+    "Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar",
     "Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar"
   ],
   "Hexagon/Powerbar/Renderer": [
@@ -1284,6 +1474,7 @@
   "Hexagon/CodeEditor/Stage": [
     "Hexagon/Hud",
     "Hexagon/StageCollectionHelper",
+    "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
@@ -1299,6 +1490,11 @@
   "Hexagon/StageCollectionHelper": [
     "Hexagon/Hud",
     "Hexagon/System/Renderer"
+  ],
+  "Hexagon/Packet": [
+    "Hexagon/Hud",
+    "Hexagon/PacketRenderer",
+    "Hexagon/PacketRenderer"
   ],
   "std/vector<std/tuple<std/string, std/string, placement3d>>": [
     "Hexagon/Layout",
@@ -1319,8 +1515,12 @@
   ],
   "Hexagon/StageFactory": [
     "Hexagon/LayoutToStagesCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Testing/WithStageFactoryFixture",
     "Testing/WithStageFactoryFixture"
@@ -1348,6 +1548,8 @@
   ],
   "Hexagon/MultiplexMenu/MultiplexMenu": [
     "Hexagon/MultiplexMenu/CommandExecutor",
+    "Hexagon/MultiplexMenu/CommandExecutor",
+    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage",
@@ -1368,12 +1570,16 @@
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/MultiplexMenu",
     "Hexagon/MultiplexMenu/PageRenderer",
+    "Hexagon/MultiplexMenu/PageRenderer",
+    "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/MultiplexMenu/Stage",
     "Hexagon/StageFactory"
   ],
   "Hexagon/MultiplexMenu/MenuItem": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage",
+    "Hexagon/MultiplexMenu/MultiplexMenuPage",
+    "Hexagon/MultiplexMenu/Stage",
     "Hexagon/MultiplexMenu/Stage"
   ],
   "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
@@ -1401,9 +1607,11 @@
   ],
   "Hexagon/Notifications/Notification": [
     "Hexagon/Notifications/NotificationFactory",
+    "Hexagon/Notifications/NotificationFactory",
     "Hexagon/Notifications/Stage"
   ],
   "Hexagon/ObjectivesLog/Objective": [
+    "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/ObjectivesLog/ObjectivesLog"
   ],
@@ -1414,6 +1622,7 @@
     "Hexagon/ObjectivesLog/Stage"
   ],
   "Hexagon/ObjectivesLog/ObjectivesLog": [
+    "Hexagon/ObjectivesLog/Stage",
     "Hexagon/ObjectivesLog/Stage"
   ],
   "al_draw_filled_rounded_rectangle": [
@@ -1436,9 +1645,6 @@
   "php/file_put_contents": [
     "Hexagon/PacketLogger"
   ],
-  "Hexagon/Packet": [
-    "Hexagon/PacketRenderer"
-  ],
   "allegro_flare/placement3d": [
     "Hexagon/Powerbar/Renderer"
   ],
@@ -1454,16 +1660,24 @@
   ],
   "Hexagon/ProjectComponentNavigator/ProjectComponentNavigator": [
     "Hexagon/ProjectComponentNavigator/EventController",
-    "Hexagon/ProjectComponentNavigator/Stage"
+    "Hexagon/ProjectComponentNavigator/EventController",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/System/EventController"
   ],
   "Hexagon/ProjectComponentNavigator/EventController": [
     "Hexagon/ProjectComponentNavigator/EventController",
     "Hexagon/ProjectComponentNavigator/Stage"
   ],
+  "ProjectComponentNavigator": [
+    "Hexagon/ProjectComponentNavigator/EventController",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/System/EventController"
+  ],
   "std/pair<bool, bool>": [
     "Hexagon/ProjectComponentNavigator/Renderer"
   ],
   "Hexagon/ProjectComponentNavigator/Stage": [
+    "Hexagon/ProjectComponentNavigator/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer"
   ],
   "Hexagon/ProjectComponentNavigator/Renderer": [
@@ -1501,7 +1715,8 @@
     "Hexagon/TitleScreen"
   ],
   "RailsMinitestTestResult": [
-    "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
+    "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter",
+    "Hexagon/RailsTestOutputParser"
   ],
   "CodeMessagePoint/type_t": [
     "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter"
@@ -1536,7 +1751,11 @@
     "Hexagon/Shapes/Hexagon/Renderer",
     "Hexagon/Shapes/Hexagon/Stroke"
   ],
+  "Shapes/Hexagon/Stroke": [
+    "Hexagon/Shapes/Hexagon/Renderer"
+  ],
   "Hexagon/GitCommitMessageInputBox/Stage": [
+    "Hexagon/StageCollectionHelper",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory"
   ],
@@ -1585,7 +1804,8 @@
     "Hexagon/StageFactory"
   ],
   "Hexagon/UI/DrawingBox": [
-    "Hexagon/StageFactory"
+    "Hexagon/StageFactory",
+    "Hexagon/UI/DrawingBox"
   ],
   "al_get_current_display": [
     "Hexagon/StageFactory"
@@ -1655,6 +1875,7 @@
     "Hexagon/Testing/ClangBuildOutputParser"
   ],
   "Hexagon/Testing/ClangBuildOutputResult": [
+    "Hexagon/Testing/ClangBuildOutputParser",
     "Hexagon/Testing/ClangBuildOutputResult"
   ],
   "atoi": [
