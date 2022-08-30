@@ -1,0 +1,33 @@
+properties:
+
+
+  - name: build_stage_factory
+    type: Hexagon::BuildSystem::BuildStageFactory
+    init_with: '{}'
+
+
+functions:
+
+
+  - name: create_placeholder_build
+    type: Hexagon::BuildSystem::Builds::Base*
+    body: |
+      Hexagon::BuildSystem::Builds::Base *build = new Hexagon::BuildSystem::Builds::Base;
+      build->set_build_stages({
+         build_stage_factory.create_shell_command_build_stage(),
+         build_stage_factory.create_shell_command_build_stage("echo \"Having a good day?\""),
+      });
+      return build;
+    body_dependency_symbols:
+      - Hexagon::BuildSystem::BuildStageFactory
+
+
+dependencies:
+
+
+  - symbol: Hexagon::BuildSystem::Builds::Base*
+    headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
+  - symbol: Hexagon::BuildSystem::BuildStageFactory
+    headers: [ Hexagon/BuildSystem/BuildStageFactory.hpp ]
+
+

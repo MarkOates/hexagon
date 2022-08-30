@@ -1,0 +1,92 @@
+properties:
+
+  - name: TYPE
+    type: char*
+    static: true
+    init_with: '"Base"'
+    constexpr: true
+
+  - name: type
+    type: std::string
+    init_with: TYPE
+    constructor_arg: true
+    getter: true
+
+  - name: started_at
+    type: float
+    init_with: 0
+    getter: true
+    setter: true
+
+  - name: ended_at
+    type: float
+    init_with: 0
+    getter: true
+    setter: true
+
+  - name: status
+    type: std::string
+    init_with: '"[unset-status]"'
+    getter: true
+    setter: true
+
+  - name: STATUS_NOT_STARTED
+    type: char*
+    static: true
+    init_with: '"not_started"'
+    constexpr: true
+
+  - name: STATUS_RUNNING
+    type: char*
+    static: true
+    init_with: '"running"'
+    constexpr: true
+
+  - name: STATUS_FINISHED
+    type: char*
+    static: true
+    init_with: '"finished"'
+    constexpr: true
+
+  - name: STATUS_ERROR
+    type: char*
+    static: true
+    init_with: '"error"'
+    constexpr: true
+
+  - name: STATUS_FAILED
+    type: char*
+    static: true
+    init_with: '"failed"'
+    constexpr: true
+
+
+
+functions:
+
+
+  - name: is_type
+    type: bool
+    parameters:
+      - name: possible_type
+        type: std::string
+        default_argument: '""'
+    body: |
+      return (possible_type == get_type());
+
+
+  - name: execute
+    virtual: true
+    body: |
+      return;
+
+
+dependencies:
+
+
+  - symbol: std::vector<std::vector<std::string>>
+    headers: [ vector, string ]
+  - symbol: char*
+    headers: [ ]
+
+

@@ -1,0 +1,45 @@
+properties:
+
+
+  - name: TYPE
+    type: char*
+    static: true
+    init_with: '"Base"'
+    constexpr: true
+
+  - name: type
+    type: std::string
+    init_with: TYPE
+    constructor_arg: true
+    getter: true
+
+
+functions:
+
+
+  - name: is_type
+    type: bool
+    parameters:
+      - name: possible_type
+        type: std::string
+        default_argument: '""'
+    body: |
+      return (possible_type == get_type());
+
+
+  - name: render_text
+    type: std::string
+    virtual: true
+    body: |
+      return "";
+
+
+dependencies:
+
+
+  - symbol: std::vector<std::vector<std::string>>
+    headers: [ vector, string ]
+  - symbol: char*
+    headers: [ ]
+
+

@@ -69,6 +69,16 @@ table td
   <li><a href="#quintessence/Hexagon/BlastComponentLayoutGenerator.q.yml">quintessence/Hexagon/BlastComponentLayoutGenerator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml">quintessence/Hexagon/BlastProjectLayoutsGenerator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml">quintessence/Hexagon/BuildSequenceMeter/Renderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/BuildFactory.q.yml">quintessence/Hexagon/BuildSystem/BuildFactory.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/BuildStageFactory.q.yml">quintessence/Hexagon/BuildSystem/BuildStageFactory.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/BuildStageRenderer.q.yml">quintessence/Hexagon/BuildSystem/BuildStageRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/BuildStageRenderers/Base.q.yml">quintessence/Hexagon/BuildSystem/BuildStageRenderers/Base.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.q.yml">quintessence/Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/BuildStages/Base.q.yml">quintessence/Hexagon/BuildSystem/BuildStages/Base.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/BuildStages/ShellCommand.q.yml">quintessence/Hexagon/BuildSystem/BuildStages/ShellCommand.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/Builds/Base.q.yml">quintessence/Hexagon/BuildSystem/Builds/Base.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Camera.q.yml">quintessence/Hexagon/Camera.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/Cursor.q.yml">quintessence/Hexagon/CodeEditor/Cursor.q.yml</a></li>
@@ -2226,6 +2236,369 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Testing::GoogleTestRunOutputParser&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Testing/GoogleTestRunOutputParser.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/BuildFactory.q.yml">quintessence/Hexagon/BuildSystem/BuildFactory.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">build_stage_factory</td>
+  <td class="property">Hexagon::BuildSystem::BuildStageFactory</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">create_placeholder_build()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::Builds::Base*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/Builds/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStageFactory&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStageFactory.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/BuildStageFactory.q.yml">quintessence/Hexagon/BuildSystem/BuildStageFactory.q.yml</h3>
+     <table>
+    </table>
+     <table>
+<tr>
+  <td class="method">create_shell_command_build_stage(1)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStages::ShellCommand*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStages/ShellCommand.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/BuildStageRenderer.q.yml">quintessence/Hexagon/BuildSystem/BuildStageRenderer.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">build_stage</td>
+  <td class="property">Hexagon::BuildSystem::BuildStages::Base*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">build_text_report()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStages::Base*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStages/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStageRenderers::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStageRenderers/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStageRenderers::ShellCommand&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/BuildStageRenderers/Base.q.yml">quintessence/Hexagon/BuildSystem/BuildStageRenderers/Base.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">TYPE</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">type</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">is_type(1)</td>
+</tr>
+<tr>
+  <td class="method">render_text()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::vector&lt;std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.q.yml">quintessence/Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">TYPE</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">shell_command_build_stage</td>
+  <td class="property">Hexagon::BuildSystem::BuildStages::ShellCommand*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">render_text()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStageRenderers::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStageRenderers/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStages::ShellCommand*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStages/ShellCommand.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/BuildStages/Base.q.yml">quintessence/Hexagon/BuildSystem/BuildStages/Base.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">TYPE</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">type</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">started_at</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">ended_at</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">status</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">STATUS_NOT_STARTED</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">STATUS_RUNNING</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">STATUS_FINISHED</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">STATUS_ERROR</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">STATUS_FAILED</td>
+  <td class="property">char*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">is_type(1)</td>
+</tr>
+<tr>
+  <td class="method">execute()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::vector&lt;std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/BuildStages/ShellCommand.q.yml">quintessence/Hexagon/BuildSystem/BuildStages/ShellCommand.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">TYPE</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">shell_command</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">shell_command_result</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">executed</td>
+  <td class="property">bool</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">execute()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStages::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStages/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/Builds/Base.q.yml">quintessence/Hexagon/BuildSystem/Builds/Base.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">TYPE</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">type</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">build_stages</td>
+  <td class="property">std::vector&lt;Hexagon::BuildSystem::BuildStages::Base*&gt;</td>
+</tr>
+<tr>
+  <td class="property">started_at</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">ended_at</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">status</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">STATUS_NOT_STARTED</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">STATUS_RUNNING</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">STATUS_FINISHED</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">STATUS_ERROR</td>
+  <td class="property">char*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">is_type(1)</td>
+</tr>
+<tr>
+  <td class="method">run()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::vector&lt;std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::BuildSystem::BuildStages::Base*&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/BuildSystem/BuildStages/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">build</td>
+  <td class="property">Hexagon::BuildSystem::Builds::Base*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">build_text_report()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::Builds::Base*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/Builds/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::ReportRenderers::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/ReportRenderers/Base.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">TYPE</td>
+  <td class="property">char*</td>
+</tr>
+<tr>
+  <td class="property">type</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">build</td>
+  <td class="property">Hexagon::BuildSystem::Builds::Base*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">is_type(1)</td>
+</tr>
+<tr>
+  <td class="method">render_text()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::Builds::Base*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/Builds/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStageRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStageRenderer.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::vector&lt;std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
 </tr>
     </table>
   </div>
@@ -12094,6 +12467,74 @@ table td
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/Daemus/ProgramRunner"
   ],
+  "Hexagon/BuildSystem/Builds/Base": [
+    "Hexagon/BuildSystem/BuildFactory",
+    "Hexagon/BuildSystem/ReportRenderer",
+    "Hexagon/BuildSystem/ReportRenderers/Base"
+  ],
+  "Hexagon/BuildSystem/BuildStageFactory": [
+    "Hexagon/BuildSystem/BuildFactory"
+  ],
+  "Hexagon/BuildSystem/BuildStages/ShellCommand": [
+    "Hexagon/BuildSystem/BuildStageFactory",
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
+  ],
+  "Hexagon/BuildSystem/BuildStages/Base": [
+    "Hexagon/BuildSystem/BuildStageRenderer",
+    "Hexagon/BuildSystem/BuildStages/ShellCommand"
+  ],
+  "Hexagon/BuildSystem/BuildStageRenderers/Base": [
+    "Hexagon/BuildSystem/BuildStageRenderer",
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
+  ],
+  "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand": [
+    "Hexagon/BuildSystem/BuildStageRenderer"
+  ],
+  "std/vector<std/vector<std/string>>": [
+    "Hexagon/BuildSystem/BuildStageRenderers/Base",
+    "Hexagon/BuildSystem/BuildStages/Base",
+    "Hexagon/BuildSystem/Builds/Base",
+    "Hexagon/BuildSystem/ReportRenderers/Base",
+    "Hexagon/Elements/DataTable"
+  ],
+  "char": [
+    "Hexagon/BuildSystem/BuildStageRenderers/Base",
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
+    "Hexagon/BuildSystem/BuildStages/Base",
+    "Hexagon/BuildSystem/BuildStages/ShellCommand",
+    "Hexagon/BuildSystem/Builds/Base",
+    "Hexagon/BuildSystem/ReportRenderers/Base",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "Blast/ShellCommandExecutorWithCallback": [
+    "Hexagon/BuildSystem/BuildStages/ShellCommand",
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Git/CommitStagedWithMessage",
+    "Hexagon/Git/Modified",
+    "Hexagon/Git/Pusher",
+    "Hexagon/Git/StageEverything",
+    "Hexagon/Git/Staged",
+    "Hexagon/Git/Untracked",
+    "Hexagon/NewComponentMaker/NewComponentMaker",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/PasteboardData",
+    "Hexagon/Rails/ComponentLister",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/Search/Elasticsearch/HealthChecker",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/Testing/ComponentTestRunner",
+    "NcursesArt/GithubRepoStatusFetcher"
+  ],
+  "std/vector<Hexagon/BuildSystem/BuildStages/Base>": [
+    "Hexagon/BuildSystem/Builds/Base"
+  ],
+  "Hexagon/BuildSystem/ReportRenderers/Base": [
+    "Hexagon/BuildSystem/ReportRenderer"
+  ],
+  "Hexagon/BuildSystem/BuildStageRenderer": [
+    "Hexagon/BuildSystem/ReportRenderers/Base"
+  ],
   "vec3d": [
     "Hexagon/Camera"
   ],
@@ -12280,25 +12721,6 @@ table td
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
-  "Blast/ShellCommandExecutorWithCallback": [
-    "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/Git/CommitStagedWithMessage",
-    "Hexagon/Git/Modified",
-    "Hexagon/Git/Pusher",
-    "Hexagon/Git/StageEverything",
-    "Hexagon/Git/Staged",
-    "Hexagon/Git/Untracked",
-    "Hexagon/NewComponentMaker/NewComponentMaker",
-    "Hexagon/NewComponentMaker/Stage",
-    "Hexagon/PasteboardData",
-    "Hexagon/Rails/ComponentLister",
-    "Hexagon/Search/ComponentElasticsearchIndexer",
-    "Hexagon/Search/Elasticsearch/HealthChecker",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/OpenDocumentationInBrowser",
-    "Hexagon/Testing/ComponentTestRunner",
-    "NcursesArt/GithubRepoStatusFetcher"
-  ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"
   ],
@@ -12337,9 +12759,6 @@ table td
   "al_get_font_line_height": [
     "Hexagon/Elements/DataTable",
     "Hexagon/PacketRenderer"
-  ],
-  "std/vector<std/vector<std/string>>": [
-    "Hexagon/Elements/DataTable"
   ],
   "std/map<std/tuple<int, int>, int>": [
     "Hexagon/Elements/DynamicGridMesh"
@@ -12863,9 +13282,6 @@ table td
   "std/pair<std/string, std/string>": [
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/ProjectComponentBasenameExtractor"
-  ],
-  "char": [
-    "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "al_draw_line": [
     "Hexagon/UI/DrawingBox"

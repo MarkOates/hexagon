@@ -1,0 +1,61 @@
+properties:
+
+
+  - name: build_stage
+    type: Hexagon::BuildSystem::BuildStages::Base*
+    init_with: nullptr
+    constructor_arg: true
+    getter: true
+    setter: true
+
+
+functions:
+
+
+  - name: build_text_report
+    type: std::string
+    guards: [ build_stage ]
+    body: |
+      std::string result;
+
+      if (build_stage->is_type(Hexagon::BuildSystem::BuildStages::Base::TYPE))
+      {
+        // do nothing for this case
+      }
+      else if (build_stage->is_type(Hexagon::BuildSystem::BuildStages::ShellCommand::TYPE))
+      {
+         Hexagon::BuildSystem::BuildStages::ShellCommand* typed_build_stage =
+            dynamic_cast<Hexagon::BuildSystem::BuildStages::ShellCommand*>(build_stage);
+
+         Hexagon::BuildSystem::BuildStageRenderers::ShellCommand renderer;
+         renderer.set_shell_command_build_stage(typed_build_stage);
+
+         result = renderer.render_text();
+      }
+      else
+      {
+         std::stringstream error_message;
+         error_message << "Hexagon::BuildSystem::BuildStageRenderer::build_text_report() error: "
+                       << "Cannot build_text_report() on a report that is of unknown type \""
+                       << build_stage->get_type() << "\".";
+         throw std::runtime_error(error_message.str());
+      }
+
+      return result;
+    body_dependency_symbols:
+      - Hexagon::BuildSystem::BuildStageRenderers::Base
+      - Hexagon::BuildSystem::BuildStageRenderers::ShellCommand
+
+
+dependencies:
+
+
+  - symbol: Hexagon::BuildSystem::BuildStages::Base*
+    headers: [ Hexagon/BuildSystem/BuildStages/Base.hpp ]
+  - symbol: Hexagon::BuildSystem::BuildStageRenderers::Base
+    headers: [ Hexagon/BuildSystem/BuildStageRenderers/Base.hpp ]
+  - symbol: Hexagon::BuildSystem::BuildStageRenderers::ShellCommand
+    headers: [ Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.hpp ]
+
+
+

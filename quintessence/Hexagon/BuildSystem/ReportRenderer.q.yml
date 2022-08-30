@@ -1,0 +1,49 @@
+properties:
+
+
+  - name: build
+    type: Hexagon::BuildSystem::Builds::Base*
+    init_with: nullptr
+    constructor_arg: true
+    getter: true
+    setter: true
+
+
+functions:
+
+
+  - name: build_text_report
+    type: std::string
+    guards: [ build ]
+    body: |
+      std::string result;
+
+      if (build->is_type(Hexagon::BuildSystem::Builds::Base::TYPE))
+      {
+         Hexagon::BuildSystem::ReportRenderers::Base base_report_renderer;
+         base_report_renderer.set_build(build);
+
+         result = base_report_renderer.render_text();
+      }
+      else
+      {
+         std::stringstream error_message;
+         error_message << "Hexagon::BuildSystem::ReportRenderer::build_report error: "
+                       << "Cannot build_report() on a report that is of unknown type \"" << build->get_type() << "\".";
+         throw std::runtime_error(error_message.str());
+      }
+
+      return result;
+    body_dependency_symbols:
+      - Hexagon::BuildSystem::ReportRenderers::Base
+
+
+dependencies:
+
+
+  - symbol: Hexagon::BuildSystem::Builds::Base*
+    headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
+  - symbol: Hexagon::BuildSystem::ReportRenderers::Base
+    headers: [ Hexagon/BuildSystem/ReportRenderers/Base.hpp ]
+
+

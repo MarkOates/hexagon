@@ -851,6 +851,74 @@
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/Daemus/ProgramRunner"
   ],
+  "Hexagon/BuildSystem/Builds/Base": [
+    "Hexagon/BuildSystem/BuildFactory",
+    "Hexagon/BuildSystem/ReportRenderer",
+    "Hexagon/BuildSystem/ReportRenderers/Base"
+  ],
+  "Hexagon/BuildSystem/BuildStageFactory": [
+    "Hexagon/BuildSystem/BuildFactory"
+  ],
+  "Hexagon/BuildSystem/BuildStages/ShellCommand": [
+    "Hexagon/BuildSystem/BuildStageFactory",
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
+  ],
+  "Hexagon/BuildSystem/BuildStages/Base": [
+    "Hexagon/BuildSystem/BuildStageRenderer",
+    "Hexagon/BuildSystem/BuildStages/ShellCommand"
+  ],
+  "Hexagon/BuildSystem/BuildStageRenderers/Base": [
+    "Hexagon/BuildSystem/BuildStageRenderer",
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
+  ],
+  "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand": [
+    "Hexagon/BuildSystem/BuildStageRenderer"
+  ],
+  "std/vector<std/vector<std/string>>": [
+    "Hexagon/BuildSystem/BuildStageRenderers/Base",
+    "Hexagon/BuildSystem/BuildStages/Base",
+    "Hexagon/BuildSystem/Builds/Base",
+    "Hexagon/BuildSystem/ReportRenderers/Base",
+    "Hexagon/Elements/DataTable"
+  ],
+  "char": [
+    "Hexagon/BuildSystem/BuildStageRenderers/Base",
+    "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
+    "Hexagon/BuildSystem/BuildStages/Base",
+    "Hexagon/BuildSystem/BuildStages/ShellCommand",
+    "Hexagon/BuildSystem/Builds/Base",
+    "Hexagon/BuildSystem/ReportRenderers/Base",
+    "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "Blast/ShellCommandExecutorWithCallback": [
+    "Hexagon/BuildSystem/BuildStages/ShellCommand",
+    "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/Git/CommitStagedWithMessage",
+    "Hexagon/Git/Modified",
+    "Hexagon/Git/Pusher",
+    "Hexagon/Git/StageEverything",
+    "Hexagon/Git/Staged",
+    "Hexagon/Git/Untracked",
+    "Hexagon/NewComponentMaker/NewComponentMaker",
+    "Hexagon/NewComponentMaker/Stage",
+    "Hexagon/PasteboardData",
+    "Hexagon/Rails/ComponentLister",
+    "Hexagon/Search/ComponentElasticsearchIndexer",
+    "Hexagon/Search/Elasticsearch/HealthChecker",
+    "Hexagon/SymlinkToucher",
+    "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/Testing/ComponentTestRunner",
+    "NcursesArt/GithubRepoStatusFetcher"
+  ],
+  "std/vector<Hexagon/BuildSystem/BuildStages/Base>": [
+    "Hexagon/BuildSystem/Builds/Base"
+  ],
+  "Hexagon/BuildSystem/ReportRenderers/Base": [
+    "Hexagon/BuildSystem/ReportRenderer"
+  ],
+  "Hexagon/BuildSystem/BuildStageRenderer": [
+    "Hexagon/BuildSystem/ReportRenderers/Base"
+  ],
   "vec3d": [
     "Hexagon/Camera"
   ],
@@ -1037,25 +1105,6 @@
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
-  "Blast/ShellCommandExecutorWithCallback": [
-    "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/Git/CommitStagedWithMessage",
-    "Hexagon/Git/Modified",
-    "Hexagon/Git/Pusher",
-    "Hexagon/Git/StageEverything",
-    "Hexagon/Git/Staged",
-    "Hexagon/Git/Untracked",
-    "Hexagon/NewComponentMaker/NewComponentMaker",
-    "Hexagon/NewComponentMaker/Stage",
-    "Hexagon/PasteboardData",
-    "Hexagon/Rails/ComponentLister",
-    "Hexagon/Search/ComponentElasticsearchIndexer",
-    "Hexagon/Search/Elasticsearch/HealthChecker",
-    "Hexagon/SymlinkToucher",
-    "Hexagon/System/Action/OpenDocumentationInBrowser",
-    "Hexagon/Testing/ComponentTestRunner",
-    "NcursesArt/GithubRepoStatusFetcher"
-  ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"
   ],
@@ -1094,9 +1143,6 @@
   "al_get_font_line_height": [
     "Hexagon/Elements/DataTable",
     "Hexagon/PacketRenderer"
-  ],
-  "std/vector<std/vector<std/string>>": [
-    "Hexagon/Elements/DataTable"
   ],
   "std/map<std/tuple<int, int>, int>": [
     "Hexagon/Elements/DynamicGridMesh"
@@ -1620,9 +1666,6 @@
   "std/pair<std/string, std/string>": [
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/ProjectComponentBasenameExtractor"
-  ],
-  "char": [
-    "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "al_draw_line": [
     "Hexagon/UI/DrawingBox"
