@@ -1,8 +1,8 @@
 #pragma once
 
 
+#include <ALLEGRO_BITMAP.hpp>
 #include <Blast/Project/Component.hpp>
-#include <allegro5/allegro.h>
 #include <string>
 
 

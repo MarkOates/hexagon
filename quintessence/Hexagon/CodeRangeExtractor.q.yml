@@ -74,4 +74,6 @@ dependencies:
   - symbol: std::max
     headers: [ algorithm ]
 
+  - symbol: CodeRange
+    headers: [ Hexagon/CodeRange.hpp ]
 

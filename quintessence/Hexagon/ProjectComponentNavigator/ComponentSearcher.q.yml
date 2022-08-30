@@ -97,3 +97,8 @@ dependencies:
     headers: [ 'Blast/SimpleTextSearcher.hpp' ]
   - symbol: std::vector<Blast::Project::Component>
     headers: [ vector, Blast/Project/Component.hpp ]
+
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
+
+

@@ -57,3 +57,6 @@ dependencies:
   - symbol: std::vector<std::string>
     headers: [ vector, string ]
 
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+

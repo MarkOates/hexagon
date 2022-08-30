@@ -109,4 +109,6 @@ dependencies:
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
 
+  - symbol: ALLEGRO_BITMAP
+    headers: [ ALLEGRO_BITMAP.hpp ]
 

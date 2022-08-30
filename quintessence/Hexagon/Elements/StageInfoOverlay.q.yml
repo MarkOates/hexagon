@@ -115,4 +115,15 @@ dependencies:
   - symbol: std::transform
     headers: [ algorithm ]
 
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
+
 

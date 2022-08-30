@@ -972,4 +972,16 @@ dependencies:
   - symbol: std::vector<std::tuple<std::string, std::string>>
     headers: [ vector, tuple, string ]
 
+  - symbol: ALLEGRO_DISPLAY
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro.h ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::System::Config
+    headers: [ Hexagon/System/Config.hpp ]
+  - symbol: Hexagon::System::System
+    headers: [ Hexagon/System/System.hpp ]
+  - symbol: StageInterface
+    headers: [ StageInterface.hpp ]
 

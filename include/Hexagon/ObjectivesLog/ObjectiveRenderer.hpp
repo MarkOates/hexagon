@@ -1,9 +1,9 @@
 #pragma once
 
 
+#include <ALLEGRO_FONT.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/ObjectivesLog/Objective.hpp>
-#include <allegro5/allegro_font.h>
 
 
 namespace Hexagon

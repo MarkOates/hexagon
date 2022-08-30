@@ -3,8 +3,8 @@
 
 #include <Hexagon/System/System.hpp>
 #include <allegro5/allegro.h>
-#include <functional>
 #include <map>
+#include <std/function.hpp>
 #include <string>
 
 

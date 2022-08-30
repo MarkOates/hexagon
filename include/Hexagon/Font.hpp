@@ -1,8 +1,8 @@
 #pragma once
 
 
+#include <ALLEGRO_FONT.hpp>
 #include <AllegroFlare/FontBin.hpp>
-#include <allegro5/allegro.h>
 #include <string>
 
 

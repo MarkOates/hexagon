@@ -340,3 +340,12 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: AllegroFlare::FontBin*
     headers: [ AllegroFlare/FontBin.hpp ]
+
+  - symbol: ALLEGRO_FONT
+    headers: [ ALLEGRO_FONT.hpp ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: CodeRange
+    headers: [ CodeRange.hpp ]
+
+

@@ -2,7 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
-#include <allegro5/allegro_color.h>
+#include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro_flare/placement3d.h>
 #include <string>

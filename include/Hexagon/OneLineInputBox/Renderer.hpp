@@ -1,10 +1,10 @@
 #pragma once
 
 
+#include <ALLEGRO_FONT.hpp>
 #include <AllegroFlare/FontBin.hpp>
-#include <Hexagon/CodeRange.hpp>
+#include <CodeRange.hpp>
 #include <allegro5/allegro.h>
-#include <allegro5/allegro_font.h>
 #include <allegro_flare/placement3d.h>
 #include <string>
 #include <vector>

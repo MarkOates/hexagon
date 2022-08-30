@@ -107,3 +107,11 @@ dependencies:
     headers: [ Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp ]
   - symbol: Hexagon::RendererInterface*
     headers: [ Hexagon/RendererInterface.hpp ]
+
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: AllegroFlare::Bin
+    headers: [ AllegroFlare/Bin.hpp ]
+

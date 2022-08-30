@@ -264,4 +264,10 @@ dependencies:
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
 
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::MultiplexMenu::MenuItem
+    headers: [ Hexagon/MultiplexMenu/MenuItem.hpp ]
+  - symbol: Hexagon::System::System
+    headers: [ Hexagon/System/System.hpp ]
 

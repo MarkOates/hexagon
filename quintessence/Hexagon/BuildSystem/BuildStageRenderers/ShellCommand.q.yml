@@ -47,4 +47,6 @@ dependencies:
   - symbol: char*
     headers: [ ]
 
+  - symbol: Hexagon::BuildSystem::BuildStages::ShellCommand
+    headers: [ Hexagon/BuildSystem/BuildStages/ShellCommand.hpp ]
 

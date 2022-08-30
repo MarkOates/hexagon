@@ -206,4 +206,9 @@ dependencies:
   - symbol: allegro_flare::placement2d
     headers: [ allegro_flare/placement2d.h ]
 
-
+  - symbol: ALLEGRO_FONT
+    headers: [ ALLEGRO_FONT.hpp ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::Packet
+    headers: [ Hexagon/Packet.hpp ]

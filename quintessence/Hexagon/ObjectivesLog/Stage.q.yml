@@ -160,4 +160,9 @@ dependencies:
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
 
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::ObjectivesLog::ObjectivesLog
+    headers: [ Hexagon/ObjectivesLog/ObjectivesLog.hpp ]
+
 

@@ -300,3 +300,14 @@ dependencies:
     headers: [ Hexagon/Shapes/Hexagon/Renderer.hpp ]
   - symbol: Hexagon::Shapes::Hexagon::Stroke
     headers: [ Hexagon/Shapes/Hexagon/Stroke.hpp ]
+
+  - symbol: ALLEGRO_DISPLAY
+    headers: [ ALLEGRO_DISPLAY.hpp ]
+  - symbol: ALLEGRO_FONT
+    headers: [ ALLEGRO_FONT.hpp ]
+  - symbol: ProjectComponentNavigator
+    headers: [ ProjectComponentNavigator.hpp ]
+  - symbol: std::function
+    headers: [ std/function.hpp ]
+
+

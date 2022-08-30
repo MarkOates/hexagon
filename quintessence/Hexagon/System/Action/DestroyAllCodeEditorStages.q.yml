@@ -62,3 +62,7 @@ dependencies:
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: Hexagon::CodeEditor::Stage
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
+
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+

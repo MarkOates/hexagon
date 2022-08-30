@@ -209,3 +209,10 @@ dependencies:
     headers: [ Hexagon/StageFactory.hpp ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
+
+
+  - symbol: Hexagon::StageFactory
+    headers: [ Hexagon/StageFactory.hpp ]
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+

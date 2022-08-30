@@ -56,4 +56,6 @@ dependencies:
   - symbol: Hexagon::KeyboardCommandKey
     headers: [ Hexagon/KeyboardCommandKey.hpp ]
 
+  - symbol: Hexagon::MultiplexMenu::MenuItem
+    headers: [ Hexagon/MultiplexMenu/MenuItem.hpp ]
 

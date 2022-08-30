@@ -60,3 +60,12 @@ dependencies:
     headers: [ Hexagon/ProjectComponentNavigator/EventController.hpp ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
+
+  - symbol: Hexagon::ProjectComponentNavigator::ProjectComponentNavigator
+    headers: [ Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.hpp ]
+  - symbol: ProjectComponentNavigator
+    headers: [ ProjectComponentNavigator.hpp ]
+  - symbol: std::function
+    headers: [ std/function.hpp ]
+
+

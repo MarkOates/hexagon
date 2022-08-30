@@ -360,8 +360,8 @@ functions:
       al_save_bitmap(filename.c_str(), surface);
 
       return true;
+      // - random string (?)
     body_dependency_symbols:
-      - random_string
       - al_save_bitmap
       - al_is_image_addon_initialized
       - TimestampGenerator
@@ -424,7 +424,6 @@ dependencies:
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: std::map<std::string, std::function<bool(Hexagon::UI::DrawingBox&)>>
     headers: [ map, string, functional ]
-  - symbol: random_string
     headers: [ allegro_flare/useful.h ]
   - symbol: al_save_bitmap
     headers: [ allegro5/allegro.h ]
@@ -432,4 +431,13 @@ dependencies:
     headers: [ allegro5/allegro_image.h ]
   - symbol: TimestampGenerator
     headers: [ TimestampGenerator.hpp ]
+
+  - symbol: ALLEGRO_BITMAP
+    headers: [ ALLEGRO_BITMAP.hpp ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::UI::DrawingBox
+    headers: [ Hexagon/UI/DrawingBox.hpp ]
+  - symbol: std::function
+    headers: [ std/function.hpp ]
 

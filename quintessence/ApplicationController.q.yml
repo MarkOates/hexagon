@@ -375,4 +375,12 @@ dependencies:
   - symbol: global
     headers: [ Hexagon/shared_globals.hpp ]
 
+  - symbol: ALLEGRO_DISPLAY
+    headers: [ ALLEGRO_DISPLAY.hpp ]
+  - symbol: ALLEGRO_EVENT_QUEUE
+    headers: [ ALLEGRO_EVENT_QUEUE.hpp ]
+  - symbol: ALLEGRO_TIMER
+    headers: [ ALLEGRO_TIMER.hpp ]
+  - symbol: Hexagon::System::System
+    headers: [ Hexagon/System/System.hpp ]
 

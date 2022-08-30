@@ -46,4 +46,6 @@ dependencies:
   - symbol: Hexagon::BuildSystem::ReportRenderers::Base
     headers: [ Hexagon/BuildSystem/ReportRenderers/Base.hpp ]
 
+  - symbol: Hexagon::BuildSystem::Builds::Base
+    headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
 

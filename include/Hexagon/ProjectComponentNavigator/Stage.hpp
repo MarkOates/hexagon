@@ -1,15 +1,17 @@
 #pragma once
 
 
+#include <ALLEGRO_DISPLAY.hpp>
+#include <ALLEGRO_FONT.hpp>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.hpp>
 #include <Hexagon/StageInterface.hpp>
+#include <ProjectComponentNavigator.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
-#include <allegro5/allegro_font.h>
-#include <functional>
 #include <map>
+#include <std/function.hpp>
 #include <string>
 
 

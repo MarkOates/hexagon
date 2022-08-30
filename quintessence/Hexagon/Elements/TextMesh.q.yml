@@ -189,4 +189,9 @@ dependencies:
   - symbol: Hexagon::Elements::FontCharacterMapGrid
     headers: [ Hexagon/Elements/FontCharacterMapGrid.hpp ]
 
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+
 

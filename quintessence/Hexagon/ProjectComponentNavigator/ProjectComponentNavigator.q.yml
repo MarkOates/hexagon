@@ -118,3 +118,6 @@ dependencies:
   - symbol: std::vector<Hexagon::Layout>
     headers: [ vector, Hexagon/Layout.hpp ]
 
+  - symbol: Hexagon::Layout
+    headers: [ Hexagon/Layout.hpp ]
+

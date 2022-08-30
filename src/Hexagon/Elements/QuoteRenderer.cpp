@@ -26,7 +26,7 @@ QuoteRenderer::~QuoteRenderer()
 }
 
 
-bool QuoteRenderer::incrementer(int line_num, const char* line, int size, void* extra)
+bool QuoteRenderer::incrementer(int line_num, char* line__WAS_CONST_CHAR, int size, void* extra)
 {
    (*static_cast<int*>(extra))++;
    return true;

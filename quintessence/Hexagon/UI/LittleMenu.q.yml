@@ -127,4 +127,6 @@ dependencies:
   - symbol: ALLEGRO_EVENT&
     headers: [ allegro5/allegro.h ]
 
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
 

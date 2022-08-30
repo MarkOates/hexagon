@@ -74,3 +74,6 @@ dependencies:
   - symbol: al_is_primitives_addon_initialized
     headers: [ allegro5/allegro_primitives.h ]
 
+  - symbol: Hexagon::FocusTimerBar::FocusTimerBar
+    headers: [ Hexagon/FocusTimerBar/FocusTimerBar.hpp ]
+

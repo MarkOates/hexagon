@@ -89,3 +89,9 @@ dependencies:
     headers: [ vector, tuple, allegro5/allegro.h ]
   - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
     headers: [ vector, tuple, allegro5/allegro.h ]
+
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+
+
+

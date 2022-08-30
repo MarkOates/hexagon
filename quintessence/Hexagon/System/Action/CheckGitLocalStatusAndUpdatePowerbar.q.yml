@@ -60,3 +60,6 @@ dependencies:
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
 
+  - symbol: Hexagon::Powerbar::Powerbar
+    headers: [ Hexagon/Powerbar/Powerbar.hpp ]
+

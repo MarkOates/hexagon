@@ -2,7 +2,7 @@
 
 
 #include <Hexagon/MultiplexMenu/MultiplexMenu.hpp>
-#include <Hexagon/StageInterface.hpp>
+#include <StageInterface.hpp>
 #include <string>
 
 

@@ -181,3 +181,12 @@ dependencies:
   - symbol: std::vector<StageInterface *>
     headers: [ vector, Hexagon/StageInterface.hpp ]
 
+  - symbol: Hexagon::AdvancedCodeEditor::Stage
+    headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
+  - symbol: Hexagon::CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: Hexagon::GitCommitMessageInputBox::Stage
+    headers: [ Hexagon/GitCommitMessageInputBox/Stage.hpp ]
+  - symbol: StageInterface
+    headers: [ StageInterface.hpp ]
+

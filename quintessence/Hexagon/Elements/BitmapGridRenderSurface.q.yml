@@ -176,3 +176,6 @@ dependencies:
   - symbol: std::vector<ALLEGRO_BITMAP*>
     headers: [ vector, allegro5/allegro.h ]
 
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+

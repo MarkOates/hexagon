@@ -300,4 +300,8 @@ dependencies:
   - symbol: std::vector<std::tuple<std::string, std::string>>
     headers: [ vector, tuple, string ]
 
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::System::Config
+    headers: [ Hexagon/System/Config.hpp ]
 

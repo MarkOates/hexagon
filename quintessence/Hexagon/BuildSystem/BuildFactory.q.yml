@@ -30,4 +30,6 @@ dependencies:
   - symbol: Hexagon::BuildSystem::BuildStageFactory
     headers: [ Hexagon/BuildSystem/BuildStageFactory.hpp ]
 
+  - symbol: Hexagon::BuildSystem::Builds::Base
+    headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
 

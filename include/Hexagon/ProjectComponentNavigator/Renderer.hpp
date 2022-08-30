@@ -1,9 +1,9 @@
 #pragma once
 
 
+#include <ALLEGRO_FONT.hpp>
 #include <Hexagon/ProjectComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_color.h>
-#include <allegro5/allegro_font.h>
 #include <utility>
 
 
