@@ -46,4 +46,9 @@ dependencies:
   - symbol: Hexagon::MultiplexMenu::MultiplexMenu*
     headers: [ Hexagon/MultiplexMenu/MultiplexMenu.hpp ]
 
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenu
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenu.hpp ]
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+
 

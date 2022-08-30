@@ -95,4 +95,8 @@ dependencies:
   - symbol: al_draw_filled_rectangle
     headers: [ allegro5/allegro_primitives.h ]
 
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
 

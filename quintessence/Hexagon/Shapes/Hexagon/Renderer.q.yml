@@ -86,3 +86,6 @@ dependencies:
   - symbol: sqrt
     headers: [ 'cmath' ]
 
+  - symbol: Shapes::Hexagon::Stroke
+    headers: [ Hexagon/Shapes/Hexagon/Stroke.hpp ]
+

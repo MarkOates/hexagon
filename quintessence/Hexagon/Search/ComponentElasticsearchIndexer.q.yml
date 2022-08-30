@@ -77,3 +77,6 @@ dependencies:
   - symbol: Blast::Project::Component*
     headers: [ Blast/Project/Component.hpp ]
 
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
+

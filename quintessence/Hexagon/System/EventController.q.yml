@@ -549,4 +549,14 @@ dependencies:
   - symbol: Hexagon::System::System*
     headers: [ Hexagon/System/System.hpp ]
 
+  - symbol: Hexagon::ProjectComponentNavigator::ProjectComponentNavigator
+    headers: [ Hexagon/ProjectComponentNavigator/ProjectComponentNavigator.hpp ]
+  - symbol: ProjectComponentNavigator
+    headers: [ ProjectComponentNavigator.hpp ]
+  - symbol: std::function
+    headers: [ functional ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: Hexagon::System::System
+    headers: [ Hexagon/System/System.hpp ]
 

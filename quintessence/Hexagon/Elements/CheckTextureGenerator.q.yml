@@ -42,4 +42,9 @@ dependencies:
   - symbol: ALLEGRO_DISPLAY*
     headers: [ allegro5/allegro.h ]
 
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_DISPLAY
+    headers: [ allegro5/allegro.h ]
+
 

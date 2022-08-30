@@ -178,7 +178,7 @@ functions:
 
 
   - name: build_local_events_dictionary
-    type: std::map<std::string, std::function<void(AdvancedComponentNavigator&)>>
+    type: std::map<std::string, std::function<void(Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator&)>>
     body: |
       std::map<std::string, std::function<void(AdvancedComponentNavigator&)>> local_events = {
          { MOVE_CURSOR_UP, &AdvancedComponentNavigator::move_cursor_up },
@@ -410,5 +410,14 @@ dependencies:
     headers: [ Hexagon/Shapes/Hexagon/Renderer.hpp ]
   - symbol: Hexagon::Shapes::Hexagon::Stroke
     headers: [ Hexagon/Shapes/Hexagon/Stroke.hpp ]
+
+  - symbol: ALLEGRO_DISPLAY
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_FONT
+    headers: [ 'allegro5/allegro_font.h' ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: std::function
+    headers: [ functional ]
 
 

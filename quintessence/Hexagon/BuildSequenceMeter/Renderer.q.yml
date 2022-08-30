@@ -524,4 +524,8 @@ dependencies:
   - symbol: Hexagon::Testing::GoogleTestRunOutputParser
     headers: [ Hexagon/Testing/GoogleTestRunOutputParser.hpp ]
 
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro.h ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
 

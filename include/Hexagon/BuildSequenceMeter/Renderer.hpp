@@ -5,7 +5,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
 #include <string>
-#include <utility>
+#include <tuple>
 #include <vector>
 
 

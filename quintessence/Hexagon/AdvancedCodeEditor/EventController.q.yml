@@ -144,3 +144,9 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
     headers: [ map, string, functional, Hexagon/AdvancedCodeEditor/Stage.hpp ]
+
+  - symbol: Hexagon::AdvancedCodeEditor::Stage
+    headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
+  - symbol: std::function
+    headers: [ functional ]
+

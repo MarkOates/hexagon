@@ -355,3 +355,10 @@ dependencies:
   - symbol: Hexagon::Shaders::TiledHexagonMotionEffect
     headers: [ Hexagon/Shaders/TiledHexagonMotionEffect.hpp ]
 
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::System::Config
+    headers: [ Hexagon/System/Config.hpp ]
+

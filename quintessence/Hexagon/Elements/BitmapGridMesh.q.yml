@@ -331,3 +331,11 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: std::tuple<float, float, float, float>
     headers: [ tuple ]
+
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_VERTEX
+    headers: [ allegro5/allegro_primitives.h ]
+
+
+

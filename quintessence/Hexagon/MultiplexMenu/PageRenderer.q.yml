@@ -303,4 +303,10 @@ dependencies:
   - symbol: Hexagon::Elements::ColorKit
     headers: [ Hexagon/Elements/ColorKit.hpp ]
 
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
 

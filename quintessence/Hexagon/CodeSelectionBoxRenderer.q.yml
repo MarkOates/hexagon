@@ -172,4 +172,6 @@ dependencies:
   - symbol: al_draw_filled_rectangle
     headers: [ allegro5/allegro_primitives.h ]
 
+  - symbol: CodeRange
+    headers: [ Hexagon/CodeRange.hpp ]
 

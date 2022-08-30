@@ -22,7 +22,7 @@ namespace Hexagon
          QuoteRenderer(AllegroFlare::FontBin* font_bin=nullptr, std::string quote={}, std::string speaker={});
          ~QuoteRenderer();
 
-         static bool incrementer(int line_num=0, const char* line=nullptr, int size=0, void* extra=nullptr);
+         static bool incrementer(int line_num=0, char* line__WAS_CONST_CHAR=nullptr, int size=0, void* extra=nullptr);
          void render();
       };
    }

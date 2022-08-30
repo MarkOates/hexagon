@@ -257,4 +257,7 @@ dependencies:
   - symbol: char*
     headers: [ ]
 
+  - symbol: Hexagon::Testing::GoogleTestRunTestResult
+    headers: [ Hexagon/Testing/GoogleTestRunTestResult.hpp ]
+
 

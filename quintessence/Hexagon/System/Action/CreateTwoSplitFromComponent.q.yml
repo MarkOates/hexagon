@@ -241,3 +241,11 @@ dependencies:
     headers: [ vector, Hexagon/StageInterface.hpp ]
   - symbol: std::vector<StageInterface *>
     headers: [ vector, Hexagon/StageInterface.hpp ]
+
+
+  - symbol: Hexagon::StageFactory
+    headers: [ Hexagon/StageFactory.hpp ]
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+
+

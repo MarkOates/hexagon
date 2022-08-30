@@ -82,4 +82,11 @@ dependencies:
   - symbol: placement3d
     headers: [ allegro_flare/placement3d.h ]
 
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenu
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenu.hpp ]
+  - symbol: Hexagon::MultiplexMenu::MultiplexMenuPage
+    headers: [ Hexagon/MultiplexMenu/MultiplexMenuPage.hpp ]
+
 

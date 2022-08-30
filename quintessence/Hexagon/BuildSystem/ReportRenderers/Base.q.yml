@@ -76,4 +76,6 @@ dependencies:
   - symbol: char*
     headers: [ ]
 
+  - symbol: Hexagon::BuildSystem::Builds::Base
+    headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
 

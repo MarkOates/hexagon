@@ -2,7 +2,7 @@
 
 
 #include <AllegroFlare/FontBin.hpp>
-#include <Hexagon/MultiplexMenu/MultiplexMenu.hpp>
+#include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
 #include <allegro5/allegro_font.h>
 #include <string>
 

@@ -88,3 +88,8 @@ dependencies:
   - symbol: sqrt
     headers: [ 'cmath' ]
 
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+

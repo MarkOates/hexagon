@@ -209,5 +209,6 @@ dependencies:
   - symbol: Hexagon::RegexMatcher
     headers: [ Hexagon/RegexMatcher.hpp ]
 
-
+  - symbol: Hexagon::Testing::ClangBuildOutputResult
+    headers: [ Hexagon/Testing/ClangBuildOutputResult.hpp ]
 

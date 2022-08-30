@@ -121,4 +121,6 @@ dependencies:
   - symbol: char*
     headers: [ ]
 
+  - symbol: Hexagon::BuildSystem::BuildStages::Base
+    headers: [ Hexagon/BuildSystem/BuildStages/Base.hpp ]
 

@@ -44,3 +44,9 @@ dependencies:
     headers: [ Hexagon/Git/RemoteSyncChecker.hpp ]
   - symbol: ::Action
     headers: [ Hexagon/Action.hpp ]
+
+  - symbol: Hexagon::Powerbar::Powerbar
+    headers: [ Hexagon/Powerbar/Powerbar.hpp ]
+
+
+

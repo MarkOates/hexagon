@@ -57,5 +57,6 @@ dependencies:
   - symbol: Hexagon::BuildSystem::BuildStageRenderers::ShellCommand
     headers: [ Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.hpp ]
 
-
+  - symbol: Hexagon::BuildSystem::BuildStages::Base
+    headers: [ Hexagon/BuildSystem/BuildStages/Base.hpp ]
 

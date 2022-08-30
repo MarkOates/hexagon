@@ -26,7 +26,7 @@ QuoteRenderer::~QuoteRenderer()
 }
 
 
-bool QuoteRenderer::incrementer(int line_num, const char* line, int size, void* extra)
+bool QuoteRenderer::incrementer(int line_num, char* line__WAS_CONST_CHAR, int size, void* extra)
 {
    (*static_cast<int*>(extra))++;
    return true;
@@ -66,13 +66,21 @@ void QuoteRenderer::render()
    );
 
    int line_count = 0;
-   al_do_multiline_text(
-      al_font,
-      max_width,
-      text.c_str(),
-      &Hexagon::Elements::QuoteRenderer::incrementer,
-      static_cast<void*>(&line_count)
-   );
+
+   // TODO: this feature is currently not implemented because it requires a type (const char) that is not
+   // available in quintessence extrapolation at this time.
+
+   // TODO: this feature is currently not implemented because it requires a type (const char) that is not
+   // available in quintessence extrapolation at this time.
+
+   // THIS call was disabled:
+   //al_do_multiline_text(
+      //al_font,
+      //max_width,
+      //text.c_str(),
+      //&Hexagon::Elements::QuoteRenderer::incrementer,
+      //static_cast<void*>(&line_count)
+   //);
 
    al_draw_text(al_font, color, 0, line_height * (line_count + 1), 0, (std::string("- ") + speaker).c_str());
 

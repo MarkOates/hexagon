@@ -425,4 +425,8 @@ dependencies:
   - symbol: AllegroFlare::KeyboardCommandMapper
     headers: [ 'AllegroFlare/KeyboardCommandMapper.hpp' ]
 
+  - symbol: ALLEGRO_DISPLAY
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
 

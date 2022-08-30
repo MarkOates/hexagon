@@ -20,4 +20,6 @@ dependencies:
   - symbol: Hexagon::BuildSystem::BuildStages::ShellCommand*
     headers: [ Hexagon/BuildSystem/BuildStages/ShellCommand.hpp ]
 
+  - symbol: Hexagon::BuildSystem::BuildStages::ShellCommand
+    headers: [ Hexagon/BuildSystem/BuildStages/ShellCommand.hpp ]
 

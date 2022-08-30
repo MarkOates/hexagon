@@ -112,3 +112,10 @@ dependencies:
   - symbol: Hexagon::ObjectivesLog::Objective*
     headers: [ Hexagon/ObjectivesLog/Objective.hpp ]
 
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::ObjectivesLog::Objective
+    headers: [ Hexagon/ObjectivesLog/Objective.hpp ]
+

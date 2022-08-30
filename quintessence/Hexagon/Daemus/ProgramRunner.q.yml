@@ -463,3 +463,6 @@ dependencies:
   - symbol: Hexagon::System::Config*
     headers: [ Hexagon/System/Config.hpp ]
 
+  - symbol: Hexagon::Testing::GoogleTestRunTestResult
+    headers: [ Hexagon/Testing/GoogleTestRunTestResult.hpp ]
+

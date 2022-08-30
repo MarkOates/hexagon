@@ -179,16 +179,17 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping()
    return mapping;
 }
 
-std::map<std::string, std::function<void(ProjectComponentNavigator&)>> Stage::build_local_events_dictionary()
+std::map<std::string, std::function<void(Hexagon::ProjectComponentNavigator::ProjectComponentNavigator&)>> Stage::build_local_events_dictionary()
 {
-   std::map<std::string, std::function<void(ProjectComponentNavigator&)>> local_events = {
-      { "refresh_list", &ProjectComponentNavigator::refresh_list },
-      { "move_cursor_to_top", &ProjectComponentNavigator::move_cursor_to_top },
-      { "move_cursor_up", &ProjectComponentNavigator::move_cursor_up },
-      { "move_cursor_down", &ProjectComponentNavigator::move_cursor_down },
-      { "set_mode_to_navigating_list", &ProjectComponentNavigator::set_mode_to_navigating_list },
-      { "set_mode_to_typing_in_search_bar", &ProjectComponentNavigator::set_mode_to_typing_in_search_bar },
-   };
+   std::map<std::string, std::function<void(Hexagon::ProjectComponentNavigator::ProjectComponentNavigator&)>>
+      local_events = {
+         { "refresh_list", &ProjectComponentNavigator::refresh_list },
+         { "move_cursor_to_top", &ProjectComponentNavigator::move_cursor_to_top },
+         { "move_cursor_up", &ProjectComponentNavigator::move_cursor_up },
+         { "move_cursor_down", &ProjectComponentNavigator::move_cursor_down },
+         { "set_mode_to_navigating_list", &ProjectComponentNavigator::set_mode_to_navigating_list },
+         { "set_mode_to_typing_in_search_bar", &ProjectComponentNavigator::set_mode_to_typing_in_search_bar },
+      };
    return local_events;
 }
 

@@ -18,3 +18,6 @@ dependencies:
   - symbol: std::vector<std::tuple<std::string, Hexagon::Layout>>
     headers: [ vector, tuple, string, Hexagon/Layout.hpp ]
 
+  - symbol: Hexagon::Layout
+    headers: [ Hexagon/Layout.hpp ]
+

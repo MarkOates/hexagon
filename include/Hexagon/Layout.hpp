@@ -3,6 +3,7 @@
 
 #include <allegro_flare/placement3d.h>
 #include <string>
+#include <tuple>
 #include <vector>
 
 

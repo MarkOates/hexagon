@@ -28,3 +28,10 @@ dependencies:
     headers: [ Blast/Project/Component.hpp ]
   - symbol: ALLEGRO_BITMAP*
     headers: [ allegro5/allegro.h ]
+
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+  - symbol: Blast::Project::Component
+    headers: [ Blast/Project/Component.hpp ]
+
+

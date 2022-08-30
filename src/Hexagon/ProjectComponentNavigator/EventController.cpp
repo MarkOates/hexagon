@@ -15,7 +15,7 @@ namespace ProjectComponentNavigator
 {
 
 
-EventController::EventController(Hexagon::ProjectComponentNavigator::ProjectComponentNavigator* component, std::map<std::string, std::function<void(ProjectComponentNavigator&)>> event_dictionary)
+EventController::EventController(Hexagon::ProjectComponentNavigator::ProjectComponentNavigator* component, std::map<std::string, std::function<void(Hexagon::ProjectComponentNavigator::ProjectComponentNavigator&)>> event_dictionary)
    : component(component)
    , event_dictionary(event_dictionary)
 {

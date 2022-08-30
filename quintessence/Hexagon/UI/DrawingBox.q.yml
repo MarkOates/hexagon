@@ -433,3 +433,12 @@ dependencies:
   - symbol: TimestampGenerator
     headers: [ TimestampGenerator.hpp ]
 
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::UI::DrawingBox
+    headers: [ Hexagon/UI/DrawingBox.hpp ]
+  - symbol: std::function
+    headers: [ functional ]
+

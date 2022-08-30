@@ -24,3 +24,6 @@ dependencies:
   - symbol: std::vector<std::tuple<std::string, std::string, placement3d>>
     headers: [ vector, string, allegro_flare/placement3d.h ]
 
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
+
