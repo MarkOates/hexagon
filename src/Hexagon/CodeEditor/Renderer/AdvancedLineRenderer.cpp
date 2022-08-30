@@ -21,7 +21,7 @@
 #include <vector>
 #include <tuple>
 #include <string>
-#include <allegro5/allegro_color.h>
+#include <allegro5/allegro.h>
 #include <stdexcept>
 #include <sstream>
 

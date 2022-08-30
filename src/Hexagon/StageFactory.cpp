@@ -30,6 +30,7 @@
 #include <vector>
 #include <tuple>
 #include <string>
+#include <string>
 #include <Hexagon/Fancy/Stage.hpp>
 #include <Hexagon/UI/DrawingBox.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -58,6 +59,7 @@
 #include <Hexagon/ProjectNavigator.hpp>
 #include <vector>
 #include <tuple>
+#include <string>
 #include <string>
 #include <stdexcept>
 #include <sstream>

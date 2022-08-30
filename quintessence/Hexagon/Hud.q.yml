@@ -922,6 +922,10 @@ dependencies:
   - symbol: Hexagon::StageCollectionHelper
     headers: [ Hexagon/StageCollectionHelper.hpp ]
 
+  - symbol: Hexagon::CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: Hexagon::AdvancedComponentNavigator::Stage
+    headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
   - symbol: ALLEGRO_BITMAP
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_DISPLAY

@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <functional>
+#include <Hexagon/System/System.hpp>
 #include <stdexcept>
 #include <sstream>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>

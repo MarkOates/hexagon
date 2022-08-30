@@ -4648,6 +4648,9 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::color::mix&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Color.hpp&quot;]}</td>
 </tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -6679,6 +6682,12 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::StageCollectionHelper&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageCollectionHelper.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeEditor::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeEditor/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedComponentNavigator::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedComponentNavigator/Stage.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_BITMAP&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
@@ -11165,6 +11174,15 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::StageCollectionHelper&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageCollectionHelper.hpp&quot;]}</td>
 </tr>
 <tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeEditor::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeEditor/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedComponentNavigator::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedComponentNavigator/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::FileNavigator::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/FileNavigator/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_DISPLAY&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
 </tr>
 <tr>
@@ -12672,6 +12690,7 @@ table td
     "Hexagon/Elements/FontedTextGrid",
     "Hexagon/Elements/FontedTextGrid",
     "Hexagon/Elements/Frame",
+    "Hexagon/Elements/Frame",
     "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/Pill",
@@ -13078,7 +13097,9 @@ table td
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/Hud",
+    "Hexagon/Hud",
     "Hexagon/StageFactory",
+    "Hexagon/System/Renderer",
     "Hexagon/System/Renderer"
   ],
   "color/mix": [
@@ -13716,12 +13737,14 @@ table td
   ],
   "Hexagon/CodeEditor/Stage": [
     "Hexagon/Hud",
+    "Hexagon/Hud",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
+    "Hexagon/System/Renderer",
     "Hexagon/System/Renderer"
   ],
   "Hexagon/BuildSequenceMeter/Renderer": [
@@ -14026,6 +14049,7 @@ table td
   ],
   "Hexagon/FileNavigator/Stage": [
     "Hexagon/StageFactory",
+    "Hexagon/System/Renderer",
     "Hexagon/System/Renderer"
   ],
   "Hexagon/OneLineInputBox/Stage": [

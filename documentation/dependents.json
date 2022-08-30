@@ -429,6 +429,7 @@
     "Hexagon/Elements/FontedTextGrid",
     "Hexagon/Elements/FontedTextGrid",
     "Hexagon/Elements/Frame",
+    "Hexagon/Elements/Frame",
     "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/Pill",
@@ -835,7 +836,9 @@
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/Hud",
+    "Hexagon/Hud",
     "Hexagon/StageFactory",
+    "Hexagon/System/Renderer",
     "Hexagon/System/Renderer"
   ],
   "color/mix": [
@@ -1473,12 +1476,14 @@
   ],
   "Hexagon/CodeEditor/Stage": [
     "Hexagon/Hud",
+    "Hexagon/Hud",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
     "Hexagon/System/Action/CreateThreeSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
+    "Hexagon/System/Renderer",
     "Hexagon/System/Renderer"
   ],
   "Hexagon/BuildSequenceMeter/Renderer": [
@@ -1783,6 +1788,7 @@
   ],
   "Hexagon/FileNavigator/Stage": [
     "Hexagon/StageFactory",
+    "Hexagon/System/Renderer",
     "Hexagon/System/Renderer"
   ],
   "Hexagon/OneLineInputBox/Stage": [

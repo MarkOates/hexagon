@@ -108,5 +108,7 @@ dependencies:
     headers: [ AllegroFlare/Color.hpp ]
   - symbol: AllegroFlare::color::mix
     headers: [ AllegroFlare/Color.hpp ]
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
 
 

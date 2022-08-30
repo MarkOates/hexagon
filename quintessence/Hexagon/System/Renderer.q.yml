@@ -132,6 +132,12 @@ dependencies:
   - symbol: Hexagon::StageCollectionHelper
     headers: [ Hexagon/StageCollectionHelper.hpp ]
 
+  - symbol: Hexagon::CodeEditor::Stage
+    headers: [ Hexagon/CodeEditor/Stage.hpp ]
+  - symbol: Hexagon::AdvancedComponentNavigator::Stage
+    headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
+  - symbol: Hexagon::FileNavigator::Stage
+    headers: [ Hexagon/FileNavigator/Stage.hpp ]
   - symbol: ALLEGRO_DISPLAY
     headers: [ allegro5/allegro.h ]
   - symbol: Hexagon::System::System
