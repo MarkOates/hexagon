@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AdvancedComponentNavigator.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp>
 #include <functional>

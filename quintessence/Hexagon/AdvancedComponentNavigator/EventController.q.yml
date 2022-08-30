@@ -72,4 +72,10 @@ dependencies:
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
 
+  - symbol: AdvancedComponentNavigator
+    headers: [ AdvancedComponentNavigator.hpp ]
+  - symbol: Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator
+    headers: [ Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp ]
+  - symbol: std::function
+    headers: [ functional ]
 

@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AdvancedComponentNavigator.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/ActionData.hpp>

@@ -130,3 +130,9 @@ dependencies:
   - symbol: std::map<std::tuple<int, int>, int>
     headers: [ map, tuple ]
 
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_VERTEX
+    headers: [ allegro5/allegro_primitives.h ]
+
+

@@ -48,3 +48,8 @@ dependencies:
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: AllegroFlare::FontBin
     headers: [ AllegroFlare/FontBin.hpp ]
+
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro.h ]
+
+

@@ -135,6 +135,13 @@ dependencies:
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
 
+  - symbol: ALLEGRO_DISPLAY
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+
 
 functions:
 

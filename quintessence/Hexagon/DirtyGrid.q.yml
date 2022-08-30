@@ -106,8 +106,8 @@ functions:
 dependencies:
 
 
-  - symbol: Hexagon::DirtyGrid*
-    headers: []
+  - symbol: Hexagon::DirtyGrid
+    headers: [ Hexagon/DirtyGrid.hpp ]
   - symbol: std::vector<std::string>*
     headers: [ vector, string ]
   - symbol: std::set<std::pair<int, int>>

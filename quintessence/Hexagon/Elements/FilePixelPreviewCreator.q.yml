@@ -57,3 +57,6 @@ dependencies:
   - symbol: Hexagon::Elements::TextPixelPreviewCreator
     headers: [ Hexagon/Elements/TextPixelPreviewCreator.hpp ]
 
+  - symbol: ALLEGRO_BITMAP
+    headers: [ allegro5/allegro.h ]
+

@@ -411,4 +411,15 @@ dependencies:
   - symbol: Hexagon::Shapes::Hexagon::Stroke
     headers: [ Hexagon/Shapes/Hexagon/Stroke.hpp ]
 
+  - symbol: ALLEGRO_DISPLAY
+    headers: [ 'allegro5/allegro.h' ]
+  - symbol: ALLEGRO_FONT
+    headers: [ 'allegro5/allegro_font.h' ]
+  - symbol: AdvancedComponentNavigator
+    headers: [ AdvancedComponentNavigator.hpp ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: std::function
+    headers: [ functional ]
+
 
