@@ -14,6 +14,9 @@ namespace Hexagon
       nlohmann::json json;
       bool initialized;
 
+   protected:
+
+
    public:
       ASTTraverser(std::string json_ast_filename={});
       ~ASTTraverser();

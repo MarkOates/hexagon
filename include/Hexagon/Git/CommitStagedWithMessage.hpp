@@ -14,6 +14,9 @@ namespace Hexagon
          std::string current_project_directory;
          std::string message;
 
+      protected:
+
+
       public:
          CommitStagedWithMessage(std::string current_project_directory="/Users/markoates/Repos/hexagon/", std::string message="auto commit");
          ~CommitStagedWithMessage();

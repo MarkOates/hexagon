@@ -11,6 +11,9 @@ namespace Blast
    private:
       std::string directory_name;
 
+   protected:
+
+
    public:
       DirectoryExistenceChecker(std::string directory_name="");
       ~DirectoryExistenceChecker();

@@ -30,6 +30,9 @@ namespace Hexagon
          std::map<char, std::tuple<float, float, float, float>> font_character_uv_mapping;
          bool initialized;
 
+      protected:
+
+
       public:
          TextMesh(ALLEGRO_FONT* font=nullptr, int num_columns=0, int num_rows=0);
          ~TextMesh();

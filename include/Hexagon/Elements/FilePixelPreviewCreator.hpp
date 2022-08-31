@@ -15,13 +15,16 @@ namespace Hexagon
       private:
          std::string filename;
          int width;
+         std::vector<std::string> get_file_contents();
+
+      protected:
+
 
       public:
          FilePixelPreviewCreator(std::string filename="", int width=120);
          ~FilePixelPreviewCreator();
 
          ALLEGRO_BITMAP* create();
-         std::vector<std::string> get_file_contents();
       };
    }
 }

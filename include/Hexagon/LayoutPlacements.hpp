@@ -13,6 +13,9 @@ namespace Hexagon
    private:
       std::map<std::string, placement3d> placements;
 
+   protected:
+
+
    public:
       LayoutPlacements(std::map<std::string, placement3d> placements={});
       ~LayoutPlacements();

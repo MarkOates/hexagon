@@ -27,6 +27,9 @@ namespace Hexagon
          ALLEGRO_COLOR backfill_color;
          std::string state;
 
+      protected:
+
+
       public:
          Stage(::CodeEditor::CodeEditor code_editor=::CodeEditor::CodeEditor{});
          virtual ~Stage();

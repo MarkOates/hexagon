@@ -15,6 +15,9 @@ namespace Hexagon
       std::string project_name;
       std::vector<std::tuple<std::string, Hexagon::Layout>> layouts;
 
+   protected:
+
+
    public:
       Project(std::string project_name="- Untitled -", std::vector<std::tuple<std::string, Hexagon::Layout>> layouts={});
       ~Project();

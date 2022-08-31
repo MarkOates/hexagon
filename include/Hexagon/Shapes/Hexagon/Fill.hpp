@@ -14,6 +14,9 @@ namespace Hexagon
          {
          private:
 
+         protected:
+
+
          public:
             Fill();
             ~Fill();

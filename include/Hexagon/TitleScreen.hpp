@@ -21,6 +21,9 @@ namespace Hexagon
       int surface_height;
       bool initialized;
 
+   protected:
+
+
    public:
       TitleScreen(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::System::Config* config=nullptr);
       ~TitleScreen();

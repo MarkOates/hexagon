@@ -16,6 +16,9 @@ private:
    ALLEGRO_EVENT_SOURCE user_event_source;
    bool shutdown_program;
 
+protected:
+
+
 public:
    ApplicationController(Hexagon::System::Config hexagon_config={"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"});
    ~ApplicationController();

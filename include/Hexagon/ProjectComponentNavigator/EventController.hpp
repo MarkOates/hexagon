@@ -18,6 +18,9 @@ namespace Hexagon
          Hexagon::ProjectComponentNavigator::ProjectComponentNavigator* component;
          std::map<std::string, std::function<void(Hexagon::ProjectComponentNavigator::ProjectComponentNavigator&)>> event_dictionary;
 
+      protected:
+
+
       public:
          EventController(Hexagon::ProjectComponentNavigator::ProjectComponentNavigator* component=nullptr, std::map<std::string, std::function<void(Hexagon::ProjectComponentNavigator::ProjectComponentNavigator&)>> event_dictionary={});
          ~EventController();

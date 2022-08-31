@@ -25,6 +25,10 @@ namespace Hexagon
       int surface_height;
       static ALLEGRO_EVENT a_default_empty_event;
       bool initialized;
+      void draw_frame();
+
+   protected:
+
 
    public:
       ProjectNavigator(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::System::Config* config=nullptr, std::vector<std::tuple<std::string, std::string>> menu_items=build_placeholder_menu_items());
@@ -35,7 +39,6 @@ namespace Hexagon
       void set_menu_items(std::vector<std::tuple<std::string, std::string>> menu_items={});
       bool initialize();
       virtual void render() override;
-      void draw_frame();
       bool main_menu_cursor_move_up();
       bool main_menu_cursor_move_down();
       std::string main_menu_get_current_list_item_identifier();

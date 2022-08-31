@@ -13,6 +13,9 @@ namespace Hexagon
       private:
          ALLEGRO_DISPLAY* display;
 
+      protected:
+
+
       public:
          CheckTextureGenerator(ALLEGRO_DISPLAY* display=nullptr);
          ~CheckTextureGenerator();

@@ -8,6 +8,9 @@ class TimestampGenerator
 {
 private:
 
+protected:
+
+
 public:
    TimestampGenerator();
    ~TimestampGenerator();

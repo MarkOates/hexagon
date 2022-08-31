@@ -21,6 +21,9 @@ namespace Hexagon
          ALLEGRO_BITMAP* created_character_map_bitmap;
          bool initialized;
 
+      protected:
+
+
       public:
          FontCharacterMapGrid(ALLEGRO_FONT* font=nullptr);
          ~FontCharacterMapGrid();

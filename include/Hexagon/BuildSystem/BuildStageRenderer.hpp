@@ -14,6 +14,9 @@ namespace Hexagon
       private:
          Hexagon::BuildSystem::BuildStages::Base* build_stage;
 
+      protected:
+
+
       public:
          BuildStageRenderer(Hexagon::BuildSystem::BuildStages::Base* build_stage=nullptr);
          ~BuildStageRenderer();

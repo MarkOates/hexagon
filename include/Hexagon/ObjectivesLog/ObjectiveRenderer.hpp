@@ -18,6 +18,10 @@ namespace Hexagon
          float width;
          float height;
          bool is_activated;
+         ALLEGRO_FONT* obtain_primary_text_font();
+
+      protected:
+
 
       public:
          ObjectiveRenderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ObjectivesLog::Objective* objective=nullptr, float width=600, float height=100);
@@ -26,7 +30,6 @@ namespace Hexagon
          void set_is_activated(bool is_activated);
          bool get_is_activated() const;
          void render();
-         ALLEGRO_FONT* obtain_primary_text_font();
       };
    }
 }

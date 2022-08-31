@@ -15,6 +15,9 @@ namespace Hexagon
       std::string source_test_output;
       std::vector<RailsMinitestTestResult> test_result_lines;
 
+   protected:
+
+
    public:
       RailsTestOutputParser(std::string source_test_output="");
       ~RailsTestOutputParser();

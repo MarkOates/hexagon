@@ -11,6 +11,9 @@ namespace Hexagon
    private:
       std::string filename;
 
+   protected:
+
+
    public:
       SymlinkToucher(std::string filename="file.txt");
       ~SymlinkToucher();

@@ -19,6 +19,9 @@ namespace Hexagon
          std::time_t focus_timer_started_at;
          float focus_timer_duration_sec;
 
+      protected:
+
+
       public:
          Powerbar(bool files_are_modified=false, bool files_are_staged=false, bool files_are_untracked=false, bool files_are_committed=true, bool commits_are_in_sync_with_remote=true);
          ~Powerbar();

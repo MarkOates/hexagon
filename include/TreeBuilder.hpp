@@ -7,6 +7,9 @@ class TreeBuilder
 {
 private:
 
+protected:
+
+
 public:
    TreeBuilder();
    ~TreeBuilder();

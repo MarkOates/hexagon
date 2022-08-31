@@ -18,6 +18,9 @@ namespace Hexagon
          std::string component_name;
          static ALLEGRO_EVENT a_default_empty_event;
 
+      protected:
+
+
       public:
          Stage(std::string current_project_directory="/Users/markoates/Repos/hexagon/", std::string component_name="");
          virtual ~Stage();

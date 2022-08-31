@@ -20,6 +20,9 @@ namespace Hexagon
          std::string mode;
          std::string search_text;
 
+      protected:
+
+
       public:
          ProjectComponentNavigator(std::string project_root="/Users/markoates/Repos/hexagon/");
          ~ProjectComponentNavigator();

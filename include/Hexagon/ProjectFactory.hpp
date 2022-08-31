@@ -10,6 +10,9 @@ namespace Hexagon
    {
    private:
 
+   protected:
+
+
    public:
       ProjectFactory();
       ~ProjectFactory();

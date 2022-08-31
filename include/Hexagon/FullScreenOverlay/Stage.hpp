@@ -21,6 +21,9 @@ namespace Hexagon
          ALLEGRO_FONT* text_font;
          ALLEGRO_BITMAP* screen_sub_bitmap;
 
+      protected:
+
+
       public:
          Stage(ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_FONT* text_font=nullptr);
          virtual ~Stage();

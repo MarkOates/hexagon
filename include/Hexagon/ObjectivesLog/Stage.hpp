@@ -21,6 +21,9 @@ namespace Hexagon
          Hexagon::ObjectivesLog::ObjectivesLog* objectives_log;
          int cursor_pos;
 
+      protected:
+
+
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ObjectivesLog::ObjectivesLog* objectives_log=nullptr);
          virtual ~Stage();

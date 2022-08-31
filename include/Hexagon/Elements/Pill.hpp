@@ -22,6 +22,10 @@ namespace Hexagon
          std::string label;
          ALLEGRO_COLOR color;
          ALLEGRO_COLOR font_color;
+         ALLEGRO_FONT* obtain_font();
+
+      protected:
+
 
       public:
          Pill(AllegroFlare::FontBin* font_bin=nullptr, float x=0, float y=0, float width=120, float height=31, std::string label="label-not-set", ALLEGRO_COLOR color=ALLEGRO_COLOR{0.1, 0.3, 0.1, 0.3}, ALLEGRO_COLOR font_color=ALLEGRO_COLOR{0, 0, 0, 1.0});
@@ -42,7 +46,6 @@ namespace Hexagon
          ALLEGRO_COLOR get_color() const;
          ALLEGRO_COLOR get_font_color() const;
          void render();
-         ALLEGRO_FONT* obtain_font();
       };
    }
 }

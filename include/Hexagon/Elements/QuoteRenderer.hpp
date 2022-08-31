@@ -18,6 +18,9 @@ namespace Hexagon
          std::string quote;
          std::string speaker;
 
+      protected:
+
+
       public:
          QuoteRenderer(AllegroFlare::FontBin* font_bin=nullptr, std::string quote={}, std::string speaker={});
          ~QuoteRenderer();

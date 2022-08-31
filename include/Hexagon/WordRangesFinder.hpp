@@ -13,6 +13,9 @@ namespace Hexagon
       std::string line_of_text;
       int cursor_pos;
 
+   protected:
+
+
    public:
       WordRangesFinder(std::string line_of_text="empty", int cursor_pos=0);
       ~WordRangesFinder();

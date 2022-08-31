@@ -13,6 +13,9 @@ namespace Hexagon
       {
       private:
 
+      protected:
+
+
       public:
          BuildStageFactory();
          ~BuildStageFactory();

@@ -16,6 +16,9 @@ namespace Testing
       ALLEGRO_DISPLAY* display;
       AllegroFlare::FontBin font_bin;
 
+   protected:
+
+
    public:
       WithAllegroRenderingFixture();
       virtual ~WithAllegroRenderingFixture();

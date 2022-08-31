@@ -28,6 +28,9 @@ namespace Hexagon
             float ended_at;
             std::string status;
 
+         protected:
+
+
          public:
             Base(std::string type=TYPE, std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages={});
             ~Base();

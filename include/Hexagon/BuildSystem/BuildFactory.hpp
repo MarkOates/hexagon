@@ -14,6 +14,9 @@ namespace Hexagon
       private:
          Hexagon::BuildSystem::BuildStageFactory build_stage_factory;
 
+      protected:
+
+
       public:
          BuildFactory();
          ~BuildFactory();

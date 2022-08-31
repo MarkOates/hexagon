@@ -12,6 +12,9 @@ namespace Blast
    private:
       std::vector<std::string> quotes;
 
+   protected:
+
+
    public:
       TaoTeChingQuoteGenerator(std::vector<std::string> quotes=TaoTeChingQuoteGenerator::default_quotes_list());
       ~TaoTeChingQuoteGenerator();

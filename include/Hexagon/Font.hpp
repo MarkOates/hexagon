@@ -15,6 +15,9 @@ namespace Hexagon
       std::string font_filename;
       int font_size;
 
+   protected:
+
+
    public:
       Font(AllegroFlare::FontBin* font_bin=nullptr, std::string font_filename="Eurostile.ttf", int font_size=-16);
       ~Font();

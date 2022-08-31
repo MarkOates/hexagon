@@ -14,6 +14,9 @@ namespace Hexagon
          ALLEGRO_COLOR backfill_color;
          ALLEGRO_COLOR base_text_color;
 
+      protected:
+
+
       public:
          ColorKit(ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f,0.0f,0.0f,1.0f}, ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0f,1.0f,1.0f,1.0f});
          ~ColorKit();

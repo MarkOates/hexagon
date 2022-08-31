@@ -15,6 +15,9 @@ namespace Hexagon
    private:
       std::vector<StageInterface *>* stages;
 
+   protected:
+
+
    public:
       StageCollectionHelper(std::vector<StageInterface *>* stages=nullptr);
       ~StageCollectionHelper();

@@ -19,6 +19,9 @@ namespace Hexagon
          AllegroFlare::FontBin* font_bin;
          static ALLEGRO_EVENT a_default_empty_event;
 
+      protected:
+
+
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr);
          virtual ~Stage();

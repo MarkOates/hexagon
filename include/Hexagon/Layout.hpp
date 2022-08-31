@@ -16,6 +16,9 @@ namespace Hexagon
       std::vector<std::tuple<std::string, std::string, placement3d>> files;
       std::string daemus_command;
 
+   protected:
+
+
    public:
       Layout(std::string concept_name="", std::vector<std::tuple<std::string, std::string, placement3d>> files={}, std::string daemus_command="");
       ~Layout();

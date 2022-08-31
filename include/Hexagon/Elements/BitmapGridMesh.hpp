@@ -25,6 +25,10 @@ namespace Hexagon
          int clip_start_y;
          int clip_length_y;
          ALLEGRO_BITMAP* bitmap;
+         std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* find_cell(int x=0, int y=0);
+
+      protected:
+
 
       public:
          BitmapGridMesh();
@@ -50,7 +54,6 @@ namespace Hexagon
          void render_only_select_cells(std::vector<std::pair<int, int>> cell_coordinates={});
          float calculate_width();
          float calculate_height();
-         std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* find_cell(int x=0, int y=0);
       };
    }
 }

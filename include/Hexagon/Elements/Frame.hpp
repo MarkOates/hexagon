@@ -21,6 +21,9 @@ namespace Hexagon
          ALLEGRO_COLOR outline_color;
          float line_thickness;
 
+      protected:
+
+
       public:
          Frame(float width=1.0f, float height=1.0f);
          ~Frame();

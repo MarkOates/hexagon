@@ -21,6 +21,9 @@ namespace Hexagon
          ALLEGRO_COLOR bg_bar_color;
          ALLEGRO_COLOR stroke_color;
 
+      protected:
+
+
       public:
          SingleBlockBarGraph(int number_of_active_bars=0, int number_of_bg_bars=0, float bar_width=1.0f, float bar_height=1.0f, float bar_spacing=0.0f, float stroke_width=1.0f, ALLEGRO_COLOR main_bar_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}, ALLEGRO_COLOR bg_bar_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}, ALLEGRO_COLOR stroke_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
          ~SingleBlockBarGraph();

@@ -9,6 +9,9 @@ namespace IntegrationTests
    {
    private:
 
+   protected:
+
+
    public:
       Integrations();
       ~Integrations();

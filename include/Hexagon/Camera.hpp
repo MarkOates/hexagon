@@ -18,6 +18,9 @@ namespace Hexagon
       float zoom_max;
       float zoom_pos;
 
+   protected:
+
+
    public:
       Camera();
       ~Camera();

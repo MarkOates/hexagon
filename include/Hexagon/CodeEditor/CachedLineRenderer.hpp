@@ -20,6 +20,9 @@ namespace Hexagon
          std::vector<ALLEGRO_BITMAP*> cache;
          ALLEGRO_BITMAP* source;
 
+      protected:
+
+
       public:
          CachedLineRenderer(ALLEGRO_FONT* font=nullptr);
          ~CachedLineRenderer();

@@ -17,6 +17,10 @@ namespace Blast
       private:
          std::string name;
          std::string project_root;
+         bool check_file_existence(Blast::ProjectComponentFileTypes::project_file_type_t type=Blast::ProjectComponentFileTypes::QUINTESSENCE_FILE);
+
+      protected:
+
 
       public:
          Component(std::string name="Unnamed/Component", std::string project_root="");
@@ -27,7 +31,6 @@ namespace Blast
          std::string generate_full_path_test_binary_filename();
          std::vector<std::string> list_existing_component_files();
          std::time_t last_write_time();
-         bool check_file_existence(Blast::ProjectComponentFileTypes::project_file_type_t type=Blast::ProjectComponentFileTypes::QUINTESSENCE_FILE);
          bool exists();
          bool has_quintessence();
          bool has_only_source_and_header();

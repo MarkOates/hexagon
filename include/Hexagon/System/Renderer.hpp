@@ -18,6 +18,10 @@ namespace Hexagon
          ALLEGRO_DISPLAY* display;
          ALLEGRO_COLOR* backfill_color;
          ALLEGRO_COLOR base_text_color;
+         void draw_focused_frame(StageInterface* stage=nullptr);
+
+      protected:
+
 
       public:
          Renderer(Hexagon::System::System* system=nullptr, ALLEGRO_DISPLAY* display=nullptr, ALLEGRO_COLOR* backfill_color=nullptr, ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1, 1, 1, 1});
@@ -26,7 +30,6 @@ namespace Hexagon
          ALLEGRO_COLOR* get_backfill_color() const;
          ALLEGRO_COLOR get_base_text_color() const;
          bool render();
-         void draw_focused_frame(StageInterface* stage=nullptr);
       };
    }
 }

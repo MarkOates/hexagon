@@ -13,6 +13,9 @@ namespace Hexagon
    private:
       std::map<std::string, Hexagon::Marker> markers_index;
 
+   protected:
+
+
    public:
       MarkerNavigator();
       ~MarkerNavigator();

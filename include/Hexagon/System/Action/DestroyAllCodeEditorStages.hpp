@@ -18,6 +18,9 @@ namespace Hexagon
             std::vector<StageInterface *>& stages;
             static std::vector<StageInterface *> dummy_stages;
 
+         protected:
+
+
          public:
             DestroyAllCodeEditorStages(std::vector<StageInterface *>& stages=get_dummy_stages_ref());
             virtual ~DestroyAllCodeEditorStages();

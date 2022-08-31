@@ -12,6 +12,9 @@ namespace Hexagon
       {
       private:
 
+      protected:
+
+
       public:
          ComponentElasticsearchIndex();
          ~ComponentElasticsearchIndex();

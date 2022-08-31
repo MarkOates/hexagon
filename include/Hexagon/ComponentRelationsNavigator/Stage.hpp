@@ -33,6 +33,10 @@ namespace Hexagon
          bool initialized;
          Hexagon::Elements::ListMenu* currently_active_menu;
          ALLEGRO_COLOR default_color;
+         void emit_submission();
+
+      protected:
+
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, std::vector<std::tuple<std::string, std::string>> dependents_menu_items={{"Foo", "foo"}, {"Bar", "bar"}}, std::vector<std::tuple<std::string, std::string>> relatives_menu_items={{"Baz", "baz"}, {"Buz", "buz"}}, std::vector<std::tuple<std::string, std::string>> dependencies_menu_items={{"Fiz", "fiz"}, {"Foz", "foz"}});
@@ -53,7 +57,6 @@ namespace Hexagon
          void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
          std::string get_current_selection_label_or_empty_string();
          void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
-         void emit_submission();
       };
    }
 }

@@ -19,6 +19,9 @@ namespace Hexagon
             std::string repos_directory;
             Hexagon::Powerbar::Powerbar* powerbar;
 
+         protected:
+
+
          public:
             CheckGitSyncAndUpdatePowerbar(std::string repo_name="blast", std::string repos_directory="~/Repos", Hexagon::Powerbar::Powerbar* powerbar=nullptr);
             ~CheckGitSyncAndUpdatePowerbar();

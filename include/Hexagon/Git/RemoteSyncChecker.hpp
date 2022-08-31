@@ -14,6 +14,9 @@ namespace Hexagon
          std::string repo_name;
          std::string repos_directory;
 
+      protected:
+
+
       public:
          RemoteSyncChecker(std::string repo_name="blast", std::string repos_directory="~/Repos");
          ~RemoteSyncChecker();

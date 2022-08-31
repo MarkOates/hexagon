@@ -13,6 +13,9 @@ namespace Hexagon
    private:
       RailsMinitestTestResult rails_minitest_test_result;
 
+   protected:
+
+
    public:
       RailsMinitestTestResultToCodeMessagePointConverter(RailsMinitestTestResult rails_minitest_test_result={});
       ~RailsMinitestTestResultToCodeMessagePointConverter();

@@ -13,6 +13,9 @@ namespace Hexagon
       private:
          std::string current_project_directory;
 
+      protected:
+
+
       public:
          StageEverything(std::string current_project_directory="/Users/markoates/Repos/hexagon/");
          ~StageEverything();

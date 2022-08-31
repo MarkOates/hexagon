@@ -17,6 +17,9 @@ namespace Hexagon
          int box_size;
          int counter;
 
+      protected:
+
+
       public:
          FlashingGrid(float width=1.0, float height=1.0, int num_columns=16, int num_rows=12, int box_size=10);
          ~FlashingGrid();

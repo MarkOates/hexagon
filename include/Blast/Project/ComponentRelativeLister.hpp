@@ -15,6 +15,9 @@ namespace Blast
       private:
          Blast::Project::Component* component;
 
+      protected:
+
+
       public:
          ComponentRelativeLister(Blast::Project::Component* component=nullptr);
          ~ComponentRelativeLister();

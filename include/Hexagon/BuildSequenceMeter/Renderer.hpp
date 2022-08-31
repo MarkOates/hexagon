@@ -25,6 +25,9 @@ namespace Hexagon
          ALLEGRO_COLOR base_text_color;
          bool draw_frame;
 
+      protected:
+
+
       public:
          Renderer(AllegroFlare::FontBin* font_bin=nullptr, std::string status="not_started", std::vector<std::tuple<std::string, std::string, std::string, std::string>> stages={}, float meter_width=90, float meter_height=690, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2}, ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0});
          ~Renderer();

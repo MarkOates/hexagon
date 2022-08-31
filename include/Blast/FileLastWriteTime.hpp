@@ -12,6 +12,9 @@ namespace Blast
    private:
       std::string filename;
 
+   protected:
+
+
    public:
       FileLastWriteTime(std::string filename="");
       ~FileLastWriteTime();

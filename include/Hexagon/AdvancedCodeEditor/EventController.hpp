@@ -22,6 +22,9 @@ namespace Hexagon
          AllegroFlare::KeyboardCommandMapper keyboard_command_mapping;
          static ALLEGRO_EVENT a_default_empty_event;
 
+      protected:
+
+
       public:
          EventController(Hexagon::AdvancedCodeEditor::Stage* stage=nullptr, std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> events_dictionary={}, AllegroFlare::KeyboardCommandMapper keyboard_command_mapping={});
          ~EventController();

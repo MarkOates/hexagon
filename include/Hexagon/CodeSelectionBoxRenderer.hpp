@@ -18,6 +18,11 @@ namespace Hexagon
       int cell_width;
       int cell_height;
       ALLEGRO_COLOR selection_color;
+      bool verify_line_in_range(int line_num=0);
+      int get_line_length(int line_num=0);
+
+   protected:
+
 
    public:
       CodeSelectionBoxRenderer(std::vector<std::string>* lines=nullptr, CodeRange* code_range=nullptr, int first_line_number=0, int cell_width=0, int cell_height=0, ALLEGRO_COLOR selection_color=ALLEGRO_COLOR{1.0*0.4, 0.65*0.4, 0.0*0.4, 1.0*0.4});
@@ -26,8 +31,6 @@ namespace Hexagon
       void set_selection_color(ALLEGRO_COLOR selection_color);
       void render_full_line_selection();
       void render();
-      bool verify_line_in_range(int line_num=0);
-      int get_line_length(int line_num=0);
    };
 }
 

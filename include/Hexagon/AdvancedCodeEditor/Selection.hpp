@@ -15,6 +15,9 @@ namespace Hexagon
       private:
          std::vector<CodeRange> code_ranges;
 
+      protected:
+
+
       public:
          Selection(std::vector<CodeRange> code_ranges={});
          ~Selection();

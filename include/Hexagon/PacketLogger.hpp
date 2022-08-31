@@ -18,6 +18,9 @@ namespace Hexagon
       std::string currently_posted_objective;
       std::string datetime;
 
+   protected:
+
+
    public:
       PacketLogger(std::string project_name="[project-name-not-set]", std::string commit_message="[commit-message-not-set]", int searches_count=-1, int saves_count=-1, int score=-1, std::string currently_posted_objective="[current-posted-objective-not-set]");
       ~PacketLogger();

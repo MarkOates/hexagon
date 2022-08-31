@@ -14,6 +14,9 @@ namespace Hexagon
          {
          private:
 
+         protected:
+
+
          public:
             SendMessageToDaemusToBuild();
             virtual ~SendMessageToDaemusToBuild();

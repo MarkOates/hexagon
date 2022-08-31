@@ -16,6 +16,9 @@ namespace Hexagon
          std::string search_regex_string;
          std::vector<std::string> lines;
 
+      protected:
+
+
       public:
          SearchRegexToSelectionsConverter(std::string search_regex_string="", std::vector<std::string> lines={});
          ~SearchRegexToSelectionsConverter();

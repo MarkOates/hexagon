@@ -22,6 +22,9 @@ namespace Hexagon
          ALLEGRO_BITMAP* texture;
          std::map<std::tuple<int, int>, int> cells;
 
+      protected:
+
+
       public:
          DynamicGridMesh(int cell_width=1, int cell_height=1, ALLEGRO_BITMAP* texture=nullptr);
          ~DynamicGridMesh();

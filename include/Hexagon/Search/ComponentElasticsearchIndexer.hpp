@@ -15,6 +15,9 @@ namespace Hexagon
          Blast::Project::Component* component;
          std::string index_name;
 
+      protected:
+
+
       public:
          ComponentElasticsearchIndexer(Blast::Project::Component* component=nullptr, std::string index_name="components_dummy");
          ~ComponentElasticsearchIndexer();

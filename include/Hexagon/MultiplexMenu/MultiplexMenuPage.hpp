@@ -15,6 +15,9 @@ namespace Hexagon
       private:
          std::vector<Hexagon::MultiplexMenu::MenuItem> items;
 
+      protected:
+
+
       public:
          MultiplexMenuPage(std::vector<Hexagon::MultiplexMenu::MenuItem> items={});
          ~MultiplexMenuPage();

@@ -14,6 +14,11 @@ namespace Hexagon
       {
       private:
          bool initialized;
+         static std::string obtain_vertex_source();
+         static std::string obtain_fragment_source();
+
+      protected:
+
 
       public:
          Smiley();
@@ -24,8 +29,6 @@ namespace Hexagon
          void set_flat_color(ALLEGRO_COLOR flat_color={});
          void set_texture_width(int width=1);
          void set_texture_height(int height=1);
-         static std::string obtain_vertex_source();
-         static std::string obtain_fragment_source();
       };
    }
 }

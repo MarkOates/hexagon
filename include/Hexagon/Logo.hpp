@@ -19,6 +19,9 @@ namespace Hexagon
       float thickness;
       AllegroFlare::FontBin* font_bin;
 
+   protected:
+
+
    public:
       Logo(float x=0, float y=0, float radius=0, ALLEGRO_FONT* font=nullptr, ALLEGRO_COLOR color=default_color(), float thickness=0, AllegroFlare::FontBin* font_bin=nullptr);
       ~Logo();

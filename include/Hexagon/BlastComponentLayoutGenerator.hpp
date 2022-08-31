@@ -15,6 +15,9 @@ namespace Hexagon
       int code_editor_width;
       int code_editor_height;
 
+   protected:
+
+
    public:
       BlastComponentLayoutGenerator(std::string project_directory="Users/markoates/Repos/hexagon/", std::string component_name="UnnamedComponent", int code_editor_width=1215, int code_editor_height=1350);
       ~BlastComponentLayoutGenerator();

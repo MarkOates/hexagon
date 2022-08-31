@@ -17,12 +17,15 @@ namespace Hexagon
          float column_width;
          float row_height;
          std::vector<std::vector<std::string>> data2d;
+         void render();
+
+      protected:
+
 
       public:
          DataTable(ALLEGRO_FONT* font=nullptr, float column_width=1.0, float row_height=1.0, std::vector<std::vector<std::string>> data2d={});
          ~DataTable();
 
-         void render();
       };
    }
 }

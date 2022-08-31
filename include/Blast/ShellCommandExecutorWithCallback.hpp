@@ -13,6 +13,9 @@ namespace Blast
       std::string command;
       std::function<void(std::string)> callback;
 
+   protected:
+
+
    public:
       ShellCommandExecutorWithCallback(std::string command="echo hello!", std::function<void(std::string)> callback=ShellCommandExecutorWithCallback::simple_cout_callback);
       ~ShellCommandExecutorWithCallback();

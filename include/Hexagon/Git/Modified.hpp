@@ -13,6 +13,10 @@ namespace Hexagon
       {
       private:
          std::string current_project_directory;
+         std::string build_tracked_files_shell_command();
+
+      protected:
+
 
       public:
          Modified(std::string current_project_directory="/Users/markoates/Repos/hexagon/");
@@ -20,7 +24,6 @@ namespace Hexagon
 
          std::string get_current_project_directory() const;
          std::vector<std::string> get_shell_response();
-         std::string build_tracked_files_shell_command();
       };
    }
 }

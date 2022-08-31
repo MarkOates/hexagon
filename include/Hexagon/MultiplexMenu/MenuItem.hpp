@@ -17,6 +17,9 @@ namespace Hexagon
          std::string label;
          std::vector<std::string> value;
 
+      protected:
+
+
       public:
          MenuItem(Hexagon::KeyboardCommandKey keyboard_command_key={}, std::string label="[menu-item-label-not-set]", std::vector<std::string> value={ "[menu-item-value-not-set]" });
          ~MenuItem();

@@ -15,12 +15,15 @@ namespace Hexagon
       private:
          StageInterface* stage_to_send_messages_to;
          Hexagon::MultiplexMenu::MultiplexMenu* multiplex_menu;
+         void send_message_to_stage(std::string message="[message-identifier-set]");
+
+      protected:
+
 
       public:
          CommandExecutor(StageInterface* stage_to_send_messages_to=nullptr, Hexagon::MultiplexMenu::MultiplexMenu* multiplex_menu=nullptr);
          ~CommandExecutor();
 
-         void send_message_to_stage(std::string message="[message-identifier-set]");
          bool execute();
       };
    }

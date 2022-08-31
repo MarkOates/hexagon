@@ -24,6 +24,10 @@ namespace Hexagon
       int code_editor_width;
       ALLEGRO_COLOR text_color;
       ALLEGRO_COLOR backfill_color;
+      bool place_and_load_code_editor(std::string filename="", std::string file_category="undefined_file_category", placement3d place={});
+
+   protected:
+
 
    public:
       LayoutToStagesCreator(std::vector<StageInterface *>* stages=nullptr, Hexagon::StageFactory* stage_factory=nullptr, Hexagon::Layout* layout={}, AllegroFlare::FontBin* font_bin=nullptr, int code_editor_height=1350, int code_editor_width=1215, ALLEGRO_COLOR text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f});
@@ -34,7 +38,6 @@ namespace Hexagon
       int get_code_editor_height() const;
       int get_code_editor_width() const;
       void create();
-      bool place_and_load_code_editor(std::string filename="", std::string file_category="undefined_file_category", placement3d place={});
    };
 }
 

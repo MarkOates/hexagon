@@ -13,6 +13,9 @@ namespace Blast
       std::string string;
       char delimiter;
 
+   protected:
+
+
    public:
       StringSplitter(std::string string="", char delimiter=' ');
       ~StringSplitter();

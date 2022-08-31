@@ -15,6 +15,9 @@ namespace Hexagon
          std::string description;
          bool completed;
 
+      protected:
+
+
       public:
          Objective(std::string title="Unnamed Objective", std::string description="This objective has not yet been defined.", bool completed=false);
          ~Objective();

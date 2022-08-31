@@ -18,6 +18,9 @@ namespace Hexagon
             std::string current_project_directory;
             Hexagon::Powerbar::Powerbar* powerbar;
 
+         protected:
+
+
          public:
             CheckGitLocalStatusAndUpdatePowerbar(std::string current_project_directory="/Users/markoates/Repos/hexagon/", Hexagon::Powerbar::Powerbar* powerbar=nullptr);
             ~CheckGitLocalStatusAndUpdatePowerbar();

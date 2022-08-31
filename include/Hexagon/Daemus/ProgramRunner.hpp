@@ -17,6 +17,11 @@ namespace Hexagon
          std::string quintessence_build_executable;
          std::string daemus_build_file_directory;
          std::string daemus_build_filename;
+         std::string execute_command(std::string command="");
+         std::string __execute_command(std::string command="", bool output_to_stdout=true);
+
+      protected:
+
 
       public:
          ProgramRunner(std::string quintessence_build_executable="/Users/markoates/Repos/blast/bin/programs/quintessence_from_yaml");
@@ -34,11 +39,9 @@ namespace Hexagon
          void cd_to_project_directory_and_run_with_rerun(std::string project_directory="");
          void watch_for_buildfile(std::string project_directory="");
          void run_with_rerun(std::string project_directory="");
-         std::string execute_command(std::string command="");
          std::vector<Hexagon::Testing::GoogleTestRunTestResult> run_component_test(Blast::Project::Component component={});
          void run_build_quintessence_file(std::string project_directory="", std::string quintessence_filename="");
          void output_pid();
-         std::string __execute_command(std::string command="", bool output_to_stdout=true);
          static std::string find_oldest_filename(std::string path="/Users/markoates/Repos/hexagon/bin/programs/data/builds/pending", bool ignore_dotfiles=true);
       };
    }

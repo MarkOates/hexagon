@@ -14,6 +14,9 @@ namespace Hexagon
          std::time_t focus_timer_started_at;
          float focus_timer_duration_sec;
 
+      protected:
+
+
       public:
          FocusTimerBar();
          ~FocusTimerBar();

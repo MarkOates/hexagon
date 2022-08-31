@@ -23,6 +23,9 @@ namespace NcursesArt
       bool only_poll_once;
       bool status_polled;
 
+   protected:
+
+
    public:
       GithubRepoStatusFetcher(std::string repo_name="blast", std::string repos_directory="~/Repos");
       ~GithubRepoStatusFetcher();

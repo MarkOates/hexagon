@@ -22,6 +22,9 @@ namespace Hexagon
          std::string text;
          bool upcase;
 
+      protected:
+
+
       public:
          StageInfoOverlay(AllegroFlare::FontBin* font_bin=nullptr, ALLEGRO_COLOR* backfill_color=nullptr, float backfill_opacity=1.0f, placement3d* place=nullptr);
          ~StageInfoOverlay();

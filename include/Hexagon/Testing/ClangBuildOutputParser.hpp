@@ -25,6 +25,9 @@ namespace Hexagon
          static std::string WARNING_OR_ERROR_REGEX;
          bool parsed;
 
+      protected:
+
+
       public:
          ClangBuildOutputParser(std::string clang_build_run_output="[unset-clang_build_run_output]");
          ~ClangBuildOutputParser();

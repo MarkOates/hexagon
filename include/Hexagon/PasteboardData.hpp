@@ -9,6 +9,10 @@ namespace Hexagon
    class PasteboardData
    {
    private:
+      static std::string __replace(std::string str="", std::string from="", std::string to="");
+
+   protected:
+
 
    public:
       PasteboardData();
@@ -16,7 +20,6 @@ namespace Hexagon
 
       static bool store(std::string content="");
       static std::string retrieve();
-      static std::string __replace(std::string str="", std::string from="", std::string to="");
    };
 }
 

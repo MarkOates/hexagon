@@ -14,6 +14,9 @@ namespace Blast
       private:
          std::string project_root;
 
+      protected:
+
+
       public:
          ProgramLister(std::string project_root="");
          ~ProgramLister();

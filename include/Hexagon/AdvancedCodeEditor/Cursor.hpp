@@ -15,6 +15,9 @@ namespace Hexagon
          float width;
          float height;
 
+      protected:
+
+
       public:
          Cursor(int x=0, int y=0, float width=1, float height=1);
          ~Cursor();

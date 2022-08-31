@@ -43,6 +43,9 @@ namespace Hexagon
          std::string YANK_SELECTED_TEXT_AS_PUBLIC_PARENT_CLASS_LINES;
          std::string YANK_SELECTED_TEXT_AS_INJECTED_DEPENDENCY_PROPERTY;
 
+      protected:
+
+
       public:
          Stage(std::string project_root="/Users/markoates/Repos/hexagon/", ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}, ALLEGRO_COLOR base_backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}, bool represents_symlink=false);
          virtual ~Stage();

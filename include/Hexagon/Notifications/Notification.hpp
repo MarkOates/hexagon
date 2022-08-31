@@ -13,6 +13,9 @@ namespace Hexagon
       private:
          std::string body_text;
 
+      protected:
+
+
       public:
          Notification(std::string body_text="");
          ~Notification();

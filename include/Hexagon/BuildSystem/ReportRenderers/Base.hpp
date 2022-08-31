@@ -20,6 +20,9 @@ namespace Hexagon
             std::string type;
             Hexagon::BuildSystem::Builds::Base* build;
 
+         protected:
+
+
          public:
             Base(std::string type=TYPE);
             virtual ~Base();

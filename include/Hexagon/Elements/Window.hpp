@@ -40,6 +40,15 @@ namespace Hexagon
          int number_of_columns;
          float distance_of_rows;
          float distance_of_columns;
+         void draw_top_left_little_bar();
+         void draw_header_baseline();
+         void draw_bottom_line();
+         void draw_header_bar();
+         void draw_corner_circles();
+         void draw_corner_squares();
+
+      protected:
+
 
       public:
          Window(float width=0.0f, float height=0.0f, float box_opacity=0.0f, float cell_padding=0.0f, ALLEGRO_COLOR box_fill_color={0.0f, 0.0f, 0.0f, 0.0f});
@@ -104,12 +113,6 @@ namespace Hexagon
          float get_distance_of_rows() const;
          float get_distance_of_columns() const;
          void draw();
-         void draw_top_left_little_bar();
-         void draw_header_baseline();
-         void draw_bottom_line();
-         void draw_header_bar();
-         void draw_corner_circles();
-         void draw_corner_squares();
       };
    }
 }

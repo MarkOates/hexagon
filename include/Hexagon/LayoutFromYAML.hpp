@@ -12,6 +12,9 @@ namespace Hexagon
    private:
       YAML::Node root_node;
 
+   protected:
+
+
    public:
       LayoutFromYAML(YAML::Node root_node={});
       ~LayoutFromYAML();

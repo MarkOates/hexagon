@@ -16,6 +16,9 @@ namespace Hexagon
       private:
          ALLEGRO_FONT* font;
 
+      protected:
+
+
       public:
          LineRenderBin(ALLEGRO_FONT* font=nullptr);
          ~LineRenderBin();

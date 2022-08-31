@@ -14,6 +14,9 @@ namespace Hexagon
       bool alt;
       bool command;
 
+   protected:
+
+
    public:
       KeyboardCommandKey(int al_keycode=0, bool shift=false, bool ctrl=false, bool alt=false, bool command=false);
       ~KeyboardCommandKey();

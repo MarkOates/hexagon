@@ -21,6 +21,9 @@ namespace Hexagon
          Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface;
          bool initialized;
 
+      protected:
+
+
       public:
          FontedTextGrid(ALLEGRO_FONT* font=nullptr, int num_columns=123, int num_rows=74);
          ~FontedTextGrid();

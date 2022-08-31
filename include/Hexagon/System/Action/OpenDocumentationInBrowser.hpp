@@ -17,6 +17,9 @@ namespace Hexagon
             static std::string DOCUMENTATION_FILENAME;
             std::string project_path;
 
+         protected:
+
+
          public:
             OpenDocumentationInBrowser(std::string project_path="/Users/markoates/Repos/hexagon");
             virtual ~OpenDocumentationInBrowser();

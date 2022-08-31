@@ -60,6 +60,23 @@ namespace Hexagon
          int max_line_length;
          ALLEGRO_COLOR null_space_color;
          ALLEGRO_COLOR backfill_color;
+         ALLEGRO_FONT* obtain_text_font();
+         std::vector<std::string> get_lines();
+         Hexagon::AdvancedCodeEditor::Cursor get_cursor();
+         int cursor_get_x();
+         int cursor_get_y();
+         void refresh_dirty_cells_on_surface_render_respecting_first_row_offset();
+         void refresh_dirty_cells_on_text_mesh();
+         void refresh_text_mesh_respecting_first_row_offset();
+         void filter_text_mesh_for_syntax_highlights();
+         void filter_text_mesh_for_comments();
+         void filter_text_mesh_for_test_case();
+         void filter_text_mesh_for_line_too_long();
+         void refresh_text_mesh();
+         Hexagon::DirtyGrid build_dirty_grid_from_lines_respecting_offset();
+
+      protected:
+
 
       public:
          Stage(AllegroFlare::FontBin* font_bin=nullptr, int num_columns=0, int num_rows=0);
@@ -162,11 +179,6 @@ namespace Hexagon
          virtual void render() override;
          virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
          virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
-         ALLEGRO_FONT* obtain_text_font();
-         std::vector<std::string> get_lines();
-         Hexagon::AdvancedCodeEditor::Cursor get_cursor();
-         int cursor_get_x();
-         int cursor_get_y();
          bool is_in_edit_mode();
          bool is_in_insert_mode();
          int calculate_natural_width();
@@ -174,15 +186,6 @@ namespace Hexagon
          int calculate_one_third_num_rows();
          int calculate_natural_height();
          void refresh_render_surfaces();
-         void refresh_dirty_cells_on_surface_render_respecting_first_row_offset();
-         void refresh_dirty_cells_on_text_mesh();
-         void refresh_text_mesh_respecting_first_row_offset();
-         void filter_text_mesh_for_syntax_highlights();
-         void filter_text_mesh_for_comments();
-         void filter_text_mesh_for_test_case();
-         void filter_text_mesh_for_line_too_long();
-         void refresh_text_mesh();
-         Hexagon::DirtyGrid build_dirty_grid_from_lines_respecting_offset();
       };
    }
 }

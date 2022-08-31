@@ -32,13 +32,17 @@ namespace Hexagon
          std::string config_filename;
          AllegroFlare::Config config;
          bool initialized;
+         void validate_initialized(std::string function_name="[unnamed_function]");
+         std::string resource_path(std::vector<std::string> components={}, std::string filename={});
+
+      protected:
+
 
       public:
          Config(std::string config_filename="/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg");
          ~Config();
 
          std::string get_config_filename() const;
-         void validate_initialized(std::string function_name="[unnamed_function]");
          void initialize();
          void reload();
          int get_initial_display_width();
@@ -59,7 +63,6 @@ namespace Hexagon
          ALLEGRO_COLOR get_backfill_color();
          ALLEGRO_COLOR get_base_text_color();
          float get_backfill_opacity();
-         std::string resource_path(std::vector<std::string> components={}, std::string filename={});
       };
    }
 }

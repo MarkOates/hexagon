@@ -13,6 +13,9 @@ namespace Blast
       private:
          std::string filename;
 
+      protected:
+
+
       public:
          SymlinkChecker(std::string filename="");
          ~SymlinkChecker();

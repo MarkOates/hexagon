@@ -29,6 +29,9 @@ namespace Hexagon
          int cell_width;
          int cell_height;
 
+      protected:
+
+
       public:
          Stage(std::string node_root="/Users/markoates/Repos");
          virtual ~Stage();

@@ -12,6 +12,9 @@ namespace Hexagon
    private:
       std::vector<CodeMessagePoint> code_message_points;
 
+   protected:
+
+
    public:
       CodeMessagePointManager();
       ~CodeMessagePointManager();

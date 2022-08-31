@@ -14,6 +14,9 @@ namespace Hexagon
       std::vector<std::string>* lines;
       CodeRange* code_range;
 
+   protected:
+
+
    public:
       CodeRangeExtractor(std::vector<std::string>* lines=nullptr, CodeRange* code_range=nullptr);
       ~CodeRangeExtractor();

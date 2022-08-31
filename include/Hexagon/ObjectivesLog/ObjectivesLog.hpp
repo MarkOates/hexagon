@@ -14,6 +14,9 @@ namespace Hexagon
       private:
          std::vector<Hexagon::ObjectivesLog::Objective> objectives;
 
+      protected:
+
+
       public:
          ObjectivesLog(std::vector<Hexagon::ObjectivesLog::Objective> objectives={});
          ~ObjectivesLog();

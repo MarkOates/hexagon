@@ -18,6 +18,9 @@ namespace Hexagon
          std::vector<Hexagon::MultiplexMenu::MultiplexMenuPage*> page_history;
          std::vector<std::string> final_command_set_to_execute;
 
+      protected:
+
+
       public:
          MultiplexMenu(std::map<std::string, Hexagon::MultiplexMenu::MultiplexMenuPage> page_dictionary={});
          ~MultiplexMenu();

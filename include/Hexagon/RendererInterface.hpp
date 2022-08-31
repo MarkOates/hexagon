@@ -9,6 +9,9 @@ namespace Hexagon
    {
    private:
 
+   protected:
+
+
    public:
       RendererInterface();
       virtual ~RendererInterface();

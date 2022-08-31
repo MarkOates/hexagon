@@ -18,6 +18,9 @@ namespace Hexagon
          Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator* component;
          std::map<std::string, std::function<void(Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator&)>> event_dictionary;
 
+      protected:
+
+
       public:
          EventController(Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator* component=nullptr, std::map<std::string, std::function<void(Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator&)>> event_dictionary={});
          ~EventController();

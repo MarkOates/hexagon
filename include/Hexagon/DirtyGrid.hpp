@@ -15,6 +15,9 @@ namespace Hexagon
    private:
       std::set<std::pair<int, int>> dirty_cells;
 
+   protected:
+
+
    public:
       DirtyGrid();
       ~DirtyGrid();

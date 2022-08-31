@@ -21,6 +21,9 @@ namespace Hexagon
             std::string shell_command_result;
             bool executed;
 
+         protected:
+
+
          public:
             ShellCommand(std::string shell_command="echo \"hello, shell command.\"");
             virtual ~ShellCommand();

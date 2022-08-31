@@ -20,6 +20,9 @@ namespace Hexagon
          private:
             Hexagon::BuildSystem::BuildStages::ShellCommand* shell_command_build_stage;
 
+         protected:
+
+
          public:
             ShellCommand(Hexagon::BuildSystem::BuildStages::ShellCommand* shell_command_build_stage=nullptr);
             virtual ~ShellCommand();

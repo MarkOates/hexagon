@@ -21,6 +21,9 @@ namespace Hexagon
          std::string message;
          int parsed_from_test_dump_line_num;
 
+      protected:
+
+
       public:
          ClangBuildOutputResult(std::string message_line="[unset-message]", std::string body="[unset-body]", std::string filename="[unset-filename]", std::string type="unknown", int line_num=-1, int column_num=-1, std::string message="unknown", int parsed_from_test_dump_line_num=-1);
          ~ClangBuildOutputResult();

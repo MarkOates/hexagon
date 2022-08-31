@@ -14,6 +14,9 @@ namespace Hexagon
       private:
          Hexagon::BuildSystem::Builds::Base* build;
 
+      protected:
+
+
       public:
          ReportRenderer(Hexagon::BuildSystem::Builds::Base* build=nullptr);
          ~ReportRenderer();

@@ -21,6 +21,9 @@ namespace Hexagon
          ALLEGRO_BITMAP* surface;
          std::map<char, ALLEGRO_BITMAP*> cell_sub_bitmaps;
 
+      protected:
+
+
       public:
          SubBitmapCharacterMap(ALLEGRO_FONT* font=nullptr);
          ~SubBitmapCharacterMap();

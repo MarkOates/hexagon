@@ -18,6 +18,9 @@ namespace Hexagon
          std::string output_body;
          std::string failure_message;
 
+      protected:
+
+
       public:
          GoogleTestRunTestResult(std::string test_class_name="", std::string test_description="", std::string result="", int duration_msec=0, std::string output_body="", std::string failure_message="");
          ~GoogleTestRunTestResult();

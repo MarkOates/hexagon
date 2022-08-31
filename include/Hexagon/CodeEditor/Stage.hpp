@@ -30,6 +30,9 @@ namespace Hexagon
          std::string state;
          bool represents_a_symlink;
 
+      protected:
+
+
       public:
          Stage(::CodeEditor::CodeEditor code_editor=::CodeEditor::CodeEditor{});
          virtual ~Stage();

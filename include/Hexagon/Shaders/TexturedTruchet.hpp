@@ -14,6 +14,11 @@ namespace Hexagon
       {
       private:
          bool initialized;
+         static std::string obtain_vertex_source();
+         static std::string obtain_fragment_source();
+
+      protected:
+
 
       public:
          TexturedTruchet();
@@ -27,8 +32,6 @@ namespace Hexagon
          void set_texture_height(int height=1);
          void set_nyan_cat_texture(ALLEGRO_BITMAP* nyan_cat_texture=nullptr);
          void set_time(float time=1);
-         static std::string obtain_vertex_source();
-         static std::string obtain_fragment_source();
       };
    }
 }

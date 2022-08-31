@@ -13,6 +13,9 @@ namespace Hexagon
       std::string name;
       std::string source_yaml;
 
+   protected:
+
+
    public:
       ProjectFromYAML(std::string name="Untitled", std::string source_yaml="# empty");
       ~ProjectFromYAML();

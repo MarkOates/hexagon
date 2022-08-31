@@ -11,6 +11,9 @@ namespace Hexagon
       {
       private:
 
+      protected:
+
+
       public:
          CodeEditorDimentions();
          ~CodeEditorDimentions();

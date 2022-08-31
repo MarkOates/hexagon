@@ -21,6 +21,9 @@ namespace Hexagon
          bool initialized;
          ALLEGRO_STATE previous_render_state;
 
+      protected:
+
+
       public:
          BitmapGridRenderSurface(int num_columns=0, int num_rows=0, int cell_width=1, int cell_height=1);
          ~BitmapGridRenderSurface();

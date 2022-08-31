@@ -15,6 +15,9 @@ namespace Hexagon
       private:
          std::string buffer;
 
+      protected:
+
+
       public:
          Fun();
          ~Fun();

@@ -13,6 +13,10 @@ namespace Hexagon
       {
       private:
          std::string project_root_directory;
+         std::vector<std::string> get_recursive_list_of_files_in_folder(std::string fragment_folder_name=".", std::string fragment_extension=".*");
+
+      protected:
+
 
       public:
          ComponentLister(std::string project_root_directory="");
@@ -23,7 +27,6 @@ namespace Hexagon
          std::vector<std::string> test_filenames();
          std::vector<std::string> spec_factory_filenames();
          std::vector<std::string> spec_filenames();
-         std::vector<std::string> get_recursive_list_of_files_in_folder(std::string fragment_folder_name=".", std::string fragment_extension=".*");
       };
    }
 }

@@ -13,6 +13,9 @@ namespace Hexagon
       private:
          std::string file_category;
 
+      protected:
+
+
       public:
          FileCategoryDecorator(std::string file_category="undefined");
          ~FileCategoryDecorator();

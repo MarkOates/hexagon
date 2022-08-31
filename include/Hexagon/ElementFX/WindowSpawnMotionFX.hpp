@@ -13,6 +13,9 @@ namespace Hexagon
       private:
          Hexagon::Elements::Window window;
 
+      protected:
+
+
       public:
          WindowSpawnMotionFX(Hexagon::Elements::Window window={});
          ~WindowSpawnMotionFX();

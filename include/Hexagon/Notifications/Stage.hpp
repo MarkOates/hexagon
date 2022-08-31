@@ -19,6 +19,9 @@ namespace Hexagon
          Hexagon::Notifications::Notification component;
          static ALLEGRO_EVENT a_default_empty_event;
 
+      protected:
+
+
       public:
          Stage(std::string body_text="");
          virtual ~Stage();

@@ -24,6 +24,10 @@ namespace Hexagon
          std::vector<std::tuple<std::string, std::string>> items;
          Hexagon::Elements::ListMenu menu;
          bool initialized;
+         void emit_submission();
+
+      protected:
+
 
       public:
          LittleMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="Untitled Menu", std::vector<std::tuple<std::string, std::string>> items={{"Foo", "foo"}, {"Bar", "bar"}, {"Baz", "baz"}});
@@ -35,7 +39,6 @@ namespace Hexagon
          void render() override;
          void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
          void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
-         void emit_submission();
       };
    }
 }

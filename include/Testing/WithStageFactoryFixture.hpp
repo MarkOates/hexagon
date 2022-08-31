@@ -16,6 +16,9 @@ namespace Testing
       AllegroFlare::FontBin font_bin;
       Hexagon::StageFactory stage_factory;
 
+   protected:
+
+
    public:
       WithStageFactoryFixture();
       virtual ~WithStageFactoryFixture();

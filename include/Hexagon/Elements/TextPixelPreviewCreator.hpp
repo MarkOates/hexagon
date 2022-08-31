@@ -16,6 +16,9 @@ namespace Hexagon
          std::vector<std::string> text_lines;
          int width;
 
+      protected:
+
+
       public:
          TextPixelPreviewCreator(std::vector<std::string> text_lines={}, int width=120);
          ~TextPixelPreviewCreator();

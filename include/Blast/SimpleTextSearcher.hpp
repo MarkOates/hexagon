@@ -13,6 +13,9 @@ namespace Blast
       std::string search_text;
       std::vector<std::string> elements;
 
+   protected:
+
+
    public:
       SimpleTextSearcher(std::string search_text="", std::vector<std::string> elements={});
       ~SimpleTextSearcher();

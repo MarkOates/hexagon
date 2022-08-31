@@ -20,6 +20,12 @@ namespace Hexagon
          int width;
          int height;
          float padding;
+         void render_menu_item(float x=0, float y=0, std::string input="[no-input-defined]", std::string label="Unlabeled", bool opens_menu=false, std::string state="no_state");
+         ALLEGRO_FONT* obtain_font();
+         ALLEGRO_FONT* obtain_keyboard_key_font();
+
+      protected:
+
 
       public:
          PageRenderer(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::MultiplexMenu::MultiplexMenuPage* page=nullptr, bool is_active=false, int width=320, int height=400);
@@ -27,11 +33,8 @@ namespace Hexagon
 
          float get_padding() const;
          void render();
-         void render_menu_item(float x=0, float y=0, std::string input="[no-input-defined]", std::string label="Unlabeled", bool opens_menu=false, std::string state="no_state");
          static std::string convert_key_input_to_string(int al_keycode=0, bool ctrl=false, bool alt=false, bool command=false, bool shift=false);
          void render_frame();
-         ALLEGRO_FONT* obtain_font();
-         ALLEGRO_FONT* obtain_keyboard_key_font();
       };
    }
 }
