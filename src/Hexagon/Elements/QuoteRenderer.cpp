@@ -1,9 +1,10 @@
 
 
 #include <Hexagon/Elements/QuoteRenderer.hpp>
+
 #include <allegro5/allegro.h>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -86,6 +87,8 @@ void QuoteRenderer::render()
 
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

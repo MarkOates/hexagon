@@ -1,10 +1,9 @@
 
 
 #include <Hexagon/Shaders/Fun.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -165,6 +164,8 @@ std::string Fun::obtain_fragment_source()
    )DELIM";
    return source;
 }
+
+
 } // namespace Shaders
 } // namespace Hexagon
 

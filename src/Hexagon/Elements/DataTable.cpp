@@ -1,13 +1,13 @@
 
 
 #include <Hexagon/Elements/DataTable.hpp>
-#include <vector>
-#include <string>
-#include <allegro5/allegro_font.h>
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -67,6 +67,8 @@ void DataTable::render()
 
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

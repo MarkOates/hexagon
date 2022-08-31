@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -106,6 +107,8 @@ void Camera::setup_camera_perspective(ALLEGRO_BITMAP* bmp, float znear, float st
 
    return;
 }
+
+
 } // namespace Hexagon
 
 

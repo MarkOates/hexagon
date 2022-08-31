@@ -1,10 +1,11 @@
 
 
 #include <Testing/WithAllegroRenderingFixture.hpp>
-#include <allegro5/allegro_ttf.h>
+
 #include <allegro5/allegro_primitives.h>
-#include <stdexcept>
+#include <allegro5/allegro_ttf.h>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Testing
@@ -78,6 +79,8 @@ placement3d WithAllegroRenderingFixture::build_centered_placement(float width, f
    place.size = vec3d(width, height, 0);
    return place;
 }
+
+
 } // namespace Testing
 
 

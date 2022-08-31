@@ -1,11 +1,12 @@
 
 
 #include <Hexagon/FileNavigator/Stage.hpp>
+
+#include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/FileSystemNode.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <iostream>
-#include <AllegroFlare/KeyboardCommandMapper.hpp>
 
 
 namespace Hexagon
@@ -442,6 +443,8 @@ void Stage::process_event(ALLEGRO_EVENT& event)
    }
    return;
 }
+
+
 } // namespace FileNavigator
 } // namespace Hexagon
 

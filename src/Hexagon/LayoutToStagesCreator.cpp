@@ -1,10 +1,11 @@
 
 
 #include <Hexagon/LayoutToStagesCreator.hpp>
-#include <allegro_flare/useful_php.h>
+
 #include <Blast/FileExistenceChecker.hpp>
-#include <stdexcept>
+#include <allegro_flare/useful_php.h>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -110,6 +111,8 @@ bool LayoutToStagesCreator::place_and_load_code_editor(std::string filename, std
 
    return true;
 }
+
+
 } // namespace Hexagon
 
 

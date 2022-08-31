@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/RailsTestOutputParser.hpp>
+
 #include <Blast/StringSplitter.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <iostream>
@@ -117,6 +118,8 @@ std::vector<RailsMinitestTestResult>& RailsTestOutputParser::get_test_result_lin
    if (!processed) process();
    return test_result_lines;
 }
+
+
 } // namespace Hexagon
 
 

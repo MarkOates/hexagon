@@ -1,14 +1,15 @@
 
 
 #include <NcursesArt/GithubRepoStatusFetcher.hpp>
-#include <Blast/StringSplitter.hpp>
-#include <Blast/String/Trimmer.hpp>
-#include <sstream>
-#include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <Blast/String/Trimmer.hpp>
+#include <Blast/StringSplitter.hpp>
+#include <algorithm>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 
 namespace NcursesArt
@@ -262,6 +263,8 @@ std::string GithubRepoStatusFetcher::execute_command(std::string command)
    Blast::ShellCommandExecutorWithCallback executor(command, silent_callback);
    return executor.execute();
 }
+
+
 } // namespace NcursesArt
 
 

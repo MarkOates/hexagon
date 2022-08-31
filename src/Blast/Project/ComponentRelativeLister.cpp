@@ -1,9 +1,10 @@
 
 
 #include <Blast/Project/ComponentRelativeLister.hpp>
+
 #include <Blast/Project/ComponentLister.hpp>
-#include <sstream>
 #include <algorithm>
+#include <sstream>
 
 
 namespace Blast
@@ -68,6 +69,8 @@ std::vector<std::string> ComponentRelativeLister::list_component_relative_names(
 
    return result;
 }
+
+
 } // namespace Project
 } // namespace Blast
 

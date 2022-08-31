@@ -1,13 +1,14 @@
 
 
 #include <Hexagon/FocusTimerBar/Renderer.hpp>
-#include <allegro5/allegro_primitives.h>
+
 #include <allegro5/allegro_color.h>
-#include <ctime>
+#include <allegro5/allegro_primitives.h>
 #include <cmath>
+#include <ctime>
 #include <iostream>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -68,6 +69,8 @@ void Renderer::render()
    //al_draw_line(10, 10, 600, 300, al_color_name("white"), 10.0f);
    return;
 }
+
+
 } // namespace FocusTimerBar
 } // namespace Hexagon
 

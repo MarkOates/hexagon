@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/ProjectFromYAML.hpp>
+
 #include <Hexagon/LayoutFromYAML.hpp>
 #include <Hexagon/Project.hpp>
 #include <yaml-cpp/yaml.h>
@@ -42,6 +43,8 @@ Hexagon::Project ProjectFromYAML::load()
 
    return project;
 }
+
+
 } // namespace Hexagon
 
 

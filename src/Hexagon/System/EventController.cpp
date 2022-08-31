@@ -1,16 +1,15 @@
 
 
 #include <Hexagon/System/EventController.hpp>
-#include <Hexagon/shared_globals.hpp>
-#include <map>
-#include <string>
-#include <functional>
-#include <Hexagon/System/System.hpp>
-#include <stdexcept>
-#include <sstream>
+
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
-#include <stdexcept>
+#include <Hexagon/System/System.hpp>
+#include <Hexagon/shared_globals.hpp>
+#include <functional>
+#include <map>
 #include <sstream>
+#include <stdexcept>
+#include <string>
 
 
 namespace Hexagon
@@ -549,6 +548,8 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
    }
    return;
 }
+
+
 } // namespace System
 } // namespace Hexagon
 

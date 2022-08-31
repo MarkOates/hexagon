@@ -1,8 +1,9 @@
 
 
 #include <Blast/FileCreator.hpp>
-#include <iostream>
+
 #include <fstream>
+#include <iostream>
 
 
 namespace Blast
@@ -34,6 +35,8 @@ void FileCreator::create_or_overwrite()
    outfile.close();
    return;
 }
+
+
 } // namespace Blast
 
 

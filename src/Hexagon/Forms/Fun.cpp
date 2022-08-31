@@ -1,11 +1,11 @@
 
 
 #include <Hexagon/Forms/Fun.hpp>
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro.h>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -85,6 +85,8 @@ int Fun::process_char_input(char input_ch)
 
    return RESULT_NO_CHANGE;
 }
+
+
 } // namespace Forms
 } // namespace Hexagon
 

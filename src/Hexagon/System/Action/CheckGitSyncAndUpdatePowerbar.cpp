@@ -1,9 +1,10 @@
 
 
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
+
 #include <Hexagon/Git/RemoteSyncChecker.hpp>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -55,6 +56,8 @@ bool CheckGitSyncAndUpdatePowerbar::execute()
 
    return true;
 }
+
+
 } // namespace Action
 } // namespace System
 } // namespace Hexagon

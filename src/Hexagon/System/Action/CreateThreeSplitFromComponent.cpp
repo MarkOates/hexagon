@@ -1,14 +1,15 @@
 
 
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
-#include <allegro_flare/placement3d.h>
+
 #include <Blast/FileExistenceChecker.hpp>
+#include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <Blast/ProjectComponentFilenameGenerator.hpp>
+#include <allegro_flare/placement3d.h>
 #include <allegro_flare/useful_php.h>
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -182,6 +183,8 @@ bool CreateThreeSplitFromComponent::execute()
 
    return true;
 }
+
+
 } // namespace Action
 } // namespace System
 } // namespace Hexagon

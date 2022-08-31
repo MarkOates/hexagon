@@ -1,16 +1,9 @@
 
 
 #include <Hexagon/Elements/FontedTextGrid.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -140,6 +133,8 @@ ALLEGRO_BITMAP* FontedTextGrid::__cheat_really_badly_and_get_the_bitmap_grid_ren
    }
    return bitmap_grid_render_surface.get_surface();
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

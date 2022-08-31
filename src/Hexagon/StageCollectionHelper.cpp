@@ -1,24 +1,13 @@
 
 
 #include <Hexagon/StageCollectionHelper.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <vector>
+
 #include <Hexagon/CodeEditor/Stage.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
 #include <iostream>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <vector>
 
 
 namespace Hexagon
@@ -204,6 +193,8 @@ StageInterface* StageCollectionHelper::get_frontmost_stage()
    if (stages.size() == 0) return nullptr;
    return stages.back();
 }
+
+
 } // namespace Hexagon
 
 

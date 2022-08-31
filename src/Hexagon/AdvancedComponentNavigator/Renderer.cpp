@@ -1,20 +1,17 @@
 
 
 #include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <cmath>
-#include <allegro_flare/placement3d.h>
-#include <allegro_flare/color.h>
-#include <allegro5/allegro_color.h>
-#include <allegro5/allegro_primitives.h>
+
 #include <Hexagon/FileSystemNode.hpp>
 #include <Hexagon/Shapes/Hexagon/Renderer.hpp>
 #include <Hexagon/Shapes/Hexagon/Stroke.hpp>
-#include <stdexcept>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro_flare/color.h>
+#include <allegro_flare/placement3d.h>
+#include <cmath>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -427,6 +424,8 @@ ALLEGRO_FONT* Renderer::obtain_title_text_font()
    //return font_bin->auto_get("Eurostile.ttf -18");
    return font_bin->auto_get("Purista Medium.otf -22");
 }
+
+
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon
 

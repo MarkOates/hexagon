@@ -1,12 +1,13 @@
 
 
 #include <Hexagon/CodeEditor/CursorRenderer.hpp>
+
+#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <allegro_flare/color.h>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -118,6 +119,8 @@ void CursorRenderer::render()
       }
    }
 }
+
+
 } // namespace CodeEditor
 } // namespace Hexagon
 

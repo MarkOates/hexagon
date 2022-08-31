@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/Elements/SubBitmapCharacterMap.hpp>
-#include <stdexcept>
+
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -137,6 +138,8 @@ void SubBitmapCharacterMap::destroy()
    if (surface) al_destroy_bitmap(surface);
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

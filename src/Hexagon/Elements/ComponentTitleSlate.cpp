@@ -1,10 +1,9 @@
 
 
 #include <Hexagon/Elements/ComponentTitleSlate.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -59,6 +58,8 @@ ALLEGRO_FONT* ComponentTitleSlate::obtain_font()
    }
    return font_bin->auto_get("Purista Medium.otf -84");
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

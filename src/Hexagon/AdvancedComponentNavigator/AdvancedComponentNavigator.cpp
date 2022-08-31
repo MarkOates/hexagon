@@ -1,32 +1,15 @@
 
 
 #include <Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.hpp>
+
+#include <Blast/StringSplitter.hpp>
 #include <Hexagon/AdvancedComponentNavigator/ComponentSearcher.hpp>
 #include <Hexagon/ClipboardData.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <allegro_flare/useful_php.h>
-#include <Hexagon/ClipboardData.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/ClipboardData.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/ClipboardData.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/ClipboardData.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/ClipboardData.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/ClipboardData.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <Blast/StringSplitter.hpp>
 #include <algorithm>
+#include <allegro_flare/useful_php.h>
 #include <cctype>
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -332,6 +315,8 @@ std::string AdvancedComponentNavigator::convert_to_snake_case(std::string source
 
    return str;
 }
+
+
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon
 

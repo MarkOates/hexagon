@@ -1,10 +1,11 @@
 
 
 #include <Hexagon/Elements/CheckTextureGenerator.hpp>
+
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -50,6 +51,8 @@ ALLEGRO_BITMAP* CheckTextureGenerator::generate_grid_check()
 
    return result;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

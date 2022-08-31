@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/Elements/ColorKit.hpp>
+
 #include <AllegroFlare/Color.hpp>
 
 
@@ -86,6 +87,8 @@ ALLEGRO_COLOR ColorKit::inv_backfill_color()
 {
    return ALLEGRO_COLOR{1.0f-backfill_color.r, 1.0f-backfill_color.g, 1.0f-backfill_color.b, backfill_color.a};
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

@@ -1,9 +1,10 @@
 
 
 #include <Hexagon/SymlinkToucher.hpp>
-#include <Blast/ShellCommandExecutorWithCallback.hpp>
-#include <Blast/Project/SymlinkChecker.hpp>
+
 #include <Blast/FileExistenceChecker.hpp>
+#include <Blast/Project/SymlinkChecker.hpp>
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
 namespace Hexagon
@@ -34,6 +35,8 @@ void SymlinkToucher::touch_if_symlink()
    executor.execute();
    return;
 }
+
+
 } // namespace Hexagon
 
 

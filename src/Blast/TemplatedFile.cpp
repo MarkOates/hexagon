@@ -4,6 +4,7 @@
 
 
 
+
 namespace Blast
 {
 
@@ -53,6 +54,8 @@ std::string TemplatedFile::generate_content()
 
    return result;
 }
+
+
 } // namespace Blast
 
 

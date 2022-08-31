@@ -1,10 +1,10 @@
 
 
 #include <Hexagon/ProjectComponentNavigator/Stage.hpp>
+
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
-#include <Hexagon/ProjectComponentNavigator/Renderer.hpp>
 #include <Hexagon/ProjectComponentNavigator/EventController.hpp>
-#include <AllegroFlare/KeyboardCommandMapper.hpp>
+#include <Hexagon/ProjectComponentNavigator/Renderer.hpp>
 
 
 namespace Hexagon
@@ -279,6 +279,8 @@ bool Stage::save_file()
 {
    return true;
 }
+
+
 } // namespace ProjectComponentNavigator
 } // namespace Hexagon
 

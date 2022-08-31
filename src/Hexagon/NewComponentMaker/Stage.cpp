@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/NewComponentMaker/Stage.hpp>
+
 #include <allegro5/allegro_primitives.h>
 
 
@@ -54,6 +55,8 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 {
    return;
 }
+
+
 } // namespace NewComponentMaker
 } // namespace Hexagon
 

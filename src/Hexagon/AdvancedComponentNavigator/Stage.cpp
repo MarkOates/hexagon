@@ -1,12 +1,12 @@
 
 
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
-#include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
-#include <stdexcept>
-#include <sstream>
 #include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
-#include <AllegroFlare/KeyboardCommandMapper.hpp>
+#include <Hexagon/AdvancedComponentNavigator/Renderer.hpp>
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -358,6 +358,8 @@ bool Stage::save_file()
 {
    return true;
 }
+
+
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon
 

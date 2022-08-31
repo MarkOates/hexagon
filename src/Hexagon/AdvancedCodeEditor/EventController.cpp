@@ -1,10 +1,9 @@
 
 
 #include <Hexagon/AdvancedCodeEditor/EventController.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -140,6 +139,8 @@ void EventController::process_event(ALLEGRO_EVENT& event)
       }
    }
 }
+
+
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

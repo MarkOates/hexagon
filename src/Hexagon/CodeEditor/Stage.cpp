@@ -1,14 +1,15 @@
 
 
 #include <Hexagon/CodeEditor/Stage.hpp>
-#include <sstream>
-#include <iostream>
-#include <allegro5/allegro_color.h>
-#include <Hexagon/OneLineInputBox/Renderer.hpp>
+
+#include <Hexagon/CodeEditor/EventController.hpp>
+#include <Hexagon/CodeEditor/FileCategoryDecorator.hpp>
 #include <Hexagon/CodeEditor/Renderer.hpp>
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
-#include <Hexagon/CodeEditor/FileCategoryDecorator.hpp>
-#include <Hexagon/CodeEditor/EventController.hpp>
+#include <Hexagon/OneLineInputBox/Renderer.hpp>
+#include <allegro5/allegro_color.h>
+#include <iostream>
+#include <sstream>
 
 
 namespace Hexagon
@@ -272,6 +273,8 @@ int Stage::code_editor_char_count()
    }
    return char_count + (code_editor.get_lines_ref().size() - 1);
 }
+
+
 } // namespace CodeEditor
 } // namespace Hexagon
 

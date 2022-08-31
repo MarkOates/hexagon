@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -22,6 +23,8 @@ std::string CodeRenderer::run()
 {
    return "Hello World!";
 }
+
+
 } // namespace Hexagon
 
 

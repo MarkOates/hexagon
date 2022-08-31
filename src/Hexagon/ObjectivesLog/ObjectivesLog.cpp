@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace ObjectivesLog
@@ -32,6 +33,8 @@ void ObjectivesLog::add_objective(Hexagon::ObjectivesLog::Objective objective)
    objectives.push_back(objective);
    return;
 }
+
+
 } // namespace ObjectivesLog
 } // namespace Hexagon
 

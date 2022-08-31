@@ -1,12 +1,11 @@
 
 
 #include <Hexagon/ASTTraverser.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <fstream>
+
 #include <Blast/FileExistenceChecker.hpp>
-#include <stdexcept>
+#include <fstream>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -65,6 +64,8 @@ void ASTTraverser::initialize()
    initialized = true;
    return;
 }
+
+
 } // namespace Hexagon
 
 

@@ -1,25 +1,17 @@
 
 
 #include <Hexagon/ProjectComponentNavigator/Renderer.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <cmath>
-#include <stdexcept>
-#include <sstream>
-#include <cmath>
-#include <allegro_flare/placement3d.h>
-#include <allegro_flare/color.h>
-#include <allegro5/allegro_color.h>
-#include <allegro5/allegro_primitives.h>
+
 #include <Hexagon/FileSystemNode.hpp>
 #include <Hexagon/Shapes/Hexagon/Renderer.hpp>
 #include <Hexagon/Shapes/Hexagon/Stroke.hpp>
-#include <stdexcept>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro_flare/color.h>
+#include <allegro_flare/placement3d.h>
+#include <cmath>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -437,6 +429,8 @@ void Renderer::render_raw()
    render_list_clipping_arrows_raw(list_clipping_occurred_above, list_clipping_occurred_below);
    return;
 }
+
+
 } // namespace ProjectComponentNavigator
 } // namespace Hexagon
 

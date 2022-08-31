@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace AdvancedCodeEditor
@@ -94,6 +95,8 @@ CodePoint Selection::find_previous_from(int position_x, int position_y)
 
    return most_viable_code_point;
 }
+
+
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

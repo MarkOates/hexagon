@@ -1,17 +1,17 @@
 
 
 #include <Hexagon/PacketRenderer.hpp>
-#include <allegro5/allegro_primitives.h>
-#include <allegro_flare/placement2d.h>
-#include <stdexcept>
-#include <sstream>
+
 #include <Hexagon/Elements/Window.hpp>
-#include <vector>
-#include <tuple>
-#include <string>
-#include <allegro5/allegro_font.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro_flare/placement2d.h>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <tuple>
+#include <vector>
 
 
 namespace Hexagon
@@ -199,6 +199,8 @@ ALLEGRO_FONT* PacketRenderer::obtain_table_text_font()
 {
    return font_bin->auto_get("Purista Medium.otf -28");
 }
+
+
 } // namespace Hexagon
 
 

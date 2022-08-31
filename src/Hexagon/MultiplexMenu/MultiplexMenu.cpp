@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace MultiplexMenu
@@ -85,6 +86,8 @@ Hexagon::MultiplexMenu::MultiplexMenuPage* MultiplexMenu::find_page_by_name(std:
    if (it != page_dictionary.end()) return &it->second;
    return nullptr;
 }
+
+
 } // namespace MultiplexMenu
 } // namespace Hexagon
 

@@ -1,9 +1,7 @@
 
 
 #include <Hexagon/PasteboardData.hpp>
-#include <Blast/ShellCommandExecutorWithCallback.hpp>
-#include <iostream>
-#include <sstream>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <iostream>
 #include <sstream>
@@ -83,6 +81,8 @@ std::string PasteboardData::__replace(std::string str, std::string from, std::st
    }
    return str;
 }
+
+
 } // namespace Hexagon
 
 

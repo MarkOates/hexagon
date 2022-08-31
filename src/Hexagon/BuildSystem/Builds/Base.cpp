@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/BuildSystem/Builds/Base.hpp>
+
 #include <iostream>
 
 
@@ -117,6 +118,8 @@ void Base::run()
    status = STATUS_FINISHED;
    return;
 }
+
+
 } // namespace Builds
 } // namespace BuildSystem
 } // namespace Hexagon

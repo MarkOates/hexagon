@@ -1,10 +1,11 @@
 
 
 #include <Hexagon/BuildSystem/BuildStageRenderer.hpp>
+
 #include <Hexagon/BuildSystem/BuildStageRenderers/Base.hpp>
 #include <Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.hpp>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -71,6 +72,8 @@ std::string BuildStageRenderer::build_text_report()
 
    return result;
 }
+
+
 } // namespace BuildSystem
 } // namespace Hexagon
 

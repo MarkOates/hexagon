@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace Search
@@ -39,6 +40,8 @@ std::string ComponentElasticsearchIndex::get_index_mapping()
    index_mapping += "}";
    return index_mapping;
 }
+
+
 } // namespace Search
 } // namespace Hexagon
 

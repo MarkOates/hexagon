@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -81,6 +82,8 @@ bool KeyboardCommandKey::get_command() const
 {
    return command;
 }
+
+
 
 
 } // namespace Hexagon

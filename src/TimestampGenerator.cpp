@@ -1,6 +1,7 @@
 
 
 #include <TimestampGenerator.hpp>
+
 #include <ctime>
 #include <iostream>
 #include <sstream>
@@ -25,5 +26,7 @@ std::string TimestampGenerator::get_current_time()
    result << std::ctime(&time_now);
    return result.str();
 }
+
+
 
 

@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -48,6 +49,8 @@ bool MarkerNavigator::marker_exists(std::string label)
    // TODO
    return false;
 }
+
+
 } // namespace Hexagon
 
 

@@ -1,13 +1,14 @@
 
 
 #include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
-#include <map>
-#include <string>
-#include <functional>
+
 #include <Hexagon/AdvancedComponentNavigator/EventController.hpp>
+#include <functional>
 #include <iostream>
-#include <stdexcept>
+#include <map>
 #include <sstream>
+#include <stdexcept>
+#include <string>
 
 
 namespace Hexagon
@@ -66,6 +67,8 @@ void EventController::process_local_event(std::string event_name, ActionData act
 
    return;
 }
+
+
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon
 

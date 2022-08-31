@@ -1,10 +1,11 @@
 
 
 #include <Hexagon/Logo.hpp>
-#include <cmath>
+
 #include <allegro_flare/path2d.h>
-#include <stdexcept>
+#include <cmath>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -69,6 +70,8 @@ void Logo::render()
 
    al_draw_text(font, color, x, y + radius*1.3, ALLEGRO_ALIGN_CENTER, "H E X A G O N");
 }
+
+
 } // namespace Hexagon
 
 

@@ -1,10 +1,10 @@
 
 
 #include <Hexagon/BuildSystem/ReportRenderers/Base.hpp>
-#include <sstream>
+
 #include <Hexagon/BuildSystem/BuildStageRenderer.hpp>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -80,6 +80,8 @@ std::string Base::render_text()
 
    return result.str();
 }
+
+
 } // namespace ReportRenderers
 } // namespace BuildSystem
 } // namespace Hexagon

@@ -1,10 +1,11 @@
 
 
 #include <Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp>
-#include <vector>
+
 #include <Hexagon/CodeRange.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <iostream>
+#include <vector>
 
 
 namespace Hexagon
@@ -45,6 +46,8 @@ std::vector<CodeRange> SearchRegexToSelectionsConverter::convert()
 
    return result;
 }
+
+
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

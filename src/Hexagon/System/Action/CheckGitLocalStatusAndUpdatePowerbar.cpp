@@ -1,11 +1,12 @@
 
 
 #include <Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar.hpp>
+
 #include <Hexagon/Git/Modified.hpp>
-#include <Hexagon/Git/Untracked.hpp>
 #include <Hexagon/Git/Staged.hpp>
-#include <stdexcept>
+#include <Hexagon/Git/Untracked.hpp>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -63,6 +64,8 @@ bool CheckGitLocalStatusAndUpdatePowerbar::execute()
 
    return true;
 }
+
+
 } // namespace Action
 } // namespace System
 } // namespace Hexagon

@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -16,6 +17,8 @@ RendererInterface::RendererInterface()
 RendererInterface::~RendererInterface()
 {
 }
+
+
 
 
 } // namespace Hexagon

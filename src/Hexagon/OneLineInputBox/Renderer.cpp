@@ -1,13 +1,14 @@
 
 
 #include <Hexagon/OneLineInputBox/Renderer.hpp>
-#include <iostream>
+
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/color.h>
 #include <allegro_flare/placement3d.h>
-#include <stdexcept>
+#include <iostream>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -281,6 +282,8 @@ int Renderer::get_lines_character_count()
    }
    return char_count + (lines.size() - 1);
 }
+
+
 } // namespace OneLineInputBox
 } // namespace Hexagon
 

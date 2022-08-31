@@ -1,18 +1,9 @@
 
 
 #include <Hexagon/Elements/BitmapGridRenderSurface.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -180,6 +171,8 @@ void BitmapGridRenderSurface::destroy()
    if (surface) al_destroy_bitmap(surface);
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

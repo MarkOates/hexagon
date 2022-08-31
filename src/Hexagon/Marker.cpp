@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -30,6 +31,8 @@ int Marker::get_line_num() const
 {
    return line_num;
 }
+
+
 
 
 } // namespace Hexagon

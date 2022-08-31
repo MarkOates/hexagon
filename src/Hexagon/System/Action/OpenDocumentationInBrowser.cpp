@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/System/Action/OpenDocumentationInBrowser.hpp>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <sstream>
 
@@ -42,6 +43,8 @@ std::string OpenDocumentationInBrowser::build_shell_command_to_open_browser()
    result << "open " << project_path << "/" << DOCUMENTATION_FILENAME;
    return result.str();
 }
+
+
 } // namespace Action
 } // namespace System
 } // namespace Hexagon

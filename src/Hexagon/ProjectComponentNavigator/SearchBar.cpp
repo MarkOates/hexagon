@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace ProjectComponentNavigator
@@ -24,6 +25,8 @@ std::string SearchBar::run()
 {
    return "Hello World!";
 }
+
+
 } // namespace ProjectComponentNavigator
 } // namespace Hexagon
 

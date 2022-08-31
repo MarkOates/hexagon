@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/BuildSystem/BuildFactory.hpp>
+
 #include <Hexagon/BuildSystem/BuildStageFactory.hpp>
 
 
@@ -30,6 +31,8 @@ Hexagon::BuildSystem::Builds::Base* BuildFactory::create_placeholder_build()
    });
    return build;
 }
+
+
 } // namespace BuildSystem
 } // namespace Hexagon
 

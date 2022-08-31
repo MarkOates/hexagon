@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace ProjectComponentNavigator
@@ -143,6 +144,8 @@ void ProjectComponentNavigator::refresh_list()
 {
    return;
 }
+
+
 } // namespace ProjectComponentNavigator
 } // namespace Hexagon
 

@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace Notifications
@@ -25,6 +26,8 @@ std::string Notification::get_body_text() const
 {
    return body_text;
 }
+
+
 
 
 } // namespace Notifications

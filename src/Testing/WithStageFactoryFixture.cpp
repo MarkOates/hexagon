@@ -1,6 +1,7 @@
 
 
 #include <Testing/WithStageFactoryFixture.hpp>
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
@@ -54,6 +55,8 @@ void WithStageFactoryFixture::TearDown()
    al_uninstall_system();
    return;
 }
+
+
 } // namespace Testing
 
 

@@ -1,48 +1,19 @@
 
 
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp>
-#include <Hexagon/util.hpp>
-#include <Hexagon/SymlinkToucher.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/WordRangesFinder.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/CodeRangeExtractor.hpp>
-#include <Hexagon/ClipboardData.hpp>
-#include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/AdvancedCodeEditor/EventController.hpp>
-#include <stdexcept>
-#include <sstream>
+
 #include <AllegroFlare/Timer.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
+#include <Hexagon/AdvancedCodeEditor/EventController.hpp>
+#include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
+#include <Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp>
+#include <Hexagon/ClipboardData.hpp>
+#include <Hexagon/CodeRangeExtractor.hpp>
+#include <Hexagon/SymlinkToucher.hpp>
+#include <Hexagon/WordRangesFinder.hpp>
+#include <Hexagon/util.hpp>
 #include <algorithm>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -1601,6 +1572,8 @@ Hexagon::DirtyGrid Stage::build_dirty_grid_from_lines_respecting_offset()
    }
    return result;
 }
+
+
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

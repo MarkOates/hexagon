@@ -1,11 +1,12 @@
 
 
 #include <Hexagon/Elements/TextPixelPreviewCreator.hpp>
+
 #include <allegro5/allegro.h>
-#include <vector>
-#include <string>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -70,6 +71,8 @@ ALLEGRO_BITMAP* TextPixelPreviewCreator::create()
 
    return bitmap;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

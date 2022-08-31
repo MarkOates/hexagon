@@ -4,6 +4,7 @@
 
 
 
+
 namespace NcursesArt
 {
 
@@ -65,6 +66,8 @@ std::string ProjectFilenameGenerator::generate_example_binary()
 {
    return std::string("bin/examples/") + basename + (underscores ? "_example.cpp" : "Example.cpp");
 }
+
+
 } // namespace NcursesArt
 
 

@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/Font.hpp>
-#include <stdexcept>
+
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -79,6 +80,8 @@ ALLEGRO_FONT* Font::al_font()
    }
    return font_bin->auto_get(font_filename + " " + std::to_string(font_size));
 }
+
+
 } // namespace Hexagon
 
 

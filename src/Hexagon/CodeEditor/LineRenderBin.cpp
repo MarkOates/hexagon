@@ -1,11 +1,12 @@
 
 
 #include <Hexagon/CodeEditor/LineRenderBin.hpp>
+
+#include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
-#include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -79,6 +80,8 @@ void LineRenderBin::destroy_data(ALLEGRO_BITMAP* resource)
    al_destroy_bitmap(resource);
    return;
 }
+
+
 } // namespace CodeEditor
 } // namespace Hexagon
 

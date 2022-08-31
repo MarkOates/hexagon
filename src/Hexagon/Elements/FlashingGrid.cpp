@@ -1,11 +1,12 @@
 
 
 #include <Hexagon/Elements/FlashingGrid.hpp>
+
 #include <allegro5/allegro.h>
-#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
-#include <stdexcept>
+#include <allegro5/allegro_primitives.h>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -59,6 +60,8 @@ void FlashingGrid::render()
    }
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

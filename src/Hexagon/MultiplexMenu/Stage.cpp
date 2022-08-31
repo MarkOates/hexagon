@@ -1,11 +1,12 @@
 
 
 #include <Hexagon/MultiplexMenu/Stage.hpp>
-#include <Hexagon/MultiplexMenu/Renderer.hpp>
-#include <stdexcept>
-#include <sstream>
+
 #include <Blast/StringSplitter.hpp>
 #include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
+#include <Hexagon/MultiplexMenu/Renderer.hpp>
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -185,6 +186,8 @@ Hexagon::MultiplexMenu::MenuItem* Stage::find_menu_item_by_keyboard_command_key_
    if (!page) return nullptr;
    return page->find_item_by_keyboard_command_key(keyboard_command_key);
 }
+
+
 } // namespace MultiplexMenu
 } // namespace Hexagon
 

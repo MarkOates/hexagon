@@ -1,10 +1,10 @@
 
 
 #include <Hexagon/FullScreenOverlay/Stage.hpp>
-#include <stdexcept>
-#include <allegro5/allegro_font.h>
+
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -98,6 +98,8 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 {
    return;
 }
+
+
 } // namespace FullScreenOverlay
 } // namespace Hexagon
 

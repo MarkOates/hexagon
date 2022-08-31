@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/Git/Pusher.hpp>
-#include <sstream>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <sstream>
 
 
 namespace Hexagon
@@ -44,6 +45,8 @@ std::string Pusher::push()
    validate_result_or_throw_error_on_failure(response);
    return response;
 }
+
+
 } // namespace Git
 } // namespace Hexagon
 

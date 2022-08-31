@@ -1,14 +1,15 @@
 
 
 #include <Hexagon/System/Action/CreateTwoSplitFromComponent.hpp>
+
 #include <Blast/FileExistenceChecker.hpp>
-#include <NcursesArt/ProjectFilenameGenerator.hpp>
-#include <sstream>
-#include <vector>
-#include <string>
-#include <Hexagon/util.hpp>
-#include <allegro_flare/placement3d.h>
 #include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/util.hpp>
+#include <NcursesArt/ProjectFilenameGenerator.hpp>
+#include <allegro_flare/placement3d.h>
+#include <sstream>
+#include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -211,6 +212,8 @@ bool CreateTwoSplitFromComponent::execute()
 
    return true;
 }
+
+
 } // namespace Action
 } // namespace System
 } // namespace Hexagon

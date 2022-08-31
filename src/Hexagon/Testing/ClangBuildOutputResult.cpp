@@ -1,10 +1,11 @@
 
 
 #include <Hexagon/Testing/ClangBuildOutputResult.hpp>
-#include <sstream>
-#include <Blast/StringSplitter.hpp>
+
 #include <Blast/String/Trimmer.hpp>
+#include <Blast/StringSplitter.hpp>
 #include <cstdlib>
+#include <sstream>
 
 
 namespace Hexagon
@@ -158,6 +159,8 @@ Hexagon::Testing::ClangBuildOutputResult ClangBuildOutputResult::build_from_mess
 
    return result;
 }
+
+
 } // namespace Testing
 } // namespace Hexagon
 

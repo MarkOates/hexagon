@@ -1,29 +1,13 @@
 
 
 #include <Hexagon/ProjectNavigator.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <allegro5/allegro_primitives.h>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <allegro_flare/placement3d.h>
+
 #include <Hexagon/Elements/ListMenu.hpp>
-#include <stdexcept>
-#include <sstream>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro_flare/placement3d.h>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -286,6 +270,8 @@ std::vector<std::tuple<std::string, std::string>> ProjectNavigator::build_placeh
       //{ "tins_22_prep", "/Users/markoates/Repos/tins_22_prep/" },
    };
 }
+
+
 } // namespace Hexagon
 
 

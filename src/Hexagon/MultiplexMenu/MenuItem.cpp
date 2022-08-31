@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace MultiplexMenu
@@ -51,6 +52,8 @@ std::vector<std::string> MenuItem::get_value() const
 {
    return value;
 }
+
+
 
 
 } // namespace MultiplexMenu

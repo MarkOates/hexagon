@@ -1,30 +1,24 @@
 
 
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
-#include <allegro5/allegro_color.h>
-#include <Blast/FileExistenceChecker.hpp>
-#include <allegro_flare/useful_php.h>
-#include <allegro_flare/placement2d.h>
+
 #include <AllegroFlare/Color.hpp>
+#include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/Elements/ColorKit.hpp>
-#include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
 #include <Hexagon/Testing/ClangBuildOutputParser.hpp>
+#include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
 #include <algorithm>
-#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro.h>
-#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
-#include <stdexcept>
-#include <sstream>
-#include <algorithm>
+#include <allegro5/allegro_ttf.h>
+#include <allegro_flare/placement2d.h>
+#include <allegro_flare/useful_php.h>
 #include <map>
+#include <sstream>
+#include <stdexcept>
 #include <string>
-#include <allegro5/allegro_color.h>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -472,6 +466,8 @@ ALLEGRO_FONT* Renderer::obtain_font()
    }
    return font_bin->auto_get("Purista Medium.otf -20");
 }
+
+
 } // namespace BuildSequenceMeter
 } // namespace Hexagon
 

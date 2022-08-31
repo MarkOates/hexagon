@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace Shapes
@@ -59,6 +60,8 @@ ALLEGRO_COLOR Stroke::default_color()
    c.a = 1.0;
    return c;
 }
+
+
 } // namespace Hexagon
 } // namespace Shapes
 } // namespace Hexagon

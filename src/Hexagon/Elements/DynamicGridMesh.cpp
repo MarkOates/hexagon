@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace Elements
@@ -104,6 +105,8 @@ void DynamicGridMesh::render()
    );
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

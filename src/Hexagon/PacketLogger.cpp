@@ -1,11 +1,12 @@
 
 
 #include <Hexagon/PacketLogger.hpp>
+
+#include <Blast/String/Trimmer.hpp>
 #include <allegro_flare/useful_php.h>
-#include <sstream>
 #include <chrono>
 #include <ctime>
-#include <Blast/String/Trimmer.hpp>
+#include <sstream>
 
 
 namespace Hexagon
@@ -96,6 +97,8 @@ std::string PacketLogger::generate_time_now_string()
 
    return trimmed_time_message;
 }
+
+
 } // namespace Hexagon
 
 

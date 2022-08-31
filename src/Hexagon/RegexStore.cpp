@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -27,6 +28,8 @@ std::string RegexStore::double_quoted_strings_with_escapes()
 {
    return "\"(?:[^\"\\\\]|\\\\.)*\"";
 }
+
+
 } // namespace Hexagon
 
 

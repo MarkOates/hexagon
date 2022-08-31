@@ -1,18 +1,14 @@
 
 
 #include <Blast/Project/Component.hpp>
-#include <Blast/ProjectComponentFilenameGenerator.hpp>
-#include <Blast/ProjectComponentFileTypes.hpp>
+
+#include <Blast/FileExistenceChecker.hpp>
 #include <Blast/FileLastWriteTime.hpp>
+#include <Blast/Project/SymlinkChecker.hpp>
+#include <Blast/ProjectComponentFileTypes.hpp>
 #include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <iostream>
-#include <Blast/ProjectComponentFilenameGenerator.hpp>
-#include <Blast/ProjectComponentFileTypes.hpp>
-#include <Blast/FileExistenceChecker.hpp>
-#include <Blast/ProjectComponentFileTypes.hpp>
 #include <vector>
-#include <Blast/ProjectComponentFileTypes.hpp>
-#include <Blast/Project/SymlinkChecker.hpp>
 
 
 namespace Blast
@@ -191,6 +187,8 @@ std::vector<std::pair<std::string, std::string>> Component::read_symlinks()
 
    return result;
 }
+
+
 } // namespace Project
 } // namespace Blast
 

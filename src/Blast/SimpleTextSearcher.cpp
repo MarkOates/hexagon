@@ -4,6 +4,7 @@
 
 
 
+
 namespace Blast
 {
 
@@ -39,6 +40,8 @@ std::vector<std::string> SimpleTextSearcher::results()
 
    return results;
 }
+
+
 } // namespace Blast
 
 

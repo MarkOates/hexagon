@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace RulersAndMeasurements
@@ -25,6 +26,8 @@ float CodeEditorDimentions::calculate_max_half_surface_width(float surface_width
    // TODO: function is probably not needed or used anywhers
    return (surface_width * 0.5f) / (cell_width * num_columns);
 }
+
+
 } // namespace RulersAndMeasurements
 } // namespace Hexagon
 

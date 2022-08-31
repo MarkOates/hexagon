@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/Testing/ClangBuildOutputParser.hpp>
+
 #include <Blast/StringSplitter.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <iostream>
@@ -200,6 +201,8 @@ void ClangBuildOutputParser::parse_num_warnings_errors_generated_line()
 
    return;
 }
+
+
 } // namespace Testing
 } // namespace Hexagon
 

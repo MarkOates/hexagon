@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.hpp>
+
 #include <sstream>
 
 
@@ -36,6 +37,8 @@ std::string ShellCommand::render_text()
    result << "  - Command: " << shell_command_build_stage->get_shell_command() << std::endl;
    return result.str();
 }
+
+
 } // namespace BuildStageRenderers
 } // namespace BuildSystem
 } // namespace Hexagon

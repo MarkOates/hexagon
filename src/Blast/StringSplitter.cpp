@@ -1,9 +1,10 @@
 
 
 #include <Blast/StringSplitter.hpp>
+
 #include <sstream>
-#include <vector>
 #include <string>
+#include <vector>
 
 
 namespace Blast
@@ -31,6 +32,8 @@ std::vector<std::string> StringSplitter::split()
    while (std::getline(ss, item, delimiter)) { *(result++) = item; }
    return elems;
 }
+
+
 } // namespace Blast
 
 

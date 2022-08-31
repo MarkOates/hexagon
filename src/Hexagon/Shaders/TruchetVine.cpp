@@ -1,10 +1,9 @@
 
 
 #include <Hexagon/Shaders/TruchetVine.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -149,6 +148,8 @@ std::string TruchetVine::obtain_fragment_source()
    )DELIM";
    return source;
 }
+
+
 } // namespace Shaders
 } // namespace Hexagon
 

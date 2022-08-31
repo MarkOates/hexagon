@@ -1,12 +1,12 @@
 
 
 #include <Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.hpp>
-#include <lib/nlohmann/json.hpp>
+
 #include <Blast/FileExistenceChecker.hpp>
 #include <allegro_flare/useful_php.h>
-#include <stdexcept>
+#include <lib/nlohmann/json.hpp>
 #include <sstream>
-#include <Blast/FileExistenceChecker.hpp>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -63,6 +63,8 @@ bool DocumentationDependentsJSONLoader::dependents_json_file_exists()
 {
    return Blast::FileExistenceChecker(get_DEPENDENTS_JSON_FILENAME()).exists();
 }
+
+
 } // namespace ComponentRelationsNavigator
 } // namespace Hexagon
 

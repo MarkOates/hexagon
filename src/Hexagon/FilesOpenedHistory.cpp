@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -29,6 +30,8 @@ std::string FilesOpenedHistory::run()
 {
    return "Hello World!";
 }
+
+
 } // namespace Hexagon
 
 

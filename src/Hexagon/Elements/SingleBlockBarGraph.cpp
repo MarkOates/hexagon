@@ -1,11 +1,11 @@
 
 
 #include <Hexagon/Elements/SingleBlockBarGraph.hpp>
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro.h>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -132,6 +132,8 @@ void SingleBlockBarGraph::draw()
    }
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

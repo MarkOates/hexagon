@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/LayoutPlacements.hpp>
+
 #include <sstream>
 #include <stdexcept>
 
@@ -51,6 +52,8 @@ placement3d LayoutPlacements::placement_for(std::string label)
    placement3d result = it->second;
    return result;
 }
+
+
 } // namespace Hexagon
 
 

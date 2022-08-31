@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
-#include <Hexagon/RegexMatcher.hpp>
+
 #include <Blast/StringSplitter.hpp>
+#include <Hexagon/RegexMatcher.hpp>
 #include <iostream>
 
 
@@ -233,6 +234,8 @@ int GoogleTestRunOutputParser::extract_ms(std::string line)
    std::string extracted_ms_as_string = line.substr(left_paren_pos + 2, right_paren_pos - left_paren_pos - 2);
    return atoi(extracted_ms_as_string.c_str());
 }
+
+
 } // namespace Testing
 } // namespace Hexagon
 

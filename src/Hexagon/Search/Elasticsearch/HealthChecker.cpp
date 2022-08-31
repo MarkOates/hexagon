@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/Search/Elasticsearch/HealthChecker.hpp>
-#include <Hexagon/RegexMatcher.hpp>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <Hexagon/RegexMatcher.hpp>
 
 
 namespace Hexagon
@@ -52,6 +53,8 @@ std::string HealthChecker::request_health()
    std::string result = executor.execute();
    return result;
 }
+
+
 } // namespace Elasticsearch
 } // namespace Search
 } // namespace Hexagon

@@ -1,9 +1,10 @@
 
 
 #include <Hexagon/Git/Staged.hpp>
-#include <sstream>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Blast/StringSplitter.hpp>
+#include <sstream>
 
 
 namespace Hexagon
@@ -45,6 +46,8 @@ std::string Staged::build_staged_files_shell_command()
    commit_everything_shell_command << "(cd " << current_project_directory << " && git diff --staged --name-only)";
    return commit_everything_shell_command.str();
 }
+
+
 } // namespace Git
 } // namespace Hexagon
 

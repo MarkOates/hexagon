@@ -1,9 +1,10 @@
 
 
 #include <Hexagon/Rails/ComponentLister.hpp>
-#include <sstream>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Blast/StringSplitter.hpp>
+#include <sstream>
 
 
 namespace Hexagon
@@ -84,6 +85,8 @@ std::vector<std::string> ComponentLister::get_recursive_list_of_files_in_folder(
 
    return model_filenames;
 }
+
+
 } // namespace Rails
 } // namespace Hexagon
 

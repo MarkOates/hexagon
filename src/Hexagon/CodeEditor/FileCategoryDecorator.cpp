@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/CodeEditor/FileCategoryDecorator.hpp>
+
 #include <map>
 #include <string>
 
@@ -51,6 +52,8 @@ std::string FileCategoryDecorator::label()
 
    return result;
 }
+
+
 } // namespace CodeEditor
 } // namespace Hexagon
 

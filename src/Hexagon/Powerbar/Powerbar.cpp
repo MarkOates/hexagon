@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace Powerbar
@@ -97,6 +98,8 @@ float Powerbar::get_focus_timer_duration_sec() const
 {
    return focus_timer_duration_sec;
 }
+
+
 
 
 } // namespace Powerbar

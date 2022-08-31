@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -97,6 +98,8 @@ bool WordRangesFinder::is_valid(std::pair<int, int> word_range)
 {
    return word_range != std::pair<int, int>(-1, -1);
 }
+
+
 } // namespace Hexagon
 
 

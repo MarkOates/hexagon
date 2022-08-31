@@ -1,29 +1,18 @@
 
 
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
-#include <Hexagon/RegexMatcher.hpp>
-#include <Hexagon/RegexStore.hpp>
-#include <Hexagon/RegexMatcher.hpp>
-#include <Hexagon/RegexStore.hpp>
-#include <Hexagon/RegexMatcher.hpp>
-#include <Hexagon/RegexStore.hpp>
-#include <Hexagon/RegexMatcher.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <allegro5/allegro.h>
-#include <utility>
-#include <Hexagon/RegexMatcher.hpp>
-#include <allegro5/allegro.h>
+
 #include <AllegroFlare/Color.hpp>
-#include <sstream>
+#include <Hexagon/RegexMatcher.hpp>
+#include <Hexagon/RegexStore.hpp>
+#include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
-#include <allegro5/allegro.h>
-#include <vector>
-#include <tuple>
-#include <string>
-#include <allegro5/allegro.h>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <string>
+#include <tuple>
+#include <utility>
+#include <vector>
 
 
 namespace Hexagon
@@ -234,6 +223,8 @@ void AdvancedLineRenderer::render()
 
    return;
 }
+
+
 } // namespace Renderer
 } // namespace CodeEditor
 } // namespace Hexagon

@@ -1,9 +1,10 @@
 
 
 #include <Hexagon/Elements/TexturedRectangle.hpp>
+
 #include <allegro_flare/useful.h>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -52,6 +53,8 @@ void TexturedRectangle::draw()
    );
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

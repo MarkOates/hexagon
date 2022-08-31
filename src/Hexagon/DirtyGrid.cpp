@@ -1,12 +1,11 @@
 
 
 #include <Hexagon/DirtyGrid.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
-#include <vector>
 #include <utility>
+#include <vector>
 
 
 namespace Hexagon
@@ -102,6 +101,8 @@ void DirtyGrid::clear()
    dirty_cells.clear();
    return;
 }
+
+
 } // namespace Hexagon
 
 

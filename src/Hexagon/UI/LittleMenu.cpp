@@ -1,17 +1,10 @@
 
 
 #include <Hexagon/UI/LittleMenu.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
+
 #include <iostream>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -129,6 +122,8 @@ void LittleMenu::emit_submission()
    }
    std::cout << "Sumitting Modal with selection \"" << menu.get_current_list_item_identifier() << "\"" << std::endl;
 }
+
+
 } // namespace UI
 } // namespace Hexagon
 

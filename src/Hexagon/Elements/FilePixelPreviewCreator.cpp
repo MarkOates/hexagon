@@ -1,13 +1,14 @@
 
 
 #include <Hexagon/Elements/FilePixelPreviewCreator.hpp>
-#include <allegro5/allegro.h>
+
 #include <Blast/FileExistenceChecker.hpp>
-#include <Hexagon/Elements/TextPixelPreviewCreator.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <allegro_flare/useful_php.h>
 #include <Blast/StringSplitter.hpp>
+#include <Hexagon/Elements/TextPixelPreviewCreator.hpp>
+#include <allegro5/allegro.h>
+#include <allegro_flare/useful_php.h>
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -55,6 +56,8 @@ std::vector<std::string> FilePixelPreviewCreator::get_file_contents()
    std::string contents = php::file_get_contents(filename);
    return Blast::StringSplitter(contents, '\n').split();
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

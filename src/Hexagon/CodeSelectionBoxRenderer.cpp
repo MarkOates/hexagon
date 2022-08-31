@@ -1,14 +1,11 @@
 
 
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
-#include <stdexcept>
-#include <sstream>
+
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
-#include <stdexcept>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -159,6 +156,8 @@ int CodeSelectionBoxRenderer::get_line_length(int line_num)
    return (*lines)[line_num].length();
    return 0;
 }
+
+
 } // namespace Hexagon
 
 

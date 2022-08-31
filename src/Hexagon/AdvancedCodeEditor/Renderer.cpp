@@ -1,36 +1,18 @@
 
 
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
-#include <iostream>
-#include <allegro5/allegro.h>
+
+#include <AllegroFlare/Color.hpp>
 #include <AllegroFlare/Timer.hpp>
 #include <Hexagon/AdvancedCodeEditor/WindowRenderer.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <AllegroFlare/Color.hpp>
-#include <allegro5/allegro_color.h>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/WordRangesFinder.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/CodeSelectionBoxRenderer.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/CodeSelectionBoxRenderer.hpp>
-#include <stdexcept>
-#include <sstream>
 #include <Hexagon/CodeMessagePointsOverlay.hpp>
-#include <stdexcept>
+#include <Hexagon/CodeSelectionBoxRenderer.hpp>
+#include <Hexagon/WordRangesFinder.hpp>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_color.h>
+#include <iostream>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -663,6 +645,8 @@ void Renderer::draw_code_message_points()
 
    return;
 }
+
+
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

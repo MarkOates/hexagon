@@ -1,12 +1,13 @@
 
 
 #include <Hexagon/Powerbar/Renderer.hpp>
+
 #include <AllegroFlare/Color.hpp>
-#include <sstream>
-#include <allegro_flare/placement3d.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro_flare/placement3d.h>
+#include <sstream>
 
 
 namespace Hexagon
@@ -121,6 +122,8 @@ void Renderer::render()
 
    return;
 }
+
+
 } // namespace Powerbar
 } // namespace Hexagon
 

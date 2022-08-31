@@ -1,10 +1,11 @@
 
 
 #include <Hexagon/MultiplexMenu/Renderer.hpp>
-#include <allegro_flare/placement3d.h>
-#include <stdexcept>
-#include <sstream>
+
 #include <Hexagon/MultiplexMenu/PageRenderer.hpp>
+#include <allegro_flare/placement3d.h>
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -61,6 +62,8 @@ void Renderer::render_page(Hexagon::MultiplexMenu::MultiplexMenuPage* page, bool
    page_renderer.render();
    return;
 }
+
+
 } // namespace MultiplexMenu
 } // namespace Hexagon
 

@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace CodeEditor
@@ -28,6 +29,8 @@ std::string Cursor::run()
 {
    return "Hello World!";
 }
+
+
 } // namespace CodeEditor
 } // namespace Hexagon
 

@@ -1,10 +1,9 @@
 
 
 #include <Hexagon/Shaders/TexturedTruchet.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -166,6 +165,8 @@ std::string TexturedTruchet::obtain_fragment_source()
    )DELIM";
    return source;
 }
+
+
 } // namespace Shaders
 } // namespace Hexagon
 

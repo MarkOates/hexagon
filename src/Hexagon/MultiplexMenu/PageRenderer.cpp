@@ -1,21 +1,16 @@
 
 
 #include <Hexagon/MultiplexMenu/PageRenderer.hpp>
-#include <stdexcept>
-#include <sstream>
+
 #include <AllegroFlare/Color.hpp>
-#include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_font.h>
-#include <allegro5/allegro_color.h>
 #include <Blast/StringJoiner.hpp>
-#include <allegro5/allegro.h>
-#include <stdexcept>
-#include <sstream>
 #include <Hexagon/Elements/ColorKit.hpp>
-#include <stdexcept>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_primitives.h>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -275,6 +270,8 @@ ALLEGRO_FONT* PageRenderer::obtain_keyboard_key_font()
    }
    return font_bin->auto_get("consolas.ttf -30");
 }
+
+
 } // namespace MultiplexMenu
 } // namespace Hexagon
 

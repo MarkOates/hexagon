@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/Git/CommitStagedWithMessage.hpp>
-#include <sstream>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <sstream>
 
 
 namespace Hexagon
@@ -52,6 +53,8 @@ bool CommitStagedWithMessage::commit()
    executor.execute();
    return true;
 }
+
+
 } // namespace Git
 } // namespace Hexagon
 

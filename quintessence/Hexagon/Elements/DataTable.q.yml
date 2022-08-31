@@ -23,7 +23,6 @@ functions:
 
 
   - name: render
-    private: true
     guards: [ al_is_system_installed(), font ]
     body: |
       ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};

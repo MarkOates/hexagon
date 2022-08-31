@@ -1,10 +1,10 @@
 
 
 #include <Hexagon/CodeEditor/Renderer/BasicLineRenderer.hpp>
-#include <sstream>
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
-#include <allegro5/allegro.h>
+#include <sstream>
 
 
 namespace Hexagon
@@ -54,6 +54,8 @@ void BasicLineRenderer::render()
                 ALLEGRO_ALIGN_LEFT,
                 truncated_line.c_str());
 }
+
+
 } // namespace Renderer
 } // namespace CodeEditor
 } // namespace Hexagon

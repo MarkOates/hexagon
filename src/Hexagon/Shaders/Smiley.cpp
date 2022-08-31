@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/Shaders/Smiley.hpp>
-#include <stdexcept>
+
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -132,6 +133,8 @@ std::string Smiley::obtain_fragment_source()
    )DELIM";
    return source;
 }
+
+
 } // namespace Shaders
 } // namespace Hexagon
 

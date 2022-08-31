@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -75,6 +76,8 @@ void CodeMessagePointManager::shift_rows_down_at_and_after(int row)
    }
    return;
 }
+
+
 } // namespace Hexagon
 
 

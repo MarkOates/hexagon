@@ -1,9 +1,10 @@
 
 
 #include <Hexagon/Git/Modified.hpp>
-#include <sstream>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Blast/StringSplitter.hpp>
+#include <sstream>
 
 
 namespace Hexagon
@@ -50,6 +51,8 @@ std::string Modified::build_tracked_files_shell_command()
 
    return commit_everything_shell_command.str();
 }
+
+
 } // namespace Git
 } // namespace Hexagon
 

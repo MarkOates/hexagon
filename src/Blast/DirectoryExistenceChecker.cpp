@@ -1,6 +1,7 @@
 
 
 #include <Blast/DirectoryExistenceChecker.hpp>
+
 #include <sys/stat.h>
 
 
@@ -24,6 +25,8 @@ bool DirectoryExistenceChecker::exists()
    struct stat info;
    return stat(directory_name.c_str(), &info) == 0 && S_ISDIR(info.st_mode);
 }
+
+
 } // namespace Blast
 
 

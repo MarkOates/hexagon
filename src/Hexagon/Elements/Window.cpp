@@ -1,12 +1,13 @@
 
 
 #include <Hexagon/Elements/Window.hpp>
+
 #include <allegro5/allegro.h>
-#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
 #include <allegro_flare/color.h>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -548,6 +549,8 @@ void Window::draw_corner_squares()
    );
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

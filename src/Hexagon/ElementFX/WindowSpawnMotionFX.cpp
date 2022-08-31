@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/ElementFX/WindowSpawnMotionFX.hpp>
+
 #include <Hexagon/Elements/Window.hpp>
 
 
@@ -25,6 +26,8 @@ Hexagon::Elements::Window WindowSpawnMotionFX::construct_modified_window()
 {
    return window;
 }
+
+
 } // namespace ElementFX
 } // namespace Hexagon
 

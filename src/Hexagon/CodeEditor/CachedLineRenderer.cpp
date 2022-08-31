@@ -1,16 +1,13 @@
 
 
 #include <Hexagon/CodeEditor/CachedLineRenderer.hpp>
+
 #include <allegro5/allegro.h>
-#include <map>
-#include <vector>
 #include <allegro5/allegro_font.h>
-#include <stdexcept>
+#include <map>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
+#include <vector>
 
 
 namespace Hexagon
@@ -121,6 +118,8 @@ ALLEGRO_BITMAP* CachedLineRenderer::pull(int index)
    }
    return cache[index];
 }
+
+
 } // namespace CodeEditor
 } // namespace Hexagon
 

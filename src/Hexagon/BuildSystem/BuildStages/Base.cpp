@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace BuildSystem
@@ -77,6 +78,8 @@ void Base::execute()
 {
    return;
 }
+
+
 } // namespace BuildStages
 } // namespace BuildSystem
 } // namespace Hexagon

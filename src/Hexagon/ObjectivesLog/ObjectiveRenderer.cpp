@@ -1,11 +1,10 @@
 
 
 #include <Hexagon/ObjectivesLog/ObjectiveRenderer.hpp>
+
 #include <allegro5/allegro_primitives.h>
-#include <stdexcept>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -132,6 +131,8 @@ ALLEGRO_FONT* ObjectiveRenderer::obtain_primary_text_font()
    }
    return font_bin->auto_get("Purista Medium.otf -36");
 }
+
+
 } // namespace ObjectivesLog
 } // namespace Hexagon
 

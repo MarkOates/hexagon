@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/AdvancedCodeEditor/WindowRenderer.hpp>
-#include <Hexagon/Elements/Window.hpp>
+
 #include <Hexagon/ElementFX/WindowSpawnMotionFX.hpp>
+#include <Hexagon/Elements/Window.hpp>
 
 
 namespace Hexagon
@@ -41,6 +42,8 @@ void WindowRenderer::render()
    window.draw();
    return;
 }
+
+
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

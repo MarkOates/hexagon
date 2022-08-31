@@ -1,11 +1,9 @@
 
 
 #include <Hexagon/ProjectComponentNavigator/ComponentSearcher.hpp>
+
 #include <Blast/Project/ComponentLister.hpp>
 #include <Blast/SimpleTextSearcher.hpp>
-#include <Blast/Project/ComponentLister.hpp>
-#include <Blast/SimpleTextSearcher.hpp>
-#include <Blast/Project/ComponentLister.hpp>
 
 
 namespace Hexagon
@@ -76,6 +74,8 @@ std::vector<Blast::Project::Component> ComponentSearcher::components()
    std::vector<Blast::Project::Component> result;
    return convert_to_components(component_names());
 }
+
+
 } // namespace ProjectComponentNavigator
 } // namespace Hexagon
 

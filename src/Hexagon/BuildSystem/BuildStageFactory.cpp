@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace BuildSystem
@@ -27,6 +28,8 @@ Hexagon::BuildSystem::BuildStages::ShellCommand* BuildStageFactory::create_shell
       new Hexagon::BuildSystem::BuildStages::ShellCommand(shell_command);
    return build_stage;
 }
+
+
 } // namespace BuildSystem
 } // namespace Hexagon
 

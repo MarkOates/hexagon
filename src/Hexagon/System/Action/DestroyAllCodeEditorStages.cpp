@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/System/Action/DestroyAllCodeEditorStages.hpp>
+
 #include <Hexagon/CodeEditor/Stage.hpp>
 
 
@@ -65,6 +66,8 @@ bool DestroyAllCodeEditorStages::execute()
    }
    return true;
 }
+
+
 } // namespace Action
 } // namespace System
 } // namespace Hexagon

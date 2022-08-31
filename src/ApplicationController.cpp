@@ -1,19 +1,20 @@
 
 
 #include <ApplicationController.hpp>
-#include <iostream>
+
+#include <Blast/FileExistenceChecker.hpp>
+#include <Hexagon/System/Renderer.hpp>
+#include <Hexagon/System/System.hpp>
+#include <Hexagon/TitleScreen.hpp>
+#include <Hexagon/shared_globals.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
-#include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
-#include <Hexagon/TitleScreen.hpp>
-#include <Hexagon/System/System.hpp>
-#include <Hexagon/System/Renderer.hpp>
-#include <Hexagon/shared_globals.hpp>
-#include <stdexcept>
+#include <allegro5/allegro_ttf.h>
+#include <iostream>
 #include <sstream>
-#include <Blast/FileExistenceChecker.hpp>
+#include <stdexcept>
 
 
 
@@ -310,5 +311,7 @@ void ApplicationController::verify_presence_of_temp_files_and_assign_to_global_c
 
    return;
 }
+
+
 
 

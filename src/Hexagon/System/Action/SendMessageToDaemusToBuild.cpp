@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/System/Action/SendMessageToDaemusToBuild.hpp>
-#include <string>
+
 #include <Blast/FileCreator.hpp>
+#include <string>
 
 
 namespace Hexagon
@@ -31,6 +32,8 @@ bool SendMessageToDaemusToBuild::execute()
    file_creator.create_or_overwrite();
    return true;
 }
+
+
 } // namespace Action
 } // namespace System
 } // namespace Hexagon

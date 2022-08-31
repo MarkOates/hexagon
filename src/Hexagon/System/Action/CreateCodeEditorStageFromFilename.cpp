@@ -1,14 +1,14 @@
 
 
 #include <Hexagon/System/Action/CreateCodeEditorStageFromFilename.hpp>
-#include <sstream>
+
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/util.hpp>
 #include <allegro_flare/placement3d.h>
-#include <vector>
-#include <string>
-#include <Hexagon/CodeEditor/Stage.hpp>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 
 namespace Hexagon
@@ -101,6 +101,8 @@ bool CreateCodeEditorStageFromFilename::execute()
 
    return true;
 }
+
+
 } // namespace Action
 } // namespace System
 } // namespace Hexagon

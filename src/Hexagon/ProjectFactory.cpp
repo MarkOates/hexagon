@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/ProjectFactory.hpp>
-#include <Hexagon/ProjectFromYAML.hpp>
+
 #include <Blast/FileExistenceChecker.hpp>
+#include <Hexagon/ProjectFromYAML.hpp>
 #include <allegro_flare/useful_php.h>
 
 
@@ -73,6 +74,8 @@ Hexagon::Project ProjectFactory::partner_performance_dashboard()
 
    return Hexagon::Project(project_name, layouts);
 }
+
+
 } // namespace Hexagon
 
 

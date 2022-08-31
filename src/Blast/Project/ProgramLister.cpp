@@ -1,10 +1,11 @@
 
 
 #include <Blast/Project/ProgramLister.hpp>
-#include <sstream>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Blast/StringSplitter.hpp>
 #include <algorithm>
+#include <sstream>
 
 
 namespace Blast
@@ -56,6 +57,8 @@ std::vector<std::string> ProgramLister::program_filenames()
 
    return result;
 }
+
+
 } // namespace Project
 } // namespace Blast
 

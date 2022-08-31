@@ -1,6 +1,7 @@
 
 
 #include <Blast/String/Trimmer.hpp>
+
 #include <algorithm>
 
 
@@ -40,6 +41,8 @@ std::string Trimmer::rtrim(std::string s)
    s.erase(std::find_if(s.rbegin(), s.rend(), [](int c) {return !std::isspace(c);}).base(), s.end());
    return s;
 }
+
+
 } // namespace String
 } // namespace Blast
 

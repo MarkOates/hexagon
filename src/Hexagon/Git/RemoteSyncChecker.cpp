@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/Git/RemoteSyncChecker.hpp>
+
 #include <NcursesArt/GithubRepoStatusFetcher.hpp>
 
 
@@ -39,6 +40,8 @@ bool RemoteSyncChecker::is_in_sync_with_remote()
    NcursesArt::GithubRepoStatusFetcher fetcher(repo_name, repos_directory);
    return fetcher.is_the_repo_in_sync_with_remote();
 }
+
+
 } // namespace Git
 } // namespace Hexagon
 

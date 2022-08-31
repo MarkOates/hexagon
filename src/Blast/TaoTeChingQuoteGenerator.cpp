@@ -1,10 +1,11 @@
 
 
 #include <Blast/TaoTeChingQuoteGenerator.hpp>
+
 #include <algorithm>
+#include <iostream>
 #include <iterator>
 #include <random>
-#include <iostream>
 
 
 namespace Blast
@@ -128,6 +129,8 @@ std::vector<std::string> TaoTeChingQuoteGenerator::default_quotes_list()
          "is not male.\nFemale is not female.There is just this jazz.\n\n-Alan Watts",
    };
 }
+
+
 } // namespace Blast
 
 

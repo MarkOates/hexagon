@@ -1,8 +1,8 @@
 
 
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
+
 #include <Blast/StringSplitter.hpp>
-#include <algorithm>
 #include <Hexagon/RegexMatcher.hpp>
 #include <algorithm>
 #include <array>
@@ -567,6 +567,8 @@ int AdvancedCodeEditor::dirty_cell_count()
 {
    return dirty_grid.dirty_cells_count();
 }
+
+
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

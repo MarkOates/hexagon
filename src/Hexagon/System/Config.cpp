@@ -1,24 +1,10 @@
 
 
 #include <Hexagon/System/Config.hpp>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
+
 #include <Hexagon/Elements/ColorKit.hpp>
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -303,6 +289,8 @@ std::string Config::resource_path(std::vector<std::string> components, std::stri
 
    return result;
 }
+
+
 } // namespace System
 } // namespace Hexagon
 

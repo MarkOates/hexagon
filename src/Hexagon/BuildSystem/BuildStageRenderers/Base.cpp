@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace BuildSystem
@@ -38,6 +39,8 @@ std::string Base::render_text()
 {
    return "";
 }
+
+
 } // namespace BuildStageRenderers
 } // namespace BuildSystem
 } // namespace Hexagon

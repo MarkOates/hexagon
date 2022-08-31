@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace FocusTimerBar
@@ -32,6 +33,8 @@ float FocusTimerBar::get_focus_timer_duration_sec() const
 {
    return focus_timer_duration_sec;
 }
+
+
 
 
 } // namespace FocusTimerBar

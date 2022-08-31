@@ -1,34 +1,30 @@
 
 
 #include <Hexagon/Hud.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <allegro5/allegro_primitives.h>
+
 #include <AllegroFlare/Color.hpp>
-#include <Hexagon/shared_globals.hpp>
-#include <Hexagon/Elements/ColorKit.hpp>
+#include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
-#include <allegro_flare/useful_php.h>
-#include <allegro_flare/placement2d.h>
+#include <Hexagon/Camera.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/Elements/ColorKit.hpp>
 #include <Hexagon/Elements/Pill.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <math.h>
-#include <algorithm>
-#include <allegro_flare/placement3d.h>
-#include <allegro5/allegro_font.h>
-#include <allegro5/allegro_color.h>
-#include <allegro5/allegro_font.h>
-#include <Hexagon/Powerbar/Powerbar.hpp>
-#include <Hexagon/Powerbar/Renderer.hpp>
 #include <Hexagon/FocusTimerBar/Renderer.hpp>
 #include <Hexagon/PacketRenderer.hpp>
-#include <Hexagon/CodeEditor/Stage.hpp>
-#include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
-#include <Hexagon/Camera.hpp>
+#include <Hexagon/Powerbar/Powerbar.hpp>
+#include <Hexagon/Powerbar/Renderer.hpp>
 #include <Hexagon/StageCollectionHelper.hpp>
-#include <stdexcept>
+#include <Hexagon/shared_globals.hpp>
+#include <algorithm>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro_flare/placement2d.h>
+#include <allegro_flare/placement3d.h>
+#include <allegro_flare/useful_php.h>
+#include <math.h>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -1000,6 +996,8 @@ ALLEGRO_FONT* Hud::obtain_component_navigator_font()
    return font_bin["Purista Medium.otf -22"];
    //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
+
+
 } // namespace Hexagon
 
 

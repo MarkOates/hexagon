@@ -1,12 +1,10 @@
 
 
 #include <Hexagon/CodeRangeExtractor.hpp>
+
 #include <algorithm>
-#include <stdexcept>
 #include <sstream>
-#include <algorithm>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -84,6 +82,8 @@ std::vector<std::string> CodeRangeExtractor::extract_full_lines()
 
    return result_full_lines;
 }
+
+
 } // namespace Hexagon
 
 

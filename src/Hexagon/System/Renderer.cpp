@@ -1,18 +1,17 @@
 
 
 #include <Hexagon/System/Renderer.hpp>
-#include <Hexagon/shared_globals.hpp>
-#include <allegro5/allegro_color.h>
-#include <allegro5/allegro.h>
-#include <Hexagon/CodeEditor/Stage.hpp>
+
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
-#include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/Elements/Window.hpp>
+#include <Hexagon/FileNavigator/Stage.hpp>
 #include <Hexagon/StageCollectionHelper.hpp>
-#include <stdexcept>
+#include <Hexagon/shared_globals.hpp>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_color.h>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -125,6 +124,8 @@ void Renderer::draw_focused_frame(StageInterface* stage)
 
    return;
 }
+
+
 } // namespace System
 } // namespace Hexagon
 

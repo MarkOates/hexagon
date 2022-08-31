@@ -1,17 +1,12 @@
 
 
 #include <Hexagon/BlastProjectLayoutsGenerator.hpp>
-#include <Blast/Project/ComponentLister.hpp>
+
 #include <Blast/Project/Component.hpp>
+#include <Blast/Project/ComponentLister.hpp>
+#include <Blast/ProjectComponentFileTypes.hpp>
+#include <Blast/ProjectComponentFilenameGenerator.hpp>
 #include <iostream>
-#include <Blast/ProjectComponentFilenameGenerator.hpp>
-#include <Blast/ProjectComponentFileTypes.hpp>
-#include <Blast/ProjectComponentFilenameGenerator.hpp>
-#include <Blast/ProjectComponentFileTypes.hpp>
-#include <Blast/ProjectComponentFilenameGenerator.hpp>
-#include <Blast/ProjectComponentFileTypes.hpp>
-#include <Blast/ProjectComponentFilenameGenerator.hpp>
-#include <Blast/ProjectComponentFileTypes.hpp>
 
 
 namespace Hexagon
@@ -144,6 +139,8 @@ std::string BlastProjectLayoutsGenerator::component_generate_quintessence_filena
    );
    return project_directory + generator.generate_filename();
 }
+
+
 } // namespace Hexagon
 
 

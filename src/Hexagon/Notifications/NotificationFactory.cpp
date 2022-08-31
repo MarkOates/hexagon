@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace Notifications
@@ -28,6 +29,8 @@ Hexagon::Notifications::Notification* NotificationFactory::create_basic_notifica
       );
    return notification;
 }
+
+
 } // namespace Notifications
 } // namespace Hexagon
 

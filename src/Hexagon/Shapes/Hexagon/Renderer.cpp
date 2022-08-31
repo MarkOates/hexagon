@@ -1,9 +1,10 @@
 
 
 #include <Hexagon/Shapes/Hexagon/Renderer.hpp>
-#include <cmath>
-#include <allegro_flare/vec2d.h>
+
 #include <allegro_flare/path2d.h>
+#include <allegro_flare/vec2d.h>
+#include <cmath>
 
 
 namespace Hexagon
@@ -80,6 +81,8 @@ void Renderer::render()
    }
    return;
 }
+
+
 } // namespace Hexagon
 } // namespace Shapes
 } // namespace Hexagon

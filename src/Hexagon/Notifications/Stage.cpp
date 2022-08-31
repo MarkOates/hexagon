@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace Notifications
@@ -64,6 +65,8 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 {
    return;
 }
+
+
 } // namespace Notifications
 } // namespace Hexagon
 

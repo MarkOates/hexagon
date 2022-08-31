@@ -1,9 +1,10 @@
 
 
 #include <Hexagon/BuildSystem/ReportRenderer.hpp>
+
 #include <Hexagon/BuildSystem/ReportRenderers/Base.hpp>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -62,6 +63,8 @@ std::string ReportRenderer::build_text_report()
 
    return result;
 }
+
+
 } // namespace BuildSystem
 } // namespace Hexagon
 

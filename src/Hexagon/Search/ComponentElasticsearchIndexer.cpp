@@ -1,15 +1,12 @@
 
 
 #include <Hexagon/Search/ComponentElasticsearchIndexer.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
+
 #include <Blast/Project/Component.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <lib/nlohmann/json.hpp>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -94,6 +91,8 @@ std::string ComponentElasticsearchIndexer::import_or_update()
 
    return response;
 }
+
+
 } // namespace Search
 } // namespace Hexagon
 

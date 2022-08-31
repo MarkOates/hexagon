@@ -1,12 +1,11 @@
 
 
 #include <Hexagon/Elements/Pill.hpp>
-#include <allegro5/allegro_primitives.h>
+
 #include <allegro5/allegro_font.h>
-#include <stdexcept>
+#include <allegro5/allegro_primitives.h>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -148,6 +147,8 @@ ALLEGRO_FONT* Pill::obtain_font()
    }
    return font_bin->auto_get("Purista Medium.otf -16");
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

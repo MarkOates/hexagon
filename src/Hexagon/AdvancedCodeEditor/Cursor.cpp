@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace AdvancedCodeEditor
@@ -97,6 +98,8 @@ void Cursor::move_to(int x, int y)
    this->x = x;
    this->y = y;
 }
+
+
 } // namespace AdvancedCodeEditor
 } // namespace Hexagon
 

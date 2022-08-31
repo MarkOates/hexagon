@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 
@@ -42,6 +43,8 @@ std::vector<std::tuple<std::string, Hexagon::Layout>> Project::get_layouts() con
 {
    return layouts;
 }
+
+
 
 
 } // namespace Hexagon

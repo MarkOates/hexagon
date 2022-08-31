@@ -1,23 +1,10 @@
 
 
 #include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
+
 #include <iostream>
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -344,6 +331,8 @@ void Stage::emit_submission()
              << dependencies_menu.get_current_list_item_identifier() << ")"
              << "\"" << std::endl;
 }
+
+
 } // namespace ComponentRelationsNavigator
 } // namespace Hexagon
 

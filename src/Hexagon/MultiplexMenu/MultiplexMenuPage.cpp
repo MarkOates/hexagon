@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
+
 #include <Hexagon/KeyboardCommandKey.hpp>
 
 
@@ -46,6 +47,8 @@ bool MultiplexMenuPage::compare_keyboard_command_keys_equal(Hexagon::KeyboardCom
    if (a.get_ctrl() != b.get_ctrl()) return false;
    return true;
 }
+
+
 } // namespace MultiplexMenu
 } // namespace Hexagon
 

@@ -1,12 +1,11 @@
 
 
 #include <Hexagon/Elements/ListMenu.hpp>
-#include <allegro5/allegro_primitives.h>
+
 #include <algorithm>
-#include <stdexcept>
+#include <allegro5/allegro_primitives.h>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -380,6 +379,8 @@ void ListMenu::draw_cursor_pointer_arrow(float cpx, float cpy)
    al_draw_ribbon(&points[0], sizeof(float) * 2, color, 2.0, (points.size()/2));
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

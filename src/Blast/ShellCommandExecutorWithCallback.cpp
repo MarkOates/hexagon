@@ -1,13 +1,13 @@
 
 
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
-#include <iostream>
-#include <cstdio>
-#include <string>
+
 #include <array>
-#include <memory>
 #include <cstdio>
+#include <iostream>
+#include <memory>
 #include <stdexcept>
+#include <string>
 
 
 namespace Blast
@@ -55,6 +55,8 @@ std::string ShellCommandExecutorWithCallback::execute()
 
    return result;
 }
+
+
 } // namespace Blast
 
 

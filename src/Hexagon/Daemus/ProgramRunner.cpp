@@ -1,24 +1,19 @@
 
 
 #include <Hexagon/Daemus/ProgramRunner.hpp>
-#include <sstream>
-#include <Hexagon/System/Config.hpp>
-#include <iostream>
-#include <Hexagon/System/Config.hpp>
-#include <Blast/ShellCommandExecutorWithCallback.hpp>
-#include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
-#include <vector>
-#include <Hexagon/Testing/GoogleTestRunTestResult.hpp>
+
 #include <Blast/DirectoryExistenceChecker.hpp>
 #include <Blast/FileExistenceChecker.hpp>
-#include <sstream>
-#include <iostream>
-#include <unistd.h>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
-#include <Blast/DirectoryExistenceChecker.hpp>
-#include <filesystem>
+#include <Hexagon/System/Config.hpp>
+#include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
+#include <Hexagon/Testing/GoogleTestRunTestResult.hpp>
 #include <chrono>
 #include <filesystem>
+#include <iostream>
+#include <sstream>
+#include <unistd.h>
+#include <vector>
 
 
 namespace Hexagon
@@ -370,6 +365,8 @@ std::string ProgramRunner::find_oldest_filename(std::string path, bool ignore_do
 
    return listing[0].second;
 }
+
+
 } // namespace Daemus
 } // namespace Hexagon
 

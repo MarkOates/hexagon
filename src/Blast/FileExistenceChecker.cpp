@@ -1,6 +1,7 @@
 
 
 #include <Blast/FileExistenceChecker.hpp>
+
 #include <filesystem>
 
 
@@ -29,6 +30,8 @@ bool FileExistenceChecker::exists()
 {
    return std::filesystem::exists(filename);
 }
+
+
 } // namespace Blast
 
 

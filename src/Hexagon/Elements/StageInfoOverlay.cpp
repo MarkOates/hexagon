@@ -1,16 +1,15 @@
 
 
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
-#include <allegro_flare/color.h>
+
 #include <Hexagon/Elements/Frame.hpp>
-#include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_color.h>
-#include <allegro5/allegro.h>
 #include <algorithm>
-#include <stdexcept>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro_flare/color.h>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -145,6 +144,8 @@ ALLEGRO_FONT* StageInfoOverlay::obtain_title_font()
    //return font_bin->auto_get("Eurostile.ttf 32");
    return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf 48");
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

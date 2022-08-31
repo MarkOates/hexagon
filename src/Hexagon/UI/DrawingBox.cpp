@@ -1,30 +1,18 @@
 
 
 #include <Hexagon/UI/DrawingBox.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/Elements/Window.hpp>
-#include <stdexcept>
-#include <sstream>
+
 #include <AllegroFlare/Color.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <allegro5/allegro_font.h>
-#include <allegro5/allegro.h>
 #include <Blast/StringJoiner.hpp>
-#include <allegro5/allegro_font.h>
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_primitives.h>
-#include <stdexcept>
-#include <sstream>
-#include <allegro_flare/useful.h>
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_image.h>
+#include <Hexagon/Elements/Window.hpp>
 #include <TimestampGenerator.hpp>
-#include <stdexcept>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro_flare/useful.h>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -425,6 +413,8 @@ bool DrawingBox::set_red_draft_brush()
    pen_color = ALLEGRO_COLOR{1.0f, 0.0f, 0.0f, 1.0f};
    return true;
 }
+
+
 } // namespace UI
 } // namespace Hexagon
 

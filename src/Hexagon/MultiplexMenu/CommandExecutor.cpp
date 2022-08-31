@@ -1,10 +1,9 @@
 
 
 #include <Hexagon/MultiplexMenu/CommandExecutor.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -57,6 +56,8 @@ bool CommandExecutor::execute()
    }
    return true;
 }
+
+
 } // namespace MultiplexMenu
 } // namespace Hexagon
 

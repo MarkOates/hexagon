@@ -1,12 +1,11 @@
 
 
 #include <Hexagon/ObjectivesLog/Stage.hpp>
+
 #include <Hexagon/ObjectivesLog/ObjectiveRenderer.hpp>
 #include <allegro5/allegro_primitives.h>
-#include <stdexcept>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -142,6 +141,8 @@ void Stage::process_event(ALLEGRO_EVENT& event)
 {
    return;
 }
+
+
 } // namespace ObjectivesLog
 } // namespace Hexagon
 

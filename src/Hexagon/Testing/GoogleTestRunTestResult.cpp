@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace Testing
@@ -102,6 +103,8 @@ bool GoogleTestRunTestResult::infer_failed()
 {
    return result == "failed"; // TODO: compare this to a constant
 }
+
+
 } // namespace Testing
 } // namespace Hexagon
 

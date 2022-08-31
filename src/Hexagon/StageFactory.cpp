@@ -1,69 +1,35 @@
 
 
 #include <Hexagon/StageFactory.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/Notifications/Stage.hpp>
-#include <Hexagon/FileNavigator/Stage.hpp>
-#include <Hexagon/UI/LittleMenu.hpp>
-#include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
-#include <Blast/StringSplitter.hpp>
-#include <Hexagon/ComponentRelationsNavigator/ComponentRelations.hpp>
-#include <vector>
-#include <tuple>
-#include <string>
-#include <Hexagon/Fancy/Stage.hpp>
-#include <Hexagon/UI/DrawingBox.hpp>
-#include <Hexagon/StageInterface.hpp>
-#include <Hexagon/MissingFile/Stage.hpp>
-#include <allegro_flare/useful_php.h>
+
 #include <AllegroFlare/Color.hpp>
-#include <Hexagon/StageInterface.hpp>
-#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
-#include <Hexagon/StageInterface.hpp>
-#include <Hexagon/CodeEditor/Stage.hpp>
 #include <Blast/Project/SymlinkChecker.hpp>
-#include <Hexagon/MultiplexMenu/Stage.hpp>
-#include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
-#include <Hexagon/MultiplexMenu/Stage.hpp>
-#include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
-#include <Hexagon/MultiplexMenu/Stage.hpp>
-#include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
-#include <Hexagon/CodeEditor/Stage.hpp>
-#include <Hexagon/OneLineInputBox/Stage.hpp>
-#include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
+#include <Blast/StringSplitter.hpp>
+#include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
-#include <allegro5/allegro_font.h>
-#include <stdexcept>
-#include <sstream>
-#include <Hexagon/ProjectNavigator.hpp>
-#include <vector>
-#include <tuple>
-#include <string>
-#include <stdexcept>
-#include <sstream>
-#include <allegro5/allegro.h>
-#include <stdexcept>
-#include <sstream>
+#include <Hexagon/CodeEditor/Stage.hpp>
+#include <Hexagon/ComponentRelationsNavigator/ComponentRelations.hpp>
+#include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
+#include <Hexagon/Fancy/Stage.hpp>
+#include <Hexagon/FileNavigator/Stage.hpp>
+#include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
+#include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/MultiplexMenu/MultiplexMenuPage.hpp>
+#include <Hexagon/MultiplexMenu/Stage.hpp>
+#include <Hexagon/Notifications/Stage.hpp>
+#include <Hexagon/OneLineInputBox/Stage.hpp>
+#include <Hexagon/ProjectNavigator.hpp>
+#include <Hexagon/StageInterface.hpp>
+#include <Hexagon/UI/DrawingBox.hpp>
+#include <Hexagon/UI/LittleMenu.hpp>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
+#include <allegro_flare/useful_php.h>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <tuple>
+#include <vector>
 
 
 namespace Hexagon
@@ -853,6 +819,8 @@ Hexagon::MultiplexMenu::MultiplexMenu StageFactory::build_full_multiplex_menu()
    Hexagon::MultiplexMenu::MultiplexMenu full_multiplex_menu(dictionary);
    return full_multiplex_menu;
 }
+
+
 } // namespace Hexagon
 
 

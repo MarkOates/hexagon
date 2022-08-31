@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/Git/StageEverything.hpp>
-#include <sstream>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <sstream>
 
 
 namespace Hexagon
@@ -30,6 +31,8 @@ bool StageEverything::stage_everything()
    executor.execute();
    return true;
 }
+
+
 } // namespace Git
 } // namespace Hexagon
 

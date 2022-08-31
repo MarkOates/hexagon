@@ -1,6 +1,7 @@
 
 
 #include <Hexagon/FontSet.hpp>
+
 #include <sstream>
 
 
@@ -48,6 +49,8 @@ ALLEGRO_FONT* FontSet::obtain_font(std::string identifier)
 
    return fonts[font_dictionary[identifier]];
 }
+
+
 } // namespace Hexagon
 
 

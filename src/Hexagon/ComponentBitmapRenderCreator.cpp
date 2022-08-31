@@ -1,8 +1,9 @@
 
 
 #include <Hexagon/ComponentBitmapRenderCreator.hpp>
-#include <stdexcept>
+
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -41,6 +42,8 @@ std::string ComponentBitmapRenderCreator::render()
 {
    return "Hello World!";
 }
+
+
 } // namespace Hexagon
 
 

@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace ObjectivesLog
@@ -58,6 +59,8 @@ void Objective::mark_as_completed()
    completed = true;
    return;
 }
+
+
 } // namespace ObjectivesLog
 } // namespace Hexagon
 

@@ -1,17 +1,14 @@
 
 
 #include <Hexagon/MissingFile/Stage.hpp>
+
+#include <Blast/FileCreator.hpp>
 #include <Hexagon/Elements/TexturedRectangle.hpp>
 #include <allegro5/allegro_color.h>
-#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
-#include <stdexcept>
+#include <allegro5/allegro_primitives.h>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <Blast/FileCreator.hpp>
 
 
 namespace Hexagon
@@ -206,6 +203,8 @@ void Stage::create_expected_file()
    file_creator.create_if_not_exists();
    return;
 }
+
+
 } // namespace MissingFile
 } // namespace Hexagon
 

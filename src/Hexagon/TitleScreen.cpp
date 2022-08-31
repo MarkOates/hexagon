@@ -1,25 +1,19 @@
 
 
 #include <Hexagon/TitleScreen.hpp>
-#include <allegro5/allegro_primitives.h>
+
 #include <AllegroFlare/Profiler.hpp>
-#include <Hexagon/Logo.hpp>
-#include <allegro5/allegro_font.h>
-#include <Hexagon/Shaders/TiledHexagonMotionEffect.hpp>
-#include <stdexcept>
-#include <sstream>
-#include <allegro_flare/placement3d.h>
-#include <Hexagon/Elements/ListMenu.hpp>
-#include <stdexcept>
-#include <sstream>
 #include <Hexagon/Elements/DataTable.hpp>
-#include <stdexcept>
-#include <sstream>
+#include <Hexagon/Elements/ListMenu.hpp>
+#include <Hexagon/Logo.hpp>
+#include <Hexagon/Shaders/TiledHexagonMotionEffect.hpp>
 #include <allegro5/allegro.h>
-#include <sstream>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro_flare/placement3d.h>
 #include <fstream>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -358,6 +352,8 @@ void TitleScreen::append_project_path_to_config_file_and_reload_injected_config(
 
    return;
 }
+
+
 } // namespace Hexagon
 
 

@@ -1,10 +1,9 @@
 
 
 #include <Hexagon/Elements/FontCharacterMapGrid.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -128,6 +127,8 @@ bool FontCharacterMapGrid::initialize()
 
    return true;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

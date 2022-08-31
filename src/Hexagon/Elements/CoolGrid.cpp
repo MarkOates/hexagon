@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace Elements
@@ -24,6 +25,8 @@ std::string CoolGrid::run()
 {
    return "Hello World!";
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

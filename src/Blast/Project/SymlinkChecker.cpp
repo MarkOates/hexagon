@@ -1,12 +1,11 @@
 
 
 #include <Blast/Project/SymlinkChecker.hpp>
+
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <filesystem>
 #include <iostream>
 #include <sstream>
-#include <filesystem>
-#include <Blast/ShellCommandExecutorWithCallback.hpp>
-#include <filesystem>
-#include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
 namespace Blast
@@ -93,6 +92,8 @@ std::string SymlinkChecker::read_symlink_target__shell_call_impl()
    if (!command_result.empty() && command_result.back() == '\n') command_result.pop_back();
    return command_result;
 }
+
+
 } // namespace Project
 } // namespace Blast
 

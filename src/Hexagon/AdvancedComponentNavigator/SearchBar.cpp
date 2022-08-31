@@ -4,6 +4,7 @@
 
 
 
+
 namespace Hexagon
 {
 namespace AdvancedComponentNavigator
@@ -24,6 +25,8 @@ std::string SearchBar::run()
 {
    return "Hello World!";
 }
+
+
 } // namespace AdvancedComponentNavigator
 } // namespace Hexagon
 

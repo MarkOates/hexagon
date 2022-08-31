@@ -1,9 +1,10 @@
 
 
 #include <Hexagon/BuildSystem/BuildStages/ShellCommand.hpp>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -53,6 +54,8 @@ void ShellCommand::execute()
    executed = true;
    return;
 }
+
+
 } // namespace BuildStages
 } // namespace BuildSystem
 } // namespace Hexagon

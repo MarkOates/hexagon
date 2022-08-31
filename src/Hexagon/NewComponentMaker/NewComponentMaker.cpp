@@ -1,12 +1,10 @@
 
 
 #include <Hexagon/NewComponentMaker/NewComponentMaker.hpp>
-#include <sstream>
+
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Blast/StringSplitter.hpp>
 #include <sstream>
-#include <Blast/ShellCommandExecutorWithCallback.hpp>
-#include <Blast/StringSplitter.hpp>
 
 
 namespace Hexagon
@@ -63,6 +61,8 @@ std::string NewComponentMaker::build_shell_command()
 
    return commit_everything_shell_command.str();
 }
+
+
 } // namespace NewComponentMaker
 } // namespace Hexagon
 

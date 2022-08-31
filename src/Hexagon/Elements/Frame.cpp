@@ -1,9 +1,8 @@
 
 
 #include <Hexagon/Elements/Frame.hpp>
+
 #include <AllegroFlare/Color.hpp>
-#include <allegro5/allegro_color.h>
-#include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
@@ -105,6 +104,8 @@ void Frame::render()
    al_draw_rectangle(0, 0, width, height, get_outline_color(), get_line_thickness());
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

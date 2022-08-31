@@ -1,13 +1,12 @@
 
 
 #include <Hexagon/Fancy/Stage.hpp>
-#include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_font.h>
+
 #include <allegro5/allegro_color.h>
-#include <stdexcept>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_primitives.h>
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -103,6 +102,8 @@ ALLEGRO_FONT* Stage::obtain_title_font()
    }
    return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -26");
 }
+
+
 } // namespace Fancy
 } // namespace Hexagon
 

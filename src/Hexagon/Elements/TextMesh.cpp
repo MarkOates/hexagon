@@ -1,14 +1,9 @@
 
 
 #include <Hexagon/Elements/TextMesh.hpp>
-#include <stdexcept>
+
 #include <sstream>
 #include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
-#include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -180,6 +175,8 @@ void TextMesh::render_only_select_cells(std::vector<std::pair<int, int>> cell_co
    bitmap_grid_mesh.render_only_select_cells(cell_coordinates);
    return;
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 

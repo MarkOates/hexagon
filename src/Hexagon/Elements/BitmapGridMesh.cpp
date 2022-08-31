@@ -1,12 +1,10 @@
 
 
 #include <Hexagon/Elements/BitmapGridMesh.hpp>
+
 #include <allegro5/allegro.h>
-#include <stdexcept>
 #include <sstream>
-#include <allegro5/allegro.h>
 #include <stdexcept>
-#include <sstream>
 
 
 namespace Hexagon
@@ -336,6 +334,8 @@ std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>* BitmapGridMesh::find_cell(int x,
    if (x < 0 || x >= grid[y].size()) return nullptr;
    return &grid[y][x];
 }
+
+
 } // namespace Elements
 } // namespace Hexagon
 
