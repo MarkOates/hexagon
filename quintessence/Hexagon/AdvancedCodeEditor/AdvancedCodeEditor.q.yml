@@ -571,7 +571,7 @@ functions:
 
 
   - name: is_cursor_in_bounds
-    private: true
+    xprivate: true
     type: bool
     body: |
       if (cursor.get_y() >= lines.size()) return false;
@@ -623,7 +623,7 @@ functions:
 
   - name: dirty_grid_clear
     type: void
-    private: true
+    xprivate: true
     body: |
       dirty_grid.clear();
       return;
@@ -631,14 +631,14 @@ functions:
 
   - name: get_dirty_cells
     type: std::vector<std::pair<int, int>>
-    private: true
+    xprivate: true
     body: |
       return dirty_grid.build_vector();
 
 
   - name: any_dirty_cells
     type: bool
-    private: true
+    xprivate: true
     body: |
       return !dirty_grid.dirty_cells_empty();
 
