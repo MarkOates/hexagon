@@ -2,7 +2,6 @@
 
 #include <Hexagon/OneLineInputBox/Renderer.hpp>
 #include <iostream>
-#include <iostream>
 #include <Hexagon/CodeSelectionBoxRenderer.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/color.h>

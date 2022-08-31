@@ -9,7 +9,6 @@
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
 #include <Hexagon/CodeEditor/FileCategoryDecorator.hpp>
 #include <Hexagon/CodeEditor/EventController.hpp>
-#include <Hexagon/CodeEditor/EventController.hpp>
 
 
 namespace Hexagon

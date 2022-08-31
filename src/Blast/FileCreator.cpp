@@ -2,7 +2,6 @@
 
 #include <Blast/FileCreator.hpp>
 #include <iostream>
-#include <iostream>
 #include <fstream>
 
 

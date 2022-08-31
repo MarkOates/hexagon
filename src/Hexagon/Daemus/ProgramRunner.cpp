@@ -3,11 +3,7 @@
 #include <Hexagon/Daemus/ProgramRunner.hpp>
 #include <sstream>
 #include <Hexagon/System/Config.hpp>
-#include <Hexagon/System/Config.hpp>
 #include <iostream>
-#include <Hexagon/System/Config.hpp>
-#include <Hexagon/System/Config.hpp>
-#include <Hexagon/System/Config.hpp>
 #include <Hexagon/System/Config.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Hexagon/Testing/GoogleTestRunOutputParser.hpp>
@@ -16,7 +12,6 @@
 #include <Blast/DirectoryExistenceChecker.hpp>
 #include <Blast/FileExistenceChecker.hpp>
 #include <sstream>
-#include <iostream>
 #include <iostream>
 #include <unistd.h>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>

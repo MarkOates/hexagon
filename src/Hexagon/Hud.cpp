@@ -7,7 +7,6 @@
 #include <AllegroFlare/Color.hpp>
 #include <Hexagon/shared_globals.hpp>
 #include <Hexagon/Elements/ColorKit.hpp>
-#include <Hexagon/Elements/ColorKit.hpp>
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
 #include <allegro_flare/useful_php.h>
 #include <allegro_flare/placement2d.h>
@@ -18,7 +17,6 @@
 #include <algorithm>
 #include <allegro_flare/placement3d.h>
 #include <allegro5/allegro_font.h>
-#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <Hexagon/Powerbar/Powerbar.hpp>

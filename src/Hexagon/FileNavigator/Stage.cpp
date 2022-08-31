@@ -5,8 +5,6 @@
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <iostream>
-#include <iostream>
-#include <iostream>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 
 

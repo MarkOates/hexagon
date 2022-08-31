@@ -2,7 +2,6 @@
 
 #include <Hexagon/FocusTimerBar/Renderer.hpp>
 #include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
 #include <ctime>
 #include <cmath>

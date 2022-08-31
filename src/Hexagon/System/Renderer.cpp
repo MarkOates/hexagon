@@ -2,7 +2,6 @@
 
 #include <Hexagon/System/Renderer.hpp>
 #include <Hexagon/shared_globals.hpp>
-#include <Hexagon/shared_globals.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro.h>
 #include <Hexagon/CodeEditor/Stage.hpp>

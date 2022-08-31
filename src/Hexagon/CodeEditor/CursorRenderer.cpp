@@ -2,9 +2,7 @@
 
 #include <Hexagon/CodeEditor/CursorRenderer.hpp>
 #include <allegro5/allegro_color.h>
-#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
-#include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <Hexagon/CodeEditor/CodeEditor.hpp>
 #include <allegro_flare/color.h>
 #include <stdexcept>

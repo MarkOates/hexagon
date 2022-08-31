@@ -30,7 +30,6 @@
 #include <vector>
 #include <tuple>
 #include <string>
-#include <string>
 #include <Hexagon/Fancy/Stage.hpp>
 #include <Hexagon/UI/DrawingBox.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -53,13 +52,11 @@
 #include <Hexagon/GitCommitMessageInputBox/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <allegro5/allegro_font.h>
-#include <allegro5/allegro_font.h>
 #include <stdexcept>
 #include <sstream>
 #include <Hexagon/ProjectNavigator.hpp>
 #include <vector>
 #include <tuple>
-#include <string>
 #include <string>
 #include <stdexcept>
 #include <sstream>

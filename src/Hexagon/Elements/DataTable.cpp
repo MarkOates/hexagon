@@ -2,7 +2,6 @@
 
 #include <Hexagon/Elements/DataTable.hpp>
 #include <vector>
-#include <vector>
 #include <string>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro.h>

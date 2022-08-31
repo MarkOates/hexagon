@@ -27,7 +27,6 @@
 #include <Blast/StringSplitter.hpp>
 #include <algorithm>
 #include <cctype>
-#include <cctype>
 
 
 namespace Hexagon

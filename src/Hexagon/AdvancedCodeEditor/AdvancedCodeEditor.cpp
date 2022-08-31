@@ -3,15 +3,8 @@
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 #include <Blast/StringSplitter.hpp>
 #include <algorithm>
-#include <algorithm>
-#include <algorithm>
-#include <algorithm>
-#include <Hexagon/RegexMatcher.hpp>
-#include <Hexagon/RegexMatcher.hpp>
-#include <Hexagon/RegexMatcher.hpp>
 #include <Hexagon/RegexMatcher.hpp>
 #include <algorithm>
-#include <array>
 #include <array>
 
 

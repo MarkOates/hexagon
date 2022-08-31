@@ -2,10 +2,8 @@
 
 #include <Hexagon/CodeRangeExtractor.hpp>
 #include <algorithm>
-#include <algorithm>
 #include <stdexcept>
 #include <sstream>
-#include <algorithm>
 #include <algorithm>
 #include <stdexcept>
 #include <sstream>

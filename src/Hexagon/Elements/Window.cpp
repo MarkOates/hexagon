@@ -3,7 +3,6 @@
 #include <Hexagon/Elements/Window.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
 #include <allegro_flare/color.h>
 #include <stdexcept>

@@ -5,7 +5,6 @@
 #include <sstream>
 #include <Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp>
 #include <Hexagon/util.hpp>
-#include <Hexagon/util.hpp>
 #include <Hexagon/SymlinkToucher.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -28,11 +27,9 @@
 #include <sstream>
 #include <Hexagon/CodeRangeExtractor.hpp>
 #include <Hexagon/ClipboardData.hpp>
-#include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 #include <stdexcept>
 #include <sstream>
-#include <Hexagon/AdvancedCodeEditor/EventController.hpp>
 #include <Hexagon/AdvancedCodeEditor/EventController.hpp>
 #include <stdexcept>
 #include <sstream>
@@ -43,7 +40,6 @@
 #include <sstream>
 #include <stdexcept>
 #include <sstream>
-#include <algorithm>
 #include <algorithm>
 #include <stdexcept>
 #include <sstream>
