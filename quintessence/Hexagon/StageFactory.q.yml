@@ -681,7 +681,7 @@ functions:
 
 
   - name: get_current_display
-    private: true
+    xprivate: true
     type: ALLEGRO_DISPLAY*
     guards: [ al_is_system_installed(), al_get_current_display() ]
     body: |
@@ -691,7 +691,7 @@ functions:
 
 
   - name: build_centered_on_hud_initial_place
-    private: true
+    xprivate: true
     type: placement3d
     parameters:
       - name: width
@@ -715,7 +715,7 @@ functions:
 
 
   - name: build_centered_in_world_initial_place
-    private: true
+    xprivate: true
     type: placement3d
     parameters:
       - name: width

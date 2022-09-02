@@ -23,9 +23,6 @@ namespace Hexagon
       AllegroFlare::FontBin* font_bin;
       float hud_render_surface_projection_width;
       float hud_render_surface_projection_height;
-      ALLEGRO_DISPLAY* get_current_display();
-      placement3d build_centered_on_hud_initial_place(float width=0, float height=0);
-      placement3d build_centered_in_world_initial_place(float width=0, float height=0);
       placement3d build_file_navigator_initial_place();
       placement3d build_multiplex_menu_initial_place();
       placement3d build_git_commit_message_input_box_initial_place();
@@ -66,6 +63,9 @@ namespace Hexagon
       StageInterface* create_git_commit_message_box();
       StageInterface* create_advanced_component_navigator(std::string project_directory="/Users/markoates/Repos/hexagon/", std::string initial_search_text="");
       StageInterface* create_project_navigator();
+      ALLEGRO_DISPLAY* get_current_display();
+      placement3d build_centered_on_hud_initial_place(float width=0, float height=0);
+      placement3d build_centered_in_world_initial_place(float width=0, float height=0);
       Hexagon::MultiplexMenu::MultiplexMenu build_full_multiplex_menu();
    };
 }
