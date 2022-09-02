@@ -147,7 +147,7 @@ functions:
     type: std::string
     body: |
       validate_initialized(__FUNCTION__);
-      return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
+      return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon/");
 
 
   - name: get_regex_temp_filename

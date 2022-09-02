@@ -149,18 +149,6 @@ TEST(Hexagon_System_ConfigTest,
 }
 
 TEST(Hexagon_System_ConfigTest,
-   get_default_navigator_directory__without_the_config_key_present__returns_the_expected_default_value)
-{
-   al_init();
-   Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
-   config.initialize();
-
-   ASSERT_EQ(1350, config.get_initial_display_height());
-
-   al_uninstall_system();
-}
-
-TEST(Hexagon_System_ConfigTest,
    get_default_navigator_directory__returns_the_expected_value_from_the_config)
 {
    al_init();

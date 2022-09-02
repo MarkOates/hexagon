@@ -128,7 +128,7 @@ int Config::get_initial_display_height()
 std::string Config::get_default_navigator_directory()
 {
    validate_initialized(__FUNCTION__);
-   return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon");
+   return config.get_or_default_str("", DEFAULT_NAVIGATOR_DIRECTORY_KEY, "/Users/markoates/Repos/hexagon/");
 }
 
 std::string Config::get_regex_temp_filename()
