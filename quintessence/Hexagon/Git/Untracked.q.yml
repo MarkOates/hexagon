@@ -24,7 +24,7 @@ functions:
 
   - name: build_tracked_files_shell_command
     type: std::string
-    private: true
+    xprivate: true
     body: |
       std::stringstream shell_command;
       shell_command << "("

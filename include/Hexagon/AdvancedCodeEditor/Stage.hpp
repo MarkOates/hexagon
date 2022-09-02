@@ -61,8 +61,6 @@ namespace Hexagon
          ALLEGRO_COLOR null_space_color;
          ALLEGRO_COLOR backfill_color;
          ALLEGRO_FONT* obtain_text_font();
-         std::vector<std::string> get_lines();
-         Hexagon::AdvancedCodeEditor::Cursor get_cursor();
          int cursor_get_x();
          int cursor_get_y();
          void refresh_dirty_cells_on_surface_render_respecting_first_row_offset();
@@ -73,7 +71,6 @@ namespace Hexagon
          void filter_text_mesh_for_test_case();
          void filter_text_mesh_for_line_too_long();
          void refresh_text_mesh();
-         Hexagon::DirtyGrid build_dirty_grid_from_lines_respecting_offset();
 
       protected:
 
@@ -179,6 +176,8 @@ namespace Hexagon
          virtual void render() override;
          virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
          virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
+         std::vector<std::string> get_lines();
+         Hexagon::AdvancedCodeEditor::Cursor get_cursor();
          bool is_in_edit_mode();
          bool is_in_insert_mode();
          int calculate_natural_width();
@@ -186,6 +185,7 @@ namespace Hexagon
          int calculate_one_third_num_rows();
          int calculate_natural_height();
          void refresh_render_surfaces();
+         Hexagon::DirtyGrid build_dirty_grid_from_lines_respecting_offset();
       };
    }
 }

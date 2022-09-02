@@ -24,7 +24,6 @@ namespace Hexagon
       int code_editor_width;
       ALLEGRO_COLOR text_color;
       ALLEGRO_COLOR backfill_color;
-      bool place_and_load_code_editor(std::string filename="", std::string file_category="undefined_file_category", placement3d place={});
 
    protected:
 
@@ -38,6 +37,7 @@ namespace Hexagon
       int get_code_editor_height() const;
       int get_code_editor_width() const;
       void create();
+      bool place_and_load_code_editor(std::string filename="", std::string file_category="undefined_file_category", placement3d place={});
    };
 }
 

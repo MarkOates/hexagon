@@ -24,7 +24,7 @@ functions:
 
   - name: build_staged_files_shell_command
     type: std::string
-    private: true
+    xprivate: true
     body: |
       std::stringstream commit_everything_shell_command;
       commit_everything_shell_command << "(cd " << current_project_directory << " && git diff --staged --name-only)";

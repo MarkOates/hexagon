@@ -56,7 +56,7 @@ functions:
 
 
   - name: place_and_load_code_editor
-    private: true
+    xprivate: true
     type: bool
     parameters:
       - name: filename

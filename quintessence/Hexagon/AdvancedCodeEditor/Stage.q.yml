@@ -1160,14 +1160,14 @@ functions:
 
 
   - name: get_lines
-    private: true
+    xprivate: true
     type: std::vector<std::string>
     body: |
       return advanced_code_editor.get_lines();
 
 
   - name: get_cursor
-    private: true
+    xprivate: true
     type: Hexagon::AdvancedCodeEditor::Cursor
     body: |
       return advanced_code_editor.get_cursor_ref();
@@ -1546,7 +1546,7 @@ functions:
 
 
   - name: build_dirty_grid_from_lines_respecting_offset
-    private: true
+    xprivate: true
     type: Hexagon::DirtyGrid
     body: |
       std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();

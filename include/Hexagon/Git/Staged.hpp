@@ -13,7 +13,6 @@ namespace Hexagon
       {
       private:
          std::string current_project_directory;
-         std::string build_staged_files_shell_command();
 
       protected:
 
@@ -24,6 +23,7 @@ namespace Hexagon
 
          std::string get_current_project_directory() const;
          std::vector<std::string> get_shell_response();
+         std::string build_staged_files_shell_command();
       };
    }
 }

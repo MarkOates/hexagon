@@ -13,7 +13,6 @@ namespace Hexagon
       private:
          std::string project_root;
          std::string component_name;
-         std::string generate_make_run_test_command();
 
       protected:
 
@@ -24,6 +23,7 @@ namespace Hexagon
 
          std::string get_project_root() const;
          std::string get_component_name() const;
+         std::string generate_make_run_test_command();
          std::string run();
       };
    }

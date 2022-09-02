@@ -16,6 +16,7 @@ functions:
 
   - name: generate_make_run_test_command
     type: std::string
+    xprivate: true
     body: |
       Blast::Project::Component component(get_component_name(), get_project_root());
       std::string full_path_test_filename = component.generate_full_path_test_binary_filename();
@@ -32,7 +33,6 @@ functions:
         + "echo FINAL_EXIT_CODE:$?"
         ;
       return result;
-    private: true
     body_dependency_symbols:
       - Blast::Project::Component
 

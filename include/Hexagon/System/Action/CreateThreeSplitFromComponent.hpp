@@ -31,7 +31,6 @@ namespace Hexagon
             ALLEGRO_COLOR backfill_color;
             static std::vector<StageInterface *> dummy_stages;
             bool create_as_advanced_code_editor;
-            bool place_stage(std::string filename="/foobar.txt", std::string file_category="undefined", float x=0.0, float align_x=0.0);
 
          protected:
 
@@ -48,6 +47,7 @@ namespace Hexagon
             int get_code_editor_height() const;
             bool get_create_as_advanced_code_editor() const;
             static std::vector<StageInterface *> &get_dummy_stages_ref();
+            bool place_stage(std::string filename="/foobar.txt", std::string file_category="undefined", float x=0.0, float align_x=0.0);
             std::string generate_header_filename();
             std::string generate_source_filename();
             std::string generate_test_filename();
