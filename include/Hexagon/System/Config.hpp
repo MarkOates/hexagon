@@ -13,6 +13,9 @@ namespace Hexagon
    {
       class Config
       {
+      public:
+         static constexpr char* FULLSCREEN_KEY = "fullscreen";
+
       private:
          static std::string INITIAL_DISPLAY_WIDTH_KEY;
          static std::string INITIAL_DISPLAY_HEIGHT_KEY;
@@ -27,7 +30,6 @@ namespace Hexagon
          static std::string DARK_MODE_KEY;
          static std::string OBJECTIVE_KEY;
          static std::string HUD_SHOW_FOCUS_TIMER_BAR_KEY;
-         static std::string FULLSCREEN_KEY;
          static std::string INITIAL_BASELINE_CAMERA_STEPBACK_KEY;
          std::string config_filename;
          AllegroFlare::Config config;

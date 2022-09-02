@@ -67,10 +67,11 @@ properties:
     const: true
     init_with: '"hud_show_focus_timer_bar"'
   - name: FULLSCREEN_KEY
-    type: std::string
+    type: char*
     static: true
     const: true
     init_with: '"fullscreen"'
+    constexpr: true
   - name: INITIAL_BASELINE_CAMERA_STEPBACK_KEY
     type: std::string
     static: true

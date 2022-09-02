@@ -52,9 +52,6 @@ std::string Config::OBJECTIVE_KEY = "objective";
 std::string Config::HUD_SHOW_FOCUS_TIMER_BAR_KEY = "hud_show_focus_timer_bar";
 
 
-std::string Config::FULLSCREEN_KEY = "fullscreen";
-
-
 std::string Config::INITIAL_BASELINE_CAMERA_STEPBACK_KEY = "initial_baseline_camera_stepback";
 
 

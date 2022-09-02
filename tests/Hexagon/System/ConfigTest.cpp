@@ -54,7 +54,7 @@ TEST(DISABLED_Hexagon_System_ConfigTest,
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_EMPTY_CONFIG_FILENAME);
 
-   // test needs to be modified to expect no extranious calls to config.load()
+   // NOTE: test needs to be modified to expect no extranious calls to config.load()
 
    config.initialize();
    config.initialize();
