@@ -25,6 +25,20 @@ properties:
     getter: true
     setter: true
 
+  - name: backfill_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0, 0, 0, 1}
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: backfill_opacity
+    type: float
+    init_with: 0.9f
+    constructor_arg: true
+    getter: true
+    setter: true
+
   - name: cursor
     type: int
     init_with: 0
@@ -128,7 +142,7 @@ functions:
       ALLEGRO_FONT *title_font = obtain_title_font();
       //ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
       ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
-      ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.9};
+      ALLEGRO_COLOR opacified_backfill_color = build_opacified_backfill_color();
       ALLEGRO_COLOR inactive_but_selected_color = build_inactive_color(); //al_color_html("4e2f1a");
       float width = get_width();
       //float height = 300;
@@ -159,7 +173,7 @@ functions:
             place_size_y+padding*2,
             outer_roundness,
             outer_roundness,
-            backfill_color);
+            opacified_backfill_color);
          al_draw_rounded_rectangle(
             0-padding,
             0-padding,
@@ -293,6 +307,17 @@ functions:
     type: ALLEGRO_COLOR
     body: |
       return ALLEGRO_COLOR{color.r * 0.38f, color.g * 0.38f, color.b * 0.4f, color.a * 0.4f};
+
+
+  - name: build_opacified_backfill_color
+    type: ALLEGRO_COLOR
+    body: |
+      return ALLEGRO_COLOR{
+            backfill_color.r * backfill_opacity,
+            backfill_color.g * backfill_opacity,
+            backfill_color.b * backfill_opacity,
+            backfill_color.a * backfill_opacity
+         };
 
 
   - name: draw_cursor_pointer_arrow

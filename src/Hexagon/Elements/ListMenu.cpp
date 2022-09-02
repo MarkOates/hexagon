@@ -14,11 +14,13 @@ namespace Elements
 {
 
 
-ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vector<std::tuple<std::string, std::string>> list_items, ALLEGRO_COLOR color)
+ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vector<std::tuple<std::string, std::string>> list_items, ALLEGRO_COLOR color, ALLEGRO_COLOR backfill_color, float backfill_opacity)
    : font_bin(font_bin)
    , title(title)
    , list_items(list_items)
    , color(color)
+   , backfill_color(backfill_color)
+   , backfill_opacity(backfill_opacity)
    , cursor(0)
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
    , title_upcase(true)
@@ -38,6 +40,18 @@ ListMenu::~ListMenu()
 void ListMenu::set_color(ALLEGRO_COLOR color)
 {
    this->color = color;
+}
+
+
+void ListMenu::set_backfill_color(ALLEGRO_COLOR backfill_color)
+{
+   this->backfill_color = backfill_color;
+}
+
+
+void ListMenu::set_backfill_opacity(float backfill_opacity)
+{
+   this->backfill_opacity = backfill_opacity;
 }
 
 
@@ -80,6 +94,18 @@ std::vector<std::tuple<std::string, std::string>> ListMenu::get_list_items() con
 ALLEGRO_COLOR ListMenu::get_color() const
 {
    return color;
+}
+
+
+ALLEGRO_COLOR ListMenu::get_backfill_color() const
+{
+   return backfill_color;
+}
+
+
+float ListMenu::get_backfill_opacity() const
+{
+   return backfill_opacity;
 }
 
 
@@ -170,7 +196,7 @@ void ListMenu::render()
    ALLEGRO_FONT *title_font = obtain_title_font();
    //ALLEGRO_COLOR color = ALLEGRO_COLOR{1, 0, 0, 1};
    ALLEGRO_COLOR off_color = ALLEGRO_COLOR{0, 0, 0, 1};
-   ALLEGRO_COLOR backfill_color = ALLEGRO_COLOR{0, 0, 0, 0.9};
+   ALLEGRO_COLOR opacified_backfill_color = build_opacified_backfill_color();
    ALLEGRO_COLOR inactive_but_selected_color = build_inactive_color(); //al_color_html("4e2f1a");
    float width = get_width();
    //float height = 300;
@@ -201,7 +227,7 @@ void ListMenu::render()
          place_size_y+padding*2,
          outer_roundness,
          outer_roundness,
-         backfill_color);
+         opacified_backfill_color);
       al_draw_rounded_rectangle(
          0-padding,
          0-padding,
@@ -337,6 +363,16 @@ ALLEGRO_FONT* ListMenu::obtain_title_font()
 ALLEGRO_COLOR ListMenu::build_inactive_color()
 {
    return ALLEGRO_COLOR{color.r * 0.38f, color.g * 0.38f, color.b * 0.4f, color.a * 0.4f};
+}
+
+ALLEGRO_COLOR ListMenu::build_opacified_backfill_color()
+{
+   return ALLEGRO_COLOR{
+         backfill_color.r * backfill_opacity,
+         backfill_color.g * backfill_opacity,
+         backfill_color.b * backfill_opacity,
+         backfill_color.a * backfill_opacity
+      };
 }
 
 void ListMenu::draw_cursor_pointer_arrow(float cpx, float cpy)

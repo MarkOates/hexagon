@@ -20,6 +20,8 @@ namespace Hexagon
          std::string title;
          std::vector<std::tuple<std::string, std::string>> list_items;
          ALLEGRO_COLOR color;
+         ALLEGRO_COLOR backfill_color;
+         float backfill_opacity;
          int cursor;
          bool wrap_cursor_when_moving_cursor_outside_bounds;
          bool title_upcase;
@@ -35,10 +37,12 @@ namespace Hexagon
 
 
       public:
-         ListMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="+", std::vector<std::tuple<std::string, std::string>> list_items={}, ALLEGRO_COLOR color=ALLEGRO_COLOR{1.0f, 0.0f, 0.0f, 1.0f});
+         ListMenu(AllegroFlare::FontBin* font_bin=nullptr, std::string title="+", std::vector<std::tuple<std::string, std::string>> list_items={}, ALLEGRO_COLOR color=ALLEGRO_COLOR{1.0f, 0.0f, 0.0f, 1.0f}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0, 0, 0, 1}, float backfill_opacity=0.9f);
          ~ListMenu();
 
          void set_color(ALLEGRO_COLOR color);
+         void set_backfill_color(ALLEGRO_COLOR backfill_color);
+         void set_backfill_opacity(float backfill_opacity);
          void set_wrap_cursor_when_moving_cursor_outside_bounds(bool wrap_cursor_when_moving_cursor_outside_bounds);
          void set_title_upcase(bool title_upcase);
          void set_menu_items_upcase(bool menu_items_upcase);
@@ -46,6 +50,8 @@ namespace Hexagon
          void set_active(bool active);
          std::vector<std::tuple<std::string, std::string>> get_list_items() const;
          ALLEGRO_COLOR get_color() const;
+         ALLEGRO_COLOR get_backfill_color() const;
+         float get_backfill_opacity() const;
          bool get_wrap_cursor_when_moving_cursor_outside_bounds() const;
          bool get_title_upcase() const;
          bool get_menu_items_upcase() const;
@@ -58,6 +64,7 @@ namespace Hexagon
          std::string get_current_list_item_identifier();
          void render();
          ALLEGRO_COLOR build_inactive_color();
+         ALLEGRO_COLOR build_opacified_backfill_color();
       };
    }
 }
