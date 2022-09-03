@@ -3,6 +3,7 @@
 
 #include <Hexagon/BuildSystem/BuildStageFactory.hpp>
 #include <Hexagon/BuildSystem/Builds/Base.hpp>
+#include <string>
 
 
 namespace Hexagon
@@ -22,6 +23,7 @@ namespace Hexagon
          ~BuildFactory();
 
          Hexagon::BuildSystem::Builds::Base* create_placeholder_build();
+         Hexagon::BuildSystem::Builds::Base* create_make_quintessence_build(std::string project_directory="/Users/markoates/Repos/TestProjectDeleteMe");
       };
    }
 }
