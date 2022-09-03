@@ -1,5 +1,8 @@
 #include <allegro5/allegro.h> // for compatibility with union/Makefile
 #include <Hexagon/BuildSystem/BuildFactory.hpp>
+#include <Hexagon/BuildSystem/ReportRenderer.hpp>
+#include <iostream>
+
 
 int main(int argc, char **argv)
 {
@@ -7,16 +10,10 @@ int main(int argc, char **argv)
    Hexagon::BuildSystem::Builds::Base* build = build_factory.create_make_quintessence_build();
    build->run();
 
-   //std::vector<std::string> args;
-   //for (int i=1; i<argc; i++) args.push_back(argv[i]);
+   Hexagon::BuildSystem::ReportRenderer report_renderer(build);
+   std::cout << report_renderer.build_text_report() << std::endl;
 
-   //Hexagon::Daemus::ProgramRunner daemus;
-
-   //if (args.size() == 0) daemus.run();
-   //else if (args[0] == "run_once") daemus.run_once();
-   //else daemus.run(false);
-
-   //return 0;
+   return 0;
 }
 
 
