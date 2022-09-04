@@ -4,6 +4,7 @@
 
 #include <Hexagon/BuildSystem/BuildStageRenderers/Base.hpp>
 #include <Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.hpp>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -67,7 +68,8 @@ std::string BuildStageRenderer::build_text_report()
       error_message << "Hexagon::BuildSystem::BuildStageRenderer::build_text_report() error: "
                     << "Cannot build_text_report() on a report that is of unknown type \""
                     << build_stage->get_type() << "\".";
-      throw std::runtime_error(error_message.str());
+      std::cout << error_message.str();
+      //throw std::runtime_error(error_message.str());
    }
 
    return result;

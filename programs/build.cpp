@@ -6,12 +6,55 @@
 
 
 
+#define PROJECT_DIRECTORY "/Users/markoates/Repos/TestProjectDeleteMe"
 #define BUILD_NUMBER "54321"
 
 
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <Blast/StringSplitter.hpp>
 #include <Hexagon/BuildSystem/BuildStages/Base.hpp>
-#include <string>
 #include <allegro_flare/useful_php.h>
+#include <string>
+
+
+class ListQuintessences : public Hexagon::BuildSystem::BuildStages::Base
+{
+   public:
+      static constexpr char* TYPE = "ListQuintessences";
+
+   private:
+      std::string project_directory;
+      std::string build_number;
+      std::string shell_command_result;
+      bool executed;
+
+   public:
+      ListQuintessences(std::string project_directory, std::string build_number)
+         : Hexagon::BuildSystem::BuildStages::Base(ListQuintessences::TYPE)
+         , project_directory(project_directory)
+         , build_number(build_number)
+         , shell_command_result()
+         , executed(false)
+      {}
+      virtual ~ListQuintessences() {}
+
+      std::string build_list_quintessence_shell_command()
+      {
+         std::stringstream output_filename;
+         output_filename << "quintessences_" << BUILD_NUMBER << ".txt";
+         std::stringstream shell_command;
+         shell_command << "(cd " << project_directory << " && make list_quintessences > " << output_filename.str() << ")";
+         return shell_command.str();
+      }
+
+      virtual void execute() override
+      {
+         if (executed) return;
+         Blast::ShellCommandExecutorWithCallback shell_command_executor(build_list_quintessence_shell_command());
+         shell_command_result = shell_command_executor.execute();
+         executed = true;
+      }
+};
 
 
 class BuildQuintessences : public Hexagon::BuildSystem::BuildStages::Base
@@ -24,7 +67,7 @@ class BuildQuintessences : public Hexagon::BuildSystem::BuildStages::Base
       std::string build_number;
 
    public:
-      BuildQuintessences(std::string project_directory, std::string build_number="000000")
+      BuildQuintessences(std::string project_directory, std::string build_number)
          : Hexagon::BuildSystem::BuildStages::Base(BuildQuintessences::TYPE)
          , project_directory(project_directory)
          , build_number(build_number)
@@ -35,10 +78,7 @@ class BuildQuintessences : public Hexagon::BuildSystem::BuildStages::Base
       {
          std::string filename_with_quintessences_list = project_directory + "/quintessences_" + build_number + ".txt";
          std::string contents = php::file_get_contents(filename_with_quintessences_list);
-         std::cout << "==================" << std::endl;
-         std::cout << contents << std::endl;
-         std::cout << "===END============" << std::endl;
-          // open file @ $(project_directory)/quintessences_BUILD_NUMBER.txt
+         std::vector<std::string> contents_lines = Blast::StringSplitter(contents, '\n').split();
       }
 };
 
@@ -50,7 +90,7 @@ public:
    std::string project_directory;
 
    ShellCommandBuilder()
-      : project_directory("/Users/markoates/Repos/TestProjectDeleteMe")
+      : project_directory(PROJECT_DIRECTORY)
    {}
 
    std::string build_make_quintessence_shell_command()
@@ -64,17 +104,16 @@ public:
 };
 
 
+
 int main(int argc, char **argv)
 {
    ShellCommandBuilder shell_command_builder;
 
    Hexagon::BuildSystem::BuildStageFactory build_stage_factory;
-   //Hexagon::BuildSystem::Builds::Base* build = build_factory.create_shell_command_build(shell_command_builder.build_make_quintessence_shell_command());
-   //build->run();
-
    Hexagon::BuildSystem::Builds::Base *build = new Hexagon::BuildSystem::Builds::Base;
    build->set_build_stages({
-      build_stage_factory.create_shell_command_build_stage(shell_command_builder.build_make_quintessence_shell_command()),
+      new ListQuintessences(PROJECT_DIRECTORY, BUILD_NUMBER),
+      new BuildQuintessences(PROJECT_DIRECTORY, BUILD_NUMBER),
    });
    build->run();
 
@@ -83,5 +122,6 @@ int main(int argc, char **argv)
 
    return 0;
 }
+
 
 
