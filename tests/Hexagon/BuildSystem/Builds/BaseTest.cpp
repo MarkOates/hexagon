@@ -152,3 +152,41 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
 }
 
 
+TEST(Hexagon_BuildSystem_Builds_BaseTest,
+   run__will_set_started_at_and_eneded_at_for_each_build_stage)
+{
+   float sleep_duration_seconds = 0.1;
+   BuildsBaseTestClass base_build;
+   base_build.set_build_stages({
+      new SleepingBuildStageTestClass(sleep_duration_seconds),
+      new SleepingBuildStageTestClass(sleep_duration_seconds),
+   });
+
+   for (auto &build_stage : base_build.get_build_stages()) EXPECT_EQ(0, build_stage->calc_duration_seconds());
+
+   base_build.run();
+
+   for (auto &build_stage : base_build.get_build_stages())
+   {
+      EXPECT_GT(build_stage->calc_duration_seconds(), sleep_duration_seconds);
+   }
+}
+
+
+TEST(Hexagon_BuildSystem_Builds_BaseTest,
+   run__when_a_build_stage_fails__will_not_set_the_started_at_and_ended_at_for_subsequent_build_stages)
+{
+   float sleep_duration_seconds = 0.1;
+   BuildsBaseTestClass base_build;
+   base_build.set_build_stages({
+      new ExceptionThrowingBuildStageTestClass(),
+      new BuildStageTestClass(),
+   });
+
+   base_build.run();
+
+   EXPECT_NE(0, base_build.get_build_stages()[0]->calc_duration_seconds());
+   EXPECT_EQ(0, base_build.get_build_stages()[1]->calc_duration_seconds());
+}
+
+
