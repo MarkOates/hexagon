@@ -183,6 +183,44 @@ class BuildObjects : public Hexagon::BuildSystem::BuildStages::Base
 };
 
 
+class ListTestObjects : public Hexagon::BuildSystem::BuildStages::Base
+{
+   public:
+      static constexpr char* TYPE = "ListTestObjects";
+
+   private:
+      std::string project_directory;
+      std::string build_number;
+      std::string shell_command_result;
+      bool executed;
+
+   public:
+      ListTestObjects(std::string project_directory, std::string build_number)
+         : Hexagon::BuildSystem::BuildStages::Base(ListTestObjects::TYPE)
+         , project_directory(project_directory)
+         , build_number(build_number)
+         , shell_command_result()
+         , executed(false)
+      {}
+      virtual ~ListTestObjects() {}
+
+      std::string build_list_quintessences_shell_command()
+      {
+         std::stringstream output_filename;
+         output_filename << "ListTestObjects_" << BUILD_NUMBER << ".txt";
+         std::stringstream shell_command;
+         shell_command << "(cd " << project_directory << " && make list_test_objects > " << output_filename.str() << ")";
+         return shell_command.str();
+      }
+
+      virtual void execute() override
+      {
+         if (executed) return;
+         Blast::ShellCommandExecutorWithCallback shell_command_executor(build_list_quintessences_shell_command());
+         shell_command_result = shell_command_executor.execute();
+         executed = true;
+      }
+};
 
 
 int main(int argc, char **argv)
@@ -194,6 +232,7 @@ int main(int argc, char **argv)
       new BuildQuintessences(PROJECT_DIRECTORY, BUILD_NUMBER),
       new ListObjects(PROJECT_DIRECTORY, BUILD_NUMBER),
       new BuildObjects(PROJECT_DIRECTORY, BUILD_NUMBER),
+      new ListTestObjects(PROJECT_DIRECTORY, BUILD_NUMBER),
    });
    build->run();
 
