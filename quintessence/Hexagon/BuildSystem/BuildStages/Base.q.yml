@@ -15,14 +15,22 @@ properties:
   - name: started_at
     type: std::chrono::system_clock::time_point
     init_with: ''
-    getter: true
-    setter: true
+    getter: explicit
+    setter: false
+
+  - name: mutex_for_started_at
+    type: std::mutex
+    init_with: ''
 
   - name: ended_at
     type: std::chrono::system_clock::time_point
     init_with: ''
-    getter: true
-    setter: true
+    getter: explicit
+    setter: false
+
+  - name: mutex_for_ended_at
+    type: std::mutex
+    init_with: ''
 
   - name: status
     type: std::string
@@ -91,6 +99,48 @@ functions:
       return;
 
 
+  - name: get_started_at
+    type: std::chrono::system_clock::time_point
+    body: |
+      std::chrono::system_clock::time_point result;
+      mutex_for_started_at.lock();
+      result = started_at;
+      mutex_for_started_at.unlock();
+      return result;
+
+
+  - name: set_started_at
+    parameters:
+      - name: started_at
+        type: std::chrono::system_clock::time_point
+        default_argument: ''
+    body: |
+      mutex_for_started_at.lock();
+      this->started_at = started_at;
+      mutex_for_started_at.unlock();
+
+
+  - name: get_ended_at
+    type: std::chrono::system_clock::time_point
+    body: |
+      std::chrono::system_clock::time_point result;
+      mutex_for_ended_at.lock();
+      result = ended_at;
+      mutex_for_ended_at.unlock();
+      return result;
+
+
+  - name: set_ended_at
+    parameters:
+      - name: ended_at
+        type: std::chrono::system_clock::time_point
+        default_argument: ''
+    body: |
+      mutex_for_ended_at.lock();
+      this->ended_at = ended_at;
+      mutex_for_ended_at.unlock();
+
+
   - name: is_type
     type: bool
     parameters:
@@ -110,7 +160,7 @@ functions:
   - name: calc_duration_seconds
     type: double
     body: |
-      std::chrono::duration<double> elapsed_seconds = ended_at - started_at;
+      std::chrono::duration<double> elapsed_seconds = get_ended_at() - get_started_at();
       return elapsed_seconds.count();
 
 

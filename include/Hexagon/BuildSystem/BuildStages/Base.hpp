@@ -25,7 +25,9 @@ namespace Hexagon
          private:
             std::string type;
             std::chrono::system_clock::time_point started_at;
+            std::mutex mutex_for_started_at;
             std::chrono::system_clock::time_point ended_at;
+            std::mutex mutex_for_ended_at;
             std::string status;
             std::mutex mutex_for_status;
 
@@ -36,13 +38,13 @@ namespace Hexagon
             Base(std::string type=TYPE);
             virtual ~Base();
 
-            void set_started_at(std::chrono::system_clock::time_point started_at);
-            void set_ended_at(std::chrono::system_clock::time_point ended_at);
             std::string get_type() const;
-            std::chrono::system_clock::time_point get_started_at() const;
-            std::chrono::system_clock::time_point get_ended_at() const;
             std::string get_status();
             void set_status(std::string status="[unset-status]");
+            std::chrono::system_clock::time_point get_started_at();
+            void set_started_at(std::chrono::system_clock::time_point started_at);
+            std::chrono::system_clock::time_point get_ended_at();
+            void set_ended_at(std::chrono::system_clock::time_point ended_at);
             bool is_type(std::string possible_type="");
             virtual void execute();
             double calc_duration_seconds();
