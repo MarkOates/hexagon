@@ -30,6 +30,10 @@ properties:
     getter: true
     setter: true
 
+  - name: mutex_for_status
+    type: std::mutex
+    init_with: ''
+
   - name: STATUS_NOT_STARTED
     type: char*
     static: true
@@ -93,5 +97,7 @@ dependencies:
 
   - symbol: std::chrono::system_clock::time_point
     headers: [ chrono ]
+  - symbol: std::mutex
+    headers: [ mutex ]
 
 

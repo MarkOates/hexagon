@@ -18,6 +18,7 @@ Base::Base(std::string type)
    , started_at()
    , ended_at()
    , status("[unset-status]")
+   , mutex_for_status()
 {
 }
 

@@ -2512,6 +2512,10 @@ table td
   <td class="property">std::string</td>
 </tr>
 <tr>
+  <td class="property">mutex_for_status</td>
+  <td class="property">std::mutex</td>
+</tr>
+<tr>
   <td class="property">STATUS_NOT_STARTED</td>
   <td class="property">char*</td>
 </tr>
@@ -2546,6 +2550,9 @@ table td
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::chrono::system_clock::time_point&quot;, &quot;headers&quot;=&gt;[&quot;chrono&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::mutex&quot;, &quot;headers&quot;=&gt;[&quot;mutex&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -13347,6 +13354,9 @@ table td
   "std/chrono/system_clock/time_point": [
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/Builds/Base"
+  ],
+  "std/mutex": [
+    "Hexagon/BuildSystem/BuildStages/Base"
   ],
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/BuildStages/ShellCommand",

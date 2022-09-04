@@ -1071,6 +1071,9 @@
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/Builds/Base"
   ],
+  "std/mutex": [
+    "Hexagon/BuildSystem/BuildStages/Base"
+  ],
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
     "Hexagon/Daemus/ProgramRunner",

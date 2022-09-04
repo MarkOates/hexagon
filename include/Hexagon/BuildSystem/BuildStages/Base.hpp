@@ -2,6 +2,7 @@
 
 
 #include <chrono>
+#include <mutex>
 #include <string>
 
 
@@ -26,6 +27,7 @@ namespace Hexagon
             std::chrono::system_clock::time_point started_at;
             std::chrono::system_clock::time_point ended_at;
             std::string status;
+            std::mutex mutex_for_status;
 
          protected:
 
