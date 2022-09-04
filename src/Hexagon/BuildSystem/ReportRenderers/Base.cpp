@@ -78,7 +78,7 @@ std::string Base::render_text()
       if (!build_stage_render.empty()) result << build_stage_render;
       result << std::endl;
    }
-   result << "[===== Duration: " << build->infer_duration_seconds() << "=======]" << std::endl;
+   result << "[===== Duration: " << build->infer_duration_seconds() << " seconds =======]" << std::endl;
 
    return result.str();
 }
