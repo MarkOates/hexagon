@@ -32,7 +32,6 @@
     "Hexagon/Elements/CheckTextureGenerator",
     "Hexagon/FileNavigator/Stage",
     "Hexagon/FileNavigator/Stage",
-    "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
@@ -1389,13 +1388,12 @@
     "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/Powerbar/Powerbar"
   ],
-  "Hexagon/FocusTimerBar/FocusTimerBar": [
-    "Hexagon/FocusTimerBar/Renderer",
-    "Hexagon/FocusTimerBar/Renderer",
-    "Hexagon/Hud"
-  ],
   "std/fmod": [
     "Hexagon/FocusTimerBar/Renderer"
+  ],
+  "Hexagon/FocusTimerBar/FocusTimerBar": [
+    "Hexagon/FocusTimerBar/Renderer",
+    "Hexagon/Hud"
   ],
   "std/stringstream": [
     "Hexagon/FontSet",
