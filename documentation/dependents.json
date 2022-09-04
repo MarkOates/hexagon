@@ -692,6 +692,7 @@
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Fancy/Stage",
     "Hexagon/Fancy/Stage",
+    "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/Font",
     "Hexagon/Font",
     "Hexagon/FontSet",

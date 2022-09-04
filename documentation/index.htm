@@ -5802,6 +5802,10 @@ table td
     <h3 id="quintessence/Hexagon/FocusTimerBar/Renderer.q.yml">quintessence/Hexagon/FocusTimerBar/Renderer.q.yml</h3>
      <table>
 <tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
   <td class="property">surface_width</td>
   <td class="property">float</td>
 </tr>
@@ -5817,6 +5821,9 @@ table td
      <table>
 <tr>
   <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="private_method">draw_ticks()</td>
 </tr>
     </table>
      <table>
@@ -5837,6 +5844,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::FocusTimerBar::FocusTimerBar&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/FocusTimerBar/FocusTimerBar.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -12959,6 +12969,7 @@ table td
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Fancy/Stage",
     "Hexagon/Fancy/Stage",
+    "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/Font",
     "Hexagon/Font",
     "Hexagon/FontSet",

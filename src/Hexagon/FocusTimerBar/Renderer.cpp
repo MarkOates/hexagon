@@ -17,8 +17,9 @@ namespace FocusTimerBar
 {
 
 
-Renderer::Renderer(float surface_width, float surface_height, Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar)
-   : surface_width(surface_width)
+Renderer::Renderer(AllegroFlare::FontBin* font_bin, float surface_width, float surface_height, Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar)
+   : font_bin(font_bin)
+   , surface_width(surface_width)
    , surface_height(surface_height)
    , focus_timer_bar(focus_timer_bar)
 {
@@ -30,18 +31,54 @@ Renderer::~Renderer()
 }
 
 
+void Renderer::set_font_bin(AllegroFlare::FontBin* font_bin)
+{
+   this->font_bin = font_bin;
+}
+
+
+void Renderer::set_focus_timer_bar(Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar)
+{
+   this->focus_timer_bar = focus_timer_bar;
+}
+
+
+AllegroFlare::FontBin* Renderer::get_font_bin() const
+{
+   return font_bin;
+}
+
+
 void Renderer::render()
 {
-   if (!(focus_timer_bar))
+   if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"focus_timer_bar\" not met";
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
       throw std::runtime_error(error_message.str());
    }
    if (!(al_is_primitives_addon_initialized()))
    {
       std::stringstream error_message;
       error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+   if (!(al_is_font_addon_initialized()))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"al_is_font_addon_initialized()\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+   if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font_bin\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+   if (!(focus_timer_bar))
+   {
+      std::stringstream error_message;
+      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"focus_timer_bar\" not met";
       throw std::runtime_error(error_message.str());
    }
    float width = surface_width * 0.6;
@@ -67,6 +104,16 @@ void Renderer::render()
    al_draw_rectangle(x - h_padding, y - v_padding, x + width + h_padding, y + v_padding, border_color, 1.0);
    al_draw_line(x, y, x+length, y, color, 1.0f);
    //al_draw_line(10, 10, 600, 300, al_color_name("white"), 10.0f);
+
+
+   draw_ticks();
+
+   return;
+}
+
+void Renderer::draw_ticks()
+{
+   //al_draw_vertical_line
    return;
 }
 

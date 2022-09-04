@@ -1,6 +1,13 @@
 properties:
 
 
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    constructor_arg: true
+    init_with: nullptr
+    getter: true
+    setter: true
+
   - name: surface_width
     type: float
     init_with: (1920/2)
@@ -15,13 +22,19 @@ properties:
     type: Hexagon::FocusTimerBar::FocusTimerBar*
     init_with: nullptr
     constructor_arg: true
+    setter: true
 
 
 functions:
 
 
   - name: render
-    guards: [ focus_timer_bar, al_is_primitives_addon_initialized() ]
+    guards:
+      - al_is_system_installed()
+      - al_is_primitives_addon_initialized()
+      - al_is_font_addon_initialized()
+      - font_bin
+      - focus_timer_bar
     body: |
       float width = surface_width * 0.6;
       float height = 30;
@@ -46,6 +59,10 @@ functions:
       al_draw_rectangle(x - h_padding, y - v_padding, x + width + h_padding, y + v_padding, border_color, 1.0);
       al_draw_line(x, y, x+length, y, color, 1.0f);
       //al_draw_line(10, 10, 600, 300, al_color_name("white"), 10.0f);
+
+
+      draw_ticks();
+
       return;
     body_dependency_symbols:
       - al_is_primitives_addon_initialized
@@ -54,6 +71,13 @@ functions:
       - std::time_t
       - std::fmod
       - std::cout
+
+
+  - name: draw_ticks
+    private: true
+    body: |
+      //al_draw_vertical_line
+      return;
 
 
 dependencies:
@@ -71,5 +95,7 @@ dependencies:
     headers: [ allegro5/allegro_primitives.h ]
   - symbol: Hexagon::FocusTimerBar::FocusTimerBar
     headers: [ Hexagon/FocusTimerBar/FocusTimerBar.hpp ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
 
 

@@ -405,6 +405,7 @@ functions:
     type: void
     body: |
       Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(
+         &font_bin,
          get_surface_projection_width(),
          get_surface_projection_height(),
          &focus_timer_bar
