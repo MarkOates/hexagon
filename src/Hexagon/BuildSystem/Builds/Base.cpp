@@ -3,6 +3,7 @@
 #include <Hexagon/BuildSystem/Builds/Base.hpp>
 
 #include <iostream>
+#include <thread>
 
 
 namespace Hexagon
@@ -122,6 +123,28 @@ void Base::run()
    }
 
    // set the status to STATUS_FINISHED when all the stages are completed (without error)
+   status = STATUS_FINISHED;
+   ended_at = std::chrono::system_clock::now();
+   return;
+}
+
+void Base::build_stage_executor()
+{
+   return;
+}
+
+void Base::run_all_in_parallel()
+{
+   started_at = std::chrono::system_clock::now();
+
+   std::thread thread1(build_stage_executor);
+   std::thread thread2(build_stage_executor);
+   std::thread thread3(build_stage_executor);
+
+   thread1.join();
+   thread2.join();
+   thread3.join();
+
    status = STATUS_FINISHED;
    ended_at = std::chrono::system_clock::now();
    return;

@@ -47,6 +47,8 @@ namespace Hexagon
             std::string get_status() const;
             bool is_type(std::string possible_type="");
             void run();
+            static void build_stage_executor();
+            void run_all_in_parallel();
             double infer_duration_seconds();
          };
       }

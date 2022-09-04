@@ -2642,10 +2642,19 @@ table td
   <td class="method">run()</td>
 </tr>
 <tr>
+  <td class="method">build_stage_executor()</td>
+</tr>
+<tr>
+  <td class="method">run_all_in_parallel()</td>
+</tr>
+<tr>
   <td class="method">infer_duration_seconds()</td>
 </tr>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::thread&quot;, &quot;headers&quot;=&gt;[&quot;thread&quot;]}</td>
+</tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::chrono::system_clock::time_point&quot;, &quot;headers&quot;=&gt;[&quot;chrono&quot;]}</td>
 </tr>
@@ -13370,6 +13379,9 @@ table td
     "Hexagon/System/Action/OpenDocumentationInBrowser",
     "Hexagon/Testing/ComponentTestRunner",
     "NcursesArt/GithubRepoStatusFetcher"
+  ],
+  "std/thread": [
+    "Hexagon/BuildSystem/Builds/Base"
   ],
   "Hexagon/BuildSystem/ReportRenderers/Base": [
     "Hexagon/BuildSystem/ReportRenderer"

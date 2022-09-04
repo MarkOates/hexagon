@@ -118,6 +118,31 @@ functions:
       - std::cout
 
 
+  - name: build_stage_executor
+    static: true
+    body:
+      return;
+
+
+  - name: run_all_in_parallel
+    body: |
+      started_at = std::chrono::system_clock::now();
+
+      std::thread thread1(build_stage_executor);
+      std::thread thread2(build_stage_executor);
+      std::thread thread3(build_stage_executor);
+
+      thread1.join();
+      thread2.join();
+      thread3.join();
+
+      status = STATUS_FINISHED;
+      ended_at = std::chrono::system_clock::now();
+      return;
+    body_dependency_symbols:
+      - std::thread
+
+
   - name: infer_duration_seconds
     type: double
     body: |
@@ -128,6 +153,8 @@ functions:
 dependencies:
 
 
+  - symbol: std::thread
+    headers: [ thread ]
   - symbol: std::chrono::system_clock::time_point
     headers: [ chrono ]
   - symbol: Hexagon::BuildSystem::BuildStages::Base
