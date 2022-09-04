@@ -40,11 +40,13 @@ TEST(Hexagon_BuildSystem_ReportRendererTest,
                                  "[#=------ STAGE 1 ------=#]\n"
                                  "  - Type: ShellCommand\n"
                                  "  - Status: [unset-status]\n"
+                                 "  - Duration: 0 seconds\n"
                                  "  - Command: echo \"Hi friend\"\n"
                                  "\n"
                                  "[#=------ STAGE 2 ------=#]\n"
                                  "  - Type: ShellCommand\n"
                                  "  - Status: [unset-status]\n"
+                                 "  - Duration: 0 seconds\n"
                                  "  - Command: echo \"Having a good day?\"\n"
                                  "\n"
                                  "[=========================]\n";

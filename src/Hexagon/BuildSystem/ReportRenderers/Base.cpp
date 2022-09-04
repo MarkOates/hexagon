@@ -61,6 +61,7 @@ std::string Base::render_text()
    std::stringstream result;
 
    unsigned i=0;
+
    result << "[========= BUILD =========]" << std::endl;
    result << std::endl;
    for (auto &build_stage : build->get_build_stages())
@@ -73,6 +74,7 @@ std::string Base::render_text()
       result << "[#=------ STAGE " << i << " ------=#]" << std::endl;
       result << "  - Type: " << build_stage->get_type() << std::endl;
       result << "  - Status: " << build_stage->get_status() << std::endl;
+      result << "  - Duration: " << build_stage->calc_duration_seconds() << " seconds" << std::endl;
       if (!build_stage_render.empty()) result << build_stage_render;
       result << std::endl;
    }
