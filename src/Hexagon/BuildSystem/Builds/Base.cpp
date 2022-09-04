@@ -128,18 +128,20 @@ void Base::run()
    return;
 }
 
-void Base::build_stage_executor()
+void Base::build_stage_executor(Hexagon::BuildSystem::BuildStages::Base* build_stage)
 {
-   return;
+   build_stage->set_started_at(std::chrono::system_clock::now()); build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING); try { build_stage->execute(); build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED); } catch (const std::exception& e) { std::cout << "There was an error during the execution of build stage." << std::endl; build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR); } build_stage->set_ended_at(std::chrono::system_clock::now()); return;
 }
 
 void Base::run_all_in_parallel()
 {
    started_at = std::chrono::system_clock::now();
 
-   std::thread thread1(build_stage_executor);
-   std::thread thread2(build_stage_executor);
-   std::thread thread3(build_stage_executor);
+   // TODO: work out a nice way for the build_stages to be validated and distributed across threads
+   // Right now, this funtion is hard-coded to build exactly 3 build stages in parallel.
+   std::thread thread1(build_stage_executor, build_stages[0]);
+   std::thread thread2(build_stage_executor, build_stages[1]);
+   std::thread thread3(build_stage_executor, build_stages[2]);
 
    thread1.join();
    thread2.join();

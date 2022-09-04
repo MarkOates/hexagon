@@ -275,12 +275,26 @@ int main(int argc, char **argv)
       new ListObjects(PROJECT_DIRECTORY, BUILD_NUMBER),
       new BuildObjects(PROJECT_DIRECTORY, BUILD_NUMBER),
       new ListTestObjects(PROJECT_DIRECTORY, BUILD_NUMBER),
-      new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER),
+      //new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER),
    });
    build->run();
 
+
    Hexagon::BuildSystem::ReportRenderer report_renderer(build);
    std::cout << report_renderer.build_text_report() << std::endl;
+
+
+   Hexagon::BuildSystem::Builds::Base *parallel_build = new Hexagon::BuildSystem::Builds::Base;
+   parallel_build->set_build_stages({
+      new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER),
+      new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER),
+      new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER),
+   });
+   parallel_build->run_all_in_parallel();
+
+
+   Hexagon::BuildSystem::ReportRenderer report_renderer2(parallel_build);
+   std::cout << report_renderer2.build_text_report() << std::endl;
 
    return 0;
 }
