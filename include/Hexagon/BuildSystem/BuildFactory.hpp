@@ -23,7 +23,7 @@ namespace Hexagon
          ~BuildFactory();
 
          Hexagon::BuildSystem::Builds::Base* create_placeholder_build();
-         Hexagon::BuildSystem::Builds::Base* create_make_quintessence_build(std::string project_directory="/Users/markoates/Repos/TestProjectDeleteMe");
+         Hexagon::BuildSystem::Builds::Base* create_shell_command_build(std::string shell_command="echo \"Having a good day?\"");
       };
    }
 }
