@@ -21,14 +21,14 @@ properties:
     setter: true
 
   - name: started_at
-    type: float
-    init_with: 0
+    type: std::chrono::system_clock::time_point
+    init_with: ''
     getter: true
     setter: true
 
   - name: ended_at
-    type: float
-    init_with: 0
+    type: std::chrono::system_clock::time_point
+    init_with: ''
     getter: true
     setter: true
 
@@ -78,6 +78,8 @@ functions:
 
   - name: run
     body: |
+      started_at = std::chrono::system_clock::now();
+
       // set all the statuses to STATUS_NOT_STARTED
       for (auto &build_stage : build_stages)
       {
@@ -105,21 +107,25 @@ functions:
 
       // set the status to STATUS_FINISHED when all the stages are completed (without error)
       status = STATUS_FINISHED;
+      ended_at = std::chrono::system_clock::now();
       return;
     body_dependency_symbols:
       - std::cout
 
 
+  - name: infer_duration_seconds
+    type: double
+    body: |
+      std::chrono::duration<double> elapsed_seconds = ended_at - started_at;
+      return elapsed_seconds.count();
+
+
 dependencies:
 
 
-  - symbol: std::vector<std::vector<std::string>>
-    headers: [ vector, string ]
-  - symbol: std::vector<Hexagon::BuildSystem::BuildStages::Base*>
-    headers: [ vector, Hexagon/BuildSystem/BuildStages/Base.hpp ]
-  - symbol: char*
-    headers: [ ]
-
+  - symbol: std::chrono::system_clock::time_point
+    headers: [ chrono ]
   - symbol: Hexagon::BuildSystem::BuildStages::Base
     headers: [ Hexagon/BuildSystem/BuildStages/Base.hpp ]
+
 

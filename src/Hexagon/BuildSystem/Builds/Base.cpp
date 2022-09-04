@@ -16,8 +16,8 @@ namespace Builds
 Base::Base(std::string type, std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages)
    : type(type)
    , build_stages(build_stages)
-   , started_at(0)
-   , ended_at(0)
+   , started_at()
+   , ended_at()
    , status(STATUS_NOT_STARTED)
 {
 }
@@ -34,13 +34,13 @@ void Base::set_build_stages(std::vector<Hexagon::BuildSystem::BuildStages::Base*
 }
 
 
-void Base::set_started_at(float started_at)
+void Base::set_started_at(std::chrono::system_clock::time_point started_at)
 {
    this->started_at = started_at;
 }
 
 
-void Base::set_ended_at(float ended_at)
+void Base::set_ended_at(std::chrono::system_clock::time_point ended_at)
 {
    this->ended_at = ended_at;
 }
@@ -64,13 +64,13 @@ std::vector<Hexagon::BuildSystem::BuildStages::Base*> Base::get_build_stages() c
 }
 
 
-float Base::get_started_at() const
+std::chrono::system_clock::time_point Base::get_started_at() const
 {
    return started_at;
 }
 
 
-float Base::get_ended_at() const
+std::chrono::system_clock::time_point Base::get_ended_at() const
 {
    return ended_at;
 }
@@ -89,6 +89,8 @@ bool Base::is_type(std::string possible_type)
 
 void Base::run()
 {
+   started_at = std::chrono::system_clock::now();
+
    // set all the statuses to STATUS_NOT_STARTED
    for (auto &build_stage : build_stages)
    {
@@ -116,7 +118,14 @@ void Base::run()
 
    // set the status to STATUS_FINISHED when all the stages are completed (without error)
    status = STATUS_FINISHED;
+   ended_at = std::chrono::system_clock::now();
    return;
+}
+
+double Base::infer_duration_seconds()
+{
+   std::chrono::duration<double> elapsed_seconds = ended_at - started_at;
+   return elapsed_seconds.count();
 }
 
 

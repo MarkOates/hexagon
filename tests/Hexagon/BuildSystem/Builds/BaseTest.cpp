@@ -3,6 +3,7 @@
 
 #include <Hexagon/BuildSystem/Builds/Base.hpp>
 #include <Hexagon/BuildSystem/BuildStages/Base.hpp>
+#include <thread>
 
 
 class BuildStageTestClass : public Hexagon::BuildSystem::BuildStages::Base
@@ -21,6 +22,22 @@ public:
       : Hexagon::BuildSystem::BuildStages::Base("ExceptionThrowingBuildStageTestClass")
    {}
    virtual void execute() override { throw std::runtime_error("exception thrown!"); }
+};
+
+
+class SleepingBuildStageTestClass : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   float length_in_seconds;
+public:
+   SleepingBuildStageTestClass(float length_in_seconds)
+      : Hexagon::BuildSystem::BuildStages::Base("SleepingBuildStageTestClass")
+      , length_in_seconds(length_in_seconds)
+   {}
+   virtual void execute() override {
+      int length_in_milliseconds = (int)(length_in_seconds * 1000.0);
+      std::this_thread::sleep_for(std::chrono::milliseconds(length_in_milliseconds));
+   }
 };
 
 
@@ -119,6 +136,19 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[1]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR, build_stages[2]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED, build_stages[3]->get_status());
+}
+
+
+TEST(Hexagon_BuildSystem_Builds_BaseTest,
+   infer_duraiton_seconds__after_run__will_return_the_duration_of_build_in_seconds)
+{
+   float sleep_duration_seconds = 0.2;
+   BuildsBaseTestClass base_build;
+   base_build.set_build_stages({ new SleepingBuildStageTestClass(sleep_duration_seconds) });
+
+   EXPECT_EQ(0, base_build.infer_duration_seconds());
+   base_build.run();
+   EXPECT_GT(base_build.infer_duration_seconds(), sleep_duration_seconds);
 }
 
 

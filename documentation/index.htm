@@ -2607,11 +2607,11 @@ table td
 </tr>
 <tr>
   <td class="property">started_at</td>
-  <td class="property">float</td>
+  <td class="property">std::chrono::system_clock::time_point</td>
 </tr>
 <tr>
   <td class="property">ended_at</td>
-  <td class="property">float</td>
+  <td class="property">std::chrono::system_clock::time_point</td>
 </tr>
 <tr>
   <td class="property">status</td>
@@ -2641,16 +2641,13 @@ table td
 <tr>
   <td class="method">run()</td>
 </tr>
+<tr>
+  <td class="method">infer_duration_seconds()</td>
+</tr>
     </table>
      <table>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::vector&lt;std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::BuildSystem::BuildStages::Base*&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/BuildSystem/BuildStages/Base.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::chrono::system_clock::time_point&quot;, &quot;headers&quot;=&gt;[&quot;chrono&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStages::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStages/Base.hpp&quot;]}</td>
@@ -13341,7 +13338,6 @@ table td
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",
     "Hexagon/BuildSystem/BuildStages/Base",
-    "Hexagon/BuildSystem/Builds/Base",
     "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Elements/DataTable"
   ],
@@ -13350,7 +13346,6 @@ table td
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
     "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
-    "Hexagon/BuildSystem/Builds/Base",
     "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
@@ -13374,7 +13369,7 @@ table td
     "Hexagon/Testing/ComponentTestRunner",
     "NcursesArt/GithubRepoStatusFetcher"
   ],
-  "std/vector<Hexagon/BuildSystem/BuildStages/Base>": [
+  "std/chrono/system_clock/time_point": [
     "Hexagon/BuildSystem/Builds/Base"
   ],
   "Hexagon/BuildSystem/ReportRenderers/Base": [
