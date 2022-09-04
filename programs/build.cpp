@@ -166,7 +166,7 @@ class BuildObjects : public Hexagon::BuildSystem::BuildStages::Base
          std::stringstream output_filename;
          output_filename << "BuildObjects_" << BUILD_NUMBER << ".txt";
          std::stringstream shell_command;
-         shell_command << "(cd " << project_directory << " && make > " << output_filename.str() << ")";
+         shell_command << "(cd " << project_directory << " && make objects > " << output_filename.str() << ")";
          return shell_command.str();
       }
 
