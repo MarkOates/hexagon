@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <chrono>
 #include <string>
 
 
@@ -22,8 +23,8 @@ namespace Hexagon
 
          private:
             std::string type;
-            float started_at;
-            float ended_at;
+            std::chrono::system_clock::time_point started_at;
+            std::chrono::system_clock::time_point ended_at;
             std::string status;
 
          protected:
@@ -33,12 +34,12 @@ namespace Hexagon
             Base(std::string type=TYPE);
             virtual ~Base();
 
-            void set_started_at(float started_at);
-            void set_ended_at(float ended_at);
+            void set_started_at(std::chrono::system_clock::time_point started_at);
+            void set_ended_at(std::chrono::system_clock::time_point ended_at);
             void set_status(std::string status);
             std::string get_type() const;
-            float get_started_at() const;
-            float get_ended_at() const;
+            std::chrono::system_clock::time_point get_started_at() const;
+            std::chrono::system_clock::time_point get_ended_at() const;
             std::string get_status() const;
             bool is_type(std::string possible_type="");
             virtual void execute();

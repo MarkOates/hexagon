@@ -15,8 +15,8 @@ namespace BuildStages
 
 Base::Base(std::string type)
    : type(type)
-   , started_at(0)
-   , ended_at(0)
+   , started_at()
+   , ended_at()
    , status("[unset-status]")
 {
 }
@@ -27,13 +27,13 @@ Base::~Base()
 }
 
 
-void Base::set_started_at(float started_at)
+void Base::set_started_at(std::chrono::system_clock::time_point started_at)
 {
    this->started_at = started_at;
 }
 
 
-void Base::set_ended_at(float ended_at)
+void Base::set_ended_at(std::chrono::system_clock::time_point ended_at)
 {
    this->ended_at = ended_at;
 }
@@ -51,13 +51,13 @@ std::string Base::get_type() const
 }
 
 
-float Base::get_started_at() const
+std::chrono::system_clock::time_point Base::get_started_at() const
 {
    return started_at;
 }
 
 
-float Base::get_ended_at() const
+std::chrono::system_clock::time_point Base::get_ended_at() const
 {
    return ended_at;
 }

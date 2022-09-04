@@ -1060,17 +1060,19 @@
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",
-    "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Elements/DataTable"
   ],
   "char": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
-    "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
     "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "std/chrono/system_clock/time_point": [
+    "Hexagon/BuildSystem/BuildStages/Base",
+    "Hexagon/BuildSystem/Builds/Base"
   ],
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
@@ -1091,9 +1093,6 @@
     "Hexagon/System/Action/OpenDocumentationInBrowser",
     "Hexagon/Testing/ComponentTestRunner",
     "NcursesArt/GithubRepoStatusFetcher"
-  ],
-  "std/chrono/system_clock/time_point": [
-    "Hexagon/BuildSystem/Builds/Base"
   ],
   "Hexagon/BuildSystem/ReportRenderers/Base": [
     "Hexagon/BuildSystem/ReportRenderer"

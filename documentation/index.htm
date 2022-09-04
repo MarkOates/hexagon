@@ -2501,11 +2501,11 @@ table td
 </tr>
 <tr>
   <td class="property">started_at</td>
-  <td class="property">float</td>
+  <td class="property">std::chrono::system_clock::time_point</td>
 </tr>
 <tr>
   <td class="property">ended_at</td>
-  <td class="property">float</td>
+  <td class="property">std::chrono::system_clock::time_point</td>
 </tr>
 <tr>
   <td class="property">status</td>
@@ -2542,10 +2542,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::vector&lt;std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;string&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;char*&quot;, &quot;headers&quot;=&gt;[]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::chrono::system_clock::time_point&quot;, &quot;headers&quot;=&gt;[&quot;chrono&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -13337,17 +13334,19 @@ table td
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",
-    "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Elements/DataTable"
   ],
   "char": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
-    "Hexagon/BuildSystem/BuildStages/Base",
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
     "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "std/chrono/system_clock/time_point": [
+    "Hexagon/BuildSystem/BuildStages/Base",
+    "Hexagon/BuildSystem/Builds/Base"
   ],
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
@@ -13368,9 +13367,6 @@ table td
     "Hexagon/System/Action/OpenDocumentationInBrowser",
     "Hexagon/Testing/ComponentTestRunner",
     "NcursesArt/GithubRepoStatusFetcher"
-  ],
-  "std/chrono/system_clock/time_point": [
-    "Hexagon/BuildSystem/Builds/Base"
   ],
   "Hexagon/BuildSystem/ReportRenderers/Base": [
     "Hexagon/BuildSystem/ReportRenderer"

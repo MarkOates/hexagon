@@ -13,14 +13,14 @@ properties:
     getter: true
 
   - name: started_at
-    type: float
-    init_with: 0
+    type: std::chrono::system_clock::time_point
+    init_with: ''
     getter: true
     setter: true
 
   - name: ended_at
-    type: float
-    init_with: 0
+    type: std::chrono::system_clock::time_point
+    init_with: ''
     getter: true
     setter: true
 
@@ -84,9 +84,7 @@ functions:
 dependencies:
 
 
-  - symbol: std::vector<std::vector<std::string>>
-    headers: [ vector, string ]
-  - symbol: char*
-    headers: [ ]
+  - symbol: std::chrono::system_clock::time_point
+    headers: [ chrono ]
 
 
