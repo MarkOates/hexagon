@@ -290,6 +290,7 @@ int main(int argc, char **argv)
       new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER),
       new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER),
    });
+   // NOTE that run_all_in_parallel is currenntly hard-coded to 3 build stages in BuildSystem/Builds/Base
    parallel_build->run_all_in_parallel();
 
 
