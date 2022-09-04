@@ -62,10 +62,10 @@ functions:
       //al_draw_line(10, 10, 600, 300, al_color_name("white"), 10.0f);
 
       al_draw_line(
-         x_position_for_warning_tick,
+         x + x_position_for_warning_tick,
          y - v_padding,
-         x_position_for_warning_tick,
-         y+height + v_padding,
+         x + x_position_for_warning_tick,
+         y + v_padding,
          color,
          1.0
       );
