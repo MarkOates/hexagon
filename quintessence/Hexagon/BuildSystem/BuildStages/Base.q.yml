@@ -27,8 +27,8 @@ properties:
   - name: status
     type: std::string
     init_with: '"[unset-status]"'
-    getter: true
-    setter: true
+    getter: explicit
+    setter: false
 
   - name: mutex_for_status
     type: std::mutex
@@ -67,6 +67,28 @@ properties:
 
 
 functions:
+
+
+  - name: get_status
+    type: std::string
+    body: |
+      std::string result;
+      mutex_for_status.lock();
+      result = status;
+      mutex_for_status.unlock();
+      return result;
+
+
+  - name: set_status
+    parameters:
+      - name: status
+        type: std::string
+        default_argument: '"[unset-status]"'
+    body: |
+      mutex_for_status.lock();
+      this->status = status;
+      mutex_for_status.unlock();
+      return;
 
 
   - name: is_type

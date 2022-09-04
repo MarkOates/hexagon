@@ -38,11 +38,11 @@ namespace Hexagon
 
             void set_started_at(std::chrono::system_clock::time_point started_at);
             void set_ended_at(std::chrono::system_clock::time_point ended_at);
-            void set_status(std::string status);
             std::string get_type() const;
             std::chrono::system_clock::time_point get_started_at() const;
             std::chrono::system_clock::time_point get_ended_at() const;
-            std::string get_status() const;
+            std::string get_status();
+            void set_status(std::string status="[unset-status]");
             bool is_type(std::string possible_type="");
             virtual void execute();
             double calc_duration_seconds();

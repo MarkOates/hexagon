@@ -40,12 +40,6 @@ void Base::set_ended_at(std::chrono::system_clock::time_point ended_at)
 }
 
 
-void Base::set_status(std::string status)
-{
-   this->status = status;
-}
-
-
 std::string Base::get_type() const
 {
    return type;
@@ -64,11 +58,22 @@ std::chrono::system_clock::time_point Base::get_ended_at() const
 }
 
 
-std::string Base::get_status() const
+std::string Base::get_status()
 {
-   return status;
+   std::string result;
+   mutex_for_status.lock();
+   result = status;
+   mutex_for_status.unlock();
+   return result;
 }
 
+void Base::set_status(std::string status)
+{
+   mutex_for_status.lock();
+   this->status = status;
+   mutex_for_status.unlock();
+   return;
+}
 
 bool Base::is_type(std::string possible_type)
 {
