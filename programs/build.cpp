@@ -231,14 +231,16 @@ class BuildOneTestObject : public Hexagon::BuildSystem::BuildStages::Base
    private:
       std::string project_directory;
       std::string build_number;
+      std::string object_to_make;
       std::string shell_command_result;
       bool executed;
 
    public:
-      BuildOneTestObject(std::string project_directory, std::string build_number)
+      BuildOneTestObject(std::string project_directory, std::string build_number, std::string object_to_make)
          : Hexagon::BuildSystem::BuildStages::Base(BuildOneTestObject::TYPE)
          , project_directory(project_directory)
          , build_number(build_number)
+         , object_to_make(object_to_make)
          , shell_command_result()
          , executed(false)
       {}
@@ -246,7 +248,7 @@ class BuildOneTestObject : public Hexagon::BuildSystem::BuildStages::Base
 
       std::string build_list_quintessences_shell_command()
       {
-         std::string object_to_make = "obj/tests/TestProjectDeleteMe/HelloTest.o";
+         //std::string object_to_make = "obj/tests/TestProjectDeleteMe/HelloTest.o";
          std::stringstream output_filename;
          output_filename << "BuildOneTestObject_" << BUILD_NUMBER << ".txt";
          std::stringstream shell_command;
@@ -286,9 +288,9 @@ int main(int argc, char **argv)
 
    Hexagon::BuildSystem::Builds::Base *parallel_build = new Hexagon::BuildSystem::Builds::Base;
    parallel_build->set_build_stages({
-      new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER),
-      new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER),
-      new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER),
+      new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER, "obj/tests/TestProjectDeleteMe/HelloTest.o"),
+      new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER, "obj/tests/TestProjectDeleteMe/ProgramRunnerTest.o"),
+      new BuildOneTestObject(PROJECT_DIRECTORY, BUILD_NUMBER, "obj/tests/TestProjectDeleteMe/ThirdThingTest.o"),
    });
    // NOTE that run_all_in_parallel is currenntly hard-coded to 3 build stages in BuildSystem/Builds/Base
    parallel_build->run_all_in_parallel();
