@@ -100,6 +100,7 @@ void Base::run()
    // run the stages one-by-one, or halt when one fails
    for (auto &build_stage : build_stages)
    {
+      build_stage->set_started_at(std::chrono::system_clock::now());
       build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING);
       try
       {
@@ -110,8 +111,12 @@ void Base::run()
       {
          std::cout << "There was an error during the execution of build stage." << std::endl;
          build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR);
-
          status = STATUS_ERROR;
+      }
+      build_stage->set_ended_at(std::chrono::system_clock::now());
+
+      if (status == STATUS_ERROR)
+      {
          return;
       }
    }
