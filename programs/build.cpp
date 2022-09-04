@@ -43,7 +43,7 @@ class ListQuintessences : public Hexagon::BuildSystem::BuildStages::Base
          std::stringstream output_filename;
          output_filename << "ListQuintessences_" << BUILD_NUMBER << ".txt";
          std::stringstream shell_command;
-         shell_command << "(cd " << project_directory << " && make list_quintessences > " << output_filename.str() << ")";
+         shell_command << "(cd " << project_directory << " && make list_quintessence_sources > " << output_filename.str() << ")";
          return shell_command.str();
       }
 
@@ -100,6 +100,46 @@ class BuildQuintessences : public Hexagon::BuildSystem::BuildStages::Base
 };
 
 
+class ListSources : public Hexagon::BuildSystem::BuildStages::Base
+{
+   public:
+      static constexpr char* TYPE = "ListSources";
+
+   private:
+      std::string project_directory;
+      std::string build_number;
+      std::string shell_command_result;
+      bool executed;
+
+   public:
+      ListSources(std::string project_directory, std::string build_number)
+         : Hexagon::BuildSystem::BuildStages::Base(ListSources::TYPE)
+         , project_directory(project_directory)
+         , build_number(build_number)
+         , shell_command_result()
+         , executed(false)
+      {}
+      virtual ~ListSources() {}
+
+      std::string build_list_quintessences_shell_command()
+      {
+         std::stringstream output_filename;
+         output_filename << "ListSources_" << BUILD_NUMBER << ".txt";
+         std::stringstream shell_command;
+         shell_command << "(cd " << project_directory << " && make list_sources > " << output_filename.str() << ")";
+         return shell_command.str();
+      }
+
+      virtual void execute() override
+      {
+         if (executed) return;
+         Blast::ShellCommandExecutorWithCallback shell_command_executor(build_list_quintessences_shell_command());
+         shell_command_result = shell_command_executor.execute();
+         executed = true;
+      }
+};
+
+
 
 int main(int argc, char **argv)
 {
@@ -108,6 +148,7 @@ int main(int argc, char **argv)
    build->set_build_stages({
       new ListQuintessences(PROJECT_DIRECTORY, BUILD_NUMBER),
       new BuildQuintessences(PROJECT_DIRECTORY, BUILD_NUMBER),
+      new ListSources(PROJECT_DIRECTORY, BUILD_NUMBER),
    });
    build->run();
 
