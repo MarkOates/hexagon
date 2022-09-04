@@ -1034,7 +1034,6 @@
     "Hexagon/BuildSystem/BuildFactory",
     "Hexagon/BuildSystem/ReportRenderer",
     "Hexagon/BuildSystem/ReportRenderer",
-    "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/BuildSystem/ReportRenderers/Base"
   ],
   "Hexagon/BuildSystem/BuildStageFactory": [
@@ -1060,14 +1059,12 @@
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",
-    "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Elements/DataTable"
   ],
   "char": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
-    "Hexagon/BuildSystem/ReportRenderers/Base",
     "Hexagon/Testing/GoogleTestRunOutputParser"
   ],
   "std/chrono/system_clock/time_point": [

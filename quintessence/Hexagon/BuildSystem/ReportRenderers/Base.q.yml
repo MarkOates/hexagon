@@ -69,15 +69,9 @@ functions:
 dependencies:
 
 
-  - symbol: Hexagon::BuildSystem::Builds::Base*
-    headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
   - symbol: Hexagon::BuildSystem::BuildStageRenderer
     headers: [ Hexagon/BuildSystem/BuildStageRenderer.hpp ]
-  - symbol: std::vector<std::vector<std::string>>
-    headers: [ vector, string ]
-  - symbol: char*
-    headers: [ ]
-
   - symbol: Hexagon::BuildSystem::Builds::Base
     headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
+
 
