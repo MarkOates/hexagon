@@ -25,6 +25,7 @@ namespace Hexagon
          std::time_t get_focus_timer_started_at() const;
          float get_focus_timer_duration_sec() const;
          float get_warning_position_sec() const;
+         float calc_warning_position_normalized();
       };
    }
 }

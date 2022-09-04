@@ -17,6 +17,15 @@ properties:
     getter: true
 
 
+functions:
+
+
+  - name: calc_warning_position_normalized
+    type: float
+    body: |
+      return warning_position_sec / focus_timer_duration_sec;
+
+
 dependencies:
 
 

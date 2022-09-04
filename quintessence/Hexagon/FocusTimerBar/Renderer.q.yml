@@ -44,6 +44,7 @@ functions:
       float length = time_length * width;
       ALLEGRO_COLOR color = al_color_name("gray");
       ALLEGRO_COLOR border_color = al_map_rgba_f(0.2, 0.2, 0.2, 0.2);
+      float x_position_for_warning_tick = width * focus_timer_bar->calc_warning_position_normalized();
 
       std::time_t time_now = time(0);
       struct tm now_tm = *localtime(&time_now);
@@ -60,7 +61,14 @@ functions:
       al_draw_line(x, y, x+length, y, color, 1.0f);
       //al_draw_line(10, 10, 600, 300, al_color_name("white"), 10.0f);
 
-
+      al_draw_line(
+         x_position_for_warning_tick,
+         y - v_padding,
+         x_position_for_warning_tick,
+         y+height + v_padding,
+         color,
+         1.0
+      );
       draw_ticks();
 
       return;

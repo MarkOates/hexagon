@@ -42,6 +42,10 @@ float FocusTimerBar::get_warning_position_sec() const
 }
 
 
+float FocusTimerBar::calc_warning_position_normalized()
+{
+   return warning_position_sec / focus_timer_duration_sec;
+}
 
 
 } // namespace FocusTimerBar
