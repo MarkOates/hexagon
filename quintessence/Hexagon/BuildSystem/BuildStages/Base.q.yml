@@ -81,6 +81,13 @@ functions:
       return;
 
 
+  - name: calc_duration_seconds
+    type: double
+    body: |
+      std::chrono::duration<double> elapsed_seconds = ended_at - started_at;
+      return elapsed_seconds.count();
+
+
 dependencies:
 
 

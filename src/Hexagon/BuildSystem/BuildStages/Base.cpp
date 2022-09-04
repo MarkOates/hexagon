@@ -79,6 +79,12 @@ void Base::execute()
    return;
 }
 
+double Base::calc_duration_seconds()
+{
+   std::chrono::duration<double> elapsed_seconds = ended_at - started_at;
+   return elapsed_seconds.count();
+}
+
 
 } // namespace BuildStages
 } // namespace BuildSystem

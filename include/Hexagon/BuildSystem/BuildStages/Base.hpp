@@ -43,6 +43,7 @@ namespace Hexagon
             std::string get_status() const;
             bool is_type(std::string possible_type="");
             virtual void execute();
+            double calc_duration_seconds();
          };
       }
    }
