@@ -2411,9 +2411,6 @@ table td
     </table>
      <table>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStages::Base*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStages/Base.hpp&quot;]}</td>
-</tr>
-<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStageRenderers::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStageRenderers/Base.hpp&quot;]}</td>
 </tr>
 <tr>
@@ -4266,9 +4263,6 @@ table td
     </table>
      <table>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
-</tr>
-<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::Window&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/Window.hpp&quot;]}</td>
 </tr>
 <tr>
@@ -5787,6 +5781,10 @@ table td
 </tr>
 <tr>
   <td class="property">focus_timer_duration_sec</td>
+  <td class="property">float</td>
+</tr>
+<tr>
+  <td class="property">warning_position_sec</td>
   <td class="property">float</td>
 </tr>
     </table>
@@ -12698,7 +12696,6 @@ table td
     "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/DataTable",
-    "Hexagon/Elements/DataTable",
     "Hexagon/Elements/FontCharacterMapGrid",
     "Hexagon/Elements/FontCharacterMapGrid",
     "Hexagon/Elements/FontedTextGrid",
@@ -13322,18 +13319,17 @@ table td
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
   ],
-  "Hexagon/BuildSystem/BuildStages/Base": [
-    "Hexagon/BuildSystem/BuildStageRenderer",
-    "Hexagon/BuildSystem/BuildStageRenderer",
-    "Hexagon/BuildSystem/BuildStages/ShellCommand",
-    "Hexagon/BuildSystem/Builds/Base"
-  ],
   "Hexagon/BuildSystem/BuildStageRenderers/Base": [
     "Hexagon/BuildSystem/BuildStageRenderer",
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
   ],
   "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand": [
     "Hexagon/BuildSystem/BuildStageRenderer"
+  ],
+  "Hexagon/BuildSystem/BuildStages/Base": [
+    "Hexagon/BuildSystem/BuildStageRenderer",
+    "Hexagon/BuildSystem/BuildStages/ShellCommand",
+    "Hexagon/BuildSystem/Builds/Base"
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",

@@ -423,7 +423,6 @@
     "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/DataTable",
-    "Hexagon/Elements/DataTable",
     "Hexagon/Elements/FontCharacterMapGrid",
     "Hexagon/Elements/FontCharacterMapGrid",
     "Hexagon/Elements/FontedTextGrid",
@@ -1047,18 +1046,17 @@
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand",
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
   ],
-  "Hexagon/BuildSystem/BuildStages/Base": [
-    "Hexagon/BuildSystem/BuildStageRenderer",
-    "Hexagon/BuildSystem/BuildStageRenderer",
-    "Hexagon/BuildSystem/BuildStages/ShellCommand",
-    "Hexagon/BuildSystem/Builds/Base"
-  ],
   "Hexagon/BuildSystem/BuildStageRenderers/Base": [
     "Hexagon/BuildSystem/BuildStageRenderer",
     "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand"
   ],
   "Hexagon/BuildSystem/BuildStageRenderers/ShellCommand": [
     "Hexagon/BuildSystem/BuildStageRenderer"
+  ],
+  "Hexagon/BuildSystem/BuildStages/Base": [
+    "Hexagon/BuildSystem/BuildStageRenderer",
+    "Hexagon/BuildSystem/BuildStages/ShellCommand",
+    "Hexagon/BuildSystem/Builds/Base"
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",

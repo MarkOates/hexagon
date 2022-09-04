@@ -11,6 +11,11 @@ properties:
     init_with: (60.0f * 30)
     getter: true
 
+  - name: warning_position_sec
+    type: float
+    init_with: (60.0f * 30.0f) - 300.0f
+    getter: true
+
 
 dependencies:
 

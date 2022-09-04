@@ -57,8 +57,6 @@ functions:
 dependencies:
 
 
-  - symbol: ALLEGRO_FONT*
-    headers: [ allegro5/allegro_font.h ]
   - symbol: Hexagon::Elements::Window
     headers: [ Hexagon/Elements/Window.hpp ]
   - symbol: al_draw_textf
@@ -69,7 +67,7 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: std::vector<std::vector<std::string>>
     headers: [ vector, string ]
-
   - symbol: ALLEGRO_FONT
     headers: [ allegro5/allegro_font.h ]
+
 
