@@ -84,31 +84,8 @@ class BuildQuintessences : public Hexagon::BuildSystem::BuildStages::Base
 
 
 
-class ShellCommandBuilder
-{
-public:
-   std::string project_directory;
-
-   ShellCommandBuilder()
-      : project_directory(PROJECT_DIRECTORY)
-   {}
-
-   std::string build_make_quintessence_shell_command()
-   {
-      std::stringstream output_filename;
-      output_filename << "quintessences_" << BUILD_NUMBER << ".txt";
-      std::stringstream build_stage_shell_command;
-      build_stage_shell_command << "(cd " << project_directory << " && make list_quintessences > " << output_filename.str() << ")";
-      return build_stage_shell_command.str();
-   }
-};
-
-
-
 int main(int argc, char **argv)
 {
-   ShellCommandBuilder shell_command_builder;
-
    Hexagon::BuildSystem::BuildStageFactory build_stage_factory;
    Hexagon::BuildSystem::Builds::Base *build = new Hexagon::BuildSystem::Builds::Base;
    build->set_build_stages({
