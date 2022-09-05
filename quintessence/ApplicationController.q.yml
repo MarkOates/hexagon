@@ -18,6 +18,10 @@ properties:
     type: ALLEGRO_TIMER*
     init_with: nullptr
 
+  - name: regular_refresh_timer
+    type: ALLEGRO_TIMER*
+    init_with: nullptr
+
   - name: system
     type: Hexagon::System::System*
     init_with: nullptr
@@ -90,6 +94,10 @@ functions:
       primary_timer = al_create_timer(1.0/60.0);
       al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
       al_start_timer(primary_timer);
+
+      regular_refresh_timer = al_create_timer(1.0); // will tick once every second
+      al_register_event_source(event_queue, al_get_timer_event_source(regular_refresh_timer));
+      al_start_timer(regular_refresh_timer);
 
       al_init_user_event_source(&user_event_source);
       al_register_event_source(event_queue, &user_event_source);
@@ -229,14 +237,21 @@ functions:
              system->acknowledge_display_switch_in(display);
              break;
           case ALLEGRO_EVENT_TIMER:
-             system->get_motion_ref().update(al_get_time());
-             //refresh = true;
-             static int previous_num_active_animations = 0;
-             if (previous_num_active_animations == 0 && system->get_motion_ref().get_num_active_animations() == 0)
-                refresh = false;
-             previous_num_active_animations = system->get_motion_ref().get_num_active_animations();
-             if (mouse_event_occurred_and_requires_screen_refresh) refresh = true;
-             break;
+             if (this_event.timer.source == primary_timer)
+             {
+                system->get_motion_ref().update(al_get_time());
+                //refresh = true;
+                static int previous_num_active_animations = 0;
+                if (previous_num_active_animations == 0 && system->get_motion_ref().get_num_active_animations() == 0)
+                   refresh = false;
+                previous_num_active_animations = system->get_motion_ref().get_num_active_animations();
+                if (mouse_event_occurred_and_requires_screen_refresh) refresh = true;
+                break;
+             }
+             if (this_event.timer.source == regular_refresh_timer)
+             {
+                refresh = true;
+             }
           case ALLEGRO_EVENT_MOUSE_AXES:
           case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
           case ALLEGRO_EVENT_MOUSE_BUTTON_UP:

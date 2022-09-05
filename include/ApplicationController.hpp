@@ -12,6 +12,7 @@ private:
    ALLEGRO_DISPLAY* display;
    ALLEGRO_EVENT_QUEUE* event_queue;
    ALLEGRO_TIMER* primary_timer;
+   ALLEGRO_TIMER* regular_refresh_timer;
    Hexagon::System::System* system;
    ALLEGRO_EVENT_SOURCE user_event_source;
    bool shutdown_program;

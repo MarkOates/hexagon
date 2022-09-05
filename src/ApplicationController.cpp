@@ -24,6 +24,7 @@ ApplicationController::ApplicationController(Hexagon::System::Config hexagon_con
    , display(nullptr)
    , event_queue(nullptr)
    , primary_timer(nullptr)
+   , regular_refresh_timer(nullptr)
    , system(nullptr)
    , user_event_source()
    , shutdown_program(false)
@@ -82,6 +83,10 @@ void ApplicationController::create_event_queue_and_register_event_sources()
    primary_timer = al_create_timer(1.0/60.0);
    al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
    al_start_timer(primary_timer);
+
+   regular_refresh_timer = al_create_timer(1.0); // will tick once every second
+   al_register_event_source(event_queue, al_get_timer_event_source(regular_refresh_timer));
+   al_start_timer(regular_refresh_timer);
 
    al_init_user_event_source(&user_event_source);
    al_register_event_source(event_queue, &user_event_source);
@@ -215,14 +220,21 @@ void ApplicationController::run_event_loop()
          system->acknowledge_display_switch_in(display);
          break;
       case ALLEGRO_EVENT_TIMER:
-         system->get_motion_ref().update(al_get_time());
-         //refresh = true;
-         static int previous_num_active_animations = 0;
-         if (previous_num_active_animations == 0 && system->get_motion_ref().get_num_active_animations() == 0)
-            refresh = false;
-         previous_num_active_animations = system->get_motion_ref().get_num_active_animations();
-         if (mouse_event_occurred_and_requires_screen_refresh) refresh = true;
-         break;
+         if (this_event.timer.source == primary_timer)
+         {
+            system->get_motion_ref().update(al_get_time());
+            //refresh = true;
+            static int previous_num_active_animations = 0;
+            if (previous_num_active_animations == 0 && system->get_motion_ref().get_num_active_animations() == 0)
+               refresh = false;
+            previous_num_active_animations = system->get_motion_ref().get_num_active_animations();
+            if (mouse_event_occurred_and_requires_screen_refresh) refresh = true;
+            break;
+         }
+         if (this_event.timer.source == regular_refresh_timer)
+         {
+            refresh = true;
+         }
       case ALLEGRO_EVENT_MOUSE_AXES:
       case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
       case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
