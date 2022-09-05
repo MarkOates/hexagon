@@ -1174,13 +1174,19 @@ bool System::refresh_git_modified_line_numbers_on_all_code_editor_stages()
 }
 
 
-bool System::set_regex_input_box_modal_to_insert_mode()
+bool System::set_regex_input_box_modal_to_insert_mode() // this should be moved ot the input box modal
 {
    // TODO: this function also handles git_commit_message modal, too
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return false;
    frontmost_stage->process_local_event(::CodeEditor::EventController::SET_INSERT_MODE);
    return true;
+}
+
+
+bool System::infer_spawning_modals_is_permitted()
+{
+   // TODO
 }
 
 
@@ -1460,7 +1466,7 @@ bool System::execute_magic_command()
 }
 
 
-bool System::jump_to_next_code_point_on_stage()
+bool System::jump_to_next_code_point_on_stage() // TODO: this should be in the code editor
 {
    StageInterface *frontmost_stage = get_frontmost_stage();
    if (!frontmost_stage) return false;
@@ -1469,7 +1475,7 @@ bool System::jump_to_next_code_point_on_stage()
 }
 
 
-bool System::jump_to_next_or_nearest_code_point_on_stage()
+bool System::jump_to_next_or_nearest_code_point_on_stage() // TODO: this should be in the code editor
 {
    ::Hexagon::CodeEditor::Stage *stage = get_frontmost_code_editor_stage();
    if (!stage) return false;

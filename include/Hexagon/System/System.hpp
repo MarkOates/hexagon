@@ -155,6 +155,9 @@ public:
    bool refresh_regex_hilights_on_all_code_editor_stages();
    bool refresh_git_modified_line_numbers_on_all_code_editor_stages();
    bool set_regex_input_box_modal_to_insert_mode();
+
+   // spawn modals
+   bool infer_spawning_modals_is_permitted();
    bool spawn_multiplex_delete_menu();
    bool spawn_multiplex_change_menu();
    bool spawn_multiplex_goto_menu();
@@ -167,6 +170,7 @@ public:
    bool spawn_fancy();
    bool spawn_component_relations_navigator();
    bool spawn_red_overlay();
+
    bool parse_test_results_from_last_test_run_dump();
    bool spawn_file_navigator();
    bool add_file_is_unsaved_notification();
