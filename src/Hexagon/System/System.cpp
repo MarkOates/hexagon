@@ -1381,15 +1381,6 @@ bool System::spawn_red_overlay()
 }
 
 
-bool System::parse_test_results_from_last_test_run_dump()
-{
-   //Users/markoates/Repos/hexagon/bin/programs/data/builds/dumps/component_test_run.txt
-   // TODO: here
-   test_results.clear();
-   //TEST_RUN_DUMP_FULL_PATH;
-   return true;
-}
-
 
 bool System::spawn_file_navigator()
 {
@@ -1402,6 +1393,7 @@ bool System::spawn_file_navigator()
 }
 
 
+
 bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
 {
    ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
@@ -1409,6 +1401,17 @@ bool System::spawn_file_navigator_from_last_file_navigator_folder_selection()
 
    stages.push_back(stage);
 
+   return true;
+}
+
+
+
+bool System::parse_test_results_from_last_test_run_dump()
+{
+   //Users/markoates/Repos/hexagon/bin/programs/data/builds/dumps/component_test_run.txt
+   // TODO: here
+   test_results.clear();
+   //TEST_RUN_DUMP_FULL_PATH;
    return true;
 }
 
