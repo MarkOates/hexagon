@@ -27,7 +27,8 @@ TEST(Hexagon_BuildSystem_ReportRendererTest,
 
 
 TEST(Hexagon_BuildSystem_ReportRendererTest,
-   build_text_report__will_build_a_nicely_formatted_report_of_the_build)
+   DISABLED__build_text_report__will_build_a_nicely_formatted_report_of_the_build)
+   // TODO: report contains variable data (namely the duration line at the end of the report)
 {
    Hexagon::BuildSystem::BuildFactory build_factory;
    Hexagon::BuildSystem::Builds::Base* build = build_factory.create_placeholder_build();
