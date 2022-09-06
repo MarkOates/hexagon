@@ -34,6 +34,22 @@
 
 
 
+
+#include <fstream>
+bool file_put_contents(std::string filename, std::string contents)
+{
+   std::ofstream file;
+   file.open(filename.c_str());
+   if (!file.is_open()) return false;
+   file << contents.c_str();
+   file.close();
+   return true;
+}
+
+
+
+
+
 class ExpressionMatcher
 {
 public:
@@ -359,6 +375,7 @@ public:
 };
 
 
+
 class CreateFoldersForReleaseAndAppPackage : public Hexagon::BuildSystem::BuildStages::Base
 {
 private:
@@ -410,26 +427,98 @@ public:
 
 
 
+#include <Blast/TemplatedFile.hpp>
+#include <Blast/FileExistenceChecker.hpp>
+
+const std::string PLIST_TEMPLATE_CONTENT = R"DELIM(<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>[[NAME_OF_EXECUTABLE]]</string>
+	<key>CFBundleIconFile</key>
+	<string>Icon.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.markoates.[[NAME_OF_EXECUTABLE]]</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string></string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>[[FULL_VERSION_NUMBER]]</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string></string>
+	<key>CSResourcesFileMapped</key>
+	<true/>
+	<key>LSRequiresCarbon</key>
+	<true/>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>[[COPYRIGHT_TEXT]]</string>
+  <key>LSMultipleInstancesProhibited</key>
+  <false/>
+</dict>
+</plist>
+)DELIM";
+
+
+class CreatePlistFile : public Hexagon::BuildSystem::BuildStages::Base
+{
+public:
+   static constexpr char* TYPE = "CreatePlistFile";
+   std::string system_releases_folder;
+
+   CreatePlistFile()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+      , system_releases_folder("/Users/markoates/Releases/")
+   {}
+
+   virtual bool execute() override
+   {
+      Blast::TemplatedFile plist_template(PLIST_TEMPLATE_CONTENT, {
+            {  "[[NAME_OF_EXECUTABLE]]",  "TheWeepingHouse" },
+            {  "[[COPYRIGHT_TEXT]]",      "Copyright 2022 - Mark Oates - www.CLUBCATT.com" },
+            {  "[[FULL_VERSION_NUMBER]]", "1.0.0.3" },
+         });
+
+      std::string full_path_and_filename = system_releases_folder + "/TheWeepingHouse.app/Contents/Info.plist";
+      file_put_contents(full_path_and_filename, plist_template.generate_content());
+
+      return Blast::FileExistenceChecker(full_path_and_filename).exists();
+   }
+};
+
+
 
 int main(int argc, char **argv)
 {
    Hexagon::BuildSystem::BuildStageFactory build_stage_factory;
    Hexagon::BuildSystem::Builds::Base *build = new Hexagon::BuildSystem::Builds::Base;
    build->set_build_stages({
-      // validate these are present
-      new ValidateDylibBundlerVersion(),
-      new ValidateIconutil(),
-      new ValidateSips(),
+      //// validate these are present
+      //new ValidateDylibBundlerVersion(),
+      //new ValidateIconutil(),
+      //new ValidateSips(),
 
-      // get copy of source release
-      new CopySourceReleaseFilesForBuilding(),
+      //// get copy of source release
+      //new CopySourceReleaseFilesForBuilding(),
 
-      // make a build from the source
-      new BuildFromSourceInTempFolder(),
-      new ValidatePresenceOfBuiltExecutable(),
-      new BuildAppIcons(),
-      new ValidatePresenceOfIcnsFile(),
-      new CreateFoldersForReleaseAndAppPackage(),
+      //// make a build from the source
+      //new BuildFromSourceInTempFolder(),
+      //new ValidatePresenceOfBuiltExecutable(),
+
+      /// Make the app package
+      //new BuildAppIcons(),
+      //new ValidatePresenceOfIcnsFile(),
+      //new CreateFoldersForReleaseAndAppPackage(),
+      new CreatePlistFile(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
