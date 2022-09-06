@@ -56,6 +56,8 @@
 #define RELEASE_FOLDER_LOCATION "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"
 #define APP_PACKAGE_FOLDER_NAME "TheWeepingHouse.app"
 #define APP_PACKAGE_EXECUTABLE_NAME "TheWeepingHouse"
+#define NAME_OF_BUILT_EXECUTABLE "TheWeepingHouse"
+#define FULL_BINARY_APP_PACKAGE_DESTINATION ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" NAME_OF_BUILT_EXECUTABLE)
 
 
 
@@ -317,7 +319,7 @@ public:
    ValidatePresenceOfBuiltExecutable()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
-      , name_of_expected_executable("TheWeepingHouse")
+      , name_of_expected_executable(NAME_OF_BUILT_EXECUTABLE)
    {}
 
    virtual bool execute() override
@@ -339,6 +341,7 @@ private:
       std::stringstream shell_command;
 
       // from https://stackoverflow.com/a/20703594/6072362
+      // TODO: Extract icon name
       std::vector<std::string> lines = {
          "mkdir MyIcon.iconset",
          "sips -z 16 16     Icon1024.png --out MyIcon.iconset/icon_16x16.png",
@@ -461,6 +464,7 @@ public:
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , system_releases_folder(SYSTEM_RELEASES_FOLDER)
       , folders_to_create({
+         // TODO: extract these or build them
          "TheWeepingHouse-MacOS-chip_unknown",
          "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app",
          "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents",
@@ -555,7 +559,7 @@ private:
    void execute_shell_commands()
    {
       std::string source = name_of_temp_location_with_build + name_of_built_executable;
-      std::string destination = "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + name_of_built_executable;
+      std::string destination = FULL_BINARY_APP_PACKAGE_DESTINATION;
 
       std::stringstream shell_command;
       shell_command << "cp \"" << source << "\" \"" << destination << "\"";
@@ -577,8 +581,8 @@ public:
 
    CopyBuiltBinaryToAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location_with_build("/Users/markoates/Releases/tmp/54321-MacOS/")
-      , name_of_built_executable("TheWeepingHouse")
+      , name_of_temp_location_with_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
+      , name_of_built_executable(NAME_OF_BUILT_EXECUTABLE)
    {}
 
    virtual bool execute() override
@@ -778,6 +782,7 @@ int main(int argc, char **argv)
       new ValidatePresenceOfBuiltExecutable(),
 
       // Make the app package
+      // TODO: copy the source's app icon png into the temp location to build the icns file
       new BuildAppIcons(),
       new ValidatePresenceOfIcnsFile(),
       new CreateFoldersForReleaseAndAppPackage(),
