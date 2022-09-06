@@ -582,6 +582,45 @@ public:
 
 
 
+class CopyIcnsFileToAppPackage : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   void execute_shell_commands()
+   {
+      std::stringstream shell_command;
+      shell_command << "cp \"" << full_source_location_of_icns_file << "\" \"" << full_destination_location << "\"";
+      std::cout << shell_command.str() << std::endl;
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      shell_command_result = shell_command_executor.execute();
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      shell_command_response_code = shell_command_executor2.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "CopyIcnsFileToAppPackage";
+   std::string full_source_location_of_icns_file;
+   std::string full_destination_location;
+   std::string shell_command_result;
+   std::string shell_command_response_code;
+
+   CopyIcnsFileToAppPackage()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+      , full_source_location_of_icns_file("/Users/markoates/Releases/tmp/54321-IcnsFile/MyIcon.icns")
+      , full_destination_location("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns")
+   {}
+
+   virtual bool execute() override
+   {
+      execute_shell_commands();
+      if (shell_command_response_code == ("0\n")) return true;
+      return false;
+   }
+};
+
+
+
 
 
 
@@ -608,7 +647,8 @@ int main(int argc, char **argv)
       //new CreateFoldersForReleaseAndAppPackage(),
       //new CreateInfoDotPlistFile(),
       //new CopyBuiltBinaryToAppPackage(),
-      new CopyDataFolderToAppPackage(),
+      //new CopyDataFolderToAppPackage(),
+      new CopyIcnsFileToAppPackage(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
