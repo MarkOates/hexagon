@@ -538,6 +538,52 @@ public:
 
 
 
+#include <Blast/DirectoryExistenceChecker.hpp>
+
+class CopyDataFolderToAppPackage : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   void execute_shell_commands()
+   {
+      //TODO: require '/' character at end
+      std::stringstream shell_command;
+      shell_command << "cp -R \"" << full_path_of_source_data_folder << "\" \"" << full_path_of_app_package_resources_folder << "data\"";
+      std::cout << shell_command.str() << std::endl;
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      shell_command_result = shell_command_executor.execute();
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      shell_command_response_code = shell_command_executor2.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "CopyDataFolderToAppPackage";
+   std::string full_path_of_source_data_folder;
+   std::string full_path_of_app_package_resources_folder;
+   std::string shell_command_result;
+   std::string shell_command_response_code;
+
+   CopyDataFolderToAppPackage()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+      , full_path_of_source_data_folder("/Users/markoates/Releases/tmp/54321-MacOS/data/")
+      , full_path_of_app_package_resources_folder("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/")
+      , shell_command_result()
+      , shell_command_response_code()
+   {}
+
+   virtual bool execute() override
+   {
+      execute_shell_commands();
+      if (shell_command_response_code == "0\n") return true;
+      return false;
+   }
+};
+
+
+
+
+
+
 
 int main(int argc, char **argv)
 {
@@ -559,9 +605,10 @@ int main(int argc, char **argv)
       /// Make the app package
       //new BuildAppIcons(),
       //new ValidatePresenceOfIcnsFile(),
-      new CreateFoldersForReleaseAndAppPackage(),
-      new CreateInfoDotPlistFile(),
+      //new CreateFoldersForReleaseAndAppPackage(),
+      //new CreateInfoDotPlistFile(),
       new CopyBuiltBinaryToAppPackage(),
+      new CopyDataFolderToAppPackage(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
