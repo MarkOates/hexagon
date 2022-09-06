@@ -699,9 +699,9 @@ int main(int argc, char **argv)
       //new ValidateDylibBundlerVersion(),
       //new ValidateIconutil(),
       //new ValidateSips(),
-      new ValidateZip(),
+      //new ValidateZip(),
 
-      // TODO: validate README.md, validate source icon
+      // TODO: validate README.md in source, validate source icon needed for icns file
 
       //// get copy of source release
       //new CopySourceReleaseFilesForBuilding(),
