@@ -411,9 +411,9 @@ public:
       , folders_to_create({
          "TheWeepingHouse-MacOS-chip_unknown",
          "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app",
-         "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Content",
-         "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Content/MacOS",
-         "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Content/Resources",
+         "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents",
+         "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS",
+         "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources",
          })
    {}
 
@@ -488,12 +488,54 @@ public:
             {  "[[FULL_VERSION_NUMBER]]", "1.0.0.3" },
          });
 
-      std::string full_path_and_filename = system_releases_folder + "/TheWeepingHouse.app/Contents/Info.plist";
+      std::string full_path_and_filename = system_releases_folder + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Info.plist";
       file_put_contents(full_path_and_filename, plist_template.generate_content());
 
       return Blast::FileExistenceChecker(full_path_and_filename).exists();
    }
 };
+
+
+class CopyBuiltBinaryToAppPackage : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   void execute_shell_commands()
+   {
+      std::string source = name_of_temp_location_with_build + name_of_built_executable;
+      std::string destination = "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + name_of_built_executable;
+
+      std::stringstream shell_command;
+      shell_command << "cp \"" << source << "\" \"" << destination << "\"";
+      std::cout << shell_command.str() << std::endl;
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      shell_command_result = shell_command_executor.execute();
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      shell_command_response_code = shell_command_executor2.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "CopyBuiltBinaryToAppPackage";
+   std::string name_of_temp_location_with_build;
+   std::string name_of_built_executable;
+   std::string shell_command_result;
+   std::string shell_command_response_code;
+
+   CopyBuiltBinaryToAppPackage()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+      , name_of_temp_location_with_build("/Users/markoates/Releases/tmp/54321-MacOS/")
+      , name_of_built_executable("TheWeepingHouse")
+   {}
+
+   virtual bool execute() override
+   {
+      execute_shell_commands();
+      if (shell_command_response_code == ("0\n")) return true;
+      return false;
+   }
+};
+
 
 
 
@@ -517,8 +559,9 @@ int main(int argc, char **argv)
       /// Make the app package
       //new BuildAppIcons(),
       //new ValidatePresenceOfIcnsFile(),
-      //new CreateFoldersForReleaseAndAppPackage(),
+      new CreateFoldersForReleaseAndAppPackage(),
       new CreateInfoDotPlistFile(),
+      new CopyBuiltBinaryToAppPackage(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
