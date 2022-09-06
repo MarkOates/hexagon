@@ -151,6 +151,30 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
 
 
 TEST(Hexagon_BuildSystem_Builds_BaseTest,
+   run__when_a_build_stage_fails__will_halt_execution_of_the_remaining_stages)
+{
+   BuildsBaseTestClass base_build;
+   base_build.set_build_stages({
+      new BuildStageTestClass,
+      new BuildStageTestClass,
+      new FailingBuildStageTestClass,
+      new BuildStageTestClass,
+   });
+
+   base_build.run();
+
+   std::vector<Hexagon::BuildSystem::BuildStages::Base*> build_stages = base_build.get_build_stages();
+
+   ASSERT_EQ(4, build_stages.size());
+
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[0]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[1]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED, build_stages[2]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED, build_stages[3]->get_status());
+}
+
+
+TEST(Hexagon_BuildSystem_Builds_BaseTest,
    infer_duraiton_seconds__after_run__will_return_the_duration_of_build_in_seconds)
 {
    float sleep_duration_seconds = 0.2;

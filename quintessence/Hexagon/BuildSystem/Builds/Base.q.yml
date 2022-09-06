@@ -62,6 +62,12 @@ properties:
     init_with: '"error"'
     constexpr: true
 
+  - name: STATUS_NOT_RUN
+    type: char*
+    static: true
+    init_with: '"not_started"'
+    constexpr: true
+
 
 functions:
 
