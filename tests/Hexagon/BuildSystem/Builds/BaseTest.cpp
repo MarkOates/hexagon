@@ -11,7 +11,7 @@ class BuildStageTestClass : public Hexagon::BuildSystem::BuildStages::Base
 public:
    int call_counter;
    BuildStageTestClass() : Hexagon::BuildSystem::BuildStages::Base("BuildStageTestClass"), call_counter(0) {}
-   virtual bool execute() override { call_counter++; }
+   virtual bool execute() override { call_counter++; return true; }
 };
 
 
@@ -21,7 +21,17 @@ public:
    ExceptionThrowingBuildStageTestClass()
       : Hexagon::BuildSystem::BuildStages::Base("ExceptionThrowingBuildStageTestClass")
    {}
-   virtual bool execute() override { throw std::runtime_error("exception thrown!"); }
+   virtual bool execute() override { throw std::runtime_error("exception thrown!"); return true; }
+};
+
+
+class FailingBuildStageTestClass : public Hexagon::BuildSystem::BuildStages::Base
+{
+public:
+   FailingBuildStageTestClass()
+      : Hexagon::BuildSystem::BuildStages::Base("FailingBuildStageTestClass")
+   {}
+   virtual bool execute() override { return false; }
 };
 
 
@@ -37,6 +47,7 @@ public:
    virtual bool execute() override {
       int length_in_milliseconds = (int)(length_in_seconds * 1000.0);
       std::this_thread::sleep_for(std::chrono::milliseconds(length_in_milliseconds));
+      return true;
    }
 };
 
@@ -174,12 +185,29 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
 
 
 TEST(Hexagon_BuildSystem_Builds_BaseTest,
-   run__when_a_build_stage_fails__will_not_set_the_started_at_and_ended_at_for_subsequent_build_stages)
+   run__when_a_build_stage_throws_an_error__will_not_set_the_started_at_and_ended_at_for_subsequent_build_stages)
 {
    float sleep_duration_seconds = 0.1;
    BuildsBaseTestClass base_build;
    base_build.set_build_stages({
       new ExceptionThrowingBuildStageTestClass(),
+      new BuildStageTestClass(),
+   });
+
+   base_build.run();
+
+   EXPECT_NE(0, base_build.get_build_stages()[0]->calc_duration_seconds());
+   EXPECT_EQ(0, base_build.get_build_stages()[1]->calc_duration_seconds());
+}
+
+
+TEST(Hexagon_BuildSystem_Builds_BaseTest,
+   run__when_a_build_stage_fails__will_not_set_the_started_at_and_ended_at_for_subsequent_build_stages)
+{
+   float sleep_duration_seconds = 0.1;
+   BuildsBaseTestClass base_build;
+   base_build.set_build_stages({
+      new FailingBuildStageTestClass(),
       new BuildStageTestClass(),
    });
 

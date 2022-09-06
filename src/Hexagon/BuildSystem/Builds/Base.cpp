@@ -113,6 +113,7 @@ void Base::run()
          else
          {
             build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED);
+            status = STATUS_ERROR;
          }
       }
       catch (const std::exception& e)
