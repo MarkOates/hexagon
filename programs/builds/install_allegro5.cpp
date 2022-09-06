@@ -761,7 +761,7 @@ int main(int argc, char **argv)
       new CopyDataFolderToAppPackage(),
       new CopyIcnsFileToAppPackage(),
       new CopyReadmeFileToRelaseFolder(),
-      new BuildAndBundleDylibsWithAppPackage(),
+      new BuildAndBundleDylibsWithAppPackage(), // TODO: this process can error but it will not report an error
    });
    build->run();
    //parallel_build->run_all_in_parallel();
