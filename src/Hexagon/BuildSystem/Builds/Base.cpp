@@ -105,8 +105,15 @@ void Base::run()
       build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING);
       try
       {
-         build_stage->execute();
-         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED);
+         bool executed_without_failure = build_stage->execute();
+         if (executed_without_failure)
+         {
+            build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED);
+         }
+         else
+         {
+            build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED);
+         }
       }
       catch (const std::exception& e)
       {

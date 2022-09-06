@@ -152,9 +152,10 @@ functions:
 
 
   - name: execute
+    type: bool
     virtual: true
     body: |
-      return;
+      return true;
 
 
   - name: calc_duration_seconds

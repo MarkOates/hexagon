@@ -47,9 +47,9 @@ class ListQuintessences : public Hexagon::BuildSystem::BuildStages::Base
          return shell_command.str();
       }
 
-      virtual void execute() override
+      virtual bool execute() override
       {
-         if (executed) return;
+         if (executed) return true;
          Blast::ShellCommandExecutorWithCallback shell_command_executor(build_list_quintessences_shell_command());
          shell_command_result = shell_command_executor.execute();
          executed = true;
@@ -87,7 +87,7 @@ class BuildQuintessences : public Hexagon::BuildSystem::BuildStages::Base
          return shell_command.str();
       }
 
-      virtual void execute() override
+      virtual bool execute() override
       {
          std::string filename_with_quintessences_list = project_directory + "/quintessences_" + build_number + ".txt";
          std::string contents = php::file_get_contents(filename_with_quintessences_list);
@@ -96,6 +96,7 @@ class BuildQuintessences : public Hexagon::BuildSystem::BuildStages::Base
          Blast::ShellCommandExecutorWithCallback shell_command_executor(build_make_quintessences_shell_command());
          shell_command_result = shell_command_executor.execute();
          executed = true;
+         return true;
       }
 };
 
@@ -130,12 +131,13 @@ class ListObjects : public Hexagon::BuildSystem::BuildStages::Base
          return shell_command.str();
       }
 
-      virtual void execute() override
+      virtual bool execute() override
       {
-         if (executed) return;
+         if (executed) return true;
          Blast::ShellCommandExecutorWithCallback shell_command_executor(build_list_quintessences_shell_command());
          shell_command_result = shell_command_executor.execute();
          executed = true;
+         return true;
       }
 };
 
@@ -170,7 +172,7 @@ class BuildObjects : public Hexagon::BuildSystem::BuildStages::Base
          return shell_command.str();
       }
 
-      virtual void execute() override
+      virtual bool execute() override
       {
          //std::string filename_with_quintessences_list = project_directory + "/quintessences_" + build_number + ".txt";
          //std::string contents = php::file_get_contents(filename_with_quintessences_list);
@@ -179,6 +181,7 @@ class BuildObjects : public Hexagon::BuildSystem::BuildStages::Base
          Blast::ShellCommandExecutorWithCallback shell_command_executor(build_make_quintessences_shell_command());
          shell_command_result = shell_command_executor.execute();
          executed = true;
+         return true;
       }
 };
 
@@ -213,12 +216,13 @@ class ListTestObjects : public Hexagon::BuildSystem::BuildStages::Base
          return shell_command.str();
       }
 
-      virtual void execute() override
+      virtual bool execute() override
       {
-         if (executed) return;
+         if (executed) return true;
          Blast::ShellCommandExecutorWithCallback shell_command_executor(build_list_quintessences_shell_command());
          shell_command_result = shell_command_executor.execute();
          executed = true;
+         return true;
       }
 };
 
@@ -256,12 +260,13 @@ class BuildOneTestObject : public Hexagon::BuildSystem::BuildStages::Base
          return shell_command.str();
       }
 
-      virtual void execute() override
+      virtual bool execute() override
       {
-         if (executed) return;
+         if (executed) return true;
          Blast::ShellCommandExecutorWithCallback shell_command_executor(build_list_quintessences_shell_command());
          shell_command_result = shell_command_executor.execute();
          executed = true;
+         return true;
       }
 };
 

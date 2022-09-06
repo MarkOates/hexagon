@@ -90,9 +90,9 @@ bool Base::is_type(std::string possible_type)
    return (possible_type == get_type());
 }
 
-void Base::execute()
+bool Base::execute()
 {
-   return;
+   return true;
 }
 
 double Base::calc_duration_seconds()

@@ -46,7 +46,7 @@ namespace Hexagon
             std::chrono::system_clock::time_point get_ended_at();
             void set_ended_at(std::chrono::system_clock::time_point ended_at);
             bool is_type(std::string possible_type="");
-            virtual void execute();
+            virtual bool execute();
             double calc_duration_seconds();
          };
       }

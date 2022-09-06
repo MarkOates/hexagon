@@ -41,7 +41,7 @@ std::string ShellCommand::get_shell_command_result() const
 }
 
 
-void ShellCommand::execute()
+bool ShellCommand::execute()
 {
    if (!((!executed)))
    {
@@ -52,7 +52,7 @@ void ShellCommand::execute()
    Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command);
    shell_command_result = shell_command_executor.execute();
    executed = true;
-   return;
+   return true;
 }
 
 

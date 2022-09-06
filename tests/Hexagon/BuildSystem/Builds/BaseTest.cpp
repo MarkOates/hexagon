@@ -11,7 +11,7 @@ class BuildStageTestClass : public Hexagon::BuildSystem::BuildStages::Base
 public:
    int call_counter;
    BuildStageTestClass() : Hexagon::BuildSystem::BuildStages::Base("BuildStageTestClass"), call_counter(0) {}
-   virtual void execute() override { call_counter++; }
+   virtual bool execute() override { call_counter++; }
 };
 
 
@@ -21,7 +21,7 @@ public:
    ExceptionThrowingBuildStageTestClass()
       : Hexagon::BuildSystem::BuildStages::Base("ExceptionThrowingBuildStageTestClass")
    {}
-   virtual void execute() override { throw std::runtime_error("exception thrown!"); }
+   virtual bool execute() override { throw std::runtime_error("exception thrown!"); }
 };
 
 
@@ -34,7 +34,7 @@ public:
       : Hexagon::BuildSystem::BuildStages::Base("SleepingBuildStageTestClass")
       , length_in_seconds(length_in_seconds)
    {}
-   virtual void execute() override {
+   virtual bool execute() override {
       int length_in_milliseconds = (int)(length_in_seconds * 1000.0);
       std::this_thread::sleep_for(std::chrono::milliseconds(length_in_milliseconds));
    }

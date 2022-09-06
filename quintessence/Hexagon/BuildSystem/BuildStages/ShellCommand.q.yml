@@ -35,6 +35,7 @@ functions:
 
 
   - name: execute
+    type: bool
     virtual: true
     override: true
     guards: [ (!executed) ]
@@ -42,7 +43,7 @@ functions:
       Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command);
       shell_command_result = shell_command_executor.execute();
       executed = true;
-      return;
+      return true;
     body_dependency_symbols:
       - Blast::ShellCommandExecutorWithCallback
 
