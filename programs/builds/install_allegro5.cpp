@@ -35,6 +35,25 @@
 
 
 
+
+
+#define SYSTEM_RELEASES_FOLDER "/Users/markoates/Releases/"
+#define SOURCE_RELEASE_FOLDER_NAME "TheWeepingHouse-SourceRelease-220903200818UTC"
+#define ICNS_FULL_TEMP_FOLDER "/Users/markoates/Releases/tmp/54321-IcnsFile/"
+#define FULL_PATH_TO_BUILT_ICNS_FILE "/Users/markoates/Releases/tmp/54321-IcnsFile/MyIcon.icns"
+#define FULL_PATH_TO_DESTINATION_ICNS_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"
+#define FULL_PATH_TO_SOURCE_README "/Users/markoates/Releases/tmp/54321-MacOS/README.md"
+#define FULL_PATH_TO_DESTINATION_README "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"
+#define FULL_PATH_OF_SOURCE_DATA_FOLDER "/Users/markoates/Releases/tmp/54321-MacOS/data/"
+#define FULL_PATH_OF_DESTINATION_DATA_FOLDER "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"
+#define NAME_OF_EXECUTABLE "TheWeepingHouse"
+#define COPYRIGHT_FULL_TEXT "Copyright 2022 - Mark Oates - www.CLUBCATT.com"
+#define FULL_VERSION_NUMBER "1.0.0.3"
+
+
+
+
+
 #include <fstream>
 bool file_put_contents(std::string filename, std::string contents)
 {
@@ -350,7 +369,7 @@ public:
 
    BuildAppIcons()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_folder_for_icons("/Users/markoates/Releases/tmp/54321-IcnsFile/")
+      , name_of_temp_folder_for_icons(ICNS_FULL_TEMP_FOLDER)
       , shell_command_result()
       , shell_command_response_code()
    {}
@@ -390,7 +409,7 @@ public:
 
    ValidatePresenceOfIcnsFile()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location_to_build("/Users/markoates/Releases/tmp/54321-IcnsFile/")
+      , name_of_temp_location_to_build(ICNS_FULL_TEMP_FOLDER)
       , name_of_expected_executable("MyIcon.icns")
    {}
 
@@ -435,7 +454,7 @@ public:
 
    CreateFoldersForReleaseAndAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , system_releases_folder("/Users/markoates/Releases/")
+      , system_releases_folder(SYSTEM_RELEASES_FOLDER)
       , folders_to_create({
          "TheWeepingHouse-MacOS-chip_unknown",
          "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app",
@@ -511,9 +530,9 @@ public:
    virtual bool execute() override
    {
       Blast::TemplatedFile plist_template(PLIST_TEMPLATE_CONTENT, {
-            {  "[[NAME_OF_EXECUTABLE]]",  "TheWeepingHouse" },
-            {  "[[COPYRIGHT_TEXT]]",      "Copyright 2022 - Mark Oates - www.CLUBCATT.com" },
-            {  "[[FULL_VERSION_NUMBER]]", "1.0.0.3" },
+            {  "[[NAME_OF_EXECUTABLE]]",  NAME_OF_EXECUTABLE },
+            {  "[[COPYRIGHT_TEXT]]",      COPYRIGHT_FULL_TEXT },
+            {  "[[FULL_VERSION_NUMBER]]", FULL_VERSION_NUMBER },
          });
 
       std::string full_path_and_filename = system_releases_folder + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Info.plist";
@@ -593,8 +612,8 @@ public:
 
    CopyDataFolderToAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , full_path_of_source_data_folder("/Users/markoates/Releases/tmp/54321-MacOS/data/")
-      , full_path_of_app_package_destination_folder("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data")
+      , full_path_of_source_data_folder(FULL_PATH_OF_SOURCE_DATA_FOLDER)
+      , full_path_of_app_package_destination_folder(FULL_PATH_OF_DESTINATION_DATA_FOLDER)
       , shell_command_result()
       , shell_command_response_code()
    {}
@@ -635,8 +654,8 @@ public:
 
    CopyIcnsFileToAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , full_source_location_of_icns_file("/Users/markoates/Releases/tmp/54321-IcnsFile/MyIcon.icns")
-      , full_destination_location("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns")
+      , full_source_location_of_icns_file(FULL_PATH_TO_BUILT_ICNS_FILE)
+      , full_destination_location(FULL_PATH_TO_DESTINATION_ICNS_FILE)
    {}
 
    virtual bool execute() override
@@ -674,8 +693,8 @@ public:
 
    CopyReadmeFileToRelaseFolder()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , full_location_to_source("/Users/markoates/Releases/tmp/54321-MacOS/README.md")
-      , full_location_to_destination("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md")
+      , full_location_to_source(FULL_PATH_TO_SOURCE_README)
+      , full_location_to_destination(FULL_PATH_TO_DESTINATION_README)
    {}
 
    virtual bool execute() override
