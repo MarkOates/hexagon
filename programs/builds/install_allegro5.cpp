@@ -48,7 +48,8 @@
 #define FULL_PATH_OF_DESTINATION_DATA_FOLDER "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"
 #define NAME_OF_EXECUTABLE "TheWeepingHouse"
 #define COPYRIGHT_FULL_TEXT "Copyright 2022 - Mark Oates - www.CLUBCATT.com"
-#define FULL_VERSION_NUMBER "1.0.0.3"
+#define FULL_VERSION_NUMBER_WITH_BUILD "1.0.0.3"
+#define VERSION_NUMBER "1.0.0"
 
 
 
@@ -496,11 +497,11 @@ const std::string PLIST_TEMPLATE_CONTENT = R"DELIM(<?xml version="1.0" encoding=
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>[[FULL_VERSION_NUMBER]]</string>
+	<string>[[FULL_VERSION_NUMBER_WITH_BUILD]]</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string></string>
+	<string>[[VERSION_NUMBER]]</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>LSRequiresCarbon</key>
@@ -532,7 +533,8 @@ public:
       Blast::TemplatedFile plist_template(PLIST_TEMPLATE_CONTENT, {
             {  "[[NAME_OF_EXECUTABLE]]",  NAME_OF_EXECUTABLE },
             {  "[[COPYRIGHT_TEXT]]",      COPYRIGHT_FULL_TEXT },
-            {  "[[FULL_VERSION_NUMBER]]", FULL_VERSION_NUMBER },
+            {  "[[FULL_VERSION_NUMBER_WITH_BUILD]]", FULL_VERSION_NUMBER_WITH_BUILD },
+            {  "[[VERSION_NUMBER]]", VERSION_NUMBER },
          });
 
       std::string full_path_and_filename = system_releases_folder + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Info.plist";
