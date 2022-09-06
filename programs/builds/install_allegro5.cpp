@@ -20,6 +20,8 @@
 #include <Hexagon/RegexMatcher.hpp>
 
 
+#include <Blast/StringJoiner.hpp>
+
 
 
 class ExpressionMatcher
@@ -250,6 +252,101 @@ public:
 
 
 
+class BuildAppIcons : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   void execute_shell_commands()
+   {
+      //TODO: require '/' character at end
+      std::stringstream shell_command;
+
+      // from https://stackoverflow.com/a/20703594/6072362
+      std::vector<std::string> lines = {
+         "mkdir MyIcon.iconset",
+         "sips -z 16 16     Icon1024.png --out MyIcon.iconset/icon_16x16.png",
+         "sips -z 32 32     Icon1024.png --out MyIcon.iconset/icon_16x16@2x.png",
+         "sips -z 32 32     Icon1024.png --out MyIcon.iconset/icon_32x32.png",
+         "sips -z 64 64     Icon1024.png --out MyIcon.iconset/icon_32x32@2x.png",
+         "sips -z 128 128   Icon1024.png --out MyIcon.iconset/icon_128x128.png",
+         "sips -z 256 256   Icon1024.png --out MyIcon.iconset/icon_128x128@2x.png",
+         "sips -z 256 256   Icon1024.png --out MyIcon.iconset/icon_256x256.png",
+         "sips -z 512 512   Icon1024.png --out MyIcon.iconset/icon_256x256@2x.png",
+         "sips -z 512 512   Icon1024.png --out MyIcon.iconset/icon_512x512.png",
+         "cp Icon1024.png MyIcon.iconset/icon_512x512@2x.png",
+         "iconutil -c icns MyIcon.iconset",
+         "rm -R MyIcon.iconset",
+      };
+
+      std::string lines_joined = Blast::StringJoiner(lines, "\n").join();
+
+      shell_command << "(cd " << name_of_temp_folder_for_icons << " && (" << lines_joined << "))";
+      std::cout << shell_command.str() << std::endl;
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      shell_command_result = shell_command_executor.execute();
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      shell_command_response_code = shell_command_executor2.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "BuildAppIcons";
+   std::string name_of_temp_folder_for_icons;
+   std::string shell_command_result;
+   std::string shell_command_response_code;
+
+   BuildAppIcons()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+      , name_of_temp_folder_for_icons("/Users/markoates/Releases/tmp/54321-IcnsFile/")
+      , shell_command_result()
+      , shell_command_response_code()
+   {}
+
+   virtual bool execute() override
+   {
+      execute_shell_commands();
+      if (shell_command_response_code == ("0\n")) return true;
+      return false;
+   }
+};
+
+
+
+class ValidatePresenceOfIcnsFile : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   void execute_shell_commands()
+   {
+      //TODO: require '/' character at end
+      std::stringstream shell_command;
+      shell_command << "(cd " << name_of_temp_location_to_build << " && ((ls \"./" << name_of_expected_executable << "\" && echo yes) || echo no))";
+      std::cout << shell_command.str() << std::endl;
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      shell_command_result = shell_command_executor.execute();
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      shell_command_response_code = shell_command_executor2.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "ValidatePresenceOfIcnsFile";
+   std::string name_of_temp_location_to_build;
+   std::string name_of_expected_executable;
+   std::string shell_command_result;
+   std::string shell_command_response_code;
+
+   ValidatePresenceOfIcnsFile()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+      , name_of_temp_location_to_build("/Users/markoates/Releases/tmp/54321-IcnsFile/")
+      , name_of_expected_executable("MyIcon.icns")
+   {}
+
+   virtual bool execute() override
+   {
+      execute_shell_commands();
+      if (shell_command_result == ("./" + name_of_expected_executable + "\nyes\n")) return true;
+      return false;
+   }
+};
 
 
 
@@ -268,7 +365,9 @@ int main(int argc, char **argv)
 
       //// make a build from the source
       //new BuildFromSourceInTempFolder(),
-      new ValidatePresenceOfBuiltExecutable(),
+      //new ValidatePresenceOfBuiltExecutable(),
+      //new BuildAppIcons(),
+      new ValidatePresenceOfIcnsFile(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
