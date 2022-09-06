@@ -100,6 +100,34 @@ public:
 };
 
 
+class ValidateSips : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   std::string get_result_of_dylibbuilder_shell_execution()
+   {
+      std::stringstream shell_command;
+      shell_command << "sips -v";
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      return shell_command_executor.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "ValidateSips";
+
+   ValidateSips()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+   {}
+
+   virtual bool execute() override
+   {
+      std::string match_expression = "sips-[0-9]+\n";
+      std::string actual_string = get_result_of_dylibbuilder_shell_execution();
+      if (!ExpressionMatcher(match_expression, actual_string).matches()) return false;
+      return true;
+   }
+};
+
+
 
 
 
@@ -110,6 +138,7 @@ int main(int argc, char **argv)
    build->set_build_stages({
       new ValidateDylibBundlerVersion(),
       new ValidateIconutil(),
+      new ValidateSips(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
