@@ -698,7 +698,7 @@ private:
       std::string app_package_executable_name = "TheWeepingHouse";
       std::stringstream shell_command;
       shell_command << "(cd " << app_package_location << " && (export DYLD_LIBRARY_PATH=/usr/local/lib" << std::endl
-                    << "dylibbundler ---no-codesign x " << app_package_folder_name << "/Contents/MacOS/" << app_package_executable_name << " -b -d " << app_package_folder_name << "/Contents/MacOS -p @executable_path -s $DYLD_LIBRARY_PATH"
+                    << "dylibbundler -x " << app_package_folder_name << "/Contents/MacOS/" << app_package_executable_name << " -b -d " << app_package_folder_name << "/Contents/MacOS -p @executable_path -s $DYLD_LIBRARY_PATH"
                     << "))";
 
       std::cout << shell_command.str() << std::endl;
@@ -737,30 +737,30 @@ int main(int argc, char **argv)
    Hexagon::BuildSystem::BuildStageFactory build_stage_factory;
    Hexagon::BuildSystem::Builds::Base *build = new Hexagon::BuildSystem::Builds::Base;
    build->set_build_stages({
-      //// validate these are present
-      //new ValidateDylibBundlerVersion(),
-      //new ValidateIconutil(),
-      //new ValidateSips(),
-      //new ValidateZip(),
+      // validate these are present
+      new ValidateDylibBundlerVersion(),
+      new ValidateIconutil(),
+      new ValidateSips(),
+      new ValidateZip(),
 
-      // TODO: validate README.md in source, validate source icon needed for icns file
+      // // TODO: validate README.md in source, validate source icon needed for icns file
 
-      //// get copy of source release
-      //new CopySourceReleaseFilesForBuilding(),
+      // get copy of source release
+      new CopySourceReleaseFilesForBuilding(),
 
-      //// make a build from the source
-      //new BuildFromSourceInTempFolder(),
-      //new ValidatePresenceOfBuiltExecutable(),
+      // make a build from the source
+      new BuildFromSourceInTempFolder(),
+      new ValidatePresenceOfBuiltExecutable(),
 
-      //// Make the app package
-      //new BuildAppIcons(),
-      //new ValidatePresenceOfIcnsFile(),
-      //new CreateFoldersForReleaseAndAppPackage(),
-      //new CreateInfoDotPlistFile(),
-      //new CopyBuiltBinaryToAppPackage(),
-      //new CopyDataFolderToAppPackage(),
-      //new CopyIcnsFileToAppPackage(),
-      //new CopyReadmeFileToRelaseFolder(),
+      // Make the app package
+      new BuildAppIcons(),
+      new ValidatePresenceOfIcnsFile(),
+      new CreateFoldersForReleaseAndAppPackage(),
+      new CreateInfoDotPlistFile(),
+      new CopyBuiltBinaryToAppPackage(),
+      new CopyDataFolderToAppPackage(),
+      new CopyIcnsFileToAppPackage(),
+      new CopyReadmeFileToRelaseFolder(),
       new BuildAndBundleDylibsWithAppPackage(),
    });
    build->run();
