@@ -96,7 +96,7 @@ functions:
             bool executed_without_failure = build_stage->execute();
             if (executed_without_failure)
             {
-               build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED);
+               build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED);
             }
             else
             {
@@ -114,6 +114,7 @@ functions:
 
          if (status == STATUS_ERROR)
          {
+            ended_at = std::chrono::system_clock::now();
             return;
          }
       }
@@ -132,13 +133,20 @@ functions:
       - name: build_stage
         type: Hexagon::BuildSystem::BuildStages::Base*
         default_argument: nullptr
-    body:
+    body: |
       build_stage->set_started_at(std::chrono::system_clock::now());
       build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING);
       try
       {
-         build_stage->execute();
-         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED);
+         bool executed_without_failure = build_stage->execute();
+         if (executed_without_failure)
+         {
+            build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED);
+         }
+         else
+         {
+            build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED);
+         }
       }
       catch (const std::exception& e)
       {
@@ -164,6 +172,8 @@ functions:
       thread1.join();
       thread2.join();
       thread3.join();
+
+      //TODO: check for error status
 
       status = STATUS_FINISHED;
       ended_at = std::chrono::system_clock::now();

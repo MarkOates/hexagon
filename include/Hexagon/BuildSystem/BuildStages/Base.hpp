@@ -18,7 +18,7 @@ namespace Hexagon
             static constexpr char* TYPE = "Base";
             static constexpr char* STATUS_WAITING_TO_START = "waiting_to_start";
             static constexpr char* STATUS_RUNNING = "running";
-            static constexpr char* STATUS_FINISHED = "finished";
+            static constexpr char* STATUS_SUCCEEDED = "succeeded";
             static constexpr char* STATUS_ERROR = "error";
             static constexpr char* STATUS_FAILED = "failed";
 

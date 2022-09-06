@@ -54,10 +54,10 @@ properties:
     init_with: '"running"'
     constexpr: true
 
-  - name: STATUS_FINISHED
+  - name: STATUS_SUCCEEDED
     type: char*
     static: true
-    init_with: '"finished"'
+    init_with: '"succeeded"'
     constexpr: true
 
   - name: STATUS_ERROR

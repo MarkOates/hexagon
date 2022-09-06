@@ -143,8 +143,8 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
 
    ASSERT_EQ(4, build_stages.size());
 
-   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[0]->get_status());
-   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[1]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED, build_stages[0]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED, build_stages[1]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR, build_stages[2]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_WAITING_TO_START, build_stages[3]->get_status());
 }
@@ -167,8 +167,8 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
 
    ASSERT_EQ(4, build_stages.size());
 
-   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[0]->get_status());
-   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[1]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED, build_stages[0]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED, build_stages[1]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED, build_stages[2]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_WAITING_TO_START, build_stages[3]->get_status());
 }

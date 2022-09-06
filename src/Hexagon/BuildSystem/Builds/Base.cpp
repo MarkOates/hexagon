@@ -108,7 +108,7 @@ void Base::run()
          bool executed_without_failure = build_stage->execute();
          if (executed_without_failure)
          {
-            build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED);
+            build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED);
          }
          else
          {
@@ -126,6 +126,7 @@ void Base::run()
 
       if (status == STATUS_ERROR)
       {
+         ended_at = std::chrono::system_clock::now();
          return;
       }
    }
@@ -138,7 +139,27 @@ void Base::run()
 
 void Base::build_stage_executor(Hexagon::BuildSystem::BuildStages::Base* build_stage)
 {
-   build_stage->set_started_at(std::chrono::system_clock::now()); build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING); try { build_stage->execute(); build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED); } catch (const std::exception& e) { std::cout << "There was an error during the execution of build stage." << std::endl; build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR); } build_stage->set_ended_at(std::chrono::system_clock::now()); return;
+   build_stage->set_started_at(std::chrono::system_clock::now());
+   build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING);
+   try
+   {
+      bool executed_without_failure = build_stage->execute();
+      if (executed_without_failure)
+      {
+         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED);
+      }
+      else
+      {
+         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED);
+      }
+   }
+   catch (const std::exception& e)
+   {
+      std::cout << "There was an error during the execution of build stage." << std::endl;
+      build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR);
+   }
+   build_stage->set_ended_at(std::chrono::system_clock::now());
+   return;
 }
 
 void Base::run_all_in_parallel()
@@ -156,6 +177,8 @@ void Base::run_all_in_parallel()
    thread1.join();
    thread2.join();
    thread3.join();
+
+   //TODO: check for error status
 
    status = STATUS_FINISHED;
    ended_at = std::chrono::system_clock::now();
