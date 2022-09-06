@@ -34,14 +34,14 @@ properties:
 
   - name: status
     type: std::string
-    init_with: STATUS_NOT_STARTED
+    init_with: STATUS_WAITING_TO_START
     getter: true
     setter: true
 
-  - name: STATUS_NOT_STARTED
+  - name: STATUS_WAITING_TO_START
     type: char*
     static: true
-    init_with: '"not_started"'
+    init_with: '"waiting_to_started"'
     constexpr: true
 
   - name: STATUS_RUNNING
@@ -89,7 +89,7 @@ functions:
       // set all the statuses to STATUS_NOT_STARTED
       for (auto &build_stage : build_stages)
       {
-         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED);
+         build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_WAITING_TO_START);
       }
 
       // run the stages one-by-one, or halt when one fails
@@ -158,6 +158,8 @@ functions:
   - name: run_all_in_parallel
     body: |
       started_at = std::chrono::system_clock::now();
+
+      // set statuses of all stages to WAITING_TO_START
 
       // TODO: work out a nice way for the build_stages to be validated and distributed across threads
       // Right now, this funtion is hard-coded to build exactly 3 build stages in parallel.

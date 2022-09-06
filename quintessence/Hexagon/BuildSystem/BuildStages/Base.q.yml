@@ -42,10 +42,10 @@ properties:
     type: std::mutex
     init_with: ''
 
-  - name: STATUS_NOT_STARTED
+  - name: STATUS_WAITING_TO_START
     type: char*
     static: true
-    init_with: '"not_started"'
+    init_with: '"waiting_to_start"'
     constexpr: true
 
   - name: STATUS_RUNNING

@@ -19,7 +19,7 @@ Base::Base(std::string type, std::vector<Hexagon::BuildSystem::BuildStages::Base
    , build_stages(build_stages)
    , started_at()
    , ended_at()
-   , status(STATUS_NOT_STARTED)
+   , status(STATUS_WAITING_TO_START)
 {
 }
 
@@ -95,7 +95,7 @@ void Base::run()
    // set all the statuses to STATUS_NOT_STARTED
    for (auto &build_stage : build_stages)
    {
-      build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED);
+      build_stage->set_status(Hexagon::BuildSystem::BuildStages::Base::STATUS_WAITING_TO_START);
    }
 
    // run the stages one-by-one, or halt when one fails
@@ -144,6 +144,8 @@ void Base::build_stage_executor(Hexagon::BuildSystem::BuildStages::Base* build_s
 void Base::run_all_in_parallel()
 {
    started_at = std::chrono::system_clock::now();
+
+   // set statuses of all stages to WAITING_TO_START
 
    // TODO: work out a nice way for the build_stages to be validated and distributed across threads
    // Right now, this funtion is hard-coded to build exactly 3 build stages in parallel.

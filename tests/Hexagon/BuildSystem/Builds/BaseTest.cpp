@@ -84,7 +84,7 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest, derived_classes_will_have_the_expected
 TEST(Hexagon_BuildSystem_Builds_BaseTest, status__is_initialized_with_the_expected_value)
 {
    BuildsBaseTestClass base_build;
-   EXPECT_EQ(Hexagon::BuildSystem::Builds::Base::STATUS_NOT_STARTED, base_build.get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::Builds::Base::STATUS_WAITING_TO_START, base_build.get_status());
 }
 
 
@@ -146,7 +146,7 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[0]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[1]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR, build_stages[2]->get_status());
-   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED, build_stages[3]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_WAITING_TO_START, build_stages[3]->get_status());
 }
 
 
@@ -170,7 +170,7 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[0]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FINISHED, build_stages[1]->get_status());
    EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED, build_stages[2]->get_status());
-   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_NOT_STARTED, build_stages[3]->get_status());
+   EXPECT_EQ(Hexagon::BuildSystem::BuildStages::Base::STATUS_WAITING_TO_START, build_stages[3]->get_status());
 }
 
 
