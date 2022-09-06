@@ -1,3 +1,13 @@
+
+
+
+
+// Please read this document which outlines the steps involved:
+// https://docs.google.com/document/d/1nTsH72zSUxwj--fjOwiCnbI7XXGvQvUtuvOSf5f5KVs/edit#
+
+
+
+
 #include <allegro5/allegro.h> // for compatibility with union/Makefile
 #include <Hexagon/BuildSystem/BuildFactory.hpp>
 #include <Hexagon/BuildSystem/ReportRenderer.hpp>
