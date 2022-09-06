@@ -698,7 +698,7 @@ private:
       std::string app_package_executable_name = "TheWeepingHouse";
       std::stringstream shell_command;
       shell_command << "(cd " << app_package_location << " && (export DYLD_LIBRARY_PATH=/usr/local/lib" << std::endl
-                    << "dylibbundler -x " << app_package_folder_name << "/Contents/MacOS/" << app_package_executable_name << " -b -d " << app_package_folder_name << "/Contents/MacOS -p @executable_path -s $DYLD_LIBRARY_PATH"
+                    << "dylibbundler -x \"" << app_package_folder_name << "/Contents/MacOS/" << app_package_executable_name << "\" -b -d \"" << app_package_folder_name << "/Contents/MacOS\" -p @executable_path -s $DYLD_LIBRARY_PATH"
                     << "))";
 
       std::cout << shell_command.str() << std::endl;
