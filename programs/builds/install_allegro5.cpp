@@ -50,6 +50,8 @@
 #define COPYRIGHT_FULL_TEXT "Copyright 2022 - Mark Oates - www.CLUBCATT.com"
 #define FULL_VERSION_NUMBER_WITH_BUILD "1.0.0.3"
 #define VERSION_NUMBER "1.0.0"
+#define FULL_PATH_OF_SOURCE_RELEASE_FOLDER "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"
+#define FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD "/Users/markoates/Releases/tmp/54321-MacOS/"
 
 
 
@@ -230,8 +232,8 @@ public:
 
    CopySourceReleaseFilesForBuilding()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_source_folder("/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/")
-      , name_of_temp_location_to_build("/Users/markoates/Releases/tmp/54321-MacOS/")
+      , name_of_source_folder(FULL_PATH_OF_SOURCE_RELEASE_FOLDER)
+      , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
       , shell_command_result()
       , shell_command_response_code()
    {}
@@ -272,7 +274,7 @@ public:
 
    BuildFromSourceInTempFolder()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location_to_build("/Users/markoates/Releases/tmp/54321-MacOS/")
+      , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
       , shell_command_result()
       , shell_command_response_code()
    {}
@@ -312,7 +314,7 @@ public:
 
    ValidatePresenceOfBuiltExecutable()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location_to_build("/Users/markoates/Releases/tmp/54321-MacOS/")
+      , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
       , name_of_expected_executable("TheWeepingHouse")
    {}
 
