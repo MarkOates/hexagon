@@ -156,6 +156,34 @@ public:
 };
 
 
+class ValidateZip : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   std::string get_result_of_shell_execution()
+   {
+      std::stringstream shell_command;
+      shell_command << "zip -v";
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      return shell_command_executor.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "ValidateZip";
+
+   ValidateZip()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+   {}
+
+   virtual bool execute() override
+   {
+      std::string match_expression = "Copyright \\\(c\\\) 1990-2008 Info-ZIP - Type ";
+      std::string actual_string = get_result_of_shell_execution();
+      if (!ExpressionMatcher(match_expression, actual_string).matches()) return false;
+      return true;
+   }
+};
+
+
 
 class CopySourceReleaseFilesForBuilding : public Hexagon::BuildSystem::BuildStages::Base
 {
@@ -621,6 +649,44 @@ public:
 
 
 
+class CopyReadmeFileToRelaseFolder : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   void execute_shell_commands()
+   {
+      std::stringstream shell_command;
+      shell_command << "cp \"" << full_location_to_source << "\" \"" << full_location_to_destination << "\"";
+      std::cout << shell_command.str() << std::endl;
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      shell_command_result = shell_command_executor.execute();
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      shell_command_response_code = shell_command_executor2.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "CopyReadmeFileToRelaseFolder";
+   std::string full_location_to_source;
+   std::string full_location_to_destination;
+   std::string shell_command_result;
+   std::string shell_command_response_code;
+
+   CopyReadmeFileToRelaseFolder()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+      , full_location_to_source("/Users/markoates/Releases/tmp/54321-MacOS/README.md")
+      , full_location_to_destination("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md")
+   {}
+
+   virtual bool execute() override
+   {
+      execute_shell_commands();
+      if (shell_command_response_code == ("0\n")) return true;
+      return false;
+   }
+};
+
+
 
 
 
@@ -633,6 +699,9 @@ int main(int argc, char **argv)
       //new ValidateDylibBundlerVersion(),
       //new ValidateIconutil(),
       //new ValidateSips(),
+      new ValidateZip(),
+
+      // TODO: validate README.md, validate source icon
 
       //// get copy of source release
       //new CopySourceReleaseFilesForBuilding(),
@@ -648,7 +717,8 @@ int main(int argc, char **argv)
       //new CreateInfoDotPlistFile(),
       //new CopyBuiltBinaryToAppPackage(),
       //new CopyDataFolderToAppPackage(),
-      new CopyIcnsFileToAppPackage(),
+      //new CopyIcnsFileToAppPackage(),
+      //new CopyReadmeFileToRelaseFolder(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
