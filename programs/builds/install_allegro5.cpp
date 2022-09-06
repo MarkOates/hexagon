@@ -129,6 +129,49 @@ public:
 
 
 
+class CopySourceReleaseFilesForBuilding : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   void execute_shell_commands()
+   {
+      //TODO: require '/' character at end
+      std::stringstream shell_command;
+      shell_command << "cp -R \"" << name_of_source_folder << "\" \"" << name_of_temp_location_to_build << "\"";
+      std::cout << shell_command.str() << std::endl;
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      shell_command_result = shell_command_executor.execute();
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      shell_command_response_code = shell_command_executor2.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "CopySourceReleaseFilesForBuilding";
+   std::string name_of_source_folder;
+   std::string name_of_temp_location_to_build;
+   std::string shell_command_result;
+   std::string shell_command_response_code;
+
+   CopySourceReleaseFilesForBuilding()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+      , name_of_source_folder("/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/")
+      , name_of_temp_location_to_build("/Users/markoates/Releases/tmp/54321-MacOS/")
+      , shell_command_result()
+      , shell_command_response_code()
+   {}
+
+   virtual bool execute() override
+   {
+      execute_shell_commands();
+      if (shell_command_response_code == "0\n") return true;
+      return false;
+   }
+};
+
+
+
+
+
 
 
 int main(int argc, char **argv)
@@ -136,9 +179,13 @@ int main(int argc, char **argv)
    Hexagon::BuildSystem::BuildStageFactory build_stage_factory;
    Hexagon::BuildSystem::Builds::Base *build = new Hexagon::BuildSystem::Builds::Base;
    build->set_build_stages({
+      // validate these are present
       new ValidateDylibBundlerVersion(),
       new ValidateIconutil(),
       new ValidateSips(),
+
+      // get copy of source release
+      new CopySourceReleaseFilesForBuilding(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
