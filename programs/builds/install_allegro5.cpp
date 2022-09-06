@@ -355,18 +355,18 @@ int main(int argc, char **argv)
    Hexagon::BuildSystem::BuildStageFactory build_stage_factory;
    Hexagon::BuildSystem::Builds::Base *build = new Hexagon::BuildSystem::Builds::Base;
    build->set_build_stages({
-      //// validate these are present
-      //new ValidateDylibBundlerVersion(),
-      //new ValidateIconutil(),
-      //new ValidateSips(),
+      // validate these are present
+      new ValidateDylibBundlerVersion(),
+      new ValidateIconutil(),
+      new ValidateSips(),
 
-      //// get copy of source release
-      //new CopySourceReleaseFilesForBuilding(),
+      // get copy of source release
+      new CopySourceReleaseFilesForBuilding(),
 
-      //// make a build from the source
-      //new BuildFromSourceInTempFolder(),
-      //new ValidatePresenceOfBuiltExecutable(),
-      //new BuildAppIcons(),
+      // make a build from the source
+      new BuildFromSourceInTempFolder(),
+      new ValidatePresenceOfBuiltExecutable(),
+      new BuildAppIcons(),
       new ValidatePresenceOfIcnsFile(),
    });
    build->run();
