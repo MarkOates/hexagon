@@ -469,13 +469,13 @@ const std::string PLIST_TEMPLATE_CONTENT = R"DELIM(<?xml version="1.0" encoding=
 )DELIM";
 
 
-class CreatePlistFile : public Hexagon::BuildSystem::BuildStages::Base
+class CreateInfoDotPlistFile : public Hexagon::BuildSystem::BuildStages::Base
 {
 public:
-   static constexpr char* TYPE = "CreatePlistFile";
+   static constexpr char* TYPE = "CreateInfoDotPlistFile";
    std::string system_releases_folder;
 
-   CreatePlistFile()
+   CreateInfoDotPlistFile()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , system_releases_folder("/Users/markoates/Releases/")
    {}
@@ -518,7 +518,7 @@ int main(int argc, char **argv)
       //new BuildAppIcons(),
       //new ValidatePresenceOfIcnsFile(),
       //new CreateFoldersForReleaseAndAppPackage(),
-      new CreatePlistFile(),
+      new CreateInfoDotPlistFile(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
