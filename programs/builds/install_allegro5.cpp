@@ -688,6 +688,48 @@ public:
 
 
 
+class BuildAndBundleDylibsWithAppPackage : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   void execute_shell_commands()
+   {
+      std::string app_package_location = "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown";
+      std::string app_package_folder_name = "TheWeepingHouse.app";
+      std::string app_package_executable_name = "TheWeepingHouse";
+      std::stringstream shell_command;
+      shell_command << "(cd " << app_package_location << " && (export DYLD_LIBRARY_PATH=/usr/local/lib" << std::endl
+                    << "dylibbundler ---no-codesign x " << app_package_folder_name << "/Contents/MacOS/" << app_package_executable_name << " -b -d " << app_package_folder_name << "/Contents/MacOS -p @executable_path -s $DYLD_LIBRARY_PATH"
+                    << "))";
+
+      std::cout << shell_command.str() << std::endl;
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      shell_command_result = shell_command_executor.execute();
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      shell_command_response_code = shell_command_executor2.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "BuildAndBundleDylibsWithAppPackage";
+   std::string shell_command_result;
+   std::string shell_command_response_code;
+
+   BuildAndBundleDylibsWithAppPackage()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+   {}
+
+   virtual bool execute() override
+   {
+      execute_shell_commands();
+      if (shell_command_response_code == ("0\n")) return true;
+      return false;
+   }
+};
+
+
+
+
 
 
 int main(int argc, char **argv)
@@ -719,6 +761,7 @@ int main(int argc, char **argv)
       //new CopyDataFolderToAppPackage(),
       //new CopyIcnsFileToAppPackage(),
       //new CopyReadmeFileToRelaseFolder(),
+      new BuildAndBundleDylibsWithAppPackage(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
