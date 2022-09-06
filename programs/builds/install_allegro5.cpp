@@ -43,13 +43,42 @@ public:
 
 
 
+class ValidateIconutil : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   std::string get_result_of_dylibbuilder_shell_execution()
+   {
+      std::stringstream shell_command;
+      shell_command << "iconutil";
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      return shell_command_executor.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "ValidateIconutil";
+
+   ValidateIconutil()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+   {}
+
+   virtual bool execute() override
+   {
+      std::string match_expression = "Usage: iconutil --convert "; //\( icns | iconset\) ";//\[\-\-output file\] file \[icon\-name\]";
+      std::string actual_string = get_result_of_dylibbuilder_shell_execution();
+      if (!ExpressionMatcher(match_expression, actual_string).matches()) return false;
+      return true;
+   }
+};
+
+
+
 class ValidateDylibBundlerVersion : public Hexagon::BuildSystem::BuildStages::Base
 {
 private:
    std::string get_result_of_dylibbuilder_shell_execution()
    {
       std::stringstream shell_command;
-      shell_command << "dyli  bbundler";
+      shell_command << "dylibbundler";
       Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
       return shell_command_executor.execute();
    }
@@ -73,12 +102,14 @@ public:
 
 
 
+
 int main(int argc, char **argv)
 {
    Hexagon::BuildSystem::BuildStageFactory build_stage_factory;
    Hexagon::BuildSystem::Builds::Base *build = new Hexagon::BuildSystem::Builds::Base;
    build->set_build_stages({
       new ValidateDylibBundlerVersion(),
+      new ValidateIconutil(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
