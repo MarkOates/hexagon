@@ -52,8 +52,10 @@
 #define VERSION_NUMBER "1.0.0"
 #define FULL_PATH_OF_SOURCE_RELEASE_FOLDER "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"
 #define FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD "/Users/markoates/Releases/tmp/54321-MacOS/"
-
-
+#define NAME_OF_GENERATED_ICNS_FILE "MyIcon.icns"
+#define RELEASE_FOLDER_LOCATION "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"
+#define APP_PACKAGE_FOLDER_NAME "TheWeepingHouse.app"
+#define APP_PACKAGE_EXECUTABLE_NAME "TheWeepingHouse"
 
 
 
@@ -394,7 +396,7 @@ private:
    {
       //TODO: require '/' character at end
       std::stringstream shell_command;
-      shell_command << "(cd " << name_of_temp_location_to_build << " && ((ls \"./" << name_of_expected_executable << "\" && echo yes) || echo no))";
+      shell_command << "(cd " << name_of_temp_location_to_build << " && ((ls \"./" << name_of_expected_generated_icns_file << "\" && echo yes) || echo no))";
       std::cout << shell_command.str() << std::endl;
       Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
       shell_command_result = shell_command_executor.execute();
@@ -406,20 +408,20 @@ private:
 public:
    static constexpr char* TYPE = "ValidatePresenceOfIcnsFile";
    std::string name_of_temp_location_to_build;
-   std::string name_of_expected_executable;
+   std::string name_of_expected_generated_icns_file;
    std::string shell_command_result;
    std::string shell_command_response_code;
 
    ValidatePresenceOfIcnsFile()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , name_of_temp_location_to_build(ICNS_FULL_TEMP_FOLDER)
-      , name_of_expected_executable("MyIcon.icns")
+      , name_of_expected_generated_icns_file(NAME_OF_GENERATED_ICNS_FILE)
    {}
 
    virtual bool execute() override
    {
       execute_shell_commands();
-      if (shell_command_result == ("./" + name_of_expected_executable + "\nyes\n")) return true;
+      if (shell_command_result == ("./" + name_of_expected_generated_icns_file + "\nyes\n")) return true;
       return false;
    }
 };
@@ -716,11 +718,11 @@ class BuildAndBundleDylibsWithAppPackage : public Hexagon::BuildSystem::BuildSta
 private:
    void execute_shell_commands()
    {
-      std::string app_package_location = "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown";
-      std::string app_package_folder_name = "TheWeepingHouse.app";
-      std::string app_package_executable_name = "TheWeepingHouse";
+      std::string release_folder_location = RELEASE_FOLDER_LOCATION;
+      std::string app_package_folder_name = APP_PACKAGE_FOLDER_NAME;
+      std::string app_package_executable_name = APP_PACKAGE_EXECUTABLE_NAME;
       std::stringstream shell_command;
-      shell_command << "(cd " << app_package_location << " && (export DYLD_LIBRARY_PATH=/usr/local/lib" << std::endl
+      shell_command << "(cd " << release_folder_location << " && (export DYLD_LIBRARY_PATH=/usr/local/lib" << std::endl
                     << "dylibbundler -x \"" << app_package_folder_name << "/Contents/MacOS/" << app_package_executable_name << "\" -b -d \"" << app_package_folder_name << "/Contents/MacOS\" -p @executable_path -s $DYLD_LIBRARY_PATH"
                     << "))";
 
