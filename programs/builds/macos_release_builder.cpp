@@ -52,12 +52,24 @@ public:
    static std::string VERSION_NUMBER; // "1.0.0"
    static std::string FULL_PATH_TO_SOURCE_ICON_PNG; // "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png"
 
-   static std::string source_release_folder_name() { return SOURCE_RELEASE_FOLDER_NAME; }
-   static std::string name_of_executable() { return NAME_OF_EXECUTABLE; }
+
+   static std::string TEMP_DIRECTORY_FOR_BUILD;
+   static std::string TEMP_DIRECTORY_FOR_ICON;
+
+
+   static std::string source_release_folder_name() { return NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
+   static std::string name_of_executable() { return NameGenerator::NAME_OF_EXECUTABLE; }
    static std::string readme_filename() { return "README.md"; }
    static std::string source_icon_filename() { return "Icon1024.png"; }
    static std::string built_icns_filename() { return "MyIcon.icns"; }
+   static std::string full_path_of_temp_location_for_build() { return NameGenerator::TEMP_DIRECTORY_FOR_BUILD + "/"; }
+   static std::string full_path_to_built_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + built_icns_filename(); };
+   static std::string name_of_built_executable() { return NameGenerator::NAME_OF_EXECUTABLE; }
+   static std::string app_package_executable_name() { return NameGenerator::NAME_OF_EXECUTABLE; }
+   static std::string app_package_folder_name() { return NameGenerator::NAME_OF_EXECUTABLE + ".app"; }
+   static std::string full_path_to_copied_source_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + source_icon_filename(); }
 };
+
 
 std::string NameGenerator::SYSTEM_RELEASES_FOLDER; // "/Users/markoates/Releases/"
 std::string NameGenerator::SOURCE_RELEASE_FOLDER_NAME; // "TheWeepingHouse-SourceRelease-220903200818UTC"
@@ -66,39 +78,40 @@ std::string NameGenerator::COPYRIGHT_FULL_TEXT; // "Copyright 2022 - Mark Oates 
 std::string NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD; // "1.0.0.3"
 std::string NameGenerator::VERSION_NUMBER; // "1.0.0"
 std::string NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG; // "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png"
+std::string NameGenerator::TEMP_DIRECTORY_FOR_BUILD; // auto-generated, different each run
+std::string NameGenerator::TEMP_DIRECTORY_FOR_ICON; // auto-generated, different each run
 
 
-#define SOURCE_RELEASE_FOLDER_NAME NameGenerator::source_release_folder_name()
-#define NAME_OF_EXECUTABLE NameGenerator::name_of_executable()
-#define COPYRIGHT_FULL_TEXT NameGenerator::COPYRIGHT_FULL_TEXT
-#define FULL_VERSION_NUMBER_WITH_BUILD NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD
-#define VERSION_NUMBER NameGenerator::VERSION_NUMBER
-#define FULL_PATH_TO_SOURCE_ICON_PNG NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG
-#define SYSTEM_RELEASES_FOLDER NameGenerator::SYSTEM_RELEASES_FOLDER
+
+
+//#define SOURCE_RELEASE_FOLDER_NAME NameGenerator::SOURCE_RELEASE_FOLDER_NAME
+//#define NAME_OF_EXECUTABLE NameGenerator::name_of_executable()
+//#define COPYRIGHT_FULL_TEXT NameGenerator::COPYRIGHT_FULL_TEXT
+//#define FULL_VERSION_NUMBER_WITH_BUILD NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD
+//#define VERSION_NUMBER NameGenerator::VERSION_NUMBER
+//#define FULL_PATH_TO_SOURCE_ICON_PNG NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG
+//#define SYSTEM_RELEASES_FOLDER NameGenerator::SYSTEM_RELEASES_FOLDER
 #define README_FILENAME NameGenerator::readme_filename()
 #define SOURCE_ICON_FILENAME NameGenerator::source_icon_filename()
 #define BUILT_ICNS_FILENAME NameGenerator::built_icns_filename()
+#define NAME_OF_GENERATED_ICNS_FILE NameGenerator::built_icns_filename()
+#define FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD NameGenerator::full_path_of_temp_location_for_build()
+#define FULL_PATH_TO_BUILT_ICNS_FILE NameGenerator::full_path_to_built_icns_file()
+#define NAME_OF_BUILT_EXECUTABLE NameGenerator::name_of_built_executable()
+#define APP_PACKAGE_EXECUTABLE_NAME NameGenerator::app_package_executable_name()
+#define APP_PACKAGE_FOLDER_NAME NameGenerator::app_package_folder_name()
 
 
 
-
-#define ICNS_FULL_TEMP_FOLDER (TEMP_DIRECTORY_FOR_ICON)
-#define FULL_PATH_TO_BUILT_ICNS_FILE (TEMP_DIRECTORY_FOR_ICON + "/" + BUILT_ICNS_FILENAME)
-#define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE (TEMP_DIRECTORY_FOR_ICON + "/" + SOURCE_ICON_FILENAME)
+#define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE NameGenerator::full_path_to_copied_source_icns_file()
 #define FULL_PATH_TO_DESTINATION_ICNS_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"
-#define FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD (TEMP_DIRECTORY_FOR_BUILD + "/")
 #define FULL_PATH_TO_SOURCE_README (TEMP_DIRECTORY_FOR_BUILD + "/" + README_FILENAME)
 #define FULL_PATH_OF_SOURCE_DATA_FOLDER (TEMP_DIRECTORY_FOR_BUILD + "/data/")
 #define FULL_PATH_TO_DESTINATION_README "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"
 #define FULL_PATH_OF_DESTINATION_DATA_FOLDER "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"
-//#define NAME_OF_EXECUTABLE "TheWeepingHouse"
 #define FULL_PATH_OF_SOURCE_RELEASE_FOLDER "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"
-#define NAME_OF_GENERATED_ICNS_FILE "MyIcon.icns"
 #define RELEASE_FOLDER_LOCATION "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"
-#define APP_PACKAGE_FOLDER_NAME "TheWeepingHouse.app"
-#define APP_PACKAGE_EXECUTABLE_NAME "TheWeepingHouse"
-#define NAME_OF_BUILT_EXECUTABLE "TheWeepingHouse"
-#define FULL_BINARY_APP_PACKAGE_DESTINATION ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" NAME_OF_BUILT_EXECUTABLE)
+#define FULL_BINARY_APP_PACKAGE_DESTINATION ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable())
 #define FULL_PATH_TO_RELEASE_ZIP_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown.zip"
 #define RELEASE_ZIP_FILENAME "TheWeepingHouse-MacOS-chip_unknown.zip"
 #define RELEASE_FOLDER_RELATIVE_TO_SYSTEM_RELEASES_FOLDER "TheWeepingHouse-MacOS-chip_unknown"
@@ -412,7 +425,7 @@ public:
 
    CopySourceAppIconPngToTempFolder()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , full_path_to_source_icon_png(FULL_PATH_TO_SOURCE_ICON_PNG)
+      , full_path_to_source_icon_png(NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG)
       , full_destination_path_to_copied_source_icns_file(FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE)
    {}
 
@@ -471,7 +484,7 @@ public:
 
    BuildAppIcons()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_folder_for_icons(ICNS_FULL_TEMP_FOLDER)
+      , name_of_temp_folder_for_icons(TEMP_DIRECTORY_FOR_ICON)
       , shell_command_result()
       , shell_command_response_code()
    {}
@@ -511,7 +524,7 @@ public:
 
    ValidatePresenceOfIcnsFile()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location_to_build(ICNS_FULL_TEMP_FOLDER)
+      , name_of_temp_location_to_build(TEMP_DIRECTORY_FOR_ICON)
       , name_of_expected_generated_icns_file(NAME_OF_GENERATED_ICNS_FILE)
    {}
 
@@ -556,7 +569,7 @@ public:
 
    CreateFoldersForReleaseAndAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , system_releases_folder(SYSTEM_RELEASES_FOLDER)
+      , system_releases_folder(NameGenerator::SYSTEM_RELEASES_FOLDER)
       , folders_to_create({
          // TODO: extract these or build them
          "TheWeepingHouse-MacOS-chip_unknown",
@@ -633,10 +646,10 @@ public:
    virtual bool execute() override
    {
       Blast::TemplatedFile plist_template(PLIST_TEMPLATE_CONTENT, {
-            {  "[[NAME_OF_EXECUTABLE]]",  NAME_OF_EXECUTABLE },
-            {  "[[COPYRIGHT_TEXT]]",      COPYRIGHT_FULL_TEXT },
-            {  "[[FULL_VERSION_NUMBER_WITH_BUILD]]", FULL_VERSION_NUMBER_WITH_BUILD },
-            {  "[[VERSION_NUMBER]]", VERSION_NUMBER },
+            {  "[[NAME_OF_EXECUTABLE]]",  NameGenerator::NAME_OF_EXECUTABLE},
+            {  "[[COPYRIGHT_TEXT]]",      NameGenerator::COPYRIGHT_FULL_TEXT },
+            {  "[[FULL_VERSION_NUMBER_WITH_BUILD]]", NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD },
+            {  "[[VERSION_NUMBER]]", NameGenerator::VERSION_NUMBER },
          });
 
       std::string full_path_and_filename = system_releases_folder + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Info.plist";
@@ -881,7 +894,7 @@ private:
    void execute_shell_commands()
    {
       std::stringstream shell_command;
-      shell_command << "(cd " << SYSTEM_RELEASES_FOLDER  << " && (zip -r \"" << RELEASE_ZIP_FILENAME << "\" \"" << RELEASE_FOLDER_RELATIVE_TO_SYSTEM_RELEASES_FOLDER << "\"))";
+      shell_command << "(cd " << NameGenerator::SYSTEM_RELEASES_FOLDER  << " && (zip -r \"" << RELEASE_ZIP_FILENAME << "\" \"" << RELEASE_FOLDER_RELATIVE_TO_SYSTEM_RELEASES_FOLDER << "\"))";
       std::cout << shell_command.str() << std::endl;
 
       Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
@@ -965,6 +978,8 @@ int main(int argc, char **argv)
    NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD = "1.0.0.3";
    NameGenerator::VERSION_NUMBER = "1.0.0";
    NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG = "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png";
+   NameGenerator::TEMP_DIRECTORY_FOR_BUILD = TEMP_DIRECTORY_FOR_BUILD;
+   NameGenerator::TEMP_DIRECTORY_FOR_ICON = TEMP_DIRECTORY_FOR_ICON;
 
 
 
@@ -1013,13 +1028,8 @@ int main(int argc, char **argv)
 
 
 
-
    Hexagon::BuildSystem::ReportRenderer report_renderer(build);
    std::cout << report_renderer.build_text_report() << std::endl;
 
    return 0;
 }
-
-
-
-
