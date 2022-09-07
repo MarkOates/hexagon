@@ -41,6 +41,9 @@ std::string TEMP_DIRECTORY_FOR_ICON = "";
 
 
 
+
+
+
 #define SYSTEM_RELEASES_FOLDER "/Users/markoates/Releases/"
 #define SOURCE_RELEASE_FOLDER_NAME "TheWeepingHouse-SourceRelease-220903200818UTC"
 
@@ -48,10 +51,6 @@ std::string TEMP_DIRECTORY_FOR_ICON = "";
 //#define ICNS_FULL_TEMP_FOLDER "/Users/markoates/Releases/tmp/54321-IcnsFile/"
 //#define FULL_PATH_TO_BUILT_ICNS_FILE "/Users/markoates/Releases/tmp/54321-IcnsFile/MyIcon.icns"
 //#define BUILT_ICNS_FILENAME "MyIcon.icns"
-
-
-
-
 
 
 #define ICNS_FULL_TEMP_FOLDER (TEMP_DIRECTORY_FOR_ICON)
@@ -67,16 +66,17 @@ std::string TEMP_DIRECTORY_FOR_ICON = "";
 
 
 #define FULL_PATH_TO_DESTINATION_ICNS_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"
-#define FULL_PATH_TO_SOURCE_README "/Users/markoates/Releases/tmp/54321-MacOS/README.md"
+#define FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD (TEMP_DIRECTORY_FOR_BUILD + "/")
+#define README_FILENAME "README.md"
+#define FULL_PATH_TO_SOURCE_README (TEMP_DIRECTORY_FOR_BUILD + "/" README_FILENAME)
+#define FULL_PATH_OF_SOURCE_DATA_FOLDER (TEMP_DIRECTORY_FOR_BUILD + "/data/")
 #define FULL_PATH_TO_DESTINATION_README "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"
-#define FULL_PATH_OF_SOURCE_DATA_FOLDER "/Users/markoates/Releases/tmp/54321-MacOS/data/"
 #define FULL_PATH_OF_DESTINATION_DATA_FOLDER "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"
 #define NAME_OF_EXECUTABLE "TheWeepingHouse"
 #define COPYRIGHT_FULL_TEXT "Copyright 2022 - Mark Oates - www.CLUBCATT.com"
 #define FULL_VERSION_NUMBER_WITH_BUILD "1.0.0.3"
 #define VERSION_NUMBER "1.0.0"
 #define FULL_PATH_OF_SOURCE_RELEASE_FOLDER "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"
-#define FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD "/Users/markoates/Releases/tmp/54321-MacOS/"
 #define NAME_OF_GENERATED_ICNS_FILE "MyIcon.icns"
 #define RELEASE_FOLDER_LOCATION "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"
 #define APP_PACKAGE_FOLDER_NAME "TheWeepingHouse.app"
