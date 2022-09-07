@@ -528,6 +528,7 @@ const std::string PLIST_TEMPLATE_CONTENT = R"DELIM(<?xml version="1.0" encoding=
 )DELIM";
 
 
+
 class CreateInfoDotPlistFile : public Hexagon::BuildSystem::BuildStages::Base
 {
 public:
@@ -554,6 +555,26 @@ public:
       return Blast::FileExistenceChecker(full_path_and_filename).exists();
    }
 };
+
+
+
+class ValidateSourceReadme : public Hexagon::BuildSystem::BuildStages::Base
+{
+public:
+   static constexpr char* TYPE = "ValidateSourceReadme";
+   std::string full_location_to_source_readme_file;
+
+   ValidateSourceReadme()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+      , full_location_to_source_readme_file(FULL_PATH_TO_SOURCE_README)
+   {}
+
+   virtual bool execute() override
+   {
+      return Blast::FileExistenceChecker(full_location_to_source_readme_file).exists();
+   }
+};
+
 
 
 class CopyBuiltBinaryToAppPackage : public Hexagon::BuildSystem::BuildStages::Base
@@ -813,6 +834,7 @@ int main(int argc, char **argv)
 
       // get copy of source release
       new CopySourceReleaseFilesForBuilding(),
+      new ValidateSourceReadme(),
 
       // make a build from the source
       new BuildFromSourceInTempFolder(),
