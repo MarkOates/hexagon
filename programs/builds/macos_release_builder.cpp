@@ -41,30 +41,32 @@ std::string TEMP_DIRECTORY_FOR_ICON = "";
 
 
 
+class NameGenerator
+{
+public:
+   std::string SYSTEM_RELEASES_FOLDER; // "/Users/markoates/Releases/"
+   std::string SOURCE_RELEASE_FOLDER_NAME; // "TheWeepingHouse-SourceRelease-220903200818UTC"
+};
 
 
 
-#define SYSTEM_RELEASES_FOLDER "/Users/markoates/Releases/"
 #define SOURCE_RELEASE_FOLDER_NAME "TheWeepingHouse-SourceRelease-220903200818UTC"
+#define NAME_OF_EXECUTABLE "TheWeepingHouse"
+#define COPYRIGHT_FULL_TEXT "Copyright 2022 - Mark Oates - www.CLUBCATT.com"
+#define FULL_VERSION_NUMBER_WITH_BUILD "1.0.0.3"
+#define VERSION_NUMBER "1.0.0"
+#define FULL_PATH_TO_SOURCE_ICON_PNG "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png"
+#define SYSTEM_RELEASES_FOLDER "/Users/markoates/Releases/"
 
 
-//#define ICNS_FULL_TEMP_FOLDER "/Users/markoates/Releases/tmp/54321-IcnsFile/"
-//#define FULL_PATH_TO_BUILT_ICNS_FILE "/Users/markoates/Releases/tmp/54321-IcnsFile/MyIcon.icns"
-//#define BUILT_ICNS_FILENAME "MyIcon.icns"
 
 
-#define ICNS_FULL_TEMP_FOLDER (TEMP_DIRECTORY_FOR_ICON)
+
 #define SOURCE_ICON_FILENAME "Icon1024.png"
 #define BUILT_ICNS_FILENAME "MyIcon.icns"
+#define ICNS_FULL_TEMP_FOLDER (TEMP_DIRECTORY_FOR_ICON)
 #define FULL_PATH_TO_BUILT_ICNS_FILE (TEMP_DIRECTORY_FOR_ICON + "/" BUILT_ICNS_FILENAME)
 #define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE (TEMP_DIRECTORY_FOR_ICON + "/" SOURCE_ICON_FILENAME)
-
-
-
-#define FULL_PATH_TO_SOURCE_ICON_PNG "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png"
-
-
-
 #define FULL_PATH_TO_DESTINATION_ICNS_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"
 #define FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD (TEMP_DIRECTORY_FOR_BUILD + "/")
 #define README_FILENAME "README.md"
@@ -73,9 +75,6 @@ std::string TEMP_DIRECTORY_FOR_ICON = "";
 #define FULL_PATH_TO_DESTINATION_README "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"
 #define FULL_PATH_OF_DESTINATION_DATA_FOLDER "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"
 #define NAME_OF_EXECUTABLE "TheWeepingHouse"
-#define COPYRIGHT_FULL_TEXT "Copyright 2022 - Mark Oates - www.CLUBCATT.com"
-#define FULL_VERSION_NUMBER_WITH_BUILD "1.0.0.3"
-#define VERSION_NUMBER "1.0.0"
 #define FULL_PATH_OF_SOURCE_RELEASE_FOLDER "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"
 #define NAME_OF_GENERATED_ICNS_FILE "MyIcon.icns"
 #define RELEASE_FOLDER_LOCATION "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"
