@@ -366,6 +366,7 @@ public:
 
 
 
+#include <Blast/FileExistenceChecker.hpp>
 
 class CopySourceAppIconPngToTempFolder : public Hexagon::BuildSystem::BuildStages::Base
 {
@@ -373,7 +374,7 @@ private:
    void execute_shell_commands()
    {
       std::string source = full_path_to_source_icon_png;
-      std::string destination = full_destination_path_to_icon_temp_folder;
+      std::string destination = full_destination_path_to_copied_source_icns_file;
 
       std::stringstream shell_command;
       shell_command << "cp \"" << source << "\" \"" << destination << "\"";
@@ -389,25 +390,23 @@ private:
 public:
    static constexpr char* TYPE = "CopySourceAppIconPngToTempFolder";
    std::string full_path_to_source_icon_png;
-   std::string full_destination_path_to_icon_temp_folder;
+   std::string full_destination_path_to_copied_source_icns_file;
    std::string shell_command_result;
    std::string shell_command_response_code;
 
    CopySourceAppIconPngToTempFolder()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , full_path_to_source_icon_png(FULL_PATH_TO_SOURCE_ICON_PNG)
-      , full_destination_path_to_icon_temp_folder(FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE)
+      , full_destination_path_to_copied_source_icns_file(FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE)
    {}
 
    virtual bool execute() override
    {
       execute_shell_commands();
-      if (shell_command_response_code == ("0\n")) return true;
+      if (shell_command_response_code == ("0\n") && Blast::FileExistenceChecker(full_destination_path_to_copied_source_icns_file).exists()) return true;
       return false;
    }
 };
-
-
 
 
 
@@ -563,7 +562,6 @@ public:
 
 
 #include <Blast/TemplatedFile.hpp>
-#include <Blast/FileExistenceChecker.hpp>
 
 const std::string PLIST_TEMPLATE_CONTENT = R"DELIM(<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -770,6 +768,7 @@ public:
 
    virtual bool execute() override
    {
+      // TODO: validate existence of file
       execute_shell_commands();
       if (shell_command_response_code == ("0\n")) return true;
       return false;
@@ -809,6 +808,7 @@ public:
 
    virtual bool execute() override
    {
+      // TODO: validate existence of file
       execute_shell_commands();
       if (shell_command_response_code == ("0\n")) return true;
       return false;
@@ -950,37 +950,37 @@ int main(int argc, char **argv)
    build->set_build_stages({
       new CopySourceAppIconPngToTempFolder(),
 
-      //// validate these are present
-      //new ValidateDylibBundlerVersion(),
-      //new ValidateIconutil(),
-      //new ValidateSips(),
-      //new ValidateZip(),
+      // validate these are present
+      new ValidateDylibBundlerVersion(),
+      new ValidateIconutil(),
+      new ValidateSips(),
+      new ValidateZip(),
 
-      //// // TODO: validate README.md in source, validate source icon needed for icns file
+      // // TODO: validate README.md in source, validate source icon needed for icns file
 
-      //// get copy of source release
-      //new CopySourceReleaseFilesForBuilding(),
-      //new ValidateSourceReadme(),
+      // get copy of source release
+      new CopySourceReleaseFilesForBuilding(),
+      new ValidateSourceReadme(),
 
-      //// make a build from the source
-      //new BuildFromSourceInTempFolder(),
-      //new ValidatePresenceOfBuiltExecutable(),
+      // make a build from the source
+      new BuildFromSourceInTempFolder(),
+      new ValidatePresenceOfBuiltExecutable(),
 
-      //// Make the app package
-      //// TODO: copy the source's app icon png into the temp location to build the icns file
-      //new CopySourceAppIconToTempFolder(),
+      // Make the app package
+      // TODO: copy the source's app icon png into the temp location to build the icns file
+      new CopySourceAppIconPngToTempFolder(),
       new BuildAppIcons(),
-      //new ValidatePresenceOfIcnsFile(),
-      //new CreateFoldersForReleaseAndAppPackage(),
-      //new CreateInfoDotPlistFile(),
-      //new CopyBuiltBinaryToAppPackage(),
-      //new CopyDataFolderToAppPackage(),
-      //new CopyIcnsFileToAppPackage(),
-      //new CopyReadmeFileToRelaseFolder(),
-      //new BuildAndBundleDylibsWithAppPackage(), // TODO: this process can error but it will not report an error
+      new ValidatePresenceOfIcnsFile(),
+      new CreateFoldersForReleaseAndAppPackage(),
+      new CreateInfoDotPlistFile(),
+      new CopyBuiltBinaryToAppPackage(),
+      new CopyDataFolderToAppPackage(),
+      new CopyIcnsFileToAppPackage(),
+      new CopyReadmeFileToRelaseFolder(),
+      new BuildAndBundleDylibsWithAppPackage(), // TODO: this process can error but it will not report an error
 
-      //// Zip it up and prepare it for launch
-      //new CreateZipFromReleaseFolder(),
+      // Zip it up and prepare it for launch
+      new CreateZipFromReleaseFolder(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
