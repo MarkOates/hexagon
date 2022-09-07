@@ -36,12 +36,36 @@
 
 
 
+std::string TEMP_DIRECTORY_FOR_BUILD = "";
+std::string TEMP_DIRECTORY_FOR_ICON = "";
+
 
 
 #define SYSTEM_RELEASES_FOLDER "/Users/markoates/Releases/"
 #define SOURCE_RELEASE_FOLDER_NAME "TheWeepingHouse-SourceRelease-220903200818UTC"
-#define ICNS_FULL_TEMP_FOLDER "/Users/markoates/Releases/tmp/54321-IcnsFile/"
-#define FULL_PATH_TO_BUILT_ICNS_FILE "/Users/markoates/Releases/tmp/54321-IcnsFile/MyIcon.icns"
+
+
+//#define ICNS_FULL_TEMP_FOLDER "/Users/markoates/Releases/tmp/54321-IcnsFile/"
+//#define FULL_PATH_TO_BUILT_ICNS_FILE "/Users/markoates/Releases/tmp/54321-IcnsFile/MyIcon.icns"
+//#define BUILT_ICNS_FILENAME "MyIcon.icns"
+
+
+
+
+
+
+#define ICNS_FULL_TEMP_FOLDER (TEMP_DIRECTORY_FOR_ICON)
+#define SOURCE_ICON_FILENAME "Icon1024.png"
+#define BUILT_ICNS_FILENAME "MyIcon.icns"
+#define FULL_PATH_TO_BUILT_ICNS_FILE (TEMP_DIRECTORY_FOR_ICON + "/" BUILT_ICNS_FILENAME)
+#define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE (TEMP_DIRECTORY_FOR_ICON + "/" SOURCE_ICON_FILENAME)
+
+
+
+#define FULL_PATH_TO_SOURCE_ICON_PNG "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png"
+
+
+
 #define FULL_PATH_TO_DESTINATION_ICNS_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"
 #define FULL_PATH_TO_SOURCE_README "/Users/markoates/Releases/tmp/54321-MacOS/README.md"
 #define FULL_PATH_TO_DESTINATION_README "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"
@@ -101,6 +125,7 @@ public:
 
 
 
+
 class ValidateIconutil : public Hexagon::BuildSystem::BuildStages::Base
 {
 private:
@@ -130,6 +155,7 @@ public:
 
 
 
+
 class ValidateDylibBundlerVersion : public Hexagon::BuildSystem::BuildStages::Base
 {
 private:
@@ -156,6 +182,8 @@ public:
       return true;
    }
 };
+
+
 
 
 class ValidateSips : public Hexagon::BuildSystem::BuildStages::Base
@@ -212,6 +240,7 @@ public:
       return true;
    }
 };
+
 
 
 
@@ -297,6 +326,7 @@ public:
 
 
 
+
 class ValidatePresenceOfBuiltExecutable : public Hexagon::BuildSystem::BuildStages::Base
 {
 private:
@@ -333,6 +363,51 @@ public:
       return false;
    }
 };
+
+
+
+
+class CopySourceAppIconPngToTempFolder : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   void execute_shell_commands()
+   {
+      std::string source = full_path_to_source_icon_png;
+      std::string destination = full_destination_path_to_icon_temp_folder;
+
+      std::stringstream shell_command;
+      shell_command << "cp \"" << source << "\" \"" << destination << "\"";
+      std::cout << shell_command.str() << std::endl;
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      shell_command_result = shell_command_executor.execute();
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      shell_command_response_code = shell_command_executor2.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "CopySourceAppIconPngToTempFolder";
+   std::string full_path_to_source_icon_png;
+   std::string full_destination_path_to_icon_temp_folder;
+   std::string shell_command_result;
+   std::string shell_command_response_code;
+
+   CopySourceAppIconPngToTempFolder()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+      , full_path_to_source_icon_png(FULL_PATH_TO_SOURCE_ICON_PNG)
+      , full_destination_path_to_icon_temp_folder(FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE)
+   {}
+
+   virtual bool execute() override
+   {
+      execute_shell_commands();
+      if (shell_command_response_code == ("0\n")) return true;
+      return false;
+   }
+};
+
+
 
 
 
@@ -819,45 +894,100 @@ public:
 
 
 
+#include <exception>
+#include <fstream>
+#include <iostream>
+#include <random>
+#include <sstream>
+#include <filesystem>
+
+std::filesystem::path create_temporary_directory(unsigned long long max_tries = 100000)
+{
+    auto tmp_dir = std::filesystem::temp_directory_path();
+    unsigned long long i = 0;
+    std::random_device dev;
+    std::mt19937 prng(dev());
+    std::uniform_int_distribution<uint64_t> rand(0);
+    std::filesystem::path path;
+    while (true) {
+        std::stringstream ss;
+        ss << std::hex << rand(prng);
+        path = tmp_dir / ss.str();
+        // true if the directory was created.
+        if (std::filesystem::create_directory(path)) {
+            break;
+        }
+        if (i == max_tries) {
+            throw std::runtime_error("could not find non-existing directory");
+        }
+        i++;
+    }
+    return path;
+}
+
+
 
 int main(int argc, char **argv)
 {
+   //std::filesystem::path temporary_directory1 = create_temporary_directory();
+   //std::filesystem::path temporary_directory2 = create_temporary_directory();
+
+   TEMP_DIRECTORY_FOR_BUILD = create_temporary_directory();
+   TEMP_DIRECTORY_FOR_ICON = create_temporary_directory();
+
+   std::cout << "=== TEMP_DIRECTORY_FOR_BUILD ===" << std::endl;
+   std::cout << TEMP_DIRECTORY_FOR_BUILD << std::endl;
+   std::cout << "=== TEMP_DIRECTORY_FOR_ICON ===" << std::endl;
+   std::cout << TEMP_DIRECTORY_FOR_ICON << std::endl;
+
+
+
+
+
+
    Hexagon::BuildSystem::BuildStageFactory build_stage_factory;
    Hexagon::BuildSystem::Builds::Base *build = new Hexagon::BuildSystem::Builds::Base;
    build->set_build_stages({
-      // validate these are present
-      new ValidateDylibBundlerVersion(),
-      new ValidateIconutil(),
-      new ValidateSips(),
-      new ValidateZip(),
+      new CopySourceAppIconPngToTempFolder(),
 
-      // // TODO: validate README.md in source, validate source icon needed for icns file
+      //// validate these are present
+      //new ValidateDylibBundlerVersion(),
+      //new ValidateIconutil(),
+      //new ValidateSips(),
+      //new ValidateZip(),
 
-      // get copy of source release
-      new CopySourceReleaseFilesForBuilding(),
-      new ValidateSourceReadme(),
+      //// // TODO: validate README.md in source, validate source icon needed for icns file
 
-      // make a build from the source
-      new BuildFromSourceInTempFolder(),
-      new ValidatePresenceOfBuiltExecutable(),
+      //// get copy of source release
+      //new CopySourceReleaseFilesForBuilding(),
+      //new ValidateSourceReadme(),
 
-      // Make the app package
-      // TODO: copy the source's app icon png into the temp location to build the icns file
+      //// make a build from the source
+      //new BuildFromSourceInTempFolder(),
+      //new ValidatePresenceOfBuiltExecutable(),
+
+      //// Make the app package
+      //// TODO: copy the source's app icon png into the temp location to build the icns file
+      //new CopySourceAppIconToTempFolder(),
       new BuildAppIcons(),
-      new ValidatePresenceOfIcnsFile(),
-      new CreateFoldersForReleaseAndAppPackage(),
-      new CreateInfoDotPlistFile(),
-      new CopyBuiltBinaryToAppPackage(),
-      new CopyDataFolderToAppPackage(),
-      new CopyIcnsFileToAppPackage(),
-      new CopyReadmeFileToRelaseFolder(),
-      new BuildAndBundleDylibsWithAppPackage(), // TODO: this process can error but it will not report an error
+      //new ValidatePresenceOfIcnsFile(),
+      //new CreateFoldersForReleaseAndAppPackage(),
+      //new CreateInfoDotPlistFile(),
+      //new CopyBuiltBinaryToAppPackage(),
+      //new CopyDataFolderToAppPackage(),
+      //new CopyIcnsFileToAppPackage(),
+      //new CopyReadmeFileToRelaseFolder(),
+      //new BuildAndBundleDylibsWithAppPackage(), // TODO: this process can error but it will not report an error
 
-      // Zip it up and prepare it for launch
-      new CreateZipFromReleaseFolder(),
+      //// Zip it up and prepare it for launch
+      //new CreateZipFromReleaseFolder(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
+
+
+
+
 
 
    Hexagon::BuildSystem::ReportRenderer report_renderer(build);
