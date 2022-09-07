@@ -58,6 +58,9 @@
 #define APP_PACKAGE_EXECUTABLE_NAME "TheWeepingHouse"
 #define NAME_OF_BUILT_EXECUTABLE "TheWeepingHouse"
 #define FULL_BINARY_APP_PACKAGE_DESTINATION ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" NAME_OF_BUILT_EXECUTABLE)
+#define FULL_PATH_TO_RELEASE_ZIP_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown.zip"
+#define RELEASE_ZIP_FILENAME "TheWeepingHouse-MacOS-chip_unknown.zip"
+#define RELEASE_FOLDER_RELATIVE_TO_SYSTEM_RELEASES_FOLDER "TheWeepingHouse-MacOS-chip_unknown"
 
 
 
@@ -759,6 +762,40 @@ public:
 
 
 
+class CreateZipFromReleaseFolder : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   void execute_shell_commands()
+   {
+      std::stringstream shell_command;
+      shell_command << "(cd " << SYSTEM_RELEASES_FOLDER  << " && (zip -r \"" << RELEASE_ZIP_FILENAME << "\" \"" << RELEASE_FOLDER_RELATIVE_TO_SYSTEM_RELEASES_FOLDER << "\"))";
+      std::cout << shell_command.str() << std::endl;
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      shell_command_result = shell_command_executor.execute();
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      shell_command_response_code = shell_command_executor2.execute();
+   }
+
+public:
+   static constexpr char* TYPE = "CreateZipFromReleaseFolder";
+   std::string shell_command_result;
+   std::string shell_command_response_code;
+
+   CreateZipFromReleaseFolder()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+   {}
+
+   virtual bool execute() override
+   {
+      execute_shell_commands();
+      if (shell_command_response_code == ("0\n")) return true;
+      return false;
+   }
+};
+
+
 
 
 int main(int argc, char **argv)
@@ -792,6 +829,9 @@ int main(int argc, char **argv)
       new CopyIcnsFileToAppPackage(),
       new CopyReadmeFileToRelaseFolder(),
       new BuildAndBundleDylibsWithAppPackage(), // TODO: this process can error but it will not report an error
+
+      // Zip it up and prepare it for launch
+      new CreateZipFromReleaseFolder(),
    });
    build->run();
    //parallel_build->run_all_in_parallel();
