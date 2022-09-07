@@ -44,37 +44,54 @@ std::string TEMP_DIRECTORY_FOR_ICON = "";
 class NameGenerator
 {
 public:
-   std::string SYSTEM_RELEASES_FOLDER; // "/Users/markoates/Releases/"
-   std::string SOURCE_RELEASE_FOLDER_NAME; // "TheWeepingHouse-SourceRelease-220903200818UTC"
+   static std::string SYSTEM_RELEASES_FOLDER; // "/Users/markoates/Releases/"
+   static std::string SOURCE_RELEASE_FOLDER_NAME; // "TheWeepingHouse-SourceRelease-220903200818UTC"
+   static std::string NAME_OF_EXECUTABLE; // "TheWeepingHouse"
+   static std::string COPYRIGHT_FULL_TEXT; // "Copyright 2022 - Mark Oates - www.CLUBCATT.com"
+   static std::string FULL_VERSION_NUMBER_WITH_BUILD; // "1.0.0.3"
+   static std::string VERSION_NUMBER; // "1.0.0"
+   static std::string FULL_PATH_TO_SOURCE_ICON_PNG; // "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png"
+
+   static std::string source_release_folder_name() { return SOURCE_RELEASE_FOLDER_NAME; }
+   static std::string name_of_executable() { return NAME_OF_EXECUTABLE; }
+   static std::string readme_filename() { return "README.md"; }
+   static std::string source_icon_filename() { return "Icon1024.png"; }
+   static std::string built_icns_filename() { return "MyIcon.icns"; }
 };
 
+std::string NameGenerator::SYSTEM_RELEASES_FOLDER; // "/Users/markoates/Releases/"
+std::string NameGenerator::SOURCE_RELEASE_FOLDER_NAME; // "TheWeepingHouse-SourceRelease-220903200818UTC"
+std::string NameGenerator::NAME_OF_EXECUTABLE; // "TheWeepingHouse"
+std::string NameGenerator::COPYRIGHT_FULL_TEXT; // "Copyright 2022 - Mark Oates - www.CLUBCATT.com"
+std::string NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD; // "1.0.0.3"
+std::string NameGenerator::VERSION_NUMBER; // "1.0.0"
+std::string NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG; // "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png"
 
 
-#define SOURCE_RELEASE_FOLDER_NAME "TheWeepingHouse-SourceRelease-220903200818UTC"
-#define NAME_OF_EXECUTABLE "TheWeepingHouse"
-#define COPYRIGHT_FULL_TEXT "Copyright 2022 - Mark Oates - www.CLUBCATT.com"
-#define FULL_VERSION_NUMBER_WITH_BUILD "1.0.0.3"
-#define VERSION_NUMBER "1.0.0"
-#define FULL_PATH_TO_SOURCE_ICON_PNG "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png"
-#define SYSTEM_RELEASES_FOLDER "/Users/markoates/Releases/"
+#define SOURCE_RELEASE_FOLDER_NAME NameGenerator::source_release_folder_name()
+#define NAME_OF_EXECUTABLE NameGenerator::name_of_executable()
+#define COPYRIGHT_FULL_TEXT NameGenerator::COPYRIGHT_FULL_TEXT
+#define FULL_VERSION_NUMBER_WITH_BUILD NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD
+#define VERSION_NUMBER NameGenerator::VERSION_NUMBER
+#define FULL_PATH_TO_SOURCE_ICON_PNG NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG
+#define SYSTEM_RELEASES_FOLDER NameGenerator::SYSTEM_RELEASES_FOLDER
+#define README_FILENAME NameGenerator::readme_filename()
+#define SOURCE_ICON_FILENAME NameGenerator::source_icon_filename()
+#define BUILT_ICNS_FILENAME NameGenerator::built_icns_filename()
 
 
 
 
-
-#define SOURCE_ICON_FILENAME "Icon1024.png"
-#define BUILT_ICNS_FILENAME "MyIcon.icns"
 #define ICNS_FULL_TEMP_FOLDER (TEMP_DIRECTORY_FOR_ICON)
-#define FULL_PATH_TO_BUILT_ICNS_FILE (TEMP_DIRECTORY_FOR_ICON + "/" BUILT_ICNS_FILENAME)
-#define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE (TEMP_DIRECTORY_FOR_ICON + "/" SOURCE_ICON_FILENAME)
+#define FULL_PATH_TO_BUILT_ICNS_FILE (TEMP_DIRECTORY_FOR_ICON + "/" + BUILT_ICNS_FILENAME)
+#define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE (TEMP_DIRECTORY_FOR_ICON + "/" + SOURCE_ICON_FILENAME)
 #define FULL_PATH_TO_DESTINATION_ICNS_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"
 #define FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD (TEMP_DIRECTORY_FOR_BUILD + "/")
-#define README_FILENAME "README.md"
-#define FULL_PATH_TO_SOURCE_README (TEMP_DIRECTORY_FOR_BUILD + "/" README_FILENAME)
+#define FULL_PATH_TO_SOURCE_README (TEMP_DIRECTORY_FOR_BUILD + "/" + README_FILENAME)
 #define FULL_PATH_OF_SOURCE_DATA_FOLDER (TEMP_DIRECTORY_FOR_BUILD + "/data/")
 #define FULL_PATH_TO_DESTINATION_README "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"
 #define FULL_PATH_OF_DESTINATION_DATA_FOLDER "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"
-#define NAME_OF_EXECUTABLE "TheWeepingHouse"
+//#define NAME_OF_EXECUTABLE "TheWeepingHouse"
 #define FULL_PATH_OF_SOURCE_RELEASE_FOLDER "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"
 #define NAME_OF_GENERATED_ICNS_FILE "MyIcon.icns"
 #define RELEASE_FOLDER_LOCATION "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"
@@ -940,6 +957,14 @@ int main(int argc, char **argv)
    std::cout << TEMP_DIRECTORY_FOR_ICON << std::endl;
 
 
+
+   NameGenerator::SYSTEM_RELEASES_FOLDER = "/Users/markoates/Releases/";
+   NameGenerator::SOURCE_RELEASE_FOLDER_NAME = "TheWeepingHouse-SourceRelease-220903200818UTC";
+   NameGenerator::NAME_OF_EXECUTABLE = "TheWeepingHouse";
+   NameGenerator::COPYRIGHT_FULL_TEXT = "Copyright 2022 - Mark Oates - www.CLUBCATT.com";
+   NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD = "1.0.0.3";
+   NameGenerator::VERSION_NUMBER = "1.0.0";
+   NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG = "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png";
 
 
 
