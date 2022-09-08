@@ -163,16 +163,6 @@
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/DirtyGrid"
   ],
-  "std/vector<std/string>&": [
-    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor"
-  ],
-  "std/vector<std/pair<int, int>>": [
-    "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
-    "Hexagon/AdvancedCodeEditor/Stage",
-    "Hexagon/DirtyGrid",
-    "Hexagon/Elements/BitmapGridMesh",
-    "Hexagon/Elements/TextMesh"
-  ],
   "Blast/StringSplitter": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
@@ -608,6 +598,12 @@
   ],
   "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter": [
     "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "std/vector<std/pair<int, int>>": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/DirtyGrid",
+    "Hexagon/Elements/BitmapGridMesh",
+    "Hexagon/Elements/TextMesh"
   ],
   "StageInterface": [
     "Hexagon/AdvancedCodeEditor/Stage",
