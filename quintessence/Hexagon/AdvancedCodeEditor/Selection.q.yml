@@ -11,6 +11,12 @@ properties:
 functions:
 
 
+  - name: is_empty
+    type: bool
+    body: |
+      return code_ranges.empty();
+
+
   - name: clear
     body: |
       code_ranges.clear();

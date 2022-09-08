@@ -257,6 +257,28 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   set_content__will_clear_any_regex_search_selections)
+{
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 60, 30);
+   stage.initialize();
+   stage.set_content(SONNET_TEXT);
+   std::vector<CodeRange> code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 13, 10, 13),
+      CodeRange(9, 14, 10, 14),
+   };
+   Hexagon::AdvancedCodeEditor::Selection initial_selections(code_ranges);
+   stage.get_search_regex_selections_ref() = initial_selections;
+
+   ASSERT_EQ(false, stage.get_search_regex_selections_ref().is_empty());
+
+   stage.set_content(FIXTURE_PASSAGE);
+   EXPECT_EQ(true, stage.get_search_regex_selections_ref().is_empty());
+}
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    DISABLED__filter_text_mesh_for_syntax_highlights__will_safely_sanitize_syntax_strings_that_are_longer_than_the_grid)
 {

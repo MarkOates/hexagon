@@ -757,7 +757,7 @@ void Stage::set_content(std::string content)
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    if (currently_grabbing_visual_selection) toggle_currently_grabbing_visual_selection();
    if (currently_grabbing_full_line_visual_selection) toggle_currently_grabbing_full_line_visual_selection();
-   // TODO: clear selections
+   search_regex_selections.clear();
    return;
 }
 

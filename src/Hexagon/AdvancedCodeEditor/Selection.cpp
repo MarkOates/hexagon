@@ -29,6 +29,11 @@ std::vector<CodeRange> Selection::get_code_ranges() const
 }
 
 
+bool Selection::is_empty()
+{
+   return code_ranges.empty();
+}
+
 void Selection::clear()
 {
    code_ranges.clear();
