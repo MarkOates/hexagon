@@ -13,7 +13,7 @@ public:
    }
 };
 
-std::string Foo::MY_VALUE;
+std::string Foo::MY_VALUE = "initial-value";
 
 
 #define MY_VALUE Foo::get_my_value()
@@ -23,7 +23,7 @@ std::string Foo::MY_VALUE;
 
 int main(int argc, char **argv)
 {
-   Foo::MY_VALUE = "YAAY!";
+   Foo::MY_VALUE = "modified-value";
    std::cout << "Foo::MY_VALUE: " << Foo::MY_VALUE << std::endl;
    std::cout << "Foo::get_my_value(): " << Foo::get_my_value() << std::endl;
    return 0;
