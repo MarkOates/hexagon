@@ -2,6 +2,11 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#define EXPECT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
+   try { code; FAIL() << "Expected " # raised_exception_type; } \
+   catch ( raised_exception_type const &err ) { EXPECT_EQ(std::string(expected_exception_message), err.what()); } \
+   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 
 using ::testing::UnorderedElementsAreArray;
@@ -474,6 +479,20 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    insert_string__will_mark_the_content_as_modified)
 {
    // TODO
+}
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   insert_string__when_the_string_contains_newlines__will_throw_an_error)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(FIXTURE_PASSAGE);
+
+   std::string expected_error_message = "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::insert_string() error: "
+                                        "Inserted string can not contain newline characters. You will need to first "
+                                        "split lines and insert them via insert_lines() if you wish to insert multiple "
+                                        "lines.";
+
+   EXPECT_THROW_WITH_MESSAGE(advanced_code_editor.insert_string("\n"), std::runtime_error, expected_error_message);
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,

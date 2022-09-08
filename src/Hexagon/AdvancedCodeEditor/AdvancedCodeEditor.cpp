@@ -6,6 +6,7 @@
 #include <Hexagon/RegexMatcher.hpp>
 #include <algorithm>
 #include <array>
+#include <sstream>
 
 
 namespace Hexagon
@@ -85,7 +86,19 @@ bool AdvancedCodeEditor::insert_string(std::string string)
    if (cursor.get_y() < 0) return false;
    if (cursor.get_x() > lines[cursor.get_y()].size()) return false;
 
-   // TODO: prevent insertion of newline '\n' characters
+   // Prevent insertion of newline '\n' characters
+   std::vector<char> non_permitted_chars = { '\n', '\r' }; 
+   for (auto &non_permitted_char : non_permitted_chars)
+   {
+      if (string.find(non_permitted_char) != std::string::npos)
+      {
+         std::stringstream error_message;
+         error_message << "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::insert_string() error: "
+                       << "Inserted string can not contain newline characters. You will need to first split lines "
+                       << "and insert them via insert_lines() if you wish to insert multiple lines.";
+         throw std::runtime_error(error_message.str());
+      }
+   }
 
    Hexagon::AdvancedCodeEditor::Cursor &cursor = get_cursor_ref();
    std::vector<std::string> &lines = get_lines_ref();
