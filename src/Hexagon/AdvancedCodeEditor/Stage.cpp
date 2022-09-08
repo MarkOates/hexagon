@@ -946,10 +946,7 @@ bool Stage::paste_selected_text_from_clipboard()
 std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> Stage::build_local_events_dictionary()
 {
    std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
-      { "cursor_move_up", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_up },
-      { "cursor_move_down", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_down },
-      { "cursor_move_left", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_left },
-      { "cursor_move_right", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_right },
+      // modification
       { "delete_character", &Hexagon::AdvancedCodeEditor::Stage::delete_character },
       { "delete_word_under_cursor", &Hexagon::AdvancedCodeEditor::Stage::delete_word_under_cursor },
       { "delete_to_end_of_line", &Hexagon::AdvancedCodeEditor::Stage::delete_to_end_of_line },
@@ -960,8 +957,21 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "join_lines", &Hexagon::AdvancedCodeEditor::Stage::join_lines },
       { "delete_line", &Hexagon::AdvancedCodeEditor::Stage::delete_line },
       { "insert_string_from_input_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
+      { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
+      { "insert_three_spaces_at_start_of_line",
+         &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
+
+
+      // modes
       { "set_to_edit_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
       { "set_to_insert_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
+
+
+      // cursor movement
+      { "cursor_move_up", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_up },
+      { "cursor_move_down", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_down },
+      { "cursor_move_left", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_left },
+      { "cursor_move_right", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_right },
       { "cursor_move_to_start_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_start_of_line },
       { "cursor_move_to_start_of_file", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_start_of_file },
       { "cursor_move_to_end_of_line", &Hexagon::AdvancedCodeEditor::Stage::cursor_move_to_end_of_line },
@@ -976,6 +986,9 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
          &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_next_search_regex_selection },
       { "cursor_jump_to_previous_search_regex_selection",
          &Hexagon::AdvancedCodeEditor::Stage::cursor_jump_to_previous_search_regex_selection },
+
+
+      // first_row_offset
       { "first_row_offset_move_up", &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_move_up },
       { "first_row_offset_move_down", &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_move_down },
       { "first_row_offset_jump_up_half_page",
@@ -984,14 +997,20 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
          &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_jump_down_half_page },
       { "first_row_offset_adjust_so_cursor_is_vertically_centered",
          &Hexagon::AdvancedCodeEditor::Stage::first_row_offset_adjust_so_cursor_is_vertically_centered },
+
+
+      // visual_selections
       { "toggle_currently_grabbing_visual_selection",
         &Hexagon::AdvancedCodeEditor::Stage::toggle_currently_grabbing_visual_selection },
       { "toggle_currently_grabbing_full_line_visual_selection",
         &Hexagon::AdvancedCodeEditor::Stage::toggle_currently_grabbing_full_line_visual_selection },
-      { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
-      { "insert_three_spaces_at_start_of_line",
-         &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
+
+
+      // file_saving
       { "save_file", &Hexagon::AdvancedCodeEditor::Stage::save_file },
+
+
+      // clipboard
       { "yank_selected_text_to_clipboard",
         &Hexagon::AdvancedCodeEditor::Stage::yank_selected_text_to_clipboard },
       { "paste_selected_text_from_clipboard",
