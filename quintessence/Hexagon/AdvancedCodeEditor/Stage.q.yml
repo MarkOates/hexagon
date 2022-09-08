@@ -200,6 +200,7 @@ functions:
 
 
   - name: initialize_surface_render
+    private: true
     body: |
       ALLEGRO_STATE previous_render_state;
       al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP);

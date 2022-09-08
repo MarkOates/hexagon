@@ -60,6 +60,7 @@ namespace Hexagon
          int max_line_length;
          ALLEGRO_COLOR null_space_color;
          ALLEGRO_COLOR backfill_color;
+         void initialize_surface_render();
          ALLEGRO_FONT* obtain_text_font();
          int cursor_get_x();
          int cursor_get_y();
@@ -113,7 +114,6 @@ namespace Hexagon
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
          void initialize();
-         void initialize_surface_render();
          virtual void destroy() override;
          bool refresh_search_regex_selections();
          void set_code_message_points(std::vector<CodeMessagePoint> code_message_points={});
