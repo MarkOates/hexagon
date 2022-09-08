@@ -68,6 +68,8 @@ public:
    static std::string app_package_executable_name() { return NameGenerator::NAME_OF_EXECUTABLE; }
    static std::string app_package_folder_name() { return NameGenerator::NAME_OF_EXECUTABLE + ".app"; }
    static std::string full_path_to_copied_source_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + source_icon_filename(); }
+   static std::string release_folder_relative_to_system_releases_folder() { return "TheWeepingHouse-MacOS-chip_unknown"; }
+   static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
 };
 
 
@@ -91,30 +93,30 @@ std::string NameGenerator::TEMP_DIRECTORY_FOR_ICON; // auto-generated, different
 //#define VERSION_NUMBER NameGenerator::VERSION_NUMBER
 //#define FULL_PATH_TO_SOURCE_ICON_PNG NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG
 //#define SYSTEM_RELEASES_FOLDER NameGenerator::SYSTEM_RELEASES_FOLDER
-#define README_FILENAME NameGenerator::readme_filename()
-#define SOURCE_ICON_FILENAME NameGenerator::source_icon_filename()
-#define BUILT_ICNS_FILENAME NameGenerator::built_icns_filename()
-#define NAME_OF_GENERATED_ICNS_FILE NameGenerator::built_icns_filename()
+//#define README_FILENAME NameGenerator::readme_filename()
+//#define SOURCE_ICON_FILENAME NameGenerator::source_icon_filename()
+//#define BUILT_ICNS_FILENAME NameGenerator::built_icns_filename()
+//#define NAME_OF_GENERATED_ICNS_FILE NameGenerator::built_icns_filename()
 #define FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD NameGenerator::full_path_of_temp_location_for_build()
-#define FULL_PATH_TO_BUILT_ICNS_FILE NameGenerator::full_path_to_built_icns_file()
-#define NAME_OF_BUILT_EXECUTABLE NameGenerator::name_of_built_executable()
-#define APP_PACKAGE_EXECUTABLE_NAME NameGenerator::app_package_executable_name()
-#define APP_PACKAGE_FOLDER_NAME NameGenerator::app_package_folder_name()
+//#define FULL_PATH_TO_BUILT_ICNS_FILE NameGenerator::full_path_to_built_icns_file()
+//#define NAME_OF_BUILT_EXECUTABLE NameGenerator::name_of_built_executable()
+//#define APP_PACKAGE_EXECUTABLE_NAME NameGenerator::app_package_executable_name()
+//#define APP_PACKAGE_FOLDER_NAME NameGenerator::app_package_folder_name()
 
 
 
-#define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE NameGenerator::full_path_to_copied_source_icns_file()
+//#define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE NameGenerator::full_path_to_copied_source_icns_file()
 #define FULL_PATH_TO_DESTINATION_ICNS_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"
-#define FULL_PATH_TO_SOURCE_README (TEMP_DIRECTORY_FOR_BUILD + "/" + README_FILENAME)
+#define FULL_PATH_TO_SOURCE_README (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename())
 #define FULL_PATH_OF_SOURCE_DATA_FOLDER (TEMP_DIRECTORY_FOR_BUILD + "/data/")
 #define FULL_PATH_TO_DESTINATION_README "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"
 #define FULL_PATH_OF_DESTINATION_DATA_FOLDER "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"
 #define FULL_PATH_OF_SOURCE_RELEASE_FOLDER "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"
 #define RELEASE_FOLDER_LOCATION "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"
 #define FULL_BINARY_APP_PACKAGE_DESTINATION ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable())
-#define FULL_PATH_TO_RELEASE_ZIP_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown.zip"
-#define RELEASE_ZIP_FILENAME "TheWeepingHouse-MacOS-chip_unknown.zip"
-#define RELEASE_FOLDER_RELATIVE_TO_SYSTEM_RELEASES_FOLDER "TheWeepingHouse-MacOS-chip_unknown"
+//#define FULL_PATH_TO_RELEASE_ZIP_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown.zip"
+//#define RELEASE_ZIP_FILENAME "TheWeepingHouse-MacOS-chip_unknown.zip"
+//#define RELEASE_FOLDER_RELATIVE_TO_SYSTEM_RELEASES_FOLDER "TheWeepingHouse-MacOS-chip_unknown"
 
 
 
@@ -382,7 +384,7 @@ public:
    ValidatePresenceOfBuiltExecutable()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
-      , name_of_expected_executable(NAME_OF_BUILT_EXECUTABLE)
+      , name_of_expected_executable(NameGenerator::name_of_built_executable())
    {}
 
    virtual bool execute() override
@@ -426,7 +428,7 @@ public:
    CopySourceAppIconPngToTempFolder()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , full_path_to_source_icon_png(NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG)
-      , full_destination_path_to_copied_source_icns_file(FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE)
+      , full_destination_path_to_copied_source_icns_file(NameGenerator::full_path_to_copied_source_icns_file())
    {}
 
    virtual bool execute() override
@@ -525,7 +527,7 @@ public:
    ValidatePresenceOfIcnsFile()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , name_of_temp_location_to_build(TEMP_DIRECTORY_FOR_ICON)
-      , name_of_expected_generated_icns_file(NAME_OF_GENERATED_ICNS_FILE)
+      , name_of_expected_generated_icns_file(NameGenerator::built_icns_filename())
    {}
 
    virtual bool execute() override
@@ -709,7 +711,7 @@ public:
    CopyBuiltBinaryToAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , name_of_temp_location_with_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
-      , name_of_built_executable(NAME_OF_BUILT_EXECUTABLE)
+      , name_of_built_executable(NameGenerator::name_of_built_executable())
    {}
 
    virtual bool execute() override
@@ -791,7 +793,7 @@ public:
 
    CopyIcnsFileToAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , full_source_location_of_icns_file(FULL_PATH_TO_BUILT_ICNS_FILE)
+      , full_source_location_of_icns_file(NameGenerator::full_path_to_built_icns_file())
       , full_destination_location(FULL_PATH_TO_DESTINATION_ICNS_FILE)
    {}
 
@@ -852,8 +854,8 @@ private:
    void execute_shell_commands()
    {
       std::string release_folder_location = RELEASE_FOLDER_LOCATION;
-      std::string app_package_folder_name = APP_PACKAGE_FOLDER_NAME;
-      std::string app_package_executable_name = APP_PACKAGE_EXECUTABLE_NAME;
+      std::string app_package_folder_name = NameGenerator::app_package_folder_name();
+      std::string app_package_executable_name = NameGenerator::app_package_executable_name();
       std::stringstream shell_command;
       shell_command << "(cd " << release_folder_location << " && (export DYLD_LIBRARY_PATH=/usr/local/lib" << std::endl
                     << "dylibbundler -x \"" << app_package_folder_name << "/Contents/MacOS/" << app_package_executable_name << "\" -b -d \"" << app_package_folder_name << "/Contents/MacOS\" -p @executable_path -s $DYLD_LIBRARY_PATH"
@@ -894,7 +896,7 @@ private:
    void execute_shell_commands()
    {
       std::stringstream shell_command;
-      shell_command << "(cd " << NameGenerator::SYSTEM_RELEASES_FOLDER  << " && (zip -r \"" << RELEASE_ZIP_FILENAME << "\" \"" << RELEASE_FOLDER_RELATIVE_TO_SYSTEM_RELEASES_FOLDER << "\"))";
+      shell_command << "(cd " << NameGenerator::SYSTEM_RELEASES_FOLDER  << " && (zip -r \"" << NameGenerator::release_zip_filename() << "\" \"" << NameGenerator::release_folder_relative_to_system_releases_folder() << "\"))";
       std::cout << shell_command.str() << std::endl;
 
       Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
