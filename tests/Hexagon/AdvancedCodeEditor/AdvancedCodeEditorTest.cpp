@@ -482,7 +482,7 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
-   insert_string__when_the_string_contains_newlines__will_throw_an_error)
+   insert_string__when_the_string_contains_newline_or_carriage_return__will_throw_an_error)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
    advanced_code_editor.set_content(FIXTURE_PASSAGE);
@@ -493,6 +493,7 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
                                         "lines.";
 
    EXPECT_THROW_WITH_MESSAGE(advanced_code_editor.insert_string("\n"), std::runtime_error, expected_error_message);
+   EXPECT_THROW_WITH_MESSAGE(advanced_code_editor.insert_string("\r"), std::runtime_error, expected_error_message);
 }
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
@@ -753,6 +754,43 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    std::vector<std::pair<int, int>> actual = advanced_code_editor.get_dirty_cells();
    ASSERT_THAT(expected_cells_from_before_change, UnorderedElementsAreArray(actual));
 }
+
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   insert_lines__when_any_line_contains_newline_or_carriage_return__will_throw_an_error1)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(FIXTURE_PASSAGE);
+
+   std::string expected_error_message = "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::insert_lines() "
+                                        "error: Inserted lines can not contain newline characters. "
+                                        "The following lines were passed to insert_lines():\n"
+                                        "=========BEGIN=========\n"
+                                        "\n"
+                                        "\n"
+                                        "==========END=========\n";
+
+   EXPECT_THROW_WITH_MESSAGE(advanced_code_editor.insert_lines({"\n"}), std::runtime_error, expected_error_message);
+}
+
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   insert_lines__when_any_line_contains_newline_or_carriage_return__will_throw_an_error2)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(FIXTURE_PASSAGE);
+
+   std::string expected_error_message = "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::insert_lines() "
+                                        "error: Inserted lines can not contain newline characters. "
+                                        "The following lines were passed to insert_lines():\n"
+                                        "=========BEGIN=========\n"
+                                        "\r\n"
+                                        "==========END=========\n";
+
+   EXPECT_THROW_WITH_MESSAGE(advanced_code_editor.insert_lines({"\r"}), std::runtime_error, expected_error_message);
+}
+
+
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    insert_lines__will_set_the_dirty_cells_with_only_the_expected_cells)

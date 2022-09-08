@@ -237,7 +237,28 @@ functions:
         type: std::vector<std::string>
         default_argument: '{}'
     body: |
-      // TODO: prevent insertion of newline '\n' characters
+      // Scan each line and prevent insertion of newline ('\n', '\r') characters
+      for (auto &line_to_insert : lines_to_insert)
+      {
+         std::vector<char> non_permitted_chars = { '\n', '\r' }; 
+         for (auto &non_permitted_char : non_permitted_chars)
+         {
+            if (line_to_insert.find(non_permitted_char) != std::string::npos)
+            {
+               std::stringstream error_message;
+               error_message << "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::insert_lines() error: "
+                             << "Inserted lines can not contain newline characters. The following lines were "
+                             << "passed to insert_lines():" << std::endl
+                             << "=========BEGIN=========" << std::endl;
+               for (auto &line : lines_to_insert)
+               {
+                  error_message << line << std::endl;
+               }
+               error_message << "==========END=========" << std::endl;
+               throw std::runtime_error(error_message.str());
+            }
+         }
+      }
 
       int range_safe_y = std::min(std::max(0, cursor.get_y()), (int)lines.size());
 
