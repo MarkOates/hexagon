@@ -84,7 +84,7 @@ void ApplicationController::create_event_queue_and_register_event_sources()
    al_register_event_source(event_queue, al_get_timer_event_source(primary_timer));
    al_start_timer(primary_timer);
 
-   regular_refresh_timer = al_create_timer(1.0 / 10.0); // (1.0/10.0 will tick once every second), 
+   regular_refresh_timer = al_create_timer(1.0); // (1.0 will tick once every second), 
    al_register_event_source(event_queue, al_get_timer_event_source(regular_refresh_timer));
    al_start_timer(regular_refresh_timer);
 
@@ -233,7 +233,6 @@ void ApplicationController::run_event_loop()
          }
          if (this_event.timer.source == regular_refresh_timer)
          {
-            std::cout << "AAAAAAAA" << std::endl;
             refresh = true;
          }
       case ALLEGRO_EVENT_MOUSE_AXES:
