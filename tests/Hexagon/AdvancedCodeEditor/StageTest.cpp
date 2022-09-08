@@ -14,6 +14,7 @@
 #include <AllegroFlare/Timer.hpp>
 #include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/util.hpp>
+#include <Hexagon/Testing/Comparison/Hexagon/AdvancedCodeEditor/Selection.hpp>
 
 class Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture : public ::testing::Test
 {
@@ -344,7 +345,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
-   DISABLED__interactive_test_works)
+   DISABLED__autointeractive_test_works)
 {
    AllegroFlare::Timer timer;
    std::string filename = std::tmpnam(nullptr);
@@ -731,6 +732,39 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    insert_blank_line__will_insert_a_blank_line_at_the_cursor)
 {
    // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   insert_blank_line__will_reposition_any_regex_expressions__down_by_one_line)
+{
+   // TODO
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 20);
+   stage.initialize();
+   stage.set_content(SONNET_TEXT);
+   std::vector<CodeRange> code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 19, 10, 19),
+      CodeRange(9, 20, 10, 20),
+   };
+   Hexagon::AdvancedCodeEditor::Selection initial_selections(code_ranges);
+   stage.get_search_regex_selections_ref() = initial_selections;
+
+   // move cursor to line 19
+   stage.cursor_move_to(0, 19);
+
+   stage.insert_blank_line();
+
+   std::vector<CodeRange> expected_moved_code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 19+1, 10, 19+1),
+      CodeRange(9, 20+1, 10, 20+1),
+   };
+   Hexagon::AdvancedCodeEditor::Selection expected_selections(expected_moved_code_ranges);
+
+   EXPECT_EQ(expected_selections, stage.get_search_regex_selections_ref());
 }
 
 

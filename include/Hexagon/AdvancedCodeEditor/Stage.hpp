@@ -113,6 +113,7 @@ namespace Hexagon
          Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_advanced_code_editor_ref();
          std::string &get_input_buffer_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
+         Hexagon::AdvancedCodeEditor::Selection &get_search_regex_selections_ref();
          void initialize();
          virtual void destroy() override;
          bool refresh_search_regex_selections();

@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 
 #include <Hexagon/AdvancedCodeEditor/Selection.hpp>
+#include <Hexagon/Testing/Comparison/Hexagon/AdvancedCodeEditor/Selection.hpp>
 
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, can_be_created_without_blowing_up)

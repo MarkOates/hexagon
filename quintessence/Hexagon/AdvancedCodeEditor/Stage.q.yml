@@ -123,6 +123,7 @@ properties:
   - name: search_regex_selections
     type: Hexagon::AdvancedCodeEditor::Selection
     init_with: 'Hexagon::AdvancedCodeEditor::Selection{}'
+    getter_ref: true
 
   - name: syntax_highlight_color
     type: ALLEGRO_COLOR
@@ -646,6 +647,7 @@ functions:
     body: |
       bool result = advanced_code_editor.insert_lines(lines_to_insert);
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+      //reposition_regex
       refresh_current_visual_selection_end_to_current_cursor_position();
       return result;
 
@@ -688,7 +690,9 @@ functions:
   - name: insert_blank_line
     type: bool
     body: |
-      return insert_lines({ {} });
+      bool result = insert_lines({ {} });
+      search_regex_selections.push_down_from(cursor_get_y(), 1);
+      return result;
 
 
   - name: create_visual_selection_at_current_cursor_location
