@@ -714,10 +714,34 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 }
 
 
-TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
-   split_lines__will_shift_down_all_code_message_points_after_initial_first_line)
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   split_lines__will_shift_down_all_search_regex_selections_after_split_line)
 {
-   // TODO
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 60, 30);
+   stage.initialize();
+   stage.set_content(SONNET_TEXT);
+   std::vector<CodeRange> code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 13, 10, 13),
+      CodeRange(9, 14, 10, 14),
+   };
+   Hexagon::AdvancedCodeEditor::Selection initial_selections(code_ranges);
+   stage.get_search_regex_selections_ref() = initial_selections;
+
+   stage.cursor_move_to(5, 13);
+
+   stage.split_lines();
+
+   std::vector<CodeRange> expected_moved_code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 13+1, 10, 13+1),
+      CodeRange(9, 14+1, 10, 14+1),
+   };
+   Hexagon::AdvancedCodeEditor::Selection expected_selections(expected_moved_code_ranges);
+
+   EXPECT_EQ(expected_selections, stage.get_search_regex_selections_ref());
 }
 
 
@@ -738,7 +762,6 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    insert_blank_line__will_reposition_any_regex_expressions__down_by_one_line)
 {
-   // TODO
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 20);
    stage.initialize();
    stage.set_content(SONNET_TEXT);
@@ -751,7 +774,6 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    Hexagon::AdvancedCodeEditor::Selection initial_selections(code_ranges);
    stage.get_search_regex_selections_ref() = initial_selections;
 
-   // move cursor to line 19
    stage.cursor_move_to(0, 19);
 
    stage.insert_blank_line();
@@ -771,7 +793,6 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    insert_lines__will_reposition_any_regex_expressions__down_by_the_number_of_lines_inserted)
 {
-   // TODO
    Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 20);
    stage.initialize();
    stage.set_content(SONNET_TEXT);
@@ -784,7 +805,6 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    Hexagon::AdvancedCodeEditor::Selection initial_selections(code_ranges);
    stage.get_search_regex_selections_ref() = initial_selections;
 
-   // move cursor to line 19
    stage.cursor_move_to(0, 19);
 
    stage.insert_lines(

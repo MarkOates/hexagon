@@ -611,10 +611,18 @@ functions:
     type: bool
     guards: [ initialized ]
     body: |
-      bool result = advanced_code_editor.split_lines();
+      bool split_was_successful = advanced_code_editor.split_lines();
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+      if (split_was_successful)
+      {
+         // 1) delete the regex selections on this line (TODO)
+         // 2) push down all regex selections from this line down
+         search_regex_selections.push_down_from(cursor_get_y(), 1);
+         std::cout << "AAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
+         // 3) refresh selections on the two lines from the split (TODO)
+      }
       refresh_current_visual_selection_end_to_current_cursor_position();
-      return result;
+      return split_was_successful;
 
 
   - name: delete_line
