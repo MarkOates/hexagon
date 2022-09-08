@@ -768,6 +768,41 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 }
 
 
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
+   insert_lines__will_reposition_any_regex_expressions__down_by_the_number_of_lines_inserted)
+{
+   // TODO
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 20);
+   stage.initialize();
+   stage.set_content(SONNET_TEXT);
+   std::vector<CodeRange> code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 19, 10, 19),
+      CodeRange(9, 20, 10, 20),
+   };
+   Hexagon::AdvancedCodeEditor::Selection initial_selections(code_ranges);
+   stage.get_search_regex_selections_ref() = initial_selections;
+
+   // move cursor to line 19
+   stage.cursor_move_to(0, 19);
+
+   stage.insert_lines(
+     std::vector<std::string>({ "This is an inserted line.", "This is another inserted line." })
+   );
+
+   std::vector<CodeRange> expected_moved_code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 19+2, 10, 19+2),
+      CodeRange(9, 20+2, 10, 20+2),
+   };
+   Hexagon::AdvancedCodeEditor::Selection expected_selections(expected_moved_code_ranges);
+
+   EXPECT_EQ(expected_selections, stage.get_search_regex_selections_ref());
+}
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    DISABLED_insert_three_spaces_at_start_of_line__TODO)
 {

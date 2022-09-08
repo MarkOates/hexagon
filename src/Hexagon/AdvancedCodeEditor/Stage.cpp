@@ -728,7 +728,10 @@ bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
    }
    bool result = advanced_code_editor.insert_lines(lines_to_insert);
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
-   //reposition_regex
+
+   // reposition regular expression highlights
+   search_regex_selections.push_down_from(cursor_get_y(), lines_to_insert.size());
+
    refresh_current_visual_selection_end_to_current_cursor_position();
    return result;
 }
@@ -771,7 +774,6 @@ bool Stage::insert_three_spaces_at_start_of_line()
 bool Stage::insert_blank_line()
 {
    bool result = insert_lines({ {} });
-   search_regex_selections.push_down_from(cursor_get_y(), 1);
    return result;
 }
 
