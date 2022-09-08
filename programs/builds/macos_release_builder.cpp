@@ -70,6 +70,7 @@ public:
    static std::string full_path_to_copied_source_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + source_icon_filename(); }
    static std::string release_folder_relative_to_system_releases_folder() { return "TheWeepingHouse-MacOS-chip_unknown"; }
    static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
+   static std::string full_path_of_source_release_folder() { return "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"; }
 };
 
 
@@ -105,15 +106,16 @@ std::string NameGenerator::TEMP_DIRECTORY_FOR_ICON; // auto-generated, different
 
 
 
-//#define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE NameGenerator::full_path_to_copied_source_icns_file()
 #define FULL_PATH_TO_DESTINATION_ICNS_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"
 #define FULL_PATH_TO_SOURCE_README (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename())
 #define FULL_PATH_OF_SOURCE_DATA_FOLDER (TEMP_DIRECTORY_FOR_BUILD + "/data/")
 #define FULL_PATH_TO_DESTINATION_README "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"
 #define FULL_PATH_OF_DESTINATION_DATA_FOLDER "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"
-#define FULL_PATH_OF_SOURCE_RELEASE_FOLDER "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"
 #define RELEASE_FOLDER_LOCATION "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"
 #define FULL_BINARY_APP_PACKAGE_DESTINATION ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable())
+
+//#define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE NameGenerator::full_path_to_copied_source_icns_file()
+//#define FULL_PATH_OF_SOURCE_RELEASE_FOLDER "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"
 //#define FULL_PATH_TO_RELEASE_ZIP_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown.zip"
 //#define RELEASE_ZIP_FILENAME "TheWeepingHouse-MacOS-chip_unknown.zip"
 //#define RELEASE_FOLDER_RELATIVE_TO_SYSTEM_RELEASES_FOLDER "TheWeepingHouse-MacOS-chip_unknown"
@@ -300,7 +302,7 @@ public:
 
    CopySourceReleaseFilesForBuilding()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_source_folder(FULL_PATH_OF_SOURCE_RELEASE_FOLDER)
+      , name_of_source_folder(NameGenerator::full_path_of_source_release_folder())
       , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
       , shell_command_result()
       , shell_command_response_code()

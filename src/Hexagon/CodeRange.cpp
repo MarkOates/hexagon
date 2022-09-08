@@ -31,6 +31,27 @@ CodePoint CodeRange::infer_cursor_end()
 }
 
 
+void CodeRange::move(int dx, int dy)
+{
+   cursor_anchor_x += dx;
+   cursor_anchor_y += dy;
+   cursor_end_x += dx;
+   cursor_end_y += dy;
+}
+
+
+
+void CodeRange::set_cursor_anchor_x(int x)
+{
+   this->cursor_anchor_x = x;
+}
+
+
+void CodeRange::set_cursor_anchor_y(int y)
+{
+   this->cursor_anchor_y = y;
+}
+
 
 void CodeRange::set_cursor_end_x(int x) { cursor_end_x = x; }
 

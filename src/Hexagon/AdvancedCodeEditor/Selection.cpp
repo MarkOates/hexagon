@@ -2,7 +2,8 @@
 
 #include <Hexagon/AdvancedCodeEditor/Selection.hpp>
 
-
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -36,7 +37,24 @@ void Selection::clear()
 
 bool Selection::push_down_from(int starting_on_line, int num_lines_to_push_down)
 {
-   // TODO: move selections down
+   if (!((num_lines_to_push_down >= 0)))
+   {
+      std::stringstream error_message;
+      error_message << "Selection" << "::" << "push_down_from" << ": error: " << "guard \"(num_lines_to_push_down >= 0)\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+   for (int i=code_ranges.size()-1; i>=0; i--)
+   {
+      auto &code_range = code_ranges[i];
+
+      CodePoint start = code_range.infer_cursor_start();
+      CodePoint end = code_range.infer_cursor_end();
+
+      if (start.get_y() >= starting_on_line)
+      {
+         code_range.move(0, num_lines_to_push_down);
+      }
+   }
    return true;
 }
 

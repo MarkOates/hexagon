@@ -3,10 +3,12 @@
 
 #include <Hexagon/AdvancedCodeEditor/Selection.hpp>
 
+
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, can_be_created_without_blowing_up)
 {
    Hexagon::AdvancedCodeEditor::Selection selection;
 }
+
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, selection__is_a_constructor_arg_and_has_a_getter)
 {
@@ -16,6 +18,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, selection__is_a_constructor_arg_a
    EXPECT_EQ(code_ranges, selection.get_code_ranges());
 }
 
+
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    find_next_from__with_no_code_ranges__returns_the_cursor_location_that_was_passed_location)
 {
@@ -23,6 +26,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    Hexagon::AdvancedCodeEditor::Selection selection(empty_code_ranges);
    EXPECT_EQ(CodePoint(32, 87), selection.find_next_from(32, 87));
 }
+
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__finds_the_next_selection)
 {
@@ -36,6 +40,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__finds_the_next_se
    EXPECT_EQ(CodePoint(2, 0), selection.find_next_from(0, 0)); // on the same line
    EXPECT_EQ(CodePoint(3, 8), selection.find_next_from(4, 0)); // on a subsequent line
 }
+
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    find_next_from__when_at_an_existing_selections_start__finds_the_next_selection)
@@ -51,6 +56,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    EXPECT_EQ(CodePoint(9, 19), selection.find_next_from(3, 8)); // on a subsequent line
 }
 
+
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__when_beyond_the_last_selection__does_nothing)
 {
    std::vector<CodeRange> code_ranges = {
@@ -63,6 +69,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_next_from__when_beyond_the_l
    EXPECT_EQ(CodePoint(10, 19), selection.find_next_from(10, 19)); // on the same line
 }
 
+
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    find_previous_from__with_no_code_ranges__returns_the_cursor_location_that_was_passed_location)
 {
@@ -70,6 +77,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    Hexagon::AdvancedCodeEditor::Selection selection(empty_code_ranges);
    EXPECT_EQ(CodePoint(32, 87), selection.find_previous_from(32, 87));
 }
+
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__finds_the_previous_selection)
 {
@@ -83,6 +91,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__finds_the_pre
    EXPECT_EQ(CodePoint(2, 0), selection.find_previous_from(4, 0)); // on the same line
    EXPECT_EQ(CodePoint(2, 0), selection.find_previous_from(4, 7)); // on a subsequent line
 }
+
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    find_previous_from__when_at_an_existing_selection_start__finds_the_previous_selection)
@@ -98,6 +107,7 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    EXPECT_EQ(CodePoint(3, 8), selection.find_previous_from(9, 19)); // on a subsequent line
 }
 
+
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__when_before_the_first_selection__does_nothing)
 {
    std::vector<CodeRange> code_ranges = {
@@ -107,8 +117,41 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest, find_previous_from__when_before_t
    };
    Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
 
-   EXPECT_EQ(CodePoint(1, 0), selection.find_previous_from(1, 0)); // on the previoud line
+   EXPECT_EQ(CodePoint(1, 0), selection.find_previous_from(1, 0)); // on the previous line
    EXPECT_EQ(CodePoint(1, 1), selection.find_previous_from(1, 1)); // on the same line
+}
+
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
+   push_down_from__will_move_code_points_down_that_are_at_or_below_a_starting_line)
+{
+   std::vector<CodeRange> code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 19, 10, 19),
+      CodeRange(9, 20, 10, 20),
+      CodeRange(9, 99, 10, 99),
+   };
+   Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
+
+   selection.push_down_from(19, 3);
+
+   std::vector<CodeRange> expected_moved_code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 19+3, 10, 19+3),
+      CodeRange(9, 20+3, 10, 20+3),
+      CodeRange(9, 99+3, 10, 99+3),
+   };
+
+   EXPECT_EQ(expected_moved_code_ranges, selection.get_code_ranges());
+}
+
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
+   push_down_from__when_num_lines_to_push_down__is_negative__will_throw_an_error)
+{
+   // TODO
 }
 
 

@@ -20,8 +20,11 @@ public:
 
    CodePoint infer_cursor_start();
    CodePoint infer_cursor_end();
+   void set_cursor_anchor_x(int x);
+   void set_cursor_anchor_y(int y);
    void set_cursor_end_x(int x); // TODO: remove "cursor" in all method names
    void set_cursor_end_y(int y);
+   void move(int x, int y);
    bool is_empty();
    int infer_num_lines();
    bool in_range(int x, int y);

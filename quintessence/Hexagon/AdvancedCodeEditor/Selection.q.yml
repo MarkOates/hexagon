@@ -26,8 +26,20 @@ functions:
       - name: num_lines_to_push_down
         type: int
         default_argument: 0
+    guards: [ (num_lines_to_push_down >= 0) ]
     body: |
-      // TODO: move selections down
+      for (int i=code_ranges.size()-1; i>=0; i--)
+      {
+         auto &code_range = code_ranges[i];
+
+         CodePoint start = code_range.infer_cursor_start();
+         CodePoint end = code_range.infer_cursor_end();
+
+         if (start.get_y() >= starting_on_line)
+         {
+            code_range.move(0, num_lines_to_push_down);
+         }
+      }
       return true;
 
 
