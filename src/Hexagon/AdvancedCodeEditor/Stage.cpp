@@ -341,6 +341,22 @@ bool Stage::refresh_search_regex_selections()
    return true;
 }
 
+bool Stage::refresh_search_regex_selections_on_select_lines(std::vector<int> line_nums)
+{
+   // HERE
+   // clear selections on select lines
+
+   // run SearchRegexToSelectionsConverter on these lines
+   {
+      //Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter converter(
+         //current_search_regex, get_lines());
+      //search_regex_selections = converter.convert();
+   }
+
+   // insert the selections into the existing search_regex_selections (or push_back)
+   return true;
+}
+
 void Stage::set_code_message_points(std::vector<CodeMessagePoint> code_message_points)
 {
    code_message_point_manager.set_code_message_points(code_message_points);
@@ -691,7 +707,6 @@ bool Stage::split_lines()
       // 1) delete the regex selections on this line (TODO)
       // 2) push down all regex selections from this line down
       search_regex_selections.push_down_from(cursor_get_y(), 1);
-      std::cout << "AAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
       // 3) refresh selections on the two lines from the split (TODO)
    }
    refresh_current_visual_selection_end_to_current_cursor_position();

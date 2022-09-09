@@ -117,6 +117,7 @@ namespace Hexagon
          void initialize();
          virtual void destroy() override;
          bool refresh_search_regex_selections();
+         bool refresh_search_regex_selections_on_select_lines(std::vector<int> line_nums={});
          void set_code_message_points(std::vector<CodeMessagePoint> code_message_points={});
          bool save_file();
          bool save_file_and_touch_if_symlink();

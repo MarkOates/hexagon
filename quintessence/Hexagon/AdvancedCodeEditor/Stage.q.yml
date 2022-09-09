@@ -243,6 +243,29 @@ functions:
       - Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter   
 
 
+  - name: refresh_search_regex_selections_on_select_lines
+    type: bool
+    parameters:
+      - name: line_nums
+        type: std::vector<int>
+        default_argument: '{}'
+    body: |
+      // HERE
+      // clear selections on select lines
+
+      // run SearchRegexToSelectionsConverter on these lines
+      {
+         //Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter converter(
+            //current_search_regex, get_lines());
+         //search_regex_selections = converter.convert();
+      }
+
+      // insert the selections into the existing search_regex_selections (or push_back)
+      return true;
+    body_dependency_symbols:
+      - Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter   
+
+
   - name: set_code_message_points
     parameters:
       - name: code_message_points
@@ -618,7 +641,6 @@ functions:
          // 1) delete the regex selections on this line (TODO)
          // 2) push down all regex selections from this line down
          search_regex_selections.push_down_from(cursor_get_y(), 1);
-         std::cout << "AAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
          // 3) refresh selections on the two lines from the split (TODO)
       }
       refresh_current_visual_selection_end_to_current_cursor_position();

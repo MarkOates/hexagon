@@ -3,6 +3,8 @@
 
 #include <Hexagon/CodeRange.hpp>
 
+#include <iostream>
+
 
 
 CodeRange::CodeRange(int cursor_anchor_x, int cursor_anchor_y, int cursor_end_x, int cursor_end_y)
@@ -91,8 +93,22 @@ bool CodeRange::in_range(int x, int y)
      if (x >= cursor_end_x) return false;
      return true;
   }
+  else
+  {
+     return true;
+  }
 
-  throw std::runtime_error("Hmm, the code never should have gotten here.  There's an error in the logic");
+
+  std::cout << "x: " << x << std::endl;
+  std::cout << "y: " << y << std::endl;
+  std::cout << "cursor_anchor_x: " << cursor_anchor_x << std::endl;
+  std::cout << "cursor_anchor_y: " << cursor_anchor_y << std::endl;
+  std::cout << "cursor_end_x: " << cursor_end_x << std::endl;
+  std::cout << "cursor_end_y: " << cursor_end_y << std::endl;
+
+  throw std::runtime_error("Hmm, the code never should have gotten here.  There's an error in the logic. debug data "
+                           "was dumped to cout."
+                          );
 }
 
 

@@ -40,6 +40,26 @@ void Selection::clear()
    return;
 }
 
+bool Selection::clear_select_lines(std::vector<int> line_indices)
+{
+   // 1) sort and unique line_nums (TODO)
+
+   for (auto &line_index : line_indices)
+   {
+      code_ranges.erase(
+         std::remove_if(
+            code_ranges.begin(), code_ranges.end(),
+            [line_index](CodeRange code_range){
+               if (code_range.infer_cursor_start().get_y() == line_index) return true;
+               if (code_range.infer_cursor_end().get_y() == line_index) return true;
+               if (code_range.in_range(0, line_index)) return true;
+               return false;
+            }),
+         code_ranges.end());
+   }
+   return true;
+}
+
 bool Selection::push_down_from(int starting_on_line, int num_lines_to_push_down)
 {
    if (!((num_lines_to_push_down >= 0)))
