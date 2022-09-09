@@ -41,6 +41,12 @@ void Selection::clear()
    return;
 }
 
+void Selection::add(CodeRange code_range)
+{
+   code_ranges.push_back(code_range);
+   return;
+}
+
 bool Selection::clear_select_lines(std::vector<int> line_indices)
 {
    // traverse each line_index

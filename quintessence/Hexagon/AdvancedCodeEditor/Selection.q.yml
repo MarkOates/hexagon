@@ -23,6 +23,16 @@ functions:
       return;
 
 
+  - name: add
+    parameters:
+      - name: code_range
+        type: CodeRange
+        default_argument: '{}'
+    body: |
+      code_ranges.push_back(code_range);
+      return;
+
+
   - name: clear_select_lines
     type: bool
     parameters:

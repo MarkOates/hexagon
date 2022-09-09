@@ -347,14 +347,31 @@ bool Stage::refresh_search_regex_selections_on_select_lines(std::vector<int> lin
    // 1) clear selections on select lines
    search_regex_selections.clear_select_lines(line_nums);
 
-   // 2) run SearchRegexToSelectionsConverter on these lines (TODO)
+   // 2) get select lines
+   std::map<int, std::string> select_lines = advanced_code_editor.get_select_lines(line_nums);
+
+   // 3) run SearchRegexToSelectionsConverter on these lines (TODO)
+   Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter converter(current_search_regex);
+
+   std::vector<CodeRange> result_ranges;
+   for (auto &select_line : select_lines)
    {
-      //Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter converter(
-         //current_search_regex, get_lines());
-      //search_regex_selections = converter.convert();
+      Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter converter(
+         current_search_regex, std::vector<std::string>({ select_line.second })
+      );
+      std::vector<CodeRange> created_ranges = converter.convert();
+
+      // 3.1) convert the result selections to their expected line nums
+      for (auto &regex_selection : created_ranges)
+      {
+         int this_line_num = select_line.first;
+         regex_selection.move(0, this_line_num);
+
+         // 3.2) insert the selections into the existing search_regex_selections
+         search_regex_selections.add(regex_selection);
+      }
    }
 
-   // 3) insert the selections into the existing search_regex_selections (or push_back) (TODO)
    return true;
 }
 
@@ -695,7 +712,8 @@ bool Stage::join_lines()
       search_regex_selections.clear_select_lines({cursor_get_y(), cursor_get_y()+1});
       // 2) move subsequent search_regex_selections up one line
       search_regex_selections.pull_up_from(cursor_get_y()+1, 1);
-      // 3) refresh search_regex_selections on newly joined line (TODO)
+      // 3) refresh search_regex_selections on newly joined line
+      refresh_search_regex_selections_on_select_lines({cursor_get_y()});
    }
    refresh_current_visual_selection_end_to_current_cursor_position();
    return join_lines_was_successful;
