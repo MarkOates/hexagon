@@ -187,36 +187,6 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
 
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
-   clear_select_lines__will_not_be_preturbed_by_multiple_line_indexes_that_are_the_same)
-{
-   std::vector<CodeRange> code_ranges = {
-      CodeRange(2, 1, 3, 1),
-      CodeRange(3, 8, 4, 8),
-      CodeRange(9, 19, 10, 19),
-      CodeRange(9, 20, 10, 20),
-      CodeRange(9, 99, 10, 99),
-
-      CodeRange(9, 108, 10, 110),
-      CodeRange(9, 118, 10, 120),
-      CodeRange(9, 128, 10, 130),
-   };
-   Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
-
-   std::vector<int> line_indices_that_contain_duplicate_numbers = { 8, 20, 8, 8, 108, 119, 8, 130, 130 };
-   selection.clear_select_lines(line_indices_that_contain_duplicate_numbers);
-
-   std::vector<CodeRange> expected_result_code_ranges = {
-      CodeRange(2, 1, 3, 1),
-      CodeRange(9, 19, 10, 19),
-      CodeRange(9, 99, 10, 99),
-   };
-   Hexagon::AdvancedCodeEditor::Selection expected_result_selection(expected_result_code_ranges);
-
-   EXPECT_EQ(expected_result_selection, selection);
-}
-
-
-TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    clear_select_lines__will_ignore_line_indices_that_do_not_intersect_with_code_ranges)
 {
    std::vector<CodeRange> code_ranges = {
