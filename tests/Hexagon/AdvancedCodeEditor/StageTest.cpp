@@ -704,6 +704,20 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   delete_line__will_move_up_all_existing_search_regex_selections_after_the_deleted_line)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   delete_line__will_clear_any_search_regex_selections_on_the_deleted_line)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    DISABLED__join_lines__will_remove_all_code_message_points_on_the_subsequent_line)
 {
    // TODO, not sure this is a correct test

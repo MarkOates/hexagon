@@ -752,10 +752,15 @@ bool Stage::delete_line()
       error_message << "Stage" << "::" << "delete_line" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
-   bool result = advanced_code_editor.delete_line();
+   bool delete_line_was_successful = advanced_code_editor.delete_line();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   if (delete_line_was_successful)
+   {
+      search_regex_selections.clear_select_lines({cursor_get_y()});
+      search_regex_selections.pull_up_from(cursor_get_y()+1, 1);
+   }
    refresh_current_visual_selection_end_to_current_cursor_position();
-   return result;
+   return delete_line_was_successful;
 }
 
 bool Stage::insert_string_from_input_buffer()
