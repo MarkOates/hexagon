@@ -18,8 +18,8 @@ public:
    CodeRange(int cursor_anchor_x=0, int cursor_anchor_y=0, int cursor_end_x=0, int cursor_end_y=0);
    ~CodeRange();
 
-   CodePoint infer_cursor_start();
-   CodePoint infer_cursor_end();
+   CodePoint infer_cursor_start() const;
+   CodePoint infer_cursor_end() const;
    void set_cursor_anchor_x(int x);
    void set_cursor_anchor_y(int y);
    void set_cursor_end_x(int x); // TODO: remove "cursor" in all method names

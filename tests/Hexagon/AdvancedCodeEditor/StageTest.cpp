@@ -1,5 +1,6 @@
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
    try { code; FAIL() << "Expected " # raised_exception_type; } \
@@ -15,6 +16,7 @@
 #include <Blast/FileExistenceChecker.hpp>
 #include <Hexagon/util.hpp>
 #include <Hexagon/Testing/Comparison/Hexagon/AdvancedCodeEditor/Selection.hpp>
+#include <Hexagon/Testing/Comparison/Hexagon/CodeRange.hpp>
 
 class Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture : public ::testing::Test
 {
@@ -741,31 +743,45 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
    split_lines__will_shift_down_all_search_regex_selections_after_split_line)
 {
-   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 60, 30);
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 30, 20);
    stage.initialize();
    stage.set_content(SONNET_TEXT);
-   std::vector<CodeRange> code_ranges = {
-      CodeRange(2, 1, 3, 1),
-      CodeRange(3, 8, 4, 8),
-      CodeRange(9, 13, 10, 13),
-      CodeRange(9, 14, 10, 14),
-   };
-   Hexagon::AdvancedCodeEditor::Selection initial_selections(code_ranges);
-   stage.get_search_regex_selections_ref() = initial_selections;
+   stage.set_current_search_regex("in");
+   stage.refresh_search_regex_selections();
 
-   stage.cursor_move_to(5, 13);
+   std::vector<CodeRange> expected_selected_code_ranges = {
+      CodeRange(24, 2,  26, 2),
+      CodeRange(6,  3,  8,  3),
+      CodeRange(18, 5,  20, 5),
+      CodeRange(28, 5,  30, 5),
+      CodeRange(35, 6,  37, 6),
+      CodeRange(6,  8,  8,  8),
+      CodeRange(25, 10, 27, 10),
+      CodeRange(19, 11, 21, 11),
+      CodeRange(8,  14, 10, 14),
+   };
+   Hexagon::AdvancedCodeEditor::Selection expected_selection(expected_selected_code_ranges);
+   ASSERT_EQ(expected_selection, stage.get_search_regex_selections_ref());
+
+   stage.cursor_move_to(22, 5); // between two "in"s
 
    stage.split_lines();
 
-   std::vector<CodeRange> expected_moved_code_ranges = {
-      CodeRange(2, 1, 3, 1),
-      CodeRange(3, 8, 4, 8),
-      CodeRange(9, 13+1, 10, 13+1),
-      CodeRange(9, 14+1, 10, 14+1),
+   std::vector<CodeRange> expected_modified_code_ranges = {
+      CodeRange(24, 2,  26, 2),
+      CodeRange(6,  3,  8,  3),
+      CodeRange(18, 5,  20, 5),
+      CodeRange(6, 6,  8, 6),
+      CodeRange(35, 6+1,  37, 6+1),
+      CodeRange(6,  8+1,  8,  8+1),
+      CodeRange(25, 10+1, 27, 10+1),
+      CodeRange(19, 11+1, 21, 11+1),
+      CodeRange(8,  14+1, 10, 14+1),
    };
-   Hexagon::AdvancedCodeEditor::Selection expected_selections(expected_moved_code_ranges);
-
-   EXPECT_EQ(expected_selections, stage.get_search_regex_selections_ref());
+   EXPECT_THAT(
+      stage.get_search_regex_selections_ref().get_code_ranges(),
+      testing::UnorderedElementsAreArray(expected_modified_code_ranges)
+   );
 }
 
 

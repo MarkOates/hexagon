@@ -254,6 +254,8 @@ functions:
       // 1) clear selections on select lines
       search_regex_selections.clear_select_lines(line_nums);
 
+      if (current_search_regex.empty()) return true;
+
       // 2) get select lines
       std::map<int, std::string> select_lines = advanced_code_editor.get_select_lines(line_nums);
 
@@ -665,10 +667,12 @@ functions:
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
       if (split_was_successful)
       {
-         // 1) delete the regex selections on this line (TODO)
+         // 1) delete the regex selections on this line
+         search_regex_selections.clear_select_lines({cursor_get_y()});
          // 2) push down all regex selections from this line down
          search_regex_selections.push_down_from(cursor_get_y(), 1);
          // 3) refresh selections on the two lines from the split (TODO)
+         refresh_search_regex_selections_on_select_lines({cursor_get_y(), cursor_get_y()+1});
       }
       refresh_current_visual_selection_end_to_current_cursor_position();
       return split_was_successful;

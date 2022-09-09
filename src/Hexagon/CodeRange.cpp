@@ -20,14 +20,14 @@ CodeRange::~CodeRange() {}
 
 
 
-CodePoint CodeRange::infer_cursor_start()
+CodePoint CodeRange::infer_cursor_start() const
 {
    return std::min(CodePoint(cursor_anchor_x, cursor_anchor_y), CodePoint(cursor_end_x, cursor_end_y));
 }
 
 
 
-CodePoint CodeRange::infer_cursor_end()
+CodePoint CodeRange::infer_cursor_end() const
 {
    return std::max(CodePoint(cursor_anchor_x, cursor_anchor_y), CodePoint(cursor_end_x, cursor_end_y));
 }
