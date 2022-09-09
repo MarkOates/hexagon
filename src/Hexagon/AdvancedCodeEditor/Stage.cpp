@@ -630,7 +630,6 @@ bool Stage::delete_word_under_cursor()
    if (cursor_get_y() < 0) return false;
    if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
 
-   // HERE
    // get word ranges
    std::string line_content = advanced_code_editor.get_lines_ref()[cursor_get_y()];
    Hexagon::WordRangesFinder word_ranges_finder(line_content, cursor_get_x());
@@ -687,10 +686,19 @@ bool Stage::join_lines()
       error_message << "Stage" << "::" << "join_lines" << ": error: " << "guard \"initialized\" not met";
       throw std::runtime_error(error_message.str());
    }
-   bool result = advanced_code_editor.join_lines();
+   bool join_lines_was_successful = advanced_code_editor.join_lines();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   if (join_lines_was_successful)
+   {
+      // HERE
+      // 1) clear search_regex_selections on current line and line below it
+      search_regex_selections.clear_select_lines({cursor_get_y(), cursor_get_y()+1});
+      // 2) move subsequent search_regex_selections up one line
+      search_regex_selections.pull_up_from(cursor_get_y(), 1);
+      // 3) refresh search_regex_selections on newly joined line (TODO)
+   }
    refresh_current_visual_selection_end_to_current_cursor_position();
-   return result;
+   return join_lines_was_successful;
 }
 
 bool Stage::split_lines()
