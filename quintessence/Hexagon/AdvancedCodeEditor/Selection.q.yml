@@ -86,7 +86,7 @@ functions:
       - name: num_lines_to_pull_up
         type: int
         default_argument: 0
-    guards: [ (num_lines_to_pull_up >= 0), (num_lines_to_pull_up < starting_on_line) ]
+    guards: [ (num_lines_to_pull_up >= 0), (num_lines_to_pull_up <= starting_on_line) ]
     body: |
       for (int i=0; i<code_ranges.size(); i++)
       {
