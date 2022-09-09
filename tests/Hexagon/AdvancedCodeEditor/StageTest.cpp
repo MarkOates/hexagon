@@ -702,15 +702,16 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
-   join_lines__will_remove_all_code_message_points_on_the_subsequent_line)
+   DISABLED__join_lines__will_remove_all_code_message_points_on_the_subsequent_line)
 {
-   // TODO
+   // TODO, not sure this is a correct test
 }
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    join_lines__will_refresh_hilights_on_the_current_line)
 {
+   // HERE
    // TODO
 }
 
@@ -718,6 +719,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    join_lines__will_move_up_all_existing_message_points_after_the_deleted_line)
 {
+   // HERE
    // TODO
 }
 
