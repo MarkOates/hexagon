@@ -609,8 +609,14 @@ bool Stage::delete_character()
    }
    bool result = advanced_code_editor.delete_character();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   if (result) refresh_search_regex_selections_on_current_line();
    refresh_current_visual_selection_end_to_current_cursor_position(); // TODO: only do if result == true
    return result;
+}
+
+bool Stage::refresh_search_regex_selections_on_current_line()
+{
+   return refresh_search_regex_selections_on_select_lines({cursor_get_y()});
 }
 
 std::string Stage::grab_word_under_cursor()
@@ -671,7 +677,8 @@ bool Stage::delete_word_under_cursor()
    }
 
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
-   refresh_current_visual_selection_end_to_current_cursor_position();
+   refresh_current_visual_selection_end_to_current_cursor_position(); // TODO: consider on if result == true
+   if (result) refresh_search_regex_selections_on_current_line();
 
    return result;
 }
@@ -680,6 +687,7 @@ bool Stage::delete_to_end_of_line()
 {
    bool result = advanced_code_editor.delete_to_end_of_line();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   if (result) refresh_search_regex_selections_on_current_line();
    return result;
 }
 
@@ -687,6 +695,7 @@ bool Stage::delete_to_next_word()
 {
    bool result = advanced_code_editor.delete_to_next_word();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   if (result) refresh_search_regex_selections_on_current_line();
    return result;
 }
 
@@ -694,6 +703,7 @@ bool Stage::delete_to_next_word_or_end_of_line()
 {
    bool result = advanced_code_editor.delete_to_next_word_or_end_of_line();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   if (result) refresh_search_regex_selections_on_current_line();
    return result;
 }
 
@@ -773,7 +783,8 @@ bool Stage::insert_string_from_input_buffer()
    }
    bool result = advanced_code_editor.insert_string(input_buffer);
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
-   refresh_current_visual_selection_end_to_current_cursor_position();
+   refresh_current_visual_selection_end_to_current_cursor_position(); // TODO: consider only if result == true
+   if (result) refresh_search_regex_selections_on_current_line();
    return result;
 }
 
@@ -826,6 +837,7 @@ bool Stage::insert_three_spaces_at_start_of_line()
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 
    refresh_current_visual_selection_end_to_current_cursor_position();
+   refresh_search_regex_selections_on_current_line();
 
    return true;
 }

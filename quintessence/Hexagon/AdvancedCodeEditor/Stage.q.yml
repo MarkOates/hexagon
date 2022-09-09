@@ -554,8 +554,16 @@ functions:
     body: |
       bool result = advanced_code_editor.delete_character();
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+      if (result) refresh_search_regex_selections_on_current_line();
       refresh_current_visual_selection_end_to_current_cursor_position(); // TODO: only do if result == true
       return result;
+
+
+  - name: refresh_search_regex_selections_on_current_line
+    type: bool
+    private: true
+    body: |
+      return refresh_search_regex_selections_on_select_lines({cursor_get_y()});
 
 
   - name: grab_word_under_cursor
@@ -608,7 +616,8 @@ functions:
       }
       
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
-      refresh_current_visual_selection_end_to_current_cursor_position();
+      refresh_current_visual_selection_end_to_current_cursor_position(); // TODO: consider on if result == true
+      if (result) refresh_search_regex_selections_on_current_line();
 
       return result;
     body_dependency_symbols:
@@ -620,6 +629,7 @@ functions:
     body: |
       bool result = advanced_code_editor.delete_to_end_of_line();
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+      if (result) refresh_search_regex_selections_on_current_line();
       return result;
 
 
@@ -628,6 +638,7 @@ functions:
     body: |
       bool result = advanced_code_editor.delete_to_next_word();
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+      if (result) refresh_search_regex_selections_on_current_line();
       return result;
 
 
@@ -636,6 +647,7 @@ functions:
     body: |
       bool result = advanced_code_editor.delete_to_next_word_or_end_of_line();
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+      if (result) refresh_search_regex_selections_on_current_line();
       return result;
 
 
@@ -699,7 +711,8 @@ functions:
     body: |
       bool result = advanced_code_editor.insert_string(input_buffer);
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
-      refresh_current_visual_selection_end_to_current_cursor_position();
+      refresh_current_visual_selection_end_to_current_cursor_position(); // TODO: consider only if result == true
+      if (result) refresh_search_regex_selections_on_current_line();
       return result;
 
 
@@ -752,6 +765,7 @@ functions:
       if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
 
       refresh_current_visual_selection_end_to_current_cursor_position();
+      refresh_search_regex_selections_on_current_line();
 
       return true;
 

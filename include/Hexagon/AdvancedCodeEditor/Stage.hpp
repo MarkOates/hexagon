@@ -61,6 +61,7 @@ namespace Hexagon
          ALLEGRO_COLOR null_space_color;
          ALLEGRO_COLOR backfill_color;
          void initialize_surface_render();
+         bool refresh_search_regex_selections_on_current_line();
          ALLEGRO_FONT* obtain_text_font();
          int cursor_get_x();
          int cursor_get_y();
