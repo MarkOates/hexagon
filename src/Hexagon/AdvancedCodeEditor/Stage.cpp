@@ -344,16 +344,17 @@ bool Stage::refresh_search_regex_selections()
 bool Stage::refresh_search_regex_selections_on_select_lines(std::vector<int> line_nums)
 {
    // HERE
-   // clear selections on select lines
+   // 1) clear selections on select lines
+   search_regex_selections.clear_select_lines(line_nums);
 
-   // run SearchRegexToSelectionsConverter on these lines
+   // 2) run SearchRegexToSelectionsConverter on these lines (TODO)
    {
       //Hexagon::AdvancedCodeEditor::SearchRegexToSelectionsConverter converter(
          //current_search_regex, get_lines());
       //search_regex_selections = converter.convert();
    }
 
-   // insert the selections into the existing search_regex_selections (or push_back)
+   // 3) insert the selections into the existing search_regex_selections (or push_back) (TODO)
    return true;
 }
 

@@ -854,3 +854,30 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    ASSERT_THAT(expected_dirty_cells, UnorderedElementsAreArray(actual));
 }
 
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   get_select_lines__will_return_lines_by_indices)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SIMPLE_PASSAGE);
+   std::map<int, std::string> expected_selected_lines = {
+      { 1, "Fill your bowl to the brim" },
+      { 2, "and it will spill." },
+      { 4, "and it will blunt." },
+      { 10, "Do your work, then step back." },
+   };
+
+   EXPECT_EQ(expected_selected_lines, advanced_code_editor.get_select_lines({1, 2, 4, 10}));
+}
+
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   get_select_lines__when_given_lines_outside_the_range__will_not_include_those_lines)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(SIMPLE_PASSAGE);
+   std::map<int, std::string> expected_selected_lines = {};
+   EXPECT_EQ(expected_selected_lines, advanced_code_editor.get_select_lines({12, 13, 999, -1}));
+}
+
+

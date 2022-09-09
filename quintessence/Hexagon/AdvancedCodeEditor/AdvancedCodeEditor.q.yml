@@ -29,6 +29,29 @@ properties:
 functions:
 
 
+  - name: get_select_lines
+    type: std::map<int, std::string>
+    parameters:
+      - name: line_indices
+        type: std::vector<int>
+        default_argument: '{}'
+    body: |
+      std::map<int, std::string> result_lines;
+      for (auto &line_index : line_indices)
+      {
+         if (line_index < 0 || line_index >= lines.size())
+         {
+            // do not include null lines in the result
+            //result_lines[line_index] = "";
+         }
+         else
+         {
+            result_lines[line_index] = lines[line_index];
+         }
+      }
+      return result_lines;
+
+
   - name: mark_content_is_modified
     private: true
     body: |

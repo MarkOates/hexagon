@@ -3,6 +3,7 @@
 
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
 #include <Hexagon/DirtyGrid.hpp>
+#include <map>
 #include <string>
 #include <utility>
 #include <vector>
@@ -39,6 +40,7 @@ namespace Hexagon
          bool get_content_is_modified() const;
          std::vector<std::string> &get_lines_ref();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
+         std::map<int, std::string> get_select_lines(std::vector<int> line_indices={});
          void unmark_content_is_modified();
          int get_num_lines();
          bool set_content(std::string content="");

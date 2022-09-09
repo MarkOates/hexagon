@@ -54,6 +54,24 @@ Hexagon::AdvancedCodeEditor::Cursor &AdvancedCodeEditor::get_cursor_ref()
 }
 
 
+std::map<int, std::string> AdvancedCodeEditor::get_select_lines(std::vector<int> line_indices)
+{
+   std::map<int, std::string> result_lines;
+   for (auto &line_index : line_indices)
+   {
+      if (line_index < 0 || line_index >= lines.size())
+      {
+         // do not include null lines in the result
+         //result_lines[line_index] = "";
+      }
+      else
+      {
+         result_lines[line_index] = lines[line_index];
+      }
+   }
+   return result_lines;
+}
+
 void AdvancedCodeEditor::mark_content_is_modified()
 {
    content_is_modified = true;
