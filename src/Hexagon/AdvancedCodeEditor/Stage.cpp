@@ -694,7 +694,7 @@ bool Stage::join_lines()
       // 1) clear search_regex_selections on current line and line below it
       search_regex_selections.clear_select_lines({cursor_get_y(), cursor_get_y()+1});
       // 2) move subsequent search_regex_selections up one line
-      search_regex_selections.pull_up_from(cursor_get_y(), 1);
+      search_regex_selections.pull_up_from(cursor_get_y()+1, 1);
       // 3) refresh search_regex_selections on newly joined line (TODO)
    }
    refresh_current_visual_selection_end_to_current_cursor_position();

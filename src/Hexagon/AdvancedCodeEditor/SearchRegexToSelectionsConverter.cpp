@@ -2,8 +2,8 @@
 
 #include <Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp>
 
+#include <Blast/RegexMatcher.hpp>
 #include <Hexagon/CodeRange.hpp>
-#include <Hexagon/RegexMatcher.hpp>
 #include <iostream>
 #include <vector>
 
@@ -34,7 +34,7 @@ std::vector<CodeRange> SearchRegexToSelectionsConverter::convert()
    {
       std::string& line = lines[line_num];
 
-      RegexMatcher regex_matcher(line, search_regex_string); 
+      Blast::RegexMatcher regex_matcher(line, search_regex_string); 
       std::vector<std::pair<int, int>> matches = regex_matcher.get_match_info();
       for (std::pair<int, int> &match : matches)
       {

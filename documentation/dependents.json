@@ -189,7 +189,6 @@
   ],
   "RegexMatcher": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
-    "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/RailsTestOutputParser",
     "Hexagon/Search/Elasticsearch/HealthChecker",
@@ -574,6 +573,9 @@
     "Hexagon/CodeSelectionBoxRenderer",
     "Hexagon/CodeSelectionBoxRenderer",
     "Hexagon/OneLineInputBox/Renderer"
+  ],
+  "Blast/RegexMatcher": [
+    "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter"
   ],
   "CodePoint": [
     "Hexagon/AdvancedCodeEditor/Selection"

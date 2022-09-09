@@ -24,7 +24,7 @@ functions:
       {
          std::string& line = lines[line_num];
 
-         RegexMatcher regex_matcher(line, search_regex_string); 
+         Blast::RegexMatcher regex_matcher(line, search_regex_string); 
          std::vector<std::pair<int, int>> matches = regex_matcher.get_match_info();
          for (std::pair<int, int> &match : matches)
          {
@@ -37,7 +37,7 @@ functions:
       return result;
     body_dependency_symbols:
       - std::vector<CodeRange>
-      - RegexMatcher
+      - Blast::RegexMatcher
       - std::cout
 
 
@@ -46,10 +46,9 @@ dependencies:
 
   - symbol: std::vector<CodeRange>
     headers: [ vector, Hexagon/CodeRange.hpp ]
-  - symbol: RegexMatcher
-    headers: [ Hexagon/RegexMatcher.hpp ]
-
-
+  - symbol: Blast::RegexMatcher
+    headers: [ Blast/RegexMatcher.hpp ]
   - symbol: CodeRange
     headers: [ Hexagon/CodeRange.hpp ]
+
 
