@@ -67,11 +67,37 @@ functions:
          auto &code_range = code_ranges[i];
 
          CodePoint start = code_range.infer_cursor_start();
-         CodePoint end = code_range.infer_cursor_end();
+         //CodePoint end = code_range.infer_cursor_end();
 
          if (start.get_y() >= starting_on_line)
          {
             code_range.move(0, num_lines_to_push_down);
+         }
+      }
+      return true;
+
+
+  - name: pull_up_from
+    type: bool
+    parameters:
+      - name: starting_on_line
+        type: int
+        default_argument: 0
+      - name: num_lines_to_pull_up
+        type: int
+        default_argument: 0
+    guards: [ (num_lines_to_pull_up >= 0), (num_lines_to_pull_up < starting_on_line) ]
+    body: |
+      for (int i=0; i<code_ranges.size(); i++)
+      {
+         auto &code_range = code_ranges[i];
+
+         CodePoint start = code_range.infer_cursor_start();
+         //CodePoint end = code_range.infer_cursor_end();
+
+         if (start.get_y() >= starting_on_line)
+         {
+            code_range.move(0, -num_lines_to_pull_up);
          }
       }
       return true;

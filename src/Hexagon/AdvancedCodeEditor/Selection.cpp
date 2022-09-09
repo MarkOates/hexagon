@@ -74,11 +74,40 @@ bool Selection::push_down_from(int starting_on_line, int num_lines_to_push_down)
       auto &code_range = code_ranges[i];
 
       CodePoint start = code_range.infer_cursor_start();
-      CodePoint end = code_range.infer_cursor_end();
+      //CodePoint end = code_range.infer_cursor_end();
 
       if (start.get_y() >= starting_on_line)
       {
          code_range.move(0, num_lines_to_push_down);
+      }
+   }
+   return true;
+}
+
+bool Selection::pull_up_from(int starting_on_line, int num_lines_to_pull_up)
+{
+   if (!((num_lines_to_pull_up >= 0)))
+   {
+      std::stringstream error_message;
+      error_message << "Selection" << "::" << "pull_up_from" << ": error: " << "guard \"(num_lines_to_pull_up >= 0)\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+   if (!((num_lines_to_pull_up < starting_on_line)))
+   {
+      std::stringstream error_message;
+      error_message << "Selection" << "::" << "pull_up_from" << ": error: " << "guard \"(num_lines_to_pull_up < starting_on_line)\" not met";
+      throw std::runtime_error(error_message.str());
+   }
+   for (int i=0; i<code_ranges.size(); i++)
+   {
+      auto &code_range = code_ranges[i];
+
+      CodePoint start = code_range.infer_cursor_start();
+      //CodePoint end = code_range.infer_cursor_end();
+
+      if (start.get_y() >= starting_on_line)
+      {
+         code_range.move(0, -num_lines_to_pull_up);
       }
    }
    return true;

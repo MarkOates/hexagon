@@ -157,6 +157,39 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
 
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
+   pull_up_from__when_num_lines_to_pull_up_is_negative__will_throw_an_error)
+{
+   // TODO
+}
+
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
+   pull_up_from__will_move_code_points_up_that_are_at_or_below_a_starting_line)
+{
+   std::vector<CodeRange> code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 19, 10, 19),
+      CodeRange(9, 20, 10, 20),
+      CodeRange(9, 99, 10, 99),
+   };
+   Hexagon::AdvancedCodeEditor::Selection selection(code_ranges);
+
+   selection.pull_up_from(19, 3);
+
+   std::vector<CodeRange> expected_moved_code_ranges = {
+      CodeRange(2, 1, 3, 1),
+      CodeRange(3, 8, 4, 8),
+      CodeRange(9, 19-3, 10, 19-3),
+      CodeRange(9, 20-3, 10, 20-3),
+      CodeRange(9, 99-3, 10, 99-3),
+   };
+
+   EXPECT_EQ(expected_moved_code_ranges, selection.get_code_ranges());
+}
+
+
+TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    clear_select_lines__will_remove_ranges_that_intersect_with_the_line_indices)
 {
    std::vector<CodeRange> code_ranges = {
