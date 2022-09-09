@@ -2,6 +2,7 @@
 
 #include <Hexagon/AdvancedCodeEditor/Selection.hpp>
 
+#include <algorithm>
 #include <sstream>
 #include <stdexcept>
 
@@ -42,10 +43,14 @@ void Selection::clear()
 
 bool Selection::clear_select_lines(std::vector<int> line_indices)
 {
-   // 1) sort and unique line_nums (TODO)
+   // 1) sort and unique line_nums
+   std::sort(line_indices.begin(), line_indices.end() );
+   line_indices.erase(std::unique(line_indices.begin(), line_indices.end()), line_indices.end());
 
+   // 2.1) traverse each line_index
    for (auto &line_index : line_indices)
    {
+      // 2.2) erase the code_range if the line_index is within the range
       code_ranges.erase(
          std::remove_if(
             code_ranges.begin(), code_ranges.end(),

@@ -1004,6 +1004,12 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;CodeRange&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeRange.hpp&quot;]}</td>
 </tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::sort&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::unique&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -12895,6 +12901,13 @@ table td
   "CodePoint": [
     "Hexagon/AdvancedCodeEditor/Selection"
   ],
+  "std/sort": [
+    "Hexagon/AdvancedCodeEditor/Selection",
+    "NcursesArt/GithubRepoStatusFetcher"
+  ],
+  "std/unique": [
+    "Hexagon/AdvancedCodeEditor/Selection"
+  ],
   "std/min": [
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/CodeRangeExtractor",
@@ -14224,9 +14237,6 @@ table td
   ],
   "std/pair<int, int>": [
     "Hexagon/WordRangesFinder"
-  ],
-  "std/sort": [
-    "NcursesArt/GithubRepoStatusFetcher"
   ],
   ":testing/Test": [
     "Testing/WithAllegroRenderingFixture",

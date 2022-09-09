@@ -30,10 +30,14 @@ functions:
         type: std::vector<int>
         default_argument: '{}'
     body: |
-      // 1) sort and unique line_nums (TODO)
+      // 1) sort and unique line_nums
+      std::sort(line_indices.begin(), line_indices.end() );
+      line_indices.erase(std::unique(line_indices.begin(), line_indices.end()), line_indices.end());
 
+      // 2.1) traverse each line_index
       for (auto &line_index : line_indices)
       {
+         // 2.2) erase the code_range if the line_index is within the range
          code_ranges.erase(
             std::remove_if(
                code_ranges.begin(), code_ranges.end(),
@@ -46,6 +50,9 @@ functions:
             code_ranges.end());
       }
       return true;
+    body_dependency_symbols:
+      - std::sort
+      - std::unique
 
 
   - name: push_down_from
@@ -153,7 +160,11 @@ dependencies:
     headers: [ vector, Hexagon/CodeRange.hpp ]
   - symbol: CodePoint
     headers: [ Hexagon/CodePoint.hpp ]
-
   - symbol: CodeRange
     headers: [ Hexagon/CodeRange.hpp ]
+  - symbol: std::sort
+    headers: [ algorithm ]
+  - symbol: std::unique
+    headers: [ algorithm ]
+
 

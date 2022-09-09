@@ -578,6 +578,13 @@
   "CodePoint": [
     "Hexagon/AdvancedCodeEditor/Selection"
   ],
+  "std/sort": [
+    "Hexagon/AdvancedCodeEditor/Selection",
+    "NcursesArt/GithubRepoStatusFetcher"
+  ],
+  "std/unique": [
+    "Hexagon/AdvancedCodeEditor/Selection"
+  ],
   "std/min": [
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/CodeRangeExtractor",
@@ -1907,9 +1914,6 @@
   ],
   "std/pair<int, int>": [
     "Hexagon/WordRangesFinder"
-  ],
-  "std/sort": [
-    "NcursesArt/GithubRepoStatusFetcher"
   ],
   ":testing/Test": [
     "Testing/WithAllegroRenderingFixture",
