@@ -7,32 +7,39 @@ properties:
     init_with: nullptr
     getter: true
     setter: true
+
   - name: stage_factory
     type: Hexagon::StageFactory*
     init_with: nullptr
     constructor_arg: true
+
   - name: layout
     type: Hexagon::Layout*
     init_with: '{}'
     constructor_arg: true
+
   - name: font_bin
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+
   - name: code_editor_height
     type: int
     init_with: 1350
     constructor_arg: true
     getter: true
+
   - name: code_editor_width
     type: int
     init_with: 1215
     constructor_arg: true
     getter: true
+
   - name: text_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
     constructor_arg: true
+
   - name: backfill_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f}
