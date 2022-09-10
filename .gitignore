@@ -12,6 +12,7 @@ tmp/*
 
 # compiled object files and any executable files
 
+.deps/**
 obj/**
 bin/**
 !bin/data
