@@ -19,9 +19,20 @@ std::string replace_all(std::string str, const std::string& from, const std::str
 
 int main(int argc, char **argv)
 {
-   std::string file_find_pattern;
-   std::string search_pattern;
-   std::string replace_pattern;
+   if (argc != 4)
+   {
+      std::stringstream error_message;
+      error_message << "You must have 4 args, file_find_pattern, search_pattern, replace_pattern" << std::endl
+                    << "Example: " << argv[0] << " *.txt foo baz" << std::endl
+                    << "Note this program will not run the command, it will simply generate it for you to copy "
+                    << "and run yourself." << std::endl;
+      std::cout << error_message.str();
+      return 1;
+   }
+
+   std::string file_find_pattern = argv[1];
+   std::string search_pattern = argv[2];
+   std::string replace_pattern = argv[3];
 
    // sanitize the file_find_pattern
    // must escape " char
