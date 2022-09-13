@@ -22,7 +22,7 @@ int main(int argc, char **argv)
    if (argc != 4)
    {
       std::stringstream error_message;
-      error_message << "You must have 4 args, file_find_pattern, search_pattern, replace_pattern" << std::endl
+      error_message << "You must have 3 args, file_find_pattern, search_pattern, replace_pattern" << std::endl
                     << "Example: " << argv[0] << " *.txt foo baz" << std::endl
                     << "Note this program will not run the command, it will simply generate it for you to copy "
                     << "and run yourself." << std::endl;
