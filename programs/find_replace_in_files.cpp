@@ -75,8 +75,7 @@ int main(int argc, char **argv)
    // https://superuser.com/questions/428493/how-can-i-do-a-recursive-find-and-replace-from-the-command-line
    // find . -type f -name "*.txt" -print0 | xargs -0 sed -i '' -e 's/foo/bar/g'
 
-   // TODO
-   // currently in exclude_file_find_pattern
+   // build the exclude folder into the command
    // if blank, don't include it
    // -not -path "./directory/*"
    std::stringstream exclude_addition;
