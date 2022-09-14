@@ -1111,6 +1111,9 @@
   "vec3d": [
     "Hexagon/Camera"
   ],
+  "tan": [
+    "Hexagon/Camera"
+  ],
   "all": [
     "Hexagon/CodeEditor/CachedLineRenderer"
   ],

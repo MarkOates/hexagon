@@ -32,6 +32,7 @@ namespace Hexagon
       vec3d &get_stepback_ref();
       vec3d &get_rotation_ref();
       void setup_camera_perspective(ALLEGRO_BITMAP* bmp=nullptr, float znear=5.0f, float stepback_baseline_z=600.0f, float viewport_scale=200.0f, float final_scale_multiplier=0.1f);
+      void setup_dimentional_projection(ALLEGRO_BITMAP* bitmap=nullptr);
    };
 }
 
