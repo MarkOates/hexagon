@@ -79,12 +79,14 @@ int main(int argc, char **argv)
    // currently in exclude_file_find_pattern
    // if blank, don't include it
    // -not -path "./directory/*"
+   std::stringstream exclude_addition;
+   if (!exclude_file_find_pattern.empty()) exclude_addition << " -not -path \"" << exclude_file_find_pattern << "\" ";
 
    std::stringstream dry_run_command;
-   dry_run_command << "find . -type f -name \"" << file_find_pattern << "\"" << std::endl;
+   dry_run_command << "find . -type f -name \"" << file_find_pattern << "\"" << exclude_addition.str() << std::endl;
 
    std::stringstream command;
-   command << "find . -type f -name \"" << file_find_pattern << "\" -print0 | xargs -0 sed -i '' -e 's/"
+   command << "find . -type f -name \"" << file_find_pattern << "\"" << exclude_addition.str() << " -print0 | xargs -0 sed -i '' -e 's/"
            << search_pattern << "/" << replace_pattern << "/g'" << std::endl;
 
    std::cout << "====== DRY RUN =======" << std::endl;
