@@ -825,17 +825,40 @@ void Stage::set_content(std::string content)
 
 bool Stage::toggle_commenting_out_current_line()
 {
+   // TODO, this currently only adds the comment
    if (cursor_get_y() < 0) return false;
    if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
 
    std::string current_line_content = advanced_code_editor.get_lines_ref()[cursor_get_y()];
-
    int previous_cursor_x = cursor_get_x();
    std::size_t first_non_whitespace_character_pos = current_line_content.find_first_not_of(" ");
-   advanced_code_editor.cursor_set_x(first_non_whitespace_character_pos);
-   advanced_code_editor.insert_string("\/\/");
-   if (previous_cursor_x >= first_non_whitespace_character_pos)
-      advanced_code_editor.cursor_set_x(previous_cursor_x+2);
+
+   // are the first two characters comments?
+   bool current_line_starts_with_comment_chars = false;
+   if (current_line_content.substr(first_non_whitespace_character_pos, 2) == "\/\/")
+      current_line_starts_with_comment_chars = true;
+
+   if (!current_line_starts_with_comment_chars)
+   {
+      // insert two slashes
+      advanced_code_editor.cursor_set_x(first_non_whitespace_character_pos);
+      advanced_code_editor.insert_string("\/\/");
+      if (previous_cursor_x >= first_non_whitespace_character_pos)
+      {
+         advanced_code_editor.cursor_set_x(previous_cursor_x+2);
+      }
+   }
+   else
+   {
+      // remove two slashes
+      advanced_code_editor.cursor_set_x(first_non_whitespace_character_pos);
+      advanced_code_editor.delete_character();
+      advanced_code_editor.delete_character();
+      if (previous_cursor_x >= first_non_whitespace_character_pos)
+      {
+         advanced_code_editor.cursor_set_x(previous_cursor_x-2);
+      }
+   }
 
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    refresh_current_visual_selection_end_to_current_cursor_position();
