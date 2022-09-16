@@ -823,6 +823,27 @@ void Stage::set_content(std::string content)
    return;
 }
 
+bool Stage::toggle_commenting_out_current_line()
+{
+   if (cursor_get_y() < 0) return false;
+   if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
+
+   std::string current_line_content = advanced_code_editor.get_lines_ref()[cursor_get_y()];
+
+   int previous_cursor_x = cursor_get_x();
+   std::size_t first_non_whitespace_character_pos = current_line_content.find_first_not_of(" ");
+   advanced_code_editor.cursor_set_x(first_non_whitespace_character_pos);
+   advanced_code_editor.insert_string("\/\/");
+   if (previous_cursor_x >= first_non_whitespace_character_pos)
+      advanced_code_editor.cursor_set_x(previous_cursor_x+2);
+
+   if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   refresh_search_regex_selections_on_current_line();
+
+   return true;
+}
+
 bool Stage::insert_three_spaces_at_start_of_line()
 {
    if (cursor_get_y() < 0) return false;
@@ -1038,6 +1059,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "split_lines", &Hexagon::AdvancedCodeEditor::Stage::split_lines },
       { "join_lines", &Hexagon::AdvancedCodeEditor::Stage::join_lines },
       { "delete_line", &Hexagon::AdvancedCodeEditor::Stage::delete_line },
+      { "toggle_commenting_out_current_line",
+         &Hexagon::AdvancedCodeEditor::Stage::toggle_commenting_out_current_line },
       { "insert_string_from_input_buffer", &Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer },
       { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
       { "insert_three_spaces_at_start_of_line",
@@ -1130,6 +1153,9 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_ed
    result.set_mapping(ALLEGRO_KEY_BACKSPACE, ALLEGRO_KEYMOD_SHIFT, { "delete_line" });
    result.set_mapping(ALLEGRO_KEY_S, AllegroFlare::KeyboardCommandMapper::COMMAND, { "save_file" });
    result.set_mapping(ALLEGRO_KEY_I, 0, { "set_to_insert_mode" });
+   result.set_mapping(ALLEGRO_KEY_SLASH, AllegroFlare::KeyboardCommandMapper::SHIFT, {
+      "toggle_commenting_out_current_line"
+      });
    result.set_mapping(ALLEGRO_KEY_Z, 0, {
       "first_row_offset_adjust_so_cursor_is_vertically_centered",
       });

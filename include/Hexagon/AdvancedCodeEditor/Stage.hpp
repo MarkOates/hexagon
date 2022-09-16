@@ -159,6 +159,7 @@ namespace Hexagon
          bool insert_string_from_input_buffer();
          bool insert_lines(std::vector<std::string> lines_to_insert={});
          void set_content(std::string content="");
+         bool toggle_commenting_out_current_line();
          bool insert_three_spaces_at_start_of_line();
          bool insert_blank_line();
          bool create_visual_selection_at_current_cursor_location();

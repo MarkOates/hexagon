@@ -878,6 +878,27 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   toggle_commenting_out_current_line__will_prefix_double_slashses_at_the_strart_of_the_line_if_there_are_none)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   toggle_commenting_out_current_line__will_remove_double_slashses_at_the_strart_of_the_line_if_they_are_present)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
+   toggle_commenting_out_current_line__on_an_empty_line_or_line_with_only_whitespace__will_do_nothing)
+{
+   // TODO
+}
+
+
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    DISABLED_insert_three_spaces_at_start_of_line__TODO)
 {
    // TODO
