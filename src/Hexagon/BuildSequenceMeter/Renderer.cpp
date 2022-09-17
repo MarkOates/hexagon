@@ -314,7 +314,7 @@ void Renderer::draw_build_dump_report(float width, std::string stage_text_dump, 
       Hexagon::Testing::ClangBuildOutputResult &notice = warning_error_or_note;
 
       // TODO: test this line
-      if (notice.get_type() != "error" || notice.get_type() != "fatal error") continue; // disable warnings and info from displaying
+      if (!(notice.get_type() == "error" || notice.get_type() == "fatal error")) continue; // disable warnings and info from displaying
 
       error_count++;
       if (error_count > max_num_warnings) return;
