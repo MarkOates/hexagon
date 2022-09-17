@@ -43,7 +43,7 @@ properties:
 
   - name: NUM_WARNINGS_ERRORS_GENERATED_REGEX
     type: std::string
-    init_with: '"[0-9]+ (?:warning[s]?|error[s]?) generated\\."'
+    init_with: '"[0-9]+ (?:warning[s]?|error[s]?|fatal error[s]?) generated\\."'
     getter: true
     const: true
     static: true

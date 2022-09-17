@@ -13,7 +13,7 @@ namespace Testing
 {
 
 
-std::string ClangBuildOutputParser::NUM_WARNINGS_ERRORS_GENERATED_REGEX = "[0-9]+ (?:warning[s]?|error[s]?) generated\\.";
+std::string ClangBuildOutputParser::NUM_WARNINGS_ERRORS_GENERATED_REGEX = "[0-9]+ (?:warning[s]?|error[s]?|fatal error[s]?) generated\\.";
 
 
 std::string ClangBuildOutputParser::WARNING_OR_ERROR_REGEX = "[TODO]";

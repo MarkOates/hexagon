@@ -86,6 +86,13 @@ TEST(Hexagon_Testing_ClangBuildOutputParserTest, this_particular_test_dump_will_
 }
 
 
+TEST(Hexagon_Testing_ClangBuildOutputParserTest, DISABLED__this_particular_test_dump_will_parse_2)
+{
+   // TODO: test should test for "fatal error" type of errors, and even possibly include them
+   // as a type, or as a boolean option on a type (get_is_fatal()).
+}
+
+
 TEST(Hexagon_Testing_ClangBuildOutputParserTest, NUM_WARNINGS_ERRORS_GENERATED_REGEX__will_match_valid_lines)
 {
    std::vector<std::string> valid_warnings_errors_lines = {
