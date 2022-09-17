@@ -13,7 +13,7 @@ namespace Testing
 {
 
 
-std::string ClangBuildOutputParser::NUM_WARNINGS_ERRORS_GENERATED_REGEX = "[0-9]+ (?:warning[s]?|error[s]?|fatal error[s]?) generated\\.";
+std::string ClangBuildOutputParser::NUM_WARNINGS_ERRORS_GENERATED_REGEX = "[0-9]+ (?:warning[s]?|error[s]?) generated\\.";
 
 
 std::string ClangBuildOutputParser::WARNING_OR_ERROR_REGEX = "[TODO]";
@@ -110,7 +110,7 @@ void ClangBuildOutputParser::parse_warnings_errors_and_notes()
    for (int line_i=0; line_i<lines.size(); line_i++)
    {
       std::string &this_line = lines[line_i];
-      std::string regex = "([a-zA-Z0-9/_\\.]+):([0-9]+):([0-9]+): (error|note|warning): (.+)";
+      std::string regex = "([a-zA-Z0-9/_\\.]+):([0-9]+):([0-9]+): (error|note|warning|fatal error): (.+)";
       //https://cplusplus.com/reference/regex/ECMAScript/
       //https://regex101.com/r/cX0eP2/164
 

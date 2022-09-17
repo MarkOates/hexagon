@@ -43,7 +43,7 @@ properties:
 
   - name: NUM_WARNINGS_ERRORS_GENERATED_REGEX
     type: std::string
-    init_with: '"[0-9]+ (?:warning[s]?|error[s]?|fatal error[s]?) generated\\."'
+    init_with: '"[0-9]+ (?:warning[s]?|error[s]?) generated\\."'
     getter: true
     const: true
     static: true
@@ -104,7 +104,7 @@ functions:
       for (int line_i=0; line_i<lines.size(); line_i++)
       {
          std::string &this_line = lines[line_i];
-         std::string regex = "([a-zA-Z0-9/_\\.]+):([0-9]+):([0-9]+): (error|note|warning): (.+)";
+         std::string regex = "([a-zA-Z0-9/_\\.]+):([0-9]+):([0-9]+): (error|note|warning|fatal error): (.+)";
          //https://cplusplus.com/reference/regex/ECMAScript/
          //https://regex101.com/r/cX0eP2/164
 

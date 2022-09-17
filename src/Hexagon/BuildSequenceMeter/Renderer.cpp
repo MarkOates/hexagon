@@ -312,7 +312,9 @@ void Renderer::draw_build_dump_report(float width, std::string stage_text_dump, 
    for (auto &warning_error_or_note : warnings_errors_and_notes)
    {
       Hexagon::Testing::ClangBuildOutputResult &notice = warning_error_or_note;
-      if (notice.get_type() != "error") continue; // disable warnings and info from displaying
+
+      // TODO: test this line
+      if (notice.get_type() != "error" || notice.get_type() != "fatal error") continue; // disable warnings and info from displaying
 
       error_count++;
       if (error_count > max_num_warnings) return;
