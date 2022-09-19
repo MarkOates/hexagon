@@ -592,7 +592,7 @@ StageInterface* StageFactory::create_project_navigator()
       { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       { "Hexagon", "/Users/markoates/Repos/hexagon/" },
       { "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
-      { "Wicked", "/Users/markoates/Repos/Wicked/" },
+      //{ "Wicked", "/Users/markoates/Repos/Wicked/" },
       { "Tileo", "/Users/markoates/Repos/Tileo/" },
       { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
       { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
