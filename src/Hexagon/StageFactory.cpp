@@ -593,7 +593,7 @@ StageInterface* StageFactory::create_project_navigator()
       { "Hexagon", "/Users/markoates/Repos/hexagon/" },
       { "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
       //{ "Wicked", "/Users/markoates/Repos/Wicked/" },
-      { "Tileo", "/Users/markoates/Repos/Tileo/" },
+      //{ "Tileo", "/Users/markoates/Repos/Tileo/" },
       { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
       { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
       //{ "NcursesArt", "/Users/markoates/Repos/ncurses-art/" },
