@@ -623,6 +623,7 @@ void Hud::draw_build_sequence_meter()
    std::vector<std::tuple<std::string, std::string, std::string, std::string>> build_stages = {
      { "started", "SGNL", "not_started", "" },
      { "generating_sources_files_from_quintessence", "PRSE", "not_started", "quintessence_build.txt" },
+     { "building_dependency_file_for_component", "DEPS", "not_started", "" },
      { "building_component_object_files", "BUILD", "not_started", "component_object_build.txt" },
      { "delete_focused_component_test_object_file_and_test_executable", "XTOB", "not_started", "" },
      { "build_focused_component_test_object_file", "BTOB", "not_started", "component_test_object_build.txt" },
