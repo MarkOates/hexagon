@@ -1345,7 +1345,25 @@ bool System::spawn_component_navigator()
 bool System::spawn_project_navigator()
 {
    ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
-   StageInterface *stage = stage_factory.create_project_navigator();
+
+   std::vector<std::tuple<std::string, std::string>> project_menu_items = {
+      { "Blast", "/Users/markoates/Repos/blast/" },
+      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+      { "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
+      { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
+      { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
+      { "DragonWrath", "/Users/markoates/Repos/DragonWrath/" },
+      { "Fullscore", "/Users/markoates/Repos/fullscore/" },
+      { "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
+      { "Peri", "/Users/markoates/Repos/Peri/" },
+      { "Solitare", "/Users/markoates/Repos/Solitare/" },
+      { "Epidemic", "/Users/markoates/Repos/Epidemic/" },
+      { "Golf", "/Users/markoates/Repos/Golf/" },
+      { "AllegroMembersClub", "/Users/markoates/Repos/AllegroMembersClub/" },
+   };
+
+   StageInterface *stage = stage_factory.create_project_navigator(project_menu_items);
 
    stages.push_back(stage);
 

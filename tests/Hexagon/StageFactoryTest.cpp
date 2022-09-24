@@ -455,13 +455,15 @@ TEST(Hexagon_StageFactoryTest, create_project_navigator__creates_a_project_navig
    config.initialize();
    Hexagon::StageFactory stage_factory(&config, &font_bin);
    StageInterface *created_stage = stage_factory.create_project_navigator();
-   Hexagon::ProjectNavigator *stage = static_cast<Hexagon::ProjectNavigator*>(created_stage);
 
    StageInterface::type_t expected_type = StageInterface::PROJECT_NAVIGATOR;
    StageInterface::type_t actual_type = created_stage->get_type();
 
    ASSERT_NE(nullptr, created_stage);
    ASSERT_EQ(expected_type, actual_type);
+
+   Hexagon::ProjectNavigator *stage = dynamic_cast<Hexagon::ProjectNavigator*>(created_stage);
+   // HERE
 
    //ALLEGRO_COLOR expected_base_text_color = config.get_base_text_color();
    //ALLEGRO_COLOR actual_base_text_color = stage->get_base_text_color();

@@ -21,7 +21,7 @@ properties:
 
   - name: menu_items
     type: std::vector<std::tuple<std::string, std::string>>
-    init_with: 'build_placeholder_menu_items()'
+    init_with: '{}'
     constructor_arg: true
     getter: true
     setter: false
@@ -142,23 +142,6 @@ functions:
       - Hexagon::Elements::ListMenu
 
 
-  - name: build_allegro_version_string
-    type: std::string
-    body: |
-      uint32_t version = al_get_allegro_version();
-      int major = version >> 24;
-      int minor = (version >> 16) & 255;
-      int revision = (version >> 8) & 255;
-      int release = version & 255;
-
-      std::stringstream result;
-      result << "Allegro v" << major << "-" << minor << "-" << revision << " r" << release;
-      return result.str();
-    body_dependency_symbols:
-      - al_get_allegro_version
-      - std::stringstream
-
-
   - name: process_local_event
     virtual: true
     override: true
@@ -234,27 +217,9 @@ functions:
     type: std::vector<std::tuple<std::string, std::string>>
     body: |
       return {
-         //{ "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
          { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
          { "Hexagon", "/Users/markoates/Repos/hexagon/" },
          { "Blast", "/Users/markoates/Repos/blast/" },
-         //{ "Wicked", "/Users/markoates/Repos/Wicked/" },
-         //{ "Tileo", "/Users/markoates/Repos/Tileo/" },
-         //{ "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
-         //{ "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
-         //{ "NcursesArt", "/Users/markoates/Repos/ncurses-art/" },
-         //{ "DragonWrath", "/Users/markoates/Repos/DragonWrath/" },
-         //{ "Solitare", "/Users/markoates/Repos/Solitare/" },
-         //{ "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
-         //{ "Peri", "/Users/markoates/Repos/Peri/" },
-         //{ "Solitare", "/Users/markoates/Repos/Solitare/" },
-         //{ "Epidemic", "/Users/markoates/Repos/Epidemic/" },
-         //{ "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
-         //{ "Golf", "/Users/markoates/Repos/Golf/" },
-         //{ "TINS2022-test", "/Users/markoates/Repos/TINS2022-test/" },
-         //{ "Tins2", "/Users/markoates/Repos/Tins2/" },
-         //{ "AllegroMembersClub", "/Users/markoates/Repos/AllegroMembersClub/" },
-         //{ "tins_22_prep", "/Users/markoates/Repos/tins_22_prep/" },
       };
 
 
@@ -273,18 +238,10 @@ dependencies:
     headers: [ allegro_flare/placement3d.h ]
   - symbol: Hexagon::Logo
     headers: [ Hexagon/Logo.hpp ]
-  - symbol: Hexagon::System::Config*
-    headers: [ Hexagon/System/Config.hpp ]
   - symbol: AllegroFlare::Profiler
     headers: [ AllegroFlare/Profiler.hpp ]
-  - symbol: AllegroFlare::Profiler*
-    headers: [ AllegroFlare/Profiler.hpp ]
-  - symbol: AllegroFlare::FontBin*
-    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: Hexagon::Elements::DataTable
     headers: [ Hexagon/Elements/DataTable.hpp ]
-  - symbol: ALLEGRO_FONT*
-    headers: [ allegro5/allegro_font.h ]
   - symbol: al_get_allegro_version
     headers: [ allegro5/allegro.h ]
   - symbol: Hexagon::Elements::ListMenu
@@ -293,15 +250,13 @@ dependencies:
     headers: [ Hexagon/Shaders/TiledHexagonMotionEffect.hpp ]
   - symbol: ALLEGRO_EVENT
     headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_EVENT&
-    headers: [ allegro5/allegro.h ]
   - symbol: ActionData
     headers: [ Hexagon/ActionData.hpp ]
   - symbol: std::vector<std::tuple<std::string, std::string>>
     headers: [ vector, tuple, string ]
-
   - symbol: AllegroFlare::FontBin
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: Hexagon::System::Config
     headers: [ Hexagon/System/Config.hpp ]
+
 

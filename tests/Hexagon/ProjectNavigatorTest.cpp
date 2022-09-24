@@ -51,33 +51,49 @@ protected:
 
 TEST_F(Hexagon_ProjectNavigatorTest, can_be_created_without_blowing_up)
 {
-   Hexagon::ProjectNavigator title_screen;
+   Hexagon::ProjectNavigator project_navigator;
 }
 
 
-TEST_F(Hexagon_ProjectNavigatorTest, DISABLED__INTERACTIVE__operates_as_expected)
+TEST_F(Hexagon_ProjectNavigatorTest, contains_an_empty_list_of_menu_items_by_default)
 {
-   //Hexagon::ProjectNavigator title_screen(&font_bin);
-   //title_screen.initialize();
-   //title_screen.draw_hexagon_logo_and_wait_for_keypress();
+   Hexagon::ProjectNavigator project_navigator;
+   EXPECT_EQ(0, project_navigator.get_menu_items().size());
 }
 
 
-TEST_F(Hexagon_ProjectNavigatorTest, build_allegro_version_string__will_create_the_expected_version)
+TEST_F(Hexagon_ProjectNavigatorTest,
+   build_placeholder_menu_items__will_create_a_set_of_menu_items_useful_for_testing_or_development)
 {
-   Hexagon::ProjectNavigator title_screen;
-   std::string expected_version_string = "Allegro v5-2-9 r0";
-   std::string actual_version_string = title_screen.build_allegro_version_string();
-   ASSERT_EQ(expected_version_string, actual_version_string);
+   std::vector<std::tuple<std::string, std::string>> actual_placeholder_menu_items =
+      Hexagon::ProjectNavigator::build_placeholder_menu_items();
+
+   std::vector<std::tuple<std::string, std::string>> expected_placeholder_menu_items = {
+      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+      { "Blast", "/Users/markoates/Repos/blast/" },
+   };
+
+   EXPECT_EQ(expected_placeholder_menu_items, actual_placeholder_menu_items);
 }
 
-TEST_F(Hexagon_ProjectNavigatorTest, set_list_items__will_set_the_list_items)
+
+TEST_F(Hexagon_ProjectNavigatorTest, set_menu_items__will_set_the_menu_items)
 {
-   // TODO
+   Hexagon::ProjectNavigator project_navigator;
+   project_navigator.set_menu_items(Hexagon::ProjectNavigator::build_placeholder_menu_items());
+
+   std::vector<std::tuple<std::string, std::string>> expected_placeholder_menu_items = {
+      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+      { "Blast", "/Users/markoates/Repos/blast/" },
+   };
+
+   EXPECT_EQ(expected_placeholder_menu_items, project_navigator.get_menu_items());
 }
 
 
-TEST_F(Hexagon_ProjectNavigatorTest, set_list_items__will_reset_the_cursor_position_to_zero)
+TEST_F(Hexagon_ProjectNavigatorTest, set_menu_items__will_reset_the_cursor_position_to_zero)
 {
    // TODO
 }

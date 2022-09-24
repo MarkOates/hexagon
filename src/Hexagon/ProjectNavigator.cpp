@@ -3,7 +3,6 @@
 #include <Hexagon/ProjectNavigator.hpp>
 
 #include <Hexagon/Elements/ListMenu.hpp>
-#include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/placement3d.h>
 #include <sstream>
@@ -168,19 +167,6 @@ void ProjectNavigator::draw_menu()
    return;
 }
 
-std::string ProjectNavigator::build_allegro_version_string()
-{
-   uint32_t version = al_get_allegro_version();
-   int major = version >> 24;
-   int minor = (version >> 16) & 255;
-   int revision = (version >> 8) & 255;
-   int release = version & 255;
-
-   std::stringstream result;
-   result << "Allegro v" << major << "-" << minor << "-" << revision << " r" << release;
-   return result.str();
-}
-
 void ProjectNavigator::process_local_event(std::string event_name, ActionData action_data)
 {
    if (!(initialized))
@@ -247,27 +233,9 @@ void ProjectNavigator::process_event(ALLEGRO_EVENT& event)
 std::vector<std::tuple<std::string, std::string>> ProjectNavigator::build_placeholder_menu_items()
 {
    return {
-      //{ "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
       { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       { "Hexagon", "/Users/markoates/Repos/hexagon/" },
       { "Blast", "/Users/markoates/Repos/blast/" },
-      //{ "Wicked", "/Users/markoates/Repos/Wicked/" },
-      //{ "Tileo", "/Users/markoates/Repos/Tileo/" },
-      //{ "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
-      //{ "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
-      //{ "NcursesArt", "/Users/markoates/Repos/ncurses-art/" },
-      //{ "DragonWrath", "/Users/markoates/Repos/DragonWrath/" },
-      //{ "Solitare", "/Users/markoates/Repos/Solitare/" },
-      //{ "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
-      //{ "Peri", "/Users/markoates/Repos/Peri/" },
-      //{ "Solitare", "/Users/markoates/Repos/Solitare/" },
-      //{ "Epidemic", "/Users/markoates/Repos/Epidemic/" },
-      //{ "Ontario Driver's Quiz", "/Users/markoates/Repos/OntarioDriversQuiz/" },
-      //{ "Golf", "/Users/markoates/Repos/Golf/" },
-      //{ "TINS2022-test", "/Users/markoates/Repos/TINS2022-test/" },
-      //{ "Tins2", "/Users/markoates/Repos/Tins2/" },
-      //{ "AllegroMembersClub", "/Users/markoates/Repos/AllegroMembersClub/" },
-      //{ "tins_22_prep", "/Users/markoates/Repos/tins_22_prep/" },
    };
 }
 
