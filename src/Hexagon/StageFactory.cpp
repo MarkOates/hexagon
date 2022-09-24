@@ -599,6 +599,7 @@ StageInterface* StageFactory::create_project_navigator()
       //{ "NcursesArt", "/Users/markoates/Repos/ncurses-art/" },
       //{ "-- GAMES --", },
       { "DragonWrath", "/Users/markoates/Repos/DragonWrath/" },
+      { "Fullscore", "/Users/markoates/Repos/fullscore/" },
       //{ "Solitare", "/Users/markoates/Repos/Solitare/" },
       { "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
       { "Peri", "/Users/markoates/Repos/Peri/" },
