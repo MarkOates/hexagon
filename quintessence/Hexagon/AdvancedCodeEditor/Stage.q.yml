@@ -1523,6 +1523,7 @@ functions:
          "    constructor_arg:",
          "    getter:",
          "    const:",
+         "    constexpr:",
          "    static:",
          "    type:",
          "    setter:",
