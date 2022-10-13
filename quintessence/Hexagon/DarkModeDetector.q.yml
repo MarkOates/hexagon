@@ -1,0 +1,53 @@
+properties:
+
+
+  - name: DARK_MODE_RESPONSE_STRING
+    type: const char*
+    init_with: '"Dark"'
+    const: true
+    static: true
+    constexpr: true
+    
+
+functions:
+
+
+  - name: is_dark
+    type: bool
+    body: |
+      std::string command_result = get_trimmed_command_result();
+      return command_result == DARK_MODE_RESPONSE_STRING;
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
+
+
+  - name: is_light
+    type: bool
+    body: |
+      std::string command_result = get_trimmed_command_result();
+      return command_result != DARK_MODE_RESPONSE_STRING;
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
+
+
+  - name: get_trimmed_command_result
+    private: true
+    type: std::string
+    body: |
+      std::string shell_command = "defaults read -g AppleInterfaceStyle";
+      std::string command_result = Blast::ShellCommandExecutorWithCallback(shell_command).execute();
+      return Blast::String::Trimmer(command_result).trim();
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
+      - Blast::String::Trimmer
+
+
+dependencies:
+
+
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+  - symbol: Blast::String::Trimmer
+    headers: [ Blast/String/Trimmer.hpp ]
+
+
