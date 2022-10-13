@@ -97,6 +97,7 @@ table td
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Daemus/ProgramRunner.q.yml">quintessence/Hexagon/Daemus/ProgramRunner.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/DarkModeDetector.q.yml">quintessence/Hexagon/DarkModeDetector.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/DirtyGrid.q.yml">quintessence/Hexagon/DirtyGrid.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml">quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/BitmapGridMesh.q.yml">quintessence/Hexagon/Elements/BitmapGridMesh.q.yml</a></li>
@@ -3886,6 +3887,36 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Testing::GoogleTestRunTestResult&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Testing/GoogleTestRunTestResult.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/DarkModeDetector.q.yml">quintessence/Hexagon/DarkModeDetector.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">DARK_MODE_RESPONSE_STRING</td>
+  <td class="property">const char*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">is_dark()</td>
+</tr>
+<tr>
+  <td class="method">is_light()</td>
+</tr>
+<tr>
+  <td class="private_method">get_trimmed_command_result()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::String::Trimmer&quot;, &quot;headers&quot;=&gt;[&quot;Blast/String/Trimmer.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -13404,6 +13435,7 @@ table td
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
     "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/DarkModeDetector",
     "Hexagon/Git/CommitStagedWithMessage",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Pusher",
@@ -13617,6 +13649,12 @@ table td
   "Hexagon/Testing/GoogleTestRunTestResult": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "Blast/String/Trimmer": [
+    "Hexagon/DarkModeDetector",
+    "Hexagon/PacketLogger",
+    "Hexagon/Testing/ClangBuildOutputResult",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"
@@ -13968,11 +14006,6 @@ table td
   ],
   "AllegroFlare/random_string": [
     "Hexagon/PacketLogger"
-  ],
-  "Blast/String/Trimmer": [
-    "Hexagon/PacketLogger",
-    "Hexagon/Testing/ClangBuildOutputResult",
-    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "php/file_put_contents": [
     "Hexagon/PacketLogger"

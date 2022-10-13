@@ -1078,6 +1078,7 @@
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
     "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/DarkModeDetector",
     "Hexagon/Git/CommitStagedWithMessage",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Pusher",
@@ -1291,6 +1292,12 @@
   "Hexagon/Testing/GoogleTestRunTestResult": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "Blast/String/Trimmer": [
+    "Hexagon/DarkModeDetector",
+    "Hexagon/PacketLogger",
+    "Hexagon/Testing/ClangBuildOutputResult",
+    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"
@@ -1642,11 +1649,6 @@
   ],
   "AllegroFlare/random_string": [
     "Hexagon/PacketLogger"
-  ],
-  "Blast/String/Trimmer": [
-    "Hexagon/PacketLogger",
-    "Hexagon/Testing/ClangBuildOutputResult",
-    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "php/file_put_contents": [
     "Hexagon/PacketLogger"
