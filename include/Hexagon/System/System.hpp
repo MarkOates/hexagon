@@ -42,6 +42,7 @@ private:
    std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results;
 
    bool option__saving_focused_filename_to_file_is_disabled;
+   bool option__pushing_to_git_remote_on_commit_is_disabled;
    int save_count;
    int search_count;
    bool files_changed;
@@ -74,6 +75,7 @@ public:
    std::string get_current_project_domain();
    std::string get_global_font_str();
    void set_option__saving_focused_filename_to_file_is_disabled(bool option=false);
+   void set_option__pushing_to_git_remote_on_commit_is_disabled(bool option=false);
    Hexagon::Camera &get_camera_ref();
    std::vector<StageInterface *> &get_stages_ref();
    Hexagon::Hud &get_hud_ref();

@@ -122,6 +122,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &hexagon_config
    , motion()
    , test_results()
    , option__saving_focused_filename_to_file_is_disabled(false)
+   , option__pushing_to_git_remote_on_commit_is_disabled(false)
    , save_count(0)
    , search_count(0)
    , files_changed(false)
@@ -529,6 +530,12 @@ bool System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending
 void System::set_option__saving_focused_filename_to_file_is_disabled(bool option)
 {
    this->option__saving_focused_filename_to_file_is_disabled = option;
+}
+
+
+void System::set_option__pushing_to_git_remote_on_commit_is_disabled(bool option)
+{
+   this->option__pushing_to_git_remote_on_commit_is_disabled = option;
 }
 
 
@@ -1984,7 +1991,7 @@ bool System::submit_current_modal()
       process_local_event(::System::DESTROY_TOPMOST_STAGE);
       process_local_event(::System::COMMIT_ALL_FILES_WITH_LAST_GIT_COMMIT_MESSAGE_FROM_REGEX_TEMP_FILE_CONTENTS);
       process_local_event(::System::APPEND_PACKET_USING_LAST_COMMIT_MESSAGE_AND_CLEAR_SCORES);
-      process_local_event(::System::PUSH_TO_GIT_REMOTE);
+      if (!option__pushing_to_git_remote_on_commit_is_disabled) process_local_event(::System::PUSH_TO_GIT_REMOTE);
       process_local_event(::System::REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES);
       process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
       break;
