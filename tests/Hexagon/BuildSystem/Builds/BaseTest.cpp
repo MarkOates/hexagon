@@ -17,21 +17,35 @@ public:
 
 class ExceptionThrowingBuildStageTestClass : public Hexagon::BuildSystem::BuildStages::Base
 {
+private:
+   bool sleep_a_tiny_bit;
+
 public:
-   ExceptionThrowingBuildStageTestClass()
+   ExceptionThrowingBuildStageTestClass(bool sleep_a_tiny_bit=false)
       : Hexagon::BuildSystem::BuildStages::Base("ExceptionThrowingBuildStageTestClass")
    {}
-   virtual bool execute() override { throw std::runtime_error("exception thrown!"); return true; }
+   virtual bool execute() override
+   {
+      if (sleep_a_tiny_bit) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+      throw std::runtime_error("exception thrown!"); return true;
+   }
 };
 
 
 class FailingBuildStageTestClass : public Hexagon::BuildSystem::BuildStages::Base
 {
+private:
+   bool sleep_a_tiny_bit;
+
 public:
-   FailingBuildStageTestClass()
+   FailingBuildStageTestClass(bool sleep_a_tiny_bit=false)
       : Hexagon::BuildSystem::BuildStages::Base("FailingBuildStageTestClass")
    {}
-   virtual bool execute() override { return false; }
+   virtual bool execute() override
+   {
+      if (sleep_a_tiny_bit) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+      return false;
+   }
 };
 
 
@@ -211,34 +225,32 @@ TEST(Hexagon_BuildSystem_Builds_BaseTest,
 TEST(Hexagon_BuildSystem_Builds_BaseTest,
    run__when_a_build_stage_throws_an_error__will_not_set_the_started_at_and_ended_at_for_subsequent_build_stages)
 {
-   float sleep_duration_seconds = 0.1;
    BuildsBaseTestClass base_build;
    base_build.set_build_stages({
-      new ExceptionThrowingBuildStageTestClass(),
+      new ExceptionThrowingBuildStageTestClass(true), // sleep a tiny bit before throwing
       new BuildStageTestClass(),
    });
 
    base_build.run();
 
-   EXPECT_NE(0, base_build.get_build_stages()[0]->calc_duration_seconds());
-   EXPECT_EQ(0, base_build.get_build_stages()[1]->calc_duration_seconds());
+   EXPECT_NE(0.0f, base_build.get_build_stages()[0]->calc_duration_seconds());
+   EXPECT_EQ(0.0f, base_build.get_build_stages()[1]->calc_duration_seconds());
 }
 
 
 TEST(Hexagon_BuildSystem_Builds_BaseTest,
    run__when_a_build_stage_fails__will_not_set_the_started_at_and_ended_at_for_subsequent_build_stages)
 {
-   float sleep_duration_seconds = 0.1;
    BuildsBaseTestClass base_build;
    base_build.set_build_stages({
-      new FailingBuildStageTestClass(),
+      new FailingBuildStageTestClass(true), // sleep a tiny bit before failing
       new BuildStageTestClass(),
    });
 
    base_build.run();
 
-   EXPECT_NE(0, base_build.get_build_stages()[0]->calc_duration_seconds());
-   EXPECT_EQ(0, base_build.get_build_stages()[1]->calc_duration_seconds());
+   EXPECT_NE(0.0f, base_build.get_build_stages()[0]->calc_duration_seconds());
+   EXPECT_EQ(0.0f, base_build.get_build_stages()[1]->calc_duration_seconds());
 }
 
 
