@@ -1358,6 +1358,7 @@ bool System::spawn_project_navigator()
       { "Blast", "/Users/markoates/Repos/blast/" },
       { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       { "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
+      { "TrackLock", "/Users/markoates/Repos/TrackLock/" },
       { "Hexagon", "/Users/markoates/Repos/hexagon/" },
       { "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
       { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
