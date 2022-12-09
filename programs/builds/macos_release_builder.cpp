@@ -653,15 +653,32 @@ public:
    CreateFoldersForReleaseAndAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , system_releases_folder(NameGenerator::SYSTEM_RELEASES_FOLDER)
-      , folders_to_create({
-         // TODO: extract these or build them
-         "TheWeepingHouse-MacOS-chip_unknown",
-         "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app",
-         "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents",
-         "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS",
-         "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources",
-         })
+      , folders_to_create(
+            build_required_app_folder_names_relative_to(NameGenerator::release_folder_relative_to_system_releases_folder(), NameGenerator::name_of_executable())
+            // concretion:
+            //build_required_app_folder_names_relative_to("TheWeepingHouse-MacOS-chip_unknown", "TheWeepingHouse")
+            // expanded concretions:
+            //{
+            //"TheWeepingHouse-MacOS-chip_unknown",
+            //"TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app",
+            //"TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents",
+            //"TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS",
+            //"TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources",
+            //}
+         )
    {}
+
+   static std::vector<std::string> build_required_app_folder_names_relative_to(std::string relative_folder="TheWeepingHouse-MacOS-chip_unknown", std::string project_name_for_app_package="TheWeepingHouse")
+   {
+      std::vector<std::string> result = {
+         relative_folder,                                                  // "TheWeepingHouse-MacOS-chip_unknown",
+         relative_folder + "/" + project_name_for_app_package + ".app",    // "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app",
+         relative_folder + "/" + project_name_for_app_package + ".app/Contents",           // "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents",
+         relative_folder + "/" + project_name_for_app_package + ".app/Contents/MacOS",     // "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS",
+         relative_folder + "/" + project_name_for_app_package + ".app/Contents/Resources"  // "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources",
+      };
+      return result;
+   }
 
    virtual bool execute() override
    {
