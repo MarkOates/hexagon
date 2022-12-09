@@ -65,7 +65,6 @@ public:
    static std::string source_icon_filename() { return "Icon1024.png"; }
    static std::string built_icns_filename() { return "MyIcon.icns"; }
    static std::string full_path_of_temp_location() { return NameGenerator::TEMP_DIRECTORY_FOR_BUILD + "/"; }
-   //static std::string full_path_of_temp_location_to_run_make() { return NameGenerator::TEMP_DIRECTORY_FOR_BUILD + NameGenerator::SOURCE_RELEASE_FOLDER_NAME + "/"; } // TODO: <<--- this path
    static std::string full_path_to_built_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + built_icns_filename(); };
    static std::string name_of_project() { return NameGenerator::NAME_OF_EXECUTABLE; }
    static std::string name_of_built_executable() { return NameGenerator::NAME_OF_EXECUTABLE; }
@@ -74,11 +73,14 @@ public:
    static std::string full_path_to_copied_source_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + source_icon_filename(); }
    static std::string release_folder_relative_to_system_releases_folder() { return "TheWeepingHouse-MacOS-chip_unknown"; }
    static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
-   //static std::string release_folder_relative_to_system_releases_folder() { return "TheWeepingHouse-MacOS-chip_unknown"; }
-   //static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
    static std::string full_path_of_source_release_folder() { return "/Users/markoates/Releases/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
-
-
+   static std::string full_path_to_destination_icns_file() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"; }
+   static std::string full_path_to_source_readme() { return (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename()); }
+   static std::string full_path_of_source_data_folder() { return (TEMP_DIRECTORY_FOR_BUILD + "/data/"); }
+   static std::string full_path_to_destination_readme() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"; }
+   static std::string full_path_of_destination_data_folder() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"; }
+   static std::string release_folder_location() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"; }
+   static std::string full_binary_app_package_destination() { return ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable()); }
 };
 
 
@@ -115,13 +117,23 @@ std::string NameGenerator::TEMP_DIRECTORY_FOR_ICON; // auto-generated, different
 
 
 
-#define FULL_PATH_TO_DESTINATION_ICNS_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"
-#define FULL_PATH_TO_SOURCE_README (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename())
-#define FULL_PATH_OF_SOURCE_DATA_FOLDER (TEMP_DIRECTORY_FOR_BUILD + "/data/")
-#define FULL_PATH_TO_DESTINATION_README "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"
-#define FULL_PATH_OF_DESTINATION_DATA_FOLDER "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"
-#define RELEASE_FOLDER_LOCATION "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"
-#define FULL_BINARY_APP_PACKAGE_DESTINATION ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable())
+//static std::string full_path_to_destination_icns_file() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"; }
+//static std::string full_path_to_source_readme() { return (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename()); }
+//static std::string full_path_of_source_data_folder() { return (TEMP_DIRECTORY_FOR_BUILD + "/data/"); }
+//static std::string full_path_to_destination_readme() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"; }
+//static std::string full_path_of_destination_data_folder() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"; }
+//static std::string release_folder_location() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"; }
+//static std::string full_binary_app_package_destination() { return ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable()); }
+
+
+
+//#define FULL_PATH_TO_DESTINATION_ICNS_FILE "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"
+//#define FULL_PATH_TO_SOURCE_README (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename())
+//#define FULL_PATH_OF_SOURCE_DATA_FOLDER (TEMP_DIRECTORY_FOR_BUILD + "/data/")
+//#define FULL_PATH_TO_DESTINATION_README "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"
+//#define FULL_PATH_OF_DESTINATION_DATA_FOLDER "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"
+//#define RELEASE_FOLDER_LOCATION "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"
+//#define FULL_BINARY_APP_PACKAGE_DESTINATION ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable())
 
 //#define FULL_PATH_TO_COPIED_SOURCE_ICNS_FILE NameGenerator::full_path_to_copied_source_icns_file()
 //#define FULL_PATH_OF_SOURCE_RELEASE_FOLDER "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"
@@ -276,7 +288,7 @@ public:
 
    virtual bool execute() override
    {
-      std::string match_expression = "Copyright \\\(c\\\) 1990-2008 Info-ZIP - Type ";
+      std::string match_expression = "Copyright \\(c\\) 1990-2008 Info-ZIP - Type ";
       std::string actual_string = get_result_of_shell_execution();
       if (!ExpressionMatcher(match_expression, actual_string).matches()) return false;
       return true;
@@ -682,7 +694,7 @@ public:
 
    ValidateSourceReadme()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , full_location_to_source_readme_file(FULL_PATH_TO_SOURCE_README)
+      , full_location_to_source_readme_file(NameGenerator::full_path_to_source_readme())
    {}
 
    virtual bool execute() override
@@ -699,7 +711,7 @@ private:
    void execute_shell_commands()
    {
       std::string source = name_of_temp_location_with_build + name_of_built_executable;
-      std::string destination = FULL_BINARY_APP_PACKAGE_DESTINATION;
+      std::string destination = NameGenerator::full_binary_app_package_destination();
 
       std::stringstream shell_command;
       shell_command << "cp \"" << source << "\" \"" << destination << "\"";
@@ -762,8 +774,8 @@ public:
 
    CopyDataFolderToAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , full_path_of_source_data_folder(FULL_PATH_OF_SOURCE_DATA_FOLDER)
-      , full_path_of_app_package_destination_folder(FULL_PATH_OF_DESTINATION_DATA_FOLDER)
+      , full_path_of_source_data_folder(NameGenerator::full_path_of_source_data_folder())
+      , full_path_of_app_package_destination_folder(NameGenerator::full_path_of_destination_data_folder())
       , shell_command_result()
       , shell_command_response_code()
    {}
@@ -805,7 +817,7 @@ public:
    CopyIcnsFileToAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , full_source_location_of_icns_file(NameGenerator::full_path_to_built_icns_file())
-      , full_destination_location(FULL_PATH_TO_DESTINATION_ICNS_FILE)
+      , full_destination_location(NameGenerator::full_path_to_destination_icns_file())
    {}
 
    virtual bool execute() override
@@ -844,8 +856,8 @@ public:
 
    CopyReadmeFileToRelaseFolder()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , full_location_to_source(FULL_PATH_TO_SOURCE_README)
-      , full_location_to_destination(FULL_PATH_TO_DESTINATION_README)
+      , full_location_to_source(NameGenerator::full_path_to_source_readme())
+      , full_location_to_destination(NameGenerator::full_path_to_destination_readme())
    {}
 
    virtual bool execute() override
@@ -864,7 +876,7 @@ class BuildAndBundleDylibsWithAppPackage : public Hexagon::BuildSystem::BuildSta
 private:
    void execute_shell_commands()
    {
-      std::string release_folder_location = RELEASE_FOLDER_LOCATION;
+      std::string release_folder_location = NameGenerator::release_folder_location();
       std::string app_package_folder_name = NameGenerator::app_package_folder_name();
       std::string app_package_executable_name = NameGenerator::app_package_executable_name();
       std::stringstream shell_command;
