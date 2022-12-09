@@ -89,14 +89,25 @@ public:
    static std::string full_path_to_copied_source_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + source_icon_filename(); }
    static std::string release_folder_relative_to_system_releases_folder() { return "TheWeepingHouse-MacOS-chip_unknown"; }
    static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
-   static std::string full_path_of_source_release_folder() { return "/Users/markoates/Releases/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
-   static std::string full_path_to_destination_icns_file() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"; }
+   // TODO: remove these intermediate "/" additions, validate "/" is appended when assigned
+   static std::string full_path_of_source_release_folder() { return SYSTEM_RELEASES_FOLDER + "/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
+   static std::string full_path_to_destination_icns_file() { return SYSTEM_RELEASES_FOLDER + "/" + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"; }
    static std::string full_path_to_source_readme() { return (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename()); }
    static std::string full_path_of_source_data_folder() { return (TEMP_DIRECTORY_FOR_BUILD + "/data/"); }
-   static std::string full_path_to_destination_readme() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"; }
-   static std::string full_path_of_destination_data_folder() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"; }
-   static std::string release_folder_location() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"; }
-   static std::string full_binary_app_package_destination() { return ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable()); }
+   static std::string full_path_to_destination_readme() { return SYSTEM_RELEASES_FOLDER + "/" + "TheWeepingHouse-MacOS-chip_unknown/README.md"; }
+   static std::string full_path_of_destination_data_folder() { return SYSTEM_RELEASES_FOLDER + "/" + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"; }
+   static std::string release_folder_location() { return SYSTEM_RELEASES_FOLDER + "/" + "TheWeepingHouse-MacOS-chip_unknown"; }
+   static std::string full_binary_app_package_destination() { return (SYSTEM_RELEASES_FOLDER + "/" + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable()); }
+
+   // some example concretions:
+   //static std::string full_path_of_source_release_folder() { return "/Users/markoates/Releases/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
+   //static std::string full_path_to_destination_icns_file() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"; }
+   //static std::string full_path_to_source_readme() { return (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename()); }
+   //static std::string full_path_of_source_data_folder() { return (TEMP_DIRECTORY_FOR_BUILD + "/data/"); }
+   //static std::string full_path_to_destination_readme() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/README.md"; }
+   //static std::string full_path_of_destination_data_folder() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"; }
+   //static std::string release_folder_location() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown"; }
+   //static std::string full_binary_app_package_destination() { return ("/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable()); }
 };
 
 
@@ -1063,7 +1074,7 @@ int main(int argc, char **argv)
 
 
 
-   NameGenerator::SYSTEM_RELEASES_FOLDER = "/Users/markoates/Releases/";
+   NameGenerator::SYSTEM_RELEASES_FOLDER = "/Users/markoates/Releases/"; // NOTE, must end in "/"; TODO: validate ending in "/"
    NameGenerator::SOURCE_RELEASE_FOLDER_NAME //= "TheWeepingHouse-SourceRelease-220903200818UTC";
                                              //= "TheWeepingHouse-SourceRelease-221209175604UTC";
                                              //= "Krampus22_test1-SourceRelease-221209181637UTC";
