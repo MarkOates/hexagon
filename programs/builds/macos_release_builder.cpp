@@ -36,6 +36,22 @@
 
 
 
+#include <fstream>
+std::string file_get_contents(std::string filename)
+{
+   std::ifstream file(filename.c_str());
+   std::string input = "";
+   if (!file) return "";
+   char ch;
+   while (file.get(ch)) input.append(1, ch);
+   if (!file.eof()) return ""; // strange error
+   file.close();
+   return input;
+}
+
+
+
+
 
 std::string TEMP_DIRECTORY_FOR_BUILD = "";
 std::string TEMP_DIRECTORY_FOR_ICON = "";
@@ -240,15 +256,36 @@ public:
 
 
 
+#include <stdlib.h>
+std::string build_temp_filename()
+{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+   std::string temp_filename = std::tmpnam(nullptr);
+#pragma clang diagnostic pop
+   return temp_filename;
+}
+
+
+
 class ValidateSips : public Hexagon::BuildSystem::BuildStages::Base
 {
 private:
-   std::string get_result_of_dylibbuilder_shell_execution()
+   std::string cout_temp_file;
+   std::string execute_shell_command()
    {
+      cout_temp_file = build_temp_filename();
+      //std::cout << "filename: " << filename << std::endl;
+      //throw std::runtime_error("foo");
+
       std::stringstream shell_command;
-      shell_command << "sips -v";
+      shell_command << "sips -v > " << cout_temp_file;
       Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
       return shell_command_executor.execute();
+   }
+   std::string temp_file_contents()
+   {
+      return file_get_contents(cout_temp_file);
    }
 
 public:
@@ -261,7 +298,8 @@ public:
    virtual bool execute() override
    {
       std::string match_expression = "sips-[0-9]+\n";
-      std::string actual_string = get_result_of_dylibbuilder_shell_execution();
+      execute_shell_command();
+      std::string actual_string = temp_file_contents();
       if (!ExpressionMatcher(match_expression, actual_string).matches()) return false;
       return true;
    }
