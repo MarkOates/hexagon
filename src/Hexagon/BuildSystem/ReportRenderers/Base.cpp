@@ -97,15 +97,15 @@ std::string Base::colorize_status(std::string status)
 
    std::string color;
 
-   if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_WAITING_TO_START) { color == CONSOLE_COLOR_CYAN; }
-   else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING) { color == CONSOLE_COLOR_YELLOW; }
-   else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED) { color == CONSOLE_COLOR_GREEN; }
-   else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR) { color == CONSOLE_COLOR_RED; }
-   else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED) { color == CONSOLE_COLOR_RED; }
+   if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_WAITING_TO_START) { color = CONSOLE_COLOR_CYAN; }
+   else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING) { color = CONSOLE_COLOR_YELLOW; }
+   else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED) { color = CONSOLE_COLOR_GREEN; }
+   else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR) { color = CONSOLE_COLOR_RED; }
+   else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED) { color = CONSOLE_COLOR_RED; }
    else
    {
       throw std::runtime_error(Hexagon::Errors::build_error_message(
-            "ReportRenderers::Base::colorize_",
+            "Hexagon::BuildSystem::ReportRenderers::Base::colorize_status()",
             "Unaccounted for status type"
          )
       );
