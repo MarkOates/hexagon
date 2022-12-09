@@ -50,7 +50,10 @@ std::string file_get_contents(std::string filename)
 }
 
 
-
+std::string trim(std::string str)
+{
+   return Blast::String::Trimmer(str).trim();
+}
 
 
 std::string TEMP_DIRECTORY_FOR_BUILD = "";
@@ -91,13 +94,19 @@ public:
    static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
    // TODO: remove these intermediate "/" additions, validate "/" is appended when assigned
    static std::string full_path_of_source_release_folder() { return SYSTEM_RELEASES_FOLDER + "/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
-   static std::string full_path_to_destination_icns_file() { return SYSTEM_RELEASES_FOLDER + "/" + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"; }
+   static std::string full_path_to_destination_icns_file()
+   {
+      return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/TheWeepingHouse.app/Contents/Resources/Icon.icns";
+   }
    static std::string full_path_to_source_readme() { return (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename()); }
    static std::string full_path_of_source_data_folder() { return (TEMP_DIRECTORY_FOR_BUILD + "/data/"); }
-   static std::string full_path_to_destination_readme() { return SYSTEM_RELEASES_FOLDER + "/" + "TheWeepingHouse-MacOS-chip_unknown/README.md"; }
-   static std::string full_path_of_destination_data_folder() { return SYSTEM_RELEASES_FOLDER + "/" + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/data"; }
-   static std::string release_folder_location() { return SYSTEM_RELEASES_FOLDER + "/" + "TheWeepingHouse-MacOS-chip_unknown"; }
-   static std::string full_binary_app_package_destination() { return (SYSTEM_RELEASES_FOLDER + "/" + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable()); }
+   static std::string full_path_to_destination_readme() { return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "README.md"; }
+   static std::string full_path_of_destination_data_folder() { return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/TheWeepingHouse.app/Contents/Resources/data"; }
+   static std::string release_folder_location() { return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder(); }
+   static std::string full_binary_app_package_destination()
+   {
+      return (SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable());
+   }
 
    // some example concretions:
    //static std::string full_path_of_source_release_folder() { return "/Users/markoates/Releases/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
@@ -923,29 +932,41 @@ public:
 class BuildAndBundleDylibsWithAppPackage : public Hexagon::BuildSystem::BuildStages::Base
 {
 private:
+   std::string cout_temp_file;
+   std::string temp_file_contents()
+   {
+      return trim(file_get_contents(cout_temp_file));
+   }
+
    void execute_shell_commands()
    {
+      cout_temp_file = build_temp_filename();
+
+      std::cout << "============== DYLIB =================" << std::endl;
+
       std::string release_folder_location = NameGenerator::release_folder_location();
       std::string app_package_folder_name = NameGenerator::app_package_folder_name();
       std::string app_package_executable_name = NameGenerator::app_package_executable_name();
       std::stringstream shell_command;
       shell_command << "(cd " << release_folder_location << " && (export DYLD_LIBRARY_PATH=/usr/local/lib" << std::endl
                     << "dylibbundler -x \"" << app_package_folder_name << "/Contents/MacOS/" << app_package_executable_name << "\" -b -d \"" << app_package_folder_name << "/Contents/MacOS\" -p @executable_path -s $DYLD_LIBRARY_PATH"
-                    << "))";
+                    << ")) && (echo $? > " << cout_temp_file << ")";
 
       std::cout << shell_command.str() << std::endl;
 
       Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
       shell_command_result = shell_command_executor.execute();
 
-      Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
-      shell_command_response_code = shell_command_executor2.execute();
+      std::cout << "============ DYLIB ENDS ==============" << std::endl;
+
+      //Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
+      //shell_command_response_code = shell_command_executor2.execute();
    }
 
 public:
    static constexpr char* TYPE = (char*)"BuildAndBundleDylibsWithAppPackage";
    std::string shell_command_result;
-   std::string shell_command_response_code;
+   //std::string shell_command_response_code;
 
    BuildAndBundleDylibsWithAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
@@ -954,8 +975,10 @@ public:
    virtual bool execute() override
    {
       execute_shell_commands();
-      if (shell_command_response_code == ("0\n")) return true;
+      if (temp_file_contents() == "0") return true;
       return false;
+      //if (shell_command_response_code == ("0\n")) return true;
+      //return false;
    }
 };
 
