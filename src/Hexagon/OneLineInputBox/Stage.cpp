@@ -161,8 +161,9 @@ void Stage::render()
    if (!((code_editor.get_type() == ONE_LINE_INPUT_BOX)))
    {
       std::stringstream error_message;
-      error_message << "Stage" << "::" << "render" << ": error: " << "guard \"(code_editor.get_type() == ONE_LINE_INPUT_BOX)\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Stage::render]: error: guard \"(code_editor.get_type() == ONE_LINE_INPUT_BOX)\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Stage::render: error: guard \"(code_editor.get_type() == ONE_LINE_INPUT_BOX)\" not met");
    }
    ALLEGRO_COLOR outline_color = al_color_name("dodgerblue");
    ALLEGRO_COLOR user_input_text_color = al_color_name("dodgerblue");

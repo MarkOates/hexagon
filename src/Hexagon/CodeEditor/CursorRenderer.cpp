@@ -6,6 +6,7 @@
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/color.h>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -44,20 +45,23 @@ void CursorRenderer::render()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "CursorRenderer" << "::" << "render" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[CursorRenderer::render]: error: guard \"al_is_system_installed()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("CursorRenderer::render: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(al_is_primitives_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "CursorRenderer" << "::" << "render" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[CursorRenderer::render]: error: guard \"al_is_primitives_addon_initialized()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("CursorRenderer::render: error: guard \"al_is_primitives_addon_initialized()\" not met");
    }
    if (!(al_get_target_bitmap()))
    {
       std::stringstream error_message;
-      error_message << "CursorRenderer" << "::" << "render" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[CursorRenderer::render]: error: guard \"al_get_target_bitmap()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("CursorRenderer::render: error: guard \"al_get_target_bitmap()\" not met");
    }
    float cursor_x = x;
    float _cursor_x = x;

@@ -4,6 +4,7 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -92,20 +93,23 @@ void SingleBlockBarGraph::draw()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "SingleBlockBarGraph" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[SingleBlockBarGraph::draw]: error: guard \"al_is_system_installed()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("SingleBlockBarGraph::draw: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(al_is_primitives_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "SingleBlockBarGraph" << "::" << "draw" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[SingleBlockBarGraph::draw]: error: guard \"al_is_primitives_addon_initialized()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("SingleBlockBarGraph::draw: error: guard \"al_is_primitives_addon_initialized()\" not met");
    }
    if (!(al_get_target_bitmap()))
    {
       std::stringstream error_message;
-      error_message << "SingleBlockBarGraph" << "::" << "draw" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[SingleBlockBarGraph::draw]: error: guard \"al_get_target_bitmap()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("SingleBlockBarGraph::draw: error: guard \"al_get_target_bitmap()\" not met");
    }
    float bar_hwidth = bar_width * 0.5f;
    float bar_hheight = bar_height * 0.5f;

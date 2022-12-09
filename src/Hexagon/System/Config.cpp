@@ -3,6 +3,7 @@
 #include <Hexagon/System/Config.hpp>
 
 #include <Hexagon/Elements/ColorKit.hpp>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -91,8 +92,9 @@ void Config::initialize()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "Config" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Config::initialize]: error: guard \"al_is_system_installed()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Config::initialize: error: guard \"al_is_system_installed()\" not met");
    }
    if (initialized) return; // TODO, double initialization should raise an exception
    config.load();
@@ -104,8 +106,9 @@ void Config::reload()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "Config" << "::" << "reload" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Config::reload]: error: guard \"initialized\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Config::reload: error: guard \"initialized\" not met");
    }
    config.reload(); return;
 }
@@ -169,8 +172,9 @@ int Config::get_initial_baseline_camera_stepback()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "Config" << "::" << "get_initial_baseline_camera_stepback" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Config::get_initial_baseline_camera_stepback]: error: guard \"initialized\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Config::get_initial_baseline_camera_stepback: error: guard \"initialized\" not met");
    }
    validate_initialized(__FUNCTION__);
    return config.get_or_default_int("", INITIAL_BASELINE_CAMERA_STEPBACK_KEY, 130);
@@ -181,8 +185,9 @@ bool Config::is_dark_mode()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "Config" << "::" << "is_dark_mode" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Config::is_dark_mode]: error: guard \"initialized\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Config::is_dark_mode: error: guard \"initialized\" not met");
    }
    return config.get_or_default_bool("", DARK_MODE_KEY, false);
 }
@@ -192,8 +197,9 @@ std::string Config::get_objective()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "Config" << "::" << "get_objective" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Config::get_objective]: error: guard \"initialized\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Config::get_objective: error: guard \"initialized\" not met");
    }
    return config.get_or_default_str("", OBJECTIVE_KEY, "- objective not set -");
 }
@@ -203,8 +209,9 @@ std::string Config::get_current_project_domain()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "Config" << "::" << "get_current_project_domain" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Config::get_current_project_domain]: error: guard \"initialized\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Config::get_current_project_domain: error: guard \"initialized\" not met");
    }
    return config.get_or_default_str("", DOMAIN_KEY, ""); // value should be an empty string
 }
@@ -214,8 +221,9 @@ bool Config::is_fullscreen()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "Config" << "::" << "is_fullscreen" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Config::is_fullscreen]: error: guard \"initialized\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Config::is_fullscreen: error: guard \"initialized\" not met");
    }
    return config.get_or_default_bool("", FULLSCREEN_KEY, false);
 }
@@ -225,8 +233,9 @@ bool Config::get_hud_show_focus_timer_bar()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "Config" << "::" << "get_hud_show_focus_timer_bar" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Config::get_hud_show_focus_timer_bar]: error: guard \"initialized\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Config::get_hud_show_focus_timer_bar: error: guard \"initialized\" not met");
    }
    return config.get_or_default_bool("", HUD_SHOW_FOCUS_TIMER_BAR_KEY, false);
 }

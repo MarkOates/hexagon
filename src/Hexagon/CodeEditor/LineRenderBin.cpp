@@ -5,6 +5,7 @@
 #include <Hexagon/CodeEditor/Renderer/AdvancedLineRenderer.hpp>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -32,8 +33,9 @@ ALLEGRO_BITMAP* LineRenderBin::load_data(std::string identifier)
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "LineRenderBin" << "::" << "load_data" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[LineRenderBin::load_data]: error: guard \"font\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("LineRenderBin::load_data: error: guard \"font\" not met");
    }
    std::string text_to_render = identifier;
    ALLEGRO_BITMAP *render = nullptr;

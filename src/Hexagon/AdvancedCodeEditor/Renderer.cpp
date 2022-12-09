@@ -131,8 +131,9 @@ void Renderer::render()
    if (!(text_mesh))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"text_mesh\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render]: error: guard \"text_mesh\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render: error: guard \"text_mesh\" not met");
    }
    //AllegroFlare::Timer timer;
 
@@ -220,14 +221,16 @@ bool Renderer::draw_null_space_above_and_below()
    if (!(text_mesh))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_null_space_above_and_below" << ": error: " << "guard \"text_mesh\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_null_space_above_and_below]: error: guard \"text_mesh\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_null_space_above_and_below: error: guard \"text_mesh\" not met");
    }
    if (!(lines))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_null_space_above_and_below" << ": error: " << "guard \"lines\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_null_space_above_and_below]: error: guard \"lines\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_null_space_above_and_below: error: guard \"lines\" not met");
    }
    float cell_height = text_mesh->get_cell_height();
    float line_num = 0;
@@ -263,14 +266,16 @@ bool Renderer::render_line_numbers()
    if (!(text_mesh))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_line_numbers" << ": error: " << "guard \"text_mesh\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_line_numbers]: error: guard \"text_mesh\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_line_numbers: error: guard \"text_mesh\" not met");
    }
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_line_numbers" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_line_numbers]: error: guard \"font\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_line_numbers: error: guard \"font\" not met");
    }
    int cell_width = text_mesh->get_cell_width();
    ALLEGRO_COLOR font_color = get_line_numbers_color(); //al_color_name("white");
@@ -322,20 +327,23 @@ void Renderer::render_word_highlight_under_cursor()
    if (!(text_mesh))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_word_highlight_under_cursor" << ": error: " << "guard \"text_mesh\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_word_highlight_under_cursor]: error: guard \"text_mesh\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_word_highlight_under_cursor: error: guard \"text_mesh\" not met");
    }
    if (!(cursor))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_word_highlight_under_cursor" << ": error: " << "guard \"cursor\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_word_highlight_under_cursor]: error: guard \"cursor\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_word_highlight_under_cursor: error: guard \"cursor\" not met");
    }
    if (!(lines))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_word_highlight_under_cursor" << ": error: " << "guard \"lines\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_word_highlight_under_cursor]: error: guard \"lines\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_word_highlight_under_cursor: error: guard \"lines\" not met");
    }
    int cursor_x_pos = cursor->get_x();
    int cursor_y_pos = cursor->get_y();
@@ -367,20 +375,23 @@ void Renderer::render_cursor()
    if (!(text_mesh))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_cursor" << ": error: " << "guard \"text_mesh\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_cursor]: error: guard \"text_mesh\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_cursor: error: guard \"text_mesh\" not met");
    }
    if (!(cursor))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_cursor" << ": error: " << "guard \"cursor\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_cursor]: error: guard \"cursor\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_cursor: error: guard \"cursor\" not met");
    }
    if (!(al_is_primitives_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_cursor" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_cursor]: error: guard \"al_is_primitives_addon_initialized()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_cursor: error: guard \"al_is_primitives_addon_initialized()\" not met");
    }
    float cursor_x = cursor->get_x() * text_mesh->get_cell_width();
    float cursor_y = (cursor->get_y() - first_row_offset) * text_mesh->get_cell_height() + text_mesh_y_offset;
@@ -437,14 +448,16 @@ void Renderer::draw_selections()
    if (!(selections))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_selections" << ": error: " << "guard \"selections\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_selections]: error: guard \"selections\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_selections: error: guard \"selections\" not met");
    }
    if (!(lines))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_selections" << ": error: " << "guard \"lines\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_selections]: error: guard \"lines\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_selections: error: guard \"lines\" not met");
    }
    int cell_width = text_mesh->get_cell_width();
    int first_line_number = first_row_offset;
@@ -476,14 +489,16 @@ void Renderer::draw_visual_selections()
    if (!(visual_selections))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_visual_selections" << ": error: " << "guard \"visual_selections\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_visual_selections]: error: guard \"visual_selections\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_visual_selections: error: guard \"visual_selections\" not met");
    }
    if (!(lines))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_visual_selections" << ": error: " << "guard \"lines\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_visual_selections]: error: guard \"lines\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_visual_selections: error: guard \"lines\" not met");
    }
    int cell_width = text_mesh->get_cell_width();
    int first_line_number = first_row_offset;
@@ -516,14 +531,16 @@ void Renderer::draw_full_line_visual_selections()
    if (!(full_line_visual_selections))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_full_line_visual_selections" << ": error: " << "guard \"full_line_visual_selections\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_full_line_visual_selections]: error: guard \"full_line_visual_selections\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_full_line_visual_selections: error: guard \"full_line_visual_selections\" not met");
    }
    if (!(lines))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_full_line_visual_selections" << ": error: " << "guard \"lines\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_full_line_visual_selections]: error: guard \"lines\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_full_line_visual_selections: error: guard \"lines\" not met");
    }
    int cell_width = text_mesh->get_cell_width();
    int first_line_number = first_row_offset;
@@ -559,20 +576,23 @@ void Renderer::draw_search_regex_selections()
    if (!(search_regex_selections))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_search_regex_selections" << ": error: " << "guard \"search_regex_selections\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_search_regex_selections]: error: guard \"search_regex_selections\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_search_regex_selections: error: guard \"search_regex_selections\" not met");
    }
    if (!(lines))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_search_regex_selections" << ": error: " << "guard \"lines\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_search_regex_selections]: error: guard \"lines\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_search_regex_selections: error: guard \"lines\" not met");
    }
    if (!(text_mesh))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_search_regex_selections" << ": error: " << "guard \"text_mesh\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_search_regex_selections]: error: guard \"text_mesh\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_search_regex_selections: error: guard \"text_mesh\" not met");
    }
    int cell_width = text_mesh->get_cell_width();
    int first_line_number = first_row_offset;
@@ -614,26 +634,30 @@ void Renderer::draw_code_message_points()
    if (!(code_message_points))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_code_message_points" << ": error: " << "guard \"code_message_points\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_code_message_points]: error: guard \"code_message_points\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_code_message_points: error: guard \"code_message_points\" not met");
    }
    if (!(cursor))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_code_message_points" << ": error: " << "guard \"cursor\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_code_message_points]: error: guard \"cursor\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_code_message_points: error: guard \"cursor\" not met");
    }
    if (!(lines))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_code_message_points" << ": error: " << "guard \"lines\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_code_message_points]: error: guard \"lines\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_code_message_points: error: guard \"lines\" not met");
    }
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_code_message_points" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_code_message_points]: error: guard \"font\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_code_message_points: error: guard \"font\" not met");
    }
    int cell_width = text_mesh->get_cell_width();
    int first_line_number = first_row_offset;

@@ -3,6 +3,7 @@
 #include <Hexagon/System/Action/CheckGitSyncAndUpdatePowerbar.hpp>
 
 #include <Hexagon/Git/RemoteSyncChecker.hpp>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -46,8 +47,9 @@ bool CheckGitSyncAndUpdatePowerbar::execute()
    if (!(powerbar))
    {
       std::stringstream error_message;
-      error_message << "CheckGitSyncAndUpdatePowerbar" << "::" << "execute" << ": error: " << "guard \"powerbar\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[CheckGitSyncAndUpdatePowerbar::execute]: error: guard \"powerbar\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("CheckGitSyncAndUpdatePowerbar::execute: error: guard \"powerbar\" not met");
    }
    Hexagon::Git::RemoteSyncChecker sync_checker(repo_name, repos_directory);
    bool is_in_sync_with_remote = sync_checker.is_in_sync_with_remote();

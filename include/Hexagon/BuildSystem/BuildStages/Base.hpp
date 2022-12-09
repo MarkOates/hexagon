@@ -16,11 +16,11 @@ namespace Hexagon
          {
          public:
             static constexpr char* TYPE = "Base";
-            static constexpr char* STATUS_WAITING_TO_START = "waiting_to_start";
-            static constexpr char* STATUS_RUNNING = "running";
-            static constexpr char* STATUS_SUCCEEDED = "succeeded";
-            static constexpr char* STATUS_ERROR = "error";
-            static constexpr char* STATUS_FAILED = "failed";
+            static constexpr char* STATUS_WAITING_TO_START = (char*)"waiting_to_start";
+            static constexpr char* STATUS_RUNNING = (char*)"running";
+            static constexpr char* STATUS_SUCCEEDED = (char*)"succeeded";
+            static constexpr char* STATUS_ERROR = (char*)"error";
+            static constexpr char* STATUS_FAILED = (char*)"failed";
 
          private:
             std::string type;

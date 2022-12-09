@@ -30,8 +30,9 @@ std::vector<StageInterface *> StageCollectionHelper::all()
    if (!(stages))
    {
       std::stringstream error_message;
-      error_message << "StageCollectionHelper" << "::" << "all" << ": error: " << "guard \"stages\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[StageCollectionHelper::all]: error: guard \"stages\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("StageCollectionHelper::all: error: guard \"stages\" not met");
    }
    return *stages;
 }
@@ -41,8 +42,9 @@ std::vector<StageInterface *> StageCollectionHelper::get_all_stages_not_rendered
    if (!(stages))
    {
       std::stringstream error_message;
-      error_message << "StageCollectionHelper" << "::" << "get_all_stages_not_rendered_on_hud" << ": error: " << "guard \"stages\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[StageCollectionHelper::get_all_stages_not_rendered_on_hud]: error: guard \"stages\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("StageCollectionHelper::get_all_stages_not_rendered_on_hud: error: guard \"stages\" not met");
    }
    std::vector<StageInterface *> result;
    for (auto &stage : *stages)
@@ -57,8 +59,9 @@ std::vector<StageInterface *> StageCollectionHelper::get_all_render_on_hud_stage
    if (!(stages))
    {
       std::stringstream error_message;
-      error_message << "StageCollectionHelper" << "::" << "get_all_render_on_hud_stages" << ": error: " << "guard \"stages\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[StageCollectionHelper::get_all_render_on_hud_stages]: error: guard \"stages\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("StageCollectionHelper::get_all_render_on_hud_stages: error: guard \"stages\" not met");
    }
    std::vector<StageInterface *> result;
    for (auto &stage : *stages)
@@ -73,8 +76,9 @@ int StageCollectionHelper::count_code_editor_stages()
    if (!(stages))
    {
       std::stringstream error_message;
-      error_message << "StageCollectionHelper" << "::" << "count_code_editor_stages" << ": error: " << "guard \"stages\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[StageCollectionHelper::count_code_editor_stages]: error: guard \"stages\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("StageCollectionHelper::count_code_editor_stages: error: guard \"stages\" not met");
    }
    int result = 0;
    for (auto &stage : *stages)
@@ -89,8 +93,9 @@ std::vector<Hexagon::CodeEditor::Stage *> StageCollectionHelper::get_all_code_ed
    if (!(stages))
    {
       std::stringstream error_message;
-      error_message << "StageCollectionHelper" << "::" << "get_all_code_editor_stages" << ": error: " << "guard \"stages\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[StageCollectionHelper::get_all_code_editor_stages]: error: guard \"stages\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("StageCollectionHelper::get_all_code_editor_stages: error: guard \"stages\" not met");
    }
    std::vector<Hexagon::CodeEditor::Stage *> result;
    for (auto &stage : (*stages))
@@ -109,8 +114,9 @@ std::vector<Hexagon::AdvancedCodeEditor::Stage *> StageCollectionHelper::get_all
    if (!(stages))
    {
       std::stringstream error_message;
-      error_message << "StageCollectionHelper" << "::" << "get_all_advanced_code_editor_stages" << ": error: " << "guard \"stages\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[StageCollectionHelper::get_all_advanced_code_editor_stages]: error: guard \"stages\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("StageCollectionHelper::get_all_advanced_code_editor_stages: error: guard \"stages\" not met");
    }
    std::vector<Hexagon::AdvancedCodeEditor::Stage *> result;
    for (auto &stage : (*stages))
@@ -186,8 +192,9 @@ StageInterface* StageCollectionHelper::get_frontmost_stage()
    if (!(stages))
    {
       std::stringstream error_message;
-      error_message << "StageCollectionHelper" << "::" << "get_frontmost_stage" << ": error: " << "guard \"stages\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[StageCollectionHelper::get_frontmost_stage]: error: guard \"stages\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("StageCollectionHelper::get_frontmost_stage: error: guard \"stages\" not met");
    }
    std::vector<StageInterface *> stages = *(this->stages);
    if (stages.size() == 0) return nullptr;

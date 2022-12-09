@@ -12,6 +12,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/placement3d.h>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -84,32 +85,37 @@ void TitleScreen::draw_hexagon_logo_and_wait_for_keypress()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TitleScreen::draw_hexagon_logo_and_wait_for_keypress]: error: guard \"al_is_system_installed()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TitleScreen::draw_hexagon_logo_and_wait_for_keypress: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(al_is_primitives_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_is_primitives_addon_initialized()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TitleScreen::draw_hexagon_logo_and_wait_for_keypress]: error: guard \"al_is_primitives_addon_initialized()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TitleScreen::draw_hexagon_logo_and_wait_for_keypress: error: guard \"al_is_primitives_addon_initialized()\" not met");
    }
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"font_bin\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TitleScreen::draw_hexagon_logo_and_wait_for_keypress]: error: guard \"font_bin\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TitleScreen::draw_hexagon_logo_and_wait_for_keypress: error: guard \"font_bin\" not met");
    }
    if (!(al_get_target_bitmap()))
    {
       std::stringstream error_message;
-      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"al_get_target_bitmap()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TitleScreen::draw_hexagon_logo_and_wait_for_keypress]: error: guard \"al_get_target_bitmap()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TitleScreen::draw_hexagon_logo_and_wait_for_keypress: error: guard \"al_get_target_bitmap()\" not met");
    }
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "TitleScreen" << "::" << "draw_hexagon_logo_and_wait_for_keypress" << ": error: " << "guard \"get_initialized()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TitleScreen::draw_hexagon_logo_and_wait_for_keypress]: error: guard \"get_initialized()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TitleScreen::draw_hexagon_logo_and_wait_for_keypress: error: guard \"get_initialized()\" not met");
    }
    AllegroFlare::Profiler profiler;
 
@@ -271,8 +277,9 @@ void TitleScreen::draw_menu()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "TitleScreen" << "::" << "draw_menu" << ": error: " << "guard \"font_bin\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TitleScreen::draw_menu]: error: guard \"font_bin\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TitleScreen::draw_menu: error: guard \"font_bin\" not met");
    }
    placement3d place(surface_width/2, surface_height/2, 0);
    place.start_transform();
@@ -286,14 +293,16 @@ void TitleScreen::render_profiler_graph(AllegroFlare::Profiler* profiler, ALLEGR
    if (!(profiler))
    {
       std::stringstream error_message;
-      error_message << "TitleScreen" << "::" << "render_profiler_graph" << ": error: " << "guard \"profiler\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TitleScreen::render_profiler_graph]: error: guard \"profiler\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TitleScreen::render_profiler_graph: error: guard \"profiler\" not met");
    }
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "TitleScreen" << "::" << "render_profiler_graph" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TitleScreen::render_profiler_graph]: error: guard \"font\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TitleScreen::render_profiler_graph: error: guard \"font\" not met");
    }
    std::list<std::string> event_bucket_names = profiler->get_event_bucket_names();
    int line_height = 20;
@@ -337,8 +346,9 @@ void TitleScreen::append_project_path_to_config_file_and_reload_injected_config(
    if (!(config))
    {
       std::stringstream error_message;
-      error_message << "TitleScreen" << "::" << "append_project_path_to_config_file_and_reload_injected_config" << ": error: " << "guard \"config\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TitleScreen::append_project_path_to_config_file_and_reload_injected_config]: error: guard \"config\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TitleScreen::append_project_path_to_config_file_and_reload_injected_config: error: guard \"config\" not met");
    }
    std::string config_filename = config->get_config_filename();
    std::string current_menu_selection_path_text = main_menu_get_current_list_item_identifier();

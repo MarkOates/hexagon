@@ -2,6 +2,7 @@
 
 #include <Hexagon/Elements/FontCharacterMapGrid.hpp>
 
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -63,8 +64,9 @@ ALLEGRO_BITMAP* FontCharacterMapGrid::get_created_character_map_bitmap()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "FontCharacterMapGrid" << "::" << "get_created_character_map_bitmap" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[FontCharacterMapGrid::get_created_character_map_bitmap]: error: guard \"initialized\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("FontCharacterMapGrid::get_created_character_map_bitmap: error: guard \"initialized\" not met");
    }
    return created_character_map_bitmap;
 }
@@ -74,20 +76,23 @@ bool FontCharacterMapGrid::initialize()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[FontCharacterMapGrid::initialize]: error: guard \"al_is_system_installed()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("FontCharacterMapGrid::initialize: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[FontCharacterMapGrid::initialize]: error: guard \"font\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("FontCharacterMapGrid::initialize: error: guard \"font\" not met");
    }
    if (!((!initialized)))
    {
       std::stringstream error_message;
-      error_message << "FontCharacterMapGrid" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[FontCharacterMapGrid::initialize]: error: guard \"(!initialized)\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("FontCharacterMapGrid::initialize: error: guard \"(!initialized)\" not met");
    }
    character_uv_mapping.clear();
 

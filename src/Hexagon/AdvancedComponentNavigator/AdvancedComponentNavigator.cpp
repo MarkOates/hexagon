@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <allegro_flare/useful_php.h>
 #include <cctype>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -158,8 +159,9 @@ void AdvancedComponentNavigator::yank_selected_text_label()
    if (!(current_selection_is_valid()))
    {
       std::stringstream error_message;
-      error_message << "AdvancedComponentNavigator" << "::" << "yank_selected_text_label" << ": error: " << "guard \"current_selection_is_valid()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[AdvancedComponentNavigator::yank_selected_text_label]: error: guard \"current_selection_is_valid()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("AdvancedComponentNavigator::yank_selected_text_label: error: guard \"current_selection_is_valid()\" not met");
    }
    std::string selected_text = get_current_selection_label_or_empty_string();
    ClipboardData::store(selected_text);
@@ -170,8 +172,9 @@ void AdvancedComponentNavigator::yank_selected_text_as_component_name()
    if (!(current_selection_is_valid()))
    {
       std::stringstream error_message;
-      error_message << "AdvancedComponentNavigator" << "::" << "yank_selected_text_as_component_name" << ": error: " << "guard \"current_selection_is_valid()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[AdvancedComponentNavigator::yank_selected_text_as_component_name]: error: guard \"current_selection_is_valid()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("AdvancedComponentNavigator::yank_selected_text_as_component_name: error: guard \"current_selection_is_valid()\" not met");
    }
    std::string selected_text = get_current_selection_label_or_empty_string();
    std::string filtered_text = php::str_replace("/", "::", selected_text);
@@ -183,8 +186,9 @@ void AdvancedComponentNavigator::yank_selected_text_as_include_directive()
    if (!(current_selection_is_valid()))
    {
       std::stringstream error_message;
-      error_message << "AdvancedComponentNavigator" << "::" << "yank_selected_text_as_include_directive" << ": error: " << "guard \"current_selection_is_valid()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[AdvancedComponentNavigator::yank_selected_text_as_include_directive]: error: guard \"current_selection_is_valid()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("AdvancedComponentNavigator::yank_selected_text_as_include_directive: error: guard \"current_selection_is_valid()\" not met");
    }
    std::string selected_text = get_current_selection_label_or_empty_string();
    std::string filtered_text = "#include <" + selected_text + ".hpp>";
@@ -196,8 +200,9 @@ void AdvancedComponentNavigator::yank_selected_text_as_quintessence_dependency_l
    if (!(current_selection_is_valid()))
    {
       std::stringstream error_message;
-      error_message << "AdvancedComponentNavigator" << "::" << "yank_selected_text_as_quintessence_dependency_lines" << ": error: " << "guard \"current_selection_is_valid()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[AdvancedComponentNavigator::yank_selected_text_as_quintessence_dependency_lines]: error: guard \"current_selection_is_valid()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("AdvancedComponentNavigator::yank_selected_text_as_quintessence_dependency_lines: error: guard \"current_selection_is_valid()\" not met");
    }
    std::string selected_text = get_current_selection_label_or_empty_string();
    std::string symbol_text = selected_text;
@@ -214,8 +219,9 @@ void AdvancedComponentNavigator::yank_selected_text_as_public_parent_class_lines
    if (!(current_selection_is_valid()))
    {
       std::stringstream error_message;
-      error_message << "AdvancedComponentNavigator" << "::" << "yank_selected_text_as_public_parent_class_lines" << ": error: " << "guard \"current_selection_is_valid()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[AdvancedComponentNavigator::yank_selected_text_as_public_parent_class_lines]: error: guard \"current_selection_is_valid()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("AdvancedComponentNavigator::yank_selected_text_as_public_parent_class_lines: error: guard \"current_selection_is_valid()\" not met");
    }
    std::string selected_text = get_current_selection_label_or_empty_string();
    std::string symbol_text = selected_text;
@@ -232,8 +238,9 @@ void AdvancedComponentNavigator::yank_selected_text_as_injected_dependency_prope
    if (!(current_selection_is_valid()))
    {
       std::stringstream error_message;
-      error_message << "AdvancedComponentNavigator" << "::" << "yank_selected_text_as_injected_dependency_property" << ": error: " << "guard \"current_selection_is_valid()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[AdvancedComponentNavigator::yank_selected_text_as_injected_dependency_property]: error: guard \"current_selection_is_valid()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("AdvancedComponentNavigator::yank_selected_text_as_injected_dependency_property: error: guard \"current_selection_is_valid()\" not met");
    }
    std::string selected_text = get_current_selection_label_or_empty_string();
 
@@ -268,8 +275,9 @@ void AdvancedComponentNavigator::yank_selected_text_as_error_message_template()
    if (!(current_selection_is_valid()))
    {
       std::stringstream error_message;
-      error_message << "AdvancedComponentNavigator" << "::" << "yank_selected_text_as_error_message_template" << ": error: " << "guard \"current_selection_is_valid()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[AdvancedComponentNavigator::yank_selected_text_as_error_message_template]: error: guard \"current_selection_is_valid()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("AdvancedComponentNavigator::yank_selected_text_as_error_message_template: error: guard \"current_selection_is_valid()\" not met");
    }
    std::string selected_text = get_current_selection_label_or_empty_string();
 

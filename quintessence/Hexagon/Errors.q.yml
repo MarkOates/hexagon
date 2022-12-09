@@ -1,0 +1,23 @@
+functions:
+
+
+  - name: build_error_message
+    static: true
+    parameters:
+      - name: from
+        type: std::string
+        default_argument: '"[unset-from]"'
+      - name: message
+        type: std::string
+        default_argument: '"[unset-message]"'
+    type: std::string
+    body: |
+      const std::string CONSOLE_COLOR_RED = "\033[1;31m";
+      const std::string CONSOLE_COLOR_DEFAULT = "\033[0m";
+      std::stringstream result;
+      result << CONSOLE_COLOR_RED << "[" << from << "] error: " << message << CONSOLE_COLOR_DEFAULT << std::endl;
+      return result.str();
+    body_dependency_symbols:
+      - std::stringstream
+
+

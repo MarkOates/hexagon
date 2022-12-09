@@ -4,6 +4,7 @@
 
 #include <Blast/FileExistenceChecker.hpp>
 #include <allegro_flare/useful_php.h>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -72,26 +73,30 @@ bool LayoutToStagesCreator::place_and_load_code_editor(std::string filename, std
    if (!(stages))
    {
       std::stringstream error_message;
-      error_message << "LayoutToStagesCreator" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"stages\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[LayoutToStagesCreator::place_and_load_code_editor]: error: guard \"stages\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("LayoutToStagesCreator::place_and_load_code_editor: error: guard \"stages\" not met");
    }
    if (!(stage_factory))
    {
       std::stringstream error_message;
-      error_message << "LayoutToStagesCreator" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"stage_factory\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[LayoutToStagesCreator::place_and_load_code_editor]: error: guard \"stage_factory\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("LayoutToStagesCreator::place_and_load_code_editor: error: guard \"stage_factory\" not met");
    }
    if (!(layout))
    {
       std::stringstream error_message;
-      error_message << "LayoutToStagesCreator" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"layout\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[LayoutToStagesCreator::place_and_load_code_editor]: error: guard \"layout\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("LayoutToStagesCreator::place_and_load_code_editor: error: guard \"layout\" not met");
    }
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "LayoutToStagesCreator" << "::" << "place_and_load_code_editor" << ": error: " << "guard \"font_bin\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[LayoutToStagesCreator::place_and_load_code_editor]: error: guard \"font_bin\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("LayoutToStagesCreator::place_and_load_code_editor: error: guard \"font_bin\" not met");
    }
    bool file_exists = Blast::FileExistenceChecker(filename).exists();
 

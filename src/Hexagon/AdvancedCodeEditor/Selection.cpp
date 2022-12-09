@@ -3,6 +3,7 @@
 #include <Hexagon/AdvancedCodeEditor/Selection.hpp>
 
 #include <algorithm>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -72,8 +73,9 @@ bool Selection::push_down_from(int starting_on_line, int num_lines_to_push_down)
    if (!((num_lines_to_push_down >= 0)))
    {
       std::stringstream error_message;
-      error_message << "Selection" << "::" << "push_down_from" << ": error: " << "guard \"(num_lines_to_push_down >= 0)\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Selection::push_down_from]: error: guard \"(num_lines_to_push_down >= 0)\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Selection::push_down_from: error: guard \"(num_lines_to_push_down >= 0)\" not met");
    }
    for (int i=code_ranges.size()-1; i>=0; i--)
    {
@@ -95,14 +97,16 @@ bool Selection::pull_up_from(int starting_on_line, int num_lines_to_pull_up)
    if (!((num_lines_to_pull_up >= 0)))
    {
       std::stringstream error_message;
-      error_message << "Selection" << "::" << "pull_up_from" << ": error: " << "guard \"(num_lines_to_pull_up >= 0)\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Selection::pull_up_from]: error: guard \"(num_lines_to_pull_up >= 0)\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Selection::pull_up_from: error: guard \"(num_lines_to_pull_up >= 0)\" not met");
    }
    if (!((num_lines_to_pull_up <= starting_on_line)))
    {
       std::stringstream error_message;
-      error_message << "Selection" << "::" << "pull_up_from" << ": error: " << "guard \"(num_lines_to_pull_up <= starting_on_line)\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Selection::pull_up_from]: error: guard \"(num_lines_to_pull_up <= starting_on_line)\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Selection::pull_up_from: error: guard \"(num_lines_to_pull_up <= starting_on_line)\" not met");
    }
    for (int i=0; i<code_ranges.size(); i++)
    {

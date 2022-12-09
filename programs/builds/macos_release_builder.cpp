@@ -53,8 +53,8 @@ public:
    static std::string FULL_PATH_TO_SOURCE_ICON_PNG; // "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png"
 
 
-   static std::string TEMP_DIRECTORY_FOR_BUILD;
-   static std::string TEMP_DIRECTORY_FOR_ICON;
+   static std::string TEMP_DIRECTORY_FOR_BUILD; // is generated
+   static std::string TEMP_DIRECTORY_FOR_ICON;  // is generated
 
 
    static std::string source_release_folder_name() { return NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
@@ -70,7 +70,7 @@ public:
    static std::string full_path_to_copied_source_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + source_icon_filename(); }
    static std::string release_folder_relative_to_system_releases_folder() { return "TheWeepingHouse-MacOS-chip_unknown"; }
    static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
-   static std::string full_path_of_source_release_folder() { return "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/"; }
+   static std::string full_path_of_source_release_folder() { return "/Users/markoates/Releases/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
 };
 
 
@@ -171,7 +171,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "ValidateIconutil";
+   static constexpr char* TYPE = (char*)"ValidateIconutil";
 
    ValidateIconutil()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
@@ -201,7 +201,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "ValidateDylibBundlerVersion";
+   static constexpr char* TYPE = (char*)"ValidateDylibBundlerVersion";
 
    ValidateDylibBundlerVersion()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
@@ -231,7 +231,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "ValidateSips";
+   static constexpr char* TYPE = (char*)"ValidateSips";
 
    ValidateSips()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
@@ -259,7 +259,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "ValidateZip";
+   static constexpr char* TYPE = (char*)"ValidateZip";
 
    ValidateZip()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
@@ -294,7 +294,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "CopySourceReleaseFilesForBuilding";
+   static constexpr char* TYPE = (char*)"CopySourceReleaseFilesForBuilding";
    std::string name_of_source_folder;
    std::string name_of_temp_location_to_build;
    std::string shell_command_result;
@@ -337,7 +337,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "BuildFromSourceInTempFolder";
+   static constexpr char* TYPE = (char*)"BuildFromSourceInTempFolder";
    std::string name_of_temp_location_to_build;
    std::string shell_command_result;
    std::string shell_command_response_code;
@@ -377,7 +377,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "ValidatePresenceOfBuiltExecutable";
+   static constexpr char* TYPE = (char*)"ValidatePresenceOfBuiltExecutable";
    std::string name_of_temp_location_to_build;
    std::string name_of_expected_executable;
    std::string shell_command_result;
@@ -421,7 +421,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "CopySourceAppIconPngToTempFolder";
+   static constexpr char* TYPE = (char*)"CopySourceAppIconPngToTempFolder";
    std::string full_path_to_source_icon_png;
    std::string full_destination_path_to_copied_source_icns_file;
    std::string shell_command_result;
@@ -481,7 +481,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "BuildAppIcons";
+   static constexpr char* TYPE = (char*)"BuildAppIcons";
    std::string name_of_temp_folder_for_icons;
    std::string shell_command_result;
    std::string shell_command_response_code;
@@ -520,7 +520,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "ValidatePresenceOfIcnsFile";
+   static constexpr char* TYPE = (char*)"ValidatePresenceOfIcnsFile";
    std::string name_of_temp_location_to_build;
    std::string name_of_expected_generated_icns_file;
    std::string shell_command_result;
@@ -565,7 +565,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "CreateFoldersForReleaseAndAppPackage";
+   static constexpr char* TYPE = (char*)"CreateFoldersForReleaseAndAppPackage";
    std::string system_releases_folder;
    std::vector<std::string> folders_to_create;
    std::string shell_command_result;
@@ -639,7 +639,7 @@ const std::string PLIST_TEMPLATE_CONTENT = R"DELIM(<?xml version="1.0" encoding=
 class CreateInfoDotPlistFile : public Hexagon::BuildSystem::BuildStages::Base
 {
 public:
-   static constexpr char* TYPE = "CreateInfoDotPlistFile";
+   static constexpr char* TYPE = (char*)"CreateInfoDotPlistFile";
    std::string system_releases_folder;
 
    CreateInfoDotPlistFile()
@@ -668,7 +668,7 @@ public:
 class ValidateSourceReadme : public Hexagon::BuildSystem::BuildStages::Base
 {
 public:
-   static constexpr char* TYPE = "ValidateSourceReadme";
+   static constexpr char* TYPE = (char*)"ValidateSourceReadme";
    std::string full_location_to_source_readme_file;
 
    ValidateSourceReadme()
@@ -704,7 +704,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "CopyBuiltBinaryToAppPackage";
+   static constexpr char* TYPE = (char*)"CopyBuiltBinaryToAppPackage";
    std::string name_of_temp_location_with_build;
    std::string name_of_built_executable;
    std::string shell_command_result;
@@ -745,7 +745,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "CopyDataFolderToAppPackage";
+   static constexpr char* TYPE = (char*)"CopyDataFolderToAppPackage";
    std::string full_path_of_source_data_folder;
    std::string full_path_of_app_package_destination_folder;
    std::string shell_command_result;
@@ -787,7 +787,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "CopyIcnsFileToAppPackage";
+   static constexpr char* TYPE = (char*)"CopyIcnsFileToAppPackage";
    std::string full_source_location_of_icns_file;
    std::string full_destination_location;
    std::string shell_command_result;
@@ -827,7 +827,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "CopyReadmeFileToRelaseFolder";
+   static constexpr char* TYPE = (char*)"CopyReadmeFileToRelaseFolder";
    std::string full_location_to_source;
    std::string full_location_to_destination;
    std::string shell_command_result;
@@ -873,7 +873,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "BuildAndBundleDylibsWithAppPackage";
+   static constexpr char* TYPE = (char*)"BuildAndBundleDylibsWithAppPackage";
    std::string shell_command_result;
    std::string shell_command_response_code;
 
@@ -909,7 +909,7 @@ private:
    }
 
 public:
-   static constexpr char* TYPE = "CreateZipFromReleaseFolder";
+   static constexpr char* TYPE = (char*)"CreateZipFromReleaseFolder";
    std::string shell_command_result;
    std::string shell_command_response_code;
 
@@ -976,14 +976,20 @@ int main(int argc, char **argv)
 
 
    NameGenerator::SYSTEM_RELEASES_FOLDER = "/Users/markoates/Releases/";
-   NameGenerator::SOURCE_RELEASE_FOLDER_NAME = "TheWeepingHouse-SourceRelease-220903200818UTC";
+   NameGenerator::SOURCE_RELEASE_FOLDER_NAME //= "TheWeepingHouse-SourceRelease-220903200818UTC";
+                                             = "TheWeepingHouse-SourceRelease-221209152039UTC";
+
    NameGenerator::NAME_OF_EXECUTABLE = "TheWeepingHouse";
    NameGenerator::COPYRIGHT_FULL_TEXT = "Copyright 2022 - Mark Oates - www.CLUBCATT.com";
    NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD = "1.0.0.3";
    NameGenerator::VERSION_NUMBER = "1.0.0";
-   NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG = "/Users/markoates/Releases/TheWeepingHouse-SourceRelease-220903200818UTC/data/system/allegro-flare-generic-icon-1024.png";
+   // TODO: consider moving this static location for the default icon, also only use it as a fallback if the repo does not have an app icon
+   NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG = "/Users/markoates/Repos/allegro_flare/bin/data/bitmaps/allegro-flare-generic-icon-1024.png";
+   //NameGenerator::FULL_PATH_TO_SOURCE_ICON_PNG = "/Users/markoates/Releases/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME + "/data/system/allegro-flare-generic-icon-1024.png";
    NameGenerator::TEMP_DIRECTORY_FOR_BUILD = TEMP_DIRECTORY_FOR_BUILD;
    NameGenerator::TEMP_DIRECTORY_FOR_ICON = TEMP_DIRECTORY_FOR_ICON;
+
+
 
 
 

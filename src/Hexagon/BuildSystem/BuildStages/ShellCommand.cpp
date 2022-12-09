@@ -3,6 +3,7 @@
 #include <Hexagon/BuildSystem/BuildStages/ShellCommand.hpp>
 
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -46,8 +47,9 @@ bool ShellCommand::execute()
    if (!((!executed)))
    {
       std::stringstream error_message;
-      error_message << "ShellCommand" << "::" << "execute" << ": error: " << "guard \"(!executed)\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[ShellCommand::execute]: error: guard \"(!executed)\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("ShellCommand::execute: error: guard \"(!executed)\" not met");
    }
    Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command);
    shell_command_result = shell_command_executor.execute();

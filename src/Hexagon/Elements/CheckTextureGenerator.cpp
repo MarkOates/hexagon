@@ -4,6 +4,7 @@
 
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -30,14 +31,16 @@ ALLEGRO_BITMAP* CheckTextureGenerator::generate_grid_check()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "CheckTextureGenerator" << "::" << "generate_grid_check" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[CheckTextureGenerator::generate_grid_check]: error: guard \"al_is_system_installed()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("CheckTextureGenerator::generate_grid_check: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(display))
    {
       std::stringstream error_message;
-      error_message << "CheckTextureGenerator" << "::" << "generate_grid_check" << ": error: " << "guard \"display\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[CheckTextureGenerator::generate_grid_check]: error: guard \"display\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("CheckTextureGenerator::generate_grid_check: error: guard \"display\" not met");
    }
    float width = 400;
    float height = 300;

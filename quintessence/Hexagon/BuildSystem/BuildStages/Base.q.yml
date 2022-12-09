@@ -45,32 +45,37 @@ properties:
   - name: STATUS_WAITING_TO_START
     type: char*
     static: true
-    init_with: '"waiting_to_start"'
+    init_with: '(char*)"waiting_to_start"'
     constexpr: true
+    const: true
 
   - name: STATUS_RUNNING
     type: char*
     static: true
-    init_with: '"running"'
+    init_with: '(char*)"running"'
     constexpr: true
+    const: true
 
   - name: STATUS_SUCCEEDED
     type: char*
     static: true
-    init_with: '"succeeded"'
+    init_with: '(char*)"succeeded"'
     constexpr: true
+    const: true
 
   - name: STATUS_ERROR
     type: char*
     static: true
-    init_with: '"error"'
+    init_with: '(char*)"error"'
     constexpr: true
+    const: true
 
   - name: STATUS_FAILED
     type: char*
     static: true
-    init_with: '"failed"'
+    init_with: '(char*)"failed"'
     constexpr: true
+    const: true
 
 
 

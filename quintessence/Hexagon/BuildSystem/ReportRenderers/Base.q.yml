@@ -53,7 +53,7 @@ functions:
          i++;
          result << "[#=------ STAGE " << i << " ------=#]" << std::endl;
          result << "  - Type: " << build_stage->get_type() << std::endl;
-         result << "  - Status: " << build_stage->get_status() << std::endl;
+         result << "  - Status: " << colorize_status(build_stage->get_status()) << std::endl;
          result << "  - Duration: " << build_stage->calc_duration_seconds() << " seconds" << std::endl;
          if (!build_stage_render.empty()) result << build_stage_render;
          result << std::endl;
@@ -66,12 +66,51 @@ functions:
       - Hexagon::BuildSystem::BuildStageRenderer
 
 
+  - name: colorize_status
+    type: std::string
+    parameters:
+      - name: status
+        type: std::string
+        default_argument: '"[unset-status]"'
+    body: |
+      const std::string CONSOLE_COLOR_RED = "\033[1;31m";
+      const std::string CONSOLE_COLOR_YELLOW = "\033[1;33m";
+      const std::string CONSOLE_COLOR_GREEN = "\033[1;32m";
+      const std::string CONSOLE_COLOR_DEFAULT = "\033[0m";
+      const std::string CONSOLE_COLOR_CYAN = "\033[1;36m";
+
+      std::string color;
+
+      if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_WAITING_TO_START) { color == CONSOLE_COLOR_CYAN; }
+      else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_RUNNING) { color == CONSOLE_COLOR_YELLOW; }
+      else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_SUCCEEDED) { color == CONSOLE_COLOR_GREEN; }
+      else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_ERROR) { color == CONSOLE_COLOR_RED; }
+      else if (status == Hexagon::BuildSystem::BuildStages::Base::STATUS_FAILED) { color == CONSOLE_COLOR_RED; }
+      else
+      {
+         throw std::runtime_error(Hexagon::Errors::build_error_message(
+               "ReportRenderers::Base::colorize_",
+               "Unaccounted for status type"
+            )
+         );
+      }
+
+      return color + status + CONSOLE_COLOR_DEFAULT;
+    body_dependency_symbols:
+      - Hexagon::BuildSystem::BuildStages::Base
+      - Hexagon::Errors
+
+
 dependencies:
 
 
   - symbol: Hexagon::BuildSystem::BuildStageRenderer
     headers: [ Hexagon/BuildSystem/BuildStageRenderer.hpp ]
+  - symbol: Hexagon::BuildSystem::BuildStages::Base
+    headers: [ Hexagon/BuildSystem/BuildStages/Base.hpp ]
   - symbol: Hexagon::BuildSystem::Builds::Base
     headers: [ Hexagon/BuildSystem/Builds/Base.hpp ]
+  - symbol: Hexagon::Errors
+    headers: [ Hexagon/Errors.hpp ]
 
 

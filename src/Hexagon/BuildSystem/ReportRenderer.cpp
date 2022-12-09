@@ -3,6 +3,7 @@
 #include <Hexagon/BuildSystem/ReportRenderer.hpp>
 
 #include <Hexagon/BuildSystem/ReportRenderers/Base.hpp>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -41,8 +42,9 @@ std::string ReportRenderer::build_text_report()
    if (!(build))
    {
       std::stringstream error_message;
-      error_message << "ReportRenderer" << "::" << "build_text_report" << ": error: " << "guard \"build\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[ReportRenderer::build_text_report]: error: guard \"build\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("ReportRenderer::build_text_report: error: guard \"build\" not met");
    }
    std::string result;
 

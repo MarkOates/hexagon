@@ -10,6 +10,7 @@
 #include <Hexagon/shared_globals.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -51,20 +52,23 @@ bool Renderer::render()
    if (!(system))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"system\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render]: error: guard \"system\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render: error: guard \"system\" not met");
    }
    if (!(display))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"display\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render]: error: guard \"display\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render: error: guard \"display\" not met");
    }
    if (!(backfill_color))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"backfill_color\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render]: error: guard \"backfill_color\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render: error: guard \"backfill_color\" not met");
    }
    //al_clear_to_color(*get_backfill_color());
 
@@ -105,8 +109,9 @@ void Renderer::draw_focused_frame(StageInterface* stage)
    if (!(stage))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_focused_frame" << ": error: " << "guard \"stage\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_focused_frame]: error: guard \"stage\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_focused_frame: error: guard \"stage\" not met");
    }
    placement3d place = stage->get_place();
    Hexagon::Elements::Window window(place.size.x, place.size.y);

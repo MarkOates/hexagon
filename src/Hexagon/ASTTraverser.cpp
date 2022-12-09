@@ -4,6 +4,7 @@
 
 #include <Blast/FileExistenceChecker.hpp>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -36,8 +37,9 @@ void ASTTraverser::set_json_ast_filename()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "ASTTraverser" << "::" << "set_json_ast_filename" << ": error: " << "guard \"initialized\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[ASTTraverser::set_json_ast_filename]: error: guard \"initialized\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("ASTTraverser::set_json_ast_filename: error: guard \"initialized\" not met");
    }
    return;
 }
@@ -47,8 +49,9 @@ void ASTTraverser::initialize()
    if (!((!initialized)))
    {
       std::stringstream error_message;
-      error_message << "ASTTraverser" << "::" << "initialize" << ": error: " << "guard \"(!initialized)\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[ASTTraverser::initialize]: error: guard \"(!initialized)\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("ASTTraverser::initialize: error: guard \"(!initialized)\" not met");
    }
    if (json_ast_filename.empty() || !Blast::FileExistenceChecker(json_ast_filename).exists())
    {

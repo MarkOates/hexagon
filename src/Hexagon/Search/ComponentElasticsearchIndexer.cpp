@@ -4,6 +4,7 @@
 
 #include <Blast/Project/Component.hpp>
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
+#include <iostream>
 #include <lib/nlohmann/json.hpp>
 #include <sstream>
 #include <stdexcept>
@@ -38,8 +39,9 @@ std::string ComponentElasticsearchIndexer::generate_uid()
    if (!(component))
    {
       std::stringstream error_message;
-      error_message << "ComponentElasticsearchIndexer" << "::" << "generate_uid" << ": error: " << "guard \"component\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[ComponentElasticsearchIndexer::generate_uid]: error: guard \"component\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("ComponentElasticsearchIndexer::generate_uid: error: guard \"component\" not met");
    }
    std::string delimiter = ":";
    return component->get_project_root() + delimiter + component->get_name();
@@ -50,8 +52,9 @@ std::string ComponentElasticsearchIndexer::generate_index_shell_command()
    if (!(component))
    {
       std::stringstream error_message;
-      error_message << "ComponentElasticsearchIndexer" << "::" << "generate_index_shell_command" << ": error: " << "guard \"component\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[ComponentElasticsearchIndexer::generate_index_shell_command]: error: guard \"component\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("ComponentElasticsearchIndexer::generate_index_shell_command: error: guard \"component\" not met");
    }
    nlohmann::json document_as_json = {
      { "uid", generate_uid() },
@@ -81,8 +84,9 @@ std::string ComponentElasticsearchIndexer::import_or_update()
    if (!(component))
    {
       std::stringstream error_message;
-      error_message << "ComponentElasticsearchIndexer" << "::" << "import_or_update" << ": error: " << "guard \"component\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[ComponentElasticsearchIndexer::import_or_update]: error: guard \"component\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("ComponentElasticsearchIndexer::import_or_update: error: guard \"component\" not met");
    }
    std::string index_shell_command = generate_index_shell_command();
    Blast::ShellCommandExecutorWithCallback executor(index_shell_command);

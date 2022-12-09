@@ -4,6 +4,7 @@
 
 #include <Hexagon/BuildSystem/BuildStageRenderers/Base.hpp>
 #include <Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.hpp>
+#include <Hexagon/Errors.hpp>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
@@ -43,8 +44,9 @@ std::string BuildStageRenderer::build_text_report()
    if (!(build_stage))
    {
       std::stringstream error_message;
-      error_message << "BuildStageRenderer" << "::" << "build_text_report" << ": error: " << "guard \"build_stage\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[BuildStageRenderer::build_text_report]: error: guard \"build_stage\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("BuildStageRenderer::build_text_report: error: guard \"build_stage\" not met");
    }
    std::string result;
 
@@ -65,10 +67,11 @@ std::string BuildStageRenderer::build_text_report()
    else
    {
       std::stringstream error_message;
-      error_message << "Hexagon::BuildSystem::BuildStageRenderer::build_text_report() error: "
-                    << "Cannot build_text_report() on a report that is of unknown type \""
-                    << build_stage->get_type() << "\".";
-      std::cout << error_message.str();
+      error_message << "Cannot build report that is of unknown type \"" << build_stage->get_type() << "\".";
+      std::cout << Hexagon::Errors::build_error_message(
+         "Hexagon::BuildSystem::BuildStageRenderer::build_text_report()",
+         error_message.str()
+      );
       //throw std::runtime_error(error_message.str());
    }
 

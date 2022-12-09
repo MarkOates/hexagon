@@ -124,6 +124,7 @@ table td
   <li><a href="#quintessence/Hexagon/Elements/TextPixelPreviewCreator.q.yml">quintessence/Hexagon/Elements/TextPixelPreviewCreator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/TexturedRectangle.q.yml">quintessence/Hexagon/Elements/TexturedRectangle.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/Window.q.yml">quintessence/Hexagon/Elements/Window.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Errors.q.yml">quintessence/Hexagon/Errors.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Fancy/Stage.q.yml">quintessence/Hexagon/Fancy/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/FileNavigator/Stage.q.yml">quintessence/Hexagon/FileNavigator/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/FilesOpenedHistory.q.yml">quintessence/Hexagon/FilesOpenedHistory.q.yml</a></li>
@@ -2448,6 +2449,9 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStages::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStages/Base.hpp&quot;]}</td>
 </tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Errors&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Errors.hpp&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -2777,13 +2781,22 @@ table td
 <tr>
   <td class="method">render_text()</td>
 </tr>
+<tr>
+  <td class="method">colorize_status(1)</td>
+</tr>
     </table>
      <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStageRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStageRenderer.hpp&quot;]}</td>
 </tr>
 <tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::BuildStages::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/BuildStages/Base.hpp&quot;]}</td>
+</tr>
+<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSystem::Builds::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSystem/Builds/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Errors&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Errors.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -5615,6 +5628,20 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;color::color&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/color.h&quot;]}</td>
 </tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/Errors.q.yml">quintessence/Hexagon/Errors.q.yml</h3>
+     <table>
+    </table>
+     <table>
+<tr>
+  <td class="method">build_error_message(2)</td>
+</tr>
+    </table>
+     <table>
     </table>
   </div>
 </ul>
@@ -13413,7 +13440,12 @@ table td
   "Hexagon/BuildSystem/BuildStages/Base": [
     "Hexagon/BuildSystem/BuildStageRenderer",
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
-    "Hexagon/BuildSystem/Builds/Base"
+    "Hexagon/BuildSystem/Builds/Base",
+    "Hexagon/BuildSystem/ReportRenderers/Base"
+  ],
+  "Hexagon/Errors": [
+    "Hexagon/BuildSystem/BuildStageRenderer",
+    "Hexagon/BuildSystem/ReportRenderers/Base"
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",

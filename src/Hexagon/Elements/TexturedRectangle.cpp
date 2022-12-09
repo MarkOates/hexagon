@@ -3,6 +3,7 @@
 #include <Hexagon/Elements/TexturedRectangle.hpp>
 
 #include <allegro_flare/useful.h>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -33,14 +34,16 @@ void TexturedRectangle::draw()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "TexturedRectangle" << "::" << "draw" << ": error: " << "guard \"al_is_system_installed()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TexturedRectangle::draw]: error: guard \"al_is_system_installed()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TexturedRectangle::draw: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(texture))
    {
       std::stringstream error_message;
-      error_message << "TexturedRectangle" << "::" << "draw" << ": error: " << "guard \"texture\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[TexturedRectangle::draw]: error: guard \"texture\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("TexturedRectangle::draw: error: guard \"texture\" not met");
    }
    ALLEGRO_COLOR white_color = ALLEGRO_COLOR{1, 1, 1, 1};
    draw_textured_rectangle(

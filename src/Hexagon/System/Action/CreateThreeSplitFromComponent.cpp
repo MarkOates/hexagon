@@ -8,6 +8,7 @@
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/useful_php.h>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -98,8 +99,9 @@ bool CreateThreeSplitFromComponent::place_stage(std::string filename, std::strin
    if (!(stage_factory))
    {
       std::stringstream error_message;
-      error_message << "CreateThreeSplitFromComponent" << "::" << "place_stage" << ": error: " << "guard \"stage_factory\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[CreateThreeSplitFromComponent::place_stage]: error: guard \"stage_factory\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("CreateThreeSplitFromComponent::place_stage: error: guard \"stage_factory\" not met");
    }
    bool file_exists = Blast::FileExistenceChecker(filename).exists();
    float width = get_code_editor_width();

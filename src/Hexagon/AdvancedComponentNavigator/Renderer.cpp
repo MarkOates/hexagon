@@ -10,6 +10,7 @@
 #include <allegro_flare/color.h>
 #include <allegro_flare/placement3d.h>
 #include <cmath>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -137,8 +138,9 @@ void Renderer::draw_input_hints()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "draw_input_hints" << ": error: " << "guard \"font_bin\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::draw_input_hints]: error: guard \"font_bin\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::draw_input_hints: error: guard \"font_bin\" not met");
    }
    if (input_hints_tokens.empty()) return;
 
@@ -155,14 +157,16 @@ void Renderer::render()
    if (!(stage))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"stage\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render]: error: guard \"stage\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render: error: guard \"stage\" not met");
    }
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render]: error: guard \"font\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render: error: guard \"font\" not met");
    }
    placement3d &place = stage->get_place();
    place.start_transform();
@@ -176,14 +180,16 @@ void Renderer::render_raw()
    if (!(stage))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_raw]: error: guard \"stage\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_raw: error: guard \"stage\" not met");
    }
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_raw]: error: guard \"font\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_raw: error: guard \"font\" not met");
    }
    Hexagon::AdvancedComponentNavigator::Stage &stage = *this->stage;
    Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator &component = stage.get_component_ref();

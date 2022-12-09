@@ -4,6 +4,7 @@
 
 #include <Blast/FileExistenceChecker.hpp>
 #include <allegro_flare/useful_php.h>
+#include <iostream>
 #include <lib/nlohmann/json.hpp>
 #include <sstream>
 #include <stdexcept>
@@ -53,8 +54,9 @@ std::string DocumentationDependentsJSONLoader::dependents_json_file_contents()
    if (!(dependents_json_file_exists()))
    {
       std::stringstream error_message;
-      error_message << "DocumentationDependentsJSONLoader" << "::" << "dependents_json_file_contents" << ": error: " << "guard \"dependents_json_file_exists()\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[DocumentationDependentsJSONLoader::dependents_json_file_contents]: error: guard \"dependents_json_file_exists()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("DocumentationDependentsJSONLoader::dependents_json_file_contents: error: guard \"dependents_json_file_exists()\" not met");
    }
    return php::file_get_contents(get_DEPENDENTS_JSON_FILENAME());
 }

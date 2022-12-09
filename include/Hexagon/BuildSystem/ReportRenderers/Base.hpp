@@ -32,6 +32,7 @@ namespace Hexagon
             Hexagon::BuildSystem::Builds::Base* get_build() const;
             bool is_type(std::string possible_type="");
             virtual std::string render_text();
+            std::string colorize_status(std::string status="[unset-status]");
          };
       }
    }

@@ -10,6 +10,7 @@
 #include <allegro_flare/color.h>
 #include <allegro_flare/placement3d.h>
 #include <cmath>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -55,8 +56,9 @@ ALLEGRO_COLOR Renderer::build_backfill_color()
    if (!(base_backfill_color))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "build_backfill_color" << ": error: " << "guard \"base_backfill_color\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::build_backfill_color]: error: guard \"base_backfill_color\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::build_backfill_color: error: guard \"base_backfill_color\" not met");
    }
    ALLEGRO_COLOR result_backfill_color = color::color(*base_backfill_color, 0.8);
    return result_backfill_color;
@@ -67,8 +69,9 @@ ALLEGRO_COLOR Renderer::build_text_color()
    if (!(base_text_color))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "build_text_color" << ": error: " << "guard \"base_text_color\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::build_text_color]: error: guard \"base_text_color\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::build_text_color: error: guard \"base_text_color\" not met");
    }
    ALLEGRO_COLOR result_text_color = color::color(*base_text_color, 0.8);
    return result_text_color;
@@ -79,8 +82,9 @@ ALLEGRO_COLOR Renderer::build_frame_color()
    if (!(base_text_color))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "build_frame_color" << ": error: " << "guard \"base_text_color\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::build_frame_color]: error: guard \"base_text_color\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::build_frame_color: error: guard \"base_text_color\" not met");
    }
    return al_color_html("39c3c5");
    //ALLEGRO_COLOR result_frame_color = color::color(*base_text_color, 0.8);
@@ -152,14 +156,16 @@ void Renderer::render()
    if (!(stage))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"stage\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render]: error: guard \"stage\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render: error: guard \"stage\" not met");
    }
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render]: error: guard \"font\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render: error: guard \"font\" not met");
    }
    placement3d &place = stage->get_place();
    place.start_transform();
@@ -391,20 +397,23 @@ void Renderer::render_raw()
    if (!(stage))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"stage\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_raw]: error: guard \"stage\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_raw: error: guard \"stage\" not met");
    }
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"font\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_raw]: error: guard \"font\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_raw: error: guard \"font\" not met");
    }
    if (!(base_text_color))
    {
       std::stringstream error_message;
-      error_message << "Renderer" << "::" << "render_raw" << ": error: " << "guard \"base_text_color\" not met";
-      throw std::runtime_error(error_message.str());
+      error_message << "[Renderer::render_raw]: error: guard \"base_text_color\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_raw: error: guard \"base_text_color\" not met");
    }
    render_window_raw();
 

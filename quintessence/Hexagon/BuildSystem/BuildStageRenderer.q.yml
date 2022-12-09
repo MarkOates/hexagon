@@ -35,10 +35,11 @@ functions:
       else
       {
          std::stringstream error_message;
-         error_message << "Hexagon::BuildSystem::BuildStageRenderer::build_text_report() error: "
-                       << "Cannot build_text_report() on a report that is of unknown type \""
-                       << build_stage->get_type() << "\".";
-         std::cout << error_message.str();
+         error_message << "Cannot build report that is of unknown type \"" << build_stage->get_type() << "\".";
+         std::cout << Hexagon::Errors::build_error_message(
+            "Hexagon::BuildSystem::BuildStageRenderer::build_text_report()",
+            error_message.str()
+         );
          //throw std::runtime_error(error_message.str());
       }
 
@@ -47,6 +48,7 @@ functions:
       - std::cout
       - Hexagon::BuildSystem::BuildStageRenderers::Base
       - Hexagon::BuildSystem::BuildStageRenderers::ShellCommand
+      - Hexagon::Errors
 
 
 dependencies:
@@ -58,4 +60,7 @@ dependencies:
     headers: [ Hexagon/BuildSystem/BuildStageRenderers/ShellCommand.hpp ]
   - symbol: Hexagon::BuildSystem::BuildStages::Base
     headers: [ Hexagon/BuildSystem/BuildStages/Base.hpp ]
+  - symbol: Hexagon::Errors
+    headers: [ Hexagon/Errors.hpp ]
+
 
