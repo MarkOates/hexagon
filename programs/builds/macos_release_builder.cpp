@@ -47,6 +47,7 @@ class NameGenerator
 public:
    static std::string SYSTEM_RELEASES_FOLDER; // "/Users/markoates/Releases/"
    static std::string SOURCE_RELEASE_FOLDER_NAME; // "TheWeepingHouse-SourceRelease-220903200818UTC"
+   static std::string NAME_OF_PROJECT; // "TheWeepingHouse"
    static std::string NAME_OF_EXECUTABLE; // "TheWeepingHouse"
    static std::string COPYRIGHT_FULL_TEXT; // "Copyright 2022 - Mark Oates - www.CLUBCATT.com"
    static std::string FULL_VERSION_NUMBER_WITH_BUILD; // "1.0.0.3"
@@ -66,6 +67,7 @@ public:
    static std::string full_path_of_temp_location() { return NameGenerator::TEMP_DIRECTORY_FOR_BUILD + "/"; }
    //static std::string full_path_of_temp_location_to_run_make() { return NameGenerator::TEMP_DIRECTORY_FOR_BUILD + NameGenerator::SOURCE_RELEASE_FOLDER_NAME + "/"; } // TODO: <<--- this path
    static std::string full_path_to_built_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + built_icns_filename(); };
+   static std::string name_of_project() { return NameGenerator::NAME_OF_EXECUTABLE; }
    static std::string name_of_built_executable() { return NameGenerator::NAME_OF_EXECUTABLE; }
    static std::string app_package_executable_name() { return NameGenerator::NAME_OF_EXECUTABLE; }
    static std::string app_package_folder_name() { return NameGenerator::NAME_OF_EXECUTABLE + ".app"; }
@@ -980,9 +982,16 @@ int main(int argc, char **argv)
 
    NameGenerator::SYSTEM_RELEASES_FOLDER = "/Users/markoates/Releases/";
    NameGenerator::SOURCE_RELEASE_FOLDER_NAME //= "TheWeepingHouse-SourceRelease-220903200818UTC";
-                                             = "TheWeepingHouse-SourceRelease-221209175604UTC";
+                                             //= "TheWeepingHouse-SourceRelease-221209175604UTC";
+                                             //= "Krampus22_test1-SourceRelease-221209181637UTC";
+                                             = "Krampus22_test1-SourceRelease-221209191155UTC";
 
-   NameGenerator::NAME_OF_EXECUTABLE = "TheWeepingHouse";
+                                             //221209180525UTC";
+
+   NameGenerator::NAME_OF_EXECUTABLE = "Krampus22_test1"; // This needs to match the name of the project in the source release folder.
+                                                          // note that this name is set by the generated Makefile and will match the
+                                                          // name of the projcet.
+   //NameGenerator::NAME_OF_EXECUTABLE = "TheWeepingHouse";
    NameGenerator::COPYRIGHT_FULL_TEXT = "Copyright 2022 - Mark Oates - www.CLUBCATT.com";
    NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD = "1.0.0.3";
    NameGenerator::VERSION_NUMBER = "1.0.0";
