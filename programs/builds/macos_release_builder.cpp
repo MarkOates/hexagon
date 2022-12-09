@@ -24,6 +24,7 @@
 #include <Blast/ShellCommandExecutorWithCallback.hpp>
 #include <Blast/StringSplitter.hpp>
 #include <Hexagon/BuildSystem/BuildStages/Base.hpp>
+#include <Blast/String/Trimmer.hpp>
 #include <allegro_flare/useful_php.h>
 #include <string>
 
@@ -62,7 +63,8 @@ public:
    static std::string readme_filename() { return "README.md"; }
    static std::string source_icon_filename() { return "Icon1024.png"; }
    static std::string built_icns_filename() { return "MyIcon.icns"; }
-   static std::string full_path_of_temp_location_for_build() { return NameGenerator::TEMP_DIRECTORY_FOR_BUILD + "/"; }
+   static std::string full_path_of_temp_location() { return NameGenerator::TEMP_DIRECTORY_FOR_BUILD + "/"; }
+   //static std::string full_path_of_temp_location_to_run_make() { return NameGenerator::TEMP_DIRECTORY_FOR_BUILD + NameGenerator::SOURCE_RELEASE_FOLDER_NAME + "/"; } // TODO: <<--- this path
    static std::string full_path_to_built_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + built_icns_filename(); };
    static std::string name_of_built_executable() { return NameGenerator::NAME_OF_EXECUTABLE; }
    static std::string app_package_executable_name() { return NameGenerator::NAME_OF_EXECUTABLE; }
@@ -98,7 +100,8 @@ std::string NameGenerator::TEMP_DIRECTORY_FOR_ICON; // auto-generated, different
 //#define SOURCE_ICON_FILENAME NameGenerator::source_icon_filename()
 //#define BUILT_ICNS_FILENAME NameGenerator::built_icns_filename()
 //#define NAME_OF_GENERATED_ICNS_FILE NameGenerator::built_icns_filename()
-#define FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD NameGenerator::full_path_of_temp_location_for_build()
+#define FULL_PATH_OF_TEMP_LOCATION NameGenerator::full_path_of_temp_location()
+#define FULL_PATH_OF_TEMP_LOCATION_TO_RUN_MAKE NameGenerator::full_path_of_temp_location_to_run_make()
 //#define FULL_PATH_TO_BUILT_ICNS_FILE NameGenerator::full_path_to_built_icns_file()
 //#define NAME_OF_BUILT_EXECUTABLE NameGenerator::name_of_built_executable()
 //#define APP_PACKAGE_EXECUTABLE_NAME NameGenerator::app_package_executable_name()
@@ -282,9 +285,9 @@ class CopySourceReleaseFilesForBuilding : public Hexagon::BuildSystem::BuildStag
 private:
    void execute_shell_commands()
    {
-      //TODO: require '/' character at end
+      //TODO: require '/' character at end of "name_of_source_folder"
       std::stringstream shell_command;
-      shell_command << "cp -R \"" << name_of_source_folder << "\" \"" << name_of_temp_location_to_build << "\"";
+      shell_command << "cp -R \"" << name_of_source_folder << "\"/* \"" << name_of_temp_location_to_build << "\"";
       std::cout << shell_command.str() << std::endl;
       Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
       shell_command_result = shell_command_executor.execute();
@@ -303,7 +306,7 @@ public:
    CopySourceReleaseFilesForBuilding()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , name_of_source_folder(NameGenerator::full_path_of_source_release_folder())
-      , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
+      , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION)
       , shell_command_result()
       , shell_command_response_code()
    {}
@@ -323,37 +326,37 @@ public:
 class BuildFromSourceInTempFolder : public Hexagon::BuildSystem::BuildStages::Base
 {
 private:
-   void execute_shell_commands()
+   std::string execute_shell_commands()
    {
       //TODO: require '/' character at end
-      std::stringstream shell_command;
-      shell_command << "(cd " << name_of_temp_location_to_build << " && make)";
-      std::cout << shell_command.str() << std::endl;
-      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      std::stringstream shell_command_1;
+      shell_command_1 << "(cd " << name_of_temp_location << " && make)";
+      std::cout << shell_command_1.str() << std::endl;
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command_1.str());
       shell_command_result = shell_command_executor.execute();
 
       Blast::ShellCommandExecutorWithCallback shell_command_executor2("echo $?");
       shell_command_response_code = shell_command_executor2.execute();
+      return Blast::String::Trimmer(shell_command_response_code).trim();
    }
 
 public:
    static constexpr char* TYPE = (char*)"BuildFromSourceInTempFolder";
-   std::string name_of_temp_location_to_build;
+   std::string name_of_temp_location;
    std::string shell_command_result;
    std::string shell_command_response_code;
 
    BuildFromSourceInTempFolder()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
+      , name_of_temp_location(FULL_PATH_OF_TEMP_LOCATION)
       , shell_command_result()
       , shell_command_response_code()
    {}
 
    virtual bool execute() override
    {
-      execute_shell_commands();
-      if (shell_command_response_code == "0\n") return true;
-      return false;
+      // TODO: fix this case where a failed build would actually return "success"
+      return execute_shell_commands() == "0";
    }
 };
 
@@ -385,7 +388,7 @@ public:
 
    ValidatePresenceOfBuiltExecutable()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
+      , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION )
       , name_of_expected_executable(NameGenerator::name_of_built_executable())
    {}
 
@@ -712,7 +715,7 @@ public:
 
    CopyBuiltBinaryToAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location_with_build(FULL_PATH_OF_TEMP_LOCATION_FOR_BUILD)
+      , name_of_temp_location_with_build(FULL_PATH_OF_TEMP_LOCATION)
       , name_of_built_executable(NameGenerator::name_of_built_executable())
    {}
 
