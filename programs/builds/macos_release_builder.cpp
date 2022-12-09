@@ -967,6 +967,35 @@ std::filesystem::path create_temporary_directory(unsigned long long max_tries = 
 
 int main(int argc, char **argv)
 {
+   std::vector<std::string> args;
+   for (int i=0; i<argc; i++) args.push_back(argv[i]);
+
+   std::string arg_name_of_executable = "Krampus22_test1"; // This needs to match the name of the project in the source release folder.
+                                                           // note that this name is set by the generated Makefile and will match the
+                                                           // name of the projcet.
+   std::string arg_source_release_older_name = "Krampus22_test1-SourceRelease-221209191155UTC";
+
+   if (args.size() == 3)
+   {
+      arg_name_of_executable = args[1];
+      arg_source_release_older_name = args[2];
+   }
+   else
+   {
+      // TODO: Improve this error message
+      std::cout << "You did it!" << std::endl;
+      std::cout << "Please see instructions, you need to pass two arguments like this:" << std::endl;
+      std::cout << std::endl;
+      std::cout << "./bin/programs/builds/macos_release_builder TheWeepingHouse TheWeepingHouse-SourceRelease-221209191155UTC" << std::endl;
+      std::cout << std::endl;
+      return 1;
+   }
+
+   std::cout << "Building with the folowing information:" << std::endl;
+   std::cout << "   Source release folder name: \"" << arg_source_release_older_name << "\"" << std::endl;
+   std::cout << "           Name of executable: \"" << arg_name_of_executable << "\"" << std::endl;
+
+
    //std::filesystem::path temporary_directory1 = create_temporary_directory();
    //std::filesystem::path temporary_directory2 = create_temporary_directory();
 
@@ -984,13 +1013,15 @@ int main(int argc, char **argv)
    NameGenerator::SOURCE_RELEASE_FOLDER_NAME //= "TheWeepingHouse-SourceRelease-220903200818UTC";
                                              //= "TheWeepingHouse-SourceRelease-221209175604UTC";
                                              //= "Krampus22_test1-SourceRelease-221209181637UTC";
-                                             = "Krampus22_test1-SourceRelease-221209191155UTC";
+                                             //= "Krampus22_test1-SourceRelease-221209191155UTC";
+                                             = arg_source_release_older_name;
 
                                              //221209180525UTC";
 
-   NameGenerator::NAME_OF_EXECUTABLE = "Krampus22_test1"; // This needs to match the name of the project in the source release folder.
+   NameGenerator::NAME_OF_EXECUTABLE //= "Krampus22_test1"; // This needs to match the name of the project in the source release folder.
                                                           // note that this name is set by the generated Makefile and will match the
                                                           // name of the projcet.
+                                     = arg_name_of_executable;
    //NameGenerator::NAME_OF_EXECUTABLE = "TheWeepingHouse";
    NameGenerator::COPYRIGHT_FULL_TEXT = "Copyright 2022 - Mark Oates - www.CLUBCATT.com";
    NameGenerator::FULL_VERSION_NUMBER_WITH_BUILD = "1.0.0.3";
