@@ -74,7 +74,11 @@ public:
    static std::string full_path_to_copied_source_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + source_icon_filename(); }
    static std::string release_folder_relative_to_system_releases_folder() { return "TheWeepingHouse-MacOS-chip_unknown"; }
    static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
+   //static std::string release_folder_relative_to_system_releases_folder() { return "TheWeepingHouse-MacOS-chip_unknown"; }
+   //static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
    static std::string full_path_of_source_release_folder() { return "/Users/markoates/Releases/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
+
+
 };
 
 
@@ -102,8 +106,8 @@ std::string NameGenerator::TEMP_DIRECTORY_FOR_ICON; // auto-generated, different
 //#define SOURCE_ICON_FILENAME NameGenerator::source_icon_filename()
 //#define BUILT_ICNS_FILENAME NameGenerator::built_icns_filename()
 //#define NAME_OF_GENERATED_ICNS_FILE NameGenerator::built_icns_filename()
-#define FULL_PATH_OF_TEMP_LOCATION NameGenerator::full_path_of_temp_location()
-#define FULL_PATH_OF_TEMP_LOCATION_TO_RUN_MAKE NameGenerator::full_path_of_temp_location_to_run_make()
+//#define FULL_PATH_OF_TEMP_LOCATION NameGenerator::full_path_of_temp_location()
+//#define FULL_PATH_OF_TEMP_LOCATION_TO_RUN_MAKE NameGenerator::full_path_of_temp_location_to_run_make()
 //#define FULL_PATH_TO_BUILT_ICNS_FILE NameGenerator::full_path_to_built_icns_file()
 //#define NAME_OF_BUILT_EXECUTABLE NameGenerator::name_of_built_executable()
 //#define APP_PACKAGE_EXECUTABLE_NAME NameGenerator::app_package_executable_name()
@@ -308,7 +312,7 @@ public:
    CopySourceReleaseFilesForBuilding()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
       , name_of_source_folder(NameGenerator::full_path_of_source_release_folder())
-      , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION)
+      , name_of_temp_location_to_build(NameGenerator::full_path_of_temp_location())
       , shell_command_result()
       , shell_command_response_code()
    {}
@@ -350,7 +354,7 @@ public:
 
    BuildFromSourceInTempFolder()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location(FULL_PATH_OF_TEMP_LOCATION)
+      , name_of_temp_location(NameGenerator::full_path_of_temp_location())
       , shell_command_result()
       , shell_command_response_code()
    {}
@@ -390,7 +394,7 @@ public:
 
    ValidatePresenceOfBuiltExecutable()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location_to_build(FULL_PATH_OF_TEMP_LOCATION )
+      , name_of_temp_location_to_build(NameGenerator::full_path_of_temp_location())
       , name_of_expected_executable(NameGenerator::name_of_built_executable())
    {}
 
@@ -717,7 +721,7 @@ public:
 
    CopyBuiltBinaryToAppPackage()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , name_of_temp_location_with_build(FULL_PATH_OF_TEMP_LOCATION)
+      , name_of_temp_location_with_build(NameGenerator::full_path_of_temp_location())
       , name_of_built_executable(NameGenerator::name_of_built_executable())
    {}
 

@@ -15,7 +15,7 @@ namespace Hexagon
          class Base
          {
          public:
-            static constexpr char* TYPE = "Base";
+            static constexpr char* TYPE = (char*)"Base";
             static constexpr char* STATUS_WAITING_TO_START = (char*)"waiting_to_start";
             static constexpr char* STATUS_RUNNING = (char*)"running";
             static constexpr char* STATUS_SUCCEEDED = (char*)"succeeded";

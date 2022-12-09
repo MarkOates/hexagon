@@ -4,7 +4,7 @@ properties:
   - name: TYPE
     type: char*
     static: true
-    init_with: '"Base"'
+    init_with: '(char*)"Base"'
     constexpr: true
 
   - name: type
@@ -41,25 +41,25 @@ properties:
   - name: STATUS_WAITING_TO_START
     type: char*
     static: true
-    init_with: '"waiting_to_started"'
+    init_with: '(char*)"waiting_to_started"'
     constexpr: true
 
   - name: STATUS_RUNNING
     type: char*
     static: true
-    init_with: '"running"'
+    init_with: '(char*)"running"'
     constexpr: true
 
   - name: STATUS_FINISHED
     type: char*
     static: true
-    init_with: '"finished"'
+    init_with: '(char*)"finished"'
     constexpr: true
 
   - name: STATUS_ERROR
     type: char*
     static: true
-    init_with: '"error"'
+    init_with: '(char*)"error"'
     constexpr: true
 
 
