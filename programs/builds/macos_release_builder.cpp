@@ -980,7 +980,7 @@ int main(int argc, char **argv)
 
    NameGenerator::SYSTEM_RELEASES_FOLDER = "/Users/markoates/Releases/";
    NameGenerator::SOURCE_RELEASE_FOLDER_NAME //= "TheWeepingHouse-SourceRelease-220903200818UTC";
-                                             = "TheWeepingHouse-SourceRelease-221209152039UTC";
+                                             = "TheWeepingHouse-SourceRelease-221209175604UTC";
 
    NameGenerator::NAME_OF_EXECUTABLE = "TheWeepingHouse";
    NameGenerator::COPYRIGHT_FULL_TEXT = "Copyright 2022 - Mark Oates - www.CLUBCATT.com";
