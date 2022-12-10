@@ -90,25 +90,43 @@ public:
    static std::string app_package_executable_name() { return NameGenerator::NAME_OF_EXECUTABLE; }
    static std::string app_package_folder_name() { return NameGenerator::NAME_OF_EXECUTABLE + ".app"; }
    static std::string full_path_to_copied_source_icns_file() { return NameGenerator::TEMP_DIRECTORY_FOR_ICON + "/" + source_icon_filename(); }
-   static std::string release_folder_relative_to_system_releases_folder() { return "TheWeepingHouse-MacOS-chip_unknown"; }
-   static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
+   static std::string release_folder_relative_to_system_releases_folder() { return NameGenerator::NAME_OF_EXECUTABLE + "-MacOS-chip_unknown"; }
+   static std::string full_path_to_result_info_dot_plist_file()
+   {
+      return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/" + NAME_OF_EXECUTABLE + ".app/Contents/Info.plist";
+      // concretion:
+      //return SYSTEM_RELEASES_FOLDER + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Info.plist";
+   }
+
+   static std::string release_zip_filename() { return NameGenerator::NAME_OF_EXECUTABLE + "-MacOS-chip_unknown.zip"; }
    // TODO: remove these intermediate "/" additions, validate "/" is appended when assigned
    static std::string full_path_of_source_release_folder() { return SYSTEM_RELEASES_FOLDER + "/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
    static std::string full_path_to_destination_icns_file()
    {
-      return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/TheWeepingHouse.app/Contents/Resources/Icon.icns";
+      return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/" + NameGenerator::NAME_OF_EXECUTABLE + ".app/Contents/Resources/Icon.icns";
+      // concretion:
+      //return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/TheWeepingHouse.app/Contents/Resources/Icon.icns";
    }
    static std::string full_path_to_source_readme() { return (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename()); }
    static std::string full_path_of_source_data_folder() { return (TEMP_DIRECTORY_FOR_BUILD + "/data/"); }
-   static std::string full_path_to_destination_readme() { return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "README.md"; }
-   static std::string full_path_of_destination_data_folder() { return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/TheWeepingHouse.app/Contents/Resources/data"; }
+   static std::string full_path_to_destination_readme() { return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/" + "README.md"; }
+   static std::string full_path_of_destination_data_folder()
+   {
+      return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/" + NameGenerator::NAME_OF_EXECUTABLE + ".app/Contents/Resources/data";
+      // concretion:
+      //return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/TheWeepingHouse.app/Contents/Resources/data";
+   }
    static std::string release_folder_location() { return SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder(); }
    static std::string full_binary_app_package_destination()
    {
-      return (SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable());
+      return (SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/" + NameGenerator::NAME_OF_EXECUTABLE + ".app/Contents/MacOS/" + NameGenerator::name_of_built_executable());
+      // concretion:
+      //return (SYSTEM_RELEASES_FOLDER + "/" + release_folder_relative_to_system_releases_folder() + "/TheWeepingHouse.app/Contents/MacOS/" + NameGenerator::name_of_built_executable());
    }
 
    // some example concretions:
+   //static std::string release_folder_relative_to_system_releases_folder() { return "TheWeepingHouse-MacOS-chip_unknown"; }
+   //static std::string release_zip_filename() { return "TheWeepingHouse-MacOS-chip_unknown.zip"; }
    //static std::string full_path_of_source_release_folder() { return "/Users/markoates/Releases/" + NameGenerator::SOURCE_RELEASE_FOLDER_NAME; }
    //static std::string full_path_to_destination_icns_file() { return "/Users/markoates/Releases/TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Resources/Icon.icns"; }
    //static std::string full_path_to_source_readme() { return (TEMP_DIRECTORY_FOR_BUILD + "/" + NameGenerator::readme_filename()); }
@@ -740,7 +758,9 @@ public:
 
    CreateInfoDotPlistFile()
       : Hexagon::BuildSystem::BuildStages::Base(TYPE)
-      , system_releases_folder("/Users/markoates/Releases/")
+      , system_releases_folder(NameGenerator::SYSTEM_RELEASES_FOLDER)
+      // concretion:
+      //, system_releases_folder("/Users/markoates/Releases/")
    {}
 
    virtual bool execute() override
@@ -752,7 +772,7 @@ public:
             {  "[[VERSION_NUMBER]]", NameGenerator::VERSION_NUMBER },
          });
 
-      std::string full_path_and_filename = system_releases_folder + "TheWeepingHouse-MacOS-chip_unknown/TheWeepingHouse.app/Contents/Info.plist";
+      std::string full_path_and_filename = NameGenerator::full_path_to_result_info_dot_plist_file();
       file_put_contents(full_path_and_filename, plist_template.generate_content());
 
       return Blast::FileExistenceChecker(full_path_and_filename).exists();
