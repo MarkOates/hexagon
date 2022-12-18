@@ -50,6 +50,8 @@ std::vector<std::string> ComponentSearcher::component_names()
 {
    std::vector<std::string> elements = Blast::Project::ComponentLister(project_root_directory).components();
    if (search_text.empty()) return elements;
+
+   // filter (and return) list by search string
    return filter_names_through_search_text(elements);
 }
 
@@ -62,7 +64,7 @@ std::vector<Blast::Project::Component> ComponentSearcher::components_sorted_by_m
    unfiltered_elements = Blast::Project::ComponentLister(project_root_directory).components_sorted_by_most_recent();
 
    // filter list by search string
-   std::vector<std::string> filtered_elements = Blast::SimpleTextSearcher(search_text, unfiltered_elements).results();
+   std::vector<std::string> filtered_elements = filter_names_through_search_text(unfiltered_elements);
 
    // build (and return) components
    return convert_to_components(filtered_elements);

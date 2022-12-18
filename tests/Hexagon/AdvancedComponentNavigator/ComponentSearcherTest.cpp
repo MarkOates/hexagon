@@ -114,6 +114,23 @@ TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
 
 
 TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
+   components_sorted_by_most_recent__when_a_search_contains_spaces_to_separate_search_tokens__returns_expected_results)
+{
+   std::string project_root_directory = "/Users/markoates/Repos/blast";
+   std::string search_text = "Blast/Project Creator";
+   Hexagon::AdvancedComponentNavigator::ComponentSearcher searcher(project_root_directory, search_text);
+
+   std::vector<std::string> expected = {
+      "Blast/Project/ComponentCreator",
+      "Blast/Project/ActionCreator",
+   };
+   std::vector<std::string> actual = searcher.convert_to_names(searcher.components_sorted_by_most_recent());
+
+   ASSERT_EQ(expected, actual);
+}
+
+
+TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
    components__returns_results_filtered_by_search_string)
 {
 }
