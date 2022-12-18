@@ -48,19 +48,9 @@ std::vector<Blast::Project::Component> ComponentSearcher::convert_to_components(
 
 std::vector<std::string> ComponentSearcher::component_names()
 {
-   std::vector<std::string> results = {};
    std::vector<std::string> elements = Blast::Project::ComponentLister(project_root_directory).components();
    if (search_text.empty()) return elements;
-
-   std::vector<std::string> tokenized_search_texts = tokenize_search_texts();
-   results = elements;
-   for (auto &tokenized_search_text : tokenized_search_texts)
-   {
-      Blast::SimpleTextSearcher searcher(tokenized_search_text, results);
-      results = searcher.results();
-   }
-
-   return results;
+   return filter_names_through_search_text(elements);
 }
 
 std::vector<Blast::Project::Component> ComponentSearcher::components_sorted_by_most_recent()
@@ -76,6 +66,19 @@ std::vector<Blast::Project::Component> ComponentSearcher::components_sorted_by_m
 
    // build (and return) components
    return convert_to_components(filtered_elements);
+}
+
+std::vector<std::string> ComponentSearcher::filter_names_through_search_text(std::vector<std::string> elements)
+{
+   std::vector<std::string> results = {};
+   std::vector<std::string> tokenized_search_texts = tokenize_search_texts();
+   results = elements;
+   for (auto &tokenized_search_text : tokenized_search_texts)
+   {
+      Blast::SimpleTextSearcher searcher(tokenized_search_text, results);
+      results = searcher.results();
+   }
+   return results;
 }
 
 std::vector<Blast::Project::Component> ComponentSearcher::components()

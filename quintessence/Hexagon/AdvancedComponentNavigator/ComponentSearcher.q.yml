@@ -49,19 +49,9 @@ functions:
   - name: component_names
     type: std::vector<std::string>
     body: |
-      std::vector<std::string> results = {};
       std::vector<std::string> elements = Blast::Project::ComponentLister(project_root_directory).components();
       if (search_text.empty()) return elements;
-
-      std::vector<std::string> tokenized_search_texts = tokenize_search_texts();
-      results = elements;
-      for (auto &tokenized_search_text : tokenized_search_texts)
-      {
-         Blast::SimpleTextSearcher searcher(tokenized_search_text, results);
-         results = searcher.results();
-      }
-
-      return results;
+      return filter_names_through_search_text(elements);
     body_dependency_symbols:
       - Blast::Project::ComponentLister
       - Blast::SimpleTextSearcher
@@ -83,6 +73,26 @@ functions:
       return convert_to_components(filtered_elements);
     body_dependency_symbols:
       - Blast::Project::ComponentLister
+      - Blast::SimpleTextSearcher
+
+
+  - name: filter_names_through_search_text
+    type: std::vector<std::string>
+    parameters:
+      - name: elements
+        type: std::vector<std::string>
+        default_argument: "{}"
+    body: |
+      std::vector<std::string> results = {};
+      std::vector<std::string> tokenized_search_texts = tokenize_search_texts();
+      results = elements;
+      for (auto &tokenized_search_text : tokenized_search_texts)
+      {
+         Blast::SimpleTextSearcher searcher(tokenized_search_text, results);
+         results = searcher.results();
+      }
+      return results;
+    body_dependency_symbols:
       - Blast::SimpleTextSearcher
 
 

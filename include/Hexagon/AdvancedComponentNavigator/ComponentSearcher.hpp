@@ -27,6 +27,7 @@ namespace Hexagon
          std::vector<Blast::Project::Component> convert_to_components(std::vector<std::string> names={});
          std::vector<std::string> component_names();
          std::vector<Blast::Project::Component> components_sorted_by_most_recent();
+         std::vector<std::string> filter_names_through_search_text(std::vector<std::string> elements={});
          std::vector<Blast::Project::Component> components();
          std::vector<std::string> tokenize_search_texts();
       };
