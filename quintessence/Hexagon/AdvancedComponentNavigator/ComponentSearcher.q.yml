@@ -5,6 +5,7 @@ properties:
     type: std::string
     default: "/Users/markoates/Repos/hexagon"
     constructor_arg: true
+
   - name: search_text
     type: std::string
     default: '""'
@@ -48,11 +49,19 @@ functions:
   - name: component_names
     type: std::vector<std::string>
     body: |
-      std::vector<std::string> result_names = {};
+      std::vector<std::string> results = {};
       std::vector<std::string> elements = Blast::Project::ComponentLister(project_root_directory).components();
       if (search_text.empty()) return elements;
-      Blast::SimpleTextSearcher searcher(search_text, elements);
-      return searcher.results();
+
+      std::vector<std::string> tokenized_search_texts = tokenize_search_texts();
+      results = elements;
+      for (auto &tokenized_search_text : tokenized_search_texts)
+      {
+         Blast::SimpleTextSearcher searcher(tokenized_search_text, results);
+         results = searcher.results();
+      }
+
+      return results;
     body_dependency_symbols:
       - Blast::Project::ComponentLister
       - Blast::SimpleTextSearcher
@@ -86,6 +95,14 @@ functions:
       - Blast::Project::ComponentLister
 
 
+  - name: tokenize_search_texts
+    type: std::vector<std::string>
+    body: |
+      return Blast::StringSplitter(search_text, ' ').split();
+    body_dependency_symbols:
+      - Blast::StringSplitter
+
+
 dependencies:
 
 
@@ -97,7 +114,8 @@ dependencies:
     headers: [ 'Blast/SimpleTextSearcher.hpp' ]
   - symbol: std::vector<Blast::Project::Component>
     headers: [ vector, Blast/Project/Component.hpp ]
-
+  - symbol: Blast::StringSplitter
+    headers: [ Blast/StringSplitter.hpp ]
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
 

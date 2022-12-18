@@ -4,6 +4,7 @@
 
 #include <Blast/Project/ComponentLister.hpp>
 #include <Blast/SimpleTextSearcher.hpp>
+#include <Blast/StringSplitter.hpp>
 
 
 namespace Hexagon
@@ -47,11 +48,19 @@ std::vector<Blast::Project::Component> ComponentSearcher::convert_to_components(
 
 std::vector<std::string> ComponentSearcher::component_names()
 {
-   std::vector<std::string> result_names = {};
+   std::vector<std::string> results = {};
    std::vector<std::string> elements = Blast::Project::ComponentLister(project_root_directory).components();
    if (search_text.empty()) return elements;
-   Blast::SimpleTextSearcher searcher(search_text, elements);
-   return searcher.results();
+
+   std::vector<std::string> tokenized_search_texts = tokenize_search_texts();
+   results = elements;
+   for (auto &tokenized_search_text : tokenized_search_texts)
+   {
+      Blast::SimpleTextSearcher searcher(tokenized_search_text, results);
+      results = searcher.results();
+   }
+
+   return results;
 }
 
 std::vector<Blast::Project::Component> ComponentSearcher::components_sorted_by_most_recent()
@@ -73,6 +82,11 @@ std::vector<Blast::Project::Component> ComponentSearcher::components()
 {
    std::vector<Blast::Project::Component> result;
    return convert_to_components(component_names());
+}
+
+std::vector<std::string> ComponentSearcher::tokenize_search_texts()
+{
+   return Blast::StringSplitter(search_text, ' ').split();
 }
 
 

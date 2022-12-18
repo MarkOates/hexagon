@@ -165,6 +165,7 @@
   "Blast/StringSplitter": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
+    "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Staged",
