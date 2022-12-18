@@ -1310,9 +1310,13 @@ bool System::spawn_git_commit_message_input_box_modal()
 bool System::spawn_component_navigator()
 {
    ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
+
+   // if the current_project_domain is active, use the domain as the search text, but append a blank space
+   // so additional typing can be appended without having to add an extra space
+   std::string initial_search_text = current_project_domain.empty() ? "" : (current_project_domain + " ");
    StageInterface *stage = stage_factory.create_advanced_component_navigator(
          current_project_directory,
-         current_project_domain
+         initial_search_text
    );
 
    bool do_fancy_stuff_with_position_and_movement = false;

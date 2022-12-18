@@ -149,6 +149,8 @@ void Renderer::draw_input_hints()
    std::string text_to_draw = input_hints_tokens[0];
    ALLEGRO_COLOR color = base_text_color;
    al_draw_text(font, color, place.size.x * 0.5, place.size.y+30, ALLEGRO_ALIGN_CENTER, text_to_draw.c_str());
+   std::string help_text = "Note that multiple search filters are applied when search has text separated by spaces.";
+   al_draw_text(font, color, place.size.x * 0.5, place.size.y+60, ALLEGRO_ALIGN_CENTER, help_text.c_str());
    return;
 }
 
