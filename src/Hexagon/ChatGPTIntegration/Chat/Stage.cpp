@@ -186,16 +186,32 @@ void Stage::process_event(ALLEGRO_EVENT& event)
          bool ctrl = event.keyboard.modifiers & ALLEGRO_KEYMOD_CTRL;
          bool command = event.keyboard.modifiers & ALLEGRO_KEYMOD_COMMAND;
          bool alt = event.keyboard.modifiers & ALLEGRO_KEYMOD_ALT;
-         std::cout << "CHAR EVENT: " << (char)(event.keyboard.unichar) << std::endl;
-         std::cout << "text: " << input_box.get_text() << std::endl;
+         //std::cout << "CHAR EVENT: " << (char)(event.keyboard.unichar) << std::endl;
+         //std::cout << "text: " << input_box.get_text() << std::endl;
+
+         if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE)
+         {
+            input_box.move_cursor_left();
+            input_box.delete_character();
+            return;
+         }
+
+         if (event.keyboard.keycode == ALLEGRO_KEY_ENTER)
+         {
+            //input_box.move_cursor_left();
+            //input_box.delete_character();
+            return;
+         }
 
          //std::vector<std::string> mapped_events =
             //keyboard_command_mapping.get_mapping(event.keyboard.keycode, shift, ctrl, alt, command);
          //for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
 
+         bool is_permitted_char_to_append = true;
          //if (stage->is_in_insert_mode())
          //{
             //if (mapped_events.empty()) // TODO: I'm not sure what the purpose of this section is
+            if (is_permitted_char_to_append)
             {
                char character = (char)(event.keyboard.unichar);
                input_buffer = " ";

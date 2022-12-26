@@ -31,6 +31,7 @@ namespace Hexagon
             bool move_cursor_left();
             bool move_cursor_right();
             bool insert_string(std::string text="[unset-text]");
+            bool delete_character();
             Hexagon::AdvancedCodeEditor::Cursor get_cursor();
             std::string get_text();
          };

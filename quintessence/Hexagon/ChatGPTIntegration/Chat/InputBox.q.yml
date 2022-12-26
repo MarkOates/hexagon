@@ -50,6 +50,12 @@ functions:
       return text_editor.insert_string(text);
 
 
+  - name: delete_character
+    type: bool
+    body: |
+      return text_editor.delete_character();
+
+
   - name: get_cursor
     type: Hexagon::AdvancedCodeEditor::Cursor
     body: |

@@ -60,6 +60,11 @@ bool InputBox::insert_string(std::string text)
    return text_editor.insert_string(text);
 }
 
+bool InputBox::delete_character()
+{
+   return text_editor.delete_character();
+}
+
 Hexagon::AdvancedCodeEditor::Cursor InputBox::get_cursor()
 {
    return text_editor.get_cursor_ref();
