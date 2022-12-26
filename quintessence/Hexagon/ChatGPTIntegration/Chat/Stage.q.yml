@@ -51,7 +51,7 @@ functions:
   - name: render
     virtual: true
     override: true
-    guards: [ (!initialized) ]
+    guards: [ initialized ]
     body: |
       ALLEGRO_FONT *dump_font = obtain_dump_font();
       float font_line_height = al_get_font_line_height(dump_font);

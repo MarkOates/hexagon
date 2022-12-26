@@ -80,6 +80,10 @@ table td
   <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Camera.q.yml">quintessence/Hexagon/Camera.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/Chat.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/Chat.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/InputBox.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/InputBox.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/LogView.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/LogView.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/Stage.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.q.yml">quintessence/Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/Cursor.q.yml">quintessence/Hexagon/CodeEditor/Cursor.q.yml</a></li>
@@ -2870,6 +2874,125 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;tan&quot;, &quot;headers&quot;=&gt;[&quot;cmath&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ChatGPTIntegration/Chat/Chat.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/Chat.q.yml</h3>
+     <table>
+    </table>
+     <table>
+<tr>
+  <td class="method">run()</td>
+</tr>
+    </table>
+     <table>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ChatGPTIntegration/Chat/InputBox.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/InputBox.q.yml</h3>
+     <table>
+    </table>
+     <table>
+<tr>
+  <td class="method">run()</td>
+</tr>
+    </table>
+     <table>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ChatGPTIntegration/Chat/LogView.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/LogView.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">source_filename</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">get_log_text()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::FileExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/FileExistenceChecker.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::file_get_contents&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ChatGPTIntegration/Chat/Stage.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/Stage.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
+  <td class="property">log_view</td>
+  <td class="property">Hexagon::ChatGPTIntegration::Chat::LogView</td>
+</tr>
+<tr>
+  <td class="property">log_source_filename</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">a_default_empty_event</td>
+  <td class="property">ALLEGRO_EVENT</td>
+</tr>
+<tr>
+  <td class="property">initialized</td>
+  <td class="property">bool</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">initialize()</td>
+</tr>
+<tr>
+  <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
+</tr>
+<tr>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
+</tr>
+<tr>
+  <td class="method">destroy()</td>
+</tr>
+<tr>
+  <td class="method">obtain_dump_font()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;StageInterface&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageInterface.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatGPTIntegration::Chat::LogView&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatGPTIntegration/Chat/LogView.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ActionData&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ActionData.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -12531,6 +12654,7 @@ table td
     "Hexagon/AdvancedCodeEditor/EventController",
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/Fancy/Stage",
@@ -12574,6 +12698,7 @@ table td
     "ApplicationController",
     "Hexagon/ASTTraverser",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/LogView",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Elements/FilePixelPreviewCreator",
@@ -12669,6 +12794,7 @@ table td
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/EventController",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/Fancy/Stage",
@@ -12836,6 +12962,7 @@ table td
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/LineRenderBin",
@@ -13054,6 +13181,7 @@ table td
   "StageInterface": [
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/Fancy/Stage",
@@ -13117,6 +13245,7 @@ table td
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
@@ -13439,6 +13568,7 @@ table td
   ],
   "php/file_get_contents": [
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/LogView",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Hud",
@@ -13561,6 +13691,9 @@ table td
   ],
   "tan": [
     "Hexagon/Camera"
+  ],
+  "Hexagon/ChatGPTIntegration/Chat/LogView": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
   "all": [
     "Hexagon/CodeEditor/CachedLineRenderer"

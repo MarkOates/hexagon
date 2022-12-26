@@ -92,6 +92,7 @@
     "Hexagon/AdvancedCodeEditor/EventController",
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/Fancy/Stage",
@@ -135,6 +136,7 @@
     "ApplicationController",
     "Hexagon/ASTTraverser",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/LogView",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Elements/FilePixelPreviewCreator",
@@ -230,6 +232,7 @@
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/EventController",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/Fancy/Stage",
@@ -397,6 +400,7 @@
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/LineRenderBin",
@@ -615,6 +619,7 @@
   "StageInterface": [
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/Fancy/Stage",
@@ -678,6 +683,7 @@
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
@@ -1000,6 +1006,7 @@
   ],
   "php/file_get_contents": [
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/LogView",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Hud",
@@ -1122,6 +1129,9 @@
   ],
   "tan": [
     "Hexagon/Camera"
+  ],
+  "Hexagon/ChatGPTIntegration/Chat/LogView": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
   "all": [
     "Hexagon/CodeEditor/CachedLineRenderer"
