@@ -39,7 +39,7 @@ functions:
       std::stringstream command;
       std::string message_unescaped = message;
       // command << command_program << " " << tty_location << " '" << message_unescaped << "\0x0D\0x0D'";
-      command << command_program << " " << tty_location << " \"" << message_unescaped << "\"";
+      command << command_program << " " << tty_location << " \"" << message_unescaped << "\\n\\n\"";
 
       // NOTE! this assumes the command is safe. It is currently not escaped
       if (output_command_to_cout)
@@ -51,6 +51,17 @@ functions:
 
       Blast::ShellCommandExecutorWithCallback shell_command_executor_with_callback(command.str());
       shell_command_output = shell_command_executor_with_callback.execute();
+
+
+      // In order to submit the command, we will need to submit the ENTER key.  There are some complexities with the
+      // character, so a script has been created that can "press" the ENTER key.
+      // The program expects the enter key to be pressed twice, so, the script is run twice here:
+
+      std::string script_to_send_enter_key = "/Users/markoates/Repos/ChatGPT/scripts/subit_enter_to_tty.sh";
+      Blast::ShellCommandExecutorWithCallback submit_enter_key_command(script_to_send_enter_key);
+      // Unused variable:
+      std::string enter_key_command_output_1 = submit_enter_key_command.execute();
+      std::string enter_key_command_output_2 = submit_enter_key_command.execute();
 
       return shell_command_output;
     body_dependency_symbols:
