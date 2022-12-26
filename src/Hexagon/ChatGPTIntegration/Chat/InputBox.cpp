@@ -30,9 +30,10 @@ Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &InputBox::get_text_editor_ref()
 }
 
 
-void InputBox::draw()
+bool InputBox::clear()
 {
-   std::string text = get_text();
+   text_editor.set_content("");
+   text_editor.cursor_move_to(0, 0);
 }
 
 bool InputBox::move_cursor_up()

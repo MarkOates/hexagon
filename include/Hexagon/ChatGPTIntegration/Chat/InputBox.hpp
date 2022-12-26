@@ -25,7 +25,7 @@ namespace Hexagon
             ~InputBox();
 
             Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_text_editor_ref();
-            void draw();
+            bool clear();
             bool move_cursor_up();
             bool move_cursor_down();
             bool move_cursor_left();

@@ -46,6 +46,7 @@ namespace Hexagon
             static ALLEGRO_EVENT &get_a_default_empty_event_ref();
             std::string &get_input_buffer_ref();
             void initialize();
+            void clear_input_text_box();
             virtual void render() override;
             void submit_input_box_and_clear();
             virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;

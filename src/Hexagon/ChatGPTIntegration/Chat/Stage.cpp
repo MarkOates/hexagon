@@ -110,6 +110,12 @@ void Stage::initialize()
    return;
 }
 
+void Stage::clear_input_text_box()
+{
+   input_box.clear();
+   input_box.get_text_editor_ref().insert_lines({""}); // need to insert a blank line so that we can add chars to it
+}
+
 void Stage::render()
 {
    if (!(initialized))
@@ -179,6 +185,8 @@ void Stage::submit_input_box_and_clear()
 
    Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat submit_tty_message_to_chat(tty_location, filtered_text);
    submit_tty_message_to_chat.submit();
+
+   clear_input_text_box();
 
    return;
 }

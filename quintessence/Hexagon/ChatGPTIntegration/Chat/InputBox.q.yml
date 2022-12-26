@@ -10,10 +10,11 @@ properties:
 functions:
 
 
-  - name: draw
-    type: void
+  - name: clear
+    type: bool
     body: |
-      std::string text = get_text();
+      text_editor.set_content("");
+      text_editor.cursor_move_to(0, 0);
 
 
   - name: move_cursor_up

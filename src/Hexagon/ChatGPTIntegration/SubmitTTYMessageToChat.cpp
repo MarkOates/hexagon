@@ -81,7 +81,8 @@ std::string SubmitTTYMessageToChat::submit()
    std::string command_program = "/Users/markoates/Repos/ChatGPT/bin/programs/writevt";
    std::stringstream command;
    std::string message_unescaped = message;
-   command << command_program << " " << tty_location << " \"" << message_unescaped << "\\r\\r\"";
+   // command << command_program << " " << tty_location << " '" << message_unescaped << "\0x0D\0x0D'";
+   command << command_program << " " << tty_location << " \"" << message_unescaped << "\"";
 
    // NOTE! this assumes the command is safe. It is currently not escaped
    if (output_command_to_cout)
