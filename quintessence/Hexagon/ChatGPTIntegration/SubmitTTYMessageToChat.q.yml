@@ -1,0 +1,60 @@
+properties:
+
+
+  - name: tty_location
+    type: std::string
+    init_with: '"[unset-tty_location]"'
+
+  - name: message
+    type: std::string
+    init_with: '"[unset-message]"'
+
+  - name: shell_command_output
+    type: std::string
+    init_with: '"[unset-shell_command_output]"'
+    getter: true
+    setter: true
+
+  - name: output_command_to_cout
+    type: bool
+    init_with: true
+    getter: true
+    setter: true
+ 
+
+functions:
+
+
+  - name: submit
+    type: std::string
+    body: |
+      std::string command_program = "/Users/markoates/Repos/ChatGPT/bin/programs/writevt";
+      std::stringstream command;
+      std::string message_unescaped = message;
+      command << command_program << " " << tty_location << " \"" << message_unescaped << "\\r\\r\"";
+
+      // NOTE! this assumes the command is safe. It is currently not escaped
+      if (output_command_to_cout)
+      {
+         std::cout << std::endl << "========= outputting command begin: =======" << std::endl;
+         std::cout << command.str();
+         std::cout << std::endl << "========= :outputting command end =======" << std::endl;
+      }
+
+      Blast::ShellCommandExecutorWithCallback shell_command_executor_with_callback(command.str());
+
+      //shell_command_output = shell_command_executor_with_callback(
+      return shell_command_output;
+    body_dependency_symbols:
+      - std::cout
+      - std::stringstream
+      - Blast::ShellCommandExecutorWithCallback
+
+
+dependencies:
+
+
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+
+

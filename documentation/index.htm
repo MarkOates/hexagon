@@ -1335,6 +1335,9 @@ table td
   <td class="method">paste_selected_text_from_clipboard()</td>
 </tr>
 <tr>
+  <td class="method">replace_content_with_contents_of_clipboard()</td>
+</tr>
+<tr>
   <td class="method">build_local_events_dictionary()</td>
 </tr>
 <tr>
@@ -1536,6 +1539,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::function&quot;, &quot;headers&quot;=&gt;[&quot;functional&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringJoiner&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringJoiner.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -13140,6 +13146,11 @@ table td
   "Hexagon/CodeMessagePointManager": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
+  "Blast/StringJoiner": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/MultiplexMenu/PageRenderer",
+    "Hexagon/UI/DrawingBox"
+  ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",
     "Hexagon/ElementFX/WindowSpawnMotionFX",
@@ -13996,10 +14007,6 @@ table td
   ],
   "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage"
-  ],
-  "Blast/StringJoiner": [
-    "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/UI/DrawingBox"
   ],
   "al_keycode_to_name": [
     "Hexagon/MultiplexMenu/PageRenderer"

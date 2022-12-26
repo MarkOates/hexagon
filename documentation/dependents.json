@@ -747,6 +747,11 @@
   "Hexagon/CodeMessagePointManager": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
+  "Blast/StringJoiner": [
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/MultiplexMenu/PageRenderer",
+    "Hexagon/UI/DrawingBox"
+  ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",
     "Hexagon/ElementFX/WindowSpawnMotionFX",
@@ -1603,10 +1608,6 @@
   ],
   "std/vector<Hexagon/MultiplexMenu/MenuItem>": [
     "Hexagon/MultiplexMenu/MultiplexMenuPage"
-  ],
-  "Blast/StringJoiner": [
-    "Hexagon/MultiplexMenu/PageRenderer",
-    "Hexagon/UI/DrawingBox"
   ],
   "al_keycode_to_name": [
     "Hexagon/MultiplexMenu/PageRenderer"
