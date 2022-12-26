@@ -34,6 +34,7 @@ functions:
   - name: submit
     type: std::string
     body: |
+      // TODO: Add guards to ensure this program is present, is compiled, and has the proper permissions:
       std::string command_program = "/Users/markoates/Repos/ChatGPT/bin/programs/writevt";
       std::stringstream command;
       std::string message_unescaped = message;

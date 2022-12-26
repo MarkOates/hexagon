@@ -77,6 +77,7 @@ bool SubmitTTYMessageToChat::get_output_command_to_cout() const
 
 std::string SubmitTTYMessageToChat::submit()
 {
+   // TODO: Add guards to ensure this program is present, is compiled, and has the proper permissions:
    std::string command_program = "/Users/markoates/Repos/ChatGPT/bin/programs/writevt";
    std::stringstream command;
    std::string message_unescaped = message;
