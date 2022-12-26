@@ -1,9 +1,78 @@
+properties:
+
+
+  - name: text_editor
+    type: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
+    init_with: ''
+    getter_ref: true
+
+
 functions:
 
 
-  - name: run
+  - name: draw
+    type: void
+    body: |
+      std::string text = get_text();
+
+
+  - name: move_cursor_up
+    type: bool
+    body: |
+      return text_editor.cursor_move_up();
+
+
+  - name: move_cursor_down
+    type: bool
+    body: |
+      return text_editor.cursor_move_down();
+
+
+  - name: move_cursor_left
+    type: bool
+    body: |
+      return text_editor.cursor_move_left();
+
+
+  - name: move_cursor_right
+    type: bool
+    body: |
+      return text_editor.cursor_move_right();
+
+
+  - name: insert_string
+    type: bool
+    parameters:
+      - name: text
+        type: std::string
+        default_argument: '"[unset-text]"'
+    body: |
+      return text_editor.insert_string(text);
+
+
+  - name: get_cursor
+    type: Hexagon::AdvancedCodeEditor::Cursor
+    body: |
+      return text_editor.get_cursor_ref();
+
+
+  - name: get_text
     type: std::string
     body: |
-      return "Hello World!";
+      Blast::StringJoiner joiner(text_editor.get_lines(), "\n");
+      return joiner.join();
+    body_dependency_symbols:
+      - Blast::StringJoiner
+
+
+dependencies:
+
+
+  - symbol: Hexagon::AdvancedCodeEditor::AdvancedCodeEditor
+    headers: [ Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp ]
+  - symbol: Blast::StringJoiner
+    headers: [ Blast/StringJoiner.hpp ]
+  - symbol: Hexagon::AdvancedCodeEditor::Cursor
+    headers: [ Hexagon/AdvancedCodeEditor/Cursor.hpp ]
 
 

@@ -2,7 +2,7 @@
 
 #include <Hexagon/ChatGPTIntegration/Chat/InputBox.hpp>
 
-
+#include <Blast/StringJoiner.hpp>
 
 
 namespace Hexagon
@@ -14,6 +14,7 @@ namespace Chat
 
 
 InputBox::InputBox()
+   : text_editor()
 {
 }
 
@@ -23,9 +24,51 @@ InputBox::~InputBox()
 }
 
 
-std::string InputBox::run()
+Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &InputBox::get_text_editor_ref()
 {
-   return "Hello World!";
+   return text_editor;
+}
+
+
+void InputBox::draw()
+{
+   std::string text = get_text();
+}
+
+bool InputBox::move_cursor_up()
+{
+   return text_editor.cursor_move_up();
+}
+
+bool InputBox::move_cursor_down()
+{
+   return text_editor.cursor_move_down();
+}
+
+bool InputBox::move_cursor_left()
+{
+   return text_editor.cursor_move_left();
+}
+
+bool InputBox::move_cursor_right()
+{
+   return text_editor.cursor_move_right();
+}
+
+bool InputBox::insert_string(std::string text)
+{
+   return text_editor.insert_string(text);
+}
+
+Hexagon::AdvancedCodeEditor::Cursor InputBox::get_cursor()
+{
+   return text_editor.get_cursor_ref();
+}
+
+std::string InputBox::get_text()
+{
+   Blast::StringJoiner joiner(text_editor.get_lines(), "\n");
+   return joiner.join();
 }
 
 

@@ -187,7 +187,9 @@
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Renderer",
-    "Hexagon/AdvancedCodeEditor/Stage"
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/InputBox",
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
   "RegexMatcher": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
@@ -739,7 +741,8 @@
     "Testing/WithStageFactoryFixture"
   ],
   "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor": [
-    "Hexagon/AdvancedCodeEditor/Stage"
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/InputBox"
   ],
   "Hexagon/AdvancedCodeEditor/Renderer": [
     "Hexagon/AdvancedCodeEditor/Stage"
@@ -755,11 +758,13 @@
   ],
   "Blast/StringJoiner": [
     "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/InputBox",
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/UI/DrawingBox"
   ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/ElementFX/WindowSpawnMotionFX",
     "Hexagon/Elements/DataTable",
     "Hexagon/PacketRenderer",
@@ -1133,6 +1138,12 @@
   "Hexagon/ChatGPTIntegration/Chat/LogView": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
+  "Hexagon/ChatGPTIntegration/Chat/InputBox": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
+  "AllegroFlare/Placement2D": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
   "all": [
     "Hexagon/CodeEditor/CachedLineRenderer"
   ],
@@ -1381,11 +1392,6 @@
   "Hexagon/Elements/SubBitmapCharacterMap": [
     "Hexagon/Elements/FontedTextGrid"
   ],
-  "AllegroFlare/FontBin&": [
-    "Hexagon/Elements/Frame",
-    "Hexagon/FontSet",
-    "Hexagon/Hud"
-  ],
   "const char": [
     "Hexagon/Elements/QuoteRenderer"
   ],
@@ -1440,6 +1446,10 @@
   ],
   "std/map<std/string, std/string>": [
     "Hexagon/FontSet"
+  ],
+  "AllegroFlare/FontBin&": [
+    "Hexagon/FontSet",
+    "Hexagon/Hud"
   ],
   "std/runtime_error": [
     "Hexagon/FullScreenOverlay/Stage",

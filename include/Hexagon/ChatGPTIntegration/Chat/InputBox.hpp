@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
+#include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
 #include <string>
 
 
@@ -13,6 +15,7 @@ namespace Hexagon
          class InputBox
          {
          private:
+            Hexagon::AdvancedCodeEditor::AdvancedCodeEditor text_editor;
 
          protected:
 
@@ -21,7 +24,15 @@ namespace Hexagon
             InputBox();
             ~InputBox();
 
-            std::string run();
+            Hexagon::AdvancedCodeEditor::AdvancedCodeEditor &get_text_editor_ref();
+            void draw();
+            bool move_cursor_up();
+            bool move_cursor_down();
+            bool move_cursor_left();
+            bool move_cursor_right();
+            bool insert_string(std::string text="[unset-text]");
+            Hexagon::AdvancedCodeEditor::Cursor get_cursor();
+            std::string get_text();
          };
       }
    }

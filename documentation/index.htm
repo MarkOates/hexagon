@@ -2896,13 +2896,47 @@ table td
   <div class="component">
     <h3 id="quintessence/Hexagon/ChatGPTIntegration/Chat/InputBox.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/InputBox.q.yml</h3>
      <table>
-    </table>
-     <table>
 <tr>
-  <td class="method">run()</td>
+  <td class="property">text_editor</td>
+  <td class="property">Hexagon::AdvancedCodeEditor::AdvancedCodeEditor</td>
 </tr>
     </table>
      <table>
+<tr>
+  <td class="method">draw()</td>
+</tr>
+<tr>
+  <td class="method">move_cursor_up()</td>
+</tr>
+<tr>
+  <td class="method">move_cursor_down()</td>
+</tr>
+<tr>
+  <td class="method">move_cursor_left()</td>
+</tr>
+<tr>
+  <td class="method">move_cursor_right()</td>
+</tr>
+<tr>
+  <td class="method">insert_string(std::string text=&quot;[unset-text]&quot;)</td>
+</tr>
+<tr>
+  <td class="method">get_cursor()</td>
+</tr>
+<tr>
+  <td class="method">get_text()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::AdvancedCodeEditor&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringJoiner&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringJoiner.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::Cursor&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/Cursor.hpp&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -2943,12 +2977,24 @@ table td
   <td class="property">Hexagon::ChatGPTIntegration::Chat::LogView</td>
 </tr>
 <tr>
+  <td class="property">input_box</td>
+  <td class="property">Hexagon::ChatGPTIntegration::Chat::InputBox</td>
+</tr>
+<tr>
+  <td class="property">input_box_placement</td>
+  <td class="property">AllegroFlare::Placement2D</td>
+</tr>
+<tr>
   <td class="property">log_source_filename</td>
   <td class="property">std::string</td>
 </tr>
 <tr>
   <td class="property">a_default_empty_event</td>
   <td class="property">ALLEGRO_EVENT</td>
+</tr>
+<tr>
+  <td class="property">input_buffer</td>
+  <td class="property">std::string</td>
 </tr>
 <tr>
   <td class="property">initialized</td>
@@ -2972,7 +3018,10 @@ table td
   <td class="method">destroy()</td>
 </tr>
 <tr>
-  <td class="method">obtain_dump_font()</td>
+  <td class="method">obtain_log_dump_font()</td>
+</tr>
+<tr>
+  <td class="method">obtain_input_box_font()</td>
 </tr>
     </table>
      <table>
@@ -2993,6 +3042,18 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ActionData&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ActionData.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedCodeEditor::Cursor&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedCodeEditor/Cursor.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatGPTIntegration::Chat::InputBox&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatGPTIntegration/Chat/InputBox.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::Placement2D&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Placement2D.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::Window&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/Window.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -4912,9 +4973,6 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin&amp;&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
@@ -12749,7 +12807,9 @@ table td
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/Renderer",
-    "Hexagon/AdvancedCodeEditor/Stage"
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/InputBox",
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
   "RegexMatcher": [
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
@@ -13301,7 +13361,8 @@ table td
     "Testing/WithStageFactoryFixture"
   ],
   "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor": [
-    "Hexagon/AdvancedCodeEditor/Stage"
+    "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/InputBox"
   ],
   "Hexagon/AdvancedCodeEditor/Renderer": [
     "Hexagon/AdvancedCodeEditor/Stage"
@@ -13317,11 +13378,13 @@ table td
   ],
   "Blast/StringJoiner": [
     "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/ChatGPTIntegration/Chat/InputBox",
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/UI/DrawingBox"
   ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/ElementFX/WindowSpawnMotionFX",
     "Hexagon/Elements/DataTable",
     "Hexagon/PacketRenderer",
@@ -13695,6 +13758,12 @@ table td
   "Hexagon/ChatGPTIntegration/Chat/LogView": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
+  "Hexagon/ChatGPTIntegration/Chat/InputBox": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
+  "AllegroFlare/Placement2D": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
   "all": [
     "Hexagon/CodeEditor/CachedLineRenderer"
   ],
@@ -13943,11 +14012,6 @@ table td
   "Hexagon/Elements/SubBitmapCharacterMap": [
     "Hexagon/Elements/FontedTextGrid"
   ],
-  "AllegroFlare/FontBin&": [
-    "Hexagon/Elements/Frame",
-    "Hexagon/FontSet",
-    "Hexagon/Hud"
-  ],
   "const char": [
     "Hexagon/Elements/QuoteRenderer"
   ],
@@ -14002,6 +14066,10 @@ table td
   ],
   "std/map<std/string, std/string>": [
     "Hexagon/FontSet"
+  ],
+  "AllegroFlare/FontBin&": [
+    "Hexagon/FontSet",
+    "Hexagon/Hud"
   ],
   "std/runtime_error": [
     "Hexagon/FullScreenOverlay/Stage",

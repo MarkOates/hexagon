@@ -5,28 +5,34 @@ properties:
     type: AllegroFlare::FontBin
     static: true
     init_with: "{}"
+
   - name: fonts
     type: AllegroFlare::FontBin&
     init_with: "get_dummy_font_bin()"
+
   - name: title_text
     type: std::string
     init_with: "\"\""
     setter: true
+
   - name: width
     type: float
     init_with: 1.0f
     constructor_arg: true
     setter: true
+
   - name: height
     type: float
     init_with: 1.0f
     constructor_arg: true
     setter: true
+
   - name: outline_color
     type: ALLEGRO_COLOR
     init_with: "build_default_frame_color()"
     getter: true
     setter: true
+
   - name: line_thickness
     type: float
     init_with: 2.5f
@@ -100,8 +106,6 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT*
     headers: [ allegro5/allegro.h ]
-  - symbol: AllegroFlare::FontBin&
-    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: AllegroFlare::FontBin
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: AllegroFlare::color::color
