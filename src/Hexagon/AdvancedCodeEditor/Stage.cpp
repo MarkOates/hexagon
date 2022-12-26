@@ -3,6 +3,7 @@
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 
 #include <AllegroFlare/Timer.hpp>
+#include <Blast/StringJoiner.hpp>
 #include <Hexagon/AdvancedCodeEditor/EventController.hpp>
 #include <Hexagon/AdvancedCodeEditor/Renderer.hpp>
 #include <Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp>
@@ -1081,6 +1082,14 @@ bool Stage::paste_selected_text_from_clipboard()
    return true;
 }
 
+bool Stage::replace_content_with_contents_of_clipboard()
+{
+   std::vector<std::string> retrieved_clipboard_data = ClipboardData::retrieve();
+   Blast::StringJoiner joiner(retrieved_clipboard_data, "\n");
+   set_content(joiner.join());
+   return true;
+}
+
 std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> Stage::build_local_events_dictionary()
 {
    std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> local_events = {
@@ -1155,6 +1164,10 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
         &Hexagon::AdvancedCodeEditor::Stage::yank_selected_text_to_clipboard },
       { "paste_selected_text_from_clipboard",
         &Hexagon::AdvancedCodeEditor::Stage::paste_selected_text_from_clipboard },
+      { "replace_content_with_contents_of_clipboard",
+        &Hexagon::AdvancedCodeEditor::Stage::replace_content_with_contents_of_clipboard },
+
+
    };
    return local_events;
 }
@@ -1233,6 +1246,11 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_ed
    result.set_mapping(ALLEGRO_KEY_P, ALLEGRO_KEYMOD_SHIFT, { "paste_selected_text_from_clipboard" });
    result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "cursor_move_down", "insert_blank_line" });
    result.set_mapping(ALLEGRO_KEY_ENTER, ALLEGRO_KEYMOD_SHIFT, { "insert_blank_line" });
+   result.set_mapping(ALLEGRO_KEY_P,
+         AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
+         { "replace_content_with_contents_of_clipboard" }
+   );
+
    return result;
 }
 

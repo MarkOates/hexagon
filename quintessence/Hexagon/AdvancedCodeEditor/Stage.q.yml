@@ -1023,6 +1023,18 @@ functions:
       - ClipboardData::retrieve
 
 
+  - name: replace_content_with_contents_of_clipboard
+    type: bool
+    body: |
+      std::vector<std::string> retrieved_clipboard_data = ClipboardData::retrieve();
+      Blast::StringJoiner joiner(retrieved_clipboard_data, "\n");
+      set_content(joiner.join());
+      return true;
+    body_dependency_symbols:
+      - ClipboardData::retrieve
+      - Blast::StringJoiner
+
+
   - name: build_local_events_dictionary
     static: true
     type: std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>>
@@ -1099,6 +1111,10 @@ functions:
            &Hexagon::AdvancedCodeEditor::Stage::yank_selected_text_to_clipboard },
          { "paste_selected_text_from_clipboard",
            &Hexagon::AdvancedCodeEditor::Stage::paste_selected_text_from_clipboard },
+         { "replace_content_with_contents_of_clipboard",
+           &Hexagon::AdvancedCodeEditor::Stage::replace_content_with_contents_of_clipboard },
+
+
       };
       return local_events;
 
@@ -1179,6 +1195,11 @@ functions:
       result.set_mapping(ALLEGRO_KEY_P, ALLEGRO_KEYMOD_SHIFT, { "paste_selected_text_from_clipboard" });
       result.set_mapping(ALLEGRO_KEY_ENTER, 0, { "cursor_move_down", "insert_blank_line" });
       result.set_mapping(ALLEGRO_KEY_ENTER, ALLEGRO_KEYMOD_SHIFT, { "insert_blank_line" });
+      result.set_mapping(ALLEGRO_KEY_P,
+            AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
+            { "replace_content_with_contents_of_clipboard" }
+      );
+
       return result;
 
 
@@ -1801,4 +1822,7 @@ dependencies:
     headers: [ Hexagon/AdvancedCodeEditor/Stage.hpp ]
   - symbol: std::function
     headers: [ functional ]
+  - symbol: Blast::StringJoiner
+    headers: [ Blast/StringJoiner.hpp ]
+
 

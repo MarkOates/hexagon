@@ -295,7 +295,7 @@ table td
   <td class="method">setup_orthographic_projection()</td>
 </tr>
 <tr>
-  <td class="method">emit_user_event(1)</td>
+  <td class="method">emit_user_event(ALLEGRO_EVENT user_event={})</td>
 </tr>
 <tr>
   <td class="method">run_program()</td>
@@ -394,10 +394,10 @@ table td
   <td class="method">trim()</td>
 </tr>
 <tr>
-  <td class="private_method">ltrim(1)</td>
+  <td class="private_method">ltrim(std::string s=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="private_method">rtrim(1)</td>
+  <td class="private_method">rtrim(std::string s=&quot;&quot;)</td>
 </tr>
     </table>
      <table>
@@ -472,7 +472,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">get_select_lines(1)</td>
+  <td class="method">get_select_lines(std::vector&lt;int&gt; line_indices={})</td>
 </tr>
 <tr>
   <td class="private_method">mark_content_is_modified()</td>
@@ -484,10 +484,10 @@ table td
   <td class="method">get_num_lines()</td>
 </tr>
 <tr>
-  <td class="method">set_content(1)</td>
+  <td class="method">set_content(std::string content=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="method">insert_string(1)</td>
+  <td class="method">insert_string(std::string string=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="method">delete_character()</td>
@@ -505,13 +505,13 @@ table td
   <td class="method">delete_line()</td>
 </tr>
 <tr>
-  <td class="method">insert_lines(1)</td>
+  <td class="method">insert_lines(std::vector&lt;std::string&gt; lines_to_insert={})</td>
 </tr>
 <tr>
-  <td class="method">cursor_set_width(1)</td>
+  <td class="method">cursor_set_width(float width=0.0f)</td>
 </tr>
 <tr>
-  <td class="method">cursor_set_height(1)</td>
+  <td class="method">cursor_set_height(float height=0.0f)</td>
 </tr>
 <tr>
   <td class="method">cursor_move_up()</td>
@@ -553,13 +553,13 @@ table td
   <td class="method">cursor_jump_to_previous_word()</td>
 </tr>
 <tr>
-  <td class="method">cursor_move_to(2)</td>
+  <td class="method">cursor_move_to(int x=0, int y=0)</td>
 </tr>
 <tr>
-  <td class="method">cursor_set_x(1)</td>
+  <td class="method">cursor_set_x(int x=0)</td>
 </tr>
 <tr>
-  <td class="method">cursor_set_y(1)</td>
+  <td class="method">cursor_set_y(int y=0)</td>
 </tr>
 <tr>
   <td class="method">cursor_get_x()</td>
@@ -661,7 +661,7 @@ table td
   <td class="method">move_right()</td>
 </tr>
 <tr>
-  <td class="method">move_to(2)</td>
+  <td class="method">move_to(int x=0, int y=0)</td>
 </tr>
     </table>
      <table>
@@ -691,10 +691,10 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
     </table>
      <table>
@@ -987,22 +987,22 @@ table td
   <td class="method">clear()</td>
 </tr>
 <tr>
-  <td class="method">add(1)</td>
+  <td class="method">add(CodeRange code_range={})</td>
 </tr>
 <tr>
-  <td class="method">clear_select_lines(1)</td>
+  <td class="method">clear_select_lines(std::vector&lt;int&gt; line_indices={})</td>
 </tr>
 <tr>
-  <td class="method">push_down_from(2)</td>
+  <td class="method">push_down_from(int starting_on_line=0, int num_lines_to_push_down=0)</td>
 </tr>
 <tr>
-  <td class="method">pull_up_from(2)</td>
+  <td class="method">pull_up_from(int starting_on_line=0, int num_lines_to_pull_up=0)</td>
 </tr>
 <tr>
-  <td class="method">find_next_from(2)</td>
+  <td class="method">find_next_from(int position_x=0, int position_y=0)</td>
 </tr>
 <tr>
-  <td class="method">find_previous_from(2)</td>
+  <td class="method">find_previous_from(int position_x=0, int position_y=0)</td>
 </tr>
     </table>
      <table>
@@ -1167,10 +1167,10 @@ table td
   <td class="method">refresh_search_regex_selections()</td>
 </tr>
 <tr>
-  <td class="method">refresh_search_regex_selections_on_select_lines(1)</td>
+  <td class="method">refresh_search_regex_selections_on_select_lines(std::vector&lt;int&gt; line_nums={})</td>
 </tr>
 <tr>
-  <td class="method">set_code_message_points(1)</td>
+  <td class="method">set_code_message_points(std::vector&lt;CodeMessagePoint&gt; code_message_points={})</td>
 </tr>
 <tr>
   <td class="method">save_file()</td>
@@ -1230,7 +1230,7 @@ table td
   <td class="method">first_row_offset_move_down()</td>
 </tr>
 <tr>
-  <td class="method">first_row_offset_jump_to(1)</td>
+  <td class="method">first_row_offset_jump_to(int new_offset=0)</td>
 </tr>
 <tr>
   <td class="method">first_row_offset_jump_up_half_page()</td>
@@ -1287,10 +1287,10 @@ table td
   <td class="method">insert_string_from_input_buffer()</td>
 </tr>
 <tr>
-  <td class="method">insert_lines(1)</td>
+  <td class="method">insert_lines(std::vector&lt;std::string&gt; lines_to_insert={})</td>
 </tr>
 <tr>
-  <td class="method">set_content(1)</td>
+  <td class="method">set_content(std::string content=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="method">toggle_commenting_out_current_line()</td>
@@ -1320,10 +1320,10 @@ table td
   <td class="method">toggle_currently_grabbing_full_line_visual_selection()</td>
 </tr>
 <tr>
-  <td class="method">set_current_visual_selection_end_x(1)</td>
+  <td class="method">set_current_visual_selection_end_x(int x_pos=0)</td>
 </tr>
 <tr>
-  <td class="method">set_current_visual_selection_end_y(1)</td>
+  <td class="method">set_current_visual_selection_end_y(int y_pos=0)</td>
 </tr>
 <tr>
   <td class="method">refresh_current_visual_selection_end_to_current_cursor_position()</td>
@@ -1344,16 +1344,16 @@ table td
   <td class="method">build_keyboard_command_mapping_for_insert_mode()</td>
 </tr>
 <tr>
-  <td class="method">cursor_move_to(2)</td>
+  <td class="method">cursor_move_to(int x=0, int y=0)</td>
 </tr>
 <tr>
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="private_method">obtain_text_font()</td>
@@ -1650,7 +1650,7 @@ table td
   <td class="method">yank_selected_text_as_error_message_template()</td>
 </tr>
 <tr>
-  <td class="method">convert_to_snake_case(1)</td>
+  <td class="method">convert_to_snake_case(std::string source_str=&quot;[unset-str]&quot;)</td>
 </tr>
     </table>
      <table>
@@ -1699,10 +1699,10 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">convert_to_names(1)</td>
+  <td class="method">convert_to_names(std::vector&lt;Blast::Project::Component&gt; components={})</td>
 </tr>
 <tr>
-  <td class="method">convert_to_components(1)</td>
+  <td class="method">convert_to_components(std::vector&lt;std::string&gt; names={})</td>
 </tr>
 <tr>
   <td class="method">component_names()</td>
@@ -1711,7 +1711,7 @@ table td
   <td class="method">components_sorted_by_most_recent()</td>
 </tr>
 <tr>
-  <td class="method">filter_names_through_search_text(1)</td>
+  <td class="method">filter_names_through_search_text(std::vector&lt;std::string&gt; elements={})</td>
 </tr>
 <tr>
   <td class="method">components()</td>
@@ -1757,7 +1757,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
     </table>
      <table>
@@ -2026,13 +2026,13 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_char_event(3)</td>
+  <td class="method">process_char_event(int keycode=0, int unichar=0, bool is_repeat=false)</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="method">save_file()</td>
@@ -2214,19 +2214,19 @@ table td
   <td class="method">generate()</td>
 </tr>
 <tr>
-  <td class="private_method">build_appropriate_layout_for_component(1)</td>
+  <td class="private_method">build_appropriate_layout_for_component(std::string component_name=&quot;UnnamedComponent&quot;)</td>
 </tr>
 <tr>
-  <td class="method">component_generate_header_filename(1)</td>
+  <td class="method">component_generate_header_filename(std::string component_name=&quot;UnnamedComponent&quot;)</td>
 </tr>
 <tr>
-  <td class="method">component_generate_source_filename(1)</td>
+  <td class="method">component_generate_source_filename(std::string component_name=&quot;UnnamedComponent&quot;)</td>
 </tr>
 <tr>
-  <td class="method">component_generate_test_filename(1)</td>
+  <td class="method">component_generate_test_filename(std::string component_name=&quot;UnnamedComponent&quot;)</td>
 </tr>
 <tr>
-  <td class="method">component_generate_quintessence_filename(1)</td>
+  <td class="method">component_generate_quintessence_filename(std::string component_name=&quot;UnnamedComponent&quot;)</td>
 </tr>
     </table>
      <table>
@@ -2293,22 +2293,22 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">draw_build_dump_report_legacy(2)</td>
+  <td class="method">draw_build_dump_report_legacy(float width=0, std::string stage_text_dump=&quot;[unset-stage_text_dump]&quot;)</td>
 </tr>
 <tr>
-  <td class="method">draw_build_dump_report_for_google_test_run(2)</td>
+  <td class="method">draw_build_dump_report_for_google_test_run(float width=0, std::string stage_text_dump=&quot;[unset-stage_text_dump]&quot;)</td>
 </tr>
 <tr>
-  <td class="method">draw_build_dump_report(3)</td>
+  <td class="method">draw_build_dump_report(float width=0, std::string stage_text_dump=&quot;[unset-stage_text_dump]&quot;, std::string stage_name=&quot;[unset-stage_name]&quot;)</td>
 </tr>
 <tr>
-  <td class="method">draw_status_box(6)</td>
+  <td class="method">draw_status_box(float x=0, float y=0, float w=1, float h=1, std::string status=&quot;incomplete&quot;, std::string label=&quot;-  -&quot;)</td>
 </tr>
 <tr>
-  <td class="method">is_status_to_draw_label(1)</td>
+  <td class="method">is_status_to_draw_label(std::string status=&quot;status_unset&quot;)</td>
 </tr>
 <tr>
-  <td class="method">build_color_from_status(1)</td>
+  <td class="method">build_color_from_status(std::string status=&quot;status_unset&quot;)</td>
 </tr>
 <tr>
   <td class="method">obtain_dump_font()</td>
@@ -2398,7 +2398,7 @@ table td
   <td class="method">create_placeholder_build()</td>
 </tr>
 <tr>
-  <td class="method">create_shell_command_build(1)</td>
+  <td class="method">create_shell_command_build(std::string shell_command=&quot;echo \&quot;Having a good day?\&quot;&quot;)</td>
 </tr>
     </table>
      <table>
@@ -2421,7 +2421,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">create_shell_command_build_stage(1)</td>
+  <td class="method">create_shell_command_build_stage(std::string shell_command=&quot;echo \&quot;Hi friend\&quot;&quot;)</td>
 </tr>
     </table>
      <table>
@@ -2479,7 +2479,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">is_type(1)</td>
+  <td class="method">is_type(std::string possible_type=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="method">render_text()</td>
@@ -2591,22 +2591,22 @@ table td
   <td class="method">get_status()</td>
 </tr>
 <tr>
-  <td class="method">set_status(1)</td>
+  <td class="method">set_status(std::string status=&quot;[unset-status]&quot;)</td>
 </tr>
 <tr>
   <td class="method">get_started_at()</td>
 </tr>
 <tr>
-  <td class="method">set_started_at(1)</td>
+  <td class="method">set_started_at(std::chrono::system_clock::time_point started_at=)</td>
 </tr>
 <tr>
   <td class="method">get_ended_at()</td>
 </tr>
 <tr>
-  <td class="method">set_ended_at(1)</td>
+  <td class="method">set_ended_at(std::chrono::system_clock::time_point ended_at=)</td>
 </tr>
 <tr>
-  <td class="method">is_type(1)</td>
+  <td class="method">is_type(std::string possible_type=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="method">execute()</td>
@@ -2711,13 +2711,13 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">is_type(1)</td>
+  <td class="method">is_type(std::string possible_type=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="method">run()</td>
 </tr>
 <tr>
-  <td class="method">build_stage_executor(1)</td>
+  <td class="method">build_stage_executor(Hexagon::BuildSystem::BuildStages::Base* build_stage=nullptr)</td>
 </tr>
 <tr>
   <td class="method">run_all_in_parallel()</td>
@@ -2785,13 +2785,13 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">is_type(1)</td>
+  <td class="method">is_type(std::string possible_type=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="method">render_text()</td>
 </tr>
 <tr>
-  <td class="method">colorize_status(1)</td>
+  <td class="method">colorize_status(std::string status=&quot;[unset-status]&quot;)</td>
 </tr>
     </table>
      <table>
@@ -2845,10 +2845,10 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">setup_camera_perspective(5)</td>
+  <td class="method">setup_camera_perspective(ALLEGRO_BITMAP* bmp=nullptr, float znear=5.0f, float stepback_baseline_z=600.0f, float viewport_scale=200.0f, float final_scale_multiplier=0.1f)</td>
 </tr>
 <tr>
-  <td class="method">setup_dimentional_projection(1)</td>
+  <td class="method">setup_dimentional_projection(ALLEGRO_BITMAP* bitmap=nullptr)</td>
 </tr>
     </table>
      <table>
@@ -2907,10 +2907,10 @@ table td
   <td class="method">size()</td>
 </tr>
 <tr>
-  <td class="method">exists(1)</td>
+  <td class="method">exists(int index=0)</td>
 </tr>
 <tr>
-  <td class="method">pull(1)</td>
+  <td class="method">pull(int index=0)</td>
 </tr>
     </table>
      <table>
@@ -3060,13 +3060,13 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">load_data(1)</td>
+  <td class="method">load_data(std::string identifier=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="method">validate()</td>
 </tr>
 <tr>
-  <td class="method">destroy_data(1)</td>
+  <td class="method">destroy_data(ALLEGRO_BITMAP* resource=nullptr)</td>
 </tr>
     </table>
      <table>
@@ -3156,7 +3156,7 @@ table td
   <td class="private_method">build_comment_tokens()</td>
 </tr>
 <tr>
-  <td class="private_method">render_tokens(2)</td>
+  <td class="private_method">render_tokens(std::vector&lt;std::tuple&lt;std::string, int, ALLEGRO_COLOR&gt;&gt; tokens={}, float cell_width=1.0f)</td>
 </tr>
 <tr>
   <td class="method">render()</td>
@@ -3327,10 +3327,10 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="method">code_editor_char_count()</td>
@@ -3414,19 +3414,19 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">append(1)</td>
+  <td class="method">append(CodeMessagePoint code_message_point={})</td>
 </tr>
 <tr>
-  <td class="method">set_code_message_points(1)</td>
+  <td class="method">set_code_message_points(std::vector&lt;CodeMessagePoint&gt; code_message_points={})</td>
 </tr>
 <tr>
   <td class="method">clear()</td>
 </tr>
 <tr>
-  <td class="method">delete_row(1)</td>
+  <td class="method">delete_row(int row=0)</td>
 </tr>
 <tr>
-  <td class="method">shift_rows_down_at_and_after(1)</td>
+  <td class="method">shift_rows_down_at_and_after(int row=0)</td>
 </tr>
     </table>
      <table>
@@ -3530,10 +3530,10 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="private_method">verify_line_in_range(1)</td>
+  <td class="private_method">verify_line_in_range(int line_num=0)</td>
 </tr>
 <tr>
-  <td class="private_method">get_line_length(1)</td>
+  <td class="private_method">get_line_length(int line_num=0)</td>
 </tr>
     </table>
      <table>
@@ -3642,7 +3642,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">build_dependent_names_for_component_name(1)</td>
+  <td class="method">build_dependent_names_for_component_name(std::string component_name=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="private_method">dependents_json_file_contents()</td>
@@ -3730,10 +3730,10 @@ table td
   <td class="method">initialize()</td>
 </tr>
 <tr>
-  <td class="method">set_currently_active_menu(1)</td>
+  <td class="method">set_currently_active_menu(Hexagon::Elements::ListMenu* menu=nullptr)</td>
 </tr>
 <tr>
-  <td class="method">is_currently_active_menu(1)</td>
+  <td class="method">is_currently_active_menu(Hexagon::Elements::ListMenu* currently_active_menu=nullptr)</td>
 </tr>
 <tr>
   <td class="method">render()</td>
@@ -3751,13 +3751,13 @@ table td
   <td class="method">move_cursor_right()</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="method">get_current_selection_label_or_empty_string()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
   <td class="private_method">emit_submission()</td>
@@ -3819,7 +3819,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">run(1)</td>
+  <td class="method">run(bool watch_for_changes_in_tree_and_not_buildfile=true)</td>
 </tr>
 <tr>
   <td class="method">process_oldest_file_in_builds_folder()</td>
@@ -3837,34 +3837,34 @@ table td
   <td class="method">run_simple_sleep_command()</td>
 </tr>
 <tr>
-  <td class="method">run_once(1)</td>
+  <td class="method">run_once(std::string project_directory=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="method">cd_to_project_directory_and_run_with_rerun(1)</td>
+  <td class="method">cd_to_project_directory_and_run_with_rerun(std::string project_directory=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="method">watch_for_buildfile(1)</td>
+  <td class="method">watch_for_buildfile(std::string project_directory=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="method">run_with_rerun(1)</td>
+  <td class="method">run_with_rerun(std::string project_directory=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="private_method">execute_command(1)</td>
+  <td class="private_method">execute_command(std::string command=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="method">run_component_test(1)</td>
+  <td class="method">run_component_test(Blast::Project::Component component={})</td>
 </tr>
 <tr>
-  <td class="method">run_build_quintessence_file(2)</td>
+  <td class="method">run_build_quintessence_file(std::string project_directory=&quot;&quot;, std::string quintessence_filename=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="method">output_pid()</td>
 </tr>
 <tr>
-  <td class="private_method">__execute_command(2)</td>
+  <td class="private_method">__execute_command(std::string command=&quot;&quot;, bool output_to_stdout=true)</td>
 </tr>
 <tr>
-  <td class="method">find_oldest_filename(2)</td>
+  <td class="method">find_oldest_filename(std::string path=&quot;/Users/markoates/Repos/hexagon/bin/programs/data/builds/pending&quot;, bool ignore_dotfiles=true)</td>
 </tr>
     </table>
      <table>
@@ -3960,16 +3960,16 @@ table td
   <td class="method">dirty_cells_empty()</td>
 </tr>
 <tr>
-  <td class="method">mark_as_dirty(2)</td>
+  <td class="method">mark_as_dirty(int x=0, int y=0)</td>
 </tr>
 <tr>
-  <td class="method">mark_all_as_dirty(1)</td>
+  <td class="method">mark_all_as_dirty(std::vector&lt;std::string&gt;* lines={})</td>
 </tr>
 <tr>
-  <td class="method">mark_row_as_dirty(3)</td>
+  <td class="method">mark_row_as_dirty(int row=0, int start=0, int length=0)</td>
 </tr>
 <tr>
-  <td class="method">incorporate(1)</td>
+  <td class="method">incorporate(Hexagon::DirtyGrid* other_dirty_grid=nullptr)</td>
 </tr>
 <tr>
   <td class="method">build_vector()</td>
@@ -4062,19 +4062,19 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">set_cell_uv(3)</td>
+  <td class="method">set_cell_uv(int x=0, int y=0, std::tuple&lt;float, float, float, float&gt; uv_coords={0.0f, 0.0f, 1.0f, 1.0f})</td>
 </tr>
 <tr>
-  <td class="method">set_cell_color(3)</td>
+  <td class="method">set_cell_color(int x=0, int y=0, ALLEGRO_COLOR color={0.0f, 0.0f, 0.0f, 0.0f})</td>
 </tr>
 <tr>
-  <td class="method">resize(4)</td>
+  <td class="method">resize(int num_columns=0, int num_rows=0, float cell_width=0.0f, float cell_height=0.0f)</td>
 </tr>
 <tr>
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">render_only_select_cells(1)</td>
+  <td class="method">render_only_select_cells(std::vector&lt;std::pair&lt;int, int&gt;&gt; cell_coordinates={})</td>
 </tr>
 <tr>
   <td class="method">calculate_width()</td>
@@ -4083,7 +4083,7 @@ table td
   <td class="method">calculate_height()</td>
 </tr>
 <tr>
-  <td class="private_method">find_cell(2)</td>
+  <td class="private_method">find_cell(int x=0, int y=0)</td>
 </tr>
     </table>
      <table>
@@ -4159,10 +4159,10 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">set_cell_width(1)</td>
+  <td class="method">set_cell_width(int cell_width=1)</td>
 </tr>
 <tr>
-  <td class="method">set_cell_height(1)</td>
+  <td class="method">set_cell_height(int cell_height=1)</td>
 </tr>
 <tr>
   <td class="method">lock_for_render()</td>
@@ -4174,10 +4174,10 @@ table td
   <td class="method">initialize()</td>
 </tr>
 <tr>
-  <td class="method">draw_to_cell(4)</td>
+  <td class="method">draw_to_cell(ALLEGRO_BITMAP* bitmap_to_draw=nullptr, ALLEGRO_COLOR tint=ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}, int x=0, int y=0)</td>
 </tr>
 <tr>
-  <td class="method">find_sub_bitmap(2)</td>
+  <td class="method">find_sub_bitmap(int x=0, int y=0)</td>
 </tr>
 <tr>
   <td class="method">destroy()</td>
@@ -4253,10 +4253,10 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">get_backfill_color(1)</td>
+  <td class="method">get_backfill_color(float opacity=1.0f)</td>
 </tr>
 <tr>
-  <td class="method">get_base_text_color(1)</td>
+  <td class="method">get_base_text_color(float opacity=1.0f)</td>
 </tr>
 <tr>
   <td class="method">pure_white_blue()</td>
@@ -4427,10 +4427,10 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">create_or_set_cell(7)</td>
+  <td class="method">create_or_set_cell(int x=0, int y=0, int u1=0, int v1=0, int u2=0, int v2=0, ALLEGRO_COLOR color={0.0f, 0.0f, 0.0f, 0.0f})</td>
 </tr>
 <tr>
-  <td class="method">delete_cell(2)</td>
+  <td class="method">delete_cell(int x=0, int y=0)</td>
 </tr>
 <tr>
   <td class="method">render()</td>
@@ -4644,7 +4644,7 @@ table td
   <td class="method">destroy()</td>
 </tr>
 <tr>
-  <td class="method">set_cell_to_character_and_color(4)</td>
+  <td class="method">set_cell_to_character_and_color(char character=&#39; &#39;, int x=0, int y=0, ALLEGRO_COLOR tint=ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f})</td>
 </tr>
 <tr>
   <td class="method">lock_for_update()</td>
@@ -4827,7 +4827,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">set_list_items(1)</td>
+  <td class="method">set_list_items(std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt; list_items={})</td>
 </tr>
 <tr>
   <td class="method">move_cursor_up()</td>
@@ -4854,7 +4854,7 @@ table td
   <td class="method">build_opacified_backfill_color()</td>
 </tr>
 <tr>
-  <td class="private_method">draw_cursor_pointer_arrow(2)</td>
+  <td class="private_method">draw_cursor_pointer_arrow(float cpx=1000, float cpy=900)</td>
 </tr>
     </table>
      <table>
@@ -4978,7 +4978,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">incrementer(4)</td>
+  <td class="method">incrementer(int line_num=0, char* line__WAS_CONST_CHAR=nullptr, int size=0, void* extra=nullptr)</td>
 </tr>
 <tr>
   <td class="method">render()</td>
@@ -5195,7 +5195,7 @@ table td
   <td class="method">initialize()</td>
 </tr>
 <tr>
-  <td class="method">find_sub_bitmap(1)</td>
+  <td class="method">find_sub_bitmap(char character=0)</td>
 </tr>
 <tr>
   <td class="method">destroy()</td>
@@ -5336,7 +5336,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">set_font(1)</td>
+  <td class="method">set_font(ALLEGRO_FONT* font=nullptr)</td>
 </tr>
 <tr>
   <td class="method">initialize()</td>
@@ -5345,10 +5345,10 @@ table td
   <td class="method">destruct()</td>
 </tr>
 <tr>
-  <td class="method">set_cell_color(3)</td>
+  <td class="method">set_cell_color(int x=0, int y=0, ALLEGRO_COLOR color={0.0f, 0.0f, 0.0f, 0.0f})</td>
 </tr>
 <tr>
-  <td class="method">set_cell_character(3)</td>
+  <td class="method">set_cell_character(int x=0, int y=0, char character=&#39;\0&#39;)</td>
 </tr>
 <tr>
   <td class="method">calculate_width()</td>
@@ -5360,7 +5360,7 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">render_only_select_cells(1)</td>
+  <td class="method">render_only_select_cells(std::vector&lt;std::pair&lt;int, int&gt;&gt; cell_coordinates={})</td>
 </tr>
     </table>
      <table>
@@ -5647,7 +5647,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">build_error_message(2)</td>
+  <td class="method">build_error_message(std::string from=&quot;[unset-from]&quot;, std::string message=&quot;[unset-message]&quot;)</td>
 </tr>
     </table>
      <table>
@@ -5675,10 +5675,10 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="method">obtain_title_font()</td>
@@ -5817,13 +5817,13 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
   <td class="method">save_file()</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
     </table>
      <table>
@@ -6051,7 +6051,7 @@ table td
   <td class="method">get_dummy_font_bin()</td>
 </tr>
 <tr>
-  <td class="method">obtain_font(1)</td>
+  <td class="method">obtain_font(std::string identifier=&quot;dummy_font&quot;)</td>
 </tr>
     </table>
      <table>
@@ -6087,10 +6087,10 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">draw(2)</td>
+  <td class="method">draw(placement3d place={}, ALLEGRO_COLOR backfill_color=ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f})</td>
 </tr>
 <tr>
-  <td class="method">process_char_input(1)</td>
+  <td class="method">process_char_input(char input_ch=0)</td>
 </tr>
     </table>
      <table>
@@ -6263,7 +6263,7 @@ table td
   <td class="private_method">get_push_shell_command()</td>
 </tr>
 <tr>
-  <td class="method">validate_result_or_throw_error_on_failure(1)</td>
+  <td class="method">validate_result_or_throw_error_on_failure(std::string response=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="method">push()</td>
@@ -6432,10 +6432,10 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="method">code_editor_char_count()</td>
@@ -6691,13 +6691,13 @@ table td
   <td class="method">draw_packets()</td>
 </tr>
 <tr>
-  <td class="method">draw_caps_lock_notification_light(1)</td>
+  <td class="method">draw_caps_lock_notification_light(bool active=false)</td>
 </tr>
 <tr>
   <td class="method">draw()</td>
 </tr>
 <tr>
-  <td class="method">set_orthographic_projection(5)</td>
+  <td class="method">set_orthographic_projection(ALLEGRO_BITMAP* bitmap=nullptr, float left=0, float top=0, float right=1920, float bottom=1080)</td>
 </tr>
 <tr>
   <td class="method">get_dummy_font_bin()</td>
@@ -6966,7 +6966,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">placement_for(1)</td>
+  <td class="method">placement_for(std::string label=&quot;&quot;)</td>
 </tr>
     </table>
      <table>
@@ -7027,7 +7027,7 @@ table td
   <td class="method">create()</td>
 </tr>
 <tr>
-  <td class="method">place_and_load_code_editor(3)</td>
+  <td class="method">place_and_load_code_editor(std::string filename=&quot;&quot;, std::string file_category=&quot;undefined_file_category&quot;, placement3d place={})</td>
 </tr>
     </table>
      <table>
@@ -7181,10 +7181,10 @@ table td
   <td class="method">clear()</td>
 </tr>
 <tr>
-  <td class="method">add_or_override(2)</td>
+  <td class="method">add_or_override(std::string label=&quot;[no-label-set]&quot;, Hexagon::Marker marker={})</td>
 </tr>
 <tr>
-  <td class="method">marker_exists(1)</td>
+  <td class="method">marker_exists(std::string label=&quot;[no-label-set]&quot;)</td>
 </tr>
     </table>
      <table>
@@ -7249,10 +7249,10 @@ table td
   <td class="private_method">obtain_title_font()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="private_method">create_expected_file()</td>
@@ -7322,7 +7322,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="private_method">send_message_to_stage(1)</td>
+  <td class="private_method">send_message_to_stage(std::string message=&quot;[message-identifier-set]&quot;)</td>
 </tr>
 <tr>
   <td class="method">execute()</td>
@@ -7389,7 +7389,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">set_page_dictionary(1)</td>
+  <td class="method">set_page_dictionary(std::map&lt;std::string, Hexagon::MultiplexMenu::MultiplexMenuPage&gt; page_dictionary={})</td>
 </tr>
 <tr>
   <td class="method">get_num_pages()</td>
@@ -7401,10 +7401,10 @@ table td
   <td class="method">infer_current_page()</td>
 </tr>
 <tr>
-  <td class="method">open_page(1)</td>
+  <td class="method">open_page(std::string page_name=&quot;[unset-page_name]&quot;)</td>
 </tr>
 <tr>
-  <td class="method">find_page_by_name(1)</td>
+  <td class="method">find_page_by_name(std::string page_name=&quot;[unset-page_name]&quot;)</td>
 </tr>
     </table>
      <table>
@@ -7434,10 +7434,10 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">find_item_by_keyboard_command_key(1)</td>
+  <td class="method">find_item_by_keyboard_command_key(Hexagon::KeyboardCommandKey keyboard_command_key={})</td>
 </tr>
 <tr>
-  <td class="method">compare_keyboard_command_keys_equal(2)</td>
+  <td class="method">compare_keyboard_command_keys_equal(Hexagon::KeyboardCommandKey a={}, Hexagon::KeyboardCommandKey b={})</td>
 </tr>
     </table>
      <table>
@@ -7490,10 +7490,10 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="private_method">render_menu_item(6)</td>
+  <td class="private_method">render_menu_item(float x=0, float y=0, std::string input=&quot;[no-input-defined]&quot;, std::string label=&quot;Unlabeled&quot;, bool opens_menu=false, std::string state=&quot;no_state&quot;)</td>
 </tr>
 <tr>
-  <td class="method">convert_key_input_to_string(5)</td>
+  <td class="method">convert_key_input_to_string(int al_keycode=0, bool ctrl=false, bool alt=false, bool command=false, bool shift=false)</td>
 </tr>
 <tr>
   <td class="method">render_frame()</td>
@@ -7573,7 +7573,7 @@ table td
   <td class="method">get_width()</td>
 </tr>
 <tr>
-  <td class="private_method">render_page(2)</td>
+  <td class="private_method">render_page(Hexagon::MultiplexMenu::MultiplexMenuPage* page=nullptr, bool is_active=false)</td>
 </tr>
     </table>
      <table>
@@ -7640,28 +7640,28 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="private_method">send_message_to_stage(1)</td>
+  <td class="private_method">send_message_to_stage(std::string message=&quot;[message-identifier-set]&quot;)</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="private_method">notify_system_that_its_time_to_close_this_multiplex_menu()</td>
 </tr>
 <tr>
-  <td class="private_method">infer_menu_item_value_is_instruction_to_open_page(1)</td>
+  <td class="private_method">infer_menu_item_value_is_instruction_to_open_page(std::string menu_item_value=&quot;[unset-menu_item_value]&quot;)</td>
 </tr>
 <tr>
-  <td class="private_method">extract_menu_item_value_page_name_to_open(1)</td>
+  <td class="private_method">extract_menu_item_value_page_name_to_open(std::string menu_item_value=&quot;[unset-menu_item_value]&quot;)</td>
 </tr>
 <tr>
-  <td class="method">open_page(1)</td>
+  <td class="method">open_page(std::string page_name=&quot;[unset-page_name]&quot;)</td>
 </tr>
 <tr>
-  <td class="private_method">find_menu_item_by_keyboard_command_key_on_current_page(1)</td>
+  <td class="private_method">find_menu_item_by_keyboard_command_key_on_current_page(Hexagon::KeyboardCommandKey keyboard_command_key={})</td>
 </tr>
     </table>
      <table>
@@ -7790,10 +7790,10 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
     </table>
      <table>
@@ -7843,7 +7843,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">create_basic_notification(1)</td>
+  <td class="method">create_basic_notification(std::string body_text=&quot;&quot;)</td>
 </tr>
     </table>
      <table>
@@ -7878,10 +7878,10 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
     </table>
      <table>
@@ -7998,7 +7998,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">add_objective(1)</td>
+  <td class="method">add_objective(Hexagon::ObjectivesLog::Objective objective={})</td>
 </tr>
     </table>
      <table>
@@ -8046,10 +8046,10 @@ table td
   <td class="method">infer_num_list_items()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
     </table>
      <table>
@@ -8183,7 +8183,7 @@ table td
   <td class="method">is_state_to_submitted_and_pending_destruction()</td>
 </tr>
 <tr>
-  <td class="method">draw_selections(3)</td>
+  <td class="method">draw_selections(int cell_width=1, int cell_height=1, int first_line_number=0)</td>
 </tr>
 <tr>
   <td class="method">get_primary_color()</td>
@@ -8294,10 +8294,10 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="method">code_editor_char_count()</td>
@@ -8579,13 +8579,13 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">store(1)</td>
+  <td class="method">store(std::string content=&quot;&quot;)</td>
 </tr>
 <tr>
   <td class="method">retrieve()</td>
 </tr>
 <tr>
-  <td class="private_method">__replace(3)</td>
+  <td class="private_method">__replace(std::string str=&quot;&quot;, std::string from=&quot;&quot;, std::string to=&quot;&quot;)</td>
 </tr>
     </table>
      <table>
@@ -8674,7 +8674,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="private_method">draw_individual_rectangle(5)</td>
+  <td class="private_method">draw_individual_rectangle(float x1=0.0f, float y1=0.0f, float x2=0.0f, float y2=0.0f, std::string text=&quot;[-]&quot;)</td>
 </tr>
 <tr>
   <td class="method">render()</td>
@@ -8763,10 +8763,10 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">convert_to_names(1)</td>
+  <td class="method">convert_to_names(std::vector&lt;Blast::Project::Component&gt; components={})</td>
 </tr>
 <tr>
-  <td class="method">convert_to_components(1)</td>
+  <td class="method">convert_to_components(std::vector&lt;std::string&gt; names={})</td>
 </tr>
 <tr>
   <td class="method">component_names()</td>
@@ -8812,7 +8812,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
     </table>
      <table>
@@ -8983,7 +8983,7 @@ table td
   <td class="private_method">render_list_elements_raw()</td>
 </tr>
 <tr>
-  <td class="private_method">render_list_clipping_arrows_raw(2)</td>
+  <td class="private_method">render_list_clipping_arrows_raw(bool list_clipping_occurred_above=false, bool list_clipping_occurred_below=false)</td>
 </tr>
 <tr>
   <td class="method">render_raw()</td>
@@ -9111,13 +9111,13 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_char_event(3)</td>
+  <td class="method">process_char_event(int keycode=0, int unichar=0, bool is_repeat=false)</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="method">save_file()</td>
@@ -9316,7 +9316,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">set_menu_items(1)</td>
+  <td class="method">set_menu_items(std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt; menu_items={})</td>
 </tr>
 <tr>
   <td class="method">initialize()</td>
@@ -9340,10 +9340,10 @@ table td
   <td class="method">draw_menu()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
   <td class="method">build_placeholder_menu_items()</td>
@@ -9427,7 +9427,7 @@ table td
   <td class="method">spec_filenames()</td>
 </tr>
 <tr>
-  <td class="private_method">get_recursive_list_of_files_in_folder(2)</td>
+  <td class="private_method">get_recursive_list_of_files_in_folder(std::string fragment_folder_name=&quot;.&quot;, std::string fragment_extension=&quot;.*&quot;)</td>
 </tr>
     </table>
      <table>
@@ -9558,7 +9558,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">calculate_max_half_surface_width(3)</td>
+  <td class="method">calculate_max_half_surface_width(float surface_width=1.0f, float cell_width=1.0f, int num_columns=1)</td>
 </tr>
     </table>
      <table>
@@ -9693,7 +9693,7 @@ table td
   <td class="method">activate()</td>
 </tr>
 <tr>
-  <td class="method">set_flat_color(1)</td>
+  <td class="method">set_flat_color(ALLEGRO_COLOR flat_color={})</td>
 </tr>
 <tr>
   <td class="private_method">obtain_vertex_source()</td>
@@ -9732,19 +9732,19 @@ table td
   <td class="method">deactivate()</td>
 </tr>
 <tr>
-  <td class="method">set_flat_color(1)</td>
+  <td class="method">set_flat_color(ALLEGRO_COLOR flat_color={})</td>
 </tr>
 <tr>
-  <td class="method">set_texture_width(1)</td>
+  <td class="method">set_texture_width(int width=1)</td>
 </tr>
 <tr>
-  <td class="method">set_texture_height(1)</td>
+  <td class="method">set_texture_height(int height=1)</td>
 </tr>
 <tr>
-  <td class="method">set_nyan_cat_texture(1)</td>
+  <td class="method">set_nyan_cat_texture(ALLEGRO_BITMAP* nyan_cat_texture=nullptr)</td>
 </tr>
 <tr>
-  <td class="method">set_time(1)</td>
+  <td class="method">set_time(float time=1)</td>
 </tr>
 <tr>
   <td class="private_method">obtain_vertex_source()</td>
@@ -9786,13 +9786,13 @@ table td
   <td class="method">activate()</td>
 </tr>
 <tr>
-  <td class="method">set_flat_color(1)</td>
+  <td class="method">set_flat_color(ALLEGRO_COLOR flat_color={})</td>
 </tr>
 <tr>
-  <td class="method">set_texture_width(1)</td>
+  <td class="method">set_texture_width(int width=1)</td>
 </tr>
 <tr>
-  <td class="method">set_texture_height(1)</td>
+  <td class="method">set_texture_height(int height=1)</td>
 </tr>
 <tr>
   <td class="private_method">obtain_vertex_source()</td>
@@ -9831,19 +9831,19 @@ table td
   <td class="method">deactivate()</td>
 </tr>
 <tr>
-  <td class="method">set_flat_color(1)</td>
+  <td class="method">set_flat_color(ALLEGRO_COLOR flat_color={})</td>
 </tr>
 <tr>
-  <td class="method">set_texture_width(1)</td>
+  <td class="method">set_texture_width(int width=1)</td>
 </tr>
 <tr>
-  <td class="method">set_texture_height(1)</td>
+  <td class="method">set_texture_height(int height=1)</td>
 </tr>
 <tr>
-  <td class="method">set_nyan_cat_texture(1)</td>
+  <td class="method">set_nyan_cat_texture(ALLEGRO_BITMAP* nyan_cat_texture=nullptr)</td>
 </tr>
 <tr>
-  <td class="method">set_time(1)</td>
+  <td class="method">set_time(float time=1)</td>
 </tr>
 <tr>
   <td class="private_method">obtain_vertex_source()</td>
@@ -9888,19 +9888,19 @@ table td
   <td class="method">deactivate()</td>
 </tr>
 <tr>
-  <td class="method">set_flat_color(1)</td>
+  <td class="method">set_flat_color(ALLEGRO_COLOR flat_color={})</td>
 </tr>
 <tr>
-  <td class="method">set_texture_width(1)</td>
+  <td class="method">set_texture_width(int width=1)</td>
 </tr>
 <tr>
-  <td class="method">set_texture_height(1)</td>
+  <td class="method">set_texture_height(int height=1)</td>
 </tr>
 <tr>
-  <td class="method">set_nyan_cat_texture(1)</td>
+  <td class="method">set_nyan_cat_texture(ALLEGRO_BITMAP* nyan_cat_texture=nullptr)</td>
 </tr>
 <tr>
-  <td class="method">set_time(1)</td>
+  <td class="method">set_time(float time=1)</td>
 </tr>
 <tr>
   <td class="private_method">obtain_vertex_source()</td>
@@ -9945,16 +9945,16 @@ table td
   <td class="method">deactivate()</td>
 </tr>
 <tr>
-  <td class="method">set_flat_color(1)</td>
+  <td class="method">set_flat_color(ALLEGRO_COLOR flat_color={})</td>
 </tr>
 <tr>
-  <td class="method">set_texture_width(1)</td>
+  <td class="method">set_texture_width(int width=1)</td>
 </tr>
 <tr>
-  <td class="method">set_texture_height(1)</td>
+  <td class="method">set_texture_height(int height=1)</td>
 </tr>
 <tr>
-  <td class="method">set_time(1)</td>
+  <td class="method">set_time(float time=1)</td>
 </tr>
 <tr>
   <td class="private_method">obtain_vertex_source()</td>
@@ -9993,16 +9993,16 @@ table td
   <td class="method">deactivate()</td>
 </tr>
 <tr>
-  <td class="method">set_flat_color(1)</td>
+  <td class="method">set_flat_color(ALLEGRO_COLOR flat_color={})</td>
 </tr>
 <tr>
-  <td class="method">set_texture_width(1)</td>
+  <td class="method">set_texture_width(int width=1)</td>
 </tr>
 <tr>
-  <td class="method">set_texture_height(1)</td>
+  <td class="method">set_texture_height(int height=1)</td>
 </tr>
 <tr>
-  <td class="method">set_time(1)</td>
+  <td class="method">set_time(float time=1)</td>
 </tr>
 <tr>
   <td class="private_method">obtain_vertex_source()</td>
@@ -10041,16 +10041,16 @@ table td
   <td class="method">deactivate()</td>
 </tr>
 <tr>
-  <td class="method">set_flat_color(1)</td>
+  <td class="method">set_flat_color(ALLEGRO_COLOR flat_color={})</td>
 </tr>
 <tr>
-  <td class="method">set_texture_width(1)</td>
+  <td class="method">set_texture_width(int width=1)</td>
 </tr>
 <tr>
-  <td class="method">set_texture_height(1)</td>
+  <td class="method">set_texture_height(int height=1)</td>
 </tr>
 <tr>
-  <td class="method">set_time(1)</td>
+  <td class="method">set_time(float time=1)</td>
 </tr>
 <tr>
   <td class="private_method">obtain_vertex_source()</td>
@@ -10313,16 +10313,16 @@ table td
   <td class="method">obtain_dark_mode()</td>
 </tr>
 <tr>
-  <td class="method">create_notification(1)</td>
+  <td class="method">create_notification(std::string body_text=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="method">create_file_navigator(1)</td>
+  <td class="method">create_file_navigator(std::string project_directory=&quot;/Users/markoates/Repos/hexagon/&quot;)</td>
 </tr>
 <tr>
-  <td class="method">create_class_brief_menu(2)</td>
+  <td class="method">create_class_brief_menu(std::string title=&quot;Untitled Menu&quot;, std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt; items={{&quot;Foo&quot;, &quot;foo&quot;}, {&quot;Bar&quot;, &quot;bar&quot;}, {&quot;Baz&quot;, &quot;baz&quot;}})</td>
 </tr>
 <tr>
-  <td class="method">create_component_relations_navigator(3)</td>
+  <td class="method">create_component_relations_navigator(std::string focused_component_name=&quot;&quot;, std::string current_project_directory=&quot;&quot;, bool simplify_relatives_names=true)</td>
 </tr>
 <tr>
   <td class="method">create_fancy()</td>
@@ -10331,22 +10331,22 @@ table td
   <td class="method">create_drawing_box()</td>
 </tr>
 <tr>
-  <td class="method">create_missing_file(1)</td>
+  <td class="method">create_missing_file(std::string filename=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="method">create_advanced_code_editor(3)</td>
+  <td class="method">create_advanced_code_editor(std::string filename=&quot;untitled.txt&quot;, int num_columns=123, int num_rows=70)</td>
 </tr>
 <tr>
-  <td class="method">create_code_editor(2)</td>
+  <td class="method">create_code_editor(std::string filename=&quot;&quot;, std::string file_category=&quot;undefined&quot;)</td>
 </tr>
 <tr>
-  <td class="method">create_delete_multiplex_menu(2)</td>
+  <td class="method">create_delete_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage=nullptr, Hexagon::System::System* system=nullptr)</td>
 </tr>
 <tr>
-  <td class="method">create_change_multiplex_menu(2)</td>
+  <td class="method">create_change_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage=nullptr, Hexagon::System::System* system=nullptr)</td>
 </tr>
 <tr>
-  <td class="method">create_goto_multiplex_menu(2)</td>
+  <td class="method">create_goto_multiplex_menu(Hexagon::AdvancedCodeEditor::Stage* advanced_code_editor_stage=nullptr, Hexagon::System::System* system=nullptr)</td>
 </tr>
 <tr>
   <td class="method">create_regex_input_box_modal()</td>
@@ -10355,19 +10355,19 @@ table td
   <td class="method">create_git_commit_message_box()</td>
 </tr>
 <tr>
-  <td class="method">create_advanced_component_navigator(2)</td>
+  <td class="method">create_advanced_component_navigator(std::string project_directory=&quot;/Users/markoates/Repos/hexagon/&quot;, std::string initial_search_text=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="method">create_project_navigator(1)</td>
+  <td class="method">create_project_navigator(std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt; project_menu_items={})</td>
 </tr>
 <tr>
   <td class="method">get_current_display()</td>
 </tr>
 <tr>
-  <td class="method">build_centered_on_hud_initial_place(2)</td>
+  <td class="method">build_centered_on_hud_initial_place(float width=0, float height=0)</td>
 </tr>
 <tr>
-  <td class="method">build_centered_in_world_initial_place(2)</td>
+  <td class="method">build_centered_in_world_initial_place(float width=0, float height=0)</td>
 </tr>
 <tr>
   <td class="private_method">build_file_navigator_initial_place()</td>
@@ -10758,7 +10758,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">place_stage(4)</td>
+  <td class="method">place_stage(std::string filename=&quot;/foobar.txt&quot;, std::string file_category=&quot;undefined&quot;, float x=0.0, float align_x=0.0)</td>
 </tr>
 <tr>
   <td class="method">generate_header_filename()</td>
@@ -11093,7 +11093,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="private_method">validate_initialized(1)</td>
+  <td class="private_method">validate_initialized(std::string function_name=&quot;[unnamed_function]&quot;)</td>
 </tr>
 <tr>
   <td class="method">initialize()</td>
@@ -11156,7 +11156,7 @@ table td
   <td class="method">get_backfill_opacity()</td>
 </tr>
 <tr>
-  <td class="private_method">resource_path(2)</td>
+  <td class="private_method">resource_path(std::vector&lt;std::string&gt; components={}, std::string filename={})</td>
 </tr>
     </table>
      <table>
@@ -11193,10 +11193,10 @@ table td
   <td class="method">get_default_function_mapping()</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(1)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;[this-event-name-is-a-default-that-represents-undefined]&quot;)</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT* event_ptr=nullptr)</td>
 </tr>
     </table>
      <table>
@@ -11259,7 +11259,7 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="private_method">draw_focused_frame(1)</td>
+  <td class="private_method">draw_focused_frame(StageInterface* stage=nullptr)</td>
 </tr>
     </table>
      <table>
@@ -11447,7 +11447,7 @@ table td
     </table>
      <table>
 <tr>
-  <td class="method">build_from_message_line(1)</td>
+  <td class="method">build_from_message_line(std::string line=&quot;[unset-line]&quot;)</td>
 </tr>
     </table>
      <table>
@@ -11527,10 +11527,10 @@ table td
   <td class="method">parse()</td>
 </tr>
 <tr>
-  <td class="private_method">extract_test_class_name_and_test_description(1)</td>
+  <td class="private_method">extract_test_class_name_and_test_description(std::string line=&quot;&quot;)</td>
 </tr>
 <tr>
-  <td class="private_method">extract_ms(1)</td>
+  <td class="private_method">extract_ms(std::string line=&quot;&quot;)</td>
 </tr>
     </table>
      <table>
@@ -11645,7 +11645,7 @@ table td
   <td class="method">draw_menu()</td>
 </tr>
 <tr>
-  <td class="method">render_profiler_graph(2)</td>
+  <td class="method">render_profiler_graph(AllegroFlare::Profiler* profiler=nullptr, ALLEGRO_FONT* font=nullptr)</td>
 </tr>
 <tr>
   <td class="method">build_allegro_version_string()</td>
@@ -11787,10 +11787,10 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
   <td class="method">obtain_eurostile_title_font()</td>
@@ -11939,10 +11939,10 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
-  <td class="method">process_event(1)</td>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
 </tr>
 <tr>
-  <td class="method">process_local_event(2)</td>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
   <td class="private_method">emit_submission()</td>
@@ -12003,7 +12003,7 @@ table td
   <td class="method">find_whitespace_char_ranges()</td>
 </tr>
 <tr>
-  <td class="method">is_valid(1)</td>
+  <td class="method">is_valid(std::pair&lt;int, int&gt; word_range={0, 0})</td>
 </tr>
     </table>
      <table>
@@ -12119,13 +12119,13 @@ table td
   <td class="method">have_the_local_and_remote_repos_diverged()</td>
 </tr>
 <tr>
-  <td class="method">last_captured_output_from_status_request_contains_string(1)</td>
+  <td class="method">last_captured_output_from_status_request_contains_string(std::string string_to_find=)</td>
 </tr>
 <tr>
   <td class="method">poll_status()</td>
 </tr>
 <tr>
-  <td class="method">execute_command(1)</td>
+  <td class="method">execute_command(std::string command=)</td>
 </tr>
     </table>
      <table>
@@ -12253,7 +12253,7 @@ table td
   <td class="method">get_any_font()</td>
 </tr>
 <tr>
-  <td class="method">build_centered_placement(2)</td>
+  <td class="method">build_centered_placement(float width=0.0f, float height=0.0f)</td>
 </tr>
     </table>
      <table>

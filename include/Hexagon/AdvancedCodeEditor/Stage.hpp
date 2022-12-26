@@ -173,6 +173,7 @@ namespace Hexagon
          bool refresh_current_visual_selection_end_to_current_cursor_position();
          bool yank_selected_text_to_clipboard();
          bool paste_selected_text_from_clipboard();
+         bool replace_content_with_contents_of_clipboard();
          static std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> build_local_events_dictionary();
          static AllegroFlare::KeyboardCommandMapper build_keyboard_command_mapping_for_edit_mode();
          static AllegroFlare::KeyboardCommandMapper build_keyboard_command_mapping_for_insert_mode();
