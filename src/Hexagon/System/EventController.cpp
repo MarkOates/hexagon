@@ -433,7 +433,6 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
           });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_C, true, false, false, true, {
             ::System::SPAWN_CHAT_GPT_CHAT,
-            ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
           });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {
             ::System::SPAWN_COMPONENT_NAVIGATOR,
