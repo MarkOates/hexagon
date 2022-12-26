@@ -80,6 +80,7 @@ table td
   <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Camera.q.yml">quintessence/Hexagon/Camera.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.q.yml">quintessence/Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/Cursor.q.yml">quintessence/Hexagon/CodeEditor/Cursor.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/CursorRenderer.q.yml">quintessence/Hexagon/CodeEditor/CursorRenderer.q.yml</a></li>
@@ -2869,6 +2870,39 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;tan&quot;, &quot;headers&quot;=&gt;[&quot;cmath&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.q.yml">quintessence/Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">tty_location</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">message</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">shell_command_output</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">output_command_to_cout</td>
+  <td class="property">bool</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">submit()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -13487,6 +13521,7 @@ table td
   ],
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
+    "Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/DarkModeDetector",
     "Hexagon/Git/CommitStagedWithMessage",

@@ -4,10 +4,16 @@ properties:
   - name: tty_location
     type: std::string
     init_with: '"[unset-tty_location]"'
+    constructor_arg: true
+    getter: true
+    setter: true
 
   - name: message
     type: std::string
     init_with: '"[unset-message]"'
+    constructor_arg: true
+    getter: true
+    setter: true
 
   - name: shell_command_output
     type: std::string

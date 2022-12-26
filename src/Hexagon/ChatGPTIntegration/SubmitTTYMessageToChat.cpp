@@ -13,9 +13,9 @@ namespace ChatGPTIntegration
 {
 
 
-SubmitTTYMessageToChat::SubmitTTYMessageToChat()
-   : tty_location("[unset-tty_location]")
-   , message("[unset-message]")
+SubmitTTYMessageToChat::SubmitTTYMessageToChat(std::string tty_location, std::string message)
+   : tty_location(tty_location)
+   , message(message)
    , shell_command_output("[unset-shell_command_output]")
    , output_command_to_cout(true)
 {
@@ -24,6 +24,18 @@ SubmitTTYMessageToChat::SubmitTTYMessageToChat()
 
 SubmitTTYMessageToChat::~SubmitTTYMessageToChat()
 {
+}
+
+
+void SubmitTTYMessageToChat::set_tty_location(std::string tty_location)
+{
+   this->tty_location = tty_location;
+}
+
+
+void SubmitTTYMessageToChat::set_message(std::string message)
+{
+   this->message = message;
 }
 
 
@@ -36,6 +48,18 @@ void SubmitTTYMessageToChat::set_shell_command_output(std::string shell_command_
 void SubmitTTYMessageToChat::set_output_command_to_cout(bool output_command_to_cout)
 {
    this->output_command_to_cout = output_command_to_cout;
+}
+
+
+std::string SubmitTTYMessageToChat::get_tty_location() const
+{
+   return tty_location;
+}
+
+
+std::string SubmitTTYMessageToChat::get_message() const
+{
+   return message;
 }
 
 

@@ -1088,6 +1088,7 @@
   ],
   "Blast/ShellCommandExecutorWithCallback": [
     "Hexagon/BuildSystem/BuildStages/ShellCommand",
+    "Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/DarkModeDetector",
     "Hexagon/Git/CommitStagedWithMessage",
