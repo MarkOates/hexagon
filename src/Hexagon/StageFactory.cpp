@@ -229,6 +229,7 @@ StageInterface* StageFactory::create_class_brief_menu(std::string title, std::ve
 StageInterface* StageFactory::create_chat_gpt_chat()
 {
    Hexagon::ChatGPTIntegration::Chat::Stage *result = new Hexagon::ChatGPTIntegration::Chat::Stage();
+   result->set_font_bin(font_bin);
    result->initialize();
    return result;
 }

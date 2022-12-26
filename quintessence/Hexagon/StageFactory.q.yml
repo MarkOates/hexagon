@@ -165,6 +165,7 @@ functions:
     type: StageInterface*
     body: |
       Hexagon::ChatGPTIntegration::Chat::Stage *result = new Hexagon::ChatGPTIntegration::Chat::Stage();
+      result->set_font_bin(font_bin);
       result->initialize();
       return result;
     body_dependency_symbols:
