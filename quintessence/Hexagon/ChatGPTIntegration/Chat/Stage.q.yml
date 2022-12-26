@@ -123,6 +123,28 @@ functions:
       - Hexagon::Elements::Window
 
 
+  - name: submit_input_box_and_clear
+    body: |
+      std::string input_box_text = input_box.get_text();
+      std::string filtered_text = Blast::String::Trimmer(input_box_text).trim();
+      if (filtered_text.empty())
+      {
+         std::cout << "Hexagon::ChatGPTIntegration::Chat::Stage Cannot submit input message, box is empty" << std::endl;
+         return;
+      }
+
+      std::string tty_location = "/dev/ttys005"; // NOTE: this could vary
+      std::string message = filtered_text;
+
+      Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat submit_tty_message_to_chat(tty_location, filtered_text);
+      submit_tty_message_to_chat.submit();
+
+      return;
+    body_dependency_symbols:
+      - Blast::String::Trimmer
+      - Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat
+
+
   - name: process_local_event
     virtual: true
     override: true
@@ -173,8 +195,9 @@ functions:
                return;
             }
 
-            if (event.keyboard.keycode == ALLEGRO_KEY_ENTER)
+            if (event.keyboard.keycode == ALLEGRO_KEY_ENTER && shift == true)
             {
+               submit_input_box_and_clear();
                //input_box.move_cursor_left();
                //input_box.delete_character();
                return;
@@ -261,5 +284,9 @@ dependencies:
     headers: [ AllegroFlare/Placement2D.hpp ]
   - symbol: Hexagon::Elements::Window
     headers: [ Hexagon/Elements/Window.hpp ]
+  - symbol: Blast::String::Trimmer
+    headers: [ Blast/String/Trimmer.hpp ]
+  - symbol: Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat
+    headers: [ Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.hpp ]
 
 

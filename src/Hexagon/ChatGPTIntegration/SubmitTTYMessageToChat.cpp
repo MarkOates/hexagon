@@ -91,8 +91,8 @@ std::string SubmitTTYMessageToChat::submit()
    }
 
    Blast::ShellCommandExecutorWithCallback shell_command_executor_with_callback(command.str());
+   shell_command_output = shell_command_executor_with_callback.execute();
 
-   //shell_command_output = shell_command_executor_with_callback(
    return shell_command_output;
 }
 

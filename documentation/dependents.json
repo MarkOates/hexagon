@@ -1144,6 +1144,16 @@
   "AllegroFlare/Placement2D": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
+  "Blast/String/Trimmer": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
+    "Hexagon/DarkModeDetector",
+    "Hexagon/PacketLogger",
+    "Hexagon/Testing/ClangBuildOutputResult",
+    "NcursesArt/GithubRepoStatusFetcher"
+  ],
+  "Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
   "all": [
     "Hexagon/CodeEditor/CachedLineRenderer"
   ],
@@ -1325,12 +1335,6 @@
   "Hexagon/Testing/GoogleTestRunTestResult": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "Blast/String/Trimmer": [
-    "Hexagon/DarkModeDetector",
-    "Hexagon/PacketLogger",
-    "Hexagon/Testing/ClangBuildOutputResult",
-    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"

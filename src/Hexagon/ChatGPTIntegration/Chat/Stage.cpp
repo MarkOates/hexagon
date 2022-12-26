@@ -2,7 +2,9 @@
 
 #include <Hexagon/ChatGPTIntegration/Chat/Stage.hpp>
 
+#include <Blast/String/Trimmer.hpp>
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
+#include <Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.hpp>
 #include <Hexagon/Elements/Window.hpp>
 #include <iostream>
 #include <sstream>
@@ -162,6 +164,25 @@ void Stage::render()
    return;
 }
 
+void Stage::submit_input_box_and_clear()
+{
+   std::string input_box_text = input_box.get_text();
+   std::string filtered_text = Blast::String::Trimmer(input_box_text).trim();
+   if (filtered_text.empty())
+   {
+      std::cout << "Hexagon::ChatGPTIntegration::Chat::Stage Cannot submit input message, box is empty" << std::endl;
+      return;
+   }
+
+   std::string tty_location = "/dev/ttys005"; // NOTE: this could vary
+   std::string message = filtered_text;
+
+   Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat submit_tty_message_to_chat(tty_location, filtered_text);
+   submit_tty_message_to_chat.submit();
+
+   return;
+}
+
 void Stage::process_local_event(std::string event_name, ActionData action_data)
 {
    //Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
@@ -196,8 +217,9 @@ void Stage::process_event(ALLEGRO_EVENT& event)
             return;
          }
 
-         if (event.keyboard.keycode == ALLEGRO_KEY_ENTER)
+         if (event.keyboard.keycode == ALLEGRO_KEY_ENTER && shift == true)
          {
+            submit_input_box_and_clear();
             //input_box.move_cursor_left();
             //input_box.delete_character();
             return;

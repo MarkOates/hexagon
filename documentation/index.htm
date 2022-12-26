@@ -3012,6 +3012,9 @@ table td
   <td class="method">render()</td>
 </tr>
 <tr>
+  <td class="method">submit_input_box_and_clear()</td>
+</tr>
+<tr>
   <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
 </tr>
 <tr>
@@ -3057,6 +3060,12 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::Window&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/Window.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::String::Trimmer&quot;, &quot;headers&quot;=&gt;[&quot;Blast/String/Trimmer.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -13767,6 +13776,16 @@ table td
   "AllegroFlare/Placement2D": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
+  "Blast/String/Trimmer": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
+    "Hexagon/DarkModeDetector",
+    "Hexagon/PacketLogger",
+    "Hexagon/Testing/ClangBuildOutputResult",
+    "NcursesArt/GithubRepoStatusFetcher"
+  ],
+  "Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
   "all": [
     "Hexagon/CodeEditor/CachedLineRenderer"
   ],
@@ -13948,12 +13967,6 @@ table td
   "Hexagon/Testing/GoogleTestRunTestResult": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
-  ],
-  "Blast/String/Trimmer": [
-    "Hexagon/DarkModeDetector",
-    "Hexagon/PacketLogger",
-    "Hexagon/Testing/ClangBuildOutputResult",
-    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"

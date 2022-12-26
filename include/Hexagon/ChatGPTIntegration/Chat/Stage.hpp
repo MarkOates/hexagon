@@ -47,6 +47,7 @@ namespace Hexagon
             std::string &get_input_buffer_ref();
             void initialize();
             virtual void render() override;
+            void submit_input_box_and_clear();
             virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
             virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
             virtual void destroy() override;
