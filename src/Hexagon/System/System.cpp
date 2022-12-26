@@ -1273,6 +1273,17 @@ bool System::spawn_drawing_box()
 }
 
 
+bool System::spawn_chat_gpt_chat()
+{
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
+   StageInterface *result = stage_factory.create_chat_gpt_chat();
+
+   stages.push_back(result);
+
+   return true;
+}
+
+
 bool System::spawn_regex_input_box_modal()
 {
    ::Hexagon::StageFactory stage_factory(&hexagon_config, &font_bin);
@@ -2172,6 +2183,7 @@ const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR
 const std::string System::SPAWN_PROJECT_NAVIGATOR = "SPAWN_PROJECT_NAVIGATOR";
 const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
+const std::string System::SPAWN_CHAT_GPT_CHAT = "SPAWN_CHAT_GPT_CHAT";
 const std::string System::SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL = "SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL";
 const std::string System::PARSE_TEST_RESULTS_FROM_LAST_TEST_RUN_DUMP = "PARSE_TEST_RESULTS_FROM_LAST_TEST_RUN_DUMP";
 const std::string System::SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL = "SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL";

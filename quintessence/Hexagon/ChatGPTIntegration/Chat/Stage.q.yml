@@ -1,0 +1,152 @@
+parent_classes:
+
+
+  - class: StageInterface
+    scope: public
+    init_with: StageInterface::CHAT_GPT_CHAT
+
+
+properties:
+
+
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    getter: true
+    setter: true
+
+  - name: log_view
+    type: Hexagon::ChatGPTIntegration::Chat::LogView
+    init_with: ''
+
+  - name: log_source_filename
+    type: std::string
+    init_with: '"/Users/markoates/Repos/ChatGPT/log.txt"'
+    getter: true
+    setter: true
+
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
+
+  - name: initialized
+    type: bool
+    init_with: false
+
+
+functions:
+
+
+  - name: initialize
+    guards: [ (!initialized) ]
+    body: |
+      get_place().size = {500, 900};
+      log_view.set_source_filename(log_source_filename);
+      initialized = true;
+      return;
+
+
+  - name: render
+    virtual: true
+    override: true
+    guards: [ (!initialized) ]
+    body: |
+      ALLEGRO_FONT *dump_font = obtain_dump_font();
+      float font_line_height = al_get_font_line_height(dump_font);
+      ALLEGRO_COLOR dump_text_color = ALLEGRO_COLOR{0.9, 0.93, 1.0, 1.0};
+      float width = 500;
+
+      get_place().start_transform();
+      Hexagon::ChatGPTIntegration::Chat::LogView log_view(log_source_filename);
+      std::string log_view_text = log_view.get_log_text();
+      al_draw_multiline_text(dump_font, dump_text_color, 0, 0, width, font_line_height, ALLEGRO_ALIGN_LEFT,
+         log_view_text.c_str()
+      );
+      // TODO:
+      // renderer.render();
+      get_place().restore_transform();
+      return;
+
+
+  - name: process_local_event
+    virtual: true
+    override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: '""'
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    body: |
+      //Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
+      //event_controller.process_local_event(event_name, action_data);
+      return;
+       //body_dependency_symbols:
+         //- Hexagon::AdvancedCodeEditor::EventController
+    body_dependency_symbols: []
+
+
+  - name: process_event
+    virtual: true
+    override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    body: |
+      //AllegroFlare::KeyboardCommandMapper keyboard_command_mapping;
+      //if (is_in_insert_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_insert_mode();
+      //else if (is_in_edit_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_edit_mode();
+
+      //Hexagon::AdvancedCodeEditor::EventController event_controller(
+            //this,
+            //build_local_events_dictionary(),
+            //keyboard_command_mapping
+         //);
+      //event_controller.process_event(event);
+      return;
+       //body_dependency_symbols:
+         //- Hexagon::AdvancedCodeEditor::EventController
+    body_dependency_symbols: []
+
+
+  - name: destroy
+    virtual: true
+    override: true
+    body: |
+      //if (surface_render) al_destroy_bitmap(surface_render);
+      initialized = false;
+      return;
+
+
+  - name: obtain_dump_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      float scale = 1.45;
+      int font_size = -10 * scale;
+      std::stringstream ident;
+      ident << "Purista Medium.otf " << (int)(font_size * scale);
+      return font_bin->auto_get(ident.str());
+
+
+dependencies:
+
+
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: Hexagon::ChatGPTIntegration::Chat::LogView
+    headers: [ Hexagon/ChatGPTIntegration/Chat/LogView.hpp ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ActionData
+    headers: [ Hexagon/ActionData.hpp ]
+
+

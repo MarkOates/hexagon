@@ -1829,6 +1829,9 @@
   "al_font_line_height": [
     "Hexagon/StageFactory"
   ],
+  "Hexagon/ChatGPTIntegration/Chat/Stage": [
+    "Hexagon/StageFactory"
+  ],
   "Hexagon/Git/Modified": [
     "Hexagon/System/Action/CheckGitLocalStatusAndUpdatePowerbar"
   ],

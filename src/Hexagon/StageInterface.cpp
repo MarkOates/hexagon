@@ -87,6 +87,9 @@ std::string StageInterface::get_type_name()
       case MULTIPLEX_MENU:
          return "MultiplexMenu";
          break;
+      case CHAT_GPT_CHAT:
+         return "ChatGPTChat";
+         break;
       default:
       {
          throw std::runtime_error("StageInterface::get_type_name() unrecognized type");
@@ -141,6 +144,7 @@ bool StageInterface::infer_is_modal()
    case OBJECTIVES_LOG:
    case DRAWING_BOX:
    case MULTIPLEX_MENU:
+   case CHAT_GPT_CHAT:
       return true;
    default:
       return false;

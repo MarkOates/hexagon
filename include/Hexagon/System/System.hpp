@@ -172,6 +172,7 @@ public:
    bool spawn_fancy();
    bool spawn_component_relations_navigator();
    bool spawn_red_overlay();
+   bool spawn_chat_gpt_chat();
 
    bool parse_test_results_from_last_test_run_dump();
    bool spawn_file_navigator();
@@ -279,6 +280,7 @@ public:
    static const std::string SPAWN_COMPONENT_NAVIGATOR;
    static const std::string SPAWN_PROJECT_NAVIGATOR;
    static const std::string SPAWN_FILE_NAVIGATOR;
+   static const std::string SPAWN_CHAT_GPT_CHAT;
    static const std::string SPAWN_REGEX_ONE_LINE_INPUT_BOX_MODAL;
    static const std::string PARSE_TEST_RESULTS_FROM_LAST_TEST_RUN_DUMP;
    static const std::string SPAWN_GIT_COMMIT_MESSAGE_INPUT_BOX_MODAL;

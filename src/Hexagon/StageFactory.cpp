@@ -7,6 +7,7 @@
 #include <Blast/StringSplitter.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
+#include <Hexagon/ChatGPTIntegration/Chat/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
 #include <Hexagon/ComponentRelationsNavigator/ComponentRelations.hpp>
 #include <Hexagon/ComponentRelationsNavigator/Stage.hpp>
@@ -223,6 +224,13 @@ StageInterface* StageFactory::create_class_brief_menu(std::string title, std::ve
    little_menu->set_render_on_hud(true);
    little_menu->set_place(build_centered_on_hud_initial_place(0, 300));
    return little_menu;
+}
+
+StageInterface* StageFactory::create_chat_gpt_chat()
+{
+   Hexagon::ChatGPTIntegration::Chat::Stage *result = new Hexagon::ChatGPTIntegration::Chat::Stage();
+   result->initialize();
+   return result;
 }
 
 StageInterface* StageFactory::create_component_relations_navigator(std::string focused_component_name, std::string current_project_directory, bool simplify_relatives_names)

@@ -239,6 +239,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          &System::spawn_component_relations_navigator,
       },
       {
+         ::System::SPAWN_CHAT_GPT_CHAT,
+         &System::spawn_chat_gpt_chat,
+      },
+      {
          ::System::EXECUTE_MAGIC_COMMAND,
          &System::execute_magic_command,
       },
@@ -425,6 +429,10 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
             });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, true, false, false, false, {
             ::System::SPAWN_FILE_NAVIGATOR,
+            ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
+          });
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_C, true, false, false, true, {
+            ::System::SPAWN_CHAT_GPT_CHAT,
             ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
           });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_TAB, false, false, false, false, {

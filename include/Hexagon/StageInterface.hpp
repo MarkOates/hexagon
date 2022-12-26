@@ -33,6 +33,7 @@ public:
       FANCY,
       OBJECTIVES_LOG,
       MULTIPLEX_MENU,
+      CHAT_GPT_CHAT,
    }; // these types should not be included within the base class
 
 private:

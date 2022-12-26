@@ -161,6 +161,16 @@ functions:
        - Hexagon::UI::LittleMenu
 
 
+  - name: create_chat_gpt_chat
+    type: StageInterface*
+    body: |
+      Hexagon::ChatGPTIntegration::Chat::Stage *result = new Hexagon::ChatGPTIntegration::Chat::Stage();
+      result->initialize();
+      return result;
+    body_dependency_symbols:
+      - Hexagon::ChatGPTIntegration::Chat::Stage
+
+
   - name: create_component_relations_navigator
     parameters:
       - name: focused_component_name
@@ -968,4 +978,7 @@ dependencies:
     headers: [ Hexagon/System/System.hpp ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: Hexagon::ChatGPTIntegration::Chat::Stage
+    headers: [ Hexagon/ChatGPTIntegration/Chat/Stage.hpp ]
+
 
