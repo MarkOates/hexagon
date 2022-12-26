@@ -72,7 +72,7 @@ void Stage::initialize()
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
       throw std::runtime_error("Stage::initialize: error: guard \"(!initialized)\" not met");
    }
-   get_place().size = {500, 900};
+   get_place().size = {700, 900};
    log_view.set_source_filename(log_source_filename);
    initialized = true;
    return;
@@ -90,7 +90,7 @@ void Stage::render()
    ALLEGRO_FONT *dump_font = obtain_dump_font();
    float font_line_height = al_get_font_line_height(dump_font);
    ALLEGRO_COLOR dump_text_color = ALLEGRO_COLOR{0.9, 0.93, 1.0, 1.0};
-   float width = 500;
+   float width = 700;
 
    get_place().start_transform();
    Hexagon::ChatGPTIntegration::Chat::LogView log_view(log_source_filename);
@@ -147,9 +147,9 @@ ALLEGRO_FONT* Stage::obtain_dump_font()
       throw std::runtime_error("Stage::obtain_dump_font: error: guard \"font_bin\" not met");
    }
    float scale = 1.45;
-   int font_size = -10 * scale;
+   int font_size = -12 * scale;
    std::stringstream ident;
-   ident << "Purista Medium.otf " << (int)(font_size * scale);
+   ident << "Inter-Medium.ttf " << (int)(font_size * scale);
    return font_bin->auto_get(ident.str());
 }
 
