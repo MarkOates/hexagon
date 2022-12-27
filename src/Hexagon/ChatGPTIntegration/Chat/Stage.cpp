@@ -185,7 +185,7 @@ void Stage::render()
          get_place().size.x, // width
          get_place().size.y  // height
       );
-      conversation_view.set_num_messages_to_show(4);
+      conversation_view.set_num_messages_to_show(7);
       conversation_view.set_skip_empty_messages(true);
       conversation_view.render();
    }
