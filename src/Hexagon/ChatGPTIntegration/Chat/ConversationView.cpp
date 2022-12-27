@@ -3,6 +3,7 @@
 #include <Hexagon/ChatGPTIntegration/Chat/ConversationView.hpp>
 
 #include <Hexagon/ChatCPTIntegration/Messages/Text.hpp>
+#include <allegro5/allegro_primitives.h>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
@@ -110,7 +111,10 @@ void ConversationView::render()
    ALLEGRO_FONT *log_dump_font = obtain_log_dump_font();
    ALLEGRO_COLOR log_dump_text_color = ALLEGRO_COLOR{0.9, 0.93, 1.0, 1.0};
    float font_line_height = al_get_font_line_height(log_dump_font);
-   float width = 700;
+   float frame_width = 740;
+   float text_padding_left = 40;
+   float text_padding_right = 20;
+   float text_width = frame_width - (text_padding_left + text_padding_right);
    float cursor_y = 0;
    float message_height = 0;
    float vertical_padding = 20;
@@ -130,7 +134,7 @@ void ConversationView::render()
          std::string message_body = as_text_message->get_body();
 
          // count the number of lines that will render, and calculate the message height
-         int num_lines_that_will_render = count_num_lines_will_render(log_dump_font, width, message_body);
+         int num_lines_that_will_render = count_num_lines_will_render(log_dump_font, text_width, message_body);
          message_height = num_lines_that_will_render * font_line_height;
 
          cursor_y += vertical_padding;
@@ -139,9 +143,9 @@ void ConversationView::render()
          al_draw_multiline_text(
             log_dump_font,
             log_dump_text_color,
-            0,
+            text_padding_left,
             cursor_y,
-            width,
+            text_width,
             font_line_height,
             ALLEGRO_ALIGN_LEFT,
             message_body.c_str()
@@ -154,6 +158,9 @@ void ConversationView::render()
       {
          // TODO: render an "unknown message type" text
       }
+
+      // draw a horizontal dividing line separating the messages
+      al_draw_line(0, cursor_y, frame_width, cursor_y, ALLEGRO_COLOR{0.2, 0.2, 0.2, 0.2}, 1.0);
    }
    return;
 }

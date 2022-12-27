@@ -1156,6 +1156,10 @@
     "Hexagon/ChatGPTIntegration/Chat/ConversationView",
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
+  "al_draw_line": [
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView",
+    "Hexagon/UI/DrawingBox"
+  ],
   "Hexagon/ChatGPTIntegration/Chat/LogView": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
@@ -1954,9 +1958,6 @@
   "std/pair<std/string, std/string>": [
     "Hexagon/Testing/GoogleTestRunOutputParser",
     "NcursesArt/ProjectComponentBasenameExtractor"
-  ],
-  "al_draw_line": [
-    "Hexagon/UI/DrawingBox"
   ],
   "std/map<std/string, std/function<bool(Hexagon/UI/DrawingBox&)>>": [
     "Hexagon/UI/DrawingBox"
