@@ -1,0 +1,110 @@
+properties:
+
+
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: conversation
+    type: Hexagon::ChatCPTIntegration::Conversation*
+    init_with: nullptr
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: num_messages_to_show
+    type: int32_t
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+
+functions:
+
+
+  - name: render
+    guards: [ font_bin ]
+    body: |
+      ALLEGRO_FONT *log_dump_font = obtain_log_dump_font();
+      ALLEGRO_COLOR log_dump_text_color = ALLEGRO_COLOR{0.9, 0.93, 1.0, 1.0};
+      float font_line_height = al_get_font_line_height(log_dump_font);
+      float width = 700;
+      float message_height = 200;
+      float cursor_y = 0;
+
+      if (!conversation)
+      {
+         // TODO: render a no-conversation text
+      }
+      std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> messages =
+         conversation->get_last_n_messages(num_messages_to_show);
+      for (auto &message : messages)
+      {
+         if (message->is_type(Hexagon::ChatCPTIntegration::Messages::Text::TYPE))
+         {
+            Hexagon::ChatCPTIntegration::Messages::Text* as_text_message = 
+               static_cast<Hexagon::ChatCPTIntegration::Messages::Text*>(message);
+            std::string message_body = as_text_message->get_body();
+
+            al_draw_multiline_text(
+               log_dump_font,
+               log_dump_text_color,
+               0,
+               cursor_y,
+               width,
+               font_line_height,
+               ALLEGRO_ALIGN_LEFT,
+               message_body.c_str()
+            );
+         }
+         else
+         {
+            // TODO: render an "unknown message type" text
+         }
+
+         cursor_y += message_height;
+      }
+      return;
+    body_dependency_symbols:
+      - Hexagon::ChatCPTIntegration::Messages::Text
+
+
+  - name: obtain_log_dump_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      float scale = 1.45;
+      int font_size = -12 * scale;
+      std::stringstream ident;
+      ident << "Inter-Medium.ttf " << (int)(font_size * scale);
+      return font_bin->auto_get(ident.str());
+
+
+  - name: obtain_input_box_font
+    type: ALLEGRO_FONT*
+    guards: [ font_bin ]
+    body: |
+      float scale = 1.45;
+      int font_size = -12 * scale;
+      std::stringstream ident;
+      ident << "consolas.ttf " << (int)(font_size * scale);
+      return font_bin->auto_get(ident.str());
+
+
+dependencies:
+
+
+  - symbol: Hexagon::ChatCPTIntegration::Conversation
+    headers: [ Hexagon/ChatCPTIntegration/Conversation.hpp ]
+  - symbol: Hexagon::ChatCPTIntegration::Messages::Text
+    headers: [ Hexagon/ChatCPTIntegration/Messages/Text.hpp ]
+  - symbol: ALLEGRO_FONT
+    headers: [ allegro5/allegro_font.h ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+
+

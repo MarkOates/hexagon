@@ -1,0 +1,39 @@
+#pragma once
+
+
+#include <string>
+
+
+namespace Hexagon
+{
+   namespace ChatCPTIntegration
+   {
+      namespace Messages
+      {
+         class Base
+         {
+         public:
+            static constexpr char* TYPE = (char*)"Messages/Base";
+
+         private:
+            std::string type;
+            int author_id;
+
+         protected:
+
+
+         public:
+            Base(std::string type=Hexagon::ChatCPTIntegration::Messages::Base::TYPE, int author_id=0);
+            ~Base();
+
+            void set_author_id(int author_id);
+            std::string get_type() const;
+            int get_author_id() const;
+            bool is_type(std::string possible_type="");
+         };
+      }
+   }
+}
+
+
+

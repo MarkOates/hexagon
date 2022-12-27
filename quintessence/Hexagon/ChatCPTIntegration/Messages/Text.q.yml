@@ -1,0 +1,32 @@
+parent_classes:
+
+
+  - class: Hexagon::ChatCPTIntegration::Messages::Base
+    scope: public
+    init_with: Hexagon::ChatCPTIntegration::Messages::Text::TYPE
+
+
+properties:
+
+
+  - name: body
+    type: std::string
+    init_with: '"[unset-body]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: TYPE
+    type: char*
+    init_with: '(char*)"Messages/Text"'
+    static: true
+    constexpr: true
+
+
+dependencies:
+
+
+  - symbol: Hexagon::ChatCPTIntegration::Messages::Base
+    headers: [ Hexagon/ChatCPTIntegration/Messages/Base.hpp ]
+
+

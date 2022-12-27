@@ -4,11 +4,13 @@
 #include <AllegroFlare/FontBin.hpp>
 #include <AllegroFlare/Placement2D.hpp>
 #include <Hexagon/ActionData.hpp>
+#include <Hexagon/ChatCPTIntegration/Conversation.hpp>
 #include <Hexagon/ChatGPTIntegration/Chat/InputBox.hpp>
 #include <Hexagon/ChatGPTIntegration/Chat/LogView.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <cstdint>
 #include <string>
 
 
@@ -20,14 +22,21 @@ namespace Hexagon
       {
          class Stage : public StageInterface
          {
+         public:
+            static constexpr uint32_t VIEW_MODE_UNDEFINED = 0;
+            static constexpr uint32_t VIEW_MODE_LOG = 1;
+            static constexpr uint32_t VIEW_MODE_CONVERSATION = 2;
+
          private:
             AllegroFlare::FontBin* font_bin;
             Hexagon::ChatGPTIntegration::Chat::LogView log_view;
             Hexagon::ChatGPTIntegration::Chat::InputBox input_box;
             AllegroFlare::Placement2D input_box_placement;
             std::string log_source_filename;
+            Hexagon::ChatCPTIntegration::Conversation conversation;
             static ALLEGRO_EVENT a_default_empty_event;
             std::string input_buffer;
+            uint32_t view_mode;
             bool initialized;
 
          protected:
@@ -47,6 +56,7 @@ namespace Hexagon
             std::string &get_input_buffer_ref();
             void initialize();
             void clear_input_text_box();
+            void toggle_view_mode();
             virtual void render() override;
             void submit_input_box_and_clear();
             virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;

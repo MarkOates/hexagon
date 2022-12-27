@@ -33,6 +33,10 @@ properties:
     getter: true
     setter: true
 
+  - name: conversation
+    type: Hexagon::ChatCPTIntegration::Conversation
+    init_with: ''
+
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
@@ -46,9 +50,34 @@ properties:
     getter_ref: true
     setter: true
 
+  - name: view_mode
+    type: uint32_t
+    init_with: VIEW_MODE_UNDEFINED
+
   - name: initialized
     type: bool
     init_with: false
+
+  - name: VIEW_MODE_UNDEFINED
+    type: uint32_t
+    init_with: 0
+    constexpr: true
+    static: true
+    const: true
+
+  - name: VIEW_MODE_LOG
+    type: uint32_t
+    init_with: 1
+    constexpr: true
+    static: true
+    const: true
+
+  - name: VIEW_MODE_CONVERSATION
+    type: uint32_t
+    init_with: 2
+    constexpr: true
+    static: true
+    const: true
 
 
 functions:
@@ -65,6 +94,8 @@ functions:
       //input_box.insert_lines("");
       input_box.get_text_editor_ref().insert_lines({""}); // need to insert a blank line so that we can add chars to it
       //input_box.insert_string("Hello, this is placholder text for the chat input box.");
+
+      view_mode = VIEW_MODE_LOG;
  
       initialized = true;
       return;
@@ -74,6 +105,13 @@ functions:
     body: |
       input_box.clear();
       input_box.get_text_editor_ref().insert_lines({""}); // need to insert a blank line so that we can add chars to it
+
+
+  - name: toggle_view_mode
+    body: |
+      if (view_mode == VIEW_MODE_LOG) view_mode = VIEW_MODE_CONVERSATION;
+      else if (view_mode == VIEW_MODE_CONVERSATION) view_mode = VIEW_MODE_LOG;
+      return;
 
 
   - name: render
@@ -90,12 +128,22 @@ functions:
       get_place().start_transform();
 
 
-      // draw the log
-      Hexagon::ChatGPTIntegration::Chat::LogView log_view(log_source_filename);
-      std::string log_view_text = log_view.get_log_text();
-      al_draw_multiline_text(log_dump_font, log_dump_text_color, 0, 0, width, font_line_height, ALLEGRO_ALIGN_LEFT,
-         log_view_text.c_str()
-      );
+      if (view_mode == VIEW_MODE_LOG)
+      {
+         // draw the log
+         Hexagon::ChatGPTIntegration::Chat::LogView log_view(log_source_filename);
+         std::string log_view_text = log_view.get_log_text();
+         al_draw_multiline_text(log_dump_font, log_dump_text_color, 0, 0, width, font_line_height, ALLEGRO_ALIGN_LEFT,
+            log_view_text.c_str()
+         );
+      }
+      else if (view_mode == VIEW_MODE_CONVERSATION)
+      {
+         // draw the conversation
+         // TODO: convert from raw log to messages
+         Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(font_bin, &conversation, 3);
+         conversation_view.render();
+      }
 
       // draw the input box
       std::string input_box_text = input_box.get_text();
@@ -126,6 +174,7 @@ functions:
       return;
     body_dependency_symbols:
       - Hexagon::AdvancedCodeEditor::Cursor
+      - Hexagon::ChatGPTIntegration::Chat::ConversationView
       - Hexagon::Elements::Window
 
 
@@ -200,6 +249,12 @@ functions:
             {
                input_box.move_cursor_left();
                input_box.delete_character();
+               return;
+            }
+
+            if (event.keyboard.keycode == ALLEGRO_KEY_TAB)
+            {
+               toggle_view_mode();
                return;
             }
 
@@ -296,5 +351,9 @@ dependencies:
     headers: [ Blast/String/Trimmer.hpp ]
   - symbol: Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat
     headers: [ Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.hpp ]
+  - symbol: Hexagon::ChatCPTIntegration::Conversation
+    headers: [ Hexagon/ChatCPTIntegration/Conversation.hpp ]
+  - symbol: Hexagon::ChatGPTIntegration::Chat::ConversationView
+    headers: [ Hexagon/ChatGPTIntegration/Chat/ConversationView.hpp ]
 
 

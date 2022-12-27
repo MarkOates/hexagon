@@ -1,0 +1,18 @@
+properties:
+
+
+  - name: text
+    type: std::string
+    init_with: '"[unset-text]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: author_id
+    type: uint32_t
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+

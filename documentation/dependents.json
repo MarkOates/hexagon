@@ -402,6 +402,7 @@
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView",
     "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/CachedLineRenderer",
@@ -685,6 +686,7 @@
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView",
     "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/CodeEditor/Stage",
@@ -1135,6 +1137,18 @@
   "tan": [
     "Hexagon/Camera"
   ],
+  "Hexagon/ChatCPTIntegration/Messages/Base": [
+    "Hexagon/ChatCPTIntegration/Conversation",
+    "Hexagon/ChatCPTIntegration/Messages/Text"
+  ],
+  "Hexagon/ChatCPTIntegration/Messages/Text": [
+    "Hexagon/ChatCPTIntegration/Conversation",
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView"
+  ],
+  "Hexagon/ChatCPTIntegration/Conversation": [
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView",
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
   "Hexagon/ChatGPTIntegration/Chat/LogView": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
@@ -1152,6 +1166,9 @@
     "NcursesArt/GithubRepoStatusFetcher"
   ],
   "Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
+  "Hexagon/ChatGPTIntegration/Chat/ConversationView": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
   "all": [

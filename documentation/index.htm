@@ -80,10 +80,15 @@ table td
   <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml">quintessence/Hexagon/BuildSystem/ReportRenderers/Base.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Camera.q.yml">quintessence/Hexagon/Camera.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatCPTIntegration/Conversation.q.yml">quintessence/Hexagon/ChatCPTIntegration/Conversation.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatCPTIntegration/Messages/Base.q.yml">quintessence/Hexagon/ChatCPTIntegration/Messages/Base.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatCPTIntegration/Messages/Text.q.yml">quintessence/Hexagon/ChatCPTIntegration/Messages/Text.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/Chat.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/Chat.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/ConversationView.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/ConversationView.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/InputBox.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/InputBox.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/LogView.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/LogView.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/Stage.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Message.q.yml">quintessence/Hexagon/ChatGPTIntegration/Message.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.q.yml">quintessence/Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml">quintessence/Hexagon/CodeEditor/CachedLineRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeEditor/Cursor.q.yml">quintessence/Hexagon/CodeEditor/Cursor.q.yml</a></li>
@@ -2880,6 +2885,81 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/ChatCPTIntegration/Conversation.q.yml">quintessence/Hexagon/ChatCPTIntegration/Conversation.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">messages</td>
+  <td class="property">std::vector&lt;Hexagon::ChatCPTIntegration::Messages::Base*&gt;</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">append_text_message(std::string body=&quot;[unset-append_text_message]&quot;)</td>
+</tr>
+<tr>
+  <td class="method">get_last_n_messages(uint32_t count=3)</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatCPTIntegration::Messages::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatCPTIntegration/Messages/Base.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatCPTIntegration::Messages::Text&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatCPTIntegration/Messages/Text.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ChatCPTIntegration/Messages/Base.q.yml">quintessence/Hexagon/ChatCPTIntegration/Messages/Base.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">type</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">author_id</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">TYPE</td>
+  <td class="property">char*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">is_type(std::string possible_type=&quot;&quot;)</td>
+</tr>
+    </table>
+     <table>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ChatCPTIntegration/Messages/Text.q.yml">quintessence/Hexagon/ChatCPTIntegration/Messages/Text.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">body</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">TYPE</td>
+  <td class="property">char*</td>
+</tr>
+    </table>
+     <table>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatCPTIntegration::Messages::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatCPTIntegration/Messages/Base.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/ChatGPTIntegration/Chat/Chat.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/Chat.q.yml</h3>
      <table>
     </table>
@@ -2889,6 +2969,50 @@ table td
 </tr>
     </table>
      <table>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ChatGPTIntegration/Chat/ConversationView.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/ConversationView.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
+  <td class="property">conversation</td>
+  <td class="property">Hexagon::ChatCPTIntegration::Conversation*</td>
+</tr>
+<tr>
+  <td class="property">num_messages_to_show</td>
+  <td class="property">int32_t</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="method">obtain_log_dump_font()</td>
+</tr>
+<tr>
+  <td class="method">obtain_input_box_font()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatCPTIntegration::Conversation&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatCPTIntegration/Conversation.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatCPTIntegration::Messages::Text&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatCPTIntegration/Messages/Text.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -2992,6 +3116,10 @@ table td
   <td class="property">std::string</td>
 </tr>
 <tr>
+  <td class="property">conversation</td>
+  <td class="property">Hexagon::ChatCPTIntegration::Conversation</td>
+</tr>
+<tr>
   <td class="property">a_default_empty_event</td>
   <td class="property">ALLEGRO_EVENT</td>
 </tr>
@@ -3000,8 +3128,24 @@ table td
   <td class="property">std::string</td>
 </tr>
 <tr>
+  <td class="property">view_mode</td>
+  <td class="property">uint32_t</td>
+</tr>
+<tr>
   <td class="property">initialized</td>
   <td class="property">bool</td>
+</tr>
+<tr>
+  <td class="property">VIEW_MODE_UNDEFINED</td>
+  <td class="property">uint32_t</td>
+</tr>
+<tr>
+  <td class="property">VIEW_MODE_LOG</td>
+  <td class="property">uint32_t</td>
+</tr>
+<tr>
+  <td class="property">VIEW_MODE_CONVERSATION</td>
+  <td class="property">uint32_t</td>
 </tr>
     </table>
      <table>
@@ -3010,6 +3154,9 @@ table td
 </tr>
 <tr>
   <td class="method">clear_input_text_box()</td>
+</tr>
+<tr>
+  <td class="method">toggle_view_mode()</td>
 </tr>
 <tr>
   <td class="method">render()</td>
@@ -3070,6 +3217,31 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.hpp&quot;]}</td>
 </tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatCPTIntegration::Conversation&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatCPTIntegration/Conversation.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatGPTIntegration::Chat::ConversationView&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatGPTIntegration/Chat/ConversationView.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ChatGPTIntegration/Message.q.yml">quintessence/Hexagon/ChatGPTIntegration/Message.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">text</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">author_id</td>
+  <td class="property">uint32_t</td>
+</tr>
+    </table>
+     <table>
+    </table>
+     <table>
     </table>
   </div>
 </ul>
@@ -13037,6 +13209,7 @@ table td
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView",
     "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/CachedLineRenderer",
     "Hexagon/CodeEditor/CachedLineRenderer",
@@ -13320,6 +13493,7 @@ table td
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView",
     "Hexagon/ChatGPTIntegration/Chat/Stage",
     "Hexagon/CodeEditor/Stage",
     "Hexagon/CodeEditor/Stage",
@@ -13770,6 +13944,18 @@ table td
   "tan": [
     "Hexagon/Camera"
   ],
+  "Hexagon/ChatCPTIntegration/Messages/Base": [
+    "Hexagon/ChatCPTIntegration/Conversation",
+    "Hexagon/ChatCPTIntegration/Messages/Text"
+  ],
+  "Hexagon/ChatCPTIntegration/Messages/Text": [
+    "Hexagon/ChatCPTIntegration/Conversation",
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView"
+  ],
+  "Hexagon/ChatCPTIntegration/Conversation": [
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView",
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
   "Hexagon/ChatGPTIntegration/Chat/LogView": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
@@ -13787,6 +13973,9 @@ table td
     "NcursesArt/GithubRepoStatusFetcher"
   ],
   "Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
+  "Hexagon/ChatGPTIntegration/Chat/ConversationView": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
   "all": [
