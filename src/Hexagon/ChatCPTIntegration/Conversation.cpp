@@ -17,6 +17,7 @@ namespace ChatCPTIntegration
 
 Conversation::Conversation()
    : messages()
+   , authors()
 {
 }
 
@@ -32,6 +33,12 @@ std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> Conversation::get_mess
 }
 
 
+std::map<std::string, Hexagon::ChatGPTIntegration::Author> Conversation::get_authors() const
+{
+   return authors;
+}
+
+
 void Conversation::append_text_message(std::string body)
 {
    Hexagon::ChatCPTIntegration::Messages::Text *result = new Hexagon::ChatCPTIntegration::Messages::Text(body);
@@ -43,6 +50,7 @@ void Conversation::clear()
 {
    for (auto &message : messages) { delete message; }
    messages.clear();
+   authors.clear();
    return;
 }
 
@@ -64,6 +72,27 @@ std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> Conversation::get_last
    return lastNMessages;
 }
 
+void Conversation::build_known_authors()
+{
+   authors["unknown"] = Hexagon::ChatGPTIntegration::Author(0, "unknown", "Unknown", "");
+   authors["mark_oates"] = Hexagon::ChatGPTIntegration::Author(1, "mark_oates", "MarkOates", "");
+   authors["chat_gpt"] = Hexagon::ChatGPTIntegration::Author(2, "chat_gpt", "ChatGPT", "");
+   authors["rev_chat_gpt"] = Hexagon::ChatGPTIntegration::Author(3, "rev_chat_gpt", "[System]", "");
+   return;
+}
+
+Hexagon::ChatGPTIntegration::Author* Conversation::find_author_by_identifier(std::string author_identifier)
+{
+   if (!author_exists(author_identifier)) return nullptr;
+   Hexagon::ChatGPTIntegration::Author* found_author = &authors[author_identifier];
+   return found_author;
+}
+
+bool Conversation::author_exists(std::string author_identifier)
+{
+   return (authors.count(author_identifier) == 1);
+}
+
 void Conversation::load_from_log_text_file(std::string log_text_filename)
 {
    Blast::FileExistenceChecker existence_checker(log_text_filename);
@@ -75,6 +104,10 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
    std::string log_text = php::file_get_contents(log_text_filename);
 
    clear();
+
+   build_known_authors();
+
+
    std::vector<std::string> lines = Blast::StringSplitter(log_text, '\n').split();
    int32_t state = 0; // 0 nothing, 1 parsing prompt, 2 parsing response, 3 response info, 4 parsing error
    std::vector<std::string> accumulated_lines;

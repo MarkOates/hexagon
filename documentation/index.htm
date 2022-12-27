@@ -83,6 +83,7 @@ table td
   <li><a href="#quintessence/Hexagon/ChatCPTIntegration/Conversation.q.yml">quintessence/Hexagon/ChatCPTIntegration/Conversation.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatCPTIntegration/Messages/Base.q.yml">quintessence/Hexagon/ChatCPTIntegration/Messages/Base.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatCPTIntegration/Messages/Text.q.yml">quintessence/Hexagon/ChatCPTIntegration/Messages/Text.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Author.q.yml">quintessence/Hexagon/ChatGPTIntegration/Author.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/Chat.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/Chat.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/ConversationView.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/ConversationView.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ChatGPTIntegration/Chat/InputBox.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/InputBox.q.yml</a></li>
@@ -2891,6 +2892,10 @@ table td
   <td class="property">messages</td>
   <td class="property">std::vector&lt;Hexagon::ChatCPTIntegration::Messages::Base*&gt;</td>
 </tr>
+<tr>
+  <td class="property">authors</td>
+  <td class="property">std::map&lt;std::string, Hexagon::ChatGPTIntegration::Author&gt;</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -2901,6 +2906,15 @@ table td
 </tr>
 <tr>
   <td class="method">get_last_n_messages(uint32_t count=3)</td>
+</tr>
+<tr>
+  <td class="method">build_known_authors()</td>
+</tr>
+<tr>
+  <td class="method">find_author_by_identifier(std::string author_identifier=&quot;[unset-author_identifier]&quot;)</td>
+</tr>
+<tr>
+  <td class="method">author_exists(std::string author_identifier=&quot;[unset-author_identifier]&quot;)</td>
 </tr>
 <tr>
   <td class="method">load_from_log_text_file(std::string log_text_filename=&quot;[unset-log_text_filename]&quot;)</td>
@@ -2924,6 +2938,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::file_get_contents&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatGPTIntegration::Author&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatGPTIntegration/Author.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -2973,6 +2990,33 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatCPTIntegration::Messages::Base&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatCPTIntegration/Messages/Base.hpp&quot;]}</td>
 </tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ChatGPTIntegration/Author.q.yml">quintessence/Hexagon/ChatGPTIntegration/Author.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">id</td>
+  <td class="property">uint32_t</td>
+</tr>
+<tr>
+  <td class="property">identifier</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">name</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">avatar_bitmap_identifier</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+     <table>
+    </table>
+     <table>
     </table>
   </div>
 </ul>
@@ -13973,6 +14017,9 @@ table td
   "Hexagon/ChatCPTIntegration/Messages/Text": [
     "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/ConversationView"
+  ],
+  "Hexagon/ChatGPTIntegration/Author": [
+    "Hexagon/ChatCPTIntegration/Conversation"
   ],
   "Hexagon/ChatCPTIntegration/Conversation": [
     "Hexagon/ChatGPTIntegration/Chat/ConversationView",
