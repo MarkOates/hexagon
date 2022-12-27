@@ -85,6 +85,17 @@ functions:
       return found_author;
 
 
+  - name: find_author_by_id
+    type: Hexagon::ChatGPTIntegration::Author*
+    parameters:
+      - name: author_id
+        type: uint32_t
+        default_argument: 0
+    body: |
+      for (auto &author : authors) if (author.second.get_id() == author_id) return &author.second;
+      return nullptr;
+
+
   - name: author_exists
     type: bool
     parameters:
@@ -93,6 +104,17 @@ functions:
         default_argument: '"[unset-author_identifier]"'
     body: |
       return (authors.count(author_identifier) == 1);
+
+
+  - name: author_exists_by_id
+    type: bool
+    parameters:
+      - name: author_id
+        type: uint32_t
+        default_argument: 0
+    body: |
+      for (auto &author : authors) if (author.second.get_id() == author_id) return true;
+      return false;
 
 
   - name: load_from_log_text_file

@@ -90,9 +90,21 @@ Hexagon::ChatGPTIntegration::Author* Conversation::find_author_by_identifier(std
    return found_author;
 }
 
+Hexagon::ChatGPTIntegration::Author* Conversation::find_author_by_id(uint32_t author_id)
+{
+   for (auto &author : authors) if (author.second.get_id() == author_id) return &author.second;
+   return nullptr;
+}
+
 bool Conversation::author_exists(std::string author_identifier)
 {
    return (authors.count(author_identifier) == 1);
+}
+
+bool Conversation::author_exists_by_id(uint32_t author_id)
+{
+   for (auto &author : authors) if (author.second.get_id() == author_id) return true;
+   return false;
 }
 
 void Conversation::load_from_log_text_file(std::string log_text_filename)

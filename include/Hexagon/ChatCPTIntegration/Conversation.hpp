@@ -33,7 +33,9 @@ namespace Hexagon
          std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> get_last_n_messages(uint32_t count=3);
          void build_known_authors();
          Hexagon::ChatGPTIntegration::Author* find_author_by_identifier(std::string author_identifier="[unset-author_identifier]");
+         Hexagon::ChatGPTIntegration::Author* find_author_by_id(uint32_t author_id=0);
          bool author_exists(std::string author_identifier="[unset-author_identifier]");
+         bool author_exists_by_id(uint32_t author_id=0);
          void load_from_log_text_file(std::string log_text_filename="[unset-log_text_filename]");
       };
    }
