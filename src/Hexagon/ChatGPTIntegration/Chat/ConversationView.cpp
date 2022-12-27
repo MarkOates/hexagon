@@ -179,9 +179,11 @@ void ConversationView::render()
       {
          Hexagon::ChatCPTIntegration::Messages::Text* as_text_message = 
             static_cast<Hexagon::ChatCPTIntegration::Messages::Text*>(message);
+         std::string message_body = as_text_message->get_body();
+         if (skip_empty_messages && message_body.empty()) continue;
+
          Hexagon::ChatGPTIntegration::Author* author = conversation->find_author_by_id(message->get_author_id());
          
-         std::string message_body = as_text_message->get_body();
          ALLEGRO_COLOR background_color = (author)
                                         ? author->get_display_background_color()
                                         : ALLEGRO_COLOR{0.1, 0.1, 0.12, 0.12};
