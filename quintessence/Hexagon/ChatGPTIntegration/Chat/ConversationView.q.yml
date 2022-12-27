@@ -17,7 +17,7 @@ properties:
 
   - name: num_messages_to_show
     type: int32_t
-    init_with: 0
+    init_with: 3
     constructor_arg: true
     getter: true
     setter: true

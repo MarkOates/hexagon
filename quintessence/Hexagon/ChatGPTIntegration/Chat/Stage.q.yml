@@ -96,7 +96,7 @@ functions:
       //input_box.insert_string("Hello, this is placholder text for the chat input box.");
 
       view_mode = VIEW_MODE_LOG;
- 
+
       initialized = true;
       return;
 

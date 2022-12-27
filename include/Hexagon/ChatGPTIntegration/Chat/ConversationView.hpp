@@ -24,7 +24,7 @@ namespace Hexagon
 
 
          public:
-            ConversationView(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ChatCPTIntegration::Conversation* conversation=nullptr, int32_t num_messages_to_show=0);
+            ConversationView(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ChatCPTIntegration::Conversation* conversation=nullptr, int32_t num_messages_to_show=3);
             ~ConversationView();
 
             void set_font_bin(AllegroFlare::FontBin* font_bin);
