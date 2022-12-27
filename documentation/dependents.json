@@ -1150,6 +1150,14 @@
     "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/ConversationView"
   ],
+  "Blast/String/Trimmer": [
+    "Hexagon/ChatCPTIntegration/Conversation",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
+    "Hexagon/DarkModeDetector",
+    "Hexagon/PacketLogger",
+    "Hexagon/Testing/ClangBuildOutputResult",
+    "NcursesArt/GithubRepoStatusFetcher"
+  ],
   "Hexagon/ChatGPTIntegration/Author": [
     "Hexagon/ChatCPTIntegration/Conversation"
   ],
@@ -1174,13 +1182,6 @@
   ],
   "AllegroFlare/Placement2D": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
-  ],
-  "Blast/String/Trimmer": [
-    "Hexagon/ChatGPTIntegration/Chat/Stage",
-    "Hexagon/DarkModeDetector",
-    "Hexagon/PacketLogger",
-    "Hexagon/Testing/ClangBuildOutputResult",
-    "NcursesArt/GithubRepoStatusFetcher"
   ],
   "Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"

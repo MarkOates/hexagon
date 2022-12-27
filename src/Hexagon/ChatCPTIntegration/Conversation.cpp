@@ -3,6 +3,7 @@
 #include <Hexagon/ChatCPTIntegration/Conversation.hpp>
 
 #include <Blast/FileExistenceChecker.hpp>
+#include <Blast/String/Trimmer.hpp>
 #include <Blast/StringJoiner.hpp>
 #include <Blast/StringSplitter.hpp>
 #include <Hexagon/ChatCPTIntegration/Messages/Text.hpp>
@@ -135,10 +136,7 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
       if (line == "========== PROMPT END ==========")
       {
          std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-         //Hexagon::ChatCPTIntegration::Messages::Text* result =
-            //new Hexagon::ChatCPTIntegration::Messages::Text(joined_accumulated_lines);
-         append_text_message(1, joined_accumulated_lines);
-         
+         append_text_message(1, Blast::String::Trimmer(joined_accumulated_lines).trim());
          accumulated_lines.clear();
          state = 0;
          continue;
@@ -146,7 +144,7 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
       if (line == "========== RESPONSE END ==========")
       {
          std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-         append_text_message(2, joined_accumulated_lines);
+         append_text_message(2, Blast::String::Trimmer(joined_accumulated_lines).trim());
          accumulated_lines.clear();
          state = 0;
          continue;
@@ -154,7 +152,7 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
       if (line == "========== RESPONSE INFO END ==========")
       {
          std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-         append_text_message(3, joined_accumulated_lines);
+         append_text_message(3, Blast::String::Trimmer(joined_accumulated_lines).trim());
          accumulated_lines.clear();
          state = 0;
          continue;
@@ -162,7 +160,7 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
       if (line == "========== ERROR END ==========")
       {
          std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-         append_text_message(3, joined_accumulated_lines);
+         append_text_message(3, Blast::String::Trimmer(joined_accumulated_lines).trim());
          accumulated_lines.clear();
          state = 0;
          continue;

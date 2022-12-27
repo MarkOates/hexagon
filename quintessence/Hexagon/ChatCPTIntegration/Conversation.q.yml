@@ -149,10 +149,7 @@ functions:
          if (line == "========== PROMPT END ==========")
          {
             std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-            //Hexagon::ChatCPTIntegration::Messages::Text* result =
-               //new Hexagon::ChatCPTIntegration::Messages::Text(joined_accumulated_lines);
-            append_text_message(1, joined_accumulated_lines);
-            
+            append_text_message(1, Blast::String::Trimmer(joined_accumulated_lines).trim());
             accumulated_lines.clear();
             state = 0;
             continue;
@@ -160,7 +157,7 @@ functions:
          if (line == "========== RESPONSE END ==========")
          {
             std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-            append_text_message(2, joined_accumulated_lines);
+            append_text_message(2, Blast::String::Trimmer(joined_accumulated_lines).trim());
             accumulated_lines.clear();
             state = 0;
             continue;
@@ -168,7 +165,7 @@ functions:
          if (line == "========== RESPONSE INFO END ==========")
          {
             std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-            append_text_message(3, joined_accumulated_lines);
+            append_text_message(3, Blast::String::Trimmer(joined_accumulated_lines).trim());
             accumulated_lines.clear();
             state = 0;
             continue;
@@ -176,7 +173,7 @@ functions:
          if (line == "========== ERROR END ==========")
          {
             std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-            append_text_message(3, joined_accumulated_lines);
+            append_text_message(3, Blast::String::Trimmer(joined_accumulated_lines).trim());
             accumulated_lines.clear();
             state = 0;
             continue;
@@ -186,6 +183,7 @@ functions:
       }
     body_dependency_symbols:
       - Blast::StringSplitter
+      - Blast::String::Trimmer
       - Blast::StringJoiner
       - Blast::FileExistenceChecker
       - php::file_get_contents
@@ -204,6 +202,8 @@ dependencies:
     headers: [ Blast/StringSplitter.hpp ]
   - symbol: Blast::StringJoiner
     headers: [ Blast/StringJoiner.hpp ]
+  - symbol: Blast::String::Trimmer
+    headers: [ Blast/String/Trimmer.hpp ]
   - symbol: Blast::FileExistenceChecker
     headers: [ Blast/FileExistenceChecker.hpp ]
   - symbol: php::file_get_contents

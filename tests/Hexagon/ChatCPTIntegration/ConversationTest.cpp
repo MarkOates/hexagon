@@ -50,7 +50,7 @@ TEST(Hexagon_ChatCPTIntegration_ConversationTest, load_from_log_text_file__will_
              "Without knowing more about your theoretical programming language, it is "
              "difficult to say for certain whether I would be able to write code in it. However, as a general rule, "
              "it is often possible to learn and adapt to new programming languages, especially if they are similar "
-             "to languages that one is already familiar with.\n",
+             "to languages that one is already familiar with.",
              as_text_message_1->get_body()
          );
 }
