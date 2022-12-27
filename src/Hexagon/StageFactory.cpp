@@ -38,8 +38,9 @@ namespace Hexagon
 {
 
 
-StageFactory::StageFactory(Hexagon::System::Config* config, AllegroFlare::FontBin* font_bin)
+StageFactory::StageFactory(Hexagon::System::Config* config, AllegroFlare::BitmapBin* bitmap_bin, AllegroFlare::FontBin* font_bin)
    : config(config)
+   , bitmap_bin(bitmap_bin)
    , font_bin(font_bin)
    , hud_render_surface_projection_width(1920)
    , hud_render_surface_projection_height(1080)
@@ -228,7 +229,15 @@ StageInterface* StageFactory::create_class_brief_menu(std::string title, std::ve
 
 StageInterface* StageFactory::create_chat_gpt_chat()
 {
+   if (!(bitmap_bin))
+   {
+      std::stringstream error_message;
+      error_message << "[StageFactory::create_chat_gpt_chat]: error: guard \"bitmap_bin\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("StageFactory::create_chat_gpt_chat: error: guard \"bitmap_bin\" not met");
+   }
    Hexagon::ChatGPTIntegration::Chat::Stage *result = new Hexagon::ChatGPTIntegration::Chat::Stage();
+   result->set_bitmap_bin(bitmap_bin);
    result->set_font_bin(font_bin);
    result->initialize();
    return result;

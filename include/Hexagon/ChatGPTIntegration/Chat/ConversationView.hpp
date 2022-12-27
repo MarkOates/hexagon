@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/BitmapBin.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/ChatCPTIntegration/Conversation.hpp>
 #include <allegro5/allegro_font.h>
@@ -17,6 +18,7 @@ namespace Hexagon
          class ConversationView
          {
          private:
+            AllegroFlare::BitmapBin* bitmap_bin;
             AllegroFlare::FontBin* font_bin;
             Hexagon::ChatCPTIntegration::Conversation* conversation;
             int32_t num_messages_to_show;
@@ -27,13 +29,15 @@ namespace Hexagon
 
 
          public:
-            ConversationView(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ChatCPTIntegration::Conversation* conversation=nullptr, int32_t num_messages_to_show=3);
+            ConversationView(AllegroFlare::BitmapBin* bitmap_bin=nullptr, AllegroFlare::FontBin* font_bin=nullptr, Hexagon::ChatCPTIntegration::Conversation* conversation=nullptr, int32_t num_messages_to_show=3);
             ~ConversationView();
 
+            void set_bitmap_bin(AllegroFlare::BitmapBin* bitmap_bin);
             void set_font_bin(AllegroFlare::FontBin* font_bin);
             void set_conversation(Hexagon::ChatCPTIntegration::Conversation* conversation);
             void set_num_messages_to_show(int32_t num_messages_to_show);
             void set_skip_empty_messages(bool skip_empty_messages);
+            AllegroFlare::BitmapBin* get_bitmap_bin() const;
             AllegroFlare::FontBin* get_font_bin() const;
             Hexagon::ChatCPTIntegration::Conversation* get_conversation() const;
             int32_t get_num_messages_to_show() const;

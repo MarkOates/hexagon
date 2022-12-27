@@ -96,7 +96,7 @@ TEST(Hexagon_StageFactoryTest,
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::System::Config config;
    config.initialize();
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   Hexagon::StageFactory stage_factory(&config, nullptr, &font_bin);
 
    std::string notification_body_text = "This is the notification text.";
    StageInterface *created_stage = stage_factory.create_notification(notification_body_text);
@@ -131,7 +131,7 @@ TEST(Hexagon_StageFactoryTest,
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::System::Config config;
    config.initialize();
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   Hexagon::StageFactory stage_factory(&config, nullptr, &font_bin);
 
    StageInterface *created_stage = stage_factory.create_class_brief_menu();
    Hexagon::UI::LittleMenu *stage = static_cast<Hexagon::UI::LittleMenu*>(created_stage);
@@ -177,7 +177,7 @@ TEST(Hexagon_StageFactoryTest,
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::System::Config config;
    config.initialize();
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   Hexagon::StageFactory stage_factory(&config, nullptr, &font_bin);
    StageInterface *created_stage = stage_factory.create_missing_file();
    Hexagon::MissingFile::Stage *stage = static_cast<Hexagon::MissingFile::Stage*>(created_stage);
 
@@ -214,7 +214,7 @@ TEST(Hexagon_StageFactoryTest,
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::System::Config config;
    config.initialize();
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   Hexagon::StageFactory stage_factory(&config, nullptr, &font_bin);
    std::string filename = "foobar.txt";
    std::string file_category = "whatever";
    StageInterface *created_stage = stage_factory.create_code_editor(filename, file_category);
@@ -258,7 +258,7 @@ TEST(Hexagon_StageFactoryTest,
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::System::Config config;
    config.initialize();
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   Hexagon::StageFactory stage_factory(&config, nullptr, &font_bin);
    StageInterface *created_stage = stage_factory.create_advanced_code_editor("foobar_filename.htm", 80, 35);
 
    ASSERT_NE(nullptr, created_stage);
@@ -309,7 +309,7 @@ TEST(Hexagon_StageFactoryTest,
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::System::Config config;
    config.initialize();
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   Hexagon::StageFactory stage_factory(&config, nullptr, &font_bin);
    StageInterface *created_stage = stage_factory.create_git_commit_message_box();
    Hexagon::CodeEditor::Stage *stage = static_cast<Hexagon::CodeEditor::Stage*>(created_stage);
 
@@ -338,7 +338,7 @@ TEST(Hexagon_StageFactoryTest, DISABLED__create_advanced_component_navigator__wi
 TEST(Hexagon_StageFactoryTest, create_advanced_component_navigator__without_a_font_bin__raises_an_exception)
 {
    //AllegroFlare::FontBin font_bin;
-   Hexagon::StageFactory stage_factory(nullptr, nullptr);//&font_bin);
+   Hexagon::StageFactory stage_factory(nullptr, nullptr, nullptr);//&font_bin);
 
    std::string expected_error_message = "StageFactory::create_advanced_component_navigator: error: guard " \
                                         "\"font_bin\" not met";
@@ -380,7 +380,7 @@ TEST(Hexagon_StageFactoryTest,
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::System::Config config;
    config.initialize();
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   Hexagon::StageFactory stage_factory(&config, nullptr, &font_bin);
    StageInterface *created_stage = stage_factory.create_advanced_component_navigator();
    Hexagon::AdvancedComponentNavigator::Stage *stage =
       static_cast<Hexagon::AdvancedComponentNavigator::Stage*>(created_stage);
@@ -431,7 +431,7 @@ TEST(Hexagon_StageFactoryTest,
 TEST(Hexagon_StageFactoryTest, create_project_navigator__without_a_font_bin__raises_an_exception)
 {
    //AllegroFlare::FontBin font_bin;
-   Hexagon::StageFactory stage_factory(nullptr, nullptr);//&font_bin);
+   Hexagon::StageFactory stage_factory(nullptr, nullptr, nullptr);//&font_bin);
 
    std::string expected_error_message = "StageFactory::create_project_navigator: error: guard " \
                                         "\"font_bin\" not met";
@@ -453,7 +453,7 @@ TEST(Hexagon_StageFactoryTest, create_project_navigator__creates_a_project_navig
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::System::Config config;
    config.initialize();
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   Hexagon::StageFactory stage_factory(&config, nullptr, &font_bin);
    StageInterface *created_stage = stage_factory.create_project_navigator();
 
    StageInterface::type_t expected_type = StageInterface::PROJECT_NAVIGATOR;
@@ -500,7 +500,7 @@ TEST(Hexagon_StageFactoryTest, create_file_navigator__creates_a_file_navigator_w
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
    Hexagon::System::Config config;
    config.initialize();
-   Hexagon::StageFactory stage_factory(&config, &font_bin);
+   Hexagon::StageFactory stage_factory(&config, nullptr, &font_bin);
    StageInterface *created_stage = stage_factory.create_file_navigator();
    Hexagon::FileNavigator::Stage *stage = static_cast<Hexagon::FileNavigator::Stage*>(created_stage);
 

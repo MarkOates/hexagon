@@ -44,6 +44,9 @@ std::string Config::FOCUSED_COMPONENT_FILENAME_KEY = "focused_component_filename
 std::string Config::FONT_BIN_PATH_KEY = "font_bin_path";
 
 
+std::string Config::BITMAP_BIN_PATH_KEY = "bitmap_bin_path";
+
+
 std::string Config::DARK_MODE_KEY = "dark_mode";
 
 
@@ -165,6 +168,12 @@ std::string Config::get_font_bin_path()
 {
    std::string default_font_bin_path = "/Users/markoates/Repos/hexagon/bin/programs/data/fonts";
    return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
+}
+
+std::string Config::get_bitmap_bin_path()
+{
+   std::string default_bitmap_bin_path = "/Users/markoates/Repos/hexagon/bin/programs/data/bitmaps";
+   return config.get_or_default_str("", BITMAP_BIN_PATH_KEY, default_bitmap_bin_path);
 }
 
 int Config::get_initial_baseline_camera_stepback()

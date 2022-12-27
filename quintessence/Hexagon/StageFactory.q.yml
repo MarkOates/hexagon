@@ -6,6 +6,11 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
+  - name: bitmap_bin
+    type: AllegroFlare::BitmapBin*
+    init_with: nullptr
+    constructor_arg: true
+
   - name: font_bin
     type: AllegroFlare::FontBin*
     init_with: nullptr
@@ -163,8 +168,10 @@ functions:
 
   - name: create_chat_gpt_chat
     type: StageInterface*
+    guards: [ bitmap_bin ]
     body: |
       Hexagon::ChatGPTIntegration::Chat::Stage *result = new Hexagon::ChatGPTIntegration::Chat::Stage();
+      result->set_bitmap_bin(bitmap_bin);
       result->set_font_bin(font_bin);
       result->initialize();
       return result;
@@ -981,5 +988,7 @@ dependencies:
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: Hexagon::ChatGPTIntegration::Chat::Stage
     headers: [ Hexagon/ChatGPTIntegration/Chat/Stage.hpp ]
+  - symbol: AllegroFlare::BitmapBin
+    headers: [ AllegroFlare/BitmapBin.hpp ]
 
 

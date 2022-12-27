@@ -3013,10 +3013,17 @@ table td
   <td class="property">avatar_bitmap_identifier</td>
   <td class="property">std::string</td>
 </tr>
+<tr>
+  <td class="property">display_background_color</td>
+  <td class="property">ALLEGRO_COLOR</td>
+</tr>
     </table>
      <table>
     </table>
      <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_COLOR&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -3038,6 +3045,10 @@ table td
   <div class="component">
     <h3 id="quintessence/Hexagon/ChatGPTIntegration/Chat/ConversationView.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/ConversationView.q.yml</h3>
      <table>
+<tr>
+  <td class="property">bitmap_bin</td>
+  <td class="property">AllegroFlare::BitmapBin*</td>
+</tr>
 <tr>
   <td class="property">font_bin</td>
   <td class="property">AllegroFlare::FontBin*</td>
@@ -3091,6 +3102,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::BitmapBin&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/BitmapBin.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -3174,6 +3188,10 @@ table td
   <div class="component">
     <h3 id="quintessence/Hexagon/ChatGPTIntegration/Chat/Stage.q.yml">quintessence/Hexagon/ChatGPTIntegration/Chat/Stage.q.yml</h3>
      <table>
+<tr>
+  <td class="property">bitmap_bin</td>
+  <td class="property">AllegroFlare::BitmapBin*</td>
+</tr>
 <tr>
   <td class="property">font_bin</td>
   <td class="property">AllegroFlare::FontBin*</td>
@@ -3301,6 +3319,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatGPTIntegration::Chat::ConversationView&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatGPTIntegration/Chat/ConversationView.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::BitmapBin&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/BitmapBin.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -10756,6 +10777,10 @@ table td
   <td class="property">Hexagon::System::Config*</td>
 </tr>
 <tr>
+  <td class="property">bitmap_bin</td>
+  <td class="property">AllegroFlare::BitmapBin*</td>
+</tr>
+<tr>
   <td class="property">font_bin</td>
   <td class="property">AllegroFlare::FontBin*</td>
 </tr>
@@ -11007,6 +11032,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatGPTIntegration::Chat::Stage&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatGPTIntegration/Chat/Stage.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::BitmapBin&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/BitmapBin.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -11552,6 +11580,10 @@ table td
   <td class="property">std::string</td>
 </tr>
 <tr>
+  <td class="property">BITMAP_BIN_PATH_KEY</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
   <td class="property">DARK_MODE_KEY</td>
   <td class="property">std::string</td>
 </tr>
@@ -11620,6 +11652,9 @@ table td
 </tr>
 <tr>
   <td class="method">get_font_bin_path()</td>
+</tr>
+<tr>
+  <td class="method">get_bitmap_bin_path()</td>
 </tr>
 <tr>
   <td class="method">get_initial_baseline_camera_stepback()</td>
@@ -13221,6 +13256,7 @@ table td
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Author",
     "Hexagon/CodeEditor/CursorRenderer",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
@@ -14045,6 +14081,11 @@ table td
   "al_draw_line": [
     "Hexagon/ChatGPTIntegration/Chat/ConversationView",
     "Hexagon/UI/DrawingBox"
+  ],
+  "AllegroFlare/BitmapBin": [
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
+    "Hexagon/StageFactory"
   ],
   "Hexagon/ChatGPTIntegration/Chat/LogView": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"

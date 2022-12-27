@@ -20,8 +20,9 @@ namespace Chat
 int ConversationView::multiline_text_line_number = 0;
 
 
-ConversationView::ConversationView(AllegroFlare::FontBin* font_bin, Hexagon::ChatCPTIntegration::Conversation* conversation, int32_t num_messages_to_show)
-   : font_bin(font_bin)
+ConversationView::ConversationView(AllegroFlare::BitmapBin* bitmap_bin, AllegroFlare::FontBin* font_bin, Hexagon::ChatCPTIntegration::Conversation* conversation, int32_t num_messages_to_show)
+   : bitmap_bin(bitmap_bin)
+   , font_bin(font_bin)
    , conversation(conversation)
    , num_messages_to_show(num_messages_to_show)
    , skip_empty_messages(false)
@@ -31,6 +32,12 @@ ConversationView::ConversationView(AllegroFlare::FontBin* font_bin, Hexagon::Cha
 
 ConversationView::~ConversationView()
 {
+}
+
+
+void ConversationView::set_bitmap_bin(AllegroFlare::BitmapBin* bitmap_bin)
+{
+   this->bitmap_bin = bitmap_bin;
 }
 
 
@@ -55,6 +62,12 @@ void ConversationView::set_num_messages_to_show(int32_t num_messages_to_show)
 void ConversationView::set_skip_empty_messages(bool skip_empty_messages)
 {
    this->skip_empty_messages = skip_empty_messages;
+}
+
+
+AllegroFlare::BitmapBin* ConversationView::get_bitmap_bin() const
+{
+   return bitmap_bin;
 }
 
 

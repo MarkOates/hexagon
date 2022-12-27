@@ -27,6 +27,7 @@ namespace Hexagon
          static std::string MAKE_COMMAND_FILENAME_KEY;
          static std::string FOCUSED_COMPONENT_FILENAME_KEY;
          static std::string FONT_BIN_PATH_KEY;
+         static std::string BITMAP_BIN_PATH_KEY;
          static std::string DARK_MODE_KEY;
          static std::string OBJECTIVE_KEY;
          static std::string HUD_SHOW_FOCUS_TIMER_BAR_KEY;
@@ -56,6 +57,7 @@ namespace Hexagon
          std::string get_make_command_filename();
          std::string get_focused_component_filename();
          std::string get_font_bin_path();
+         std::string get_bitmap_bin_path();
          int get_initial_baseline_camera_stepback();
          bool is_dark_mode();
          std::string get_objective();

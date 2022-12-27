@@ -25,6 +25,7 @@ ALLEGRO_EVENT Stage::a_default_empty_event = {};
 
 Stage::Stage()
    : StageInterface(StageInterface::CHAT_GPT_CHAT)
+   , bitmap_bin(nullptr)
    , font_bin(nullptr)
    , log_view()
    , input_box()
@@ -43,6 +44,12 @@ Stage::~Stage()
 }
 
 
+void Stage::set_bitmap_bin(AllegroFlare::BitmapBin* bitmap_bin)
+{
+   this->bitmap_bin = bitmap_bin;
+}
+
+
 void Stage::set_font_bin(AllegroFlare::FontBin* font_bin)
 {
    this->font_bin = font_bin;
@@ -58,6 +65,12 @@ void Stage::set_log_source_filename(std::string log_source_filename)
 void Stage::set_input_buffer(std::string input_buffer)
 {
    this->input_buffer = input_buffer;
+}
+
+
+AllegroFlare::BitmapBin* Stage::get_bitmap_bin() const
+{
+   return bitmap_bin;
 }
 
 
@@ -160,7 +173,7 @@ void Stage::render()
       // draw the conversation
       // TODO: convert from raw log to messages
       conversation.load_from_log_text_file(log_source_filename);
-      Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(font_bin, &conversation, 3);
+      Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(bitmap_bin, font_bin, &conversation, 3);
       conversation_view.render();
    }
 

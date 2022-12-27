@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/BitmapBin.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/MultiplexMenu/MultiplexMenu.hpp>
@@ -20,6 +21,7 @@ namespace Hexagon
    {
    private:
       Hexagon::System::Config* config;
+      AllegroFlare::BitmapBin* bitmap_bin;
       AllegroFlare::FontBin* font_bin;
       float hud_render_surface_projection_width;
       float hud_render_surface_projection_height;
@@ -32,7 +34,7 @@ namespace Hexagon
 
 
    public:
-      StageFactory(Hexagon::System::Config* config=nullptr, AllegroFlare::FontBin* font_bin=nullptr);
+      StageFactory(Hexagon::System::Config* config=nullptr, AllegroFlare::BitmapBin* bitmap_bin=nullptr, AllegroFlare::FontBin* font_bin=nullptr);
       ~StageFactory();
 
       float get_hud_render_surface_projection_width() const;

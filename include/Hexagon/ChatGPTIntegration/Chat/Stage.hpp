@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <AllegroFlare/BitmapBin.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <AllegroFlare/Placement2D.hpp>
 #include <Hexagon/ActionData.hpp>
@@ -28,6 +29,7 @@ namespace Hexagon
             static constexpr uint32_t VIEW_MODE_CONVERSATION = 2;
 
          private:
+            AllegroFlare::BitmapBin* bitmap_bin;
             AllegroFlare::FontBin* font_bin;
             Hexagon::ChatGPTIntegration::Chat::LogView log_view;
             Hexagon::ChatGPTIntegration::Chat::InputBox input_box;
@@ -46,9 +48,11 @@ namespace Hexagon
             Stage();
             virtual ~Stage();
 
+            void set_bitmap_bin(AllegroFlare::BitmapBin* bitmap_bin);
             void set_font_bin(AllegroFlare::FontBin* font_bin);
             void set_log_source_filename(std::string log_source_filename);
             void set_input_buffer(std::string input_buffer);
+            AllegroFlare::BitmapBin* get_bitmap_bin() const;
             AllegroFlare::FontBin* get_font_bin() const;
             std::string get_log_source_filename() const;
             std::string get_input_buffer() const;

@@ -9,6 +9,12 @@ parent_classes:
 properties:
 
 
+  - name: bitmap_bin
+    type: AllegroFlare::BitmapBin*
+    init_with: nullptr
+    getter: true
+    setter: true
+
   - name: font_bin
     type: AllegroFlare::FontBin*
     init_with: nullptr
@@ -142,7 +148,7 @@ functions:
          // draw the conversation
          // TODO: convert from raw log to messages
          conversation.load_from_log_text_file(log_source_filename);
-         Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(font_bin, &conversation, 3);
+         Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(bitmap_bin, font_bin, &conversation, 3);
          conversation_view.render();
       }
 
@@ -356,5 +362,7 @@ dependencies:
     headers: [ Hexagon/ChatCPTIntegration/Conversation.hpp ]
   - symbol: Hexagon::ChatGPTIntegration::Chat::ConversationView
     headers: [ Hexagon/ChatGPTIntegration/Chat/ConversationView.hpp ]
+  - symbol: AllegroFlare::BitmapBin
+    headers: [ AllegroFlare/BitmapBin.hpp ]
 
 

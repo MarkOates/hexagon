@@ -51,6 +51,11 @@ properties:
     static: true
     const: true
     init_with: '"font_bin_path"'
+  - name: BITMAP_BIN_PATH_KEY
+    type: std::string
+    static: true
+    const: true
+    init_with: '"bitmap_bin_path"'
   - name: DARK_MODE_KEY
     type: std::string
     static: true
@@ -191,6 +196,13 @@ functions:
     body: |
       std::string default_font_bin_path = "/Users/markoates/Repos/hexagon/bin/programs/data/fonts";
       return config.get_or_default_str("", FONT_BIN_PATH_KEY, default_font_bin_path);
+
+
+  - name: get_bitmap_bin_path
+    type: std::string
+    body: |
+      std::string default_bitmap_bin_path = "/Users/markoates/Repos/hexagon/bin/programs/data/bitmaps";
+      return config.get_or_default_str("", BITMAP_BIN_PATH_KEY, default_bitmap_bin_path);
 
 
   - name: get_initial_baseline_camera_stepback

@@ -335,6 +335,7 @@
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Stage",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatGPTIntegration/Author",
     "Hexagon/CodeEditor/CursorRenderer",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
     "Hexagon/CodeEditor/Renderer/AdvancedLineRenderer",
@@ -1159,6 +1160,11 @@
   "al_draw_line": [
     "Hexagon/ChatGPTIntegration/Chat/ConversationView",
     "Hexagon/UI/DrawingBox"
+  ],
+  "AllegroFlare/BitmapBin": [
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView",
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
+    "Hexagon/StageFactory"
   ],
   "Hexagon/ChatGPTIntegration/Chat/LogView": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"

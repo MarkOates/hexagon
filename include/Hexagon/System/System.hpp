@@ -5,6 +5,7 @@
 #include <allegro_flare/placement3d.h>
 #include <allegro_flare/motion.h>
 #include <AllegroFlare/FontBin.hpp>
+#include <AllegroFlare/BitmapBin.hpp>
 #include <string>
 #include <vector>
 #include <Hexagon/Camera.hpp>
@@ -56,6 +57,7 @@ private:
    int global_font_size;
    bool command_mode;
    std::vector<Hexagon::Packet> packets;
+   AllegroFlare::BitmapBin bitmap_bin;
    AllegroFlare::FontBin font_bin;
    Hexagon::Hud hud;
 

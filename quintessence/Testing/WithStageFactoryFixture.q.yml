@@ -18,7 +18,7 @@ properties:
     getter_ref: true
   - name: stage_factory
     type: Hexagon::StageFactory
-    init_with: '&config, &font_bin'
+    init_with: '&config, nullptr, &font_bin'
     getter_ref: true
 
 
