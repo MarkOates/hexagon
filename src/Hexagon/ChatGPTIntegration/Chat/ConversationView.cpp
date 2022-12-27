@@ -20,11 +20,13 @@ namespace Chat
 int ConversationView::multiline_text_line_number = 0;
 
 
-ConversationView::ConversationView(AllegroFlare::BitmapBin* bitmap_bin, AllegroFlare::FontBin* font_bin, Hexagon::ChatCPTIntegration::Conversation* conversation, int32_t num_messages_to_show)
+ConversationView::ConversationView(AllegroFlare::BitmapBin* bitmap_bin, AllegroFlare::FontBin* font_bin, Hexagon::ChatCPTIntegration::Conversation* conversation, int width, int height)
    : bitmap_bin(bitmap_bin)
    , font_bin(font_bin)
    , conversation(conversation)
-   , num_messages_to_show(num_messages_to_show)
+   , width(width)
+   , height(height)
+   , num_messages_to_show(3)
    , skip_empty_messages(false)
 {
 }
@@ -50,6 +52,18 @@ void ConversationView::set_font_bin(AllegroFlare::FontBin* font_bin)
 void ConversationView::set_conversation(Hexagon::ChatCPTIntegration::Conversation* conversation)
 {
    this->conversation = conversation;
+}
+
+
+void ConversationView::set_width(int width)
+{
+   this->width = width;
+}
+
+
+void ConversationView::set_height(int height)
+{
+   this->height = height;
 }
 
 
@@ -80,6 +94,18 @@ AllegroFlare::FontBin* ConversationView::get_font_bin() const
 Hexagon::ChatCPTIntegration::Conversation* ConversationView::get_conversation() const
 {
    return conversation;
+}
+
+
+int ConversationView::get_width() const
+{
+   return width;
+}
+
+
+int ConversationView::get_height() const
+{
+   return height;
 }
 
 
@@ -124,9 +150,9 @@ void ConversationView::render()
    ALLEGRO_FONT *log_dump_font = obtain_log_dump_font();
    ALLEGRO_COLOR log_dump_text_color = ALLEGRO_COLOR{0.9, 0.93, 1.0, 1.0};
    float font_line_height = al_get_font_line_height(log_dump_font);
-   float frame_width = 700;
-   float text_padding_left = 40;
-   float text_padding_right = 20;
+   float frame_width = width;
+   float text_padding_left = 90;
+   float text_padding_right = 40;
    float text_width = frame_width - (text_padding_left + text_padding_right);
    float cursor_y = 0;
    float message_height = 0;

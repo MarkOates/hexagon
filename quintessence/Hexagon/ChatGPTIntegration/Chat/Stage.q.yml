@@ -148,7 +148,13 @@ functions:
          // draw the conversation
          // TODO: convert from raw log to messages
          conversation.load_from_log_text_file(log_source_filename);
-         Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(bitmap_bin, font_bin, &conversation, 3);
+         Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(
+            bitmap_bin,
+            font_bin,
+            &conversation,
+            700, // width
+            900  // height
+         );
          conversation_view.render();
       }
 

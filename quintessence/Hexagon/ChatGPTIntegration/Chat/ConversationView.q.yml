@@ -22,10 +22,23 @@ properties:
     getter: true
     setter: true
 
+  - name: width
+    type: int
+    init_with: 700
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: height
+    type: int
+    init_with: 900
+    constructor_arg: true
+    getter: true
+    setter: true
+
   - name: num_messages_to_show
     type: int32_t
     init_with: 3
-    constructor_arg: true
     getter: true
     setter: true
 
@@ -93,9 +106,9 @@ functions:
       ALLEGRO_FONT *log_dump_font = obtain_log_dump_font();
       ALLEGRO_COLOR log_dump_text_color = ALLEGRO_COLOR{0.9, 0.93, 1.0, 1.0};
       float font_line_height = al_get_font_line_height(log_dump_font);
-      float frame_width = 700;
-      float text_padding_left = 40;
-      float text_padding_right = 20;
+      float frame_width = width;
+      float text_padding_left = 90;
+      float text_padding_right = 40;
       float text_width = frame_width - (text_padding_left + text_padding_right);
       float cursor_y = 0;
       float message_height = 0;
