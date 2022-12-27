@@ -26,6 +26,7 @@ TEST(Hexagon_ChatGPTIntegration_Chat_ConversationViewTest, VISUAL__render__rende
    bitmap_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/bitmaps");
 
    Hexagon::ChatCPTIntegration::Conversation conversation;
+   conversation.build_known_authors();
 
    conversation.append_text_message(1, "Hey! What's up? This is a first message.");
    conversation.append_text_message(1, "This is another message in the chat log.");

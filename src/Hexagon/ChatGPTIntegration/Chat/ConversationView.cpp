@@ -140,6 +140,13 @@ int ConversationView::count_num_lines_will_render(ALLEGRO_FONT* font, float max_
 
 void ConversationView::render()
 {
+   if (!(bitmap_bin))
+   {
+      std::stringstream error_message;
+      error_message << "[ConversationView::render]: error: guard \"bitmap_bin\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("ConversationView::render: error: guard \"bitmap_bin\" not met");
+   }
    if (!(font_bin))
    {
       std::stringstream error_message;
@@ -149,14 +156,16 @@ void ConversationView::render()
    }
    ALLEGRO_FONT *log_dump_font = obtain_log_dump_font();
    ALLEGRO_COLOR log_dump_text_color = ALLEGRO_COLOR{0.9, 0.93, 1.0, 1.0};
-   float font_line_height = al_get_font_line_height(log_dump_font);
+   float font_line_height = (al_get_font_line_height(log_dump_font) + 1);
    float frame_width = width;
-   float text_padding_left = 90;
+   float text_padding_left = 110;
    float text_padding_right = 40;
    float text_width = frame_width - (text_padding_left + text_padding_right);
    float cursor_y = 0;
    float message_height = 0;
    float vertical_padding = 20;
+   int avatar_width_and_height = 48;
+   int avatar_padding_right = 30;
 
    if (!conversation)
    {
@@ -176,17 +185,37 @@ void ConversationView::render()
          ALLEGRO_COLOR background_color = (author)
                                         ? author->get_display_background_color()
                                         : ALLEGRO_COLOR{0.1, 0.1, 0.12, 0.12};
+         ALLEGRO_BITMAP *avatar_bitmap = (author)
+                                       ? bitmap_bin->auto_get("avatars/" + author->get_avatar_bitmap_identifier())
+                                       : nullptr;
 
          // count the number of lines that will render, and calculate the message height
          int num_lines_that_will_render = count_num_lines_will_render(log_dump_font, text_width, message_body);
-         message_height = num_lines_that_will_render * font_line_height;
-         float full_message_height = vertical_padding*2+message_height;
+         int message_body_height = num_lines_that_will_render * font_line_height;
+         int message_height = std::max(avatar_width_and_height, message_body_height);
+         float full_message_card_height = vertical_padding*2 + message_height;
 
          // draw the backfill
-         al_draw_filled_rectangle(0, cursor_y, frame_width, cursor_y+full_message_height, background_color);
+         al_draw_filled_rectangle(0, cursor_y, frame_width, cursor_y+full_message_card_height, background_color);
 
-         // draw the text (while incrementing the cursor_y variable)
+         // draw the avatar and text (while incrementing the cursor_y variable)
          cursor_y += vertical_padding;
+         if (avatar_bitmap)
+         {
+            // scale the avatar image to fit a fixed width/height
+            al_draw_scaled_bitmap(
+               avatar_bitmap,
+               0,
+               0,
+               al_get_bitmap_width(avatar_bitmap),
+               al_get_bitmap_height(avatar_bitmap),
+               text_padding_left - avatar_width_and_height - avatar_padding_right,
+               cursor_y,
+               avatar_width_and_height,
+               avatar_width_and_height,
+               0
+            );
+         }
          al_draw_multiline_text(
             log_dump_font,
             log_dump_text_color,
