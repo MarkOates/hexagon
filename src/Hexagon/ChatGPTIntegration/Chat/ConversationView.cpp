@@ -113,6 +113,7 @@ void ConversationView::render()
    float width = 700;
    float cursor_y = 0;
    float message_height = 0;
+   float vertical_padding = 20;
 
    if (!conversation)
    {
@@ -128,8 +129,11 @@ void ConversationView::render()
             static_cast<Hexagon::ChatCPTIntegration::Messages::Text*>(message);
          std::string message_body = as_text_message->get_body();
 
-         // count the number of lines that will render
+         // count the number of lines that will render, and calculate the message height
          int num_lines_that_will_render = count_num_lines_will_render(log_dump_font, width, message_body);
+         message_height = num_lines_that_will_render * font_line_height;
+
+         cursor_y += vertical_padding;
 
          // draw the text
          al_draw_multiline_text(
@@ -143,15 +147,13 @@ void ConversationView::render()
             message_body.c_str()
          );
 
-         // set the message height
-         message_height = num_lines_that_will_render * font_line_height;
+         cursor_y += message_height;
+         cursor_y += vertical_padding;
       }
       else
       {
          // TODO: render an "unknown message type" text
       }
-
-      cursor_y += message_height;
    }
    return;
 }
