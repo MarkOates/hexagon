@@ -96,7 +96,8 @@ functions:
       log_view.set_source_filename(log_source_filename);
 
       input_box_placement.size = { get_place().size.x, 300 };
-      input_box_placement.position = { get_place().size.x * 0.5f, get_place().size.y-input_box_placement.size.y };
+      input_box_placement.align = { 0, 0 };
+      input_box_placement.position = { get_place().size.x + 10, get_place().size.y-input_box_placement.size.y };
       //input_box.insert_lines("");
       input_box.get_text_editor_ref().insert_lines({""}); // need to insert a blank line so that we can add chars to it
       //input_box.insert_string("Hello, this is placholder text for the chat input box.");
