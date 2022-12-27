@@ -65,10 +65,11 @@ functions:
 
   - name: build_known_authors
     body: |
-      authors["unknown"] = Hexagon::ChatGPTIntegration::Author(0, "unknown", "Unknown", "");
-      authors["mark_oates"] = Hexagon::ChatGPTIntegration::Author(1, "mark_oates", "MarkOates", "");
-      authors["chat_gpt"] = Hexagon::ChatGPTIntegration::Author(2, "chat_gpt", "ChatGPT", "");
-      authors["rev_chat_gpt"] = Hexagon::ChatGPTIntegration::Author(3, "rev_chat_gpt", "[System]", "");
+      using Hexagon::ChatGPTIntegration::Author;
+      authors["unknown"] = Author(0, "unknown", "Unknown", "");
+      authors["mark_oates"] = Author(1, "mark_oates", "MarkOates", "mark-oates-avatar-01.png", al_color_html("2b313b"));
+      authors["chat_gpt"] = Author(2, "chat_gpt", "ChatGPT", "rubber-duck-avatar-01.png", al_color_html("2b1c2b"));
+      authors["rev_chat_gpt"] = Author(3, "rev_chat_gpt", "[System]", "", al_color_html("77162a"));
       return;
 
 
