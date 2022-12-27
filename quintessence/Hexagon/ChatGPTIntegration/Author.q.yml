@@ -29,4 +29,18 @@ properties:
     getter: true
     setter: true
 
+  - name: display_background_color
+    type: ALLEGRO_COLOR
+    init_with: ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.0}
+    constructor_arg: true
+    getter: true
+    setter: true
+
+
+dependencies:
+
+
+  - symbol: ALLEGRO_COLOR
+    headers: [ allegro5/allegro.h ]
+
 
