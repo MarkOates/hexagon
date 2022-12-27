@@ -252,7 +252,7 @@ void Stage::submit_input_box_and_clear()
       return;
    }
 
-   std::string tty_location = "/dev/ttys005"; // NOTE: this could vary
+   std::string tty_location = "/dev/ttys001"; // NOTE: this could vary
    std::string message = filtered_text;
 
    Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat submit_tty_message_to_chat(tty_location, filtered_text);
