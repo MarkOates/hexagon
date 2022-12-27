@@ -9,6 +9,7 @@
 #include <Hexagon/ChatGPTIntegration/SubmitTTYMessageToChat.hpp>
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/Elements/Window.hpp>
+#include <allegro5/allegro_primitives.h>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
@@ -161,6 +162,8 @@ void Stage::render()
    get_place().start_transform();
 
 
+   // draw the messages
+
    if (view_mode == VIEW_MODE_LOG)
    {
       // draw the log
@@ -187,22 +190,45 @@ void Stage::render()
       conversation_view.render();
    }
 
+
    // draw the input box
+
    std::string input_box_text = input_box.get_text();
    Hexagon::AdvancedCodeEditor::Cursor cursor = input_box.get_cursor();
    ALLEGRO_FONT *input_box_font = obtain_input_box_font();
    float input_box_font_line_height = al_get_font_line_height(input_box_font);
+   float input_box_x_padding = 100;
+   float input_box_width = get_place().size.x - input_box_x_padding * 2;
+   float input_box_rectangle_width = get_place().size.x - (input_box_x_padding * 0.5) * 2;
+   float input_box_x = input_box_x_padding * 0.5;
+   float input_box_height = 200; // TODO: fix this
 
    input_box_placement.start_transform();
-   Hexagon::Elements::Window window(width, 200);
-   window.draw();
+   //Hexagon::Elements::Window window(width, 200);
+   //window.draw();
+
+   // draw the fill rounded rectangle
+
+   //float input_box_hx_padding = input_box_x_padding * 0.5;
+   //float input_box_rectangle_width = 
+   al_draw_filled_rounded_rectangle(
+      input_box_x,
+      0,
+      input_box_x+input_box_width,
+      input_box_height,
+      5.0,
+      5.0,
+      ALLEGRO_COLOR{0, 0, 0, 1}
+   );
+
+   // draw the text
 
    al_draw_multiline_text(
       input_box_font,
       log_dump_text_color,
+      input_box_x_padding,
       0,
-      0,
-      width,
+      input_box_width,
       input_box_font_line_height,
       ALLEGRO_ALIGN_LEFT,
       //"This is placeholder text"

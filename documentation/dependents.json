@@ -1194,6 +1194,13 @@
   "Hexagon/ClipboardData": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
+  "al_draw_filled_rounded_rectangle": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage",
+    "Hexagon/OneLineInputBox/Renderer"
+  ],
+  "al_draw_rounded_rectangle": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
   "all": [
     "Hexagon/CodeEditor/CachedLineRenderer"
   ],
@@ -1709,9 +1716,6 @@
   "Hexagon/ObjectivesLog/ObjectivesLog": [
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/ObjectivesLog/Stage"
-  ],
-  "al_draw_filled_rounded_rectangle": [
-    "Hexagon/OneLineInputBox/Renderer"
   ],
   ":OneLineInputBox/EventController": [
     "Hexagon/OneLineInputBox/Stage"
