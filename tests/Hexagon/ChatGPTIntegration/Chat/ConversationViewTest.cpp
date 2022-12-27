@@ -21,7 +21,9 @@ TEST(Hexagon_ChatGPTIntegration_Chat_ConversationViewTest, VISUAL__render__rende
    al_init_primitives_addon();
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
    AllegroFlare::FontBin font_bin;
+   AllegroFlare::BitmapBin bitmap_bin;
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
+   bitmap_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/bitmaps");
 
    Hexagon::ChatCPTIntegration::Conversation conversation;
 
@@ -30,7 +32,7 @@ TEST(Hexagon_ChatGPTIntegration_Chat_ConversationViewTest, VISUAL__render__rende
    conversation.append_text_message(2, "Finally, a third message. It's pretty alright.");
    conversation.append_text_message(3, "This is a fourth message.");
 
-   Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(&font_bin, &conversation);
+   Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(&bitmap_bin, &font_bin, &conversation);
    conversation_view.render();
 
    al_flip_display();
