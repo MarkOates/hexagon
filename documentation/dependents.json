@@ -1144,11 +1144,13 @@
   ],
   "Hexagon/ChatCPTIntegration/Messages/Base": [
     "Hexagon/ChatCPTIntegration/Conversation",
-    "Hexagon/ChatCPTIntegration/Messages/Text"
+    "Hexagon/ChatCPTIntegration/Messages/Text",
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
   "Hexagon/ChatCPTIntegration/Messages/Text": [
     "Hexagon/ChatCPTIntegration/Conversation",
-    "Hexagon/ChatGPTIntegration/Chat/ConversationView"
+    "Hexagon/ChatGPTIntegration/Chat/ConversationView",
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
   "Blast/String/Trimmer": [
     "Hexagon/ChatCPTIntegration/Conversation",
@@ -1187,6 +1189,9 @@
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
   "Hexagon/ChatGPTIntegration/Chat/ConversationView": [
+    "Hexagon/ChatGPTIntegration/Chat/Stage"
+  ],
+  "Hexagon/ClipboardData": [
     "Hexagon/ChatGPTIntegration/Chat/Stage"
   ],
   "all": [

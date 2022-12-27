@@ -281,6 +281,37 @@ functions:
                return;
             }
 
+            if (command == true)
+            {
+               switch (event.keyboard.keycode)
+               {
+                  case ALLEGRO_KEY_1:
+                    copy_message_text_from_message_n_from_the_last_to_clipboard(0);
+                  break;
+
+                  case ALLEGRO_KEY_2:
+                    copy_message_text_from_message_n_from_the_last_to_clipboard(1);
+                  break;
+
+                  case ALLEGRO_KEY_3:
+                    copy_message_text_from_message_n_from_the_last_to_clipboard(2);
+                  break;
+
+                  case ALLEGRO_KEY_4:
+                    copy_message_text_from_message_n_from_the_last_to_clipboard(3);
+                  break;
+
+                  case ALLEGRO_KEY_5:
+                    copy_message_text_from_message_n_from_the_last_to_clipboard(4);
+                  break;
+
+                  case ALLEGRO_KEY_6:
+                    copy_message_text_from_message_n_from_the_last_to_clipboard(5);
+                  break;
+               }
+               return;
+            }
+
             //std::vector<std::string> mapped_events =
                //keyboard_command_mapping.get_mapping(event.keyboard.keycode, shift, ctrl, alt, command);
             //for (auto &mapped_event : mapped_events) process_local_event(mapped_event);
@@ -306,6 +337,66 @@ functions:
       }
       return;
     body_dependency_symbols: []
+
+
+  - name: get_nth_from_last_message
+    type: Hexagon::ChatCPTIntegration::Messages::Base*
+    parameters:
+      - name: nth_from_last_position
+        type: uint32_t
+        default_argument: 0
+    body: |
+      // TODO: move this function into 
+      if (nth_from_last_position >= conversation.get_messages().size()) return nullptr;
+      return conversation.get_messages()[(conversation.get_messages().size()-1) - nth_from_last_position];
+    body_dependency_symbols:
+      - Hexagon::ClipboardData
+
+
+  - name: copy_message_text_from_message_n_from_the_last_to_clipboard
+    parameters:
+      - name: nth_from_last_position
+        type: uint32_t
+        default_argument: 0
+    body: |
+      Hexagon::ChatCPTIntegration::Messages::Base* message = get_nth_from_last_message(nth_from_last_position);
+
+      std::string text_to_copy;
+      bool is_copyable = false;
+
+      if (!message)
+      {
+         std::cout << "[Hexagon::ChatGPTIntegration::Chat::Stage]: warning: could not copy from the "
+                   << nth_from_last_position << "th from last message because it does not exist."
+                   << std::endl;
+      }
+
+      if (message->is_type(Hexagon::ChatCPTIntegration::Messages::Text::TYPE))
+      {
+         Hexagon::ChatCPTIntegration::Messages::Text* as_text_message = 
+            static_cast<Hexagon::ChatCPTIntegration::Messages::Text*>(message);
+         text_to_copy = as_text_message->get_body();
+         is_copyable = true;
+      }
+      else
+      {
+         std::cout << "[Hexagon::ChatGPTIntegration::Chat::Stage]: warning: could not copy text from the "
+                   << nth_from_last_position << "th from last message."
+                   << std::endl;
+      }
+
+      if (is_copyable)
+      {
+         ClipboardData clipboard_data; // <-- NOTE: this ClipboardData class should be moved into some kind of namespace
+         clipboard_data.store(text_to_copy);
+         std::cout << "[Hexagon::ChatGPTIntegration::Chat::Stage]: info: copied text from the "
+                   << nth_from_last_position << "th from last message."
+                   << std::endl;
+      }
+      return;
+    body_dependency_symbols:
+      - Hexagon::ClipboardData
+      - Hexagon::ChatCPTIntegration::Messages::Text
 
 
   - name: destroy
@@ -372,5 +463,11 @@ dependencies:
     headers: [ Hexagon/ChatGPTIntegration/Chat/ConversationView.hpp ]
   - symbol: AllegroFlare::BitmapBin
     headers: [ AllegroFlare/BitmapBin.hpp ]
+  - symbol: Hexagon::ClipboardData
+    headers: [ Hexagon/ClipboardData.hpp ]
+  - symbol: Hexagon::ChatCPTIntegration::Messages::Base
+    headers: [ Hexagon/ChatCPTIntegration/Messages/Base.hpp ]
+  - symbol: Hexagon::ChatCPTIntegration::Messages::Text
+    headers: [ Hexagon/ChatCPTIntegration/Messages/Text.hpp ]
 
 

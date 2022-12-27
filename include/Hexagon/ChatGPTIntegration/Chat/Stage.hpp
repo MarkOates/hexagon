@@ -6,6 +6,7 @@
 #include <AllegroFlare/Placement2D.hpp>
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/ChatCPTIntegration/Conversation.hpp>
+#include <Hexagon/ChatCPTIntegration/Messages/Base.hpp>
 #include <Hexagon/ChatGPTIntegration/Chat/InputBox.hpp>
 #include <Hexagon/ChatGPTIntegration/Chat/LogView.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -65,6 +66,8 @@ namespace Hexagon
             void submit_input_box_and_clear();
             virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
             virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
+            Hexagon::ChatCPTIntegration::Messages::Base* get_nth_from_last_message(uint32_t nth_from_last_position=0);
+            void copy_message_text_from_message_n_from_the_last_to_clipboard(uint32_t nth_from_last_position=0);
             virtual void destroy() override;
             ALLEGRO_FONT* obtain_log_dump_font();
             ALLEGRO_FONT* obtain_input_box_font();
