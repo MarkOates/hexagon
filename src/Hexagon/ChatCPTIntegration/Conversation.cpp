@@ -26,6 +26,12 @@ Conversation::~Conversation()
 }
 
 
+std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> Conversation::get_messages() const
+{
+   return messages;
+}
+
+
 void Conversation::append_text_message(std::string body)
 {
    Hexagon::ChatCPTIntegration::Messages::Text *result = new Hexagon::ChatCPTIntegration::Messages::Text(body);

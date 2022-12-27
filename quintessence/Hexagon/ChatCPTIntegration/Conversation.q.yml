@@ -4,6 +4,7 @@ properties:
   - name: messages
     type: std::vector<Hexagon::ChatCPTIntegration::Messages::Base*>
     init_with: ''
+    getter: true
 
 
 functions:

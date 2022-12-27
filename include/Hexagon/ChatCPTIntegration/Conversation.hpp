@@ -23,6 +23,7 @@ namespace Hexagon
          Conversation();
          ~Conversation();
 
+         std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> get_messages() const;
          void append_text_message(std::string body="[unset-append_text_message]");
          void clear();
          std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> get_last_n_messages(uint32_t count=3);

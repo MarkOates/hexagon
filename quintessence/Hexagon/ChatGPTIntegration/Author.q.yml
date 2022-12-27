@@ -1,0 +1,32 @@
+properties:
+
+
+  - name: id
+    type: uint32_t
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: identifier
+    type: std::string
+    init_with: '"[unset-identifier]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: name
+    type: std::string
+    init_with: '"[unset-name]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: avatar_bitmap_identifier
+    type: std::string
+    init_with: '"[unset-avatar_bitmap_identifier]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+
