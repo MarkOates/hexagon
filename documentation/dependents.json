@@ -136,6 +136,7 @@
     "ApplicationController",
     "Hexagon/ASTTraverser",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/LogView",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Daemus/ProgramRunner",
@@ -168,6 +169,7 @@
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
+    "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Staged",
@@ -760,6 +762,7 @@
   ],
   "Blast/StringJoiner": [
     "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/InputBox",
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/UI/DrawingBox"
@@ -1013,6 +1016,7 @@
   ],
   "php/file_get_contents": [
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/LogView",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Elements/FilePixelPreviewCreator",

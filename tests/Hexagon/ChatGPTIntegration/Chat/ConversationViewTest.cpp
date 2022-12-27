@@ -13,7 +13,7 @@ TEST(Hexagon_ChatGPTIntegration_Chat_ConversationViewTest, can_be_created_withou
 }
 
 
-TEST(Hexagon_ChatGPTIntegration_Chat_ConversationViewTest, CAPTURE__render__renders_beautifully)
+TEST(Hexagon_ChatGPTIntegration_Chat_ConversationViewTest, VISUAL__render__renders_beautifully)
 {
    al_init();
    al_init_font_addon();

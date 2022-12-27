@@ -2897,7 +2897,13 @@ table td
   <td class="method">append_text_message(std::string body=&quot;[unset-append_text_message]&quot;)</td>
 </tr>
 <tr>
+  <td class="method">clear()</td>
+</tr>
+<tr>
   <td class="method">get_last_n_messages(uint32_t count=3)</td>
+</tr>
+<tr>
+  <td class="method">load_from_log_text_file(std::string log_text_filename=&quot;[unset-log_text_filename]&quot;)</td>
 </tr>
     </table>
      <table>
@@ -2906,6 +2912,18 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatCPTIntegration::Messages::Text&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatCPTIntegration/Messages/Text.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringSplitter&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringSplitter.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringJoiner&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringJoiner.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::FileExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/FileExistenceChecker.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::file_get_contents&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -12943,6 +12961,7 @@ table td
     "ApplicationController",
     "Hexagon/ASTTraverser",
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/LogView",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Daemus/ProgramRunner",
@@ -12975,6 +12994,7 @@ table td
     "Hexagon/AdvancedCodeEditor/AdvancedCodeEditor",
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
+    "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Staged",
@@ -13567,6 +13587,7 @@ table td
   ],
   "Blast/StringJoiner": [
     "Hexagon/AdvancedCodeEditor/Stage",
+    "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/InputBox",
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/UI/DrawingBox"
@@ -13820,6 +13841,7 @@ table td
   ],
   "php/file_get_contents": [
     "Hexagon/BuildSequenceMeter/Renderer",
+    "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/LogView",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Elements/FilePixelPreviewCreator",

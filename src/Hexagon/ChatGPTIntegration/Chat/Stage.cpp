@@ -159,6 +159,7 @@ void Stage::render()
    {
       // draw the conversation
       // TODO: convert from raw log to messages
+      conversation.load_from_log_text_file(log_source_filename);
       Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(font_bin, &conversation, 3);
       conversation_view.render();
    }
