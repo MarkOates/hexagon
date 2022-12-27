@@ -25,10 +25,10 @@ TEST(Hexagon_ChatGPTIntegration_Chat_ConversationViewTest, VISUAL__render__rende
 
    Hexagon::ChatCPTIntegration::Conversation conversation;
 
-   conversation.append_text_message("Hey! What's up? This is a first message.");
-   conversation.append_text_message("This is another message in the chat log.");
-   conversation.append_text_message("Finally, a third message. It's pretty alright.");
-   conversation.append_text_message("This is a fourth message.");
+   conversation.append_text_message(1, "Hey! What's up? This is a first message.");
+   conversation.append_text_message(1, "This is another message in the chat log.");
+   conversation.append_text_message(2, "Finally, a third message. It's pretty alright.");
+   conversation.append_text_message(3, "This is a fourth message.");
 
    Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(&font_bin, &conversation);
    conversation_view.render();

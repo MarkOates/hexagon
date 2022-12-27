@@ -3050,8 +3050,22 @@ table td
   <td class="property">num_messages_to_show</td>
   <td class="property">int32_t</td>
 </tr>
+<tr>
+  <td class="property">skip_empty_messages</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
+  <td class="property">multiline_text_line_number</td>
+  <td class="property">int</td>
+</tr>
     </table>
      <table>
+<tr>
+  <td class="method">multiline_text_draw_callback(int line_num=0, const char* line=nullptr, int size=0, void* extra=nullptr)</td>
+</tr>
+<tr>
+  <td class="method">count_num_lines_will_render(ALLEGRO_FONT* font=nullptr, float max_width=0.0f, std::string text=&quot;[unset-text]&quot;)</td>
+</tr>
 <tr>
   <td class="method">render()</td>
 </tr>

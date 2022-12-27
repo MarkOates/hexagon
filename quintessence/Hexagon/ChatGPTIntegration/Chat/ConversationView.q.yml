@@ -22,8 +22,62 @@ properties:
     getter: true
     setter: true
 
+  - name: skip_empty_messages
+    type: bool
+    init_with: false
+    getter: true
+    setter: true
+
+  - name: multiline_text_line_number
+    type: int
+    init_with: 0
+    static: true
+
 
 functions:
+
+
+  - name: multiline_text_draw_callback
+    type: bool
+    static: true
+    parameters:
+      - name: line_num
+        type: int
+        default_argument: 0
+      - name: line
+        type: const char*
+        default_argument: nullptr
+      - name: size
+        type: int
+        default_argument: 0
+      - name: extra
+        type: void*
+        default_argument: nullptr
+    body: |
+      multiline_text_line_number = line_num;
+      return true;
+
+
+  - name: count_num_lines_will_render
+    type: int
+    parameters:
+      - name: font
+        type: ALLEGRO_FONT*
+        default_argument: nullptr
+      - name: max_width
+        type: float
+        default_argument: 0.0f
+      - name: text
+        type: std::string
+        default_argument: '"[unset-text]"'
+    body: |
+      if (text.empty()) return 0;
+
+      multiline_text_line_number = 0;
+      al_do_multiline_text(font, max_width, text.c_str(), multiline_text_draw_callback, nullptr);
+
+      // multiline_text_line_number is now modified, and should now be set to the number of lines drawn
+      return multiline_text_line_number + 1;
 
 
   - name: render
@@ -33,8 +87,8 @@ functions:
       ALLEGRO_COLOR log_dump_text_color = ALLEGRO_COLOR{0.9, 0.93, 1.0, 1.0};
       float font_line_height = al_get_font_line_height(log_dump_font);
       float width = 700;
-      float message_height = 200;
       float cursor_y = 0;
+      float message_height = 0;
 
       if (!conversation)
       {
@@ -50,6 +104,10 @@ functions:
                static_cast<Hexagon::ChatCPTIntegration::Messages::Text*>(message);
             std::string message_body = as_text_message->get_body();
 
+            // count the number of lines that will render
+            int num_lines_that_will_render = count_num_lines_will_render(log_dump_font, width, message_body);
+
+            // draw the text
             al_draw_multiline_text(
                log_dump_font,
                log_dump_text_color,
@@ -60,6 +118,9 @@ functions:
                ALLEGRO_ALIGN_LEFT,
                message_body.c_str()
             );
+
+            // set the message height
+            message_height = num_lines_that_will_render * font_line_height;
          }
          else
          {

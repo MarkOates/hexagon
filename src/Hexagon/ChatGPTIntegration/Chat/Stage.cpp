@@ -109,7 +109,7 @@ void Stage::initialize()
    input_box.get_text_editor_ref().insert_lines({""}); // need to insert a blank line so that we can add chars to it
    //input_box.insert_string("Hello, this is placholder text for the chat input box.");
 
-   view_mode = VIEW_MODE_LOG;
+   view_mode = VIEW_MODE_CONVERSATION;
 
    initialized = true;
    return;
