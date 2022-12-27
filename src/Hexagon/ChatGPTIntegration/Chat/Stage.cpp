@@ -113,11 +113,11 @@ void Stage::initialize()
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
       throw std::runtime_error("Stage::initialize: error: guard \"(!initialized)\" not met");
    }
-   get_place().size = {700, 900};
+   get_place().size = {900, 1200};
    log_view.set_source_filename(log_source_filename);
 
-   input_box_placement.position = { 0, 400 };
    input_box_placement.size = { get_place().size.x, 300 };
+   input_box_placement.position = { get_place().size.x * 0.5f, get_place().size.y-input_box_placement.size.y };
    //input_box.insert_lines("");
    input_box.get_text_editor_ref().insert_lines({""}); // need to insert a blank line so that we can add chars to it
    //input_box.insert_string("Hello, this is placholder text for the chat input box.");
@@ -177,9 +177,10 @@ void Stage::render()
          bitmap_bin,
          font_bin,
          &conversation,
-         700, // width
-         900  // height
+         get_place().size.x, // width
+         get_place().size.y  // height
       );
+      conversation_view.set_num_messages_to_show(4);
       conversation_view.render();
    }
 
