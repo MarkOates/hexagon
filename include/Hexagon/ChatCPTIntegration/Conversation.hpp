@@ -28,7 +28,7 @@ namespace Hexagon
 
          std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> get_messages() const;
          std::map<std::string, Hexagon::ChatGPTIntegration::Author> get_authors() const;
-         void append_text_message(std::string body="[unset-append_text_message]");
+         void append_text_message(uint32_t author_id=0, std::string body="[unset-append_text_message]");
          void clear();
          std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> get_last_n_messages(uint32_t count=3);
          void build_known_authors();

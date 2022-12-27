@@ -39,9 +39,10 @@ std::map<std::string, Hexagon::ChatGPTIntegration::Author> Conversation::get_aut
 }
 
 
-void Conversation::append_text_message(std::string body)
+void Conversation::append_text_message(uint32_t author_id, std::string body)
 {
    Hexagon::ChatCPTIntegration::Messages::Text *result = new Hexagon::ChatCPTIntegration::Messages::Text(body);
+   result->set_author_id(author_id);
    messages.push_back(result);
    return;
 }
@@ -113,17 +114,17 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
    std::vector<std::string> accumulated_lines;
    for (auto &line : lines)
    {
-      if (line == "========== PROMPT BEGIN ==========") { state = 1; continue; }
-      if (line == "========== RESPONSE BEGIN ==========") { state = 2; continue; }
-      if (line == "========== RESPONSE INFO BEGIN ==========") { state = 3; continue; }
-      if (line == "========== ERROR BEGIN ==========") { state = 4; continue; }
+      if (line == "========== PROMPT BEGIN ==========") { accumulated_lines.clear(); state = 1; continue; }
+      if (line == "========== RESPONSE BEGIN ==========") { accumulated_lines.clear(); state = 2; continue; }
+      if (line == "========== RESPONSE INFO BEGIN ==========") { accumulated_lines.clear(); state = 3; continue; }
+      if (line == "========== ERROR BEGIN ==========") { accumulated_lines.clear(); state = 4; continue; }
 
       if (line == "========== PROMPT END ==========")
       {
          std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
          //Hexagon::ChatCPTIntegration::Messages::Text* result =
             //new Hexagon::ChatCPTIntegration::Messages::Text(joined_accumulated_lines);
-         append_text_message(joined_accumulated_lines);
+         append_text_message(1, joined_accumulated_lines);
          
          accumulated_lines.clear();
          state = 0;
@@ -132,7 +133,7 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
       if (line == "========== RESPONSE END ==========")
       {
          std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-         append_text_message(joined_accumulated_lines);
+         append_text_message(2, joined_accumulated_lines);
          accumulated_lines.clear();
          state = 0;
          continue;
@@ -140,7 +141,7 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
       if (line == "========== RESPONSE INFO END ==========")
       {
          std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-         append_text_message(joined_accumulated_lines);
+         append_text_message(3, joined_accumulated_lines);
          accumulated_lines.clear();
          state = 0;
          continue;
@@ -148,11 +149,13 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
       if (line == "========== ERROR END ==========")
       {
          std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-         append_text_message(joined_accumulated_lines);
+         append_text_message(3, joined_accumulated_lines);
          accumulated_lines.clear();
          state = 0;
          continue;
       }
+
+      accumulated_lines.push_back(line);
    }
 }
 

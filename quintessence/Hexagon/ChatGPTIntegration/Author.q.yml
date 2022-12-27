@@ -15,7 +15,7 @@ properties:
     getter: true
     setter: true
 
-  - name: name
+  - name: display_name
     type: std::string
     init_with: '"[unset-name]"'
     constructor_arg: true
