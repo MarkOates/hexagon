@@ -202,8 +202,7 @@ void Stage::render()
       chat_log_placement.restore_transform();
 
       float render_result_height = conversation_view.get_last_render_height();
-      chat_log_placement.anchor.y = (render_result_height - chat_log_placement.anchor.y) * 0.06
-                                  + chat_log_placement.anchor.y;
+      chat_log_placement.anchor.y = -render_result_height;
    }
 
 
