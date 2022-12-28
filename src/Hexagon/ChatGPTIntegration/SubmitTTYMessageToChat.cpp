@@ -13,9 +13,11 @@ namespace ChatGPTIntegration
 {
 
 
-SubmitTTYMessageToChat::SubmitTTYMessageToChat(std::string tty_location, std::string message)
+SubmitTTYMessageToChat::SubmitTTYMessageToChat(std::string tty_location, std::string message, std::string conversation_id, std::string last_parent_id)
    : tty_location(tty_location)
    , message(message)
+   , conversation_id(conversation_id)
+   , last_parent_id(last_parent_id)
    , shell_command_output("[unset-shell_command_output]")
    , output_command_to_cout(true)
 {
@@ -36,6 +38,18 @@ void SubmitTTYMessageToChat::set_tty_location(std::string tty_location)
 void SubmitTTYMessageToChat::set_message(std::string message)
 {
    this->message = message;
+}
+
+
+void SubmitTTYMessageToChat::set_conversation_id(std::string conversation_id)
+{
+   this->conversation_id = conversation_id;
+}
+
+
+void SubmitTTYMessageToChat::set_last_parent_id(std::string last_parent_id)
+{
+   this->last_parent_id = last_parent_id;
 }
 
 
@@ -63,6 +77,18 @@ std::string SubmitTTYMessageToChat::get_message() const
 }
 
 
+std::string SubmitTTYMessageToChat::get_conversation_id() const
+{
+   return conversation_id;
+}
+
+
+std::string SubmitTTYMessageToChat::get_last_parent_id() const
+{
+   return last_parent_id;
+}
+
+
 std::string SubmitTTYMessageToChat::get_shell_command_output() const
 {
    return shell_command_output;
@@ -80,7 +106,7 @@ std::string SubmitTTYMessageToChat::submit()
    // TODO: Add guards to ensure this program is present, is compiled, and has the proper permissions:
    std::string command_program = "/Users/markoates/Repos/ChatGPT/bin/programs/writevt";
    std::stringstream command;
-   std::string message_unescaped = message;
+   std::string message_unescaped = "####" + conversation_id + "####" + last_parent_id + "####" + message;
    // command << command_program << " " << tty_location << " '" << message_unescaped << "\0x0D\0x0D'";
    command << command_program << " " << tty_location << " \"" << message_unescaped << "\"";
 

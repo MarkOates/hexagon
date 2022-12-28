@@ -15,6 +15,20 @@ properties:
     getter: true
     setter: true
 
+  - name: conversation_id
+    type: std::string
+    init_with: '"[unset-conversation_id]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: last_parent_id
+    type: std::string
+    init_with: '"[unset-last_parent_id]"'
+    constructor_arg: true
+    getter: true
+    setter: true
+
   - name: shell_command_output
     type: std::string
     init_with: '"[unset-shell_command_output]"'
@@ -37,7 +51,7 @@ functions:
       // TODO: Add guards to ensure this program is present, is compiled, and has the proper permissions:
       std::string command_program = "/Users/markoates/Repos/ChatGPT/bin/programs/writevt";
       std::stringstream command;
-      std::string message_unescaped = message;
+      std::string message_unescaped = "####" + conversation_id + "####" + last_parent_id + "####" + message;
       // command << command_program << " " << tty_location << " '" << message_unescaped << "\0x0D\0x0D'";
       command << command_program << " " << tty_location << " \"" << message_unescaped << "\"";
 

@@ -151,6 +151,8 @@ functions:
          // draw the conversation
          // TODO: convert from raw log to messages
          conversation.load_from_log_text_file(log_source_filename);
+         conversation.set_conversation_id("25370edb-6c25-42a6-81ee-76acd77be211");
+
          Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(
             bitmap_bin,
             font_bin,
@@ -231,8 +233,15 @@ functions:
 
       std::string tty_location = "/dev/ttys001"; // NOTE: this could vary
       std::string message = filtered_text;
+      std::string conversation_id = conversation.get_conversation_id();
+      std::string parent_id = conversation.get_last_parent_id();
 
-      Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat submit_tty_message_to_chat(tty_location, filtered_text);
+      Hexagon::ChatGPTIntegration::SubmitTTYMessageToChat submit_tty_message_to_chat(
+         tty_location,
+         filtered_text,
+         conversation_id,
+         parent_id
+      );
       submit_tty_message_to_chat.submit();
 
       clear_input_text_box();
