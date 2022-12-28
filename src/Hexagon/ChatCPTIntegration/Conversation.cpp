@@ -161,7 +161,24 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
          }
          else
          {
-            // TODO: append conversation_id and parent_id to the message here
+            // Append conversation_id and parent_id to the most recent message
+
+            Hexagon::ChatCPTIntegration::Messages::Base* most_recent_message = get_most_recent_message();
+            if (!most_recent_message)
+            {
+               // A weird error occurred
+               // TODO: consider what the proper error response should be in this condition. For now, doing cout:
+               std::cout << "An error occurred when trying to get_most_recent_message() in order to append "
+                         << "the conversation_id and parent_id to the most recent message, which came back as "
+                         << "a nullptr.";
+            }
+            else
+            {
+               // TODO: Consider if it's necessary to validate the type of the previous message, e.g., make sure it's
+               // from author_id 2.
+               most_recent_message->set_conversation_id(conversation_id_and_parent_id.first);
+               most_recent_message->set_parent_id(conversation_id_and_parent_id.second);
+            }
          }
 
          append_text_message(3, trimmed_lines);
@@ -182,6 +199,12 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
    }
 }
 
+Hexagon::ChatCPTIntegration::Messages::Base* Conversation::get_most_recent_message()
+{
+   if (messages.empty()) return nullptr;
+   return messages.back();
+}
+
 bool Conversation::conversation_id_and_parent_id_data_are_empty(std::pair<std::string, std::string> conversation_id_and_parent_id)
 {
    return conversation_id_and_parent_id.first.empty() && conversation_id_and_parent_id.second.empty();
@@ -192,12 +215,28 @@ std::pair<std::string, std::string> Conversation::parse_conversation_id_and_pare
    try
    {
       nlohmann::json json = nlohmann::json::parse(json_str);
-      //json
+      bool contains_conversation_id = json.contains("conversation_id");
+      bool contains_parent_id = json.contains("parent_id");
+
+      if (!contains_conversation_id || !contains_parent_id)
+      {
+         std::cout << "An error occurred when trying to parse the json output in RESPONSE INFO. "
+                   << "Expecting the json to contain \"conversation_id\" and \"parent_id\" keys, but it does not."
+                   << std::endl;
+      }
+      else
+      {
+         return std::pair<std::string, std::string>(
+            json["conversation_id"].get<std::string>(),
+            json["parent_id"].get<std::string>()
+         );
+      }
    }
    catch (const std::exception& e)
    {
       std::cout << "An error occurred when trying to parse the json output in RESPONSE INFO. "
-                << "The following exception was thrown: " << e.what() << std::endl;
+                << "The following exception was thrown: " << e.what() << " on the following json input string: "
+                << json_str << std::endl;
    }
    return std::pair<std::string, std::string>("", "");
 }

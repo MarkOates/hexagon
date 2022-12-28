@@ -31,6 +31,8 @@ TEST(Hexagon_ChatCPTIntegration_ConversationTest, load_from_log_text_file__will_
              "using a yaml file.",
              as_text_message_0->get_body()
          );
+   EXPECT_EQ(true, messages[0]->get_conversation_id().empty());
+   EXPECT_EQ(true, messages[0]->get_parent_id().empty());
 
    EXPECT_EQ(2, messages[1]->get_author_id());
    EXPECT_EQ("Messages/Text", messages[1]->get_type());
@@ -53,6 +55,8 @@ TEST(Hexagon_ChatCPTIntegration_ConversationTest, load_from_log_text_file__will_
              "to languages that one is already familiar with.",
              as_text_message_1->get_body()
          );
+   EXPECT_EQ("25370edb-6c25-42a6-81ee-76acd77be211", messages[1]->get_conversation_id());
+   EXPECT_EQ("f3212bc5-dd1b-440e-83bd-61b3c9add5d3", messages[1]->get_parent_id());
 }
 
 

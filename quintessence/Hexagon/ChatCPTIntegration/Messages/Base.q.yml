@@ -7,23 +7,23 @@ properties:
     constructor_arg: true
     getter: true
 
-  - name: conversation_id
+  - name: author_id
     type: int
     init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: conversation_id
+    type: std::string
+    init_with: '""'
     constructor_arg: true
     getter: true
     setter: true
 
   - name: parent_id
-    type: int
-    init_with: 0
-    constructor_arg: true
-    getter: true
-    setter: true
-
-  - name: author_id
-    type: int
-    init_with: 0
+    type: std::string
+    init_with: '""'
     constructor_arg: true
     getter: true
     setter: true

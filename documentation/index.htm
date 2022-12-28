@@ -2926,6 +2926,9 @@ table td
   <td class="method">load_from_log_text_file(std::string log_text_filename=&quot;[unset-log_text_filename]&quot;)</td>
 </tr>
 <tr>
+  <td class="method">get_most_recent_message()</td>
+</tr>
+<tr>
   <td class="method">conversation_id_and_parent_id_data_are_empty(std::pair&lt;std::string, std::string&gt; conversation_id_and_parent_id={})</td>
 </tr>
 <tr>
@@ -2972,16 +2975,16 @@ table td
   <td class="property">std::string</td>
 </tr>
 <tr>
-  <td class="property">conversation_id</td>
+  <td class="property">author_id</td>
   <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">conversation_id</td>
+  <td class="property">std::string</td>
 </tr>
 <tr>
   <td class="property">parent_id</td>
-  <td class="property">int</td>
-</tr>
-<tr>
-  <td class="property">author_id</td>
-  <td class="property">int</td>
+  <td class="property">std::string</td>
 </tr>
 <tr>
   <td class="property">TYPE</td>

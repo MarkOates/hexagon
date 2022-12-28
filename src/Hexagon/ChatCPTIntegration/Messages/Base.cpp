@@ -13,11 +13,11 @@ namespace Messages
 {
 
 
-Base::Base(std::string type, int conversation_id, int parent_id, int author_id)
+Base::Base(std::string type, int author_id, std::string conversation_id, std::string parent_id)
    : type(type)
+   , author_id(author_id)
    , conversation_id(conversation_id)
    , parent_id(parent_id)
-   , author_id(author_id)
 {
 }
 
@@ -27,21 +27,21 @@ Base::~Base()
 }
 
 
-void Base::set_conversation_id(int conversation_id)
+void Base::set_author_id(int author_id)
+{
+   this->author_id = author_id;
+}
+
+
+void Base::set_conversation_id(std::string conversation_id)
 {
    this->conversation_id = conversation_id;
 }
 
 
-void Base::set_parent_id(int parent_id)
+void Base::set_parent_id(std::string parent_id)
 {
    this->parent_id = parent_id;
-}
-
-
-void Base::set_author_id(int author_id)
-{
-   this->author_id = author_id;
 }
 
 
@@ -51,21 +51,21 @@ std::string Base::get_type() const
 }
 
 
-int Base::get_conversation_id() const
+int Base::get_author_id() const
+{
+   return author_id;
+}
+
+
+std::string Base::get_conversation_id() const
 {
    return conversation_id;
 }
 
 
-int Base::get_parent_id() const
+std::string Base::get_parent_id() const
 {
    return parent_id;
-}
-
-
-int Base::get_author_id() const
-{
-   return author_id;
 }
 
 

@@ -188,8 +188,8 @@ functions:
                {
                   // TODO: Consider if it's necessary to validate the type of the previous message, e.g., make sure it's
                   // from author_id 2.
-                  most_recent_message->set_conversation_id = conversation_id_and_parent_id.first;
-                  most_recent_message->set_parent_id = conversation_id_and_parent_id.second;
+                  most_recent_message->set_conversation_id(conversation_id_and_parent_id.first);
+                  most_recent_message->set_parent_id(conversation_id_and_parent_id.second);
                }
             }
 
@@ -244,12 +244,28 @@ functions:
       try
       {
          nlohmann::json json = nlohmann::json::parse(json_str);
-         //json
+         bool contains_conversation_id = json.contains("conversation_id");
+         bool contains_parent_id = json.contains("parent_id");
+
+         if (!contains_conversation_id || !contains_parent_id)
+         {
+            std::cout << "An error occurred when trying to parse the json output in RESPONSE INFO. "
+                      << "Expecting the json to contain \"conversation_id\" and \"parent_id\" keys, but it does not."
+                      << std::endl;
+         }
+         else
+         {
+            return std::pair<std::string, std::string>(
+               json["conversation_id"].get<std::string>(),
+               json["parent_id"].get<std::string>()
+            );
+         }
       }
       catch (const std::exception& e)
       {
          std::cout << "An error occurred when trying to parse the json output in RESPONSE INFO. "
-                   << "The following exception was thrown: " << e.what() << std::endl;
+                   << "The following exception was thrown: " << e.what() << " on the following json input string: "
+                   << json_str << std::endl;
       }
       return std::pair<std::string, std::string>("", "");
     body_dependency_symbols:
