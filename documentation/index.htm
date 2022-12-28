@@ -2925,6 +2925,12 @@ table td
 <tr>
   <td class="method">load_from_log_text_file(std::string log_text_filename=&quot;[unset-log_text_filename]&quot;)</td>
 </tr>
+<tr>
+  <td class="method">conversation_id_and_parent_id_data_are_empty(std::pair&lt;std::string, std::string&gt; conversation_id_and_parent_id={})</td>
+</tr>
+<tr>
+  <td class="method">parse_conversation_id_and_parent_id_from_json_str(std::string json_str=&quot;[unset-json_str]&quot;)</td>
+</tr>
     </table>
      <table>
 <tr>
@@ -2951,6 +2957,9 @@ table td
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ChatGPTIntegration::Author&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ChatGPTIntegration/Author.hpp&quot;]}</td>
 </tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;nlohmann::json&quot;, &quot;headers&quot;=&gt;[&quot;lib/nlohmann/json.hpp&quot;]}</td>
+</tr>
     </table>
   </div>
 </ul>
@@ -2961,6 +2970,14 @@ table td
 <tr>
   <td class="property">type</td>
   <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">conversation_id</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">parent_id</td>
+  <td class="property">int</td>
 </tr>
 <tr>
   <td class="property">author_id</td>
@@ -13114,6 +13131,7 @@ table td
   ],
   "nlohmann/json": [
     "Hexagon/ASTTraverser",
+    "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/Search/ComponentElasticsearchIndexer"
   ],
   "std/ifstream": [

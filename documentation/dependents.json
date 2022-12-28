@@ -155,6 +155,7 @@
   ],
   "nlohmann/json": [
     "Hexagon/ASTTraverser",
+    "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/Search/ComponentElasticsearchIndexer"
   ],
   "std/ifstream": [

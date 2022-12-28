@@ -7,6 +7,20 @@ properties:
     constructor_arg: true
     getter: true
 
+  - name: conversation_id
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: parent_id
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
   - name: author_id
     type: int
     init_with: 0

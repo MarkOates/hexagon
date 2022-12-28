@@ -8,6 +8,7 @@
 #include <Blast/StringSplitter.hpp>
 #include <Hexagon/ChatCPTIntegration/Messages/Text.hpp>
 #include <allegro_flare/useful_php.h>
+#include <lib/nlohmann/json.hpp>
 
 
 namespace Hexagon
@@ -146,7 +147,24 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
       if (line == "========== RESPONSE INFO END ==========")
       {
          std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-         append_text_message(3, Blast::String::Trimmer(joined_accumulated_lines).trim());
+         std::string trimmed_lines = Blast::String::Trimmer(joined_accumulated_lines).trim();
+         std::pair<std::string, std::string> conversation_id_and_parent_id =
+            parse_conversation_id_and_parent_id_from_json_str(trimmed_lines);
+
+         if (conversation_id_and_parent_id_data_are_empty(conversation_id_and_parent_id))
+         {
+            // Note: conversation_id and parent_id could not be parsed from this RESPONSE INFO section
+            // Include a warning message with the text body
+            trimmed_lines = "[Hexagon::ChatCPTIntegration::Conversation]: warning: A parse error occurred and it "
+                            "was not possible to obtain the conversation_id and parent_id from the RESPONSE INFO. "
+                            "The response contained the following content (which could be empty): " + trimmed_lines;
+         }
+         else
+         {
+            // TODO: append conversation_id and parent_id to the message here
+         }
+
+         append_text_message(3, trimmed_lines);
          accumulated_lines.clear();
          state = 0;
          continue;
@@ -162,6 +180,26 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
 
       accumulated_lines.push_back(line);
    }
+}
+
+bool Conversation::conversation_id_and_parent_id_data_are_empty(std::pair<std::string, std::string> conversation_id_and_parent_id)
+{
+   return conversation_id_and_parent_id.first.empty() && conversation_id_and_parent_id.second.empty();
+}
+
+std::pair<std::string, std::string> Conversation::parse_conversation_id_and_parent_id_from_json_str(std::string json_str)
+{
+   try
+   {
+      nlohmann::json json = nlohmann::json::parse(json_str);
+      //json
+   }
+   catch (const std::exception& e)
+   {
+      std::cout << "An error occurred when trying to parse the json output in RESPONSE INFO. "
+                << "The following exception was thrown: " << e.what() << std::endl;
+   }
+   return std::pair<std::string, std::string>("", "");
 }
 
 

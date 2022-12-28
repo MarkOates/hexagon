@@ -159,7 +159,24 @@ functions:
          if (line == "========== RESPONSE INFO END ==========")
          {
             std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-            append_text_message(3, Blast::String::Trimmer(joined_accumulated_lines).trim());
+            std::string trimmed_lines = Blast::String::Trimmer(joined_accumulated_lines).trim();
+            std::pair<std::string, std::string> conversation_id_and_parent_id =
+               parse_conversation_id_and_parent_id_from_json_str(trimmed_lines);
+
+            if (conversation_id_and_parent_id_data_are_empty(conversation_id_and_parent_id))
+            {
+               // Note: conversation_id and parent_id could not be parsed from this RESPONSE INFO section
+               // Include a warning message with the text body
+               trimmed_lines = "[Hexagon::ChatCPTIntegration::Conversation]: warning: A parse error occurred and it "
+                               "was not possible to obtain the conversation_id and parent_id from the RESPONSE INFO. "
+                               "The response contained the following content (which could be empty): " + trimmed_lines;
+            }
+            else
+            {
+               // TODO: append conversation_id and parent_id to the message here
+            }
+
+            append_text_message(3, trimmed_lines);
             accumulated_lines.clear();
             state = 0;
             continue;
@@ -181,8 +198,38 @@ functions:
       - Blast::StringJoiner
       - Blast::FileExistenceChecker
       - php::file_get_contents
-    
-    
+
+
+  - name: conversation_id_and_parent_id_data_are_empty
+    type: bool
+    parameters:
+      - name: conversation_id_and_parent_id
+        type: std::pair<std::string, std::string>
+        default_argument: '{}'
+    body: |
+      return conversation_id_and_parent_id.first.empty() && conversation_id_and_parent_id.second.empty();
+
+
+  - name: parse_conversation_id_and_parent_id_from_json_str
+    type: std::pair<std::string, std::string>
+    parameters:
+      - name: json_str
+        type: std::string
+        default_argument: '"[unset-json_str]"'
+    body: |
+      try
+      {
+         nlohmann::json json = nlohmann::json::parse(json_str);
+         //json
+      }
+      catch (const std::exception& e)
+      {
+         std::cout << "An error occurred when trying to parse the json output in RESPONSE INFO. "
+                   << "The following exception was thrown: " << e.what() << std::endl;
+      }
+      return std::pair<std::string, std::string>("", "");
+    body_dependency_symbols:
+      - nlohmann::json
 
 
 dependencies:
@@ -204,5 +251,7 @@ dependencies:
     headers: [ allegro_flare/useful_php.h ]
   - symbol: Hexagon::ChatGPTIntegration::Author
     headers: [ Hexagon/ChatGPTIntegration/Author.hpp ]
+  - symbol: nlohmann::json
+    headers: [ lib/nlohmann/json.hpp ]
 
 
