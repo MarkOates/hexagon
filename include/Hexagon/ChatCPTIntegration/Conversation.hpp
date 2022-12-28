@@ -17,6 +17,8 @@ namespace Hexagon
       class Conversation
       {
       private:
+         std::string conversation_id;
+         std::string last_parent_id;
          std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> messages;
          std::map<std::string, Hexagon::ChatGPTIntegration::Author> authors;
 
@@ -24,9 +26,13 @@ namespace Hexagon
 
 
       public:
-         Conversation();
+         Conversation(std::string conversation_id="", std::string last_parent_id="");
          ~Conversation();
 
+         void set_conversation_id(std::string conversation_id);
+         void set_last_parent_id(std::string last_parent_id);
+         std::string get_conversation_id() const;
+         std::string get_last_parent_id() const;
          std::vector<Hexagon::ChatCPTIntegration::Messages::Base*> get_messages() const;
          std::map<std::string, Hexagon::ChatGPTIntegration::Author> get_authors() const;
          void append_text_message(uint32_t author_id=0, std::string body="[unset-append_text_message]");

@@ -17,8 +17,10 @@ namespace ChatCPTIntegration
 {
 
 
-Conversation::Conversation()
-   : messages()
+Conversation::Conversation(std::string conversation_id, std::string last_parent_id)
+   : conversation_id(conversation_id)
+   , last_parent_id(last_parent_id)
+   , messages()
    , authors()
 {
 }
@@ -26,6 +28,30 @@ Conversation::Conversation()
 
 Conversation::~Conversation()
 {
+}
+
+
+void Conversation::set_conversation_id(std::string conversation_id)
+{
+   this->conversation_id = conversation_id;
+}
+
+
+void Conversation::set_last_parent_id(std::string last_parent_id)
+{
+   this->last_parent_id = last_parent_id;
+}
+
+
+std::string Conversation::get_conversation_id() const
+{
+   return conversation_id;
+}
+
+
+std::string Conversation::get_last_parent_id() const
+{
+   return last_parent_id;
 }
 
 
@@ -178,6 +204,7 @@ void Conversation::load_from_log_text_file(std::string log_text_filename)
                // from author_id 2.
                most_recent_message->set_conversation_id(conversation_id_and_parent_id.first);
                most_recent_message->set_parent_id(conversation_id_and_parent_id.second);
+               last_parent_id = most_recent_message->get_parent_id();
             }
          }
 
