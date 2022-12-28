@@ -78,6 +78,7 @@ functions:
       authors["mark_oates"] = Author(1, "mark_oates", "MarkOates", "mark-oates-avatar-01.png", al_color_html("2b313b"));
       authors["chat_gpt"] = Author(2, "chat_gpt", "ChatGPT", "rubber-duck-avatar-01.png", al_color_html("2b1c2b"));
       authors["rev_chat_gpt"] = Author(3, "rev_chat_gpt", "[System]", "", al_color_html("77162a"));
+      authors["harry"] = Author(4, "harry", "Harry", "harry-game-mechanic-02.png", al_color_html("343840"));
       return;
 
 
@@ -147,6 +148,8 @@ functions:
       std::vector<std::string> lines = Blast::StringSplitter(log_text, '\n').split();
       int32_t state = 0; // 0 nothing, 1 parsing prompt, 2 parsing response, 3 response info, 4 parsing error
       std::vector<std::string> accumulated_lines;
+      int32_t author_id = 0;
+
       for (auto &line : lines)
       {
          if (line == "========== PROMPT BEGIN ==========") { accumulated_lines.clear(); state = 1; continue; }
@@ -165,7 +168,12 @@ functions:
          if (line == "========== RESPONSE END ==========")
          {
             std::string joined_accumulated_lines = Blast::StringJoiner(accumulated_lines, "\n").join();
-            append_text_message(2, Blast::String::Trimmer(joined_accumulated_lines).trim());
+
+            uint32_t author_id = 2;
+            // TODO: Use a better author lookup for this:
+            if (conversation_id == "de516061-d6e4-4dde-92d4-b98a41522bc7") author_id = 4; // aka. Harry "game mechanic"
+
+            append_text_message(author_id, Blast::String::Trimmer(joined_accumulated_lines).trim());
             accumulated_lines.clear();
             state = 0;
             continue;

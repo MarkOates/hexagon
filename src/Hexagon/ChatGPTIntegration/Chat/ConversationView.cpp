@@ -20,12 +20,12 @@ namespace Chat
 int ConversationView::multiline_text_line_number = 0;
 
 
-ConversationView::ConversationView(AllegroFlare::BitmapBin* bitmap_bin, AllegroFlare::FontBin* font_bin, Hexagon::ChatCPTIntegration::Conversation* conversation, int width, int height)
+ConversationView::ConversationView(AllegroFlare::BitmapBin* bitmap_bin, AllegroFlare::FontBin* font_bin, Hexagon::ChatCPTIntegration::Conversation* conversation, int width)
    : bitmap_bin(bitmap_bin)
    , font_bin(font_bin)
    , conversation(conversation)
    , width(width)
-   , height(height)
+   , last_render_height(0)
    , num_messages_to_show(3)
    , skip_empty_messages(false)
 {
@@ -61,9 +61,9 @@ void ConversationView::set_width(int width)
 }
 
 
-void ConversationView::set_height(int height)
+void ConversationView::set_last_render_height(int last_render_height)
 {
-   this->height = height;
+   this->last_render_height = last_render_height;
 }
 
 
@@ -103,9 +103,9 @@ int ConversationView::get_width() const
 }
 
 
-int ConversationView::get_height() const
+int ConversationView::get_last_render_height() const
 {
-   return height;
+   return last_render_height;
 }
 
 
@@ -138,7 +138,7 @@ int ConversationView::count_num_lines_will_render(ALLEGRO_FONT* font, float max_
    return multiline_text_line_number + 1;
 }
 
-void ConversationView::render()
+float ConversationView::render()
 {
    if (!(bitmap_bin))
    {
@@ -239,7 +239,9 @@ void ConversationView::render()
       // draw a horizontal dividing line separating the messages
       al_draw_line(0, cursor_y, frame_width, cursor_y, ALLEGRO_COLOR{0.1, 0.1, 0.1, 0.1}, 1.0);
    }
-   return;
+
+   last_render_height = cursor_y;
+   return last_render_height;
 }
 
 ALLEGRO_FONT* ConversationView::obtain_log_dump_font()

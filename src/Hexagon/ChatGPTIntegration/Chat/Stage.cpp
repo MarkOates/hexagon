@@ -32,6 +32,7 @@ Stage::Stage()
    , font_bin(nullptr)
    , log_view()
    , input_box()
+   , chat_log_placement()
    , input_box_placement()
    , log_source_filename("/Users/markoates/Repos/ChatGPT/log.txt")
    , conversation()
@@ -120,6 +121,11 @@ void Stage::initialize()
    log_view.set_source_filename(log_source_filename);
 
    input_box_placement.size = { get_place().size.x, 300 };
+
+   //chat_log_placement.position = { 0, get_place().size.y-input_box_placement.size.y - 20 };
+   chat_log_placement.position = { 0, get_place().size.y };
+
+   //input_box_placement.size = { get_place().size.x, 300 };
    input_box_placement.align = { 0, 0 };
    input_box_placement.position = { get_place().size.x + 10, get_place().size.y-input_box_placement.size.y };
    //input_box.insert_lines("");
@@ -179,18 +185,25 @@ void Stage::render()
       // draw the conversation
       // TODO: convert from raw log to messages
       conversation.load_from_log_text_file(log_source_filename);
-      conversation.set_conversation_id("25370edb-6c25-42a6-81ee-76acd77be211");
+      conversation.set_conversation_id("de516061-d6e4-4dde-92d4-b98a41522bc7");
 
       Hexagon::ChatGPTIntegration::Chat::ConversationView conversation_view(
          bitmap_bin,
          font_bin,
          &conversation,
-         get_place().size.x, // width
-         get_place().size.y  // height
+         get_place().size.x // width
+         //get_place().size.y  // height
       );
       conversation_view.set_num_messages_to_show(7);
       conversation_view.set_skip_empty_messages(true);
+
+      chat_log_placement.start_transform();
       conversation_view.render();
+      chat_log_placement.restore_transform();
+
+      float render_result_height = conversation_view.get_last_render_height();
+      chat_log_placement.anchor.y = (render_result_height - chat_log_placement.anchor.y) * 0.06
+                                  + chat_log_placement.anchor.y;
    }
 
 
@@ -266,6 +279,7 @@ void Stage::submit_input_box_and_clear()
       conversation_id,
       parent_id
    );
+
    submit_tty_message_to_chat.submit();
 
    clear_input_text_box();

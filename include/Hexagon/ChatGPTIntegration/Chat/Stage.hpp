@@ -34,6 +34,7 @@ namespace Hexagon
             AllegroFlare::FontBin* font_bin;
             Hexagon::ChatGPTIntegration::Chat::LogView log_view;
             Hexagon::ChatGPTIntegration::Chat::InputBox input_box;
+            AllegroFlare::Placement2D chat_log_placement;
             AllegroFlare::Placement2D input_box_placement;
             std::string log_source_filename;
             Hexagon::ChatCPTIntegration::Conversation conversation;
