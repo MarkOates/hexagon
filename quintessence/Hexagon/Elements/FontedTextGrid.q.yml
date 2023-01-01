@@ -6,22 +6,27 @@ properties:
     init_with: nullptr
     constructor_arg: true
     setter: true
+
   - name: num_columns
     type: int
     init_with: 123
     constructor_arg: true
     getter: true
+
   - name: num_rows
     type: int
     init_with: 74
     constructor_arg: true
     getter: true
+
   - name: sub_bitmap_character_map
     type: Hexagon::Elements::SubBitmapCharacterMap
     init_with: '{}'
+
   - name: bitmap_grid_render_surface
     type: Hexagon::Elements::BitmapGridRenderSurface
     init_with: 'num_columns, num_rows'
+
   - name: initialized
     type: bool
     init_with: false
@@ -109,13 +114,8 @@ dependencies:
     headers: [ Hexagon/Elements/BitmapGridRenderSurface.hpp ]
   - symbol: Hexagon::Elements::SubBitmapCharacterMap
     headers: [ Hexagon/Elements/SubBitmapCharacterMap.hpp ]
-  - symbol: ALLEGRO_FONT*
-    headers: [ allegro5/allegro_font.h ]
-  - symbol: ALLEGRO_BITMAP*
-    headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
-
   - symbol: ALLEGRO_BITMAP
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT
