@@ -5,23 +5,34 @@ properties:
     type: std::vector<ALLEGRO_VERTEX>
     init_with: '{}'
     getter: true
+
   - name: cell_width
     type: int
     init_with: 1
     constructor_arg: true
+
   - name: cell_height
     type: int
     init_with: 1
     constructor_arg: true
+
   - name: texture
     type: ALLEGRO_BITMAP*
     init_with: nullptr
     getter: true
     setter: true
     constructor_arg: true
+
   - name: cells
     type: std::map<std::tuple<int, int>, int>
     init_with: '{}'
+
+
+documentation:
+
+
+  - primary: |-
+      Currently it seems this component is unused.  I belive it's undeveloped and superseeded with other mesh offerings.
 
 
 functions:
@@ -121,15 +132,8 @@ functions:
 dependencies:
 
 
-  - symbol: ALLEGRO_BITMAP*
-    headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
-  - symbol: std::vector<ALLEGRO_VERTEX>
-    headers: [ vector, allegro5/allegro_primitives.h ]
-  - symbol: std::map<std::tuple<int, int>, int>
-    headers: [ map, tuple ]
-
   - symbol: ALLEGRO_BITMAP
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_VERTEX

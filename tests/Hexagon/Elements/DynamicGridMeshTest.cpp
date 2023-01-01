@@ -65,9 +65,11 @@ public:
    }
 };
 
+
 TEST_F(Hexagon_Elements_DynamicGridMeshTest_WithEmptyFixture, can_be_created_without_blowing_up)
 {
 }
+
 
 TEST_F(Hexagon_Elements_DynamicGridMeshTest_WithAllegroRenderingFixture, render__draws_the_mesh)
 {
@@ -75,4 +77,5 @@ TEST_F(Hexagon_Elements_DynamicGridMeshTest_WithAllegroRenderingFixture, render_
    al_flip_display();
    sleep(2);
 }
+
 
