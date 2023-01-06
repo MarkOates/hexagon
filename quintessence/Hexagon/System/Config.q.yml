@@ -6,90 +6,108 @@ properties:
     static: true
     const: true
     init_with: '"initial_display_width"'
+
   - name: INITIAL_DISPLAY_HEIGHT_KEY
     type: std::string
     static: true
     const: true
     init_with: '"initial_display_height"'
+
   - name: DEFAULT_NAVIGATOR_DIRECTORY_KEY
     type: std::string
     static: true
     const: true
     init_with: '"default_navigator_directory"'
+
   - name: DOMAIN_KEY
     type: std::string
     static: true
     const: true
     init_with: '"domain"'
+
   - name: REGEX_TEMP_FILENAME_KEY
     type: std::string
     static: true
     const: true
     init_with: '"regex_temp_filename"'
+
   - name: CLIPBOARD_TEMP_FILENAME_KEY
     type: std::string
     static: true
     const: true
     init_with: '"clipboard_temp_filename"'
+
   - name: FILE_NAVIGATOR_SELECTION_FILENAME_KEY
     type: std::string
     static: true
     const: true
     init_with: '"file_navigator_selection_temp_filename"'
+
   - name: MAKE_COMMAND_FILENAME_KEY
     type: std::string
     static: true
     const: true
     init_with: '"make_command_temp_filename"'
+
   - name: FOCUSED_COMPONENT_FILENAME_KEY
     type: std::string
     static: true
     const: true
     init_with: '"focused_component_filename"'
+
   - name: FONT_BIN_PATH_KEY
     type: std::string
     static: true
     const: true
     init_with: '"font_bin_path"'
+
   - name: BITMAP_BIN_PATH_KEY
     type: std::string
     static: true
     const: true
     init_with: '"bitmap_bin_path"'
+
   - name: DARK_MODE_KEY
     type: std::string
     static: true
     const: true
     init_with: '"dark_mode"'
+
   - name: OBJECTIVE_KEY
     type: std::string
     static: true
     const: true
     init_with: '"objective"'
+
   - name: HUD_SHOW_FOCUS_TIMER_BAR_KEY
     type: std::string
     static: true
     const: true
     init_with: '"hud_show_focus_timer_bar"'
+
   - name: FULLSCREEN_KEY
     type: char*
     static: true
     const: true
     init_with: '"fullscreen"'
     constexpr: true
+
   - name: INITIAL_BASELINE_CAMERA_STEPBACK_KEY
     type: std::string
     static: true
     const: true
     init_with: '"initial_baseline_camera_stepback"'
+
   - name: config_filename
     type: std::string
     constructor_arg: true
     init_with: '"/Users/markoates/Repos/hexagon/bin/programs/data/config/hexagon.boot.cfg"'
     getter: true
+
   - name: config
     type: AllegroFlare::Config
     init_with: config_filename
+
   - name: initialized
     type: bool
     init_with: false

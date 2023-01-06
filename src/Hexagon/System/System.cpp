@@ -1372,14 +1372,16 @@ bool System::spawn_project_navigator()
    ::Hexagon::StageFactory stage_factory(&hexagon_config, nullptr, &font_bin);
 
    std::vector<std::tuple<std::string, std::string>> project_menu_items = {
+      { "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
+      { "TrackLock", "/Users/markoates/Repos/TrackLock/" },
       { "KrampusReturns", "/Users/markoates/Repos/KrampusReturns/" },
-      { "dungeon", "/Users/markoates/Repos/dungeon/" },
-      { "KrampusTest01", "/Users/markoates/Repos/KrampusTest01/" },
+      //{ "dungeon", "/Users/markoates/Repos/dungeon/" },
+      //{ "KrampusTest01", "/Users/markoates/Repos/KrampusTest01/" },
       { "CatDetective", "/Users/markoates/Repos/CatDetective/" },
       { "Blast", "/Users/markoates/Repos/blast/" },
       { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
-      { "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
-      { "TrackLock", "/Users/markoates/Repos/TrackLock/" },
+      //{ "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
+      //{ "TrackLock", "/Users/markoates/Repos/TrackLock/" },
       { "Hexagon", "/Users/markoates/Repos/hexagon/" },
       { "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
       { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },

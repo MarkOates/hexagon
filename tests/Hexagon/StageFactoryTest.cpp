@@ -41,7 +41,7 @@ TEST(Hexagon_StageFactoryTest, obtain_component_navigator_font__returns_a_font)
 
    AllegroFlare::FontBin font_bin;
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-   Hexagon::StageFactory stage_factory(nullptr, &font_bin);
+   Hexagon::StageFactory stage_factory(nullptr, nullptr, &font_bin);
 
    ALLEGRO_FONT *font = stage_factory.obtain_component_navigator_font();
 
@@ -72,7 +72,7 @@ TEST(Hexagon_StageFactoryTest, obtain_git_commit_message_box_font__returns_a_fon
 
    AllegroFlare::FontBin font_bin;
    font_bin.set_full_path("/Users/markoates/Repos/hexagon/bin/programs/data/fonts");
-   Hexagon::StageFactory stage_factory(nullptr, &font_bin);
+   Hexagon::StageFactory stage_factory(nullptr, nullptr, &font_bin);
 
    ALLEGRO_FONT *font = stage_factory.obtain_git_commit_message_box_font();
 
