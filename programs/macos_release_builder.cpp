@@ -263,7 +263,6 @@ public:
 
 
 
-
 class ValidateDylibBundlerVersion : public Hexagon::BuildSystem::BuildStages::Base
 {
 private:
@@ -290,6 +289,36 @@ public:
       return true;
    }
 };
+
+
+
+class ValidateXattrVersion : public Hexagon::BuildSystem::BuildStages::Base
+{
+private:
+   std::string get_result_of_dylibbuilder_shell_execution()
+   {
+      std::stringstream shell_command;
+      shell_command << "xattr -h";
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command.str());
+      return shell_command_executor.execute();
+   }
+
+public:
+   static constexpr char* TYPE = (char*)"ValidateXattrVersion";
+
+   ValidateXattrVersion()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+   {}
+
+   virtual bool execute() override
+   {
+      std::string match_expression = "\nThe first form lists the names of all xattrs on the given"; // a line from the help file
+      std::string actual_string = get_result_of_dylibbuilder_shell_execution();
+      if (!ExpressionMatcher(match_expression, actual_string).matches()) return false;
+      return true;
+   }
+};
+
 
 
 
@@ -966,6 +995,48 @@ public:
 
 
 
+
+
+class DetectPresenceOfExtendedAttributesAndRemoveIfPresent : public Hexagon::BuildSystem::BuildStages::Base
+{
+public:
+   static constexpr char* TYPE = (char*)"DetectPresenceOfExtendedAttributesAndRemoveIfPresent";
+   //std::string shell_command_result;
+
+   DetectPresenceOfExtendedAttributesAndRemoveIfPresent()
+      : Hexagon::BuildSystem::BuildStages::Base(TYPE)
+   {}
+
+   virtual bool execute() override
+   {
+      // For this process, see https://developer.apple.com/library/archive/qa/qa1940/_index.html
+      std::string release_folder_location = NameGenerator::release_folder_location();
+      std::string app_package_folder_name = NameGenerator::app_package_folder_name();
+
+      std::cout << "============================================ detecting extended attributes (start) =================================================" << std::endl;
+      std::stringstream detect_extended_attributes_shell_command;
+         detect_extended_attributes_shell_command << "(cd " << release_folder_location << " && xattr -lr " << app_package_folder_name << ")";
+      Blast::ShellCommandExecutorWithCallback detect_shell_command_executor(detect_extended_attributes_shell_command.str());
+      std::string detect_extended_attributes_shell_command_result = detect_shell_command_executor.execute();
+      std::cout << "============================================ detecting extended attributes (dump result) =================================================" << std::endl;
+      std::cout << detect_extended_attributes_shell_command_result << std::endl;
+      std::cout << "============================================ detecting extended attributes (end) =================================================" << std::endl;
+
+      std::cout << "============================================ removing extended attributes (start) =================================================" << std::endl;
+      std::stringstream remove_extended_attributes_shell_command;
+         remove_extended_attributes_shell_command << "(cd " << release_folder_location << " && xattr -cr " << app_package_folder_name << ")";
+      Blast::ShellCommandExecutorWithCallback remove_shell_command_executor(remove_extended_attributes_shell_command.str());
+      std::string remove_extended_attributes_shell_command_result = remove_shell_command_executor.execute();
+      std::cout << "============================================ detecting extended attributes (dump result) =================================================" << std::endl;
+      std::cout << remove_extended_attributes_shell_command_result << std::endl;
+      std::cout << "============================================ detecting extended attributes (end) =================================================" << std::endl;
+
+      return true;
+   }
+};
+
+
+
 class BuildAndBundleDylibsWithAppPackage : public Hexagon::BuildSystem::BuildStages::Base
 {
 private:
@@ -1169,6 +1240,7 @@ int main(int argc, char **argv)
 
       // validate these are present
       new ValidateDylibBundlerVersion(),
+      new ValidateXattrVersion(),
       new ValidateIconutil(),
       new ValidateSips(),
       new ValidateZip(),
@@ -1194,6 +1266,7 @@ int main(int argc, char **argv)
       new CopyDataFolderToAppPackage(),
       new CopyIcnsFileToAppPackage(),
       new CopyReadmeFileToRelaseFolder(),
+      new DetectPresenceOfExtendedAttributesAndRemoveIfPresent(),
       new BuildAndBundleDylibsWithAppPackage(), // TODO: this process can error but it will not report an error
 
       // Zip it up and prepare it for launch
