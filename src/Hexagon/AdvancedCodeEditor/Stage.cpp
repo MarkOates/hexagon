@@ -202,6 +202,12 @@ ALLEGRO_BITMAP* Stage::get_surface_render() const
 }
 
 
+bool Stage::get_currently_playing_action_queue_recording() const
+{
+   return currently_playing_action_queue_recording;
+}
+
+
 ALLEGRO_COLOR Stage::get_syntax_highlight_color() const
 {
    return syntax_highlight_color;
@@ -510,6 +516,12 @@ bool Stage::cursor_jump_up_half_page()
                                                            // further out of bounds
    refresh_current_visual_selection_end_to_current_cursor_position();
    return result;
+}
+
+void Stage::append_action_to_action_queue_recording(std::string action_name, ActionData action_data1)
+{
+   action_queue_recording.append_action(Action(action_name, action_data1));
+   return;
 }
 
 void Stage::clear_action_queue_recording()
@@ -1043,9 +1055,19 @@ bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
    return true;
 }
 
-bool Stage::replay_last_recorded_action_queue()
+bool Stage::replay_action_queue_recording()
 {
-   // TODO
+   Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
+
+   currently_playing_action_queue_recording = true;
+   for (auto &action : action_queue_recording.get_actions_ref())
+   {
+      std::string action_name = action.get_name();
+      ActionData action_data1 = action.get_data1();
+
+      event_controller.process_local_event(action_name, action_data1);
+   }
+   currently_playing_action_queue_recording = false;
    return true;
 }
 
@@ -1183,8 +1205,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
 
 
       // action queue
-      { "replay_last_recorded_action_queue",
-        &Hexagon::AdvancedCodeEditor::Stage::replay_last_recorded_action_queue },
+      { "replay_action_queue_recording",
+        &Hexagon::AdvancedCodeEditor::Stage::replay_action_queue_recording },
 
    };
    return local_events;
@@ -1268,7 +1290,7 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_ed
          AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
          { "replace_content_with_contents_of_clipboard" }
    );
-   result.set_mapping(ALLEGRO_KEY_FULLSTOP, 0, { "replay_last_recorded_action_queue" });
+   result.set_mapping(ALLEGRO_KEY_FULLSTOP, 0, { "replay_action_queue_recording" });
 
    return result;
 }

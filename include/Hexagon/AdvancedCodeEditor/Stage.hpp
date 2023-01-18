@@ -113,6 +113,7 @@ namespace Hexagon
          float get_offset_y_updated_at() const;
          int get_first_row_offset() const;
          ALLEGRO_BITMAP* get_surface_render() const;
+         bool get_currently_playing_action_queue_recording() const;
          ALLEGRO_COLOR get_syntax_highlight_color() const;
          ALLEGRO_COLOR get_on_color() const;
          ALLEGRO_COLOR get_comment_color() const;
@@ -146,6 +147,7 @@ namespace Hexagon
          bool cursor_jump_to_next_word_or_last_char();
          bool cursor_jump_to_previous_word();
          bool cursor_jump_up_half_page();
+         void append_action_to_action_queue_recording(std::string action_name="[unset-action_name]", ActionData action_data1={});
          void clear_action_queue_recording();
          bool cursor_jump_down_half_page();
          bool first_row_offset_move_up();
@@ -182,7 +184,7 @@ namespace Hexagon
          bool set_current_visual_selection_end_x(int x_pos=0);
          bool set_current_visual_selection_end_y(int y_pos=0);
          bool refresh_current_visual_selection_end_to_current_cursor_position();
-         bool replay_last_recorded_action_queue();
+         bool replay_action_queue_recording();
          bool yank_selected_text_to_clipboard();
          bool paste_selected_text_from_clipboard();
          bool replace_content_with_contents_of_clipboard();

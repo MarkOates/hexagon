@@ -132,6 +132,7 @@ properties:
   - name: currently_playing_action_queue_recording
     type: bool
     init_with: false
+    getter: true
 
   - name: syntax_highlight_color
     type: ALLEGRO_COLOR
@@ -474,6 +475,19 @@ functions:
                                                               // further out of bounds
       refresh_current_visual_selection_end_to_current_cursor_position();
       return result;
+
+
+  - name: append_action_to_action_queue_recording
+    parameters:
+      - name: action_name
+        type: std::string
+        default_argument: '"[unset-action_name]"'
+      - name: action_data1
+        type: ActionData
+        default_argument: '{}'
+    body: |
+      action_queue_recording.append_action(Action(action_name, action_data1));
+      return;
 
 
   - name: clear_action_queue_recording
@@ -1011,10 +1025,20 @@ functions:
       return true;
 
 
-  - name: replay_last_recorded_action_queue
+  - name: replay_action_queue_recording
     type: bool
     body: |
-      // TODO
+      Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
+
+      currently_playing_action_queue_recording = true;
+      for (auto &action : action_queue_recording.get_actions_ref())
+      {
+         std::string action_name = action.get_name();
+         ActionData action_data1 = action.get_data1();
+
+         event_controller.process_local_event(action_name, action_data1);
+      }
+      currently_playing_action_queue_recording = false;
       return true;
 
 
@@ -1165,8 +1189,8 @@ functions:
 
 
          // action queue
-         { "replay_last_recorded_action_queue",
-           &Hexagon::AdvancedCodeEditor::Stage::replay_last_recorded_action_queue },
+         { "replay_action_queue_recording",
+           &Hexagon::AdvancedCodeEditor::Stage::replay_action_queue_recording },
 
       };
       return local_events;
@@ -1252,7 +1276,7 @@ functions:
             AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
             { "replace_content_with_contents_of_clipboard" }
       );
-      result.set_mapping(ALLEGRO_KEY_FULLSTOP, 0, { "replay_last_recorded_action_queue" });
+      result.set_mapping(ALLEGRO_KEY_FULLSTOP, 0, { "replay_action_queue_recording" });
 
       return result;
 
