@@ -52,6 +52,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , selections({})
    , search_regex_selections(Hexagon::AdvancedCodeEditor::Selection{})
    , action_queue_recording({})
+   , currently_playing_action_queue_recording(false)
    , syntax_highlight_color(ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f})
    , on_color(ALLEGRO_COLOR{1.0f, 1.0f, 0.0f, 1.0f})
    , comment_color(ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f})
@@ -509,6 +510,12 @@ bool Stage::cursor_jump_up_half_page()
                                                            // further out of bounds
    refresh_current_visual_selection_end_to_current_cursor_position();
    return result;
+}
+
+void Stage::clear_action_queue_recording()
+{
+   action_queue_recording.clear_actions();
+   return;
 }
 
 bool Stage::cursor_jump_down_half_page()

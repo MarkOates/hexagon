@@ -129,6 +129,10 @@ properties:
     type: ActionQueueRecording
     init_with: '{}'
 
+  - name: currently_playing_action_queue_recording
+    type: bool
+    init_with: false
+
   - name: syntax_highlight_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f}
@@ -470,6 +474,12 @@ functions:
                                                               // further out of bounds
       refresh_current_visual_selection_end_to_current_cursor_position();
       return result;
+
+
+  - name: clear_action_queue_recording
+    body: |
+      action_queue_recording.clear_actions();
+      return;
 
 
   - name: cursor_jump_down_half_page

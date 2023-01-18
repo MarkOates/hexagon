@@ -61,6 +61,7 @@ namespace Hexagon
          std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
          Hexagon::AdvancedCodeEditor::Selection search_regex_selections;
          ActionQueueRecording action_queue_recording;
+         bool currently_playing_action_queue_recording;
          ALLEGRO_COLOR syntax_highlight_color;
          ALLEGRO_COLOR on_color;
          ALLEGRO_COLOR comment_color;
@@ -145,6 +146,7 @@ namespace Hexagon
          bool cursor_jump_to_next_word_or_last_char();
          bool cursor_jump_to_previous_word();
          bool cursor_jump_up_half_page();
+         void clear_action_queue_recording();
          bool cursor_jump_down_half_page();
          bool first_row_offset_move_up();
          bool first_row_offset_move_down();
