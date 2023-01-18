@@ -410,13 +410,13 @@ bool Stage::save_file_and_touch_if_symlink()
 
 bool Stage::set_to_edit_mode()
 {
-   mode = 0;
+   mode = MODE_EDIT;
    return true;
 }
 
 bool Stage::set_to_insert_mode()
 {
-   mode = 1;
+   mode = MODE_INSERT;
    if (currently_grabbing_visual_selection) toggle_currently_grabbing_visual_selection();
    if (currently_grabbing_full_line_visual_selection) toggle_currently_grabbing_full_line_visual_selection();
    return true;
@@ -1038,7 +1038,14 @@ bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
 
 bool Stage::replay_last_recorded_action_queue()
 {
-   return;
+   std::cout << "Processing recorded action queue..." << std::endl;
+   for (auto &action : action_queue_recording.get_actions_ref())
+   {
+      process_local_event(action.get_name(), action.get_data1());
+   }
+   std::cout << "... recorded action queue processed." << std::endl;
+   action_queue_recording.clear_actions();
+   return true;
 }
 
 bool Stage::yank_selected_text_to_clipboard()
@@ -1175,7 +1182,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
 
 
       // action queue
-      { "replay_last_recorded_action_queue", &Hexagon::AdvancedCodeEditor::Stage::replay_last_recorded_action_queue},
+      { "replay_last_recorded_action_queue",
+        &Hexagon::AdvancedCodeEditor::Stage::replay_last_recorded_action_queue },
 
    };
    return local_events;
@@ -1396,12 +1404,12 @@ int Stage::cursor_get_y()
 
 bool Stage::is_in_edit_mode()
 {
-   return mode == 0;
+   return mode == MODE_EDIT;
 }
 
 bool Stage::is_in_insert_mode()
 {
-   return mode == 1;
+   return mode == MODE_INSERT;
 }
 
 int Stage::calculate_natural_width()

@@ -17,6 +17,7 @@
 #include <Hexagon/StageInterface.hpp>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <cstdint>
 #include <functional>
 #include <map>
 #include <string>
@@ -29,6 +30,10 @@ namespace Hexagon
    {
       class Stage : public StageInterface
       {
+      public:
+         static constexpr uint32_t MODE_EDIT = 0;
+         static constexpr uint32_t MODE_INSERT = 1;
+
       private:
          AllegroFlare::FontBin* font_bin;
          int num_columns;
@@ -53,7 +58,7 @@ namespace Hexagon
          bool currently_grabbing_full_line_visual_selection;
          std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
          Hexagon::AdvancedCodeEditor::Selection search_regex_selections;
-         Hexagon::ActionQueueRecording action_queue_recording;
+         ActionQueueRecording action_queue_recording;
          ALLEGRO_COLOR syntax_highlight_color;
          ALLEGRO_COLOR on_color;
          ALLEGRO_COLOR comment_color;

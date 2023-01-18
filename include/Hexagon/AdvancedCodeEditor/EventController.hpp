@@ -31,7 +31,7 @@ namespace Hexagon
 
          std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> &get_events_dictionary_ref();
          static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-         void process_local_event(std::string event_name="", ActionData action_data=ActionData());
+         bool process_local_event(std::string event_name="", ActionData action_data=ActionData());
          void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref());
       };
    }

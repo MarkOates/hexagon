@@ -126,7 +126,7 @@ properties:
     getter_ref: true
 
   - name: action_queue_recording
-    type: Hexagon::ActionQueueRecording
+    type: ActionQueueRecording
     init_with: '{}'
 
   - name: syntax_highlight_color
@@ -176,6 +176,20 @@ properties:
     init_with: ALLEGRO_COLOR{0.06, 0.06, 0.06, 0.06}
     getter: true
     setter: true
+
+  - name: MODE_EDIT
+    type: uint32_t
+    init_with: 0
+    static: true
+    const: true
+    constexpr: true
+
+  - name: MODE_INSERT
+    type: uint32_t
+    init_with: 1
+    static: true
+    const: true
+    constexpr: true
 
 
 functions:
@@ -330,14 +344,14 @@ functions:
   - name: set_to_edit_mode
     type: bool
     body: |
-      mode = 0;
+      mode = MODE_EDIT;
       return true;
 
 
   - name: set_to_insert_mode
     type: bool
     body: |
-      mode = 1;
+      mode = MODE_INSERT;
       if (currently_grabbing_visual_selection) toggle_currently_grabbing_visual_selection();
       if (currently_grabbing_full_line_visual_selection) toggle_currently_grabbing_full_line_visual_selection();
       return true;
@@ -976,7 +990,14 @@ functions:
   - name: replay_last_recorded_action_queue
     type: bool
     body: |
-      return;
+      std::cout << "Processing recorded action queue..." << std::endl;
+      for (auto &action : action_queue_recording.get_actions_ref())
+      {
+         process_local_event(action.get_name(), action.get_data1());
+      }
+      std::cout << "... recorded action queue processed." << std::endl;
+      action_queue_recording.clear_actions();
+      return true;
 
 
   - name: yank_selected_text_to_clipboard
@@ -1126,7 +1147,8 @@ functions:
 
 
          // action queue
-         { "replay_last_recorded_action_queue", &Hexagon::AdvancedCodeEditor::Stage::replay_last_recorded_action_queue},
+         { "replay_last_recorded_action_queue",
+           &Hexagon::AdvancedCodeEditor::Stage::replay_last_recorded_action_queue },
 
       };
       return local_events;
@@ -1381,13 +1403,13 @@ functions:
   - name: is_in_edit_mode
     type: bool
     body: |
-      return mode == 0;
+      return mode == MODE_EDIT;
 
 
   - name: is_in_insert_mode
     type: bool
     body: |
-      return mode == 1;
+      return mode == MODE_INSERT;
 
 
   - name: calculate_natural_width

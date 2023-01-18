@@ -1132,6 +1132,10 @@ table td
   <td class="property">Hexagon::AdvancedCodeEditor::Selection</td>
 </tr>
 <tr>
+  <td class="property">action_queue_recording</td>
+  <td class="property">ActionQueueRecording</td>
+</tr>
+<tr>
   <td class="property">syntax_highlight_color</td>
   <td class="property">ALLEGRO_COLOR</td>
 </tr>
@@ -1162,6 +1166,14 @@ table td
 <tr>
   <td class="property">backfill_color</td>
   <td class="property">ALLEGRO_COLOR</td>
+</tr>
+<tr>
+  <td class="property">MODE_EDIT</td>
+  <td class="property">uint32_t</td>
+</tr>
+<tr>
+  <td class="property">MODE_INSERT</td>
+  <td class="property">uint32_t</td>
 </tr>
     </table>
      <table>
@@ -1338,6 +1350,9 @@ table td
 </tr>
 <tr>
   <td class="method">refresh_current_visual_selection_end_to_current_cursor_position()</td>
+</tr>
+<tr>
+  <td class="method">replay_last_recorded_action_queue()</td>
 </tr>
 <tr>
   <td class="method">yank_selected_text_to_clipboard()</td>
@@ -1553,6 +1568,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringJoiner&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringJoiner.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ActionQueueRecording&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ActionQueueRecording.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -13749,6 +13767,9 @@ table td
     "Hexagon/ChatGPTIntegration/Chat/InputBox",
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/UI/DrawingBox"
+  ],
+  "ActionQueueRecording": [
+    "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",

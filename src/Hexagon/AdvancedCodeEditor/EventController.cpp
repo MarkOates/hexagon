@@ -41,7 +41,7 @@ ALLEGRO_EVENT &EventController::get_a_default_empty_event_ref()
 }
 
 
-void EventController::process_local_event(std::string event_name, ActionData action_data)
+bool EventController::process_local_event(std::string event_name, ActionData action_data)
 {
    if (!(stage))
    {
@@ -60,6 +60,7 @@ void EventController::process_local_event(std::string event_name, ActionData act
       error_message << "AdvancedCodeEditor::EventController::process_local_event: error: "
                     << "No local event named \"" << event_name << "\" exists.";
       throw std::runtime_error(error_message.str());
+      return false; // NOTE: this return is redundant
    }
    else
    {
@@ -98,10 +99,11 @@ void EventController::process_local_event(std::string event_name, ActionData act
                    << std::endl << "   exception_type: " << caught_name
                    << std::endl << "   exception_what: " << caught_what
                    << std::endl;
+         return false;
       }
    }
 
-   return;
+   return true;
 }
 
 void EventController::process_event(ALLEGRO_EVENT& event)

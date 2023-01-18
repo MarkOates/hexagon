@@ -61,3 +61,16 @@ Action ActionQueueRecording::get_action_at(int index)
 
 
 
+std::vector<Action> ActionQueueRecording::get_actions()
+{
+   return actions;
+}
+
+
+std::vector<Action>& ActionQueueRecording::get_actions_ref()
+{
+   return actions;
+}
+
+
+

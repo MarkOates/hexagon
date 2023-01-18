@@ -766,6 +766,9 @@
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/UI/DrawingBox"
   ],
+  "ActionQueueRecording": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",
     "Hexagon/ChatGPTIntegration/Chat/Stage",

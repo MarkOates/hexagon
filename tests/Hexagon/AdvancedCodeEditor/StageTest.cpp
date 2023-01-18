@@ -150,6 +150,72 @@ To change your day of youth to sullied night,
 And all in war with Time for love of you,
 As he takes from you, I engraft you new.)END";
 
+
+
+// DEBUG
+TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
+   INTERACTIVE__test_works_with_replaying_last_recorded_action)
+{
+   AllegroFlare::Timer timer;
+   std::string filename = std::tmpnam(nullptr);
+   Hexagon::AdvancedCodeEditor::Stage stage(&font_bin, 123, 40);
+   stage.initialize();
+
+   stage.set_filename(filename);
+   stage.set_content(FIXTURE_PASSAGE + "\n" + SONNET_TEXT);
+   stage.get_place().position = vec3d(al_get_display_width(display)/2, al_get_display_height(display)/2, 0);
+   //stage.get_place().scale = vec3d(0.8, 0.8, 0.8);
+
+   stage.set_current_search_regex("of");
+   stage.refresh_search_regex_selections();
+   
+   al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
+   stage.render();
+   al_flip_display();
+
+   //ALLEGRO_EVENT e;
+   //e.type = ALLEGRO_EVENT_KEY_DOWN;
+   //e.keyboard.keycode = ALLEGRO_KEY_ESCAPE;
+   //EXPECT_EQ(true, al_emit_user_event(al_get_keyboard_event_source(), &e, nullptr));
+
+   bool abort_test = false;
+   while(!abort_test)
+   {
+      ALLEGRO_EVENT this_event;
+      al_wait_for_event(event_queue, &this_event);
+
+      if (this_event.type == ALLEGRO_EVENT_KEY_DOWN && this_event.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
+      {
+         abort_test = true;
+      }
+      else if (this_event.type == ALLEGRO_EVENT_KEY_CHAR)
+      {
+         timer.reset();
+         timer.start();
+         stage.process_event(this_event);
+         timer.pause();
+         int update_duration = timer.get_elapsed_time_microseconds();
+
+         //EXPECT_LT(200, update_duration);
+
+         al_clear_to_color(ALLEGRO_COLOR{0.05f, 0.05f, 0.05f, 0.05f});
+         timer.reset();
+         timer.start();
+         stage.render();
+         timer.pause();
+         int render_duration = timer.get_elapsed_time_microseconds();
+
+         //EXPECT_LT(200, render_duration);
+
+         al_flip_display();
+      }
+   }
+}
+
+
+
+
+
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, can_be_created_without_blowing_up)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
@@ -369,7 +435,7 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture,
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
-   DISABLED__autointeractive_test_works)
+   DISABLED__INTERACTIVE__test_works)
 {
    AllegroFlare::Timer timer;
    std::string filename = std::tmpnam(nullptr);
