@@ -51,6 +51,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , currently_grabbing_full_line_visual_selection(false)
    , selections({})
    , search_regex_selections(Hexagon::AdvancedCodeEditor::Selection{})
+   , action_queue_recording({})
    , syntax_highlight_color(ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f})
    , on_color(ALLEGRO_COLOR{1.0f, 1.0f, 0.0f, 1.0f})
    , comment_color(ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 0.5f})
@@ -1035,6 +1036,11 @@ bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
    return true;
 }
 
+bool Stage::replay_last_recorded_action_queue()
+{
+   return;
+}
+
 bool Stage::yank_selected_text_to_clipboard()
 {
    // TODO: write test for this conditional behavior
@@ -1168,6 +1174,9 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
         &Hexagon::AdvancedCodeEditor::Stage::replace_content_with_contents_of_clipboard },
 
 
+      // action queue
+      { "replay_last_recorded_action_queue", &Hexagon::AdvancedCodeEditor::Stage::replay_last_recorded_action_queue},
+
    };
    return local_events;
 }
@@ -1250,6 +1259,7 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_ed
          AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
          { "replace_content_with_contents_of_clipboard" }
    );
+   result.set_mapping(ALLEGRO_KEY_FULLSTOP, 0, { "replay_last_recorded_action_queue" });
 
    return result;
 }

@@ -4,6 +4,7 @@
 #include <AllegroFlare/FontBin.hpp>
 #include <AllegroFlare/KeyboardCommandMapper.hpp>
 #include <Hexagon/ActionData.hpp>
+#include <Hexagon/ActionQueueRecording.hpp>
 #include <Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Cursor.hpp>
 #include <Hexagon/AdvancedCodeEditor/Selection.hpp>
@@ -52,6 +53,7 @@ namespace Hexagon
          bool currently_grabbing_full_line_visual_selection;
          std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
          Hexagon::AdvancedCodeEditor::Selection search_regex_selections;
+         Hexagon::ActionQueueRecording action_queue_recording;
          ALLEGRO_COLOR syntax_highlight_color;
          ALLEGRO_COLOR on_color;
          ALLEGRO_COLOR comment_color;
@@ -171,6 +173,7 @@ namespace Hexagon
          bool set_current_visual_selection_end_x(int x_pos=0);
          bool set_current_visual_selection_end_y(int y_pos=0);
          bool refresh_current_visual_selection_end_to_current_cursor_position();
+         bool replay_last_recorded_action_queue();
          bool yank_selected_text_to_clipboard();
          bool paste_selected_text_from_clipboard();
          bool replace_content_with_contents_of_clipboard();

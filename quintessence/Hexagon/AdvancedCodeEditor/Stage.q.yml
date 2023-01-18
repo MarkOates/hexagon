@@ -125,6 +125,10 @@ properties:
     init_with: 'Hexagon::AdvancedCodeEditor::Selection{}'
     getter_ref: true
 
+  - name: action_queue_recording
+    type: Hexagon::ActionQueueRecording
+    init_with: '{}'
+
   - name: syntax_highlight_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.75f, 0.96f, 1.0f, 1.0f}
@@ -969,6 +973,12 @@ functions:
       return true;
 
 
+  - name: replay_last_recorded_action_queue
+    type: bool
+    body: |
+      return;
+
+
   - name: yank_selected_text_to_clipboard
     type: bool
     body: |
@@ -1115,6 +1125,9 @@ functions:
            &Hexagon::AdvancedCodeEditor::Stage::replace_content_with_contents_of_clipboard },
 
 
+         // action queue
+         { "replay_last_recorded_action_queue", &Hexagon::AdvancedCodeEditor::Stage::replay_last_recorded_action_queue},
+
       };
       return local_events;
 
@@ -1199,6 +1212,7 @@ functions:
             AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
             { "replace_content_with_contents_of_clipboard" }
       );
+      result.set_mapping(ALLEGRO_KEY_FULLSTOP, 0, { "replay_last_recorded_action_queue" });
 
       return result;
 
@@ -1824,5 +1838,7 @@ dependencies:
     headers: [ functional ]
   - symbol: Blast::StringJoiner
     headers: [ Blast/StringJoiner.hpp ]
+  - symbol: ActionQueueRecording
+    headers: [ Hexagon/ActionQueueRecording.hpp ]
 
 
