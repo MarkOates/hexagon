@@ -101,6 +101,13 @@ bool EventController::process_local_event(std::string event_name, ActionData act
                    << std::endl;
          return false;
       }
+
+      // Record the action (unless replaying)
+      if (stage->is_in_insert_mode() && !stage->get_currently_playing_action_queue_recording())
+      {
+         stage->append_action_to_action_queue_recording(event_name, action_data);
+      }
+      if (event_name == Stage::ACTION_SET_TO_INSERT_MODE) stage->clear_action_queue_recording();
    }
 
    return true;

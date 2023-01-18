@@ -1136,6 +1136,10 @@ table td
   <td class="property">ActionQueueRecording</td>
 </tr>
 <tr>
+  <td class="property">currently_playing_action_queue_recording</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
   <td class="property">syntax_highlight_color</td>
   <td class="property">ALLEGRO_COLOR</td>
 </tr>
@@ -1252,6 +1256,12 @@ table td
   <td class="method">cursor_jump_up_half_page()</td>
 </tr>
 <tr>
+  <td class="method">append_action_to_action_queue_recording(std::string action_name=&quot;[unset-action_name]&quot;, ActionData action_data1={})</td>
+</tr>
+<tr>
+  <td class="method">clear_action_queue_recording()</td>
+</tr>
+<tr>
   <td class="method">cursor_jump_down_half_page()</td>
 </tr>
 <tr>
@@ -1360,7 +1370,7 @@ table td
   <td class="method">refresh_current_visual_selection_end_to_current_cursor_position()</td>
 </tr>
 <tr>
-  <td class="method">replay_last_recorded_action_queue()</td>
+  <td class="method">replay_action_queue_recording()</td>
 </tr>
 <tr>
   <td class="method">yank_selected_text_to_clipboard()</td>
