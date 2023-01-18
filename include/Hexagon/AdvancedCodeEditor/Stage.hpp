@@ -33,6 +33,8 @@ namespace Hexagon
       public:
          static constexpr uint32_t MODE_EDIT = 0;
          static constexpr uint32_t MODE_INSERT = 1;
+         static constexpr char* ACTION_SET_TO_EDIT_MODE = (char*)"set_to_edit_mode";
+         static constexpr char* ACTION_SET_TO_INSERT_MODE = (char*)"set_to_insert_mode";
 
       private:
          AllegroFlare::FontBin* font_bin;

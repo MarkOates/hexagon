@@ -191,6 +191,20 @@ properties:
     const: true
     constexpr: true
 
+  - name: ACTION_SET_TO_EDIT_MODE
+    type: char*
+    init_with: '(char*)"set_to_edit_mode"'
+    static: true
+    const: true
+    constexpr: true
+
+  - name: ACTION_SET_TO_INSERT_MODE
+    type: char*
+    init_with: '(char*)"set_to_insert_mode"'
+    static: true
+    const: true
+    constexpr: true
+
 
 functions:
 
@@ -990,13 +1004,7 @@ functions:
   - name: replay_last_recorded_action_queue
     type: bool
     body: |
-      std::cout << "Processing recorded action queue..." << std::endl;
-      for (auto &action : action_queue_recording.get_actions_ref())
-      {
-         process_local_event(action.get_name(), action.get_data1());
-      }
-      std::cout << "... recorded action queue processed." << std::endl;
-      action_queue_recording.clear_actions();
+      // TODO
       return true;
 
 
@@ -1090,8 +1098,8 @@ functions:
 
 
          // modes
-         { "set_to_edit_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
-         { "set_to_insert_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
+         { ACTION_SET_TO_EDIT_MODE, &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
+         { ACTION_SET_TO_INSERT_MODE, &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
 
 
          // cursor movement

@@ -1038,13 +1038,7 @@ bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
 
 bool Stage::replay_last_recorded_action_queue()
 {
-   std::cout << "Processing recorded action queue..." << std::endl;
-   for (auto &action : action_queue_recording.get_actions_ref())
-   {
-      process_local_event(action.get_name(), action.get_data1());
-   }
-   std::cout << "... recorded action queue processed." << std::endl;
-   action_queue_recording.clear_actions();
+   // TODO
    return true;
 }
 
@@ -1125,8 +1119,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
 
 
       // modes
-      { "set_to_edit_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
-      { "set_to_insert_mode", &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
+      { ACTION_SET_TO_EDIT_MODE, &Hexagon::AdvancedCodeEditor::Stage::set_to_edit_mode },
+      { ACTION_SET_TO_INSERT_MODE, &Hexagon::AdvancedCodeEditor::Stage::set_to_insert_mode },
 
 
       // cursor movement
