@@ -13,7 +13,7 @@
 
 bool ClipboardData::clear()
 {
-   ClipboardData::store("");
+   return ClipboardData::store("");
 }
 
 
