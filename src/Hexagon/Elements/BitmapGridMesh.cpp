@@ -226,6 +226,8 @@ bool BitmapGridMesh::resize(int num_columns, int num_rows, float cell_width, flo
       vertexes[v].z = 0;
       vertexes[v].color = al_map_rgba_f(1, 1, 1, 1);
    }
+
+   return true;
 }
 
 void BitmapGridMesh::render()

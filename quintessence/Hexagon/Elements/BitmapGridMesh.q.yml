@@ -206,6 +206,8 @@ functions:
          vertexes[v].color = al_map_rgba_f(1, 1, 1, 1);
       }
 
+      return true;
+
 
   - name: render
     type: void
