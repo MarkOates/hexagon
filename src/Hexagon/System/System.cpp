@@ -1194,11 +1194,6 @@ bool System::set_regex_input_box_modal_to_insert_mode() // this should be moved 
 }
 
 
-bool System::infer_spawning_modals_is_permitted()
-{
-   // TODO
-}
-
 
 bool System::spawn_multiplex_delete_menu()
 {

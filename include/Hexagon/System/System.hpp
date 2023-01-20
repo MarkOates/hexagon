@@ -161,7 +161,6 @@ public:
    bool set_regex_input_box_modal_to_insert_mode();
 
    // spawn modals
-   bool infer_spawning_modals_is_permitted();
    bool spawn_multiplex_delete_menu();
    bool spawn_multiplex_change_menu();
    bool spawn_multiplex_goto_menu();
