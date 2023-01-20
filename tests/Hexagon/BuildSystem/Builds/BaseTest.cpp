@@ -26,7 +26,7 @@ public:
    {}
    virtual bool execute() override
    {
-      if (sleep_a_tiny_bit) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+      if (sleep_a_tiny_bit) std::this_thread::sleep_for(std::chrono::milliseconds(100));
       throw std::runtime_error("exception thrown!"); return true;
    }
 };
@@ -43,7 +43,7 @@ public:
    {}
    virtual bool execute() override
    {
-      if (sleep_a_tiny_bit) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+      if (sleep_a_tiny_bit) std::this_thread::sleep_for(std::chrono::milliseconds(100));
       return false;
    }
 };
