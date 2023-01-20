@@ -34,6 +34,7 @@ bool InputBox::clear()
 {
    text_editor.set_content("");
    text_editor.cursor_move_to(0, 0);
+   return true;
 }
 
 bool InputBox::move_cursor_up()
