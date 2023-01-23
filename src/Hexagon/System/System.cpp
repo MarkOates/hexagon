@@ -1370,6 +1370,7 @@ bool System::spawn_project_navigator()
       { "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
       { "TrackLock", "/Users/markoates/Repos/TrackLock/" },
       { "KrampusReturns", "/Users/markoates/Repos/KrampusReturns/" },
+      { "Mania", "/Users/markoates/Repos/Mania/" },
       //{ "dungeon", "/Users/markoates/Repos/dungeon/" },
       //{ "KrampusTest01", "/Users/markoates/Repos/KrampusTest01/" },
       { "CatDetective", "/Users/markoates/Repos/CatDetective/" },
