@@ -64,8 +64,10 @@ std::vector<std::string> Component::list_existing_component_files()
       Blast::ProjectComponentFileTypes::EXAMPLE_FILE,
       Blast::ProjectComponentFileTypes::DOCUMENTATION_FILE,
       //Blast::ProjectComponentFileTypes::OBJECT_FILE,
-      //Blast::ProjectComponentFileTypes::TEST_BINARY,
-      //Blast::ProjectComponentFileTypes::EXAMPLE_BINARY,
+      //Blast::ProjectComponentFileTypes::TEST_OBJECT_FILE,
+      //Blast::ProjectComponentFileTypes::TEST_BINARY, // should this be TEST_EXECUTABLE
+      //Blast::ProjectComponentFileTypes::EXAMPLE_OBJECT_FILE,
+      //Blast::ProjectComponentFileTypes::EXAMPLE_BINARY, // should this be TEST_EXECUTABLE
    };
 
    for (auto &type_to_scan_for : types_to_scan_for)
@@ -111,6 +113,28 @@ std::time_t Component::last_write_time()
    }
 
    return most_recent_file_write_time;
+}
+
+std::time_t Component::check_fragment_file_last_write_time(std::string project_root, std::string name, Blast::ProjectComponentFileTypes::project_file_type_t fragment_type)
+{
+   std::string fragment_filename = Blast::ProjectComponentFilenameGenerator(name, fragment_type).generate_filename();
+   std::string full_filename = project_root + fragment_filename;
+   if (!Blast::FileExistenceChecker(full_filename).exists())
+   {
+      return 0;
+   }
+   return Blast::FileLastWriteTime(full_filename).last_write_time();
+
+   //if (!Blast::FileExistenceChecker(full_filename).exists())
+   //{
+      // TODO: Something if this file does not exist
+      //std::time_t this_file_last_write_time = Blast::FileLastWriteTime(full_filename).last_write_time();
+      //if (this_file_last_write_time > most_recent_file_write_time)
+      //{
+         //most_recent_file_write_time = this_file_last_write_time;
+      //}
+   //}
+   //return;
 }
 
 bool Component::check_file_existence(Blast::ProjectComponentFileTypes::project_file_type_t type)

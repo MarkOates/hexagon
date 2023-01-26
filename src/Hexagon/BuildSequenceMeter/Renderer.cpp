@@ -323,15 +323,26 @@ void Renderer::draw_build_dump_report(float width, std::string stage_text_dump, 
 
       ALLEGRO_COLOR this_notice_text_color = dump_text_color;
 
+      bool is_redefinition_of_test_name_error =
+            (
+               (notice.get_message().substr(0, 17) == "redefinition of '")
+               && (notice.get_body().substr(0, 5) == "TEST(")
+            );
+      bool suppress_compile_notice_body = is_redefinition_of_test_name_error;
+      std::string body = suppress_compile_notice_body
+                       ? "[body output suppressed because it is too large]"
+                       : notice.get_body()
+                       ;
+
       std::stringstream composed_string;
       composed_string << notice.get_type() << std::endl;
       composed_string << "File: " << notice.get_filename() << std::endl;
       composed_string << "Line: " << notice.get_line_num() << "   Column: " << notice.get_column_num() << std::endl;
-      composed_string << "================" << std::endl;
+      composed_string << "=== ERORR =============" << std::endl;
       composed_string << notice.get_message() << std::endl;
-      composed_string << "================" << std::endl;
-      composed_string << notice.get_body() << std::endl;
-      composed_string << "================" << std::endl;
+      composed_string << "=== BODY ==============" << std::endl;
+      composed_string << body << std::endl;
+      composed_string << "=======================" << std::endl;
 
       al_draw_multiline_text(
          dump_font,
