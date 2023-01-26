@@ -273,6 +273,13 @@ void Renderer::draw_build_dump_report_for_google_test_run(float width, std::stri
 
 void Renderer::draw_build_dump_report(float width, std::string stage_text_dump, std::string stage_name)
 {
+   // IMPORTANT NOTE:
+   // NOTE:
+   // This function is temporary. Eventually the editor should have these error messages posted within
+   // the editor itself, or in a accessible modal or frame or window so it doesn't get in the way. This feature
+   // was added here as a quick-fix, to have error data showing in hexagon rather than needing to be referenced
+   // in the terminal.
+
    if (stage_name == "run_test_for_focused_component")
    {
       draw_build_dump_report_for_google_test_run(width, stage_text_dump);
@@ -326,7 +333,7 @@ void Renderer::draw_build_dump_report(float width, std::string stage_text_dump, 
       bool is_redefinition_of_test_name_error =
             (
                (notice.get_message().substr(0, 17) == "redefinition of '")
-               && (notice.get_body().substr(0, 5) == "TEST(")
+               //&& (notice.get_body().substr(0, 4) == "TEST")
             );
       bool suppress_compile_notice_body = is_redefinition_of_test_name_error;
       std::string body = suppress_compile_notice_body
@@ -338,7 +345,7 @@ void Renderer::draw_build_dump_report(float width, std::string stage_text_dump, 
       composed_string << notice.get_type() << std::endl;
       composed_string << "File: " << notice.get_filename() << std::endl;
       composed_string << "Line: " << notice.get_line_num() << "   Column: " << notice.get_column_num() << std::endl;
-      composed_string << "=== ERORR =============" << std::endl;
+      composed_string << "=== ERR0R =============" << std::endl;
       composed_string << notice.get_message() << std::endl;
       composed_string << "=== BODY ==============" << std::endl;
       composed_string << body << std::endl;

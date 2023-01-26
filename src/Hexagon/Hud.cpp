@@ -552,7 +552,9 @@ void Hud::draw_current_title_text()
 
 void Hud::draw_profile_timer_graph()
 {
-   global::profiler.draw(10, 10, obtain_text_font());
+   throw std::runtime_error("[Hexagon::Hud::draw_profile_timer_graph]: error: This feature is not implemented");
+   // if you want to add it, update this line below to use AllegroFlare::ProfilerRenderer
+   //global::profiler.draw(10, 10, obtain_text_font());
    return;
 }
 
