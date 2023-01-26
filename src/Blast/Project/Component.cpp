@@ -45,7 +45,7 @@ std::string Component::generate_full_path_test_binary_filename()
 {
    std::string filename = Blast::ProjectComponentFilenameGenerator(
          name,
-         Blast::ProjectComponentFileTypes::TEST_BINARY
+         Blast::ProjectComponentFileTypes::TEST_EXECUTABLE_FILE
       ).generate_filename();
 
    return project_root + filename;
@@ -60,8 +60,8 @@ std::vector<std::string> Component::list_existing_component_files()
       Blast::ProjectComponentFileTypes::QUINTESSENCE_FILE,
       Blast::ProjectComponentFileTypes::SOURCE_FILE,
       Blast::ProjectComponentFileTypes::HEADER_FILE,
-      Blast::ProjectComponentFileTypes::TEST_FILE,
-      Blast::ProjectComponentFileTypes::EXAMPLE_FILE,
+      Blast::ProjectComponentFileTypes::TEST_SOURCE_FILE,
+      Blast::ProjectComponentFileTypes::EXAMPLE_SOURCE_FILE,
       Blast::ProjectComponentFileTypes::DOCUMENTATION_FILE,
       //Blast::ProjectComponentFileTypes::OBJECT_FILE,
       //Blast::ProjectComponentFileTypes::TEST_OBJECT_FILE,
@@ -90,8 +90,8 @@ std::time_t Component::last_write_time()
       Blast::ProjectComponentFileTypes::QUINTESSENCE_FILE,
       Blast::ProjectComponentFileTypes::SOURCE_FILE,
       Blast::ProjectComponentFileTypes::HEADER_FILE,
-      Blast::ProjectComponentFileTypes::TEST_FILE,
-      Blast::ProjectComponentFileTypes::EXAMPLE_FILE,
+      Blast::ProjectComponentFileTypes::TEST_SOURCE_FILE,
+      Blast::ProjectComponentFileTypes::EXAMPLE_SOURCE_FILE,
       Blast::ProjectComponentFileTypes::DOCUMENTATION_FILE,
       //Blast::ProjectComponentFileTypes::OBJECT_FILE,
       //Blast::ProjectComponentFileTypes::TEST_BINARY,
@@ -154,8 +154,8 @@ bool Component::exists()
       Blast::ProjectComponentFileTypes::QUINTESSENCE_FILE,
       Blast::ProjectComponentFileTypes::SOURCE_FILE,
       Blast::ProjectComponentFileTypes::HEADER_FILE,
-      Blast::ProjectComponentFileTypes::TEST_FILE,
-      Blast::ProjectComponentFileTypes::EXAMPLE_FILE,
+      Blast::ProjectComponentFileTypes::TEST_SOURCE_FILE,
+      Blast::ProjectComponentFileTypes::EXAMPLE_SOURCE_FILE,
       Blast::ProjectComponentFileTypes::DOCUMENTATION_FILE,
       //Blast::ProjectComponentFileTypes::OBJECT_FILE,
       //Blast::ProjectComponentFileTypes::TEST_BINARY,
@@ -185,7 +185,7 @@ bool Component::has_only_source_and_header()
 
 bool Component::has_test()
 {
-   return check_file_existence(Blast::ProjectComponentFileTypes::TEST_FILE);
+   return check_file_existence(Blast::ProjectComponentFileTypes::TEST_SOURCE_FILE);
 }
 
 bool Component::has_documentation()

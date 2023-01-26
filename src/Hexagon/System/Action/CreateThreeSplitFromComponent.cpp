@@ -165,7 +165,7 @@ std::string CreateThreeSplitFromComponent::generate_test_filename()
 {
    auto generator = Blast::ProjectComponentFilenameGenerator(
       component.get_name(),
-      Blast::ProjectComponentFileTypes::TEST_FILE
+      Blast::ProjectComponentFileTypes::TEST_SOURCE_FILE
    );
    return project_path + generator.generate_filename();
 }

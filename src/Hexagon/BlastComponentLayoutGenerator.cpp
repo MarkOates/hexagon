@@ -111,7 +111,7 @@ std::string BlastComponentLayoutGenerator::component_generate_test_filename()
 {
    auto generator = Blast::ProjectComponentFilenameGenerator(
       component_name,
-      Blast::ProjectComponentFileTypes::TEST_FILE
+      Blast::ProjectComponentFileTypes::TEST_SOURCE_FILE
    );
    return project_directory + generator.generate_filename();
 }
