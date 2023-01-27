@@ -20,7 +20,7 @@
 class ListQuintessences : public Hexagon::BuildSystem::BuildStages::Base
 {
    public:
-      static constexpr char* TYPE = "ListQuintessences";
+      static constexpr char* TYPE = (char*)"ListQuintessences";
 
    private:
       std::string project_directory;
@@ -53,6 +53,7 @@ class ListQuintessences : public Hexagon::BuildSystem::BuildStages::Base
          Blast::ShellCommandExecutorWithCallback shell_command_executor(build_list_quintessences_shell_command());
          shell_command_result = shell_command_executor.execute();
          executed = true;
+         return true;
       }
 };
 
@@ -60,7 +61,7 @@ class ListQuintessences : public Hexagon::BuildSystem::BuildStages::Base
 class BuildQuintessences : public Hexagon::BuildSystem::BuildStages::Base
 {
    public:
-      static constexpr char* TYPE = "BuildQuintessences";
+      static constexpr char* TYPE = (char*)"BuildQuintessences";
 
    private:
       std::string project_directory;
@@ -104,7 +105,7 @@ class BuildQuintessences : public Hexagon::BuildSystem::BuildStages::Base
 class ListObjects : public Hexagon::BuildSystem::BuildStages::Base
 {
    public:
-      static constexpr char* TYPE = "ListObjects";
+      static constexpr char* TYPE = (char*)"ListObjects";
 
    private:
       std::string project_directory;
@@ -145,7 +146,7 @@ class ListObjects : public Hexagon::BuildSystem::BuildStages::Base
 class BuildObjects : public Hexagon::BuildSystem::BuildStages::Base
 {
    public:
-      static constexpr char* TYPE = "BuildObjects";
+      static constexpr char* TYPE = (char*)"BuildObjects";
 
    private:
       std::string project_directory;
@@ -189,7 +190,7 @@ class BuildObjects : public Hexagon::BuildSystem::BuildStages::Base
 class ListTestObjects : public Hexagon::BuildSystem::BuildStages::Base
 {
    public:
-      static constexpr char* TYPE = "ListTestObjects";
+      static constexpr char* TYPE = (char*)"ListTestObjects";
 
    private:
       std::string project_directory;
@@ -230,7 +231,7 @@ class ListTestObjects : public Hexagon::BuildSystem::BuildStages::Base
 class BuildOneTestObject : public Hexagon::BuildSystem::BuildStages::Base
 {
    public:
-      static constexpr char* TYPE = "BuildOneTestObject";
+      static constexpr char* TYPE = (char*)"BuildOneTestObject";
 
    private:
       std::string project_directory;
@@ -306,6 +307,4 @@ int main(int argc, char **argv)
 
    return 0;
 }
-
-
 

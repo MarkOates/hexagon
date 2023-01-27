@@ -30,8 +30,7 @@ namespace CodeEditor
 
 
 CodeEditor::CodeEditor(std::string filename, std::string file_category, mode_t mode, StageInterface::type_t type)
-   : content_is_modified(false)
-   , save_count(0)
+   : lines()
    , cursor_x(0)
    , cursor_y(0)
    , mode(mode)
@@ -43,6 +42,8 @@ CodeEditor::CodeEditor(std::string filename, std::string file_category, mode_t m
    , first_line_number(0)
    , code_message_points_overlays()
    , currently_grabbing_visual_selection(false)
+   , content_is_modified(false)
+   , save_count(0)
    , selections()
 {
    code_message_points_overlays.push_back(CodeMessagePointsOverlay(al_color_name("dogerblue"), {}));
