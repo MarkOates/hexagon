@@ -34,6 +34,13 @@ properties:
     constructor_arg: true
 
 
+documentation:
+
+
+  - todos:
+      - Change width/height to be 120, and/or have a DEFAULT_WIDTH and DEFAULT_HEIGHT
+
+
 functions:
 
 
@@ -56,12 +63,12 @@ functions:
 
   - name: box_fill_color
     type: ALLEGRO_COLOR
-    body: return ALLEGRO_COLOR{0.5f, 0.52f, 0.6f, 1.0f};
+    body: return ALLEGRO_COLOR{0.5f, 0.52f, 0.72f, 1.0f};
 
 
   - name: box_fill_opacity
     type: float
-    body: return 0.2f;
+    body: return 0.16f;
 
 
   - name: box_outline_color
@@ -76,7 +83,7 @@ functions:
 
   - name: color_good
     type: ALLEGRO_COLOR
-    body: return ALLEGRO_COLOR{0.066, 0.394, 0.4023, 1.0};
+    body: return al_color_html("75BCC6");
 
 
   - name: color_failure

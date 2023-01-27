@@ -90,12 +90,12 @@ void PacketRenderer::render()
 
 ALLEGRO_COLOR PacketRenderer::box_fill_color()
 {
-   return ALLEGRO_COLOR{0.5f, 0.52f, 0.6f, 1.0f};
+   return ALLEGRO_COLOR{0.5f, 0.52f, 0.72f, 1.0f};
 }
 
 float PacketRenderer::box_fill_opacity()
 {
-   return 0.2f;
+   return 0.16f;
 }
 
 ALLEGRO_COLOR PacketRenderer::box_outline_color()
@@ -110,7 +110,7 @@ float PacketRenderer::box_outline_opacity()
 
 ALLEGRO_COLOR PacketRenderer::color_good()
 {
-   return ALLEGRO_COLOR{0.066, 0.394, 0.4023, 1.0};
+   return al_color_html("75BCC6");
 }
 
 ALLEGRO_COLOR PacketRenderer::color_failure()

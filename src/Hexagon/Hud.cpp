@@ -673,8 +673,8 @@ void Hud::draw_packets()
 
    float x = left_column_x - 5;
    float y = frame_height - 60;
-   float width = 130;
-   float height = 90;
+   float width = 120; // TODO: consider using default values on the packet renderer, and getting() the dimensions
+   float height = 120;
    float spacing = 20;
 
    float y_increment = -(height + spacing);
