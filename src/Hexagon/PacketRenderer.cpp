@@ -191,8 +191,8 @@ void PacketRenderer::render_text()
    int line_number = 0;
    //float row1_x = 22 * text_scale;
    //float row2_x = 97 * text_scale;
-   float first_row_y = 60 * text_scale;
-   int line_height = (al_get_font_line_height(font) * 1.1);
+   float first_row_y = 62 * text_scale;
+   int line_height = (al_get_font_line_height(font) * 1.0);
    for (auto &row : table)
    {
       std::string row_label = std::get<0>(row);
