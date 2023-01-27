@@ -14,7 +14,7 @@ namespace Hexagon
       class Config
       {
       public:
-         static constexpr char* FULLSCREEN_KEY = "fullscreen";
+         static constexpr char* FULLSCREEN_KEY = (char*)"fullscreen";
 
       private:
          static std::string INITIAL_DISPLAY_WIDTH_KEY;

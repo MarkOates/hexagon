@@ -95,8 +95,8 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithEmptyFixture, render__without_a_f
 TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
    render__will_render_the_packet)
 {
-   int width = 140;
-   int height = 100;
+   int width = 120;
+   int height = 120;
    Hexagon::Packet packet(7, 12);
 
    placement3d place = build_centered_placement(width, height);
@@ -110,6 +110,6 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
 
    al_flip_display();
 
-   //sleep(2);
+   sleep(2);
 }
 

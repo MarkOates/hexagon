@@ -89,7 +89,7 @@ properties:
     type: char*
     static: true
     const: true
-    init_with: '"fullscreen"'
+    init_with: '(char*)"fullscreen"'
     constexpr: true
 
   - name: INITIAL_BASELINE_CAMERA_STEPBACK_KEY

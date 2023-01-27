@@ -90,12 +90,12 @@ void PacketRenderer::render()
 
 ALLEGRO_COLOR PacketRenderer::box_fill_color()
 {
-   return ALLEGRO_COLOR{0.5f, 0.5f, 0.5f, 1.0f};
+   return ALLEGRO_COLOR{0.5f, 0.52f, 0.6f, 1.0f};
 }
 
 float PacketRenderer::box_fill_opacity()
 {
-   return 0.1f;
+   return 0.2f;
 }
 
 ALLEGRO_COLOR PacketRenderer::box_outline_color()
@@ -139,17 +139,18 @@ void PacketRenderer::render_window()
 
    window.set_box_fill_color(box_fill_color());
    window.set_box_opacity(box_fill_opacity());
-   window.set_cell_padding(10);
+   //window.set_cell_padding(10);
+   window.set_cell_padding(0);
 
-   window.set_outer_line_color(box_outline_color());
-   window.set_outer_line_opacity(box_outline_opacity());
-   window.set_outer_line_thickness(1.0);
+   //window.set_outer_line_color(box_outline_color());
+   //window.set_outer_line_opacity(box_outline_opacity());
+   //window.set_outer_line_thickness(1.0);
 
-   ALLEGRO_COLOR top_left_little_bar_color = generate_top_left_little_bar_color();
+   //ALLEGRO_COLOR top_left_little_bar_color = generate_top_left_little_bar_color();
 
-   window.set_header_bar_height(height);
-   window.set_top_left_little_bar_color(top_left_little_bar_color);
-   window.set_top_left_little_bar_width(6.0f);
+   //window.set_header_bar_height(height);
+   //window.set_top_left_little_bar_color(top_left_little_bar_color);
+   //window.set_top_left_little_bar_width(6.0f);
 
    window.draw();
    return;
@@ -158,20 +159,40 @@ void PacketRenderer::render_window()
 void PacketRenderer::render_text()
 {
    float text_scale = 2.0;
+   float row1_x = 22 * text_scale;
+   float row2_x = 97 * text_scale;
    //ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
+
+   ALLEGRO_COLOR primary_score_color = generate_top_left_little_bar_color();
+
 
    std::vector<std::tuple<std::string, std::string>> table = {
       { "SEARCHES", std::to_string(packet->get_searches_count()) },
       { "SAVES",    std::to_string(packet->get_saves_count()) },
-      { "SCORE",    std::to_string(packet->calculate_score()) },
+      //{ "SCORE",    std::to_string(packet->calculate_score()) },
    };
 
+   // draw the score
+   ALLEGRO_FONT *primary_score_font = obtain_primary_score_text_font();
+   float primary_score_row_y = 26 * text_scale;
+   std::string primary_score_as_text = "[" + std::to_string(packet->calculate_score()) + "]";
+   al_draw_text(
+      primary_score_font,
+      primary_score_color,
+      row1_x,
+      primary_score_row_y,
+      ALLEGRO_ALIGN_LEFT,
+      primary_score_as_text.c_str()
+   );
+
+
+   // draw the sub-data
    ALLEGRO_FONT *font = obtain_table_text_font();
    int line_number = 0;
-   float row1_x = 22 * text_scale;
-   float row2_x = 105 * text_scale;
-   float first_row_y = 20 * text_scale;
-   int line_height = al_get_font_line_height(font) * 1.2;
+   //float row1_x = 22 * text_scale;
+   //float row2_x = 97 * text_scale;
+   float first_row_y = 60 * text_scale;
+   int line_height = (al_get_font_line_height(font) * 1.1);
    for (auto &row : table)
    {
       std::string row_label = std::get<0>(row);
@@ -203,6 +224,11 @@ ALLEGRO_COLOR PacketRenderer::generate_top_left_little_bar_color()
 ALLEGRO_FONT* PacketRenderer::obtain_table_text_font()
 {
    return font_bin->auto_get("Purista Medium.otf -28");
+}
+
+ALLEGRO_FONT* PacketRenderer::obtain_primary_score_text_font()
+{
+   return font_bin->auto_get("Purista Medium.otf -54");
 }
 
 
