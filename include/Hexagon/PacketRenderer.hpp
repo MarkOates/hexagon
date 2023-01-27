@@ -41,6 +41,7 @@ namespace Hexagon
       ALLEGRO_COLOR color_warning();
       ALLEGRO_COLOR color_neutral();
       ALLEGRO_COLOR generate_top_left_little_bar_color();
+      ALLEGRO_COLOR generate_box_fill_color();
       ALLEGRO_FONT* obtain_table_text_font();
       ALLEGRO_FONT* obtain_primary_score_text_font();
    };

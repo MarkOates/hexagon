@@ -137,7 +137,7 @@ void PacketRenderer::render_window()
 {
    Hexagon::Elements::Window window(width, height);
 
-   window.set_box_fill_color(box_fill_color());
+   window.set_box_fill_color(generate_box_fill_color());
    window.set_box_opacity(box_fill_opacity());
    //window.set_cell_padding(10);
    window.set_cell_padding(0);
@@ -219,6 +219,17 @@ ALLEGRO_COLOR PacketRenderer::generate_top_left_little_bar_color()
    if (packet_score >= 50) return color_approaching_failure();
    if (packet_score >= 20) return color_warning();
    return color_neutral();
+}
+
+ALLEGRO_COLOR PacketRenderer::generate_box_fill_color()
+{
+   int packet_score = packet->calculate_score();
+
+   if (packet_score <= 10) return box_fill_color();
+   if (packet_score >= 100) return color_failure();
+   if (packet_score >= 50) return color_approaching_failure();
+   //if (packet_score >= 20) return color_warning();
+   return box_fill_color();
 }
 
 ALLEGRO_FONT* PacketRenderer::obtain_table_text_font()
