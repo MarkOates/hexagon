@@ -154,7 +154,8 @@ As he takes from you, I engraft you new.)END";
 
 // DEBUG
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
-   INTERACTIVE__test_works_with_replaying_last_recorded_action)
+   //INTERACTIVE__test_works_with_replaying_last_recorded_action)
+   DISABLED__INTERACTIVE__test_works_with_replaying_last_recorded_action)
 {
    AllegroFlare::Timer timer;
    std::string filename = std::tmpnam(nullptr);
