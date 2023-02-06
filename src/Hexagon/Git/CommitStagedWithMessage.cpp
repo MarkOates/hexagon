@@ -50,6 +50,7 @@ bool CommitStagedWithMessage::commit()
 {
    std::string commit_everything_shell_command = build_shell_command();
    Blast::ShellCommandExecutorWithCallback executor(commit_everything_shell_command);
+   executor.set_capture_stderr(false); // TODO: see why this line is needed
    executor.execute();
    return true;
 }

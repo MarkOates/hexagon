@@ -66,6 +66,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest, run_simple_sleep_command__will_run_the_co
 TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__runs_the_test_executable_for_the_component)
    // TODO not a very complete test
 {
+   // TODO: This test requires revision. See note in "__execute_command"
    Blast::Project::Component component("Blast/String/Trimmer", "/Users/markoates/Repos/hexagon/");
    Hexagon::Daemus::ProgramRunner daemus;
    daemus.run_component_test(component);
@@ -75,6 +76,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__runs_the_test_executa
 
 TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__returns_test_results)
 {
+   // TODO: This test requires revision. See note in "__execute_command"
    Blast::Project::Component component("Blast/String/Trimmer", "/Users/markoates/Repos/hexagon/");
    Hexagon::Daemus::ProgramRunner daemus;
    std::vector<Hexagon::Testing::GoogleTestRunTestResult> test_results = daemus.run_component_test(component);
@@ -86,6 +88,7 @@ TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__returns_test_results)
 TEST(Hexagon_Daemus_ProgramRunnerTest, run_component_test__returns_the_expected_data_in_the_returned_results)
 {
    // TODO: make this test more comprehensive
+   // TODO: This test requires revision. See note in "__execute_command"
 
    Blast::Project::Component component("Blast/String/Trimmer", "/Users/markoates/Repos/hexagon/");
    Hexagon::Daemus::ProgramRunner daemus;

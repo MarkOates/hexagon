@@ -323,6 +323,11 @@ std::string ProgramRunner::__execute_command(std::string command, bool output_to
       output_to_stdout ? Blast::ShellCommandExecutorWithCallback::simple_cout_callback
                        : Blast::ShellCommandExecutorWithCallback::simple_silent_callback
    );
+   shell_command_executor.set_capture_stderr(false); // TODO: Remove this line
+                                                     // NOTE: This should probably be set to true. A recent
+                                                     // change to Blast::ShellCommandExecutor resulted in
+                                                     // stderr being captured by default, and as such this
+                                                     // command is now running with errors.
    return shell_command_executor.execute();
 }
 
