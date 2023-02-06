@@ -22,7 +22,7 @@ namespace Blast
 
 
    public:
-      ShellCommandExecutorWithCallback(std::string command="echo hello!", std::function<void(std::string)> callback=ShellCommandExecutorWithCallback::simple_cout_callback, bool capture_stderr=true);
+      ShellCommandExecutorWithCallback(std::string command="echo hello!", std::function<void(std::string)> callback=ShellCommandExecutorWithCallback::simple_cout_callback, bool capture_stderr=false);
       ~ShellCommandExecutorWithCallback();
 
       void set_capture_stderr(bool capture_stderr);
