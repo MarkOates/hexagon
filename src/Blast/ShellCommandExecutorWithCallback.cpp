@@ -18,7 +18,7 @@ ShellCommandExecutorWithCallback::ShellCommandExecutorWithCallback(std::string c
    : command(command)
    , callback(callback)
    , capture_stderr(capture_stderr)
-   , exit_status(0)
+   , exit_status_DISABLED__not_supported_on_windows(0)
    , executed_successfully(false)
    , finished(false)
 {
@@ -42,9 +42,9 @@ bool ShellCommandExecutorWithCallback::get_capture_stderr() const
 }
 
 
-uint32_t ShellCommandExecutorWithCallback::get_exit_status() const
+uint32_t ShellCommandExecutorWithCallback::get_exit_status_DISABLED__not_supported_on_windows() const
 {
-   return exit_status;
+   return exit_status_DISABLED__not_supported_on_windows;
 }
 
 
@@ -74,7 +74,8 @@ std::string ShellCommandExecutorWithCallback::execute()
 {
    finished = false;
    executed_successfully = false;
-   exit_status = 0;
+   //exit_status = 0; // TODO: NOTE: Disabled because the implementation does not work on Windows
+                      // TODO: see other comments regarding coverage of this issue
    static const int BUFFER_SIZE = 128;
    // NOTE: this technique will stream cerr into cout, so if future implementations were to capture
    // cout and cerr into different result strings, this command would need to be modififed.
@@ -96,10 +97,12 @@ std::string ShellCommandExecutorWithCallback::execute()
 
    int pclose_result = pclose(pipe);
 
-   if(WIFEXITED(pclose_result)) {
-       //If you need to do something when the pipe exited, this is the time.
-       exit_status=WEXITSTATUS(pclose_result);
-   }
+   // TODO: Add an implementation that works on windows
+   // NOTE: This is not supported on Windows, so is disabled
+   //if(WIFEXITED(pclose_result)) {
+       ////If you need to do something when the pipe exited, this is the time.
+       //exit_status=WEXITSTATUS(pclose_result);
+   //}
 
    executed_successfully = (pclose_result == 0);
 
