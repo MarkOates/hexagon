@@ -58,27 +58,27 @@ void TexturedTruchet::deactivate()
 void TexturedTruchet::set_flat_color(ALLEGRO_COLOR flat_color)
 {
    Shader:set_vec3("tint", flat_color.r, flat_color.g, flat_color.b);
-   Shader::set_float("tint_intensity", 1.0);
+   set_float("tint_intensity", 1.0);
 }
 
 void TexturedTruchet::set_texture_width(int width)
 {
-   Shader::set_int("texture_width", width);
+   set_int("texture_width", width);
 }
 
 void TexturedTruchet::set_texture_height(int height)
 {
-   Shader::set_int("texture_height", height);
+   set_int("texture_height", height);
 }
 
 void TexturedTruchet::set_nyan_cat_texture(ALLEGRO_BITMAP* nyan_cat_texture)
 {
-   Shader::set_sampler("nyan_cat_texture", nyan_cat_texture, 1);
+   set_sampler("nyan_cat_texture", nyan_cat_texture, 1);
 }
 
 void TexturedTruchet::set_time(float time)
 {
-   Shader::set_float("time", time);
+   set_float("time", time);
 }
 
 std::string TexturedTruchet::obtain_vertex_source()

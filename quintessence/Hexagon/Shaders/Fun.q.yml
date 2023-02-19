@@ -46,7 +46,7 @@ functions:
         default_argument: "{}"
     body: |
       Shader:set_vec3("tint", flat_color.r, flat_color.g, flat_color.b);
-      Shader::set_float("tint_intensity", 1.0);
+      set_float("tint_intensity", 1.0);
 
 
   - name: set_texture_width
@@ -55,7 +55,7 @@ functions:
         type: int
         default_argument: 1
     body: |
-      Shader::set_int("texture_width", width);
+      set_int("texture_width", width);
 
 
   - name: set_texture_height
@@ -64,7 +64,7 @@ functions:
         type: int
         default_argument: 1
     body: |
-      Shader::set_int("texture_height", height);
+      set_int("texture_height", height);
 
 
   - name: set_nyan_cat_texture
@@ -73,7 +73,7 @@ functions:
         type: ALLEGRO_BITMAP*
         default_argument: nullptr
     body: |
-      Shader::set_sampler("nyan_cat_texture", nyan_cat_texture, 1);
+      set_sampler("nyan_cat_texture", nyan_cat_texture, 1);
 
 
   - name: set_time
@@ -82,7 +82,7 @@ functions:
         type: float
         default_argument: 1
     body: |
-      Shader::set_float("time", time);
+      set_float("time", time);
 
 
   - name: obtain_vertex_source

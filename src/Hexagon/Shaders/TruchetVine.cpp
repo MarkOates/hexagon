@@ -58,22 +58,22 @@ void TruchetVine::deactivate()
 void TruchetVine::set_flat_color(ALLEGRO_COLOR flat_color)
 {
    Shader:set_vec3("tint", flat_color.r, flat_color.g, flat_color.b);
-   Shader::set_float("tint_intensity", 1.0);
+   set_float("tint_intensity", 1.0);
 }
 
 void TruchetVine::set_texture_width(int width)
 {
-   Shader::set_int("texture_width", width);
+   set_int("texture_width", width);
 }
 
 void TruchetVine::set_texture_height(int height)
 {
-   Shader::set_int("texture_height", height);
+   set_int("texture_height", height);
 }
 
 void TruchetVine::set_time(float time)
 {
-   Shader::set_float("time", time);
+   set_float("time", time);
 }
 
 std::string TruchetVine::obtain_vertex_source()

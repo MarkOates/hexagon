@@ -45,8 +45,8 @@ void FlatColor::activate()
 
 void FlatColor::set_flat_color(ALLEGRO_COLOR flat_color)
 {
-   Shader:set_vec3("tint", flat_color.r, flat_color.g, flat_color.b);
-   Shader::set_float("tint_intensity", 1.0);
+   set_vec3("tint", flat_color.r, flat_color.g, flat_color.b);
+   set_float("tint_intensity", 1.0);
 }
 
 std::string FlatColor::obtain_vertex_source()
