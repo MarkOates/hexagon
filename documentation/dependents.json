@@ -1807,7 +1807,7 @@
   "std/vector<RailsMinitestTestResult>": [
     "Hexagon/RailsTestOutputParser"
   ],
-  "AllegroFlare/Shader": [
+  "AllegroFlare/Shaders/Base": [
     "Hexagon/Shaders/Base"
   ],
   "Hexagon/Shaders/Base": [
