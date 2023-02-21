@@ -1642,6 +1642,8 @@ functions:
          "    enumerators:",
          "  - type:",
          "    type:",
+         "  - start_from:",
+         "    start_from:",
          "headers:",
          "parent_classes:",
          "    class:",

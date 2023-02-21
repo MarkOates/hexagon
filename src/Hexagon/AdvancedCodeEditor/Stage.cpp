@@ -1629,6 +1629,8 @@ void Stage::filter_text_mesh_for_syntax_highlights()
       "    enumerators:",
       "  - type:",
       "    type:",
+      "  - start_from:",
+      "    start_from:",
       "headers:",
       "parent_classes:",
       "    class:",
