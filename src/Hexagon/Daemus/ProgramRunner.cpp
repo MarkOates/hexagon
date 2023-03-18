@@ -66,6 +66,7 @@ void ProgramRunner::run(bool watch_for_changes_in_tree_and_not_buildfile)
       watch_for_buildfile(project_directory);
    }
 
+   al_uninstall_system();
    return;
 }
 
@@ -108,6 +109,7 @@ void ProgramRunner::run_in_holding_pattern()
    // have event source initialized here
 
    al_destroy_event_queue(event_queue);
+   al_uninstall_system();
    return;
 }
 
@@ -169,8 +171,9 @@ void ProgramRunner::watch_for_buildfile(std::string project_directory)
 
    std::string actual_command_to_execute_in_project_directory = "make focus";
 
-   std::cout << "watching for buildfile (\"" << get_daemus_build_filename() << "\")" << std::endl;
-   std::cout << "... in directory (\"" << get_daemus_build_file_directory() << "\")" << std::endl;
+   std::cout << "watching for buildfile \"" << get_daemus_build_filename() << "\" "
+             << "in directory (\"" << get_daemus_build_file_directory() << "\""
+             << std::endl;
 
    std::string build_command = "rerun" \
      " " \

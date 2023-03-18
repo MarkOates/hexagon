@@ -44,6 +44,7 @@ functions:
          watch_for_buildfile(project_directory);
       }
 
+      al_uninstall_system();
       return;
 
 
@@ -88,6 +89,7 @@ functions:
       // have event source initialized here
 
       al_destroy_event_queue(event_queue);
+      al_uninstall_system();
       return;
 
 
@@ -167,8 +169,9 @@ functions:
 
       std::string actual_command_to_execute_in_project_directory = "make focus";
 
-      std::cout << "watching for buildfile (\"" << get_daemus_build_filename() << "\")" << std::endl;
-      std::cout << "... in directory (\"" << get_daemus_build_file_directory() << "\")" << std::endl;
+      std::cout << "watching for buildfile \"" << get_daemus_build_filename() << "\" "
+                << "in directory (\"" << get_daemus_build_file_directory() << "\""
+                << std::endl;
 
       std::string build_command = "rerun" \
         " " \
