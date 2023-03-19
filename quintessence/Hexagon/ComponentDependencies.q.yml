@@ -1,0 +1,23 @@
+properties:
+
+
+  - name: component_name
+    type: std::string
+    init_with: '"[unset-component_name]"'
+    constructor_arg: true
+
+  - name: dependencies
+    type: std::set<std::string>
+    init_with: '{}'
+    getter: true
+
+
+functions:
+
+
+  - name: generate_dependency_filename
+    type: std::string
+    body: |
+      return "deps/" + component_name + ".d";
+
+
