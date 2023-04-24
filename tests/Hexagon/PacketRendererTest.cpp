@@ -99,18 +99,23 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
    int height = 120;
 
    placement3d presentation_placement(al_get_display_width(display)/2, al_get_display_height(display)/2, 0.0f);
-   //presentation_placement.align = vec3d(0.5, 0.5, 0.5);
    presentation_placement.scale = vec3d(2.0, 2.0, 2.0);
+
+   std::vector<Hexagon::Packet> packets_to_present = {
+      Hexagon::Packet(7, 12)
+   };
 
    presentation_placement.start_transform();
 
-   placement3d box_place;
-   box_place.size = vec3d(width, height, 0);
-   box_place.start_transform();
-   Hexagon::Packet packet(7, 12);
-   Hexagon::PacketRenderer packet_renderer(&font_bin, &packet, font, box_place.size.x, box_place.size.y);
-   packet_renderer.render();
-   box_place.restore_transform();
+   for (auto &packet_to_present : packets_to_present)
+   {
+      placement3d box_place;
+      box_place.size = vec3d(width, height, 0);
+      box_place.start_transform();
+      Hexagon::PacketRenderer packet_renderer(&font_bin, &packet_to_present, font, box_place.size.x, box_place.size.y);
+      packet_renderer.render();
+      box_place.restore_transform();
+   }
 
    presentation_placement.restore_transform();
 
