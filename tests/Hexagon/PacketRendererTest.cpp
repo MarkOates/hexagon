@@ -111,13 +111,16 @@ TEST_F(Hexagon_Elements_PacketRendererTest_WithAllegroRenderingFixture,
 
    int num_columns = 3;
    int presenting_packet_num = 0;
+   int x_spacing = 30;
+   int y_spacing = 20;
+   int x_offset = ((num_columns * (width)) + (num_columns-1 * x_spacing)) * -0.5;
 
    for (auto &packet_to_present : packets_to_present)
    {
       int xi = presenting_packet_num % num_columns;
       int yi = presenting_packet_num / num_columns;
 
-      placement3d box_place(xi * (width + 30), yi * (height + 20), 0);
+      placement3d box_place(xi * (width + x_spacing) + x_offset, yi * (height + y_spacing), 0);
       box_place.size = vec3d(width, height, 0);
       box_place.start_transform();
       Hexagon::PacketRenderer packet_renderer(&font_bin, &packet_to_present, font, box_place.size.x, box_place.size.y);
