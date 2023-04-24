@@ -104,11 +104,14 @@ table td
   <li><a href="#quintessence/Hexagon/CodeRenderer.q.yml">quintessence/Hexagon/CodeRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/CodeSelectionBoxRenderer.q.yml">quintessence/Hexagon/CodeSelectionBoxRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml">quintessence/Hexagon/ComponentBitmapRenderCreator.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ComponentDependencies.q.yml">quintessence/Hexagon/ComponentDependencies.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ComponentDependencyFileParser.q.yml">quintessence/Hexagon/ComponentDependencyFileParser.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Daemus/ProgramRunner.q.yml">quintessence/Hexagon/Daemus/ProgramRunner.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/DarkModeDetector.q.yml">quintessence/Hexagon/DarkModeDetector.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/DependencyManager.q.yml">quintessence/Hexagon/DependencyManager.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/DirtyGrid.q.yml">quintessence/Hexagon/DirtyGrid.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml">quintessence/Hexagon/ElementFX/WindowSpawnMotionFX.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Elements/BitmapGridMesh.q.yml">quintessence/Hexagon/Elements/BitmapGridMesh.q.yml</a></li>
@@ -4215,6 +4218,55 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/ComponentDependencies.q.yml">quintessence/Hexagon/ComponentDependencies.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">component_name</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">dependencies</td>
+  <td class="property">std::set&lt;std::string&gt;</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">generate_dependency_filename()</td>
+</tr>
+    </table>
+     <table>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/ComponentDependencyFileParser.q.yml">quintessence/Hexagon/ComponentDependencyFileParser.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">dependency_filename</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">generate_dependencies()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::file_get_contents&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::remove&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::StringSplitter&quot;, &quot;headers&quot;=&gt;[&quot;Blast/StringSplitter.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml">quintessence/Hexagon/ComponentRelationsNavigator/ComponentRelations.q.yml</h3>
      <table>
 <tr>
@@ -4564,6 +4616,62 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::String::Trimmer&quot;, &quot;headers&quot;=&gt;[&quot;Blast/String/Trimmer.hpp&quot;]}</td>
+</tr>
+    </table>
+  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/DependencyManager.q.yml">quintessence/Hexagon/DependencyManager.q.yml</h3>
+     <table>
+<tr>
+  <td class="property">project_folder</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">dependencies</td>
+  <td class="property">std::map&lt;std::string, std::set&lt;std::string&gt;&gt;</td>
+</tr>
+<tr>
+  <td class="property">dependents</td>
+  <td class="property">std::map&lt;std::string, std::set&lt;std::string&gt;&gt;</td>
+</tr>
+<tr>
+  <td class="property">loaded</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
+  <td class="property">dependencies_loaded</td>
+  <td class="property">bool</td>
+</tr>
+<tr>
+  <td class="property">DEPS_FOLDER</td>
+  <td class="property">char*</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="method">set_project_folder(std::string project_folder=&quot;/Users/markoates/Hexagon/&quot;)</td>
+</tr>
+<tr>
+  <td class="method">load_from_source_tree()</td>
+</tr>
+<tr>
+  <td class="method">reload_dependency_file(std::string dependency_name=&quot;[unset-dependency_name]&quot;, std::string filename=&quot;[unset-filename]&quot;)</td>
+</tr>
+<tr>
+  <td class="private_method">load_dependencies()</td>
+</tr>
+<tr>
+  <td class="private_method">build_dependents_from_dependencies()</td>
+</tr>
+    </table>
+     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::filesystem&quot;, &quot;headers&quot;=&gt;[&quot;filesystem&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ComponentDependencyFileParser&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ComponentDependencyFileParser.hpp&quot;]}</td>
 </tr>
     </table>
   </div>
@@ -13197,6 +13305,7 @@ table td
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
     "Hexagon/ChatCPTIntegration/Conversation",
+    "Hexagon/ComponentDependencyFileParser",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Staged",
@@ -14046,6 +14155,7 @@ table td
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/LogView",
+    "Hexagon/ComponentDependencyFileParser",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Hud",
@@ -14357,6 +14467,9 @@ table td
     "Hexagon/CodeEditor/Stage",
     "Hexagon/OneLineInputBox/Stage"
   ],
+  "std/remove": [
+    "Hexagon/ComponentDependencyFileParser"
+  ],
   "Blast/Project/ComponentDependencyLister": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"
   ],
@@ -14409,6 +14522,12 @@ table td
   "Hexagon/Testing/GoogleTestRunTestResult": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "std/filesystem": [
+    "Hexagon/DependencyManager"
+  ],
+  "Hexagon/ComponentDependencyFileParser": [
+    "Hexagon/DependencyManager"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"

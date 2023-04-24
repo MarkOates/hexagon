@@ -215,9 +215,9 @@ ALLEGRO_COLOR PacketRenderer::generate_top_left_little_bar_color()
 {
    int packet_score = packet->calculate_score();
    if (packet_score <= 10) return color_good();
-   if (packet_score >= 100) return color_failure();
-   if (packet_score >= 50) return color_approaching_failure();
-   if (packet_score >= 20) return color_warning();
+   if (packet_score > 100) return color_failure();
+   if (packet_score > 50) return color_approaching_failure();
+   if (packet_score > 20) return color_warning();
    return color_neutral();
 }
 
@@ -226,9 +226,9 @@ ALLEGRO_COLOR PacketRenderer::generate_box_fill_color()
    int packet_score = packet->calculate_score();
 
    if (packet_score <= 10) return box_fill_color();
-   if (packet_score >= 100) return color_failure();
-   if (packet_score >= 50) return color_approaching_failure();
-   //if (packet_score >= 20) return color_warning();
+   if (packet_score > 100) return color_failure();
+   if (packet_score > 50) return color_approaching_failure();
+   //if (packet_score > 20) return color_warning();
    return box_fill_color();
 }
 

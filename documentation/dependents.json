@@ -171,6 +171,7 @@
     "Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator",
     "Hexagon/AdvancedComponentNavigator/ComponentSearcher",
     "Hexagon/ChatCPTIntegration/Conversation",
+    "Hexagon/ComponentDependencyFileParser",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Git/Modified",
     "Hexagon/Git/Staged",
@@ -1020,6 +1021,7 @@
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/LogView",
+    "Hexagon/ComponentDependencyFileParser",
     "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/Hud",
@@ -1331,6 +1333,9 @@
     "Hexagon/CodeEditor/Stage",
     "Hexagon/OneLineInputBox/Stage"
   ],
+  "std/remove": [
+    "Hexagon/ComponentDependencyFileParser"
+  ],
   "Blast/Project/ComponentDependencyLister": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"
   ],
@@ -1383,6 +1388,12 @@
   "Hexagon/Testing/GoogleTestRunTestResult": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "std/filesystem": [
+    "Hexagon/DependencyManager"
+  ],
+  "Hexagon/ComponentDependencyFileParser": [
+    "Hexagon/DependencyManager"
   ],
   "std/set<std/pair<int, int>>": [
     "Hexagon/DirtyGrid"
