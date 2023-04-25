@@ -1621,6 +1621,7 @@ void Stage::filter_text_mesh_for_syntax_highlights()
       "      - name:",
       "        type:",
       "        default_argument:",
+      "        default_argument_dependency_symbols:",
       "    body:",
       "    body_dependency_symbols:",
       "enums:",
