@@ -1372,6 +1372,7 @@ bool System::spawn_project_navigator()
    ::Hexagon::StageFactory stage_factory(&hexagon_config, nullptr, &font_bin);
 
    std::vector<std::tuple<std::string, std::string>> project_menu_items = {
+      { "Router", "/Users/markoates/Repos/Router/" },
       { "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
       { "TrackLock", "/Users/markoates/Repos/TrackLock/" },
       { "KrampusReturns", "/Users/markoates/Repos/KrampusReturns/" },
