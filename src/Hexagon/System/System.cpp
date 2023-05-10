@@ -1372,7 +1372,7 @@ bool System::spawn_project_navigator()
    ::Hexagon::StageFactory stage_factory(&hexagon_config, nullptr, &font_bin);
 
    std::vector<std::tuple<std::string, std::string>> project_menu_items = {
-      { "LogoMake", "/Users/markoates/Repos/LogoMake/" },
+      { "ReturnOfTheWanderer", "/Users/markoates/Repos/ReturnOfTheWanderer/" },
       { "OffTheShelf", "/Users/markoates/Repos/OffTheShelf/" },
       { "Router", "/Users/markoates/Repos/Router/" },
       { "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
