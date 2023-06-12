@@ -1372,7 +1372,9 @@ bool System::spawn_project_navigator()
    ::Hexagon::StageFactory stage_factory(&hexagon_config, nullptr, &font_bin);
 
    std::vector<std::tuple<std::string, std::string>> project_menu_items = {
+      { "PicSnap", "/Users/markoates/Repos/PicSnap/" },
       { "ArtGalleryOfCats", "/Users/markoates/Repos/ArtGalleryOfCats/" },
+      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       //{ "ReturnOfTheWanderer", "/Users/markoates/Repos/ReturnOfTheWanderer/" },
       { "OffTheShelf", "/Users/markoates/Repos/OffTheShelf/" },
       { "Router", "/Users/markoates/Repos/Router/" },
@@ -1384,7 +1386,7 @@ bool System::spawn_project_navigator()
       //{ "KrampusTest01", "/Users/markoates/Repos/KrampusTest01/" },
       { "CatDetective", "/Users/markoates/Repos/CatDetective/" },
       { "Blast", "/Users/markoates/Repos/blast/" },
-      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      //{ "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       //{ "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
       //{ "TrackLock", "/Users/markoates/Repos/TrackLock/" },
       { "Hexagon", "/Users/markoates/Repos/hexagon/" },
