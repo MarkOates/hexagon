@@ -36,6 +36,12 @@ ProgramRunner::~ProgramRunner()
 }
 
 
+void ProgramRunner::set_watch_mode(Hexagon::Daemus::ProgramRunner::WatchMode watch_mode)
+{
+   this->watch_mode = watch_mode;
+}
+
+
 std::string ProgramRunner::get_daemus_buildfile_directory() const
 {
    return daemus_buildfile_directory;
@@ -54,23 +60,27 @@ Hexagon::Daemus::ProgramRunner::WatchMode ProgramRunner::get_watch_mode() const
 }
 
 
-void ProgramRunner::run(bool watch_for_changes_in_tree_and_not_buildfile)
+void ProgramRunner::run()
 {
    al_init();
 
-   if (watch_for_changes_in_tree_and_not_buildfile)
+   if (watch_mode == WATCH_FOR_CHANGES_IN_TREE)
    {
       Hexagon::System::Config hexagon_config;
       hexagon_config.initialize();
       std::string project_directory = hexagon_config.get_default_navigator_directory();
       cd_to_project_directory_and_run_with_rerun(project_directory);
    }
-   else
+   else if (watch_mode == WATCH_FOR_CHANGE_IN_BUILDFILE)
    {
       Hexagon::System::Config hexagon_config;
       hexagon_config.initialize();
       std::string project_directory = hexagon_config.get_default_navigator_directory();
       watch_for_buildfile(project_directory);
+   }
+   else
+   {
+      throw std::runtime_error("Hexagon::Daemus::ProgramRunner::run: error: unhandled case for \"watch_mode\"");
    }
 
    al_uninstall_system();

@@ -13,13 +13,15 @@ namespace Hexagon
    {
       class ProgramRunner
       {
-      private:
+      public:
+
          enum WatchMode
          {
             UNDEFINED = 0,
             WATCH_FOR_CHANGES_IN_TREE,
             WATCH_FOR_CHANGE_IN_BUILDFILE,
          };
+      private:
          std::string quintessence_build_executable;
          std::string daemus_buildfile_directory;
          std::string daemus_buildfile_filename;
@@ -34,10 +36,11 @@ namespace Hexagon
          ProgramRunner(std::string quintessence_build_executable="/Users/markoates/Repos/blast/bin/programs/quintessence_from_yaml");
          ~ProgramRunner();
 
+         void set_watch_mode(Hexagon::Daemus::ProgramRunner::WatchMode watch_mode);
          std::string get_daemus_buildfile_directory() const;
          std::string get_daemus_buildfile_filename() const;
          Hexagon::Daemus::ProgramRunner::WatchMode get_watch_mode() const;
-         void run(bool watch_for_changes_in_tree_and_not_buildfile=true);
+         void run();
          void process_oldest_file_in_builds_folder();
          void run_full_rebuild();
          void run_in_holding_pattern();

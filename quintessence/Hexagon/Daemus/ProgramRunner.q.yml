@@ -20,13 +20,14 @@ properties:
     type: Hexagon::Daemus::ProgramRunner::WatchMode
     init_with: WATCH_FOR_CHANGE_IN_BUILDFILE
     getter: true
-    setter: false
+    setter: true
 
 
 enums:
 
 
   - name: WatchMode
+    scope: public
     enumerators:
       - UNDEFINED
       - WATCH_FOR_CHANGES_IN_TREE
@@ -38,26 +39,26 @@ functions:
 
   - name: run
     type: void
-    parameters:
-      - name: watch_for_changes_in_tree_and_not_buildfile
-        type: bool
-        default_argument: true
     body: |
       al_init();
 
-      if (watch_for_changes_in_tree_and_not_buildfile)
+      if (watch_mode == WATCH_FOR_CHANGES_IN_TREE)
       {
          Hexagon::System::Config hexagon_config;
          hexagon_config.initialize();
          std::string project_directory = hexagon_config.get_default_navigator_directory();
          cd_to_project_directory_and_run_with_rerun(project_directory);
       }
-      else
+      else if (watch_mode == WATCH_FOR_CHANGE_IN_BUILDFILE)
       {
          Hexagon::System::Config hexagon_config;
          hexagon_config.initialize();
          std::string project_directory = hexagon_config.get_default_navigator_directory();
          watch_for_buildfile(project_directory);
+      }
+      else
+      {
+         throw std::runtime_error("Hexagon::Daemus::ProgramRunner::run: error: unhandled case for \"watch_mode\"");
       }
 
       al_uninstall_system();
