@@ -24,8 +24,8 @@ namespace Daemus
 
 ProgramRunner::ProgramRunner(std::string quintessence_build_executable)
    : quintessence_build_executable(quintessence_build_executable)
-   , daemus_build_file_directory("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/")
-   , daemus_build_filename("daemus_build.txt")
+   , daemus_buildfile_directory("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/")
+   , daemus_buildfile_filename("daemus_build.txt")
 {
 }
 
@@ -35,15 +35,15 @@ ProgramRunner::~ProgramRunner()
 }
 
 
-std::string ProgramRunner::get_daemus_build_file_directory() const
+std::string ProgramRunner::get_daemus_buildfile_directory() const
 {
-   return daemus_build_file_directory;
+   return daemus_buildfile_directory;
 }
 
 
-std::string ProgramRunner::get_daemus_build_filename() const
+std::string ProgramRunner::get_daemus_buildfile_filename() const
 {
-   return daemus_build_filename;
+   return daemus_buildfile_filename;
 }
 
 
@@ -171,8 +171,8 @@ void ProgramRunner::watch_for_buildfile(std::string project_directory)
 
    std::string actual_command_to_execute_in_project_directory = "make focus";
 
-   std::cout << "watching for buildfile \"" << get_daemus_build_filename() << "\" "
-             << "in directory (\"" << get_daemus_build_file_directory() << "\""
+   std::cout << "watching for buildfile \"" << get_daemus_buildfile_filename() << "\" "
+             << "in directory (\"" << get_daemus_buildfile_directory() << "\""
              << std::endl;
 
    std::string build_command = "rerun" \
@@ -181,9 +181,9 @@ void ProgramRunner::watch_for_buildfile(std::string project_directory)
      " " \
      "--background" \
      " " \
-     "--dir \"" + get_daemus_build_file_directory() + "\"" \
+     "--dir \"" + get_daemus_buildfile_directory() + "\"" \
      " " \
-     "-p \"" + get_daemus_build_filename() + "\"" \
+     "-p \"" + get_daemus_buildfile_filename() + "\"" \
      " "
      //"\"(" \
      //"cd "

@@ -6,12 +6,12 @@ properties:
     init_with: '"/Users/markoates/Repos/blast/bin/programs/quintessence_from_yaml"'
     constructor_arg: true
 
-  - name: daemus_build_file_directory
+  - name: daemus_buildfile_directory
     type: std::string
     init_with: '"/Users/markoates/Repos/hexagon/bin/programs/data/tmp/"'
     getter: true
 
-  - name: daemus_build_filename
+  - name: daemus_buildfile_filename
     type: std::string
     init_with: '"daemus_build.txt"'
     getter: true
@@ -169,8 +169,8 @@ functions:
 
       std::string actual_command_to_execute_in_project_directory = "make focus";
 
-      std::cout << "watching for buildfile \"" << get_daemus_build_filename() << "\" "
-                << "in directory (\"" << get_daemus_build_file_directory() << "\""
+      std::cout << "watching for buildfile \"" << get_daemus_buildfile_filename() << "\" "
+                << "in directory (\"" << get_daemus_buildfile_directory() << "\""
                 << std::endl;
 
       std::string build_command = "rerun" \
@@ -179,9 +179,9 @@ functions:
         " " \
         "--background" \
         " " \
-        "--dir \"" + get_daemus_build_file_directory() + "\"" \
+        "--dir \"" + get_daemus_buildfile_directory() + "\"" \
         " " \
-        "-p \"" + get_daemus_build_filename() + "\"" \
+        "-p \"" + get_daemus_buildfile_filename() + "\"" \
         " "
         //"\"(" \
         //"cd "

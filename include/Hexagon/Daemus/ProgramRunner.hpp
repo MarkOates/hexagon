@@ -15,8 +15,8 @@ namespace Hexagon
       {
       private:
          std::string quintessence_build_executable;
-         std::string daemus_build_file_directory;
-         std::string daemus_build_filename;
+         std::string daemus_buildfile_directory;
+         std::string daemus_buildfile_filename;
          std::string execute_command(std::string command="");
          std::string __execute_command(std::string command="", bool output_to_stdout=true);
 
@@ -27,8 +27,8 @@ namespace Hexagon
          ProgramRunner(std::string quintessence_build_executable="/Users/markoates/Repos/blast/bin/programs/quintessence_from_yaml");
          ~ProgramRunner();
 
-         std::string get_daemus_build_file_directory() const;
-         std::string get_daemus_build_filename() const;
+         std::string get_daemus_buildfile_directory() const;
+         std::string get_daemus_buildfile_filename() const;
          void run(bool watch_for_changes_in_tree_and_not_buildfile=true);
          void process_oldest_file_in_builds_folder();
          void run_full_rebuild();
