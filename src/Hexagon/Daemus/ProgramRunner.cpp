@@ -26,6 +26,7 @@ ProgramRunner::ProgramRunner(std::string quintessence_build_executable)
    : quintessence_build_executable(quintessence_build_executable)
    , daemus_buildfile_directory("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/")
    , daemus_buildfile_filename("daemus_build.txt")
+   , watch_mode(WATCH_FOR_CHANGE_IN_BUILDFILE)
 {
 }
 
@@ -44,6 +45,12 @@ std::string ProgramRunner::get_daemus_buildfile_directory() const
 std::string ProgramRunner::get_daemus_buildfile_filename() const
 {
    return daemus_buildfile_filename;
+}
+
+
+Hexagon::Daemus::ProgramRunner::WatchMode ProgramRunner::get_watch_mode() const
+{
+   return watch_mode;
 }
 
 

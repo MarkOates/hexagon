@@ -16,6 +16,22 @@ properties:
     init_with: '"daemus_build.txt"'
     getter: true
 
+  - name: watch_mode
+    type: Hexagon::Daemus::ProgramRunner::WatchMode
+    init_with: WATCH_FOR_CHANGE_IN_BUILDFILE
+    getter: true
+    setter: false
+
+
+enums:
+
+
+  - name: WatchMode
+    enumerators:
+      - UNDEFINED
+      - WATCH_FOR_CHANGES_IN_TREE
+      - WATCH_FOR_CHANGE_IN_BUILDFILE
+
 
 functions:
 
@@ -470,7 +486,9 @@ dependencies:
     headers: [ Hexagon/System/Config.hpp ]
   - symbol: Hexagon::System::Config*
     headers: [ Hexagon/System/Config.hpp ]
-
+  - symbol: Hexagon::Daemus::ProgramRunner::WatchMode
+    headers: [ ]
   - symbol: Hexagon::Testing::GoogleTestRunTestResult
     headers: [ Hexagon/Testing/GoogleTestRunTestResult.hpp ]
+
 

@@ -4583,6 +4583,10 @@ table td
   <td class="property">daemus_buildfile_filename</td>
   <td class="property">std::string</td>
 </tr>
+<tr>
+  <td class="property">watch_mode</td>
+  <td class="property">Hexagon::Daemus::ProgramRunner::WatchMode</td>
+</tr>
     </table>
 </div>    <h3>Methods</h3>
 <div class="property-box methods">     <table>
@@ -4675,6 +4679,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::Config*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/Config.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Daemus::ProgramRunner::WatchMode&quot;, &quot;headers&quot;=&gt;[]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Testing::GoogleTestRunTestResult&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Testing/GoogleTestRunTestResult.hpp&quot;]}</td>
@@ -14812,6 +14819,9 @@ table td
   "std/vector<Hexagon/Testing/GoogleTestRunTestResult>": [
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Testing/GoogleTestRunOutputParser"
+  ],
+  "Hexagon/Daemus/ProgramRunner/WatchMode": [
+    "Hexagon/Daemus/ProgramRunner"
   ],
   "Hexagon/Testing/GoogleTestRunTestResult": [
     "Hexagon/Daemus/ProgramRunner",
