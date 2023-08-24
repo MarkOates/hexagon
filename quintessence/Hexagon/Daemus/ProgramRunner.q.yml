@@ -105,6 +105,30 @@ functions:
       - std::stringstream
 
 
+  - name: run_make_focus_with_instruction
+    type: void
+    parameters:
+      - name: project_directory
+        type: std::string
+        default_argument: '"[unset-project_directory]"'
+    guards:
+      - std::filesystem::exists(project_directory)
+      - std::filesystem::is_directory(project_directory)
+    body: |
+      std::string actual_command_to_execute_in_project_directory = "make focus";
+
+      std::stringstream result_command;
+      result_command << "(cd "
+                     << project_directory
+                     << " && "
+                     << actual_command_to_execute_in_project_directory
+                     << ")";
+
+      std::string output = execute_command(result_command.str());
+    body_dependency_symbols:
+      - std::stringstream
+
+
   - name: cd_to_project_directory_and_run_with_rerun
     type: void
     parameters:

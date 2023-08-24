@@ -12,6 +12,7 @@
 #include <filesystem>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 #include <unistd.h>
 #include <vector>
 
@@ -116,6 +117,34 @@ void ProgramRunner::run_once(std::string project_directory)
                   << project_directory
                   << " && "
                   << actual_command_to_execute_in_project_directory;
+
+   std::string output = execute_command(result_command.str());
+}
+
+void ProgramRunner::run_make_focus_with_instruction(std::string project_directory)
+{
+   if (!(std::filesystem::exists(project_directory)))
+   {
+      std::stringstream error_message;
+      error_message << "[ProgramRunner::run_make_focus_with_instruction]: error: guard \"std::filesystem::exists(project_directory)\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("ProgramRunner::run_make_focus_with_instruction: error: guard \"std::filesystem::exists(project_directory)\" not met");
+   }
+   if (!(std::filesystem::is_directory(project_directory)))
+   {
+      std::stringstream error_message;
+      error_message << "[ProgramRunner::run_make_focus_with_instruction]: error: guard \"std::filesystem::is_directory(project_directory)\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("ProgramRunner::run_make_focus_with_instruction: error: guard \"std::filesystem::is_directory(project_directory)\" not met");
+   }
+   std::string actual_command_to_execute_in_project_directory = "make focus";
+
+   std::stringstream result_command;
+   result_command << "(cd "
+                  << project_directory
+                  << " && "
+                  << actual_command_to_execute_in_project_directory
+                  << ")";
 
    std::string output = execute_command(result_command.str());
 }

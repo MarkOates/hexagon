@@ -46,6 +46,7 @@ namespace Hexagon
          void run_simple_echo_command();
          void run_simple_sleep_command();
          void run_once(std::string project_directory="");
+         void run_make_focus_with_instruction(std::string project_directory="[unset-project_directory]");
          void cd_to_project_directory_and_run_with_rerun(std::string project_directory="");
          void watch_for_buildfile(std::string project_directory="");
          void run_with_rerun(std::string project_directory="");
