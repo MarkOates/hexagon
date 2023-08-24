@@ -64,19 +64,19 @@ void ProgramRunner::run()
 {
    al_init();
 
-   if (watch_mode == WATCH_FOR_CHANGES_IN_TREE)
-   {
-      Hexagon::System::Config hexagon_config;
-      hexagon_config.initialize();
-      std::string project_directory = hexagon_config.get_default_navigator_directory();
-      cd_to_project_directory_and_run_with_rerun(project_directory);
-   }
-   else if (watch_mode == WATCH_FOR_CHANGE_IN_BUILDFILE)
+   if (watch_mode == WATCH_FOR_CHANGE_IN_BUILDFILE)
    {
       Hexagon::System::Config hexagon_config;
       hexagon_config.initialize();
       std::string project_directory = hexagon_config.get_default_navigator_directory();
       watch_for_buildfile(project_directory);
+   }
+   else if (watch_mode == WATCH_FOR_CHANGES_IN_TREE)
+   {
+      Hexagon::System::Config hexagon_config;
+      hexagon_config.initialize();
+      std::string project_directory = hexagon_config.get_default_navigator_directory();
+      cd_to_project_directory_and_run_with_rerun(project_directory);
    }
    else
    {
@@ -87,47 +87,10 @@ void ProgramRunner::run()
    return;
 }
 
-void ProgramRunner::process_oldest_file_in_builds_folder()
-{
-   // TODO fill out this function
-   std::string oldest_filename = "foobar.txt";
-   std::string current_location = "location/foobar.txt";
-   std::string new_location = "new_location/foobar.txt";
-
-   //if (!file_exist)
-   {      
-      //throw
-   }
-
-
-   //try
-   //{
-      //std::filesystem::rename("from.txt", "to.txt");
-      //system("dir /od /b");
-   //}
-   //catch (std::filesystem::filesystem_error& e)
-   //{
-   //   std::cout << e.what() << '\n';
-   //}
-   return;
-}
-
 void ProgramRunner::run_full_rebuild()
 {
    std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
    execute_command(full_rebuild_command);
-}
-
-void ProgramRunner::run_in_holding_pattern()
-{
-   al_init();
-   ALLEGRO_EVENT_QUEUE *event_queue = al_create_event_queue();
-
-   // have event source initialized here
-
-   al_destroy_event_queue(event_queue);
-   al_uninstall_system();
-   return;
 }
 
 void ProgramRunner::run_simple_echo_command()

@@ -32,6 +32,7 @@ enums:
       - UNDEFINED
       - WATCH_FOR_CHANGES_IN_TREE
       - WATCH_FOR_CHANGE_IN_BUILDFILE
+      - RUN_ONCE
 
 
 functions:
@@ -42,19 +43,19 @@ functions:
     body: |
       al_init();
 
-      if (watch_mode == WATCH_FOR_CHANGES_IN_TREE)
-      {
-         Hexagon::System::Config hexagon_config;
-         hexagon_config.initialize();
-         std::string project_directory = hexagon_config.get_default_navigator_directory();
-         cd_to_project_directory_and_run_with_rerun(project_directory);
-      }
-      else if (watch_mode == WATCH_FOR_CHANGE_IN_BUILDFILE)
+      if (watch_mode == WATCH_FOR_CHANGE_IN_BUILDFILE)
       {
          Hexagon::System::Config hexagon_config;
          hexagon_config.initialize();
          std::string project_directory = hexagon_config.get_default_navigator_directory();
          watch_for_buildfile(project_directory);
+      }
+      else if (watch_mode == WATCH_FOR_CHANGES_IN_TREE)
+      {
+         Hexagon::System::Config hexagon_config;
+         hexagon_config.initialize();
+         std::string project_directory = hexagon_config.get_default_navigator_directory();
+         cd_to_project_directory_and_run_with_rerun(project_directory);
       }
       else
       {
@@ -65,49 +66,11 @@ functions:
       return;
 
 
-  - name: process_oldest_file_in_builds_folder
-    body: |
-      // TODO fill out this function
-      std::string oldest_filename = "foobar.txt";
-      std::string current_location = "location/foobar.txt";
-      std::string new_location = "new_location/foobar.txt";
-
-      //if (!file_exist)
-      {      
-         //throw
-      }
-
-
-      //try
-      //{
-         //std::filesystem::rename("from.txt", "to.txt");
-         //system("dir /od /b");
-      //}
-      //catch (std::filesystem::filesystem_error& e)
-      //{
-      //   std::cout << e.what() << '\n';
-      //}
-      return;
-
-
   - name: run_full_rebuild
     type: void
     body: |
       std::string full_rebuild_command = "make clean && make programs && make && make clean && make programs && make";
       execute_command(full_rebuild_command);
-
-
-  - name: run_in_holding_pattern
-    type: void
-    body: |
-      al_init();
-      ALLEGRO_EVENT_QUEUE *event_queue = al_create_event_queue();
-
-      // have event source initialized here
-
-      al_destroy_event_queue(event_queue);
-      al_uninstall_system();
-      return;
 
 
   - name: run_simple_echo_command

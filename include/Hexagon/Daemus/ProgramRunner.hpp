@@ -20,6 +20,7 @@ namespace Hexagon
             UNDEFINED = 0,
             WATCH_FOR_CHANGES_IN_TREE,
             WATCH_FOR_CHANGE_IN_BUILDFILE,
+            RUN_ONCE,
          };
       private:
          std::string quintessence_build_executable;
@@ -41,9 +42,7 @@ namespace Hexagon
          std::string get_daemus_buildfile_filename() const;
          Hexagon::Daemus::ProgramRunner::WatchMode get_watch_mode() const;
          void run();
-         void process_oldest_file_in_builds_folder();
          void run_full_rebuild();
-         void run_in_holding_pattern();
          void run_simple_echo_command();
          void run_simple_sleep_command();
          void run_once(std::string project_directory="");

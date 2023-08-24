@@ -29,14 +29,6 @@ TEST(Hexagon_Daemus_ProgramRunnerTest, run__runs_the_expected_command)
 }
 
 
-TEST(Hexagon_Daemus_ProgramRunnerTest,
-   DISABLED__run_in_holding_pattern__runs_in_a_suspended_state_waiting_for_command_to_execute)
-{
-   Hexagon::Daemus::ProgramRunner program_runner;
-   // TODO: finish test
-}
-
-
 TEST(Hexagon_Daemus_ProgramRunnerTest, run_simple_echo_command__will_run_the_command)
 {
    Hexagon::Daemus::ProgramRunner daemus;
