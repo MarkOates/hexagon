@@ -1094,11 +1094,11 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
       // TODO: map these two lines to constants
       // TODO: disable these lines during normal rerun watcher build
 
-      std::string build_file_contents = "This file will eventually be a json file with build instructions.";
+      std::string buildfile_contents = "This file will eventually be a json file with build instructions.";
 
       php::file_put_contents(
          "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/daemus_build.txt",
-         build_file_contents
+         buildfile_contents
       );
 
       php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt",
