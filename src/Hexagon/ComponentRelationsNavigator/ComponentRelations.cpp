@@ -30,7 +30,10 @@ ComponentRelations::~ComponentRelations()
 
 std::vector<std::string> ComponentRelations::build_dependents_list()
 {
-   std::string dependents_json_filename = "/Users/markoates/Repos/hexagon/documentation/dependents.json";
+   //std::string dependents_json_filename = "/Users/markoates/Repos/hexagon/documentation/dependents.json";
+   // DEBUG:
+   std::string dependents_json_filename =
+      build_implicit_json_dependents_filename_for_project(component.get_project_root());
    Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader dependents_relations_loader(
       dependents_json_filename
    );

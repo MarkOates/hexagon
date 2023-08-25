@@ -12,10 +12,14 @@ TEST(Hexagon_ComponentRelationsNavigator_ComponentRelationsTest, can_be_created_
 
 TEST(Hexagon_ComponentRelationsNavigator_ComponentRelationsTest, build_dependents__returns_the_class_dependents)
 {
-   Hexagon::ComponentRelationsNavigator::ComponentRelations component_relations;
-   std::vector<Blast::Project::Component> expected_components = {};
-   // TODO
-   //EXPECT_EQ(expected_components, component_relations.build_dependents());
+   //Blast::Project::Component component("AllegroFlare/FontBin", "allegro_flare");
+   Blast::Project::Component component("Hexagon/PacketRenderer", "hexagon");
+   Hexagon::ComponentRelationsNavigator::ComponentRelations component_relations(component);
+
+   std::vector<std::string> expected_component_dependents_names = { "Hexagon/Hud" };
+   std::vector<std::string> actual_component_dependents_names = component_relations.build_dependents_list();
+
+   EXPECT_EQ(expected_component_dependents_names, actual_component_dependents_names);
 }
 
 
