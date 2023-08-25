@@ -17,7 +17,7 @@ namespace ComponentRelationsNavigator
 
 
 DocumentationDependentsJSONLoader::DocumentationDependentsJSONLoader()
-   : DEPENDENTS_JSON_FILENAME("/Users/markoates/Repos/hexagon/documentation/dependents.json")
+   : dependents_json_filename("/Users/markoates/Repos/hexagon/documentation/dependents.json")
 {
 }
 
@@ -27,9 +27,9 @@ DocumentationDependentsJSONLoader::~DocumentationDependentsJSONLoader()
 }
 
 
-std::string DocumentationDependentsJSONLoader::get_DEPENDENTS_JSON_FILENAME() const
+std::string DocumentationDependentsJSONLoader::get_dependents_json_filename() const
 {
-   return DEPENDENTS_JSON_FILENAME;
+   return dependents_json_filename;
 }
 
 
@@ -58,12 +58,12 @@ std::string DocumentationDependentsJSONLoader::dependents_json_file_contents()
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
       throw std::runtime_error("DocumentationDependentsJSONLoader::dependents_json_file_contents: error: guard \"dependents_json_file_exists()\" not met");
    }
-   return php::file_get_contents(get_DEPENDENTS_JSON_FILENAME());
+   return php::file_get_contents(dependents_json_filename);
 }
 
 bool DocumentationDependentsJSONLoader::dependents_json_file_exists()
 {
-   return Blast::FileExistenceChecker(get_DEPENDENTS_JSON_FILENAME()).exists();
+   return Blast::FileExistenceChecker(dependents_json_filename).exists();
 }
 
 

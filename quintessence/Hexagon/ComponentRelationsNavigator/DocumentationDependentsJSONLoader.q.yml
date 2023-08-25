@@ -1,7 +1,7 @@
 properties:
 
 
-  - name: DEPENDENTS_JSON_FILENAME
+  - name: dependents_json_filename
     type: std::string
     init_with: '"/Users/markoates/Repos/hexagon/documentation/dependents.json"'
     getter: true
@@ -38,7 +38,7 @@ functions:
     type: std::string
     guards: [ dependents_json_file_exists() ]
     body: |
-      return php::file_get_contents(get_DEPENDENTS_JSON_FILENAME());
+      return php::file_get_contents(dependents_json_filename);
     body_dependency_symbols:
       - Blast::FileExistenceChecker
       - php::file_get_contents
@@ -48,7 +48,7 @@ functions:
     private: true
     type: bool
     body: |
-      return Blast::FileExistenceChecker(get_DEPENDENTS_JSON_FILENAME()).exists();
+      return Blast::FileExistenceChecker(dependents_json_filename).exists();
     body_dependency_symbols:
       - Blast::FileExistenceChecker
 

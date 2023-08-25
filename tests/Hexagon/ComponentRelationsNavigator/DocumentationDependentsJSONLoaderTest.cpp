@@ -14,7 +14,7 @@ TEST(Hexagon_ComponentRelationsNavigator_DocumentationDependentsJSONLoaderTest,
    Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader documentation_dependents_jsonloader;
    std::string expected_string = "/Users/markoates/Repos/hexagon/documentation/dependents.json";
 
-   EXPECT_EQ(expected_string, documentation_dependents_jsonloader.get_DEPENDENTS_JSON_FILENAME());
+   EXPECT_EQ(expected_string, documentation_dependents_jsonloader.get_dependents_json_filename());
 }
 
 TEST(Hexagon_ComponentRelationsNavigator_DocumentationDependentsJSONLoaderTest,
