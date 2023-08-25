@@ -1427,7 +1427,6 @@ bool System::spawn_fancy()
 bool System::spawn_component_relations_navigator()
 {
    ::Hexagon::StageFactory stage_factory(&hexagon_config, nullptr, &font_bin);
-   // HERE
    StageInterface *stage = stage_factory.create_component_relations_navigator(
       get_focused_component_name(),
       get_current_project_directory()
