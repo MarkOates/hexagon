@@ -4373,6 +4373,12 @@ table td
 <tr>
   <td class="method">build_dependencies_list()</td>
 </tr>
+<tr>
+  <td class="private_method">build_implicit_json_dependents_filename_for_project(std::string project_name=&quot;[unset-project_name]&quot;)</td>
+</tr>
+<tr>
+  <td class="private_method">valid_project_name(std::string* project_name=nullptr)</td>
+</tr>
     </table>
 </div>    <h3>Dependencies</h3>
 <div class="property-box dependencies">     <table>
@@ -4411,20 +4417,14 @@ table td
 <tr>
   <td class="private_method">dependents_json_file_contents()</td>
 </tr>
-<tr>
-  <td class="private_method">dependents_json_file_exists()</td>
-</tr>
     </table>
 </div>    <h3>Dependencies</h3>
 <div class="property-box dependencies">     <table>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;JSON&quot;, &quot;headers&quot;=&gt;[&quot;lib/nlohmann/json.hpp&quot;]}</td>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;nlohmann::json&quot;, &quot;headers&quot;=&gt;[&quot;lib/nlohmann/json.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;php::file_get_contents&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/useful_php.h&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::FileExistenceChecker&quot;, &quot;headers&quot;=&gt;[&quot;Blast/FileExistenceChecker.hpp&quot;]}</td>
 </tr>
     </table>
 </div>  </div>
@@ -13570,7 +13570,6 @@ table td
     "Hexagon/BuildSequenceMeter/Renderer",
     "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/LogView",
-    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Elements/FilePixelPreviewCreator",
     "Hexagon/LayoutToStagesCreator",
@@ -13588,6 +13587,7 @@ table td
   "nlohmann/json": [
     "Hexagon/ASTTraverser",
     "Hexagon/ChatCPTIntegration/Conversation",
+    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader",
     "Hexagon/Search/ComponentElasticsearchIndexer"
   ],
   "std/ifstream": [
@@ -14776,9 +14776,6 @@ table td
   ],
   "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"
-  ],
-  "JSON": [
-    "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader"
   ],
   "Hexagon/Elements/ListMenu": [
     "Hexagon/ComponentRelationsNavigator/Stage",

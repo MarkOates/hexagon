@@ -17,7 +17,10 @@ functions:
   - name: build_dependents_list
     type: std::vector<std::string>
     body: |
-      Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader dependents_relations_loader;
+      std::string dependents_json_filename = "/Users/markoates/Repos/hexagon/documentation/dependents.json";
+      Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader dependents_relations_loader(
+         dependents_json_filename
+      );
       return dependents_relations_loader.build_dependent_names_for_component_name(component.get_name());
     body_dependency_symbols:
       - Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader
@@ -42,6 +45,40 @@ functions:
       return result_component_names;
     body_dependency_symbols:
       - Blast::Project::ComponentDependencyLister
+
+
+  - name: build_implicit_json_dependents_filename_for_project
+    type: std::string
+    static: true
+    private: true
+    parameters:
+      - name: project_name
+        type: std::string
+        default_argument: '"[unset-project_name]"'
+    guards: [ valid_project_name(&project_name) ]
+    body: |
+      return "/Users/markoates/Repos/" + project_name + "/documentation/dependents.json";
+
+
+  - name: valid_project_name
+    type: bool
+    static: true
+    private: true
+    parameters:
+      - name: project_name
+        type: std::string*
+        default_argument: nullptr
+    guards: [ project_name ]
+    body: |
+       if (project_name->empty()) return false;
+       for (char c : *project_name)
+       {
+          if (!std::isalnum(c) && c != '_' && c != '-')
+          {
+             return false;
+          }
+       }
+       return true;
 
 
 dependencies:

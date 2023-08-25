@@ -38,7 +38,7 @@ functions:
   - name: dependents_json_file_contents
     private: true
     type: std::string
-    guards: [ std::filesystem::exists(dependents_json_filename) ]
+    guards: [ 'std::filesystem::exists(dependents_json_filename)' ]
     body: |
       return php::file_get_contents(dependents_json_filename);
     body_dependency_symbols:
