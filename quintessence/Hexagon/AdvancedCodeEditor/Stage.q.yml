@@ -1649,6 +1649,7 @@ functions:
          "parent_classes:",
          "    class:",
          "    scope:",
+         "methods:",
          "functions:",
          "    virtual:",
          "    override:",
