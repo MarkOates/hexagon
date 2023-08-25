@@ -55,28 +55,32 @@ functions:
     static: true
     private: true
     parameters:
-      - name: project_name
+      - name: project_root
         type: std::string
-        default_argument: '"[unset-project_name]"'
-    guards: [ valid_project_name(&project_name) ]
+        default_argument: '"[unset-project_root]"'
+    guards: [ valid_project_root(&project_root) ]
     body: |
-      return "/Users/markoates/Repos/" + project_name + "/documentation/dependents.json";
+      return project_root + "/documentation/dependents.json";
 
 
-  - name: valid_project_name
+  - name: valid_project_root
     type: bool
     static: true
     private: true
     parameters:
-      - name: project_name
+      - name: project_root
         type: std::string*
         default_argument: nullptr
-    guards: [ project_name ]
+    guards: [ project_root ]
     body: |
-       if (project_name->empty()) return false;
-       for (char c : *project_name)
+       std::string expected_prefix = "/Users/markoates/Repos/";
+       bool has_valid_prefixed_path = (project_root->compare(0, expected_prefix.length(), expected_prefix) == 0);
+       if (!has_valid_prefixed_path) return false;
+       
+       if (project_root->empty()) return false;
+       for (char c : *project_root)
        {
-          if (!std::isalnum(c) && c != '_' && c != '-')
+          if (!std::isalnum(c) && c != '_' && c != '-' && c != '/')
           {
              return false;
           }

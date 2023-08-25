@@ -15,8 +15,8 @@ namespace Hexagon
       private:
          Blast::Project::Component component;
          bool simplify_relatives_list;
-         static std::string build_implicit_json_dependents_filename_for_project(std::string project_name="[unset-project_name]");
-         static bool valid_project_name(std::string* project_name=nullptr);
+         static std::string build_implicit_json_dependents_filename_for_project(std::string project_root="[unset-project_root]");
+         static bool valid_project_root(std::string* project_root=nullptr);
 
       protected:
 
