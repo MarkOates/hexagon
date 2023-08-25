@@ -2,8 +2,8 @@
 
 #include <Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.hpp>
 
-#include <Blast/FileExistenceChecker.hpp>
 #include <allegro_flare/useful_php.h>
+#include <filesystem>
 #include <iostream>
 #include <lib/nlohmann/json.hpp>
 #include <sstream>
@@ -16,14 +16,20 @@ namespace ComponentRelationsNavigator
 {
 
 
-DocumentationDependentsJSONLoader::DocumentationDependentsJSONLoader()
-   : dependents_json_filename("/Users/markoates/Repos/hexagon/documentation/dependents.json")
+DocumentationDependentsJSONLoader::DocumentationDependentsJSONLoader(std::string dependents_json_filename)
+   : dependents_json_filename(dependents_json_filename)
 {
 }
 
 
 DocumentationDependentsJSONLoader::~DocumentationDependentsJSONLoader()
 {
+}
+
+
+void DocumentationDependentsJSONLoader::set_dependents_json_filename(std::string dependents_json_filename)
+{
+   this->dependents_json_filename = dependents_json_filename;
 }
 
 
@@ -51,19 +57,14 @@ std::vector<std::string> DocumentationDependentsJSONLoader::build_dependent_name
 
 std::string DocumentationDependentsJSONLoader::dependents_json_file_contents()
 {
-   if (!(dependents_json_file_exists()))
+   if (!(std::filesystem::exists(dependents_json_filename)))
    {
       std::stringstream error_message;
-      error_message << "[DocumentationDependentsJSONLoader::dependents_json_file_contents]: error: guard \"dependents_json_file_exists()\" not met.";
+      error_message << "[DocumentationDependentsJSONLoader::dependents_json_file_contents]: error: guard \"std::filesystem::exists(dependents_json_filename)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("DocumentationDependentsJSONLoader::dependents_json_file_contents: error: guard \"dependents_json_file_exists()\" not met");
+      throw std::runtime_error("DocumentationDependentsJSONLoader::dependents_json_file_contents: error: guard \"std::filesystem::exists(dependents_json_filename)\" not met");
    }
    return php::file_get_contents(dependents_json_filename);
-}
-
-bool DocumentationDependentsJSONLoader::dependents_json_file_exists()
-{
-   return Blast::FileExistenceChecker(dependents_json_filename).exists();
 }
 
 

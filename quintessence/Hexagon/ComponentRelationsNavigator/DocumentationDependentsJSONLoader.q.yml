@@ -4,7 +4,9 @@ properties:
   - name: dependents_json_filename
     type: std::string
     init_with: '"/Users/markoates/Repos/hexagon/documentation/dependents.json"'
+    constructor_arg: true
     getter: true
+    setter: true
 
 
 functions:
@@ -30,37 +32,26 @@ functions:
 
       return result;
     body_dependency_symbols:
-      - JSON
+      - nlohmann::json
 
 
   - name: dependents_json_file_contents
     private: true
     type: std::string
-    guards: [ dependents_json_file_exists() ]
+    guards: [ std::filesystem::exists(dependents_json_filename) ]
     body: |
       return php::file_get_contents(dependents_json_filename);
     body_dependency_symbols:
-      - Blast::FileExistenceChecker
+      - std::filesystem
       - php::file_get_contents
-
-
-  - name: dependents_json_file_exists
-    private: true
-    type: bool
-    body: |
-      return Blast::FileExistenceChecker(dependents_json_filename).exists();
-    body_dependency_symbols:
-      - Blast::FileExistenceChecker
 
 
 dependencies:
 
 
-  - symbol: JSON
+  - symbol: nlohmann::json
     headers: [ lib/nlohmann/json.hpp ]
   - symbol: php::file_get_contents
     headers: [ allegro_flare/useful_php.h ]
-  - symbol: Blast::FileExistenceChecker
-    headers: [ Blast/FileExistenceChecker.hpp ]
 
 
