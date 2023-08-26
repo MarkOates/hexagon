@@ -56,7 +56,7 @@ properties:
     setter: true
 
 
-functions:
+methods:
 
 
   - name: set_cell_uv
@@ -317,27 +317,11 @@ functions:
 dependencies:
 
 
-  - symbol: ALLEGRO_BITMAP*
-    headers: [ allegro5/allegro.h ]
-  - symbol: std::vector<ALLEGRO_VERTEX>
-    headers: [ vector, allegro5/allegro_primitives.h ]
-  - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>&
-    headers: [ vector, tuple, allegro5/allegro.h ]
-  - symbol: std::vector<std::vector<std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>>>
-    headers: [ vector, tuple, allegro5/allegro.h ]
-  - symbol: std::tuple<char, ALLEGRO_COLOR, ALLEGRO_COLOR>*
-    headers: [ vector, tuple, allegro5/allegro.h ]
-  - symbol: std::vector<std::pair<int, int>>
-    headers: [ vector, utility ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
-  - symbol: std::tuple<float, float, float, float>
-    headers: [ tuple ]
-
   - symbol: ALLEGRO_BITMAP
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_VERTEX
     headers: [ allegro5/allegro_primitives.h ]
-
 
 
