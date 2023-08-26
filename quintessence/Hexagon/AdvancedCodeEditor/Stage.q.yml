@@ -211,7 +211,7 @@ properties:
     constexpr: true
 
 
-functions:
+methods:
 
 
   - name: initialize
@@ -1650,7 +1650,7 @@ functions:
          "    class:",
          "    scope:",
          "methods:",
-         "functions:",
+         //"functions:",
          "    virtual:",
          "    override:",
          "dependencies:",

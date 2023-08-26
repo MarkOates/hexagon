@@ -1637,7 +1637,7 @@ void Stage::filter_text_mesh_for_syntax_highlights()
       "    class:",
       "    scope:",
       "methods:",
-      "functions:",
+      //"functions:",
       "    virtual:",
       "    override:",
       "dependencies:",
