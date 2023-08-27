@@ -396,9 +396,6 @@ StageInterface* StageFactory::create_advanced_code_editor(std::string filename, 
    advanced_code_editor_stage->set_content(file_contents);
    advanced_code_editor_stage->set_show_line_too_long(true);
 
-   //advanced_code_editor_stage->set_on_color(obtain_base_text_color());
-   //advanced_code_editor_stage->set_backfill_color(obtain_base_backfill_color());
-
    return advanced_code_editor_stage;
 }
 
