@@ -638,7 +638,11 @@ bool System::increment_search_count_if_search_regex_is_nonblank()
     //return std::all_of(str.begin(), str.end(), [](unsigned char c) { return std::isspace(c); });
 //}
 
-   if (!is_whitespace(regex_input_file_lines))
+   //if (!is_whitespace(regex_input_file_lines))
+   bool do_not_increment_search_count = regex_input_file_lines.size() == 1 && regex_input_file_lines[0].empty();
+   bool should_increment_search_count = !do_not_increment_search_count;
+
+   if (should_increment_search_count)
    {
       increment_search_count();
       set_hud_search_count_to_search_count();
