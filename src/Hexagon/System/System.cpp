@@ -616,6 +616,37 @@ bool System::increment_search_count()
 }
 
 
+static bool is_whitespace(const std::vector<std::string>& strs)
+{
+   for (auto &str : strs)
+   {
+      bool is_whitespace_only = std::all_of(str.begin(), str.end(), [](unsigned char c) { return std::isspace(c); });
+      if (!is_whitespace_only) return false;
+   }
+   return true;
+}
+
+
+bool System::increment_search_count_if_search_regex_is_nonblank()
+{
+   // TODO: This function
+   std::vector<std::string> regex_input_file_lines;
+   if (!read_file(regex_input_file_lines, REGEX_TEMP_FILENAME) || regex_input_file_lines.size() == 0)
+      throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
+
+//bool isWhitespace(const std::string& str) {
+    //return std::all_of(str.begin(), str.end(), [](unsigned char c) { return std::isspace(c); });
+//}
+
+   if (!is_whitespace(regex_input_file_lines))
+   {
+      increment_search_count();
+      set_hud_search_count_to_search_count();
+   }
+   return true;
+}
+
+
 bool System::clear_search_count()
 {
    search_count = 0;
@@ -1172,8 +1203,8 @@ bool System::refresh_regex_hilights_on_all_code_editor_stages()
    {
       advanced_code_editor_stage->refresh_search_regex_selections();
    }
-   increment_search_count();
-   set_hud_search_count_to_search_count();
+   //increment_search_count();
+   //set_hud_search_count_to_search_count();
    return true;
 }
 
@@ -2014,6 +2045,7 @@ bool System::submit_current_modal()
       process_local_event(::System::DESTROY_TOPMOST_STAGE);
       process_local_event(::System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS);
       process_local_event(::System::REFRESH_REGEX_HILIGHTS_ON_ALL_CODE_EDITOR_STAGES);
+      process_local_event(::System::INCREMENT_SEARCH_COUNT_IF_SEARCH_REGEX_IS_NONBLANK);
       //process_local_event(::System::JUMP_TO_NEXT_OR_NEAREST_CODE_POINT_ON_STAGE);
       //process_local_event(::System::OFFSET_FIRST_LINE_TO_VERTICALLY_CENTER_CURSOR_ON_STAGE);
       process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
@@ -2177,6 +2209,8 @@ const std::string System::SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_
    "SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS";
 const std::string System::SET_REGEX_TEMP_FILE_CONTENTS_TO_WORD_UNDER_CURRENT_ADVANCED_CODE_EDITOR_CURSOR =
    "SET_REGEX_TEMP_FILE_CONTENTS_TO_WORD_UNDER_CURRENT_ADVANCED_CODE_EDITOR_CURSOR";
+const std::string System::INCREMENT_SEARCH_COUNT_IF_SEARCH_REGEX_IS_NONBLANK =
+   "INCREMENT_SEARCH_COUNT_IF_SEARCH_REGEX_IS_NONBLANK";
 const std::string System::TOGGLE_COMMAND_MODE_ON = "TOGGLE_COMMAND_MODE_ON";
 const std::string System::TOGGLE_COMMAND_MODE_OFF = "TOGGLE_COMMAND_MODE_OFF";
 const std::string System::RESET_CAMERA_TO_CENTER = "RESET_CAMERA_TO_CENTER";

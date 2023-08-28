@@ -298,6 +298,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          ::System::SPAWN_MULTIPLEX_GOTO_MENU,
          &System::spawn_multiplex_goto_menu,
       },
+      {
+         ::System::INCREMENT_SEARCH_COUNT_IF_SEARCH_REGEX_IS_NONBLANK,
+         &System::increment_search_count_if_search_regex_is_nonblank,
+      },
    };
    return default_function_mapping;
 }

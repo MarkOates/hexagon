@@ -132,6 +132,7 @@ public:
    bool increment_save_count();
    bool clear_save_count();
    bool increment_search_count();
+   bool increment_search_count_if_search_regex_is_nonblank();
    bool clear_search_count();
    bool set_hud_title_to_focused_component_name();
    bool set_hud_objective_to_objective();
@@ -264,6 +265,7 @@ public:
    static const std::string REFRESH_GIT_MODIFIED_LINE_NUMBERS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string SET_SEARCH_REGEX_EXPRESSION_ON_ALL_CODE_EDITOR_STAGES_TO_REGEX_TEMP_FILE_CONTENTS;
    static const std::string SET_REGEX_TEMP_FILE_CONTENTS_TO_WORD_UNDER_CURRENT_ADVANCED_CODE_EDITOR_CURSOR;
+   static const std::string INCREMENT_SEARCH_COUNT_IF_SEARCH_REGEX_IS_NONBLANK;
    static const std::string REMOVE_FILE_IS_UNSAVED_NOTIFICATION;
    static const std::string TOGGLE_COMMAND_MODE_ON;
    static const std::string TOGGLE_COMMAND_MODE_OFF;
