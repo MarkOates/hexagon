@@ -298,8 +298,7 @@
     "Hexagon/AdvancedCodeEditor/Renderer",
     "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter",
     "Hexagon/AdvancedCodeEditor/Selection",
-    "Hexagon/AdvancedCodeEditor/Stage",
-    "Hexagon/OneLineInputBox/Renderer"
+    "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "Hexagon/Elements/TextMesh": [
     "Hexagon/AdvancedCodeEditor/Renderer",
@@ -462,7 +461,6 @@
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
-    "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/OneLineInputBox/Stage",
@@ -723,7 +721,6 @@
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/ObjectivesLog/Stage",
-    "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/PacketRenderer",
     "Hexagon/PacketRenderer",

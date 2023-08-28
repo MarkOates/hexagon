@@ -322,8 +322,7 @@ functions:
 
 
 dependencies:
-  - symbol: std::vector<CodeRange>
-    headers: [ vector, Hexagon/CodeRange.hpp ]
+
   - symbol: Hexagon::CodeSelectionBoxRenderer
     headers: [ Hexagon/CodeSelectionBoxRenderer.hpp ]
   - symbol: placement3d
@@ -334,13 +333,8 @@ dependencies:
     headers: [ 'allegro5/allegro_primitives.h' ]
   - symbol: color::color
     headers: [ allegro_flare/color.h ]
-  - symbol: ALLEGRO_FONT*
-    headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
-  - symbol: AllegroFlare::FontBin*
-    headers: [ AllegroFlare/FontBin.hpp ]
-
   - symbol: ALLEGRO_FONT
     headers: [ allegro5/allegro_font.h ]
   - symbol: AllegroFlare::FontBin
