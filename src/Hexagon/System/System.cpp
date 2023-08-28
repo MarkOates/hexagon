@@ -616,17 +616,6 @@ bool System::increment_search_count()
 }
 
 
-static bool is_whitespace(const std::vector<std::string>& strs)
-{
-   for (auto &str : strs)
-   {
-      bool is_whitespace_only = std::all_of(str.begin(), str.end(), [](unsigned char c) { return std::isspace(c); });
-      if (!is_whitespace_only) return false;
-   }
-   return true;
-}
-
-
 bool System::increment_search_count_if_search_regex_is_nonblank()
 {
    // TODO: This function
