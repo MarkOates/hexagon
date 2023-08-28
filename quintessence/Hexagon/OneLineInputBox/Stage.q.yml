@@ -15,52 +15,61 @@ properties:
     constructor_arg: true
     getter: true
     getter_ref: true
+
   - name: a_default_empty_event
     static: true
     type: ALLEGRO_EVENT
     init_with: "{}"
     getter_ref: true
+
   - name: is_focused
     type: bool
     init_with: false
     getter: true
     setter: true
+
   - name: display
     type: ALLEGRO_DISPLAY*
     init_with: nullptr
     getter: true
     setter: true
+
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
     getter: true
     setter: true
+
   - name: cell_width
     type: int
     init_with: 10
     getter: true
     setter: true
+
   - name: cell_height
     type: int
     init_with: 20
     getter: true
     setter: true
+
   - name: base_font_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{1.0f, 1.0f, 1.0f, 1.0f}
     getter: true
     setter: true
+
   - name: backfill_color
     type: ALLEGRO_COLOR
     init_with: ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 1.0f}
     getter: true
     setter: true
+
   - name: state
     type: std::string
     init_with: '"normal"'
 
 
-functions:
+methods:
 
 
   - name: change_state_to_submitted_and_pending_destruction
@@ -175,12 +184,10 @@ functions:
 
 
 dependencies:
+
+
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_DISPLAY*
-    headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_FONT*
-    headers: [ allegro5/allegro_font.h ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: ::CodeEditor::CodeEditor
@@ -211,9 +218,9 @@ dependencies:
     headers: [ Hexagon/ActionData.hpp ]
   - symbol: Hexagon::CodeEditor::FileCategoryDecorator
     headers: [ Hexagon/CodeEditor/FileCategoryDecorator.hpp ]
-
   - symbol: ALLEGRO_DISPLAY
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT
     headers: [ allegro5/allegro_font.h ]
+
 
