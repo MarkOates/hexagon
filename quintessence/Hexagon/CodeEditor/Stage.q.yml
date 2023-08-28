@@ -227,12 +227,6 @@ dependencies:
 
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_DISPLAY*
-    headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_FONT*
-    headers: [ allegro5/allegro_font.h ]
-  - symbol: AllegroFlare::FontBin*
-    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
   - symbol: ::CodeEditor::CodeEditor
@@ -261,7 +255,6 @@ dependencies:
     headers: [ Hexagon/ActionData.hpp ]
   - symbol: Hexagon::CodeEditor::FileCategoryDecorator
     headers: [ Hexagon/CodeEditor/FileCategoryDecorator.hpp ]
-
   - symbol: ALLEGRO_DISPLAY
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_FONT
