@@ -5,92 +5,112 @@ properties:
     type: AllegroFlare::FontBin*
     init_with: nullptr
     constructor_arg: true
+
   - name: font
     type: ALLEGRO_FONT*
     init_with: nullptr
     constructor_arg: true
+
   - name: outline_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f,0.0f,0.0f,0.0f}'
     constructor_arg: true
+
   - name: user_input_text_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f,0.0f,0.0f,0.0f}'
     constructor_arg: true
+
   - name: backfill_color
     type: ALLEGRO_COLOR
     init_with: '{0.0f,0.0f,0.0f,0.0f}'
     constructor_arg: true
+
   - name: width
     type: float
     init_with: 1.0f
     constructor_arg: true
+
   - name: height
     type: float
     init_with: 1.0f
     constructor_arg: true
+
   - name: cell_width
     type: int
     init_with: 1
     constructor_arg: true
+
   - name: cell_height
     type: int
     init_with: 1
     constructor_arg: true
+
   - name: lines
     type: std::vector<std::string>
     init_with: '{}'
     constructor_arg: true
+
   - name: selections
     type: std::vector<CodeRange>
     init_with: '{}'
     constructor_arg: true
+
   - name: cursor_x
     type: int
     init_with: 0
     constructor_arg: true
+
   - name: cursor_y
     type: int
     init_with: 0
     constructor_arg: true
+
   - name: place
     type: placement3d
     init_with: '{}'
     constructor_arg: true
+
   - name: first_line_number
     type: int
     init_with: 0
     constructor_arg: true
+
   - name: in_edit_mode
     type: bool
     init_with: false
     constructor_arg: true
+
   - name: top_left_text
     type: std::string
     init_with: '""'
     constructor_arg: true
     setter: true
+
   - name: top_right_text
     type: std::string
     init_with: '""'
     constructor_arg: true
     setter: true
+
   - name: bottom_left_text
     type: std::string
     init_with: '""'
     constructor_arg: true
     setter: true
+
   - name: bottom_right_text
     type: std::string
     init_with: '""'
     constructor_arg: true
     setter: true
+
   - name: state
     type: std::string
     init_with: '"normal"'
 
 
-functions:
+methods:
 
 
   - name: change_state_to_submitted_and_pending_destruction
