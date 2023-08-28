@@ -1421,6 +1421,7 @@ bool System::spawn_project_navigator()
       { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
       { "DragonWrath", "/Users/markoates/Repos/DragonWrath/" },
       { "Fullscore", "/Users/markoates/Repos/fullscore/" },
+      { "FullScore3", "/Users/markoates/Repos/FullScore3/" },
       { "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
       { "Peri", "/Users/markoates/Repos/Peri/" },
       { "Solitare", "/Users/markoates/Repos/Solitare/" },
