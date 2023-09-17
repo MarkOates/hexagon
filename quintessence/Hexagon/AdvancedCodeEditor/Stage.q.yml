@@ -1622,6 +1622,7 @@ methods:
          "    constructor_arg:",
          "    getter:",
          "    const:",
+         "    exposed:",
          "    constexpr:",
          "    static:",
          "    type:",

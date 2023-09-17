@@ -1609,6 +1609,7 @@ void Stage::filter_text_mesh_for_syntax_highlights()
       "    constructor_arg:",
       "    getter:",
       "    const:",
+      "    exposed:",
       "    constexpr:",
       "    static:",
       "    type:",
