@@ -1412,6 +1412,7 @@ bool System::spawn_project_navigator()
       //{ "KrampusTest01", "/Users/markoates/Repos/KrampusTest01/" },
       { "CatDetective", "/Users/markoates/Repos/CatDetective/" },
       { "Blast", "/Users/markoates/Repos/blast/" },
+      { "DialogPlayer", "/Users/markoates/Repos/DialogPlayer/" },
       //{ "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       //{ "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
       //{ "TrackLock", "/Users/markoates/Repos/TrackLock/" },
