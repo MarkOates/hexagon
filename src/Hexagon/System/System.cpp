@@ -1397,6 +1397,7 @@ bool System::spawn_project_navigator()
 
    std::vector<std::tuple<std::string, std::string>> project_menu_items = {
       { "ClubCatt", "/Users/markoates/Repos/ClubCatt/" },
+      { "TheOldMill", "/Users/markoates/Repos/TheOldMill/" },
       { "PicSnap", "/Users/markoates/Repos/PicSnap/" },
       { "Billboard", "/Users/markoates/Repos/Billboard/" },
       { "ArtGalleryOfCats", "/Users/markoates/Repos/ArtGalleryOfCats/" },
