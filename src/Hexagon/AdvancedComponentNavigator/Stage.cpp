@@ -208,6 +208,7 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping()
       mapping.set_mapping(ALLEGRO_KEY_D, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES });
       mapping.set_mapping(ALLEGRO_KEY_P, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_PUBLIC_PARENT_CLASS_LINES });
       mapping.set_mapping(ALLEGRO_KEY_E, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_ERROR_MESSAGE_TEMPLATE });
+      mapping.set_mapping(ALLEGRO_KEY_A, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_STATIC_CASTED_AS });
    }
    else if (component.is_mode_typing_in_search_bar())
    {
@@ -238,6 +239,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedComponentNavigator::Ad
       { "move_cursor_to_top", &AdvancedComponentNavigator::move_cursor_to_top },
       { "set_mode_to_navigating_list", &AdvancedComponentNavigator::set_mode_to_navigating_list },
       { "set_mode_to_typing_in_search_bar", &AdvancedComponentNavigator::set_mode_to_typing_in_search_bar },
+      { YANK_SELECTED_TEXT_AS_STATIC_CASTED_AS,
+        &AdvancedComponentNavigator::yank_selected_text_as_static_casted_as },
    };
    return local_events;
 }

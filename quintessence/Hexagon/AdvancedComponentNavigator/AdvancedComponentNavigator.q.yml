@@ -248,6 +248,43 @@ functions:
       - ClipboardData::store
 
 
+  - name: yank_selected_text_as_static_casted_as
+    type: void
+    guards: [ current_selection_is_valid() ]
+    body: |
+      std::string selected_text = get_current_selection_label_or_empty_string();
+
+      // take the class symbol, store it
+      std::string selected_text_as_class = selected_text;
+      php::str_replace("/", "::", selected_text_as_class);
+
+      // take the last component, snake_case it
+      //std::vector<std::string> split_tokens = Blast::StringSplitter(selected_text, '/').split();
+      //std::string snake_case_name = split_tokens.empty() ? "error_unextractable_component_base_name"
+                                                         //: convert_to_snake_case(split_tokens[split_tokens.size()-1]);
+
+      // build up the string
+
+      //std::string name = snake_case_name;
+      //std::string type = selected_text_as_class + "*";
+
+      std::stringstream result;
+         result << "         if (base->is_type(" << selected_text_as_class << "::TYPE))" << std::endl;
+         result << "         {" << std::endl;
+         result << "            " << selected_text_as_class << " *as =" << std::endl;
+         result << "               static_cast<" << selected_text_as_class << "*>(base);" << std::endl;
+         result << "         }" << std::endl;
+
+         //result << "
+         //result << "         std::stringstream error_message;" << std::endl;
+         //result << "         error_message << \"" << selected_text_as_class << " error: \"" << std::endl;
+         //result << "                       << \"THING_THAT_HAPPENED\";" << std::endl;
+         //result << "         throw std::runtime_error(error_message.str());" << std::endl;
+      ClipboardData::store(result.str());
+    body_dependency_symbols:
+      - ClipboardData::store
+
+
   - name: convert_to_snake_case
     type: std::string
     parameters:
@@ -298,7 +335,7 @@ dependencies:
     headers: [ cctype ]
   - symbol: Blast::StringSplitter
     headers: [ Blast/StringSplitter.hpp ]
-
   - symbol: Blast::Project::Component
     headers: [ Blast/Project/Component.hpp ]
+
 

@@ -20,6 +20,9 @@ namespace Hexagon
    {
       class Stage : public StageInterface
       {
+      public:
+         static constexpr char* YANK_SELECTED_TEXT_AS_STATIC_CASTED_AS = (char*)"yank_selected_text_as_static_casted_as";
+
       private:
          AllegroFlare::FontBin* font_bin;
          std::string project_root;

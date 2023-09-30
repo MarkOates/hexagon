@@ -303,6 +303,46 @@ void AdvancedComponentNavigator::yank_selected_text_as_error_message_template()
    ClipboardData::store(result.str());
 }
 
+void AdvancedComponentNavigator::yank_selected_text_as_static_casted_as()
+{
+   if (!(current_selection_is_valid()))
+   {
+      std::stringstream error_message;
+      error_message << "[AdvancedComponentNavigator::yank_selected_text_as_static_casted_as]: error: guard \"current_selection_is_valid()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("AdvancedComponentNavigator::yank_selected_text_as_static_casted_as: error: guard \"current_selection_is_valid()\" not met");
+   }
+   std::string selected_text = get_current_selection_label_or_empty_string();
+
+   // take the class symbol, store it
+   std::string selected_text_as_class = selected_text;
+   php::str_replace("/", "::", selected_text_as_class);
+
+   // take the last component, snake_case it
+   //std::vector<std::string> split_tokens = Blast::StringSplitter(selected_text, '/').split();
+   //std::string snake_case_name = split_tokens.empty() ? "error_unextractable_component_base_name"
+                                                      //: convert_to_snake_case(split_tokens[split_tokens.size()-1]);
+
+   // build up the string
+
+   //std::string name = snake_case_name;
+   //std::string type = selected_text_as_class + "*";
+
+   std::stringstream result;
+      result << "         if (base->is_type(" << selected_text_as_class << "::TYPE))" << std::endl;
+      result << "         {" << std::endl;
+      result << "            " << selected_text_as_class << " *as =" << std::endl;
+      result << "               static_cast<" << selected_text_as_class << "*>(base);" << std::endl;
+      result << "         }" << std::endl;
+
+      //result << "
+      //result << "         std::stringstream error_message;" << std::endl;
+      //result << "         error_message << \"" << selected_text_as_class << " error: \"" << std::endl;
+      //result << "                       << \"THING_THAT_HAPPENED\";" << std::endl;
+      //result << "         throw std::runtime_error(error_message.str());" << std::endl;
+   ClipboardData::store(result.str());
+}
+
 std::string AdvancedComponentNavigator::convert_to_snake_case(std::string source_str)
 {
    std::string camelCase = source_str;
