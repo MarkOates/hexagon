@@ -59,6 +59,7 @@ table td
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.q.yml">quintessence/Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Selection.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Selection.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml">quintessence/Hexagon/AdvancedCodeEditor/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/SymbolUnderCursorMatcher.q.yml">quintessence/Hexagon/AdvancedCodeEditor/SymbolUnderCursorMatcher.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedCodeEditor/WindowRenderer.q.yml">quintessence/Hexagon/AdvancedCodeEditor/WindowRenderer.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/AdvancedComponentNavigator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher.q.yml">quintessence/Hexagon/AdvancedComponentNavigator/ComponentSearcher.q.yml</a></li>
@@ -1633,6 +1634,32 @@ table td
 </tr>
     </table>
 </div>  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/AdvancedCodeEditor/SymbolUnderCursorMatcher.q.yml">quintessence/Hexagon/AdvancedCodeEditor/SymbolUnderCursorMatcher.q.yml</h3>
+    <h4>Overview<h4>
+    <h3>Properties</h3>
+<div class="property-box properties">     <table>
+<tr>
+  <td class="property">NO_MATCH_FOUND</td>
+  <td class="property">std::pair&lt;int, int&gt;</td>
+</tr>
+    </table>
+</div>    <h3>Methods</h3>
+<div class="property-box methods">     <table>
+<tr>
+  <td class="method">is_valid_symbol_char(char c=0)</td>
+</tr>
+<tr>
+  <td class="method">is_valid_match(std::pair&lt;int, int&gt; match_result=NO_MATCH_FOUND)</td>
+</tr>
+<tr>
+  <td class="method">find_symbol_range(std::string line_of_code=&quot;[unset-line_of_code]&quot;, int cursor_position=-1)</td>
+</tr>
+    </table>
+</div>    <h3>Dependencies</h3>
+<p>This class contains no dependencies</p>  </div>
 </ul>
 <ul>
   <div class="component">

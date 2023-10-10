@@ -1,3 +1,13 @@
+properties:
+
+
+  - name: NO_MATCH_FOUND
+    type: std::pair<int, int>
+    init_with: '{ -1, -1 }'
+    static: true
+    constexpr: true
+
+
 methods:
 
 
@@ -11,6 +21,16 @@ methods:
       return (isalnum(c) || c == '_' || c == ':');
 
 
+  - name: is_valid_match
+    type: bool
+    parameters:
+      - name: match_result
+        type: std::pair<int, int>
+        default_argument: NO_MATCH_FOUND
+    body: |
+      return (match_result != NO_MATCH_FOUND);
+
+
   - name: find_symbol_range
     type: std::pair<int, int>
     parameters:
@@ -21,6 +41,9 @@ methods:
         type: int
         default_argument: -1
     body: |
+      if (cursor_position < 0) NO_MATCH_FOUND;
+      if (cursor_position >= line_of_code.size()) return NO_MATCH_FOUND;
+
       int start_position = cursor_position;
       int end_position = cursor_position;
 

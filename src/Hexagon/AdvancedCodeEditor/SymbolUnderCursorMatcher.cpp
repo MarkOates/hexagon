@@ -26,8 +26,16 @@ bool SymbolUnderCursorMatcher::is_valid_symbol_char(char c)
    return (isalnum(c) || c == '_' || c == ':');
 }
 
+bool SymbolUnderCursorMatcher::is_valid_match(std::pair<int, int> match_result)
+{
+   return (match_result != NO_MATCH_FOUND);
+}
+
 std::pair<int, int> SymbolUnderCursorMatcher::find_symbol_range(std::string line_of_code, int cursor_position)
 {
+   if (cursor_position < 0) NO_MATCH_FOUND;
+   if (cursor_position >= line_of_code.size()) return NO_MATCH_FOUND;
+
    int start_position = cursor_position;
    int end_position = cursor_position;
 
