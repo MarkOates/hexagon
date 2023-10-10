@@ -1,0 +1,45 @@
+methods:
+
+
+  - name: is_valid_symbol_char
+    type: bool
+    parameters:
+      - name: c
+        type: char
+        default_argument: 0
+    body: |
+      return (isalnum(c) || c == '_' || c == ':');
+
+
+  - name: find_symbol_range
+    type: std::pair<int, int>
+    parameters:
+      - name: line_of_code
+        type: std::string
+        default_argument: '"[unset-line_of_code]"'
+      - name: cursor_position
+        type: int
+        default_argument: -1
+    body: |
+      int start_position = cursor_position;
+      int end_position = cursor_position;
+
+      // Check if the character under the cursor is a valid symbol character
+      if (is_valid_symbol_char(line_of_code[cursor_position]))
+      {
+         // Find the start position of the symbol
+         while (start_position > 0 && is_valid_symbol_char(line_of_code[start_position - 1]))
+         {
+            start_position--;
+         }
+
+         // Find the end position of the symbol
+         while (end_position < line_of_code.length() - 1 && is_valid_symbol_char(line_of_code[end_position + 1]))
+         {
+            end_position++;
+         }
+      }
+
+      return std::make_pair(start_position, end_position);
+
+
