@@ -371,9 +371,10 @@ void Renderer::render_extended_symbol_highlight_under_cursor()
    float y = (cursor_y_pos - first_row_offset) * cell_height;
    float height = cell_height;
    float width = (found_range.second - found_range.first) * cell_width;
-   ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.0, 0.2, 0.2, 0.2};
-   al_draw_filled_rectangle(x, y+height/2, x+width, y+height, highlight_color);
-   al_draw_line(x, y+height, x+width, y+height, highlight_color, 2.0);
+   ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.0, 0.3, 0.3, 0.3};
+   float line_thickness = 3.0;
+   al_draw_filled_rectangle(x, y-line_thickness*2, x+width, y+height, highlight_color);
+   al_draw_line(x, y+height, x+width, y+height, highlight_color, line_thickness);
      
    return;
 }
@@ -420,8 +421,8 @@ void Renderer::render_word_highlight_under_cursor()
    float height = cell_height;
    float width = found_range.second * cell_width;
    ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.0, 0.2, 0.0, 0.2};
-   al_draw_filled_rectangle(x, y, x+width, y+height-height/2, highlight_color);
-   al_draw_line(x, y+height, x+width, y+height, highlight_color, 2.0);
+   al_draw_filled_rectangle(x, y, x+width, y+height, highlight_color);
+   //al_draw_line(x, y+height, x+width, y+height, highlight_color, 2.0);
      
    return;
 }
