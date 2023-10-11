@@ -574,6 +574,9 @@
     "Hexagon/CodeSelectionBoxRenderer",
     "Hexagon/OneLineInputBox/Renderer"
   ],
+  "Hexagon/AdvancedCodeEditor/SymbolUnderCursorMatcher": [
+    "Hexagon/AdvancedCodeEditor/Renderer"
+  ],
   "Blast/RegexMatcher": [
     "Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter"
   ],

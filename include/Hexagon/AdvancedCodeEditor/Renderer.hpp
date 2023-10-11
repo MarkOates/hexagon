@@ -68,6 +68,7 @@ namespace Hexagon
          void draw_represents_symlink_frames();
          bool draw_null_space_above_and_below();
          bool render_line_numbers();
+         void render_extended_symbol_highlight_under_cursor();
          void render_word_highlight_under_cursor();
          void render_cursor();
          void draw_selections();
