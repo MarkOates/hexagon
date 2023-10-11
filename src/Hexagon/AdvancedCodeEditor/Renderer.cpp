@@ -373,7 +373,7 @@ void Renderer::render_extended_symbol_highlight_under_cursor()
    float width = (found_range.second - found_range.first) * cell_width;
    ALLEGRO_COLOR highlight_color = ALLEGRO_COLOR{0.0, 0.3, 0.3, 0.3};
    float line_thickness = 3.0;
-   al_draw_filled_rectangle(x, y+height-line_thickness*2, x+width, y+height, highlight_color);
+   //al_draw_filled_rectangle(x, y+height-line_thickness*1.5, x+width, y+height, highlight_color);
    al_draw_line(x, y+height, x+width, y+height, highlight_color, line_thickness);
      
    return;
