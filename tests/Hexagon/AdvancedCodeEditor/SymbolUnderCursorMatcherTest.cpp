@@ -23,7 +23,7 @@ TEST(Hexagon_AdvancedCodeEditor_SymbolUnderCursorMatcherTest,
    int end_position = symbol_range.second;
 
    EXPECT_EQ(0, start_position);
-   EXPECT_EQ(25, end_position);
+   EXPECT_EQ(26, end_position);
 }
 
 
@@ -59,7 +59,7 @@ TEST(Hexagon_AdvancedCodeEditor_SymbolUnderCursorMatcherTest,
    Hexagon::AdvancedCodeEditor::SymbolUnderCursorMatcher symbol_under_cursor_matcher;
 
    std::vector<std::tuple<std::string, int, std::pair<int, int>>> test_data = {
-      { "if (This::Is::A::Symbol) > ", 12, { 4, 22 } },
+      { "if (This::Is::A::Symbol) > ", 12, { 4, 23 } },
       //{ "This::is_a_Example123_code", -99, Hexagon::AdvancedCodeEditor::SymbolUnderCursorMatcher::NO_MATCH_FOUND },
       //{ "This::is_a_Example123_code", 999, Hexagon::AdvancedCodeEditor::SymbolUnderCursorMatcher::NO_MATCH_FOUND },
       //{ "This::is_a_Example123_code",  27, Hexagon::AdvancedCodeEditor::SymbolUnderCursorMatcher::NO_MATCH_FOUND },

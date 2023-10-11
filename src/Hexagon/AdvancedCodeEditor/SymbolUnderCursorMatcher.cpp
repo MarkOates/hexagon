@@ -72,6 +72,8 @@ std::pair<int, int> SymbolUnderCursorMatcher::find_symbol_range(std::string line
       {
          end_position++;
       }
+      // One additional end_position++
+      end_position++;
    }
 
    return std::make_pair(start_position, end_position);
