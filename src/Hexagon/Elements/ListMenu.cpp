@@ -223,8 +223,10 @@ void ListMenu::render()
    float place_size_y = height;
 
 
-   // Calculate the offset for the menu when the cursor is moved
-   float frame_offset_y = -(calc_normalized_cursor_position() * std::min(cursor_max_scroll_distance, height));
+   // Calculate the offset for the menu when the scroll space exceeds the maximum
+   float frame_offset_y = height <= cursor_max_scroll_distance
+                        ? 0.0f
+                        : -(calc_normalized_cursor_position() * cursor_max_scroll_distance);
 
 
    placement3d offset_placement(0, frame_offset_y, 0);

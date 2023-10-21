@@ -209,6 +209,55 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,
 }
 
 
+TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,
+   render__when_the_height_of_the_list_exceeds_the_cursor_max_scroll_distance__will_offset_the_menu_during_scrolling)
+{
+   Hexagon::Elements::ListMenu list_menu(
+      &font_bin,
+      "Colors",
+      {
+        {"Red", "red_color"},
+        {"Blue", "blue_color"},
+        {"Yellow", "yellow_color"},
+        {"Green", "green_color"},
+        {"Purple", "purple_color"},
+        {"Orange", "orange_color"},
+        {"Pink", "pink_color"},
+        {"Teal", "teal_color"},
+        {"Lavender", "lavender_color"},
+        {"Brown", "brown_color"},
+        {"Crimson", "crimson_color"},
+        {"Magenta", "magenta_color"},
+        {"Turquoise", "turquoise_color"},
+        {"Indigo", "indigo_color"},
+        {"Sapphire", "sapphire_color"},
+        {"Ruby", "ruby_color"},
+        {"Emerald", "emerald_color"},
+        {"Amber", "amber_color"},
+        {"Coral", "coral_color"},
+        {"Lime", "lime_color"},
+        {"Slate", "slate_color"},
+        {"Violet", "violet_color"},
+        {"Gold", "gold_color"},
+        {"Silver", "silver_color"},
+        {"Bronze", "bronze_color"},
+      }
+   );
+
+   int passes = 30;
+   for (unsigned i=0; i<passes; i++)
+   {
+      al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
+      list_menu.move_cursor_down();
+      list_menu.render();
+      al_flip_display();
+      al_rest(0.2);
+   }
+
+   // TODO: Capture y_offset and test
+}
+
+
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, set_list_items__will_set_the_list_items)
 {
    // TODO
