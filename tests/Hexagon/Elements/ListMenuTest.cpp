@@ -88,7 +88,7 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_it
    //sleep(2);
 }
 
-TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_menu_as_expected_when_not_active)
+TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, CAPTURE__render__draws_the_menu_as_expected_when_not_active)
 {
    Hexagon::Elements::ListMenu list_menu(
       &font_bin,
@@ -124,7 +124,7 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture, render__draws_the_me
  
    al_flip_display();
 
-   //sleep(2);
+   sleep(2);
 }
 
 TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,

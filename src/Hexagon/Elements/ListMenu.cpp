@@ -251,25 +251,7 @@ void ListMenu::render()
       //   2.0);
    }
 
-   // draw title
-   bool draw_title = true;
-   if (draw_title)
-   {
-      std::string text_to_render = title;
-      if (get_title_upcase())
-      {
-         std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
-      }
-      al_draw_text(
-         title_font,
-         color,
-         0,
-         0 + line_num * title_font_line_height,
-         0,
-         text_to_render.c_str()
-      );
-      line_num++;
-   }
+   line_num++;
 
    // draw text
    int local_list_line_num = 0;
@@ -333,6 +315,29 @@ void ListMenu::render()
          text_to_render.c_str()
       );
       local_list_line_num++;
+      line_num++;
+   }
+
+
+
+   // draw title
+   line_num = 0;
+   bool draw_title = true;
+   if (draw_title)
+   {
+      std::string text_to_render = title;
+      if (get_title_upcase())
+      {
+         std::transform(text_to_render.begin(), text_to_render.end(), text_to_render.begin(), ::toupper);
+      }
+      al_draw_text(
+         title_font,
+         color,
+         0,
+         0 + line_num * title_font_line_height,
+         0,
+         text_to_render.c_str()
+      );
       line_num++;
    }
 
