@@ -216,6 +216,9 @@ void ListMenu::render()
    float place_size_x = width;
    float place_size_y = height;
 
+   placement3d offset_placement(0, frame_offset_y, 0);
+   offset_placement.start_transform();
+
    // draw frame
    //if (get_active())
    {
@@ -318,6 +321,7 @@ void ListMenu::render()
       line_num++;
    }
 
+   offset_placement.restore_transform();
 
 
    // draw title
