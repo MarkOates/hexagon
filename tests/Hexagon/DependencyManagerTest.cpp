@@ -5,7 +5,7 @@
 
 
 #define TEST_FIXTURE_PROJECT_FOLDER "/Users/markoates/Repos/hexagon/tests/fixtures/"
-#define TEST_FIXTURE_REPLACEMENT_DEP_FILE "/Users/markoates/Repos/hexagon/tests/fixtures/replacement_dep.d"
+#define TEST_FIXTURE_DEPFILE_TO_HOTLOAD "/Users/markoates/Repos/hexagon/tests/fixtures/depfile_to_hotload.d"
 
 
 TEST(Hexagon_DependencyManagerTest, can_be_created_without_blowing_up)
@@ -43,7 +43,6 @@ TEST(Hexagon_DependencyManagerTest, load_from_source_tree__will_load_the_depende
 }
 
 
-/*
 TEST(Hexagon_DependencyManagerTest, load_from_source_tree__will_load_the_dependents)
 {
    Hexagon::DependencyManager dependency_manager(TEST_FIXTURE_PROJECT_FOLDER);
@@ -68,24 +67,25 @@ TEST(Hexagon_DependencyManagerTest, load_from_source_tree__will_load_the_depende
 }
 
 
+// TODO: Uncomment this test
 TEST(Hexagon_DependencyManagerTest, reload_dependency_file__will_load_the_dependents)
 {
    Hexagon::DependencyManager dependency_manager(TEST_FIXTURE_PROJECT_FOLDER);
    dependency_manager.load_from_source_tree();
-   dependency_manager.reload_dependency_file("NcursesArt/GithubRepoStatusFetcher", TEST_FIXTURE_REPLACEMENT_DEP_FILE);
+   dependency_manager.reload_dependency_file("NcursesArt/GithubRepoStatusFetcher", TEST_FIXTURE_DEPFILE_TO_HOTLOAD);
 
    std::map<std::string, std::set<std::string>> expected_dependents_after_reload = {
       { "Blast/ShellCommandExecutor", {
          "Hexagon/CppCompiler/CompileRunner"
       }},
       { "Blast/ShellCommandExecutorWithCallback", {
-         //"NcursesArt/GithubRepoStatusFetcher"
+         //"NcursesArt/GithubRepoStatusFetcher" // Was removed in hotload
       }},
       { "Blast/String/Trimmer", {
          "NcursesArt/GithubRepoStatusFetcher"
       }},
       { "Blast/StringSplitter", {
-         //"NcursesArt/GithubRepoStatusFetcher"
+         //"NcursesArt/GithubRepoStatusFetcher" // Was removed in hotload
       }},
    };
 
@@ -100,9 +100,9 @@ TEST(Hexagon_DependencyManagerTest, reload_dependency_file__will_load_the_depend
          "Blast/ShellCommandExecutor",
       }},
       { "NcursesArt/GithubRepoStatusFetcher", {
-         //"Blast/ShellCommandExecutorWithCallback",
+         //"Blast/ShellCommandExecutorWithCallback", // This one is no longer present (was removed when reloaded)
          "Blast/String/Trimmer",
-         //"Blast/StringSplitter",
+         //"Blast/StringSplitter", // This one is no longer present (was removed when reloaded)
       }},
       { "NcursesArt/ProjectComponentBasenameExtractor", {
          // empty
@@ -114,5 +114,5 @@ TEST(Hexagon_DependencyManagerTest, reload_dependency_file__will_load_the_depend
 
    EXPECT_EQ(expected_dependencies, dependency_manager.get_dependencies());
 }
-*/
+
 

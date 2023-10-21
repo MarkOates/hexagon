@@ -1338,6 +1338,9 @@
   "Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader": [
     "Hexagon/ComponentRelationsNavigator/ComponentRelations"
   ],
+  "Hexagon/DependencyManager": [
+    "Hexagon/ComponentRelationsNavigator/ComponentRelations"
+  ],
   "Hexagon/Elements/ListMenu": [
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",

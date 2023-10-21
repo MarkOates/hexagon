@@ -5,6 +5,7 @@
 #include <Blast/Project/ComponentDependencyLister.hpp>
 #include <Blast/Project/ComponentRelativeLister.hpp>
 #include <Hexagon/ComponentRelationsNavigator/DocumentationDependentsJSONLoader.hpp>
+#include <Hexagon/DependencyManager.hpp>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
@@ -30,13 +31,33 @@ ComponentRelations::~ComponentRelations()
 
 std::vector<std::string> ComponentRelations::build_dependents_list()
 {
-   //std::string dependents_json_filename = "/Users/markoates/Repos/hexagon/documentation/dependents.json";
-   std::string dependents_json_filename =
-      build_implicit_json_dependents_filename_for_project(component.get_project_root());
-   Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader dependents_relations_loader(
-      dependents_json_filename
-   );
-   return dependents_relations_loader.build_dependent_names_for_component_name(component.get_name());
+   { // Strategy 1: Use Dependencies JSON from documentation, and reverse it
+      //std::string dependents_json_filename = "/Users/markoates/Repos/hexagon/documentation/dependents.json";
+      std::string dependents_json_filename =
+         build_implicit_json_dependents_filename_for_project(component.get_project_root());
+      Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader dependents_relations_loader(
+         dependents_json_filename
+      );
+      return dependents_relations_loader.build_dependent_names_for_component_name(component.get_name());
+   }
+   /*
+   { // Strategy 2: Ues Hexagon::DependencyManager, which reads from /.deps folder
+      std::string component_name = component.get_name();
+      Hexagon::DependencyManager dependency_manager(component.get_project_root() + "/");
+      //Hexagon::DependencyManager dependency_manager(TEST_FIXTURE_PROJECT_FOLDER);
+      dependency_manager.load_from_source_tree();
+      std::map<std::string, std::set<std::string>> dependents = dependency_manager.get_dependents();
+      bool component_exists_in_deps_listing = dependents.count(component.get_name()) == 0;
+      if (!component_exists_in_deps_listing) return std::vector<std::string>({"not-found"});
+      // convert our set to a vector
+      std::vector<std::string> result;
+      for (auto &element : dependents[component.get_name()])
+      {
+         result.push_back(element);
+      }
+      return result; //dependents[component.get_name()];
+   }
+   */
 }
 
 std::vector<std::string> ComponentRelations::build_relatives_list()
