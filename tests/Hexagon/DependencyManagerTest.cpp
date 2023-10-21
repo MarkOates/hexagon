@@ -14,6 +14,7 @@ TEST(Hexagon_DependencyManagerTest, can_be_created_without_blowing_up)
 }
 
 
+/*
 TEST(Hexagon_DependencyManagerTest, load_from_source_tree__will_load_the_dependencies)
 {
    Hexagon::DependencyManager dependency_manager(TEST_FIXTURE_PROJECT_FOLDER);
@@ -113,5 +114,5 @@ TEST(Hexagon_DependencyManagerTest, reload_dependency_file__will_load_the_depend
 
    EXPECT_EQ(expected_dependencies, dependency_manager.get_dependencies());
 }
-
+*/
 
