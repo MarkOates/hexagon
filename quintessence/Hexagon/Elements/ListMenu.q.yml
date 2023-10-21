@@ -43,6 +43,10 @@ properties:
     type: int
     init_with: 0
 
+  - name: frame_offset_y
+    type: float
+    init_with: 0.0f
+
   - name: wrap_cursor_when_moving_cursor_outside_bounds
     type: bool
     init_with: true
@@ -237,7 +241,8 @@ functions:
             if (false)
             {
                ALLEGRO_COLOR inactive_hilighted_list_item_border_color = al_color_html("b45c05");
-               al_draw_rectangle(0,
+               al_draw_rectangle(
+                  0,
                   line_num * line_height,
                   width,
                   line_num * line_height + line_height,
@@ -251,7 +256,10 @@ functions:
             {
                float padding = get_padding();
                //draw_cursor_pointer_arrow(width + padding_hack, line_num * line_height + line_height * 0.5);
-               draw_cursor_pointer_arrow(width + padding, line_num * line_height + line_height * 0.5);
+               draw_cursor_pointer_arrow(
+                     width + padding,
+                     line_num * line_height + line_height * 0.5
+                  );
             }
          }
 

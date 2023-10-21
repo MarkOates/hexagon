@@ -23,6 +23,7 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , backfill_color(backfill_color)
    , backfill_opacity(backfill_opacity)
    , cursor(0)
+   , frame_offset_y(0.0f)
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
    , title_upcase(true)
    , menu_items_upcase(false)
@@ -292,7 +293,8 @@ void ListMenu::render()
          if (false)
          {
             ALLEGRO_COLOR inactive_hilighted_list_item_border_color = al_color_html("b45c05");
-            al_draw_rectangle(0,
+            al_draw_rectangle(
+               0,
                line_num * line_height,
                width,
                line_num * line_height + line_height,
@@ -306,7 +308,10 @@ void ListMenu::render()
          {
             float padding = get_padding();
             //draw_cursor_pointer_arrow(width + padding_hack, line_num * line_height + line_height * 0.5);
-            draw_cursor_pointer_arrow(width + padding, line_num * line_height + line_height * 0.5);
+            draw_cursor_pointer_arrow(
+                  width + padding,
+                  line_num * line_height + line_height * 0.5
+               );
          }
       }
 

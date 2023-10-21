@@ -23,6 +23,7 @@ namespace Hexagon
          ALLEGRO_COLOR backfill_color;
          float backfill_opacity;
          int cursor;
+         float frame_offset_y;
          bool wrap_cursor_when_moving_cursor_outside_bounds;
          bool title_upcase;
          bool menu_items_upcase;
