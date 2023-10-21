@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <allegro5/allegro_primitives.h>
+#include <allegro_flare/placement3d.h>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>

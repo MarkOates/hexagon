@@ -652,6 +652,7 @@
     "Hexagon/AdvancedCodeEditor/Stage",
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Elements/StageInfoOverlay",
     "Hexagon/Forms/Fun",

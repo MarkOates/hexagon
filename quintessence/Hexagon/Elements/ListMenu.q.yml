@@ -287,6 +287,7 @@ functions:
     body_dependency_symbols:
       - al_draw_filled_rectangle
       - std::transform
+      - placement3d
 
 
   - name: obtain_list_item_font
@@ -390,5 +391,7 @@ dependencies:
     headers: [ allegro5/allegro_font.h ]
   - symbol: AllegroFlare::FontBin
     headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
 
 
