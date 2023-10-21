@@ -357,12 +357,6 @@ dependencies:
     headers: [ Hexagon/TitleScreen.hpp ]
   - symbol: al_get_allegro_version
     headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_DISPLAY*
-    headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_EVENT_QUEUE*
-    headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_TIMER*
-    headers: [ allegro5/allegro.h ]
   - symbol: Motion
     headers: [ allegro_flare/motion.h ]
   - symbol: Hexagon::Shaders::TiledHexagonMotionEffect
@@ -389,7 +383,6 @@ dependencies:
     headers: [ Blast/FileExistenceChecker.hpp ]
   - symbol: global
     headers: [ Hexagon/shared_globals.hpp ]
-
   - symbol: ALLEGRO_DISPLAY
     headers: [ allegro5/allegro.h ]
   - symbol: ALLEGRO_EVENT_QUEUE
@@ -398,4 +391,5 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: Hexagon::System::System
     headers: [ Hexagon/System/System.hpp ]
+
 
