@@ -141,8 +141,8 @@ functions:
   - name: calc_normalized_cursor_position
     type: float
     body: |
-      if (list_items.empty()) return 0.0f;
-      return (float)cursor / (float)list_items.size();
+      if (list_items.size() <= 1) return 0.0f;
+      return (float)cursor / (float)(list_items.size() - 1);
 
 
   - name: render
@@ -172,9 +172,12 @@ functions:
 
 
       // Calculate the offset for the menu when the scroll space exceeds the maximum
-      float frame_offset_y = height <= cursor_max_scroll_distance
+      float normalized_scroll_position = calc_normalized_cursor_position();
+      float frame_offset_y = (height <= cursor_max_scroll_distance)
                            ? 0.0f
-                           : -(calc_normalized_cursor_position() * cursor_max_scroll_distance);
+                           : -(normalized_scroll_position * height) // NOTE this part of the calculation it not 100% correct
+                                                                    // and is missing some offset due to padding or smth
+                                 + normalized_scroll_position * cursor_max_scroll_distance;
 
 
       placement3d offset_placement(0, frame_offset_y, 0);
