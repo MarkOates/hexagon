@@ -67,7 +67,6 @@ TEST(Hexagon_DependencyManagerTest, load_from_source_tree__will_load_the_depende
 }
 
 
-// TODO: Uncomment this test
 TEST(Hexagon_DependencyManagerTest, reload_dependency_file__will_load_the_dependents)
 {
    Hexagon::DependencyManager dependency_manager(TEST_FIXTURE_PROJECT_FOLDER);
@@ -89,7 +88,6 @@ TEST(Hexagon_DependencyManagerTest, reload_dependency_file__will_load_the_depend
       }},
    };
 
-   // HERE
    EXPECT_EQ(expected_dependents_after_reload, dependency_manager.get_dependents());
 
    std::map<std::string, std::set<std::string>> expected_dependencies = {
