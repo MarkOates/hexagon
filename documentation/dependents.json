@@ -19,46 +19,6 @@
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
-  "ALLEGRO_DISPLAY": [
-    "ApplicationController",
-    "ApplicationController",
-    "Hexagon/AdvancedComponentNavigator/Renderer",
-    "Hexagon/AdvancedComponentNavigator/Stage",
-    "Hexagon/AdvancedComponentNavigator/Stage",
-    "Hexagon/CodeEditor/Stage",
-    "Hexagon/Elements/CheckTextureGenerator",
-    "Hexagon/Elements/CheckTextureGenerator",
-    "Hexagon/FileNavigator/Stage",
-    "Hexagon/FileNavigator/Stage",
-    "Hexagon/FullScreenOverlay/Stage",
-    "Hexagon/FullScreenOverlay/Stage",
-    "Hexagon/GitCommitMessageInputBox/Stage",
-    "Hexagon/GitCommitMessageInputBox/Stage",
-    "Hexagon/Hud",
-    "Hexagon/Hud",
-    "Hexagon/MissingFile/Stage",
-    "Hexagon/MissingFile/Stage",
-    "Hexagon/OneLineInputBox/Stage",
-    "Hexagon/Powerbar/Renderer",
-    "Hexagon/Powerbar/Renderer",
-    "Hexagon/ProjectComponentNavigator/Renderer",
-    "Hexagon/ProjectComponentNavigator/Stage",
-    "Hexagon/ProjectComponentNavigator/Stage",
-    "Hexagon/StageFactory",
-    "Hexagon/StageFactory",
-    "Hexagon/System/Renderer",
-    "Hexagon/System/Renderer",
-    "Testing/WithAllegroRenderingFixture",
-    "Testing/WithAllegroRenderingFixture"
-  ],
-  "ALLEGRO_EVENT_QUEUE": [
-    "ApplicationController",
-    "ApplicationController"
-  ],
-  "ALLEGRO_TIMER": [
-    "ApplicationController",
-    "ApplicationController"
-  ],
   "Motion": [
     "ApplicationController"
   ],
@@ -145,6 +105,43 @@
     "Hexagon/System/Action/CreateTwoSplitFromComponent"
   ],
   "global": [
+    "ApplicationController"
+  ],
+  "ALLEGRO_DISPLAY": [
+    "ApplicationController",
+    "Hexagon/AdvancedComponentNavigator/Renderer",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/AdvancedComponentNavigator/Stage",
+    "Hexagon/CodeEditor/Stage",
+    "Hexagon/Elements/CheckTextureGenerator",
+    "Hexagon/Elements/CheckTextureGenerator",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/FileNavigator/Stage",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/FullScreenOverlay/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/GitCommitMessageInputBox/Stage",
+    "Hexagon/Hud",
+    "Hexagon/Hud",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/MissingFile/Stage",
+    "Hexagon/OneLineInputBox/Stage",
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/Powerbar/Renderer",
+    "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/StageFactory",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Renderer",
+    "Hexagon/System/Renderer",
+    "Testing/WithAllegroRenderingFixture",
+    "Testing/WithAllegroRenderingFixture"
+  ],
+  "ALLEGRO_EVENT_QUEUE": [
+    "ApplicationController"
+  ],
+  "ALLEGRO_TIMER": [
     "ApplicationController"
   ],
   "std/find_if": [
