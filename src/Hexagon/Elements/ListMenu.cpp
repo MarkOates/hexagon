@@ -24,7 +24,7 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , backfill_color(backfill_color)
    , backfill_opacity(backfill_opacity)
    , cursor(0)
-   , cursor_max_scroll_distance(20.0f)
+   , cursor_max_scroll_distance(300.0f)
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
    , title_upcase(true)
    , menu_items_upcase(false)
@@ -224,7 +224,7 @@ void ListMenu::render()
 
 
    // Calculate the offset for the menu when the cursor is moved
-   float frame_offset_y = -(calc_normalized_cursor_position() * height) * 0.4;
+   float frame_offset_y = -(calc_normalized_cursor_position() * std::min(cursor_max_scroll_distance, height));
 
 
    placement3d offset_placement(0, frame_offset_y, 0);
