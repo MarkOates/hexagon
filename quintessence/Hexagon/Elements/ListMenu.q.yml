@@ -374,19 +374,13 @@ dependencies:
 
   - symbol: al_draw_filled_rectangle
     headers: [ allegro5/allegro_primitives.h ]
-  - symbol: std::vector<std::tuple<std::string, std::string>>
-    headers: [ vector, tuple, string ]
-  - symbol: AllegroFlare::FontBin*
-    headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: ALLEGRO_COLOR
     headers: [ allegro5/allegro_color.h ]
-  - symbol: ALLEGRO_FONT*
-    headers: [ allegro5/allegro_font.h ]
   - symbol: std::transform
     headers: [ algorithm ]
-
   - symbol: ALLEGRO_FONT
     headers: [ allegro5/allegro_font.h ]
   - symbol: AllegroFlare::FontBin
     headers: [ AllegroFlare/FontBin.hpp ]
+
 

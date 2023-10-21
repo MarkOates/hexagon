@@ -421,7 +421,6 @@
     "Hexagon/Elements/Frame",
     "Hexagon/Elements/Frame",
     "Hexagon/Elements/ListMenu",
-    "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/Pill",
     "Hexagon/Elements/Pill",
     "Hexagon/Elements/QuoteRenderer",
@@ -688,7 +687,6 @@
     "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/ComponentTitleSlate",
     "Hexagon/Elements/Frame",
-    "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/ListMenu",
     "Hexagon/Elements/Pill",
     "Hexagon/Elements/Pill",
@@ -1348,7 +1346,6 @@
   ],
   "std/vector<std/tuple<std/string, std/string>>": [
     "Hexagon/ComponentRelationsNavigator/Stage",
-    "Hexagon/Elements/ListMenu",
     "Hexagon/PacketRenderer",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
