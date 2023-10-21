@@ -45,7 +45,7 @@ properties:
 
   - name: cursor_max_scroll_distance
     type: float
-    init_with: 300.0f
+    init_with: 600.0f
 
   - name: wrap_cursor_when_moving_cursor_outside_bounds
     type: bool

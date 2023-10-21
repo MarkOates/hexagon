@@ -24,7 +24,7 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , backfill_color(backfill_color)
    , backfill_opacity(backfill_opacity)
    , cursor(0)
-   , cursor_max_scroll_distance(300.0f)
+   , cursor_max_scroll_distance(600.0f)
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
    , title_upcase(true)
    , menu_items_upcase(false)
