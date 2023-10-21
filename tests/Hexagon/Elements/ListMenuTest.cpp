@@ -251,7 +251,7 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,
       list_menu.move_cursor_down();
       list_menu.render();
       al_flip_display();
-      al_rest(0.2);
+      al_rest(0.1);
    }
 
    // TODO: Capture y_offset and test
