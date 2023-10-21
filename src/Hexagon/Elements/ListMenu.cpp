@@ -24,7 +24,7 @@ ListMenu::ListMenu(AllegroFlare::FontBin* font_bin, std::string title, std::vect
    , backfill_color(backfill_color)
    , backfill_opacity(backfill_opacity)
    , cursor(0)
-   , frame_offset_y(0.0f)
+   , cursor_max_scroll_distance(20.0f)
    , wrap_cursor_when_moving_cursor_outside_bounds(true)
    , title_upcase(true)
    , menu_items_upcase(false)
@@ -193,6 +193,12 @@ std::string ListMenu::get_current_list_item_identifier()
    return std::get<1>(list_items[cursor]);
 }
 
+float ListMenu::calc_normalized_cursor_position()
+{
+   if (list_items.empty()) return 0.0f;
+   return (float)cursor / (float)list_items.size();
+}
+
 void ListMenu::render()
 {
    ALLEGRO_FONT *font = obtain_list_item_font();
@@ -215,6 +221,11 @@ void ListMenu::render()
 
    float place_size_x = width;
    float place_size_y = height;
+
+
+   // Calculate the offset for the menu when the cursor is moved
+   float frame_offset_y = -(calc_normalized_cursor_position() * height) * 0.4;
+
 
    placement3d offset_placement(0, frame_offset_y, 0);
    offset_placement.start_transform();

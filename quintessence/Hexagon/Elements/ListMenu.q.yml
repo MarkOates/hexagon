@@ -43,9 +43,9 @@ properties:
     type: int
     init_with: 0
 
-  - name: frame_offset_y
+  - name: cursor_max_scroll_distance
     type: float
-    init_with: 0.0f
+    init_with: 20.0f
 
   - name: wrap_cursor_when_moving_cursor_outside_bounds
     type: bool
@@ -138,6 +138,13 @@ functions:
       return std::get<1>(list_items[cursor]);
 
 
+  - name: calc_normalized_cursor_position
+    type: float
+    body: |
+      if (list_items.empty()) return 0.0f;
+      return (float)cursor / (float)list_items.size();
+
+
   - name: render
     type: void
     boards: [ is_primitives_addon_initialized() ]
@@ -162,6 +169,11 @@ functions:
 
       float place_size_x = width;
       float place_size_y = height;
+
+
+      // Calculate the offset for the menu when the cursor is moved
+      float frame_offset_y = -(calc_normalized_cursor_position() * height) * 0.4;
+
 
       placement3d offset_placement(0, frame_offset_y, 0);
       offset_placement.start_transform();

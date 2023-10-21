@@ -23,7 +23,7 @@ namespace Hexagon
          ALLEGRO_COLOR backfill_color;
          float backfill_opacity;
          int cursor;
-         float frame_offset_y;
+         float cursor_max_scroll_distance;
          bool wrap_cursor_when_moving_cursor_outside_bounds;
          bool title_upcase;
          bool menu_items_upcase;
@@ -63,6 +63,7 @@ namespace Hexagon
          bool move_cursor_up();
          bool move_cursor_down();
          std::string get_current_list_item_identifier();
+         float calc_normalized_cursor_position();
          void render();
          ALLEGRO_COLOR build_inactive_color();
          ALLEGRO_COLOR build_opacified_backfill_color();

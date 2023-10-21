@@ -241,8 +241,8 @@ TEST_F(Hexagon_Elements_ListMenuTest_WithEventQueueFixture,
       al_clear_to_color(ALLEGRO_COLOR{0,0,0,1});
       list_menu.move_cursor_down();
       list_menu.render();
-      //al_flip_display();
-      //sleep(1);
+      al_flip_display();
+      al_rest(0.2);
    }
 
    std::string current_list_item = list_menu.get_current_list_item_identifier();
