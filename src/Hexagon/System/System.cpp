@@ -113,7 +113,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &hexagon_config
    , focused_component_name("")
    , current_objective("")
    , current_project_domain("")
-   , current_holding_component("")
+   , current_held_component("")
    , mouse_x(0)
    , mouse_y(0)
    , baseline_camera_stepback(160)
@@ -200,9 +200,9 @@ std::string System::get_current_project_domain()
 }
 
 
-std::string System::get_current_holding_component()
+std::string System::get_current_held_component()
 {
-   return current_holding_component;
+   return current_held_component;
 }
 
 
@@ -281,9 +281,9 @@ void System::set_current_project_domain(std::string current_project_domain)
 }
 
 
-void System::set_current_holding_component(std::string current_holding_component)
+void System::set_current_held_component(std::string current_held_component)
 {
-   this->current_holding_component = current_holding_component;
+   this->current_held_component = current_held_component;
 }
 
 
@@ -683,9 +683,9 @@ bool System::set_hud_domain_to_current_project_domain()
 }
 
 
-bool System::set_hud_holding_component_to_current_holding_component()
+bool System::set_hud_held_component_to_current_held_component()
 {
-   throw std::runtime_error("set_hud_current_component_to_current_holding_component: not implemented");
+   throw std::runtime_error("set_hud_current_component_to_current_held_component: not implemented");
    // not implemented
 }
 

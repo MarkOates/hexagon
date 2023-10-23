@@ -31,7 +31,7 @@ private:
    std::string focused_component_name;
    std::string current_objective;
    std::string current_project_domain;
-   std::string current_holding_component;
+   std::string current_held_component;
    float mouse_x;
    float mouse_y;
    float baseline_camera_stepback;
@@ -76,7 +76,7 @@ public:
    std::string get_current_project_directory();
    std::string get_current_objective();
    std::string get_current_project_domain();
-   std::string get_current_holding_component();
+   std::string get_current_held_component();
    std::string get_global_font_str();
    void set_option__saving_focused_filename_to_file_is_disabled(bool option=false);
    void set_option__pushing_to_git_remote_on_commit_is_disabled(bool option=false);
@@ -88,7 +88,7 @@ public:
    void set_focused_component_name(std::string focused_component_name);
    void set_current_objective(std::string current_objective);
    void set_current_project_domain(std::string current_project_domain="");
-   void set_current_holding_component(std::string current_holding_component="");
+   void set_current_held_component(std::string current_held_component="");
    std::string get_focused_component_name();
    void clear_focused_component_name();
    void set_last_project_navigator_selection(std::string last_project_navigator_selection);
@@ -140,7 +140,7 @@ public:
    bool set_hud_title_to_focused_component_name();
    bool set_hud_objective_to_objective();
    bool set_hud_domain_to_current_project_domain();
-   bool set_hud_holding_component_to_current_holding_component();
+   bool set_hud_held_component_to_current_held_component();
    bool clear_hud_title();
    bool set_hud_save_count_to_save_count();
    bool set_hud_search_count_to_search_count();
