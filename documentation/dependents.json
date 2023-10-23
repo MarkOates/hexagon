@@ -3,7 +3,6 @@
     "ApplicationController",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/Hud",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/StageFactory",
@@ -121,7 +120,6 @@
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
-    "Hexagon/Hud",
     "Hexagon/Hud",
     "Hexagon/MissingFile/Stage",
     "Hexagon/MissingFile/Stage",
@@ -446,8 +444,6 @@
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
-    "Hexagon/Hud",
-    "Hexagon/Hud",
     "Hexagon/Logo",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
@@ -511,7 +507,6 @@
     "Hexagon/Elements/TexturedRectangle",
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/FullScreenOverlay/Stage",
-    "Hexagon/Hud",
     "Hexagon/Hud",
     "Hexagon/Shaders/Fun",
     "Hexagon/Shaders/Fun",
@@ -588,8 +583,7 @@
   ],
   "std/min": [
     "Hexagon/AdvancedCodeEditor/Stage",
-    "Hexagon/CodeRangeExtractor",
-    "Hexagon/Hud"
+    "Hexagon/CodeRangeExtractor"
   ],
   "Hexagon/CodeRangeExtractor": [
     "Hexagon/AdvancedCodeEditor/Stage"
@@ -849,7 +843,6 @@
   "Hexagon/AdvancedComponentNavigator/Stage": [
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Renderer",
-    "Hexagon/Hud",
     "Hexagon/Hud",
     "Hexagon/StageFactory",
     "Hexagon/System/Renderer",
@@ -1533,37 +1526,11 @@
     "Hexagon/Hud",
     "Hexagon/System/Renderer"
   ],
-  "std/vector<Hexagon/Packet>": [
-    "Hexagon/Hud"
-  ],
   "Hexagon/PacketRenderer": [
     "Hexagon/Hud"
   ],
   "placement2d": [
     "Hexagon/Hud"
-  ],
-  "std/vector<StageInterface >": [
-    "Hexagon/Hud",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/StageCollectionHelper",
-    "Hexagon/StageCollectionHelper",
-    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "Hexagon/System/Action/CreateTwoSplitFromComponent",
-    "Hexagon/System/Action/DestroyAllCodeEditorStages"
-  ],
-  "Hexagon/CodeEditor/Stage": [
-    "Hexagon/Hud",
-    "Hexagon/Hud",
-    "Hexagon/StageCollectionHelper",
-    "Hexagon/StageCollectionHelper",
-    "Hexagon/StageFactory",
-    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "Hexagon/System/Action/DestroyAllCodeEditorStages",
-    "Hexagon/System/Renderer",
-    "Hexagon/System/Renderer"
   ],
   "Hexagon/BuildSequenceMeter/Renderer": [
     "Hexagon/Hud"
@@ -1573,6 +1540,17 @@
   ],
   "Hexagon/StageCollectionHelper": [
     "Hexagon/Hud",
+    "Hexagon/System/Renderer"
+  ],
+  "Hexagon/CodeEditor/Stage": [
+    "Hexagon/Hud",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/DestroyAllCodeEditorStages",
+    "Hexagon/System/Renderer",
     "Hexagon/System/Renderer"
   ],
   "Hexagon/Packet": [
@@ -1590,6 +1568,16 @@
   ],
   "std/map<std/string, placement3d>": [
     "Hexagon/LayoutPlacements"
+  ],
+  "std/vector<StageInterface >": [
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
+    "Hexagon/System/Action/DestroyAllCodeEditorStages"
   ],
   "std/vector<StageInterface >&": [
     "Hexagon/LayoutToStagesCreator",

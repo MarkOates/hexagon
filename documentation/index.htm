@@ -7778,6 +7778,14 @@ table td
   <td class="property">show_domain</td>
   <td class="property">bool</td>
 </tr>
+<tr>
+  <td class="property">held_component_text</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">show_held_component</td>
+  <td class="property">bool</td>
+</tr>
     </table>
 </div>    <h3>Methods</h3>
 <div class="property-box methods">     <table>
@@ -7795,6 +7803,9 @@ table td
 </tr>
 <tr>
   <td class="method">draw_objective_text()</td>
+</tr>
+<tr>
+  <td class="method">draw_held_component()</td>
 </tr>
 <tr>
   <td class="method">draw_domain_text_and_overlay()</td>
@@ -7833,6 +7844,9 @@ table td
   <td class="method">obtain_objective_font()</td>
 </tr>
 <tr>
+  <td class="method">obtain_held_component_font()</td>
+</tr>
+<tr>
   <td class="method">obtain_domain_font()</td>
 </tr>
 <tr>
@@ -7863,9 +7877,6 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Camera&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Camera.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::min&quot;, &quot;headers&quot;=&gt;[&quot;algorithm&quot;]}</td>
-</tr>
-<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Powerbar::Powerbar&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Powerbar/Powerbar.hpp&quot;]}</td>
 </tr>
 <tr>
@@ -7881,16 +7892,7 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_draw_rectangle&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_primitives.h&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_DISPLAY*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
-</tr>
-<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_get_display_width&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_BITMAP*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_get_font_ascent&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
@@ -7905,9 +7907,6 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_draw_text&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_font.h&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_FONT*&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
-</tr>
-<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::color::mix&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Color.hpp&quot;]}</td>
 </tr>
 <tr>
@@ -7920,9 +7919,6 @@ table td
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;global::profiler&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/shared_globals.hpp&quot;]}</td>
 </tr>
 <tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;Hexagon::Packet&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/Packet.hpp&quot;]}</td>
-</tr>
-<tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::PacketRenderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/PacketRenderer.hpp&quot;]}</td>
 </tr>
 <tr>
@@ -7933,18 +7929,6 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement2d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement2d.h&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;StageInterface *&gt;*&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;Hexagon/StageInterface.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::CodeEditor::Stage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/CodeEditor/Stage.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::AdvancedComponentNavigator::Stage*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/AdvancedComponentNavigator/Stage.hpp&quot;]}</td>
-</tr>
-<tr>
-  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::Config*&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/Config.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::BuildSequenceMeter::Renderer&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/BuildSequenceMeter/Renderer.hpp&quot;]}</td>
@@ -13855,7 +13839,6 @@ table td
     "ApplicationController",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Daemus/ProgramRunner",
-    "Hexagon/Hud",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/StageFactory",
@@ -13973,7 +13956,6 @@ table td
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
-    "Hexagon/Hud",
     "Hexagon/Hud",
     "Hexagon/MissingFile/Stage",
     "Hexagon/MissingFile/Stage",
@@ -14298,8 +14280,6 @@ table td
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
-    "Hexagon/Hud",
-    "Hexagon/Hud",
     "Hexagon/Logo",
     "Hexagon/Logo",
     "Hexagon/MissingFile/Stage",
@@ -14363,7 +14343,6 @@ table td
     "Hexagon/Elements/TexturedRectangle",
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/FullScreenOverlay/Stage",
-    "Hexagon/Hud",
     "Hexagon/Hud",
     "Hexagon/Shaders/Fun",
     "Hexagon/Shaders/Fun",
@@ -14440,8 +14419,7 @@ table td
   ],
   "std/min": [
     "Hexagon/AdvancedCodeEditor/Stage",
-    "Hexagon/CodeRangeExtractor",
-    "Hexagon/Hud"
+    "Hexagon/CodeRangeExtractor"
   ],
   "Hexagon/CodeRangeExtractor": [
     "Hexagon/AdvancedCodeEditor/Stage"
@@ -14701,7 +14679,6 @@ table td
   "Hexagon/AdvancedComponentNavigator/Stage": [
     "Hexagon/AdvancedComponentNavigator/Renderer",
     "Hexagon/AdvancedComponentNavigator/Renderer",
-    "Hexagon/Hud",
     "Hexagon/Hud",
     "Hexagon/StageFactory",
     "Hexagon/System/Renderer",
@@ -15385,37 +15362,11 @@ table td
     "Hexagon/Hud",
     "Hexagon/System/Renderer"
   ],
-  "std/vector<Hexagon/Packet>": [
-    "Hexagon/Hud"
-  ],
   "Hexagon/PacketRenderer": [
     "Hexagon/Hud"
   ],
   "placement2d": [
     "Hexagon/Hud"
-  ],
-  "std/vector<StageInterface >": [
-    "Hexagon/Hud",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/LayoutToStagesCreator",
-    "Hexagon/StageCollectionHelper",
-    "Hexagon/StageCollectionHelper",
-    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "Hexagon/System/Action/CreateTwoSplitFromComponent",
-    "Hexagon/System/Action/DestroyAllCodeEditorStages"
-  ],
-  "Hexagon/CodeEditor/Stage": [
-    "Hexagon/Hud",
-    "Hexagon/Hud",
-    "Hexagon/StageCollectionHelper",
-    "Hexagon/StageCollectionHelper",
-    "Hexagon/StageFactory",
-    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
-    "Hexagon/System/Action/CreateThreeSplitFromComponent",
-    "Hexagon/System/Action/DestroyAllCodeEditorStages",
-    "Hexagon/System/Renderer",
-    "Hexagon/System/Renderer"
   ],
   "Hexagon/BuildSequenceMeter/Renderer": [
     "Hexagon/Hud"
@@ -15425,6 +15376,17 @@ table td
   ],
   "Hexagon/StageCollectionHelper": [
     "Hexagon/Hud",
+    "Hexagon/System/Renderer"
+  ],
+  "Hexagon/CodeEditor/Stage": [
+    "Hexagon/Hud",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/StageFactory",
+    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/DestroyAllCodeEditorStages",
+    "Hexagon/System/Renderer",
     "Hexagon/System/Renderer"
   ],
   "Hexagon/Packet": [
@@ -15442,6 +15404,16 @@ table td
   ],
   "std/map<std/string, placement3d>": [
     "Hexagon/LayoutPlacements"
+  ],
+  "std/vector<StageInterface >": [
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/LayoutToStagesCreator",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/StageCollectionHelper",
+    "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
+    "Hexagon/System/Action/CreateThreeSplitFromComponent",
+    "Hexagon/System/Action/CreateTwoSplitFromComponent",
+    "Hexagon/System/Action/DestroyAllCodeEditorStages"
   ],
   "std/vector<StageInterface >&": [
     "Hexagon/LayoutToStagesCreator",

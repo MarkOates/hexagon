@@ -905,8 +905,6 @@ dependencies:
     headers: [ math.h ]
   - symbol: Hexagon::Camera
     headers: [ Hexagon/Camera.hpp ]
-  - symbol: std::min
-    headers: [ algorithm ]
   - symbol: Hexagon::Powerbar::Powerbar
     headers: [ Hexagon/Powerbar/Powerbar.hpp ]
   - symbol: Hexagon::Powerbar::Renderer
@@ -917,14 +915,8 @@ dependencies:
     headers: [ Hexagon/FocusTimerBar/Renderer.hpp ]
   - symbol: al_draw_rectangle
     headers: [ allegro5/allegro_primitives.h ]
-  - symbol: ALLEGRO_DISPLAY*
-    headers: [ allegro5/allegro.h ]
   - symbol: al_get_display_width
     headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_BITMAP*
-    headers: [ allegro5/allegro.h ]
-  - symbol: ALLEGRO_FONT*
-    headers: [ allegro5/allegro_font.h ]
   - symbol: al_get_font_ascent
     headers: [ allegro5/allegro_font.h ]
   - symbol: ALLEGRO_COLOR
@@ -933,8 +925,6 @@ dependencies:
     headers: [ allegro5/allegro_color.h ]
   - symbol: al_draw_text
     headers: [ allegro5/allegro_font.h ]
-  - symbol: ALLEGRO_FONT*
-    headers: [ allegro5/allegro.h ]
   - symbol: AllegroFlare::color::mix
     headers: [ AllegroFlare/Color.hpp ]
   - symbol: AllegroFlare::FontBin&
@@ -943,8 +933,6 @@ dependencies:
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: global::profiler
     headers: [ Hexagon/shared_globals.hpp ]
-  - symbol: std::vector<Hexagon::Packet>
-    headers: [ vector, Hexagon/Packet.hpp ]
   - symbol: Hexagon::PacketRenderer
     headers: [ Hexagon/PacketRenderer.hpp ]
   - symbol: php::file_get_contents
@@ -953,21 +941,12 @@ dependencies:
     headers: [ allegro_flare/placement3d.h ]
   - symbol: placement2d
     headers: [ allegro_flare/placement2d.h ]
-  - symbol: std::vector<StageInterface *>*
-    headers: [ vector, Hexagon/StageInterface.hpp ]
-  - symbol: Hexagon::CodeEditor::Stage*
-    headers: [ Hexagon/CodeEditor/Stage.hpp ]
-  - symbol: Hexagon::AdvancedComponentNavigator::Stage*
-    headers: [ Hexagon/AdvancedComponentNavigator/Stage.hpp ]
-  - symbol: Hexagon::System::Config*
-    headers: [ Hexagon/System/Config.hpp ]
   - symbol: Hexagon::BuildSequenceMeter::Renderer
     headers: [ Hexagon/BuildSequenceMeter/Renderer.hpp ]
   - symbol: Hexagon::Elements::Pill
     headers: [ Hexagon/Elements/Pill.hpp ]
   - symbol: Hexagon::StageCollectionHelper
     headers: [ Hexagon/StageCollectionHelper.hpp ]
-
   - symbol: Hexagon::CodeEditor::Stage
     headers: [ Hexagon/CodeEditor/Stage.hpp ]
   - symbol: Hexagon::AdvancedComponentNavigator::Stage
@@ -982,4 +961,5 @@ dependencies:
     headers: [ Hexagon/Packet.hpp ]
   - symbol: StageInterface
     headers: [ Hexagon/StageInterface.hpp ]
+
 
