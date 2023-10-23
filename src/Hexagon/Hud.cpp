@@ -35,7 +35,7 @@ namespace Hexagon
 AllegroFlare::FontBin Hud::dummy_font_bin = {};
 
 
-Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool show_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool show_save_count, int save_count, bool show_packets, std::vector<Hexagon::Packet> packets, bool show_search_count, int search_count, bool show_focus_timer_bar, bool show_build_sequence_meter, bool show_notifications, float left_column_x, ALLEGRO_COLOR base_text_color, float base_text_opacity, std::string objective_text, bool show_objective, std::string domain_text, bool show_domain)
+Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string title_text, ALLEGRO_COLOR backfill_color, bool show_disabled_screen, bool show_powerbar, bool files_are_committed, bool commits_are_in_sync_with_remote, bool show_profiler, bool show_save_count, int save_count, bool show_packets, std::vector<Hexagon::Packet> packets, bool show_search_count, int search_count, bool show_focus_timer_bar, bool show_build_sequence_meter, bool show_notifications, float left_column_x, ALLEGRO_COLOR base_text_color, float base_text_opacity, std::string objective_text, bool show_objective, std::string domain_text, bool show_domain, std::string held_component_text, bool show_held_component)
    : initialized(false)
    , screen_sub_bitmap(nullptr)
    , notifications({})
@@ -73,6 +73,8 @@ Hud::Hud(ALLEGRO_DISPLAY* display, AllegroFlare::FontBin& font_bin, std::string 
    , show_objective(show_objective)
    , domain_text(domain_text)
    , show_domain(show_domain)
+   , held_component_text(held_component_text)
+   , show_held_component(show_held_component)
 {
 }
 
@@ -274,6 +276,18 @@ void Hud::set_show_domain(bool show_domain)
 }
 
 
+void Hud::set_held_component_text(std::string held_component_text)
+{
+   this->held_component_text = held_component_text;
+}
+
+
+void Hud::set_show_held_component(bool show_held_component)
+{
+   this->show_held_component = show_held_component;
+}
+
+
 std::vector<std::string> Hud::get_notifications() const
 {
    return notifications;
@@ -430,6 +444,18 @@ bool Hud::get_show_domain() const
 }
 
 
+std::string Hud::get_held_component_text() const
+{
+   return held_component_text;
+}
+
+
+bool Hud::get_show_held_component() const
+{
+   return show_held_component;
+}
+
+
 Hexagon::Powerbar::Powerbar &Hud::get_powerbar_ref()
 {
    return powerbar;
@@ -571,6 +597,22 @@ void Hud::draw_objective_text()
                 y,
                 ALLEGRO_ALIGN_LEFT,
                 objective_text.c_str());
+   return;
+}
+
+void Hud::draw_held_component()
+{
+   Hexagon::Elements::ColorKit color_kit(backfill_color, base_text_color);
+   float opacity = base_text_opacity;
+   ALLEGRO_FONT *held_component_text_font = obtain_held_component_font();
+   float x = -(surface_projection_width / 32 * 1);
+   float y = -(surface_projection_height / 32 * 1);
+   al_draw_text(held_component_text_font,
+                color_kit.get_base_text_color(base_text_opacity),
+                x,
+                y,
+                ALLEGRO_ALIGN_RIGHT,
+                held_component_text.c_str());
    return;
 }
 
@@ -820,6 +862,8 @@ void Hud::draw()
 
    if (show_objective) draw_objective_text();
 
+   if (show_held_component) draw_held_component();
+
    if (show_domain) draw_domain_text_and_overlay();
 
    if (show_profiler) draw_profile_timer_graph();
@@ -968,6 +1012,12 @@ ALLEGRO_FONT* Hud::obtain_title_font()
 ALLEGRO_FONT* Hud::obtain_objective_font()
 {
    return font_bin["Purista Medium.otf -22"];
+   //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
+}
+
+ALLEGRO_FONT* Hud::obtain_held_component_font()
+{
+   return font_bin["Purista Medium.otf -20"];
    //return font_bin["EurostileExtendedBlack-aka-ExtendedBold.ttf -32"];
 }
 

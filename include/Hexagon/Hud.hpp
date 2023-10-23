@@ -56,13 +56,15 @@ namespace Hexagon
       bool show_objective;
       std::string domain_text;
       bool show_domain;
+      std::string held_component_text;
+      bool show_held_component;
       void draw_current_title_text();
 
    protected:
 
 
    public:
-      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& font_bin=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool show_powerbar=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool show_save_count=false, int save_count=0, bool show_packets=false, std::vector<Hexagon::Packet> packets={}, bool show_search_count=false, int search_count=0, bool show_focus_timer_bar=false, bool show_build_sequence_meter=false, bool show_notifications=true, float left_column_x=30, ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}, float base_text_opacity=0.5f, std::string objective_text="", bool show_objective=true, std::string domain_text="", bool show_domain=true);
+      Hud(ALLEGRO_DISPLAY* display=nullptr, AllegroFlare::FontBin& font_bin=get_dummy_font_bin(), std::string title_text="", ALLEGRO_COLOR backfill_color={0.0f, 0.0f, 0.0f, 0.0f}, bool show_disabled_screen=false, bool show_powerbar=false, bool files_are_committed=false, bool commits_are_in_sync_with_remote=false, bool show_profiler=false, bool show_save_count=false, int save_count=0, bool show_packets=false, std::vector<Hexagon::Packet> packets={}, bool show_search_count=false, int search_count=0, bool show_focus_timer_bar=false, bool show_build_sequence_meter=false, bool show_notifications=true, float left_column_x=30, ALLEGRO_COLOR base_text_color=ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0}, float base_text_opacity=0.5f, std::string objective_text="", bool show_objective=true, std::string domain_text="", bool show_domain=true, std::string held_component_text="", bool show_held_component=true);
       ~Hud();
 
       void set_screen_sub_bitmap(ALLEGRO_BITMAP* screen_sub_bitmap);
@@ -97,6 +99,8 @@ namespace Hexagon
       void set_show_objective(bool show_objective);
       void set_domain_text(std::string domain_text);
       void set_show_domain(bool show_domain);
+      void set_held_component_text(std::string held_component_text);
+      void set_show_held_component(bool show_held_component);
       std::vector<std::string> get_notifications() const;
       std::vector<std::string> get_notifications2() const;
       std::string get_title_text() const;
@@ -123,12 +127,15 @@ namespace Hexagon
       bool get_show_objective() const;
       std::string get_domain_text() const;
       bool get_show_domain() const;
+      std::string get_held_component_text() const;
+      bool get_show_held_component() const;
       Hexagon::Powerbar::Powerbar &get_powerbar_ref();
       Hexagon::FocusTimerBar::FocusTimerBar &get_focus_timer_bar_ref();
       void initialize();
       void reinitialize();
       void draw_profile_timer_graph();
       void draw_objective_text();
+      void draw_held_component();
       void draw_domain_text_and_overlay();
       void draw_powerbar();
       void draw_focus_timer_bar();
@@ -141,6 +148,7 @@ namespace Hexagon
       ALLEGRO_FONT* obtain_text_font();
       ALLEGRO_FONT* obtain_title_font();
       ALLEGRO_FONT* obtain_objective_font();
+      ALLEGRO_FONT* obtain_held_component_font();
       ALLEGRO_FONT* obtain_domain_font();
       ALLEGRO_FONT* obtain_powerbar_text_font();
       ALLEGRO_FONT* obtain_score_text_font();
