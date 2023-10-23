@@ -602,11 +602,13 @@ void Hud::draw_objective_text()
 
 void Hud::draw_held_component()
 {
+   if (held_component_text.empty()) return;
+
    Hexagon::Elements::ColorKit color_kit(backfill_color, base_text_color);
    float opacity = base_text_opacity;
    ALLEGRO_FONT *held_component_text_font = obtain_held_component_font();
-   float x = -(surface_projection_width / 32 * 1);
-   float y = -(surface_projection_height / 32 * 1);
+   float x = surface_projection_width - (surface_projection_width / 32 * 1);
+   float y = surface_projection_height - (surface_projection_height / 16 * 1);
    al_draw_text(held_component_text_font,
                 color_kit.get_base_text_color(base_text_opacity),
                 x,

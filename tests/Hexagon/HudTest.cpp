@@ -298,6 +298,23 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    //sleep(2);
 }
 
+
+TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+   render__will_render_held_component)
+{
+   Hexagon::Hud hud(display, font_bin);
+   hud.initialize();
+
+   hud.set_held_component_text("Some/Held/Component");
+
+   hud.draw();
+
+   al_flip_display();
+
+   sleep(2);
+}
+
+
 TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    render__will_render_advanced_component_navigator_stages_that_are_marked_as_render_on_hud)
 {
