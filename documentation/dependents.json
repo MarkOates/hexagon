@@ -617,6 +617,7 @@
     "Hexagon/FullScreenOverlay/Stage",
     "Hexagon/GitCommitMessageInputBox/Stage",
     "Hexagon/Hud",
+    "Hexagon/Hud",
     "Hexagon/LayoutToStagesCreator",
     "Hexagon/MissingFile/Stage",
     "Hexagon/MultiplexMenu/CommandExecutor",
