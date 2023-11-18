@@ -1416,6 +1416,8 @@ bool System::spawn_project_navigator()
    ::Hexagon::StageFactory stage_factory(&hexagon_config, nullptr, &font_bin);
 
    std::vector<std::tuple<std::string, std::string>> project_menu_items = {
+      { "SurviveTheCity", "/Users/markoates/Repos/SurviveTheCity/" },
+      { "FadeToWhite", "/Users/markoates/Repos/FadeToWhite/" },
       { "ClubCatt", "/Users/markoates/Repos/ClubCatt/" },
       //{ "TheOldMill", "/Users/markoates/Repos/TheOldMill/" },
       //{ "PicSnap", "/Users/markoates/Repos/PicSnap/" },
@@ -1433,7 +1435,8 @@ bool System::spawn_project_navigator()
       //{ "KrampusTest01", "/Users/markoates/Repos/KrampusTest01/" },
       { "CatDetective", "/Users/markoates/Repos/CatDetective/" },
       { "Blast", "/Users/markoates/Repos/blast/" },
-      { "FadeToWhite", "/Users/markoates/Repos/FadeToWhite/" },
+      //{ "SurviveTheCity", "/Users/markoates/Repos/SurviveTheCity/" },
+      //{ "FadeToWhite", "/Users/markoates/Repos/FadeToWhite/" },
       //{ "DialogPlayer", "/Users/markoates/Repos/DialogPlayer/" },
       //{ "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       { "RPG", "/Users/markoates/Repos/RPG/" },
