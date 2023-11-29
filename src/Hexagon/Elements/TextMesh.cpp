@@ -109,7 +109,7 @@ void TextMesh::initialize()
    font_character_uv_mapping = font_character_map_grid.get_character_uv_mapping();
 
    if (!font_character_map_bitmap) throw std::runtime_error("boobaz");
-   if (!font_character_uv_mapping.size() == 256) throw std::runtime_error("foobar");
+   if (!(font_character_uv_mapping.size() == 256)) throw std::runtime_error("foobar32");
 
    bitmap_grid_mesh.set_bitmap(font_character_map_bitmap);
    cell_width = al_get_text_width(font, "W");
