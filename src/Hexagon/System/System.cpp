@@ -1454,7 +1454,7 @@ bool System::spawn_project_navigator()
       //{ "Peri", "/Users/markoates/Repos/Peri/" },
       //{ "Solitare", "/Users/markoates/Repos/Solitare/" },
       //{ "Epidemic", "/Users/markoates/Repos/Epidemic/" },
-      //{ "Golf", "/Users/markoates/Repos/Golf/" },
+      { "Golf", "/Users/markoates/Repos/Golf/" },
       //{ "AllegroMembersClub", "/Users/markoates/Repos/AllegroMembersClub/" },
    };
 
