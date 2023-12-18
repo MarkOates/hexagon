@@ -18,6 +18,7 @@ TEST(Hexagon_ChatGPTIntegration_Chat_ConversationViewTest, VISUAL__render__rende
    al_init();
    al_init_font_addon();
    al_init_ttf_addon();
+   al_init_image_addon();
    al_init_primitives_addon();
    ALLEGRO_DISPLAY *display = al_create_display(1920, 1080);
    AllegroFlare::FontBin font_bin;
