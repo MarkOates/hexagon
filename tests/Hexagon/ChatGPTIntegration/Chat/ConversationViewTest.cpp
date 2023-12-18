@@ -41,6 +41,7 @@ TEST(Hexagon_ChatGPTIntegration_Chat_ConversationViewTest, VISUAL__render__rende
 
    al_rest(1);
 
+   bitmap_bin.clear();
    al_destroy_display(display);
    al_uninstall_system();
 }
