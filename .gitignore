@@ -14,8 +14,9 @@ tmp/*
 
 .deps/**
 obj/**
-bin/**
+bin/*
 !bin/data
+!bin/data/*
 *.a
 
 
