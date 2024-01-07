@@ -1434,6 +1434,7 @@ bool System::spawn_project_navigator()
       //{ "PicSnap", "/Users/markoates/Repos/PicSnap/" },
       //{ "Billboard", "/Users/markoates/Repos/Billboard/" },
       { "ArtGalleryOfCats", "/Users/markoates/Repos/ArtGalleryOfCats/" },
+      { "Framerate", "/Users/markoates/Repos/Framerate/" },
       { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       //{ "ReturnOfTheWanderer", "/Users/markoates/Repos/ReturnOfTheWanderer/" },
       { "OutOfTheBox", "/Users/markoates/Repos/OutOfTheBox/" },
