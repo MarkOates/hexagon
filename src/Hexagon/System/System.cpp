@@ -1432,6 +1432,7 @@ bool System::spawn_project_navigator()
       { "FadeToWhite", "/Users/markoates/Repos/FadeToWhite/" },
       { "ClubCatt", "/Users/markoates/Repos/ClubCatt/" },
       { "ReturnOfTheWanderer", "/Users/markoates/Repos/ReturnOfTheWanderer/" },
+      { "CellBlock", "/Users/markoates/Repos/CellBlock/" },
       //{ "TheOldMill", "/Users/markoates/Repos/TheOldMill/" },
       //{ "PicSnap", "/Users/markoates/Repos/PicSnap/" },
       //{ "Billboard", "/Users/markoates/Repos/Billboard/" },
