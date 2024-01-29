@@ -1426,6 +1426,7 @@ bool System::spawn_project_navigator()
       { "ClubCatt", "/Users/markoates/Repos/ClubCatt/" },
       //{ "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
       { "---", "/" },
+      { "SomePlatformer", "/Users/markoates/Repos/SomePlatformer/" },
       { "CatchIt", "/Users/markoates/Repos/CatchIt/" },
       { "UIElements", "/Users/markoates/Repos/UIElements/" },
       { "Robieo", "/Users/markoates/Repos/Robieo/" },
