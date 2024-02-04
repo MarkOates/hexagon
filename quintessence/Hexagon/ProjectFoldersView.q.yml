@@ -14,17 +14,15 @@ properties:
     init_with: nullptr
     constructor_arg: true
 
-  - name: config
-    type: Hexagon::System::Config*
-    init_with: nullptr
+  - name: project_directory
+    type: std::string
+    init_with: '"[unset-project_directory]"'
     constructor_arg: true
 
   - name: menu_items
     type: std::vector<std::tuple<std::string, std::string>>
     init_with: '{}'
-    constructor_arg: true
     getter: true
-    setter: false
 
   - name: main_menu
     type: Hexagon::Elements::ListMenu
@@ -52,21 +50,11 @@ properties:
 functions:
 
 
-  - name: set_menu_items
-    parameters:
-      - name: menu_items
-        type: std::vector<std::tuple<std::string, std::string>>
-        default_argument: '{}'
-    body: |
-      this->menu_items = menu_items;
-      main_menu.set_list_items(menu_items);
-      return;
-
-
   - name: initialize
     type: bool
     guards: [ (!initialized) ]
     body: |
+      menu_items = build_menu_items();
       main_menu = Hexagon::Elements::ListMenu(font_bin, "Project Folders", menu_items);
       //main_menu.set_color(ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f});
       main_menu.set_color(ALLEGRO_COLOR{0.49f, 0.81f, 0.98f, 1.0f});
@@ -215,14 +203,57 @@ functions:
     body_dependency_symbols: []
 
 
-  - name: build_placeholder_menu_items
-    static: true
+  - name: build_project_folder
+    type: std::string
+    parameters:
+      - name: folder
+        type: std::string
+        default_argument: '"[unset-folder]"'
+    body: |
+      return project_directory + "/" + folder + "/";
+
+
+  - name: folder_exists_and_is_directory
+    type: bool
+    parameters:
+      - name: folder
+        type: std::string
+        default_argument: '"[unset-folder]"'
+    body: |
+      return std::filesystem::exists(folder) && std::filesystem::is_directory(folder);
+    body_dependency_symbols:
+      - std::filesystem
+
+
+  - name: build_menu_items
     type: std::vector<std::tuple<std::string, std::string>>
     body: |
       return {
-         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
-         { "Hexagon", "/Users/markoates/Repos/hexagon/" },
-         { "Blast", "/Users/markoates/Repos/blast/" },
+         {
+            "tests/fixtures", // Label
+            "tests/fixtures", // Actual folder
+            //build_project_folder("tests/fixtures/")
+         },
+         {
+            "tests/fixtures/bitmaps",
+            "tests/fixtures/bitmaps",
+            //build_project_folder("tests/fixtures/bitmaps/")
+         },
+         {
+            "tests/fixtures/fonts",
+            "tests/fixtures/fonts",
+            //build_project_folder("tests/fixtures/fonts/")
+         },
+         {
+            "bin/data",
+            "bin/data",
+            //build_project_folder("bin/data")
+         },
+         {
+            "tmp/test_snapshots",
+            "tmp/test_snapshots",
+            //build_project_folder("bin/data")
+         },
       };
 
 
@@ -261,3 +292,5 @@ dependencies:
     headers: [ AllegroFlare/FontBin.hpp ]
   - symbol: Hexagon::System::Config
     headers: [ Hexagon/System/Config.hpp ]
+
+

@@ -62,6 +62,9 @@ TEST_F(Hexagon_ProjectFoldersViewTest, contains_an_empty_list_of_menu_items_by_d
 }
 
 
+// TODO: Add test for assembled list
+
+/*
 TEST_F(Hexagon_ProjectFoldersViewTest,
    build_placeholder_menu_items__will_create_a_set_of_menu_items_useful_for_testing_or_development)
 {
@@ -91,6 +94,7 @@ TEST_F(Hexagon_ProjectFoldersViewTest, set_menu_items__will_set_the_menu_items)
 
    EXPECT_EQ(expected_placeholder_menu_items, project_navigator.get_menu_items());
 }
+*/
 
 
 TEST_F(Hexagon_ProjectFoldersViewTest, set_menu_items__will_reset_the_cursor_position_to_zero)

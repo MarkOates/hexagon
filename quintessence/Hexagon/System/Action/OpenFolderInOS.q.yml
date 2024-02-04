@@ -1,0 +1,67 @@
+parent_classes:
+
+
+  - class: ::Action
+    scope: public
+    init_with: '"Hexagon::System::Action::OpenFolderInOS", ActionData()'
+
+
+properties:
+
+
+  - name: folder
+    type: std::string
+    init_with: '"documentation/"'
+    constructor_arg: true
+
+  - name: project_path
+    type: std::string
+    init_with: '"/Users/markoates/Repos/hexagon"'
+    constructor_arg: true
+
+
+functions:
+
+
+  - name: execute
+    virtual: true
+    type: bool
+    body: |
+      std::string shell_command_to_open_browser = build_shell_command_to_open_folder_in_os();
+      Blast::ShellCommandExecutorWithCallback shell_command_executor(shell_command_to_open_browser);
+      shell_command_executor.execute();
+      return true;
+    body_dependency_symbols:
+      - Blast::ShellCommandExecutorWithCallback
+
+
+  - name: build_shell_command_to_open_folder_in_os
+    type: std::string
+    body: |
+      // CRITICAL: Validate is folder
+      // TODO: 
+      std::string proposed_folder = project_path + "/" + folder;
+      if (!std::filesystem::is_directory(proposed_folder))
+      {
+         throw std::runtime_error(
+               "Hexagon::System::Action::OpenFolderInOS::build_shell_command_to_open_folder_in_os: error: \"" + 
+               proposed_folder + "\" is not a directory."
+            );
+      }
+      std::stringstream result;
+      result << "open " << proposed_folder;
+      return result.str();
+    body_dependency_symbols:
+      - std::stringstream
+      - std::filesystem
+
+
+dependencies:
+
+
+  - symbol: ::Action
+    headers: [ Hexagon/Action.hpp ]
+  - symbol: Blast::ShellCommandExecutorWithCallback
+    headers: [ Blast/ShellCommandExecutorWithCallback.hpp ]
+
+

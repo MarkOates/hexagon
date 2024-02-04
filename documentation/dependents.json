@@ -3,6 +3,7 @@
     "ApplicationController",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/StageFactory",
@@ -15,6 +16,7 @@
   ],
   "al_get_allegro_version": [
     "ApplicationController",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
@@ -23,6 +25,7 @@
   ],
   "Hexagon/Shaders/TiledHexagonMotionEffect": [
     "ApplicationController",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
@@ -63,6 +66,7 @@
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/System/EventController",
     "Hexagon/System/EventController",
@@ -246,6 +250,7 @@
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/EventController",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
@@ -629,6 +634,7 @@
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageCollectionHelper",
@@ -658,6 +664,7 @@
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
@@ -716,6 +723,7 @@
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/PacketRenderer",
     "Hexagon/PacketRenderer",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/StageFactory",
@@ -979,6 +987,7 @@
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
@@ -990,6 +999,7 @@
     "Hexagon/Forms/Fun",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/PacketRenderer",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/UI/DrawingBox"
   ],
@@ -1110,6 +1120,7 @@
     "Hexagon/Search/Elasticsearch/HealthChecker",
     "Hexagon/SymlinkToucher",
     "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/System/Action/OpenFolderInOS",
     "Hexagon/Testing/ComponentTestRunner",
     "NcursesArt/GithubRepoStatusFetcher"
   ],
@@ -1334,6 +1345,7 @@
   "Hexagon/Elements/ListMenu": [
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen",
     "Hexagon/UI/DrawingBox",
@@ -1342,6 +1354,7 @@
   "std/vector<std/tuple<std/string, std/string>>": [
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/PacketRenderer",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/StageFactory",
@@ -1754,25 +1767,29 @@
   "Hexagon/ProjectFromYAML": [
     "Hexagon/ProjectFactory"
   ],
-  "Hexagon/LayoutFromYAML": [
-    "Hexagon/ProjectFromYAML"
-  ],
   "std/ofstream": [
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
   "Hexagon/Logo": [
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
   "AllegroFlare/Profiler": [
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen",
     "Hexagon/TitleScreen"
   ],
   "Hexagon/Elements/DataTable": [
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
+  ],
+  "Hexagon/LayoutFromYAML": [
+    "Hexagon/ProjectFromYAML"
   ],
   "RailsMinitestTestResult": [
     "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter",
@@ -1852,6 +1869,9 @@
   "Hexagon/ProjectNavigator": [
     "Hexagon/StageFactory"
   ],
+  "Hexagon/ProjectFoldersView": [
+    "Hexagon/StageFactory"
+  ],
   "Hexagon/Notifications/Stage": [
     "Hexagon/StageFactory"
   ],
@@ -1894,6 +1914,7 @@
     "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
     "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/System/Action/OpenFolderInOS",
     "Hexagon/System/Action/SendMessageToDaemusToBuild"
   ],
   "Hexagon/Git/RemoteSyncChecker": [

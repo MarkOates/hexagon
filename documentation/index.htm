@@ -200,6 +200,7 @@ table td
   <li><a href="#quintessence/Hexagon/ProjectComponentNavigator/SearchBar.q.yml">quintessence/Hexagon/ProjectComponentNavigator/SearchBar.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml">quintessence/Hexagon/ProjectComponentNavigator/Stage.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ProjectFactory.q.yml">quintessence/Hexagon/ProjectFactory.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/ProjectFoldersView.q.yml">quintessence/Hexagon/ProjectFoldersView.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ProjectFromYAML.q.yml">quintessence/Hexagon/ProjectFromYAML.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/ProjectNavigator.q.yml">quintessence/Hexagon/ProjectNavigator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/Rails/ComponentLister.q.yml">quintessence/Hexagon/Rails/ComponentLister.q.yml</a></li>
@@ -233,6 +234,7 @@ table td
   <li><a href="#quintessence/Hexagon/System/Action/CreateTwoSplitFromComponent.q.yml">quintessence/Hexagon/System/Action/CreateTwoSplitFromComponent.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages.q.yml">quintessence/Hexagon/System/Action/DestroyAllCodeEditorStages.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Action/OpenDocumentationInBrowser.q.yml">quintessence/Hexagon/System/Action/OpenDocumentationInBrowser.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/System/Action/OpenFolderInOS.q.yml">quintessence/Hexagon/System/Action/OpenFolderInOS.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Action/SendMessageToDaemusToBuild.q.yml">quintessence/Hexagon/System/Action/SendMessageToDaemusToBuild.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/Config.q.yml">quintessence/Hexagon/System/Config.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/System/EventController.q.yml">quintessence/Hexagon/System/EventController.q.yml</a></li>
@@ -10492,6 +10494,137 @@ table td
 </ul>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/ProjectFoldersView.q.yml">quintessence/Hexagon/ProjectFoldersView.q.yml</h3>
+    <h4>Overview<h4>
+    <h3>Properties</h3>
+<div class="property-box properties">     <table>
+<tr>
+  <td class="property">font_bin</td>
+  <td class="property">AllegroFlare::FontBin*</td>
+</tr>
+<tr>
+  <td class="property">project_directory</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">menu_items</td>
+  <td class="property">std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt;</td>
+</tr>
+<tr>
+  <td class="property">main_menu</td>
+  <td class="property">Hexagon::Elements::ListMenu</td>
+</tr>
+<tr>
+  <td class="property">surface_width</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">surface_height</td>
+  <td class="property">int</td>
+</tr>
+<tr>
+  <td class="property">a_default_empty_event</td>
+  <td class="property">ALLEGRO_EVENT</td>
+</tr>
+<tr>
+  <td class="property">initialized</td>
+  <td class="property">bool</td>
+</tr>
+    </table>
+</div>    <h3>Methods</h3>
+<div class="property-box methods">     <table>
+<tr>
+  <td class="method">initialize()</td>
+</tr>
+<tr>
+  <td class="method">render()</td>
+</tr>
+<tr>
+  <td class="private_method">draw_frame()</td>
+</tr>
+<tr>
+  <td class="method">main_menu_cursor_move_up()</td>
+</tr>
+<tr>
+  <td class="method">main_menu_cursor_move_down()</td>
+</tr>
+<tr>
+  <td class="method">main_menu_get_current_list_item_identifier()</td>
+</tr>
+<tr>
+  <td class="method">draw_menu()</td>
+</tr>
+<tr>
+  <td class="method">process_local_event(std::string event_name=&quot;&quot;, ActionData action_data=ActionData())</td>
+</tr>
+<tr>
+  <td class="method">process_event(ALLEGRO_EVENT&amp; event=get_a_default_empty_event_ref())</td>
+</tr>
+<tr>
+  <td class="method">build_project_folder(std::string folder=&quot;[unset-folder]&quot;)</td>
+</tr>
+<tr>
+  <td class="method">folder_exists_and_is_directory(std::string folder=&quot;[unset-folder]&quot;)</td>
+</tr>
+<tr>
+  <td class="method">build_menu_items()</td>
+</tr>
+    </table>
+</div>    <h3>Dependencies</h3>
+<div class="property-box dependencies">     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;StageInterface&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StageInterface.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::ofstream&quot;, &quot;headers&quot;=&gt;[&quot;fstream&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_is_primitives_addon_initialized&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_primitives.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_draw_filled_rectangle&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro_primitives.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;placement3d&quot;, &quot;headers&quot;=&gt;[&quot;allegro_flare/placement3d.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Logo&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Logo.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::Profiler&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/Profiler.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::DataTable&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/DataTable.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_get_allegro_version&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Elements::ListMenu&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Elements/ListMenu.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Shaders::TiledHexagonMotionEffect&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Shaders/TiledHexagonMotionEffect.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ALLEGRO_EVENT&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ActionData&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ActionData.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;tuple&quot;, &quot;string&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::System::Config&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/System/Config.hpp&quot;]}</td>
+</tr>
+    </table>
+</div>  </div>
+</ul>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/ProjectFromYAML.q.yml">quintessence/Hexagon/ProjectFromYAML.q.yml</h3>
     <h4>Overview<h4>
     <h3>Properties</h3>
@@ -11691,6 +11824,9 @@ table td
   <td class="method">create_project_navigator(std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt; project_menu_items={})</td>
 </tr>
 <tr>
+  <td class="method">create_project_folders_view(std::string project_directory=&quot;[unset-project_directory]&quot;)</td>
+</tr>
+<tr>
   <td class="method">get_current_display()</td>
 </tr>
 <tr>
@@ -11776,6 +11912,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ProjectNavigator&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ProjectNavigator.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::ProjectFoldersView&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ProjectFoldersView.hpp&quot;]}</td>
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::vector&lt;std::tuple&lt;std::string, std::string&gt;&gt;&quot;, &quot;headers&quot;=&gt;[&quot;vector&quot;, &quot;tuple&quot;, &quot;string&quot;]}</td>
@@ -12350,6 +12489,41 @@ table td
 </tr>
 <tr>
   <td class="method">build_shell_command_to_open_browser()</td>
+</tr>
+    </table>
+</div>    <h3>Dependencies</h3>
+<div class="property-box dependencies">     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;:&quot;:Action&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Action.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Blast::ShellCommandExecutorWithCallback&quot;, &quot;headers&quot;=&gt;[&quot;Blast/ShellCommandExecutorWithCallback.hpp&quot;]}</td>
+</tr>
+    </table>
+</div>  </div>
+</ul>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/System/Action/OpenFolderInOS.q.yml">quintessence/Hexagon/System/Action/OpenFolderInOS.q.yml</h3>
+    <h4>Overview<h4>
+    <h3>Properties</h3>
+<div class="property-box properties">     <table>
+<tr>
+  <td class="property">folder</td>
+  <td class="property">std::string</td>
+</tr>
+<tr>
+  <td class="property">project_path</td>
+  <td class="property">std::string</td>
+</tr>
+    </table>
+</div>    <h3>Methods</h3>
+<div class="property-box methods">     <table>
+<tr>
+  <td class="method">execute()</td>
+</tr>
+<tr>
+  <td class="method">build_shell_command_to_open_folder_in_os()</td>
 </tr>
     </table>
 </div>    <h3>Dependencies</h3>
@@ -13845,6 +14019,7 @@ table td
     "ApplicationController",
     "Hexagon/Daemus/ProgramRunner",
     "Hexagon/Daemus/ProgramRunner",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/StageFactory",
@@ -13857,6 +14032,7 @@ table td
   ],
   "al_get_allegro_version": [
     "ApplicationController",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
@@ -13865,6 +14041,7 @@ table td
   ],
   "Hexagon/Shaders/TiledHexagonMotionEffect": [
     "ApplicationController",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
@@ -13905,6 +14082,7 @@ table td
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/System/EventController",
     "Hexagon/System/EventController",
@@ -14088,6 +14266,7 @@ table td
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/EventController",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/UI/DrawingBox",
     "Hexagon/UI/LittleMenu"
@@ -14471,6 +14650,7 @@ table td
     "Hexagon/ObjectivesLog/Stage",
     "Hexagon/OneLineInputBox/Stage",
     "Hexagon/ProjectComponentNavigator/Stage",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageCollectionHelper",
     "Hexagon/StageCollectionHelper",
@@ -14500,6 +14680,7 @@ table td
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/ProjectComponentNavigator/Renderer",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/System/Action/CreateCodeEditorStageFromFilename",
@@ -14558,6 +14739,7 @@ table td
     "Hexagon/OneLineInputBox/Renderer",
     "Hexagon/PacketRenderer",
     "Hexagon/PacketRenderer",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/StageFactory",
@@ -14821,6 +15003,7 @@ table td
     "Hexagon/MultiplexMenu/PageRenderer",
     "Hexagon/MultiplexMenu/Renderer",
     "Hexagon/OneLineInputBox/Renderer",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
@@ -14832,6 +15015,7 @@ table td
     "Hexagon/Forms/Fun",
     "Hexagon/ObjectivesLog/ObjectiveRenderer",
     "Hexagon/PacketRenderer",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/UI/DrawingBox"
   ],
@@ -14952,6 +15136,7 @@ table td
     "Hexagon/Search/Elasticsearch/HealthChecker",
     "Hexagon/SymlinkToucher",
     "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/System/Action/OpenFolderInOS",
     "Hexagon/Testing/ComponentTestRunner",
     "NcursesArt/GithubRepoStatusFetcher"
   ],
@@ -15176,6 +15361,7 @@ table td
   "Hexagon/Elements/ListMenu": [
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/ComponentRelationsNavigator/Stage",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen",
     "Hexagon/UI/DrawingBox",
@@ -15184,6 +15370,7 @@ table td
   "std/vector<std/tuple<std/string, std/string>>": [
     "Hexagon/ComponentRelationsNavigator/Stage",
     "Hexagon/PacketRenderer",
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/StageFactory",
     "Hexagon/StageFactory",
@@ -15596,25 +15783,29 @@ table td
   "Hexagon/ProjectFromYAML": [
     "Hexagon/ProjectFactory"
   ],
-  "Hexagon/LayoutFromYAML": [
-    "Hexagon/ProjectFromYAML"
-  ],
   "std/ofstream": [
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
   "Hexagon/Logo": [
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
   ],
   "AllegroFlare/Profiler": [
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen",
     "Hexagon/TitleScreen"
   ],
   "Hexagon/Elements/DataTable": [
+    "Hexagon/ProjectFoldersView",
     "Hexagon/ProjectNavigator",
     "Hexagon/TitleScreen"
+  ],
+  "Hexagon/LayoutFromYAML": [
+    "Hexagon/ProjectFromYAML"
   ],
   "RailsMinitestTestResult": [
     "Hexagon/RailsMinitestTestResultToCodeMessagePointConverter",
@@ -15694,6 +15885,9 @@ table td
   "Hexagon/ProjectNavigator": [
     "Hexagon/StageFactory"
   ],
+  "Hexagon/ProjectFoldersView": [
+    "Hexagon/StageFactory"
+  ],
   "Hexagon/Notifications/Stage": [
     "Hexagon/StageFactory"
   ],
@@ -15736,6 +15930,7 @@ table td
     "Hexagon/System/Action/CreateTwoSplitFromComponent",
     "Hexagon/System/Action/DestroyAllCodeEditorStages",
     "Hexagon/System/Action/OpenDocumentationInBrowser",
+    "Hexagon/System/Action/OpenFolderInOS",
     "Hexagon/System/Action/SendMessageToDaemusToBuild"
   ],
   "Hexagon/Git/RemoteSyncChecker": [

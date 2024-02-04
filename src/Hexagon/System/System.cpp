@@ -79,6 +79,8 @@
 #include <Hexagon/System/Action/SendMessageToDaemusToBuild.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Blast/StringJoiner.hpp>
+#include <Hexagon/ProjectFoldersView.hpp>
+#include <Hexagon/System/Action/OpenFolderInOS.hpp>
 
 
 
@@ -109,6 +111,7 @@ System::System(ALLEGRO_DISPLAY *display, Hexagon::System::Config &hexagon_config
    : last_component_navigator_selection("")
    , current_project_directory("")
    , last_project_navigator_selection("")
+   , last_project_folders_selection("")
    , last_commit_message("")
    , focused_component_name("")
    , current_objective("")
@@ -308,6 +311,12 @@ void System::set_last_component_navigator_selection(std::string last_component_n
 void System::set_last_project_navigator_selection(std::string last_project_navigator_selection)
 {
    this->last_project_navigator_selection = last_project_navigator_selection;
+}
+
+
+void System::set_last_project_folders_selection(std::string last_project_folders_selection)
+{
+   this->last_project_folders_selection = last_project_folders_selection;
 }
 
 
@@ -539,6 +548,24 @@ bool System::set_frontmost_git_commit_message_input_box_to_submitted_and_pending
 
    if (!stage) return false;
    stage->change_state_to_submitted_and_pending_destruction();
+   return true;
+}
+
+
+
+bool System::open_folder_from_project_folders_selection()
+{
+   Hexagon::System::Action::OpenFolderInOS open_folder_in_os(
+         last_project_folders_selection,
+         current_project_directory
+      );
+
+   open_folder_in_os.execute();
+   //throw std::runtime_error("naosajsdigoajdgio");
+   //Hexagon::System::Action::OpenFolderInOS open_folder_in_os;
+   //open_folder_in_os.set_
+
+   // TODO:
    return true;
 }
 
@@ -1429,13 +1456,13 @@ bool System::spawn_project_folders_window()
 {
    ::Hexagon::StageFactory stage_factory(&hexagon_config, nullptr, &font_bin);
 
-   std::vector<std::tuple<std::string, std::string>> project_folders = {
-      { "test fixtures", "/Users/markoates/Repos/allegro_flare/tests/fixtures/" },
-      { "test fixtures (bitmaps)", "/Users/markoates/Repos/allegro_flare/tests/fixtures/bitmaps/" },
-      { "test fixtures (fonts)", "/Users/markoates/Repos/allegro_flare/tests/fixtures/fonts/" },
-   };
+   //std::vector<std::tuple<std::string, std::string>> project_folders = {
+      //{ "test fixtures", "/Users/markoates/Repos/allegro_flare/tests/fixtures/" },
+      //{ "test fixtures (bitmaps)", "/Users/markoates/Repos/allegro_flare/tests/fixtures/bitmaps/" },
+      //{ "test fixtures (fonts)", "/Users/markoates/Repos/allegro_flare/tests/fixtures/fonts/" },
+   //};
 
-   StageInterface *stage = stage_factory.create_project_navigator(project_folders);
+   StageInterface *stage = stage_factory.create_project_folders_view(get_current_project_directory());
 
    stages.push_back(stage);
 
@@ -1480,7 +1507,7 @@ bool System::spawn_red_overlay()
 bool System::spawn_file_navigator()
 {
    ::Hexagon::StageFactory stage_factory(&hexagon_config, nullptr, &font_bin);
-   StageInterface *stage = stage_factory.create_file_navigator(current_project_directory);
+   StageInterface *stage = stage_factory.create_file_navigator(get_current_project_directory());
 
    stages.push_back(stage);
 
@@ -1625,7 +1652,7 @@ bool System::check_git_local_status_and_update_powerbar()
 
 bool System::open_documentation_in_browser()
 {
-   ::Hexagon::System::Action::OpenDocumentationInBrowser action(current_project_directory);
+   ::Hexagon::System::Action::OpenDocumentationInBrowser action(get_current_project_directory());
    action.execute();
    return true;
 }
@@ -1722,6 +1749,37 @@ bool System::push_project_navigator_selection() // TODO: this function *also* in
 
    // But also set the current project directory here for now
    set_current_project_directory(last_project_navigator_selection);
+
+   return true;
+}
+
+
+bool System::push_project_folders_selection() // TODO: this function *also* includes setting the value globally
+{
+   StageInterface *frontmost_stage_interface = get_frontmost_stage();
+   if (!frontmost_stage_interface || !(frontmost_stage_interface->get_type() == StageInterface::PROJECT_FOLDERS))
+   {
+      std::stringstream error_message;
+      std::string function_name = "push_project_folders_selection";
+      error_message << "Could not "
+                    << function_name
+                    << ": Either the frontmost_stage_interface is a nullptr OR is not "
+                    << "of type StageInterface::PROJECT_FOLDERS."
+                    << std::endl;
+      throw std::runtime_error(error_message.str().c_str());
+   }
+   ::Hexagon::ProjectFoldersView *project_folders =
+      static_cast<::Hexagon::ProjectFoldersView*>(frontmost_stage_interface);
+   //main_menu_get_current_list_item_identifier
+
+   std::string current_project_folders_selection =
+      project_folders->main_menu_get_current_list_item_identifier();
+
+   // set the "selection" in the storage space
+   set_last_project_folders_selection(current_project_folders_selection);
+
+   // TODO: Move this call to an event
+   open_folder_from_project_folders_selection();
 
    return true;
 }
@@ -1969,9 +2027,9 @@ bool System::commit_all_files_with_last_git_commit_message_from_regex_temp_file_
       throw std::runtime_error("cannot open expected REGEX_TEMP_FILENAME file for input, or is empty");
 
    std::string commit_message = regex_input_file_lines[0];
-   std::string current_project_directory = get_current_project_directory();
+   //std::string current_project_directory = get_current_project_directory();
    
-   ::Hexagon::Git::StageEverything stage_everything(current_project_directory);
+   ::Hexagon::Git::StageEverything stage_everything(get_current_project_directory());
    stage_everything.stage_everything();
 
    ::Hexagon::Git::CommitStagedWithMessage commit_staged_with_message(get_current_project_directory(), commit_message);
@@ -2070,6 +2128,13 @@ bool System::submit_current_modal()
       process_local_event(::System::DESTROY_TOPMOST_STAGE);
       process_local_event(::System::DESTROY_ALL_CODE_EDITOR_STAGES);
       process_local_event(::System::CLEAR_HUD_TITLE);
+      //process_local_event(::System::CENTER_CAMERA_TO_ORIGIN); // TODO
+      break;
+   case StageInterface::PROJECT_FOLDERS:
+      process_local_event(::System::PUSH_PROJECT_FOLDERS_SELECTION);
+      process_local_event(::System::DESTROY_TOPMOST_STAGE);
+      //process_local_event(::System::DESTROY_ALL_CODE_EDITOR_STAGES);
+      //process_local_event(::System::CLEAR_HUD_TITLE);
       //process_local_event(::System::CENTER_CAMERA_TO_ORIGIN); // TODO
       break;
    case StageInterface::COMPONENT_NAVIGATOR:
@@ -2197,6 +2262,7 @@ const std::string System::DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGE
    "DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES";
 const std::string System::PUSH_FILE_NAVIGATOR_SELECTION = "PUSH_FILE_NAVIGATOR_SELECTION";
 const std::string System::PUSH_PROJECT_NAVIGATOR_SELECTION = "PUSH_PROJECT_NAVIGATOR_SELECTION";
+const std::string System::PUSH_PROJECT_FOLDERS_SELECTION = "PUSH_PROJECT_FOLDERS_SELECTION";
 const std::string System::PUSH_COMPONENT_NAVIGATOR_SELECTION = "PUSH_COMPONENT_NAVIGATOR_SELECTION";
 const std::string System::PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION = "PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION";
 const std::string System::REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE = "REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE";

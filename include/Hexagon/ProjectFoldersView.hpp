@@ -5,7 +5,6 @@
 #include <Hexagon/ActionData.hpp>
 #include <Hexagon/Elements/ListMenu.hpp>
 #include <Hexagon/StageInterface.hpp>
-#include <Hexagon/System/Config.hpp>
 #include <allegro5/allegro.h>
 #include <string>
 #include <tuple>
@@ -18,7 +17,7 @@ namespace Hexagon
    {
    private:
       AllegroFlare::FontBin* font_bin;
-      Hexagon::System::Config* config;
+      std::string project_directory;
       std::vector<std::tuple<std::string, std::string>> menu_items;
       Hexagon::Elements::ListMenu main_menu;
       int surface_width;
@@ -31,12 +30,11 @@ namespace Hexagon
 
 
    public:
-      ProjectFoldersView(AllegroFlare::FontBin* font_bin=nullptr, Hexagon::System::Config* config=nullptr, std::vector<std::tuple<std::string, std::string>> menu_items={});
+      ProjectFoldersView(AllegroFlare::FontBin* font_bin=nullptr, std::string project_directory="[unset-project_directory]");
       virtual ~ProjectFoldersView();
 
       std::vector<std::tuple<std::string, std::string>> get_menu_items() const;
       static ALLEGRO_EVENT &get_a_default_empty_event_ref();
-      void set_menu_items(std::vector<std::tuple<std::string, std::string>> menu_items={});
       bool initialize();
       virtual void render() override;
       bool main_menu_cursor_move_up();
@@ -45,7 +43,9 @@ namespace Hexagon
       void draw_menu();
       virtual void process_local_event(std::string event_name="", ActionData action_data=ActionData()) override;
       virtual void process_event(ALLEGRO_EVENT& event=get_a_default_empty_event_ref()) override;
-      static std::vector<std::tuple<std::string, std::string>> build_placeholder_menu_items();
+      std::string build_project_folder(std::string folder="[unset-folder]");
+      bool folder_exists_and_is_directory(std::string folder="[unset-folder]");
+      std::vector<std::tuple<std::string, std::string>> build_menu_items();
    };
 }
 

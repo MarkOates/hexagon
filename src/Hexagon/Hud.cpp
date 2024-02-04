@@ -811,6 +811,7 @@ void Hud::draw()
 
    std::vector<StageInterface::type_t> permitted_types = {
       StageInterface::PROJECT_NAVIGATOR,
+      StageInterface::PROJECT_FOLDERS,
       StageInterface::COMPONENT_NAVIGATOR,
       StageInterface::COMPONENT_RELATIONS_NAVIGATOR,
       StageInterface::ONE_LINE_INPUT_BOX,

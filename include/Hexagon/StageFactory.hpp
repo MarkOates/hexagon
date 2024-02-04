@@ -66,6 +66,7 @@ namespace Hexagon
       StageInterface* create_git_commit_message_box();
       StageInterface* create_advanced_component_navigator(std::string project_directory="/Users/markoates/Repos/hexagon/", std::string initial_search_text="");
       StageInterface* create_project_navigator(std::vector<std::tuple<std::string, std::string>> project_menu_items={});
+      StageInterface* create_project_folders_view(std::string project_directory="[unset-project_directory]");
       ALLEGRO_DISPLAY* get_current_display();
       placement3d build_centered_on_hud_initial_place(float width=0, float height=0);
       placement3d build_centered_in_world_initial_place(float width=0, float height=0);

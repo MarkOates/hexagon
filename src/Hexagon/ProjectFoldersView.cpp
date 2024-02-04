@@ -5,6 +5,7 @@
 #include <Hexagon/Elements/ListMenu.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/placement3d.h>
+#include <filesystem>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
@@ -17,11 +18,11 @@ namespace Hexagon
 ALLEGRO_EVENT ProjectFoldersView::a_default_empty_event = {};
 
 
-ProjectFoldersView::ProjectFoldersView(AllegroFlare::FontBin* font_bin, Hexagon::System::Config* config, std::vector<std::tuple<std::string, std::string>> menu_items)
+ProjectFoldersView::ProjectFoldersView(AllegroFlare::FontBin* font_bin, std::string project_directory)
    : StageInterface(StageInterface::PROJECT_FOLDERS)
    , font_bin(font_bin)
-   , config(config)
-   , menu_items(menu_items)
+   , project_directory(project_directory)
+   , menu_items({})
    , main_menu({})
    , surface_width(1920)
    , surface_height(1080)
@@ -47,13 +48,6 @@ ALLEGRO_EVENT &ProjectFoldersView::get_a_default_empty_event_ref()
 }
 
 
-void ProjectFoldersView::set_menu_items(std::vector<std::tuple<std::string, std::string>> menu_items)
-{
-   this->menu_items = menu_items;
-   main_menu.set_list_items(menu_items);
-   return;
-}
-
 bool ProjectFoldersView::initialize()
 {
    if (!((!initialized)))
@@ -63,6 +57,7 @@ bool ProjectFoldersView::initialize()
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
       throw std::runtime_error("ProjectFoldersView::initialize: error: guard \"(!initialized)\" not met");
    }
+   menu_items = build_menu_items();
    main_menu = Hexagon::Elements::ListMenu(font_bin, "Project Folders", menu_items);
    //main_menu.set_color(ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f});
    main_menu.set_color(ALLEGRO_COLOR{0.49f, 0.81f, 0.98f, 1.0f});
@@ -245,12 +240,44 @@ void ProjectFoldersView::process_event(ALLEGRO_EVENT& event)
    return;
 }
 
-std::vector<std::tuple<std::string, std::string>> ProjectFoldersView::build_placeholder_menu_items()
+std::string ProjectFoldersView::build_project_folder(std::string folder)
+{
+   return project_directory + "/" + folder + "/";
+}
+
+bool ProjectFoldersView::folder_exists_and_is_directory(std::string folder)
+{
+   return std::filesystem::exists(folder) && std::filesystem::is_directory(folder);
+}
+
+std::vector<std::tuple<std::string, std::string>> ProjectFoldersView::build_menu_items()
 {
    return {
-      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
-      { "Hexagon", "/Users/markoates/Repos/hexagon/" },
-      { "Blast", "/Users/markoates/Repos/blast/" },
+      {
+         "tests/fixtures", // Label
+         "tests/fixtures", // Actual folder
+         //build_project_folder("tests/fixtures/")
+      },
+      {
+         "tests/fixtures/bitmaps",
+         "tests/fixtures/bitmaps",
+         //build_project_folder("tests/fixtures/bitmaps/")
+      },
+      {
+         "tests/fixtures/fonts",
+         "tests/fixtures/fonts",
+         //build_project_folder("tests/fixtures/fonts/")
+      },
+      {
+         "bin/data",
+         "bin/data",
+         //build_project_folder("bin/data")
+      },
+      {
+         "tmp/test_snapshots",
+         "tmp/test_snapshots",
+         //build_project_folder("bin/data")
+      },
    };
 }
 

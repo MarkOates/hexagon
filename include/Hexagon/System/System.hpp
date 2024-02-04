@@ -27,6 +27,7 @@ private:
    std::string last_component_navigator_selection;
    std::string current_project_directory;
    std::string last_project_navigator_selection;
+   std::string last_project_folders_selection;
    std::string last_commit_message;
    std::string focused_component_name;
    std::string current_objective;
@@ -92,6 +93,7 @@ public:
    std::string get_focused_component_name();
    void clear_focused_component_name();
    void set_last_project_navigator_selection(std::string last_project_navigator_selection);
+   void set_last_project_folders_selection(std::string last_project_folders_selection);
    void set_last_component_navigator_selection(std::string last_component_navigator_selection);
    void set_current_project_directory(std::string current_project_directory);
    bool unset_focused_state_on_topmost_stage_if_not_already_unfocused(); // TODO make private
@@ -126,6 +128,7 @@ public:
    bool send_commands_from_multiplex_menu_to_editor();
    bool set_frontmost_git_commit_message_input_box_to_submitted_and_pending_destruction();
    bool set_current_project_directory_from_project_navigator_selection();
+   bool open_folder_from_project_folders_selection();
    bool mark_as_files_committed();
    bool mark_as_in_sync_with_remote();
    bool mark_as_files_unchanged();
@@ -192,6 +195,7 @@ public:
    bool push_component_navigator_selection();
    bool push_component_relations_navigator_selection();
    bool push_project_navigator_selection();
+   bool push_project_folders_selection();
    bool push_file_navigator_selection();
    bool create_stage_from_last_file_navigator_selection();
    bool spawn_file_navigator_from_last_file_navigator_folder_selection();
@@ -263,6 +267,7 @@ public:
    static const std::string DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES;
    static const std::string PUSH_FILE_NAVIGATOR_SELECTION;
    static const std::string PUSH_PROJECT_NAVIGATOR_SELECTION;
+   static const std::string PUSH_PROJECT_FOLDERS_SELECTION;
    static const std::string PUSH_COMPONENT_NAVIGATOR_SELECTION;
    static const std::string PUSH_COMPONENT_RELATIONS_NAVIGATOR_SELECTION;
    static const std::string REFRESH_REGEX_HILIGHTS_ON_FRONTMOST_STAGE;

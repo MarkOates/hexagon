@@ -19,6 +19,7 @@
 #include <Hexagon/MultiplexMenu/Stage.hpp>
 #include <Hexagon/Notifications/Stage.hpp>
 #include <Hexagon/OneLineInputBox/Stage.hpp>
+#include <Hexagon/ProjectFoldersView.hpp>
 #include <Hexagon/ProjectNavigator.hpp>
 #include <Hexagon/StageInterface.hpp>
 #include <Hexagon/UI/DrawingBox.hpp>
@@ -622,6 +623,47 @@ StageInterface* StageFactory::create_project_navigator(std::vector<std::tuple<st
    }
 
    result->set_menu_items(project_menu_items);
+   result->initialize();
+
+   //ALLEGRO_DISPLAY *display = get_current_display();
+   //ALLEGRO_FONT *font = obtain_component_navigator_font();
+   //int cell_width = al_get_text_width(font, " ");
+   //int cell_height = al_get_font_line_height(font);
+
+   //result->set_display(display);
+   //result->set_font(font);
+   //result->set_cell_width(cell_width);
+   //result->set_cell_height(cell_height);
+
+   return result;
+}
+
+StageInterface* StageFactory::create_project_folders_view(std::string project_directory)
+{
+   if (!(font_bin))
+   {
+      std::stringstream error_message;
+      error_message << "[StageFactory::create_project_folders_view]: error: guard \"font_bin\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("StageFactory::create_project_folders_view: error: guard \"font_bin\" not met");
+   }
+   Hexagon::ProjectFoldersView *result = new Hexagon::ProjectFoldersView(font_bin, project_directory);
+
+   //result->set_font_bin(font_bin);
+   result->set_render_on_hud(true);
+   //result->set_base_text_color(obtain_base_text_color());
+   //result->set_base_backfill_color(obtain_base_backfill_color());
+   result->set_place(build_centered_on_hud_initial_place(600, 700));
+
+   //if (project_menu_items.empty())
+   //{
+      //std::vector<std::tuple<std::string, std::string>> default_project_menu_items =
+         //Hexagon::ProjectFoldersView::build_placeholder_menu_items();
+      //project_menu_items = default_project_menu_items;
+   //}
+
+   //result->set_menu_items(project_menu_items);
+   //result->set_project_directory(project_directory);
    result->initialize();
 
    //ALLEGRO_DISPLAY *display = get_current_display();
