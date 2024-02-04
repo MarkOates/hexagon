@@ -60,6 +60,9 @@ std::string StageInterface::get_type_name()
       case COMPONENT_RELATIONS_NAVIGATOR:
          return "ComponentRelationsNavigator";
          break;
+      case PROJECT_FOLDERS:
+         return "ProjectFolders";
+         break;
       case KEYBOARD_INPUTS_MODAL:
          return "KeyboardInputsModal";
          break;
@@ -137,6 +140,7 @@ bool StageInterface::infer_is_modal()
    case COMPONENT_NAVIGATOR:
    case PROJECT_COMPONENT_NAVIGATOR:
    case PROJECT_NAVIGATOR:
+   case PROJECT_FOLDERS:
    case COMPONENT_RELATIONS_NAVIGATOR:
    case KEYBOARD_INPUTS_MODAL:
    case NEW_COMPONENT_MAKER:

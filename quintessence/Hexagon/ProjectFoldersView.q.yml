@@ -1,0 +1,263 @@
+parent_classes:
+
+
+  - class: 'StageInterface'
+    scope: public
+    init_with: "StageInterface::PROJECT_FOLDERS"
+
+
+properties:
+
+
+  - name: font_bin
+    type: AllegroFlare::FontBin*
+    init_with: nullptr
+    constructor_arg: true
+
+  - name: config
+    type: Hexagon::System::Config*
+    init_with: nullptr
+    constructor_arg: true
+
+  - name: menu_items
+    type: std::vector<std::tuple<std::string, std::string>>
+    init_with: '{}'
+    constructor_arg: true
+    getter: true
+    setter: false
+
+  - name: main_menu
+    type: Hexagon::Elements::ListMenu
+    init_with: '{}'
+
+  - name: surface_width
+    type: int
+    init_with: 1920
+
+  - name: surface_height
+    type: int
+    init_with: 1080
+
+  - name: a_default_empty_event
+    static: true
+    type: ALLEGRO_EVENT
+    init_with: "{}"
+    getter_ref: true
+
+  - name: initialized
+    type: bool
+    init_with: false
+
+
+functions:
+
+
+  - name: set_menu_items
+    parameters:
+      - name: menu_items
+        type: std::vector<std::tuple<std::string, std::string>>
+        default_argument: '{}'
+    body: |
+      this->menu_items = menu_items;
+      main_menu.set_list_items(menu_items);
+      return;
+
+
+  - name: initialize
+    type: bool
+    guards: [ (!initialized) ]
+    body: |
+      main_menu = Hexagon::Elements::ListMenu(font_bin, "Project Folders", menu_items);
+      //main_menu.set_color(ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f});
+      main_menu.set_color(ALLEGRO_COLOR{0.49f, 0.81f, 0.98f, 1.0f});
+      initialized = true;
+      return true;
+
+
+  - name: render
+    virtual: true
+    override: true
+    guards: [ initialized ]
+    body: |
+      draw_frame();
+      draw_menu();
+      return;
+
+
+  - name: draw_frame
+    private: true
+    guards: [ initialized, al_is_primitives_addon_initialized() ]
+    body: |
+      float inset = 20;
+      float thickness = 4;
+      float roundness = 19;
+      //color(ALLEGRO_COLOR{0.49f, 0.81f, 0.98f, 1.0f});
+      //ALLEGRO_COLOR color = ALLEGRO_COLOR{0.8f, 0.85f, 0.86f, 0.86f};
+      ALLEGRO_COLOR color = ALLEGRO_COLOR{0.49f, 0.81f, 0.98f, 1.0f};
+      al_draw_rounded_rectangle(
+         0+inset,
+         0+inset,
+         surface_width-inset,
+         surface_height-inset,
+         roundness,
+         roundness,
+         color,
+         thickness
+      );
+      return;
+    body_dependency_symbols:
+      - al_is_primitives_addon_initialized
+
+
+  - name: main_menu_cursor_move_up
+    guards: [ initialized ]
+    type: bool
+    body: |
+       return main_menu.move_cursor_up();
+
+
+  - name: main_menu_cursor_move_down
+    guards: [ initialized ]
+    type: bool
+    body: |
+       return main_menu.move_cursor_down();
+
+
+  - name: main_menu_get_current_list_item_identifier
+    type: std::string
+    guards: [ initialized ]
+    body: |
+       return main_menu.get_current_list_item_identifier();
+
+
+  - name: draw_menu
+    guards: [ initialized, font_bin ]
+    body: |
+      placement3d place(surface_width/2, surface_height/2, 0);
+      place.scale = vec3d(0.6, 0.6, 0.6);
+      place.size = vec3d{ (float)main_menu.get_width(), 400.0f, 0.0f };
+      place.start_transform();
+      main_menu.render();
+      place.restore_transform();
+      return;
+    body_dependency_symbols:
+      - placement3d
+      - Hexagon::Elements::ListMenu
+
+
+  - name: process_local_event
+    virtual: true
+    override: true
+    parameters:
+      - name: event_name
+        type: std::string
+        default_argument: '""'
+      - name: action_data
+        type: ActionData
+        default_argument: "ActionData()"
+    guards: [ initialized ]
+    body: |
+      //Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
+      //event_controller.process_local_event(event_name, action_data);
+      return;
+    body_dependency_symbols: []
+
+
+  - name: process_event
+    virtual: true
+    override: true
+    parameters:
+      - name: event
+        type: ALLEGRO_EVENT&
+        default_argument: "get_a_default_empty_event_ref()"
+    guards: [ initialized ]
+    body: |
+      switch(event.type)
+          {
+          case ALLEGRO_EVENT_KEY_CHAR:
+             {
+                switch (event.keyboard.keycode)
+                {
+                case ALLEGRO_KEY_M:
+                   // disable shader
+                   //draw_motion_effect = false;
+
+                   // open dialog box
+                   break;
+                case ALLEGRO_KEY_J:
+                   main_menu_cursor_move_down();
+                   break;
+                case ALLEGRO_KEY_K:
+                   main_menu_cursor_move_up();
+                   break;
+                case ALLEGRO_KEY_ENTER:
+                   //append_project_path_to_config_file_and_reload_injected_config();
+                   //abort_program = true;
+                   break;
+                case ALLEGRO_KEY_ESCAPE:
+                   //abort_program = true;
+                   break;
+                }
+             }
+             break;
+      }
+      //KeyboardCommandMapper keyboard_command_mapping;
+      //if (is_in_insert_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_insert_mode();
+      //else if (is_in_edit_mode()) keyboard_command_mapping = build_keyboard_command_mapping_for_edit_mode();
+
+      //Hexagon::AdvancedCodeEditor::EventController event_controller(
+      //      this,
+      //      build_local_events_dictionary(),
+      //      keyboard_command_mapping
+      //   );
+      //event_controller.process_event(event);
+      return;
+    body_dependency_symbols: []
+
+
+  - name: build_placeholder_menu_items
+    static: true
+    type: std::vector<std::tuple<std::string, std::string>>
+    body: |
+      return {
+         { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+         { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+         { "Blast", "/Users/markoates/Repos/blast/" },
+      };
+
+
+dependencies:
+
+
+  - symbol: StageInterface
+    headers: [ Hexagon/StageInterface.hpp ]
+  - symbol: std::ofstream
+    headers: [ fstream ]
+  - symbol: al_is_primitives_addon_initialized
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: al_draw_filled_rectangle
+    headers: [ allegro5/allegro_primitives.h ]
+  - symbol: placement3d
+    headers: [ allegro_flare/placement3d.h ]
+  - symbol: Hexagon::Logo
+    headers: [ Hexagon/Logo.hpp ]
+  - symbol: AllegroFlare::Profiler
+    headers: [ AllegroFlare/Profiler.hpp ]
+  - symbol: Hexagon::Elements::DataTable
+    headers: [ Hexagon/Elements/DataTable.hpp ]
+  - symbol: al_get_allegro_version
+    headers: [ allegro5/allegro.h ]
+  - symbol: Hexagon::Elements::ListMenu
+    headers: [ Hexagon/Elements/ListMenu.hpp ]
+  - symbol: Hexagon::Shaders::TiledHexagonMotionEffect
+    headers: [ Hexagon/Shaders/TiledHexagonMotionEffect.hpp ]
+  - symbol: ALLEGRO_EVENT
+    headers: [ allegro5/allegro.h ]
+  - symbol: ActionData
+    headers: [ Hexagon/ActionData.hpp ]
+  - symbol: std::vector<std::tuple<std::string, std::string>>
+    headers: [ vector, tuple, string ]
+  - symbol: AllegroFlare::FontBin
+    headers: [ AllegroFlare/FontBin.hpp ]
+  - symbol: Hexagon::System::Config
+    headers: [ Hexagon/System/Config.hpp ]
