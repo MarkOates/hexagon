@@ -116,6 +116,72 @@ void Config::reload()
    config.reload(); return;
 }
 
+std::vector<std::tuple<std::string, std::string>> Config::get_projects_list()
+{
+   std::vector<std::tuple<std::string, std::string>> result = {
+      //{ "Robieo", "/Users/markoates/Repos/Robieo/" },
+      //{ "Pipeline", "/Users/markoates/Repos/Pipeline/" },
+      { "Blast", "/Users/markoates/Repos/blast/" },
+      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      { "OutOfTheBox", "/Users/markoates/Repos/OutOfTheBox/" },
+      { "Hexagon", "/Users/markoates/Repos/hexagon/" },
+      { "FullScore3", "/Users/markoates/Repos/FullScore3/" },
+      { "ClubCatt", "/Users/markoates/Repos/ClubCatt/" },
+      //{ "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      { "---", "/" },
+      { "SomePlatformer", "/Users/markoates/Repos/SomePlatformer/" },
+      { "CatchIt", "/Users/markoates/Repos/CatchIt/" },
+      { "UIElements", "/Users/markoates/Repos/UIElements/" },
+      { "Robieo", "/Users/markoates/Repos/Robieo/" },
+      { "SurviveTheCity", "/Users/markoates/Repos/SurviveTheCity/" },
+      { "FadeToWhite", "/Users/markoates/Repos/FadeToWhite/" },
+      { "ClubCatt", "/Users/markoates/Repos/ClubCatt/" },
+      { "ReturnOfTheWanderer", "/Users/markoates/Repos/ReturnOfTheWanderer/" },
+      { "ConnectCat", "/Users/markoates/Repos/ConnectCat/" },
+      //{ "TheOldMill", "/Users/markoates/Repos/TheOldMill/" },
+      //{ "PicSnap", "/Users/markoates/Repos/PicSnap/" },
+      //{ "Billboard", "/Users/markoates/Repos/Billboard/" },
+      { "ArtGalleryOfCats", "/Users/markoates/Repos/ArtGalleryOfCats/" },
+      { "Framerate", "/Users/markoates/Repos/Framerate/" },
+      { "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      //{ "ReturnOfTheWanderer", "/Users/markoates/Repos/ReturnOfTheWanderer/" },
+      { "OutOfTheBox", "/Users/markoates/Repos/OutOfTheBox/" },
+      //{ "Router", "/Users/markoates/Repos/Router/" },
+      { "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
+      //{ "TrackLock", "/Users/markoates/Repos/TrackLock/" },
+      { "KrampusReturns", "/Users/markoates/Repos/KrampusReturns/" },
+      //{ "Mania", "/Users/markoates/Repos/Mania/" },
+      //{ "dungeon", "/Users/markoates/Repos/dungeon/" },
+      //{ "KrampusTest01", "/Users/markoates/Repos/KrampusTest01/" },
+      { "CatDetective", "/Users/markoates/Repos/CatDetective/" },
+      //{ "Blast", "/Users/markoates/Repos/blast/" },
+      //{ "SurviveTheCity", "/Users/markoates/Repos/SurviveTheCity/" },
+      //{ "FadeToWhite", "/Users/markoates/Repos/FadeToWhite/" },
+      //{ "DialogPlayer", "/Users/markoates/Repos/DialogPlayer/" },
+      //{ "AllegroFlare", "/Users/markoates/Repos/allegro_flare/" },
+      { "RPG", "/Users/markoates/Repos/RPG/" },
+      //{ "CubeShooter", "/Users/markoates/Repos/CubeShooter/" },
+      //{ "TrackLock", "/Users/markoates/Repos/TrackLock/" },
+      //{ "Hexagon", "/Users/markoates/Repos/hexagon/" },
+      { "TheWeepingHouse", "/Users/markoates/Repos/TheWeepingHouse/" },
+      //{ "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
+      { "LabyrinthOfLore", "/Users/markoates/Repos/LabyrinthOfLore/" },
+      { "LightracerMax", "/Users/markoates/Repos/lightracer-max/" },
+      { "DragonWrath", "/Users/markoates/Repos/DragonWrath/" },
+      //{ "Fullscore", "/Users/markoates/Repos/fullscore/" },
+      //{ "FullScore3", "/Users/markoates/Repos/FullScore3/" },
+      { "Krampus2023 (Robieo)", "/Users/markoates/Repos/Krampus2023-Robieo/" },
+      { "Krampus21 (Fade to White)", "/Users/markoates/Repos/Krampus21/" },
+      //{ "Peri", "/Users/markoates/Repos/Peri/" },
+      //{ "Solitare", "/Users/markoates/Repos/Solitare/" },
+      //{ "Epidemic", "/Users/markoates/Repos/Epidemic/" },
+      { "Golf", "/Users/markoates/Repos/Golf/" },
+      //{ "AllegroMembersClub", "/Users/markoates/Repos/AllegroMembersClub/" },
+   };
+
+   return result;
+}
+
 int Config::get_initial_display_width()
 {
    validate_initialized(__FUNCTION__);

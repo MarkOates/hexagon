@@ -4,6 +4,7 @@
 #include <AllegroFlare/Config.hpp>
 #include <allegro5/allegro_color.h>
 #include <string>
+#include <tuple>
 #include <vector>
 
 
@@ -48,6 +49,7 @@ namespace Hexagon
          std::string get_config_filename() const;
          void initialize();
          void reload();
+         std::vector<std::tuple<std::string, std::string>> get_projects_list();
          int get_initial_display_width();
          int get_initial_display_height();
          std::string get_default_navigator_directory();
