@@ -1425,6 +1425,24 @@ bool System::spawn_project_navigator()
 }
 
 
+bool System::spawn_project_folders_window()
+{
+   ::Hexagon::StageFactory stage_factory(&hexagon_config, nullptr, &font_bin);
+
+   std::vector<std::tuple<std::string, std::string>> project_folders = {
+      { "test fixtures", "/Users/markoates/Repos/allegro_flare/tests/fixtures/" },
+      { "test fixtures (bitmaps)", "/Users/markoates/Repos/allegro_flare/tests/fixtures/bitmaps/" },
+      { "test fixtures (fonts)", "/Users/markoates/Repos/allegro_flare/tests/fixtures/fonts/" },
+   };
+
+   StageInterface *stage = stage_factory.create_project_navigator(project_folders);
+
+   stages.push_back(stage);
+
+   return true;
+}
+
+
 bool System::spawn_fancy()
 {
    ::Hexagon::StageFactory stage_factory(&hexagon_config, nullptr, &font_bin);
@@ -2209,6 +2227,7 @@ const std::string System::SPAWN_FANCY = "SPAWN_FANCY";
 const std::string System::SPAWN_COMPONENT_RELATIONS_NAVIGATOR = "SPAWN_COMPONENT_RELATIONS_NAVIGATOR";
 const std::string System::SPAWN_COMPONENT_NAVIGATOR = "SPAWN_COMPONENT_NAVIGATOR";
 const std::string System::SPAWN_PROJECT_NAVIGATOR = "SPAWN_PROJECT_NAVIGATOR";
+const std::string System::SPAWN_PROJECT_FOLDERS_WINDOW = "SPAWN_PROJECT_FOLDERS_WINDOW";
 const std::string System::EXECUTE_MAGIC_COMMAND = "EXECUTE_MAGIC_COMMAND";
 const std::string System::SPAWN_FILE_NAVIGATOR = "SPAWN_FILE_NAVIGATOR";
 const std::string System::SPAWN_CHAT_GPT_CHAT = "SPAWN_CHAT_GPT_CHAT";

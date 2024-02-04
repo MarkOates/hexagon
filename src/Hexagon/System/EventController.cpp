@@ -231,6 +231,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          &System::spawn_project_navigator,
       },
       {
+         ::System::SPAWN_PROJECT_FOLDERS_WINDOW,
+         &System::spawn_project_folders_window,
+      },
+      {
          ::System::SPAWN_FANCY,
          &System::spawn_fancy,
       },
@@ -444,6 +448,10 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
           });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKQUOTE, false, false, false, false, {
             ::System::SPAWN_PROJECT_NAVIGATOR,
+            ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
+          });
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_O, KEYMOD_CTRL, {
+            ::System::SPAWN_PROJECT_FOLDERS_WINDOW,
             ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
           });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_Z, KEYMOD_CTRL, { ::System::SPAWN_FANCY });
