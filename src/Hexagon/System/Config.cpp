@@ -123,6 +123,20 @@ std::vector<std::tuple<std::string, std::string>> Config::get_projects_list()
    std::string projects_section = "projects";
    std::vector<std::string> project_name_keys = config.get_section_keys(projects_section);
 
+
+   if (!config.has_section(projects_section))
+   {
+      //AllegroFlare::Logger::throw_error(
+         //"Hexagon::System::Config::get_projects_list",
+         //"Expecting \"" + projects_section + "\" in the config but it is not present."
+      //);
+      std::stringstream error_message;
+      error_message << "[AllegroFlare::System::Config::get_projects_list]: error: "
+                    "Expecting \"" << projects_section << "\" in the config but it is not present.";
+      throw std::runtime_error(error_message.str());
+   }
+
+
    for (auto &project_name_key : project_name_keys)
    {
       std::string menu_item_label = project_name_key;
