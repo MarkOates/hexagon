@@ -156,7 +156,22 @@ functions:
   - name: get_projects_list
     type: std::vector<std::tuple<std::string, std::string>>
     body: |
-      std::vector<std::tuple<std::string, std::string>> result = {
+      std::vector<std::tuple<std::string, std::string>> result;
+
+      std::string projects_section = "projects";
+      std::vector<std::string> project_name_keys = config.get_section_keys(projects_section);
+
+      for (auto &project_name_key : project_name_keys)
+      {
+         std::string menu_item_label = project_name_key;
+         std::string folder = config.get_value_string(projects_section, menu_item_label);
+         result.push_back({menu_item_label, folder});
+      }
+      return result;
+
+
+      result = {
+      //std::vector<std::tuple<std::string, std::string>> result = {
          //{ "Robieo", "/Users/markoates/Repos/Robieo/" },
          //{ "Pipeline", "/Users/markoates/Repos/Pipeline/" },
          { "Blast", "/Users/markoates/Repos/blast/" },
@@ -413,3 +428,5 @@ dependencies:
     headers: [ sstream ]
   - symbol: AllegroFlare::Config
     headers: [ AllegroFlare/Config.hpp ]
+
+
