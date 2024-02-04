@@ -67,7 +67,7 @@ functions:
     override: true
     guards: [ initialized ]
     body: |
-      draw_frame();
+      //draw_frame();
       draw_menu();
       return;
 
