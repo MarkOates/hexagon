@@ -2133,6 +2133,7 @@ bool System::submit_current_modal()
    case StageInterface::PROJECT_FOLDERS:
       process_local_event(::System::PUSH_PROJECT_FOLDERS_SELECTION);
       process_local_event(::System::DESTROY_TOPMOST_STAGE);
+      process_local_event(::System::CENTER_CAMERA_ON_FRONTMOST_STAGE);
       //process_local_event(::System::DESTROY_ALL_CODE_EDITOR_STAGES);
       //process_local_event(::System::CLEAR_HUD_TITLE);
       //process_local_event(::System::CENTER_CAMERA_TO_ORIGIN); // TODO

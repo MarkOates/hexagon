@@ -393,6 +393,7 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
 
    auto KEYMOD_SHIFT = AllegroFlare::KeyboardCommandMapper::SHIFT;
    auto KEYMOD_CTRL = AllegroFlare::KeyboardCommandMapper::CTRL;
+   auto KEYMOD_COMMAND = AllegroFlare::KeyboardCommandMapper::COMMAND;
 
    //KeyboardCommandMapper::COMMAND
 
@@ -454,9 +455,9 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
             ::System::SPAWN_PROJECT_NAVIGATOR,
             ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
           });
-         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_O, KEYMOD_CTRL, {
+         keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_O, KEYMOD_COMMAND, {
             ::System::SPAWN_PROJECT_FOLDERS_WINDOW,
-            ::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
+            //::System::PULL_BACK_CAMERA_TO_OFF_AXIS_LEFT,
           });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_Z, KEYMOD_CTRL, { ::System::SPAWN_FANCY });
          keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_BACKSLASH, false, false, false, false, {
