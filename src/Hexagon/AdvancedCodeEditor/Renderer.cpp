@@ -158,7 +158,16 @@ void Renderer::render()
    //timer.pause(); std::cout << " surface_render render time: "
    //                         << timer.get_elapsed_time_microseconds() << std::endl;
 
-   if (show_line_numbers) render_line_numbers();
+   bool show_cursor_column_highlight = true;
+   if (show_line_numbers)
+   {
+      render_line_numbers();
+      // TODO: Sort this out
+      if (show_cursor_column_highlight)
+      {
+         render_cursor_column_highlight();
+      }
+   }
    if (selections) draw_selections();
    if (search_regex_selections) draw_search_regex_selections();
    if (visual_selections) draw_visual_selections();
@@ -169,6 +178,48 @@ void Renderer::render()
    if (lines && cursor) render_word_highlight_under_cursor();
    if (represents_symlink) draw_represents_symlink_frames();
    render_cursor();
+
+   return;
+}
+
+void Renderer::render_cursor_column_highlight()
+{
+   if (!(text_mesh))
+   {
+      std::stringstream error_message;
+      error_message << "[Renderer::render_cursor_column_highlight]: error: guard \"text_mesh\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_cursor_column_highlight: error: guard \"text_mesh\" not met");
+   }
+   if (!(font))
+   {
+      std::stringstream error_message;
+      error_message << "[Renderer::render_cursor_column_highlight]: error: guard \"font\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("Renderer::render_cursor_column_highlight: error: guard \"font\" not met");
+   }
+   int cursor_x_pos = cursor->get_x();
+   int cursor_y_pos = cursor->get_y();
+   //if (cursor_x_pos < 0) return;
+   //if (cursor_x_pos >= lines->size()) return;
+
+   int cell_width = text_mesh->get_cell_width();
+   int cell_height = text_mesh->get_cell_height();
+   float line_numbers_opacity = 0.1;
+   ALLEGRO_COLOR font_color = get_line_numbers_color(); //al_color_name("white");
+   ALLEGRO_COLOR text_color = AllegroFlare::color::color(font_color, line_numbers_opacity);
+   ALLEGRO_COLOR cursor_color = al_color_name("dodgerblue");
+   text_color = AllegroFlare::color::mix(text_color, cursor_color, 0.5);
+   ALLEGRO_COLOR hilight_bar_color = AllegroFlare::color::mix(ALLEGRO_COLOR{0, 0, 0, 0}, text_color, 0.15);
+   int num_rows_to_draw_line_numbers = text_mesh->get_num_rows();
+
+   float x1 = cursor_x_pos * cell_width;
+   float x2 = (cursor_x_pos + 1) * cell_width;
+   // HERE:
+   float y1 = 0; //cursor_y_pos * cell_height;
+   float y2 = num_rows_to_draw_line_numbers * cell_height; //cursor_y_pos * (cell_height + 1);
+
+   al_draw_filled_rectangle(x1, y1, x2, y2, hilight_bar_color);
 
    return;
 }

@@ -64,6 +64,7 @@ namespace Hexagon
          ALLEGRO_COLOR get_null_space_color() const;
          ALLEGRO_COLOR get_backfill_color() const;
          void render();
+         void render_cursor_column_highlight();
          void render_backfill();
          void draw_represents_symlink_frames();
          bool draw_null_space_above_and_below();
