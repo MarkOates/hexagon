@@ -1644,6 +1644,9 @@ void Stage::filter_text_mesh_for_syntax_highlights()
       "dependencies:",
       "  - symbol:",
       "    headers:",
+      "documentation:",
+      "  - todos:",
+      "  - notes:",
    };
 
    for (unsigned y=0; y<num_rows; y++)

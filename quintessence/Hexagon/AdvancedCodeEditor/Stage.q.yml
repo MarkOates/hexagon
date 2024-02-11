@@ -1657,6 +1657,9 @@ methods:
          "dependencies:",
          "  - symbol:",
          "    headers:",
+         "documentation:",
+         "  - todos:",
+         "  - notes:",
       };
 
       for (unsigned y=0; y<num_rows; y++)
