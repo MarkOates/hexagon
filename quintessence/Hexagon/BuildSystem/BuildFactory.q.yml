@@ -6,7 +6,7 @@ properties:
     init_with: '{}'
 
 
-functions:
+methods:
 
 
   - name: create_placeholder_build
