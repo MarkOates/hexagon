@@ -41,6 +41,7 @@ namespace Hexagon
          std::vector<std::string> &get_lines_ref();
          Hexagon::AdvancedCodeEditor::Cursor &get_cursor_ref();
          std::map<int, std::string> get_select_lines(std::vector<int> line_indices={});
+         void set_select_lines(std::map<int, std::string> lines_to_set={});
          void unmark_content_is_modified();
          int get_num_lines();
          bool set_content(std::string content="");
@@ -49,7 +50,7 @@ namespace Hexagon
          bool delete_to_end_of_line();
          bool join_lines();
          bool split_lines();
-         bool replace_line(std::string content="[unset-content]");
+         bool replace_line(int line_index=0, std::string content="[unset-content]");
          bool delete_line();
          bool insert_lines(std::vector<std::string> lines_to_insert={});
          bool cursor_set_width(float width=0.0f);

@@ -72,6 +72,29 @@ std::map<int, std::string> AdvancedCodeEditor::get_select_lines(std::vector<int>
    return result_lines;
 }
 
+void AdvancedCodeEditor::set_select_lines(std::map<int, std::string> lines_to_set)
+{
+   for (auto &line_to_set : lines_to_set)
+   {
+      int line_index = line_to_set.first;
+      if (line_index < 0 || line_index >= lines.size())
+      {
+         // TODO: Test this throw
+         std::stringstream error_message;
+         error_message << "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::set_select_lines: error: "
+                       << "Cannot set lines with indices less than zero or greater than the current number of "
+                       << "lines. If you wish to create the lines, then an alternative implementation should be "
+                       << "used.";
+         throw std::runtime_error(error_message.str());
+      }
+      else
+      {
+         replace_line(line_index, line_to_set.second);
+      }
+   }
+   return;
+}
+
 void AdvancedCodeEditor::mark_content_is_modified()
 {
    content_is_modified = true;
@@ -111,7 +134,7 @@ bool AdvancedCodeEditor::insert_string(std::string string)
       if (string.find(non_permitted_char) != std::string::npos)
       {
          std::stringstream error_message;
-         error_message << "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::insert_string() error: "
+         error_message << "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::insert_string: error: "
                        << "Inserted string can not contain newline characters. You will need to first split lines "
                        << "and insert them via insert_lines() if you wish to insert multiple lines.";
          throw std::runtime_error(error_message.str());
@@ -227,9 +250,9 @@ bool AdvancedCodeEditor::split_lines()
    return true;
 }
 
-bool AdvancedCodeEditor::replace_line(std::string content)
+bool AdvancedCodeEditor::replace_line(int line_index, std::string content)
 {
-   if (cursor.get_y() < 0 || cursor.get_y() >= lines.size()) return false;
+   if (line_index < 0 || line_index >= lines.size()) return false;
 
    std::vector<char> non_permitted_chars = { '\n', '\r' };
    for (auto &non_permitted_char : non_permitted_chars)
@@ -250,11 +273,11 @@ bool AdvancedCodeEditor::replace_line(std::string content)
       }
    }
 
-   int longest_line_length = std::max(content.size(), lines[cursor.get_y()].size());
+   int longest_line_length = std::max(content.size(), lines[line_index].size());
 
-   lines[cursor.get_y()] = content;
+   lines[line_index] = content;
 
-   dirty_grid.mark_row_as_dirty(cursor.get_y(), 0, longest_line_length);
+   dirty_grid.mark_row_as_dirty(line_index, 0, longest_line_length);
 
    mark_content_is_modified();
 

@@ -527,6 +527,10 @@ table td
   <td class="method"><b>get_select_lines</b>(std::vector&lt;int&gt; line_indices={})</td>
 </tr>
 <tr>
+  <td class="method">void</td>
+  <td class="method"><b>set_select_lines</b>(std::map&lt;int, std::string&gt; lines_to_set={})</td>
+</tr>
+<tr>
   <td class="private_method">void</td>
   <td class="private_method"><b>mark_content_is_modified</b>()</td>
 </tr>
@@ -564,7 +568,7 @@ table td
 </tr>
 <tr>
   <td class="method">bool</td>
-  <td class="method"><b>replace_line</b>(std::string content=&quot;[unset-content]&quot;)</td>
+  <td class="method"><b>replace_line</b>(int line_index=0, std::string content=&quot;[unset-content]&quot;)</td>
 </tr>
 <tr>
   <td class="method">bool</td>

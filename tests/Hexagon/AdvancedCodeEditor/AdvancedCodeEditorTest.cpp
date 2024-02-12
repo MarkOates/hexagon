@@ -487,7 +487,7 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
    advanced_code_editor.set_content(FIXTURE_PASSAGE);
 
-   std::string expected_error_message = "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::insert_string() error: "
+   std::string expected_error_message = "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::insert_string: error: "
                                         "Inserted string can not contain newline characters. You will need to first "
                                         "split lines and insert them via insert_lines() if you wish to insert multiple "
                                         "lines.";
@@ -882,14 +882,14 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 
 
 TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
-   replace_line__will_set_the_line_at_the_cursor_to_the_content_and_set_the_expected_dirty_cells)
+   replace_line__will_set_the_line_to_the_content_and_set_the_expected_dirty_cells)
 {
    Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
    advanced_code_editor.set_content(PARABLE);
    advanced_code_editor.dirty_grid_clear();
 
-   advanced_code_editor.cursor_move_down();
-   advanced_code_editor.replace_line("Is this a dream?");
+   //advanced_code_editor.cursor_move_down();
+   advanced_code_editor.replace_line(1, "Is this a dream?");
 
    std::vector<std::string> lines = advanced_code_editor.get_lines();
    ASSERT_EQ(5, lines.size());
@@ -918,8 +918,64 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
                                         "\r\n"
                                         "==========END=========\n";
 
-   EXPECT_THROW_WITH_MESSAGE(advanced_code_editor.replace_line({"\r"}), std::runtime_error, expected_error_message);
+   EXPECT_THROW_WITH_MESSAGE(advanced_code_editor.replace_line(0, "\r"), std::runtime_error, expected_error_message);
 }
 
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   set_select_lines__will_set_the_lines_to_the_content_and_set_the_expected_dirty_cells)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(PARABLE);
+   advanced_code_editor.dirty_grid_clear();
+
+   //advanced_code_editor.cursor_move_down();
+   advanced_code_editor.set_select_lines({
+      {1, "Is this a dream?"}
+   });
+
+   std::vector<std::string> lines = advanced_code_editor.get_lines();
+   ASSERT_EQ(5, lines.size());
+
+   EXPECT_EQ("Is this a dream?", lines[1]);
+
+   std::vector<std::pair<int, int>> expected_dirty_cells = {
+      { 0, 1 }, { 1, 1 }, { 2, 1 }, { 3, 1 }, { 4, 1 }, { 5, 1 }, { 6, 1 }, { 7, 1 }, { 8, 1 }, { 9, 1 }, { 10, 1 },
+      { 11, 1 }, { 12, 1 }, { 13, 1 }, { 14, 1 }, { 15, 1 },
+   };
+   std::vector<std::pair<int, int>> actual_dirty_cells = advanced_code_editor.get_dirty_cells();
+   ASSERT_EQ(expected_dirty_cells, actual_dirty_cells);
+}
+
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   set_select_lines__when_setting_a_line_to_a_line_index_that_does_not_exist__will_throw_an_error)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(PARABLE);
+   advanced_code_editor.dirty_grid_clear();
+
+   std::map<int, std::string> lines_to_set = {
+      { -1,                                     "This line will crash" },
+      { advanced_code_editor.get_num_lines(),   "This line will crash" },
+      { advanced_code_editor.get_num_lines()+1, "This line will crash" },
+      { 9999,                                   "This line will crash" },
+   };
+
+   std::string expected_error_message = "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::set_select_lines: error: "
+                     "Cannot set lines with indices less than zero or greater than the current number of "
+                     "lines. If you wish to create the lines, then an alternative implementation should be "
+                     "used.";
+
+   for (auto &line_to_set : lines_to_set)
+   {
+      int line_num = line_to_set.first;
+      EXPECT_THROW_WITH_MESSAGE(
+         advanced_code_editor.set_select_lines({ {line_num, "This line will crash."} }),
+         std::runtime_error,
+         expected_error_message
+      );
+   }
+}
 
 
