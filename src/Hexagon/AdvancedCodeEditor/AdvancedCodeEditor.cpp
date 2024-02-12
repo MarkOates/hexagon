@@ -227,6 +227,42 @@ bool AdvancedCodeEditor::split_lines()
    return true;
 }
 
+bool AdvancedCodeEditor::replace_line(std::string content)
+{
+   if (cursor.get_y() < 0 || cursor.get_y() >= lines.size()) return false;
+
+      std::vector<char> non_permitted_chars = { '\n', '\r' }; 
+      for (auto &non_permitted_char : non_permitted_chars)
+      {
+         if (content.find(non_permitted_char) != std::string::npos)
+         {
+            std::stringstream error_message;
+            error_message << "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::replace_line() error: "
+                          << "Inserted lines can not contain newline characters. The following lines were "
+                          << "passed to replace_line():" << std::endl
+                          << "=========BEGIN=========" << std::endl;
+            for (auto &line : content)
+            {
+               error_message << line << std::endl;
+            }
+            error_message << "==========END=========" << std::endl;
+            throw std::runtime_error(error_message.str());
+         }
+      }
+
+
+
+   int longest_line_length = std::max(content.size(), lines[cursor.get_y()].size());
+
+   lines[cursor.get_y()] = content;
+
+   dirty_grid.mark_row_as_dirty(cursor.get_y(), 0, longest_line_length);
+
+   mark_content_is_modified();
+
+   return true;
+}
+
 bool AdvancedCodeEditor::delete_line()
 {
    if (cursor.get_y() < 0 || cursor.get_y() >= lines.size()) return false;

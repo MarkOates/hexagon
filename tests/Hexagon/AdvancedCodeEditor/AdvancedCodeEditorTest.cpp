@@ -881,3 +881,45 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
 }
 
 
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   replace_line__will_set_the_line_at_the_cursor_to_the_content_and_set_the_expected_dirty_cells)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(PARABLE);
+   advanced_code_editor.dirty_grid_clear();
+
+   advanced_code_editor.cursor_move_down();
+   advanced_code_editor.replace_line("Is this a dream?");
+
+   std::vector<std::string> lines = advanced_code_editor.get_lines();
+   ASSERT_EQ(5, lines.size());
+
+   EXPECT_EQ("Is this a dream?", lines[1]);
+
+   std::vector<std::pair<int, int>> expected_dirty_cells = {
+      { 0, 1 }, { 1, 1 }, { 2, 1 }, { 3, 1 }, { 4, 1 }, { 5, 1 }, { 6, 1 }, { 7, 1 }, { 8, 1 }, { 9, 1 }, { 10, 1 },
+      { 11, 1 }, { 12, 1 }, { 13, 1 }, { 14, 1 }, { 15, 1 },
+   };
+   std::vector<std::pair<int, int>> actual_dirty_cells = advanced_code_editor.get_dirty_cells();
+   ASSERT_EQ(expected_dirty_cells, actual_dirty_cells);
+}
+
+
+TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
+   replace_line__when_the_line_contains_newline_or_carriage_return__will_throw_an_error)
+{
+   Hexagon::AdvancedCodeEditor::AdvancedCodeEditor advanced_code_editor;
+   advanced_code_editor.set_content(FIXTURE_PASSAGE);
+
+   std::string expected_error_message = "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::replace_line() "
+                                        "error: Inserted lines can not contain newline characters. "
+                                        "The following lines were passed to replace_line():\n"
+                                        "=========BEGIN=========\n"
+                                        "\r\n"
+                                        "==========END=========\n";
+
+   EXPECT_THROW_WITH_MESSAGE(advanced_code_editor.replace_line({"\r"}), std::runtime_error, expected_error_message);
+}
+
+
+
