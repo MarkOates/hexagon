@@ -1645,6 +1645,7 @@ void Stage::filter_text_mesh_for_syntax_highlights()
       "  - symbol:",
       "    headers:",
       "documentation:",
+      "  - overview:", // Consider "overview", "overview_html" or "overview_markdown"
       "  - todos:",
       "  - notes:",
    };

@@ -1658,6 +1658,7 @@ methods:
          "  - symbol:",
          "    headers:",
          "documentation:",
+         "  - overview:", // Consider "overview", "overview_html" or "overview_markdown"
          "  - todos:",
          "  - notes:",
       };
