@@ -174,6 +174,7 @@ namespace Hexagon
          void set_content(std::string content="");
          bool toggle_commenting_out_current_line();
          bool insert_three_spaces_at_start_of_line();
+         bool unindent_line();
          bool insert_blank_line();
          bool create_visual_selection_at_current_cursor_location();
          bool destroy_current_visual_selection();

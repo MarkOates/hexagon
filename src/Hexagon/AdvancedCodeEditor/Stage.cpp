@@ -694,7 +694,7 @@ bool Stage::delete_word_under_cursor()
    cursor_move_to(found_word_ranges.first, cursor_get_y());
 
    // delete n characters, the length of the word
-   // if any delete_character() returns false, set the result to false      
+   // if any delete_character() returns false, set the result to false
    bool result = true;
    int num_characters_to_delete = found_word_ranges.second;
    for (int i=0; i<num_characters_to_delete; i++)
@@ -915,6 +915,25 @@ bool Stage::insert_three_spaces_at_start_of_line()
 
    refresh_current_visual_selection_end_to_current_cursor_position();
    refresh_search_regex_selections_on_current_line();
+
+   return true;
+}
+
+bool Stage::unindent_line()
+{
+   //if (cursor_get_y() < 0) return false;
+   //if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
+
+   //int previous_cursor_x = cursor_get_x();
+
+   //advanced_code_editor.cursor_set_x(0);
+   //advanced_code_editor.insert_string("   ");
+   //advanced_code_editor.cursor_set_x(previous_cursor_x-3);
+
+   //if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+
+   //refresh_current_visual_selection_end_to_current_cursor_position();
+   //refresh_search_regex_selections_on_current_line();
 
    return true;
 }
@@ -1145,6 +1164,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
       { "insert_three_spaces_at_start_of_line",
          &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
+      { "unindent_line",
+         &Hexagon::AdvancedCodeEditor::Stage::unindent_line},
 
 
       // modes
@@ -1277,6 +1298,9 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_ed
       });
    result.set_mapping(ALLEGRO_KEY_FULLSTOP, ALLEGRO_KEYMOD_SHIFT, {
       "insert_three_spaces_at_start_of_line",
+      });
+   result.set_mapping(ALLEGRO_KEY_COMMA, ALLEGRO_KEYMOD_SHIFT, {
+      "unindent_line",
       });
    result.set_mapping(ALLEGRO_KEY_V, 0, { "toggle_currently_grabbing_visual_selection" });
    result.set_mapping(ALLEGRO_KEY_V, ALLEGRO_KEYMOD_SHIFT, {
