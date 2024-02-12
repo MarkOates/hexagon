@@ -1077,17 +1077,18 @@ bool Stage::refresh_current_visual_selection_end_to_current_cursor_position()
 bool Stage::replay_action_queue_recording()
 {
    Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
+   return false;
 
-   currently_playing_action_queue_recording = true;
-   for (auto &action : action_queue_recording.get_actions_ref())
-   {
-      std::string action_name = action.get_name();
-      ActionData action_data1 = action.get_data1();
+   //currently_playing_action_queue_recording = true;
+   //for (auto &action : action_queue_recording.get_actions_ref())
+   //{
+      //std::string action_name = action.get_name();
+      //ActionData action_data1 = action.get_data1();
 
-      event_controller.process_local_event(action_name, action_data1);
-   }
-   currently_playing_action_queue_recording = false;
-   return true;
+      //event_controller.process_local_event(action_name, action_data1);
+   //}
+   //currently_playing_action_queue_recording = false;
+   //return true;
 }
 
 bool Stage::yank_selected_text_to_clipboard()
