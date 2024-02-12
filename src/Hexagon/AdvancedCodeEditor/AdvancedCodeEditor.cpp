@@ -231,26 +231,24 @@ bool AdvancedCodeEditor::replace_line(std::string content)
 {
    if (cursor.get_y() < 0 || cursor.get_y() >= lines.size()) return false;
 
-      std::vector<char> non_permitted_chars = { '\n', '\r' }; 
-      for (auto &non_permitted_char : non_permitted_chars)
+   std::vector<char> non_permitted_chars = { '\n', '\r' };
+   for (auto &non_permitted_char : non_permitted_chars)
+   {
+      if (content.find(non_permitted_char) != std::string::npos)
       {
-         if (content.find(non_permitted_char) != std::string::npos)
+         std::stringstream error_message;
+         error_message << "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::replace_line() error: "
+                       << "Inserted lines can not contain newline characters. The following lines were "
+                       << "passed to replace_line():" << std::endl
+                       << "=========BEGIN=========" << std::endl;
+         for (auto &line : content)
          {
-            std::stringstream error_message;
-            error_message << "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::replace_line() error: "
-                          << "Inserted lines can not contain newline characters. The following lines were "
-                          << "passed to replace_line():" << std::endl
-                          << "=========BEGIN=========" << std::endl;
-            for (auto &line : content)
-            {
-               error_message << line << std::endl;
-            }
-            error_message << "==========END=========" << std::endl;
-            throw std::runtime_error(error_message.str());
+            error_message << line << std::endl;
          }
+         error_message << "==========END=========" << std::endl;
+         throw std::runtime_error(error_message.str());
       }
-
-
+   }
 
    int longest_line_length = std::max(content.size(), lines[cursor.get_y()].size());
 
@@ -291,7 +289,7 @@ bool AdvancedCodeEditor::insert_lines(std::vector<std::string> lines_to_insert)
    // Scan each line and prevent insertion of newline ('\n', '\r') characters
    for (auto &line_to_insert : lines_to_insert)
    {
-      std::vector<char> non_permitted_chars = { '\n', '\r' }; 
+      std::vector<char> non_permitted_chars = { '\n', '\r' };
       for (auto &non_permitted_char : non_permitted_chars)
       {
          if (line_to_insert.find(non_permitted_char) != std::string::npos)
