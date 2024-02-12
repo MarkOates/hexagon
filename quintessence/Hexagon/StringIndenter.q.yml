@@ -1,0 +1,96 @@
+properties:
+
+
+  - name: content
+    type: std::string
+    init_with: '"[unset-content]"'
+    constructor_arg: true
+
+
+methods:
+
+
+  - name: indent
+    type: std::string
+    parameters:
+      - name: num_indents
+        type: std::size_t
+        default_argument: 2
+    guards: [ (num_indents >= 0) ]
+    body: |
+      std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
+      bool skip_blank_lines = true;
+
+      std::string prefix_string(num_indents, ' ');
+
+      for (auto &line : lines)
+      {
+         if (skip_blank_lines && line.empty()) continue;
+         line = prefix_string + line;
+      }
+
+      // Get the result as a string
+      return Blast::StringJoiner(lines, "\n").join() + "\n";
+    body_dependency_symbols:
+      - std::vector
+      - Blast::StringSplitter
+      - Blast::StringJoiner
+
+
+  - name: unindent
+    type: std::string
+    parameters:
+      - name: num_unindents
+        type: std::size_t
+        default_argument: 2
+    guards: [ (num_unindents >= 0) ]
+    body: |
+      std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
+      bool skip_blank_lines = true;
+
+      int min_num_spaces = 9999;
+      for (auto &line : lines)
+      {
+         if (skip_blank_lines && line.empty()) continue;
+
+         int count = 0;
+         for (char ch : line)
+         {
+            if (ch == ' ') count++;
+            else break;
+         }
+
+         if (count < min_num_spaces) min_num_spaces = count;
+      }
+
+      if (num_unindents > min_num_spaces)
+      {
+         // Consider if should be reduced to left edge
+      }
+      else
+      {
+         for (auto &line : lines)
+         {
+            if (skip_blank_lines && line.empty()) continue;
+
+            line = line.substr(num_unindents);
+         }
+      }
+
+      // Get the result as a string
+      return Blast::StringJoiner(lines, "\n").join() + "\n";
+    body_dependency_symbols:
+      - std::vector
+      - Blast::StringSplitter
+      - Blast::StringJoiner
+
+
+dependencies:
+
+
+  - symbol: Blast::StringSplitter
+    headers: [ Blast/StringSplitter.hpp ]
+  - symbol: Blast::StringJoiner
+    headers: [ Blast/StringJoiner.hpp ]
+
+

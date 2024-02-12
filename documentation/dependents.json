@@ -179,6 +179,7 @@
     "Hexagon/Rails/ComponentLister",
     "Hexagon/RailsTestOutputParser",
     "Hexagon/StageFactory",
+    "Hexagon/StringIndenter",
     "Hexagon/Testing/ClangBuildOutputParser",
     "Hexagon/Testing/ClangBuildOutputResult",
     "Hexagon/Testing/GoogleTestRunOutputParser",
@@ -757,6 +758,7 @@
     "Hexagon/ChatCPTIntegration/Conversation",
     "Hexagon/ChatGPTIntegration/Chat/InputBox",
     "Hexagon/MultiplexMenu/PageRenderer",
+    "Hexagon/StringIndenter",
     "Hexagon/UI/DrawingBox"
   ],
   "ActionQueueRecording": [
