@@ -80,7 +80,7 @@ void AdvancedCodeEditor::set_select_lines(std::map<int, std::string> lines_to_se
       int line_index = line_to_set.first;
       if (line_index < 0 || line_index >= lines.size())
       {
-         // TODO: Test this throw
+         // TODO: Consider removing this or moving it up a layer, it is the only method that throws
          std::stringstream error_message;
          error_message << "Hexagon::AdvancedCodeEditor::AdvancedCodeEditor::set_select_lines: error: "
                        << "Cannot set lines with indices less than zero or greater than the current number of "

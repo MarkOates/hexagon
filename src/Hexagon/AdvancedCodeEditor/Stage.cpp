@@ -921,19 +921,23 @@ bool Stage::insert_three_spaces_at_start_of_line()
 
 bool Stage::unindent_line()
 {
-   //if (cursor_get_y() < 0) return false;
-   //if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
+   if (cursor_get_y() < 0) return false;
+   if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
 
-   //int previous_cursor_x = cursor_get_x();
+   // Pseudocode:
+   // std::set<int> line_nums = get_lines_currently_under_selection();
+   //std::map<int, std::string> select_lines = advanced_code_editor.get_select_lines(line_nums);
+   // std::set<int> advanced_code_editor.get_select_lines(lines_under_selection);
 
-   //advanced_code_editor.cursor_set_x(0);
-   //advanced_code_editor.insert_string("   ");
-   //advanced_code_editor.cursor_set_x(previous_cursor_x-3);
+   // Indenter
+   //   unindent
 
+   // advanced_code_editor.set_select_lines(...);
+
+   // Do all the dirty refreshing
    //if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
-
    //refresh_current_visual_selection_end_to_current_cursor_position();
-   //refresh_search_regex_selections_on_current_line();
+   //refresh_search_regex_selections_on_select_lines(line_nums);
 
    return true;
 }
