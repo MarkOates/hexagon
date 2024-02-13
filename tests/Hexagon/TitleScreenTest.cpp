@@ -64,7 +64,7 @@ TEST_F(Hexagon_TitleScreenTest, DISABLED__INTERACTIVE__operates_as_expected)
 }
 
 
-TEST_F(Hexagon_TitleScreenTest, build_allegro_version_string__will_create_the_expected_version)
+TEST_F(Hexagon_TitleScreenTest, build_allegro_version_string__will_create_a_version_string_in_the_expected_format)
 {
    Hexagon::TitleScreen title_screen;
    std::string actual_version_string = title_screen.build_allegro_version_string();
