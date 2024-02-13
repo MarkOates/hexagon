@@ -31,37 +31,52 @@ TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest, component_names__
 
 
 TEST(Hexagon_AdvancedComponentNavigator_ComponentSearcherTest,
-   // NOTE: this test may be disabled because the list does not match across different computers
-   //DISABLED__component_names__with_search_string_returns_filtered_results)
    component_names__with_search_string_returns_filtered_results)
 {
-   std::string project_root_directory = "/Users/markoates/Repos/blast";
-   std::string search_text = "Blast/Project";
+   // TODO: Add more components to the FixtureProject so that this test is more robust
+
+   std::string project_root_directory = "/Users/markoates/Repos/hexagon/tests/fixtures/FixtureProject";
+
+   std::string search_text = "ther";
    Hexagon::AdvancedComponentNavigator::ComponentSearcher list(project_root_directory, search_text);
 
    std::vector<std::string> expected_list = {
-      "Blast/Project/ActionCreator",
-      "Blast/Project/BasenameExtractor",
-      "Blast/Project/Component",
-      "Blast/Project/ComponentBasenameExtractor",
-      "Blast/Project/ComponentCreator",
-      "Blast/Project/ComponentDependencyLister",
-      "Blast/Project/ComponentFragmentTypeEnum",
-      "Blast/Project/ComponentLister",
-      "Blast/Project/ComponentListerNew",
-      "Blast/Project/ComponentRelativeLister",
-      "Blast/Project/ProgramLister",
-      "Blast/Project/ProjectSymlinkFixer",
-      "Blast/Project/SourceReleaseBuilder",
-      "Blast/Project/SymlinkChecker",
-      "Blast/ProjectComponentBasenameExtractor",
-      "Blast/ProjectComponentFileTypes",
-      "Blast/ProjectComponentFilenameGenerator"
+      "AnotherFixtureObject",
    };
 
    std::vector<std::string> actual_list = list.component_names();
 
    EXPECT_EQ(expected_list, actual_list);
+
+
+
+   // PREVIOUSLY:
+
+   //std::string project_root_directory = "/Users/markoates/Repos/blast";
+   //std::string search_text = "Blast/Project";
+   //std::string search_text = "Blast/Project";
+   //Hexagon::AdvancedComponentNavigator::ComponentSearcher list(project_root_directory, search_text);
+   //std::vector<std::string> expected_list = {
+      //"Blast/Project/ActionCreator",
+      //"Blast/Project/BasenameExtractor",
+      //"Blast/Project/Component",
+      //"Blast/Project/ComponentBasenameExtractor",
+      //"Blast/Project/ComponentCreator",
+      //"Blast/Project/ComponentDependencyLister",
+      //"Blast/Project/ComponentFragmentTypeEnum",
+      //"Blast/Project/ComponentLister",
+      //"Blast/Project/ComponentListerNew",
+      //"Blast/Project/ComponentRelativeLister",
+      //"Blast/Project/ProgramLister",
+      //"Blast/Project/ProjectSymlinkFixer",
+      //"Blast/Project/SourceReleaseBuilder",
+      //"Blast/Project/SymlinkChecker",
+      //"Blast/ProjectComponentBasenameExtractor",
+      //"Blast/ProjectComponentFileTypes",
+      //"Blast/ProjectComponentFilenameGenerator"
+   //};
+   //std::vector<std::string> actual_list = list.component_names();
+   //EXPECT_EQ(expected_list, actual_list);
 }
 
 
