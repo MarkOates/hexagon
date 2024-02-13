@@ -49,7 +49,7 @@ Stage::Stage(AllegroFlare::FontBin* font_bin, int num_columns, int num_rows)
    , currently_grabbing_visual_selection(false)
    , full_line_visual_selections({})
    , currently_grabbing_full_line_visual_selection(false)
-   , selections({})
+   , selections_APPEARS_DEPRECIATED({})
    , search_regex_selections(Hexagon::AdvancedCodeEditor::Selection{})
    , action_queue_recording({})
    , currently_playing_action_queue_recording(false)
@@ -919,13 +919,28 @@ bool Stage::insert_three_spaces_at_start_of_line()
    return true;
 }
 
+std::set<int> Stage::get_line_indices_currently_under_selection()
+{
+   std::set<int> result;
+   if (currently_grabbing_visual_selection)
+   {
+      // HERE
+      //visual_selections
+   }
+   if (currently_grabbing_full_line_visual_selection)
+   {
+   }
+
+   return result;
+}
+
 bool Stage::unindent_line()
 {
    if (cursor_get_y() < 0) return false;
    if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
 
    // Pseudocode:
-   // std::set<int> line_nums = get_lines_currently_under_selection();
+   // std::set<int> line_nums = get_line_indices_currently_under_selection();
    //std::map<int, std::string> select_lines = advanced_code_editor.get_select_lines(line_nums);
    // std::set<int> advanced_code_editor.get_select_lines(lines_under_selection);
 

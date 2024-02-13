@@ -82,6 +82,21 @@ int CodeRange::infer_num_lines()
 
 
 
+std::set<int> CodeRange::infer_line_numbers()
+{
+   if (is_empty()) return {};
+
+   std::set<int> result;
+   CodePoint start = infer_cursor_start();
+   for (int i=start.get_y(); i<start.get_y()+infer_num_lines(); i++)
+   {
+      result.insert(i);
+   }
+   return result;
+}
+
+
+
 bool CodeRange::in_range(int x, int y)
 {
   // if at start, in range

@@ -3,6 +3,7 @@
 
 
 #include <Hexagon/CodePoint.hpp>
+#include <set>
 
 
 
@@ -27,6 +28,7 @@ public:
    void move(int x, int y);
    bool is_empty();
    int infer_num_lines();
+   std::set<int> infer_line_numbers();
    bool in_range(int x, int y);
    bool operator==(const CodeRange &other) const;
 };

@@ -20,6 +20,7 @@
 #include <cstdint>
 #include <functional>
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -58,7 +59,7 @@ namespace Hexagon
          bool currently_grabbing_visual_selection;
          std::vector<CodeRange> full_line_visual_selections;
          bool currently_grabbing_full_line_visual_selection;
-         std::vector<Hexagon::AdvancedCodeEditor::Selection> selections;
+         std::vector<Hexagon::AdvancedCodeEditor::Selection> selections_APPEARS_DEPRECIATED;
          Hexagon::AdvancedCodeEditor::Selection search_regex_selections;
          ActionQueueRecording action_queue_recording;
          bool currently_playing_action_queue_recording;
@@ -174,6 +175,7 @@ namespace Hexagon
          void set_content(std::string content="");
          bool toggle_commenting_out_current_line();
          bool insert_three_spaces_at_start_of_line();
+         std::set<int> get_line_indices_currently_under_selection();
          bool unindent_line();
          bool insert_blank_line();
          bool create_visual_selection_at_current_cursor_location();

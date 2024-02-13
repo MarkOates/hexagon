@@ -116,7 +116,7 @@ properties:
     type: bool
     init_with: false
   
-  - name: selections
+  - name: selections_APPEARS_DEPRECIATED
     type: std::vector<Hexagon::AdvancedCodeEditor::Selection>
     init_with: '{}'
 
@@ -871,6 +871,22 @@ methods:
       return true;
 
 
+  - name: get_line_indices_currently_under_selection
+    type: std::set<int>
+    body: |
+      std::set<int> result;
+      if (currently_grabbing_visual_selection)
+      {
+         // HERE
+         //visual_selections
+      }
+      if (currently_grabbing_full_line_visual_selection)
+      {
+      }
+   
+      return result;
+
+
   - name: unindent_line
     type: bool
     body: |
@@ -878,7 +894,7 @@ methods:
       if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
 
       // Pseudocode:
-      // std::set<int> line_nums = get_lines_currently_under_selection();
+      // std::set<int> line_nums = get_line_indices_currently_under_selection();
       //std::map<int, std::string> select_lines = advanced_code_editor.get_select_lines(line_nums);
       // std::set<int> advanced_code_editor.get_select_lines(lines_under_selection);
 
