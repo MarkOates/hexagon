@@ -73,6 +73,7 @@ namespace Hexagon
          ALLEGRO_COLOR backfill_color;
          void initialize_surface_render();
          bool refresh_search_regex_selections_on_current_line();
+         bool indent_unindent_lines(bool indent=true);
          ALLEGRO_FONT* obtain_text_font();
          int cursor_get_x();
          int cursor_get_y();
@@ -176,6 +177,7 @@ namespace Hexagon
          bool toggle_commenting_out_current_line();
          bool insert_three_spaces_at_start_of_line();
          std::set<int> get_line_indices_currently_under_selection();
+         bool indent_lines();
          bool unindent_lines();
          bool insert_blank_line();
          bool create_visual_selection_at_current_cursor_location();

@@ -892,8 +892,25 @@ methods:
       return result;
 
 
+  - name: indent_lines
+    type: bool
+    body: |
+      return indent_unindent_lines(true);
+
+
   - name: unindent_lines
     type: bool
+    body: |
+      return indent_unindent_lines(false);
+
+
+  - name: indent_unindent_lines
+    type: bool
+    private: true
+    parameters:
+      - name: indent
+        type: bool
+        default_argument: true
     body: |
       // TODO: Test this method
       if (cursor_get_y() < 0) return false;
@@ -907,7 +924,14 @@ methods:
       std::vector<std::string> select_lines_raw;
       for (auto &select_line : select_lines) select_lines_raw.push_back(select_line.second);
 
-      select_lines_raw = Hexagon::StringIndenter::unindent_lines(select_lines_raw);
+      if (indent)
+      {
+         select_lines_raw = Hexagon::StringIndenter::indent_lines(select_lines_raw);
+      }
+      else
+      {
+         select_lines_raw = Hexagon::StringIndenter::unindent_lines(select_lines_raw);
+      }
       std::map<int, std::string> select_lines_result = select_lines;
 
       // TODO: Validate select_lines_raw and select_lines_result are the same size
@@ -1190,8 +1214,8 @@ methods:
          { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
          { "insert_three_spaces_at_start_of_line",
             &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
-         { "unindent_lines",
-            &Hexagon::AdvancedCodeEditor::Stage::unindent_lines},
+         { "indent_lines", &Hexagon::AdvancedCodeEditor::Stage::indent_lines},
+         { "unindent_lines", &Hexagon::AdvancedCodeEditor::Stage::unindent_lines},
 
 
          // modes
@@ -1325,7 +1349,7 @@ methods:
          "set_to_insert_mode",
          });
       result.set_mapping(ALLEGRO_KEY_FULLSTOP, ALLEGRO_KEYMOD_SHIFT, {
-         "insert_three_spaces_at_start_of_line",
+         "indent_lines", //"insert_three_spaces_at_start_of_line",
          });
       result.set_mapping(ALLEGRO_KEY_COMMA, ALLEGRO_KEYMOD_SHIFT, {
          "unindent_lines",

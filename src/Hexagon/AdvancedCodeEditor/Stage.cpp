@@ -940,7 +940,17 @@ std::set<int> Stage::get_line_indices_currently_under_selection()
    return result;
 }
 
+bool Stage::indent_lines()
+{
+   return indent_unindent_lines(true);
+}
+
 bool Stage::unindent_lines()
+{
+   return indent_unindent_lines(false);
+}
+
+bool Stage::indent_unindent_lines(bool indent)
 {
    // TODO: Test this method
    if (cursor_get_y() < 0) return false;
@@ -954,7 +964,14 @@ bool Stage::unindent_lines()
    std::vector<std::string> select_lines_raw;
    for (auto &select_line : select_lines) select_lines_raw.push_back(select_line.second);
 
-   select_lines_raw = Hexagon::StringIndenter::unindent_lines(select_lines_raw);
+   if (indent)
+   {
+      select_lines_raw = Hexagon::StringIndenter::indent_lines(select_lines_raw);
+   }
+   else
+   {
+      select_lines_raw = Hexagon::StringIndenter::unindent_lines(select_lines_raw);
+   }
    std::map<int, std::string> select_lines_result = select_lines;
 
    // TODO: Validate select_lines_raw and select_lines_result are the same size
@@ -1203,8 +1220,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
       { "insert_three_spaces_at_start_of_line",
          &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
-      { "unindent_lines",
-         &Hexagon::AdvancedCodeEditor::Stage::unindent_lines},
+      { "indent_lines", &Hexagon::AdvancedCodeEditor::Stage::indent_lines},
+      { "unindent_lines", &Hexagon::AdvancedCodeEditor::Stage::unindent_lines},
 
 
       // modes
@@ -1336,7 +1353,7 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_ed
       "set_to_insert_mode",
       });
    result.set_mapping(ALLEGRO_KEY_FULLSTOP, ALLEGRO_KEYMOD_SHIFT, {
-      "insert_three_spaces_at_start_of_line",
+      "indent_lines", //"insert_three_spaces_at_start_of_line",
       });
    result.set_mapping(ALLEGRO_KEY_COMMA, ALLEGRO_KEYMOD_SHIFT, {
       "unindent_lines",
