@@ -764,6 +764,9 @@
   "ActionQueueRecording": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
+  "Hexagon/StringIndenter": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
   "Hexagon/Elements/Window": [
     "Hexagon/AdvancedCodeEditor/WindowRenderer",
     "Hexagon/ChatGPTIntegration/Chat/Stage",

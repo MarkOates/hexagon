@@ -9,6 +9,7 @@
 #include <Hexagon/AdvancedCodeEditor/SearchRegexToSelectionsConverter.hpp>
 #include <Hexagon/ClipboardData.hpp>
 #include <Hexagon/CodeRangeExtractor.hpp>
+#include <Hexagon/StringIndenter.hpp>
 #include <Hexagon/SymlinkToucher.hpp>
 #include <Hexagon/WordRangesFinder.hpp>
 #include <Hexagon/util.hpp>
@@ -656,7 +657,6 @@ std::string Stage::grab_word_under_cursor()
    if (cursor_get_y() < 0) return "";
    if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return "";
 
-   // HERE
    // get word ranges
    std::string line_content = advanced_code_editor.get_lines_ref()[cursor_get_y()];
    Hexagon::WordRangesFinder word_ranges_finder(line_content, cursor_get_x());
@@ -747,7 +747,6 @@ bool Stage::join_lines()
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
    if (join_lines_was_successful)
    {
-      // HERE
       // 1) clear search_regex_selections on current line and line below it
       search_regex_selections.clear_select_lines({cursor_get_y(), cursor_get_y()+1});
       // 2) move subsequent search_regex_selections up one line
@@ -924,35 +923,55 @@ std::set<int> Stage::get_line_indices_currently_under_selection()
    std::set<int> result;
    if (currently_grabbing_visual_selection)
    {
-      // HERE
-      //visual_selections
+      for (auto &visual_selection : visual_selections)
+      {
+         std::set<int> line_numbers = visual_selection.infer_line_numbers();
+         result.insert(line_numbers.begin(), line_numbers.end());
+      }
    }
    if (currently_grabbing_full_line_visual_selection)
    {
+      for (auto &full_line_visual_selection : full_line_visual_selections)
+      {
+         std::set<int> line_numbers = full_line_visual_selection.infer_line_numbers();
+         result.insert(line_numbers.begin(), line_numbers.end());
+      }
    }
-
    return result;
 }
 
-bool Stage::unindent_line()
+bool Stage::unindent_lines()
 {
+   // TODO: Test this method
    if (cursor_get_y() < 0) return false;
    if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
 
-   // Pseudocode:
-   // std::set<int> line_nums = get_line_indices_currently_under_selection();
-   //std::map<int, std::string> select_lines = advanced_code_editor.get_select_lines(line_nums);
-   // std::set<int> advanced_code_editor.get_select_lines(lines_under_selection);
+   // TODO: Allow unindenting at point of cursor (when there is no selection)
 
-   // Indenter
-   //   unindent
+   std::set<int> line_numbers = get_line_indices_currently_under_selection();
+   std::vector<int> line_numbers_as_vector(line_numbers.begin(), line_numbers.end());
+   std::map<int, std::string> select_lines = advanced_code_editor.get_select_lines(line_numbers_as_vector);
+   std::vector<std::string> select_lines_raw;
+   for (auto &select_line : select_lines) select_lines_raw.push_back(select_line.second);
 
-   // advanced_code_editor.set_select_lines(...);
+   select_lines_raw = Hexagon::StringIndenter::unindent_lines(select_lines_raw);
+   std::map<int, std::string> select_lines_result = select_lines;
+
+   // TODO: Validate select_lines_raw and select_lines_result are the same size
+
+   int i=0;
+   for (auto &select_line_result : select_lines_result)
+   {
+      select_line_result.second = select_lines_raw[i];
+      i++;
+   }
+
+   advanced_code_editor.set_select_lines(select_lines_result);
 
    // Do all the dirty refreshing
-   //if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
-   //refresh_current_visual_selection_end_to_current_cursor_position();
-   //refresh_search_regex_selections_on_select_lines(line_nums);
+   if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
+   refresh_current_visual_selection_end_to_current_cursor_position();
+   refresh_search_regex_selections_on_select_lines(line_numbers_as_vector);
 
    return true;
 }
@@ -1184,8 +1203,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
       { "insert_blank_line", &Hexagon::AdvancedCodeEditor::Stage::insert_blank_line },
       { "insert_three_spaces_at_start_of_line",
          &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
-      { "unindent_line",
-         &Hexagon::AdvancedCodeEditor::Stage::unindent_line},
+      { "unindent_lines",
+         &Hexagon::AdvancedCodeEditor::Stage::unindent_lines},
 
 
       // modes
@@ -1320,7 +1339,7 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_ed
       "insert_three_spaces_at_start_of_line",
       });
    result.set_mapping(ALLEGRO_KEY_COMMA, ALLEGRO_KEYMOD_SHIFT, {
-      "unindent_line",
+      "unindent_lines",
       });
    result.set_mapping(ALLEGRO_KEY_V, 0, { "toggle_currently_grabbing_visual_selection" });
    result.set_mapping(ALLEGRO_KEY_V, ALLEGRO_KEYMOD_SHIFT, {

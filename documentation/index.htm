@@ -1558,7 +1558,7 @@ table td
 </tr>
 <tr>
   <td class="method">bool</td>
-  <td class="method"><b>unindent_line</b>()</td>
+  <td class="method"><b>unindent_lines</b>()</td>
 </tr>
 <tr>
   <td class="method">bool</td>
@@ -1853,6 +1853,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;ActionQueueRecording&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/ActionQueueRecording.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::StringIndenter&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/StringIndenter.hpp&quot;]}</td>
 </tr>
     </table>
 </div>  </div>
@@ -13273,6 +13276,14 @@ table td
 </div>    <h3>Methods</h3>
 <div class="property-box methods">     <table>
 <tr>
+  <td class="method">std::vector&lt;std::string&gt;</td>
+  <td class="method"><b>indent_lines</b>(std::vector&lt;std::string&gt; lines={}, std::size_t num_indents=2)</td>
+</tr>
+<tr>
+  <td class="method">std::vector&lt;std::string&gt;</td>
+  <td class="method"><b>unindent_lines</b>(std::vector&lt;std::string&gt; lines={}, std::size_t num_unindents=2)</td>
+</tr>
+<tr>
   <td class="method">std::string</td>
   <td class="method"><b>indent</b>(std::size_t num_indents=2)</td>
 </tr>
@@ -16267,6 +16278,9 @@ table td
     "Hexagon/UI/DrawingBox"
   ],
   "ActionQueueRecording": [
+    "Hexagon/AdvancedCodeEditor/Stage"
+  ],
+  "Hexagon/StringIndenter": [
     "Hexagon/AdvancedCodeEditor/Stage"
   ],
   "Hexagon/Elements/Window": [

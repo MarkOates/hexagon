@@ -176,7 +176,7 @@ namespace Hexagon
          bool toggle_commenting_out_current_line();
          bool insert_three_spaces_at_start_of_line();
          std::set<int> get_line_indices_currently_under_selection();
-         bool unindent_line();
+         bool unindent_lines();
          bool insert_blank_line();
          bool create_visual_selection_at_current_cursor_location();
          bool destroy_current_visual_selection();
