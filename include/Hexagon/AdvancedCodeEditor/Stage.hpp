@@ -179,6 +179,8 @@ namespace Hexagon
          std::set<int> get_line_indices_currently_under_selection();
          bool indent_lines();
          bool unindent_lines();
+         bool indent_lines_by_single_space();
+         bool unindent_lines_by_single_space();
          bool insert_blank_line();
          bool create_visual_selection_at_current_cursor_location();
          bool destroy_current_visual_selection();

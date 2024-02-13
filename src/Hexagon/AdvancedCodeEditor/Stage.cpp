@@ -950,6 +950,16 @@ bool Stage::unindent_lines()
    return indent_unindent_lines(false, 2);
 }
 
+bool Stage::indent_lines_by_single_space()
+{
+   return indent_unindent_lines(true, 1);
+}
+
+bool Stage::unindent_lines_by_single_space()
+{
+   return indent_unindent_lines(false, 1);
+}
+
 bool Stage::indent_unindent_lines(bool indent, int num_spaces_to_indent)
 {
    // TODO: Test this method
@@ -1226,6 +1236,8 @@ std::map<std::string, std::function<void(Hexagon::AdvancedCodeEditor::Stage&)>> 
          &Hexagon::AdvancedCodeEditor::Stage::insert_three_spaces_at_start_of_line },
       { "indent_lines", &Hexagon::AdvancedCodeEditor::Stage::indent_lines},
       { "unindent_lines", &Hexagon::AdvancedCodeEditor::Stage::unindent_lines},
+      { "indent_lines_by_single_space", &Hexagon::AdvancedCodeEditor::Stage::indent_lines_by_single_space},
+      { "unindent_lines_by_single_space", &Hexagon::AdvancedCodeEditor::Stage::unindent_lines_by_single_space},
 
 
       // modes
@@ -1362,6 +1374,14 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping_for_ed
    result.set_mapping(ALLEGRO_KEY_COMMA, ALLEGRO_KEYMOD_SHIFT, {
       "unindent_lines",
       });
+   result.set_mapping(
+      ALLEGRO_KEY_FULLSTOP,
+      AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
+      { "indent_lines_by_single_space", });
+   result.set_mapping(
+      ALLEGRO_KEY_COMMA,
+      AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
+      { "unindent_lines_by_single_space", });
    result.set_mapping(ALLEGRO_KEY_V, 0, { "toggle_currently_grabbing_visual_selection" });
    result.set_mapping(ALLEGRO_KEY_V, ALLEGRO_KEYMOD_SHIFT, {
       "toggle_currently_grabbing_full_line_visual_selection"
