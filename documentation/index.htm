@@ -496,8 +496,8 @@ table td
 <ul>
   <div class="component">
     <h3 id="quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.q.yml">quintessence/Hexagon/AdvancedCodeEditor/AdvancedCodeEditor.q.yml</h3>
-    <p>(This component does not include supplementary documentation)</p>
-    <h3>Properties</h3>
+    <h3>Overview</h3>
+    <p>{"overview"=>"This class is the bottom-most core of the text editor. It's headless, and contains the lines in the editing text.\nIt also provides a \"content_is_modified\" flag as well as a \"dirty_grid\". The latter indicates specific cells that\nhave been modified after the operations. It's up to the renderer/consumeer to decide how to refresh the surface\nand schedule the caches after any operations have been performed.\n\nNote that this class is entirely self-contained.  It should be as atomic as possible.\n"}</p>    <h3>Properties</h3>
 <div class="property-box properties">     <table>
 <tr>
   <td class="property">lines</td>
@@ -568,7 +568,7 @@ table td
 </tr>
 <tr>
   <td class="method">bool</td>
-  <td class="method"><b>replace_line</b>(int line_index=0, std::string content=&quot;[unset-content]&quot;)</td>
+  <td class="method"><b>replace_line</b>(std::string content=&quot;[unset-content]&quot;)</td>
 </tr>
 <tr>
   <td class="method">bool</td>

@@ -74,6 +74,7 @@ std::map<int, std::string> AdvancedCodeEditor::get_select_lines(std::vector<int>
 
 void AdvancedCodeEditor::set_select_lines(std::map<int, std::string> lines_to_set)
 {
+   int cursor_y_at_start = cursor.get_y();
    for (auto &line_to_set : lines_to_set)
    {
       int line_index = line_to_set.first;
@@ -89,9 +90,11 @@ void AdvancedCodeEditor::set_select_lines(std::map<int, std::string> lines_to_se
       }
       else
       {
-         replace_line(line_index, line_to_set.second);
+         cursor_set_y(line_index);
+         replace_line(line_to_set.second);
       }
    }
+   cursor.set_y(cursor_y_at_start);
    return;
 }
 
@@ -250,8 +253,9 @@ bool AdvancedCodeEditor::split_lines()
    return true;
 }
 
-bool AdvancedCodeEditor::replace_line(int line_index, std::string content)
+bool AdvancedCodeEditor::replace_line(std::string content)
 {
+   int line_index = cursor.get_y();
    if (line_index < 0 || line_index >= lines.size()) return false;
 
    std::vector<char> non_permitted_chars = { '\n', '\r' };

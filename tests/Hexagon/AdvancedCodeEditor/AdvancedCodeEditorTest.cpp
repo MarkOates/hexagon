@@ -888,8 +888,8 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
    advanced_code_editor.set_content(PARABLE);
    advanced_code_editor.dirty_grid_clear();
 
-   //advanced_code_editor.cursor_move_down();
-   advanced_code_editor.replace_line(1, "Is this a dream?");
+   advanced_code_editor.cursor_move_down();
+   advanced_code_editor.replace_line("Is this a dream?");
 
    std::vector<std::string> lines = advanced_code_editor.get_lines();
    ASSERT_EQ(5, lines.size());
@@ -918,7 +918,7 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
                                         "\r\n"
                                         "==========END=========\n";
 
-   EXPECT_THROW_WITH_MESSAGE(advanced_code_editor.replace_line(0, "\r"), std::runtime_error, expected_error_message);
+   EXPECT_THROW_WITH_MESSAGE(advanced_code_editor.replace_line("\r"), std::runtime_error, expected_error_message);
 }
 
 
@@ -977,5 +977,6 @@ TEST(Hexagon_AdvancedCodeEditor_AdvancedCodeEditorTest,
       );
    }
 }
+
 
 

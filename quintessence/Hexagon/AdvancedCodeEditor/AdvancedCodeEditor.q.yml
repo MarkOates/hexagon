@@ -26,6 +26,18 @@ properties:
     getter: true
 
 
+documentation:
+
+
+  - overview: |
+      This class is the bottom-most core of the text editor. It's headless, and contains the lines in the editing text.
+      It also provides a "content_is_modified" flag as well as a "dirty_grid". The latter indicates specific cells that
+      have been modified after the operations. It's up to the renderer/consumeer to decide how to refresh the surface
+      and schedule the caches after any operations have been performed.
+
+      Note that this class is entirely self-contained.  It should be as atomic as possible.
+
+
 methods:
 
 
@@ -58,6 +70,7 @@ methods:
         type: std::map<int, std::string>
         default_argument: '{}'
     body: |
+      int cursor_y_at_start = cursor.get_y();
       for (auto &line_to_set : lines_to_set)
       {
          int line_index = line_to_set.first;
@@ -73,9 +86,11 @@ methods:
          }
          else
          {
-            replace_line(line_index, line_to_set.second);
+            cursor_set_y(line_index);
+            replace_line(line_to_set.second);
          }
       }
+      cursor.set_y(cursor_y_at_start);
       return;
 
 
@@ -257,13 +272,11 @@ methods:
   - name: replace_line
     type: bool
     parameters:
-      - name: line_index
-        type: int
-        default_argument: 0
       - name: content
         type: std::string
         default_argument: '"[unset-content]"'
     body: |
+      int line_index = cursor.get_y();
       if (line_index < 0 || line_index >= lines.size()) return false;
 
       std::vector<char> non_permitted_chars = { '\n', '\r' };

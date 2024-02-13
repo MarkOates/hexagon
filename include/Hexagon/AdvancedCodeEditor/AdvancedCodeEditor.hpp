@@ -50,7 +50,7 @@ namespace Hexagon
          bool delete_to_end_of_line();
          bool join_lines();
          bool split_lines();
-         bool replace_line(int line_index=0, std::string content="[unset-content]");
+         bool replace_line(std::string content="[unset-content]");
          bool delete_line();
          bool insert_lines(std::vector<std::string> lines_to_insert={});
          bool cursor_set_width(float width=0.0f);
