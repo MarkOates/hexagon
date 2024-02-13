@@ -337,7 +337,7 @@ std::string TitleScreen::build_allegro_version_string()
    int release = version & 255;
 
    std::stringstream result;
-   result << "Allegro v" << major << "-" << minor << "-" << revision << " r" << release;
+   result << "Allegro v" << major << "." << minor << "." << revision << " r" << release;
    return result.str();
 }
 

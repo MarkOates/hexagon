@@ -1,5 +1,6 @@
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include <Hexagon/TitleScreen.hpp>
 #include <allegro5/allegro_primitives.h>
@@ -66,8 +67,9 @@ TEST_F(Hexagon_TitleScreenTest, DISABLED__INTERACTIVE__operates_as_expected)
 TEST_F(Hexagon_TitleScreenTest, build_allegro_version_string__will_create_the_expected_version)
 {
    Hexagon::TitleScreen title_screen;
-   std::string expected_version_string = "Allegro v5-2-9 r0";
    std::string actual_version_string = title_screen.build_allegro_version_string();
-   ASSERT_EQ(expected_version_string, actual_version_string);
+   //Example format: "Allegro v5.2.9 r0";
+   EXPECT_THAT(actual_version_string, ::testing::MatchesRegex("^Allegro v[0-9]+\.[0-9]+\.[0-9]+ r[0-9]+$"));
 }
+
 

@@ -300,7 +300,7 @@ functions:
       int release = version & 255;
 
       std::stringstream result;
-      result << "Allegro v" << major << "-" << minor << "-" << revision << " r" << release;
+      result << "Allegro v" << major << "." << minor << "." << revision << " r" << release;
       return result.str();
     body_dependency_symbols:
       - al_get_allegro_version
