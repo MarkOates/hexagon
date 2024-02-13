@@ -956,9 +956,13 @@ bool Stage::indent_unindent_lines(bool indent)
    if (cursor_get_y() < 0) return false;
    if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
 
-   // TODO: Allow unindenting at point of cursor (when there is no selection)
-
+   // Grab the lines under selection
    std::set<int> line_numbers = get_line_indices_currently_under_selection();
+
+   // If no lines are selected, use the cursor's current y location
+   // TODO: Test this condition
+   if (line_numbers.empty()) line_numbers.insert(cursor_get_y());
+
    std::vector<int> line_numbers_as_vector(line_numbers.begin(), line_numbers.end());
    std::map<int, std::string> select_lines = advanced_code_editor.get_select_lines(line_numbers_as_vector);
    std::vector<std::string> select_lines_raw;
