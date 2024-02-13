@@ -895,13 +895,13 @@ methods:
   - name: indent_lines
     type: bool
     body: |
-      return indent_unindent_lines(true);
+      return indent_unindent_lines(true, 2);
 
 
   - name: unindent_lines
     type: bool
     body: |
-      return indent_unindent_lines(false);
+      return indent_unindent_lines(false, 2);
 
 
   - name: indent_unindent_lines
@@ -911,6 +911,9 @@ methods:
       - name: indent
         type: bool
         default_argument: true
+      - name: num_spaces_to_indent
+        type: int
+        default_argument: 2
     body: |
       // TODO: Test this method
       if (cursor_get_y() < 0) return false;
@@ -930,11 +933,11 @@ methods:
 
       if (indent)
       {
-         select_lines_raw = Hexagon::StringIndenter::indent_lines(select_lines_raw);
+         select_lines_raw = Hexagon::StringIndenter::indent_lines(select_lines_raw, num_spaces_to_indent);
       }
       else
       {
-         select_lines_raw = Hexagon::StringIndenter::unindent_lines(select_lines_raw);
+         select_lines_raw = Hexagon::StringIndenter::unindent_lines(select_lines_raw, num_spaces_to_indent);
       }
       std::map<int, std::string> select_lines_result = select_lines;
 

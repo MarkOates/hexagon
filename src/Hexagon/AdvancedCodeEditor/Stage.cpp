@@ -942,15 +942,15 @@ std::set<int> Stage::get_line_indices_currently_under_selection()
 
 bool Stage::indent_lines()
 {
-   return indent_unindent_lines(true);
+   return indent_unindent_lines(true, 2);
 }
 
 bool Stage::unindent_lines()
 {
-   return indent_unindent_lines(false);
+   return indent_unindent_lines(false, 2);
 }
 
-bool Stage::indent_unindent_lines(bool indent)
+bool Stage::indent_unindent_lines(bool indent, int num_spaces_to_indent)
 {
    // TODO: Test this method
    if (cursor_get_y() < 0) return false;
@@ -970,11 +970,11 @@ bool Stage::indent_unindent_lines(bool indent)
 
    if (indent)
    {
-      select_lines_raw = Hexagon::StringIndenter::indent_lines(select_lines_raw);
+      select_lines_raw = Hexagon::StringIndenter::indent_lines(select_lines_raw, num_spaces_to_indent);
    }
    else
    {
-      select_lines_raw = Hexagon::StringIndenter::unindent_lines(select_lines_raw);
+      select_lines_raw = Hexagon::StringIndenter::unindent_lines(select_lines_raw, num_spaces_to_indent);
    }
    std::map<int, std::string> select_lines_result = select_lines;
 
