@@ -69,7 +69,7 @@ TEST_F(Hexagon_TitleScreenTest, build_allegro_version_string__will_create_a_vers
    Hexagon::TitleScreen title_screen;
    std::string actual_version_string = title_screen.build_allegro_version_string();
    //Example format: "Allegro v5.2.9 r0";
-   EXPECT_THAT(actual_version_string, ::testing::MatchesRegex("^Allegro v[0-9]+\.[0-9]+\.[0-9]+ r[0-9]+$"));
+   EXPECT_THAT(actual_version_string, ::testing::MatchesRegex("^Allegro v[0-9]+.[0-9]+.[0-9]+ r[0-9]+$"));
 }
 
 
