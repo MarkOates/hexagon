@@ -182,6 +182,20 @@ void System::initialize()
    hud.initialize();
 
    baseline_camera_stepback = hexagon_config.get_initial_baseline_camera_stepback();
+
+   // IMPORTANT: This section will override the "initial_baseline_camera_stepback" as set in the config, based on the
+   // monitor in use
+
+   // Auto-detect a display and if it's larger, use a wider stepback
+   if (primary_monitor.get_resolution_x() == 5120 && primary_monitor.get_resolution_y() == 2880)
+   {
+      // Assume this is the LG display
+      baseline_camera_stepback = 130;
+   }
+   else
+   {
+      baseline_camera_stepback = 40;
+   }
    
    camera.get_stepback_ref().z = baseline_camera_stepback;
 
