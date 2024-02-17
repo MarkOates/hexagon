@@ -173,6 +173,8 @@ table td
   <li><a href="#quintessence/Hexagon/Marker.q.yml">quintessence/Hexagon/Marker.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MarkerNavigator.q.yml">quintessence/Hexagon/MarkerNavigator.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MissingFile/Stage.q.yml">quintessence/Hexagon/MissingFile/Stage.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/Monitor.q.yml">quintessence/Hexagon/Monitor.q.yml</a></li>
+  <li><a href="#quintessence/Hexagon/MonitorInfo.q.yml">quintessence/Hexagon/MonitorInfo.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/CommandExecutor.q.yml">quintessence/Hexagon/MultiplexMenu/CommandExecutor.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/MenuItem.q.yml">quintessence/Hexagon/MultiplexMenu/MenuItem.q.yml</a></li>
   <li><a href="#quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml">quintessence/Hexagon/MultiplexMenu/MultiplexMenu.q.yml</a></li>
@@ -9328,6 +9330,58 @@ table td
 <br><br><br>
 <ul>
   <div class="component">
+    <h3 id="quintessence/Hexagon/Monitor.q.yml">quintessence/Hexagon/Monitor.q.yml</h3>
+    <p>(This component does not include supplementary documentation)</p>
+    <h3>Properties</h3>
+<p>This class contains no properties</p>    <h3>Methods</h3>
+<div class="property-box methods">     <table>
+<tr>
+  <td class="method">std::string</td>
+  <td class="method"><b>run</b>()</td>
+</tr>
+    </table>
+</div>    <h3>Dependencies</h3>
+<p>This class contains no dependencies</p>  </div>
+</ul>
+<br><br><br>
+<br><br><br>
+<ul>
+  <div class="component">
+    <h3 id="quintessence/Hexagon/MonitorInfo.q.yml">quintessence/Hexagon/MonitorInfo.q.yml</h3>
+    <p>(This component does not include supplementary documentation)</p>
+    <h3>Properties</h3>
+<div class="property-box properties">     <table>
+<tr>
+  <td class="property">monitors</td>
+  <td class="property">std::vector&lt;Hexagon::Monitor&gt;</td>
+</tr>
+<tr>
+  <td class="property">initialized</td>
+  <td class="property">bool</td>
+</tr>
+    </table>
+</div>    <h3>Methods</h3>
+<div class="property-box methods">     <table>
+<tr>
+  <td class="method">void</td>
+  <td class="method"><b>initialize</b>()</td>
+</tr>
+    </table>
+</div>    <h3>Dependencies</h3>
+<div class="property-box dependencies">     <table>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_get_num_video_adapters&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Monitor&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Monitor.hpp&quot;]}</td>
+</tr>
+    </table>
+</div>  </div>
+</ul>
+<br><br><br>
+<br><br><br>
+<ul>
+  <div class="component">
     <h3 id="quintessence/Hexagon/MultiplexMenu/CommandExecutor.q.yml">quintessence/Hexagon/MultiplexMenu/CommandExecutor.q.yml</h3>
     <p>(This component does not include supplementary documentation)</p>
     <h3>Properties</h3>
@@ -17168,6 +17222,12 @@ table td
   ],
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
+  ],
+  "al_get_num_video_adapters": [
+    "Hexagon/MonitorInfo"
+  ],
+  "Hexagon/Monitor": [
+    "Hexagon/MonitorInfo"
   ],
   "Hexagon/MultiplexMenu/MultiplexMenu": [
     "Hexagon/MultiplexMenu/CommandExecutor",

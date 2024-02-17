@@ -1637,6 +1637,12 @@
   "Hexagon/Elements/TexturedRectangle": [
     "Hexagon/MissingFile/Stage"
   ],
+  "al_get_num_video_adapters": [
+    "Hexagon/MonitorInfo"
+  ],
+  "Hexagon/Monitor": [
+    "Hexagon/MonitorInfo"
+  ],
   "Hexagon/MultiplexMenu/MultiplexMenu": [
     "Hexagon/MultiplexMenu/CommandExecutor",
     "Hexagon/MultiplexMenu/CommandExecutor",

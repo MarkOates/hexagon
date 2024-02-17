@@ -1,0 +1,34 @@
+properties:
+
+
+  - name: monitors
+    type: std::vector<Hexagon::Monitor>
+    init_with: '{}'
+
+  - name: initialized
+    type: bool
+    init_with: false
+
+
+methods:
+
+
+  - name: initialize
+    body: |
+      int num_video_adapters = al_get_num_video_adapters();
+      std::cout << "Num video adapters: " << num_video_adapters << std::endl;
+      return;
+    body_dependency_symbols:
+      - al_get_num_video_adapters
+      - std::cout
+
+
+dependencies:
+
+
+  - symbol: al_get_num_video_adapters
+    headers: [ allegro5/allegro.h ]
+  - symbol: Hexagon::Monitor
+    headers: [ Hexagon/Monitor.hpp ]
+
+

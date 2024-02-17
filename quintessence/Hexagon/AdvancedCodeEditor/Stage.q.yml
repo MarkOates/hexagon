@@ -1745,6 +1745,7 @@ methods:
          "    constexpr:",
          "    static:",
          "    type:",
+         "    setter: before_initialized", // TODO: Nice feature would be to make this "before_initialized" orange
          "    setter:",
          "    init_with:",
          "    getter_ref:",

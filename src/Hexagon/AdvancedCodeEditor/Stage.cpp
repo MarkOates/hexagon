@@ -1717,6 +1717,7 @@ void Stage::filter_text_mesh_for_syntax_highlights()
       "    constexpr:",
       "    static:",
       "    type:",
+      "    setter: before_initialized", // TODO: Nice feature would be to make this "before_initialized" orange
       "    setter:",
       "    init_with:",
       "    getter_ref:",
