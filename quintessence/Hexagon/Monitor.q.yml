@@ -40,6 +40,12 @@ properties:
 methods:
 
 
+  - name: infer_is_primary_monitor
+    type: bool
+    body: |
+      return (desktop_x1 == 0 && desktop_y1 == 0);
+
+
   - name: get_resolution_x
     type: int
     body: |

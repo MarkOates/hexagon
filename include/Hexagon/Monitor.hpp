@@ -31,6 +31,7 @@ namespace Hexagon
       int get_desktop_x2() const;
       int get_desktop_y2() const;
       int get_dpi() const;
+      bool infer_is_primary_monitor();
       int get_resolution_x();
       int get_resolution_y();
       int infer_width_inches();

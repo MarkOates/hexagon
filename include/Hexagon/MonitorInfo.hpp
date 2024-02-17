@@ -2,6 +2,7 @@
 
 
 #include <Hexagon/Monitor.hpp>
+#include <string>
 #include <vector>
 
 
@@ -21,6 +22,8 @@ namespace Hexagon
       ~MonitorInfo();
 
       int get_num_monitors();
+      Hexagon::Monitor get_primary_monitor_info();
+      std::string dump_monitor_info();
       void initialize();
    };
 }

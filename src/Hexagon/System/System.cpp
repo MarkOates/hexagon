@@ -81,6 +81,7 @@
 #include <Blast/StringJoiner.hpp>
 #include <Hexagon/ProjectFoldersView.hpp>
 #include <Hexagon/System/Action/OpenFolderInOS.hpp>
+#include <Hexagon/MonitorInfo.hpp>
 
 
 
@@ -159,6 +160,11 @@ void System::initialize()
    set_current_project_directory(hexagon_config.get_default_navigator_directory());
    set_current_objective(hexagon_config.get_objective());
    set_current_project_domain(hexagon_config.get_current_project_domain());
+
+   // Update the Monitor Info to infer dimensions for the monitor that is used for display
+   Hexagon::MonitorInfo monitor_info;
+   monitor_info.initialize();
+   Hexagon::Monitor primary_monitor = monitor_info.get_primary_monitor_info();
 
    // Update the HUD
    hud.set_backfill_color(hexagon_config.get_backfill_color());

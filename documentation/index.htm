@@ -9358,6 +9358,10 @@ table td
 </div>    <h3>Methods</h3>
 <div class="property-box methods">     <table>
 <tr>
+  <td class="method">bool</td>
+  <td class="method"><b>infer_is_primary_monitor</b>()</td>
+</tr>
+<tr>
   <td class="method">int</td>
   <td class="method"><b>get_resolution_x</b>()</td>
 </tr>
@@ -9401,6 +9405,14 @@ table td
   <td class="method"><b>get_num_monitors</b>()</td>
 </tr>
 <tr>
+  <td class="method">Hexagon::Monitor</td>
+  <td class="method"><b>get_primary_monitor_info</b>()</td>
+</tr>
+<tr>
+  <td class="method">std::string</td>
+  <td class="method"><b>dump_monitor_info</b>()</td>
+</tr>
+<tr>
   <td class="method">void</td>
   <td class="method"><b>initialize</b>()</td>
 </tr>
@@ -9415,6 +9427,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;al_is_system_installed&quot;, &quot;headers&quot;=&gt;[&quot;allegro5/allegro.h&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::Errors&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/Errors.hpp&quot;]}</td>
 </tr>
     </table>
 </div>  </div>
@@ -16715,7 +16730,8 @@ table td
   ],
   "Hexagon/Errors": [
     "Hexagon/BuildSystem/BuildStageRenderer",
-    "Hexagon/BuildSystem/ReportRenderers/Base"
+    "Hexagon/BuildSystem/ReportRenderers/Base",
+    "Hexagon/MonitorInfo"
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",

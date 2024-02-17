@@ -84,6 +84,11 @@ int Monitor::get_dpi() const
 }
 
 
+bool Monitor::infer_is_primary_monitor()
+{
+   return (desktop_x1 == 0 && desktop_y1 == 0);
+}
+
 int Monitor::get_resolution_x()
 {
    return desktop_x2 - desktop_x1;

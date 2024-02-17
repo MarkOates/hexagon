@@ -1088,7 +1088,8 @@
   ],
   "Hexagon/Errors": [
     "Hexagon/BuildSystem/BuildStageRenderer",
-    "Hexagon/BuildSystem/ReportRenderers/Base"
+    "Hexagon/BuildSystem/ReportRenderers/Base",
+    "Hexagon/MonitorInfo"
   ],
   "std/vector<std/vector<std/string>>": [
     "Hexagon/BuildSystem/BuildStageRenderers/Base",

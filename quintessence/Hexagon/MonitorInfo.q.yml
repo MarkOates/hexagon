@@ -20,6 +20,44 @@ methods:
       return monitors.size();
 
 
+  - name: get_primary_monitor_info
+    type: Hexagon::Monitor
+    guards: [ initialized ]
+    body: |
+      for (auto &monitor : monitors)
+      {
+         if (monitor.infer_is_primary_monitor()) return monitor;
+      }
+      
+      throw std::runtime_error(Hexagon::Errors::build_error_message(
+        "Hexagon::MonitorInfo::obtain_primary_monitor_info",
+        "Could not infer primary monitor. This is unexpected behavior, as there should always be a primary "
+          "monitor present"
+      ));
+    body_dependency_symbols:
+      - Hexagon::Errors
+
+
+  - name: dump_monitor_info
+    type: std::string
+    guards: [ initialized ]
+    body: |
+      std::stringstream result;
+      int i=0;
+      for (auto &monitor : monitors)
+      {
+         result << "Monitor " << i << ": " << std::endl;
+         result << "        x1: " << monitor.get_desktop_x1() << std::endl;
+         result << "        y1: " << monitor.get_desktop_y1() << std::endl;
+         result << "        x2: " << monitor.get_desktop_x2() << std::endl;
+         result << "        y2: " << monitor.get_desktop_y2() << std::endl;
+         i++;
+      }
+      return result.str();
+    body_dependency_symbols:
+      - Hexagon::Errors
+
+
   - name: initialize
     guards:
       - (!initialized)
@@ -57,5 +95,7 @@ dependencies:
     headers: [ Hexagon/Monitor.hpp ]
   - symbol: al_is_system_installed
     headers: [ allegro5/allegro.h ]
+  - symbol: Hexagon::Errors
+    headers: [ Hexagon/Errors.hpp ]
 
 
