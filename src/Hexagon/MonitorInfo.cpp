@@ -4,6 +4,8 @@
 
 #include <allegro5/allegro.h>
 #include <iostream>
+#include <sstream>
+#include <stdexcept>
 
 
 namespace Hexagon
@@ -22,10 +24,39 @@ MonitorInfo::~MonitorInfo()
 }
 
 
+int MonitorInfo::get_num_monitors()
+{
+   if (!(initialized))
+   {
+      std::stringstream error_message;
+      error_message << "[MonitorInfo::get_num_monitors]: error: guard \"initialized\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("MonitorInfo::get_num_monitors: error: guard \"initialized\" not met");
+   }
+   return monitors.size();
+}
+
 void MonitorInfo::initialize()
 {
-   int num_video_adapters = al_get_num_video_adapters();
-   std::cout << "Num video adapters: " << num_video_adapters << std::endl;
+   if (!((!initialized)))
+   {
+      std::stringstream error_message;
+      error_message << "[MonitorInfo::initialize]: error: guard \"(!initialized)\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("MonitorInfo::initialize: error: guard \"(!initialized)\" not met");
+   }
+   if (!(al_is_system_installed()))
+   {
+      std::stringstream error_message;
+      error_message << "[MonitorInfo::initialize]: error: guard \"al_is_system_installed()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("MonitorInfo::initialize: error: guard \"al_is_system_installed()\" not met");
+   }
+   for (int i=0; i<al_get_num_video_adapters(); i++)
+   {
+      monitors.push_back({});
+   }
+   initialized = true;
    return;
 }
 

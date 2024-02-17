@@ -20,6 +20,7 @@ namespace Hexagon
       MonitorInfo();
       ~MonitorInfo();
 
+      int get_num_monitors();
       void initialize();
    };
 }

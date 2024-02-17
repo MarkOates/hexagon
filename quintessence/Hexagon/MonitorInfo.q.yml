@@ -13,14 +13,28 @@ properties:
 methods:
 
 
-  - name: initialize
+  - name: get_num_monitors
+    type: int
+    guards: [ initialized ]
     body: |
-      int num_video_adapters = al_get_num_video_adapters();
-      std::cout << "Num video adapters: " << num_video_adapters << std::endl;
+      return monitors.size();
+
+
+  - name: initialize
+    guards:
+      - (!initialized)
+      - al_is_system_installed()
+    body: |
+      for (int i=0; i<al_get_num_video_adapters(); i++)
+      {
+         monitors.push_back({});
+      }
+      initialized = true;
       return;
     body_dependency_symbols:
       - al_get_num_video_adapters
       - std::cout
+      - al_is_system_installed
 
 
 dependencies:
@@ -30,5 +44,7 @@ dependencies:
     headers: [ allegro5/allegro.h ]
   - symbol: Hexagon::Monitor
     headers: [ Hexagon/Monitor.hpp ]
+  - symbol: al_is_system_installed
+    headers: [ allegro5/allegro.h ]
 
 

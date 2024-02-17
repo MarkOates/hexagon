@@ -975,7 +975,8 @@
     "Hexagon/Elements/TextGrid",
     "Hexagon/Elements/TextPixelPreviewCreator",
     "Hexagon/Elements/Window",
-    "Hexagon/Forms/Fun"
+    "Hexagon/Forms/Fun",
+    "Hexagon/MonitorInfo"
   ],
   "al_is_font_addon_initialized": [
     "Hexagon/BuildSequenceMeter/Renderer"
