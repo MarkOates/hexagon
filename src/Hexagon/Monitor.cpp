@@ -94,6 +94,16 @@ int Monitor::get_resolution_y()
    return desktop_y2 - desktop_y1;
 }
 
+int Monitor::infer_width_inches()
+{
+   return (float)get_resolution_x() / (float)dpi;
+}
+
+int Monitor::infer_height_inches()
+{
+   return (float)get_resolution_y() / (float)dpi;
+}
+
 
 } // namespace Hexagon
 

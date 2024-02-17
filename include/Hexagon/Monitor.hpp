@@ -33,6 +33,8 @@ namespace Hexagon
       int get_dpi() const;
       int get_resolution_x();
       int get_resolution_y();
+      int infer_width_inches();
+      int infer_height_inches();
    };
 }
 

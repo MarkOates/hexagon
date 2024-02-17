@@ -52,3 +52,15 @@ methods:
       return desktop_y2 - desktop_y1;
 
 
+  - name: infer_width_inches
+    type: int
+    body: |
+      return (float)get_resolution_x() / (float)dpi;
+
+
+  - name: infer_height_inches
+    type: int
+    body: |
+      return (float)get_resolution_y() / (float)dpi;
+
+
