@@ -1,9 +1,54 @@
+properties:
+
+
+  - name: desktop_x1
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: desktop_y1
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: desktop_x2
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: desktop_y2
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+  - name: dpi
+    type: int
+    init_with: 0
+    constructor_arg: true
+    getter: true
+    setter: true
+
+
 methods:
 
 
-  - name: run
-    type: std::string
+  - name: get_resolution_x
+    type: int
     body: |
-      return "Hello World!";
+      return desktop_x2 - desktop_x1;
+
+
+  - name: get_resolution_y
+    type: int
+    body: |
+      return desktop_y2 - desktop_y1;
 
 

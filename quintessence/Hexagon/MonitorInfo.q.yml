@@ -25,9 +25,20 @@ methods:
       - (!initialized)
       - al_is_system_installed()
     body: |
+      ALLEGRO_MONITOR_INFO info;
+
       for (int i=0; i<al_get_num_video_adapters(); i++)
       {
-         monitors.push_back({});
+         al_get_monitor_info(i, &info);
+         monitors.push_back(
+            Hexagon::Monitor(
+               info.x1,
+               info.y1,
+               info.x2,
+               info.y2,
+               al_get_monitor_dpi(i)
+            )
+         );
       }
       initialized = true;
       return;
