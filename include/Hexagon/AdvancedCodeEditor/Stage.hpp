@@ -73,7 +73,7 @@ namespace Hexagon
          ALLEGRO_COLOR backfill_color;
          void initialize_surface_render();
          bool refresh_search_regex_selections_on_current_line();
-         bool indent_unindent_lines(bool indent=true, int num_spaces_to_indent=2);
+         bool indent_unindent_lines(bool indent=true, int num_spaces_to_indent=3);
          ALLEGRO_FONT* obtain_text_font();
          int cursor_get_x();
          int cursor_get_y();

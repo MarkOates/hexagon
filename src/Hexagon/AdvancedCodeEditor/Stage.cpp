@@ -942,12 +942,12 @@ std::set<int> Stage::get_line_indices_currently_under_selection()
 
 bool Stage::indent_lines()
 {
-   return indent_unindent_lines(true, 2);
+   return indent_unindent_lines(true, 3);
 }
 
 bool Stage::unindent_lines()
 {
-   return indent_unindent_lines(false, 2);
+   return indent_unindent_lines(false, 3);
 }
 
 bool Stage::indent_lines_by_single_space()
