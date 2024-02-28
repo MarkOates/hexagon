@@ -1369,19 +1369,25 @@ methods:
          "cursor_move_to_start_of_line",
          "set_to_insert_mode",
          });
-      result.set_mapping(ALLEGRO_KEY_FULLSTOP, ALLEGRO_KEYMOD_SHIFT, {
-         "indent_lines", //"insert_three_spaces_at_start_of_line",
-         });
-      result.set_mapping(ALLEGRO_KEY_COMMA, ALLEGRO_KEYMOD_SHIFT, {
-         "unindent_lines",
-         });
       result.set_mapping(
          ALLEGRO_KEY_FULLSTOP,
          AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
-         { "indent_lines_by_single_space", });
+         //ALLEGRO_KEYMOD_SHIFT,
+         { "indent_lines", });
       result.set_mapping(
          ALLEGRO_KEY_COMMA,
          AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
+         //ALLEGRO_KEYMOD_SHIFT,
+         { "unindent_lines", });
+      result.set_mapping(
+         ALLEGRO_KEY_FULLSTOP,
+         ALLEGRO_KEYMOD_SHIFT,
+         //AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
+         { "indent_lines_by_single_space", });
+      result.set_mapping(
+         ALLEGRO_KEY_COMMA,
+         //AllegroFlare::KeyboardCommandMapper::COMMAND | AllegroFlare::KeyboardCommandMapper::SHIFT,
+         ALLEGRO_KEYMOD_SHIFT,
          { "unindent_lines_by_single_space", });
       result.set_mapping(ALLEGRO_KEY_V, 0, { "toggle_currently_grabbing_visual_selection" });
       result.set_mapping(ALLEGRO_KEY_V, ALLEGRO_KEYMOD_SHIFT, {
