@@ -1295,6 +1295,8 @@ bool System::set_regex_input_box_modal_to_insert_mode() // this should be moved 
 bool System::execute_project_custom_run_command()
 {
    // TODO: Allow bringing this command in from a project-specific configuration file
+   // TODO: Capture the output of the command to a log file:
+   //std::string log_file = "/Users/markoates/Repos/hexagon/tmp/last_execute_project_custom_run_command__log.txt";
    // HERE
    std::stringstream project_specific_run_command;
    project_specific_run_command << "("
