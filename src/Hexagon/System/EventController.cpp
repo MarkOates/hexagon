@@ -310,6 +310,10 @@ std::map<std::string, std::function<bool(Hexagon::System::System&)>> EventContro
          ::System::INCREMENT_SEARCH_COUNT_IF_SEARCH_REGEX_IS_NONBLANK,
          &System::increment_search_count_if_search_regex_is_nonblank,
       },
+      {
+         ::System::EXECUTE_PROJECT_CUSTOM_RUN_COMMAND,
+         &System::execute_project_custom_run_command,
+      },
    };
    return default_function_mapping;
 }
@@ -405,6 +409,9 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
      ::System::TOGGLE_COMMAND_MODE_OFF,
      ::System::DISABLE_DRAWING_INFO_OVERLAYS_ON_ALL_CODE_EDITOR_STAGES,
    });
+
+   keyboard_key_char_mapper.set_mapping(ALLEGRO_KEY_R, true, false, false, true, {
+      ::System::EXECUTE_PROJECT_CUSTOM_RUN_COMMAND});
 
 
    //                      set_mapping(al_keycode,         shift, ctrl,  alt,   command, std::vector<std::string>)

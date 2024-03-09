@@ -167,6 +167,7 @@ public:
    bool refresh_regex_hilights_on_all_code_editor_stages();
    bool refresh_git_modified_line_numbers_on_all_code_editor_stages();
    bool set_regex_input_box_modal_to_insert_mode();
+   bool execute_project_custom_run_command();
 
    // spawn modals
    bool spawn_multiplex_delete_menu();
@@ -307,6 +308,7 @@ public:
    static const std::string PUSH_TO_GIT_REMOTE;
    static const std::string SPAWN_CLASS_BRIEF_MENU;
    static const std::string SPAWN_DRAWING_BOX;
+   static const std::string EXECUTE_PROJECT_CUSTOM_RUN_COMMAND;
 
 };
 

@@ -82,6 +82,7 @@
 #include <Hexagon/ProjectFoldersView.hpp>
 #include <Hexagon/System/Action/OpenFolderInOS.hpp>
 #include <Hexagon/MonitorInfo.hpp>
+#include <Blast/ShellCommandExecutorWithCallback.hpp>
 
 
 
@@ -1291,6 +1292,19 @@ bool System::set_regex_input_box_modal_to_insert_mode() // this should be moved 
 
 
 
+bool System::execute_project_custom_run_command()
+{
+   // TODO: Allow bringing this command in from a project-specific configuration file
+   // HERE
+   std::string project_specific_run_command = get_current_project_directory() + "bin/programs/main --development";
+   std::cout << "Running project_specific_run_command: \"" << project_specific_run_command << "\"" << std::endl;
+   Blast::ShellCommandExecutorWithCallback command_executor(project_specific_run_command);
+   command_executor.execute();
+   return true;
+}
+
+
+
 bool System::spawn_multiplex_delete_menu()
 {
    // TODO
@@ -2332,6 +2346,7 @@ const std::string System::APPEND_PACKET_USING_LAST_COMMIT_MESSAGE_AND_CLEAR_SCOR
 const std::string System::PUSH_TO_GIT_REMOTE = "PUSH_TO_GIT_REMOTE";
 const std::string System::SPAWN_CLASS_BRIEF_MENU = "SPAWN_CLASS_BRIEF_MENU";
 const std::string System::SPAWN_DRAWING_BOX = "SPAWN_DRAWING_BOX";
+const std::string System::EXECUTE_PROJECT_CUSTOM_RUN_COMMAND = "EXECUTE_PROJECT_CUSTOM_RUN_COMMAND";
 const std::string System::CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION =
    "CREATE_LAYOUT_FROM_LAST_PROJECT_NAVIGATOR_SELECTION";
 
