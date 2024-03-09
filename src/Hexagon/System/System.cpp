@@ -1296,9 +1296,15 @@ bool System::execute_project_custom_run_command()
 {
    // TODO: Allow bringing this command in from a project-specific configuration file
    // HERE
-   std::string project_specific_run_command = get_current_project_directory() + "bin/programs/main --development";
-   std::cout << "Running project_specific_run_command: \"" << project_specific_run_command << "\"" << std::endl;
-   Blast::ShellCommandExecutorWithCallback command_executor(project_specific_run_command);
+   std::stringstream project_specific_run_command;
+   project_specific_run_command << "("
+                                      << "cd "
+                                      << get_current_project_directory()
+                                      << " && "
+                                      << get_current_project_directory() << "bin/programs/main --development"
+                                   << ")";
+   std::cout << "Running project_specific_run_command: \"" << project_specific_run_command.str() << "\"" << std::endl;
+   Blast::ShellCommandExecutorWithCallback command_executor(project_specific_run_command.str());
    command_executor.execute();
    return true;
 }
