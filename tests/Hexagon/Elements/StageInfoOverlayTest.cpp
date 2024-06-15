@@ -3,11 +3,7 @@
 
 #include <Hexagon/Elements/StageInfoOverlay.hpp>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 #include <allegro5/allegro_color.h> // for al_color_name
 
@@ -25,8 +21,11 @@ TEST(Hexagon_Elements_StageInfoOverlayTest, text__has_getters_and_setters)
 TEST(Hexagon_Elements_StageInfoOverlayTest, render__without_a_valid_backfill_color__throws_an_error)
 {
    Hexagon::Elements::StageInfoOverlay stage_info_overlay(nullptr, nullptr);
-   std::string expected_error_message = "StageInfoOverlay::render: error: guard \"backfill_color\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage_info_overlay.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      stage_info_overlay.render(),
+      "Hexagon::Elements::StageInfoOverlay::render",
+      "backfill_color"
+   );
 }
 
 TEST(Hexagon_Elements_StageInfoOverlayTest, render__without_a_valid_font_bin__throws_an_error)
@@ -36,8 +35,11 @@ TEST(Hexagon_Elements_StageInfoOverlayTest, render__without_a_valid_font_bin__th
    Hexagon::Elements::StageInfoOverlay stage_info_overlay(nullptr, &backfill_color);
    stage_info_overlay.set_place(&place);
 
-   std::string expected_error_message = "StageInfoOverlay::obtain_title_font: error: guard \"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage_info_overlay.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      stage_info_overlay.render(),
+      "Hexagon::Elements::StageInfoOverlay::obtain_title_font", // !! NOTE: guard error reports from a different method
+      "font_bin"
+   );
 }
 
 TEST(Hexagon_Elements_StageInfoOverlayTest, render__with_valid_dependencies__does_not_blow_up)

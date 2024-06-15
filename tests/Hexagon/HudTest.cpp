@@ -1,17 +1,12 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/Hud.hpp>
 
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
-
 #include <allegro_flare/placement3d.h>
 #include <Hexagon/AdvancedComponentNavigator/Stage.hpp>
 #include <Hexagon/StageInterface.hpp>
@@ -27,20 +22,20 @@ public:
    virtual void process_event(ALLEGRO_EVENT &event) override {}
 };
 
-class Hexagon_Elements_HudTest_WithEmptyFixture : public ::testing::Test
+class Hexagon_HudTest_WithEmptyFixture : public ::testing::Test
 {
 public:
-   Hexagon_Elements_HudTest_WithEmptyFixture() {}
+   Hexagon_HudTest_WithEmptyFixture() {}
 };
 
-class Hexagon_Elements_HudTest_WithAllegroRenderingFixture : public ::testing::Test
+class Hexagon_HudTest_WithAllegroRenderingFixture : public ::testing::Test
 {
 public:
    ALLEGRO_DISPLAY* display;
    AllegroFlare::FontBin font_bin;
 
 public:
-   Hexagon_Elements_HudTest_WithAllegroRenderingFixture()
+   Hexagon_HudTest_WithAllegroRenderingFixture()
       : display(nullptr)
       , font_bin()
    {}
@@ -82,71 +77,81 @@ public:
    }
 };
 
-TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+TEST_F(Hexagon_HudTest_WithEmptyFixture,
    can_be_created_without_blowing_up)
 {
    Hexagon::Hud hud;
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+TEST_F(Hexagon_HudTest_WithEmptyFixture,
    notifications2__has_a_getter_and_setter)
 {
    Hexagon::Hud hud;
    ASSERT_EQ(true, hud.get_notifications2().empty());
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+TEST_F(Hexagon_HudTest_WithEmptyFixture,
    show_powerbar__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
    ASSERT_EQ(false, hud.get_show_powerbar());
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+TEST_F(Hexagon_HudTest_WithEmptyFixture,
    show_packets__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
    ASSERT_EQ(false, hud.get_show_packets());
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+TEST_F(Hexagon_HudTest_WithEmptyFixture,
    show_focus_timer_bar__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
    ASSERT_EQ(false, hud.get_show_focus_timer_bar());
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+TEST_F(Hexagon_HudTest_WithEmptyFixture,
    show_build_sequence_meter__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
    ASSERT_EQ(false, hud.get_show_build_sequence_meter());
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+TEST_F(Hexagon_HudTest_WithEmptyFixture,
    show_notifications__has_a_getter_and_is_initialized_with_the_expected_default)
 {
    Hexagon::Hud hud;
    ASSERT_EQ(true, hud.get_show_notifications());
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+TEST_F(Hexagon_HudTest_WithEmptyFixture,
    reinitialize__before_initialization__raises_an_error)
 {
    Hexagon::Hud hud;
-   std::string expected_message = "Hud::reinitialize: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(hud.reinitialize(), std::runtime_error, expected_message);
+   //std::string expected_message = "Hud::reinitialize: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(hud.reinitialize(), std::runtime_error, expected_message);
+   EXPECT_THROW_GUARD_ERROR(
+      hud.reinitialize(),
+      "Hexagon::Hud::reinitialize",
+      "initialized"
+   );
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithEmptyFixture,
+TEST_F(Hexagon_HudTest_WithEmptyFixture,
    draw__before_initialization__raises_an_error)
 {
    Hexagon::Hud hud;
-   std::string expected_message = "Hud::draw: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(hud.draw(), std::runtime_error, expected_message);
+   //std::string expected_message = "Hud::draw: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(hud.draw(), std::runtime_error, expected_message);
+   EXPECT_THROW_GUARD_ERROR(
+      hud.draw(),
+      "Hexagon::Hud::draw",
+      "initialized"
+   );
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__will_render_the_hud)
 {
    Hexagon::Hud hud(display, font_bin);
@@ -157,7 +162,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    al_flip_display();
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__will_show_packets_with_newest_packets_at_the_bottom)
 {
    Hexagon::Hud hud(display, font_bin);
@@ -178,7 +183,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    //sleep(2);
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__when_there_are_more_than_9_plus_1_packets__will_render_the_most_recent_ones)
 {
    Hexagon::Hud hud(display, font_bin);
@@ -208,7 +213,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    //sleep(2);
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__will_render_powerbar_with_the_expected_text)
 {
    Hexagon::Hud hud(display, font_bin);
@@ -228,7 +233,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    //sleep(2);
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__will_render_the_objective_with_the_expected_text)
 {
    Hexagon::Hud hud(display, font_bin);
@@ -246,7 +251,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    //sleep(2);
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__will_render_the_domain_with_the_expected_text)
 {
    Hexagon::Hud hud(display, font_bin);
@@ -264,7 +269,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    //sleep(2);
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__will_remove_the_domain_from_the_title_text)
 {
    Hexagon::Hud hud(display, font_bin);
@@ -283,7 +288,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    //sleep(2);
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__will_render_title)
 {
    Hexagon::Hud hud(display, font_bin);
@@ -299,7 +304,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 }
 
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__will_render_held_component)
 {
    Hexagon::Hud hud(display, font_bin);
@@ -315,7 +320,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
 }
 
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__will_render_advanced_component_navigator_stages_that_are_marked_as_render_on_hud)
 {
    // TODO: use a test class for this instead of the (very heavy) AdvancedComponentNavigator
@@ -348,7 +353,7 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    //sleep(2);
 }
 
-TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
+TEST_F(Hexagon_HudTest_WithAllegroRenderingFixture,
    render__when_given_stages_that_are_marked_as_render_on_hud__that_are_of_unknown_type__will_raise_an_error)
 {
    DummyUnrenderableStageType dummy_stage;
@@ -360,10 +365,11 @@ TEST_F(Hexagon_Elements_HudTest_WithAllegroRenderingFixture,
    hud.initialize();
    hud.set_stages(&stages);
 
-   // terrible error message, please fix later :pray:
+   // terrible error message, please fix later
    std::string expected_error_message =
       "Hexagon/Hud::draw: error: Cannot render a stage marked as render_on_hud that is of type \"0\"";
 
    ASSERT_THROW_WITH_MESSAGE(hud.draw(), std::runtime_error, expected_error_message);
 }
+
 

@@ -1,10 +1,5 @@
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/StageFactory.hpp>
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
 #include <Hexagon/CodeEditor/Stage.hpp>
@@ -15,23 +10,25 @@
 #include <Hexagon/UI/DrawingBox.hpp>
 #include <Hexagon/Notifications/Stage.hpp>
 #include <Hexagon/ProjectNavigator.hpp>
+#include <Hexagon/Testing/ErrorAssertions.hpp>
+
 
 TEST(Hexagon_StageFactoryTest, can_be_created_without_blowing_up)
 {
    Hexagon::StageFactory stage_factory;
 }
 
+
 TEST(Hexagon_StageFactoryTest, obtain_component_navigator_font__without_a_font_bin__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;
-   std::string expected_error_message = "StageFactory::obtain_component_navigator_font: error: guard " \
-                                        "\"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   EXPECT_THROW_GUARD_ERROR(
       stage_factory.obtain_component_navigator_font(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::StageFactory::obtain_component_navigator_font",
+      "font_bin"
    );
 }
+
 
 TEST(Hexagon_StageFactoryTest, obtain_component_navigator_font__returns_a_font)
 {
@@ -52,17 +49,17 @@ TEST(Hexagon_StageFactoryTest, obtain_component_navigator_font__returns_a_font)
    al_uninstall_system();
 }
 
+
 TEST(Hexagon_StageFactoryTest, obtain_git_commit_message_box_font__without_a_font_bin__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;
-   std::string expected_error_message = "StageFactory::obtain_git_commit_message_box_font: error: guard " \
-                                        "\"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   EXPECT_THROW_GUARD_ERROR(
       stage_factory.obtain_git_commit_message_box_font(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::StageFactory::obtain_git_commit_message_box_font",
+      "font_bin"
    );
 }
+
 
 TEST(Hexagon_StageFactoryTest, obtain_git_commit_message_box_font__returns_a_font)
 {
@@ -202,6 +199,7 @@ TEST(Hexagon_StageFactoryTest,
    al_uninstall_system();
 }
 
+
 TEST(Hexagon_StageFactoryTest,
    create_code_editor__creates_a_code_editor_stage_with_the_expected_properties)
 {
@@ -246,6 +244,7 @@ TEST(Hexagon_StageFactoryTest,
    al_uninstall_system();
 }
 
+
 TEST(Hexagon_StageFactoryTest,
    create_advanced_code_editor__creates_a_code_editor_stage_with_the_expected_properties)
 {
@@ -279,6 +278,7 @@ TEST(Hexagon_StageFactoryTest,
    al_shutdown_ttf_addon();
    al_uninstall_system();
 }
+
 
 TEST(Hexagon_StageFactoryTest,
    create_delete_multiplex_menu__creates_a_multiplex_menu_with_the_expected_properties)
@@ -330,43 +330,47 @@ TEST(Hexagon_StageFactoryTest,
    al_uninstall_system();
 }
 
+
 TEST(Hexagon_StageFactoryTest, DISABLED__create_advanced_component_navigator__without_a_config__raises_an_exception)
 {
    // TODO
 }
+
 
 TEST(Hexagon_StageFactoryTest, create_advanced_component_navigator__without_a_font_bin__raises_an_exception)
 {
    //AllegroFlare::FontBin font_bin;
    Hexagon::StageFactory stage_factory(nullptr, nullptr, nullptr);//&font_bin);
 
-   std::string expected_error_message = "StageFactory::create_advanced_component_navigator: error: guard " \
-                                        "\"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   EXPECT_THROW_GUARD_ERROR(
       stage_factory.create_advanced_component_navigator(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::StageFactory::create_advanced_component_navigator",
+      "font_bin"
    );
 }
+
 
 TEST(Hexagon_StageFactoryTest, obtain_regex_temp_filename__without_a_config__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;
-   std::string expected_error_message = "StageFactory::obtain_regex_temp_filename: error: guard " \
-                                        "\"config\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   EXPECT_THROW_GUARD_ERROR(
       stage_factory.obtain_regex_temp_filename(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::StageFactory::obtain_regex_temp_filename",
+      "config"
    );
 }
+
 
 TEST(Hexagon_StageFactoryTest, obtain_base_text_color__without_a_config__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;
-   std::string expected_error_message = "StageFactory::obtain_base_text_color: error: guard \"config\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage_factory.obtain_base_text_color(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage_factory.obtain_base_text_color(),
+      "Hexagon::StageFactory::obtain_base_text_color",
+      "config"
+   );
 }
+
 
 TEST(Hexagon_StageFactoryTest,
    create_advanced_component_navigator__creates_an_advanced_component_navigator_with_the_expected_properties)
@@ -428,19 +432,19 @@ TEST(Hexagon_StageFactoryTest,
    al_uninstall_system();
 }
 
+
 TEST(Hexagon_StageFactoryTest, create_project_navigator__without_a_font_bin__raises_an_exception)
 {
    //AllegroFlare::FontBin font_bin;
    Hexagon::StageFactory stage_factory(nullptr, nullptr, nullptr);//&font_bin);
 
-   std::string expected_error_message = "StageFactory::create_project_navigator: error: guard " \
-                                        "\"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   EXPECT_THROW_GUARD_ERROR(
       stage_factory.create_project_navigator(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::StageFactory::create_project_navigator",
+      "font_bin"
    );
 }
+
 
 TEST(Hexagon_StageFactoryTest, create_project_navigator__creates_a_project_navigator_with_the_expected_properties)
 {
@@ -489,6 +493,7 @@ TEST(Hexagon_StageFactoryTest, create_project_navigator__creates_a_project_navig
    al_uninstall_system();
 }
 
+
 TEST(Hexagon_StageFactoryTest, create_file_navigator__creates_a_file_navigator_with_the_expected_properties)
 {
    al_init();
@@ -523,29 +528,37 @@ TEST(Hexagon_StageFactoryTest, create_file_navigator__creates_a_file_navigator_w
    al_uninstall_system();
 }
 
+
 TEST(Hexagon_StageFactoryText,
    create_component_relations_navigator__creates_a_component_relations_navigator_with_the_expected_properties)
 {
    // TODO
 }
 
+
 TEST(Hexagon_StageFactoryTest, get_current_display__when_allegro_is_not_initialized__raises_an_exception)
 {
    Hexagon::StageFactory stage_factory;
-   std::string expected_error_message = "StageFactory::get_current_display: error: guard " \
-                                        "\"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage_factory.get_current_display(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage_factory.get_current_display(),
+      "Hexagon::StageFactory::get_current_display",
+      "al_is_system_installed()"
+   );
 }
+
 
 TEST(Hexagon_StageFactoryTest, get_current_display__without_a_current_display__raises_an_exception)
 {
    al_init();
    Hexagon::StageFactory stage_factory;
-   std::string expected_error_message = "StageFactory::get_current_display: error: guard " \
-                                        "\"al_get_current_display()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage_factory.get_current_display(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage_factory.get_current_display(),
+      "Hexagon::StageFactory::get_current_display",
+      "al_get_current_display()"
+   );
    al_uninstall_system();
 }
+
 
 TEST(Hexagon_StageFactoryTest, get_current_display__returns_the_current_display)
 {
@@ -559,6 +572,7 @@ TEST(Hexagon_StageFactoryTest, get_current_display__returns_the_current_display)
    al_destroy_display(display);
    al_uninstall_system();
 }
+
 
 TEST(Hexagon_StageFactoryTest, build_centered_on_hud_initial_place__returns_the_expected_position)
 {
@@ -582,8 +596,10 @@ TEST(Hexagon_StageFactoryTest, build_centered_on_hud_initial_place__returns_the_
    al_uninstall_system();
 }
 
+
 TEST(Hexagon_StageFactoryTest, build_regex_input_box_initial_place__returns_the_expected_position)
 {
    // this is untested
 }
+
 

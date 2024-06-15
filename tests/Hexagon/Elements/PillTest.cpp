@@ -1,12 +1,9 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Testing/WithAllegroRenderingFixture.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 class Hexagon_Elements_PillTest : public ::testing::Test
 {};
@@ -27,9 +24,11 @@ TEST_F(Hexagon_Elements_PillTest, can_be_created_without_blowing_up)
 TEST_F(Hexagon_Elements_PillTest, render__without_allegro_initialized__raises_an_error)
 {
    Hexagon::Elements::Pill pill;
-   std::string expected_error_message =
-      "Pill::render: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(pill.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      pill.render(),
+      "Hexagon::Elements::Pill::render",
+      "al_is_system_installed()"
+   );
 }
 
 

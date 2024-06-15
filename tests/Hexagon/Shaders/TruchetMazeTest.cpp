@@ -1,14 +1,9 @@
 
 #include <gtest/gtest.h>
 
-
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
-
 #include <Hexagon/Shaders/TruchetMaze.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 #include <AllegroFlare/FontBin.hpp>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_ttf.h>
@@ -126,8 +121,11 @@ TEST_F(Hexagon_Shaders_TruchetMazeTest, can_be_created_without_blowing_up)
 TEST_F(Hexagon_Shaders_TruchetMazeTest, activate__before_being_initialized_raises_an_exception)
 {
    Hexagon::Shaders::TruchetMaze shader;
-   std::string expected_error_message = "TruchetMaze::activate: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(shader.activate(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      shader.activate(),
+      "Hexagon::Shaders::TruchetMaze::activate",
+      "initialized"
+   );
 }
 
 

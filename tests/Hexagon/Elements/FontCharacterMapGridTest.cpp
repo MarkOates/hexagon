@@ -1,10 +1,7 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 #include <Hexagon/Elements/FontCharacterMapGrid.hpp>
 #include <allegro5/allegro_image.h> // for al_save_bitmap to png
@@ -17,9 +14,11 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, can_be_created_without_blowing_u
 TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__without_allegro_initialized__raises_an_error)
 {
    Hexagon::Elements::FontCharacterMapGrid text_mesh;
-   std::string expected_error_message =
-      "FontCharacterMapGrid::initialize: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.initialize(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      text_mesh.initialize(),
+      "Hexagon::Elements::FontCharacterMapGrid::initialize",
+      "al_is_system_installed()"
+   );
 }
 
 
@@ -27,8 +26,11 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__without_a_valid_font
 {
    al_init();
    Hexagon::Elements::FontCharacterMapGrid text_mesh;
-   std::string expected_error_message = "FontCharacterMapGrid::initialize: error: guard \"font\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.initialize(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      text_mesh.initialize(),
+      "Hexagon::Elements::FontCharacterMapGrid::initialize",
+      "font"
+   );
    al_uninstall_system();
 }
 
@@ -90,9 +92,11 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest, initialize__if_called_more_than_
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid(font);
 
    ASSERT_EQ(true, font_character_map_grid.initialize());
-   std::string expected_error_message =
-      "FontCharacterMapGrid::initialize: error: guard \"(!initialized)\" not met";
-   ASSERT_THROW_WITH_MESSAGE(font_character_map_grid.initialize(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      font_character_map_grid.initialize(),
+      "Hexagon::Elements::FontCharacterMapGrid::initialize",
+      "(!initialized)"
+   );
 }
 
 
@@ -101,12 +105,10 @@ TEST(Hexagon_Elements_FontCharacterMapGridTest,
 {
    Hexagon::Elements::FontCharacterMapGrid font_character_map_grid;
 
-   std::string expected_error_message =
-      "FontCharacterMapGrid::get_created_character_map_bitmap: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   ASSERT_THROW_GUARD_ERROR(
       font_character_map_grid.get_created_character_map_bitmap(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::Elements::FontCharacterMapGrid::get_created_character_map_bitmap",
+      "initialized"
    );
 }
 

@@ -1,12 +1,9 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/Elements/TextMesh.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 #include <allegro5/allegro_color.h>
 
@@ -18,8 +15,11 @@ TEST(Hexagon_Elements_TextMeshTest, can_be_created_without_blowing_up)
 TEST(Hexagon_Elements_TextMeshTest, initialize__without_a_valid_font__will_raise_an_error)
 {
    Hexagon::Elements::TextMesh text_mesh(nullptr);
-   std::string expected_error_message = "TextMesh::initialize: error: guard \"font\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.initialize(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      text_mesh.initialize(),
+      "Hexagon::Elements::TextMesh::initialize",
+      "font"
+   );
 }
 
 TEST(Hexagon_Elements_TextMeshTest, initialize__will_create_the_font_character_bitmap)
@@ -69,8 +69,11 @@ TEST(Hexagon_Elements_TextMeshTest, destruct__without_initialization__raises_an_
    ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
 
    Hexagon::Elements::TextMesh text_mesh(a_valid_font);
-   std::string expected_error_message = "TextMesh::destruct: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.destruct(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      text_mesh.destruct(),
+      "Hexagon::Elements::TextMesh::destruct",
+      "initialized"
+   );
 
    al_destroy_font(a_valid_font);
    al_uninstall_system();
@@ -99,8 +102,11 @@ TEST(Hexagon_Elements_TextMeshTest, set_font__after_initialization_has_occurred_
 
    Hexagon::Elements::TextMesh text_mesh(a_valid_font);
    text_mesh.initialize();
-   std::string expected_error_message = "TextMesh::set_font: error: guard \"!initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.set_font(a_valid_font), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      text_mesh.set_font(),
+      "Hexagon::Elements::TextMesh::set_font",
+      "!initialized"
+   );
 
    al_destroy_font(a_valid_font);
    al_uninstall_system();
@@ -112,8 +118,11 @@ TEST(Hexagon_Elements_TextMeshTest, render__without_having_initialized__will_rai
    ALLEGRO_FONT *a_valid_font = al_create_builtin_font();
 
    Hexagon::Elements::TextMesh text_mesh(a_valid_font);
-   std::string expected_error_message = "TextMesh::render: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(text_mesh.render(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      text_mesh.render(),
+      "Hexagon::Elements::TextMesh::render",
+      "initialized"
+   );
 
    al_destroy_font(a_valid_font);
    al_uninstall_system();

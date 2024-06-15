@@ -3,10 +3,7 @@
 
 #include <Hexagon/Elements/BitmapGridMesh.hpp>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 #define FLOATING_POINT_ERROR_MARGIN (0.00001f)
 
@@ -138,8 +135,11 @@ TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__
 {
    Hexagon::Elements::BitmapGridMesh bitmap_grid_mesh;
    bitmap_grid_mesh.set_bitmap(nullptr);
-   std::string expected_error_message = "BitmapGridMesh::render: error: guard \"bitmap\" not met";
-   ASSERT_THROW_WITH_MESSAGE(bitmap_grid_mesh.render(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      bitmap_grid_mesh.render(),
+      "Hexagon::Elements::BitmapGridMesh::render",
+      "bitmap"
+   );
 }
 
 TEST_F(Hexagon_Elements_BitmapGridMeshTest_WithAllegroRenderingFixture, render__draws_the_grid)

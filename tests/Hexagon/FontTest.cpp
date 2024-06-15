@@ -1,12 +1,8 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/Font.hpp>
+#include <Hexagon/Testing/ErrorAssertions.hpp>
 
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
@@ -31,16 +27,22 @@ TEST(Hexagon_FontTest, font_size__has_a_getter_and_is_set_to_default_values)
 TEST(Hexagon_FontTest, al_font__without_allegro_initialized__will_raise_an_exception)
 {
    Hexagon::Font font;
-   std::string expected_error_message = "Font::al_font: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(font.al_font(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      font.al_font(),
+      "Hexagon::Font::al_font",
+      "al_is_system_installed()"
+   );
 }
 
 TEST(Hexagon_FontTest, al_font__without_the_allegro_image_addon_initialized__will_raise_an_exception)
 {
    al_init();
    Hexagon::Font font;
-   std::string expected_error_message = "Font::al_font: error: guard \"al_is_ttf_addon_initialized()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(font.al_font(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      font.al_font(),
+      "Hexagon::Font::al_font",
+      "al_is_ttf_addon_initialized()"
+   );
    al_uninstall_system();
 }
 
@@ -49,8 +51,11 @@ TEST(Hexagon_FontTest, al_font__without_a_valid_font_bin__will_raise_an_exceptio
    al_init();
    al_init_ttf_addon();
    Hexagon::Font font;
-   std::string expected_error_message = "Font::al_font: error: guard \"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(font.al_font(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      font.al_font(),
+      "Hexagon::Font::al_font",
+      "font_bin"
+   );
    al_shutdown_ttf_addon();
    al_uninstall_system();
 }

@@ -1,14 +1,9 @@
 
 #include <gtest/gtest.h>
 
-
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
-
 #include <Hexagon/Shaders/FlatColor.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_color.h>
 #include <allegro_flare/placement2d.h>
@@ -59,8 +54,13 @@ TEST_F(Hexagon_Shaders_FlatColorTest, can_be_created_without_blowing_up)
 TEST_F(Hexagon_Shaders_FlatColorTest, activate__before_being_initialized_raises_an_exception)
 {
    Hexagon::Shaders::FlatColor flat_color_shader;
-   std::string expected_error_message = "FlatColor::activate: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(flat_color_shader.activate(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "FlatColor::activate: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(flat_color_shader.activate(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      flat_color_shader.activate(),
+      "Hexagon::Shaders::FlatColor::activate",
+      "initialized"
+   );
 }
 
 

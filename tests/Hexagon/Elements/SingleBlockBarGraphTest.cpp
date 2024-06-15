@@ -1,12 +1,9 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/Elements/SingleBlockBarGraph.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/placement3d.h>
@@ -60,8 +57,11 @@ TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture,
    draw__without_allegro_initalized__raises_an_error)
 {
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
-   std::string expected_error_message = "SingleBlockBarGraph::draw: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(single_block_bar_graph.draw(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      single_block_bar_graph.draw(),
+      "Hexagon::Elements::SingleBlockBarGraph::draw",
+      "al_is_system_installed()"
+   );
 }
 
 TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture,
@@ -70,9 +70,11 @@ TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture,
    al_init();
 
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
-   std::string expected_error_message =
-      "SingleBlockBarGraph::draw: error: guard \"al_is_primitives_addon_initialized()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(single_block_bar_graph.draw(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      single_block_bar_graph.draw(),
+      "Hexagon::Elements::SingleBlockBarGraph::draw",
+      "al_is_primitives_addon_initialized()"
+   );
 
    al_uninstall_system();
 }
@@ -84,9 +86,11 @@ TEST_F(Hexagon_Elements_SingleBlockBarGraphTest_WithEmptyFixture,
    al_init_primitives_addon();
 
    Hexagon::Elements::SingleBlockBarGraph single_block_bar_graph;
-   std::string expected_error_message =
-      "SingleBlockBarGraph::draw: error: guard \"al_get_target_bitmap()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(single_block_bar_graph.draw(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      single_block_bar_graph.draw(),
+      "Hexagon::Elements::SingleBlockBarGraph::draw",
+      "al_get_target_bitmap()"
+   );
 
    al_uninstall_system();
 }
