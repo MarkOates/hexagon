@@ -3,11 +3,7 @@
 
 #include <Hexagon/Elements/BitmapGridRenderSurface.hpp>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 #include <Hexagon/Elements/SubBitmapCharacterMap.hpp>
 
 TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, can_be_created_without_blowing_up)
@@ -18,9 +14,11 @@ TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, can_be_created_without_blowin
 TEST(Hexagon_Elements_BitmapGridRenderSurfaceTest, initialize__without_allegro_initialized__raises_an_exception)
 {
    Hexagon::Elements::BitmapGridRenderSurface bitmap_grid_render_surface;
-   std::string expected_error_message =
-      "BitmapGridRenderSurface::initialize: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(bitmap_grid_render_surface.initialize(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      bitmap_grid_render_surface.initialize(),
+      "Hexagon::Elements::BitmapGridRenderSurface::initialize",
+      "al_is_system_installed()"
+   );
    SUCCEED();
 }
 

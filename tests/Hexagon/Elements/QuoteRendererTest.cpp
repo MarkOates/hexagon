@@ -1,12 +1,9 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/Elements/QuoteRenderer.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 #include <Blast/TaoTeChingQuoteGenerator.hpp>
 
 class Hexagon_Elements_QuoteRendererTestWithEmptyFixture : public ::testing::Test
@@ -25,9 +22,11 @@ TEST_F(Hexagon_Elements_QuoteRendererTestWithEmptyFixture, can_be_created_withou
 TEST_F(Hexagon_Elements_QuoteRendererTestWithEmptyFixture, render__without_allegro_initialized__raises_an_error)
 {
    Hexagon::Elements::QuoteRenderer quote_renderer;
-   std::string expected_error_message =
-      "QuoteRenderer::render: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(quote_renderer.render(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      quote_renderer.render(),
+      "Hexagon::Elements::QuoteRenderer::render",
+      "al_is_system_installed()"
+   );
 }
 
 TEST_F(Hexagon_Elements_QuoteRendererTestWithAllegroRenderingFixture, render__will_not_blow_up)

@@ -1,13 +1,11 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/Elements/FilePixelPreviewCreator.hpp>
 
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
+
+// TODO: Use a more proper fixture file
 std::string FIXTURE_FILE = "/Users/markoates/Repos/hexagon/tests/Hexagon/Elements/FilePixelPreviewCreatorTest.cpp";
 
 class Hexagon_Elements_FilePixelPreviewCreatorTestWithEmptyFixture : public ::testing::Test
@@ -28,9 +26,11 @@ TEST_F(Hexagon_Elements_FilePixelPreviewCreatorTestWithEmptyFixture,
    create__without_allegro_initialized__raises_an_error)
 {
    Hexagon::Elements::FilePixelPreviewCreator file_pixel_preview_creator;
-   std::string expected_error_message =
-      "FilePixelPreviewCreator::create: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(file_pixel_preview_creator.create(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      file_pixel_preview_creator.create(),
+      "Hexagon::Elements::FilePixelPreviewCreator::create",
+      "al_is_system_installed()"
+   );
 }
 
 TEST_F(Hexagon_Elements_FilePixelPreviewCreatorTestWithAllegroRenderingFixture,
@@ -39,7 +39,7 @@ TEST_F(Hexagon_Elements_FilePixelPreviewCreatorTestWithAllegroRenderingFixture,
    Hexagon::Elements::FilePixelPreviewCreator file_pixel_preview_creator("/a_file/that/does_not_exist");
    std::string expected_error_message =
       "FilePixelPreviewCreator::create: error: the file \"/a_file/that/does_not_exist\" does not exist.";
-   ASSERT_THROW_WITH_MESSAGE(file_pixel_preview_creator.create(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_WITH_MESSAGE(file_pixel_preview_creator.create(), std::runtime_error, expected_error_message);
 }
 
 TEST_F(Hexagon_Elements_FilePixelPreviewCreatorTestWithAllegroRenderingFixture,

@@ -1,12 +1,9 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/Elements/Window.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
@@ -81,16 +78,22 @@ TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, can_be_created_without_blow
 TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, draw__without_allegro_initialized__throws_an_error)
 {
    Hexagon::Elements::Window window;
-   std::string expected_error_message = "Window::draw: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(window.draw(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      window.draw(),
+      "Hexagon::Elements::Window::draw",
+      "al_is_system_installed()"
+   );
 }
 
 TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, draw__without_primitives_addon_initialized__throws_an_error)
 {
    al_init();
    Hexagon::Elements::Window window;
-   std::string expected_error_message = "Window::draw: error: guard \"al_is_primitives_addon_initialized()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(window.draw(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      window.draw(),
+      "Hexagon::Elements::Window::draw",
+      "al_is_primitives_addon_initialized()"
+   );
    al_uninstall_system();
 }
 
@@ -99,8 +102,11 @@ TEST_F(Hexagon_Elements_WindowTest_WithEmptyFixture, draw__without_a_render_targ
    al_init();
    al_init_primitives_addon();
    Hexagon::Elements::Window window;
-   std::string expected_error_message = "Window::draw: error: guard \"al_get_target_bitmap()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(window.draw(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      window.draw(),
+      "Hexagon::Elements::Window::draw",
+      "al_get_target_bitmap()"
+   );
    al_uninstall_system();
 }
 
