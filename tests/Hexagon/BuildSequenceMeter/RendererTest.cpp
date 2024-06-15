@@ -1,12 +1,13 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+//#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
+   //try { code; FAIL() << "Expected " # raised_exception_type; } \
+   //catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
+   //catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 #include <Hexagon/BuildSequenceMeter/Renderer.hpp>
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 #include <allegro_flare/placement2d.h>
 
 class Hexagon_BuildSequenceMeter_RendererTestWithEmptyFixture : public ::testing::Test
@@ -29,9 +30,11 @@ TEST_F(Hexagon_BuildSequenceMeter_RendererTestWithAllegroRenderingFixture,
    render__without_a_font_bin__raises_an_error)
 {
    Hexagon::BuildSequenceMeter::Renderer renderer;
-   std::string expected_error_message =
-      "Renderer::obtain_font: error: guard \"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      renderer.render(),
+      "Hexagon::BuildSequenceMeter::Renderer::obtain_font", // !! NOTE: Throws from different location, please fix test
+      "font_bin"
+   );
 }
 
 

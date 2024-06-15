@@ -2,12 +2,9 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/LayoutToStagesCreator.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
@@ -36,12 +33,10 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
       //&get_font_bin_ref()
    );
 
-   std::string expected_error_message = "LayoutToStagesCreator::place_and_load_code_editor: error: " \
-                                        "guard \"stages\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   ASSERT_THROW_GUARD_ERROR(
       layout_to_stage_creator.place_and_load_code_editor(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::LayoutToStagesCreator::place_and_load_code_editor",
+      "stages"
    );
 }
 
@@ -57,12 +52,10 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
       &get_font_bin_ref()
    );
 
-   std::string expected_error_message = "LayoutToStagesCreator::place_and_load_code_editor: error: " \
-                                        "guard \"stage_factory\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   ASSERT_THROW_GUARD_ERROR(
       layout_to_stage_creator.place_and_load_code_editor(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::LayoutToStagesCreator::place_and_load_code_editor",
+      "stage_factory"
    );
 }
 
@@ -77,12 +70,10 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
       &get_font_bin_ref()
    );
 
-   std::string expected_error_message = "LayoutToStagesCreator::place_and_load_code_editor: error: " \
-                                        "guard \"layout\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   ASSERT_THROW_GUARD_ERROR(
       layout_to_stage_creator.place_and_load_code_editor(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::LayoutToStagesCreator::place_and_load_code_editor",
+      "layout"
    );
 }
 
@@ -98,12 +89,10 @@ TEST_F(Hexagon_LayoutToStagesCreatorTestWithFixture,
       nullptr
    );
 
-   std::string expected_error_message = "LayoutToStagesCreator::place_and_load_code_editor: error: " \
-                                        "guard \"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   ASSERT_THROW_GUARD_ERROR(
       layout_to_stage_creator.place_and_load_code_editor(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::LayoutToStagesCreator::place_and_load_code_editor",
+      "font_bin"
    );
 }
 
