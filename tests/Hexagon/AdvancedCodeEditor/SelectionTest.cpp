@@ -3,11 +3,7 @@
 
 #include <Hexagon/AdvancedCodeEditor/Selection.hpp>
 #include <Hexagon/Testing/Comparison/Hexagon/AdvancedCodeEditor/Selection.hpp>
-
-#define EXPECT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+#include <Hexagon/Testing/ErrorAssertions.hpp>
 
 
 TEST(Hexagon_AdvancedCodeEditor_SelectionTest, can_be_created_without_blowing_up)
@@ -200,9 +196,14 @@ TEST(Hexagon_AdvancedCodeEditor_SelectionTest,
    Hexagon::AdvancedCodeEditor::Selection selection;
    std::string expected_message = "Selection::pull_up_from: error: guard \"(num_lines_to_pull_up <= "
                                   "starting_on_line)\" not met";
-   EXPECT_THROW_WITH_MESSAGE(selection.pull_up_from(0, 1), std::runtime_error, expected_message);
-   EXPECT_THROW_WITH_MESSAGE(selection.pull_up_from(10, 11), std::runtime_error, expected_message);
-   EXPECT_THROW_WITH_MESSAGE(selection.pull_up_from(1, 999), std::runtime_error, expected_message);
+   //EXPECT_THROW_WITH_MESSAGE(selection.pull_up_from(0, 1), std::runtime_error, expected_message);
+   //EXPECT_THROW_WITH_MESSAGE(selection.pull_up_from(10, 11), std::runtime_error, expected_message);
+   //EXPECT_THROW_WITH_MESSAGE(selection.pull_up_from(1, 999), std::runtime_error, expected_message);
+   EXPECT_THROW_GUARD_ERROR(
+      selection.pull_up_from(0, 1),
+      "Hexagon::AdvancedCodeEditor::Selection::pull_up_from",
+      "(num_lines_to_pull_up <= starting_on_line)"
+   );
 }
 
 

@@ -63,9 +63,9 @@ void Stage::send_message_to_stage(std::string message)
    if (!(stage_to_send_messages_to))
    {
       std::stringstream error_message;
-      error_message << "[Stage::send_message_to_stage]: error: guard \"stage_to_send_messages_to\" not met.";
+      error_message << "[Hexagon::MultiplexMenu::Stage::send_message_to_stage]: error: guard \"stage_to_send_messages_to\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::send_message_to_stage: error: guard \"stage_to_send_messages_to\" not met");
+      throw std::runtime_error("[Hexagon::MultiplexMenu::Stage::send_message_to_stage]: error: guard \"stage_to_send_messages_to\" not met");
    }
    stage_to_send_messages_to->process_local_event(message);
    return;

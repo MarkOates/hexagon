@@ -29,16 +29,16 @@ std::vector<std::string> CodeRangeExtractor::extract()
    if (!(lines))
    {
       std::stringstream error_message;
-      error_message << "[CodeRangeExtractor::extract]: error: guard \"lines\" not met.";
+      error_message << "[Hexagon::CodeRangeExtractor::extract]: error: guard \"lines\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CodeRangeExtractor::extract: error: guard \"lines\" not met");
+      throw std::runtime_error("[Hexagon::CodeRangeExtractor::extract]: error: guard \"lines\" not met");
    }
    if (!(code_range))
    {
       std::stringstream error_message;
-      error_message << "[CodeRangeExtractor::extract]: error: guard \"code_range\" not met.";
+      error_message << "[Hexagon::CodeRangeExtractor::extract]: error: guard \"code_range\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CodeRangeExtractor::extract: error: guard \"code_range\" not met");
+      throw std::runtime_error("[Hexagon::CodeRangeExtractor::extract]: error: guard \"code_range\" not met");
    }
    CodePoint start = code_range->infer_cursor_start();
    CodePoint end = code_range->infer_cursor_end();
@@ -64,16 +64,16 @@ std::vector<std::string> CodeRangeExtractor::extract_full_lines()
    if (!(lines))
    {
       std::stringstream error_message;
-      error_message << "[CodeRangeExtractor::extract_full_lines]: error: guard \"lines\" not met.";
+      error_message << "[Hexagon::CodeRangeExtractor::extract_full_lines]: error: guard \"lines\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CodeRangeExtractor::extract_full_lines: error: guard \"lines\" not met");
+      throw std::runtime_error("[Hexagon::CodeRangeExtractor::extract_full_lines]: error: guard \"lines\" not met");
    }
    if (!(code_range))
    {
       std::stringstream error_message;
-      error_message << "[CodeRangeExtractor::extract_full_lines]: error: guard \"code_range\" not met.";
+      error_message << "[Hexagon::CodeRangeExtractor::extract_full_lines]: error: guard \"code_range\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CodeRangeExtractor::extract_full_lines: error: guard \"code_range\" not met");
+      throw std::runtime_error("[Hexagon::CodeRangeExtractor::extract_full_lines]: error: guard \"code_range\" not met");
    }
    CodePoint start = code_range->infer_cursor_start();
    CodePoint end = code_range->infer_cursor_end();

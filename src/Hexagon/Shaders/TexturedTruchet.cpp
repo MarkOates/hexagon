@@ -36,9 +36,9 @@ void TexturedTruchet::activate()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[TexturedTruchet::activate]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::Shaders::TexturedTruchet::activate]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("TexturedTruchet::activate: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::Shaders::TexturedTruchet::activate]: error: guard \"initialized\" not met");
    }
    Hexagon::Shaders::Base::activate();
 }
@@ -48,9 +48,9 @@ void TexturedTruchet::deactivate()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[TexturedTruchet::deactivate]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::Shaders::TexturedTruchet::deactivate]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("TexturedTruchet::deactivate: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::Shaders::TexturedTruchet::deactivate]: error: guard \"initialized\" not met");
    }
    Hexagon::Shaders::Base::deactivate();
 }

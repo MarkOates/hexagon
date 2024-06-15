@@ -71,9 +71,9 @@ ALLEGRO_COLOR StageFactory::obtain_base_text_color()
    if (!(config))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::obtain_base_text_color]: error: guard \"config\" not met.";
+      error_message << "[Hexagon::StageFactory::obtain_base_text_color]: error: guard \"config\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::obtain_base_text_color: error: guard \"config\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::obtain_base_text_color]: error: guard \"config\" not met");
    }
    return config->get_base_text_color();
 }
@@ -83,9 +83,9 @@ std::string StageFactory::obtain_regex_temp_filename()
    if (!(config))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::obtain_regex_temp_filename]: error: guard \"config\" not met.";
+      error_message << "[Hexagon::StageFactory::obtain_regex_temp_filename]: error: guard \"config\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::obtain_regex_temp_filename: error: guard \"config\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::obtain_regex_temp_filename]: error: guard \"config\" not met");
    }
    return config->get_regex_temp_filename();
 }
@@ -95,9 +95,9 @@ ALLEGRO_COLOR StageFactory::obtain_base_backfill_color()
    if (!(config))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::obtain_base_backfill_color]: error: guard \"config\" not met.";
+      error_message << "[Hexagon::StageFactory::obtain_base_backfill_color]: error: guard \"config\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::obtain_base_backfill_color: error: guard \"config\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::obtain_base_backfill_color]: error: guard \"config\" not met");
    }
    return config->get_backfill_color();
 }
@@ -107,9 +107,9 @@ ALLEGRO_FONT* StageFactory::obtain_component_navigator_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::obtain_component_navigator_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::StageFactory::obtain_component_navigator_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::obtain_component_navigator_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::obtain_component_navigator_font]: error: guard \"font_bin\" not met");
    }
    //return font_bin->auto_get("Menlo-Regular.ttf -18");
    return font_bin->auto_get("Purista Medium.otf -18");
@@ -120,9 +120,9 @@ ALLEGRO_FONT* StageFactory::obtain_file_navigator_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::obtain_file_navigator_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::StageFactory::obtain_file_navigator_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::obtain_file_navigator_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::obtain_file_navigator_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("consolas.ttf -18");
 }
@@ -132,9 +132,9 @@ ALLEGRO_FONT* StageFactory::obtain_global_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::obtain_global_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::StageFactory::obtain_global_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::obtain_global_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::obtain_global_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("Menlo-Regular.ttf -20");
 }
@@ -144,9 +144,9 @@ ALLEGRO_FONT* StageFactory::obtain_git_commit_message_box_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::obtain_git_commit_message_box_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::StageFactory::obtain_git_commit_message_box_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::obtain_git_commit_message_box_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::obtain_git_commit_message_box_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("Purista Medium.otf -22");
 }
@@ -156,9 +156,9 @@ int StageFactory::obtain_display_default_width()
    if (!(config))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::obtain_display_default_width]: error: guard \"config\" not met.";
+      error_message << "[Hexagon::StageFactory::obtain_display_default_width]: error: guard \"config\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::obtain_display_default_width: error: guard \"config\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::obtain_display_default_width]: error: guard \"config\" not met");
    }
    return config->get_initial_display_width();
 }
@@ -168,9 +168,9 @@ int StageFactory::obtain_display_default_height()
    if (!(config))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::obtain_display_default_height]: error: guard \"config\" not met.";
+      error_message << "[Hexagon::StageFactory::obtain_display_default_height]: error: guard \"config\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::obtain_display_default_height: error: guard \"config\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::obtain_display_default_height]: error: guard \"config\" not met");
    }
    return config->get_initial_display_height();
 }
@@ -180,9 +180,9 @@ bool StageFactory::obtain_dark_mode()
    if (!(config))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::obtain_dark_mode]: error: guard \"config\" not met.";
+      error_message << "[Hexagon::StageFactory::obtain_dark_mode]: error: guard \"config\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::obtain_dark_mode: error: guard \"config\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::obtain_dark_mode]: error: guard \"config\" not met");
    }
    return config->is_dark_mode();
 }
@@ -233,9 +233,9 @@ StageInterface* StageFactory::create_chat_gpt_chat()
    if (!(bitmap_bin))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::create_chat_gpt_chat]: error: guard \"bitmap_bin\" not met.";
+      error_message << "[Hexagon::StageFactory::create_chat_gpt_chat]: error: guard \"bitmap_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::create_chat_gpt_chat: error: guard \"bitmap_bin\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::create_chat_gpt_chat]: error: guard \"bitmap_bin\" not met");
    }
    Hexagon::ChatGPTIntegration::Chat::Stage *result = new Hexagon::ChatGPTIntegration::Chat::Stage();
    result->set_bitmap_bin(bitmap_bin);
@@ -548,9 +548,9 @@ StageInterface* StageFactory::create_advanced_component_navigator(std::string pr
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::create_advanced_component_navigator]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::StageFactory::create_advanced_component_navigator]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::create_advanced_component_navigator: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::create_advanced_component_navigator]: error: guard \"font_bin\" not met");
    }
    Hexagon::AdvancedComponentNavigator::Stage *result =
       new Hexagon::AdvancedComponentNavigator::Stage(project_directory);
@@ -603,9 +603,9 @@ StageInterface* StageFactory::create_project_navigator(std::vector<std::tuple<st
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::create_project_navigator]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::StageFactory::create_project_navigator]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::create_project_navigator: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::create_project_navigator]: error: guard \"font_bin\" not met");
    }
    Hexagon::ProjectNavigator *result = new Hexagon::ProjectNavigator(font_bin);
 
@@ -643,9 +643,9 @@ StageInterface* StageFactory::create_project_folders_view(std::string project_di
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::create_project_folders_view]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::StageFactory::create_project_folders_view]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::create_project_folders_view: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::create_project_folders_view]: error: guard \"font_bin\" not met");
    }
    Hexagon::ProjectFoldersView *result = new Hexagon::ProjectFoldersView(font_bin, project_directory);
 
@@ -684,16 +684,16 @@ ALLEGRO_DISPLAY* StageFactory::get_current_display()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::get_current_display]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::StageFactory::get_current_display]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::get_current_display: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::get_current_display]: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(al_get_current_display()))
    {
       std::stringstream error_message;
-      error_message << "[StageFactory::get_current_display]: error: guard \"al_get_current_display()\" not met.";
+      error_message << "[Hexagon::StageFactory::get_current_display]: error: guard \"al_get_current_display()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageFactory::get_current_display: error: guard \"al_get_current_display()\" not met");
+      throw std::runtime_error("[Hexagon::StageFactory::get_current_display]: error: guard \"al_get_current_display()\" not met");
    }
    return al_get_current_display();
 }

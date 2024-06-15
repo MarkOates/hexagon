@@ -60,9 +60,9 @@ std::string DocumentationDependentsJSONLoader::dependents_json_file_contents()
    if (!(std::filesystem::exists(dependents_json_filename)))
    {
       std::stringstream error_message;
-      error_message << "[DocumentationDependentsJSONLoader::dependents_json_file_contents]: error: guard \"std::filesystem::exists(dependents_json_filename)\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader::dependents_json_file_contents]: error: guard \"std::filesystem::exists(dependents_json_filename)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("DocumentationDependentsJSONLoader::dependents_json_file_contents: error: guard \"std::filesystem::exists(dependents_json_filename)\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::DocumentationDependentsJSONLoader::dependents_json_file_contents]: error: guard \"std::filesystem::exists(dependents_json_filename)\" not met");
    }
    return php::file_get_contents(dependents_json_filename);
 }

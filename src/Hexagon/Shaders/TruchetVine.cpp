@@ -36,9 +36,9 @@ void TruchetVine::activate()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[TruchetVine::activate]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::Shaders::TruchetVine::activate]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("TruchetVine::activate: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::Shaders::TruchetVine::activate]: error: guard \"initialized\" not met");
    }
    Hexagon::Shaders::Base::activate();
 }
@@ -48,9 +48,9 @@ void TruchetVine::deactivate()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[TruchetVine::deactivate]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::Shaders::TruchetVine::deactivate]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("TruchetVine::deactivate: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::Shaders::TruchetVine::deactivate]: error: guard \"initialized\" not met");
    }
    Hexagon::Shaders::Base::deactivate();
 }

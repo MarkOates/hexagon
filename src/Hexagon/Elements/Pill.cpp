@@ -122,16 +122,16 @@ void Pill::render()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[Pill::render]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::Elements::Pill::render]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Pill::render: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::Pill::render]: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(al_is_font_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[Pill::render]: error: guard \"al_is_font_addon_initialized()\" not met.";
+      error_message << "[Hexagon::Elements::Pill::render]: error: guard \"al_is_font_addon_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Pill::render: error: guard \"al_is_font_addon_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::Pill::render]: error: guard \"al_is_font_addon_initialized()\" not met");
    }
    ALLEGRO_FONT *font = obtain_font();
    float font_height = al_get_font_line_height(font);
@@ -145,9 +145,9 @@ ALLEGRO_FONT* Pill::obtain_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Pill::obtain_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::Elements::Pill::obtain_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Pill::obtain_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::Elements::Pill::obtain_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("Purista Medium.otf -16");
 }

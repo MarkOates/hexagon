@@ -376,30 +376,30 @@ void Renderer::draw_status_box(float x, float y, float w, float h, std::string s
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[Renderer::draw_status_box]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::BuildSequenceMeter::Renderer::draw_status_box]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Renderer::draw_status_box: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::BuildSequenceMeter::Renderer::draw_status_box]: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(al_is_primitives_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[Renderer::draw_status_box]: error: guard \"al_is_primitives_addon_initialized()\" not met.";
+      error_message << "[Hexagon::BuildSequenceMeter::Renderer::draw_status_box]: error: guard \"al_is_primitives_addon_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Renderer::draw_status_box: error: guard \"al_is_primitives_addon_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::BuildSequenceMeter::Renderer::draw_status_box]: error: guard \"al_is_primitives_addon_initialized()\" not met");
    }
    if (!(al_is_ttf_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[Renderer::draw_status_box]: error: guard \"al_is_ttf_addon_initialized()\" not met.";
+      error_message << "[Hexagon::BuildSequenceMeter::Renderer::draw_status_box]: error: guard \"al_is_ttf_addon_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Renderer::draw_status_box: error: guard \"al_is_ttf_addon_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::BuildSequenceMeter::Renderer::draw_status_box]: error: guard \"al_is_ttf_addon_initialized()\" not met");
    }
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Renderer::draw_status_box]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::BuildSequenceMeter::Renderer::draw_status_box]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Renderer::draw_status_box: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::BuildSequenceMeter::Renderer::draw_status_box]: error: guard \"font_bin\" not met");
    }
    // statuses:
    //   incomplete: nothing has run yet
@@ -471,9 +471,9 @@ ALLEGRO_FONT* Renderer::obtain_dump_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Renderer::obtain_dump_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::BuildSequenceMeter::Renderer::obtain_dump_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Renderer::obtain_dump_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::BuildSequenceMeter::Renderer::obtain_dump_font]: error: guard \"font_bin\" not met");
    }
    float scale = 1.45;
    int font_size = -10 * scale;
@@ -487,9 +487,9 @@ ALLEGRO_FONT* Renderer::obtain_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Renderer::obtain_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::BuildSequenceMeter::Renderer::obtain_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Renderer::obtain_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::BuildSequenceMeter::Renderer::obtain_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("Purista Medium.otf -20");
 }

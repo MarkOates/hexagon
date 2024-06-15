@@ -2,12 +2,8 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/AdvancedCodeEditor/Stage.hpp>
+#include <Hexagon/Testing/ErrorAssertions.hpp>
 
 #include <allegro5/allegro_font.h>
 
@@ -226,8 +222,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    initialize__when_allegro_is_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::initialize: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.initialize(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::initialize: error: guard \"al_is_system_installed()\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.initialize(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage.initialize(),
+      "Hexagon::AdvancedCodeEditor::Stage::initialize",
+      "al_is_system_installed()"
+   );
 }
 
 
@@ -236,8 +237,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, initialize__withou
    al_init();
 
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::initialize: error: guard \"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.initialize(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::initialize: error: guard \"font_bin\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.initialize(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage.initialize(),
+      "Hexagon::AdvancedCodeEditor::Stage::initialize",
+      "font_bin"
+   );
 
    al_uninstall_system();
 }
@@ -274,8 +280,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, render__if_not_ini
    al_init();
 
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::render: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::render: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage.initialize(),
+      "Hexagon::AdvancedCodeEditor::Stage::initialize",
+      "font_bin"
+   );
 
    al_uninstall_system();
 }
@@ -397,8 +408,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, render_
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, set_content__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::set_content: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.set_content(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::set_content: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.set_content(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage.set_content(),
+      "Hexagon::AdvancedCodeEditor::Stage::set_content",
+      "initialized"
+   );
 }
 
 
@@ -497,8 +513,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEventQueueFixture,
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, delete_character__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::delete_character: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.delete_character(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::delete_character: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.delete_character(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage.delete_character(),
+      "Hexagon::AdvancedCodeEditor::Stage::delete_character",
+      "initialized"
+   );
 }
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithAllegroRenderingFixture, delete_character__does_not_blow_up)
@@ -617,8 +638,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, join_lines__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::join_lines: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.join_lines(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::join_lines: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.join_lines(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage.join_lines(),
+      "Hexagon::AdvancedCodeEditor::Stage::join_lines",
+      "initialized"
+   );
 }
 
 
@@ -742,16 +768,26 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, split_lines__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::split_lines: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.split_lines(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::split_lines: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.split_lines(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage.split_lines(),
+      "Hexagon::AdvancedCodeEditor::Stage::split_lines",
+      "initialized"
+   );
 }
 
 
 TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture, delete_line__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::delete_line: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.delete_line(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::delete_line: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.delete_line(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage.delete_line(),
+      "Hexagon::AdvancedCodeEditor::Stage::delete_line",
+      "initialized"
+   );
 }
 
 
@@ -985,8 +1021,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    insert_string_from_input_buffer__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::insert_string_from_input_buffer: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.insert_string_from_input_buffer(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::insert_string_from_input_buffer: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.insert_string_from_input_buffer(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage.insert_string_from_input_buffer(),
+      "Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer",
+      "initialized"
+   );
 }
 
 
@@ -1003,8 +1044,13 @@ TEST_F(Hexagon_AdvancedCodeEditor_StageTest_WithEmptyFixture,
    insert_lines__if_not_initialized__raises_an_error)
 {
    Hexagon::AdvancedCodeEditor::Stage stage;
-   std::string expected_error_message = "Stage::insert_lines: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.insert_lines(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::insert_lines: error: guard \"initialized\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.insert_lines(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      stage.insert_lines(),
+      "Hexagon::AdvancedCodeEditor::Stage::insert_lines",
+      "initialized"
+   );
 }
 
 

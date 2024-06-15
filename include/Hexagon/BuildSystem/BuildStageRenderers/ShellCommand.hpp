@@ -15,7 +15,7 @@ namespace Hexagon
          class ShellCommand : public Hexagon::BuildSystem::BuildStageRenderers::Base
          {
          public:
-            static constexpr char* TYPE = "ShellCommand";
+            static constexpr char* TYPE = (char*)"ShellCommand";
 
          private:
             Hexagon::BuildSystem::BuildStages::ShellCommand* shell_command_build_stage;

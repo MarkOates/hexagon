@@ -33,9 +33,9 @@ void Renderer::render()
    if (!(multiplex_menu))
    {
       std::stringstream error_message;
-      error_message << "[Renderer::render]: error: guard \"multiplex_menu\" not met.";
+      error_message << "[Hexagon::MultiplexMenu::Renderer::render]: error: guard \"multiplex_menu\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Renderer::render: error: guard \"multiplex_menu\" not met");
+      throw std::runtime_error("[Hexagon::MultiplexMenu::Renderer::render]: error: guard \"multiplex_menu\" not met");
    }
    placement3d place;
    int i=0;

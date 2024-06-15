@@ -51,9 +51,9 @@ void DirtyGrid::mark_all_as_dirty(std::vector<std::string>* lines)
    if (!(lines))
    {
       std::stringstream error_message;
-      error_message << "[DirtyGrid::mark_all_as_dirty]: error: guard \"lines\" not met.";
+      error_message << "[Hexagon::DirtyGrid::mark_all_as_dirty]: error: guard \"lines\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("DirtyGrid::mark_all_as_dirty: error: guard \"lines\" not met");
+      throw std::runtime_error("[Hexagon::DirtyGrid::mark_all_as_dirty]: error: guard \"lines\" not met");
    }
    type: std::vector<std::string>& local_lines_ref = *lines;
    for (int l=0; l<local_lines_ref.size(); l++)
@@ -77,9 +77,9 @@ void DirtyGrid::incorporate(Hexagon::DirtyGrid* other_dirty_grid)
    if (!(other_dirty_grid))
    {
       std::stringstream error_message;
-      error_message << "[DirtyGrid::incorporate]: error: guard \"other_dirty_grid\" not met.";
+      error_message << "[Hexagon::DirtyGrid::incorporate]: error: guard \"other_dirty_grid\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("DirtyGrid::incorporate: error: guard \"other_dirty_grid\" not met");
+      throw std::runtime_error("[Hexagon::DirtyGrid::incorporate]: error: guard \"other_dirty_grid\" not met");
    }
    dirty_cells.insert(other_dirty_grid->dirty_cells.begin(), other_dirty_grid->dirty_cells.end());
    return;

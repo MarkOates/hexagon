@@ -143,16 +143,16 @@ float ConversationView::render()
    if (!(bitmap_bin))
    {
       std::stringstream error_message;
-      error_message << "[ConversationView::render]: error: guard \"bitmap_bin\" not met.";
+      error_message << "[Hexagon::ChatGPTIntegration::Chat::ConversationView::render]: error: guard \"bitmap_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ConversationView::render: error: guard \"bitmap_bin\" not met");
+      throw std::runtime_error("[Hexagon::ChatGPTIntegration::Chat::ConversationView::render]: error: guard \"bitmap_bin\" not met");
    }
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[ConversationView::render]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::ChatGPTIntegration::Chat::ConversationView::render]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ConversationView::render: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::ChatGPTIntegration::Chat::ConversationView::render]: error: guard \"font_bin\" not met");
    }
    ALLEGRO_FONT *log_dump_font = obtain_log_dump_font();
    ALLEGRO_COLOR log_dump_text_color = ALLEGRO_COLOR{0.9, 0.93, 1.0, 1.0};
@@ -249,9 +249,9 @@ ALLEGRO_FONT* ConversationView::obtain_log_dump_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[ConversationView::obtain_log_dump_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::ChatGPTIntegration::Chat::ConversationView::obtain_log_dump_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ConversationView::obtain_log_dump_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::ChatGPTIntegration::Chat::ConversationView::obtain_log_dump_font]: error: guard \"font_bin\" not met");
    }
    float scale = 1.45;
    int font_size = -12 * scale;
@@ -265,9 +265,9 @@ ALLEGRO_FONT* ConversationView::obtain_input_box_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[ConversationView::obtain_input_box_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::ChatGPTIntegration::Chat::ConversationView::obtain_input_box_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ConversationView::obtain_input_box_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::ChatGPTIntegration::Chat::ConversationView::obtain_input_box_font]: error: guard \"font_bin\" not met");
    }
    float scale = 1.45;
    int font_size = -12 * scale;

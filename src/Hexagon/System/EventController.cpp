@@ -323,9 +323,9 @@ void EventController::process_local_event(std::string event_name)
    if (!(system))
    {
       std::stringstream error_message;
-      error_message << "[EventController::process_local_event]: error: guard \"system\" not met.";
+      error_message << "[Hexagon::System::EventController::process_local_event]: error: guard \"system\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("EventController::process_local_event: error: guard \"system\" not met");
+      throw std::runtime_error("[Hexagon::System::EventController::process_local_event]: error: guard \"system\" not met");
    }
    std::map<std::string, std::function<bool(Hexagon::System::System&)>> event_function_mapping =
       get_default_function_mapping();
@@ -379,16 +379,16 @@ void EventController::process_event(ALLEGRO_EVENT* event_ptr)
    if (!(system))
    {
       std::stringstream error_message;
-      error_message << "[EventController::process_event]: error: guard \"system\" not met.";
+      error_message << "[Hexagon::System::EventController::process_event]: error: guard \"system\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("EventController::process_event: error: guard \"system\" not met");
+      throw std::runtime_error("[Hexagon::System::EventController::process_event]: error: guard \"system\" not met");
    }
    if (!(event_ptr))
    {
       std::stringstream error_message;
-      error_message << "[EventController::process_event]: error: guard \"event_ptr\" not met.";
+      error_message << "[Hexagon::System::EventController::process_event]: error: guard \"event_ptr\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("EventController::process_event: error: guard \"event_ptr\" not met");
+      throw std::runtime_error("[Hexagon::System::EventController::process_event]: error: guard \"event_ptr\" not met");
    }
    AllegroFlare::KeyboardCommandMapper keyboard_key_up_mapper;
    AllegroFlare::KeyboardCommandMapper keyboard_key_down_mapper;

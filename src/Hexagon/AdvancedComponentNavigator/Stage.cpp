@@ -250,9 +250,9 @@ void Stage::render()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Stage::render]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::AdvancedComponentNavigator::Stage::render]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::render: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedComponentNavigator::Stage::render]: error: guard \"font_bin\" not met");
    }
    float backfill_opacity = 0.8f;
 

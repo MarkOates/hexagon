@@ -58,9 +58,9 @@ std::string Base::render_text()
    if (!(build))
    {
       std::stringstream error_message;
-      error_message << "[Base::render_text]: error: guard \"build\" not met.";
+      error_message << "[Hexagon::BuildSystem::ReportRenderers::Base::render_text]: error: guard \"build\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Base::render_text: error: guard \"build\" not met");
+      throw std::runtime_error("[Hexagon::BuildSystem::ReportRenderers::Base::render_text]: error: guard \"build\" not met");
    }
    std::stringstream result;
 

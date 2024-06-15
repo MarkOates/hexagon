@@ -49,16 +49,16 @@ void Stage::render()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Stage::render]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::ObjectivesLog::Stage::render]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::render: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::ObjectivesLog::Stage::render]: error: guard \"font_bin\" not met");
    }
    if (!(objectives_log))
    {
       std::stringstream error_message;
-      error_message << "[Stage::render]: error: guard \"objectives_log\" not met.";
+      error_message << "[Hexagon::ObjectivesLog::Stage::render]: error: guard \"objectives_log\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::render: error: guard \"objectives_log\" not met");
+      throw std::runtime_error("[Hexagon::ObjectivesLog::Stage::render]: error: guard \"objectives_log\" not met");
    }
    placement3d place = get_place();
    std::vector<Hexagon::ObjectivesLog::Objective> &objectives = objectives_log->get_objectives_ref();
@@ -129,9 +129,9 @@ int Stage::infer_num_list_items()
    if (!(objectives_log))
    {
       std::stringstream error_message;
-      error_message << "[Stage::infer_num_list_items]: error: guard \"objectives_log\" not met.";
+      error_message << "[Hexagon::ObjectivesLog::Stage::infer_num_list_items]: error: guard \"objectives_log\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::infer_num_list_items: error: guard \"objectives_log\" not met");
+      throw std::runtime_error("[Hexagon::ObjectivesLog::Stage::infer_num_list_items]: error: guard \"objectives_log\" not met");
    }
    return objectives_log->get_objectives_ref().size();
 }

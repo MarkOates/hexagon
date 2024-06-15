@@ -44,9 +44,9 @@ std::string BuildStageRenderer::build_text_report()
    if (!(build_stage))
    {
       std::stringstream error_message;
-      error_message << "[BuildStageRenderer::build_text_report]: error: guard \"build_stage\" not met.";
+      error_message << "[Hexagon::BuildSystem::BuildStageRenderer::build_text_report]: error: guard \"build_stage\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BuildStageRenderer::build_text_report: error: guard \"build_stage\" not met");
+      throw std::runtime_error("[Hexagon::BuildSystem::BuildStageRenderer::build_text_report]: error: guard \"build_stage\" not met");
    }
    std::string result;
 

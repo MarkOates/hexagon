@@ -36,16 +36,16 @@ void DataTable::render()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[DataTable::render]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::Elements::DataTable::render]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("DataTable::render: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::DataTable::render]: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "[DataTable::render]: error: guard \"font\" not met.";
+      error_message << "[Hexagon::Elements::DataTable::render]: error: guard \"font\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("DataTable::render: error: guard \"font\" not met");
+      throw std::runtime_error("[Hexagon::Elements::DataTable::render]: error: guard \"font\" not met");
    }
    ALLEGRO_COLOR text_color = ALLEGRO_COLOR{0.5, 0.5, 0.5, 0.5};
 

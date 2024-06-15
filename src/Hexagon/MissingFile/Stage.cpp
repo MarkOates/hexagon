@@ -117,9 +117,9 @@ void Stage::render()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Stage::render]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::MissingFile::Stage::render]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::render: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::MissingFile::Stage::render]: error: guard \"font_bin\" not met");
    }
    placement3d place = get_place();
    place.start_transform();
@@ -171,9 +171,9 @@ ALLEGRO_FONT* Stage::obtain_text_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Stage::obtain_text_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::MissingFile::Stage::obtain_text_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::obtain_text_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::MissingFile::Stage::obtain_text_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("Menlo-Regular.ttf -20");
 }
@@ -183,9 +183,9 @@ ALLEGRO_FONT* Stage::obtain_title_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Stage::obtain_title_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::MissingFile::Stage::obtain_title_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::obtain_title_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::MissingFile::Stage::obtain_title_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -60");
 }

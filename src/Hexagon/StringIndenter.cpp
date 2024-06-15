@@ -30,9 +30,9 @@ std::vector<std::string> StringIndenter::indent_lines(std::vector<std::string> l
    if (!((num_indents >= 0)))
    {
       std::stringstream error_message;
-      error_message << "[StringIndenter::indent_lines]: error: guard \"(num_indents >= 0)\" not met.";
+      error_message << "[Hexagon::StringIndenter::indent_lines]: error: guard \"(num_indents >= 0)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StringIndenter::indent_lines: error: guard \"(num_indents >= 0)\" not met");
+      throw std::runtime_error("[Hexagon::StringIndenter::indent_lines]: error: guard \"(num_indents >= 0)\" not met");
    }
    bool skip_blank_lines = true;
 
@@ -53,9 +53,9 @@ std::vector<std::string> StringIndenter::unindent_lines(std::vector<std::string>
    if (!((num_unindents >= 0)))
    {
       std::stringstream error_message;
-      error_message << "[StringIndenter::unindent_lines]: error: guard \"(num_unindents >= 0)\" not met.";
+      error_message << "[Hexagon::StringIndenter::unindent_lines]: error: guard \"(num_unindents >= 0)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StringIndenter::unindent_lines: error: guard \"(num_unindents >= 0)\" not met");
+      throw std::runtime_error("[Hexagon::StringIndenter::unindent_lines]: error: guard \"(num_unindents >= 0)\" not met");
    }
    //std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
    bool skip_blank_lines = true;
@@ -98,9 +98,9 @@ std::string StringIndenter::indent(std::size_t num_indents)
    if (!((num_indents >= 0)))
    {
       std::stringstream error_message;
-      error_message << "[StringIndenter::indent]: error: guard \"(num_indents >= 0)\" not met.";
+      error_message << "[Hexagon::StringIndenter::indent]: error: guard \"(num_indents >= 0)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StringIndenter::indent: error: guard \"(num_indents >= 0)\" not met");
+      throw std::runtime_error("[Hexagon::StringIndenter::indent]: error: guard \"(num_indents >= 0)\" not met");
    }
    std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
    bool skip_blank_lines = true;
@@ -122,9 +122,9 @@ std::string StringIndenter::unindent(std::size_t num_unindents)
    if (!((num_unindents >= 0)))
    {
       std::stringstream error_message;
-      error_message << "[StringIndenter::unindent]: error: guard \"(num_unindents >= 0)\" not met.";
+      error_message << "[Hexagon::StringIndenter::unindent]: error: guard \"(num_unindents >= 0)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StringIndenter::unindent: error: guard \"(num_unindents >= 0)\" not met");
+      throw std::runtime_error("[Hexagon::StringIndenter::unindent]: error: guard \"(num_unindents >= 0)\" not met");
    }
    std::vector<std::string> lines = Blast::StringSplitter(content, '\n').split();
    bool skip_blank_lines = true;

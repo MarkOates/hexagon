@@ -122,9 +122,9 @@ std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> AdvancedLineRenderer::b
    if (!(backfill_color))
    {
       std::stringstream error_message;
-      error_message << "[AdvancedLineRenderer::build_comment_tokens]: error: guard \"backfill_color\" not met.";
+      error_message << "[Hexagon::CodeEditor::Renderer::AdvancedLineRenderer::build_comment_tokens]: error: guard \"backfill_color\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("AdvancedLineRenderer::build_comment_tokens: error: guard \"backfill_color\" not met");
+      throw std::runtime_error("[Hexagon::CodeEditor::Renderer::AdvancedLineRenderer::build_comment_tokens]: error: guard \"backfill_color\" not met");
    }
    std::vector<std::tuple<std::string, int, ALLEGRO_COLOR>> tokens;
    ALLEGRO_COLOR base_backfill_color = *backfill_color;
@@ -188,23 +188,23 @@ void AdvancedLineRenderer::render()
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "[AdvancedLineRenderer::render]: error: guard \"font\" not met.";
+      error_message << "[Hexagon::CodeEditor::Renderer::AdvancedLineRenderer::render]: error: guard \"font\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("AdvancedLineRenderer::render: error: guard \"font\" not met");
+      throw std::runtime_error("[Hexagon::CodeEditor::Renderer::AdvancedLineRenderer::render]: error: guard \"font\" not met");
    }
    if (!(font_color))
    {
       std::stringstream error_message;
-      error_message << "[AdvancedLineRenderer::render]: error: guard \"font_color\" not met.";
+      error_message << "[Hexagon::CodeEditor::Renderer::AdvancedLineRenderer::render]: error: guard \"font_color\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("AdvancedLineRenderer::render: error: guard \"font_color\" not met");
+      throw std::runtime_error("[Hexagon::CodeEditor::Renderer::AdvancedLineRenderer::render]: error: guard \"font_color\" not met");
    }
    if (!(backfill_color))
    {
       std::stringstream error_message;
-      error_message << "[AdvancedLineRenderer::render]: error: guard \"backfill_color\" not met.";
+      error_message << "[Hexagon::CodeEditor::Renderer::AdvancedLineRenderer::render]: error: guard \"backfill_color\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("AdvancedLineRenderer::render: error: guard \"backfill_color\" not met");
+      throw std::runtime_error("[Hexagon::CodeEditor::Renderer::AdvancedLineRenderer::render]: error: guard \"backfill_color\" not met");
    }
    std::string concatinated_line = full_line_text.substr(0, max_num_columns);
    // draw the line straight out

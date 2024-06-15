@@ -11,7 +11,7 @@ namespace Hexagon
    class DependencyManager
    {
    public:
-      static constexpr char* DEPS_FOLDER = ".deps/";
+      static constexpr char* DEPS_FOLDER = (char*)".deps/";
 
    private:
       std::string project_folder;

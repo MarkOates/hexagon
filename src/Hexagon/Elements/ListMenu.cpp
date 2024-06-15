@@ -369,9 +369,9 @@ ALLEGRO_FONT* ListMenu::obtain_list_item_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[ListMenu::obtain_list_item_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::Elements::ListMenu::obtain_list_item_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ListMenu::obtain_list_item_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::Elements::ListMenu::obtain_list_item_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("Jura-Medium.ttf -26");
    //return font_bin->auto_get("Exan-Regular.ttf -23");
@@ -383,9 +383,9 @@ ALLEGRO_FONT* ListMenu::obtain_title_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[ListMenu::obtain_title_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::Elements::ListMenu::obtain_title_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ListMenu::obtain_title_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::Elements::ListMenu::obtain_title_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("EurostileExtendedBlack-aka-ExtendedBold.ttf -26");
    //return font_bin->auto_get("Exan-Regular.ttf -23");

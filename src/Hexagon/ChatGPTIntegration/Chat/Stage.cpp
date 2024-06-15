@@ -113,9 +113,9 @@ void Stage::initialize()
    if (!((!initialized)))
    {
       std::stringstream error_message;
-      error_message << "[Stage::initialize]: error: guard \"(!initialized)\" not met.";
+      error_message << "[Hexagon::ChatGPTIntegration::Chat::Stage::initialize]: error: guard \"(!initialized)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::initialize: error: guard \"(!initialized)\" not met");
+      throw std::runtime_error("[Hexagon::ChatGPTIntegration::Chat::Stage::initialize]: error: guard \"(!initialized)\" not met");
    }
    get_place().size = {900, 1200};
    log_view.set_source_filename(log_source_filename);
@@ -156,9 +156,9 @@ void Stage::render()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::render]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::ChatGPTIntegration::Chat::Stage::render]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::render: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::ChatGPTIntegration::Chat::Stage::render]: error: guard \"initialized\" not met");
    }
 
    ALLEGRO_FONT *log_dump_font = obtain_log_dump_font();
@@ -449,9 +449,9 @@ ALLEGRO_FONT* Stage::obtain_log_dump_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Stage::obtain_log_dump_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::ChatGPTIntegration::Chat::Stage::obtain_log_dump_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::obtain_log_dump_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::ChatGPTIntegration::Chat::Stage::obtain_log_dump_font]: error: guard \"font_bin\" not met");
    }
    float scale = 1.45;
    int font_size = -12 * scale;
@@ -465,9 +465,9 @@ ALLEGRO_FONT* Stage::obtain_input_box_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Stage::obtain_input_box_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::ChatGPTIntegration::Chat::Stage::obtain_input_box_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::obtain_input_box_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::ChatGPTIntegration::Chat::Stage::obtain_input_box_font]: error: guard \"font_bin\" not met");
    }
    float scale = 1.45;
    int font_size = -12 * scale;

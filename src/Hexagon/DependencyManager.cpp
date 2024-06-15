@@ -70,9 +70,9 @@ void DependencyManager::load_from_source_tree()
    if (!((!loaded)))
    {
       std::stringstream error_message;
-      error_message << "[DependencyManager::load_from_source_tree]: error: guard \"(!loaded)\" not met.";
+      error_message << "[Hexagon::DependencyManager::load_from_source_tree]: error: guard \"(!loaded)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("DependencyManager::load_from_source_tree: error: guard \"(!loaded)\" not met");
+      throw std::runtime_error("[Hexagon::DependencyManager::load_from_source_tree]: error: guard \"(!loaded)\" not met");
    }
    load_dependencies();
    build_dependents_from_dependencies();
@@ -228,9 +228,9 @@ void DependencyManager::build_dependents_from_dependencies()
    if (!(dependencies_loaded))
    {
       std::stringstream error_message;
-      error_message << "[DependencyManager::build_dependents_from_dependencies]: error: guard \"dependencies_loaded\" not met.";
+      error_message << "[Hexagon::DependencyManager::build_dependents_from_dependencies]: error: guard \"dependencies_loaded\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("DependencyManager::build_dependents_from_dependencies: error: guard \"dependencies_loaded\" not met");
+      throw std::runtime_error("[Hexagon::DependencyManager::build_dependents_from_dependencies]: error: guard \"dependencies_loaded\" not met");
    }
    for (auto &dependency_dictionary_listing : dependencies)
    {

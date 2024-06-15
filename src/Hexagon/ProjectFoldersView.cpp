@@ -53,9 +53,9 @@ bool ProjectFoldersView::initialize()
    if (!((!initialized)))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::initialize]: error: guard \"(!initialized)\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::initialize]: error: guard \"(!initialized)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::initialize: error: guard \"(!initialized)\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::initialize]: error: guard \"(!initialized)\" not met");
    }
    menu_items = build_menu_items();
    main_menu = Hexagon::Elements::ListMenu(font_bin, "Project Folders", menu_items);
@@ -70,9 +70,9 @@ void ProjectFoldersView::render()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::render]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::render]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::render: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::render]: error: guard \"initialized\" not met");
    }
    //draw_frame();
    draw_menu();
@@ -84,16 +84,16 @@ void ProjectFoldersView::draw_frame()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::draw_frame]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::draw_frame]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::draw_frame: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::draw_frame]: error: guard \"initialized\" not met");
    }
    if (!(al_is_primitives_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::draw_frame]: error: guard \"al_is_primitives_addon_initialized()\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::draw_frame]: error: guard \"al_is_primitives_addon_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::draw_frame: error: guard \"al_is_primitives_addon_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::draw_frame]: error: guard \"al_is_primitives_addon_initialized()\" not met");
    }
    float inset = 20;
    float thickness = 4;
@@ -119,9 +119,9 @@ bool ProjectFoldersView::main_menu_cursor_move_up()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::main_menu_cursor_move_up]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::main_menu_cursor_move_up]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::main_menu_cursor_move_up: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::main_menu_cursor_move_up]: error: guard \"initialized\" not met");
    }
    return main_menu.move_cursor_up();
 }
@@ -131,9 +131,9 @@ bool ProjectFoldersView::main_menu_cursor_move_down()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::main_menu_cursor_move_down]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::main_menu_cursor_move_down]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::main_menu_cursor_move_down: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::main_menu_cursor_move_down]: error: guard \"initialized\" not met");
    }
    return main_menu.move_cursor_down();
 }
@@ -143,9 +143,9 @@ std::string ProjectFoldersView::main_menu_get_current_list_item_identifier()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::main_menu_get_current_list_item_identifier]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::main_menu_get_current_list_item_identifier]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::main_menu_get_current_list_item_identifier: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::main_menu_get_current_list_item_identifier]: error: guard \"initialized\" not met");
    }
    return main_menu.get_current_list_item_identifier();
 }
@@ -155,16 +155,16 @@ void ProjectFoldersView::draw_menu()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::draw_menu]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::draw_menu]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::draw_menu: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::draw_menu]: error: guard \"initialized\" not met");
    }
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::draw_menu]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::draw_menu]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::draw_menu: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::draw_menu]: error: guard \"font_bin\" not met");
    }
    placement3d place(surface_width/2, surface_height/2, 0);
    place.scale = vec3d(0.6, 0.6, 0.6);
@@ -180,9 +180,9 @@ void ProjectFoldersView::process_local_event(std::string event_name, ActionData 
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::process_local_event]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::process_local_event]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::process_local_event: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::process_local_event]: error: guard \"initialized\" not met");
    }
    //Hexagon::AdvancedCodeEditor::EventController event_controller(this, build_local_events_dictionary());
    //event_controller.process_local_event(event_name, action_data);
@@ -194,9 +194,9 @@ void ProjectFoldersView::process_event(ALLEGRO_EVENT& event)
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[ProjectFoldersView::process_event]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::ProjectFoldersView::process_event]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ProjectFoldersView::process_event: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::ProjectFoldersView::process_event]: error: guard \"initialized\" not met");
    }
    switch(event.type)
        {

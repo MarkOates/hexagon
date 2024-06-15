@@ -48,9 +48,9 @@ void BitmapGridRenderSurface::set_cell_width(int cell_width)
    if (!((!get_initialized())))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridRenderSurface::set_cell_width]: error: guard \"(!get_initialized())\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridRenderSurface::set_cell_width]: error: guard \"(!get_initialized())\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridRenderSurface::set_cell_width: error: guard \"(!get_initialized())\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridRenderSurface::set_cell_width]: error: guard \"(!get_initialized())\" not met");
    }
    this->cell_width = cell_width;
    return;
@@ -61,9 +61,9 @@ void BitmapGridRenderSurface::set_cell_height(int cell_height)
    if (!((!get_initialized())))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridRenderSurface::set_cell_height]: error: guard \"(!get_initialized())\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridRenderSurface::set_cell_height]: error: guard \"(!get_initialized())\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridRenderSurface::set_cell_height: error: guard \"(!get_initialized())\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridRenderSurface::set_cell_height]: error: guard \"(!get_initialized())\" not met");
    }
    this->cell_height = cell_height;
    return;
@@ -74,9 +74,9 @@ void BitmapGridRenderSurface::lock_for_render()
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridRenderSurface::lock_for_render]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridRenderSurface::lock_for_render]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridRenderSurface::lock_for_render: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridRenderSurface::lock_for_render]: error: guard \"get_initialized()\" not met");
    }
    al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
    al_set_target_bitmap(surface);
@@ -89,9 +89,9 @@ void BitmapGridRenderSurface::unlock_for_render()
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridRenderSurface::unlock_for_render]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridRenderSurface::unlock_for_render]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridRenderSurface::unlock_for_render: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridRenderSurface::unlock_for_render]: error: guard \"get_initialized()\" not met");
    }
    al_restore_state(&previous_render_state);
    return;
@@ -102,9 +102,9 @@ void BitmapGridRenderSurface::initialize()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridRenderSurface::initialize]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridRenderSurface::initialize]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridRenderSurface::initialize: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridRenderSurface::initialize]: error: guard \"al_is_system_installed()\" not met");
    }
    if (initialized) return;
 
@@ -147,16 +147,16 @@ void BitmapGridRenderSurface::draw_to_cell(ALLEGRO_BITMAP* bitmap_to_draw, ALLEG
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridRenderSurface::draw_to_cell]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridRenderSurface::draw_to_cell]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridRenderSurface::draw_to_cell: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridRenderSurface::draw_to_cell]: error: guard \"get_initialized()\" not met");
    }
    if (!(bitmap_to_draw))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridRenderSurface::draw_to_cell]: error: guard \"bitmap_to_draw\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridRenderSurface::draw_to_cell]: error: guard \"bitmap_to_draw\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridRenderSurface::draw_to_cell: error: guard \"bitmap_to_draw\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridRenderSurface::draw_to_cell]: error: guard \"bitmap_to_draw\" not met");
    }
    al_draw_tinted_bitmap(bitmap_to_draw, tint, x*cell_width, y*cell_height, 0);
 

@@ -49,9 +49,9 @@ void LittleMenu::initialize()
    if (!((!get_initialized())))
    {
       std::stringstream error_message;
-      error_message << "[LittleMenu::initialize]: error: guard \"(!get_initialized())\" not met.";
+      error_message << "[Hexagon::UI::LittleMenu::initialize]: error: guard \"(!get_initialized())\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("LittleMenu::initialize: error: guard \"(!get_initialized())\" not met");
+      throw std::runtime_error("[Hexagon::UI::LittleMenu::initialize]: error: guard \"(!get_initialized())\" not met");
    }
    menu.set_title_upcase(false);
    menu.set_menu_items_upcase(false);
@@ -64,9 +64,9 @@ void LittleMenu::render()
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[LittleMenu::render]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::UI::LittleMenu::render]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("LittleMenu::render: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::UI::LittleMenu::render]: error: guard \"get_initialized()\" not met");
    }
    placement3d &place = get_place();
    place.start_transform();
@@ -80,9 +80,9 @@ void LittleMenu::process_event(ALLEGRO_EVENT& event)
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[LittleMenu::process_event]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::UI::LittleMenu::process_event]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("LittleMenu::process_event: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::UI::LittleMenu::process_event]: error: guard \"get_initialized()\" not met");
    }
    switch(event.type)
    {
@@ -109,9 +109,9 @@ void LittleMenu::process_local_event(std::string event_name, ActionData action_d
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[LittleMenu::process_local_event]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::UI::LittleMenu::process_local_event]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("LittleMenu::process_local_event: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::UI::LittleMenu::process_local_event]: error: guard \"get_initialized()\" not met");
    }
    return;
 }
@@ -121,9 +121,9 @@ void LittleMenu::emit_submission()
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[LittleMenu::emit_submission]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::UI::LittleMenu::emit_submission]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("LittleMenu::emit_submission: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::UI::LittleMenu::emit_submission]: error: guard \"get_initialized()\" not met");
    }
    std::cout << "Sumitting Modal with selection \"" << menu.get_current_list_item_identifier() << "\"" << std::endl;
 }

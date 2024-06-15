@@ -38,16 +38,16 @@ void CachedLineRenderer::initialize()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[CachedLineRenderer::initialize]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::CodeEditor::CachedLineRenderer::initialize]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CachedLineRenderer::initialize: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::CodeEditor::CachedLineRenderer::initialize]: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "[CachedLineRenderer::initialize]: error: guard \"font\" not met.";
+      error_message << "[Hexagon::CodeEditor::CachedLineRenderer::initialize]: error: guard \"font\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CachedLineRenderer::initialize: error: guard \"font\" not met");
+      throw std::runtime_error("[Hexagon::CodeEditor::CachedLineRenderer::initialize]: error: guard \"font\" not met");
    }
    if (initialized) return;
 
@@ -91,9 +91,9 @@ bool CachedLineRenderer::exists(int index)
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[CachedLineRenderer::exists]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::CodeEditor::CachedLineRenderer::exists]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CachedLineRenderer::exists: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::CodeEditor::CachedLineRenderer::exists]: error: guard \"initialized\" not met");
    }
    if (index < 0) return false;
    if (index >= cache.size()) return false;
@@ -105,23 +105,23 @@ ALLEGRO_BITMAP* CachedLineRenderer::pull(int index)
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[CachedLineRenderer::pull]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::CodeEditor::CachedLineRenderer::pull]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CachedLineRenderer::pull: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::CodeEditor::CachedLineRenderer::pull]: error: guard \"initialized\" not met");
    }
    if (!(index >= 0))
    {
       std::stringstream error_message;
-      error_message << "[CachedLineRenderer::pull]: error: guard \"index >= 0\" not met.";
+      error_message << "[Hexagon::CodeEditor::CachedLineRenderer::pull]: error: guard \"index >= 0\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CachedLineRenderer::pull: error: guard \"index >= 0\" not met");
+      throw std::runtime_error("[Hexagon::CodeEditor::CachedLineRenderer::pull]: error: guard \"index >= 0\" not met");
    }
    if (!(index < cache.size()))
    {
       std::stringstream error_message;
-      error_message << "[CachedLineRenderer::pull]: error: guard \"index < cache.size()\" not met.";
+      error_message << "[Hexagon::CodeEditor::CachedLineRenderer::pull]: error: guard \"index < cache.size()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CachedLineRenderer::pull: error: guard \"index < cache.size()\" not met");
+      throw std::runtime_error("[Hexagon::CodeEditor::CachedLineRenderer::pull]: error: guard \"index < cache.size()\" not met");
    }
    return cache[index];
 }

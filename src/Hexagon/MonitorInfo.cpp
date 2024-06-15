@@ -30,9 +30,9 @@ int MonitorInfo::get_num_monitors()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[MonitorInfo::get_num_monitors]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::MonitorInfo::get_num_monitors]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("MonitorInfo::get_num_monitors: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::MonitorInfo::get_num_monitors]: error: guard \"initialized\" not met");
    }
    return monitors.size();
 }
@@ -42,9 +42,9 @@ Hexagon::Monitor MonitorInfo::get_primary_monitor_info()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[MonitorInfo::get_primary_monitor_info]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::MonitorInfo::get_primary_monitor_info]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("MonitorInfo::get_primary_monitor_info: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::MonitorInfo::get_primary_monitor_info]: error: guard \"initialized\" not met");
    }
    for (auto &monitor : monitors)
    {
@@ -63,9 +63,9 @@ std::string MonitorInfo::dump_monitor_info()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[MonitorInfo::dump_monitor_info]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::MonitorInfo::dump_monitor_info]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("MonitorInfo::dump_monitor_info: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::MonitorInfo::dump_monitor_info]: error: guard \"initialized\" not met");
    }
    std::stringstream result;
    int i=0;
@@ -86,16 +86,16 @@ void MonitorInfo::initialize()
    if (!((!initialized)))
    {
       std::stringstream error_message;
-      error_message << "[MonitorInfo::initialize]: error: guard \"(!initialized)\" not met.";
+      error_message << "[Hexagon::MonitorInfo::initialize]: error: guard \"(!initialized)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("MonitorInfo::initialize: error: guard \"(!initialized)\" not met");
+      throw std::runtime_error("[Hexagon::MonitorInfo::initialize]: error: guard \"(!initialized)\" not met");
    }
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[MonitorInfo::initialize]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::MonitorInfo::initialize]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("MonitorInfo::initialize: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::MonitorInfo::initialize]: error: guard \"al_is_system_installed()\" not met");
    }
    ALLEGRO_MONITOR_INFO info;
 

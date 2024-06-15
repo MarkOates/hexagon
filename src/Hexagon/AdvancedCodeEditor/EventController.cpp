@@ -46,9 +46,9 @@ bool EventController::process_local_event(std::string event_name, ActionData act
    if (!(stage))
    {
       std::stringstream error_message;
-      error_message << "[EventController::process_local_event]: error: guard \"stage\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::EventController::process_local_event]: error: guard \"stage\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("EventController::process_local_event: error: guard \"stage\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::EventController::process_local_event]: error: guard \"stage\" not met");
    }
    Hexagon::AdvancedCodeEditor::Stage &component = *stage;
 
@@ -118,9 +118,9 @@ void EventController::process_event(ALLEGRO_EVENT& event)
    if (!(stage))
    {
       std::stringstream error_message;
-      error_message << "[EventController::process_event]: error: guard \"stage\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::EventController::process_event]: error: guard \"stage\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("EventController::process_event: error: guard \"stage\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::EventController::process_event]: error: guard \"stage\" not met");
    }
    switch(event.type)
    {

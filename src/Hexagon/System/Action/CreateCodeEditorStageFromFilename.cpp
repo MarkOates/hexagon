@@ -69,16 +69,16 @@ bool CreateCodeEditorStageFromFilename::execute()
    if (!(stages))
    {
       std::stringstream error_message;
-      error_message << "[CreateCodeEditorStageFromFilename::execute]: error: guard \"stages\" not met.";
+      error_message << "[Hexagon::System::Action::CreateCodeEditorStageFromFilename::execute]: error: guard \"stages\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CreateCodeEditorStageFromFilename::execute: error: guard \"stages\" not met");
+      throw std::runtime_error("[Hexagon::System::Action::CreateCodeEditorStageFromFilename::execute]: error: guard \"stages\" not met");
    }
    if (!(stage_factory))
    {
       std::stringstream error_message;
-      error_message << "[CreateCodeEditorStageFromFilename::execute]: error: guard \"stage_factory\" not met.";
+      error_message << "[Hexagon::System::Action::CreateCodeEditorStageFromFilename::execute]: error: guard \"stage_factory\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CreateCodeEditorStageFromFilename::execute: error: guard \"stage_factory\" not met");
+      throw std::runtime_error("[Hexagon::System::Action::CreateCodeEditorStageFromFilename::execute]: error: guard \"stage_factory\" not met");
    }
    std::vector<std::string> file_contents = {};
    if (!::read_file(file_contents, filename))

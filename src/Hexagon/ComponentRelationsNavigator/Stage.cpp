@@ -69,9 +69,9 @@ void Stage::initialize()
    if (!((!get_initialized())))
    {
       std::stringstream error_message;
-      error_message << "[Stage::initialize]: error: guard \"(!get_initialized())\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::Stage::initialize]: error: guard \"(!get_initialized())\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::initialize: error: guard \"(!get_initialized())\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::Stage::initialize]: error: guard \"(!get_initialized())\" not met");
    }
    //al_color_html("4e2f1a");
 
@@ -111,9 +111,9 @@ void Stage::set_currently_active_menu(Hexagon::Elements::ListMenu* menu)
    if (!(menu))
    {
       std::stringstream error_message;
-      error_message << "[Stage::set_currently_active_menu]: error: guard \"menu\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::Stage::set_currently_active_menu]: error: guard \"menu\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::set_currently_active_menu: error: guard \"menu\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::Stage::set_currently_active_menu]: error: guard \"menu\" not met");
    }
    dependents_menu.set_active(false);
    relatives_menu.set_active(false);
@@ -135,9 +135,9 @@ void Stage::render()
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[Stage::render]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::Stage::render]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::render: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::Stage::render]: error: guard \"get_initialized()\" not met");
    }
    placement3d &place = get_place();
    place.start_transform();
@@ -193,9 +193,9 @@ void Stage::move_cursor_left()
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[Stage::move_cursor_left]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::Stage::move_cursor_left]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::move_cursor_left: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::Stage::move_cursor_left]: error: guard \"get_initialized()\" not met");
    }
    if (is_currently_active_menu(&dependents_menu))
    {
@@ -221,9 +221,9 @@ void Stage::move_cursor_right()
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[Stage::move_cursor_right]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::Stage::move_cursor_right]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::move_cursor_right: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::Stage::move_cursor_right]: error: guard \"get_initialized()\" not met");
    }
    if (is_currently_active_menu(&dependents_menu))
    {
@@ -249,9 +249,9 @@ void Stage::process_event(ALLEGRO_EVENT& event)
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[Stage::process_event]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::Stage::process_event]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::process_event: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::Stage::process_event]: error: guard \"get_initialized()\" not met");
    }
    switch(event.type)
    {
@@ -284,16 +284,16 @@ std::string Stage::get_current_selection_label_or_empty_string()
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[Stage::get_current_selection_label_or_empty_string]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::Stage::get_current_selection_label_or_empty_string]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::get_current_selection_label_or_empty_string: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::Stage::get_current_selection_label_or_empty_string]: error: guard \"get_initialized()\" not met");
    }
    if (!(currently_active_menu))
    {
       std::stringstream error_message;
-      error_message << "[Stage::get_current_selection_label_or_empty_string]: error: guard \"currently_active_menu\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::Stage::get_current_selection_label_or_empty_string]: error: guard \"currently_active_menu\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::get_current_selection_label_or_empty_string: error: guard \"currently_active_menu\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::Stage::get_current_selection_label_or_empty_string]: error: guard \"currently_active_menu\" not met");
    }
    std::string result;
 
@@ -325,9 +325,9 @@ void Stage::process_local_event(std::string event_name, ActionData action_data)
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[Stage::process_local_event]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::Stage::process_local_event]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::process_local_event: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::Stage::process_local_event]: error: guard \"get_initialized()\" not met");
    }
    return;
 }

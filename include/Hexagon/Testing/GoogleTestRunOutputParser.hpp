@@ -14,8 +14,8 @@ namespace Hexagon
       class GoogleTestRunOutputParser
       {
       public:
-         static constexpr char* RESULT_OK = "ok";
-         static constexpr char* RESULT_FAILED = "failed";
+         static constexpr char* RESULT_OK = (char*)"ok";
+         static constexpr char* RESULT_FAILED = (char*)"failed";
 
       private:
          std::string google_test_run_output;

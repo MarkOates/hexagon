@@ -88,16 +88,16 @@ void StageInfoOverlay::render()
    if (!(backfill_color))
    {
       std::stringstream error_message;
-      error_message << "[StageInfoOverlay::render]: error: guard \"backfill_color\" not met.";
+      error_message << "[Hexagon::Elements::StageInfoOverlay::render]: error: guard \"backfill_color\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageInfoOverlay::render: error: guard \"backfill_color\" not met");
+      throw std::runtime_error("[Hexagon::Elements::StageInfoOverlay::render]: error: guard \"backfill_color\" not met");
    }
    if (!(place))
    {
       std::stringstream error_message;
-      error_message << "[StageInfoOverlay::render]: error: guard \"place\" not met.";
+      error_message << "[Hexagon::Elements::StageInfoOverlay::render]: error: guard \"place\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageInfoOverlay::render: error: guard \"place\" not met");
+      throw std::runtime_error("[Hexagon::Elements::StageInfoOverlay::render]: error: guard \"place\" not met");
    }
    //if (!title_font) throw std::runtime_error("[StageInfoOverlay::render() error]: title_font can not be a nullptr");
    //if (!place) throw std::runtime_error("[StageInfoOverlay::render() error]: place can not be a nullptr");
@@ -140,9 +140,9 @@ ALLEGRO_FONT* StageInfoOverlay::obtain_title_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[StageInfoOverlay::obtain_title_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::Elements::StageInfoOverlay::obtain_title_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("StageInfoOverlay::obtain_title_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::Elements::StageInfoOverlay::obtain_title_font]: error: guard \"font_bin\" not met");
    }
    // TODO: guard with font_bin->get_initialized()
    //return font_bin->auto_get("Eurostile.ttf 32");

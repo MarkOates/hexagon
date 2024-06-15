@@ -115,9 +115,9 @@ void Renderer::render()
    if (!(font))
    {
       std::stringstream error_message;
-      error_message << "[Renderer::render]: error: guard \"font\" not met.";
+      error_message << "[Hexagon::OneLineInputBox::Renderer::render]: error: guard \"font\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Renderer::render: error: guard \"font\" not met");
+      throw std::runtime_error("[Hexagon::OneLineInputBox::Renderer::render]: error: guard \"font\" not met");
    }
    //placement3d place = get_place();
    place.start_transform();

@@ -4,7 +4,7 @@ properties:
   - name: TYPE
     type: char*
     static: true
-    init_with: '"Base"'
+    init_with: '(char*)"Base"'
     constexpr: true
 
   - name: type

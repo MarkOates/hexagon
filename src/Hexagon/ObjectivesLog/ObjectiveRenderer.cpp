@@ -46,30 +46,30 @@ void ObjectiveRenderer::render()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[ObjectiveRenderer::render]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::ObjectivesLog::ObjectiveRenderer::render]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ObjectiveRenderer::render: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::ObjectivesLog::ObjectiveRenderer::render]: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(al_is_font_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[ObjectiveRenderer::render]: error: guard \"al_is_font_addon_initialized()\" not met.";
+      error_message << "[Hexagon::ObjectivesLog::ObjectiveRenderer::render]: error: guard \"al_is_font_addon_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ObjectiveRenderer::render: error: guard \"al_is_font_addon_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::ObjectivesLog::ObjectiveRenderer::render]: error: guard \"al_is_font_addon_initialized()\" not met");
    }
    if (!(al_is_primitives_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[ObjectiveRenderer::render]: error: guard \"al_is_primitives_addon_initialized()\" not met.";
+      error_message << "[Hexagon::ObjectivesLog::ObjectiveRenderer::render]: error: guard \"al_is_primitives_addon_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ObjectiveRenderer::render: error: guard \"al_is_primitives_addon_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::ObjectivesLog::ObjectiveRenderer::render]: error: guard \"al_is_primitives_addon_initialized()\" not met");
    }
    if (!(objective))
    {
       std::stringstream error_message;
-      error_message << "[ObjectiveRenderer::render]: error: guard \"objective\" not met.";
+      error_message << "[Hexagon::ObjectivesLog::ObjectiveRenderer::render]: error: guard \"objective\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ObjectiveRenderer::render: error: guard \"objective\" not met");
+      throw std::runtime_error("[Hexagon::ObjectivesLog::ObjectiveRenderer::render]: error: guard \"objective\" not met");
    }
    ALLEGRO_COLOR background_color = ALLEGRO_COLOR{0.0, 0.0, 0.0, 0.9};
    ALLEGRO_COLOR text_color = ALLEGRO_COLOR{1.0, 1.0, 1.0, 1.0};
@@ -131,9 +131,9 @@ ALLEGRO_FONT* ObjectiveRenderer::obtain_primary_text_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[ObjectiveRenderer::obtain_primary_text_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::ObjectivesLog::ObjectiveRenderer::obtain_primary_text_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ObjectiveRenderer::obtain_primary_text_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::ObjectivesLog::ObjectiveRenderer::obtain_primary_text_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("Purista Medium.otf -36");
 }

@@ -58,9 +58,9 @@ void FontedTextGrid::initialize()
    if (!((!get_initialized())))
    {
       std::stringstream error_message;
-      error_message << "[FontedTextGrid::initialize]: error: guard \"(!get_initialized())\" not met.";
+      error_message << "[Hexagon::Elements::FontedTextGrid::initialize]: error: guard \"(!get_initialized())\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("FontedTextGrid::initialize: error: guard \"(!get_initialized())\" not met");
+      throw std::runtime_error("[Hexagon::Elements::FontedTextGrid::initialize]: error: guard \"(!get_initialized())\" not met");
    }
    sub_bitmap_character_map.set_font(font);
    sub_bitmap_character_map.initialize();
@@ -78,9 +78,9 @@ void FontedTextGrid::destroy()
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[FontedTextGrid::destroy]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::Elements::FontedTextGrid::destroy]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("FontedTextGrid::destroy: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::FontedTextGrid::destroy]: error: guard \"get_initialized()\" not met");
    }
    sub_bitmap_character_map.destroy();
    bitmap_grid_render_surface.destroy();
@@ -93,9 +93,9 @@ void FontedTextGrid::set_cell_to_character_and_color(char character, int x, int 
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[FontedTextGrid::set_cell_to_character_and_color]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::Elements::FontedTextGrid::set_cell_to_character_and_color]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("FontedTextGrid::set_cell_to_character_and_color: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::FontedTextGrid::set_cell_to_character_and_color]: error: guard \"get_initialized()\" not met");
    }
    ALLEGRO_BITMAP *bitmap_to_draw = sub_bitmap_character_map.find_sub_bitmap(character);
    bitmap_grid_render_surface.draw_to_cell(bitmap_to_draw, tint, x, y);
@@ -119,9 +119,9 @@ void FontedTextGrid::draw()
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[FontedTextGrid::draw]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::Elements::FontedTextGrid::draw]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("FontedTextGrid::draw: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::FontedTextGrid::draw]: error: guard \"get_initialized()\" not met");
    }
    ALLEGRO_BITMAP *surface = bitmap_grid_render_surface.get_surface();
    if (surface) al_draw_bitmap(surface, 0, 0, 0);
@@ -133,9 +133,9 @@ ALLEGRO_BITMAP* FontedTextGrid::__cheat_really_badly_and_get_the_bitmap_grid_ren
    if (!(get_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[FontedTextGrid::__cheat_really_badly_and_get_the_bitmap_grid_render_surface]: error: guard \"get_initialized()\" not met.";
+      error_message << "[Hexagon::Elements::FontedTextGrid::__cheat_really_badly_and_get_the_bitmap_grid_render_surface]: error: guard \"get_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("FontedTextGrid::__cheat_really_badly_and_get_the_bitmap_grid_render_surface: error: guard \"get_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::FontedTextGrid::__cheat_really_badly_and_get_the_bitmap_grid_render_surface]: error: guard \"get_initialized()\" not met");
    }
    return bitmap_grid_render_surface.get_surface();
 }

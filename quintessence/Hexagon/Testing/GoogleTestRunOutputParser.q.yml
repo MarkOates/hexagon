@@ -20,13 +20,13 @@ properties:
   - name: RESULT_OK
     type: char*
     static: true
-    init_with: '"ok"'
+    init_with: '(char*)"ok"'
     constexpr: true
 
   - name: RESULT_FAILED
     type: char*
     static: true
-    init_with: '"failed"'
+    init_with: '(char*)"failed"'
     constexpr: true
 
 

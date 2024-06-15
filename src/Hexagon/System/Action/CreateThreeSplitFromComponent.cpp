@@ -99,9 +99,9 @@ bool CreateThreeSplitFromComponent::place_stage(std::string filename, std::strin
    if (!(stage_factory))
    {
       std::stringstream error_message;
-      error_message << "[CreateThreeSplitFromComponent::place_stage]: error: guard \"stage_factory\" not met.";
+      error_message << "[Hexagon::System::Action::CreateThreeSplitFromComponent::place_stage]: error: guard \"stage_factory\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("CreateThreeSplitFromComponent::place_stage: error: guard \"stage_factory\" not met");
+      throw std::runtime_error("[Hexagon::System::Action::CreateThreeSplitFromComponent::place_stage]: error: guard \"stage_factory\" not met");
    }
    bool file_exists = Blast::FileExistenceChecker(filename).exists();
    float width = get_code_editor_width();

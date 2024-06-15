@@ -126,9 +126,9 @@ std::string ComponentRelations::build_implicit_json_dependents_filename_for_proj
    if (!(valid_project_root(&project_root)))
    {
       std::stringstream error_message;
-      error_message << "[ComponentRelations::build_implicit_json_dependents_filename_for_project]: error: guard \"valid_project_root(&project_root)\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::ComponentRelations::build_implicit_json_dependents_filename_for_project]: error: guard \"valid_project_root(&project_root)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ComponentRelations::build_implicit_json_dependents_filename_for_project: error: guard \"valid_project_root(&project_root)\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::ComponentRelations::build_implicit_json_dependents_filename_for_project]: error: guard \"valid_project_root(&project_root)\" not met");
    }
    return project_root + "/documentation/dependents.json";
 }
@@ -138,9 +138,9 @@ bool ComponentRelations::valid_project_root(std::string* project_root)
    if (!(project_root))
    {
       std::stringstream error_message;
-      error_message << "[ComponentRelations::valid_project_root]: error: guard \"project_root\" not met.";
+      error_message << "[Hexagon::ComponentRelationsNavigator::ComponentRelations::valid_project_root]: error: guard \"project_root\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ComponentRelations::valid_project_root: error: guard \"project_root\" not met");
+      throw std::runtime_error("[Hexagon::ComponentRelationsNavigator::ComponentRelations::valid_project_root]: error: guard \"project_root\" not met");
    }
    std::string expected_prefix = "/Users/markoates/Repos/";
    bool has_valid_prefixed_path = (project_root->compare(0, expected_prefix.length(), expected_prefix) == 0);

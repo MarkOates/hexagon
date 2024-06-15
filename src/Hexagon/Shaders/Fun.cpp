@@ -36,9 +36,9 @@ void Fun::activate()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Fun::activate]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::Shaders::Fun::activate]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Fun::activate: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::Shaders::Fun::activate]: error: guard \"initialized\" not met");
    }
    Hexagon::Shaders::Base::activate();
 }
@@ -48,9 +48,9 @@ void Fun::deactivate()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Fun::deactivate]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::Shaders::Fun::deactivate]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Fun::deactivate: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::Shaders::Fun::deactivate]: error: guard \"initialized\" not met");
    }
    Hexagon::Shaders::Base::deactivate();
 }

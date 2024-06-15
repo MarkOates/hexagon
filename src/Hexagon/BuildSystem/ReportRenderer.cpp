@@ -42,9 +42,9 @@ std::string ReportRenderer::build_text_report()
    if (!(build))
    {
       std::stringstream error_message;
-      error_message << "[ReportRenderer::build_text_report]: error: guard \"build\" not met.";
+      error_message << "[Hexagon::BuildSystem::ReportRenderer::build_text_report]: error: guard \"build\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ReportRenderer::build_text_report: error: guard \"build\" not met");
+      throw std::runtime_error("[Hexagon::BuildSystem::ReportRenderer::build_text_report]: error: guard \"build\" not met");
    }
    std::string result;
 

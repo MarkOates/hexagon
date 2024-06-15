@@ -30,7 +30,7 @@ properties:
 
   - name: DEPS_FOLDER
     type: char*
-    init_with: '".deps/"'
+    init_with: '(char*)".deps/"'
     static: true
     constexpr: true
 

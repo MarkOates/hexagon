@@ -32,16 +32,16 @@ void ComponentTitleSlate::render()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[ComponentTitleSlate::render]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::Elements::ComponentTitleSlate::render]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ComponentTitleSlate::render: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::ComponentTitleSlate::render]: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(al_is_font_addon_initialized()))
    {
       std::stringstream error_message;
-      error_message << "[ComponentTitleSlate::render]: error: guard \"al_is_font_addon_initialized()\" not met.";
+      error_message << "[Hexagon::Elements::ComponentTitleSlate::render]: error: guard \"al_is_font_addon_initialized()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ComponentTitleSlate::render: error: guard \"al_is_font_addon_initialized()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::ComponentTitleSlate::render]: error: guard \"al_is_font_addon_initialized()\" not met");
    }
    ALLEGRO_FONT *font = obtain_font();
    float width = al_get_text_width(font, quote.c_str());
@@ -56,9 +56,9 @@ ALLEGRO_FONT* ComponentTitleSlate::obtain_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[ComponentTitleSlate::obtain_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::Elements::ComponentTitleSlate::obtain_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ComponentTitleSlate::obtain_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::Elements::ComponentTitleSlate::obtain_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("Purista Medium.otf -84");
 }

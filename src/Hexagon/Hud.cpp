@@ -506,23 +506,23 @@ void Hud::reinitialize()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Hud::reinitialize]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::Hud::reinitialize]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Hud::reinitialize: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::Hud::reinitialize]: error: guard \"initialized\" not met");
    }
    if (!(display))
    {
       std::stringstream error_message;
-      error_message << "[Hud::reinitialize]: error: guard \"display\" not met.";
+      error_message << "[Hexagon::Hud::reinitialize]: error: guard \"display\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Hud::reinitialize: error: guard \"display\" not met");
+      throw std::runtime_error("[Hexagon::Hud::reinitialize]: error: guard \"display\" not met");
    }
    if (!(screen_sub_bitmap))
    {
       std::stringstream error_message;
-      error_message << "[Hud::reinitialize]: error: guard \"screen_sub_bitmap\" not met.";
+      error_message << "[Hexagon::Hud::reinitialize]: error: guard \"screen_sub_bitmap\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Hud::reinitialize: error: guard \"screen_sub_bitmap\" not met");
+      throw std::runtime_error("[Hexagon::Hud::reinitialize]: error: guard \"screen_sub_bitmap\" not met");
    }
    ALLEGRO_BITMAP *backbuffer = al_get_backbuffer(display);
    al_destroy_bitmap(screen_sub_bitmap);
@@ -770,9 +770,9 @@ void Hud::draw_caps_lock_notification_light(bool active)
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Hud::draw_caps_lock_notification_light]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::Hud::draw_caps_lock_notification_light]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Hud::draw_caps_lock_notification_light: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::Hud::draw_caps_lock_notification_light]: error: guard \"initialized\" not met");
    }
    float caps_notification_lights_x = 130;
    float caps_notification_lights_y = get_surface_projection_height() - 200;
@@ -794,9 +794,9 @@ void Hud::draw()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Hud::draw]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::Hud::draw]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Hud::draw: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::Hud::draw]: error: guard \"initialized\" not met");
    }
    int y_cursor = 0;
    int frame_width = get_surface_projection_width();

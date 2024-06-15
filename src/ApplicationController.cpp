@@ -188,7 +188,7 @@ void ApplicationController::run_event_loop()
       std::stringstream error_message;
       error_message << "[ApplicationController::run_event_loop]: error: guard \"system\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("ApplicationController::run_event_loop: error: guard \"system\" not met");
+      throw std::runtime_error("[ApplicationController::run_event_loop]: error: guard \"system\" not met");
    }
    bool mouse_event_occurred_and_requires_screen_refresh = false;
    static int mouse_event_skip = 0;

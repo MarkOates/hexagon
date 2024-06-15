@@ -286,16 +286,16 @@ void Stage::initialize()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[Stage::initialize]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::initialize]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::initialize: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::initialize]: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Stage::initialize]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::initialize]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::initialize: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::initialize]: error: guard \"font_bin\" not met");
    }
    if (initialized) return;
 
@@ -629,9 +629,9 @@ bool Stage::delete_character()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::delete_character]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::delete_character]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::delete_character: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::delete_character]: error: guard \"initialized\" not met");
    }
    bool result = advanced_code_editor.delete_character();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
@@ -650,9 +650,9 @@ std::string Stage::grab_word_under_cursor()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::grab_word_under_cursor]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::grab_word_under_cursor]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::grab_word_under_cursor: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::grab_word_under_cursor]: error: guard \"initialized\" not met");
    }
    if (cursor_get_y() < 0) return "";
    if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return "";
@@ -675,9 +675,9 @@ bool Stage::delete_word_under_cursor()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::delete_word_under_cursor]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::delete_word_under_cursor]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::delete_word_under_cursor: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::delete_word_under_cursor]: error: guard \"initialized\" not met");
    }
    if (cursor_get_y() < 0) return false;
    if (cursor_get_y() >= advanced_code_editor.get_lines_ref().size()) return false;
@@ -739,9 +739,9 @@ bool Stage::join_lines()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::join_lines]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::join_lines]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::join_lines: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::join_lines]: error: guard \"initialized\" not met");
    }
    bool join_lines_was_successful = advanced_code_editor.join_lines();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
@@ -763,9 +763,9 @@ bool Stage::split_lines()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::split_lines]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::split_lines]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::split_lines: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::split_lines]: error: guard \"initialized\" not met");
    }
    bool split_was_successful = advanced_code_editor.split_lines();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
@@ -787,9 +787,9 @@ bool Stage::delete_line()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::delete_line]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::delete_line]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::delete_line: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::delete_line]: error: guard \"initialized\" not met");
    }
    bool delete_line_was_successful = advanced_code_editor.delete_line();
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
@@ -807,9 +807,9 @@ bool Stage::insert_string_from_input_buffer()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::insert_string_from_input_buffer]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::insert_string_from_input_buffer: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::insert_string_from_input_buffer]: error: guard \"initialized\" not met");
    }
    bool result = advanced_code_editor.insert_string(input_buffer);
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
@@ -823,9 +823,9 @@ bool Stage::insert_lines(std::vector<std::string> lines_to_insert)
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::insert_lines]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::insert_lines]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::insert_lines: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::insert_lines]: error: guard \"initialized\" not met");
    }
    bool result = advanced_code_editor.insert_lines(lines_to_insert);
    if (advanced_code_editor.any_dirty_cells()) refresh_render_surfaces();
@@ -842,9 +842,9 @@ void Stage::set_content(std::string content)
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::set_content]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::set_content]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::set_content: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::set_content]: error: guard \"initialized\" not met");
    }
    advanced_code_editor.set_content(content);
    advanced_code_editor.unmark_content_is_modified();
@@ -1432,9 +1432,9 @@ void Stage::render()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::render]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::render]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::render: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::render]: error: guard \"initialized\" not met");
    }
    placement3d &place = get_place();
    std::vector<std::string> &lines = advanced_code_editor.get_lines_ref();
@@ -1508,9 +1508,9 @@ ALLEGRO_FONT* Stage::obtain_text_font()
    if (!(font_bin))
    {
       std::stringstream error_message;
-      error_message << "[Stage::obtain_text_font]: error: guard \"font_bin\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::obtain_text_font]: error: guard \"font_bin\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::obtain_text_font: error: guard \"font_bin\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::obtain_text_font]: error: guard \"font_bin\" not met");
    }
    return font_bin->auto_get("Menlo-Regular.ttf -20");
 }
@@ -1593,9 +1593,9 @@ void Stage::refresh_dirty_cells_on_surface_render_respecting_first_row_offset()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::refresh_dirty_cells_on_surface_render_respecting_first_row_offset]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::refresh_dirty_cells_on_surface_render_respecting_first_row_offset]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::refresh_dirty_cells_on_surface_render_respecting_first_row_offset: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::refresh_dirty_cells_on_surface_render_respecting_first_row_offset]: error: guard \"initialized\" not met");
    }
    ALLEGRO_STATE previous_render_state;
    al_store_state(&previous_render_state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
@@ -1621,9 +1621,9 @@ void Stage::refresh_dirty_cells_on_text_mesh()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::refresh_dirty_cells_on_text_mesh]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::refresh_dirty_cells_on_text_mesh]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::refresh_dirty_cells_on_text_mesh: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::refresh_dirty_cells_on_text_mesh]: error: guard \"initialized\" not met");
    }
    char clear_char = '\0';
    //ALLEGRO_COLOR clear_color = ALLEGRO_COLOR{0.0f, 0.0f, 0.0f, 0.0f};
@@ -1663,9 +1663,9 @@ void Stage::refresh_text_mesh_respecting_first_row_offset()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::refresh_text_mesh_respecting_first_row_offset]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::refresh_text_mesh_respecting_first_row_offset]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::refresh_text_mesh_respecting_first_row_offset: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::refresh_text_mesh_respecting_first_row_offset]: error: guard \"initialized\" not met");
    }
    // TODO: optimize this. It does no need to wipe and refresh the entire mesh,
    // it should be able to move existing vertexes by the previous offset.
@@ -1881,9 +1881,9 @@ void Stage::refresh_text_mesh()
    if (!(initialized))
    {
       std::stringstream error_message;
-      error_message << "[Stage::refresh_text_mesh]: error: guard \"initialized\" not met.";
+      error_message << "[Hexagon::AdvancedCodeEditor::Stage::refresh_text_mesh]: error: guard \"initialized\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::refresh_text_mesh: error: guard \"initialized\" not met");
+      throw std::runtime_error("[Hexagon::AdvancedCodeEditor::Stage::refresh_text_mesh]: error: guard \"initialized\" not met");
    }
    char clear_char = '\0';
 

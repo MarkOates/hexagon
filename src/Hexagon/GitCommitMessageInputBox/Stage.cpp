@@ -160,9 +160,9 @@ void Stage::render()
    if (!((code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)))
    {
       std::stringstream error_message;
-      error_message << "[Stage::render]: error: guard \"(code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)\" not met.";
+      error_message << "[Hexagon::GitCommitMessageInputBox::Stage::render]: error: guard \"(code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("Stage::render: error: guard \"(code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)\" not met");
+      throw std::runtime_error("[Hexagon::GitCommitMessageInputBox::Stage::render]: error: guard \"(code_editor.get_type() == GIT_COMMIT_MESSAGE_INPUT_BOX)\" not met");
    }
    //ALLEGRO_COLOR outline_color = al_color_html("f9ac1e");
    //ALLEGRO_COLOR user_input_text_color = al_color_html("ffd033");

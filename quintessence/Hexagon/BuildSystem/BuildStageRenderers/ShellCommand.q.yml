@@ -12,7 +12,7 @@ properties:
   - name: TYPE
     type: char*
     static: true
-    init_with: '"ShellCommand"'
+    init_with: '(char*)"ShellCommand"'
     constexpr: true
 
   - name: shell_command_build_stage

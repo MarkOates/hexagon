@@ -235,16 +235,16 @@ void BitmapGridMesh::render()
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridMesh::render]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridMesh::render]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridMesh::render: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridMesh::render]: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(bitmap))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridMesh::render]: error: guard \"bitmap\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridMesh::render]: error: guard \"bitmap\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridMesh::render: error: guard \"bitmap\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridMesh::render]: error: guard \"bitmap\" not met");
    }
    if (clip_length_y == 0) return;
 
@@ -279,16 +279,16 @@ void BitmapGridMesh::render_only_select_cells(std::vector<std::pair<int, int>> c
    if (!(al_is_system_installed()))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridMesh::render_only_select_cells]: error: guard \"al_is_system_installed()\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridMesh::render_only_select_cells]: error: guard \"al_is_system_installed()\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridMesh::render_only_select_cells: error: guard \"al_is_system_installed()\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridMesh::render_only_select_cells]: error: guard \"al_is_system_installed()\" not met");
    }
    if (!(bitmap))
    {
       std::stringstream error_message;
-      error_message << "[BitmapGridMesh::render_only_select_cells]: error: guard \"bitmap\" not met.";
+      error_message << "[Hexagon::Elements::BitmapGridMesh::render_only_select_cells]: error: guard \"bitmap\" not met.";
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
-      throw std::runtime_error("BitmapGridMesh::render_only_select_cells: error: guard \"bitmap\" not met");
+      throw std::runtime_error("[Hexagon::Elements::BitmapGridMesh::render_only_select_cells]: error: guard \"bitmap\" not met");
    }
    ALLEGRO_BITMAP *tile_atlas_bitmap = get_bitmap();
    int indices_per_cell = 6;
