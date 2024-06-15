@@ -1,12 +1,9 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/System/Action/CreateThreeSplitFromComponent.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 #include <Hexagon/MissingFile/Stage.hpp>
 #include <Hexagon/StageFactory.hpp>
@@ -31,12 +28,10 @@ TEST_F(Hexagon_System_Action_CreateThreeSplitFromComponentTestWithEmptyFixture,
    place_stage__without_a_stage_factory__raises_an_exception)
 {
    Hexagon::System::Action::CreateThreeSplitFromComponent create_three_split_from_component;
-   std::string expected_error_message = "CreateThreeSplitFromComponent::place_stage: error: " \
-                                        "guard \"stage_factory\" not met";
-   ASSERT_THROW_WITH_MESSAGE(
+   ASSERT_THROW_GUARD_ERROR(
       create_three_split_from_component.place_stage(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::System::Action::CreateThreeSplitFromComponent::place_stage",
+      "stage_factory"
    );
 }
 

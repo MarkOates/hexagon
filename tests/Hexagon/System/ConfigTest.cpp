@@ -1,10 +1,12 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+//#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
+   //try { code; FAIL() << "Expected " # raised_exception_type; } \
+   //catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
+   //catch (...) { FAIL() << "Expected " # raised_exception_type; }
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 #include <allegro5/allegro_color.h>
 static void EXPECT_COLOR_EQ(const ALLEGRO_COLOR &color1, const ALLEGRO_COLOR &color2)
@@ -199,8 +201,11 @@ TEST(Hexagon_System_ConfigTest, is_dark_mode__before_initialization__raises_an_e
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
-   std::string expected_error_message = "Config::is_dark_mode: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(config.is_dark_mode(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      config.is_dark_mode(),
+      "Hexagon::System::Config::is_dark_mode",
+      "initialized"
+   );
    al_uninstall_system();
 }
 
@@ -232,8 +237,11 @@ TEST(Hexagon_System_ConfigTest, get_objective__before_initialization__raises_an_
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
-   std::string expected_error_message = "Config::get_objective: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(config.get_objective(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      config.get_objective(),
+      "Hexagon::System::Config::get_objective",
+      "initialized"
+   );
    al_uninstall_system();
 }
 
@@ -265,8 +273,11 @@ TEST(Hexagon_System_ConfigTest, is_fullscreen__before_initialization__raises_an_
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
-   std::string expected_error_message = "Config::is_fullscreen: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(config.is_fullscreen(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      config.is_fullscreen(),
+      "Hexagon::System::Config::is_fullscreen",
+      "initialized"
+   );
    al_uninstall_system();
 }
 
@@ -298,8 +309,11 @@ TEST(Hexagon_System_ConfigTest, get_hud_show_focus_timer_bar__before_initializat
 {
    al_init();
    Hexagon::System::Config config(TEST_FIXTURE_CONFIG_FILENAME);
-   std::string expected_error_message = "Config::get_hud_show_focus_timer_bar: error: guard \"initialized\" not met";
-   ASSERT_THROW_WITH_MESSAGE(config.get_hud_show_focus_timer_bar(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      config.get_hud_show_focus_timer_bar(),
+      "Hexagon::System::Config::get_hud_show_focus_timer_bar",
+      "initialized"
+   );
    al_uninstall_system();
 }
 

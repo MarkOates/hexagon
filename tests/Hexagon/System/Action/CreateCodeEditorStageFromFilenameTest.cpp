@@ -1,15 +1,17 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
+//#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
+   //try { code; FAIL() << "Expected " # raised_exception_type; } \
+   //catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
+   //catch (...) { FAIL() << "Expected " # raised_exception_type; }
 
 static std::string TEST_FIXTURE_DIRECTORY_ROOT = "/Users/markoates/Repos/hexagon/tests/fixtures/";
 static std::string TEST_FIXTURE_TEXT_FILE = TEST_FIXTURE_DIRECTORY_ROOT + "file_that_contains_several_lines.txt";
 
 #include <Hexagon/System/Action/CreateCodeEditorStageFromFilename.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 class Hexagon_System_Action_CreateCodeEditorStageFromFilenameTestWithEmptyFixture : public ::testing::Test
 {};
@@ -38,9 +40,11 @@ TEST_F(Hexagon_System_Action_CreateCodeEditorStageFromFilenameTestWithEmptyFixtu
    execute__with_nullptr_stages__throws_an_error)
 {
    Hexagon::System::Action::CreateCodeEditorStageFromFilename action;
-   std::string expected_error_message = "CreateCodeEditorStageFromFilename::execute: error: " \
-                                        "guard \"stages\" not met";
-   ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      action.execute(),
+      "Hexagon::System::Action::CreateCodeEditorStageFromFilename::execute",
+      "stages"
+   );
 }
 
 TEST_F(Hexagon_System_Action_CreateCodeEditorStageFromFilenameTestWithEmptyFixture,
@@ -58,9 +62,11 @@ TEST_F(Hexagon_System_Action_CreateCodeEditorStageFromFilenameTestWithEmptyFixtu
       &stages,
       nullptr
    );
-   std::string expected_error_message = "CreateCodeEditorStageFromFilename::execute: error: " \
-                                        "guard \"stage_factory\" not met";
-   ASSERT_THROW_WITH_MESSAGE(action.execute(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      action.execute(),
+      "Hexagon::System::Action::CreateCodeEditorStageFromFilename::execute",
+      "stage_factory"
+   );
 }
 
 TEST_F(Hexagon_System_Action_CreateCodeEditorStageFromFilenameTestWithFixture,
