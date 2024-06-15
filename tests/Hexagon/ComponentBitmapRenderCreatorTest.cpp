@@ -1,12 +1,8 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/ComponentBitmapRenderCreator.hpp>
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 
 class Hexagon_ComponentBitmapRenderCreatorWithFixtureTest : public ::testing::Test
@@ -36,13 +32,10 @@ TEST(Hexagon_ComponentBitmapRenderCreatorTest, can_be_created_without_blowing_up
 TEST(Hexagon_ComponentBitmapRenderCreatorTest, create_bitmap_render__without_a_component_throws_an_error)
 {
    Hexagon::ComponentBitmapRenderCreator component_bitmap_render_creator(nullptr);
-   std::string expected_error_message = "ComponentBitmapRenderCreator::create_bitmap_render: error: " \
-                                        "guard \"component\" not met";
-
-   ASSERT_THROW_WITH_MESSAGE(
+   ASSERT_THROW_GUARD_ERROR(
       component_bitmap_render_creator.create_bitmap_render(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::ComponentBitmapRenderCreator::create_bitmap_render",
+      "component"
    );
 }
 
@@ -52,13 +45,10 @@ TEST(Hexagon_ComponentBitmapRenderCreatorTest, create_bitmap_render__without_all
    Blast::Project::Component component("Foobar/Component");
    Hexagon::ComponentBitmapRenderCreator component_bitmap_render_creator(&component);
 
-   std::string expected_error_message = "ComponentBitmapRenderCreator::create_bitmap_render: error: " \
-                                        "guard \"al_is_system_installed()\" not met";
-
-   ASSERT_THROW_WITH_MESSAGE(
+   ASSERT_THROW_GUARD_ERROR(
       component_bitmap_render_creator.create_bitmap_render(),
-      std::runtime_error,
-      expected_error_message
+      "Hexagon::ComponentBitmapRenderCreator::create_bitmap_render",
+      "al_is_system_installed()"
    );
 }
 

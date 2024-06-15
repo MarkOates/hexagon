@@ -1,11 +1,7 @@
 #include <gtest/gtest.h>
 
-#define EXPECT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <AllegroFlare/Testing/WithAllegroRenderingFixture.hpp>
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 
 class Hexagon_FocusTimerBar_RendererTest : public ::testing::Test {};
@@ -27,9 +23,11 @@ TEST_F(Hexagon_FocusTimerBar_RendererTest, can_be_created_without_blowing_up)
 TEST_F(Hexagon_FocusTimerBar_RendererTest, render__without_allegro_initialized__raises_an_error)
 {
    Hexagon::FocusTimerBar::Renderer renderer;
-   std::string expected_error_message =
-      "Renderer::render: error: guard \"al_is_system_installed()\" not met";
-   EXPECT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      renderer.render(),
+      "Hexagon::FocusTimerBar::Renderer::render",
+      "al_is_system_installed()"
+   );
 }
 
 
@@ -37,9 +35,11 @@ TEST_F(Hexagon_FocusTimerBar_RendererTest, render__without_primitives_addon_init
 {
    al_init();
    Hexagon::FocusTimerBar::Renderer renderer;
-   std::string expected_error_message =
-      "Renderer::render: error: guard \"al_is_primitives_addon_initialized()\" not met";
-   EXPECT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      renderer.render(),
+      "Hexagon::FocusTimerBar::Renderer::render",
+      "al_is_primitives_addon_initialized()"
+   );
    al_uninstall_system();
 }
 
@@ -49,9 +49,11 @@ TEST_F(Hexagon_FocusTimerBar_RendererTest, render__without_font_addon_initialize
    al_init();
    al_init_primitives_addon();
    Hexagon::FocusTimerBar::Renderer renderer;
-   std::string expected_error_message =
-      "Renderer::render: error: guard \"al_is_font_addon_initialized()\" not met";
-   EXPECT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      renderer.render(),
+      "Hexagon::FocusTimerBar::Renderer::render",
+      "al_is_font_addon_initialized()"
+   );
    al_shutdown_primitives_addon();
    al_uninstall_system();
 }
@@ -63,9 +65,11 @@ TEST_F(Hexagon_FocusTimerBar_RendererTest, render__without_a_font_bin__raises_an
    al_init_primitives_addon();
    al_init_font_addon();
    Hexagon::FocusTimerBar::Renderer renderer;
-   std::string expected_error_message =
-      "Renderer::render: error: guard \"font_bin\" not met";
-   EXPECT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+   EXPECT_THROW_GUARD_ERROR(
+      renderer.render(),
+      "Hexagon::FocusTimerBar::Renderer::render",
+      "font_bin"
+   );
    al_shutdown_font_addon();
    al_shutdown_primitives_addon();
    al_uninstall_system();

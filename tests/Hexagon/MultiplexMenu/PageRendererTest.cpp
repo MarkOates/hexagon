@@ -1,14 +1,10 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Testing/WithAllegroRenderingFixture.hpp>
 
 #include <Hexagon/MultiplexMenu/PageRenderer.hpp>
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 
 class Hexagon_MultiplexMenu_PageRendererTest : public ::testing::Test
@@ -46,9 +42,11 @@ TEST_F(Hexagon_MultiplexMenu_PageRendererTest, can_be_created_without_blowing_up
 TEST_F(Hexagon_MultiplexMenu_PageRendererTest, render__without_allegro_initialized__raises_an_error)
 {
    Hexagon::MultiplexMenu::PageRenderer renderer;
-   std::string expected_error_message =
-      "PageRenderer::render: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      renderer.render(),
+      "Hexagon::MultiplexMenu::PageRenderer::render",
+      "al_is_system_installed()"
+   );
 }
 
 
@@ -56,9 +54,11 @@ TEST_F(Hexagon_MultiplexMenu_PageRendererTestWithAllegroRenderingFixture,
    render__without_a_font_bin__will_throw_an_error)
 {
    Hexagon::MultiplexMenu::PageRenderer renderer;
-   std::string expected_error_message =
-      "PageRenderer::render: error: guard \"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      renderer.render(),
+      "Hexagon::MultiplexMenu::PageRenderer::render",
+      "font_bin"
+   );
 }
 
 
@@ -94,9 +94,11 @@ TEST_F(Hexagon_MultiplexMenu_PageRendererTest,
    convert_key_input_to_string__without_allegro_initialized__will_throw_an_error)
 {
    Hexagon::MultiplexMenu::PageRenderer renderer;
-   std::string expected_error_message =
-      "PageRenderer::convert_key_input_to_string: error: guard \"al_is_system_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(renderer.convert_key_input_to_string(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      renderer.convert_key_input_to_string(),
+      "Hexagon::MultiplexMenu::PageRenderer::convert_key_input_to_string",
+      "al_is_system_installed()"
+   );
 }
 
 
@@ -105,9 +107,11 @@ TEST_F(Hexagon_MultiplexMenu_PageRendererTest,
 {
    al_init();
    Hexagon::MultiplexMenu::PageRenderer renderer;
-   std::string expected_error_message =
-      "PageRenderer::convert_key_input_to_string: error: guard \"al_is_keyboard_installed()\" not met";
-   ASSERT_THROW_WITH_MESSAGE(renderer.convert_key_input_to_string(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      renderer.convert_key_input_to_string(),
+      "Hexagon::MultiplexMenu::PageRenderer::convert_key_input_to_string",
+      "al_is_keyboard_installed()"
+   );
    al_uninstall_system();
 }
 

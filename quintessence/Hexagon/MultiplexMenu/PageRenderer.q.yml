@@ -183,6 +183,7 @@ functions:
         default_argument: false
     guards: [ al_is_system_installed(), al_is_keyboard_installed() ]
     body: |
+      // TODO: Review if the guards are even needed here
       std::vector<std::string> result_tokens;
 
       if (ctrl) result_tokens.push_back("Ctrl");

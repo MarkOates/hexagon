@@ -180,6 +180,7 @@ std::string PageRenderer::convert_key_input_to_string(int al_keycode, bool ctrl,
       std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
       throw std::runtime_error("[Hexagon::MultiplexMenu::PageRenderer::convert_key_input_to_string]: error: guard \"al_is_keyboard_installed()\" not met");
    }
+   // TODO: Review if the guards are even needed here
    std::vector<std::string> result_tokens;
 
    if (ctrl) result_tokens.push_back("Ctrl");

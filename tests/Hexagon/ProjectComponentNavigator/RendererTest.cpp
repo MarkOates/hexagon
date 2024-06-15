@@ -1,17 +1,9 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
-#define EXPECT_THROW_WITH_MESSAGE(code, raised_exception_type, raised_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { EXPECT_EQ(err.what(), std::string( raised_exception_message )); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/ProjectComponentNavigator/Renderer.hpp>
+
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 
 class Hexagon_ProjectComponentNavigator_RendererWithFixtureTest : public ::testing::Test
@@ -91,10 +83,16 @@ TEST(Hexagon_ProjectComponentNavigator_RendererTest, can_be_created_without_blow
 TEST(Hexagon_ProjectComponentNavigator_RendererTest, render__and__render_raw__without_a_stage_throws_an_error)
 {
    Hexagon::ProjectComponentNavigator::Renderer renderer;
-   std::string expected_message = "Renderer::render: error: guard \"stage\" not met";
-   std::string expected_raw_message = "Renderer::render_raw: error: guard \"stage\" not met";
-   EXPECT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_message);
-   EXPECT_THROW_WITH_MESSAGE(renderer.render_raw(), std::runtime_error, expected_raw_message);
+   ASSERT_THROW_GUARD_ERROR(
+      renderer.render(),
+      "Hexagon::ProjectComponentNavigator::Renderer::render",
+      "stage"
+   );
+   ASSERT_THROW_GUARD_ERROR(
+      renderer.render_raw(),
+      "Hexagon::ProjectComponentNavigator::Renderer::render_raw",
+      "stage"
+   );
 }
 
 
@@ -102,10 +100,16 @@ TEST(Hexagon_ProjectComponentNavigator_RendererTest, render__and__render_raw__wi
 {
    Hexagon::ProjectComponentNavigator::Stage stage;
    Hexagon::ProjectComponentNavigator::Renderer renderer(&stage);
-   std::string expected_message = "Renderer::render: error: guard \"font\" not met";
-   std::string expected_raw_message = "Renderer::render_raw: error: guard \"font\" not met";
-   EXPECT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_message);
-   EXPECT_THROW_WITH_MESSAGE(renderer.render_raw(), std::runtime_error, expected_raw_message);
+   ASSERT_THROW_GUARD_ERROR(
+      renderer.render(),
+      "Hexagon::ProjectComponentNavigator::Renderer::render",
+      "font"
+   );
+   ASSERT_THROW_GUARD_ERROR(
+      renderer.render_raw(),
+      "Hexagon::ProjectComponentNavigator::Renderer::render_raw",
+      "font"
+   );
 }
 
 

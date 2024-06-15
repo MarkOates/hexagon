@@ -1,12 +1,8 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Hexagon/ObjectivesLog/Stage.hpp>
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 class Hexagon_ObjectivesLog_StageTest : public ::testing::Test {};
 
@@ -25,8 +21,13 @@ TEST_F(Hexagon_ObjectivesLog_StageTest, can_be_created_without_blowing_up)
 TEST_F(Hexagon_ObjectivesLog_StageTest, render__without_a_font_bin__throws_an_error)
 {
    Hexagon::ObjectivesLog::Stage stage;
-   std::string expected_error_message = "Stage::render: error: guard \"font_bin\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::render: error: guard \"font_bin\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      stage.render(),
+      "Hexagon::ObjectivesLog::Stage::render",
+      "font_bin"
+   );
 }
 
 
@@ -35,8 +36,13 @@ TEST_F(Hexagon_ObjectivesLog_StageTestWithAllegroRenderingFixture, render__witho
    AllegroFlare::FontBin font_bin;
    Hexagon::ObjectivesLog::Stage stage(&font_bin);
 
-   std::string expected_error_message = "Stage::render: error: guard \"objectives_log\" not met";
-   ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
+   //std::string expected_error_message = "Stage::render: error: guard \"objectives_log\" not met";
+   //ASSERT_THROW_WITH_MESSAGE(stage.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      stage.render(),
+      "Hexagon::ObjectivesLog::Stage::render",
+      "objectives_log"
+   );
 }
 
 

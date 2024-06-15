@@ -1,13 +1,8 @@
 
 #include <gtest/gtest.h>
 
-#define ASSERT_THROW_WITH_MESSAGE(code, raised_exception_type, expected_exception_message) \
-   try { code; FAIL() << "Expected " # raised_exception_type; } \
-   catch ( raised_exception_type const &err ) { ASSERT_EQ(std::string(expected_exception_message), err.what()); } \
-   catch (...) { FAIL() << "Expected " # raised_exception_type; }
-
 #include <Testing/WithAllegroRenderingFixture.hpp>
-
+#include <AllegroFlare/Testing/ErrorAssertions.hpp>
 
 #include <Hexagon/MultiplexMenu/Renderer.hpp>
 
@@ -63,9 +58,11 @@ TEST_F(Hexagon_MultiplexMenu_RendererTest, can_be_created_without_blowing_up)
 TEST_F(Hexagon_MultiplexMenu_RendererTestWithAllegroRenderingFixture, render__without_a_multiplex_menu__raises_an_error)
 {
    Hexagon::MultiplexMenu::Renderer renderer;
-   std::string expected_error_message =
-      "Renderer::render: error: guard \"multiplex_menu\" not met";
-   ASSERT_THROW_WITH_MESSAGE(renderer.render(), std::runtime_error, expected_error_message);
+   ASSERT_THROW_GUARD_ERROR(
+      renderer.render(),
+      "Hexagon::MultiplexMenu::Renderer::render",
+      "multiplex_menu"
+   );
 }
 
 
