@@ -269,6 +269,11 @@ std::vector<std::tuple<std::string, std::string>> ProjectFoldersView::build_menu
          //build_project_folder("bin/data")
       },
       {
+         "bin/data/samples",
+         "bin/data/samples",
+         //build_project_folder("bin/data")
+      },
+      {
          "bin/data/models",
          "bin/data/models",
          //build_project_folder("bin/data")
@@ -291,6 +296,11 @@ std::vector<std::tuple<std::string, std::string>> ProjectFoldersView::build_menu
       {
          "tests/fixtures/fonts",
          "tests/fixtures/fonts",
+         //build_project_folder("tests/fixtures/fonts/")
+      },
+      {
+         "tests/fixtures/samples",
+         "tests/fixtures/samples",
          //build_project_folder("tests/fixtures/fonts/")
       },
       {
