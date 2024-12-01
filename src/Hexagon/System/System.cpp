@@ -86,6 +86,40 @@
 
 
 
+static uint32_t get_allegro_input_compatibility_version(const char* key)
+{
+   ALLEGRO_CONFIG *system_config = al_get_system_config();
+   const char* compat_version = al_get_config_value(system_config, "compatibility", key);
+   if (!compat_version || strlen(compat_version) == 0)
+      return al_get_allegro_version();
+   int version = 0;
+   int sub_version = 0;
+   int wip_version = 0;
+   /* Ignore the release number, we don't expect that to make a difference */
+   sscanf(compat_version, "%2d.%2d.%2d", &version, &sub_version, &wip_version);
+   return AL_ID(version, sub_version, wip_version, 0);
+}
+//uint32_t _al_get_joystick_compat_version(void)
+//{
+   //return get_joystick_compat_version("joystick_version");
+//}
+uint32_t al_get_keyboard_compatibility_version(void)
+{
+   return get_allegro_input_compatibility_version("keyboard_version");
+}
+std::string format_al_version(uint32_t version)
+{
+   int major = version >> 24;
+   int minor = (version >> 16) & 255;
+   int revision = (version >> 8) & 255;
+   int release = version & 255;
+   std::stringstream ss;
+   ss << major << "." << minor << "." << revision << "[" << release << "]";
+   return ss.str();
+}
+
+
+
 static const std::string sonnet = R"END(Is it thy will thy image should keep open
 My heavy eyelids to the weary night?
 Dost thou desire my slumbers should be broken,
@@ -203,6 +237,12 @@ void System::initialize()
    //process_local_event(EXECUTE_MAGIC_COMMAND);
 
    process_local_event(::System::SPAWN_PROJECT_NAVIGATOR);
+
+   // Check the allegro keyboard compatibility version
+
+   uint32_t keyboard_compatibility_version = al_get_keyboard_compatibility_version();
+   std::cout << "keyboard_compatibility_version: " << keyboard_compatibility_version << " ("
+      << format_al_version(keyboard_compatibility_version) << ")" << std::endl;
 }
 
 
