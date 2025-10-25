@@ -36,6 +36,7 @@ Stage::Stage(std::string project_root, ALLEGRO_COLOR base_text_color, ALLEGRO_CO
    , MOVE_CURSOR_DOWN("move_cursor_down")
    , YANK_SELECTED_TEXT_LABEL("yank_selected_text_label")
    , YANK_SELECTED_TEXT_AS_COMPONENT_NAME("yank_selected_text_as_component_name")
+   , YANK_SELECTED_TEXT_AS_QUINTESSENCE_FILENAME("yank_selected_text_as_quintessence_filename")
    , YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE("yank_selected_text_as_include_directive")
    , YANK_SELECTED_TEXT_AS_ERROR_MESSAGE_TEMPLATE("yank_selected_text_as_error_message_template")
    , YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES("yank_selected_text_as_quintessence_dependency_lines")
@@ -203,6 +204,7 @@ AllegroFlare::KeyboardCommandMapper Stage::build_keyboard_command_mapping()
       mapping.set_mapping(ALLEGRO_KEY_SLASH, NO_MODIFIER, { SET_MODE_TO_TYPING_IN_SEARCH_BAR });
       mapping.set_mapping(ALLEGRO_KEY_Y, NO_MODIFIER, { YANK_SELECTED_TEXT_LABEL });
       mapping.set_mapping(ALLEGRO_KEY_C, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_COMPONENT_NAME });
+      mapping.set_mapping(ALLEGRO_KEY_F, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_QUINTESSENCE_FILENAME });
       mapping.set_mapping(ALLEGRO_KEY_I, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE });
       mapping.set_mapping(ALLEGRO_KEY_I, SHIFT, { YANK_SELECTED_TEXT_AS_INJECTED_DEPENDENCY_PROPERTY });
       mapping.set_mapping(ALLEGRO_KEY_D, NO_MODIFIER, { YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES });
@@ -225,6 +227,7 @@ std::map<std::string, std::function<void(Hexagon::AdvancedComponentNavigator::Ad
       { MOVE_CURSOR_DOWN, &AdvancedComponentNavigator::move_cursor_down },
       { YANK_SELECTED_TEXT_LABEL, &AdvancedComponentNavigator::yank_selected_text_label },
       { YANK_SELECTED_TEXT_AS_COMPONENT_NAME, &AdvancedComponentNavigator::yank_selected_text_as_component_name },
+      { YANK_SELECTED_TEXT_AS_QUINTESSENCE_FILENAME, &AdvancedComponentNavigator::yank_selected_text_as_quintessence_filename},
       { YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE,
         &AdvancedComponentNavigator::yank_selected_text_as_include_directive },
       { YANK_SELECTED_TEXT_AS_ERROR_MESSAGE_TEMPLATE,
@@ -260,6 +263,8 @@ void Stage::render()
       "Y - copy Component/Name"
       "    "
       "C - copy Class::Name"
+      "    "
+      "f - copy quintessence filename (relative)"
       "    "
       "I - copy #include<>"
       "    "

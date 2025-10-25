@@ -181,6 +181,20 @@ void AdvancedComponentNavigator::yank_selected_text_as_component_name()
    ClipboardData::store(filtered_text);
 }
 
+void AdvancedComponentNavigator::yank_selected_text_as_quintessence_filename()
+{
+   if (!(current_selection_is_valid()))
+   {
+      std::stringstream error_message;
+      error_message << "[Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator::yank_selected_text_as_quintessence_filename]: error: guard \"current_selection_is_valid()\" not met.";
+      std::cerr << "\033[1;31m" << error_message.str() << " An exception will be thrown to halt the program.\033[0m" << std::endl;
+      throw std::runtime_error("[Hexagon::AdvancedComponentNavigator::AdvancedComponentNavigator::yank_selected_text_as_quintessence_filename]: error: guard \"current_selection_is_valid()\" not met");
+   }
+   std::string selected_text = get_current_selection_label_or_empty_string();
+   std::string result = "quintessence/" + selected_text + ".q.yml";
+   ClipboardData::store(result);
+}
+
 void AdvancedComponentNavigator::yank_selected_text_as_include_directive()
 {
    if (!(current_selection_is_valid()))

@@ -40,6 +40,7 @@ namespace Hexagon
          std::string MOVE_CURSOR_DOWN;
          std::string YANK_SELECTED_TEXT_LABEL;
          std::string YANK_SELECTED_TEXT_AS_COMPONENT_NAME;
+         std::string YANK_SELECTED_TEXT_AS_QUINTESSENCE_FILENAME;
          std::string YANK_SELECTED_TEXT_AS_INCLUDE_DIRECTIVE;
          std::string YANK_SELECTED_TEXT_AS_ERROR_MESSAGE_TEMPLATE;
          std::string YANK_SELECTED_TEXT_AS_QUINTESSENCE_DEPENDENCY_LINES;

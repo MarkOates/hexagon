@@ -50,6 +50,7 @@ namespace Hexagon
          void refresh_list();
          void yank_selected_text_label();
          void yank_selected_text_as_component_name();
+         void yank_selected_text_as_quintessence_filename();
          void yank_selected_text_as_include_directive();
          void yank_selected_text_as_quintessence_dependency_lines();
          void yank_selected_text_as_public_parent_class_lines();
