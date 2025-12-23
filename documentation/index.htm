@@ -7754,11 +7754,25 @@ table td
   <td class="method">float</td>
   <td class="method"><b>calc_warning_position_normalized</b>()</td>
 </tr>
+<tr>
+  <td class="method">double</td>
+  <td class="method"><b>calc_normalized_length</b>()</td>
+</tr>
+<tr>
+  <td class="method">Hexagon::FocusTimerBar::FocusTimerBar::Activity</td>
+  <td class="method"><b>infer_activity_type</b>()</td>
+</tr>
     </table>
 </div>    <h3>Dependencies</h3>
 <div class="property-box dependencies">     <table>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::time_t&quot;, &quot;headers&quot;=&gt;[&quot;ctime&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::FocusTimerBar::FocusTimerBar::Activity&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/FocusTimerBar/FocusTimerBar.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;std::fmod&quot;, &quot;headers&quot;=&gt;[&quot;cmath&quot;]}</td>
 </tr>
     </table>
 </div>  </div>
@@ -17131,7 +17145,11 @@ table td
     "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/Powerbar/Powerbar"
   ],
+  "Hexagon/FocusTimerBar/FocusTimerBar/Activity": [
+    "Hexagon/FocusTimerBar/FocusTimerBar"
+  ],
   "std/fmod": [
+    "Hexagon/FocusTimerBar/FocusTimerBar",
     "Hexagon/FocusTimerBar/Renderer"
   ],
   "Hexagon/FocusTimerBar/FocusTimerBar": [

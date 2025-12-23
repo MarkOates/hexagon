@@ -1481,7 +1481,11 @@
     "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/Powerbar/Powerbar"
   ],
+  "Hexagon/FocusTimerBar/FocusTimerBar/Activity": [
+    "Hexagon/FocusTimerBar/FocusTimerBar"
+  ],
   "std/fmod": [
+    "Hexagon/FocusTimerBar/FocusTimerBar",
     "Hexagon/FocusTimerBar/Renderer"
   ],
   "Hexagon/FocusTimerBar/FocusTimerBar": [

@@ -5,6 +5,7 @@ properties:
     type: std::time_t
     init_with: 0
     getter: true
+    setter: true
 
   - name: focus_timer_duration_sec
     type: float
@@ -17,6 +18,18 @@ properties:
     getter: true
 
 
+enums:
+
+
+  - name: Activity
+    scope: public
+    enumerators:
+      - ACTIVITY_UNDEF
+      - ACTIVITY_SITTING
+      - ACTIVITY_STANDING
+      - ACTIVITY_ENUM_END
+
+
 functions:
 
 
@@ -26,10 +39,34 @@ functions:
       return warning_position_sec / focus_timer_duration_sec;
 
 
+  - name: calc_normalized_length
+    type: double
+    body: |
+      std::time_t time_now = time(0);
+      struct tm now_tm = *localtime(&time_now);
+      double seconds = difftime(time_now, mktime(0));
+      double normal_length = std::fmod(seconds, focus_timer_duration_sec) / focus_timer_duration_sec;
+      return normal_length;
+    body_dependency_symbols:
+      - std::fmod
+
+
+  - name: infer_activity_type
+    type: Hexagon::FocusTimerBar::FocusTimerBar::Activity
+    body: |
+      int num_activities = (ACTIVITY_ENUM_END - 1); 
+      int activity = (int)(focus_timer_started_at / focus_timer_duration_sec) % num_activities + 1;
+      return static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity);
+
+
 dependencies:
 
 
   - symbol: std::time_t
     headers: [ ctime ]
+  - symbol: Hexagon::FocusTimerBar::FocusTimerBar::Activity
+    headers: [ Hexagon/FocusTimerBar/FocusTimerBar.hpp ]
+  - symbol: std::fmod
+    headers: [ cmath ]
 
 

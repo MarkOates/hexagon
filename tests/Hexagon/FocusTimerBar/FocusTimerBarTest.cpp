@@ -27,3 +27,14 @@ TEST(Hexagon_FocusTimerBarTest,
    EXPECT_NEAR(0.8333333f, focus_timer_bar.calc_warning_position_normalized(), FLOATING_POINT_ERROR_MARGIN);
 }
 
+
+TEST(Hexagon_FocusTimerBarTest,
+   infer_activity_type__will_return_the_activity_type_for_the_current_time)
+{
+   Hexagon::FocusTimerBar::FocusTimerBar focus_timer_bar;
+   focus_timer_bar.set_focus_timer_started_at(1704067200); // 2024-01-01 00:00:00 UTC
+
+   EXPECT_EQ(Hexagon::FocusTimerBar::FocusTimerBar::Activity::ACTIVITY_SITTING, focus_timer_bar.infer_activity_type());
+}
+
+
