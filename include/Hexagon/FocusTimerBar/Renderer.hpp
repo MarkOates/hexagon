@@ -16,7 +16,6 @@ namespace Hexagon
          float surface_width;
          float surface_height;
          Hexagon::FocusTimerBar::FocusTimerBar* focus_timer_bar;
-         void draw_ticks();
 
       protected:
 

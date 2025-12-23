@@ -7762,6 +7762,10 @@ table td
   <td class="method">Hexagon::FocusTimerBar::FocusTimerBar::Activity</td>
   <td class="method"><b>infer_activity_type</b>()</td>
 </tr>
+<tr>
+  <td class="method">std::string</td>
+  <td class="method"><b>infer_activity_type_str</b>()</td>
+</tr>
     </table>
 </div>    <h3>Dependencies</h3>
 <div class="property-box dependencies">     <table>
@@ -7808,10 +7812,6 @@ table td
   <td class="method">void</td>
   <td class="method"><b>render</b>()</td>
 </tr>
-<tr>
-  <td class="private_method">void</td>
-  <td class="private_method"><b>draw_ticks</b>()</td>
-</tr>
     </table>
 </div>    <h3>Dependencies</h3>
 <div class="property-box dependencies">     <table>
@@ -7835,6 +7835,9 @@ table td
 </tr>
 <tr>
   <td class="dependency">{&quot;symbol&quot;=&gt;&quot;AllegroFlare::FontBin&quot;, &quot;headers&quot;=&gt;[&quot;AllegroFlare/FontBin.hpp&quot;]}</td>
+</tr>
+<tr>
+  <td class="dependency">{&quot;symbol&quot;=&gt;&quot;Hexagon::FocusTimerBar::FocusTimerBar&quot;, &quot;headers&quot;=&gt;[&quot;Hexagon/FocusTimerBar/FocusTimerBar.hpp&quot;]}</td>
 </tr>
     </table>
 </div>  </div>
@@ -17153,6 +17156,7 @@ table td
     "Hexagon/FocusTimerBar/Renderer"
   ],
   "Hexagon/FocusTimerBar/FocusTimerBar": [
+    "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/Hud"
   ],

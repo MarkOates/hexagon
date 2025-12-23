@@ -3,6 +3,7 @@
 
 #include <Hexagon/FocusTimerBar/FocusTimerBar.hpp>
 #include <ctime>
+#include <string>
 
 
 namespace Hexagon
@@ -39,6 +40,7 @@ namespace Hexagon
          float calc_warning_position_normalized();
          double calc_normalized_length();
          Hexagon::FocusTimerBar::FocusTimerBar::Activity infer_activity_type();
+         std::string infer_activity_type_str();
       };
    }
 }

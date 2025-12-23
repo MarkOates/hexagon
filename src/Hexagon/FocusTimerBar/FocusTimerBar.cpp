@@ -69,6 +69,18 @@ Hexagon::FocusTimerBar::FocusTimerBar::Activity FocusTimerBar::infer_activity_ty
    return static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity);
 }
 
+std::string FocusTimerBar::infer_activity_type_str()
+{
+   int num_activities = (ACTIVITY_ENUM_END - 1); 
+   int activity = (int)(focus_timer_started_at / focus_timer_duration_sec) % num_activities + 1;
+   switch (static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity))
+   {
+      case ACTIVITY_SITTING: return "sitting";
+      case ACTIVITY_STANDING: return "standing";
+      default: return "activity_undefined";
+   }
+}
+
 
 } // namespace FocusTimerBar
 } // namespace Hexagon

@@ -105,6 +105,7 @@ void Renderer::render()
    double normal_length = focus_timer_bar->calc_normalized_length();
    length = normal_length * width;
 
+   // Draw the box container
    float h_padding = 5.0f;
    float v_padding = 5.0f;
    float roundness = 0.0f;
@@ -112,6 +113,7 @@ void Renderer::render()
    al_draw_line(x, y, x+length, y, color, 1.0f);
    //al_draw_line(10, 10, 600, 300, al_color_name("white"), 10.0f);
 
+   // Draw the line representing the timer
    al_draw_line(
       x + x_position_for_warning_tick,
       y - v_padding,
@@ -120,14 +122,13 @@ void Renderer::render()
       color,
       1.0
    );
-   draw_ticks();
 
+   // Draw activity (sitting or standing)
+   std::string activity = focus_timer_bar->infer_activity_type_str();
+   al_draw_text(font_bin->auto_get("Exan-Regular.ttf -20"), color, x-20, y-10, ALLEGRO_ALIGN_RIGHT, activity.c_str());
    return;
-}
 
-void Renderer::draw_ticks()
-{
-   //al_draw_vertical_line
+
    return;
 }
 

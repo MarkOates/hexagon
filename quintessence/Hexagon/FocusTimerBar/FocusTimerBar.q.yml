@@ -59,6 +59,19 @@ functions:
       return static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity);
 
 
+  - name: infer_activity_type_str
+    type: std::string
+    body: |
+      int num_activities = (ACTIVITY_ENUM_END - 1); 
+      int activity = (int)(focus_timer_started_at / focus_timer_duration_sec) % num_activities + 1;
+      switch (static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity))
+      {
+         case ACTIVITY_SITTING: return "sitting";
+         case ACTIVITY_STANDING: return "standing";
+         default: return "activity_undefined";
+      }
+
+
 dependencies:
 
 

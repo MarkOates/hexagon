@@ -1490,6 +1490,7 @@
   ],
   "Hexagon/FocusTimerBar/FocusTimerBar": [
     "Hexagon/FocusTimerBar/Renderer",
+    "Hexagon/FocusTimerBar/Renderer",
     "Hexagon/Hud"
   ],
   "std/stringstream": [
