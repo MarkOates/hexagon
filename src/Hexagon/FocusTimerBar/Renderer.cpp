@@ -96,12 +96,13 @@ void Renderer::render()
    ALLEGRO_COLOR border_color = al_map_rgba_f(0.2, 0.2, 0.2, 0.2);
    float x_position_for_warning_tick = width * focus_timer_bar->calc_warning_position_normalized();
 
-   std::time_t time_now = time(0);
-   struct tm now_tm = *localtime(&time_now);
-   //double seconds = difftime(time_now,mktime(&newyear));
-   double seconds = difftime(time_now, mktime(0));
-   double normal_length = std::fmod(seconds, focus_timer_bar->get_focus_timer_duration_sec())
-                        / focus_timer_bar->get_focus_timer_duration_sec();
+   //std::time_t time_now = time(0);
+   //struct tm now_tm = *localtime(&time_now);
+   ////double seconds = difftime(time_now,mktime(&newyear));
+   //double seconds = difftime(time_now, mktime(0));
+   //double normal_length = std::fmod(seconds, focus_timer_bar->get_focus_timer_duration_sec())
+                        /// focus_timer_bar->get_focus_timer_duration_sec();
+   double normal_length = focus_timer_bar->calc_normalized_length();
    length = normal_length * width;
 
    float h_padding = 5.0f;
