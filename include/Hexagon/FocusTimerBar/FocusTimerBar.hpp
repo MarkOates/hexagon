@@ -38,6 +38,7 @@ namespace Hexagon
          float get_focus_timer_duration_sec() const;
          float get_warning_position_sec() const;
          float calc_warning_position_normalized();
+         void set_time_to_time_now();
          double calc_normalized_length();
          Hexagon::FocusTimerBar::FocusTimerBar::Activity infer_activity_type();
          std::string infer_activity_type_str();

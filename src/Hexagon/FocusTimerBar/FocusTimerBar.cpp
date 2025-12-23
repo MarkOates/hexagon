@@ -12,7 +12,7 @@ namespace FocusTimerBar
 
 
 FocusTimerBar::FocusTimerBar()
-   : focus_timer_time_now(0)
+   : focus_timer_time_now(time(0))
    , focus_timer_duration_sec((60.0f * 30))
    , warning_position_sec((60.0f * 30.0f) - 300.0f)
 {
@@ -53,10 +53,15 @@ float FocusTimerBar::calc_warning_position_normalized()
    return warning_position_sec / focus_timer_duration_sec;
 }
 
+void FocusTimerBar::set_time_to_time_now()
+{
+   focus_timer_time_now = time(0);
+}
+
 double FocusTimerBar::calc_normalized_length()
 {
-   std::time_t time_now = time(0);
-   //std::time_t time_now = focus_timer_time_now;
+   //std::time_t time_now = time(0);
+   std::time_t time_now = focus_timer_time_now;
    struct tm now_tm = *localtime(&time_now);
    double seconds = difftime(time_now, mktime(0));
    double normal_length = std::fmod(seconds, focus_timer_duration_sec) / focus_timer_duration_sec;
@@ -65,8 +70,8 @@ double FocusTimerBar::calc_normalized_length()
 
 Hexagon::FocusTimerBar::FocusTimerBar::Activity FocusTimerBar::infer_activity_type()
 {
-   std::time_t time_now = time(0);
-   //std::time_t time_now = focus_timer_time_now;
+   //std::time_t time_now = time(0);
+   std::time_t time_now = focus_timer_time_now;
    int num_activities = (ACTIVITY_ENUM_END - 1); 
    int activity = (int)(time_now / focus_timer_duration_sec) % num_activities + 1;
    return static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity);

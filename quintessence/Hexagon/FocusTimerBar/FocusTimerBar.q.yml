@@ -3,7 +3,7 @@ properties:
 
   - name: focus_timer_time_now
     type: std::time_t
-    init_with: 0
+    init_with: 'time(0)'
     getter: true
     setter: true
 
@@ -39,11 +39,16 @@ functions:
       return warning_position_sec / focus_timer_duration_sec;
 
 
+  - name: set_time_to_time_now
+    body: |
+      focus_timer_time_now = time(0);
+
+
   - name: calc_normalized_length
     type: double
     body: |
-      std::time_t time_now = time(0);
-      //std::time_t time_now = focus_timer_time_now;
+      //std::time_t time_now = time(0);
+      std::time_t time_now = focus_timer_time_now;
       struct tm now_tm = *localtime(&time_now);
       double seconds = difftime(time_now, mktime(0));
       double normal_length = std::fmod(seconds, focus_timer_duration_sec) / focus_timer_duration_sec;
@@ -55,8 +60,8 @@ functions:
   - name: infer_activity_type
     type: Hexagon::FocusTimerBar::FocusTimerBar::Activity
     body: |
-      std::time_t time_now = time(0);
-      //std::time_t time_now = focus_timer_time_now;
+      //std::time_t time_now = time(0);
+      std::time_t time_now = focus_timer_time_now;
       int num_activities = (ACTIVITY_ENUM_END - 1); 
       int activity = (int)(time_now / focus_timer_duration_sec) % num_activities + 1;
       return static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity);

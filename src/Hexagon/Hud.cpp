@@ -650,6 +650,8 @@ void Hud::draw_powerbar()
 
 void Hud::draw_focus_timer_bar()
 {
+   focus_timer_bar.set_time_to_time_now(); // HACK: Update the timer here (only before rendering?)
+                                           // TODO: Find a more appropriate location to update the timer bar
    Hexagon::FocusTimerBar::Renderer focus_timer_bar_renderer(
       &font_bin,
       get_surface_projection_width(),
