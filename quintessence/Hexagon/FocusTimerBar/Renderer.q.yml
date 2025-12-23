@@ -75,7 +75,7 @@ functions:
 
       // Draw activity (sitting or standing)
       std::string activity = focus_timer_bar->infer_activity_type_str();
-      al_draw_text(font_bin->auto_get("Exan-Regular.ttf -20"), color, x-20, y-10, ALLEGRO_ALIGN_RIGHT, activity.c_str());
+      al_draw_text(font_bin->auto_get("Exan-Regular.ttf -15"), color, x-20, y-8, ALLEGRO_ALIGN_RIGHT, activity.c_str());
       return;
 
       

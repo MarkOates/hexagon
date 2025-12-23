@@ -1,7 +1,7 @@
 properties:
 
 
-  - name: focus_timer_started_at
+  - name: focus_timer_time_now
     type: std::time_t
     init_with: 0
     getter: true
@@ -43,6 +43,7 @@ functions:
     type: double
     body: |
       std::time_t time_now = time(0);
+      //std::time_t time_now = focus_timer_time_now;
       struct tm now_tm = *localtime(&time_now);
       double seconds = difftime(time_now, mktime(0));
       double normal_length = std::fmod(seconds, focus_timer_duration_sec) / focus_timer_duration_sec;
@@ -54,21 +55,21 @@ functions:
   - name: infer_activity_type
     type: Hexagon::FocusTimerBar::FocusTimerBar::Activity
     body: |
+      std::time_t time_now = time(0);
+      //std::time_t time_now = focus_timer_time_now;
       int num_activities = (ACTIVITY_ENUM_END - 1); 
-      int activity = (int)(focus_timer_started_at / focus_timer_duration_sec) % num_activities + 1;
+      int activity = (int)(time_now / focus_timer_duration_sec) % num_activities + 1;
       return static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity);
 
 
   - name: infer_activity_type_str
     type: std::string
     body: |
-      int num_activities = (ACTIVITY_ENUM_END - 1); 
-      int activity = (int)(focus_timer_started_at / focus_timer_duration_sec) % num_activities + 1;
-      switch (static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity))
+      switch (infer_activity_type())
       {
-         case ACTIVITY_SITTING: return "sitting";
-         case ACTIVITY_STANDING: return "standing";
-         default: return "activity_undefined";
+         case ACTIVITY_SITTING: return "SITTING"; break;
+         case ACTIVITY_STANDING: return "STANDING"; break;
+         default: return "ACTIVITY_UNDEFINED"; break;
       }
 
 

@@ -12,7 +12,7 @@ namespace FocusTimerBar
 
 
 FocusTimerBar::FocusTimerBar()
-   : focus_timer_started_at(0)
+   : focus_timer_time_now(0)
    , focus_timer_duration_sec((60.0f * 30))
    , warning_position_sec((60.0f * 30.0f) - 300.0f)
 {
@@ -24,15 +24,15 @@ FocusTimerBar::~FocusTimerBar()
 }
 
 
-void FocusTimerBar::set_focus_timer_started_at(std::time_t focus_timer_started_at)
+void FocusTimerBar::set_focus_timer_time_now(std::time_t focus_timer_time_now)
 {
-   this->focus_timer_started_at = focus_timer_started_at;
+   this->focus_timer_time_now = focus_timer_time_now;
 }
 
 
-std::time_t FocusTimerBar::get_focus_timer_started_at() const
+std::time_t FocusTimerBar::get_focus_timer_time_now() const
 {
-   return focus_timer_started_at;
+   return focus_timer_time_now;
 }
 
 
@@ -56,6 +56,7 @@ float FocusTimerBar::calc_warning_position_normalized()
 double FocusTimerBar::calc_normalized_length()
 {
    std::time_t time_now = time(0);
+   //std::time_t time_now = focus_timer_time_now;
    struct tm now_tm = *localtime(&time_now);
    double seconds = difftime(time_now, mktime(0));
    double normal_length = std::fmod(seconds, focus_timer_duration_sec) / focus_timer_duration_sec;
@@ -64,20 +65,20 @@ double FocusTimerBar::calc_normalized_length()
 
 Hexagon::FocusTimerBar::FocusTimerBar::Activity FocusTimerBar::infer_activity_type()
 {
+   std::time_t time_now = time(0);
+   //std::time_t time_now = focus_timer_time_now;
    int num_activities = (ACTIVITY_ENUM_END - 1); 
-   int activity = (int)(focus_timer_started_at / focus_timer_duration_sec) % num_activities + 1;
+   int activity = (int)(time_now / focus_timer_duration_sec) % num_activities + 1;
    return static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity);
 }
 
 std::string FocusTimerBar::infer_activity_type_str()
 {
-   int num_activities = (ACTIVITY_ENUM_END - 1); 
-   int activity = (int)(focus_timer_started_at / focus_timer_duration_sec) % num_activities + 1;
-   switch (static_cast<Hexagon::FocusTimerBar::FocusTimerBar::Activity>(activity))
+   switch (infer_activity_type())
    {
-      case ACTIVITY_SITTING: return "sitting";
-      case ACTIVITY_STANDING: return "standing";
-      default: return "activity_undefined";
+      case ACTIVITY_SITTING: return "SITTING"; break;
+      case ACTIVITY_STANDING: return "STANDING"; break;
+      default: return "ACTIVITY_UNDEFINED"; break;
    }
 }
 
