@@ -16,7 +16,7 @@ namespace Testing
 WithAllegroRenderingFixture::WithAllegroRenderingFixture()
    : ::testing::Test()
    , display(nullptr)
-   , font_bin({})
+   , font_bin()
 {
 }
 

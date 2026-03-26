@@ -14,7 +14,7 @@ properties:
     init_with: '"/Users/markoates/Repos/hexagon/tests/fixtures/hexagon.test.cfg"'
   - name: font_bin
     type: AllegroFlare::FontBin
-    init_with: '{}'
+    init_with: ''
     getter_ref: true
   - name: stage_factory
     type: Hexagon::StageFactory

@@ -14,7 +14,7 @@ namespace Testing
 WithStageFactoryFixture::WithStageFactoryFixture()
    : ::testing::Test()
    , config("/Users/markoates/Repos/hexagon/tests/fixtures/hexagon.test.cfg")
-   , font_bin({})
+   , font_bin()
    , stage_factory(&config, nullptr, &font_bin)
 {
 }
