@@ -1235,6 +1235,17 @@ bool System::save_frontmost_code_editor_stage_and_touch_if_symlink()
 
       php::file_put_contents("/Users/markoates/Repos/hexagon/bin/programs/data/tmp/current_project_directory.txt",
          current_project_directory);
+
+
+      // HERE
+      //last_project_navigator_selection
+      std::stringstream command;
+      command << "echo '{\"action\": \"build_and_test\", \"component\": \""
+              << last_project_navigator_selection << "\"}' | nc localhost 6543";
+      std::cout << "Running shell command BEGIN: \"" << command.str() << "\"" << std::endl;
+      Blast::ShellCommandExecutorWithCallback command_executor(command.str());
+      command_executor.execute();
+      std::cout << "Running gshell command END: \"" << command.str() << "\"" << std::endl;
    }
 
 

@@ -666,8 +666,21 @@ void Hud::draw_build_sequence_meter()
 {
    std::string BUILD_STATUS_SIGNALING_FILENAME =
       "/Users/markoates/Repos/hexagon/bin/programs/data/tmp/build_signal.txt";
+
+   // OLD:
+   //std::string build_sequence_status = php::file_get_contents(BUILD_STATUS_SIGNALING_FILENAME);
+   //if (!build_sequence_status.empty()) build_sequence_status.pop_back(); // remove the newline, ugh hack sorry
+
    std::string build_sequence_status = php::file_get_contents(BUILD_STATUS_SIGNALING_FILENAME);
-   if (!build_sequence_status.empty()) build_sequence_status.pop_back(); // remove the newline, ugh hack sorry
+
+   // C++17 safe right-trim: removes \n, \r, and spaces from the end
+   size_t last = build_sequence_status.find_last_not_of(" \n\r\t");
+   if (last != std::string::npos) {
+      build_sequence_status = build_sequence_status.substr(0, last + 1);
+   } else {
+      build_sequence_status.clear(); // File was empty or only whitespace
+   }
+
    // TODO consider (do, actually, not consider) migrating this to placement3d
    placement2d place{1920 - 40, 1080 / 2, 70, 620};
    place.align = vec2d(1.0, 0.5);
@@ -685,7 +698,7 @@ void Hud::draw_build_sequence_meter()
      { "make_all_programs", "PROG", "not_started", "" },
      { "make_documentation", "DOCS", "not_started", "" },
      { "signal_component_built_and_integrated", "SIGF", "not_started", "" },
-     { "completed", "PASS", "not_started", "" },
+     { "completed", "PASx", "not_started", "" },
    };
    for (auto &build_stage : build_stages)
    {
